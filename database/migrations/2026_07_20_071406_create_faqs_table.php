@@ -1,0 +1,34 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('faqs', function (Blueprint $table) {
+            $table->id();
+            
+            // Polymorphic relationship
+            $table->morphs('faqable'); // Creates faqable_id + faqable_type
+            
+            $table->string('question');
+            $table->longText('answer');
+            
+            $table->integer('sort_order')->default(0);
+            $table->boolean('is_active')->default(true);
+            
+            $table->timestamps();
+            
+            // Index for faster queries
+            $table->index(['faqable_type', 'faqable_id', 'is_active', 'sort_order'], 'faqs_polymorphic_index');
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('faqs');
+    }
+};
