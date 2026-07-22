@@ -1,8 +1,13 @@
 <section id="hero" class="hero" aria-label="Hero Maverick Business Academy">
     <div class="hero__video-wrapper" aria-hidden="true">
-        <video class="hero__video" autoplay muted loop playsinline preload="auto">
-            <source src="{{ $hero->video_url }}" type="video/webm" />
-        </video>
+        @if(isset($hero) && $hero && !empty($hero->video_url))
+            <video class="hero__video" autoplay muted loop playsinline preload="auto">
+                <source src="{{ $hero->video_url }}" type="video/webm" />
+            </video>
+            <div class="hero__video-fallback img-placeholder"></div>
+        @else
+            <div class="hero__video-fallback img-placeholder"></div>
+        @endif
         <div class="hero__video-fallback img-placeholder"></div>
     </div>
 
