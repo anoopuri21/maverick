@@ -4,6 +4,7 @@ namespace App\Filament\Pages;
 
 use App\Settings\SiteSettings;
 use App\Services\CloudinaryService;
+use App\Filament\Concerns\HandlesCloudinaryImageFields;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Section;
@@ -14,6 +15,15 @@ use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class ManageSiteSettings extends SettingsPage
 {
+    use HandlesCloudinaryImageFields;
+
+    protected function mutateFormDataBeforeSave(array $data): array
+    {
+        $data = $this->preserveExistingImageFields($data, app(static::getSettings()));
+
+        return $data;
+    }
+
     protected static ?string $navigationIcon = 'heroicon-o-cog-6-tooth';
     protected static ?string $navigationGroup = 'Site Settings';
     protected static ?string $navigationLabel = 'General Settings';
@@ -31,6 +41,9 @@ class ManageSiteSettings extends SettingsPage
                             ->label('Logo (Dark)')
                             ->image()
                             ->maxSize(2048)
+                            ->fetchFileInformation(false)
+                            ->nullable()
+                            ->getUploadedFileUsing(fn (?string $file): ?array => static::existingCloudinaryImage($file))
                             ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
                                 return app(CloudinaryService::class)
                                     ->uploadImage($file->getRealPath(), 'site');
@@ -39,6 +52,9 @@ class ManageSiteSettings extends SettingsPage
                             ->label('Logo (White)')
                             ->image()
                             ->maxSize(2048)
+                            ->fetchFileInformation(false)
+                            ->nullable()
+                            ->getUploadedFileUsing(fn (?string $file): ?array => static::existingCloudinaryImage($file))
                             ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
                                 return app(CloudinaryService::class)
                                     ->uploadImage($file->getRealPath(), 'site');

@@ -11,10 +11,12 @@ use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Grid;
 use App\Services\CloudinaryService;
+use App\Filament\Concerns\HandlesCloudinaryImageFields;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class SeoFormFields
 {
+    use HandlesCloudinaryImageFields;
     /**
      * Get all SEO form fields as an array.
      * Use as: ...SeoFormFields::make()
@@ -90,6 +92,8 @@ class SeoFormFields
                                 ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
                                 ->helperText('Recommended: 1200x630px. Used for Facebook, LinkedIn shares.')
                                 ->columnSpanFull()
+                                ->nullable()
+                                ->getUploadedFileUsing(fn (?string $file): ?array => static::existingCloudinaryImage($file))
                                 ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
                                     return app(CloudinaryService::class)
                                         ->uploadImage($file->getRealPath(), 'seo/og-images');
@@ -136,6 +140,8 @@ class SeoFormFields
                                 ->maxSize(5120)
                                 ->helperText('Recommended: 1200x628px')
                                 ->columnSpanFull()
+                                ->nullable()
+                                ->getUploadedFileUsing(fn (?string $file): ?array => static::existingCloudinaryImage($file))
                                 ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
                                     return app(CloudinaryService::class)
                                         ->uploadImage($file->getRealPath(), 'seo/twitter-images');

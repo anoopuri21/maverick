@@ -2,12 +2,15 @@
 
 namespace App\Filament\Resources\ProgramResource\Pages;
 
+use App\Filament\Concerns\HandlesCloudinaryImageFields;
 use App\Filament\Resources\ProgramResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
 class EditProgram extends EditRecord
 {
+    use HandlesCloudinaryImageFields;
+
     protected static string $resource = ProgramResource::class;
 
     protected array $seoData = [];
@@ -30,6 +33,8 @@ class EditProgram extends EditRecord
 
     protected function mutateFormDataBeforeSave(array $data): array
     {
+        $data = $this->preserveExistingImageFields($data, $this->record);
+
         if (isset($data['seo'])) {
             $this->seoData = $data['seo'];
             unset($data['seo']);

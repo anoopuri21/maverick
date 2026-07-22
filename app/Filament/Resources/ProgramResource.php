@@ -25,6 +25,7 @@ use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Tabs\Tab;
 use App\Filament\Forms\Components\SeoFormFields;
+use App\Filament\Concerns\HandlesCloudinaryImageFields;
 
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -33,6 +34,8 @@ use Filament\Forms\Components\Textarea;
 
 class ProgramResource extends Resource
 {
+    use HandlesCloudinaryImageFields;
+
     protected static ?string $model = Program::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
@@ -104,6 +107,8 @@ class ProgramResource extends Resource
                                     ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
                                     ->helperText('Recommended: 800x540px. Max 5MB.')
                                     ->columnSpanFull()
+                                    ->nullable()
+                                    ->getUploadedFileUsing(fn (?string $file): ?array => static::existingCloudinaryImage($file))
                                     ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
                                         return app(CloudinaryService::class)
                                             ->uploadImage($file->getRealPath(), 'programs');

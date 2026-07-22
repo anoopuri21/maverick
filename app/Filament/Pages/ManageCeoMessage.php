@@ -61,6 +61,15 @@ class ManageCeoMessage extends SettingsPage
                         ->imageEditor()
                         ->maxSize(5120)
                         ->columnSpanFull()
+                        ->fetchFileInformation(false)
+                        ->getUploadedFileUsing(function (string $file) {
+                            return [
+                                'name' => basename(parse_url($file, PHP_URL_PATH)),
+                                'size' => 0,
+                                'type' => null,
+                                'url' => $file,   // 👈 Direct Cloudinary URL
+                            ];
+                        })
                         ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
                             return app(CloudinaryService::class)
                                 ->uploadImage($file->getRealPath(), 'homepage/ceo');

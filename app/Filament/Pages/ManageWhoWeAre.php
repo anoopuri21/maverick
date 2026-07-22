@@ -4,6 +4,7 @@ namespace App\Filament\Pages;
 
 use App\Settings\WhoWeAreSettings;
 use App\Services\CloudinaryService;
+use App\Filament\Concerns\HandlesCloudinaryImageFields;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Section;
@@ -14,6 +15,15 @@ use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class ManageWhoWeAre extends SettingsPage
 {
+    use HandlesCloudinaryImageFields;
+
+    protected function mutateFormDataBeforeSave(array $data): array
+    {
+        $data = $this->preserveExistingImageFields($data, app(static::getSettings()));
+
+        return $data;
+    }
+
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
     protected static ?string $navigationGroup = 'Homepage';
     protected static ?string $navigationLabel = 'Who We Are';
@@ -59,6 +69,9 @@ class ManageWhoWeAre extends SettingsPage
                         ->maxSize(5120)
                         ->helperText('Who We Are section image')
                         ->columnSpanFull()
+                        ->fetchFileInformation(false)
+                        ->nullable()
+                        ->getUploadedFileUsing(fn (?string $file): ?array => static::existingCloudinaryImage($file))
                         ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
                             return app(CloudinaryService::class)
                                 ->uploadImage($file->getRealPath(), 'homepage/who-we-are');

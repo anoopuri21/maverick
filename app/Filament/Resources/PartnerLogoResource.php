@@ -6,6 +6,7 @@ use App\Filament\Resources\PartnerLogoResource\Pages;
 use App\Filament\Resources\PartnerLogoResource\RelationManagers;
 use App\Models\PartnerLogo;
 use App\Services\CloudinaryService;
+use App\Filament\Concerns\HandlesCloudinaryImageFields;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Form;
@@ -19,6 +20,8 @@ use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class PartnerLogoResource extends Resource
 {
+    use HandlesCloudinaryImageFields;
+
     protected static ?string $model = PartnerLogo::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
@@ -32,8 +35,10 @@ class PartnerLogoResource extends Resource
                     ->required(),
                 Forms\Components\FileUpload::make('logo_url')
                     ->image()
+                    ->nullable()
+                    ->getUploadedFileUsing(fn (?string $file): ?array => static::existingCloudinaryImage($file))
                     ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
-                        return app(CloudinaryService::class)->uploadImage($file->getRealPath(), 'partner-logos');
+                        return app(\App\Services\CloudinaryService::class)->uploadImage($file->getRealPath(), 'partner-logos');
                     }),
                 Forms\Components\Select::make('type')
                     ->options([

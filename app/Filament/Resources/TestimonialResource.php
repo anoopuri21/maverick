@@ -6,6 +6,7 @@ use App\Filament\Resources\TestimonialResource\Pages;
 use App\Filament\Resources\TestimonialResource\RelationManagers;
 use App\Models\Testimonial;
 use App\Services\CloudinaryService;
+use App\Filament\Concerns\HandlesCloudinaryImageFields;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Form;
@@ -19,6 +20,8 @@ use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class TestimonialResource extends Resource
 {
+    use HandlesCloudinaryImageFields;
+
     protected static ?string $model = Testimonial::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
@@ -63,6 +66,8 @@ class TestimonialResource extends Resource
                             ->maxSize(2048)
                             ->helperText('Optional: Upload custom thumbnail. YouTube thumbnail will be auto-used if empty.')
                             ->columnSpanFull()
+                            ->nullable()
+                            ->getUploadedFileUsing(fn (?string $file): ?array => static::existingCloudinaryImage($file))
                             ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
                                 return app(CloudinaryService::class)
                                     ->uploadImage($file->getRealPath(), 'testimonials');

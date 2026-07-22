@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\UniversityPartnerResource\Pages;
 use App\Filament\Resources\UniversityPartnerResource\RelationManagers;
 use App\Models\UniversityPartner;
+use App\Filament\Concerns\HandlesCloudinaryImageFields;
 use App\Services\CloudinaryService;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
@@ -19,6 +20,8 @@ use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class UniversityPartnerResource extends Resource
 {
+    use HandlesCloudinaryImageFields;
+
     protected static ?string $model = UniversityPartner::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
@@ -66,6 +69,8 @@ class UniversityPartnerResource extends Resource
                             ->label('Logo')
                             ->image()
                             ->maxSize(2048)
+                            ->nullable()
+                            ->getUploadedFileUsing(fn (?string $file): ?array => static::existingCloudinaryImage($file))
                             ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
                                 return app(CloudinaryService::class)
                                     ->uploadImage($file->getRealPath(), 'university-partners');

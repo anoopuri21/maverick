@@ -6,6 +6,7 @@ use App\Filament\Resources\FacultyInsightResource\Pages;
 use App\Filament\Resources\FacultyInsightResource\RelationManagers;
 use App\Models\FacultyInsight;
 use App\Services\CloudinaryService;
+use App\Filament\Concerns\HandlesCloudinaryImageFields;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Form;
@@ -19,6 +20,7 @@ use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class FacultyInsightResource extends Resource
 {
+    use HandlesCloudinaryImageFields;
     protected static ?string $model = FacultyInsight::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
@@ -36,10 +38,12 @@ class FacultyInsightResource extends Resource
                     }),
                 Forms\Components\TextInput::make('slug')
                     ->required()
-                    ->unique(),
+                    ->unique(ignoreRecord: true),
                 Forms\Components\TextInput::make('badge'),
                 Forms\Components\FileUpload::make('image_url')
                     ->image()
+                    ->nullable()
+                    ->getUploadedFileUsing(fn (?string $file): ?array => static::existingCloudinaryImage($file))
                     ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
                         return app(CloudinaryService::class)->uploadImage($file->getRealPath(), 'faculty-insights');
                     }),
