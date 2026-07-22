@@ -3,9 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 
-Route::get('login', function () {
-    return redirect('/admin/login');
-})->name('login');
+Route::middleware('guest')->group(function () {
+    Route::get('login', [\App\Http\Controllers\Auth\LoginController::class, 'show'])->name('login');
+    Route::post('login', [\App\Http\Controllers\Auth\LoginController::class, 'store']);
+});
 
 // Homepage
 Route::get('/', [PageController::class, 'home'])->name('home');
