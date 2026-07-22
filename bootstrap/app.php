@@ -12,22 +12,43 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        // Trust all proxies (required for LiteSpeed/CloudFlare/Shared Hosting)
+        $middleware->trustProxies(at: '*');
+
+        // Redirect unauthenticated users to Filament admin login (not default 'login' route)
+        $middleware->redirectGuestsTo(function (Request $request) {
+            if ($request->is('admin') || $request->is('admin/*')) {
+                return route('filament.admin.auth.login');
+            }
+            return '/';
+        });
     })
     ->withExceptions(function (Exceptions $exceptions) {
-        // Never crash — always graceful
-        $exceptions->render(function (\Throwable $e, $request) {
-            // Log all errors
+        // Log all errors
+        $exceptions->report(function (\Throwable $e) {
             \Illuminate\Support\Facades\Log::error('Application error', [
                 'message' => $e->getMessage(),
-                'url' => $request->fullUrl(),
-                'trace' => $e->getTraceAsString(),
+                'file' => $e->getFile(),
+                'line' => $e->getLine(),
             ]);
+        });
 
-            // In production, show friendly page for public routes
-            if (app()->isProduction() && !$request->is('admin/*')) {
-                if ($e instanceof \Illuminate\Http\Exceptions\HttpResponseException) {
-                    return null;
+        // Custom friendly 500 page only for public frontend routes in production
+        $exceptions->render(function (\Throwable $e, Request $request) {
+            // Never touch admin routes — let Filament handle them
+            if ($request->is('admin') || $request->is('admin/*')) {
+                return null;
+            }
+
+            // Never touch API/AJAX/Livewire requests
+            if ($request->expectsJson() || $request->hasHeader('X-Livewire')) {
+                return null;
+            }
+
+            // Only show friendly page for real 500 errors in production
+            if (app()->isProduction() && !config('app.debug')) {
+                if ($e instanceof \Symfony\Component\HttpKernel\Exception\HttpExceptionInterface) {
+                    return null; // Let Laravel handle 404, 403, etc.
                 }
                 return response()->view('errors.500', [], 500);
             }
