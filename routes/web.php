@@ -3,6 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 
+Route::get('login', function () {
+    return redirect('/admin/login');
+})->name('login');
+
 // Homepage
 Route::get('/', [PageController::class, 'home'])->name('home');
 
