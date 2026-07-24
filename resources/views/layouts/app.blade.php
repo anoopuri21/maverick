@@ -18,12 +18,15 @@
     {{-- Stylesheets --}}
     <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/sections.css') }}" />
+    @if(request()->routeIs('our-story'))
+    <link rel="stylesheet" href="{{ asset('assets/css/our-story.css') }}" />
+    @endif
     <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}" />
 
     @stack('styles')
 </head>
 
-<body class="is-loading">
+<body class="is-loading" style="min-height: 100vh;">
 
     {{-- Preloader --}}
     <div id="preloader" data-lenis-prevent></div>
@@ -62,6 +65,9 @@
     <script src="{{ asset('assets/js/main.js') }}" defer></script>
     <script src="{{ asset('assets/js/navigation.js') }}" defer></script>
     <script src="{{ asset('assets/js/animations.js') }}" defer></script>
+    @if(request()->routeIs('our-story'))
+    <script src="{{ asset('assets/js/our-story-animations.js') }}" defer></script>
+    @endif
     <script src="{{ asset('assets/js/partners.js') }}" defer></script>
     <script src="{{ asset('assets/js/testimonials.js') }}" defer></script>
     <script src="{{ asset('assets/js/scroll-controls.js') }}" defer></script>

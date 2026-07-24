@@ -23,8 +23,8 @@
   --color-accent-light: #beafff;
 
   /* Typography */
-  --font-display: 'PP Neue Montreal', sans-serif;
-                                                
+  --font-display: "PP Neue Montreal", sans-serif;
+
   --font-body: "Poppins", sans-serif;
 
   /* Font Sizes - fluid using clamp() */
@@ -150,7 +150,7 @@ h6 {
 
 body {
   font-family: var(--font-body);
-  background: var(--color-mba-dark-blue);
+  background: var(--color-white);
   color: var(--color-warm-white);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
@@ -377,7 +377,7 @@ html.lenis body {
 }
 
 .btn--primary:hover {
-    background-color: #0f2983;
+  background-color: #0f2983;
   transform: translateY(-1px);
 }
 
@@ -432,11 +432,11 @@ html.lenis body {
 }
 
 .img-placeholder::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .video-placeholder::after {
@@ -579,11 +579,12 @@ html.lenis body {
   border-bottom: 1px solid transparent;
 }
 
-.navbar.is-scrolled {
-    background: var(--color-white);
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom-color: var(--color-warm-white);
+.navbar.is-scrolled,
+.inner-navbar {
+  background: var(--color-white);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom-color: var(--color-warm-white);
 }
 
 .navbar.is-hidden {
@@ -615,25 +616,28 @@ html.lenis body {
 }
 
 .navbar__logo-placeholder {
-    display: flex;
-    flex-direction: column;
-    line-height: 1;
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
 }
 
-.is-scrolled .navbar__logo-placeholder .regular-logo, .navbar__logo-placeholder .white-logo {
+.is-scrolled .navbar__logo-placeholder .regular-logo,
+.inner-navbar .navbar__logo-placeholder .regular-logo,
+.navbar__logo-placeholder .white-logo {
   display: block;
 }
-.is-scrolled .navbar__logo-placeholder .white-logo, .navbar__logo-placeholder .regular-logo {
+.is-scrolled .navbar__logo-placeholder .white-logo,
+.inner-navbar .navbar__logo-placeholder .white-logo,
+.navbar__logo-placeholder .regular-logo {
   display: none;
 }
 .navbar__logo-img {
-    height: 70px;
-    object-fit: contain;
-    /* background: rgba(255, 255, 255, 0.99); */
-    /* border-radius: 4px; */
-    padding: 0 10px;
+  height: 70px;
+  object-fit: contain;
+  /* background: rgba(255, 255, 255, 0.99); */
+  /* border-radius: 4px; */
+  padding: 0 10px;
 }
-
 
 .navbar__logo-text {
   font-family: var(--font-display);
@@ -660,7 +664,8 @@ html.lenis body {
   opacity: 1;
 }
 
-.navbar.is-scrolled .navbar__logo-tagline {
+.navbar.is-scrolled .navbar__logo-tagline,
+.navbar.inner-navbar .navbar__logo-tagline {
   opacity: 0;
   max-height: 0;
 }
@@ -706,8 +711,11 @@ html.lenis body {
   color: var(--color-white);
 }
 
-.is-scrolled .navbar__link, .is-scrolled .navbar__link.is-current {
-    color: var(--color-black);
+.is-scrolled .navbar__link,
+.is-scrolled .navbar__link.is-current,
+.inner-navbar .navbar__link,
+.inner-navbar .navbar__link.is-current {
+  color: var(--color-black);
 }
 
 .navbar__link::after {
@@ -723,12 +731,14 @@ html.lenis body {
   transition: transform 0.3s ease;
 }
 
-.is-scrolled .navbar__link::after {
+.is-scrolled .navbar__link::after,
+.inner-navbar .navbar__link::after {
   content: "";
   background: var(--color-black);
 }
 
-.navbar__link:hover::after {
+.navbar__link:hover::after,
+.inner-navbar .navbar__link:hover::after {
   transform: scaleX(1);
 }
 
@@ -859,7 +869,11 @@ html.lenis body {
   background: var(--color-mba-blue);
   color: var(--color-warm-white);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.24);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease, color 0.25s ease;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    opacity 0.25s ease,
+    color 0.25s ease;
   opacity: 0;
   transform: translateY(12px) scale(0.96);
   pointer-events: none;
@@ -916,8 +930,8 @@ html.lenis body {
 .mega__backdrop {
   position: fixed;
   inset: 0;
-  top: var(--navbar-height);
-  background: rgba(0, 0, 0, 0.7);
+  top: 56px;
+  background: rgba(0, 0, 0, 0);
   opacity: 0;
   transition: opacity 0.4s ease;
 }
@@ -951,7 +965,7 @@ html.lenis body {
   margin: 0 auto;
   padding: 48px var(--container-padding);
   display: grid;
-  grid-template-columns: 240px 1fr 280px;
+  grid-template-columns: 240px 1fr;
   gap: 48px;
   align-items: start;
 }
@@ -1020,7 +1034,7 @@ html.lenis body {
 
 .mega__programs-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 4px;
 }
 
@@ -1141,7 +1155,8 @@ html.lenis body {
   border-color: rgba(201, 169, 110, 0.3);
 }
 
-.mega__featured-img, .mega__featured-img img{
+.mega__featured-img,
+.mega__featured-img img {
   height: 140px;
   width: 100%;
   min-height: 140px;
@@ -1748,13 +1763,13 @@ html.lenis body {
 }
 
 .numbers__heading {
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    font-size: clamp(24px, 4vw, 56px);
-    font-weight: 500;
-    line-height: 1.3;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  font-size: clamp(24px, 4vw, 56px);
+  font-weight: 500;
+  line-height: 1.3;
 }
 
 .numbers__heading-line {
@@ -1782,12 +1797,12 @@ html.lenis body {
 }
 
 .numbers__context {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    padding-left: 16px;
-    margin-bottom: 20px;
-    align-self: end;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-left: 16px;
+  margin-bottom: 20px;
+  align-self: end;
 }
 
 .numbers__context-text {
@@ -2164,8 +2179,8 @@ html.lenis body {
 }
 
 .wwd__header-right {
-    display: flex;
-    align-self: end;
+  display: flex;
+  align-self: end;
 }
 
 .wwd__heading {
@@ -2228,7 +2243,7 @@ html.lenis body {
   opacity: 0;
 }
 .section--light .wwd__card-index.accent-text {
-    color: var(--color-white);
+  color: var(--color-white);
 }
 .wwd__card-title {
   font-family: var(--font-display);
@@ -2249,21 +2264,21 @@ html.lenis body {
 }
 
 .wwd__card-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-family: var(--font-body);
-    font-size: 14px;
-    font-weight: var(--fw-medium);
-    color: var(--color-mba-dark-blue);
-    background-color: #fff;
-    padding: 5px 15px;
-    border-radius: 4px;
-    text-decoration: none;
-    letter-spacing: 0.05em;
-    transition: gap 0.3s ease;
-    margin-top: 8px;
-    width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: var(--fw-medium);
+  color: var(--color-mba-dark-blue);
+  background-color: #fff;
+  padding: 5px 15px;
+  border-radius: 4px;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  transition: gap 0.3s ease;
+  margin-top: 8px;
+  width: fit-content;
 }
 
 .wwd__card-item {
@@ -2341,11 +2356,11 @@ html.lenis body {
 }
 
 .hwdi__heading-line--blue {
-    color: var(--color-mba-blue);
+  color: var(--color-mba-blue);
 }
 
 .hwdi__heading-line--red {
-    color: var(--color-mba-red);
+  color: var(--color-mba-red);
 }
 
 .hwdi__subtitle {
@@ -2475,9 +2490,21 @@ html.lenis body {
   inset: 0;
   z-index: 1;
   background:
-    radial-gradient(circle at 15% 18%, rgba(201, 169, 110, 0.16), transparent 28%),
-    radial-gradient(circle at 85% 18%, rgba(232, 213, 176, 0.09), transparent 24%),
-    linear-gradient(120deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0) 60%),
+    radial-gradient(
+      circle at 15% 18%,
+      rgba(201, 169, 110, 0.16),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 85% 18%,
+      rgba(232, 213, 176, 0.09),
+      transparent 24%
+    ),
+    linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0.02),
+      rgba(255, 255, 255, 0) 60%
+    ),
     linear-gradient(180deg, rgba(201, 169, 110, 0.06), transparent 48%);
   background-size: 180% 180%;
   animation: wimMeshShift 18s ease-in-out infinite alternate;
@@ -2535,7 +2562,12 @@ html.lenis body {
   position: absolute;
   inset: 0;
   z-index: 2;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.55) 45%, rgb(7 20 68) 100%);
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.25) 0%,
+    rgba(0, 0, 0, 0.55) 45%,
+    rgb(7 20 68) 100%
+  );
 }
 
 .wim__pin-wrapper {
@@ -2574,12 +2606,12 @@ html.lenis body {
 }
 
 .wim__statements {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0px;
-    margin-top: -40px;
-    overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0px;
+  margin-top: -40px;
+  overflow: hidden;
 }
 
 .wim__statement {
@@ -2588,13 +2620,13 @@ html.lenis body {
 }
 
 .wim__statement-text {
-    display: block;
-    font-family: var(--font-display);
-    font-size: clamp(18px, 3.5vw, 46px);
-    font-weight: 500;
-    line-height: 1.5;
-    color: var(--color-mba-white);
-    transform: translateY(110%);
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(18px, 3.5vw, 46px);
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--color-mba-white);
+  transform: translateY(110%);
 }
 
 .wim__statement:nth-child(2) .wim__statement-text {
@@ -2652,7 +2684,9 @@ html.lenis body {
 }
 
 /* Body text - black with opacity */
-.section--light .body-text, .section--light .section-subtitle, .section--light .caption-text {
+.section--light .body-text,
+.section--light .section-subtitle,
+.section--light .caption-text {
   color: var(--color-black);
 }
 
@@ -2719,27 +2753,27 @@ html.lenis body {
   position: relative;
 }
 .alumni::before {
-    content: "Alumni";
-    font-family: var(--font-display);
-    position: absolute;
-    top: -8%;
-    left: auto;
-    right: -1%;
-    text-align: center;
-    font-size: 22vw;
-    font-weight: 600;
-    -webkit-text-stroke-width: 2px;
-    stroke-width: 2px;
-    -webkit-text-stroke-color: rgb(15 41 131 / 30%);
-    stroke: rgb(15 41 131 / 80%);
-    color: transparent;
-    opacity: 0.4;
+  content: "Alumni";
+  font-family: var(--font-display);
+  position: absolute;
+  top: -8%;
+  left: auto;
+  right: -1%;
+  text-align: center;
+  font-size: 22vw;
+  font-weight: 600;
+  -webkit-text-stroke-width: 2px;
+  stroke-width: 2px;
+  -webkit-text-stroke-color: rgb(15 41 131 / 30%);
+  stroke: rgb(15 41 131 / 80%);
+  color: transparent;
+  opacity: 0.4;
 }
 
 .alumni__inner {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .alumni__heading {
@@ -2790,7 +2824,7 @@ html.lenis body {
 }
 
 .alumni__marquee-item {
-font-family: 'PP Neue Montreal', sans-serif;                                              
+  font-family: "PP Neue Montreal", sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-size: clamp(2rem, 5vw, 4rem);
@@ -2804,9 +2838,9 @@ font-family: 'PP Neue Montreal', sans-serif;
   color: var(--color-white);
 }
 .alumni__marquee-item img {
-    height: 100px;
-    width: 200px;
-    object-fit: contain;
+  height: 100px;
+  width: 200px;
+  object-fit: contain;
 }
 .alumni__marquee-sep {
   color: var(--color-white);
@@ -2888,41 +2922,48 @@ font-family: 'PP Neue Montreal', sans-serif;
 
 /* Cards styling */
 .programs__card {
-    width: 350px;
-    height: 75vh;
-    border-radius: 5px;
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    box-sizing: border-box;
-    overflow: hidden;
-    transition: border-color 0.4s ease, transform 0.4s ease;
-    position: relative;
-    box-shadow: 4px 8px 16px #888;
+  width: 350px;
+  height: 75vh;
+  border-radius: 5px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  overflow: hidden;
+  transition:
+    border-color 0.4s ease,
+    transform 0.4s ease;
+  position: relative;
+  box-shadow: 4px 8px 16px #888;
 }
 
 .programs__card:before {
-    content: "";
-    background: linear-gradient(0deg, #071b46ba, rgba(12, 0, 0, 0.2), rgb(14 2 82 / 30%));
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 75vh;
-    z-index: -1;
+  content: "";
+  background: linear-gradient(
+    0deg,
+    #071b46ba,
+    rgba(12, 0, 0, 0.2),
+    rgb(14 2 82 / 30%)
+  );
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 75vh;
+  z-index: -1;
 }
 
 .programs__card-media {
-    width: 100%;
-    height: 75vh;
-    object-fit: cover;
-    border-radius: 2px;
-    margin-bottom: 1.5rem;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -2;
+  width: 100%;
+  height: 75vh;
+  object-fit: cover;
+  border-radius: 2px;
+  margin-bottom: 1.5rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -2;
 }
 
 .programs__card:hover {
@@ -2938,7 +2979,7 @@ font-family: 'PP Neue Montreal', sans-serif;
 }
 
 .programs__card-index {
-  font-family: 'PP Neue Montreal', sans-serif;                                              
+  font-family: "PP Neue Montreal", sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-size: 1rem;
@@ -2963,7 +3004,7 @@ font-family: 'PP Neue Montreal', sans-serif;
 }
 
 .programs__card-title {
-  font-family: 'PP Neue Montreal', sans-serif;                                              
+  font-family: "PP Neue Montreal", sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-size: clamp(1.75rem, 3vw, 2.5rem);
@@ -3004,7 +3045,7 @@ font-family: 'PP Neue Montreal', sans-serif;
   transition: transform 0.3s ease;
 }
 .programs__card-arrow svg.inline-icon {
-color: var(--color-white)
+  color: var(--color-white);
 }
 
 .programs__card:hover .programs__card-link {
@@ -3043,20 +3084,23 @@ color: var(--color-white)
    ===== WHY MAVERICK SECTION =====
    Maverick Business Academy â€” Bento Grid
    ========================================================= */
-.why{position:relative;}
+.why {
+  position: relative;
+}
 .why:before {
-    content: "";
-    background: url('https://res.cloudinary.com/i08gwudw/image/upload/v1783605569/bgm-wm_mav1.png') no-repeat;
-    background-size: contain;
-    background-color: #fff;
-    background-position: center right;
-    filter: opacity(0.2);
-    position: absolute;
-    width: 100%;
-    height: 100%;
+  content: "";
+  background: url("https://res.cloudinary.com/i08gwudw/image/upload/v1783605569/bgm-wm_mav1.png")
+    no-repeat;
+  background-size: contain;
+  background-color: #fff;
+  background-position: center right;
+  filter: opacity(0.2);
+  position: absolute;
+  width: 100%;
+  height: 100%;
 }
 .why .section-label span {
-    color: var(--color-mba-blue);
+  color: var(--color-mba-blue);
 }
 .why__inner {
   display: flex;
@@ -3090,16 +3134,20 @@ color: var(--color-white)
 }
 
 .why__tile {
-    background: linear-gradient(225deg, var(--color-mba-blue), var(--color-mba-red));
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 20px;
-    padding: 2.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    overflow: visible;
-    text-align: left;
-    transition: ease all 500ms;
+  background: linear-gradient(
+    225deg,
+    var(--color-mba-blue),
+    var(--color-mba-red)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: visible;
+  text-align: left;
+  transition: ease all 500ms;
 }
 
 .why__tile-background {
@@ -3111,7 +3159,8 @@ color: var(--color-white)
   left: 0;
   z-index: -1;
   opacity: 0.1;
-  background: url('https://res.cloudinary.com/i08gwudw/image/upload/v1783605569/bgm-wm_mav1.png') no-repeat;
+  background: url("https://res.cloudinary.com/i08gwudw/image/upload/v1783605569/bgm-wm_mav1.png")
+    no-repeat;
 }
 
 .why__tile--large {
@@ -3148,7 +3197,7 @@ color: var(--color-white)
 }
 
 .why__tile-index {
-  font-family: 'PP Neue Montreal', sans-serif;                                              
+  font-family: "PP Neue Montreal", sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-size: 0.875rem;
@@ -3162,7 +3211,7 @@ color: var(--color-white)
 }
 
 .why__tile-title {
-  font-family: 'PP Neue Montreal', sans-serif;                                              
+  font-family: "PP Neue Montreal", sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-size: clamp(1.25rem, 2vw, 1.75rem);
@@ -3213,7 +3262,7 @@ color: var(--color-white)
   .why:before {
     background-position: top right;
     background-attachment: fixed;
-}
+  }
   .why__grid {
     grid-template-columns: 1fr;
     grid-auto-rows: minmax(240px, auto);
@@ -3263,12 +3312,11 @@ color: var(--color-white)
   content: "";
   position: absolute;
   inset: 0;
-  background:
-    linear-gradient(
-      135deg,
-      rgba(43,57,121,.08),
-      rgba(236,31,36,.08)
-    );
+  background: linear-gradient(
+    135deg,
+    rgba(43, 57, 121, 0.08),
+    rgba(236, 31, 36, 0.08)
+  );
 }
 
 .ceo__badge {
@@ -3285,15 +3333,15 @@ color: var(--color-white)
   font-size: 12px;
   font-weight: 600;
 
-  box-shadow: 0 10px 30px rgba(0,0,0,.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 
 .ceo__heading {
   margin-bottom: 2rem;
 }
 .ceo__content .section-label span {
-    font-size: var(--fs-body);
-    color: var(--color-black);
+  font-size: var(--fs-body);
+  color: var(--color-black);
 }
 /* .ceo .text-reveal-inner {
   transform: translateY(0) !important;
@@ -3348,8 +3396,8 @@ color: var(--color-white)
 }
 
 .ceo__designation {
-  margin-top: .5rem;
-  opacity: .75;
+  margin-top: 0.5rem;
+  opacity: 0.75;
 }
 
 /* ============================================================
@@ -3440,7 +3488,7 @@ color: var(--color-white)
 }
 
 .opportunities__column-index {
-  font-family: 'PP Neue Montreal', sans-serif;                                              
+  font-family: "PP Neue Montreal", sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-size: 0.875rem;
@@ -3449,7 +3497,7 @@ color: var(--color-white)
 }
 
 .opportunities__column-title {
-  font-family: 'PP Neue Montreal', sans-serif;                                              
+  font-family: "PP Neue Montreal", sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-size: clamp(1.5rem, 2.5vw, 2rem);
@@ -3505,7 +3553,7 @@ color: var(--color-white)
 }
 
 .opportunities__item-number {
-  font-family: 'PP Neue Montreal', sans-serif;                                              
+  font-family: "PP Neue Montreal", sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-size: 0.875rem;
@@ -3522,7 +3570,7 @@ color: var(--color-white)
 }
 
 .opportunities__item-title {
-  font-family: 'PP Neue Montreal', sans-serif;                                              
+  font-family: "PP Neue Montreal", sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-size: clamp(1.25rem, 1.8vw, 1.5rem);
@@ -3544,7 +3592,7 @@ color: var(--color-white)
 }
 
 .opportunities__item-arrow {
-  font-family: 'PP Neue Montreal', sans-serif;                                              
+  font-family: "PP Neue Montreal", sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-size: 1.5rem;
@@ -3684,9 +3732,9 @@ color: var(--color-white)
 /* ============================================================
    MAP STAGE
    ============================================================ */
-.partners__desktop{
-    display: flex;
-    gap: 50px;
+.partners__desktop {
+  display: flex;
+  gap: 50px;
 }
 
 .partners__map-stage {
@@ -3712,10 +3760,10 @@ color: var(--color-white)
 
 /* Country shapes (land masses) â€” base style */
 .partners__country {
-    fill: var(--color-mba-blue);
-    stroke: rgba(255, 255, 255, 0.3);
-    stroke-width: 0.5;
-    transition: fill 0.3s ease;
+  fill: var(--color-mba-blue);
+  stroke: rgba(255, 255, 255, 0.3);
+  stroke-width: 0.5;
+  transition: fill 0.3s ease;
 }
 
 .partners__country:hover {
@@ -3742,7 +3790,10 @@ color: var(--color-white)
   fill: var(--color-mba-red);
   stroke: #ffffff;
   stroke-width: 2px;
-  transition: fill 0.3s ease, stroke-width 0.3s ease, r 0.3s ease;
+  transition:
+    fill 0.3s ease,
+    stroke-width 0.3s ease,
+    r 0.3s ease;
   animation: pindot 2s ease infinite;
 }
 @keyframes pindot {
@@ -3763,9 +3814,9 @@ color: var(--color-white)
 }
 
 .partners__pin--hub .partners__pin-dot {
-    fill: #811d1d;
-    stroke: #ffffff;
-    stroke-width: 2px;
+  fill: #811d1d;
+  stroke: #ffffff;
+  stroke-width: 2px;
 }
 
 .partners__pin--active .partners__pin-dot {
@@ -3846,7 +3897,7 @@ color: var(--color-white)
 }
 
 .partners__mobile-hub {
-  font-family: 'PP Neue Montreal', sans-serif;                                              
+  font-family: "PP Neue Montreal", sans-serif;
   font-optical-sizing: auto;
   font-size: 0.65rem;
   font-weight: 500;
@@ -3898,7 +3949,7 @@ color: var(--color-white)
 }
 
 .partners__detail-country {
-  font-family: 'PP Neue Montreal', sans-serif;                                              
+  font-family: "PP Neue Montreal", sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-size: clamp(1.5rem, 3vw, 2rem);
@@ -3918,12 +3969,12 @@ color: var(--color-white)
 
 /* ----- Universities Grid ----- */
 .partners__universities {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 1rem;
-    height: 350px;
-    max-height: 350px;
-    overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 1rem;
+  height: 350px;
+  max-height: 350px;
+  overflow-y: auto;
 }
 
 .partners__university-card {
@@ -3977,7 +4028,7 @@ color: var(--color-white)
 }
 
 .partners__university-name {
-  font-family: 'PP Neue Montreal', sans-serif;                                              
+  font-family: "PP Neue Montreal", sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-size: 1.25rem;
@@ -4040,7 +4091,7 @@ color: var(--color-white)
 }
 
 .partners__program-name {
-  font-family: 'PP Neue Montreal', sans-serif;                                              
+  font-family: "PP Neue Montreal", sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-size: 0.95rem;
@@ -4166,7 +4217,6 @@ color: var(--color-white)
   gap: 1.5rem;
 }
 
-
 .insights__subtitle {
   font-family: "Poppins", sans-serif;
   font-weight: 300;
@@ -4258,7 +4308,7 @@ color: var(--color-white)
 }
 
 .insights__card-title {
-  font-family: 'PP Neue Montreal', sans-serif;                                              
+  font-family: "PP Neue Montreal", sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-size: clamp(1.25rem, 1.8vw, 1.5rem);
@@ -4346,10 +4396,10 @@ color: var(--color-white)
 
 /* ----- Header ----- */
 .events__header {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
 }
 
 .events__heading {
@@ -4430,7 +4480,7 @@ color: var(--color-white)
 }
 
 .events__date-day {
-  font-family: 'PP Neue Montreal', sans-serif;                                              
+  font-family: "PP Neue Montreal", sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-size: clamp(3rem, 5vw, 4rem);
@@ -4448,7 +4498,7 @@ color: var(--color-white)
 }
 
 .events__card-title {
-  font-family: 'PP Neue Montreal', sans-serif;                                              
+  font-family: "PP Neue Montreal", sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-size: clamp(1.25rem, 2vw, 1.75rem);
@@ -4558,10 +4608,10 @@ color: var(--color-white)
 
 /* ----- Header ----- */
 .testimonials__header {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
 }
 
 .testimonials__subtitle {
@@ -4614,20 +4664,20 @@ color: var(--color-white)
 }
 
 .testimonials__card-badge {
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
-    z-index: 2;
-    background-color: rgb(9 5 73 / 75%);
-    color: #ffffff;
-    font-family: "Poppins", sans-serif;
-    font-size: 0.65rem;
-    font-weight: 500;
-    letter-spacing: 0.15em;
-    padding: 0.4rem 0.75rem;
-    border: 1px solid #ffffff;
-    border-radius: 2px;
-    text-transform: uppercase;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 2;
+  background-color: rgb(9 5 73 / 75%);
+  color: #ffffff;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  padding: 0.4rem 0.75rem;
+  border: 1px solid #ffffff;
+  border-radius: 2px;
+  text-transform: uppercase;
 }
 
 .testimonials__card-thumb {
@@ -4649,18 +4699,18 @@ color: var(--color-white)
 }
 
 .testimonials__play {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    background-color: var(--color-mba-red);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background-color: var(--color-mba-red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
 }
 
 .testimonials__card:hover .testimonials__play {
@@ -4678,7 +4728,7 @@ color: var(--color-white)
 }
 
 .testimonials__card-name {
-  font-family: 'PP Neue Montreal', sans-serif;                                              
+  font-family: "PP Neue Montreal", sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-size: 1.125rem;
@@ -4800,11 +4850,11 @@ body.modal-open {
 }
 
 .faq__accordion {
-  border-top: 1px solid rgba(0,0,0,.08);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .faq__item {
-  border-bottom: 1px solid rgba(0,0,0,.08);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .faq__question {
@@ -4829,28 +4879,28 @@ body.modal-open {
 .faq__icon {
   font-size: 1.5rem;
   color: var(--color-mba-red);
-  transition: transform .3s ease;
+  transition: transform 0.3s ease;
 }
 .faq-img {
-    width: 80%;
-    object-fit: contain;
-    height: 100%;
-    margin-top: 50px;
+  width: 80%;
+  object-fit: contain;
+  height: 100%;
+  margin-top: 50px;
 }
 .faq__answer {
   max-height: 0;
   overflow: hidden;
 
   transition:
-    max-height .4s ease,
-    padding .4s ease;
+    max-height 0.4s ease,
+    padding 0.4s ease;
 }
 
 .faq__answer p {
   margin: 0;
   padding-bottom: 1.5rem;
 
-  color: rgba(0,0,0,.70);
+  color: rgba(0, 0, 0, 0.7);
   line-height: 1.8;
 }
 
@@ -4916,7 +4966,7 @@ body.modal-open {
 }
 
 .final-cta__heading {
-  font-family: 'PP Neue Montreal', sans-serif;                                              
+  font-family: "PP Neue Montreal", sans-serif;
   font-optical-sizing: auto;
   font-weight: 600;
   color: #ffffff;
@@ -4958,9 +5008,9 @@ body.modal-open {
 }
 
 .final-cta__btn--primary {
-    background-color: var(--color-white);
-    color: #0a0a0a;
-    border: 1px solid #ffffff;
+  background-color: var(--color-white);
+  color: #0a0a0a;
+  border: 1px solid #ffffff;
 }
 
 .final-cta__btn--primary:hover {
@@ -5104,7 +5154,7 @@ body.modal-open {
   border-color: #ffffff;
   color: #0a0a0a;
 }
-#modalPlayer{
+#modalPlayer {
   width: 100%;
   height: 100%;
 }
@@ -5146,7 +5196,6 @@ body.modal-open {
   gap: 0.25rem;
 }
 
-
 .footer__about {
   font-family: "Poppins", sans-serif;
   font-weight: 300;
@@ -5156,7 +5205,7 @@ body.modal-open {
   max-width: 380px;
   margin: 0;
 }
-.footer__logo-img{
+.footer__logo-img {
   width: 280px;
   object-fit: contain;
 }
@@ -5168,7 +5217,7 @@ body.modal-open {
 }
 
 .footer__newsletter-title {
-  font-family: 'PP Neue Montreal', sans-serif;                                              
+  font-family: "PP Neue Montreal", sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-size: 1.125rem;
@@ -5250,7 +5299,7 @@ body.modal-open {
 
 /* ----- Column Headings ----- */
 .footer__heading {
-  font-family: 'PP Neue Montreal', sans-serif;                                              
+  font-family: "PP Neue Montreal", sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-size: 1rem;
@@ -5527,7 +5576,11 @@ body.modal-open {
   display: block;
   width: 60px;
   height: 3px;
-  background: linear-gradient(90deg, var(--color-mba-blue), var(--color-mba-red));
+  background: linear-gradient(
+    90deg,
+    var(--color-mba-blue),
+    var(--color-mba-red)
+  );
   margin-top: 1rem;
   border-radius: 2px;
 }
@@ -5605,12 +5658,22 @@ body.modal-open {
 
 .accred-slider-wrapper::before {
   left: 0;
-  background: linear-gradient(to right, #ffffff 0%, rgba(255, 255, 255, 0.8) 50%, transparent 100%);
+  background: linear-gradient(
+    to right,
+    #ffffff 0%,
+    rgba(255, 255, 255, 0.8) 50%,
+    transparent 100%
+  );
 }
 
 .accred-slider-wrapper::after {
   right: 0;
-  background: linear-gradient(to left, #ffffff 0%, rgba(255, 255, 255, 0.8) 50%, transparent 100%);
+  background: linear-gradient(
+    to left,
+    #ffffff 0%,
+    rgba(255, 255, 255, 0.8) 50%,
+    transparent 100%
+  );
 }
 
 /* ----- Slider Track ----- */
@@ -5866,7 +5929,11 @@ body.modal-open {
   display: block;
   width: 60px;
   height: 3px;
-  background: linear-gradient(90deg, var(--color-mba-blue), var(--color-mba-red));
+  background: linear-gradient(
+    90deg,
+    var(--color-mba-blue),
+    var(--color-mba-red)
+  );
   margin-top: 1rem;
   border-radius: 2px;
 }
@@ -5913,12 +5980,22 @@ body.modal-open {
 
 .network-slider-wrapper::before {
   left: -2px;
-  background: linear-gradient(to right, #ffffff 0%, rgba(255, 255, 255, 0.8) 50%, transparent 100%);
+  background: linear-gradient(
+    to right,
+    #ffffff 0%,
+    rgba(255, 255, 255, 0.8) 50%,
+    transparent 100%
+  );
 }
 
 .network-slider-wrapper::after {
   right: -2px;
-  background: linear-gradient(to left, #ffffff 0%, rgba(255, 255, 255, 0.8) 50%, transparent 100%);
+  background: linear-gradient(
+    to left,
+    #ffffff 0%,
+    rgba(255, 255, 255, 0.8) 50%,
+    transparent 100%
+  );
 }
 
 /* ----- Slider Track ----- */
@@ -6082,9 +6159,9 @@ body.modal-open {
   }
 
   .network-card {
-      width: 200px;
-      height: 100px;
-      padding: 0;
+    width: 200px;
+    height: 100px;
+    padding: 0;
   }
 
   .network-logo-wrapper {
@@ -6143,7 +6220,7 @@ body.modal-open {
   .numbers__grid {
     grid-template-columns: repeat(2, 1fr);
   }
-    .ceo__grid {
+  .ceo__grid {
     grid-template-columns: 1fr;
     gap: 3rem;
   }
@@ -6172,7 +6249,7 @@ body.modal-open {
     border-radius: 5px;
   }
   .navbar__logo-placeholder {
-      width: calc(100vw - 120px);
+    width: calc(100vw - 120px);
   }
   /* ===== HERO RESPONSIVE ===== */
   .hero__headline-line {
@@ -6199,7 +6276,6 @@ body.modal-open {
     height: 24px;
   }
 
-
   .hero__subheading-text br {
     display: none;
   }
@@ -6221,7 +6297,7 @@ body.modal-open {
   .numbers__value {
     font-size: clamp(36px, 8vw, 52px);
   }
-    .ceo__quote {
+  .ceo__quote {
     font-size: 1.2rem;
     padding-left: 1rem;
   }
@@ -6234,7 +6310,9 @@ body.modal-open {
     font-size: 1rem;
     gap: 1rem;
   }
-  .faq-img {display: none;}
+  .faq-img {
+    display: none;
+  }
   .alumni::before {
     top: 10%;
     right: 0px;
@@ -6415,7 +6493,7 @@ body.modal-open {
   .hwdi__connector {
     display: none;
   }
-  
+
   /* ===== WHAT IS MAVERICK RESPONSIVE ===== */
   .wim__heading {
     font-size: clamp(28px, 9.5vw, 44px);

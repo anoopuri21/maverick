@@ -3349,7 +3349,6 @@ body.modal-open {
   margin: 0;
   line-height: 1.6;
 }
-
 /* ----- Responsive: Tablet ----- */
 @media (max-width: 1024px) {
   .network__header {

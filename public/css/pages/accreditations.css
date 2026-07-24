@@ -1,0 +1,592 @@
+/* ============================================
+   ACCREDITATIONS & RECOGNITION PAGE
+============================================ */
+
+:root {
+  --accred-navy: #1a2b7a;
+  --accred-navy-dark: #142260;
+  --accred-red: #dc2626;
+  --accred-green: #16a34a;
+  --accred-text: #1a1a1a;
+  --accred-muted: #666;
+  --accred-light: #f8f9fb;
+  --accred-border: #e5e7eb;
+}
+
+/* ============================================
+   1. HERO SECTION
+============================================ */
+.accred-hero {
+  position: relative;
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  padding: 100px 20px;
+  text-align: center;
+  color: #fff;
+}
+
+.accred-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(20, 34, 96, 0.88),
+    rgba(26, 43, 122, 0.82)
+  );
+  z-index: 1;
+}
+
+.accred-hero__content {
+  position: relative;
+  z-index: 2;
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.accred-hero__tag {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: #fff;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+}
+
+.accred-hero__heading {
+  font-size: 56px;
+  font-weight: 700;
+  line-height: 1.15;
+  margin: 0 0 24px;
+  color: #fff;
+}
+
+.accred-hero__heading-italic {
+  display: block;
+  font-style: italic;
+  color: var(--accred-red);
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.accred-hero__description {
+  font-size: 17px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+/* ============================================
+   COMMON SECTION HEADING
+============================================ */
+.section-heading-block {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 60px;
+}
+
+.section-heading-block .section-label {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: var(--accred-navy);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+
+.section-heading-block .section-heading {
+  font-size: 44px;
+  font-weight: 700;
+  color: var(--accred-navy);
+  line-height: 1.2;
+  margin: 0 0 20px;
+}
+
+.section-heading-block .section-heading em {
+  font-style: italic;
+  color: var(--accred-red);
+  font-weight: 600;
+}
+
+.section-heading-block .section-subheading {
+  font-size: 16px;
+  color: var(--accred-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ============================================
+   2. ACCREDITATIONS & PARTNERSHIPS
+============================================ */
+.accreditations {
+  padding: 100px 20px;
+  background: #fff;
+}
+
+.accreditations__category {
+  margin-bottom: 60px;
+}
+
+.accreditations__category:last-child {
+  margin-bottom: 0;
+}
+
+.category-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-bottom: 20px;
+  margin-bottom: 32px;
+  border-bottom: 1px solid var(--accred-border);
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.category-header__icon {
+  width: 40px;
+  height: 40px;
+  background: var(--accred-navy);
+  color: #fff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.category-header__icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.category-header__title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--accred-text);
+  margin: 0;
+}
+
+.accreditations__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.accred-card {
+  background: #fff;
+  border: 1px solid var(--accred-border);
+  border-radius: 12px;
+  padding: 28px;
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease,
+    border-color 0.4s ease;
+  width: 100%;
+  height: 100%;
+}
+
+.accred-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(26, 43, 122, 0.1);
+  border-color: var(--accred-navy);
+}
+
+.accred-card__logo {
+  width: 72px;
+  height: 72px;
+  background: #fff;
+  border: 1px solid var(--accred-border);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.accred-card__logo span {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--accred-text);
+  letter-spacing: 0.5px;
+}
+
+.accred-card__name {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--accred-navy);
+  margin: 0 0 12px;
+  line-height: 1.3;
+}
+
+.accred-card__description {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--accred-muted);
+  margin: 0 0 20px;
+}
+
+.accred-card__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--accred-green);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.accred-card__badge svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ============================================
+   3. QUALITY ASSURANCE
+============================================ */
+.quality {
+  padding: 100px 20px;
+  background: var(--accred-light);
+}
+
+.quality__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: stretch;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.quality__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.quality__label {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: var(--accred-red);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+
+.quality__heading {
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--accred-navy);
+  line-height: 1.2;
+  margin: 0 0 20px;
+}
+
+.quality__heading em {
+  display: block;
+  font-style: italic;
+  color: var(--accred-red);
+  font-weight: 600;
+}
+
+.quality__description {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--accred-muted);
+  margin: 0 0 36px;
+}
+
+.quality__features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.quality-feature {
+  display: flex;
+  gap: 14px;
+}
+
+.quality-feature__icon {
+  width: 36px;
+  height: 36px;
+  background: #fff;
+  color: var(--accred-navy);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.quality-feature__icon [data-lucide] {
+  width: 18px;
+  height: 18px;
+}
+
+.quality-feature__title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--accred-navy);
+  margin: 0 0 6px;
+}
+
+.quality-feature__description {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--accred-muted);
+  margin: 0;
+}
+
+.quality__image-wrapper {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  min-height: 500px;
+}
+
+.quality__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ============================================
+   4. AWARDS SLIDER - Title & Subtitle
+============================================ */
+.awards__card-title {
+  margin-top: 16px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--accred-navy);
+  line-height: 1.4;
+  text-align: center;
+  padding: 0 8px;
+}
+
+.awards__card-subtitle {
+  margin-top: 6px;
+  font-size: 13px;
+  color: var(--accred-muted);
+  text-align: center;
+  padding: 0 8px;
+}
+
+/* ============================================
+   5. MEDIA & RANKINGS (Dark Navy)
+============================================ */
+.media-rankings {
+  background: var(--accred-navy);
+  padding: 100px 20px;
+  color: #fff;
+}
+
+.media-rankings__header {
+  margin-bottom: 60px;
+}
+
+.media-rankings__label {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+
+.media-rankings__heading {
+  font-size: 44px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.2;
+  margin: 0 0 20px;
+}
+
+.media-rankings__heading em {
+  font-style: italic;
+  color: var(--accred-red);
+  font-weight: 600;
+}
+
+.media-rankings__subheading {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.media-rankings__grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.media-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 24px 16px;
+  text-align: center;
+  transition:
+    transform 0.4s ease,
+    background 0.4s ease,
+    border-color 0.4s ease;
+}
+
+.media-card:hover {
+  transform: translateY(-6px);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.media-card__logo {
+  width: 56px;
+  height: 56px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+}
+
+.media-card__logo span {
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.5px;
+}
+
+.media-card__name {
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 10px;
+  line-height: 1.3;
+}
+
+.media-card__rank {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.4;
+  margin: 0 0 12px;
+  min-height: 34px;
+}
+
+.media-card__year {
+  display: inline-block;
+  background: var(--accred-red);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 12px;
+  letter-spacing: 0.5px;
+}
+
+/* ============================================
+   RESPONSIVE - TABLET
+============================================ */
+@media (max-width: 991px) {
+  .accred-hero__heading,
+  .media-rankings__heading {
+    font-size: 42px;
+  }
+
+  .section-heading-block .section-heading {
+    font-size: 36px;
+  }
+
+  .accreditations__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .quality__grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .quality__image-wrapper {
+    min-height: 400px;
+  }
+
+  .quality__heading {
+    font-size: 34px;
+  }
+
+  .media-rankings__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ============================================
+   RESPONSIVE - MOBILE
+============================================ */
+@media (max-width: 640px) {
+  .accred-hero {
+    min-height: 420px;
+    padding: 80px 20px;
+  }
+
+  .accred-hero__heading,
+  .media-rankings__heading {
+    font-size: 30px;
+  }
+
+  .accred-hero__description {
+    font-size: 15px;
+  }
+
+  .section-heading-block {
+    margin-bottom: 40px;
+  }
+
+  .section-heading-block .section-heading {
+    font-size: 26px;
+  }
+
+  .accreditations,
+  .quality,
+  .media-rankings {
+    padding: 60px 20px;
+  }
+
+  .category-header__title {
+    font-size: 18px;
+  }
+
+  .accreditations__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .quality__features {
+    grid-template-columns: 1fr;
+  }
+
+  .quality__heading {
+    font-size: 26px;
+  }
+
+  .quality__image-wrapper {
+    min-height: 300px;
+  }
+
+  .media-rankings__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

@@ -1,0 +1,919 @@
+/* ============================================
+   GLOBAL UNIVERSITY PARTNERS PAGE
+============================================ */
+
+:root {
+  --gup-navy: #1a2b7a;
+  --gup-navy-dark: #142260;
+  --gup-red: #dc2626;
+  --gup-text: #1a1a1a;
+  --gup-muted: #666;
+  --gup-light: #f8f9fb;
+  --gup-border: #e5e7eb;
+}
+
+/* ============================================
+   1. HERO SECTION
+============================================ */
+.gup-hero {
+  position: relative;
+  min-height: 560px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  padding: 100px 20px 60px;
+  text-align: center;
+  color: #fff;
+}
+
+.gup-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(20, 34, 96, 0.92),
+    rgba(26, 43, 122, 0.85)
+  );
+  z-index: 1;
+}
+
+.gup-hero__content {
+  position: relative;
+  z-index: 2;
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.gup-hero__tag {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: #fff;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+}
+
+.gup-hero__heading {
+  font-size: 52px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 24px;
+  color: #fff;
+}
+
+.gup-hero__heading-italic {
+  display: block;
+  font-style: italic;
+  color: var(--gup-red);
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+.gup-hero__description {
+  font-size: 16px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 620px;
+  margin: 0 auto 60px;
+}
+
+.gup-hero__scroll {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.gup-hero__scroll span {
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.gup-hero__scroll-line {
+  width: 1px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+.gup-hero__scroll-line::after {
+  content: "";
+  position: absolute;
+  top: -40px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  animation: scrollLine 2s ease-in-out infinite;
+}
+
+@keyframes scrollLine {
+  0% {
+    top: -40px;
+  }
+  100% {
+    top: 40px;
+  }
+}
+
+/* ============================================
+   COMMON HEADINGS
+============================================ */
+.section-heading-block {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 60px;
+}
+
+.section-heading-block .section-label {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: var(--gup-navy);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+
+.section-heading-block .section-heading {
+  font-size: 44px;
+  font-weight: 700;
+  color: var(--gup-navy);
+  line-height: 1.2;
+  margin: 0 0 20px;
+}
+
+.section-heading-block .section-heading em {
+  font-style: italic;
+  color: var(--gup-red);
+  font-weight: 600;
+}
+
+.section-heading-block .section-subheading {
+  font-size: 15px;
+  color: var(--gup-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ============================================
+   2. PARTNERSHIP OVERVIEW
+============================================ */
+.gup-overview {
+  padding: 100px 20px;
+  background: #fff;
+}
+
+.gup-overview__grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+.gup-overview__stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.gup-stat {
+  background: #fff;
+  border: 1px solid var(--gup-border);
+  border-radius: 10px;
+  padding: 24px 20px;
+  text-align: left;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.gup-stat:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(26, 43, 122, 0.08);
+}
+
+.gup-stat__number {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--gup-navy);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.gup-stat__number::after {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: var(--gup-red);
+  border-radius: 50%;
+  margin-left: 3px;
+  vertical-align: super;
+}
+
+.gup-stat__label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--gup-muted);
+  text-transform: uppercase;
+}
+
+.gup-overview__main {
+  display: flex;
+  flex-direction: column;
+}
+
+.gup-overview__label {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: var(--gup-red);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+
+.gup-overview__heading {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--gup-navy);
+  line-height: 1.2;
+  margin: 0 0 20px;
+}
+
+.gup-overview__heading em {
+  font-style: italic;
+  color: var(--gup-red);
+  font-weight: 600;
+}
+
+.gup-overview__paragraph {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--gup-muted);
+  margin: 0 0 16px;
+}
+
+.gup-overview__image-wrapper {
+  margin-top: 24px;
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  position: relative;
+}
+
+.gup-overview__image-wrapper::after {
+  content: "";
+  position: absolute;
+  right: -40px;
+  bottom: 30px;
+  width: 80px;
+  height: 1px;
+  background: var(--gup-red);
+}
+
+.gup-overview__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ============================================
+   3. WHY PARTNERSHIPS MATTER (STICKY LEFT)
+============================================ */
+.gup-why {
+  padding: 100px 20px;
+  background: #fff;
+}
+
+.gup-why__grid {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+.gup-why__sticky {
+  position: sticky;
+  top: 100px;
+  align-self: start;
+}
+
+.gup-why__sticky-inner .section-label {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: var(--gup-red);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+
+.gup-why__heading {
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--gup-navy);
+  line-height: 1.2;
+  margin: 0 0 32px;
+}
+
+.gup-why__heading em {
+  display: block;
+  font-style: italic;
+  color: var(--gup-red);
+  font-weight: 600;
+}
+
+.gup-why__quote {
+  font-size: 14px;
+  font-style: italic;
+  line-height: 1.7;
+  color: var(--gup-navy);
+  margin: 0;
+  padding-left: 20px;
+  border-left: 2px solid var(--gup-red);
+}
+
+.gup-why__cards {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.gup-why-card {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  background: #fff;
+  border: 1px solid var(--gup-border);
+  border-radius: 12px;
+  padding: 24px 28px;
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease,
+    border-color 0.4s ease;
+  overflow: hidden;
+}
+
+.gup-why-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(26, 43, 122, 0.1);
+  border-color: var(--gup-navy);
+}
+
+.gup-why-card__icon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  background: var(--gup-navy);
+  color: #fff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gup-why-card__icon [data-lucide] {
+  width: 22px;
+  height: 22px;
+}
+
+.gup-why-card__content {
+  flex: 1;
+}
+
+.gup-why-card__title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--gup-navy);
+  margin: 0 0 6px;
+  line-height: 1.3;
+}
+
+.gup-why-card__description {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--gup-muted);
+  margin: 0;
+}
+
+.gup-why-card__number {
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--gup-border);
+  line-height: 1;
+  letter-spacing: -1px;
+  align-self: center;
+  transition: color 0.4s ease;
+}
+
+.gup-why-card:hover .gup-why-card__number {
+  color: var(--gup-navy);
+  opacity: 0.15;
+}
+
+/* ============================================
+   4. STUDENT BENEFITS
+============================================ */
+.gup-benefits {
+  padding: 100px 20px;
+  background: var(--gup-light);
+}
+
+.gup-benefits__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.gup-benefits__label {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: var(--gup-red);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+
+.gup-benefits__heading {
+  font-size: 38px;
+  font-weight: 700;
+  color: var(--gup-navy);
+  line-height: 1.2;
+  margin: 0 0 32px;
+}
+
+.gup-benefits__heading em {
+  font-style: italic;
+  color: var(--gup-red);
+  font-weight: 600;
+}
+
+.gup-benefits__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.gup-benefit {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.gup-benefit__icon {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  background: var(--gup-navy);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+
+.gup-benefit--highlighted .gup-benefit__icon {
+  background: var(--gup-red);
+}
+
+.gup-benefit__icon svg {
+  width: 14px;
+  height: 14px;
+}
+
+.gup-benefit__title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--gup-navy);
+  margin: 0 0 4px;
+  line-height: 1.3;
+}
+
+.gup-benefit__description {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--gup-muted);
+  margin: 0;
+}
+
+/* Image Collage */
+.gup-benefits__visual {
+  position: relative;
+  min-height: 500px;
+}
+
+.gup-benefits__dots {
+  position: absolute;
+  top: 0;
+  left: 20px;
+  width: 100px;
+  height: 100px;
+  background-image: radial-gradient(
+    circle,
+    var(--gup-muted) 1px,
+    transparent 1px
+  );
+  background-size: 12px 12px;
+  opacity: 0.3;
+  z-index: 1;
+}
+
+.gup-benefits__main-image {
+  position: relative;
+  z-index: 2;
+  width: 85%;
+  margin-left: auto;
+  aspect-ratio: 4 / 3;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+.gup-benefits__main-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.gup-benefits__secondary-image {
+  position: absolute;
+  bottom: 40px;
+  left: 0;
+  z-index: 3;
+  width: 40%;
+  aspect-ratio: 4 / 3;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+  border: 4px solid #fff;
+}
+
+.gup-benefits__secondary-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.gup-benefits__floating-stat {
+  position: absolute;
+  top: 20px;
+  right: 0;
+  z-index: 4;
+  background: #fff;
+  padding: 16px 22px;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  text-align: left;
+}
+
+.gup-benefits__floating-number {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--gup-red);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.gup-benefits__floating-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--gup-muted);
+  text-transform: uppercase;
+}
+
+/* ============================================
+   5. PARTNERSHIP JOURNEY GALLERY
+============================================ */
+.gup-journey {
+  padding: 100px 20px;
+  background: #fff;
+}
+
+.gup-journey__filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 40px;
+}
+
+.gup-filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: 1px solid var(--gup-border);
+  padding: 8px 18px;
+  border-radius: 24px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gup-text);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.gup-filter:hover {
+  border-color: var(--gup-navy);
+  color: var(--gup-navy);
+}
+
+.gup-filter.is-active {
+  background: var(--gup-navy);
+  border-color: var(--gup-navy);
+  color: #fff;
+}
+
+.gup-filter__count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 20px;
+  padding: 0 6px;
+  background: rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.gup-filter.is-active .gup-filter__count {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.gup-journey__gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 200px;
+  gap: 16px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.gup-gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  cursor: pointer;
+  background: #f0f0f0;
+  transition: transform 0.4s ease;
+}
+
+.gup-gallery-item--medium {
+  grid-row: span 2;
+}
+
+.gup-gallery-item--tall {
+  grid-row: span 3;
+}
+
+.gup-gallery-item--wide {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.gup-gallery-item:hover {
+  transform: translateY(-4px);
+}
+
+.gup-gallery-item__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.gup-gallery-item:hover .gup-gallery-item__image {
+  transform: scale(1.06);
+}
+
+.gup-gallery-item__top {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  right: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  z-index: 2;
+  gap: 8px;
+}
+
+.gup-gallery-item__badge {
+  background: var(--gup-red);
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.gup-gallery-item__date {
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--gup-navy);
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.gup-gallery-item__bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px 16px 16px;
+  background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.85) 100%);
+  z-index: 2;
+  color: #fff;
+}
+
+.gup-gallery-item__title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 4px;
+  line-height: 1.3;
+}
+
+.gup-gallery-item__caption {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.gup-gallery-item.is-hidden {
+  display: none;
+}
+
+/* ============================================
+   SCROLL REVEAL FALLBACK
+============================================ */
+.fade-up {
+  opacity: 1;
+}
+
+/* ============================================
+   RESPONSIVE - TABLET
+============================================ */
+@media (max-width: 991px) {
+  .gup-hero__heading {
+    font-size: 38px;
+  }
+
+  .section-heading-block .section-heading {
+    font-size: 34px;
+  }
+
+  .gup-overview__grid,
+  .gup-why__grid,
+  .gup-benefits__grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .gup-why__sticky {
+    position: static;
+  }
+
+  .gup-why__heading,
+  .gup-benefits__heading,
+  .gup-overview__heading {
+    font-size: 30px;
+  }
+
+  .gup-overview__stats {
+    max-width: 500px;
+  }
+
+  .gup-benefits__visual {
+    min-height: 400px;
+  }
+
+  .gup-journey__gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .gup-gallery-item--wide {
+    grid-column: span 2;
+  }
+}
+
+/* ============================================
+   RESPONSIVE - MOBILE
+============================================ */
+@media (max-width: 640px) {
+  .gup-hero {
+    min-height: 480px;
+    padding: 80px 20px 40px;
+  }
+
+  .gup-hero__heading {
+    font-size: 28px;
+  }
+
+  .gup-hero__description {
+    font-size: 14px;
+    margin-bottom: 40px;
+  }
+
+  .section-heading-block {
+    margin-bottom: 40px;
+  }
+
+  .section-heading-block .section-heading {
+    font-size: 26px;
+  }
+
+  .gup-overview,
+  .gup-why,
+  .gup-benefits,
+  .gup-journey {
+    padding: 60px 20px;
+  }
+
+  .gup-overview__stats {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .gup-stat {
+    padding: 18px 16px;
+  }
+
+  .gup-stat__number {
+    font-size: 26px;
+  }
+
+  .gup-why__heading,
+  .gup-benefits__heading,
+  .gup-overview__heading {
+    font-size: 24px;
+  }
+
+  .gup-why-card {
+    padding: 18px 20px;
+    gap: 14px;
+  }
+
+  .gup-why-card__number {
+    font-size: 32px;
+  }
+
+  .gup-benefits__visual {
+    min-height: 350px;
+  }
+
+  .gup-benefits__floating-stat {
+    padding: 12px 16px;
+  }
+
+  .gup-benefits__floating-number {
+    font-size: 20px;
+  }
+
+  .gup-journey__gallery {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 220px;
+  }
+
+  .gup-gallery-item--wide,
+  .gup-gallery-item--tall,
+  .gup-gallery-item--medium {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+
+  .gup-filter {
+    font-size: 12px;
+    padding: 6px 14px;
+  }
+}

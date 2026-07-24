@@ -3225,6 +3225,8 @@ function initWIMAnimations() {
 
   function startAnimations() {
     if (window.__animationsStarted) return;
+    // Our Story page uses public/assets/js/our-story-animations.js
+    if (window.location.pathname.includes("our-story")) return;
     window.__animationsStarted = true;
     initAllAnimations();
   }
@@ -3237,10 +3239,11 @@ function initWIMAnimations() {
 
   setTimeout(function () {
     if (!window.__animationsStarted) {
-      console.warn("lenisReady never fired â€” starting anyway");
+      if (window.location.pathname.includes("our-story")) return;
+      console.warn("lenisReady never fired – starting animations fallback");
       startAnimations();
     }
-  }, 1000);
+  }, 800);
 })();
 
 

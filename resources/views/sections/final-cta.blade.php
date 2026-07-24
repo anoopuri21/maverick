@@ -3,7 +3,7 @@
     <div class="section-label"><span>Take The Next Step</span></div>
     <h2 class="final-cta__heading section-title">
       <span class="text-reveal-wrapper">
-        <span class="text-reveal-inner">{{ $finalCta->heading }}</span>
+        <span class="text-reveal-inner">{{ $finalCta->heading ?? '' }}</span>
       </span>
     </h2>
     <p class="final-cta__subtitle body-text">

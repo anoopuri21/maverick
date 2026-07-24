@@ -1,5 +1,5 @@
 <!-- Navigation -->
-<header id="navbar" class="navbar" role="banner">
+<header id="navbar" class="navbar {{ !request()->routeIs('home') ? 'inner-navbar' : '' }}" role="banner">
   <div class="navbar__container">
     <!-- Logo -->
     <a href="{{ route('home') }}" class="navbar__logo" aria-label="Maverick Business Academy Home">
@@ -33,16 +33,12 @@
                     Globally recognized qualifications designed for
                     ambitious learners and professionals.
                   </p>
-                  <a href="{{ url('/programs/') }}" class="mega__view-all">
-                    View All Programs
-                    <span class="mega__view-all-arrow">→</span>
-                  </a>
                 </div>
 
                 <!-- Center Column: Program Categories Grid -->
                 <div class="mega__programs-col">
                   <div class="mega__programs-grid">
-                    <a href="{{ url('/programs/diplomas/') }}" class="mega__program-card">
+                    <a href="{{ url('/diplomas/') }}" class="mega__program-card">
                       <div class="mega__program-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                           <path d="M4 19.5A2.5 2.5 0 016.5 17H20" />
@@ -59,7 +55,7 @@
                       <span class="mega__program-arrow">→</span>
                     </a>
 
-                    <a href="{{ url('/programs/bachelors-degrees/') }}" class="mega__program-card">
+                    <a href="{{ url('/bachelors-degrees/') }}" class="mega__program-card">
                       <div class="mega__program-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                           <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
@@ -75,7 +71,7 @@
                       <span class="mega__program-arrow">→</span>
                     </a>
 
-                    <a href="{{ url('/programs/masters-degrees/') }}" class="mega__program-card">
+                    <a href="{{ url('/masters-degrees/') }}" class="mega__program-card">
                       <div class="mega__program-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                           <polygon points="12 2 15.09 8.26 22 9.27 17 
@@ -93,7 +89,7 @@
                       <span class="mega__program-arrow">→</span>
                     </a>
 
-                    <a href="{{ url('/programs/doctorate-degrees/') }}" class="mega__program-card">
+                    <a href="{{ url('/doctorate-degrees/') }}" class="mega__program-card">
                       <div class="mega__program-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                           <circle cx="12" cy="8" r="6" />
@@ -110,7 +106,7 @@
                       <span class="mega__program-arrow">→</span>
                     </a>
 
-                    <a href="{{ url('/programs/executive-education/') }}" class="mega__program-card">
+                    <a href="{{ url('/executive-education/') }}" class="mega__program-card">
                       <div class="mega__program-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                           <rect x="2" y="3" width="20" height="14" rx="2" />
@@ -126,7 +122,7 @@
                       <span class="mega__program-arrow">→</span>
                     </a>
 
-                    <a href="{{ url('/programs/corporate-training/') }}" class="mega__program-card">
+                    <a href="{{ url('/corporate-training/') }}" class="mega__program-card">
                       <div class="mega__program-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                           <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 
@@ -144,29 +140,10 @@
                       </div>
                       <span class="mega__program-arrow">→</span>
                     </a>
+
                   </div>
                 </div>
 
-                <!-- Right Column: Featured Program -->
-                <div class="mega__featured-col">
-                  <span class="mega__featured-label">Featured Program</span>
-                  <div class="mega__featured-card">
-                    <div class="mega__featured-img">
-                      <img src="{{ asset('assets/images/homepage/mba.jpg') }}" alt="Global MBA Program" />
-                    </div>
-                    <div class="mega__featured-content">
-                      <span class="mega__featured-tag">Master's Degree</span>
-                      <h3 class="mega__featured-title">Global MBA</h3>
-                      <p class="mega__featured-partner">
-                        University of the Creative Arts
-                      </p>
-                      <p class="mega__featured-badge">Triple Accredited</p>
-                      <a href="{{ url('/programs/masters-degrees/global-mba/') }}" class="mega__featured-cta">
-                        Explore Program →
-                      </a>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -180,23 +157,23 @@
           </button>
           <ul class="navbar__dropdown" data-dropdown="about" aria-hidden="true">
             <li>
-              <a href="{{ url('/about-us/our-story/') }}" class="navbar__dropdown-link">Our Story</a>
+              <a href="{{ url('/our-story/') }}" class="navbar__dropdown-link">Our Story</a>
             </li>
             <li>
-              <a href="{{ url('/about-us/leadership-board/') }}" class="navbar__dropdown-link">Leadership &amp; Board</a>
+              <a href="{{ url('/leadership-board/') }}" class="navbar__dropdown-link">Leadership &amp; Board</a>
             </li>
             <li>
-              <a href="{{ url('/about-us/accreditations/') }}" class="navbar__dropdown-link">Accreditations &amp; Recognition</a>
+              <a href="{{ url('/accreditations/') }}" class="navbar__dropdown-link">Accreditations &amp; Recognition</a>
             </li>
             <li>
-              <a href="{{ url('/about-us/global-university-partners/') }}" class="navbar__dropdown-link">Global University
+              <a href="{{ url('/global-university-partners/') }}" class="navbar__dropdown-link">Global University
                 Partners</a>
             </li>
             <li>
-              <a href="{{ url('/about-us/csr-community-impact/') }}" class="navbar__dropdown-link">CSR &amp; Community Impact</a>
+              <a href="{{ url('/csr-community-impact/') }}" class="navbar__dropdown-link">CSR &amp; Community Impact</a>
             </li>
             <li>
-              <a href="{{ url('/about-us/media-gallery/') }}" class="navbar__dropdown-link">Media Gallery</a>
+              <a href="{{ url('/media-gallery/') }}" class="navbar__dropdown-link">Media Gallery</a>
             </li>
           </ul>
         </li>
@@ -209,10 +186,10 @@
           </button>
           <ul class="navbar__dropdown" data-dropdown="pathways" aria-hidden="true">
             <li>
-              <a href="{{ url('/global-pathways/pathway-programs/') }}" class="navbar__dropdown-link">Pathway Programs</a>
+              <a href="{{ url('/pathway-programs/') }}" class="navbar__dropdown-link">Pathway Programs</a>
             </li>
             <li>
-              <a href="{{ url('/global-pathways/global-opportunities/') }}" class="navbar__dropdown-link">Global Opportunities</a>
+              <a href="{{ url('/global-opportunities/') }}" class="navbar__dropdown-link">Global Opportunities</a>
             </li>
           </ul>
         </li>
@@ -225,17 +202,16 @@
           </button>
           <ul class="navbar__dropdown" data-dropdown="insights" aria-hidden="true">
             <li>
-              <a href="{{ url('/insights/news/') }}" class="navbar__dropdown-link">News</a>
+              <a href="{{ url('/news/') }}" class="navbar__dropdown-link">News</a>
             </li>
             <li>
-              <a href="{{ url('/insights/events/') }}" class="navbar__dropdown-link">Events</a>
+              <a href="{{ url('/events/') }}" class="navbar__dropdown-link">Events</a>
             </li>
             <li>
-              <a href="{{ url('/insights/blogs/') }}" class="navbar__dropdown-link">Blogs</a>
+              <a href="{{ url('/blogs/') }}" class="navbar__dropdown-link">Blogs</a>
             </li>
             <li>
-              <a href="{{ url('/insights/student-success-faculty-insights/') }}" class="navbar__dropdown-link">Student Success /
-                Faculty Insights</a>
+              <a href="{{ url('/student-success/') }}" class="navbar__dropdown-link">Student Success</a>
             </li>
           </ul>
         </li>
@@ -276,22 +252,22 @@
             </button>
             <ul class="navbar__mobile-submenu" data-mobile-submenu="programs">
               <li>
-                <a href="{{ url('/programs/diplomas/') }}" class="navbar__mobile-sublink">Diplomas</a>
+                <a href="{{ url('/diplomas/') }}" class="navbar__mobile-sublink">Diplomas</a>
               </li>
               <li>
-                <a href="{{ url('/programs/bachelors-degrees/') }}" class="navbar__mobile-sublink">Bachelor's Degrees</a>
+                <a href="{{ url('/bachelors-degrees/') }}" class="navbar__mobile-sublink">Bachelor's Degrees</a>
               </li>
               <li>
-                <a href="{{ url('/programs/masters-degrees/') }}" class="navbar__mobile-sublink">Master's Degrees</a>
+                <a href="{{ url('/masters-degrees/') }}" class="navbar__mobile-sublink">Master's Degrees</a>
               </li>
               <li>
-                <a href="{{ url('/programs/doctorate-degrees/') }}" class="navbar__mobile-sublink">Doctorate Degrees</a>
+                <a href="{{ url('/doctorate-degrees/') }}" class="navbar__mobile-sublink">Doctorate Degrees</a>
               </li>
               <li>
-                <a href="{{ url('/programs/executive-education/') }}" class="navbar__mobile-sublink">Executive Education</a>
+                <a href="{{ url('/executive-education/') }}" class="navbar__mobile-sublink">Executive Education</a>
               </li>
               <li>
-                <a href="{{ url('/programs/corporate-training/') }}" class="navbar__mobile-sublink">Corporate Training</a>
+                <a href="{{ url('/corporate-training/') }}" class="navbar__mobile-sublink">Corporate Training</a>
               </li>
             </ul>
           </li>
@@ -303,25 +279,25 @@
             </button>
             <ul class="navbar__mobile-submenu" data-mobile-submenu="about">
               <li>
-                <a href="{{ url('/about-us/our-story/') }}" class="navbar__mobile-sublink">Our Story</a>
+                <a href="{{ route('our-story') }}" class="navbar__mobile-sublink">Our Story</a>
               </li>
               <li>
-                <a href="{{ url('/about-us/leadership-board/') }}" class="navbar__mobile-sublink">Leadership &amp; Board</a>
+                <a href="{{ url('/leadership-board/') }}" class="navbar__mobile-sublink">Leadership &amp; Board</a>
               </li>
               <li>
-                <a href="{{ url('/about-us/accreditations/') }}" class="navbar__mobile-sublink">Accreditations &amp;
+                <a href="{{ url('/accreditations/') }}" class="navbar__mobile-sublink">Accreditations &amp;
                   Recognition</a>
               </li>
               <li>
-                <a href="{{ url('/about-us/global-university-partners/') }}" class="navbar__mobile-sublink">Global University
+                <a href="{{ url('/global-university-partners/') }}" class="navbar__mobile-sublink">Global University
                   Partners</a>
               </li>
               <li>
-                <a href="{{ url('/about-us/csr-community-impact/') }}" class="navbar__mobile-sublink">CSR &amp; Community
+                <a href="{{ url('/csr-community-impact/') }}" class="navbar__mobile-sublink">CSR &amp; Community
                   Impact</a>
               </li>
               <li>
-                <a href="{{ url('/about-us/media-gallery/') }}" class="navbar__mobile-sublink">Media Gallery</a>
+                <a href="{{ url('/media-gallery/') }}" class="navbar__mobile-sublink">Media Gallery</a>
               </li>
             </ul>
           </li>
@@ -333,10 +309,10 @@
             </button>
             <ul class="navbar__mobile-submenu" data-mobile-submenu="pathways">
               <li>
-                <a href="{{ url('/global-pathways/pathway-programs/') }}" class="navbar__mobile-sublink">Pathway Programs</a>
+                <a href="{{ url('/pathway-programs/') }}" class="navbar__mobile-sublink">Pathway Programs</a>
               </li>
               <li>
-                <a href="{{ url('/global-pathways/global-opportunities/') }}" class="navbar__mobile-sublink">Global
+                <a href="{{ url('/global-opportunities/') }}" class="navbar__mobile-sublink">Global
                   Opportunities</a>
               </li>
             </ul>
@@ -349,17 +325,16 @@
             </button>
             <ul class="navbar__mobile-submenu" data-mobile-submenu="insights">
               <li>
-                <a href="{{ url('/insights/news/') }}" class="navbar__mobile-sublink">News</a>
+                <a href="{{ url('/news/') }}" class="navbar__mobile-sublink">News</a>
               </li>
               <li>
-                <a href="{{ url('/insights/events/') }}" class="navbar__mobile-sublink">Events</a>
+                <a href="{{ url('/events/') }}" class="navbar__mobile-sublink">Events</a>
               </li>
               <li>
-                <a href="{{ url('/insights/blogs/') }}" class="navbar__mobile-sublink">Blogs</a>
+                <a href="{{ url('/blogs/') }}" class="navbar__mobile-sublink">Blogs</a>
               </li>
               <li>
-                <a href="{{ url('/insights/student-success-faculty-insights/') }}" class="navbar__mobile-sublink">Student Success /
-                  Faculty Insights</a>
+                <a href="{{ url('/student-success/') }}" class="navbar__mobile-sublink">Student Success</a>
               </li>
             </ul>
           </li>

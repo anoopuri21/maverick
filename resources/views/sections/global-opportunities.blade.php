@@ -56,7 +56,7 @@
               <span class="opportunities__item-arrow" aria-hidden="true">→</span>
             </a>
           </li>
-
+<!-- 
           <li class="opportunities__item">
             <a href="{{ $globalOpportunities->opp3_url }}" class="opportunities__link">
               <span class="opportunities__item-number">03</span>
@@ -83,7 +83,7 @@
               </div>
               <span class="opportunities__item-arrow" aria-hidden="true">→</span>
             </a>
-          </li>
+          </li> -->
           <!-- DYNAMIC END: opportunities-items -->
         </ul>
       </div>

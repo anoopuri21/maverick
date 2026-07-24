@@ -57,6 +57,15 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
+<!-- alias php='/opt/cpanel/ea-php83/root/usr/bin/php'
+alias composer='/opt/cpanel/ea-php83/root/usr/bin/php /usr/local/bin/composer'
+cd ~/demo.vsinfosys.in
+git pull origin main
+composer install --no-dev --optimize-autoloader
+php artisan migrate --force
+php artisan optimize:clear
+php artisan config:cache -->
+
 ## gejkosrq_admin
 
 ## C~tGFa[2$BWZtN1G

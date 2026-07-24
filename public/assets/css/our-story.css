@@ -1,0 +1,619 @@
+#hero {
+  position: relative;
+  margin-bottom: 150px;
+}
+#hero::before {
+  content: "Story";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 40vw;
+  font-weight: 900;
+  /* line-height: 1; */
+  white-space: nowrap;
+  color: rgba(40, 0, 255, 0.1);
+  -webkit-text-fill-color: rgba(40, 0, 255, 0);
+  -webkit-text-stroke: 2px rgb(0 5 24 / 30%);
+  text-stroke: 1px rgba(0, 5, 24, 0.1);
+  pointer-events: none;
+  filter: drop-shadow(10px 10px 3px black);
+}
+.story-content {
+  width: 100%;
+  max-width: 55%;
+  background-color: #eee;
+  color: #000;
+  padding: 20px;
+  border-radius: 5px;
+  z-index: 5;
+  position: relative;
+  box-shadow: 8px 8px 16px rgb(0 0 0 / 40%);
+  margin-top: 5rem;
+}
+.back-box {
+  background-image: var(--our-story-hero-image);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 500px;
+  max-width: 55%;
+  width: 100%;
+  margin-left: auto;
+  /* border-radius: 30px; */
+  position: absolute;
+  bottom: -100px;
+  z-index: 0;
+  right: 0;
+}
+/* ========================================
+    Our Story: Hero Section
+======================================== */
+.our-story-hero {
+  position: relative;
+  width: 100%;
+  min-height: 52vh;
+  min-height: 70svh;
+}
+
+.our-story-hero__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    45deg,
+    rgba(12, 25, 76, 0.95),
+    rgba(106, 1, 1, 0.95)
+  );
+  pointer-events: none;
+}
+
+.our-story-hero__content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  margin: 0 auto;
+  padding: 5rem 1.5rem;
+  opacity: 1;
+}
+
+.our-story-hero__tag {
+  display: block;
+  margin: 0 0 1rem;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #ffffff;
+  opacity: 1;
+}
+
+.our-story-hero__heading {
+  margin: 0 0 1.25rem;
+  font-family: "PP Neue Montreal", "Poppins", sans-serif;
+  font-size: clamp(2rem, 5vw, 5rem);
+  font-weight: 700;
+  line-height: 1.15;
+  color: #b20202;
+  opacity: 1;
+  margin-bottom: 50px;
+  position: relative;
+}
+.our-story-hero__heading:before {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  right: 0;
+  width: 100px;
+  height: 4px;
+  background: #253984;
+  z-index: 1;
+  border-radius: 5px;
+}
+
+.our-story-hero__description {
+  margin: 0 auto;
+  font-family: "Poppins", sans-serif;
+  font-size: clamp(0.95rem, 1.5vw, 1.125rem);
+  font-weight: 400;
+  line-height: 1.65;
+  color: rgba(0, 0, 0, 0.8);
+  opacity: 1;
+}
+
+/* ========================================
+    Our Story: Beginning Section
+    ======================================== */
+
+.beginning__grid.grid-2 {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 48px;
+  align-items: stretch;
+}
+
+.beginning__content {
+  min-width: 0;
+}
+
+.beginning__image-col {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.beginning__image-wrapper {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.beginning__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+.beginning__heading-line .text-reveal-inner {
+  color: #0f2983;
+}
+.impact__stat {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4rem 0;
+  border-bottom: 1px solid #999;
+  font-size: 2rem;
+  font-weight: 400;
+}
+.impact__stat-label {
+  color: #0f2983;
+}
+
+/* ========================================
+     Our Story: Journey (Cinematic Timeline)
+    ======================================== */
+
+.journey {
+  padding: 100px 20px;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.journey__header {
+  margin: 0 auto 80px;
+}
+
+.journey__subheading {
+  font-size: 18px;
+  color: #666;
+  margin-top: 16px;
+  line-height: 1.6;
+}
+
+/* ===== Timeline Wrapper ===== */
+.journey__timeline {
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 0;
+}
+
+/* ===== Center Vertical Line ===== */
+.journey__line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    #1a2b7a 10%,
+    #1a2b7a 90%,
+    transparent 100%
+  );
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+/* ===== Timeline Item ===== */
+.journey__item {
+  position: relative;
+  width: 50%;
+  padding: 40px 60px;
+  margin-bottom: 40px;
+  z-index: 2;
+}
+
+.journey__item--left {
+  left: 0;
+  text-align: right;
+  padding-right: 80px;
+}
+
+.journey__item--right {
+  left: 50%;
+  text-align: left;
+  padding-left: 80px;
+}
+
+/* ===== Center Dot with Icon ===== */
+.journey__dot {
+  position: absolute;
+  top: 50px;
+  width: 60px;
+  height: 60px;
+  background: #fff;
+  border: 4px solid #1a2b7a;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(26, 43, 122, 0.2);
+  z-index: 3;
+  transition: all 0.4s ease;
+}
+
+.journey__item--left .journey__dot {
+  right: -30px;
+}
+
+.journey__item--right .journey__dot {
+  left: -30px;
+}
+
+.journey__dot:hover {
+  transform: scale(1.15);
+  box-shadow: 0 6px 30px rgba(26, 43, 122, 0.4);
+}
+
+.journey__dot-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.journey__dot-year {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1a2b7a;
+}
+
+/* ===== Content Card ===== */
+.journey__card {
+  background: #fff;
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  border: 1px solid #eee;
+  transition: all 0.4s ease;
+  position: relative;
+}
+
+.journey__card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 50px rgba(26, 43, 122, 0.15);
+  border-color: #1a2b7a;
+}
+
+/* Arrow pointing to timeline */
+.journey__card::before {
+  content: "";
+  position: absolute;
+  top: 50px;
+  width: 0;
+  height: 0;
+  border: 12px solid transparent;
+}
+
+.journey__item--left .journey__card::before {
+  right: -24px;
+  border-left-color: #fff;
+}
+
+.journey__item--right .journey__card::before {
+  left: -24px;
+  border-right-color: #fff;
+}
+
+/* ===== Year Badge ===== */
+.journey__year-badge {
+  display: inline-block;
+  padding: 6px 16px;
+  background: linear-gradient(135deg, #1a2b7a, #dc2626);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 1px;
+}
+
+/* ===== Title & Description ===== */
+.journey__title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a2b7a;
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+
+.journey__description {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ===== Scroll Reveal Animation ===== */
+.journey__item {
+  opacity: 0;
+  transform: translateY(50px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+}
+
+.journey__item.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.journey__item--left.is-visible {
+  animation: slideInLeft 0.8s ease forwards;
+}
+
+.journey__item--right.is-visible {
+  animation: slideInRight 0.8s ease forwards;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-80px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(80px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ===== Fallback: Always visible if JS fails ===== */
+.no-js .journey__item {
+  opacity: 1;
+  transform: none;
+}
+.vision__heading {
+  margin-bottom: 2rem;
+}
+
+/* Awards image slider — reuse testimonials scroll-row card sizing */
+.awards .testimonials__card {
+  cursor: default;
+}
+
+.awards .testimonials__card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ========================================
+   Our Story: Awards Badge Carousel
+======================================== */
+
+.awards .testimonials__track {
+  gap: 32px;
+  padding: 20px 10px;
+}
+
+/* ===== Award Badge Card ===== */
+.award-badge {
+  flex: 0 0 auto;
+  width: 220px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.4s ease;
+}
+
+.award-badge:hover {
+  transform: translateY(-8px);
+}
+
+/* ===== Image Wrapper (for tooltip positioning) ===== */
+.award-badge__image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 2px solid transparent;
+  transition: all 0.4s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.award-badge:hover .award-badge__image-wrapper {
+  border-color: #1a2b7a;
+  box-shadow: 0 12px 40px rgba(26, 43, 122, 0.2);
+}
+
+/* ===== Award Image ===== */
+.award-badge__image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transition: transform 0.4s ease;
+  filter: grayscale(30%);
+}
+
+.award-badge:hover .award-badge__image {
+  transform: scale(1.1);
+  filter: grayscale(0%);
+}
+
+/* ===== Tooltip (Hover Reveal) ===== */
+.award-badge__tooltip {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-100%);
+  background: #1a2b7a;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  pointer-events: none;
+  z-index: 10;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Tooltip arrow */
+.award-badge__tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: #1a2b7a;
+}
+
+.award-badge:hover .award-badge__tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(-110%);
+}
+
+/* ===== Title Below Image ===== */
+.award-badge__title {
+  margin-top: 20px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a2b7a;
+  line-height: 1.4;
+  padding: 0 8px;
+}
+
+/* ========================================
+ Mobile Responsive
+======================================== */
+@media (max-width: 768px) {
+  .award-badge {
+    width: 180px;
+  }
+
+  .award-badge__image-wrapper {
+    height: 150px;
+    padding: 18px;
+  }
+
+  .award-badge__title {
+    font-size: 14px;
+  }
+
+  /* Hide tooltip on mobile (touch devices) */
+  .award-badge__tooltip {
+    display: none;
+  }
+}
+
+/* ========================================
+   Awards: Title Below Image
+======================================== */
+
+.awards__card-title {
+  margin-top: 16px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a2b7a;
+  line-height: 1.4;
+  text-align: center;
+  padding: 0 8px;
+}
+
+@media (max-width: 768px) {
+  .awards__card-title {
+    font-size: 14px;
+    margin-top: 12px;
+  }
+}
+
+/* ========================================
+    Mobile Responsive
+    ======================================== */
+@media (max-width: 768px) {
+  .journey__line {
+    left: 30px;
+  }
+
+  .journey__item {
+    width: 100%;
+    left: 0 !important;
+    text-align: left !important;
+    padding: 20px 20px 20px 80px;
+  }
+
+  .journey__item--left .journey__dot,
+  .journey__item--right .journey__dot {
+    left: 0;
+    right: auto;
+  }
+
+  .journey__card::before {
+    left: -24px !important;
+    right: auto !important;
+    border-right-color: #fff !important;
+    border-left-color: transparent !important;
+  }
+
+  .our-story-hero {
+    min-height: 42vh;
+    min-height: 42svh;
+  }
+
+  .our-story-hero__content {
+    padding: 4rem 1.25rem;
+  }
+
+  .beginning__grid.grid-2 {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .beginning__image-col {
+    position: static;
+    overflow: visible;
+  }
+
+  .beginning__image-wrapper {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+  }
+}

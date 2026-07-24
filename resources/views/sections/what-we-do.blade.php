@@ -2,9 +2,11 @@
   <div class="container">
     <div class="wwd__header">
       <div class="wwd__header-left">
+      @if(request()->routeIs('what-we-do'))  
         <div class="section-label">
           <span>What We Do</span>
         </div>
+      @endif
         <h2 class="wwd__heading section-title">
           <span class="wwd__heading-line">
             <span class="text-reveal-wrapper">

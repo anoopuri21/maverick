@@ -7,13 +7,16 @@ use App\Http\Controllers\PageController;
 Route::get('/', [PageController::class, 'home'])->name('home');
 
 // About Pages
-Route::get('/about-us/our-story', [PageController::class, 'ourStory'])->name('our-story');
+Route::get('/our-story', [PageController::class, 'ourStory'])->name('our-story');
 Route::get('/about-us', [PageController::class, 'aboutUs'])->name('about-us');
-Route::get('/about-us/leadership-board', [PageController::class, 'founder'])->name('founder');
-
+Route::get('/leadership-board', function () {return view('pages.leadership');})->name('leadership');
+Route::get('/accreditations', function () {return view('pages.accreditations');})->name('accreditations');
+Route::get('/csr-community-impact', function () {return view('pages.csr-community-impact');})->name('csr');
+Route::get('/media-gallery', function () {return view('pages.media-gallery');})->name('media-gallery');
+Route::get('/global-university-partners', function () {return view('pages.global-university-partners');})->name('global-partners');
 // Contact
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::post('/contact', [PageController::class, 'contactSubmit'])->name('contact.submit');
 
 // Gallery
-Route::get('/about-us/media-gallery', [PageController::class, 'gallery'])->name('gallery');
+Route::get('/media-gallery', [PageController::class, 'gallery'])->name('gallery');

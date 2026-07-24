@@ -9,13 +9,13 @@ use App\Settings\NumbersSettings;
 use App\Settings\WhoWeAreSettings;
 use App\Settings\CeoSettings;
 use App\Settings\WhatIsMaverickSettings;
-use App\Settings\FinalCtaSettings;
+// use App\Settings\FinalCtaSettings;
 use App\Models\PartnerLogo;
-use App\Models\UniversityPartner;
+// use App\Models\UniversityPartner;
 use App\Models\FacultyInsight;
 use App\Models\Event;
 use App\Models\Testimonial;
-use App\Settings\WhatWeDoSettings;
+// use App\Settings\WhatWeDoSettings;
 use App\Settings\HowWeDoItSettings;
 use App\Settings\WhyMaverickSettings;
 use App\Settings\GlobalOpportunitiesSettings;
@@ -33,21 +33,14 @@ class PageController extends Controller
             'whoWeAre' => app(WhoWeAreSettings::class),
             'ceo' => app(CeoSettings::class),
             'whatIsMaverick' => app(WhatIsMaverickSettings::class),
-            'finalCta' => app(FinalCtaSettings::class),
-            'whatWeDo' => app(WhatWeDoSettings::class),
+            // 'finalCta' => app(FinalCtaSettings::class),
+            // 'whatWeDo' => app(WhatWeDoSettings::class),
             'howWeDoIt' => app(HowWeDoItSettings::class),
             'whyMaverick' => app(WhyMaverickSettings::class),
             'globalOpportunities' => app(GlobalOpportunitiesSettings::class),
         ];
 
         // Collections
-        $featuredPrograms = Program::select('id', 'title', 'slug', 'partner_university', 'short_description', 'image_url', 'sort_order')
-            ->where('is_featured', true)
-            ->where('is_active', true)
-            ->orderBy('sort_order')
-            ->limit(6)
-            ->get();
-
         $alumniLogos = PartnerLogo::select('id', 'name', 'logo_url', 'sort_order')
             ->where('type', 'alumni')
             ->where('is_active', true)
@@ -60,10 +53,10 @@ class PageController extends Controller
             ->orderBy('sort_order')
             ->get();
 
-        $universityPartners = UniversityPartner::select('id', 'name', 'country', 'city', 'latitude', 'longitude', 'is_hub', 'recognition', 'programs', 'logo_url')
-            ->where('is_active', true)
-            ->orderBy('country')
-            ->get();
+        // $universityPartners = UniversityPartner::select('id', 'name', 'country', 'city', 'latitude', 'longitude', 'is_hub', 'recognition', 'programs', 'logo_url')
+        //     ->where('is_active', true)
+        //     ->orderBy('country')
+        //     ->get();
 
         $facultyInsights = FacultyInsight::select('id', 'title', 'slug', 'badge', 'image_url', 'link_url', 'sort_order')
             ->where('is_active', true)
@@ -74,7 +67,7 @@ class PageController extends Controller
         $events = Event::select('id', 'title', 'description', 'event_date', 'event_type', 'location', 'link_url')
             ->where('is_active', true)
             ->orderBy('event_date', 'desc')
-            ->limit(6)
+            ->limit(10)
             ->get();
 
         $testimonials = Testimonial::select('id', 'name', 'designation', 'company', 'thumbnail_url', 'video_url', 'video_type', 'sort_order')
@@ -91,26 +84,26 @@ class PageController extends Controller
             ->get();
 
         // Transform data for JS
-        $universityPartnersJson = $universityPartners
-            ->groupBy('country')
-            ->map(function ($partners, $country) {
-                $first = $partners->first();
-                return [
-                    'id' => strtolower(str_replace(' ', '-', $country)),
-                    'name' => $country,
-                    'city' => $first->city ?? '',
-                    'lat' => (float) ($first->latitude ?? 0),
-                    'lng' => (float) ($first->longitude ?? 0),
-                    'isHub' => (bool) ($first->is_hub ?? false),
-                    'universities' => $partners->map(fn($p) => [
-                        'name' => $p->name,
-                        'country' => $p->country,
-                        'recognition' => $p->recognition ?? '',
-                        'programs' => $p->programs ?? [],
-                    ])->values(),
-                ];
-            })
-            ->values();
+        // $universityPartnersJson = $universityPartners
+        //     ->groupBy('country')
+        //     ->map(function ($partners, $country) {
+        //         $first = $partners->first();
+        //         return [
+        //             'id' => strtolower(str_replace(' ', '-', $country)),
+        //             'name' => $country,
+        //             'city' => $first->city ?? '',
+        //             'lat' => (float) ($first->latitude ?? 0),
+        //             'lng' => (float) ($first->longitude ?? 0),
+        //             'isHub' => (bool) ($first->is_hub ?? false),
+        //             'universities' => $partners->map(fn($p) => [
+        //                 'name' => $p->name,
+        //                 'country' => $p->country,
+        //                 'recognition' => $p->recognition ?? '',
+        //                 'programs' => $p->programs ?? [],
+        //             ])->values(),
+        //         ];
+        //     })
+        //     ->values();
 
         $testimonialsJson = $testimonials->map(fn($t) => [
             'category' => strtoupper($t->company ?? 'STUDENT'),
@@ -121,11 +114,11 @@ class PageController extends Controller
         ])->values();
 
         $data = array_merge($settings, [
-            'featuredPrograms' => $featuredPrograms,
+            // 'featuredPrograms' => $featuredPrograms,
             'alumniLogos' => $alumniLogos,
             'accreditationLogos' => $accreditationLogos,
-            'universityPartners' => $universityPartners,
-            'universityPartnersJson' => $universityPartnersJson,
+            // 'universityPartners' => $universityPartners,
+            // 'universityPartnersJson' => $universityPartnersJson,
             'facultyInsights' => $facultyInsights,
             'events' => $events,
             'testimonials' => $testimonials,
@@ -138,7 +131,66 @@ class PageController extends Controller
 
     public function ourStory()
     {
-        return view('pages.our-story');
+        // Our Story–specific settings
+        $settings = [
+            'hero' => app(\App\Settings\OurStoryHeroSettings::class),
+            'beginning' => app(\App\Settings\OurStoryBeginningSettings::class),
+            'today' => app(\App\Settings\OurStoryTodaySettings::class),
+            'impact' => app(\App\Settings\OurStoryImpactSettings::class),
+            'vision' => app(\App\Settings\OurStoryVisionSettings::class),
+            // Shared with homepage
+            'ceo' => app(CeoSettings::class),
+            // 'finalCta' => app(FinalCtaSettings::class),
+        ];
+
+        // Our Story–specific collections
+        $timelines = \App\Models\OurStoryTimeline::select('id', 'year', 'title', 'description', 'icon_url', 'sort_order')
+            ->where('is_active', true)
+            ->orderBy('sort_order')
+            ->get();
+
+        $awards = \App\Models\OurStoryAward::select('id', 'title', 'image_url', 'sort_order', 'is_active')
+            ->where('is_active', true)
+            ->orderBy('sort_order')
+            ->get();
+
+        // Shared collections (same sources as homepage)
+        $accreditationLogos = PartnerLogo::select('id', 'name', 'logo_url', 'sort_order')
+            ->where('type', 'accreditation')
+            ->where('is_active', true)
+            ->orderBy('sort_order')
+            ->get();
+
+        $facultyInsights = FacultyInsight::select('id', 'title', 'slug', 'badge', 'image_url', 'link_url', 'sort_order')
+            ->where('is_active', true)
+            ->orderBy('sort_order')
+            ->limit(6)
+            ->get();
+
+        $testimonials = Testimonial::select('id', 'name', 'designation', 'company', 'thumbnail_url', 'video_url', 'video_type', 'sort_order')
+            ->where('is_active', true)
+            ->orderBy('sort_order')
+            ->limit(9)
+            ->get();
+
+        $testimonialsJson = $testimonials->map(fn ($t) => [
+            'category' => strtoupper($t->company ?? 'STUDENT'),
+            'name' => $t->name,
+            'role' => $t->designation ?? '',
+            'thumbnail' => $t->auto_thumbnail,
+            'video' => $t->embed_url,
+        ])->values();
+
+        $data = array_merge($settings, [
+            'timelines' => $timelines,
+            'awards' => $awards,
+            'accreditationLogos' => $accreditationLogos,
+            'facultyInsights' => $facultyInsights,
+            'testimonials' => $testimonials,
+            'testimonialsJson' => $testimonialsJson,
+        ]);
+
+        return view('pages.our-story', $data);
     }
 
     public function aboutUs()
@@ -170,6 +222,6 @@ class PageController extends Controller
 
     public function gallery()
     {
-        return view('pages.gallery');
+        return view('pages.media-gallery');
     }
 }

@@ -17,6 +17,12 @@ return [
         \App\Settings\HowWeDoItSettings::class,
         \App\Settings\WhyMaverickSettings::class,
         \App\Settings\GlobalOpportunitiesSettings::class,
+        \App\Settings\OurStoryHeroSettings::class,
+        \App\Settings\OurStoryBeginningSettings::class,
+        \App\Settings\OurStoryTodaySettings::class,
+        \App\Settings\OurStoryImpactSettings::class,
+        \App\Settings\OurStoryCeoQuoteSettings::class,
+        \App\Settings\OurStoryVisionSettings::class,
     ],
 
     /*
