@@ -1,4 +1,4 @@
-﻿(function () {
+(function () {
   "use strict";
 
   if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
@@ -12,8 +12,225 @@
     return document.querySelector(selector) !== null;
   }
 
+  const BREAKPOINT_MOBILE = 768;
+
   function isMobile() {
-    return window.innerWidth < 768;
+    return window.innerWidth < BREAKPOINT_MOBILE;
+  }
+  const DEFAULT_ANIMATION_OPTIONS = {
+    duration: 0.8,
+    delay: 0,
+    ease: "power2.out",
+    start: "top 80%",
+    toggleActions: "play none none none",
+    once: true,
+  };
+
+  function prefersReducedMotion() {
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  }
+
+  function getDataNumber(element, name, fallback) {
+    const value = element.dataset[name];
+    if (value === undefined || value === "") return fallback;
+
+    const parsed = Number(value);
+    return Number.isNaN(parsed) ? fallback : parsed;
+  }
+
+  function getDataBoolean(element, name, fallback = false) {
+    const value = element.dataset[name];
+    if (value === undefined || value === "") return fallback;
+    return value === "true" || value === "1" || value === "yes";
+  }
+
+  function resolveAnimationTrigger(element) {
+    const trigger = element.dataset.trigger;
+
+    if (!trigger || trigger === "self") return element;
+    if (trigger === "parent") return element.parentElement || element;
+    if (trigger === "closest-section") return element.closest("section") || element;
+
+    return document.querySelector(trigger) || element;
+  }
+
+  function showAnimationTargets(targets) {
+    gsap.set(targets, {
+      clearProps: "all",
+      opacity: 1,
+      x: 0,
+      y: 0,
+      scale: 1,
+    });
+  }
+
+  function buildScrollTrigger(element, options = {}) {
+    if (options.noScroll) return undefined;
+
+    const trigger = options.trigger || resolveAnimationTrigger(element);
+
+    return {
+      trigger,
+      start: options.start || DEFAULT_ANIMATION_OPTIONS.start,
+      end: options.end || undefined,
+      scrub: options.scrub || false,
+      toggleActions:
+        options.toggleActions || DEFAULT_ANIMATION_OPTIONS.toggleActions,
+      once: options.once ?? DEFAULT_ANIMATION_OPTIONS.once,
+    };
+  }
+
+  function getAnimationOptions(element) {
+    const scrubValue = element.dataset.scrub;
+    const scrub = scrubValue === undefined || scrubValue === ""
+      ? false
+      : Number(scrubValue) || true;
+
+    return {
+      type: element.dataset.animate,
+      duration: getDataNumber(
+        element,
+        "duration",
+        DEFAULT_ANIMATION_OPTIONS.duration,
+      ),
+      delay: getDataNumber(element, "delay", DEFAULT_ANIMATION_OPTIONS.delay),
+      ease: element.dataset.ease || DEFAULT_ANIMATION_OPTIONS.ease,
+      start: element.dataset.start || DEFAULT_ANIMATION_OPTIONS.start,
+      end: element.dataset.end || undefined,
+      stagger: getDataNumber(element, "stagger", 0),
+      scrub,
+      once: getDataBoolean(element, "once", DEFAULT_ANIMATION_OPTIONS.once),
+      toggleActions:
+        element.dataset.toggleActions || DEFAULT_ANIMATION_OPTIONS.toggleActions,
+      disableMobile: getDataBoolean(element, "disableMobile", false),
+      minWidth: getDataNumber(element, "minWidth", 0),
+      noScroll: getDataBoolean(element, "noScroll", false),
+    };
+  }
+
+  function getAnimationPreset(element, type) {
+    const x = getDataNumber(element, "x", null);
+    const y = getDataNumber(element, "y", null);
+    const scale = getDataNumber(element, "scale", null);
+
+    const presets = {
+      fade: { from: { opacity: 0 }, to: { opacity: 1 } },
+      "fade-up": { from: { opacity: 0, y: y ?? 30 }, to: { opacity: 1, y: 0 } },
+      "fade-down": { from: { opacity: 0, y: y ?? -30 }, to: { opacity: 1, y: 0 } },
+      "fade-left": { from: { opacity: 0, x: x ?? 40 }, to: { opacity: 1, x: 0 } },
+      "fade-right": { from: { opacity: 0, x: x ?? -40 }, to: { opacity: 1, x: 0 } },
+      "scale-in": { from: { opacity: 0, scale: scale ?? 0.9 }, to: { opacity: 1, scale: 1 } },
+      "line-x": { from: { scaleX: 0, transformOrigin: "left center" }, to: { scaleX: 1 } },
+      "line-y": { from: { scaleY: 0, transformOrigin: "top center" }, to: { scaleY: 1 } },
+      "parallax-y": { from: {}, to: { y: y ?? -60 } },
+      "parallax-scale": { from: {}, to: { scale: scale ?? 1.08 } },
+    };
+
+    return presets[type];
+  }
+
+  function runGenericTween(targets, element, options, preset) {
+    gsap.fromTo(targets, preset.from, {
+      ...preset.to,
+      duration: options.duration,
+      delay: options.delay,
+      ease: options.scrub ? "none" : options.ease,
+      overwrite: true,
+      scrollTrigger: buildScrollTrigger(element, options),
+    });
+  }
+
+  function initTextRevealAnimation(element, options) {
+    const targets = element.matches(".text-reveal-inner")
+      ? [element]
+      : element.querySelectorAll(".text-reveal-inner");
+
+    if (!targets.length) return;
+
+    if (prefersReducedMotion()) {
+      gsap.set(targets, { clearProps: "all", y: "0%" });
+      return;
+    }
+
+    gsap.fromTo(
+      targets,
+      { y: element.dataset.fromY || "110%" },
+      {
+        y: element.dataset.toY || "0%",
+        duration: options.duration,
+        delay: options.delay,
+        stagger: options.stagger || 0.12,
+        ease: options.ease || "power3.out",
+        overwrite: true,
+        scrollTrigger: buildScrollTrigger(element, options),
+      },
+    );
+  }
+
+  function initStaggerAnimation(element, options, presetName) {
+    const targetSelector = element.dataset.staggerTarget;
+    const targets = targetSelector
+      ? element.querySelectorAll(targetSelector)
+      : element.children;
+
+    if (!targets.length) return;
+
+    if (prefersReducedMotion()) {
+      showAnimationTargets(targets);
+      return;
+    }
+
+    const preset = getAnimationPreset(element, presetName);
+    if (!preset) return;
+
+    gsap.fromTo(targets, preset.from, {
+      ...preset.to,
+      duration: options.duration,
+      delay: options.delay,
+      stagger: options.stagger || 0.1,
+      ease: options.ease,
+      overwrite: true,
+      scrollTrigger: buildScrollTrigger(element, options),
+    });
+  }
+
+  function initDataAnimation(element) {
+    const options = getAnimationOptions(element);
+    if (!options.type) return;
+
+    if (options.disableMobile && isMobile()) {
+      showAnimationTargets(element);
+      return;
+    }
+
+    if (options.minWidth && window.innerWidth < options.minWidth) {
+      showAnimationTargets(element);
+      return;
+    }
+
+    if (options.type === "text-reveal") {
+      initTextRevealAnimation(element, options);
+      return;
+    }
+
+    if (options.type.startsWith("stagger-")) {
+      initStaggerAnimation(element, options, options.type.replace("stagger-", ""));
+      return;
+    }
+
+    if (prefersReducedMotion()) {
+      showAnimationTargets(element);
+      return;
+    }
+
+    const preset = getAnimationPreset(element, options.type);
+    if (!preset) return;
+
+    runGenericTween(element, element, options, preset);
+  }
+
+  function initDataAnimations() {
+    document.querySelectorAll("[data-animate]").forEach(initDataAnimation);
   }
 
   const activeSliders = new Map();
@@ -2503,102 +2720,130 @@ function initWIMAnimations() {
   // Faculty Insights Section Animations
   // =========================================================
 
+  function initHorizontalCardSectionAnimations(config) {
+    const {
+      sectionSelector,
+      headingSelector,
+      subtitleSelector,
+      cardsSelector,
+      cardsTriggerSelector,
+      cardDuration = 0.6,
+      cardStagger = 0.1,
+      cardsStart = "top 75%",
+    } = config;
+
+    if (!elementExists(sectionSelector)) return;
+
+    const animations = [
+      {
+        selector: `${sectionSelector} .section-label`,
+        type: "fade-up",
+        y: 16,
+        duration: 0.6,
+        trigger: sectionSelector,
+      },
+      {
+        selector: headingSelector,
+        type: "text-reveal",
+        duration: 0.9,
+        stagger: 0.12,
+        ease: "power3.out",
+        trigger: sectionSelector,
+      },
+      {
+        selector: subtitleSelector,
+        type: "fade-up",
+        y: 30,
+        duration: 0.8,
+        trigger: sectionSelector,
+      },
+      {
+        selector: cardsSelector,
+        type: "fade-left",
+        x: 40,
+        duration: cardDuration,
+        stagger: cardStagger,
+        trigger: cardsTriggerSelector,
+        start: cardsStart,
+      },
+    ];
+
+    initConfiguredAnimations(animations);
+  }
+
+  function initConfiguredAnimations(animations) {
+    animations.forEach((animation) => {
+      const targets = document.querySelectorAll(animation.selector);
+      if (!targets.length) return;
+
+      if (prefersReducedMotion()) {
+        if (animation.type === "text-reveal") {
+          gsap.set(targets, { clearProps: "all", y: "0%" });
+        } else {
+          showAnimationTargets(targets);
+        }
+        return;
+      }
+
+      const triggerElement = animation.trigger
+        ? document.querySelector(animation.trigger)
+        : targets[0];
+
+      if (animation.type === "text-reveal") {
+        gsap.fromTo(
+          targets,
+          { y: animation.fromY || "110%" },
+          {
+            y: animation.toY || "0%",
+            duration: animation.duration || 0.9,
+            delay: animation.delay || 0,
+            stagger: animation.stagger || 0,
+            ease: animation.ease || "power3.out",
+            overwrite: true,
+            scrollTrigger: {
+              trigger: triggerElement || targets[0],
+              start: animation.start || "top 75%",
+              toggleActions: animation.toggleActions || "play none none none",
+            },
+          },
+        );
+        return;
+      }
+
+      const proxy = { dataset: { x: animation.x, y: animation.y, scale: animation.scale } };
+      const preset = getAnimationPreset(proxy, animation.type);
+      if (!preset) return;
+
+      gsap.fromTo(targets, preset.from, {
+        ...preset.to,
+        duration: animation.duration || DEFAULT_ANIMATION_OPTIONS.duration,
+        delay: animation.delay || 0,
+        stagger: animation.stagger || 0,
+        ease: animation.ease || DEFAULT_ANIMATION_OPTIONS.ease,
+        overwrite: true,
+        scrollTrigger: {
+          trigger: triggerElement || targets[0],
+          start: animation.start || DEFAULT_ANIMATION_OPTIONS.start,
+          toggleActions: animation.toggleActions || DEFAULT_ANIMATION_OPTIONS.toggleActions,
+        },
+      });
+    });
+  }
+
+  // =========================================================
+  // Faculty Insights Section Animations
+  // =========================================================
+
   function initInsightsAnimations() {
-    if (!elementExists("#faculty-insights")) return;
-
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
-    if (prefersReducedMotion) {
-      gsap.set(
-        ["#faculty-insights .text-reveal-inner", "#faculty-insights .fade-up"],
-        { clearProps: "all", opacity: 1 },
-      );
-      gsap.set("#faculty-insights .text-reveal-inner", { y: "0%" });
-      return;
-    }
-
-    const sectionLabel = document.querySelector(
-      "#faculty-insights .section-label",
-    );
-    if (sectionLabel) {
-      gsap.fromTo(
-        sectionLabel,
-        { opacity: 0, y: 16 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#faculty-insights",
-            start: "top 75%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
-
-    const headingLines = document.querySelectorAll(
-      "#faculty-insights .insights__heading-line .text-reveal-inner",
-    );
-    if (headingLines.length) {
-      gsap.fromTo(
-        headingLines,
-        { y: "110%" },
-        {
-          y: "0%",
-          duration: 0.9,
-          stagger: 0.12,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: "#faculty-insights",
-            start: "top 75%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
-
-    const subtitle = document.querySelector("#faculty-insights .insights__subtitle");
-    if (subtitle) {
-      gsap.fromTo(
-        subtitle,
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#faculty-insights",
-            start: "top 75%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
-
-    const cards = document.querySelectorAll("#faculty-insights .insights__card");
-    if (cards.length) {
-      gsap.fromTo(
-        cards,
-        { opacity: 0, x: 40 },
-        {
-          opacity: 1,
-          x: 0,
-          duration: 0.7,
-          stagger: 0.12,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#faculty-insights .insights__scroll",
-            start: "top 75%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
+    initHorizontalCardSectionAnimations({
+      sectionSelector: "#faculty-insights",
+      headingSelector: "#faculty-insights .insights__heading-line .text-reveal-inner",
+      subtitleSelector: "#faculty-insights .insights__subtitle",
+      cardsSelector: "#faculty-insights .insights__card",
+      cardsTriggerSelector: "#faculty-insights .insights__scroll",
+      cardDuration: 0.7,
+      cardStagger: 0.12,
+    });
   }
 
   // =========================================================
@@ -2606,101 +2851,16 @@ function initWIMAnimations() {
   // =========================================================
 
   function initEventsAnimations() {
-    if (!elementExists("#upcoming-events")) return;
-
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
-    if (prefersReducedMotion) {
-      gsap.set(
-        ["#upcoming-events .text-reveal-inner", "#upcoming-events .fade-up"],
-        { clearProps: "all", opacity: 1 },
-      );
-      gsap.set("#upcoming-events .text-reveal-inner", { y: "0%" });
-      return;
-    }
-
-    const sectionLabel = document.querySelector(
-      "#upcoming-events .section-label",
-    );
-    if (sectionLabel) {
-      gsap.fromTo(
-        sectionLabel,
-        { opacity: 0, y: 16 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#upcoming-events",
-            start: "top 75%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
-
-    const headingLines = document.querySelectorAll(
-      "#upcoming-events .events__heading-line .text-reveal-inner",
-    );
-    if (headingLines.length) {
-      gsap.fromTo(
-        headingLines,
-        { y: "110%" },
-        {
-          y: "0%",
-          duration: 0.9,
-          stagger: 0.12,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: "#upcoming-events",
-            start: "top 75%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
-
-    const subtitle = document.querySelector("#upcoming-events .events__subtitle");
-    if (subtitle) {
-      gsap.fromTo(
-        subtitle,
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#upcoming-events",
-            start: "top 75%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
-
-    const cards = document.querySelectorAll("#upcoming-events .events__card");
-    if (cards.length) {
-      gsap.fromTo(
-        cards,
-        { opacity: 0, x: 40 },
-        {
-          opacity: 1,
-          x: 0,
-          duration: 0.6,
-          stagger: 0.1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#upcoming-events .events__scroll",
-            start: "top 80%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
+    initHorizontalCardSectionAnimations({
+      sectionSelector: "#upcoming-events",
+      headingSelector: "#upcoming-events .events__heading-line .text-reveal-inner",
+      subtitleSelector: "#upcoming-events .events__subtitle",
+      cardsSelector: "#upcoming-events .events__card",
+      cardsTriggerSelector: "#upcoming-events .events__scroll",
+      cardDuration: 0.6,
+      cardStagger: 0.1,
+      cardsStart: "top 80%",
+    });
   }
 
   // =========================================================
@@ -2708,105 +2868,15 @@ function initWIMAnimations() {
   // =========================================================
 
   function initTestimonialsAnimations() {
-    if (!elementExists("#video-testimonials")) return;
-
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
-    if (prefersReducedMotion) {
-      gsap.set(
-        ["#video-testimonials .text-reveal-inner", "#video-testimonials .fade-up"],
-        { clearProps: "all", opacity: 1 },
-      );
-      gsap.set("#video-testimonials .text-reveal-inner", { y: "0%" });
-      return;
-    }
-
-    const sectionLabel = document.querySelector(
-      "#video-testimonials .section-label",
-    );
-    if (sectionLabel) {
-      gsap.fromTo(
-        sectionLabel,
-        { opacity: 0, y: 16 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#video-testimonials",
-            start: "top 75%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
-
-    const headingLines = document.querySelectorAll(
-      "#video-testimonials .testimonials__heading-line .text-reveal-inner",
-    );
-    if (headingLines.length) {
-      gsap.fromTo(
-        headingLines,
-        { y: "110%" },
-        {
-          y: "0%",
-          duration: 0.9,
-          stagger: 0.12,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: "#video-testimonials",
-            start: "top 75%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
-
-    const subtitle = document.querySelector(
-      "#video-testimonials .testimonials__subtitle",
-    );
-    if (subtitle) {
-      gsap.fromTo(
-        subtitle,
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#video-testimonials",
-            start: "top 75%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
-
-    const cards = document.querySelectorAll(
-      "#video-testimonials .testimonials__card",
-    );
-    if (cards.length) {
-      gsap.fromTo(
-        cards,
-        { opacity: 0, x: 40 },
-        {
-          opacity: 1,
-          x: 0,
-          duration: 0.6,
-          stagger: 0.08,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#video-testimonials .testimonials__scroll",
-            start: "top 75%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
+    initHorizontalCardSectionAnimations({
+      sectionSelector: "#video-testimonials",
+      headingSelector: "#video-testimonials .testimonials__heading-line .text-reveal-inner",
+      subtitleSelector: "#video-testimonials .testimonials__subtitle",
+      cardsSelector: "#video-testimonials .testimonials__card",
+      cardsTriggerSelector: "#video-testimonials .testimonials__scroll",
+      cardDuration: 0.6,
+      cardStagger: 0.08,
+    });
   }
 
   // =========================================================
@@ -3179,6 +3249,8 @@ function initWIMAnimations() {
         gsap.set(".hero__accent-bar", { opacity: 1, scaleY: 1 });
       }
     }
+
+    initDataAnimations();
 
     initHeroScrollAnimations();
 
