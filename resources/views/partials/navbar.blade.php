@@ -21,129 +21,351 @@
             <span class="navbar__arrow" aria-hidden="true"></span>
           </button>
           <!-- Programs Mega Menu -->
+          <!-- Programs Mega Menu -->
           <div class="navbar__mega" data-mega="programs" aria-hidden="true">
             <div class="mega__backdrop"></div>
             <div class="mega__panel">
               <div class="mega__inner">
-                <!-- Left Column: Label -->
-                <div class="mega__label-col">
-                  <span class="mega__eyebrow">Explore</span>
-                  <h2 class="mega__heading">Programs</h2>
-                  <p class="mega__desc">
-                    Globally recognized qualifications designed for
-                    ambitious learners and professionals.
-                  </p>
-                </div>
+                <div class="mega__body">
 
-                <!-- Center Column: Program Categories Grid -->
-                <div class="mega__programs-col">
-                  <div class="mega__programs-grid">
-                    <a href="{{ url('/diplomas/') }}" class="mega__program-card">
-                      <div class="mega__program-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                          <path d="M4 19.5A2.5 2.5 0 016.5 17H20" />
-                          <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 
-                                     19.5v-15A2.5 2.5 0 016.5 2z" />
-                        </svg>
-                      </div>
-                      <div class="mega__program-info">
-                        <span class="mega__program-name">Diplomas</span>
-                        <span class="mega__program-desc">
-                          Level 3 to Postgraduate qualifications
-                        </span>
-                      </div>
-                      <span class="mega__program-arrow">→</span>
-                    </a>
+                  <!-- LEFT: Categories -->
+                  <div class="mega__categories" role="tablist" aria-label="Program Categories">
 
-                    <a href="{{ url('/bachelors-degrees/') }}" class="mega__program-card">
-                      <div class="mega__program-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                          <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
-                          <path d="M6 12v5c3 3 9 3 12 0v-5" />
+                    <button type="button" class="mega__category-item is-active"
+                      data-category="diplomas"
+                      data-title="Diplomas"
+                      role="tab" aria-selected="true">
+                      <span class="mega__category-name">Diplomas</span>
+                      <span class="mega__category-arrow" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M5 12h14M13 6l6 6-6 6" />
                         </svg>
-                      </div>
-                      <div class="mega__program-info">
-                        <span class="mega__program-name">Bachelor's Degrees</span>
-                        <span class="mega__program-desc">
-                          Business, Technology &amp; Psychology
-                        </span>
-                      </div>
-                      <span class="mega__program-arrow">→</span>
-                    </a>
+                      </span>
+                    </button>
 
-                    <a href="{{ url('/masters-degrees/') }}" class="mega__program-card">
-                      <div class="mega__program-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                          <polygon points="12 2 15.09 8.26 22 9.27 17 
-                                             14.14 18.18 21.02 12 17.77 
-                                             5.82 21.02 7 14.14 2 9.27 
-                                             8.91 8.26 12 2" />
+                    <button type="button" class="mega__category-item"
+                      data-category="bachelors"
+                      data-title="Bachelor's Degrees"
+                      role="tab" aria-selected="false">
+                      <span class="mega__category-name">Bachelor's Degrees</span>
+                      <span class="mega__category-arrow" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M5 12h14M13 6l6 6-6 6" />
                         </svg>
-                      </div>
-                      <div class="mega__program-info">
-                        <span class="mega__program-name">Master's Degrees</span>
-                        <span class="mega__program-desc">
-                          MBA, MSc &amp; MA programs
-                        </span>
-                      </div>
-                      <span class="mega__program-arrow">→</span>
-                    </a>
+                      </span>
+                    </button>
 
-                    <a href="{{ url('/doctorate-degrees/') }}" class="mega__program-card">
-                      <div class="mega__program-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                          <circle cx="12" cy="8" r="6" />
-                          <path d="M15.477 12.89L17 22l-5-3-5 3 
-                                     1.523-9.11" />
+                    <button type="button" class="mega__category-item"
+                      data-category="masters"
+                      data-title="Master's Degrees"
+                      data-href="{{ url('/masters-degrees/') }}"
+                      role="tab" aria-selected="false">
+                      <span class="mega__category-name">Master's Degrees</span>
+                      <span class="mega__category-arrow" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M5 12h14M13 6l6 6-6 6" />
                         </svg>
-                      </div>
-                      <div class="mega__program-info">
-                        <span class="mega__program-name">Doctorate Degrees</span>
-                        <span class="mega__program-desc">
-                          DBA, PhD &amp; Professional Doctorates
-                        </span>
-                      </div>
-                      <span class="mega__program-arrow">→</span>
-                    </a>
+                      </span>
+                    </button>
 
-                    <a href="{{ url('/executive-education/') }}" class="mega__program-card">
-                      <div class="mega__program-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                          <rect x="2" y="3" width="20" height="14" rx="2" />
-                          <path d="M8 21h8M12 17v4" />
+                    <button type="button" class="mega__category-item"
+                      data-category="doctorate"
+                      data-title="Doctorate Degrees"
+                      data-href="{{ url('/doctorate-degrees/') }}"
+                      role="tab" aria-selected="false">
+                      <span class="mega__category-name">Doctorate Degrees</span>
+                      <span class="mega__category-arrow" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M5 12h14M13 6l6 6-6 6" />
                         </svg>
-                      </div>
-                      <div class="mega__program-info">
-                        <span class="mega__program-name">Executive Education</span>
-                        <span class="mega__program-desc">
-                          Mini MBA &amp; Leadership programs
-                        </span>
-                      </div>
-                      <span class="mega__program-arrow">→</span>
-                    </a>
+                      </span>
+                    </button>
 
-                    <a href="{{ url('/corporate-training/') }}" class="mega__program-card">
-                      <div class="mega__program-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                          <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 
-                                     0 00-4 4v2" />
-                          <circle cx="9" cy="7" r="4" />
-                          <path d="M23 21v-2a4 4 0 00-3-3.87" />
-                          <path d="M16 3.13a4 4 0 010 7.75" />
+                    <button type="button" class="mega__category-item"
+                      data-category="executive"
+                      data-title="Executive Education"
+                      data-href="{{ url('/executive-education/') }}"
+                      role="tab" aria-selected="false">
+                      <span class="mega__category-name">Executive Education</span>
+                      <span class="mega__category-arrow" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M5 12h14M13 6l6 6-6 6" />
                         </svg>
-                      </div>
-                      <div class="mega__program-info">
-                        <span class="mega__program-name">Corporate Training</span>
-                        <span class="mega__program-desc">
-                          Customized organizational programs
-                        </span>
-                      </div>
-                      <span class="mega__program-arrow">→</span>
-                    </a>
+                      </span>
+                    </button>
+
+                    <button type="button" class="mega__category-item"
+                      data-category="corporate"
+                      data-title="Corporate Training"
+                      data-href="{{ url('/corporate-training/') }}"
+                      role="tab" aria-selected="false">
+                      <span class="mega__category-name">Corporate Training</span>
+                      <span class="mega__category-arrow" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M5 12h14M13 6l6 6-6 6" />
+                        </svg>
+                      </span>
+                    </button>
+
+                    <button type="button" class="mega__category-item"
+                      data-category="certifications"
+                      data-title="Certifications"
+                      data-href="{{ url('/certifications/') }}"
+                      role="tab" aria-selected="false">
+                      <span class="mega__category-name">Certifications</span>
+                      <span class="mega__category-arrow" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M5 12h14M13 6l6 6-6 6" />
+                        </svg>
+                      </span>
+                    </button>
 
                   </div>
-                </div>
 
+                  <!-- RIGHT: Panels -->
+                  <div class="mega__panels">
+
+                    <div class="mega__panel-head">
+                      <h3 class="mega__panel-title" data-panel-title>Diplomas</h3>
+                      <a href="{{ url('/diplomas/') }}" class="mega__panel-viewall" data-panel-link>
+                        View All <span aria-hidden="true">→</span>
+                      </a>
+                    </div>
+
+                    <div class="mega__panel-scroll">
+
+                      <!-- Diplomas -->
+                      <div class="mega__panel-list is-active" data-panel="diplomas">
+                        <a href="{{ url('/programs/diploma-business-management/') }}" class="mega__program-row">
+                          <span class="mega__program-name">Diploma in Business Management</span>
+                          <span class="mega__row-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+                        </a>
+                        <a href="{{ url('/programs/diploma-marketing/') }}" class="mega__program-row">
+                          <span class="mega__program-name">Diploma in Marketing</span>
+                          <span class="mega__row-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+                        </a>
+                        <a href="{{ url('/programs/diploma-hr-management/') }}" class="mega__program-row">
+                          <span class="mega__program-name">Diploma in HR Management</span>
+                          <span class="mega__row-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+                        </a>
+                        <a href="{{ url('/programs/diploma-project-management/') }}" class="mega__program-row">
+                          <span class="mega__program-name">Diploma in Project Management</span>
+                          <span class="mega__row-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+                        </a>
+                        <a href="{{ url('/programs/diploma-logistics-supply-chain/') }}" class="mega__program-row">
+                          <span class="mega__program-name">Diploma in Logistics &amp; Supply Chain</span>
+                          <span class="mega__row-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+                        </a>
+                        <a href="{{ url('/programs/diploma-finance/') }}" class="mega__program-row">
+                          <span class="mega__program-name">Diploma in Finance</span>
+                          <span class="mega__row-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+                        </a>
+                        <a href="{{ url('/programs/diploma-it-management/') }}" class="mega__program-row">
+                          <span class="mega__program-name">Diploma in IT Management</span>
+                          <span class="mega__row-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+                        </a>
+                        <a href="{{ url('/programs/diploma-hospitality-management/') }}" class="mega__program-row">
+                          <span class="mega__program-name">Diploma in Hospitality Management</span>
+                          <span class="mega__row-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+                        </a>
+                      </div>
+
+                      <!-- Bachelor's -->
+                      <div class="mega__panel-list" data-panel="bachelors">
+                        <a href="{{ url('/programs/bba/') }}" class="mega__program-row">
+                          <span class="mega__program-name">Bachelor of Business Administration (BBA)</span>
+                          <span class="mega__row-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+                        </a>
+                        <a href="{{ url('/programs/bsc/') }}" class="mega__program-row">
+                          <span class="mega__program-name">Bachelor of Science (BSc)</span>
+                          <span class="mega__row-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+                        </a>
+                        <a href="{{ url('/programs/ba/') }}" class="mega__program-row">
+                          <span class="mega__program-name">Bachelor of Arts (BA)</span>
+                          <span class="mega__row-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+                        </a>
+                        <a href="{{ url('/programs/bba-marketing/') }}" class="mega__program-row">
+                          <span class="mega__program-name">BBA in Marketing</span>
+                          <span class="mega__row-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+                        </a>
+                        <a href="{{ url('/programs/bba-finance/') }}" class="mega__program-row">
+                          <span class="mega__program-name">BBA in Finance</span>
+                          <span class="mega__row-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+                        </a>
+                        <a href="{{ url('/programs/bsc-computer-science/') }}" class="mega__program-row">
+                          <span class="mega__program-name">BSc in Computer Science</span>
+                          <span class="mega__row-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+                        </a>
+                        <a href="{{ url('/programs/bsc-psychology/') }}" class="mega__program-row">
+                          <span class="mega__program-name">BSc in Psychology</span>
+                          <span class="mega__row-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+                        </a>
+                        <a href="{{ url('/programs/bba-hr-management/') }}" class="mega__program-row">
+                          <span class="mega__program-name">BBA in HR Management</span>
+                          <span class="mega__row-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+                        </a>
+                      </div>
+
+                      <!-- Master's -->
+                      <div class="mega__panel-list" data-panel="masters">
+                        <a href="{{ url('/programs/mba/') }}" class="mega__program-row">
+                          <span class="mega__program-name">Master of Business Administration (MBA)</span>
+                          <span class="mega__row-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+                        </a>
+                        <a href="{{ url('/programs/msc/') }}" class="mega__program-row">
+                          <span class="mega__program-name">Master of Science (MSc)</span>
+                          <span class="mega__row-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+                        </a>
+                        <a href="{{ url('/programs/ma/') }}" class="mega__program-row">
+                          <span class="mega__program-name">Master of Arts (MA)</span>
+                          <span class="mega__row-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+                        </a>
+                        <a href="{{ url('/programs/executive-mba/') }}" class="mega__program-row">
+                          <span class="mega__program-name">Executive MBA</span>
+                          <span class="mega__row-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+                        </a>
+                        <a href="{{ url('/programs/mba-finance/') }}" class="mega__program-row">
+                          <span class="mega__program-name">MBA in Finance</span>
+                          <span class="mega__row-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+                        </a>
+                        <a href="{{ url('/programs/mba-marketing/') }}" class="mega__program-row">
+                          <span class="mega__program-name">MBA in Marketing</span>
+                          <span class="mega__row-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+                        </a>
+                        <a href="{{ url('/programs/msc-data-analytics/') }}" class="mega__program-row">
+                          <span class="mega__program-name">MSc in Data Analytics</span>
+                          <span class="mega__row-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+                        </a>
+                        <a href="{{ url('/programs/ma-psychology/') }}" class="mega__program-row">
+                          <span class="mega__program-name">MA in Psychology</span>
+                          <span class="mega__row-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+                        </a>
+                      </div>
+
+                      <!-- Doctorate -->
+                      <div class="mega__panel-list" data-panel="doctorate">
+                        <a href="{{ url('/programs/dba/') }}" class="mega__program-row">
+                          <span class="mega__program-name">Doctor of Business Administration (DBA)</span>
+                          <span class="mega__row-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+                        </a>
+                        <a href="{{ url('/programs/phd-management/') }}" class="mega__program-row">
+                          <span class="mega__program-name">PhD in Management</span>
+                          <span class="mega__row-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+                        </a>
+                        <a href="{{ url('/programs/phd-business-administration/') }}" class="mega__program-row">
+                          <span class="mega__program-name">PhD in Business Administration</span>
+                          <span class="mega__row-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+                        </a>
+                        <a href="{{ url('/programs/professional-doctorate-leadership/') }}" class="mega__program-row">
+                          <span class="mega__program-name">Professional Doctorate in Leadership</span>
+                          <span class="mega__row-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+                        </a>
+                        <a href="{{ url('/programs/dba-strategic-management/') }}" class="mega__program-row">
+                          <span class="mega__program-name">DBA in Strategic Management</span>
+                          <span class="mega__row-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+                        </a>
+                        <a href="{{ url('/programs/phd-education/') }}" class="mega__program-row">
+                          <span class="mega__program-name">PhD in Education</span>
+                          <span class="mega__row-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+                        </a>
+                      </div>
+
+                      <!-- Executive Education -->
+                      <div class="mega__panel-list" data-panel="executive">
+                        <a href="{{ url('/programs/mini-mba/') }}" class="mega__program-row">
+                          <span class="mega__program-name">Mini MBA</span>
+                          <span class="mega__row-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+                        </a>
+                        <a href="{{ url('/programs/executive-leadership-program/') }}" class="mega__program-row">
+                          <span class="mega__program-name">Executive Leadership Program</span>
+                          <span class="mega__row-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+                        </a>
+                        <a href="{{ url('/programs/strategic-management-certificate/') }}" class="mega__program-row">
+                          <span class="mega__program-name">Strategic Management Certificate</span>
+                          <span class="mega__row-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+                        </a>
+                        <a href="{{ url('/programs/executive-certificate-finance/') }}" class="mega__program-row">
+                          <span class="mega__program-name">Executive Certificate in Finance</span>
+                          <span class="mega__row-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+                        </a>
+                        <a href="{{ url('/programs/executive-certificate-marketing/') }}" class="mega__program-row">
+                          <span class="mega__program-name">Executive Certificate in Marketing</span>
+                          <span class="mega__row-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+                        </a>
+                        <a href="{{ url('/programs/leadership-excellence-program/') }}" class="mega__program-row">
+                          <span class="mega__program-name">Leadership Excellence Program</span>
+                          <span class="mega__row-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+                        </a>
+                      </div>
+
+                      <!-- Corporate Training -->
+                      <div class="mega__panel-list" data-panel="corporate">
+                        <a href="{{ url('/programs/corporate-leadership-training/') }}" class="mega__program-row">
+                          <span class="mega__program-name">Corporate Leadership Training</span>
+                          <span class="mega__row-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+                        </a>
+                        <a href="{{ url('/programs/team-building-management/') }}" class="mega__program-row">
+                          <span class="mega__program-name">Team Building &amp; Management</span>
+                          <span class="mega__row-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+                        </a>
+                        <a href="{{ url('/programs/sales-excellence-training/') }}" class="mega__program-row">
+                          <span class="mega__program-name">Sales Excellence Training</span>
+                          <span class="mega__row-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+                        </a>
+                        <a href="{{ url('/programs/customer-service-excellence/') }}" class="mega__program-row">
+                          <span class="mega__program-name">Customer Service Excellence</span>
+                          <span class="mega__row-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+                        </a>
+                        <a href="{{ url('/programs/project-management-training/') }}" class="mega__program-row">
+                          <span class="mega__program-name">Project Management Training</span>
+                          <span class="mega__row-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+                        </a>
+                        <a href="{{ url('/programs/digital-transformation-training/') }}" class="mega__program-row">
+                          <span class="mega__program-name">Digital Transformation Training</span>
+                          <span class="mega__row-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+                        </a>
+                      </div>
+
+                      <!-- Certifications -->
+                      <div class="mega__panel-list" data-panel="certifications">
+                        <a href="{{ url('/certifications/digital-marketing-professional/') }}" class="mega__program-row">
+                          <span class="mega__program-name">Certified Digital Marketing Professional</span>
+                          <span class="mega__row-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+                        </a>
+                        <a href="{{ url('/certifications/project-management-professional/') }}" class="mega__program-row">
+                          <span class="mega__program-name">Certified Project Management Professional (CPMP)</span>
+                          <span class="mega__row-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+                        </a>
+                        <a href="{{ url('/certifications/investment-management-analyst/') }}" class="mega__program-row">
+                          <span class="mega__program-name">Certified Investment Management Analyst (CIMA)</span>
+                          <span class="mega__row-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+                        </a>
+                        <a href="{{ url('/certifications/purchasing-procurement-manager/') }}" class="mega__program-row">
+                          <span class="mega__program-name">Certified Purchasing and Procurement Manager (CPPM)</span>
+                          <span class="mega__row-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+                        </a>
+                        <a href="{{ url('/certifications/purchasing-procurement-professional/') }}" class="mega__program-row">
+                          <span class="mega__program-name">Certified Purchasing and Procurement Professional (CPPP)</span>
+                          <span class="mega__row-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+                        </a>
+                        <a href="{{ url('/certifications/logistics-manager/') }}" class="mega__program-row">
+                          <span class="mega__program-name">Certified Logistics Manager (CLM)</span>
+                          <span class="mega__row-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+                        </a>
+                        <a href="{{ url('/certifications/sustainability-leadership-management/') }}" class="mega__program-row">
+                          <span class="mega__program-name">Certified Sustainability Leadership and Management</span>
+                          <span class="mega__row-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+                        </a>
+                        <a href="{{ url('/certifications/training-development-professional/') }}" class="mega__program-row">
+                          <span class="mega__program-name">Certified Training and Development Professional (CTDP)</span>
+                          <span class="mega__row-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+                        </a>
+                      </div>
+
+                    </div>
+                  </div>
+
+                </div>
               </div>
             </div>
           </div>
@@ -239,38 +461,134 @@
   </div>
 
   <!-- Mobile Menu Overlay -->
-  <div class="navbar__mobile" id="mobile-menu" aria-hidden="true">
+  <div class="navbar__mobile" id="mobile-menu" data-lenis-prevent aria-hidden="true">
     <div class="navbar__mobile-inner">
       <img src="{{ $site->logo_white_url ?? asset('assets/images/logo-white.png') }}" alt="Maverick Business Academy Logo" class="navbar__logo-img white-logo"
         style="position: absolute; top: 10px; left: 24px; width: calc(100vw - 120px); height: auto;" />
       <nav class="navbar__mobile-nav">
         <ul class="navbar__mobile-menu">
           <li class="navbar__mobile-item">
-            <button class="navbar__mobile-link navbar__mobile-trigger" data-mobile-menu="programs">
-              Programs
-              <span class="navbar__mobile-arrow"></span>
-            </button>
-            <ul class="navbar__mobile-submenu" data-mobile-submenu="programs">
-              <li>
-                <a href="{{ url('/diplomas/') }}" class="navbar__mobile-sublink">Diplomas</a>
-              </li>
-              <li>
-                <a href="{{ url('/bachelors-degrees/') }}" class="navbar__mobile-sublink">Bachelor's Degrees</a>
-              </li>
-              <li>
-                <a href="{{ url('/masters-degrees/') }}" class="navbar__mobile-sublink">Master's Degrees</a>
-              </li>
-              <li>
-                <a href="{{ url('/doctorate-degrees/') }}" class="navbar__mobile-sublink">Doctorate Degrees</a>
-              </li>
-              <li>
-                <a href="{{ url('/executive-education/') }}" class="navbar__mobile-sublink">Executive Education</a>
-              </li>
-              <li>
-                <a href="{{ url('/corporate-training/') }}" class="navbar__mobile-sublink">Corporate Training</a>
-              </li>
-            </ul>
-          </li>
+  <button class="navbar__mobile-link navbar__mobile-trigger" data-mobile-menu="programs">
+    Programs
+    <span class="navbar__mobile-arrow"></span>
+  </button>
+
+  <ul class="navbar__mobile-submenu" data-mobile-submenu="programs">
+
+    <!-- Diplomas -->
+    <li class="navbar__mobile-category">
+      <button type="button" class="navbar__mobile-category-trigger" data-mobile-category="diplomas">
+        Diplomas
+        <span class="navbar__mobile-category-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+        </span>
+      </button>
+      <ul class="navbar__mobile-category-panel" data-mobile-category-panel="diplomas">
+        <li><a href="{{ url('/programs/diploma-business-management/') }}" class="navbar__mobile-category-sublink">Diploma in Business Management <span class="navbar__mobile-category-sublink-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span></a></li>
+        <li><a href="{{ url('/programs/diploma-marketing/') }}" class="navbar__mobile-category-sublink">Diploma in Marketing <span class="navbar__mobile-category-sublink-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span></a></li>
+        <li><a href="{{ url('/programs/diploma-hr-management/') }}" class="navbar__mobile-category-sublink">Diploma in HR Management <span class="navbar__mobile-category-sublink-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span></a></li>
+        <li><a href="{{ url('/programs/diploma-project-management/') }}" class="navbar__mobile-category-sublink">Diploma in Project Management <span class="navbar__mobile-category-sublink-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span></a></li>
+        <li><a href="{{ url('/programs/diploma-finance/') }}" class="navbar__mobile-category-sublink">Diploma in Finance <span class="navbar__mobile-category-sublink-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span></a></li>
+      </ul>
+    </li>
+
+    <!-- Bachelor's Degrees -->
+    <li class="navbar__mobile-category">
+      <button type="button" class="navbar__mobile-category-trigger" data-mobile-category="bachelors">
+        Bachelor's Degrees
+        <span class="navbar__mobile-category-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+        </span>
+      </button>
+      <ul class="navbar__mobile-category-panel" data-mobile-category-panel="bachelors">
+        <li><a href="{{ url('/programs/bba/') }}" class="navbar__mobile-category-sublink">Bachelor of Business Administration (BBA) <span class="navbar__mobile-category-sublink-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span></a></li>
+        <li><a href="{{ url('/programs/bsc/') }}" class="navbar__mobile-category-sublink">Bachelor of Science (BSc) <span class="navbar__mobile-category-sublink-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span></a></li>
+        <li><a href="{{ url('/programs/ba/') }}" class="navbar__mobile-category-sublink">Bachelor of Arts (BA) <span class="navbar__mobile-category-sublink-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span></a></li>
+        <li><a href="{{ url('/programs/bba-marketing/') }}" class="navbar__mobile-category-sublink">BBA in Marketing <span class="navbar__mobile-category-sublink-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span></a></li>
+        <li><a href="{{ url('/programs/bsc-computer-science/') }}" class="navbar__mobile-category-sublink">BSc in Computer Science <span class="navbar__mobile-category-sublink-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span></a></li>
+      </ul>
+    </li>
+
+    <!-- Master's Degrees -->
+    <li class="navbar__mobile-category">
+      <button type="button" class="navbar__mobile-category-trigger" data-mobile-category="masters">
+        Master's Degrees
+        <span class="navbar__mobile-category-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+        </span>
+      </button>
+      <ul class="navbar__mobile-category-panel" data-mobile-category-panel="masters">
+        <li><a href="{{ url('/programs/mba/') }}" class="navbar__mobile-category-sublink">Master of Business Administration (MBA) <span class="navbar__mobile-category-sublink-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span></a></li>
+        <li><a href="{{ url('/programs/msc/') }}" class="navbar__mobile-category-sublink">Master of Science (MSc) <span class="navbar__mobile-category-sublink-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span></a></li>
+        <li><a href="{{ url('/programs/ma/') }}" class="navbar__mobile-category-sublink">Master of Arts (MA) <span class="navbar__mobile-category-sublink-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span></a></li>
+        <li><a href="{{ url('/programs/executive-mba/') }}" class="navbar__mobile-category-sublink">Executive MBA <span class="navbar__mobile-category-sublink-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span></a></li>
+        <li><a href="{{ url('/programs/mba-finance/') }}" class="navbar__mobile-category-sublink">MBA in Finance <span class="navbar__mobile-category-sublink-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span></a></li>
+      </ul>
+    </li>
+
+    <!-- Doctorate Degrees -->
+    <li class="navbar__mobile-category">
+      <button type="button" class="navbar__mobile-category-trigger" data-mobile-category="doctorate">
+        Doctorate Degrees
+        <span class="navbar__mobile-category-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+        </span>
+      </button>
+      <ul class="navbar__mobile-category-panel" data-mobile-category-panel="doctorate">
+        <li><a href="{{ url('/programs/dba/') }}" class="navbar__mobile-category-sublink">Doctor of Business Administration (DBA) <span class="navbar__mobile-category-sublink-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span></a></li>
+        <li><a href="{{ url('/programs/phd-management/') }}" class="navbar__mobile-category-sublink">PhD in Management <span class="navbar__mobile-category-sublink-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span></a></li>
+        <li><a href="{{ url('/programs/phd-business-administration/') }}" class="navbar__mobile-category-sublink">PhD in Business Administration <span class="navbar__mobile-category-sublink-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span></a></li>
+        <li><a href="{{ url('/programs/professional-doctorate-leadership/') }}" class="navbar__mobile-category-sublink">Professional Doctorate in Leadership <span class="navbar__mobile-category-sublink-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span></a></li>
+      </ul>
+    </li>
+
+    <!-- Executive Education -->
+    <li class="navbar__mobile-category">
+      <button type="button" class="navbar__mobile-category-trigger" data-mobile-category="executive">
+        Executive Education
+        <span class="navbar__mobile-category-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+        </span>
+      </button>
+      <ul class="navbar__mobile-category-panel" data-mobile-category-panel="executive">
+        <li><a href="{{ url('/programs/mini-mba/') }}" class="navbar__mobile-category-sublink">Mini MBA <span class="navbar__mobile-category-sublink-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span></a></li>
+        <li><a href="{{ url('/programs/executive-leadership-program/') }}" class="navbar__mobile-category-sublink">Executive Leadership Program <span class="navbar__mobile-category-sublink-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span></a></li>
+        <li><a href="{{ url('/programs/strategic-management-certificate/') }}" class="navbar__mobile-category-sublink">Strategic Management Certificate <span class="navbar__mobile-category-sublink-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span></a></li>
+      </ul>
+    </li>
+
+    <!-- Corporate Training -->
+    <li class="navbar__mobile-category">
+      <button type="button" class="navbar__mobile-category-trigger" data-mobile-category="corporate">
+        Corporate Training
+        <span class="navbar__mobile-category-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+        </span>
+      </button>
+      <ul class="navbar__mobile-category-panel" data-mobile-category-panel="corporate">
+        <li><a href="{{ url('/programs/corporate-leadership-training/') }}" class="navbar__mobile-category-sublink">Corporate Leadership Training <span class="navbar__mobile-category-sublink-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span></a></li>
+        <li><a href="{{ url('/programs/team-building-management/') }}" class="navbar__mobile-category-sublink">Team Building &amp; Management <span class="navbar__mobile-category-sublink-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span></a></li>
+        <li><a href="{{ url('/programs/sales-excellence-training/') }}" class="navbar__mobile-category-sublink">Sales Excellence Training <span class="navbar__mobile-category-sublink-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span></a></li>
+      </ul>
+    </li>
+
+    <!-- Certifications -->
+    <li class="navbar__mobile-category">
+      <button type="button" class="navbar__mobile-category-trigger" data-mobile-category="certifications">
+        Certifications
+        <span class="navbar__mobile-category-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+        </span>
+      </button>
+      <ul class="navbar__mobile-category-panel" data-mobile-category-panel="certifications">
+        <li><a href="{{ url('/certifications/digital-marketing-professional/') }}" class="navbar__mobile-category-sublink">Certified Digital Marketing Professional <span class="navbar__mobile-category-sublink-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span></a></li>
+        <li><a href="{{ url('/certifications/project-management-professional/') }}" class="navbar__mobile-category-sublink">Certified Project Management Professional (CPMP) <span class="navbar__mobile-category-sublink-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span></a></li>
+        <li><a href="{{ url('/certifications/logistics-manager/') }}" class="navbar__mobile-category-sublink">Certified Logistics Manager (CLM) <span class="navbar__mobile-category-sublink-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span></a></li>
+      </ul>
+    </li>
+
+  </ul>
+</li>
 
           <li class="navbar__mobile-item">
             <button class="navbar__mobile-link navbar__mobile-trigger" data-mobile-menu="about">
