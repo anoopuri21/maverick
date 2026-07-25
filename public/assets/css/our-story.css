@@ -1,619 +1,716 @@
-#hero {
-  position: relative;
-  margin-bottom: 150px;
+/* ============================================================
+   OUR STORY — Cinematic editorial, storytelling arc
+   ============================================================ */
+
+.our-story {
+  --s-navy: var(--color-mba-blue, #0f2983);
+  --s-navy-deep: var(--color-mba-dark-blue, #071444);
+  --s-red: var(--color-mba-red, #b20202);
+  --s-warm: var(--color-warm-white, #f5f0eb);
+  --s-text: #131318;
+  --s-muted: #5b6070;
+  --s-line: #e8e8ee;
+  --s-ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
-#hero::before {
-  content: "Story";
+
+/* ============================================================
+   1. STORY HERO — Cinematic full bleed
+   ============================================================ */
+.story-hero {
+  position: relative;
+  color: #fff;
+  min-height: clamp(600px, 96vh, 900px);
+  display: flex;
+  align-items: flex-end;
+  padding: clamp(100px, 14vh, 180px) 0 clamp(60px, 8vh, 100px);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.story-hero__bg {
   position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 40vw;
-  font-weight: 900;
-  /* line-height: 1; */
-  white-space: nowrap;
-  color: rgba(40, 0, 255, 0.1);
-  -webkit-text-fill-color: rgba(40, 0, 255, 0);
-  -webkit-text-stroke: 2px rgb(0 5 24 / 30%);
-  text-stroke: 1px rgba(0, 5, 24, 0.1);
-  pointer-events: none;
-  filter: drop-shadow(10px 10px 3px black);
-}
-.story-content {
-  width: 100%;
-  max-width: 55%;
-  background-color: #eee;
-  color: #000;
-  padding: 20px;
-  border-radius: 5px;
-  z-index: 5;
-  position: relative;
-  box-shadow: 8px 8px 16px rgb(0 0 0 / 40%);
-  margin-top: 5rem;
-}
-.back-box {
-  background-image: var(--our-story-hero-image);
+  inset: 0;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  min-height: 500px;
-  max-width: 55%;
-  width: 100%;
-  margin-left: auto;
-  /* border-radius: 30px; */
-  position: absolute;
-  bottom: -100px;
-  z-index: 0;
-  right: 0;
-}
-/* ========================================
-    Our Story: Hero Section
-======================================== */
-.our-story-hero {
-  position: relative;
-  width: 100%;
-  min-height: 52vh;
-  min-height: 70svh;
+  z-index: -2;
+  transform: scale(1.05);
+  animation: story-hero-zoom 12s var(--s-ease) forwards;
 }
 
-.our-story-hero__overlay {
+@keyframes story-hero-zoom {
+  from {
+    transform: scale(1.15);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.story-hero__overlay {
   position: absolute;
   inset: 0;
-  z-index: 1;
-  background: linear-gradient(
-    45deg,
-    rgba(12, 25, 76, 0.95),
-    rgba(106, 1, 1, 0.95)
-  );
-  pointer-events: none;
+  z-index: -1;
+  background:
+    radial-gradient(
+      1200px 500px at 15% 100%,
+      rgba(178, 2, 2, 0.32),
+      transparent 60%
+    ),
+    linear-gradient(180deg, rgba(7, 20, 68, 0.5) 0%, rgba(7, 20, 68, 0.9) 100%);
 }
 
-.our-story-hero__content {
+.story-hero__content {
   position: relative;
-  z-index: 2;
-  width: 100%;
+  max-width: 1080px;
+  padding-inline: var(--container-padding, 24px);
   margin: 0 auto;
-  padding: 5rem 1.5rem;
-  opacity: 1;
+  width: 100%;
 }
 
-.our-story-hero__tag {
+/* Override generic .section-label inside hero */
+.story-hero .section-label {
   display: block;
-  margin: 0 0 1rem;
-  font-family: "Poppins", sans-serif;
-  font-size: 0.75rem;
+  font-family: var(--font-display);
+  font-size: clamp(44px, 8.8vw, 128px);
   font-weight: 500;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: #ffffff;
-  opacity: 1;
+  color: #fff;
+  letter-spacing: -0.03em;
+  line-height: 0.98;
+  text-transform: none;
+  margin-bottom: clamp(24px, 3vw, 36px);
+  max-width: 14ch;
 }
 
-.our-story-hero__heading {
-  margin: 0 0 1.25rem;
-  font-family: "PP Neue Montreal", "Poppins", sans-serif;
-  font-size: clamp(2rem, 5vw, 5rem);
-  font-weight: 700;
-  line-height: 1.15;
-  color: #b20202;
-  opacity: 1;
-  margin-bottom: 50px;
-  position: relative;
-}
-.our-story-hero__heading:before {
-  content: "";
-  position: absolute;
-  bottom: -10px;
-  left: 0;
-  right: 0;
-  width: 100px;
-  height: 4px;
-  background: #253984;
-  z-index: 1;
-  border-radius: 5px;
+.story-hero .section-label::before {
+  display: none;
 }
 
 .our-story-hero__description {
-  margin: 0 auto;
-  font-family: "Poppins", sans-serif;
-  font-size: clamp(0.95rem, 1.5vw, 1.125rem);
-  font-weight: 400;
-  line-height: 1.65;
-  color: rgba(0, 0, 0, 0.8);
-  opacity: 1;
+  font-family: var(--font-body);
+  font-size: clamp(15px, 1.25vw, 19px);
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 66ch;
 }
 
-/* ========================================
-    Our Story: Beginning Section
-    ======================================== */
+.our-story-hero__description p {
+  margin: 0 0 18px;
+}
 
-.beginning__grid.grid-2 {
+.our-story-hero__description p:last-child {
+  margin-bottom: 0;
+}
+
+/* ============================================================
+   Shared section styles for Our Story
+   ============================================================ */
+.our-story .section-label span {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  color: var(--s-red);
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+.our-story .section-title {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 4.4vw, 60px);
+  font-weight: 500;
+  color: var(--s-navy-deep);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin: 0 0 28px;
+}
+
+.our-story .body-text {
+  font-family: var(--font-body);
+  font-size: clamp(15px, 1.15vw, 17px);
+  line-height: 1.8;
+  color: var(--s-muted);
+}
+
+.our-story .accent-text {
+  color: var(--s-red);
+}
+
+/* ============================================================
+   2. BEGINNING — asymmetric editorial split
+   ============================================================ */
+.beginning {
+  padding: clamp(72px, 10vw, 140px) 0;
+  background: #fff;
+}
+
+.beginning__grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 48px;
-  align-items: stretch;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 5vw, 80px);
+  align-items: center;
 }
 
 .beginning__content {
-  min-width: 0;
+  max-width: 54ch;
 }
 
-.beginning__image-col {
-  position: relative;
-  min-width: 0;
-  overflow: hidden;
+.beginning__paragraph {
+  margin: 0 0 20px;
+}
+
+.beginning__paragraph:last-child {
+  margin-bottom: 0;
 }
 
 .beginning__image-wrapper {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  box-shadow: 0 40px 90px -30px rgba(7, 20, 68, 0.35);
+}
+
+.beginning__image-wrapper::after {
+  content: "";
   position: absolute;
   inset: 0;
-  overflow: hidden;
+  background: linear-gradient(180deg, transparent 60%, rgba(7, 20, 68, 0.3));
+  pointer-events: none;
 }
 
 .beginning__image {
-  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: top;
+  transition: transform 1.2s var(--s-ease);
 }
-.beginning__heading-line .text-reveal-inner {
-  color: #0f2983;
+
+.beginning__image-wrapper:hover .beginning__image {
+  transform: scale(1.06);
 }
-.impact__stat {
-  display: flex;
+
+/* ============================================================
+   3. TODAY — reversed split with warm bg
+   ============================================================ */
+.today {
+  padding: clamp(72px, 10vw, 140px) 0;
+  background: var(--s-warm);
+}
+
+.today__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 5vw, 80px);
   align-items: center;
-  justify-content: space-between;
-  padding: 4rem 0;
-  border-bottom: 1px solid #999;
-  font-size: 2rem;
-  font-weight: 400;
-}
-.impact__stat-label {
-  color: #0f2983;
 }
 
-/* ========================================
-     Our Story: Journey (Cinematic Timeline)
-    ======================================== */
+.today__content {
+  max-width: 54ch;
+}
 
-.journey {
-  padding: 100px 20px;
-  background: #ffffff;
+.today__description {
+  margin: 0;
+}
+
+.today__image-wrapper {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  box-shadow: 0 40px 90px -30px rgba(7, 20, 68, 0.35);
+}
+
+.today__image-wrapper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(7, 20, 68, 0.3));
+  pointer-events: none;
+}
+
+.today__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.2s var(--s-ease);
+}
+
+.today__image-wrapper:hover .today__image {
+  transform: scale(1.06);
+}
+
+/* ============================================================
+   4. IMPACT STATS — Deep editorial band
+   ============================================================ */
+.impact {
+  padding: clamp(72px, 10vw, 140px) 0;
+  background: var(--s-navy-deep);
+  color: #fff;
+  position: relative;
   overflow: hidden;
 }
 
+.impact::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      700px 400px at 20% 0%,
+      rgba(178, 2, 2, 0.22),
+      transparent 65%
+    ),
+    radial-gradient(
+      600px 400px at 100% 100%,
+      rgba(15, 41, 131, 0.5),
+      transparent 60%
+    );
+  pointer-events: none;
+}
+
+.impact > .container {
+  position: relative;
+}
+
+.impact__header {
+  max-width: 720px;
+  margin: 0 auto clamp(48px, 6vw, 72px);
+  text-align: center;
+}
+
+.impact__header .section-label span {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.impact__heading {
+  color: #fff !important;
+  font-family: var(--font-display);
+  font-size: clamp(30px, 4.4vw, 60px);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin: 0 0 20px;
+}
+
+.impact__description {
+  color: rgba(255, 255, 255, 0.78);
+  margin: 0 auto;
+  max-width: 60ch;
+}
+
+.impact__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: clamp(24px, 3vw, 48px);
+  text-align: center;
+}
+
+.impact__stat {
+  padding: 24px 0;
+  position: relative;
+  transition: transform 0.5s var(--s-ease);
+}
+
+.impact__stat + .impact__stat::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 20%;
+  bottom: 20%;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.impact__stat:hover {
+  transform: translateY(-6px);
+}
+
+.impact__stat-value {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(40px, 5.2vw, 72px);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: #fff !important;
+  margin-bottom: 12px;
+}
+
+.impact__stat-value.accent-text {
+  color: #fff !important;
+  background: linear-gradient(180deg, #fff, rgba(255, 255, 255, 0.7));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.impact__stat-label {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  color: rgba(255, 255, 255, 0.75);
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   5. JOURNEY — Cinematic timeline
+   ============================================================ */
+.journey {
+  padding: clamp(72px, 10vw, 140px) 0;
+  background: #fff;
+}
+
 .journey__header {
-  margin: 0 auto 80px;
+  max-width: 720px;
+  margin: 0 auto clamp(56px, 6vw, 96px);
+  text-align: center;
+}
+
+.journey__heading {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 4.4vw, 60px);
+  font-weight: 500;
+  color: var(--s-navy-deep);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin: 0 0 16px;
 }
 
 .journey__subheading {
-  font-size: 18px;
-  color: #666;
-  margin-top: 16px;
-  line-height: 1.6;
-}
-
-/* ===== Timeline Wrapper ===== */
-.journey__timeline {
-  position: relative;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 40px 0;
-}
-
-/* ===== Center Vertical Line ===== */
-.journey__line {
-  position: absolute;
-  left: 50%;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: linear-gradient(
-    180deg,
-    transparent 0%,
-    #1a2b7a 10%,
-    #1a2b7a 90%,
-    transparent 100%
-  );
-  transform: translateX(-50%);
-  z-index: 1;
-}
-
-/* ===== Timeline Item ===== */
-.journey__item {
-  position: relative;
-  width: 50%;
-  padding: 40px 60px;
-  margin-bottom: 40px;
-  z-index: 2;
-}
-
-.journey__item--left {
-  left: 0;
-  text-align: right;
-  padding-right: 80px;
-}
-
-.journey__item--right {
-  left: 50%;
-  text-align: left;
-  padding-left: 80px;
-}
-
-/* ===== Center Dot with Icon ===== */
-.journey__dot {
-  position: absolute;
-  top: 50px;
-  width: 60px;
-  height: 60px;
-  background: #fff;
-  border: 4px solid #1a2b7a;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 20px rgba(26, 43, 122, 0.2);
-  z-index: 3;
-  transition: all 0.4s ease;
-}
-
-.journey__item--left .journey__dot {
-  right: -30px;
-}
-
-.journey__item--right .journey__dot {
-  left: -30px;
-}
-
-.journey__dot:hover {
-  transform: scale(1.15);
-  box-shadow: 0 6px 30px rgba(26, 43, 122, 0.4);
-}
-
-.journey__dot-icon {
-  width: 32px;
-  height: 32px;
-  object-fit: contain;
-}
-
-.journey__dot-year {
-  font-size: 14px;
-  font-weight: 700;
-  color: #1a2b7a;
-}
-
-/* ===== Content Card ===== */
-.journey__card {
-  background: #fff;
-  padding: 32px;
-  border-radius: 16px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-  border: 1px solid #eee;
-  transition: all 0.4s ease;
-  position: relative;
-}
-
-.journey__card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 50px rgba(26, 43, 122, 0.15);
-  border-color: #1a2b7a;
-}
-
-/* Arrow pointing to timeline */
-.journey__card::before {
-  content: "";
-  position: absolute;
-  top: 50px;
-  width: 0;
-  height: 0;
-  border: 12px solid transparent;
-}
-
-.journey__item--left .journey__card::before {
-  right: -24px;
-  border-left-color: #fff;
-}
-
-.journey__item--right .journey__card::before {
-  left: -24px;
-  border-right-color: #fff;
-}
-
-/* ===== Year Badge ===== */
-.journey__year-badge {
-  display: inline-block;
-  padding: 6px 16px;
-  background: linear-gradient(135deg, #1a2b7a, #dc2626);
-  color: #fff;
-  font-size: 14px;
-  font-weight: 700;
-  border-radius: 20px;
-  margin-bottom: 16px;
-  letter-spacing: 1px;
-}
-
-/* ===== Title & Description ===== */
-.journey__title {
-  font-size: 24px;
-  font-weight: 700;
-  color: #1a2b7a;
-  margin-bottom: 12px;
-  line-height: 1.3;
-}
-
-.journey__description {
-  font-size: 16px;
-  color: #555;
+  font-family: var(--font-body);
+  font-size: clamp(15px, 1.15vw, 17px);
+  color: var(--s-muted);
   line-height: 1.7;
   margin: 0;
 }
 
-/* ===== Scroll Reveal Animation ===== */
-.journey__item {
-  opacity: 0;
-  transform: translateY(50px);
-  transition:
-    opacity 0.8s ease,
-    transform 0.8s ease;
-}
-
-.journey__item.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.journey__item--left.is-visible {
-  animation: slideInLeft 0.8s ease forwards;
-}
-
-.journey__item--right.is-visible {
-  animation: slideInRight 0.8s ease forwards;
-}
-
-@keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-80px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(80px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-/* ===== Fallback: Always visible if JS fails ===== */
-.no-js .journey__item {
-  opacity: 1;
-  transform: none;
-}
-.vision__heading {
-  margin-bottom: 2rem;
-}
-
-/* Awards image slider — reuse testimonials scroll-row card sizing */
-.awards .testimonials__card {
-  cursor: default;
-}
-
-.awards .testimonials__card-thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* ========================================
-   Our Story: Awards Badge Carousel
-======================================== */
-
-.awards .testimonials__track {
-  gap: 32px;
-  padding: 20px 10px;
-}
-
-/* ===== Award Badge Card ===== */
-.award-badge {
-  flex: 0 0 auto;
-  width: 220px;
-  text-align: center;
-  cursor: pointer;
-  transition: transform 0.4s ease;
-}
-
-.award-badge:hover {
-  transform: translateY(-8px);
-}
-
-/* ===== Image Wrapper (for tooltip positioning) ===== */
-.award-badge__image-wrapper {
+.journey__timeline {
   position: relative;
-  width: 100%;
-  height: 180px;
-  background: #fff;
-  border-radius: 16px;
-  padding: 24px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  border: 2px solid transparent;
-  transition: all 0.4s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px 0;
 }
 
-.award-badge:hover .award-badge__image-wrapper {
-  border-color: #1a2b7a;
-  box-shadow: 0 12px 40px rgba(26, 43, 122, 0.2);
-}
-
-/* ===== Award Image ===== */
-.award-badge__image {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  transition: transform 0.4s ease;
-  filter: grayscale(30%);
-}
-
-.award-badge:hover .award-badge__image {
-  transform: scale(1.1);
-  filter: grayscale(0%);
-}
-
-/* ===== Tooltip (Hover Reveal) ===== */
-.award-badge__tooltip {
+.journey__line {
   position: absolute;
-  top: -12px;
+  top: 0;
+  bottom: 0;
   left: 50%;
-  transform: translateX(-50%) translateY(-100%);
-  background: #1a2b7a;
+  width: 2px;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    var(--s-line) 8%,
+    var(--s-line) 92%,
+    transparent
+  );
+  transform: translateX(-50%);
+}
+
+.journey__item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: clamp(24px, 3vw, 48px);
+  margin-bottom: clamp(48px, 6vw, 80px);
+}
+
+.journey__item:last-child {
+  margin-bottom: 0;
+}
+
+.journey__dot {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--s-navy-deep);
   color: #fff;
-  padding: 8px 16px;
-  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  border: 4px solid #fff;
+  box-shadow: 0 12px 30px -8px rgba(7, 20, 68, 0.5);
+  z-index: 2;
+  position: relative;
+  flex-shrink: 0;
+  transition:
+    transform 0.5s var(--s-ease),
+    background 0.4s ease;
+}
+
+.journey__item:hover .journey__dot {
+  transform: scale(1.1);
+  background: var(--s-red);
+}
+
+.journey__dot-icon {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+.journey__dot-year {
+  font-family: var(--font-display);
   font-size: 13px;
   font-weight: 600;
-  white-space: nowrap;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s ease;
-  pointer-events: none;
-  z-index: 10;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  letter-spacing: -0.005em;
 }
 
-/* Tooltip arrow */
-.award-badge__tooltip::after {
+.journey__card {
+  position: relative;
+  padding: clamp(24px, 2.8vw, 36px);
+  background: #fff;
+  border: 1px solid var(--s-line);
+  border-radius: 18px;
+  transition:
+    transform 0.5s var(--s-ease),
+    border-color 0.4s ease,
+    box-shadow 0.5s var(--s-ease);
+}
+
+.journey__card::before {
   content: "";
   position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  border: 6px solid transparent;
-  border-top-color: #1a2b7a;
+  top: 50%;
+  width: 24px;
+  height: 2px;
+  background: var(--s-line);
+  transition: background 0.3s ease;
 }
 
-.award-badge:hover .award-badge__tooltip {
-  opacity: 1;
-  visibility: visible;
-  transform: translateX(-50%) translateY(-110%);
+.journey__item--left .journey__card {
+  grid-column: 1;
+  text-align: right;
 }
 
-/* ===== Title Below Image ===== */
-.award-badge__title {
-  margin-top: 20px;
-  font-size: 15px;
-  font-weight: 600;
-  color: #1a2b7a;
-  line-height: 1.4;
-  padding: 0 8px;
+.journey__item--left .journey__card::before {
+  right: -24px;
+  left: auto;
 }
 
-/* ========================================
- Mobile Responsive
-======================================== */
-@media (max-width: 768px) {
-  .award-badge {
-    width: 180px;
-  }
-
-  .award-badge__image-wrapper {
-    height: 150px;
-    padding: 18px;
-  }
-
-  .award-badge__title {
-    font-size: 14px;
-  }
-
-  /* Hide tooltip on mobile (touch devices) */
-  .award-badge__tooltip {
-    display: none;
-  }
+.journey__item--right .journey__card {
+  grid-column: 3;
+  text-align: left;
 }
 
-/* ========================================
-   Awards: Title Below Image
-======================================== */
+.journey__item--right .journey__card::before {
+  left: -24px;
+}
 
-.awards__card-title {
-  margin-top: 16px;
-  font-size: 15px;
-  font-weight: 600;
-  color: #1a2b7a;
-  line-height: 1.4;
+.journey__item--left .journey__dot {
+  grid-column: 2;
+}
+.journey__item--right .journey__dot {
+  grid-column: 2;
+}
+
+.journey__card:hover {
+  transform: translateY(-4px);
+  border-color: var(--s-navy);
+  box-shadow: 0 24px 50px -20px rgba(15, 41, 131, 0.22);
+}
+
+.journey__card:hover::before {
+  background: var(--s-navy);
+}
+
+.journey__year-badge {
+  display: inline-block;
+  padding: 5px 14px;
+  background: var(--s-red);
+  color: #fff;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  margin-bottom: 14px;
+}
+
+.journey__title {
+  font-family: var(--font-display);
+  font-size: clamp(19px, 1.7vw, 24px);
+  font-weight: 500;
+  color: var(--s-navy-deep);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  margin: 0 0 12px;
+}
+
+.journey__description {
+  font-family: var(--font-body);
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: var(--s-muted);
+  margin: 0;
+}
+
+/* ============================================================
+   6. VISION — Dark cinematic CTA
+   ============================================================ */
+.vision {
+  padding: clamp(80px, 12vw, 160px) 0;
+  color: #fff;
+  position: relative;
+  background-attachment: fixed;
+}
+
+.vision__overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      900px 500px at 20% 100%,
+      rgba(178, 2, 2, 0.4),
+      transparent 60%
+    ),
+    linear-gradient(180deg, rgba(7, 20, 68, 0.7), rgba(7, 20, 68, 0.92)) !important;
+}
+
+.vision__content {
+  max-width: 800px;
   text-align: center;
-  padding: 0 8px;
+  margin: 0 auto;
 }
 
-@media (max-width: 768px) {
-  .awards__card-title {
-    font-size: 14px;
-    margin-top: 12px;
-  }
+.vision__content .section-label span {
+  color: rgba(255, 255, 255, 0.75);
 }
 
-/* ========================================
-    Mobile Responsive
-    ======================================== */
-@media (max-width: 768px) {
-  .journey__line {
-    left: 30px;
-  }
+.vision__heading {
+  color: #fff !important;
+  font-family: var(--font-display);
+  font-size: clamp(32px, 5vw, 72px);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin: 0 0 28px;
+}
 
-  .journey__item {
+.vision__description {
+  color: rgba(255, 255, 255, 0.85) !important;
+  margin: 0 auto 40px;
+  max-width: 60ch;
+}
+
+.vision__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 36px;
+  background: var(--s-red);
+  color: #fff;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transition:
+    transform 0.35s var(--s-ease),
+    box-shadow 0.35s ease,
+    background 0.3s ease;
+}
+
+.vision__cta:hover {
+  transform: translateY(-3px);
+  background: #d10404;
+  box-shadow: 0 18px 40px -14px rgba(178, 2, 2, 0.7);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1024px) {
+  .beginning__grid,
+  .today__grid {
+    grid-template-columns: 1fr;
+    gap: clamp(32px, 5vw, 56px);
+  }
+  .beginning__image-wrapper,
+  .today__image-wrapper {
+    aspect-ratio: 16 / 10;
+    max-height: 460px;
+    max-width: 640px;
     width: 100%;
-    left: 0 !important;
-    text-align: left !important;
-    padding: 20px 20px 20px 80px;
+    margin: 0 auto;
+  }
+  .today__image-col {
+    order: 2;
+  }
+  .today__content {
+    order: 1;
   }
 
+  .journey__line {
+    left: 32px;
+  }
+  .journey__item {
+    grid-template-columns: auto 1fr;
+    gap: 20px;
+    align-items: flex-start;
+  }
+  .journey__item--left .journey__card,
+  .journey__item--right .journey__card {
+    grid-column: 2;
+    text-align: left;
+  }
   .journey__item--left .journey__dot,
   .journey__item--right .journey__dot {
-    left: 0;
+    grid-column: 1;
+  }
+  .journey__item--left .journey__card::before,
+  .journey__item--right .journey__card::before {
+    left: -20px;
     right: auto;
+    top: 32px;
+    width: 20px;
   }
 
-  .journey__card::before {
-    left: -24px !important;
-    right: auto !important;
-    border-right-color: #fff !important;
-    border-left-color: transparent !important;
+  .impact__stat + .impact__stat::before {
+    display: none;
   }
-
-  .our-story-hero {
-    min-height: 42vh;
-    min-height: 42svh;
+  .vision {
+    background-attachment: scroll;
   }
+}
 
-  .our-story-hero__content {
-    padding: 4rem 1.25rem;
+@media (max-width: 768px) {
+  .story-hero {
+    min-height: clamp(500px, 82vh, 720px);
+    align-items: center;
   }
+  .impact__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px 20px;
+  }
+  .journey__dot {
+    width: 52px;
+    height: 52px;
+  }
+}
 
-  .beginning__grid.grid-2 {
+@media (max-width: 480px) {
+  .story-hero {
+    padding-top: 100px;
+    padding-bottom: 60px;
+  }
+  .beginning,
+  .today,
+  .impact,
+  .journey,
+  .vision {
+    padding: 64px 0;
+  }
+  .journey__card {
+    padding: 20px;
+    border-radius: 14px;
+  }
+  .impact__grid {
     grid-template-columns: 1fr;
-    gap: 32px;
-  }
-
-  .beginning__image-col {
-    position: static;
-    overflow: visible;
-  }
-
-  .beginning__image-wrapper {
-    position: relative;
-    inset: auto;
-    width: 100%;
-    aspect-ratio: 4 / 3;
   }
 }

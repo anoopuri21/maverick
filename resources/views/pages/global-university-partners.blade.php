@@ -7,6 +7,8 @@
 @endpush
 
 @section('content')
+<div class="page-gup gup">
+
 
 @php
     // ═══════════════════════════════════════════
@@ -418,6 +420,7 @@
 
 @include('sections.final-cta')
 
+</div>
 @endsection
 
 @push('scripts')

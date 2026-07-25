@@ -4,42 +4,17 @@
 @section('meta_description', 'Discover the journey of Maverick Business Academy from inception to becoming a global leader in business education.')
 
 @push('styles')
-<style>
-    /* Our Story Page CSS */
-.story-hero { position: relative; color: #fff; min-height: 80vh; display: flex; align-items: center; overflow: hidden; }
-.story-hero__bg { position: absolute; inset: 0; background-size: cover; z-index: 0; }
-.story-hero__overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(15,41,131,0.85), rgba(15,41,131,0.6)); z-index: 1; }
-.story-hero__content {
-    position: relative;
-    z-index: 2;
-    max-width: 1000px;
-    align-self: end;
-    margin-left: 0;
-}
-.section-label {
-    letter-spacing: 0.15em;
-    font-size: 5rem;
-    text-transform: uppercase;
-    font-weight: 700;
-}
-.story-hero.section--light .section-label::before {
-    background: var(--color-white);
-}
-.our-story-hero__description p {
-    margin-bottom: 18px;
-}
-.section-title { color: #fff !important; }
-.font-white { color: #fff !important; }
-
-</style>
+    <link rel="stylesheet" href="{{ asset('css/pages/our-story.css') }}">
 @endpush
 
 @section('content')
+<div class="page-our-story our-story">
+
 
 {{-- 1. Hero — full-bleed centered banner --}}
 @if($hero ?? false)
 <section class="section-wrapper section--light story-hero">
-  <div class="story-hero__bg" style="background-image: url('{{ $hero->image_url ?? '' }}')"></div>
+  <div class="story-hero__bg" style="background-image: url('{{ $hero->image_url ?? url('') }}')"></div>
   <div class="story-hero__overlay"></div>
   <div class="container story-hero__content">
     <span class="section-label">{{ $hero->heading ?? 'OUR STORY' }}</span>
@@ -76,7 +51,7 @@
                 </div>
                 <div class="beginning__image-col">
                     <div class="beginning__image-wrapper fade-up">
-                        <img src="{{ $beginning->image_url ?? asset('assets/images/placeholder.jpg') }}" alt="Where It All Began" class="beginning__image" />
+                        <img src="{{ $beginning->image_url ?? asset('') }}" alt="Where It All Began" class="beginning__image" />
                     </div>
                 </div>
             </div>
@@ -136,26 +111,26 @@
             <div class="impact__grid">
                 @if($impact->stat_1_value && $impact->stat_1_label)
                 <div class="impact__stat fade-up">
-                    <span class="impact__stat-value accent-text">{{ $impact->stat_1_value }}</span>
-                    <span class="impact__stat-label">{{ $impact->stat_1_label }}</span>
+                    <span class="impact__stat-value accent-text">{{ $impact->stat_1_value ?? '' }}</span>
+                    <span class="impact__stat-label">{{ $impact->stat_1_label ?? '' }}</span>
                 </div>
                 @endif
                 @if($impact->stat_2_value && $impact->stat_2_label)
                 <div class="impact__stat fade-up">
-                    <span class="impact__stat-value accent-text">{{ $impact->stat_2_value }}</span>
-                    <span class="impact__stat-label">{{ $impact->stat_2_label }}</span>
+                    <span class="impact__stat-value accent-text">{{ $impact->stat_2_value ?? '' }}</span>
+                    <span class="impact__stat-label">{{ $impact->stat_2_label ?? '' }}</span>
                 </div>
                 @endif
                 @if($impact->stat_3_value && $impact->stat_3_label)
                 <div class="impact__stat fade-up">
-                    <span class="impact__stat-value accent-text">{{ $impact->stat_3_value }}</span>
-                    <span class="impact__stat-label">{{ $impact->stat_3_label }}</span>
+                    <span class="impact__stat-value accent-text">{{ $impact->stat_3_value ?? '' }}</span>
+                    <span class="impact__stat-label">{{ $impact->stat_3_label ?? '' }}</span>
                 </div>
                 @endif
                 @if($impact->stat_4_value && $impact->stat_4_label)
                 <div class="impact__stat fade-up">
-                    <span class="impact__stat-value accent-text">{{ $impact->stat_4_value }}</span>
-                    <span class="impact__stat-label">{{ $impact->stat_4_label }}</span>
+                    <span class="impact__stat-value accent-text">{{ $impact->stat_4_value ?? '' }}</span>
+                    <span class="impact__stat-label">{{ $impact->stat_4_label ?? '' }}</span>
                 </div>
                 @endif
             </div>
@@ -193,7 +168,7 @@
                     {{-- Center dot with icon --}}
                     <div class="journey__dot">
                         @if(!empty($timeline->icon_url))
-                            <img src="{{ $timeline->icon_url }}" alt="{{ $timeline->title }}" class="journey__dot-icon">
+                            <img src="{{ $timeline->icon_url ?? '' }}" alt="{{ $timeline->title ?? '' }}" class="journey__dot-icon">
                         @else
                             <span class="journey__dot-year">{{ $timeline->year ?? '' }}</span>
                         @endif
@@ -219,7 +194,7 @@
 
     {{-- 7. Vision for the Future --}}
     @if($vision ?? false)
-    <section id="vision" class="vision section--dark section-wrapper" aria-label="Vision for the Future" style="background-image: url('{{ $vision->background_image_url ?? asset(`assets/images/placeholder.jpg`) }}'); background-size: cover; background-position: center; position:relative;">
+    <section id="vision" class="vision section--dark section-wrapper" aria-label="Vision for the Future" style="background-image: url('{{ $vision->background_image_url ?? asset('') }}'); background-size: cover; background-position: center; position:relative;">
         <div class="vision__overlay" style="position: absolute; inset: 0; background: rgba(0, 0, 0, 0.7);"></div>
         <div class="container" style="position: relative; z-index: 1;">
             <div class="vision__content">
@@ -238,7 +213,7 @@
                 </p>
                 @if($vision->cta_label && $vision->cta_url)
                 <a href="{{ $vision->cta_url }}" class="btn btn--primary vision__cta fade-up">
-                    {{ $vision->cta_label }}
+                    {{ $vision->cta_label ?? '' }}
                 </a>
                 @endif
             </div>
@@ -276,7 +251,7 @@
                     <article class="testimonials__card">
                             @if($award->image_url)
                             <div class="testimonials__card-thumb">
-                                <img src="{{ $award->image_url }}" alt="{{ $award->title ?? 'Award' }}" loading="lazy" decoding="async" />
+                                <img src="{{ $award->image_url ?? '' }}" alt="{{ $award->title ?? 'Award' }}" loading="lazy" decoding="async" />
                             </div>
                             @endif
                             @if($award->title)
@@ -299,4 +274,5 @@
     {{-- 12. Final CTA --}}
     @include('sections.final-cta')
 
+</div>
 @endsection

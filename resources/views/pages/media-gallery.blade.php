@@ -7,6 +7,8 @@
 @endpush
 
 @section('content')
+<div class="page-gallery gallery-page">
+
 
 @php
     // ═══════════════════════════════════════════
@@ -362,6 +364,8 @@
 </section>
 
 @include('sections.final-cta')
+
+</div>
 @endsection
 
 @push('scripts')

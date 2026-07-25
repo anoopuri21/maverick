@@ -7,6 +7,8 @@
 @endpush
 
 @section('content')
+<div class="page-leadership leadership">
+
 
 @php
     // ═══════════════════════════════════════════
@@ -219,4 +221,6 @@
 </section>
 
     @include('sections.final-cta')
+
+</div>
 @endsection

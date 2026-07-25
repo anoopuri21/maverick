@@ -7,6 +7,8 @@
 @endpush
 
 @section('content')
+<div class="page-csr csr">
+
 
 @php
     // ═══════════════════════════════════════════
@@ -241,4 +243,6 @@
 
 @include('sections.what-we-do')
 @include('sections.final-cta')
+
+</div>
 @endsection

@@ -7,6 +7,8 @@
 @endpush
 
 @section('content')
+<div class="page-accreditations accred">
+
 
 @php
     // ═══════════════════════════════════════════
@@ -321,4 +323,6 @@
 </section>
 
     @include('sections.final-cta')
+
+</div>
 @endsection

@@ -1,136 +1,187 @@
-/* ============================================
-   ACCREDITATIONS & RECOGNITION PAGE
-============================================ */
+/* ============================================================
+   ACCREDITATIONS & RECOGNITION
+   Cinematic editorial design — aligned with Maverick design system
+   ============================================================ */
 
-:root {
-  --accred-navy: #1a2b7a;
-  --accred-navy-dark: #142260;
-  --accred-red: #dc2626;
-  --accred-green: #16a34a;
-  --accred-text: #1a1a1a;
-  --accred-muted: #666;
-  --accred-light: #f8f9fb;
-  --accred-border: #e5e7eb;
+.accred {
+  --a-navy: var(--color-mba-blue, #0f2983);
+  --a-navy-deep: var(--color-mba-dark-blue, #071444);
+  --a-red: var(--color-mba-red, #b20202);
+  --a-warm: var(--color-warm-white, #f5f0eb);
+  --a-text: #131318;
+  --a-muted: #5b6070;
+  --a-line: #e8e8ee;
+  --a-ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* ============================================
-   1. HERO SECTION
-============================================ */
+/* ============================================================
+   1. HERO — Cinematic full-bleed
+   ============================================================ */
 .accred-hero {
   position: relative;
-  min-height: 520px;
+  min-height: clamp(560px, 92vh, 820px);
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-end;
+  padding: clamp(80px, 12vh, 160px) 0 clamp(60px, 8vh, 100px);
+  color: #fff;
   background-size: cover;
   background-position: center;
-  padding: 100px 20px;
-  text-align: center;
-  color: #fff;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.accred-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      1200px 600px at 20% 100%,
+      rgba(178, 2, 2, 0.35),
+      transparent 60%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(7, 20, 68, 0.55) 0%,
+      rgba(7, 20, 68, 0.92) 100%
+    );
+  z-index: -1;
 }
 
 .accred-hero__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(20, 34, 96, 0.88),
-    rgba(26, 43, 122, 0.82)
-  );
-  z-index: 1;
+  background:
+    linear-gradient(180deg, transparent 45%, rgba(7, 20, 68, 0.65) 100%),
+    linear-gradient(120deg, rgba(15, 41, 131, 0.35), transparent 70%);
+  z-index: -1;
+  pointer-events: none;
 }
 
 .accred-hero__content {
   position: relative;
-  z-index: 2;
-  max-width: 780px;
+  max-width: 960px;
+  padding-inline: var(--container-padding, 24px);
   margin: 0 auto;
+  width: 100%;
 }
 
 .accred-hero__tag {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-body, "Poppins", sans-serif);
   font-size: 12px;
   font-weight: 600;
-  letter-spacing: 3px;
-  color: #fff;
-  margin-bottom: 24px;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
+  color: #fff;
+  margin-bottom: 28px;
+  opacity: 0.9;
+}
+
+.accred-hero__tag::before {
+  content: "";
+  width: 44px;
+  height: 1px;
+  background: var(--a-red);
 }
 
 .accred-hero__heading {
-  font-size: 56px;
-  font-weight: 700;
-  line-height: 1.15;
-  margin: 0 0 24px;
+  font-family: var(--font-display, "PP Neue Montreal", sans-serif);
+  font-size: clamp(40px, 7.5vw, 104px);
+  font-weight: 600;
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  margin: 0 0 clamp(20px, 3vw, 36px);
   color: #fff;
+  max-width: 12ch;
 }
 
 .accred-hero__heading-italic {
   display: block;
   font-style: italic;
-  color: var(--accred-red);
-  font-weight: 600;
-  margin-top: 4px;
+  font-weight: 400;
+  color: #fff;
+  position: relative;
+}
+
+.accred-hero__heading-italic::after {
+  content: "";
+  display: inline-block;
+  width: clamp(60px, 10vw, 140px);
+  height: 4px;
+  background: var(--a-red);
+  vertical-align: middle;
+  margin-left: 18px;
+  transform: translateY(-8px);
 }
 
 .accred-hero__description {
-  font-size: 17px;
-  line-height: 1.7;
-  color: rgba(255, 255, 255, 0.9);
-  max-width: 620px;
-  margin: 0 auto;
-}
-
-/* ============================================
-   COMMON SECTION HEADING
-============================================ */
-.section-heading-block {
-  text-align: center;
-  max-width: 720px;
-  margin: 0 auto 60px;
-}
-
-.section-heading-block .section-label {
-  display: inline-block;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 3px;
-  color: var(--accred-navy);
-  margin-bottom: 16px;
-  text-transform: uppercase;
-}
-
-.section-heading-block .section-heading {
-  font-size: 44px;
-  font-weight: 700;
-  color: var(--accred-navy);
-  line-height: 1.2;
-  margin: 0 0 20px;
-}
-
-.section-heading-block .section-heading em {
-  font-style: italic;
-  color: var(--accred-red);
-  font-weight: 600;
-}
-
-.section-heading-block .section-subheading {
-  font-size: 16px;
-  color: var(--accred-muted);
-  line-height: 1.6;
+  font-family: var(--font-body, "Poppins", sans-serif);
+  font-size: clamp(15px, 1.25vw, 19px);
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.82);
+  max-width: 62ch;
   margin: 0;
 }
 
-/* ============================================
-   2. ACCREDITATIONS & PARTNERSHIPS
-============================================ */
+/* ============================================================
+   COMMON SECTION HEADING (page-scoped)
+   ============================================================ */
+.accred .section-heading-block {
+  max-width: 720px;
+  margin: 0 auto clamp(48px, 6vw, 80px);
+  text-align: center;
+}
+
+.accred .section-heading-block .section-label {
+  display: inline-block;
+  font-family: var(--font-body, "Poppins");
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  color: var(--a-red);
+  margin-bottom: 18px;
+  text-transform: uppercase;
+}
+
+.accred .section-heading-block .section-heading {
+  font-family: var(--font-display, "PP Neue Montreal");
+  font-size: clamp(30px, 4.4vw, 60px);
+  font-weight: 500;
+  color: var(--a-navy-deep);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin: 0 0 20px;
+}
+
+.accred .section-heading-block .section-heading em {
+  font-style: italic;
+  color: var(--a-red);
+  font-weight: 400;
+}
+
+.accred .section-heading-block .section-subheading {
+  font-family: var(--font-body);
+  font-size: clamp(15px, 1.15vw, 17px);
+  color: var(--a-muted);
+  line-height: 1.7;
+  margin: 0 auto;
+  max-width: 60ch;
+}
+
+/* ============================================================
+   2. PARTNERSHIPS
+   ============================================================ */
 .accreditations {
-  padding: 100px 20px;
+  padding: clamp(72px, 10vw, 140px) 0;
   background: #fff;
+  color: var(--a-text);
 }
 
 .accreditations__category {
-  margin-bottom: 60px;
+  margin-bottom: clamp(48px, 6vw, 80px);
 }
 
 .accreditations__category:last-child {
@@ -140,108 +191,155 @@
 .category-header {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding-bottom: 20px;
-  margin-bottom: 32px;
-  border-bottom: 1px solid var(--accred-border);
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
+  gap: 20px;
+  padding-bottom: 22px;
+  margin-bottom: 36px;
+  border-bottom: 1px solid var(--a-line);
+  position: relative;
+}
+
+.category-header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 72px;
+  height: 2px;
+  background: var(--a-red);
 }
 
 .category-header__icon {
-  width: 40px;
-  height: 40px;
-  background: var(--accred-navy);
+  width: 48px;
+  height: 48px;
+  background: var(--a-navy);
   color: #fff;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
   flex-shrink: 0;
+  transition: transform 0.5s var(--a-ease);
+}
+
+.accreditations__category:hover .category-header__icon {
+  transform: rotate(-6deg) scale(1.05);
 }
 
 .category-header__icon svg {
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
 }
 
 .category-header__title {
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--accred-text);
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2vw, 28px);
+  font-weight: 500;
+  color: var(--a-navy-deep);
+  letter-spacing: -0.01em;
   margin: 0;
 }
 
 .accreditations__grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  max-width: 1200px;
-  margin: 0 auto;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: clamp(16px, 2vw, 28px);
 }
 
 .accred-card {
+  position: relative;
   background: #fff;
-  border: 1px solid var(--accred-border);
-  border-radius: 12px;
-  padding: 28px;
+  border: 1px solid var(--a-line);
+  border-radius: 16px;
+  padding: clamp(24px, 2.4vw, 32px);
   transition:
-    transform 0.4s ease,
-    box-shadow 0.4s ease,
+    transform 0.5s var(--a-ease),
+    box-shadow 0.5s var(--a-ease),
     border-color 0.4s ease;
+  overflow: hidden;
+  isolation: isolate;
   width: 100%;
   height: 100%;
 }
 
+.accred-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(15, 41, 131, 0.04), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.5s var(--a-ease);
+  z-index: -1;
+}
+
 .accred-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 30px rgba(26, 43, 122, 0.1);
-  border-color: var(--accred-navy);
+  transform: translateY(-8px);
+  box-shadow: 0 24px 60px -20px rgba(15, 41, 131, 0.28);
+  border-color: transparent;
+}
+
+.accred-card:hover::before {
+  opacity: 1;
 }
 
 .accred-card__logo {
-  width: 72px;
-  height: 72px;
-  background: #fff;
-  border: 1px solid var(--accred-border);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 76px;
+  height: 76px;
+  background: var(--a-warm);
+  border: 1px solid var(--a-line);
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
   margin-bottom: 24px;
+  transition:
+    background 0.4s ease,
+    transform 0.5s var(--a-ease);
+}
+
+.accred-card:hover .accred-card__logo {
+  background: var(--a-navy);
+  transform: scale(1.06);
 }
 
 .accred-card__logo span {
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--accred-text);
-  letter-spacing: 0.5px;
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--a-navy-deep);
+  letter-spacing: 0.04em;
+  transition: color 0.4s ease;
+}
+
+.accred-card:hover .accred-card__logo span {
+  color: #fff;
 }
 
 .accred-card__name {
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--accred-navy);
+  font-family: var(--font-display);
+  font-size: clamp(17px, 1.4vw, 20px);
+  font-weight: 500;
+  color: var(--a-navy-deep);
   margin: 0 0 12px;
-  line-height: 1.3;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
 }
 
 .accred-card__description {
+  font-family: var(--font-body);
   font-size: 14px;
-  line-height: 1.6;
-  color: var(--accred-muted);
-  margin: 0 0 20px;
+  line-height: 1.65;
+  color: var(--a-muted);
+  margin: 0 0 22px;
 }
 
 .accred-card__badge {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: var(--accred-green);
+  color: #16a34a;
+  font-family: var(--font-body);
   font-size: 11px;
   font-weight: 700;
-  letter-spacing: 1.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
 }
 
 .accred-card__badge svg {
@@ -249,21 +347,20 @@
   height: 16px;
 }
 
-/* ============================================
+/* ============================================================
    3. QUALITY ASSURANCE
-============================================ */
+   ============================================================ */
 .quality {
-  padding: 100px 20px;
-  background: var(--accred-light);
+  padding: clamp(72px, 10vw, 140px) 0;
+  background: var(--a-warm);
+  color: var(--a-text);
 }
 
 .quality__grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: stretch;
-  max-width: 1200px;
-  margin: 0 auto;
+  grid-template-columns: 1.1fr 1fr;
+  gap: clamp(32px, 5vw, 72px);
+  align-items: center;
 }
 
 .quality__content {
@@ -274,84 +371,117 @@
 
 .quality__label {
   display: inline-block;
+  font-family: var(--font-body);
   font-size: 12px;
   font-weight: 700;
-  letter-spacing: 3px;
-  color: var(--accred-red);
-  margin-bottom: 16px;
+  letter-spacing: 0.3em;
+  color: var(--a-red);
+  margin-bottom: 18px;
   text-transform: uppercase;
 }
 
 .quality__heading {
-  font-size: 40px;
-  font-weight: 700;
-  color: var(--accred-navy);
-  line-height: 1.2;
-  margin: 0 0 20px;
+  font-family: var(--font-display);
+  font-size: clamp(30px, 4.2vw, 56px);
+  font-weight: 500;
+  color: var(--a-navy-deep);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin: 0 0 24px;
 }
 
 .quality__heading em {
   display: block;
   font-style: italic;
-  color: var(--accred-red);
-  font-weight: 600;
+  color: var(--a-red);
+  font-weight: 400;
 }
 
 .quality__description {
-  font-size: 16px;
-  line-height: 1.7;
-  color: var(--accred-muted);
-  margin: 0 0 36px;
+  font-family: var(--font-body);
+  font-size: clamp(15px, 1.15vw, 17px);
+  line-height: 1.75;
+  color: var(--a-muted);
+  margin: 0 0 40px;
+  max-width: 52ch;
 }
 
 .quality__features {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(20px, 2vw, 28px) clamp(16px, 2vw, 28px);
 }
 
 .quality-feature {
   display: flex;
-  gap: 14px;
+  gap: 16px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(15, 41, 131, 0.12);
+  transition: border-color 0.4s ease;
+}
+
+.quality-feature:hover {
+  border-top-color: var(--a-red);
 }
 
 .quality-feature__icon {
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   background: #fff;
-  color: var(--accred-navy);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  color: var(--a-navy);
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
   flex-shrink: 0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 14px rgba(15, 41, 131, 0.1);
+  transition:
+    transform 0.4s var(--a-ease),
+    background 0.3s ease,
+    color 0.3s ease;
+}
+
+.quality-feature:hover .quality-feature__icon {
+  transform: translateY(-3px) rotate(-4deg);
+  background: var(--a-navy);
+  color: #fff;
 }
 
 .quality-feature__icon [data-lucide] {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
 }
 
 .quality-feature__title {
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--accred-navy);
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--a-navy-deep);
   margin: 0 0 6px;
+  letter-spacing: -0.005em;
 }
 
 .quality-feature__description {
-  font-size: 13px;
-  line-height: 1.55;
-  color: var(--accred-muted);
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--a-muted);
   margin: 0;
 }
 
 .quality__image-wrapper {
   position: relative;
-  border-radius: 16px;
+  border-radius: 20px;
   overflow: hidden;
-  min-height: 500px;
+  aspect-ratio: 4 / 5;
+  box-shadow: 0 40px 100px -30px rgba(7, 20, 68, 0.4);
+}
+
+.quality__image-wrapper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(7, 20, 68, 0.35));
+  pointer-events: none;
 }
 
 .quality__image {
@@ -360,233 +490,258 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
+  transition: transform 1.2s var(--a-ease);
 }
 
-/* ============================================
-   4. AWARDS SLIDER - Title & Subtitle
-============================================ */
+.quality__image-wrapper:hover .quality__image {
+  transform: scale(1.06);
+}
+
+/* ============================================================
+   4. AWARDS SLIDER (uses shared testimonials markup)
+   ============================================================ */
+.awards {
+  background: #fff;
+}
+
 .awards__card-title {
-  margin-top: 16px;
+  margin-top: 18px;
+  font-family: var(--font-display);
   font-size: 15px;
-  font-weight: 700;
-  color: var(--accred-navy);
+  font-weight: 500;
+  color: var(--a-navy-deep);
   line-height: 1.4;
   text-align: center;
   padding: 0 8px;
+  letter-spacing: -0.005em;
 }
 
 .awards__card-subtitle {
   margin-top: 6px;
+  font-family: var(--font-body);
   font-size: 13px;
-  color: var(--accred-muted);
+  color: var(--a-muted);
   text-align: center;
   padding: 0 8px;
 }
 
-/* ============================================
-   5. MEDIA & RANKINGS (Dark Navy)
-============================================ */
+/* ============================================================
+   5. MEDIA & RANKINGS — Deep navy
+   ============================================================ */
 .media-rankings {
-  background: var(--accred-navy);
-  padding: 100px 20px;
+  background: var(--a-navy-deep);
+  padding: clamp(72px, 10vw, 140px) 0;
   color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.media-rankings::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      800px 400px at 100% 0%,
+      rgba(178, 2, 2, 0.22),
+      transparent 65%
+    ),
+    radial-gradient(
+      600px 400px at 0% 100%,
+      rgba(15, 41, 131, 0.5),
+      transparent 60%
+    );
+  pointer-events: none;
+}
+
+.media-rankings > .container {
+  position: relative;
 }
 
 .media-rankings__header {
-  margin-bottom: 60px;
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto clamp(48px, 6vw, 80px);
 }
 
 .media-rankings__label {
   display: inline-block;
+  font-family: var(--font-body);
   font-size: 12px;
   font-weight: 700;
-  letter-spacing: 3px;
-  color: rgba(255, 255, 255, 0.7);
-  margin-bottom: 16px;
+  letter-spacing: 0.3em;
+  color: rgba(255, 255, 255, 0.72);
+  margin-bottom: 18px;
   text-transform: uppercase;
 }
 
 .media-rankings__heading {
-  font-size: 44px;
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: clamp(32px, 4.6vw, 60px);
+  font-weight: 500;
   color: #fff;
-  line-height: 1.2;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
   margin: 0 0 20px;
 }
 
 .media-rankings__heading em {
   font-style: italic;
-  color: var(--accred-red);
-  font-weight: 600;
+  color: var(--a-red);
+  font-weight: 400;
 }
 
 .media-rankings__subheading {
-  font-size: 16px;
-  color: rgba(255, 255, 255, 0.75);
-  line-height: 1.6;
-  margin: 0;
+  font-family: var(--font-body);
+  font-size: clamp(15px, 1.15vw, 17px);
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.7;
+  margin: 0 auto;
+  max-width: 60ch;
 }
 
 .media-rankings__grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: clamp(14px, 1.6vw, 22px);
 }
 
 .media-card {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  padding: 24px 16px;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 14px;
+  padding: 26px 18px;
   text-align: center;
   transition:
-    transform 0.4s ease,
+    transform 0.5s var(--a-ease),
     background 0.4s ease,
     border-color 0.4s ease;
+  backdrop-filter: blur(6px);
+  position: relative;
+  overflow: hidden;
+}
+
+.media-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent, rgba(178, 2, 2, 0.08));
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
 }
 
 .media-card:hover {
-  transform: translateY(-6px);
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-8px);
+  background: rgba(255, 255, 255, 0.075);
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+.media-card:hover::after {
+  opacity: 1;
 }
 
 .media-card__logo {
-  width: 56px;
-  height: 56px;
+  width: 60px;
+  height: 60px;
   background: rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 16px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 18px;
+  transition: background 0.4s ease;
+}
+
+.media-card:hover .media-card__logo {
+  background: var(--a-red);
 }
 
 .media-card__logo span {
+  font-family: var(--font-display);
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 600;
   color: #fff;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.06em;
 }
 
 .media-card__name {
+  font-family: var(--font-display);
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 500;
   color: #fff;
   margin: 0 0 10px;
   line-height: 1.3;
+  letter-spacing: -0.005em;
 }
 
 .media-card__rank {
+  font-family: var(--font-body);
   font-size: 12px;
   color: rgba(255, 255, 255, 0.7);
-  line-height: 1.4;
-  margin: 0 0 12px;
-  min-height: 34px;
+  line-height: 1.5;
+  margin: 0 0 14px;
+  min-height: 36px;
 }
 
 .media-card__year {
   display: inline-block;
-  background: var(--accred-red);
+  background: var(--a-red);
   color: #fff;
+  font-family: var(--font-body);
   font-size: 11px;
   font-weight: 700;
-  padding: 4px 12px;
-  border-radius: 12px;
-  letter-spacing: 0.5px;
+  padding: 5px 14px;
+  border-radius: 999px;
+  letter-spacing: 0.08em;
 }
 
-/* ============================================
-   RESPONSIVE - TABLET
-============================================ */
-@media (max-width: 991px) {
-  .accred-hero__heading,
-  .media-rankings__heading {
-    font-size: 42px;
-  }
-
-  .section-heading-block .section-heading {
-    font-size: 36px;
-  }
-
-  .accreditations__grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1024px) {
   .quality__grid {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: clamp(32px, 5vw, 56px);
   }
-
   .quality__image-wrapper {
-    min-height: 400px;
-  }
-
-  .quality__heading {
-    font-size: 34px;
-  }
-
-  .media-rankings__grid {
-    grid-template-columns: repeat(3, 1fr);
+    aspect-ratio: 16 / 10;
+    max-height: 460px;
   }
 }
 
-/* ============================================
-   RESPONSIVE - MOBILE
-============================================ */
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .accred-hero {
-    min-height: 420px;
-    padding: 80px 20px;
+    min-height: clamp(480px, 78vh, 620px);
+    align-items: center;
+    text-align: left;
   }
-
-  .accred-hero__heading,
-  .media-rankings__heading {
-    font-size: 30px;
+  .accred-hero__heading-italic::after {
+    display: none;
   }
-
-  .accred-hero__description {
-    font-size: 15px;
-  }
-
-  .section-heading-block {
-    margin-bottom: 40px;
-  }
-
-  .section-heading-block .section-heading {
-    font-size: 26px;
-  }
-
-  .accreditations,
-  .quality,
-  .media-rankings {
-    padding: 60px 20px;
-  }
-
-  .category-header__title {
-    font-size: 18px;
-  }
-
-  .accreditations__grid {
-    grid-template-columns: 1fr;
-  }
-
   .quality__features {
     grid-template-columns: 1fr;
   }
-
-  .quality__heading {
-    font-size: 26px;
+  .category-header {
+    gap: 14px;
   }
-
-  .quality__image-wrapper {
-    min-height: 300px;
+  .category-header__icon {
+    width: 42px;
+    height: 42px;
   }
+}
 
-  .media-rankings__grid {
-    grid-template-columns: repeat(2, 1fr);
+@media (max-width: 480px) {
+  .accred-hero {
+    padding-top: 100px;
+    padding-bottom: 60px;
+  }
+  .accreditations,
+  .quality,
+  .media-rankings {
+    padding: 64px 0;
+  }
+  .accred-card {
+    padding: 22px;
+    border-radius: 14px;
   }
 }
