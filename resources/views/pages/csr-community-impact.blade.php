@@ -20,7 +20,7 @@
         'heading' => 'Building Futures,',
         'heading_italic' => 'Changing Lives',
         'description' => 'Beyond the classroom, we believe that education is the most powerful tool for social transformation. Our commitment to community impact reflects the values at the core of Maverick Academy.',
-        'background_image' => asset('assets/images/csr/hero-bg.jpg'),
+        'background_image' => 'https://images.pexels.com/photos/207691/pexels-photo-207691.jpeg?auto=compress&cs=tinysrgb&w=1920',
     ];
 
     $commitment = (object)[
@@ -28,7 +28,7 @@
         'heading' => 'Education as a Force for',
         'heading_italic' => 'Good',
         'description' => 'We believe that every individual, regardless of their circumstances, deserves access to transformative education. At Maverick Academy, our commitment to social responsibility is woven into everything we do — from scholarship programmes that open doors for underrepresented students, to community workshops that bring learning to those who need it most. We measure our success not just by the qualifications we award, but by the lives we touch and the communities we strengthen.',
-        'image' => asset('assets/images/csr/volunteer.jpg'),
+        'image' => 'https://images.pexels.com/photos/6646918/pexels-photo-6646918.jpeg?auto=compress&cs=tinysrgb&w=1200',
     ];
 
     $impactStats = collect([
@@ -43,26 +43,22 @@
             'name' => 'Aisha Mohammed',
             'story' => 'Growing up in a low-income community in East London, Aisha never imagined she could pursue a business qualification. Through our Future Leaders Scholarship, she completed her Executive MBA and now leads a social enterprise that provides digital skills training to young people in her neighbourhood.',
             'impact' => 'Now mentoring 15 other scholarship recipients and has created employment opportunities for 30 young people in her community.',
-            'image' => asset('assets/images/csr/stories/aisha.jpg'),
+            'image' => 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1000',
             'image_position' => 'right',
         ],
         (object)[
             'name' => 'Thomas Reed',
             'story' => 'After losing his job during the pandemic, Thomas used our free professional development workshops to learn digital marketing skills. Within six months, he launched his own consultancy that helps small businesses grow online. Today, he volunteers as a workshop facilitator, sharing his journey with others facing similar challenges.',
             'impact' => 'Has facilitated 12 free workshops, reaching over 200 participants, and his consultancy employs 5 people from his former community.',
-            'image' => asset('assets/images/csr/stories/thomas.jpg'),
+            'image' => 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1000',
             'image_position' => 'left',
         ],
     ]);
 
     $partners = collect([
-        (object)['name' => 'EdArabia', 'logo' => asset('assets/images/csr/partners/edarabia.png')],
-        (object)['name' => 'PRME', 'logo' => asset('assets/images/csr/partners/prme.png')],
-        (object)['name' => 'EdArabia', 'logo' => asset('assets/images/csr/partners/edarabia.png')],
-        (object)['name' => 'PRME', 'logo' => asset('assets/images/csr/partners/prme.png')],
-        (object)['name' => 'EdArabia', 'logo' => asset('assets/images/csr/partners/edarabia.png')],
-        (object)['name' => 'PRME', 'logo' => asset('assets/images/csr/partners/prme.png')],
-    ]);
+    (object)['name' => 'EdArabia', 'logo' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScXVW-sudlIEGzEV5R04wL2AC_2KvSepBbKnjSNamtoQ&s=10'],
+    (object)['name' => 'PRME', 'logo' => 'https://lsme.ac.uk/wp-content/uploads/2022/01/PRIME_logo-1.jpg'],
+]);
 
     $pillars = (object)[
         'heading' => 'Three Pillars of',

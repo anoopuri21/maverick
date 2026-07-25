@@ -20,7 +20,7 @@
         'heading' => 'The Visionaries Behind',
         'heading_italic' => 'Maverick Academy',
         'description' => 'Meet the distinguished leaders and board members who guide our mission to transform lives through accessible, world-class business education.',
-        'background_image' => asset('assets/images/leadership/hero-bg.jpg'),
+        'background_image' => 'https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=1920',
     ];
 
     $executiveTeam = collect([
@@ -28,64 +28,64 @@
             'name' => 'Dr. Elizabeth Chen',
             'designation' => 'Chief Academic Officer',
             'bio' => 'Former Dean at London School of Economics with 25+ years in higher education. Dr. Chen oversees all academic programmes and faculty development, ensuring world-class educational standards.',
-            'image_url' => asset('assets/images/leadership/elizabeth-chen.jpg'),
+            'image_url' => 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=800',
             'linkedin_url' => '#',
         ],
         (object)[
             'name' => "Michael O'Brien",
             'designation' => 'Chief Operating Officer',
             'bio' => 'Previously led operations at Pearson Education for 15 years. Michael ensures seamless delivery of our programmes across all global touchpoints and drives operational excellence.',
-            'image_url' => asset('assets/images/leadership/michael-obrien.jpg'),
+            'image_url' => 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=800',
             'linkedin_url' => '#',
         ],
         (object)[
             'name' => 'Amara Okonkwo',
             'designation' => 'Chief Strategy Officer',
             'bio' => "Former McKinsey partner and Harvard MBA. Amara leads our strategic initiatives, global expansion efforts, and corporate partnerships that shape Maverick's future.",
-            'image_url' => asset('assets/images/leadership/amara-okonkwo.jpg'),
+            'image_url' => 'https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&w=800',
             'linkedin_url' => '#',
         ],
         (object)[
             'name' => 'Robert Williams',
             'designation' => 'Chief Financial Officer',
             'bio' => 'Chartered accountant with experience at KPMG and Deloitte. Robert oversees financial strategy, investor relations, and ensures sustainable growth for the academy.',
-            'image_url' => asset('assets/images/leadership/robert-williams.jpg'),
+            'image_url' => 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=800',
             'linkedin_url' => '#',
         ],
         (object)[
             'name' => 'Dr. Sarah Mitchell',
             'designation' => 'Chief Digital Officer',
             'bio' => 'Tech visionary and former Google executive. Sarah drives our digital transformation, online learning platform development, and AI-powered educational innovations.',
-            'image_url' => asset('assets/images/leadership/sarah-mitchell.jpg'),
+            'image_url' => 'https://images.pexels.com/photos/3760263/pexels-photo-3760263.jpeg?auto=compress&cs=tinysrgb&w=800',
             'linkedin_url' => '#',
         ],
         (object)[
             'name' => 'David Oyelaran',
             'designation' => 'Chief Marketing Officer',
             'bio' => "Brand strategist with 20+ years building global education brands. David leads our marketing, communications, and student recruitment efforts worldwide.",
-            'image_url' => asset('assets/images/leadership/david-oyelaran.jpg'),
+            'image_url' => 'https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=800',
             'linkedin_url' => '#',
         ],
     ]);
 
     $boardMembers = collect([
-        (object)['name' => 'Dame Victoria Ashford', 'role' => 'CHAIRPERSON', 'image_url' => asset('assets/images/leadership/board/victoria.jpg')],
-        (object)['name' => 'Lord Richard Pemberton', 'role' => 'VICE CHAIR', 'image_url' => asset('assets/images/leadership/board/richard.jpg')],
-        (object)['name' => 'Prof. Mei-Lin Zhang', 'role' => 'NON-EXECUTIVE DIRECTOR', 'image_url' => asset('assets/images/leadership/board/meilin.jpg')],
-        (object)['name' => 'Sir Marcus Thompson', 'role' => 'NON-EXECUTIVE DIRECTOR', 'image_url' => asset('assets/images/leadership/board/marcus.jpg')],
-        (object)['name' => 'Fatima Al-Hassan', 'role' => 'NON-EXECUTIVE DIRECTOR', 'image_url' => asset('assets/images/leadership/board/fatima.jpg')],
-        (object)['name' => 'Jonathan Clarke', 'role' => 'NON-EXECUTIVE DIRECTOR', 'image_url' => asset('assets/images/leadership/board/jonathan.jpg')],
-        (object)['name' => 'Dr. Patricia Mendez', 'role' => 'NON-EXECUTIVE DIRECTOR', 'image_url' => asset('assets/images/leadership/board/patricia.jpg')],
-        (object)['name' => 'Andrew Blackwell', 'role' => 'COMPANY SECRETARY', 'image_url' => asset('assets/images/leadership/board/andrew.jpg')],
+        (object)['name' => 'Dame Victoria Ashford', 'role' => 'CHAIRPERSON', 'image_url' => 'https://images.pexels.com/photos/762020/pexels-photo-762020.jpeg?auto=compress&cs=tinysrgb&w=800'],
+        (object)['name' => 'Lord Richard Pemberton', 'role' => 'VICE CHAIR', 'image_url' => 'https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=800'],
+        (object)['name' => 'Prof. Mei-Lin Zhang', 'role' => 'NON-EXECUTIVE DIRECTOR', 'image_url' => 'https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=800'],
+        (object)['name' => 'Sir Marcus Thompson', 'role' => 'NON-EXECUTIVE DIRECTOR', 'image_url' => 'https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=800'],
+        (object)['name' => 'Fatima Al-Hassan', 'role' => 'NON-EXECUTIVE DIRECTOR', 'image_url' => 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=800'],
+        (object)['name' => 'Jonathan Clarke', 'role' => 'NON-EXECUTIVE DIRECTOR', 'image_url' => 'https://images.pexels.com/photos/1043474/pexels-photo-1043474.jpeg?auto=compress&cs=tinysrgb&w=800'],
+        (object)['name' => 'Dr. Patricia Mendez', 'role' => 'NON-EXECUTIVE DIRECTOR', 'image_url' => 'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=800'],
+        (object)['name' => 'Andrew Blackwell', 'role' => 'COMPANY SECRETARY', 'image_url' => 'https://images.pexels.com/photos/1516680/pexels-photo-1516680.jpeg?auto=compress&cs=tinysrgb&w=800'],
     ]);
 
     $advisors = collect([
-        (object)['name' => 'Prof. Rajesh Kapoor', 'expertise' => 'Digital Transformation', 'image_url' => asset('assets/images/leadership/advisors/rajesh.jpg')],
-        (object)['name' => 'Dr. Angela Morrison', 'expertise' => 'Executive Education', 'image_url' => asset('assets/images/leadership/advisors/angela.jpg')],
-        (object)['name' => 'William Frost', 'expertise' => 'Corporate Strategy', 'image_url' => asset('assets/images/leadership/advisors/william.jpg')],
-        (object)['name' => 'Dr. Chioma Eze', 'expertise' => 'International Accreditation', 'image_url' => asset('assets/images/leadership/advisors/chioma.jpg')],
-        (object)['name' => 'Thomas Bergström', 'expertise' => 'Sustainability & ESG', 'image_url' => asset('assets/images/leadership/advisors/thomas.jpg')],
-        (object)['name' => 'Dr. Yasmin Patel', 'expertise' => 'Lifelong Learning', 'image_url' => asset('assets/images/leadership/advisors/yasmin.jpg')],
+        (object)['name' => 'Prof. Rajesh Kapoor', 'expertise' => 'Digital Transformation', 'image_url' => 'https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=800'],
+        (object)['name' => 'Dr. Angela Morrison', 'expertise' => 'Executive Education', 'image_url' => 'https://images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg?auto=compress&cs=tinysrgb&w=800'],
+        (object)['name' => 'William Frost', 'expertise' => 'Corporate Strategy', 'image_url' => 'https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=800'],
+        (object)['name' => 'Dr. Chioma Eze', 'expertise' => 'International Accreditation', 'image_url' => 'https://images.pexels.com/photos/3760856/pexels-photo-3760856.jpeg?auto=compress&cs=tinysrgb&w=800'],
+        (object)['name' => 'Thomas Bergström', 'expertise' => 'Sustainability & ESG', 'image_url' => 'https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=800'],
+        (object)['name' => 'Dr. Yasmin Patel', 'expertise' => 'Lifelong Learning', 'image_url' => 'https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg?auto=compress&cs=tinysrgb&w=800'],
     ]);
 @endphp
 

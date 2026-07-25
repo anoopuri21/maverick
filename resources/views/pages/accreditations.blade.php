@@ -20,7 +20,7 @@
         'heading' => 'Globally Recognised,',
         'heading_italic' => 'Locally Trusted',
         'description' => "Our commitment to excellence is validated by the world's most respected accreditation bodies, regulatory authorities, and industry partners.",
-        'background_image' => asset('assets/images/accreditations/hero-bg.jpg'),
+        'background_image' => 'https://images.pexels.com/photos/267885/pexels-photo-267885.jpeg?auto=compress&cs=tinysrgb&w=1920',
     ];
 
     // Grouped by category
@@ -58,7 +58,7 @@
         'heading' => 'Our Commitment to',
         'heading_italic' => 'Excellence',
         'description' => 'Every programme at Maverick Academy undergoes rigorous quality assurance processes to ensure our learners receive education that meets the highest global standards.',
-        'image' => asset('assets/images/accreditations/quality-image.jpg'),
+        'image' => asset('https://images.pexels.com/photos/31367501/pexels-photo-31367501.jpeg'),
         'features' => collect([
             (object)[
                 'icon' => 'clipboard-list',
@@ -97,22 +97,22 @@
         (object)[
             'title' => 'Best Emerging Business School 2024',
             'subtitle' => 'Education Today Awards',
-            'image_url' => asset('assets/images/accreditations/awards/award-1.jpg'),
+            'image_url' => 'https://images.pexels.com/photos/2678468/pexels-photo-2678468.jpeg?auto=compress&cs=tinysrgb&w=800',
         ],
         (object)[
             'title' => 'Excellence in Online Learning 2023',
             'subtitle' => 'EdTech Breakthrough',
-            'image_url' => asset('assets/images/accreditations/awards/award-2.jpg'),
+            'image_url' => 'https://images.pexels.com/photos/7092613/pexels-photo-7092613.jpeg?auto=compress&cs=tinysrgb&w=800',
         ],
         (object)[
             'title' => 'Innovation in Executive Education 2023',
             'subtitle' => 'British Education Awards',
-            'image_url' => asset('assets/images/accreditations/awards/award-3.jpg'),
+            'image_url' => 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800',
         ],
         (object)[
             'title' => 'Top 50 Global Online MBA',
             'subtitle' => 'QS World',
-            'image_url' => asset('assets/images/accreditations/awards/award-4.jpg'),
+            'image_url' => 'https://images.pexels.com/photos/3769021/pexels-photo-3769021.jpeg?auto=compress&cs=tinysrgb&w=800',
         ],
     ]);
 

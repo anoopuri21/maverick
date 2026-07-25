@@ -20,7 +20,7 @@
         'heading' => 'Life at Maverick,',
         'heading_italic' => 'In Pictures',
         'description' => 'Explore the moments that define our community — from graduation celebrations and campus life to global events and media spotlight.',
-        'background_image' => asset('assets/images/gallery/hero-bg.jpg'),
+        'background_image' => 'https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg?auto=compress&cs=tinysrgb&w=1920',
     ];
 
     $categories = collect([
@@ -48,19 +48,19 @@
         (object)[
             'title' => 'Graduation Day 2024: The Highlights',
             'duration' => '1:02',
-            'thumbnail' => asset('assets/images/gallery/videos/video-1.jpg'),
+            'thumbnail' => 'https://images.pexels.com/photos/267885/pexels-photo-267885.jpeg?auto=compress&cs=tinysrgb&w=1200',
             'video_url' => '#',
         ],
         (object)[
             'title' => 'Class of 2024: A Celebration',
             'duration' => '0:17',
-            'thumbnail' => asset('assets/images/gallery/videos/video-2.jpg'),
+            'thumbnail' => 'https://images.pexels.com/photos/1595391/pexels-photo-1595391.jpeg?auto=compress&cs=tinysrgb&w=1200',
             'video_url' => '#',
         ],
         (object)[
             'title' => 'Inside the Boardroom: Executive Education',
             'duration' => '0:13',
-            'thumbnail' => asset('assets/images/gallery/videos/video-3.jpg'),
+            'thumbnail' => 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1200',
             'video_url' => '#',
         ],
     ]);
@@ -70,25 +70,25 @@
             'date' => '12 Mar 2024',
             'title' => 'Global Business Summit 2024',
             'location' => 'London Campus',
-            'image' => asset('assets/images/gallery/events/event-1.jpg'),
+            'image' => 'https://images.pexels.com/photos/1181396/pexels-photo-1181396.jpeg?auto=compress&cs=tinysrgb&w=1200',
         ],
         (object)[
             'date' => '28 Feb 2024',
             'title' => 'Executive Leadership Forum',
             'location' => 'The Shard, London',
-            'image' => asset('assets/images/gallery/events/event-2.jpg'),
+            'image' => 'https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&w=1200',
         ],
         (object)[
             'date' => '15 Jan 2024',
             'title' => 'International Welcome Week',
             'location' => 'London Campus',
-            'image' => asset('assets/images/gallery/events/event-3.jpg'),
+            'image' => 'https://images.pexels.com/photos/7096/people-woman-coffee-meeting.jpg?auto=compress&cs=tinysrgb&w=1200',
         ],
         (object)[
             'date' => '18 Dec 2023',
             'title' => 'Winter Gala',
             'location' => 'Royal Albert Hall',
-            'image' => asset('assets/images/gallery/events/event-4.jpg'),
+            'image' => 'https://images.pexels.com/photos/2747449/pexels-photo-2747449.jpeg?auto=compress&cs=tinysrgb&w=1200',
         ],
     ]);
 

@@ -565,6 +565,7 @@
   position: relative;
   aspect-ratio: 4 / 5;
   max-width: 560px;
+  height: 100%;
   margin-left: auto;
 }
 
@@ -585,7 +586,7 @@
 }
 
 .gup-benefits__main-image {
-  position: absolute;
+  /* position: absolute; */
   inset: 0 0 0 40px;
   border-radius: 20px;
   overflow: hidden;

@@ -488,6 +488,7 @@
 
 .recent-events__slider {
   position: relative;
+  overflow: hidden;
 }
 
 .recent-events__track {
@@ -495,7 +496,7 @@
   grid-auto-flow: column;
   grid-auto-columns: clamp(280px, 32%, 380px);
   gap: clamp(16px, 2vw, 28px);
-  overflow-x: auto;
+  /* overflow-x: auto; */
   scroll-snap-type: x mandatory;
   padding-bottom: 20px;
   scrollbar-width: none;
