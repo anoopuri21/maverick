@@ -418,9 +418,9 @@
     </div>
 </section>
 
-@include('sections.final-cta')
-
 </div>
+
+@include('sections.final-cta')
 @endsection
 
 @push('scripts')

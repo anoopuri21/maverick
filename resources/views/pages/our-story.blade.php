@@ -271,8 +271,8 @@
 </section>
 @endif
 
+</div>
+
     {{-- 12. Final CTA --}}
     @include('sections.final-cta')
-
-</div>
 @endsection

@@ -321,8 +321,8 @@
 
     </div>
 </section>
+</div>
 
     @include('sections.final-cta')
 
-</div>
 @endsection

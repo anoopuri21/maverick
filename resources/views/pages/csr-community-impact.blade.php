@@ -236,6 +236,7 @@
     </div>
 </section>
 
+</div>
 
 {{-- ═══════════════════════════════════════════
      7. THREE PILLARS OF GLOBAL EDUCATION
@@ -244,5 +245,4 @@
 @include('sections.what-we-do')
 @include('sections.final-cta')
 
-</div>
 @endsection
