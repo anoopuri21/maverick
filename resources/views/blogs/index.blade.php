@@ -12,6 +12,7 @@
 
     <!-- PAGE HERO -->
     <section class="blog-hero">
+        <x-blog.decoration-layer variant="hero" />
         <div class="container">
             <div class="blog-hero__inner">
                 <span class="blog-hero__eyebrow caption-text accent-text">Insights</span>
@@ -86,6 +87,7 @@
 
             <!-- ARTICLE GRID -->
             <section class="blog-grid-section" aria-label="Latest articles">
+                <x-blog.decoration-layer variant="grid-bg" />
                 @if($paginatedPosts->count() > 0)
                     <h2 class="blog-grid-section__title">
                         @if(!empty($searchQuery))

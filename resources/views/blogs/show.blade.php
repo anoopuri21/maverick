@@ -17,6 +17,7 @@
 
     <!-- CINEMATIC PARALLAX HERO -->
     <section class="blog-detail-hero" id="blog-detail-hero">
+        <x-blog.decoration-layer variant="hero" />
         <div class="blog-detail-hero__image-wrapper" id="blog-detail-hero-img-wrapper">
             <picture>
                 <source srcset="{{ $post->featured_image_url }}&w=800 800w, {{ $post->featured_image_url }}&w=1600 1600w" sizes="100vw">
@@ -111,6 +112,7 @@
 
     <!-- RELATED ARTICLES SECTION (3-card grid) -->
     <section class="blog-related-section section-wrapper section--light section--warm" aria-labelledby="related-articles-heading">
+        <x-blog.decoration-layer variant="grid-bg" />
         <div class="container">
             <div class="blog-related-section__header flex-between">
                 <h2 id="related-articles-heading" class="blog-related-section__title section-title">You Might Also Like</h2>

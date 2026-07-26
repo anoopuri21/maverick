@@ -26,11 +26,185 @@
 }
 
 /* =========================================================
+   AMBIENT BACKGROUND DECORATION LAYER STYLE
+   ========================================================= */
+
+.blog-decor {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Base style for CSS blobs */
+.blog-decor__blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.10;
+  background: var(--color-accent-light);
+  will-change: transform;
+  animation: blogBlobFloat 14s ease-in-out infinite;
+}
+
+.blog-decor__blob--secondary {
+  background: var(--color-mba-dark-blue);
+  animation-duration: 18s;
+  animation-delay: -4s;
+}
+
+@keyframes blogBlobFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%      { transform: translate(30px, -20px) scale(1.08); }
+  66%      { transform: translate(-20px, 25px) scale(0.95); }
+}
+
+/* Floating outline SVG Icons */
+.blog-decor__icon {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  color: var(--color-mba-red);
+  opacity: 0.12;
+  will-change: transform;
+  animation: blogIconFloat 6s ease-in-out infinite;
+}
+
+@keyframes blogIconFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%      { transform: translateY(-14px) rotate(6deg); }
+}
+
+/* Specific position & size variations for blobs & icons */
+.blog-decor__blob--1 {
+  top: -10%;
+  left: -5%;
+  width: 320px;
+  height: 320px;
+}
+
+.blog-decor__blob--2 {
+  bottom: -10%;
+  right: -5%;
+  width: 280px;
+  height: 280px;
+}
+
+/* Scatter outline icons in empty areas of hero sections */
+.blog-decor__icon--1 {
+  top: 15%;
+  left: 8%;
+  animation-delay: 0s;
+}
+
+.blog-decor__icon--2 {
+  top: 25%;
+  right: 12%;
+  animation-delay: -1.5s;
+}
+
+.blog-decor__icon--3 {
+  bottom: 15%;
+  left: 15%;
+  animation-delay: -3s;
+}
+
+.blog-decor__icon--4 {
+  bottom: 25%;
+  right: 8%;
+  animation-delay: -4.5s;
+}
+
+/* Dotted grid pattern for variant="cta" (dark background) */
+.blog-decor__dots {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.08) 1px,
+    transparent 1px
+  );
+  background-size: 24px 24px;
+  mask-image: radial-gradient(circle at center, black 40%, transparent 90%);
+  -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 90%);
+}
+
+/* Detect and match automatically if light background is used instead */
+.blog-newsletter .blog-decor__dots {
+  background-image: radial-gradient(
+    rgba(7, 20, 68, 0.05) 1px,
+    transparent 1px
+  );
+}
+
+.blog-decor__blob--cta-1 {
+  top: -20%;
+  left: 10%;
+  width: 220px;
+  height: 220px;
+  opacity: 0.08;
+}
+
+.blog-decor__blob--cta-2 {
+  bottom: -20%;
+  right: 10%;
+  width: 250px;
+  height: 250px;
+  opacity: 0.06;
+}
+
+/* Single large fainted blob for variant="grid-bg" */
+.blog-decor__blob--grid {
+  top: 30%;
+  right: 5%;
+  width: 380px;
+  height: 380px;
+  opacity: 0.05;
+  filter: blur(120px);
+}
+
+/* For detail pages reduce opacity/dim of hero decoration layer to ensure no readability overlap */
+.blog-detail-hero .blog-decor__blob {
+  opacity: 0.07;
+}
+
+.blog-detail-hero .blog-decor__icon {
+  opacity: 0.08;
+}
+
+/* RESPONSIVE SCALING */
+@media (max-width: 768px) {
+  /* Reduce visual noise on smaller viewports */
+  .blog-decor__blob {
+    width: 180px !important;
+    height: 180px !important;
+  }
+
+  /* Keep only 1 blob + 1-2 icons on mobile, hide other items */
+  .blog-decor__blob--2,
+  .blog-decor__blob--cta-2,
+  .blog-decor__icon--2,
+  .blog-decor__icon--4 {
+    display: none !important;
+  }
+}
+
+/* PREFERS REDUCED MOTION (Accessibility requirement) */
+@media (prefers-reduced-motion: reduce) {
+  .blog-decor__blob,
+  .blog-decor__icon {
+    animation: none !important;
+  }
+}
+
+/* =========================================================
    PAGE 1: BLOG LISTING (/blogs)
    ========================================================= */
 
 /* Hero Section */
 .blog-hero {
+  position: relative;
+  overflow: hidden;
   background: radial-gradient(circle at 10% 20%, rgba(7, 20, 68, 0.02) 0%, rgba(245, 240, 235, 0.5) 100%);
   padding: calc(var(--navbar-height) + 40px) 0 40px;
   text-align: center;
@@ -38,6 +212,8 @@
 }
 
 .blog-hero__inner {
+  position: relative;
+  z-index: 1;
   max-width: 900px;
   margin: 0 auto;
 }
@@ -291,7 +467,14 @@
 }
 
 /* BLOG CARD GRID */
+.blog-grid-section {
+  position: relative;
+  overflow: hidden;
+}
+
 .blog-grid {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 32px;
@@ -299,6 +482,8 @@
 }
 
 .blog-grid-section__title {
+  position: relative;
+  z-index: 1;
   font-family: var(--font-display);
   font-size: 28px;
   color: var(--color-mba-dark-blue);
@@ -485,6 +670,8 @@
 
 /* PAGINATION SYSTEM */
 .blog-pagination {
+  position: relative;
+  z-index: 1;
   display: flex;
   justify-content: center;
   margin-top: 48px;
@@ -1056,10 +1243,14 @@
 
 /* RELATED ARTICLES SECTION */
 .blog-related-section {
+  position: relative;
+  overflow: hidden;
   border-top: 1px solid var(--color-blog-border-light);
 }
 
 .blog-related-section__header {
+  position: relative;
+  z-index: 1;
   margin-bottom: 40px;
 }
 
@@ -1092,10 +1283,14 @@
    ========================================================= */
 
 .blog-newsletter {
+  position: relative;
+  overflow: hidden;
   border-top: 1px solid var(--color-blog-border-light);
 }
 
 .blog-newsletter__inner {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: 1.2fr 1fr;
   gap: 64px;

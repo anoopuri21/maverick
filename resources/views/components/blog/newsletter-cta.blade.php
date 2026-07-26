@@ -1,4 +1,5 @@
 <section class="blog-newsletter section-wrapper section--light section--warm">
+    <x-blog.decoration-layer variant="cta" />
     <div class="container">
         <div class="blog-newsletter__inner">
             <div class="blog-newsletter__content">
