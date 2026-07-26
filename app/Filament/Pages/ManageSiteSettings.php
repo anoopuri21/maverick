@@ -65,12 +65,14 @@ class ManageSiteSettings extends SettingsPage
             Section::make('Contact Info')
                 ->schema([
                     Grid::make(2)->schema([
-                        TextInput::make('phone')->required(),
+                        TextInput::make('phone')->label('Primary Phone')->required(),
+                        TextInput::make('phone_secondary')->label('Secondary Phone')->nullable(),
                         TextInput::make('whatsapp_number')
                             ->label('WhatsApp Number (with country code, no +)')
                             ->helperText('Example: 971501441670')
                             ->required(),
                         TextInput::make('email')->email()->required(),
+                        TextInput::make('office_hours')->label('Office Hours')->nullable(),
                         TextInput::make('apply_now_url')
                             ->label('Apply Now Button URL')
                             ->required(),
@@ -84,6 +86,7 @@ class ManageSiteSettings extends SettingsPage
                         TextInput::make('facebook_url')->url(),
                         TextInput::make('instagram_url')->url(),
                         TextInput::make('linkedin_url')->url(),
+                        TextInput::make('twitter_url')->label('Twitter / X URL')->url(),
                         TextInput::make('youtube_url')->url(),
                     ]),
                 ]),
