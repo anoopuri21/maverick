@@ -94,4 +94,59 @@ class ContactFeatureTest extends TestCase
         // But no mail should be sent
         Mail::assertNotSent(ContactFormSubmitted::class);
     }
+
+    /**
+     * Test contact form submits successfully to Zapier when URL configured.
+     */
+    public function test_contact_form_zapier_success(): void
+    {
+        Mail::fake();
+        \Illuminate\Support\Facades\Http::fake();
+
+        config(['services.zapier.contact_webhook_url' => 'https://hooks.zapier.com/hooks/catch/test']);
+
+        $response = $this->post('/contact', [
+            'name' => 'John Zapier',
+            'email' => 'zapier@example.com',
+            'phone' => '+1234567890',
+            'subject' => 'General Inquiry',
+            'message' => 'Hello Zapier!',
+            'website' => '',
+        ]);
+
+        $response->assertStatus(302);
+        $response->assertSessionHas('success');
+
+        \Illuminate\Support\Facades\Http::assertSent(function ($request) {
+            return $request->url() === 'https://hooks.zapier.com/hooks/catch/test' &&
+                   $request['name'] === 'John Zapier' &&
+                   $request['message'] === 'Hello Zapier!';
+        });
+    }
+
+    /**
+     * Test contact form doesn't block user flow when Zapier request fails/timeouts.
+     */
+    public function test_contact_form_zapier_failure_does_not_block(): void
+    {
+        Mail::fake();
+        \Illuminate\Support\Facades\Http::fake([
+            '*' => \Illuminate\Support\Facades\Http::response('Error', 500),
+        ]);
+
+        config(['services.zapier.contact_webhook_url' => 'https://hooks.zapier.com/hooks/catch/test']);
+
+        $response = $this->post('/contact', [
+            'name' => 'John Failure',
+            'email' => 'failure@example.com',
+            'phone' => '+1234567890',
+            'subject' => 'General Inquiry',
+            'message' => 'Hello Failure!',
+            'website' => '',
+        ]);
+
+        // Flow should still be fully successful for user
+        $response->assertStatus(302);
+        $response->assertSessionHas('success');
+    }
 }

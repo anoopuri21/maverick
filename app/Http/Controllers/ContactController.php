@@ -42,6 +42,15 @@ class ContactController extends Controller
             logger()->error('Failed to send contact email: ' . $e->getMessage());
         }
 
+        // Zapier integration (non-blocking)
+        if ($webhookUrl = config('services.zapier.contact_webhook_url')) {
+            try {
+                \Illuminate\Support\Facades\Http::timeout(5)->post($webhookUrl, $validated);
+            } catch (\Throwable $e) {
+                report($e); // log failure, do not block the user-facing flow
+            }
+        }
+
         return back()->with('success', 'Thank you! We\'ll get back to you within 24 hours.');
     }
 }
