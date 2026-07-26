@@ -20,3 +20,7 @@ Route::post('/contact', [PageController::class, 'contactSubmit'])->name('contact
 
 // Gallery
 Route::get('/media-gallery', [PageController::class, 'gallery'])->name('gallery');
+
+// Blogs
+Route::get('/blogs', [\App\Http\Controllers\BlogController::class, 'index'])->name('blogs.index');
+Route::get('/blogs/{slug}', [\App\Http\Controllers\BlogController::class, 'show'])->name('blogs.show');
