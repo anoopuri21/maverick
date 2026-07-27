@@ -26,7 +26,7 @@
         <div class="container">
             <div class="blog-detail-hero__content">
                 <div class="blog-detail-hero__tags">
-                    <x-blog.category-pill :category="$post->category" />
+                    <x-blog.category-pill :category="'Blog'" />
                 </div>
 
                 <h1 class="blog-detail-hero__title display-text">{{ $post->title }}</h1>
@@ -89,7 +89,7 @@
                         </div>
                     @endif
 
-                    <!-- AUTHOR CARD (Soft-morphic) -->
+                    <!-- AUTHOR CARD (Post-morphic) -->
                     <section class="blog-author-card" aria-label="About the author">
                     @if($post->author_avatar_url)
                         <img class="blog-author-card__avatar" src="{{ $post->author_avatar_url }}" alt="{{ $post->author_name }}" width="80" height="80" loading="lazy">

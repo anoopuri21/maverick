@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BlogPost;
+use App\Models\Insight;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
@@ -12,37 +12,29 @@ class BlogController extends Controller
      */
     public function index(Request $request)
     {
-        $categories = collect(['All'])->merge(
-            BlogPost::published()->distinct()->orderBy('category')->pluck('category')
-        );
-
-        $activeCategory = $request->query('category', 'All');
+        $categories = collect(['All']);
+        $activeCategory = 'All';
         $searchQuery = trim((string) $request->query('search', ''));
 
-        $query = BlogPost::published();
+        // The featured post is only ever highlighted when browsing the
+        // unfiltered list with no active search, and is excluded
+        // from the regular grid so it isn't shown twice.
+        $featuredPost = null;
+        if ($searchQuery === '') {
+            $featuredPost = Insight::published()->featuredIn('blogs')->latest('published_at')->first();
+        }
 
-        if ($activeCategory !== 'All') {
-            $query->where('category', $activeCategory);
+        $query = Insight::published()->category('blogs');
+
+        if ($featuredPost) {
+            $query->where('id', '!=', $featuredPost->id);
         }
 
         if ($searchQuery !== '') {
             $query->where(function ($q) use ($searchQuery) {
                 $q->where('title', 'like', "%{$searchQuery}%")
-                    ->orWhere('excerpt', 'like', "%{$searchQuery}%")
-                    ->orWhere('category', 'like', "%{$searchQuery}%");
+                    ->orWhere('excerpt', 'like', "%{$searchQuery}%");
             });
-        }
-
-        // The featured post is only ever highlighted when browsing the
-        // unfiltered "All" list with no active search, and is excluded
-        // from the regular grid so it isn't shown twice.
-        $featuredPost = null;
-        if ($activeCategory === 'All' && $searchQuery === '') {
-            $featuredPost = BlogPost::published()->featured()->latest('published_at')->first();
-        }
-
-        if ($featuredPost) {
-            $query->where('id', '!=', $featuredPost->id);
         }
 
         $paginatedPosts = $query->latest('published_at')->paginate(9)->withQueryString();
@@ -53,7 +45,7 @@ class BlogController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(BlogPost $blogPost)
+    public function show(Insight $blogPost)
     {
         // Dynamic Table of Contents: scan the content HTML for <h2>/<h3> tags.
         preg_match_all('/<h([2-3])>(.*?)<\/h[2-3]>/', $blogPost->content, $matches, PREG_SET_ORDER);
@@ -79,8 +71,7 @@ class BlogController extends Controller
         }
         $blogPost->content = $contentWithAnchors;
 
-        $relatedPosts = BlogPost::published()
-            ->where('category', $blogPost->category)
+        $relatedPosts = Insight::published()->category('blogs')
             ->where('id', '!=', $blogPost->id)
             ->latest('published_at')
             ->take(3)

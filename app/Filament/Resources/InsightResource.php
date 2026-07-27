@@ -3,43 +3,39 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Concerns\HandlesCloudinaryImageFields;
-use App\Filament\Resources\BlogPostResource\Pages;
-use App\Filament\Resources\BlogPostResource\RelationManagers;
-use App\Models\BlogPost;
+use App\Filament\Resources\InsightResource\Pages;
+use App\Models\Insight;
 use App\Services\CloudinaryService;
-use Filament\Forms;
-use Filament\Forms\Components\DateTimePicker;
-use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TagsInput;
-use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\CheckboxList;
+use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\Toggle;
+use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Illuminate\Support\Str;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
-class BlogPostResource extends Resource
+class InsightResource extends Resource
 {
     use HandlesCloudinaryImageFields;
 
-    protected static ?string $model = BlogPost::class;
+    protected static ?string $model = Insight::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationLabel = 'Insights';
+    protected static ?string $navigationIcon = 'heroicon-o-newspaper';
     protected static ?string $navigationGroup = 'Content';
-    protected static bool $shouldRegisterNavigation = false;
 
     public static function form(Form $form): Form
     {
@@ -48,11 +44,9 @@ class BlogPostResource extends Resource
                 TextInput::make('title')
                     ->required()
                     ->live(onBlur: true)
-                    ->afterStateUpdated(function (string $operation, $state, Set $set, Get $get) {
-                        // Only auto-fill slug if it's currently empty
-                        // (don't overwrite a manually-edited slug)
+                    ->afterStateUpdated(function ($state, Set $set, Get $get) {
                         if (blank($get('slug'))) {
-                            $set('slug', Str::slug($state));
+                            $set('slug', \Illuminate\Support\Str::slug($state));
                         }
                     }),
 
@@ -63,13 +57,13 @@ class BlogPostResource extends Resource
 
                 Textarea::make('excerpt')
                     ->maxLength(500)
-                    ->helperText('Short summary shown on the blog listing page (max 500 characters).')
-                    ->rows(3),
+                    ->rows(3)
+                    ->helperText('Short summary (max 500 characters).'),
 
                 RichEditor::make('content')
                     ->required()
                     ->columnSpanFull()
-                    ->fileAttachmentsDirectory('blog-content-images'),
+                    ->fileAttachmentsDirectory('insight-content-images'),
             ]),
 
             Section::make('Media')->schema([
@@ -77,7 +71,7 @@ class BlogPostResource extends Resource
                     ->label('Featured Image')
                     ->image()
                     ->imagePreviewHeight('250')
-                    ->helperText('Optional — if left empty, a branded typographic cover will be shown automatically on the site.')
+                    ->helperText('Optional — a branded cover will be shown automatically if left empty.')
                     ->getUploadedFileUsing(fn (?string $file): ?array => static::existingCloudinaryImage($file))
                     ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
                         return app(CloudinaryService::class)->uploadImage($file->getRealPath(), 'blog-images');
@@ -85,31 +79,26 @@ class BlogPostResource extends Resource
 
                 TextInput::make('featured_image_alt')
                     ->label('Image Alt Text')
-                    ->helperText('Used for SEO & accessibility. Recommended if an image is uploaded.'),
+                    ->helperText('Used for SEO & accessibility.'),
+            ]),
+
+            Section::make('Category')->schema([
+                CheckboxList::make('categories')
+                    ->options([
+                        'blogs' => 'Blogs',
+                        'news'  => 'News',
+                    ])
+                    ->required()
+                    ->columns(2)
+                    ->helperText('Select one or both. Selecting both will display this item on both the Blogs and News pages.'),
             ]),
 
             Section::make('Organization')->schema([
-                Select::make('category')
-                    ->options(['Blogs' => 'Blogs'])
-                    ->default('Blogs')
-                    ->required()
-                    ->native(false),
-
                 TagsInput::make('tags')
                     ->helperText('Press enter after each tag.'),
 
-                // IMPORTANT: single-featured-post enforcement
                 Toggle::make('is_featured')
-                    ->label('Show as Featured Post')
-                    ->helperText('Only ONE post can be featured at a time. Enabling this will automatically un-feature any other currently featured post.')
-                    ->live()
-                    ->afterStateUpdated(function ($state, $record) {
-                        if ($state === true) {
-                            BlogPost::where('is_featured', true)
-                                ->when($record, fn ($query) => $query->where('id', '!=', $record->id))
-                                ->update(['is_featured' => false]);
-                        }
-                    }),
+                    ->helperText('Only one item per selected category can be featured at a time — enabling this will automatically un-feature the current featured item in each selected category.'),
             ]),
 
             Section::make('Author')->schema([
@@ -135,7 +124,7 @@ class BlogPostResource extends Resource
                     ->numeric()
                     ->minValue(1)
                     ->suffix('minutes')
-                    ->helperText('Auto-calculated during import; override manually if needed.'),
+                    ->helperText('Auto-calculated or override manually.'),
             ]),
 
             Section::make('SEO')->schema([
@@ -162,8 +151,9 @@ class BlogPostResource extends Resource
                     ->sortable()
                     ->limit(50),
 
-                TextColumn::make('category')
-                    ->badge(),
+                TextColumn::make('categories')
+                    ->badge()
+                    ->formatStateUsing(fn ($state) => collect($state)->map(fn($c) => ucfirst(str_replace('-', ' ', $c)))->join(', ')),
 
                 IconColumn::make('is_featured')
                     ->boolean()
@@ -177,11 +167,13 @@ class BlogPostResource extends Resource
                     ->suffix(' min read'),
             ])
             ->filters([
-                Tables\Filters\SelectFilter::make('category')
-                    ->options(['Blogs' => 'Blogs']),
-
-                Tables\Filters\TernaryFilter::make('is_featured')
-                    ->label('Featured Status'),
+                SelectFilter::make('categories')
+                    ->options(['blogs' => 'Blogs', 'news' => 'News'])
+                    ->query(function ($query, array $data) {
+                        if (!empty($data['value'])) {
+                            $query->whereJsonContains('categories', $data['value']);
+                        }
+                    }),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
@@ -204,9 +196,9 @@ class BlogPostResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListBlogPosts::route('/'),
-            'create' => Pages\CreateBlogPost::route('/create'),
-            'edit' => Pages\EditBlogPost::route('/{record}/edit'),
+            'index' => Pages\ListInsights::route('/'),
+            'create' => Pages\CreateInsight::route('/create'),
+            'edit' => Pages\EditInsight::route('/{record}/edit'),
         ];
     }
 }
