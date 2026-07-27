@@ -32,7 +32,9 @@
                 <h1 class="blog-detail-hero__title display-text">{{ $post->title }}</h1>
 
                 <div class="blog-detail-hero__meta">
-                    <img class="blog-detail-hero__author-avatar" src="{{ $post->author_avatar_url }}" alt="{{ $post->author_name }}" width="48" height="48">
+                    @if($post->author_avatar_url)
+                        <img class="blog-detail-hero__author-avatar" src="{{ $post->author_avatar_url }}" alt="{{ $post->author_name }}" width="48" height="48">
+                    @endif
                     <div class="blog-detail-hero__meta-text">
                         <span class="blog-detail-hero__author-name">By {{ $post->author_name }}</span>
                         <div class="blog-detail-hero__meta-sub">
@@ -89,7 +91,9 @@
 
                     <!-- AUTHOR CARD (Soft-morphic) -->
                     <section class="blog-author-card" aria-label="About the author">
+                    @if($post->author_avatar_url)
                         <img class="blog-author-card__avatar" src="{{ $post->author_avatar_url }}" alt="{{ $post->author_name }}" width="80" height="80" loading="lazy">
+                    @endif
                         <div class="blog-author-card__content">
                             <span class="blog-author-card__eyebrow">Written By</span>
                             <h3 class="blog-author-card__name">{{ $post->author_name }}</h3>
@@ -122,8 +126,7 @@
         </div>
     </section>
 
-    <!-- NEWSLETTER CTA STRIP -->
-    <x-blog.newsletter-cta />
+    @include('sections.final-cta')
 
 </article>
 @endsection

@@ -157,29 +157,6 @@
                 }
             );
         }
-
-        // Animate newsletter/cta section
-        const newsletter = document.querySelector(".blog-newsletter");
-        if (newsletter) {
-            gsap.fromTo(newsletter.querySelectorAll(".fade-up, .blog-newsletter__inner > *"),
-                {
-                    opacity: 0,
-                    y: 30
-                },
-                {
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.8,
-                    stagger: 0.15,
-                    ease: "power2.out",
-                    scrollTrigger: {
-                        trigger: newsletter,
-                        start: "top 80%",
-                        toggleActions: "play none none none"
-                    }
-                }
-            );
-        }
     }
 
 })();

@@ -29,7 +29,7 @@
         <div class="container">
             <nav class="blog-filter-bar" aria-label="Article categories and search">
                 <!-- Horizontally Scrollable Category Pills -->
-                <div class="blog-filter-bar__pills-container">
+                <!-- <div class="blog-filter-bar__pills-container">
                     <ul class="blog-filter-bar__pills" role="tablist">
                         @foreach($categories as $category)
                             <li role="none">
@@ -42,7 +42,7 @@
                             </li>
                         @endforeach
                     </ul>
-                </div>
+                </div> -->
 
                 <!-- Debounced Client/Server Search Input -->
                 <form action="{{ route('blogs.index') }}" method="GET" class="blog-filter-bar__search-form">
@@ -173,8 +173,7 @@
         </div>
     </div>
 
-    <!-- NEWSLETTER / CTA STRIP -->
-    <x-blog.newsletter-cta />
+    @include('sections.final-cta')
 </div>
 @endsection
 
