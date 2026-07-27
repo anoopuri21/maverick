@@ -19,14 +19,7 @@
     <section class="blog-detail-hero" id="blog-detail-hero">
         <x-blog.decoration-layer variant="hero" />
         <div class="blog-detail-hero__image-wrapper" id="blog-detail-hero-img-wrapper">
-            <picture>
-                <source srcset="{{ $post->featured_image_url }}&w=800 800w, {{ $post->featured_image_url }}&w=1600 1600w" sizes="100vw">
-                <img class="blog-detail-hero__image"
-                     id="blog-detail-hero-img"
-                     src="{{ $post->featured_image_url }}&w=1600"
-                     alt="{{ $post->title }}"
-                     fetchpriority="high">
-            </picture>
+            <x-blog.thumbnail :post="$post" aspect="21/9" imgId="blog-detail-hero-img" />
             <div class="blog-detail-hero__overlay"></div>
         </div>
 
@@ -83,7 +76,7 @@
                     </div>
 
                     <!-- Row of Tag Pills below article -->
-                    @if(count($post->tags) > 0)
+                    @if(!empty($post->tags))
                         <div class="blog-article-tags">
                             <span class="blog-article-tags__label">Filed under:</span>
                             <div class="blog-article-tags__list">

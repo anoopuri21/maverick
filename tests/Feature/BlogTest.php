@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\BlogPost;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -18,6 +19,29 @@ class BlogTest extends TestCase
         // Since the layout/views look for SiteSettings and other models,
         // we seed the database to avoid SQLITE "no such table/settings" issues.
         $this->artisan('db:seed');
+
+        BlogPost::factory()->create([
+            'title' => 'Unlocking Global Leadership: The Future of the Executive MBA',
+            'slug' => 'unlocking-global-leadership-future-executive-mba',
+            'content' => '<h2>The Shift in Global Executive Leadership</h2><p>Body copy.</p>',
+            'category' => 'MBA Insights',
+            'author_name' => 'Dr. Elizabeth Vance',
+            'published_at' => now()->subDays(2),
+        ]);
+
+        BlogPost::factory()->create([
+            'title' => 'Negotiation Masterclass: Strategies for High-Stakes Deals',
+            'slug' => 'negotiation-masterclass-strategies-high-stakes-deals',
+            'category' => 'Leadership',
+            'published_at' => now()->subDays(1),
+        ]);
+
+        BlogPost::factory()->create([
+            'title' => 'Demystifying Venture Capital: How Startups Raise Capital',
+            'slug' => 'demystifying-venture-capital-how-startups-raise-capital',
+            'category' => 'Industry Trends',
+            'published_at' => now(),
+        ]);
     }
 
     /**
@@ -28,7 +52,7 @@ class BlogTest extends TestCase
         $response = $this->get('/blogs');
 
         $response->assertStatus(200);
-        $response->assertSee('Latest Articles & Insights', false);
+        $response->assertSee('Latest Articles &amp; Insights', false);
         $response->assertSee('Unlocking Global Leadership');
         $response->assertSee('MBA Insights');
     }
@@ -56,11 +80,11 @@ class BlogTest extends TestCase
     }
 
     /**
-     * Test the blog detail page rendering.
+     * Test the blog detail page rendering at the new root-level permalink.
      */
     public function test_blog_detail_page(): void
     {
-        $response = $this->get('/blogs/unlocking-global-leadership-future-executive-mba');
+        $response = $this->get('/unlocking-global-leadership-future-executive-mba');
 
         $response->assertStatus(200);
         $response->assertSee('Unlocking Global Leadership: The Future of the Executive MBA');
@@ -75,8 +99,20 @@ class BlogTest extends TestCase
      */
     public function test_blog_detail_not_found(): void
     {
-        $response = $this->get('/blogs/invalid-article-slug-xyz');
+        $response = $this->get('/invalid-article-slug-xyz');
 
         $response->assertStatus(404);
+    }
+
+    /**
+     * Test that a post with no featured image renders the branded
+     * typographic cover fallback instead of a broken image.
+     */
+    public function test_blog_falls_back_to_branded_cover_when_no_image(): void
+    {
+        $response = $this->get('/blogs');
+
+        $response->assertStatus(200);
+        $response->assertSee('blog-thumb--fallback', false);
     }
 }

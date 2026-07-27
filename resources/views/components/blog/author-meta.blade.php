@@ -1,12 +1,14 @@
 @props(['post'])
 
 <div class="author-meta">
+@if($post->author_avatar_url)    
     <img class="author-meta__avatar"
          src="{{ $post->author_avatar_url }}"
          alt="{{ $post->author_name }}"
          width="40"
          height="40"
-         loading="lazy">
+         loading="lazy" />
+@endif
     <div class="author-meta__info">
         <span class="author-meta__name">{{ $post->author_name }}</span>
         <div class="author-meta__sub">

@@ -1,0 +1,190 @@
+# ------------------------------------------
+# 1. CLOUDINARY IMAGE PRESERVATION
+# ------------------------------------------
+# When creating ANY Filament Resource or Settings page with image fields:
+#
+# A) Resource files MUST use HandlesCloudinaryImageFields trait:
+#    - In Resource file: getUploadedFileUsing + saveUploadedFileUsing
+#    - In Edit page: mutateFormDataBeforeSave with preserveExistingImageFields
+#
+# B) Settings pages MUST use HandlesCloudinaryImageFields trait:
+#    - beforeSave() must call preserveExistingImageFields()
+#
+# ❌ NEVER save image field without preservation logic
+# ✅ ALWAYS use the trait from app/Filament/Concerns/HandlesCloudinaryImageFields.php
+#
+# Example Edit page pattern:
+#   protected function mutateFormDataBeforeSave(array $data): array
+#   {
+#       return $this->preserveExistingImageFields($data, $this->record);
+#   }
+
+
+# ------------------------------------------
+# 2. MIGRATION BEFORE ADMIN ACCESS
+# ------------------------------------------
+# ❌ NEVER create Filament Resource without running migration first
+# ✅ ALWAYS run `php artisan migrate` after creating migration files
+# ✅ ALWAYS verify table exists before testing admin pages
+#
+# Workflow:
+#   Step 1: Create migration
+#   Step 2: Run php artisan migrate
+#   Step 3: Verify with migrate:status
+#   Step 4: Then create/test Filament Resource
+
+# ------------------------------------------
+# 3. UNUSED IMPORTS CLEANUP
+# ------------------------------------------
+# ❌ NEVER leave duplicate/redundant imports in PHP files
+# ✅ When using Forms\Components\TextInput, don't also import TextInput separately
+# ✅ When using Tables\Columns\TextColumn, don't also import TextColumn separately
+#
+# Use EITHER:
+#   - Full namespace: Forms\Components\TextInput::make()
+#   - OR direct import: use TextInput; then TextInput::make()
+# NOT BOTH in same file.
+
+# ------------------------------------------
+# 4. NO DUPLICATE SECTIONS ACROSS PAGES
+# ------------------------------------------
+# Before creating a NEW section for any page, CHECK if same section
+# already exists on another page (especially home page).
+#
+# Sections that are SHARED across pages:
+#   - Accreditations
+#   - CEO Message
+#   - Faculty Insights
+#   - Testimonials
+#   - Final CTA
+#   - Partner Logos
+#
+# ❌ NEVER create duplicate model/migration/resource for shared sections
+# ✅ ALWAYS extract shared sections into resources/views/partials/
+# ✅ ALWAYS use @include('partials.section-name') in both pages
+#
+# Before building any section, ASK:
+#   "Does this section already exist on home page or another page?"
+
+# ------------------------------------------
+# 5. When executing tasks:
+# ------------------------------------------
+# ✅ Execute ALL steps in single response
+# ✅ Show only file paths + final code
+# ✅ No analysis/explanation unless asked
+# ✅ Reference existing patterns instead of rewriting them
+# ✅ Skip lengthy comments in code
+# ✅ Use short commit-style responses
+# ❌ Don't ask for confirmation between steps
+# ❌ Don't re-read files already known
+# ❌ Don't explain what you're about to do
+
+# ------------------------------------------
+# 6. SHARED PARTIALS - USE VIEW COMPOSERS
+# ------------------------------------------
+# If a partial is used across multiple pages:
+#
+# ❌ NEVER pass data manually from every page:
+# @include('sections.xyz', ['data' => $data])
+#
+# ✅ USE View Composer in AppServiceProvider:
+# View::composer('sections.xyz', function ($view) {
+# $view->with('data', $data);
+# });
+#
+# BENEFITS:
+# - Single source of truth
+# - Change once, updates everywhere
+# - No duplicate data across pages
+# - Easy admin conversion (one place to change)
+#
+# APPLY TO: featured-programs, testimonials,
+# accreditations, ceo-message, final-cta,
+# faculty-insights, and other shared sections
+
+# ------------------------------------------
+# 7. FILE EDITING RULES
+# ------------------------------------------
+# ❌ NEVER use terminal editors (nano, vim) on server
+# ✅ ALWAYS edit via Local Editor or cPanel File Manager
+# ✅ ALWAYS provide copy-paste ready code
+# ✅ ALWAYS make minimal/surgical changes — don't rewrite entire files
+
+
+# ------------------------------------------
+# 8. SOFT DELETES IN RESOURCES
+# ------------------------------------------
+# When model uses SoftDeletes:
+# ✅ ALWAYS add TrashedFilter in table filters
+# ✅ ALWAYS add ForceDeleteBulkAction + RestoreBulkAction
+# ✅ ALWAYS override getEloquentQuery to remove SoftDeletingScope
+#
+# Pattern:
+#   public static function getEloquentQuery(): Builder
+#   {
+#       return parent::getEloquentQuery()
+#           ->withoutGlobalScopes([SoftDeletingScope::class]);
+#   }
+
+
+# ------------------------------------------
+# 9. SETTINGS PAGES REGISTRATION
+# ------------------------------------------
+# After creating any new Spatie Settings class:
+# ✅ ALWAYS register in config/settings.php
+# ✅ ALWAYS create and run the settings migration
+# ✅ ALWAYS verify with php artisan migrate before testing
+
+
+# ------------------------------------------
+# 10. DEPLOYMENT CHECKLIST
+# ------------------------------------------
+# Before deploying to production (demo.vsinfosys.in):
+# ✅ Run migrations on server
+# ✅ Clear all caches: config, view, route, cache
+# ✅ Verify APP_DEBUG=false in production .env
+# ✅ Test admin login after deployment
+# ✅ Verify Cloudinary images load correctly
+
+
+# ------------------------------------------
+# 11. SHARED PARTIALS - USE VIEW COMPOSERS
+# ------------------------------------------
+# If a partial is used across multiple pages:
+# 
+# ❌ NEVER pass data manually from every page:
+#    @include('sections.xyz', ['data' => $data])
+# 
+# ✅ USE View Composer in AppServiceProvider:
+#    View::composer('sections.xyz', function ($view) {
+#        $view->with('data', $data);
+#    });
+#
+# BENEFITS:
+# - Single source of truth
+# - Change once, updates everywhere  
+# - No duplicate data across pages
+# - Easy admin conversion (one place to change)
+#
+# APPLY TO: featured-programs, testimonials, 
+# accreditations, ceo-message, final-cta, 
+# faculty-insights, and other shared sections
+
+
+# ------------------------------------------
+# 12. SHELL SCRIPTS - LINE ENDINGS
+# ------------------------------------------
+# .sh files MUST use LF (Unix) line endings, NOT CRLF (Windows)
+#
+# When creating shell scripts:
+# ✅ Use LF line endings
+# ✅ Add to .gitattributes: *.sh text eol=lf
+# ✅ VS Code: Set EOL to LF for .sh files
+#
+# If already broken on server, fix with:
+# sed -i 's/\r$//' filename.sh
+
+
+# ============================================
+# END OF RULES — FOLLOW STRICTLY
+# ============================================

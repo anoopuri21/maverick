@@ -2,15 +2,7 @@
 
 <article class="blog-card fade-up">
     <div class="blog-card__image-wrapper">
-        <picture>
-            <source srcset="{{ $post->featured_image_url }}&w=400 400w, {{ $post->featured_image_url }}&w=800 800w" sizes="(max-width: 768px) 100vw, 400px">
-            <img class="blog-card__image"
-                 src="{{ $post->featured_image_url }}&w=600"
-                 alt="{{ $post->title }}"
-                 width="400"
-                 height="250"
-                 loading="lazy">
-        </picture>
+        <x-blog.thumbnail :post="$post" aspect="16/10" />
         <span class="blog-card__badge">
             <x-blog.category-pill :category="$post->category" />
         </span>

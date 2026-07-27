@@ -25,4 +25,7 @@ Route::get('/media-gallery', [PageController::class, 'gallery'])->name('gallery'
 
 // Blogs
 Route::get('/blogs', [\App\Http\Controllers\BlogController::class, 'index'])->name('blogs.index');
-Route::get('/blogs/{slug}', [\App\Http\Controllers\BlogController::class, 'show'])->name('blogs.show');
+
+// Blog Detail (WordPress-style root-level permalink)
+// Registered LAST so every other named route above is matched first.
+Route::get('/{blogPost:slug}', [\App\Http\Controllers\BlogController::class, 'show'])->name('blogs.show');
