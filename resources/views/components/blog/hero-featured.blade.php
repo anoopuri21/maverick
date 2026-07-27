@@ -1,16 +1,8 @@
 @props(['post'])
 
-<article class="blog-hero-featured fade-in">
+<article class="blog-hero-featured">
     <div class="blog-hero-featured__image-wrapper">
-        <picture>
-            <source srcset="{{ $post->featured_image_url }}&w=800 800w, {{ $post->featured_image_url }}&w=1400 1400w" sizes="(max-width: 1024px) 100vw, 800px">
-            <img class="blog-hero-featured__image"
-                 src="{{ $post->featured_image_url }}&w=1200"
-                 alt="{{ $post->title }}"
-                 width="800"
-                 height="480"
-                 fetchpriority="high">
-        </picture>
+        <x-blog.thumbnail :post="$post" aspect="16/9" />
     </div>
     <div class="blog-hero-featured__content">
         <div class="blog-hero-featured__tag">

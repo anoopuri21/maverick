@@ -11,8 +11,10 @@
   /* Lightweight Soft Morphism Card Shadow Scale */
   --shadow-tight: 0 2px 8px rgba(7, 20, 68, 0.04);
   --shadow-soft: 0 12px 32px rgba(7, 20, 68, 0.06);
-  --shadow-stacked: 0 3px 6px rgba(7, 20, 68, 0.03), 0 16px 40px rgba(7, 20, 68, 0.05);
-  --shadow-stacked-hover: 0 8px 16px rgba(7, 20, 68, 0.06), 0 24px 64px rgba(7, 20, 68, 0.08);
+  --shadow-stacked:
+    0 3px 6px rgba(7, 20, 68, 0.03), 0 16px 40px rgba(7, 20, 68, 0.05);
+  --shadow-stacked-hover:
+    0 8px 16px rgba(7, 20, 68, 0.06), 0 24px 64px rgba(7, 20, 68, 0.08);
 
   /* Color Variations */
   --color-blog-bg-light: #ffffff;
@@ -35,14 +37,20 @@
   z-index: 0;
   pointer-events: none;
   overflow: hidden;
+  top: 80px;
+}
+
+.blog-hero .blog-decor {
+  background-image: radial-gradient(rgba(255, 255, 255) 1px, #ffdddd 1px);
+  background-size: 18px 18px;
 }
 
 /* Base style for CSS blobs */
 .blog-decor__blob {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.10;
+  filter: blur(40px);
+  opacity: 0.1;
   background: var(--color-accent-light);
   will-change: transform;
   animation: blogBlobFloat 14s ease-in-out infinite;
@@ -55,9 +63,16 @@
 }
 
 @keyframes blogBlobFloat {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33%      { transform: translate(30px, -20px) scale(1.08); }
-  66%      { transform: translate(-20px, 25px) scale(0.95); }
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -20px) scale(1.08);
+  }
+  66% {
+    transform: translate(-20px, 25px) scale(0.95);
+  }
 }
 
 /* Floating outline SVG Icons */
@@ -72,8 +87,13 @@
 }
 
 @keyframes blogIconFloat {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50%      { transform: translateY(-14px) rotate(6deg); }
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(6deg);
+  }
 }
 
 /* Specific position & size variations for blobs & icons */
@@ -126,15 +146,16 @@
   );
   background-size: 24px 24px;
   mask-image: radial-gradient(circle at center, black 40%, transparent 90%);
-  -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 90%);
+  -webkit-mask-image: radial-gradient(
+    circle at center,
+    black 40%,
+    transparent 90%
+  );
 }
 
 /* Detect and match automatically if light background is used instead */
 .blog-newsletter .blog-decor__dots {
-  background-image: radial-gradient(
-    rgba(7, 20, 68, 0.05) 1px,
-    transparent 1px
-  );
+  background-image: radial-gradient(rgba(7, 20, 68, 0.05) 1px, transparent 1px);
 }
 
 .blog-decor__blob--cta-1 {
@@ -205,7 +226,11 @@
 .blog-hero {
   position: relative;
   overflow: hidden;
-  background: radial-gradient(circle at 10% 20%, rgba(7, 20, 68, 0.02) 0%, rgba(245, 240, 235, 0.5) 100%);
+  background: radial-gradient(
+    circle at 10% 20%,
+    rgba(7, 20, 68, 0.02) 0%,
+    rgba(245, 240, 235, 0.5) 100%
+  );
   padding: calc(var(--navbar-height) + 40px) 0 40px;
   text-align: center;
   border-bottom: 1px solid var(--color-blog-border-light);
@@ -378,7 +403,9 @@
   overflow: hidden;
   box-shadow: var(--shadow-stacked);
   border: 1px solid var(--color-blog-border-light);
-  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+  transition:
+    transform var(--transition-normal),
+    box-shadow var(--transition-normal);
 }
 
 .blog-hero-featured:hover {
@@ -502,7 +529,9 @@
   overflow: hidden;
   box-shadow: var(--shadow-stacked);
   border: 1px solid var(--color-blog-border-light);
-  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+  transition:
+    transform var(--transition-normal),
+    box-shadow var(--transition-normal);
 }
 
 .blog-card:hover {
@@ -764,13 +793,13 @@
 }
 
 /* =========================================================
-   PAGE 2: BLOG DETAIL (/blogs/{slug})
+   PAGE 2: BLOG DETAIL (/{slug})
    ========================================================= */
 
 /* Fixed Top Reading Progress Indicator */
 .blog-progress-bar {
   position: fixed;
-  top: var(--navbar-height);
+  top: 0;
   left: 0;
   width: 100%;
   height: 3px;
@@ -817,7 +846,12 @@
 .blog-detail-hero__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(7, 20, 68, 0.95) 0%, rgba(7, 20, 68, 0.4) 50%, transparent 100%);
+  background: linear-gradient(
+    to top,
+    rgba(7, 20, 68, 0.95) 0%,
+    rgba(7, 20, 68, 0.4) 50%,
+    transparent 100%
+  );
   z-index: 2;
 }
 
@@ -1525,4 +1559,88 @@
   .blog-author-card {
     padding: 20px;
   }
+}
+
+/* =========================================================
+   BRANDED TYPOGRAPHIC COVER (fallback for posts with no image)
+   ========================================================= */
+
+.blog-thumb {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.blog-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.blog-thumb--fallback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.blog-thumb--fallback.variant-1 {
+  background: linear-gradient(135deg, var(--color-mba-dark-blue) 0%, #1c2f4a 100%);
+}
+.blog-thumb--fallback.variant-2 {
+  background: linear-gradient(135deg, var(--color-mba-dark-blue) 0%, #2a3f5f 60%, var(--color-accent) 140%);
+}
+.blog-thumb--fallback.variant-3 {
+  background: linear-gradient(160deg, #16233a 0%, var(--color-mba-dark-blue) 100%);
+}
+.blog-thumb--fallback.variant-4 {
+  background: linear-gradient(200deg, var(--color-mba-dark-blue) 0%, #223350 50%, #16233a 100%);
+}
+
+.blog-thumb__initial {
+  font-family: var(--font-display);
+  font-size: 56px;
+  font-weight: var(--fw-bold);
+  color: rgba(255, 255, 255, 0.12);
+  line-height: 1;
+  text-align: center;
+}
+
+.blog-thumb__category {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.blog-thumb__pattern {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 18px 18px;
+  mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
+  -webkit-mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
+}
+
+/* Fill the pre-existing structural wrappers exactly (card, featured hero,
+   detail hero) instead of relying on the component's own aspect-ratio,
+   so hover zoom, grid layout and the JS parallax hook keep working. */
+.blog-card__image-wrapper .blog-thumb,
+.blog-hero-featured__image-wrapper .blog-thumb,
+.blog-detail-hero__image-wrapper .blog-thumb {
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+}
+
+.blog-card:hover .blog-thumb img {
+  transform: scale(1.04);
+}
+
+.blog-hero-featured:hover .blog-thumb img {
+  transform: scale(1.03);
 }

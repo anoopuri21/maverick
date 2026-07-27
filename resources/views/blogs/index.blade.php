@@ -15,8 +15,8 @@
         <x-blog.decoration-layer variant="hero" />
         <div class="container">
             <div class="blog-hero__inner">
-                <span class="blog-hero__eyebrow caption-text accent-text">Insights</span>
-                <h1 class="blog-hero__title display-text gradient-text">Latest Articles & Insights</h1>
+                <span class="blog-hero__eyebrow caption-text accent-text">Blogs</span>
+                <h1 class="blog-hero__title display-text">Latest Articles & Insights</h1>
                 <p class="blog-hero__subtitle section-subtitle">
                     Cutting-edge academic research, practical leadership strategy, and student success narratives curated specifically for future global business leaders.
                 </p>
