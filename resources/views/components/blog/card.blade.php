@@ -1,0 +1,35 @@
+@props(['post'])
+
+<article class="blog-card fade-up">
+    <div class="blog-card__image-wrapper">
+        <picture>
+            <source srcset="{{ $post->featured_image_url }}&w=400 400w, {{ $post->featured_image_url }}&w=800 800w" sizes="(max-width: 768px) 100vw, 400px">
+            <img class="blog-card__image"
+                 src="{{ $post->featured_image_url }}&w=600"
+                 alt="{{ $post->title }}"
+                 width="400"
+                 height="250"
+                 loading="lazy">
+        </picture>
+        <span class="blog-card__badge">
+            <x-blog.category-pill :category="$post->category" />
+        </span>
+    </div>
+    <div class="blog-card__content">
+        <h3 class="blog-card__title">
+            <a href="{{ route('blogs.show', $post->slug) }}" class="blog-card__title-link">
+                {{ $post->title }}
+            </a>
+        </h3>
+        <p class="blog-card__excerpt">{{ $post->excerpt }}</p>
+
+        <x-blog.author-meta :post="$post" />
+
+        <div class="blog-card__footer">
+            <a href="{{ route('blogs.show', $post->slug) }}" class="blog-card__cta">
+                Read Article
+                <span class="blog-card__cta-arrow">→</span>
+            </a>
+        </div>
+    </div>
+</article>

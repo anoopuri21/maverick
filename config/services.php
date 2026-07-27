@@ -40,4 +40,8 @@ return [
         'api_secret' => env('CLOUDINARY_API_SECRET'),
         'upload_folder' => env('CLOUDINARY_UPLOAD_FOLDER', 'maverick-academy'),
     ],
+
+    'zapier' => [
+        'contact_webhook_url' => env('ZAPIER_CONTACT_WEBHOOK_URL'),
+    ],
 ];

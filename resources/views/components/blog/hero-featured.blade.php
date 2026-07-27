@@ -1,0 +1,35 @@
+@props(['post'])
+
+<article class="blog-hero-featured fade-in">
+    <div class="blog-hero-featured__image-wrapper">
+        <picture>
+            <source srcset="{{ $post->featured_image_url }}&w=800 800w, {{ $post->featured_image_url }}&w=1400 1400w" sizes="(max-width: 1024px) 100vw, 800px">
+            <img class="blog-hero-featured__image"
+                 src="{{ $post->featured_image_url }}&w=1200"
+                 alt="{{ $post->title }}"
+                 width="800"
+                 height="480"
+                 fetchpriority="high">
+        </picture>
+    </div>
+    <div class="blog-hero-featured__content">
+        <div class="blog-hero-featured__tag">
+            <span class="blog-tag-eyebrow">Featured Article</span>
+            <x-blog.category-pill :category="$post->category" />
+        </div>
+
+        <h2 class="blog-hero-featured__title">
+            <a href="{{ route('blogs.show', $post->slug) }}">{{ $post->title }}</a>
+        </h2>
+
+        <p class="blog-hero-featured__excerpt">{{ $post->excerpt }}</p>
+
+        <x-blog.author-meta :post="$post" />
+
+        <div class="blog-hero-featured__footer">
+            <a href="{{ route('blogs.show', $post->slug) }}" class="btn btn--primary blog-hero-featured__btn">
+                Read Article
+            </a>
+        </div>
+    </div>
+</article>
