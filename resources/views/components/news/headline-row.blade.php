@@ -6,12 +6,14 @@
     </div>
     <div class="news-row__content">
         <div class="news-row__header">
-            <span class="news-row__date">
-                {{ \Carbon\Carbon::parse($post->published_at)->format('d M Y') }}
-            </span>
-            <span class="news-ticker__divider" aria-hidden="true">|</span>
+            @if($post->published_at)
+                <span class="news-row__date">
+                    {{ \Carbon\Carbon::parse($post->published_at)->format('d M Y') }}
+                </span>
+                <span class="news-ticker__divider" aria-hidden="true">|</span>
+            @endif
             <span class="news-row__author" style="font-size: var(--font-size-xs); color: var(--color-text-muted);">
-                {{ $post->author_name }}
+                {{ $post->author_name ?? 'Maverick Business Academy' }}
             </span>
         </div>
         <h3 class="news-row__title">
@@ -19,6 +21,8 @@
                 {{ $post->title }}
             </a>
         </h3>
-        <p class="news-row__excerpt">{{ $post->excerpt }}</p>
+        @if(!empty($post->excerpt))
+            <p class="news-row__excerpt">{{ $post->excerpt }}</p>
+        @endif
     </div>
 </div>

@@ -22,26 +22,29 @@ class InsightController extends Controller
         // Default: blog-style detail view (covers items tagged
         // only "blogs", or any other/future category without a
         // dedicated detail template yet)
-        preg_match_all('/<h([2-3])>(.*?)<\/h[2-3]>/', $slug->content, $matches, PREG_SET_ORDER);
         $headings = [];
-        foreach ($matches as $match) {
-            $level = (int) $match[1];
-            $text = strip_tags($match[2]);
-            $anchor = strtolower(preg_replace('/[^a-z0-9\-]+/i', '-', $text));
-            $headings[] = (object) [
-                'level' => $level,
-                'text' => $text,
-                'anchor' => $anchor,
-            ];
-        }
+        $contentWithAnchors = $slug->content ?? '';
 
-        // Inject matching IDs into the H2/H3 tags so the table of contents can anchor to them.
-        $contentWithAnchors = $slug->content;
-        foreach ($headings as $heading) {
-            $tag = 'h' . $heading->level;
-            $pattern = '/<' . $tag . '>(.*?' . preg_quote($heading->text, '/') . '.*?)<\/' . $tag . '>/';
-            $replacement = '<' . $tag . ' id="' . $heading->anchor . '">$1</' . $tag . '>';
-            $contentWithAnchors = preg_replace($pattern, $replacement, $contentWithAnchors, 1);
+        if (is_string($contentWithAnchors) && $contentWithAnchors !== '') {
+            preg_match_all('/<h([2-3])>(.*?)<\/h[2-3]>/', $contentWithAnchors, $matches, PREG_SET_ORDER);
+            foreach ($matches as $match) {
+                $level = (int) $match[1];
+                $text = strip_tags($match[2]);
+                $anchor = strtolower(preg_replace('/[^a-z0-9\-]+/i', '-', $text));
+                $headings[] = (object) [
+                    'level' => $level,
+                    'text' => $text,
+                    'anchor' => $anchor,
+                ];
+            }
+
+            // Inject matching IDs into the H2/H3 tags so the table of contents can anchor to them.
+            foreach ($headings as $heading) {
+                $tag = 'h' . $heading->level;
+                $pattern = '/<' . $tag . '>(.*?' . preg_quote($heading->text, '/') . '.*?)<\/' . $tag . '>/';
+                $replacement = '<' . $tag . ' id="' . $heading->anchor . '">$1</' . $tag . '>';
+                $contentWithAnchors = preg_replace($pattern, $replacement, $contentWithAnchors, 1);
+            }
         }
         $slug->content = $contentWithAnchors;
 

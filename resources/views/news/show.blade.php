@@ -26,15 +26,17 @@
                 <h1 class="news-detail-header__title">{{ $article->title }}</h1>
 
                 <div class="news-detail-header__byline">
-                    <span>By {{ $article->author_name }}</span>
+                    <span>By {{ $article->author_name ?? 'Maverick Business Academy' }}</span>
+                    @if($article->published_at)
+                        <span class="news-detail-header__byline-divider">|</span>
+                        <time datetime="{{ $article->published_at }}">
+                            {{ \Carbon\Carbon::parse($article->published_at)->format('F d, Y') }}
+                        </time>
+                    @endif
                     <span class="news-detail-header__byline-divider">|</span>
-                    <time datetime="{{ $article->published_at }}">
-                        {{ \Carbon\Carbon::parse($article->published_at)->format('F d, Y') }}
-                    </time>
-                    <span class="news-detail-header__byline-divider">|</span>
-                    <span>{{ $article->reading_time_minutes }} min read</span>
+                    <span>{{ $article->reading_time_minutes ?? 1 }} min read</span>
 
-                    @if($article->author_bio)
+                    @if(!empty($article->author_bio))
                         <span class="news-detail-header__byline-divider">|</span>
                         <span style="font-style: italic;">{{ $article->author_bio }}</span>
                     @endif

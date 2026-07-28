@@ -14,13 +14,17 @@
                     {{ $post->title }}
                 </a>
             </h2>
-            <p class="news-featured__excerpt">{{ $post->excerpt }}</p>
+            @if(!empty($post->excerpt))
+                <p class="news-featured__excerpt">{{ $post->excerpt }}</p>
+            @endif
             <div class="news-featured__meta">
-                <span>By {{ $post->author_name }}</span>
-                <span class="news-ticker__divider" aria-hidden="true">|</span>
-                <time datetime="{{ $post->published_at }}">
-                    {{ \Carbon\Carbon::parse($post->published_at)->format('F d, Y') }}
-                </time>
+                <span>By {{ $post->author_name ?? 'Maverick Business Academy' }}</span>
+                @if($post->published_at)
+                    <span class="news-ticker__divider" aria-hidden="true">|</span>
+                    <time datetime="{{ $post->published_at }}">
+                        {{ \Carbon\Carbon::parse($post->published_at)->format('F d, Y') }}
+                    </time>
+                @endif
             </div>
         </div>
     </div>

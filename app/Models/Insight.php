@@ -70,10 +70,16 @@ class Insight extends Model
         static::saving(function (Insight $insight) {
             if ($insight->is_featured) {
                 foreach (($insight->categories ?? []) as $cat) {
-                    static::where('is_featured', true)
-                        ->whereJsonContains('categories', $cat)
-                        ->where('id', '!=', $insight->id ?? 0)
-                        ->update(['is_featured' => false]);
+                    $query = static::where('is_featured', true)
+                        ->where('id', '!=', $insight->id ?? 0);
+
+                    if (config('database.default') === 'sqlite') {
+                        $query->where('categories', 'like', '%"' . $cat . '"%');
+                    } else {
+                        $query->whereJsonContains('categories', $cat);
+                    }
+
+                    $query->update(['is_featured' => false]);
                 }
             }
         });
