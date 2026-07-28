@@ -193,6 +193,11 @@ class PageController extends Controller
         return view('pages.our-story', $data);
     }
 
+    public function dualMba()
+    {
+        return view('pages.dual-mba');
+    }
+
     public function aboutUs()
     {
         return view('pages.about-us');
