@@ -21,6 +21,6 @@
     <div class="blog-thumb blog-thumb--fallback {{ $variant }}" style="aspect-ratio: '16/9'">
         <span class="blog-thumb__pattern" aria-hidden="true"></span>
         <span class="blog-thumb__initial" aria-hidden="true">{{ $initial }}</span>
-        <!-- <span class="blog-thumb__category">{{ $post->category }}</span> -->
+        {{-- <span class="blog-thumb__category">Blog</span> --}}
     </div>
 @endif
