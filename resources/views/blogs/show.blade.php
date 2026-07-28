@@ -26,23 +26,25 @@
         <div class="container">
             <div class="blog-detail-hero__content">
                 <div class="blog-detail-hero__tags">
-                    <x-blog.category-pill :category="$post->category" />
+                    <x-blog.category-pill :category="'Blog'" />
                 </div>
 
                 <h1 class="blog-detail-hero__title display-text">{{ $post->title }}</h1>
 
                 <div class="blog-detail-hero__meta">
-                    @if($post->author_avatar_url)
-                        <img class="blog-detail-hero__author-avatar" src="{{ $post->author_avatar_url }}" alt="{{ $post->author_name }}" width="48" height="48">
+                    @if(!empty($post->author_avatar_url))
+                        <img class="blog-detail-hero__author-avatar" src="{{ $post->author_avatar_url }}" alt="{{ $post->author_name ?? 'Maverick Business Academy' }}" width="48" height="48">
                     @endif
                     <div class="blog-detail-hero__meta-text">
-                        <span class="blog-detail-hero__author-name">By {{ $post->author_name }}</span>
+                        <span class="blog-detail-hero__author-name">By {{ $post->author_name ?? 'Maverick Business Academy' }}</span>
                         <div class="blog-detail-hero__meta-sub">
-                            <time datetime="{{ $post->published_at }}">
-                                {{ \Carbon\Carbon::parse($post->published_at)->format('F d, Y') }}
-                            </time>
-                            <span class="blog-detail-hero__meta-divider">•</span>
-                            <span>{{ $post->reading_time_minutes }} min read</span>
+                            @if($post->published_at)
+                                <time datetime="{{ $post->published_at }}">
+                                    {{ \Carbon\Carbon::parse($post->published_at)->format('F d, Y') }}
+                                </time>
+                                <span class="blog-detail-hero__meta-divider">•</span>
+                            @endif
+                            <span>{{ $post->reading_time_minutes ?? 1 }} min read</span>
                         </div>
                     </div>
                 </div>
@@ -89,15 +91,17 @@
                         </div>
                     @endif
 
-                    <!-- AUTHOR CARD (Soft-morphic) -->
+                    <!-- AUTHOR CARD (Post-morphic) -->
                     <section class="blog-author-card" aria-label="About the author">
-                    @if($post->author_avatar_url)
-                        <img class="blog-author-card__avatar" src="{{ $post->author_avatar_url }}" alt="{{ $post->author_name }}" width="80" height="80" loading="lazy">
+                    @if(!empty($post->author_avatar_url))
+                        <img class="blog-author-card__avatar" src="{{ $post->author_avatar_url }}" alt="{{ $post->author_name ?? 'Maverick Business Academy' }}" width="80" height="80" loading="lazy">
                     @endif
                         <div class="blog-author-card__content">
                             <span class="blog-author-card__eyebrow">Written By</span>
-                            <h3 class="blog-author-card__name">{{ $post->author_name }}</h3>
-                            <p class="blog-author-card__bio">{{ $post->author_bio }}</p>
+                            <h3 class="blog-author-card__name">{{ $post->author_name ?? 'Maverick Business Academy' }}</h3>
+                            @if(!empty($post->author_bio))
+                                <p class="blog-author-card__bio">{{ $post->author_bio }}</p>
+                            @endif
                         </div>
                     </section>
 

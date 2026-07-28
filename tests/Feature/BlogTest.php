@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Models\BlogPost;
+use App\Models\Insight;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -20,26 +20,26 @@ class BlogTest extends TestCase
         // we seed the database to avoid SQLITE "no such table/settings" issues.
         $this->artisan('db:seed');
 
-        BlogPost::factory()->create([
+        Insight::factory()->create([
             'title' => 'Unlocking Global Leadership: The Future of the Executive MBA',
             'slug' => 'unlocking-global-leadership-future-executive-mba',
             'content' => '<h2>The Shift in Global Executive Leadership</h2><p>Body copy.</p>',
-            'category' => 'MBA Insights',
+            'categories' => ['blogs'],
             'author_name' => 'Dr. Elizabeth Vance',
             'published_at' => now()->subDays(2),
         ]);
 
-        BlogPost::factory()->create([
+        Insight::factory()->create([
             'title' => 'Negotiation Masterclass: Strategies for High-Stakes Deals',
             'slug' => 'negotiation-masterclass-strategies-high-stakes-deals',
-            'category' => 'Leadership',
+            'categories' => ['blogs'],
             'published_at' => now()->subDays(1),
         ]);
 
-        BlogPost::factory()->create([
+        Insight::factory()->create([
             'title' => 'Demystifying Venture Capital: How Startups Raise Capital',
             'slug' => 'demystifying-venture-capital-how-startups-raise-capital',
-            'category' => 'Industry Trends',
+            'categories' => ['blogs'],
             'published_at' => now(),
         ]);
     }
@@ -54,7 +54,6 @@ class BlogTest extends TestCase
         $response->assertStatus(200);
         $response->assertSee('Latest Articles &amp; Insights', false);
         $response->assertSee('Unlocking Global Leadership');
-        $response->assertSee('MBA Insights');
     }
 
     /**
@@ -66,17 +65,6 @@ class BlogTest extends TestCase
 
         $response->assertStatus(200);
         $response->assertSee('Demystifying Venture Capital');
-    }
-
-    /**
-     * Test that filtering by category works.
-     */
-    public function test_blog_category_filter(): void
-    {
-        $response = $this->get('/blogs?category=Leadership');
-
-        $response->assertStatus(200);
-        $response->assertSee('Negotiation Masterclass');
     }
 
     /**

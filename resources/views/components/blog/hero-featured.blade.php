@@ -7,11 +7,11 @@
     <div class="blog-hero-featured__content">
         <div class="blog-hero-featured__tag">
             <span class="blog-tag-eyebrow">Featured Article</span>
-            <x-blog.category-pill :category="$post->category" />
+            <x-blog.category-pill :category="'Blog'" />
         </div>
 
         <h2 class="blog-hero-featured__title">
-            <a href="{{ route('blogs.show', $post->slug) }}">{{ $post->title }}</a>
+            <a href="{{ route('insights.show', $post->slug) }}">{{ $post->title }}</a>
         </h2>
 
         <p class="blog-hero-featured__excerpt">{{ $post->excerpt }}</p>
@@ -19,7 +19,7 @@
         <x-blog.author-meta :post="$post" />
 
         <div class="blog-hero-featured__footer">
-            <a href="{{ route('blogs.show', $post->slug) }}" class="btn btn--primary blog-hero-featured__btn">
+            <a href="{{ route('insights.show', $post->slug) }}" class="btn btn--primary blog-hero-featured__btn">
                 Read Article
             </a>
         </div>
