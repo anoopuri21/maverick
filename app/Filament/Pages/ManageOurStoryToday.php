@@ -7,7 +7,7 @@ use App\Services\CloudinaryService;
 use App\Filament\Concerns\HandlesCloudinaryImageFields;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Section;
-use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Pages\SettingsPage;
@@ -42,9 +42,18 @@ class ManageOurStoryToday extends SettingsPage
                     TextInput::make('heading')
                         ->label('Heading')
                         ->required(),
-                    Textarea::make('description')
+                    RichEditor::make('description')
                         ->label('Description')
-                        ->rows(4)
+                        ->toolbarButtons([
+                            'bold',
+                            'italic',
+                            'underline',
+                            'link',
+                            'bulletList',
+                            'orderedList',
+                            'redo',
+                            'undo',
+                        ])
                         ->columnSpanFull(),
                 ]),
 
