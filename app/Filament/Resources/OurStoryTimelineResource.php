@@ -8,6 +8,7 @@ use App\Models\OurStoryTimeline;
 use App\Services\CloudinaryService;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -38,9 +39,19 @@ class OurStoryTimelineResource extends Resource
                 Forms\Components\TextInput::make('title')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\Textarea::make('description')
-                    ->rows(3)
-                    ->nullable(),
+                RichEditor::make('description')
+                    ->toolbarButtons([
+                        'bold',
+                        'italic',
+                        'underline',
+                        'link',
+                        'bulletList',
+                        'orderedList',
+                        'redo',
+                        'undo',
+                    ])
+                    ->nullable()
+                    ->columnSpanFull(),
                 FileUpload::make('icon_url')
                     ->label('Icon')
                     ->image()
@@ -75,6 +86,7 @@ class OurStoryTimelineResource extends Resource
                 Tables\Columns\TextColumn::make('title')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('description')
+                    ->html()
                     ->limit(50),
                 Tables\Columns\TextColumn::make('sort_order')
                     ->sortable(),

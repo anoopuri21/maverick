@@ -30,6 +30,11 @@ class ManageOurStoryCeoQuote extends SettingsPage
     protected static ?int $navigationSort = 5;
     protected static string $settings = OurStoryCeoQuoteSettings::class;
 
+    public static function shouldRegisterNavigation(): bool
+    {
+        return false;
+    }
+
     public function form(Form $form): Form
     {
         return $form->schema([
