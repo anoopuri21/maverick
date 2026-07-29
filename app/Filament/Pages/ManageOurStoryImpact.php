@@ -5,6 +5,7 @@ namespace App\Filament\Pages;
 use App\Settings\OurStoryImpactSettings;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Section;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Pages\SettingsPage;
@@ -26,8 +27,18 @@ class ManageOurStoryImpact extends SettingsPage
                     TextInput::make('heading')
                         ->label('Heading')
                         ->required(),
-                    TextInput::make('description')
+                    RichEditor::make('description')
                         ->label('Description')
+                        ->toolbarButtons([
+                            'bold',
+                            'italic',
+                            'underline',
+                            'link',
+                            'bulletList',
+                            'orderedList',
+                            'redo',
+                            'undo',
+                        ])
                         ->columnSpanFull(),
                 ]),
 
