@@ -154,6 +154,11 @@ class PageController extends Controller
             ->orderBy('sort_order')
             ->get();
 
+        $galleryImages = \App\Models\OurStoryGalleryImage::select('id', 'image_url', 'caption', 'category', 'sort_order')
+            ->where('is_active', true)
+            ->orderBy('sort_order')
+            ->get();
+
         // Shared collections (same sources as homepage)
         $accreditationLogos = PartnerLogo::select('id', 'name', 'logo_url', 'sort_order')
             ->where('type', 'accreditation')
@@ -184,6 +189,7 @@ class PageController extends Controller
         $data = array_merge($settings, [
             'timelines' => $timelines,
             'awards' => $awards,
+            'galleryImages' => $galleryImages,
             'accreditationLogos' => $accreditationLogos,
             'facultyInsights' => $facultyInsights,
             'testimonials' => $testimonials,
