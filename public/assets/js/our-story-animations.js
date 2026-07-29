@@ -1,703 +1,448 @@
 (function () {
   "use strict";
 
-  // Only run on Our Story page
-  if (!window.location.pathname.includes("our-story")) {
-    return;
-  }
-
+  if (!window.location.pathname.includes("our-story")) return;
   if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") {
-    console.warn("Our Story Animations: GSAP or ScrollTrigger not loaded.");
+    console.warn("Our Story: GSAP or ScrollTrigger not loaded.");
     return;
   }
 
   gsap.registerPlugin(ScrollTrigger);
 
-  // =========================================================
-  // UTILITIES
-  // =========================================================
+  /* ─── Utilities ─── */
+  function el(s) { return document.querySelector(s); }
+  function els(s) { return document.querySelectorAll(s); }
+  function isMobile() { return window.innerWidth < 1024; }
+  function prefersRM() { return window.matchMedia("(prefers-reduced-motion: reduce)").matches; }
 
-  function elementExists(selector) {
-    return document.querySelector(selector) !== null;
-  }
+  function cleanupAll() { ScrollTrigger.getAll().forEach(t => t.kill()); }
+  window.addEventListener("beforeunload", cleanupAll);
 
-  function isMobile() {
-    return window.innerWidth < 768;
-  }
-
-  function cleanupAllScrollTriggers() {
-    ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-  }
-
-  function prefersReducedMotion() {
-    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  }
-
-  window.addEventListener("beforeunload", cleanupAllScrollTriggers);
-
-  // =========================================================
-  // GENERIC SECTION REVEALS (.fade-up + .text-reveal-inner)
-  // =========================================================
-
-  function revealSection(sectionSelector) {
-    const section = document.querySelector(sectionSelector);
+  /* ─── Generic reveal for .fade-up & .text-reveal-inner ─── */
+  function revealSection(selector) {
+    const section = document.querySelector(selector);
     if (!section) return;
 
-    const textReveals = section.querySelectorAll(".text-reveal-inner");
+    const textInners = section.querySelectorAll(".text-reveal-inner");
     const fadeUps = section.querySelectorAll(".fade-up");
 
-    if (prefersReducedMotion()) {
-      if (textReveals.length) gsap.set(textReveals, { y: "0%", clearProps: "transform" });
-      if (fadeUps.length) gsap.set(fadeUps, { opacity: 1, y: 0, clearProps: "transform" });
+    if (prefersRM()) {
+      gsap.set(textInners, { y: "0%", clearProps: "transform" });
+      gsap.set(fadeUps, { opacity: 1, y: 0, clearProps: "transform" });
       return;
     }
 
-    if (textReveals.length) {
-      gsap.set(textReveals, { y: "110%" });
-      gsap.to(textReveals, {
-        y: "0%",
-        duration: 0.9,
-        stagger: 0.12,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: section,
-          start: "top 75%",
-          toggleActions: "play none none none",
-        },
+    if (textInners.length) {
+      gsap.set(textInners, { y: "110%" });
+      gsap.to(textInners, {
+        y: "0%", duration: 0.9, stagger: 0.12, ease: "power3.out",
+        scrollTrigger: { trigger: section, start: "top 78%", once: true }
       });
     }
-
     if (fadeUps.length) {
       gsap.set(fadeUps, { opacity: 0, y: isMobile() ? 24 : 40 });
       gsap.to(fadeUps, {
-        opacity: 1,
-        y: 0,
-        duration: 0.7,
-        stagger: 0.1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: section,
-          start: "top 75%",
-          toggleActions: "play none none none",
-        },
+        opacity: 1, y: 0, duration: 0.7, stagger: 0.1, ease: "power2.out",
+        scrollTrigger: { trigger: section, start: "top 78%", once: true }
       });
     }
   }
 
-  // =========================================================
-  // HERO ENTRANCE (Our Story layout — image + fade-up, not video)
-  // =========================================================
-
-  function initHeroAnimations() {
-    const hero = document.querySelector("#hero");
-    if (!hero) return;
-
-    const textReveals = hero.querySelectorAll(".text-reveal-inner");
-    const fadeUps = hero.querySelectorAll(".fade-up");
-
-    if (prefersReducedMotion()) {
-      if (textReveals.length) gsap.set(textReveals, { y: "0%", clearProps: "transform" });
-      if (fadeUps.length) gsap.set(fadeUps, { opacity: 1, y: 0, clearProps: "transform" });
-      return;
-    }
-
-    if (textReveals.length) gsap.set(textReveals, { y: "110%" });
-    if (fadeUps.length) gsap.set(fadeUps, { opacity: 0, y: 30 });
-
-    const heroTl = gsap.timeline({ delay: 0.3 });
-
-    if (textReveals.length) {
-      heroTl.to(
-        textReveals,
-        {
-          y: "0%",
-          duration: 0.9,
-          stagger: 0.12,
-          ease: "power3.out",
-        },
-        0.2,
-      );
-    }
-
-    if (fadeUps.length) {
-      heroTl.to(
-        fadeUps,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.7,
-          stagger: 0.1,
-          ease: "power2.out",
-        },
-        0.5,
-      );
-    }
-
-    // Subtle parallax on hero content while scrolling
-    if (elementExists(".hero__content")) {
-      gsap.to(".hero__content", {
-        y: isMobile() ? -30 : -60,
-        ease: "none",
-        scrollTrigger: {
-          trigger: "#hero",
-          start: "top top",
-          end: "bottom top",
-          scrub: 1.5,
-        },
-      });
-    }
-
-    return heroTl;
-  }
-
-  // =========================================================
-  // IMPACT STATS (adapted from homepage #numbers)
-  // =========================================================
-
-  function animateCounter(element, target, duration) {
+  /* ─── Counter animation ─── */
+  function animateCounter(element, target, dur) {
     const obj = { value: 0 };
-
     gsap.to(obj, {
-      value: target,
-      duration: duration,
-      ease: "power2.out",
-      onUpdate: function () {
-        element.textContent = Math.round(obj.value).toLocaleString("en-US");
-      },
-      onComplete: function () {
-        element.textContent = target.toLocaleString("en-US");
-      },
+      value: target, duration: dur, ease: "power2.out",
+      onUpdate() { element.textContent = Math.round(obj.value).toLocaleString("en-US"); },
+      onComplete() { element.textContent = target.toLocaleString("en-US"); }
     });
   }
 
-  function getCounterDuration(target) {
-    if (target >= 1000) return 2.0;
-    if (target >= 100) return 1.8;
-    if (target >= 50) return 1.5;
-    if (target >= 20) return 1.2;
-    return 1.0;
+  /* =========================================================
+     HERO
+     ========================================================= */
+  function initHero() {
+    const hero = el("#story-hero");
+    if (!hero) return;
+
+    const fadeUps = hero.querySelectorAll(".fade-up");
+    if (prefersRM()) { gsap.set(fadeUps, { opacity: 1, y: 0 }); return; }
+
+    gsap.set(fadeUps, { opacity: 0, y: 30 });
+    const tl = gsap.timeline({ delay: 0.3 });
+    tl.to(fadeUps, { opacity: 1, y: 0, duration: 0.8, stagger: 0.15, ease: "power3.out" });
+
+    /* Parallax shapes */
+    hero.querySelectorAll(".os-hero__shape").forEach((shape, i) => {
+      gsap.to(shape, {
+        y: (i + 1) * -40, ease: "none",
+        scrollTrigger: { trigger: hero, start: "top top", end: "bottom top", scrub: 1.5 }
+      });
+    });
+
+    /* Content parallax */
+    const content = hero.querySelector(".os-hero__content");
+    if (content) {
+      gsap.to(content, {
+        y: -50, ease: "none",
+        scrollTrigger: { trigger: hero, start: "top top", end: "bottom top", scrub: 1 }
+      });
+    }
   }
 
-  function initNumbersAnimations() {
-    // Our Story uses #impact; keep #numbers for compatibility
-    const section =
-      document.querySelector("#impact") || document.querySelector("#numbers");
-    if (!section) return;
+  /* =========================================================
+     BEGINNING — image slide-in
+     ========================================================= */
+  function initBeginning() {
+    if (!el("#beginning")) return;
+    revealSection("#beginning");
+    if (prefersRM()) return;
 
-    const sectionId = section.id;
-
-    if (prefersReducedMotion()) {
-      gsap.set(section.querySelectorAll(".text-reveal-inner, .fade-up"), {
-        clearProps: "all",
-        opacity: 1,
-        y: 0,
+    const img = el(".os-beginning__image-wrap");
+    if (img) {
+      gsap.fromTo(img, { x: 60, opacity: 0 }, {
+        x: 0, opacity: 1, duration: 1, ease: "power3.out",
+        scrollTrigger: { trigger: "#beginning", start: "top 70%", once: true }
       });
-      gsap.set(section.querySelectorAll(".text-reveal-inner"), { y: "0%" });
-
-      section.querySelectorAll("[data-counter-target]").forEach((card) => {
-        const target = parseInt(card.getAttribute("data-counter-target"), 10);
-        const counterEl = card.querySelector("[data-counter]");
-        if (!isNaN(target) && counterEl) {
-          counterEl.textContent = target.toLocaleString("en-US");
-        }
-      });
-      return;
     }
+    const accent = el(".os-beginning__image-accent");
+    if (accent) {
+      gsap.fromTo(accent, { scale: 0.8, opacity: 0 }, {
+        scale: 1, opacity: 0.12, duration: 0.8, delay: 0.2, ease: "power2.out",
+        scrollTrigger: { trigger: "#beginning", start: "top 70%", once: true }
+      });
+    }
+  }
 
-    revealSection("#" + sectionId);
+  /* =========================================================
+     TODAY
+     ========================================================= */
+  function initToday() {
+    if (!el("#today")) return;
+    revealSection("#today");
+    if (prefersRM()) return;
 
-    // Optional counters (if markup adds data-counter-target later)
-    section.querySelectorAll("[data-counter-target]").forEach((card) => {
+    const img = el(".os-today__image-wrap");
+    if (img) {
+      gsap.fromTo(img, { x: -60, opacity: 0 }, {
+        x: 0, opacity: 1, duration: 1, ease: "power3.out",
+        scrollTrigger: { trigger: "#today", start: "top 70%", once: true }
+      });
+    }
+    const pills = els(".os-today__pill");
+    if (pills.length) {
+      gsap.fromTo(pills, { opacity: 0, y: 15 }, {
+        opacity: 1, y: 0, duration: 0.5, stagger: 0.08, ease: "power2.out",
+        scrollTrigger: { trigger: ".os-today__pills", start: "top 85%", once: true }
+      });
+    }
+  }
+
+  /* =========================================================
+     IMPACT — counter + reveals
+     ========================================================= */
+  function initImpact() {
+    const section = el("#impact");
+    if (!section) return;
+    revealSection("#impact");
+    if (prefersRM()) return;
+
+    section.querySelectorAll("[data-counter-target]").forEach(card => {
       const target = parseInt(card.getAttribute("data-counter-target"), 10);
       const counterEl = card.querySelector("[data-counter]");
       if (isNaN(target) || !counterEl) return;
-
       ScrollTrigger.create({
-        trigger: card,
-        start: "top 85%",
-        once: true,
-        onEnter: () =>
-          animateCounter(counterEl, target, getCounterDuration(target)),
+        trigger: card, start: "top 85%", once: true,
+        onEnter: () => animateCounter(counterEl, target, target >= 1000 ? 2 : 1.5)
       });
     });
   }
 
-  // =========================================================
-  // CEO MESSAGE (shared section)
-  // =========================================================
-
-  function initCEOAnimations() {
-    if (!elementExists("#ceo-message")) return;
-
-    const headingLines = document.querySelectorAll(
-      "#ceo-message .text-reveal-inner",
-    );
-
-    if (headingLines.length) {
-      gsap.fromTo(
-        headingLines,
-        { y: "110%" },
-        {
-          y: "0%",
-          duration: 0.9,
-          stagger: 0.12,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: "#ceo-message",
-            start: "top 70%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
-
-    const ceoImage = document.querySelector(".ceo__image");
-    if (ceoImage) {
-      gsap.fromTo(
-        ceoImage,
-        { opacity: 0 },
-        {
-          opacity: 1,
-          duration: 0.6,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: ".ceo__image-col",
-            start: "top 70%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
-
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: "#ceo-message",
-        start: "top 75%",
-        toggleActions: "play none none none",
-      },
-    });
-
-    tl.fromTo(
-      ".ceo__image-wrapper",
-      { opacity: 0, scale: 0.95 },
-      { opacity: 1, scale: 1, duration: 0.9, ease: "power2.out" },
-    );
-
-    tl.fromTo(
-      [".ceo__quote", ".ceo__body", ".ceo__signature", "#ceo-message .section-label"],
-      { opacity: 0, y: 40 },
-      {
-        opacity: 1,
-        y: 0,
-        stagger: 0.15,
-        duration: 0.8,
-        ease: "power2.out",
-      },
-      "-=0.4",
-    );
+  /* =========================================================
+     VISION
+     ========================================================= */
+  function initVision() {
+    if (!el("#vision")) return;
+    revealSection("#vision");
   }
 
-  // =========================================================
-  // ACCREDITATIONS SLIDER (shared section)
-  // =========================================================
+  /* =========================================================
+     JOURNEY — Horizontal pinned scroll (Desktop only)
+     ========================================================= */
+  function initJourney() {
+    const pinWrap = el("[data-journey-pin]");
+    const track = el("[data-journey-track]");
+    if (!pinWrap || !track) return;
 
-  function initInfiniteSlider(trackSelector, wrapperSelector, options = {}) {
-    const {
-      duration = 50,
-      direction = "left",
-      enableOnMobile = true,
-    } = options;
-
-    if (!enableOnMobile && isMobile()) return null;
-
-    const sliderTrack = document.querySelector(trackSelector);
-    const sliderWrapper = document.querySelector(wrapperSelector);
-    if (!sliderTrack || !sliderWrapper) return null;
-
-    const cards = sliderTrack.children;
-    if (!cards.length) return null;
-
-    Array.from(cards).forEach((card) => {
-      sliderTrack.appendChild(card.cloneNode(true));
-    });
-
-    sliderTrack.style.willChange = "transform";
-    const totalWidth = sliderTrack.scrollWidth / 2;
-    const targetX = direction === "left" ? -totalWidth : totalWidth;
-
-    const sliderTl = gsap.timeline({
-      repeat: -1,
-      defaults: { ease: "none" },
-      onRepeat: () => gsap.set(sliderTrack, { x: 0 }),
-    });
-
-    sliderTl.to(sliderTrack, { x: targetX, duration: duration, ease: "none" });
-
-    sliderWrapper.addEventListener("mouseenter", () => sliderTl.pause(), {
-      passive: true,
-    });
-    sliderWrapper.addEventListener("mouseleave", () => sliderTl.play(), {
-      passive: true,
-    });
-
-    return sliderTl;
-  }
-
-  function initAccreditationsAnimations() {
-    if (!elementExists("#accreditations")) return;
-
-    const fades = [
-      { selector: "#accreditations .section-label", y: 20, duration: 0.6 },
-      { selector: "#accreditations .text-reveal-inner", y: 0, duration: 0.9 },
-      { selector: ".accreditations__subheading", y: 30, duration: 0.8, delay: 0.1 },
-      { selector: ".accreditations__badges", y: 20, duration: 0.6, stagger: 0.1 },
-      { selector: ".accreditations__trust", y: 20, duration: 0.6, delay: 0.3 },
-    ];
-
-    if (prefersReducedMotion()) {
-      gsap.set(
-        [
-          "#accreditations .section-label",
-          "#accreditations .text-reveal-inner",
-          ".accreditations__subheading",
-          ".accreditations__badges",
-          ".accreditations__trust",
-          ".accred-card",
-        ],
-        { opacity: 1, y: 0, x: 0, scale: 1 },
-      );
+    if (isMobile()) {
+      /* Mobile: simple reveal */
+      revealSection("#journey");
+      els(".os-journey__mobile-card").forEach(card => {
+        gsap.fromTo(card, { opacity: 0, y: 40 }, {
+          opacity: 1, y: 0, duration: 0.7, ease: "power2.out",
+          scrollTrigger: { trigger: card, start: "top 82%", once: true }
+        });
+      });
       return;
     }
 
-    initInfiniteSlider(".accred-slider-track", ".accred-slider-wrapper", {
-      duration: 50,
-      direction: "left",
-      enableOnMobile: true,
+    if (prefersRM()) return;
+
+    const slides = els("[data-journey-slide]");
+    const dots = els("[data-journey-dot]");
+    const hint = el("[data-journey-hint]");
+    const totalSlides = slides.length;
+    if (!totalSlides) return;
+
+    const scrollDistance = (totalSlides - 1) * window.innerWidth;
+
+    /* Pin + horizontal scroll */
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: pinWrap,
+        start: "top top",
+        end: "+=" + scrollDistance,
+        pin: true,
+        scrub: 1,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+        onUpdate: self => {
+          const progress = self.progress;
+          const activeIdx = Math.round(progress * (totalSlides - 1));
+          dots.forEach((d, i) => d.classList.toggle("is-active", i === activeIdx));
+          if (hint) hint.style.opacity = progress > 0.05 ? "0" : "1";
+        }
+      }
     });
 
-    const textReveals = document.querySelectorAll(
-      "#accreditations .text-reveal-inner",
-    );
-    if (textReveals.length) {
-      gsap.set(textReveals, { y: "110%" });
-      gsap.to(textReveals, {
-        y: "0%",
-        duration: 0.9,
-        stagger: 0.12,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: "#accreditations",
-          start: "top 80%",
-          toggleActions: "play none none none",
-          once: true,
-        },
-      });
-    }
-
-    fades.forEach((f) => {
-      if (f.selector.includes("text-reveal-inner")) return;
-      const els = document.querySelectorAll(f.selector);
-      if (!els.length) return;
-
-      gsap.fromTo(
-        els,
-        { opacity: 0, y: f.y },
-        {
-          opacity: 1,
-          y: 0,
-          duration: f.duration,
-          delay: f.delay || 0,
-          stagger: f.stagger || 0,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#accreditations",
-            start: "top 80%",
-            toggleActions: "play none none none",
-            once: true,
-          },
-        },
-      );
+    tl.to(track, {
+      x: () => -(track.scrollWidth - window.innerWidth),
+      ease: "none"
     });
 
-    const cards = document.querySelectorAll(
-      ".accred-slider-track .accred-card",
-    );
-    if (cards.length && !isMobile()) {
-      gsap.fromTo(
-        cards,
-        { scale: 0.9, opacity: 0 },
-        {
-          scale: 1,
-          opacity: 1,
-          duration: 0.7,
-          stagger: 0.05,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#accreditations",
-            start: "top 80%",
-            toggleActions: "play none none none",
-            once: true,
-          },
-        },
-      );
-    }
+    /* Per-slide animations */
+    slides.forEach((slide, i) => {
+      const title = slide.querySelector(".os-journey__slide-title");
+      const desc = slide.querySelector(".os-journey__slide-desc");
+      const badge = slide.querySelector(".os-journey__year-badge");
+      const img = slide.querySelector(".os-journey__slide-image");
+      const bigYear = slide.querySelector(".os-journey__big-year");
+
+      const enterPoint = i / totalSlides;
+      const exitPoint = (i + 0.8) / totalSlides;
+
+      if (badge) {
+        gsap.fromTo(badge, { scale: 0.7, opacity: 0 },
+          { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(1.4)",
+            scrollTrigger: { trigger: pinWrap, start: "top top", end: "+=" + scrollDistance, scrub: 1,
+              onUpdate: self => { const p = self.progress; badge.style.opacity = (p >= enterPoint && p <= exitPoint) ? 1 : 0; }
+            }
+          });
+      }
+
+      if (img) {
+        gsap.fromTo(img, { scale: 0.8, opacity: 0 },
+          { scale: 1, opacity: 1, duration: 0.6, ease: "power2.out",
+            scrollTrigger: { trigger: pinWrap, start: "top top", end: "+=" + scrollDistance, scrub: 1 }
+          });
+      }
+
+      if (bigYear) {
+        gsap.to(bigYear, {
+          x: -80, ease: "none",
+          scrollTrigger: { trigger: pinWrap, start: "top top", end: "+=" + scrollDistance, scrub: 2 }
+        });
+      }
+    });
   }
 
-  // =========================================================
-  // FINAL CTA
-  // =========================================================
+  /* =========================================================
+     CEO MESSAGE (shared section)
+     ========================================================= */
+  function initCEO() {
+    if (!el("#ceo-message")) return;
 
-  function initFinalCTAAnimations() {
-    if (!elementExists("#final-cta")) return;
-
-    if (prefersReducedMotion()) {
-      gsap.set(["#final-cta .text-reveal-inner", "#final-cta .fade-up"], {
-        clearProps: "all",
-        opacity: 1,
+    const textReveals = els("#ceo-message .text-reveal-inner");
+    if (textReveals.length && !prefersRM()) {
+      gsap.fromTo(textReveals, { y: "110%" }, {
+        y: "0%", duration: 0.9, stagger: 0.12, ease: "power3.out",
+        scrollTrigger: { trigger: "#ceo-message", start: "top 70%", once: true }
       });
+    }
+
+    const tl = gsap.timeline({
+      scrollTrigger: { trigger: "#ceo-message", start: "top 75%", once: true }
+    });
+    tl.fromTo(".ceo__image-wrapper", { opacity: 0, scale: 0.95 },
+      { opacity: 1, scale: 1, duration: 0.9, ease: "power2.out" });
+    tl.fromTo([".ceo__quote", ".ceo__body", ".ceo__signature", "#ceo-message .section-label"],
+      { opacity: 0, y: 40 },
+      { opacity: 1, y: 0, stagger: 0.15, duration: 0.8, ease: "power2.out" }, "-=0.4");
+  }
+
+  /* =========================================================
+     GALLERY — stagger reveal + lightbox
+     ========================================================= */
+  function initGallery() {
+    const section = el("#gallery");
+    if (!section) return;
+
+    revealSection("#gallery");
+
+    const items = els("[data-gallery-item]");
+    if (items.length && !prefersRM()) {
+      gsap.fromTo(items, { opacity: 0, y: 30 }, {
+        opacity: 1, y: 0, duration: 0.6, stagger: 0.08, ease: "power2.out",
+        scrollTrigger: { trigger: "[data-gallery-grid]", start: "top 80%", once: true }
+      });
+    }
+
+    /* Lightbox */
+    const lightbox = el("#os-lightbox");
+    const lbImg = el("#os-lightbox-img");
+    const lbCaption = el("#os-lightbox-caption");
+    if (!lightbox || !lbImg) return;
+
+    let currentIdx = 0;
+    const images = [];
+
+    items.forEach((item, i) => {
+      const img = item.querySelector(".os-gallery__img");
+      const captionEl = item.querySelector(".os-gallery__caption-text");
+      if (img) {
+        images.push({ src: img.src, alt: img.alt, caption: captionEl ? captionEl.textContent : "" });
+        item.addEventListener("click", () => openLB(i));
+      }
+    });
+
+    function openLB(idx) {
+      currentIdx = idx;
+      updateLB();
+      lightbox.classList.add("is-open");
+      lightbox.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    }
+    function closeLB() {
+      lightbox.classList.remove("is-open");
+      lightbox.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
+    function updateLB() {
+      if (!images[currentIdx]) return;
+      lbImg.src = images[currentIdx].src;
+      lbImg.alt = images[currentIdx].alt;
+      if (lbCaption) lbCaption.textContent = images[currentIdx].caption;
+    }
+
+    const closeBtn = el("[data-lightbox-close]");
+    const prevBtn = el("[data-lightbox-prev]");
+    const nextBtn = el("[data-lightbox-next]");
+
+    if (closeBtn) closeBtn.addEventListener("click", closeLB);
+    if (prevBtn) prevBtn.addEventListener("click", () => { currentIdx = (currentIdx - 1 + images.length) % images.length; updateLB(); });
+    if (nextBtn) nextBtn.addEventListener("click", () => { currentIdx = (currentIdx + 1) % images.length; updateLB(); });
+
+    lightbox.addEventListener("click", e => { if (e.target === lightbox) closeLB(); });
+    document.addEventListener("keydown", e => {
+      if (!lightbox.classList.contains("is-open")) return;
+      if (e.key === "Escape") closeLB();
+      if (e.key === "ArrowLeft" && prevBtn) prevBtn.click();
+      if (e.key === "ArrowRight" && nextBtn) nextBtn.click();
+    });
+  }
+
+  /* =========================================================
+     FINAL CTA (shared)
+     ========================================================= */
+  function initFinalCTA() {
+    if (!el("#final-cta")) return;
+    if (prefersRM()) {
+      gsap.set(["#final-cta .text-reveal-inner", "#final-cta .fade-up"], { clearProps: "all", opacity: 1 });
       gsap.set("#final-cta .text-reveal-inner", { y: "0%" });
       return;
     }
 
-    const sectionLabel = document.querySelector("#final-cta .section-label");
-    if (sectionLabel) {
-      gsap.fromTo(
-        sectionLabel,
-        { opacity: 0, y: 16 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#final-cta",
-            start: "top 70%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
+    const label = el("#final-cta .section-label");
+    if (label) gsap.fromTo(label, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out",
+      scrollTrigger: { trigger: "#final-cta", start: "top 70%", once: true } });
 
-    const headingInner = document.querySelector("#final-cta .text-reveal-inner");
-    if (headingInner) {
-      gsap.fromTo(
-        headingInner,
-        { y: "110%" },
-        {
-          y: "0%",
-          duration: 0.9,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: "#final-cta",
-            start: "top 70%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
+    const heading = el("#final-cta .text-reveal-inner");
+    if (heading) gsap.fromTo(heading, { y: "110%" }, { y: "0%", duration: 0.9, ease: "power3.out",
+      scrollTrigger: { trigger: "#final-cta", start: "top 70%", once: true } });
 
-    const subtitle = document.querySelector("#final-cta .final-cta__subtitle");
-    if (subtitle) {
-      gsap.fromTo(
-        subtitle,
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#final-cta",
-            start: "top 70%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
+    const sub = el("#final-cta .final-cta__subtitle");
+    if (sub) gsap.fromTo(sub, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.8, ease: "power2.out",
+      scrollTrigger: { trigger: "#final-cta", start: "top 70%", once: true } });
 
-    const buttons = document.querySelectorAll("#final-cta .final-cta__btn");
-    if (buttons.length) {
-      gsap.fromTo(
-        buttons,
-        { opacity: 0, y: 20 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.7,
-          stagger: 0.1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#final-cta .final-cta__buttons",
-            start: "top 70%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
-
-    const phone = document.querySelector("#final-cta .final-cta__phone");
-    if (phone) {
-      gsap.fromTo(
-        phone,
-        { opacity: 0, y: 15 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#final-cta .final-cta__phone",
-            start: "top 75%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
+    const btns = els("#final-cta .final-cta__btn");
+    if (btns.length) gsap.fromTo(btns, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.7, stagger: 0.1, ease: "power2.out",
+      scrollTrigger: { trigger: "#final-cta .final-cta__buttons", start: "top 70%", once: true } });
   }
 
-  // =========================================================
-  // FOOTER
-  // =========================================================
+  /* =========================================================
+     FOOTER
+     ========================================================= */
+  function initFooter() {
+    if (!el("#footer")) return;
+    const yearEl = el("[data-current-year]");
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  function initFooterAnimations() {
-    if (!elementExists("#footer")) return;
-
-    const yearEl = document.querySelector("[data-current-year]");
-    if (yearEl) {
-      yearEl.textContent = new Date().getFullYear();
-    }
-
-    const newsletterForm = document.querySelector("[data-newsletter-form]");
-    if (newsletterForm) {
-      newsletterForm.addEventListener("submit", (e) => {
+    const form = el("[data-newsletter-form]");
+    if (form) {
+      form.addEventListener("submit", e => {
         e.preventDefault();
-        const input = newsletterForm.querySelector(".footer__newsletter-input");
-        const btn = newsletterForm.querySelector(
-          ".footer__newsletter-btn span",
-        );
+        const input = form.querySelector(".footer__newsletter-input");
+        const btn = form.querySelector(".footer__newsletter-btn span");
         if (input && input.value && btn) {
-          const originalText = btn.textContent;
-          btn.textContent = "Subscribed ✓";
+          const orig = btn.textContent;
+          btn.textContent = "Subscribed";
           input.value = "";
-          setTimeout(() => {
-            btn.textContent = originalText;
-          }, 2500);
+          setTimeout(() => { btn.textContent = orig; }, 2500);
         }
       });
     }
 
-    if (prefersReducedMotion()) return;
-
-    const cols = document.querySelectorAll(".footer__col");
-    const bottom = document.querySelector(".footer__bottom");
-
-    if (cols.length) gsap.set(cols, { opacity: 0, y: 30 });
-    if (bottom) gsap.set(bottom, { opacity: 0, y: 20 });
-
+    if (prefersRM()) return;
+    const cols = els(".footer__col");
     if (cols.length) {
-      gsap.to(cols, {
-        opacity: 1,
-        y: 0,
-        duration: 0.7,
-        stagger: 0.12,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: "#footer",
-          start: "top 85%",
-          toggleActions: "play none none none",
-        },
-      });
-    }
-
-    if (bottom) {
-      gsap.to(bottom, {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        delay: 0.4,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: "#footer",
-          start: "top 85%",
-          toggleActions: "play none none none",
-        },
-      });
+      gsap.set(cols, { opacity: 0, y: 30 });
+      gsap.to(cols, { opacity: 1, y: 0, duration: 0.7, stagger: 0.12, ease: "power2.out",
+        scrollTrigger: { trigger: "#footer", start: "top 85%", once: true } });
     }
   }
 
-  // =========================================================
-  // INITIALIZE
-  // =========================================================
-
-  function initOurStoryAnimations() {
+  /* =========================================================
+     INIT
+     ========================================================= */
+  function init() {
     if (window.__ourStoryAnimationsStarted) return;
     window.__ourStoryAnimationsStarted = true;
-
-    // Mark so homepage animations.js does not double-init
     window.__animationsStarted = true;
 
-    initHeroAnimations();
+    initHero();
+    initBeginning();
+    initToday();
+    initImpact();
+    initVision();
+    initJourney();
+    initCEO();
+    initGallery();
+    initFinalCTA();
+    initFooter();
 
-    // Content sections with .fade-up / .text-reveal-inner
-    revealSection("#beginning");
-    revealSection("#today");
-    initNumbersAnimations(); // #impact
-    revealSection("#journey");
-    revealSection("#vision");
-    revealSection("#awards");
-
-    initCEOAnimations();
-    initAccreditationsAnimations();
-    revealSection("#faculty-insights");
-    revealSection("#video-testimonials");
-    initFinalCTAAnimations();
-    initFooterAnimations();
-
-    if (typeof ScrollTrigger !== "undefined") {
-      ScrollTrigger.refresh();
-    }
-  }
-
-  function startAnimations() {
-    initOurStoryAnimations();
+    ScrollTrigger.refresh();
   }
 
   if (window.__lenisReady) {
-    startAnimations();
+    init();
   } else {
-    document.addEventListener("lenisReady", startAnimations, { once: true });
+    document.addEventListener("lenisReady", init, { once: true });
   }
 
   setTimeout(function () {
     if (!window.__ourStoryAnimationsStarted) {
-      console.warn(
-        "Our Story: lenisReady never fired – starting animations fallback",
-      );
-      startAnimations();
+      console.warn("Our Story: lenisReady fallback triggered");
+      init();
     }
   }, 800);
-  // ========================================
-  // Journey Timeline Scroll Reveal
-  // ========================================
-  document.addEventListener('DOMContentLoaded', function() {
-    const timelineItems = document.querySelectorAll('.journey__item');
-    
-    if (!timelineItems.length) return;
-
-    const observerOptions = {
-        threshold: 0.2,
-        rootMargin: '0px 0px -100px 0px'
-    };
-
-    const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    timelineItems.forEach(item => observer.observe(item));
-  });
 })();
