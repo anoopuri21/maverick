@@ -9,6 +9,7 @@ use App\Settings\NumbersSettings;
 use App\Settings\WhoWeAreSettings;
 use App\Settings\CeoSettings;
 use App\Settings\WhatIsMaverickSettings;
+use App\Models\OurStoryTestimonial;
 // use App\Settings\FinalCtaSettings;
 use App\Models\PartnerLogo;
 // use App\Models\UniversityPartner;
@@ -143,6 +144,10 @@ class PageController extends Controller
             // 'finalCta' => app(FinalCtaSettings::class),
         ];
 
+        $ourStoryTestimonials = OurStoryTestimonial::query()
+            ->where('is_active', true)
+            ->orderBy('sort_order')
+            ->get();
         // Our Story–specific collections
         $timelines = \App\Models\OurStoryTimeline::select('id', 'year', 'title', 'description', 'icon_url', 'sort_order')
             ->where('is_active', true)
@@ -192,6 +197,7 @@ class PageController extends Controller
             'galleryImages' => $galleryImages,
             'accreditationLogos' => $accreditationLogos,
             'facultyInsights' => $facultyInsights,
+            'ourStoryTestimonials' => $ourStoryTestimonials,
             'testimonials' => $testimonials,
             'testimonialsJson' => $testimonialsJson,
         ]);

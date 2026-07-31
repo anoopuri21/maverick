@@ -24,7 +24,6 @@
     <div class="why__grid">
       <!-- Tile 1: International Qualifications (LARGE) -->
       <div class="why__tile why__tile--large">
-        <div class="why__tile-background"></div>
         <div class="why__tile-top">
           <svg class="why__tile-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -46,7 +45,6 @@
 
       <!-- Tile 2: Global University Network -->
       <div class="why__tile why__tile--wide">
-        <div class="why__tile-background"></div>
         <div class="why__tile-top">
           <svg class="why__tile-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -67,7 +65,6 @@
 
       <!-- Tile 3: Flexible Learning -->
       <div class="why__tile">
-        <div class="why__tile-background"></div>
         <div class="why__tile-top">
           <svg class="why__tile-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -87,7 +84,6 @@
 
       <!-- Tile 4: Career Advancement -->
       <div class="why__tile">
-        <div class="why__tile-background"></div>
         <div class="why__tile-top">
           <svg class="why__tile-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -105,7 +101,6 @@
 
       <!-- Tile 5: Industry Engagement -->
       <div class="why__tile why__tile--wide">
-        <div class="why__tile-background"></div>
         <div class="why__tile-top">
           <svg class="why__tile-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -124,7 +119,6 @@
 
       <!-- Tile 6: Academic Excellence -->
       <div class="why__tile why__tile--wide">
-        <div class="why__tile-background"></div>
         <div class="why__tile-top">
           <svg class="why__tile-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">

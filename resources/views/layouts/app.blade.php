@@ -66,7 +66,9 @@
     <script src="{{ asset('assets/js/navigation.js') }}" defer></script>
     <script src="{{ asset('assets/js/animations.js') }}" defer></script>
     @if(request()->routeIs('our-story'))
-    <script src="{{ asset('assets/js/our-story-animations.js') }}" defer></script>
+    <script src="{{ asset('assets/js/core/animations-core.js') }}" type="module" defer></script>
+    <script src="{{ asset('assets/js/core/reveal-observer.js') }}" type="module" defer></script>
+    <script src="{{ asset('assets/js/pages/our-story.js') }}" type="module" defer></script>
     @endif
     <script src="{{ asset('assets/js/partners.js') }}" defer></script>
     <script src="{{ asset('assets/js/testimonials.js') }}" defer></script>
