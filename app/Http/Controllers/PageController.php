@@ -231,6 +231,113 @@ class PageController extends Controller
         return back()->with('success', 'Thank you! We will contact you shortly.');
     }
 
+    public function csrCommunityImpact()
+    {
+        $focusAreas = [
+            [
+                'title' => 'Education & Skill Development',
+                'icon' => 'graduation-cap',
+                'activities' => [
+                    'Free educational workshops',
+                    'Career guidance sessions',
+                    'Teacher training programs',
+                    'Student mentoring initiatives',
+                ],
+            ],
+            [
+                'title' => 'Community Engagement',
+                'icon' => 'globe',
+                'activities' => [
+                    'Community awareness campaigns',
+                    'Youth development programs',
+                    'Local community partnerships',
+                    'Volunteering activities',
+                ],
+            ],
+            [
+                'title' => 'Sustainability & Environment',
+                'icon' => 'leaf',
+                'activities' => [
+                    'Paperless learning initiatives',
+                    'Green office practices',
+                    'Environmental awareness programs',
+                    'Sustainability workshops',
+                ],
+            ],
+            [
+                'title' => 'Inclusion & Accessibility',
+                'icon' => 'handshake',
+                'activities' => [
+                    'Scholarships',
+                    'Educational support programs',
+                    'Equal learning opportunities',
+                    'Professional development access',
+                ],
+            ],
+        ];
+
+        $galleryActivities = [
+            [
+                'title' => 'Teachers Training Workshop 2026',
+                'image' => 'https://images.unsplash.com/photo-1544531516-a5e34027225b?auto=format&fit=crop&q=80&w=1000',
+                'description' => 'Empowering educators through innovative classroom engagement strategies.',
+            ],
+            [
+                'title' => 'Student Career Development Sessions',
+                'image' => 'https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&q=80&w=1000',
+                'description' => 'Supporting students with career planning and employability skills.',
+            ],
+            [
+                'title' => 'Community Education Initiatives',
+                'image' => 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&q=80&w=1000',
+                'description' => 'Providing learning opportunities to underserved communities.',
+            ],
+            [
+                'title' => 'Sustainability Awareness Campaign',
+                'image' => 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=1000',
+                'description' => 'Promoting responsible and environmentally conscious practices.',
+            ],
+        ];
+
+        $impactNumbers = [
+            [
+                'value' => 500,
+                'suffix' => '+',
+                'label' => 'Educators Trained',
+            ],
+            [
+                'value' => 1000,
+                'suffix' => '+',
+                'label' => 'Learners Supported',
+            ],
+            [
+                'value' => 50,
+                'suffix' => '+',
+                'label' => 'Community Activities',
+            ],
+            [
+                'value' => 20,
+                'suffix' => '+',
+                'label' => 'CSR Initiatives Conducted',
+            ],
+        ];
+
+        $scholarshipActivities = [
+            'Teachers Training Workshops',
+            'Free Masterclasses',
+            'Student Development Sessions',
+            'Career Guidance Programs',
+            'Professional Development Webinars',
+            'Educational Partnerships Benefiting Communities',
+            'Scholarship Programs',
+            'Industry Awareness Events',
+            'Women Leadership Initiatives',
+            'Youth Entrepreneurship Workshops',
+        ];
+
+        return view('pages.csr-community-impact', compact('focusAreas', 'galleryActivities', 'impactNumbers', 'scholarshipActivities'));
+    }
+
     public function gallery()
     {
         return view('pages.media-gallery');

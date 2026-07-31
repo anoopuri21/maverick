@@ -1,244 +1,177 @@
 @extends('layouts.app')
 
-@section('title', 'CSR & Community Impact - Maverick Business Academy')
+@section('title', 'CSR & Community Impact | Maverick Business Academy London')
+@section('meta_description', 'Completely redesigned CSR & Community Impact page of Maverick Business Academy London — Creating Positive Impact Through Education, Community Engagement, and Social Responsibility.')
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/pages/csr-community-impact.css') }}">
 @endpush
 
 @section('content')
-<div class="page-csr csr">
+<div class="csr-page">
 
+    {{-- Abstract ambient/decorative ambient SVGs & washes in navy/red tints --}}
+    <div class="csr-decorative-blob csr-decorative-blob--1"></div>
+    <div class="csr-decorative-blob csr-decorative-blob--2"></div>
+    <div class="csr-decorative-blob csr-decorative-blob--3"></div>
 
-@php
-    // ═══════════════════════════════════════════
-    // STATIC DATA (Future: Move to admin/database)
-    // ═══════════════════════════════════════════
-
-    $hero = (object)[
-        'tag' => 'CSR & COMMUNITY',
-        'heading' => 'Building Futures,',
-        'heading_italic' => 'Changing Lives',
-        'description' => 'Beyond the classroom, we believe that education is the most powerful tool for social transformation. Our commitment to community impact reflects the values at the core of Maverick Academy.',
-        'background_image' => 'https://images.pexels.com/photos/207691/pexels-photo-207691.jpeg?auto=compress&cs=tinysrgb&w=1920',
-    ];
-
-    $commitment = (object)[
-        'tag' => 'OUR COMMITMENT',
-        'heading' => 'Education as a Force for',
-        'heading_italic' => 'Good',
-        'description' => 'We believe that every individual, regardless of their circumstances, deserves access to transformative education. At Maverick Academy, our commitment to social responsibility is woven into everything we do — from scholarship programmes that open doors for underrepresented students, to community workshops that bring learning to those who need it most. We measure our success not just by the qualifications we award, but by the lives we touch and the communities we strengthen.',
-        'image' => 'https://images.pexels.com/photos/6646918/pexels-photo-6646918.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    ];
-
-    $impactStats = collect([
-        (object)['icon' => 'users', 'number' => '3200', 'label' => 'STUDENTS SPONSORED'],
-        (object)['icon' => 'map-pin', 'number' => '42', 'label' => 'COMMUNITIES REACHED'],
-        (object)['icon' => 'award', 'number' => '850+', 'label' => 'SCHOLARSHIPS GIVEN'],
-        (object)['icon' => 'clock', 'number' => '12500+', 'label' => 'VOLUNTEER HOURS'],
-    ]);
-
-    $stories = collect([
-        (object)[
-            'name' => 'Aisha Mohammed',
-            'story' => 'Growing up in a low-income community in East London, Aisha never imagined she could pursue a business qualification. Through our Future Leaders Scholarship, she completed her Executive MBA and now leads a social enterprise that provides digital skills training to young people in her neighbourhood.',
-            'impact' => 'Now mentoring 15 other scholarship recipients and has created employment opportunities for 30 young people in her community.',
-            'image' => 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1000',
-            'image_position' => 'right',
-        ],
-        (object)[
-            'name' => 'Thomas Reed',
-            'story' => 'After losing his job during the pandemic, Thomas used our free professional development workshops to learn digital marketing skills. Within six months, he launched his own consultancy that helps small businesses grow online. Today, he volunteers as a workshop facilitator, sharing his journey with others facing similar challenges.',
-            'impact' => 'Has facilitated 12 free workshops, reaching over 200 participants, and his consultancy employs 5 people from his former community.',
-            'image' => 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1000',
-            'image_position' => 'left',
-        ],
-    ]);
-
-    $partners = collect([
-    (object)['name' => 'EdArabia', 'logo' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScXVW-sudlIEGzEV5R04wL2AC_2KvSepBbKnjSNamtoQ&s=10'],
-    (object)['name' => 'PRME', 'logo' => 'https://lsme.ac.uk/wp-content/uploads/2022/01/PRIME_logo-1.jpg'],
-]);
-
-    $pillars = (object)[
-        'heading' => 'Three Pillars of',
-        'heading_italic' => 'Global Education',
-        'description' => 'We deliver education through three connected pathways academic qualifications, professional development, and international opportunities designed to support every stage of your journey.',
-        'items' => collect([
-            (object)[
-                'number' => '01',
-                'title' => 'Academic Qualifications',
-                'description' => 'Internationally recognized degrees at every level.',
-                'features' => ["Bachelor's Degrees", "Master's Degrees", 'Doctorate Degrees'],
-                'cta_text' => 'Explore Programs',
-                'cta_url' => '#',
-            ],
-            (object)[
-                'number' => '02',
-                'title' => 'Professional Development',
-                'description' => 'Career-focused training designed for working leaders.',
-                'features' => ['Executive Education', 'Corporate Training', 'Leadership Programs'],
-                'cta_text' => 'View Programs',
-                'cta_url' => '#',
-            ],
-            (object)[
-                'number' => '03',
-                'title' => 'International Opportunities',
-                'description' => 'Global experiences that broaden horizons.',
-                'features' => ['Study Abroad', 'Student Exchange', 'Global Bachelor Pathways', 'Internships'],
-                'cta_text' => 'Discover Opportunities',
-                'cta_url' => '#',
-            ],
-        ]),
-    ];
-@endphp
-
-
-{{-- ═══════════════════════════════════════════
-     1. HERO SECTION
-═══════════════════════════════════════════ --}}
-<section class="csr-hero" style="background-image: url('{{ $hero->background_image }}');">
-    <div class="csr-hero__overlay"></div>
-    <div class="container csr-hero__content">
-        <span class="csr-hero__tag">{{ $hero->tag }}</span>
-        <h1 class="csr-hero__heading">
-            {{ $hero->heading }}
-            <em class="csr-hero__heading-italic">{{ $hero->heading_italic }}</em>
-        </h1>
-        <p class="csr-hero__description">{{ $hero->description }}</p>
-    </div>
-</section>
-
-
-{{-- ═══════════════════════════════════════════
-     2. COMMITMENT (Education as a Force for Good)
-═══════════════════════════════════════════ --}}
-<section class="commitment section-wrapper">
-    <div class="container">
-        <div class="commitment__grid">
-            
-            {{-- Left: Content --}}
-            <div class="commitment__content">
-                <span class="section-label commitment__label">{{ $commitment->tag }}</span>
-                <h2 class="commitment__heading">
-                    {{ $commitment->heading }}
-                    <em>{{ $commitment->heading_italic }}</em>
-                </h2>
-                <p class="commitment__description">{{ $commitment->description }}</p>
+    {{-- ==========================================
+         PAGE BANNER (HERO)
+         ========================================== --}}
+    <section class="csr-hero">
+        <div class="csr-hero__bg"></div>
+        <div class="csr-hero__overlay"></div>
+        <div class="csr-hero__container">
+            <div class="csr-hero__content">
+                <h1 class="csr-hero__title">CSR & Community Impact</h1>
+                <p class="csr-hero__tagline">Creating Positive Impact Through Education, Community Engagement, and Social Responsibility.</p>
             </div>
-
-            {{-- Right: Image --}}
-            <div class="commitment__image-wrapper">
-                <img src="{{ $commitment->image }}" 
-                     alt="Volunteer" 
-                     class="commitment__image"
-                     loading="lazy">
-            </div>
-
         </div>
-    </div>
-</section>
+    </section>
 
-
-{{-- ═══════════════════════════════════════════
-     3. IMPACT STATS
-═══════════════════════════════════════════ --}}
-<section class="impact-stats">
-    <div class="container">
-        <div class="impact-stats__grid">
-            @foreach($impactStats as $stat)
-            <div class="impact-stat">
-                <div class="impact-stat__icon">
-                    <span data-lucide="{{ $stat->icon }}"></span>
+    {{-- ==========================================
+         SECTION 1: OUR COMMITMENT
+         ========================================== --}}
+    <section class="csr-commitment">
+        <div class="container">
+            <div class="csr-commitment__grid">
+                <div class="csr-commitment__content">
+                    <span class="csr-eyebrow-tag">Our Values</span>
+                    <h2 class="csr-section-heading">Our <span class="csr-text-accent">Commitment</span></h2>
+                    <p class="csr-body-text">
+                        At Maverick Business Academy, we believe education extends beyond classrooms. Through our CSR initiatives, we actively contribute to community development, educational accessibility, professional growth, and social wellbeing.
+                    </p>
                 </div>
-                <div class="impact-stat__number">{{ $stat->number }}</div>
-                <div class="impact-stat__label">{{ $stat->label }}</div>
-            </div>
-            @endforeach
-        </div>
-    </div>
-</section>
-
-
-{{-- ═══════════════════════════════════════════
-     4. MOST IN-DEMAND PROGRAMS
-═══════════════════════════════════════════ --}}
-    @include('sections.featured-programs')
-
-{{-- ═══════════════════════════════════════════
-     5. STORIES OF IMPACT
-═══════════════════════════════════════════ --}}
-<section class="stories section-wrapper section--light">
-    <div class="container">
-        
-        <div class="section-heading-block">
-            <span class="section-label">REAL STORIES</span>
-            <h2 class="section-heading">
-                Stories of <em>Impact</em>
-            </h2>
-        </div>
-
-        <div class="stories__list">
-            @foreach($stories as $story)
-            <article class="story-card story-card--{{ $story->image_position }}">
-                <div class="story-card__image-wrapper">
-                    <img src="{{ $story->image }}" 
-                         alt="{{ $story->name }}" 
-                         class="story-card__image"
-                         loading="lazy">
-                </div>
-                <div class="story-card__content">
-                    <span class="story-card__tag">SUCCESS STORY</span>
-                    <h3 class="story-card__name">{{ $story->name }}</h3>
-                    <p class="story-card__story">{{ $story->story }}</p>
-                    <div class="story-card__impact">
-                        {{ $story->impact }}
+                <div class="csr-commitment__visual">
+                    <div class="csr-commitment__image-container">
+                        <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&q=80&w=1200" alt="Students and educators community engagement" class="csr-commitment__img" loading="lazy">
+                        <div class="csr-decorative-pattern"></div>
                     </div>
                 </div>
-            </article>
-            @endforeach
-        </div>
-
-    </div>
-</section>
-
-
-{{-- ═══════════════════════════════════════════
-     6. PARTNERSHIPS FOR GOOD
-═══════════════════════════════════════════ --}}
-<section class="partnerships section-wrapper">
-    <div class="container">
-        
-        <div class="section-heading-block">
-            <span class="section-label">PARTNERS</span>
-            <h2 class="section-heading">
-                Partnerships for <em>Good</em>
-            </h2>
-            <p class="section-subheading">
-                Working alongside leading NGOs and community organisations to maximise our impact.
-            </p>
-        </div>
-
-        <div class="partnerships__grid">
-            @foreach($partners as $partner)
-            <div class="partner-logo">
-                <img src="{{ $partner->logo }}" 
-                     alt="{{ $partner->name }}" 
-                     loading="lazy">
             </div>
-            @endforeach
         </div>
+    </section>
 
-    </div>
-</section>
+    {{-- ==========================================
+         SECTION 2: CSR FOCUS AREAS (Icon Cards)
+         ========================================== --}}
+    <section class="csr-focus">
+        <div class="container">
+            <div class="csr-section-header">
+                <span class="csr-eyebrow-tag">Pillars</span>
+                <h2 class="csr-section-heading">CSR Focus <span class="csr-text-accent">Areas</span></h2>
+            </div>
+
+            <div class="csr-focus__grid">
+                @foreach($focusAreas as $card)
+                <div class="csr-focus-card">
+                    <div class="csr-focus-card__icon-wrapper">
+                        <span class="csr-focus-card__icon" data-lucide="{{ $card['icon'] }}"></span>
+                    </div>
+                    <h3 class="csr-focus-card__title">{{ $card['title'] }}</h3>
+                    <ul class="csr-focus-card__list">
+                        @foreach($card['activities'] as $activity)
+                        <li class="csr-focus-card__item">
+                            <span class="csr-focus-card__item-dot"></span>
+                            {{ $activity }}
+                        </li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+
+    {{-- ==========================================
+         SECTION 3: CSR ACTIVITIES GALLERY (⭐ MAIN SECTION)
+         ========================================== --}}
+    <section class="csr-gallery">
+        <div class="container">
+            <div class="csr-section-header">
+                <span class="csr-eyebrow-tag">Our Impact In Action</span>
+                <h2 class="csr-section-heading">CSR <span class="csr-text-accent">Activities</span></h2>
+            </div>
+
+            <div class="csr-gallery__grid">
+                @foreach($galleryActivities as $index => $item)
+                @php
+                    // Create an asymmetrical layout sequence
+                    // Card 0, 3: large (span 7) | Card 1, 2: medium (span 5)
+                    $cardClass = ($index % 4 === 0 || $index % 4 === 3) ? 'csr-gallery-card--large' : 'csr-gallery-card--medium';
+                @endphp
+                <div class="csr-gallery-card {{ $cardClass }}">
+                    <div class="csr-gallery-card__image-wrapper">
+                        <img src="{{ $item['image'] }}" alt="{{ $item['title'] }}" class="csr-gallery-card__image" loading="lazy">
+                    </div>
+                    <div class="csr-gallery-card__content">
+                        <h3 class="csr-gallery-card__title">{{ $item['title'] }}</h3>
+                        <p class="csr-gallery-card__desc">{{ $item['description'] }}</p>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+
+    {{-- ==========================================
+         SECTION 4: IMPACT NUMBERS (Counters)
+         ========================================== --}}
+    <section class="csr-impact">
+        <div class="csr-impact__pattern"></div>
+        <div class="container">
+            <div class="csr-impact__grid">
+                @foreach($impactNumbers as $counter)
+                <div class="csr-impact-card">
+                    <div class="csr-impact-card__number-wrapper">
+                        <span class="csr-impact-card__number" data-target="{{ $counter['value'] }}">0</span><span class="csr-impact-card__suffix">{{ $counter['suffix'] }}</span>
+                    </div>
+                    <div class="csr-impact-card__divider"></div>
+                    <div class="csr-impact-card__label">{{ $counter['label'] }}</div>
+                </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+
+    {{-- ==========================================
+         SECTION 5: SCHOLARSHIP & EDUCATIONAL SUPPORT
+         ========================================== --}}
+    <section class="csr-scholarship">
+        <div class="container">
+            <div class="csr-scholarship__split">
+                <div class="csr-scholarship__intro">
+                    <span class="csr-eyebrow-tag">Educational Access & Scholarships</span>
+                    <h2 class="csr-section-heading">Empowering Through <span class="csr-text-accent">Opportunity</span></h2>
+                    <p class="csr-body-text">
+                        Maverick supports deserving learners through scholarship opportunities, flexible learning pathways, and professional development initiatives that help individuals achieve their educational goals.
+                    </p>
+                </div>
+
+                <div class="csr-scholarship__checklist">
+                    <div class="csr-checklist-grid">
+                        @foreach($scholarshipActivities as $item)
+                        <div class="csr-checklist-card">
+                            <div class="csr-checklist-card__icon-wrapper">
+                                <span class="csr-checklist-card__icon" data-lucide="check"></span>
+                            </div>
+                            <span class="csr-checklist-card__text">{{ $item }}</span>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {{-- ==========================================
+         FINAL CTA
+         ========================================== --}}
+    @include('sections.final-cta')
 
 </div>
-
-{{-- ═══════════════════════════════════════════
-     7. THREE PILLARS OF GLOBAL EDUCATION
-═══════════════════════════════════════════ --}}
-
-@include('sections.what-we-do')
-@include('sections.final-cta')
-
 @endsection
+
+@push('scripts')
+    <script src="{{ asset('js/pages/csr-community-impact.js') }}" defer></script>
+@endpush
