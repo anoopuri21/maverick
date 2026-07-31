@@ -174,7 +174,6 @@
 .os-hero__content {
   position: relative;
   z-index: 1;
-  text-align: center;
   padding-top: calc(var(--navbar-height, 80px) + 60px);
   padding-bottom: 80px;
   margin: 0 auto;

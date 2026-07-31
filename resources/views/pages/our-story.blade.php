@@ -30,7 +30,7 @@
   <div class="container os-hero__content">
     <span class="os-hero__eyebrow fade-up" data-testid="hero-eyebrow">
       <span class="os-hero__eyebrow-line"></span>
-      Our Journey
+      A Legacy of Global Impact
     </span>
     <h1 class="os-hero__title fade-up" data-testid="hero-title">
       {!! $hero->heading !!}
