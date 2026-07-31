@@ -3355,19 +3355,6 @@ html.lenis body {
   transition: ease all 500ms;
 }
 
-.why__tile-background {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  opacity: 0.1;
-  background: url("https://res.cloudinary.com/i08gwudw/image/upload/v1783605569/bgm-wm_mav1.png")
-    no-repeat;
-}
-
 .why__tile--large {
   grid-column: span 2;
   grid-row: span 2;
