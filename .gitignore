@@ -42,3 +42,9 @@ vendor/
 /storage/framework/sessions/*
 /storage/framework/views/*
 /storage/logs/*
+.env.*
+*.env
+credentials.json
+*.pem
+*.key
+.credentials
