@@ -14,6 +14,7 @@ class OurStoryTestimonial extends Model
         'rating',
         'testimonial',
         'photo',
+        'media_asset_id',
         'sort_order',
         'is_active',
     ];
@@ -23,4 +24,9 @@ class OurStoryTestimonial extends Model
         'sort_order' => 'integer',
         'rating' => 'integer',
     ];
+
+    public function mediaAsset()
+    {
+        return $this->belongsTo(MediaAsset::class);
+    }
 }
