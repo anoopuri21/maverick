@@ -2,10 +2,10 @@
 @if(($galleryImages ?? collect())->count() > 0)
 <section id="gallery" class="os-gallery" aria-label="Gallery">
   <div class="container">
-    <div class="os-gallery__header">
+    <!-- <div class="os-gallery__header">
       <span class="os-section-label fade-up">Gallery</span>
       <h2 class="os-section-heading os-section-heading--center fade-up">Moments That <em>Define Us</em></h2>
-    </div>
+    </div> -->
 
     <div class="os-gallery__grid" data-gallery-count="{{ $galleryImages->count() }}" data-gallery-grid>
       @foreach($galleryImages as $idx => $img)

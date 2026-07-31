@@ -36,7 +36,7 @@
   .numbers__grid {
     grid-template-columns: repeat(2, 1fr);
   }
-    .ceo__grid {
+  .ceo__grid {
     grid-template-columns: 1fr;
     gap: 3rem;
   }
@@ -60,12 +60,13 @@
   .navbar__hamburger {
     display: flex;
   }
-  .is-scrolled .navbar__hamburger {
+  .is-scrolled .navbar__hamburger,
+  .inner-navbar .navbar__hamburger {
     background-color: var(--color-black);
     border-radius: 5px;
   }
   .navbar__logo-placeholder {
-      width: calc(100vw - 120px);
+    width: calc(100vw - 120px);
   }
   /* ===== HERO RESPONSIVE ===== */
   .hero__headline-line {
@@ -92,7 +93,6 @@
     height: 24px;
   }
 
-
   .hero__subheading-text br {
     display: none;
   }
@@ -114,7 +114,7 @@
   .numbers__value {
     font-size: clamp(36px, 8vw, 52px);
   }
-    .ceo__quote {
+  .ceo__quote {
     font-size: 1.2rem;
     padding-left: 1rem;
   }
@@ -127,7 +127,9 @@
     font-size: 1rem;
     gap: 1rem;
   }
-  .faq-img {display: none;}
+  .faq-img {
+    display: none;
+  }
   .alumni::before {
     top: 10%;
     right: 0px;
@@ -308,7 +310,7 @@
   .hwdi__connector {
     display: none;
   }
-  
+
   /* ===== WHAT IS MAVERICK RESPONSIVE ===== */
   .wim__heading {
     font-size: clamp(28px, 9.5vw, 44px);

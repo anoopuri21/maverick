@@ -3,6 +3,10 @@
 @section('title', 'Our Story | Maverick Business Academy')
 @section('meta_description', 'Discover the journey of Maverick Business Academy from inception to becoming a global leader in business education.')
 
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('assets/css/our-story.css') }}">
+@endpush
+
 @section('content')
 <div class="page-our-story our-story">
 
@@ -16,11 +20,10 @@
     <div class="os-hero__bg-image" style="background-image: url('{{ $hero->image_url }}')"></div>
     @endif
     <div class="os-hero__gradient"></div>
-    <div class="os-hero__noise"></div>
     <div class="os-hero__shapes">
-      <svg class="os-hero__shape os-hero__shape--1" viewBox="0 0 200 200" fill="none"><circle cx="100" cy="100" r="80" stroke="rgba(255,255,255,0.06)" stroke-width="1"/></svg>
-      <svg class="os-hero__shape os-hero__shape--2" viewBox="0 0 300 300" fill="none"><circle cx="150" cy="150" r="120" stroke="rgba(220,38,38,0.08)" stroke-width="1"/></svg>
-      <svg class="os-hero__shape os-hero__shape--3" viewBox="0 0 100 100" fill="none"><rect x="10" y="10" width="80" height="80" rx="8" stroke="rgba(255,255,255,0.04)" stroke-width="1" transform="rotate(15 50 50)"/></svg>
+      <svg class="os-hero__shape os-hero__shape--1" viewBox="0 0 200 200" fill="none"><circle cx="100" cy="100" r="80" stroke="rgba(255,255,255,0.4)" stroke-width="1"/></svg>
+      <svg class="os-hero__shape os-hero__shape--2" viewBox="0 0 300 300" fill="none"><circle cx="150" cy="150" r="120" stroke="rgba(220,38,38,0.4)" stroke-width="1"/></svg>
+      <svg class="os-hero__shape os-hero__shape--3" viewBox="0 0 100 100" fill="none"><rect x="10" y="10" width="80" height="80" rx="8" stroke="rgba(255,255,255,0.4)" stroke-width="1" transform="rotate(20 50 50)"/></svg>
     </div>
     <div class="os-hero__grid-overlay"></div>
   </div>
@@ -95,13 +98,13 @@
         <p class="os-body-text fade-up">{{ $today->description ?? '' }}</p>
       </div>
     </div>
-    <div class="os-today__pills fade-up" aria-label="Programme categories">
+    <!-- <div class="os-today__pills fade-up" aria-label="Programme categories">
       <span class="os-today__pill">Undergraduate</span>
       <span class="os-today__pill">Postgraduate</span>
       <span class="os-today__pill">Doctoral</span>
       <span class="os-today__pill">Executive Education</span>
       <span class="os-today__pill">Professional Development</span>
-    </div>
+    </div> -->
   </div>
 </section>
 @endif
@@ -164,24 +167,31 @@
      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --}}
 @if($vision ?? false)
 <section id="vision" class="os-vision" aria-label="Vision for the Future">
-  @if($vision->background_image_url)
-  <div class="os-vision__bg" style="background-image: url('{{ $vision->background_image_url }}')"></div>
-  <div class="os-vision__bg-overlay"></div>
-  @endif
+  
   <div class="os-vision__decor" aria-hidden="true">
     <svg class="os-vision__horizon" viewBox="0 0 1200 2" preserveAspectRatio="none"><line x1="0" y1="1" x2="1200" y2="1" stroke="rgba(220,38,38,0.15)" stroke-width="1" stroke-dasharray="8 6"/></svg>
     <svg class="os-vision__arrow" viewBox="0 0 60 60" fill="none"><path d="M10 30h35M35 20l10 10-10 10" stroke="rgba(26,43,122,0.12)" stroke-width="2" stroke-linecap="round"/></svg>
   </div>
   <div class="container">
-    <div class="os-vision__content">
-      <span class="os-section-label fade-up">Vision for the Future</span>
-      <h2 class="os-section-heading os-section-heading--center fade-up">
-        <span class="text-reveal-wrapper"><span class="text-reveal-inner">{{ $vision->heading ?? '' }}</span></span>
-      </h2>
-      <p class="os-body-text os-body-text--center fade-up">{{ $vision->description ?? '' }}</p>
-      @if(($vision->cta_label ?? false) && ($vision->cta_url ?? false))
+    <div class="os-beginning__grid">
+      <div class="os-beginning__text">
+        <span class="os-section-label fade-up">Vision for the Future</span>
+        <h2 class="os-section-heading fade-up">
+          <span class="text-reveal-wrapper"><span class="text-reveal-inner">{{ $vision->heading ?? 'Looking Ahead' }}</span></span>
+        </h2>
+        <p class="os-body-text fade-up">{{ $vision->description ?? '' }}</p>
+        @if(($vision->cta_label ?? false) && ($vision->cta_url ?? false))
       <a href="{{ $vision->cta_url }}" class="os-vision__cta btn btn--primary fade-up">{{ $vision->cta_label }}</a>
       @endif
+      </div>
+      <div class="os-beginning__image-col">
+        <div class="os-beginning__image-wrap fade-up">
+          <div class="os-beginning__image-accent" aria-hidden="true"></div>
+        @if($vision->background_image_url)
+          <img src="{{ $vision->background_image_url }}" alt="Where It All Began" class="os-beginning__image" loading="lazy" />
+        @endif
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -196,12 +206,7 @@
 
   {{-- Desktop: Horizontal Pinned Scroll --}}
   <div class="os-journey__pin-wrap" data-journey-pin>
-    {{-- Progress indicator --}}
-    <div class="os-journey__progress" aria-hidden="true">
-      @foreach($timelines as $idx => $item)
-      <span class="os-journey__progress-dot{{ $idx === 0 ? ' is-active' : '' }}" data-journey-dot="{{ $idx }}"></span>
-      @endforeach
-    </div>
+    
     <div class="os-journey__scroll-hint" data-journey-hint>
       <span>Scroll</span>
       <span data-lucide="arrow-right"></span>
@@ -229,7 +234,7 @@
             @endif
           </div>
           <div class="os-journey__slide-right">
-            <span class="os-journey__big-year" aria-hidden="true">{{ $shortYear }}</span>
+            <span class="os-journey__big-year" aria-hidden="true">{{ $yearStr }}</span>
             @if($item->icon_url)
             <div class="os-journey__slide-image">
               <img src="{{ $item->icon_url }}" alt="{{ $item->title ?? $yearStr }}" loading="lazy" />
