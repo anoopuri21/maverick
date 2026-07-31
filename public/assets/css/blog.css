@@ -153,11 +153,6 @@
   );
 }
 
-/* Detect and match automatically if light background is used instead */
-.blog-newsletter .blog-decor__dots {
-  background-image: radial-gradient(rgba(7, 20, 68, 0.05) 1px, transparent 1px);
-}
-
 .blog-decor__blob--cta-1 {
   top: -20%;
   left: 10%;
@@ -339,6 +334,7 @@
 .blog-filter-bar__search-form {
   flex-shrink: 0;
   width: 320px;
+  margin-left: auto;
 }
 
 .blog-filter-bar__search-group {
@@ -1313,103 +1309,6 @@
 }
 
 /* =========================================================
-   REUSABLE NEWSLETTER STRIP COMPONENT
-   ========================================================= */
-
-.blog-newsletter {
-  position: relative;
-  overflow: hidden;
-  border-top: 1px solid var(--color-blog-border-light);
-}
-
-.blog-newsletter__inner {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 64px;
-  align-items: center;
-}
-
-.blog-newsletter__content {
-  display: flex;
-  flex-direction: column;
-}
-
-.blog-newsletter__title {
-  font-family: var(--font-display);
-  font-size: clamp(28px, 4.5vw, 44px);
-  color: var(--color-mba-dark-blue);
-  margin-top: 12px;
-  margin-bottom: 16px;
-  line-height: 1.15;
-  font-weight: var(--fw-semibold);
-}
-
-.blog-newsletter__desc {
-  font-family: var(--font-body);
-  font-size: 15px;
-  line-height: 1.7;
-  color: rgba(7, 20, 68, 0.7);
-}
-
-.blog-newsletter__action {
-  display: flex;
-  flex-direction: column;
-}
-
-.blog-newsletter__input-group {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  background: #ffffff;
-  border: 1px solid rgba(7, 20, 68, 0.15);
-  border-radius: 4px;
-  overflow: hidden;
-  box-shadow: var(--shadow-tight);
-  transition: border-color var(--transition-fast);
-}
-
-.blog-newsletter__input-group:focus-within {
-  border-color: var(--color-mba-blue);
-}
-
-.blog-newsletter__input {
-  flex: 1;
-  border: none;
-  outline: none;
-  padding: 16px 20px;
-  font-family: var(--font-body);
-  font-size: 14px;
-  color: var(--color-mba-dark-blue);
-  background: transparent;
-}
-
-.blog-newsletter__input::placeholder {
-  color: rgba(7, 20, 68, 0.4);
-}
-
-.blog-newsletter__btn {
-  padding: 16px 32px;
-  border-radius: 0;
-  text-transform: uppercase;
-  font-size: 12px;
-  font-weight: var(--fw-semibold);
-  letter-spacing: 0.1em;
-}
-
-.blog-newsletter__btn::after {
-  content: none; /* Remove arrow for input group button */
-}
-
-.blog-newsletter__disclaimer {
-  font-family: var(--font-body);
-  font-size: 12px;
-  color: rgba(7, 20, 68, 0.5);
-  margin-top: 12px;
-}
-
-/* =========================================================
    RESPONSIVE DESIGN SYSTEM (BREAKPOINTS)
    ========================================================= */
 
@@ -1532,11 +1431,6 @@
     padding: 24px;
     gap: 20px;
   }
-
-  .blog-newsletter__inner {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
 }
 
 @media (max-width: 480px) {
@@ -1587,16 +1481,34 @@
 }
 
 .blog-thumb--fallback.variant-1 {
-  background: linear-gradient(135deg, var(--color-mba-dark-blue) 0%, #1c2f4a 100%);
+  background: linear-gradient(
+    135deg,
+    var(--color-mba-dark-blue) 0%,
+    #1c2f4a 100%
+  );
 }
 .blog-thumb--fallback.variant-2 {
-  background: linear-gradient(135deg, var(--color-mba-dark-blue) 0%, #2a3f5f 60%, var(--color-accent) 140%);
+  background: linear-gradient(
+    135deg,
+    var(--color-mba-dark-blue) 0%,
+    #2a3f5f 60%,
+    var(--color-accent) 140%
+  );
 }
 .blog-thumb--fallback.variant-3 {
-  background: linear-gradient(160deg, #16233a 0%, var(--color-mba-dark-blue) 100%);
+  background: linear-gradient(
+    160deg,
+    #16233a 0%,
+    var(--color-mba-dark-blue) 100%
+  );
 }
 .blog-thumb--fallback.variant-4 {
-  background: linear-gradient(200deg, var(--color-mba-dark-blue) 0%, #223350 50%, #16233a 100%);
+  background: linear-gradient(
+    200deg,
+    var(--color-mba-dark-blue) 0%,
+    #223350 50%,
+    #16233a 100%
+  );
 }
 
 .blog-thumb__initial {
@@ -1620,10 +1532,17 @@
 .blog-thumb__pattern {
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.06) 1px,
+    transparent 1px
+  );
   background-size: 18px 18px;
   mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
-  -webkit-mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
+  -webkit-mask-image: radial-gradient(
+    circle at center,
+    black 30%,
+    transparent 80%
+  );
 }
 
 /* Fill the pre-existing structural wrappers exactly (card, featured hero,

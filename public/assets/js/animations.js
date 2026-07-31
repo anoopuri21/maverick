@@ -21,7 +21,7 @@
   function initInfiniteSlider(trackSelector, wrapperSelector, options = {}) {
     const {
       duration = 50,
-      direction = 'left',
+      direction = "left",
       enableOnMobile = false,
     } = options;
 
@@ -38,7 +38,9 @@
     const sliderWrapper = document.querySelector(wrapperSelector);
 
     if (!sliderTrack || !sliderWrapper) {
-      console.warn(`Slider elements not found: ${trackSelector}, ${wrapperSelector}`);
+      console.warn(
+        `Slider elements not found: ${trackSelector}, ${wrapperSelector}`,
+      );
       return null;
     }
 
@@ -63,10 +65,10 @@
       defaults: { ease: "none" },
       onRepeat: () => {
         gsap.set(sliderTrack, { x: 0 });
-      }
+      },
     });
 
-    const targetX = direction === 'left' ? -totalWidth : totalWidth;
+    const targetX = direction === "left" ? -totalWidth : totalWidth;
     sliderTl.to(sliderTrack, {
       x: targetX,
       duration: duration,
@@ -76,33 +78,45 @@
     const handleMouseEnter = () => sliderTl.pause();
     const handleMouseLeave = () => sliderTl.play();
 
-    sliderWrapper.addEventListener("mouseenter", handleMouseEnter, { passive: true });
-    sliderWrapper.addEventListener("mouseleave", handleMouseLeave, { passive: true });
+    sliderWrapper.addEventListener("mouseenter", handleMouseEnter, {
+      passive: true,
+    });
+    sliderWrapper.addEventListener("mouseleave", handleMouseLeave, {
+      passive: true,
+    });
 
     const sliderInstance = {
       timeline: sliderTl,
       track: sliderTrack,
       wrapper: sliderWrapper,
       eventListeners: [
-        { element: sliderWrapper, event: 'mouseenter', handler: handleMouseEnter },
-        { element: sliderWrapper, event: 'mouseleave', handler: handleMouseLeave },
+        {
+          element: sliderWrapper,
+          event: "mouseenter",
+          handler: handleMouseEnter,
+        },
+        {
+          element: sliderWrapper,
+          event: "mouseleave",
+          handler: handleMouseLeave,
+        },
       ],
-      cleanup: function() {
+      cleanup: function () {
         this.timeline.kill();
-        
+
         this.eventListeners.forEach(({ element, event, handler }) => {
           element.removeEventListener(event, handler);
         });
-        
+
         const allCards = Array.from(this.track.children);
         const cardsToRemove = allCards.slice(originalCards.length);
-        cardsToRemove.forEach(card => card.remove());
-        
-        this.track.style.willChange = '';
-        gsap.set(this.track, { x: 0, clearProps: 'transform' });
-        
+        cardsToRemove.forEach((card) => card.remove());
+
+        this.track.style.willChange = "";
+        gsap.set(this.track, { x: 0, clearProps: "transform" });
+
         activeSliders.delete(trackSelector);
-      }
+      },
     };
 
     activeSliders.set(trackSelector, sliderInstance);
@@ -124,7 +138,7 @@
     cleanupAllScrollTriggers();
   }
 
-  window.addEventListener('beforeunload', cleanupAllAnimations);
+  window.addEventListener("beforeunload", cleanupAllAnimations);
 
   // =========================================================
   // HERO ENTRANCE ANIMATION
@@ -312,7 +326,7 @@
       grainY *= 0.5;
     }
     if (isMobile) {
-      grainY = 0; 
+      grainY = 0;
     }
 
     // ---------------------------------------------------------
@@ -753,208 +767,206 @@
   // What Is Maverick Section Animations
   // =========================================================
 
-function initWIMAnimations() {
-  const section = document.querySelector("#what-is-maverick");
-  if (!section) return;
+  function initWIMAnimations() {
+    const section = document.querySelector("#what-is-maverick");
+    if (!section) return;
 
-  const pinWrapper     = section.querySelector(".wim__pin-wrapper");
-  const headingWrapper = section.querySelector(".wim__heading-wrapper");
-  const label          = section.querySelector(".wim__label");
-  const bgImage        = section.querySelector(".wim__bg-image");
-  const finalEl        = section.querySelector(".wim__final");
-  const statements     = gsap.utils.toArray(
-                           section.querySelectorAll(".wim__statement")
-                         );
-  const totalStatements = statements.length;
+    const pinWrapper = section.querySelector(".wim__pin-wrapper");
+    const headingWrapper = section.querySelector(".wim__heading-wrapper");
+    const label = section.querySelector(".wim__label");
+    const bgImage = section.querySelector(".wim__bg-image");
+    const finalEl = section.querySelector(".wim__final");
+    const statements = gsap.utils.toArray(
+      section.querySelectorAll(".wim__statement"),
+    );
+    const totalStatements = statements.length;
 
-  if (!pinWrapper || !headingWrapper || totalStatements === 0) {
-    console.warn("WIM: Required elements not found, skipping animations.");
-    return;
-  }
+    if (!pinWrapper || !headingWrapper || totalStatements === 0) {
+      console.warn("WIM: Required elements not found, skipping animations.");
+      return;
+    }
 
-  ScrollTrigger.getAll().forEach((st) => {
-    if (st.trigger === section) st.kill();
-  });
-
-  const prefersReducedMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches;
-
-  if (prefersReducedMotion) {
-    gsap.set([headingWrapper, label, finalEl, pinWrapper], {
-      clearProps: "all",
-      opacity: 1,
-      y: 0,
+    ScrollTrigger.getAll().forEach((st) => {
+      if (st.trigger === section) st.kill();
     });
-    gsap.set(statements, { clearProps: "all", opacity: 1 });
+
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    if (prefersReducedMotion) {
+      gsap.set([headingWrapper, label, finalEl, pinWrapper], {
+        clearProps: "all",
+        opacity: 1,
+        y: 0,
+      });
+      gsap.set(statements, { clearProps: "all", opacity: 1 });
+      statements.forEach((stmt) => {
+        const txt = stmt.querySelector(".wim__statement-text");
+        if (txt) gsap.set(txt, { clearProps: "all", y: "0%" });
+      });
+      if (bgImage) gsap.set(bgImage, { clearProps: "all" });
+      return;
+    }
+
+    const isMobile = window.innerWidth <= 768;
+
+    const cfg = isMobile
+      ? {
+          headingInitY: "-8vh",
+          headingSettleY: "-2vh",
+          entryStart: "top 70%",
+          entryEnd: "top 20%",
+          pinEnd: "+=110%",
+          bgScale: 1.08,
+          labelOpacity: 1,
+          scrubEntry: 0.8,
+          scrubPin: 1,
+        }
+      : {
+          headingInitY: "-15vh",
+          headingSettleY: "-3vh",
+          entryStart: "top 65%",
+          entryEnd: "top 15%",
+          pinEnd: "+=140%",
+          bgScale: 1.12,
+          labelOpacity: 0.9,
+          scrubEntry: 1,
+          scrubPin: 1.2,
+        };
+
+    const STMT_START = 0.05;
+    const STMT_ZONE_END = 0.62;
+    const FINAL_POS = 0.66;
+    const FADE_START = 0.88;
+    const FADE_DUR = 0.12;
+
+    const stmtZone = STMT_ZONE_END - STMT_START;
+    const STMT_GAP = totalStatements > 1 ? stmtZone / (totalStatements - 1) : 0;
+
+    gsap.set(headingWrapper, { y: cfg.headingInitY, opacity: 0 });
+    gsap.set(label, { y: 10, opacity: 0 });
+    gsap.set(statements, { opacity: 0 });
+    gsap.set(finalEl, { y: 12, opacity: 0 });
+    gsap.set(pinWrapper, { opacity: 1 });
+
     statements.forEach((stmt) => {
       const txt = stmt.querySelector(".wim__statement-text");
-      if (txt) gsap.set(txt, { clearProps: "all", y: "0%" });
+      if (txt) gsap.set(txt, { y: "100%" });
     });
-    if (bgImage) gsap.set(bgImage, { clearProps: "all" });
-    return;
-  }
 
-  const isMobile = window.innerWidth <= 768;
+    if (bgImage) gsap.set(bgImage, { scale: 1 });
 
-  const cfg = isMobile
-    ? {
-        headingInitY   : "-8vh",
-        headingSettleY : "-2vh",
-        entryStart     : "top 70%",
-        entryEnd       : "top 20%",
-        pinEnd         : "+=110%",
-        bgScale        : 1.08,
-        labelOpacity   : 1,
-        scrubEntry     : 0.8,
-        scrubPin       : 1,
-      }
-    : {
-        headingInitY   : "-15vh",
-        headingSettleY : "-3vh",
-        entryStart     : "top 65%",
-        entryEnd       : "top 15%",
-        pinEnd         : "+=140%",
-        bgScale        : 1.12,
-        labelOpacity   : 0.9,
-        scrubEntry     : 1,
-        scrubPin       : 1.2,
-      };
-
-  const STMT_START    = 0.05;
-  const STMT_ZONE_END = 0.62;
-  const FINAL_POS     = 0.66;
-  const FADE_START    = 0.88;
-  const FADE_DUR      = 0.12;
-
-  const stmtZone = STMT_ZONE_END - STMT_START;
-  const STMT_GAP = totalStatements > 1
-    ? stmtZone / (totalStatements - 1)
-    : 0;
-
-  gsap.set(headingWrapper, { y: cfg.headingInitY, opacity: 0 });
-  gsap.set(label,          { y: 10, opacity: 0 });
-  gsap.set(statements,     { opacity: 0 });
-  gsap.set(finalEl,        { y: 12, opacity: 0 });
-  gsap.set(pinWrapper,     { opacity: 1 });
-
-  statements.forEach((stmt) => {
-    const txt = stmt.querySelector(".wim__statement-text");
-    if (txt) gsap.set(txt, { y: "100%" });
-  });
-
-  if (bgImage) gsap.set(bgImage, { scale: 1 });
-
-  const entryTl = gsap.timeline({
-    scrollTrigger: {
-      trigger : section,
-      start   : cfg.entryStart,
-      end     : cfg.entryEnd,
-      scrub   : cfg.scrubEntry,
-    },
-  });
-
-  entryTl
-    .to(headingWrapper, {
-      y        : "0vh",
-      opacity  : 1,
-      duration : 1,
-      ease     : "power2.out",
-    })
-    .to(
-      label,
-      {
-        y        : 0,
-        opacity  : cfg.labelOpacity,
-        duration : 0.7,
-        ease     : "power2.out",
+    const entryTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: cfg.entryStart,
+        end: cfg.entryEnd,
+        scrub: cfg.scrubEntry,
       },
-      "-=0.5"
-    );
+    });
 
-  const wimTl = gsap.timeline({
-    scrollTrigger: {
-      trigger             : section,
-      start               : "top top",
-      end                 : cfg.pinEnd,
-      scrub               : cfg.scrubPin,
-      pin                 : pinWrapper,
-      anticipatePin       : 1,
-      pinSpacing          : true,
-      invalidateOnRefresh : true,
-    },
-  });
-
-  if (bgImage) {
-    wimTl.to(
-      bgImage,
-      {
-        scale    : cfg.bgScale,
-        duration : 1,
-        ease     : "none",
-      },
-      0 
-    );
-  }
-
-  wimTl.to(
-    headingWrapper,
-    {
-      y        : cfg.headingSettleY,
-      duration : 0.3,
-      ease     : "power1.inOut",
-    },
-    0
-  );
-
-  statements.forEach((stmt, index) => {
-    const stmtText = stmt.querySelector(".wim__statement-text");
-    const pos      = STMT_START + index * STMT_GAP;
-
-    wimTl.to(
-      stmt,
-      {
-        opacity  : 1,
-        duration : 0.15,
-        ease     : "power2.out",
-      },
-      pos
-    );
-
-    if (stmtText) {
-      wimTl.to(
-        stmtText,
+    entryTl
+      .to(headingWrapper, {
+        y: "0vh",
+        opacity: 1,
+        duration: 1,
+        ease: "power2.out",
+      })
+      .to(
+        label,
         {
-          y        : "0%",
-          duration : 0.18,
-          ease     : "power3.out",
+          y: 0,
+          opacity: cfg.labelOpacity,
+          duration: 0.7,
+          ease: "power2.out",
         },
-        pos
+        "-=0.5",
+      );
+
+    const wimTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: "top top",
+        end: cfg.pinEnd,
+        scrub: cfg.scrubPin,
+        pin: pinWrapper,
+        anticipatePin: 1,
+        pinSpacing: true,
+        invalidateOnRefresh: true,
+      },
+    });
+
+    if (bgImage) {
+      wimTl.to(
+        bgImage,
+        {
+          scale: cfg.bgScale,
+          duration: 1,
+          ease: "none",
+        },
+        0,
       );
     }
-  });
 
-  wimTl.to(
-    finalEl,
-    {
-      opacity  : 1,
-      y        : 0,
-      duration : 0.08,
-      ease     : "power2.out",
-    },
-    FINAL_POS
-  );
+    wimTl.to(
+      headingWrapper,
+      {
+        y: cfg.headingSettleY,
+        duration: 0.3,
+        ease: "power1.inOut",
+      },
+      0,
+    );
 
-  wimTl.to(
-    pinWrapper,
-    {
-      opacity  : 0,
-      duration : FADE_DUR, 
-      ease     : "power1.inOut", 
-    },
-    FADE_START 
-  );
-}
+    statements.forEach((stmt, index) => {
+      const stmtText = stmt.querySelector(".wim__statement-text");
+      const pos = STMT_START + index * STMT_GAP;
+
+      wimTl.to(
+        stmt,
+        {
+          opacity: 1,
+          duration: 0.15,
+          ease: "power2.out",
+        },
+        pos,
+      );
+
+      if (stmtText) {
+        wimTl.to(
+          stmtText,
+          {
+            y: "0%",
+            duration: 0.18,
+            ease: "power3.out",
+          },
+          pos,
+        );
+      }
+    });
+
+    wimTl.to(
+      finalEl,
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.08,
+        ease: "power2.out",
+      },
+      FINAL_POS,
+    );
+
+    wimTl.to(
+      pinWrapper,
+      {
+        opacity: 0,
+        duration: FADE_DUR,
+        ease: "power1.inOut",
+      },
+      FADE_START,
+    );
+  }
 
   // =========================================================
   // Who We Are Section Animations
@@ -1253,27 +1265,27 @@ function initWIMAnimations() {
 
   function initCEOAnimations() {
     if (!elementExists("#ceo-message")) return;
-    
-        const ceoImageAccent = document.querySelector(".ceo__image");
-        if (ceoImageAccent) {
-          gsap.fromTo(
-            ceoImageAccent,
-            { opacity: 0 },
-            {
-              opacity: 1,
-              duration: 0.6,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: ".ceo__image-col",
-                start: "top 70%",
-                toggleActions: "play none none none",
-              },
-            },
-          );
-        }
+
+    const ceoImageAccent = document.querySelector(".ceo__image");
+    if (ceoImageAccent) {
+      gsap.fromTo(
+        ceoImageAccent,
+        { opacity: 0 },
+        {
+          opacity: 1,
+          duration: 0.6,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: ".ceo__image-col",
+            start: "top 70%",
+            toggleActions: "play none none none",
+          },
+        },
+      );
+    }
 
     const headingLines = document.querySelectorAll(
-      "#ceo-message .text-reveal-inner"
+      "#ceo-message .text-reveal-inner",
     );
 
     if (headingLines.length) {
@@ -1290,7 +1302,7 @@ function initWIMAnimations() {
             start: "top 70%",
             toggleActions: "play none none none",
           },
-        }
+        },
       );
     }
 
@@ -1298,46 +1310,47 @@ function initWIMAnimations() {
       scrollTrigger: {
         trigger: "#ceo-message",
         start: "top 75%",
-        toggleActions: "play none none none"
-      }
+        toggleActions: "play none none none",
+      },
     });
 
     tl.fromTo(
       ".ceo__image-wrapper",
       {
         opacity: 0,
-        scale: 0.95
+        scale: 0.95,
       },
       {
         opacity: 1,
         scale: 1,
         duration: 0.9,
-        ease: "power2.out"
-      }
+        ease: "power2.out",
+      },
     );
 
     tl.fromTo(
       [
-        ".section-label",
-        ".ceo__quote",
-        ".ceo__body",
-        ".ceo__signature"
+        "#ceo-message .section-label",
+        "#ceo-message .ceo__quote",
+        "#ceo-message .ceo__body",
+        "#ceo-message .ceo__signature",
       ],
       {
         opacity: 0,
-        y: 40
+        y: 40,
       },
       {
         opacity: 1,
         y: 0,
         stagger: 0.15,
         duration: 0.8,
-        ease: "power2.out"
+        ease: "power2.out",
+        markers: true,
       },
-      "-=0.4"
+      "-=0.4",
     );
   }
-  
+
   // =========================================================
   // What We Do Section Animations
   // =========================================================
@@ -1922,7 +1935,6 @@ function initWIMAnimations() {
             );
           }
         }
-
       },
     });
   }
@@ -2561,7 +2573,9 @@ function initWIMAnimations() {
       );
     }
 
-    const subtitle = document.querySelector("#faculty-insights .insights__subtitle");
+    const subtitle = document.querySelector(
+      "#faculty-insights .insights__subtitle",
+    );
     if (subtitle) {
       gsap.fromTo(
         subtitle,
@@ -2580,7 +2594,9 @@ function initWIMAnimations() {
       );
     }
 
-    const cards = document.querySelectorAll("#faculty-insights .insights__card");
+    const cards = document.querySelectorAll(
+      "#faculty-insights .insights__card",
+    );
     if (cards.length) {
       gsap.fromTo(
         cards,
@@ -2663,7 +2679,9 @@ function initWIMAnimations() {
       );
     }
 
-    const subtitle = document.querySelector("#upcoming-events .events__subtitle");
+    const subtitle = document.querySelector(
+      "#upcoming-events .events__subtitle",
+    );
     if (subtitle) {
       gsap.fromTo(
         subtitle,
@@ -2716,7 +2734,10 @@ function initWIMAnimations() {
 
     if (prefersReducedMotion) {
       gsap.set(
-        ["#video-testimonials .text-reveal-inner", "#video-testimonials .fade-up"],
+        [
+          "#video-testimonials .text-reveal-inner",
+          "#video-testimonials .fade-up",
+        ],
         { clearProps: "all", opacity: 1 },
       );
       gsap.set("#video-testimonials .text-reveal-inner", { y: "0%" });
@@ -2821,10 +2842,10 @@ function initWIMAnimations() {
     ).matches;
 
     if (prefersReducedMotion) {
-      gsap.set(
-        ["#final-cta .text-reveal-inner", "#final-cta .fade-up"],
-        { clearProps: "all", opacity: 1 },
-      );
+      gsap.set(["#final-cta .text-reveal-inner", "#final-cta .fade-up"], {
+        clearProps: "all",
+        opacity: 1,
+      });
       gsap.set("#final-cta .text-reveal-inner", { y: "0%" });
       return;
     }
@@ -2933,20 +2954,24 @@ function initWIMAnimations() {
 
   function initFooterAnimations() {
     if (!elementExists("#footer")) return;
-    
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    
+
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
     const yearEl = document.querySelector("[data-current-year]");
     if (yearEl) {
       yearEl.textContent = new Date().getFullYear();
     }
-    
+
     const newsletterForm = document.querySelector("[data-newsletter-form]");
     if (newsletterForm) {
       newsletterForm.addEventListener("submit", (e) => {
         e.preventDefault();
         const input = newsletterForm.querySelector(".footer__newsletter-input");
-        const btn = newsletterForm.querySelector(".footer__newsletter-btn span");
+        const btn = newsletterForm.querySelector(
+          ".footer__newsletter-btn span",
+        );
         if (input && input.value && btn) {
           const originalText = btn.textContent;
           btn.textContent = "Subscribed ✓";
@@ -2957,15 +2982,15 @@ function initWIMAnimations() {
         }
       });
     }
-    
+
     if (prefersReducedMotion) return;
-    
+
     const cols = document.querySelectorAll(".footer__col");
     const bottom = document.querySelector(".footer__bottom");
-    
+
     if (cols.length) gsap.set(cols, { opacity: 0, y: 30 });
     if (bottom) gsap.set(bottom, { opacity: 0, y: 20 });
-    
+
     if (cols.length) {
       gsap.to(cols, {
         opacity: 1,
@@ -2976,11 +3001,11 @@ function initWIMAnimations() {
         scrollTrigger: {
           trigger: "#footer",
           start: "top 85%",
-          toggleActions: "play none none none"
-        }
+          toggleActions: "play none none none",
+        },
       });
     }
-    
+
     if (bottom) {
       gsap.to(bottom, {
         opacity: 1,
@@ -2991,8 +3016,8 @@ function initWIMAnimations() {
         scrollTrigger: {
           trigger: "#footer",
           start: "top 85%",
-          toggleActions: "play none none none"
-        }
+          toggleActions: "play none none none",
+        },
       });
     }
   }
@@ -3115,7 +3140,12 @@ function initWIMAnimations() {
           duration: 0.6,
           stagger: 0.1,
         },
-        { selector: ".accreditations__trust", y: 20, duration: 0.6, delay: 0.3 },
+        {
+          selector: ".accreditations__trust",
+          y: 20,
+          duration: 0.6,
+          delay: 0.3,
+        },
       ],
     });
   }
@@ -3187,7 +3217,7 @@ function initWIMAnimations() {
     initWIMAnimations();
 
     initWWAAnimations();
-    
+
     initCEOAnimations();
 
     initWWDAnimations();
@@ -3245,5 +3275,3 @@ function initWIMAnimations() {
     }
   }, 800);
 })();
-
-

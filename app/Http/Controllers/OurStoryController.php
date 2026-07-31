@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\FacultyInsight;
 use App\Models\OurStoryAward;
 use App\Models\OurStoryTimeline;
+use App\Models\OurStoryGalleryImage;
 use App\Models\PartnerLogo;
 use App\Models\Testimonial;
 use App\Settings\CeoSettings;
@@ -34,6 +35,11 @@ class OurStoryController extends Controller
             ->get();
 
         $awards = OurStoryAward::query()
+            ->where('is_active', true)
+            ->orderBy('sort_order')
+            ->get();
+
+        $galleryImages = OurStoryGalleryImage::query()
             ->where('is_active', true)
             ->orderBy('sort_order')
             ->get();
@@ -77,6 +83,7 @@ class OurStoryController extends Controller
             'finalCta',
             'timelines',
             'awards',
+            'galleryImages',
             'accreditationLogos',
             'facultyInsights',
             'testimonials',

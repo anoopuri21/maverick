@@ -65,7 +65,3 @@ composer install --no-dev --optimize-autoloader
 php artisan migrate --force
 php artisan optimize:clear
 php artisan config:cache -->
-
-## gejkosrq_admin
-
-## C~tGFa[2$BWZtN1G
