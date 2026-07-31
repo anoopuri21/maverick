@@ -2,12 +2,10 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Concerns\HandlesCloudinaryImageFields;
+use App\Filament\Forms\Components\MediaPicker;
 use App\Filament\Resources\OurStoryTestimonialResource\Pages;
 use App\Models\OurStoryTestimonial;
-use App\Services\CloudinaryService;
 use Filament\Forms;
-use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -20,17 +18,17 @@ use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class OurStoryTestimonialResource extends Resource
 {
-    use HandlesCloudinaryImageFields;
-
     protected static ?string $model = OurStoryTestimonial::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-left-right';
+
     protected static ?string $navigationGroup = 'Our Story Content';
+
     protected static ?string $navigationLabel = 'Testimonials';
+
     protected static ?int $navigationSort = 4;
 
     public static function form(Form $form): Form
@@ -54,18 +52,9 @@ class OurStoryTestimonialResource extends Resource
                     ->required()
                     ->rows(4)
                     ->columnSpanFull(),
-                FileUpload::make('photo')
-                    ->label('Photo')
-                    ->image()
-                    ->imageEditor()
-                    ->nullable()
-                    ->maxSize(5120)
-                    ->fetchFileInformation(false)
-                    ->getUploadedFileUsing(fn (?string $file): ?array => static::existingCloudinaryImage($file))
-                    ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
-                        return app(CloudinaryService::class)
-                            ->uploadImage($file->getRealPath(), 'our-story/testimonials');
-                    }),
+                MediaPicker::make('media_asset_id')
+                    ->folder('our-story/testimonials')
+                    ->urlField('photo'),
                 TextInput::make('sort_order')
                     ->numeric()
                     ->default(0),
