@@ -5,9 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Concerns\HandlesCloudinaryImageFields;
 use App\Filament\Resources\OurStoryTimelineResource\Pages;
 use App\Models\OurStoryTimeline;
-use App\Services\CloudinaryService;
 use Filament\Forms;
-use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -18,7 +16,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
+use App\Filament\Forms\Components\MediaPicker;
 
 class OurStoryTimelineResource extends Resource
 {
@@ -52,19 +50,9 @@ class OurStoryTimelineResource extends Resource
                     ])
                     ->nullable()
                     ->columnSpanFull(),
-                FileUpload::make('icon_url')
+                MediaPicker::forField('icon_url', 'our-story/timeline')
                     ->label('Icon')
-                    ->image()
-                    ->imageEditor()
-                    ->maxSize(2048)
-                    ->helperText('Optional timeline icon image')
-                    ->nullable()
-                    ->fetchFileInformation(false)
-                    ->getUploadedFileUsing(fn (?string $file): ?array => static::existingCloudinaryImage($file))
-                    ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
-                        return app(CloudinaryService::class)
-                            ->uploadImage($file->getRealPath(), 'our-story/timeline');
-                    }),
+                    ->helperText('Optional timeline icon image'),
                 Forms\Components\TextInput::make('sort_order')
                     ->numeric()
                     ->default(0),

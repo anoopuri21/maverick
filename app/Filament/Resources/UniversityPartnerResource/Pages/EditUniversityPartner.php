@@ -15,6 +15,8 @@ class EditUniversityPartner extends EditRecord
 
     protected function mutateFormDataBeforeSave(array $data): array
     {
+        $data = \App\Filament\Forms\Components\MediaPicker::syncFieldFromAsset($data, 'logo_url');
+
         return $this->preserveExistingImageFields($data, $this->record);
     }
 

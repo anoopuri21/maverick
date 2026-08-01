@@ -15,6 +15,8 @@ class EditOurStoryAward extends EditRecord
 
     protected function mutateFormDataBeforeSave(array $data): array
     {
+        $data = \App\Filament\Forms\Components\MediaPicker::syncFieldFromAsset($data, 'image_url');
+
         return $this->preserveExistingImageFields($data, $this->record);
     }
 

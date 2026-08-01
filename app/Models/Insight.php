@@ -5,9 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use App\Concerns\HasMediaAssets;
 
 class Insight extends Model
 {
+    use HasMediaAssets;
+
     use HasFactory;
 
     protected $fillable = [
@@ -16,6 +19,7 @@ class Insight extends Model
         'tags', 'author_name', 'author_avatar_url', 'author_bio',
         'published_at', 'reading_time_minutes', 'is_featured',
         'meta_title', 'meta_description', 'extra',
+        'featured_image_url_asset_id',
     ];
 
     protected $casts = [

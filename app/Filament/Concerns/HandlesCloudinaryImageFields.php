@@ -23,6 +23,12 @@ trait HandlesCloudinaryImageFields
     protected function preserveExistingImageFields(array $data, object|array $source): array
     {
         foreach ($data as $key => $value) {
+            // Fields managed by MediaPicker (asset id + its synced URL column)
+            // must not be "preserved": clearing the picker is intentional.
+            if (str_ends_with($key, '_asset_id') || array_key_exists($key.'_asset_id', $data)) {
+                continue;
+            }
+
             if (! $this->isImageField($key)) {
                 continue;
             }
