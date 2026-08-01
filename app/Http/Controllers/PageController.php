@@ -279,7 +279,7 @@ class PageController extends Controller
         $galleryActivities = [
             [
                 'title' => 'Teachers Training Workshop 2026',
-                'image' => 'https://images.unsplash.com/photo-1544531516-a5e34027225b?auto=format&fit=crop&q=80&w=1000',
+                'image' => 'https://images.pexels.com/photos/10498800/pexels-photo-10498800.jpeg',
                 'description' => 'Empowering educators through innovative classroom engagement strategies.',
             ],
             [

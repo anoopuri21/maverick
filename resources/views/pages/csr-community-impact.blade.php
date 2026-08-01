@@ -4,7 +4,7 @@
 @section('meta_description', 'Completely redesigned CSR & Community Impact page of Maverick Business Academy London — Creating Positive Impact Through Education, Community Engagement, and Social Responsibility.')
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('css/pages/csr-community-impact.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/pages/csr-community-impact.css') }}" />
 @endpush
 
 @section('content')
@@ -18,33 +18,32 @@
     {{-- ==========================================
          PAGE BANNER (HERO)
          ========================================== --}}
-    <section class="csr-hero">
-        <div class="csr-hero__bg"></div>
-        <div class="csr-hero__overlay"></div>
-        <div class="csr-hero__container">
-            <div class="csr-hero__content">
-                <h1 class="csr-hero__title">CSR & Community Impact</h1>
-                <p class="csr-hero__tagline">Creating Positive Impact Through Education, Community Engagement, and Social Responsibility.</p>
-            </div>
+    <section class="accred-hero" style="background-image: url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=1920')">
+        <div class="accred-hero__overlay"></div>
+        <div class="container accred-hero__content">
+            <span class="accred-hero__tag">CSR & Community Impact</span>
+            <h1 class="accred-hero__heading">
+                CSR & Community Impact
+            </h1>
+            <p class="accred-hero__description">Creating Positive Impact Through Education, Community Engagement, and Social Responsibility.</p>
         </div>
     </section>
-
     {{-- ==========================================
          SECTION 1: OUR COMMITMENT
          ========================================== --}}
-    <section class="csr-commitment">
+    <section class="csr-commitment section--light">
         <div class="container">
             <div class="csr-commitment__grid">
                 <div class="csr-commitment__content">
-                    <span class="csr-eyebrow-tag">Our Values</span>
+                    <div class="section-label"><span>Our Values</span></div>
                     <h2 class="csr-section-heading">Our <span class="csr-text-accent">Commitment</span></h2>
                     <p class="csr-body-text">
-                        At Maverick Business Academy, we believe education extends beyond classrooms. Through our CSR initiatives, we actively contribute to community development, educational accessibility, professional growth, and social wellbeing.
-                    </p>
+                         At Maverick Business Academy, we believe education extends beyond classrooms. Through our CSR initiatives, we actively contribute to community development, educational accessibility, professional growth, and social wellbeing.
+                    </p>    
                 </div>
                 <div class="csr-commitment__visual">
                     <div class="csr-commitment__image-container">
-                        <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&q=80&w=1200" alt="Students and educators community engagement" class="csr-commitment__img" loading="lazy">
+                        <img src="https://images.pexels.com/photos/6565755/pexels-photo-6565755.jpeg" alt="Students and educators community engagement" class="csr-commitment__img" loading="lazy">
                         <div class="csr-decorative-pattern"></div>
                     </div>
                 </div>
@@ -55,10 +54,10 @@
     {{-- ==========================================
          SECTION 2: CSR FOCUS AREAS (Icon Cards)
          ========================================== --}}
-    <section class="csr-focus">
+    <section class="csr-focus section--light">
         <div class="container">
             <div class="csr-section-header">
-                <span class="csr-eyebrow-tag">Pillars</span>
+            <div class="section-label"><span>Pillars</span></div>
                 <h2 class="csr-section-heading">CSR Focus <span class="csr-text-accent">Areas</span></h2>
             </div>
 
@@ -86,10 +85,10 @@
     {{-- ==========================================
          SECTION 3: CSR ACTIVITIES GALLERY (⭐ MAIN SECTION)
          ========================================== --}}
-    <section class="csr-gallery">
+    <section class="csr-gallery section--light">
         <div class="container">
             <div class="csr-section-header">
-                <span class="csr-eyebrow-tag">Our Impact In Action</span>
+            <div class="section-label"><span>Our Impact In Action</span></div>
                 <h2 class="csr-section-heading">CSR <span class="csr-text-accent">Activities</span></h2>
             </div>
 
@@ -117,7 +116,8 @@
     {{-- ==========================================
          SECTION 4: IMPACT NUMBERS (Counters)
          ========================================== --}}
-    <section class="csr-impact">
+    @if($impactNumbers && count($impactNumbers) > 0)
+    <section class="csr-impact section--dark">
         <div class="csr-impact__pattern"></div>
         <div class="container">
             <div class="csr-impact__grid">
@@ -133,18 +133,18 @@
             </div>
         </div>
     </section>
-
+    @endif
     {{-- ==========================================
          SECTION 5: SCHOLARSHIP & EDUCATIONAL SUPPORT
          ========================================== --}}
-    <section class="csr-scholarship">
+    <section class="csr-scholarship section--light">
         <div class="container">
             <div class="csr-scholarship__split">
                 <div class="csr-scholarship__intro">
-                    <span class="csr-eyebrow-tag">Educational Access & Scholarships</span>
-                    <h2 class="csr-section-heading">Empowering Through <span class="csr-text-accent">Opportunity</span></h2>
+                <div class="section-label"><span>Scholarship & Educational Support</span></div>
+                    <h2 class="csr-section-heading">Educational Access  <span class="csr-text-accent">& Scholarships</span></h2>
                     <p class="csr-body-text">
-                        Maverick supports deserving learners through scholarship opportunities, flexible learning pathways, and professional development initiatives that help individuals achieve their educational goals.
+                    Maverick supports deserving learners through scholarship opportunities, flexible learning pathways, and professional development initiatives that help individuals achieve their educational goals.
                     </p>
                 </div>
 
