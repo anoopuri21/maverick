@@ -4,9 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Concerns\HasMediaAssets;
 
 class OurStoryTimeline extends Model
 {
+    use HasMediaAssets;
+
     use SoftDeletes;
 
     protected $fillable = [
@@ -16,6 +19,7 @@ class OurStoryTimeline extends Model
         'icon_url',
         'sort_order',
         'is_active',
+        'icon_url_asset_id',
     ];
 
     protected $casts = [

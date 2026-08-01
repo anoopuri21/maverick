@@ -288,7 +288,12 @@
 @include('sections.ceo-message')
 
 {{-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-     SECTION 8: GALLERY
+     SECTION 8: TESTIMONIALS
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --}}
+@include('sections.our-story-testimonials')
+
+{{-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     SECTION 9: GALLERY
      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --}}
 @include('sections.our-story-gallery')
 

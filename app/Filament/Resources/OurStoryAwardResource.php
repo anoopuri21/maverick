@@ -5,9 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Concerns\HandlesCloudinaryImageFields;
 use App\Filament\Resources\OurStoryAwardResource\Pages;
 use App\Models\OurStoryAward;
-use App\Services\CloudinaryService;
 use Filament\Forms;
-use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -17,7 +15,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
+use App\Filament\Forms\Components\MediaPicker;
 
 class OurStoryAwardResource extends Resource
 {
@@ -37,18 +35,9 @@ class OurStoryAwardResource extends Resource
     {
         return $form
             ->schema([
-                FileUpload::make('image_url')
+                MediaPicker::forField('image_url', 'our-story/awards')
                     ->label('Award Image')
-                    ->image()
-                    ->imageEditor()
-                    ->required()
-                    ->maxSize(5120)
-                    ->fetchFileInformation(false)
-                    ->getUploadedFileUsing(fn (?string $file): ?array => static::existingCloudinaryImage($file))
-                    ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
-                        return app(CloudinaryService::class)
-                            ->uploadImage($file->getRealPath(), 'our-story/awards');
-                    }),
+                    ->required(),
                 Forms\Components\TextInput::make('title')
                     ->label('Award Title')
                     ->required()

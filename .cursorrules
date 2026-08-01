@@ -185,6 +185,39 @@
 # sed -i 's/\r$//' filename.sh
 
 
+# ------------------------------------------
+# 19. ANIMATION SYSTEM ARCHITECTURE
+# ------------------------------------------
+# When working with page animations:
+#
+# ❌ NEVER create monolithic animation files (>300 lines)
+# ❌ NEVER hardcode selectors that don't exist in blade templates
+# ✅ ALWAYS use 3-tier lazy-loaded architecture:
+#    - core/ (GSAP+ScrollTrigger+Lenis init, global observers)
+#    - shared/ (utility functions: respectsReducedMotion, lazyLoadComponent)
+#    - components/ (section-specific animations)
+#    - pages/ (orchestrator with lazy loading)
+#
+# ✅ ALWAYS adapt components to EXISTING blade selectors
+# ✅ ALWAYS skip components for non-existent DOM elements
+# ✅ ALWAYS use IntersectionObserver for lazy loading
+# ✅ ALWAYS respect prefers-reduced-motion
+#
+# Example structure:
+#   public/assets/js/
+#   ├── core/
+#   │   ├── animations-core.js
+#   │   └── reveal-observer.js
+#   ├── shared/
+#   │   └── utils.js
+#   ├── components/
+#   │   ├── section-reveal.js
+#   │   ├── counter-animation.js
+#   │   └── footer-animations.js
+#   └── pages/
+#       └── our-story.js
+
+
 # ============================================
 # END OF RULES — FOLLOW STRICTLY
 # ============================================

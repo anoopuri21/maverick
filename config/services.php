@@ -39,6 +39,8 @@ return [
         'api_key' => env('CLOUDINARY_API_KEY'),
         'api_secret' => env('CLOUDINARY_API_SECRET'),
         'upload_folder' => env('CLOUDINARY_UPLOAD_FOLDER', 'maverick-academy'),
+        // Empty = auto-append APP_ENV when not production (e.g. maverick-academy-local)
+        'env_prefix' => env('CLOUDINARY_ENV_PREFIX'),
     ],
 
     'zapier' => [

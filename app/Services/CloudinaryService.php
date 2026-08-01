@@ -42,9 +42,20 @@ class CloudinaryService
      */
     public function uploadImage(string $filePath, string $folder = 'general'): ?string
     {
+        $result = $this->uploadImageDetailed($filePath, $folder);
+
+        return $result['url'] ?? null;
+    }
+
+    /**
+     * Upload an image and return url + public_id metadata.
+     *
+     * @return array{url: string|null, public_id: string|null}
+     */
+    public function uploadImageDetailed(string $filePath, string $folder = 'general'): array
+    {
         try {
-            $baseFolder = config('services.cloudinary.upload_folder', 'maverick-academy');
-            $fullFolder = $baseFolder . '/' . $folder;
+            $fullFolder = $this->resolveBaseFolder().'/'.$folder;
 
             $result = $this->cloudinary->uploadApi()->upload($filePath, [
                 'folder' => $fullFolder,
@@ -57,9 +68,68 @@ class CloudinaryService
                 'unique_filename' => true,
             ]);
 
-            return $result['secure_url'] ?? null;
+            return [
+                'url' => $result['secure_url'] ?? null,
+                'public_id' => $result['public_id'] ?? null,
+            ];
         } catch (\Exception $e) {
-            Log::error('Cloudinary upload failed: ' . $e->getMessage());
+            Log::error('Cloudinary upload failed: '.$e->getMessage());
+            throw $e;
+        }
+    }
+
+    /**
+     * Resolve env-scoped Cloudinary base folder (avoids local polluting production paths).
+     */
+    public function resolveBaseFolder(): string
+    {
+        $base = config('services.cloudinary.upload_folder', 'maverick-academy');
+        $prefix = config('services.cloudinary.env_prefix');
+
+        if ($prefix === null || $prefix === '') {
+            $prefix = app()->environment('production') ? null : app()->environment();
+        }
+
+        if (filled($prefix)) {
+            return rtrim($base, '-').'-'.$prefix;
+        }
+
+        return $base;
+    }
+
+    /**
+     * List uploaded images under a Cloudinary public_id prefix (Admin API, one page).
+     *
+     * @return array{resources: array<int, array<string, mixed>>, next_cursor: string|null}
+     */
+    public function listImagesByPrefix(string $prefix, ?string $nextCursor = null): array
+    {
+        try {
+            $options = [
+                'resource_type' => 'image',
+                'type' => 'upload',
+                'prefix' => $prefix,
+                'max_results' => 500,
+            ];
+
+            if ($nextCursor) {
+                $options['next_cursor'] = $nextCursor;
+            }
+
+            $result = $this->cloudinary->adminApi()->assets($options);
+
+            return [
+                'resources' => isset($result['resources']) && is_array($result['resources'])
+                    ? $result['resources']
+                    : [],
+                'next_cursor' => $result['next_cursor'] ?? null,
+            ];
+        } catch (\Exception $e) {
+            Log::error('Cloudinary listImagesByPrefix failed: '.$e->getMessage(), [
+                'prefix' => $prefix,
+                'next_cursor' => $nextCursor,
+            ]);
+
             throw $e;
         }
     }

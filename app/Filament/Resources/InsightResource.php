@@ -5,12 +5,10 @@ namespace App\Filament\Resources;
 use App\Filament\Concerns\HandlesCloudinaryImageFields;
 use App\Filament\Resources\InsightResource\Pages;
 use App\Models\Insight;
-use App\Services\CloudinaryService;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\RichEditor;
-use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\CheckboxList;
 use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\Toggle;
@@ -25,7 +23,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
-use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
+use App\Filament\Forms\Components\MediaPicker;
 
 class InsightResource extends Resource
 {
@@ -67,15 +65,9 @@ class InsightResource extends Resource
             ]),
 
             Section::make('Media')->schema([
-                FileUpload::make('featured_image_url')
+                MediaPicker::forField('featured_image_url', 'blog-images')
                     ->label('Featured Image')
-                    ->image()
-                    ->imagePreviewHeight('250')
-                    ->helperText('Optional — a branded cover will be shown automatically if left empty.')
-                    ->getUploadedFileUsing(fn (?string $file): ?array => static::existingCloudinaryImage($file))
-                    ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
-                        return app(CloudinaryService::class)->uploadImage($file->getRealPath(), 'blog-images');
-                    }),
+                    ->helperText('Optional — a branded cover will be shown automatically if left empty.'),
 
                 TextInput::make('featured_image_alt')
                     ->label('Image Alt Text')

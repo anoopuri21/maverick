@@ -6,9 +6,7 @@ use App\Filament\Resources\UniversityPartnerResource\Pages;
 use App\Filament\Resources\UniversityPartnerResource\RelationManagers;
 use App\Models\UniversityPartner;
 use App\Filament\Concerns\HandlesCloudinaryImageFields;
-use App\Services\CloudinaryService;
 use Filament\Forms;
-use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -16,7 +14,7 @@ use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
+use App\Filament\Forms\Components\MediaPicker;
 
 class UniversityPartnerResource extends Resource
 {
@@ -65,16 +63,8 @@ class UniversityPartnerResource extends Resource
                         \Filament\Forms\Components\TextInput::make('recognition')
                             ->helperText('e.g. AACSB Accredited, QAA Reviewed')
                             ->columnSpanFull(),
-                        FileUpload::make('logo_url')
+                        MediaPicker::forField('logo_url', 'university-partners')
                             ->label('Logo')
-                            ->image()
-                            ->maxSize(2048)
-                            ->nullable()
-                            ->getUploadedFileUsing(fn (?string $file): ?array => static::existingCloudinaryImage($file))
-                            ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
-                                return app(CloudinaryService::class)
-                                    ->uploadImage($file->getRealPath(), 'university-partners');
-                            })
                             ->columnSpanFull(),
                         \Filament\Forms\Components\TextInput::make('website_url')->url(),
                         \Filament\Forms\Components\Textarea::make('description')->columnSpanFull(),

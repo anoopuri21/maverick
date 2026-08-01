@@ -5,9 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Concerns\HasMediaAssets;
 
 class BlogPost extends Model
 {
+    use HasMediaAssets;
+
     use HasFactory;
 
     protected $fillable = [
@@ -28,6 +31,7 @@ class BlogPost extends Model
         'is_featured',
         'meta_title',
         'meta_description',
+        'featured_image_url_asset_id',
     ];
 
     protected $casts = [

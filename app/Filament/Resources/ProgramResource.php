@@ -18,10 +18,7 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Str;
-use Filament\Forms\Components\FileUpload;
 use Filament\Tables\Columns\ImageColumn;
-use App\Services\CloudinaryService;
-use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Tabs\Tab;
 use App\Filament\Forms\Components\SeoFormFields;
@@ -31,6 +28,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\Textarea;
+use App\Filament\Forms\Components\MediaPicker;
 
 class ProgramResource extends Resource
 {
@@ -99,20 +97,10 @@ class ProgramResource extends Resource
                                     ->label('Full Description')
                                     ->columnSpanFull(),
 
-                                FileUpload::make('image_url')
+                                MediaPicker::forField('image_url', 'programs')
                                     ->label('Program Image')
-                                    ->image()
-                                    ->imageEditor()
-                                    ->maxSize(5120)
-                                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
                                     ->helperText('Recommended: 800x540px. Max 5MB.')
-                                    ->columnSpanFull()
-                                    ->nullable()
-                                    ->getUploadedFileUsing(fn (?string $file): ?array => static::existingCloudinaryImage($file))
-                                    ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
-                                        return app(CloudinaryService::class)
-                                            ->uploadImage($file->getRealPath(), 'programs');
-                                    }),
+                                    ->columnSpanFull(),
                             ]),
 
                         // Tab 3: FAQs

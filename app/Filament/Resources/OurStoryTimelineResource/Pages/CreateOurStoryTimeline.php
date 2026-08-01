@@ -9,4 +9,11 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateOurStoryTimeline extends CreateRecord
 {
     protected static string $resource = OurStoryTimelineResource::class;
+
+    protected function mutateFormDataBeforeCreate(array $data): array
+    {
+        $data = \App\Filament\Forms\Components\MediaPicker::syncFieldFromAsset($data, 'icon_url');
+
+        return $data;
+    }
 }
