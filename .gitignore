@@ -48,3 +48,4 @@ credentials.json
 *.pem
 *.key
 .credentials
+MEDIA_LIBRARY.md
