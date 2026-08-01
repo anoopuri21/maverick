@@ -6,9 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use App\Concerns\HasMediaAssets;
 
 class Program extends Model
 {
+    use HasMediaAssets;
+
     protected $fillable = [
         'program_category_id',
         'title',
@@ -21,7 +24,8 @@ class Program extends Model
         'image_url',
         'is_featured',
         'is_active',
-        'sort_order', 
+        'sort_order',
+        'image_url_asset_id',
     ];
 
     protected $casts = [

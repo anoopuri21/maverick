@@ -16,4 +16,11 @@ class EditInsight extends EditRecord
             Actions\DeleteAction::make(),
         ];
     }
+
+    protected function mutateFormDataBeforeSave(array $data): array
+    {
+        $data = \App\Filament\Forms\Components\MediaPicker::syncFieldFromAsset($data, 'featured_image_url');
+
+        return $data;
+    }
 }

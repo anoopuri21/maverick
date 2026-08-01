@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Concerns\HasMediaAssets;
 
 class UniversityPartner extends Model
 {
+    use HasMediaAssets;
+
     protected $fillable = [
         'name',
         'country',
@@ -21,6 +24,7 @@ class UniversityPartner extends Model
         'programs',
         'sort_order',
         'is_active',
+        'logo_url_asset_id',
     ];
 
     protected $casts = [

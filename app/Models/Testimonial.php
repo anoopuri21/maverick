@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Concerns\HasMediaAssets;
 
 class Testimonial extends Model
 {
+    use HasMediaAssets;
+
     protected $fillable = [
         'name',
         'designation',
@@ -15,6 +18,7 @@ class Testimonial extends Model
         'video_type',
         'sort_order',
         'is_active',
+        'thumbnail_url_asset_id',
     ];
 
     protected $casts = [

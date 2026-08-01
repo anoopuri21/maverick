@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Concerns\HasMediaAssets;
 
 class FacultyInsight extends Model
 {
+    use HasMediaAssets;
+
     protected $fillable = [
         'title',
         'slug',
@@ -14,6 +17,7 @@ class FacultyInsight extends Model
         'link_url',
         'sort_order',
         'is_active',
+        'image_url_asset_id',
     ];
 
     protected $casts = [

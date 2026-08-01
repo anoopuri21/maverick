@@ -103,6 +103,49 @@ class MediaPicker extends Field
     }
 
     /**
+     * Convention-based factory: state column is "{$fieldName}_asset_id",
+     * the legacy URL column "$fieldName" is kept in sync for backward compat.
+     *
+     * Usage: MediaPicker::forField('image_url', 'programs')
+     */
+    public static function forField(string $fieldName, ?string $folder = null): static
+    {
+        return static::make("{$fieldName}_asset_id")
+            ->label(str($fieldName)->replaceLast('_url', '')->headline()->toString())
+            ->folder($folder)
+            ->urlField($fieldName);
+    }
+
+    /**
+     * Convention-based counterpart of syncUrlFromAsset() for forField() pickers.
+     * Denormalizes "{$fieldName}_asset_id" into the legacy "$fieldName" column
+     * before save. Leaves data untouched if the asset key is absent entirely.
+     */
+    public static function syncFieldFromAsset(array $data, string $fieldName): array
+    {
+        $assetKey = "{$fieldName}_asset_id";
+
+        if (! array_key_exists($assetKey, $data)) {
+            return $data;
+        }
+
+        if (! empty($data[$assetKey])) {
+            $asset = MediaAsset::query()->find($data[$assetKey]);
+
+            if ($asset) {
+                $data[$fieldName] = $asset->url;
+            }
+
+            return $data;
+        }
+
+        $data[$assetKey] = null;
+        $data[$fieldName] = null;
+
+        return $data;
+    }
+
+    /**
      * Sync denormalized URL from media_asset_id before save.
      * Sets URL when an asset is selected; clears it when asset is removed.
      */

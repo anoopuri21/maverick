@@ -9,4 +9,11 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateBlogPost extends CreateRecord
 {
     protected static string $resource = BlogPostResource::class;
+
+    protected function mutateFormDataBeforeCreate(array $data): array
+    {
+        $data = \App\Filament\Forms\Components\MediaPicker::syncFieldFromAsset($data, 'featured_image_url');
+
+        return $data;
+    }
 }

@@ -4,9 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Concerns\HasMediaAssets;
 
 class OurStoryGalleryImage extends Model
 {
+    use HasMediaAssets;
+
     use SoftDeletes;
 
     protected $fillable = [
@@ -15,6 +18,7 @@ class OurStoryGalleryImage extends Model
         'category',
         'sort_order',
         'is_active',
+        'image_url_asset_id',
     ];
 
     protected $casts = [
