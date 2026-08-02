@@ -13,10 +13,10 @@ let galleryImages = [];
  * @param {string|HTMLElement} selector - CSS selector or DOM element (should be #gallery)
  */
 export function initGalleryCollage(selector) {
-  const section = typeof selector === "string" 
-    ? document.querySelector(selector) 
+  const section = typeof selector === "string"
+    ? document.querySelector(selector)
     : selector;
-  
+
   if (!section) return;
 
   const grid = section.querySelector("[data-gallery-grid]");
@@ -24,8 +24,6 @@ export function initGalleryCollage(selector) {
   const lightbox = document.querySelector("#os-lightbox");
   const lightboxImg = document.querySelector("#os-lightbox-img");
   const lightboxCaption = document.querySelector("#os-lightbox-caption");
-
-  console.log('[gallery-collage] items found:', items.length);
 
   if (respectsReducedMotion()) return;
 
@@ -45,7 +43,7 @@ export function initGalleryCollage(selector) {
           start: "top 80%",
           once: true,
         },
-      }
+      },
     );
   }
 
