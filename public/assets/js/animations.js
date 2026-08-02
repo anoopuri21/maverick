@@ -1,4 +1,4 @@
-﻿(function () {
+(function () {
   "use strict";
 
   if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
@@ -1946,106 +1946,29 @@
   function initAlumniAnimations() {
     if (!elementExists("#alumni-network")) return;
 
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
-    if (prefersReducedMotion) {
-      gsap.set(
-        [
-          "#alumni-network .section-label",
-          ".alumni__heading-line .text-reveal-inner",
-          ".alumni__subtitle",
-          ".alumni__marquee-wrapper",
-        ],
-        { clearProps: "all", opacity: 1 },
-      );
-      gsap.set(".alumni__heading-line .text-reveal-inner", { y: "0%" });
+    if (AnimationUtils.prefersReducedMotion) {
+      AnimationUtils.setReducedMotion([
+        "#alumni-network .section-label",
+        ".alumni__heading-line .text-reveal-inner",
+        ".alumni__subtitle",
+        ".alumni__marquee-wrapper",
+      ]);
       return;
     }
 
-    gsap.set("#alumni-network .section-label", { opacity: 0, y: 16 });
-    gsap.set("#alumni-network .text-reveal-inner", { y: "110%" });
-    gsap.set(".alumni__subtitle", { opacity: 0, y: 20 });
-    gsap.set(".alumni__marquee-wrapper", { opacity: 0, scale: 0.97 });
-
-    const label = document.querySelector("#alumni-network .section-label");
-    if (label) {
-      gsap.fromTo(
-        label,
-        { opacity: 0, y: 16 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#alumni-network",
-            start: "top 75%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
-
-    const headings = document.querySelectorAll(
-      "#alumni-network .text-reveal-inner",
-    );
-    if (headings.length) {
-      gsap.fromTo(
-        headings,
-        { y: "110%" },
-        {
-          y: "0%",
-          duration: 0.9,
-          stagger: 0.12,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: "#alumni-network",
-            start: "top 75%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
-
-    const subtitle = document.querySelector(".alumni__subtitle");
-    if (subtitle) {
-      gsap.fromTo(
-        subtitle,
-        { opacity: 0, y: 20 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.7,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: ".alumni__subtitle",
-            start: "top 80%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
-
-    const marquee = document.querySelector(".alumni__marquee-wrapper");
-    if (marquee) {
-      gsap.fromTo(
-        marquee,
-        { opacity: 0, scale: 0.97 },
-        {
-          opacity: 1,
-          scale: 1,
-          duration: 0.8,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: ".alumni__marquee-wrapper",
-            start: "top 85%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
+    AnimationUtils.sectionLabel("#alumni-network");
+    AnimationUtils.textReveal("#alumni-network .text-reveal-inner", {
+      trigger: "#alumni-network",
+    });
+    AnimationUtils.fadeUp(".alumni__subtitle", {
+      trigger: ".alumni__subtitle",
+      y: 20,
+    });
+    AnimationUtils.scaleIn(".alumni__marquee-wrapper", {
+      trigger: ".alumni__marquee-wrapper",
+      start: "top 85%",
+      scale: 0.97,
+    });
   }
 
   // =========================================================
@@ -2169,107 +2092,29 @@
   function initWhyMaverickAnimations() {
     if (!elementExists("#why-maverick")) return;
 
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
-    gsap.set("#why-maverick .section-label", { opacity: 0, y: 16 });
-    gsap.set("#why-maverick .text-reveal-inner", { y: "110%" });
-    gsap.set("#why-maverick .why__subtitle", { opacity: 0, y: 20 });
-    gsap.set("#why-maverick .why__tile", { opacity: 0, y: 40 });
-
-    if (prefersReducedMotion) {
-      gsap.set(
-        [
-          "#why-maverick .section-label",
-          "#why-maverick .text-reveal-inner",
-          "#why-maverick .why__subtitle",
-          "#why-maverick .why__tile",
-        ],
-        { clearProps: "all", opacity: 1 },
-      );
-      gsap.set("#why-maverick .text-reveal-inner", { y: "0%" });
+    if (AnimationUtils.prefersReducedMotion) {
+      AnimationUtils.setReducedMotion([
+        "#why-maverick .section-label",
+        "#why-maverick .text-reveal-inner",
+        "#why-maverick .why__subtitle",
+        "#why-maverick .why__tile",
+      ]);
       return;
     }
 
-    const label = document.querySelector("#why-maverick .section-label");
-    if (label) {
-      gsap.fromTo(
-        label,
-        { opacity: 0, y: 16 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#why-maverick",
-            start: "top 75%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
-
-    const headings = document.querySelectorAll(
-      "#why-maverick .text-reveal-inner",
-    );
-    if (headings.length) {
-      gsap.fromTo(
-        headings,
-        { y: "110%" },
-        {
-          y: "0%",
-          duration: 0.9,
-          stagger: 0.12,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: "#why-maverick",
-            start: "top 75%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
-
-    const subtitle = document.querySelector("#why-maverick .why__subtitle");
-    if (subtitle) {
-      gsap.fromTo(
-        subtitle,
-        { opacity: 0, y: 20 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.7,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#why-maverick .why__subtitle",
-            start: "top 80%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
-
-    const tiles = document.querySelectorAll("#why-maverick .why__tile");
-    if (tiles.length) {
-      gsap.fromTo(
-        tiles,
-        { opacity: 0, y: 40 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          stagger: 0.1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#why-maverick .why__grid",
-            start: "top 80%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
+    AnimationUtils.sectionLabel("#why-maverick");
+    AnimationUtils.textReveal("#why-maverick .text-reveal-inner", {
+      trigger: "#why-maverick",
+    });
+    AnimationUtils.fadeUp("#why-maverick .why__subtitle", {
+      trigger: "#why-maverick .why__subtitle",
+      y: 20,
+    });
+    AnimationUtils.cards("#why-maverick .why__tile", {
+      trigger: "#why-maverick .why__grid",
+      start: "top 80%",
+      y: 40,
+    });
   }
   // =========================================================
   // Global Opportunities & Pathways Section Animations
@@ -2278,167 +2123,43 @@
   function initOpportunitiesAnimations() {
     if (!elementExists("#global-opportunities")) return;
 
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
-    if (prefersReducedMotion) {
-      gsap.set(
-        [
-          "#global-opportunities .section-label",
-          "#global-opportunities .text-reveal-inner",
-          "#global-opportunities .opportunities__subtitle",
-          "#global-opportunities .opportunities__column-header",
-          "#global-opportunities .opportunities__item",
-          "#global-opportunities .opportunities__divider",
-        ],
-        { clearProps: "all", opacity: 1 },
-      );
-      gsap.set("#global-opportunities .text-reveal-inner", { y: "0%" });
+    if (AnimationUtils.prefersReducedMotion) {
+      AnimationUtils.setReducedMotion([
+        "#global-opportunities .section-label",
+        "#global-opportunities .text-reveal-inner",
+        "#global-opportunities .opportunities__subtitle",
+        "#global-opportunities .opportunities__column-header",
+        "#global-opportunities .opportunities__item",
+        "#global-opportunities .opportunities__divider",
+      ]);
       return;
     }
 
-    gsap.set("#global-opportunities .section-label", { opacity: 0, y: 16 });
-    gsap.set("#global-opportunities .text-reveal-inner", { y: "110%" });
-    gsap.set("#global-opportunities .opportunities__subtitle", {
-      opacity: 0,
-      y: 20,
-    });
-    gsap.set("#global-opportunities .opportunities__column-header", {
-      opacity: 0,
-      y: 30,
-    });
-    gsap.set("#global-opportunities .opportunities__item", {
-      opacity: 0,
-      y: 24,
-    });
-    gsap.set("#global-opportunities .opportunities__divider", {
-      scaleY: 0,
-      transformOrigin: "top center",
-    });
-
-    const label = document.querySelector(
-      "#global-opportunities .section-label",
-    );
-    if (label) {
-      gsap.to(label, {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: "#global-opportunities",
-          start: "top 75%",
-          toggleActions: "play none none none",
-        },
-      });
-    }
-
-    const headingInner = document.querySelector(
+    AnimationUtils.sectionLabel("#global-opportunities");
+    AnimationUtils.textReveal(
       "#global-opportunities .opportunities__heading .text-reveal-inner",
+      { trigger: "#global-opportunities" },
     );
-    if (headingInner) {
-      gsap.to(headingInner, {
-        y: "0%",
-        duration: 0.9,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: "#global-opportunities",
-          start: "top 75%",
-          toggleActions: "play none none none",
-        },
-      });
-    }
-
-    const subtitle = document.querySelector(
+    AnimationUtils.fadeUp(
       "#global-opportunities .opportunities__subtitle",
+      { trigger: "#global-opportunities", y: 20, delay: 0.2 },
     );
-    if (subtitle) {
-      gsap.to(subtitle, {
-        opacity: 1,
-        y: 0,
-        duration: 0.7,
-        delay: 0.2,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: "#global-opportunities",
-          start: "top 75%",
-          toggleActions: "play none none none",
-        },
-      });
-    }
-
-    const divider = document.querySelector(
+    AnimationUtils.lineScale(
       "#global-opportunities .opportunities__divider",
+      { trigger: "#global-opportunities .opportunities__split", start: "top 80%" },
     );
-    if (divider) {
-      gsap.to(divider, {
-        scaleY: 1,
-        duration: 0.8,
-        ease: "power2.inOut",
-        scrollTrigger: {
-          trigger: "#global-opportunities .opportunities__split",
-          start: "top 80%",
-          toggleActions: "play none none none",
-        },
-      });
-    }
-
-    const columnHeaders = document.querySelectorAll(
+    AnimationUtils.fadeUp(
       "#global-opportunities .opportunities__column-header",
+      { trigger: "#global-opportunities .opportunities__split", start: "top 80%", stagger: 0.15 },
     );
-    if (columnHeaders.length) {
-      gsap.to(columnHeaders, {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        stagger: 0.15,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: "#global-opportunities .opportunities__split",
-          start: "top 80%",
-          toggleActions: "play none none none",
-        },
-      });
-    }
-
-    const leftItems = document.querySelectorAll(
+    AnimationUtils.slideIn(
       "#global-opportunities .opportunities__column--left .opportunities__item",
+      { trigger: "#global-opportunities .opportunities__split", start: "top 75%", x: 0, y: 24, duration: 0.5, stagger: 0.08, delay: 0.3 },
     );
-    if (leftItems.length) {
-      gsap.to(leftItems, {
-        opacity: 1,
-        y: 0,
-        duration: 0.5,
-        stagger: 0.08,
-        delay: 0.3,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: "#global-opportunities .opportunities__split",
-          start: "top 75%",
-          toggleActions: "play none none none",
-        },
-      });
-    }
-
-    const rightItems = document.querySelectorAll(
+    AnimationUtils.slideIn(
       "#global-opportunities .opportunities__column--right .opportunities__item",
+      { trigger: "#global-opportunities .opportunities__split", start: "top 75%", x: 0, y: 24, duration: 0.5, stagger: 0.08, delay: 0.45 },
     );
-    if (rightItems.length) {
-      gsap.to(rightItems, {
-        opacity: 1,
-        y: 0,
-        duration: 0.5,
-        stagger: 0.08,
-        delay: 0.45,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: "#global-opportunities .opportunities__split",
-          start: "top 75%",
-          toggleActions: "play none none none",
-        },
-      });
-    }
   }
 
   // =========================================================
@@ -2448,67 +2169,37 @@
   function initPartnersAnimations() {
     if (!elementExists("#university-partners")) return;
 
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
-    if (prefersReducedMotion) {
-      gsap.set(
-        [
-          "#university-partners .section-label",
-          "#university-partners .text-reveal-inner",
-          "#university-partners .partners__pin",
-          "#university-partners .partners__detail-panel",
-          "#university-partners .partners__mobile-item",
-        ],
-        { clearProps: "all", opacity: 1 },
-      );
-      gsap.set("#university-partners .text-reveal-inner", { y: "0%" });
+    if (AnimationUtils.prefersReducedMotion) {
+      AnimationUtils.setReducedMotion([
+        "#university-partners .section-label",
+        "#university-partners .text-reveal-inner",
+        "#university-partners .partners__pin",
+        "#university-partners .partners__detail-panel",
+        "#university-partners .partners__mobile-item",
+      ]);
       return;
     }
 
-    const label = document.querySelector("#university-partners .section-label");
-    const headings = document.querySelectorAll(
-      "#university-partners .text-reveal-inner",
-    );
-
+    // Mobile items with delay
     setTimeout(() => {
-      const mobileItems = document.querySelectorAll(
+      AnimationUtils.slideIn(
         "#university-partners .partners__mobile-item",
-      );
-      if (mobileItems.length) {
-        gsap.set(mobileItems, { opacity: 0, x: -20 });
-        gsap.to(mobileItems, {
-          opacity: 1,
-          x: 0,
+        {
+          trigger: "#university-partners .partners__mobile-list",
+          start: "top 80%",
+          x: -20,
           duration: 0.5,
           stagger: 0.05,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#university-partners .partners__mobile-list",
-            start: "top 80%",
-            toggleActions: "play none none none",
-          },
-        });
-      }
+        },
+      );
     }, 100);
 
-    const detailPanel = document.querySelector(
-      "#university-partners .partners__detail-panel",
-    );
-    if (detailPanel) {
-      gsap.to(detailPanel, {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: "#university-partners .partners__detail-panel",
-          start: "top 85%",
-          toggleActions: "play none none none",
-        },
-      });
-    }
+    // Detail panel
+    AnimationUtils.fadeUp("#university-partners .partners__detail-panel", {
+      trigger: "#university-partners .partners__detail-panel",
+      start: "top 85%",
+      duration: 0.8,
+    });
   }
 
   // =========================================================
@@ -2518,103 +2209,27 @@
   function initInsightsAnimations() {
     if (!elementExists("#faculty-insights")) return;
 
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
-    if (prefersReducedMotion) {
-      gsap.set(
-        ["#faculty-insights .text-reveal-inner", "#faculty-insights .fade-up"],
-        { clearProps: "all", opacity: 1 },
-      );
-      gsap.set("#faculty-insights .text-reveal-inner", { y: "0%" });
+    if (AnimationUtils.prefersReducedMotion) {
+      AnimationUtils.setReducedMotion([
+        "#faculty-insights .text-reveal-inner",
+        "#faculty-insights .fade-up",
+      ]);
       return;
     }
 
-    const sectionLabel = document.querySelector(
-      "#faculty-insights .section-label",
-    );
-    if (sectionLabel) {
-      gsap.fromTo(
-        sectionLabel,
-        { opacity: 0, y: 16 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#faculty-insights",
-            start: "top 75%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
-
-    const headingLines = document.querySelectorAll(
+    AnimationUtils.sectionLabel("#faculty-insights");
+    AnimationUtils.textReveal(
       "#faculty-insights .insights__heading-line .text-reveal-inner",
+      { trigger: "#faculty-insights" },
     );
-    if (headingLines.length) {
-      gsap.fromTo(
-        headingLines,
-        { y: "110%" },
-        {
-          y: "0%",
-          duration: 0.9,
-          stagger: 0.12,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: "#faculty-insights",
-            start: "top 75%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
-
-    const subtitle = document.querySelector(
-      "#faculty-insights .insights__subtitle",
-    );
-    if (subtitle) {
-      gsap.fromTo(
-        subtitle,
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#faculty-insights",
-            start: "top 75%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
-
-    const cards = document.querySelectorAll(
-      "#faculty-insights .insights__card",
-    );
-    if (cards.length) {
-      gsap.fromTo(
-        cards,
-        { opacity: 0, x: 40 },
-        {
-          opacity: 1,
-          x: 0,
-          duration: 0.7,
-          stagger: 0.12,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#faculty-insights .insights__scroll",
-            start: "top 75%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
+    AnimationUtils.fadeUp("#faculty-insights .insights__subtitle", {
+      trigger: "#faculty-insights",
+      y: 30,
+    });
+    AnimationUtils.slideIn("#faculty-insights .insights__card", {
+      trigger: "#faculty-insights .insights__scroll",
+      x: 40,
+    });
   }
 
   // =========================================================
@@ -2624,101 +2239,28 @@
   function initEventsAnimations() {
     if (!elementExists("#upcoming-events")) return;
 
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
-    if (prefersReducedMotion) {
-      gsap.set(
-        ["#upcoming-events .text-reveal-inner", "#upcoming-events .fade-up"],
-        { clearProps: "all", opacity: 1 },
-      );
-      gsap.set("#upcoming-events .text-reveal-inner", { y: "0%" });
+    if (AnimationUtils.prefersReducedMotion) {
+      AnimationUtils.setReducedMotion([
+        "#upcoming-events .text-reveal-inner",
+        "#upcoming-events .fade-up",
+      ]);
       return;
     }
 
-    const sectionLabel = document.querySelector(
-      "#upcoming-events .section-label",
-    );
-    if (sectionLabel) {
-      gsap.fromTo(
-        sectionLabel,
-        { opacity: 0, y: 16 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#upcoming-events",
-            start: "top 75%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
-
-    const headingLines = document.querySelectorAll(
+    AnimationUtils.sectionLabel("#upcoming-events");
+    AnimationUtils.textReveal(
       "#upcoming-events .events__heading-line .text-reveal-inner",
+      { trigger: "#upcoming-events" },
     );
-    if (headingLines.length) {
-      gsap.fromTo(
-        headingLines,
-        { y: "110%" },
-        {
-          y: "0%",
-          duration: 0.9,
-          stagger: 0.12,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: "#upcoming-events",
-            start: "top 75%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
-
-    const subtitle = document.querySelector(
-      "#upcoming-events .events__subtitle",
-    );
-    if (subtitle) {
-      gsap.fromTo(
-        subtitle,
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#upcoming-events",
-            start: "top 75%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
-
-    const cards = document.querySelectorAll("#upcoming-events .events__card");
-    if (cards.length) {
-      gsap.fromTo(
-        cards,
-        { opacity: 0, x: 40 },
-        {
-          opacity: 1,
-          x: 0,
-          duration: 0.6,
-          stagger: 0.1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#upcoming-events .events__scroll",
-            start: "top 80%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
+    AnimationUtils.fadeUp("#upcoming-events .events__subtitle", {
+      trigger: "#upcoming-events",
+      y: 30,
+    });
+    AnimationUtils.slideIn("#upcoming-events .events__card", {
+      trigger: "#upcoming-events .events__scroll",
+      x: 40,
+      duration: 0.6,
+    });
   }
 
   // =========================================================
@@ -2728,106 +2270,29 @@
   function initTestimonialsAnimations() {
     if (!elementExists("#video-testimonials")) return;
 
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
-    if (prefersReducedMotion) {
-      gsap.set(
-        [
-          "#video-testimonials .text-reveal-inner",
-          "#video-testimonials .fade-up",
-        ],
-        { clearProps: "all", opacity: 1 },
-      );
-      gsap.set("#video-testimonials .text-reveal-inner", { y: "0%" });
+    if (AnimationUtils.prefersReducedMotion) {
+      AnimationUtils.setReducedMotion([
+        "#video-testimonials .text-reveal-inner",
+        "#video-testimonials .fade-up",
+      ]);
       return;
     }
 
-    const sectionLabel = document.querySelector(
-      "#video-testimonials .section-label",
-    );
-    if (sectionLabel) {
-      gsap.fromTo(
-        sectionLabel,
-        { opacity: 0, y: 16 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#video-testimonials",
-            start: "top 75%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
-
-    const headingLines = document.querySelectorAll(
+    AnimationUtils.sectionLabel("#video-testimonials");
+    AnimationUtils.textReveal(
       "#video-testimonials .testimonials__heading-line .text-reveal-inner",
+      { trigger: "#video-testimonials" },
     );
-    if (headingLines.length) {
-      gsap.fromTo(
-        headingLines,
-        { y: "110%" },
-        {
-          y: "0%",
-          duration: 0.9,
-          stagger: 0.12,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: "#video-testimonials",
-            start: "top 75%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
-
-    const subtitle = document.querySelector(
-      "#video-testimonials .testimonials__subtitle",
-    );
-    if (subtitle) {
-      gsap.fromTo(
-        subtitle,
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#video-testimonials",
-            start: "top 75%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
-
-    const cards = document.querySelectorAll(
-      "#video-testimonials .testimonials__card",
-    );
-    if (cards.length) {
-      gsap.fromTo(
-        cards,
-        { opacity: 0, x: 40 },
-        {
-          opacity: 1,
-          x: 0,
-          duration: 0.6,
-          stagger: 0.08,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#video-testimonials .testimonials__scroll",
-            start: "top 75%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
+    AnimationUtils.fadeUp("#video-testimonials .testimonials__subtitle", {
+      trigger: "#video-testimonials",
+      y: 30,
+    });
+    AnimationUtils.slideIn("#video-testimonials .testimonials__card", {
+      trigger: "#video-testimonials .testimonials__scroll",
+      x: 40,
+      duration: 0.6,
+      stagger: 0.08,
+    });
   }
 
   // =========================================================
@@ -2837,115 +2302,35 @@
   function initFinalCTAAnimations() {
     if (!elementExists("#final-cta")) return;
 
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
-    if (prefersReducedMotion) {
-      gsap.set(["#final-cta .text-reveal-inner", "#final-cta .fade-up"], {
-        clearProps: "all",
-        opacity: 1,
-      });
-      gsap.set("#final-cta .text-reveal-inner", { y: "0%" });
+    if (AnimationUtils.prefersReducedMotion) {
+      AnimationUtils.setReducedMotion([
+        "#final-cta .text-reveal-inner",
+        "#final-cta .fade-up",
+      ]);
       return;
     }
 
-    const sectionLabel = document.querySelector("#final-cta .section-label");
-    if (sectionLabel) {
-      gsap.fromTo(
-        sectionLabel,
-        { opacity: 0, y: 16 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#final-cta",
-            start: "top 70%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
-
-    const headingInner = document.querySelector(
-      "#final-cta .text-reveal-inner",
-    );
-    if (headingInner) {
-      gsap.fromTo(
-        headingInner,
-        { y: "110%" },
-        {
-          y: "0%",
-          duration: 0.9,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: "#final-cta",
-            start: "top 70%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
-
-    const subtitle = document.querySelector("#final-cta .final-cta__subtitle");
-    if (subtitle) {
-      gsap.fromTo(
-        subtitle,
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#final-cta",
-            start: "top 70%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
-
-    const buttons = document.querySelectorAll("#final-cta .final-cta__btn");
-    if (buttons.length) {
-      gsap.fromTo(
-        buttons,
-        { opacity: 0, y: 20 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.7,
-          stagger: 0.1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#final-cta .final-cta__buttons",
-            start: "top 70%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
-
-    const phone = document.querySelector("#final-cta .final-cta__phone");
-    if (phone) {
-      gsap.fromTo(
-        phone,
-        { opacity: 0, y: 15 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#final-cta .final-cta__phone",
-            start: "top 75%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
+    AnimationUtils.sectionLabel("#final-cta");
+    AnimationUtils.textReveal("#final-cta .text-reveal-inner", {
+      trigger: "#final-cta",
+      start: "top 70%",
+    });
+    AnimationUtils.fadeUp("#final-cta .final-cta__subtitle", {
+      trigger: "#final-cta",
+      start: "top 70%",
+      y: 30,
+    });
+    AnimationUtils.cards("#final-cta .final-cta__btn", {
+      trigger: "#final-cta .final-cta__buttons",
+      start: "top 70%",
+      y: 20,
+    });
+    AnimationUtils.fadeUp("#final-cta .final-cta__phone", {
+      trigger: "#final-cta .final-cta__phone",
+      start: "top 75%",
+      y: 15,
+      duration: 0.6,
+    });
   }
 
   // =========================================================
