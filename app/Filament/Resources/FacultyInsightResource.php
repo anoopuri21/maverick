@@ -5,10 +5,8 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\FacultyInsightResource\Pages;
 use App\Filament\Resources\FacultyInsightResource\RelationManagers;
 use App\Models\FacultyInsight;
-use App\Services\CloudinaryService;
 use App\Filament\Concerns\HandlesCloudinaryImageFields;
 use Filament\Forms;
-use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -16,7 +14,7 @@ use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
+use App\Filament\Forms\Components\MediaPicker;
 
 class FacultyInsightResource extends Resource
 {
@@ -40,13 +38,7 @@ class FacultyInsightResource extends Resource
                     ->required()
                     ->unique(ignoreRecord: true),
                 Forms\Components\TextInput::make('badge'),
-                Forms\Components\FileUpload::make('image_url')
-                    ->image()
-                    ->nullable()
-                    ->getUploadedFileUsing(fn (?string $file): ?array => static::existingCloudinaryImage($file))
-                    ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
-                        return app(CloudinaryService::class)->uploadImage($file->getRealPath(), 'faculty-insights');
-                    }),
+                MediaPicker::forField('image_url', 'faculty-insights'),
                 Forms\Components\TextInput::make('link_url')
                     ->url(),
                 Forms\Components\TextInput::make('sort_order')

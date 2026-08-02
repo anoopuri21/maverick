@@ -6,10 +6,8 @@ use App\Filament\Concerns\HandlesCloudinaryImageFields;
 use App\Filament\Resources\BlogPostResource\Pages;
 use App\Filament\Resources\BlogPostResource\RelationManagers;
 use App\Models\BlogPost;
-use App\Services\CloudinaryService;
 use Filament\Forms;
 use Filament\Forms\Components\DateTimePicker;
-use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
@@ -29,7 +27,7 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Str;
-use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
+use App\Filament\Forms\Components\MediaPicker;
 
 class BlogPostResource extends Resource
 {
@@ -73,15 +71,9 @@ class BlogPostResource extends Resource
             ]),
 
             Section::make('Media')->schema([
-                FileUpload::make('featured_image_url')
+                MediaPicker::forField('featured_image_url', 'blog-images')
                     ->label('Featured Image')
-                    ->image()
-                    ->imagePreviewHeight('250')
-                    ->helperText('Optional — if left empty, a branded typographic cover will be shown automatically on the site.')
-                    ->getUploadedFileUsing(fn (?string $file): ?array => static::existingCloudinaryImage($file))
-                    ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
-                        return app(CloudinaryService::class)->uploadImage($file->getRealPath(), 'blog-images');
-                    }),
+                    ->helperText('Optional — if left empty, a branded typographic cover will be shown automatically on the site.'),
 
                 TextInput::make('featured_image_alt')
                     ->label('Image Alt Text')

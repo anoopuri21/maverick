@@ -4,229 +4,303 @@
 @section('meta_description', 'Discover the journey of Maverick Business Academy from inception to becoming a global leader in business education.')
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('css/pages/our-story.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/our-story.css') }}">
 @endpush
 
 @section('content')
 <div class="page-our-story our-story">
 
-    {{-- SECTION 1: Hero Statement --}}
-    @if($hero ?? false)
-    <section class="section-wrapper section--light story-hero">
-        <div class="story-hero__bg" style="background-image: url('{{ $hero->image_url ?? url('') }}')"></div>
-        <div class="story-hero__overlay"></div>
-        <div class="container story-hero__content">
-            <span class="section-label">{{ $hero->heading ?? 'OUR STORY' }}</span>
-            <div class="our-story-hero__description font-white">
-                {!! $hero->description !!}
-            </div>
-        </div>
-    </section>
+{{-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     SECTION 1: HERO — "Our Story"
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --}}
+@if($hero ?? false)
+<section id="story-hero" class="os-hero" aria-label="Our Story Hero">
+  <div class="os-hero__bg" aria-hidden="true">
+    @if($hero->image_url)
+    <div class="os-hero__bg-image" style="background-image: url('{{ $hero->image_url }}')"></div>
     @endif
+    <div class="os-hero__gradient"></div>
+    <div class="os-hero__shapes">
+      <svg class="os-hero__shape os-hero__shape--1" viewBox="0 0 200 200" fill="none"><circle cx="100" cy="100" r="80" stroke="rgba(255,255,255,0.4)" stroke-width="1"/></svg>
+      <svg class="os-hero__shape os-hero__shape--2" viewBox="0 0 300 300" fill="none"><circle cx="150" cy="150" r="120" stroke="rgba(220,38,38,0.4)" stroke-width="1"/></svg>
+      <svg class="os-hero__shape os-hero__shape--3" viewBox="0 0 100 100" fill="none"><rect x="10" y="10" width="80" height="80" rx="8" stroke="rgba(255,255,255,0.4)" stroke-width="1" transform="rotate(20 50 50)"/></svg>
+    </div>
+    <div class="os-hero__grid-overlay"></div>
+  </div>
+  <div class="container os-hero__content">
+    <span class="os-hero__eyebrow fade-up" data-testid="hero-eyebrow">
+      <span class="os-hero__eyebrow-line"></span>
+      A Legacy of Global Impact
+    </span>
+    <h1 class="os-hero__title fade-up" data-testid="hero-title">
+      {!! $hero->heading !!}
+    </h1>
+    <div class="os-hero__description fade-up" data-testid="hero-desc">
+      {!! $hero->description !!}
+    </div>
+    <div class="os-hero__scroll-hint fade-up" aria-hidden="true">
+      <span class="os-hero__scroll-text">Scroll to explore</span>
+      <span class="os-hero__scroll-arrow" data-lucide="chevron-down"></span>
+    </div>
+  </div>
+</section>
+@endif
 
-    {{-- SECTION 2: How It Started --}}
-    @if($beginning ?? false)
-    <section id="beginning" class="beginning section--light section-wrapper" aria-label="Where It All Began">
-        <div class="container">
-            <div class="beginning__grid grid-2">
-                <div class="beginning__content">
-                    <div class="section-label fade-up">
-                        <span>{{ $beginning->badge ?? '' }}</span>
-                    </div>
-                    <h2 class="beginning__heading section-title">
-                        <span class="beginning__heading-line">
-                            <span class="text-reveal-wrapper">
-                                <span class="text-reveal-inner">{{ $beginning->heading ?? '' }}</span>
-                            </span>
-                        </span>
-                    </h2>
-                    <div class="beginning__paragraph body-text fade-up">
-                        {!! $beginning->paragraph_1 ?? '' !!}
-                    </div>
-                    @if(!empty($beginning->paragraph_2))
-                    <div class="beginning__paragraph body-text fade-up">
-                        {!! $beginning->paragraph_2 !!}
-                    </div>
-                    @endif
-                </div>
-                <div class="beginning__image-col">
-                    <div class="beginning__image-wrapper fade-up">
-                        <img src="{{ $beginning->image_url ?? asset('') }}" alt="Where It All Began" class="beginning__image" />
-                    </div>
-                </div>
-            </div>
+{{-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     SECTION 2: HOW IT STARTED ($beginning)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --}}
+@if($beginning ?? false)
+<section id="beginning" class="os-beginning" aria-label="Where It All Began">
+  <div class="os-beginning__decor" aria-hidden="true">
+    <div class="os-beginning__dot-grid"></div>
+  </div>
+  <div class="container">
+    <div class="os-beginning__grid">
+      <div class="os-beginning__text">
+        <span class="os-section-label fade-up">{{ $beginning->badge ?? 'Our Beginning' }}</span>
+        <h2 class="os-section-heading fade-up">
+          <span class="text-reveal-wrapper"><span class="text-reveal-inner">{{ $beginning->heading ?? '' }}</span></span>
+        </h2>
+        <p class="os-body-text fade-up">{{ $beginning->paragraph_1 ?? '' }}</p>
+        <p class="os-body-text fade-up">{{ $beginning->paragraph_2 ?? '' }}</p>
+      </div>
+      <div class="os-beginning__image-col">
+        <div class="os-beginning__image-wrap fade-up">
+          <div class="os-beginning__image-accent" aria-hidden="true"></div>
+          <img src="{{ $beginning->image_url ?? '' }}" alt="Where It All Began" class="os-beginning__image" loading="lazy" />
         </div>
-    </section>
-    @endif
+      </div>
+    </div>
+  </div>
+</section>
+@endif
 
-    {{-- SECTION 3: What We Do Today --}}
-    @if($today ?? false)
-    <section id="today" class="today section--light section-wrapper" aria-label="What We Do Today">
-        <div class="container">
-            <div class="today__grid grid-2">
-                <div class="today__image-col">
-                    <div class="today__image-wrapper fade-up">
-                        <img src="{{ $today->image_url ?? asset('assets/images/placeholder.jpg') }}" alt="What We Do Today" class="today__image" />
-                    </div>
-                </div>
-                <div class="today__content">
-                    <div class="section-label fade-up">
-                        <span>{{ $today->badge ?? '' }}</span>
-                    </div>
-                    <h2 class="today__heading section-title">
-                        <span class="today__heading-line">
-                            <span class="text-reveal-wrapper">
-                                <span class="text-reveal-inner">{{ $today->heading ?? '' }}</span>
-                            </span>
-                        </span>
-                    </h2>
-                    <div class="today__description body-text fade-up">
-                        {!! $today->description ?? '' !!}
-                    </div>
-                </div>
-            </div>
+{{-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     SECTION 3: WHAT WE DO TODAY ($today)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --}}
+@if($today ?? false)
+<section id="today" class="os-today" aria-label="What We Do Today">
+  <div class="os-today__decor" aria-hidden="true">
+    <div class="os-today__blob"></div>
+  </div>
+  <div class="container">
+    <div class="os-today__grid">
+      <div class="os-today__image-col">
+        <div class="os-today__image-wrap fade-up">
+          <img src="{{ $today->image_url ?? '' }}" alt="What We Do Today" class="os-today__image" loading="lazy" />
         </div>
-    </section>
-    @endif
+      </div>
+      <div class="os-today__text">
+        <span class="os-section-label fade-up">{{ $today->badge ?? 'Today' }}</span>
+        <h2 class="os-section-heading fade-up">
+          <span class="text-reveal-wrapper"><span class="text-reveal-inner">{{ $today->heading ?? '' }}</span></span>
+        </h2>
+        <p class="os-body-text fade-up">{{ $today->description ?? '' }}</p>
+      </div>
+    </div>
+    <!-- <div class="os-today__pills fade-up" aria-label="Programme categories">
+      <span class="os-today__pill">Undergraduate</span>
+      <span class="os-today__pill">Postgraduate</span>
+      <span class="os-today__pill">Doctoral</span>
+      <span class="os-today__pill">Executive Education</span>
+      <span class="os-today__pill">Professional Development</span>
+    </div> -->
+  </div>
+</section>
+@endif
 
-    {{-- SECTION 4: Our Impact --}}
-    @if($impact ?? false)
-    <section id="impact" class="impact section--light section-wrapper" aria-label="Our Impact">
-        <div class="container">
-            <div class="impact__header">
-                <div class="section-label fade-up">
-                    <span>Impact</span>
-                </div>
-                <h2 class="impact__heading section-title">
-                    <span class="impact__heading-line">
-                        <span class="text-reveal-wrapper">
-                            <span class="text-reveal-inner">{{ $impact->heading ?? '' }}</span>
-                        </span>
-                    </span>
-                </h2>
-                <div class="impact__description body-text fade-up">
-                    {!! $impact->description ?? '' !!}
-                </div>
-            </div>
-            <div class="impact__grid">
-                @if($impact->stat_1_value && $impact->stat_1_label)
-                <div class="impact__stat fade-up">
-                    <span class="impact__stat-value accent-text">{{ $impact->stat_1_value ?? '' }}</span>
-                    <span class="impact__stat-label">{{ $impact->stat_1_label ?? '' }}</span>
-                </div>
-                @endif
-                @if($impact->stat_2_value && $impact->stat_2_label)
-                <div class="impact__stat fade-up">
-                    <span class="impact__stat-value accent-text">{{ $impact->stat_2_value ?? '' }}</span>
-                    <span class="impact__stat-label">{{ $impact->stat_2_label ?? '' }}</span>
-                </div>
-                @endif
-                @if($impact->stat_3_value && $impact->stat_3_label)
-                <div class="impact__stat fade-up">
-                    <span class="impact__stat-value accent-text">{{ $impact->stat_3_value ?? '' }}</span>
-                    <span class="impact__stat-label">{{ $impact->stat_3_label ?? '' }}</span>
-                </div>
-                @endif
-                @if($impact->stat_4_value && $impact->stat_4_label)
-                <div class="impact__stat fade-up">
-                    <span class="impact__stat-value accent-text">{{ $impact->stat_4_value ?? '' }}</span>
-                    <span class="impact__stat-label">{{ $impact->stat_4_label ?? '' }}</span>
-                </div>
-                @endif
-            </div>
+{{-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     SECTION 4: OUR IMPACT ($impact)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --}}
+@if($impact ?? false)
+<section id="impact" class="os-impact" aria-label="Our Impact">
+  <div class="os-impact__decor" aria-hidden="true">
+    <span class="os-impact__watermark">IMPACT</span>
+    <div class="os-impact__lines"></div>
+    <svg class="os-impact__geo os-impact__geo--1" viewBox="0 0 120 120" fill="none"><polygon points="60,5 115,95 5,95" stroke="rgba(220,38,38,0.1)" stroke-width="1"/></svg>
+    <svg class="os-impact__geo os-impact__geo--2" viewBox="0 0 80 80" fill="none"><circle cx="40" cy="40" r="35" stroke="rgba(255,255,255,0.06)" stroke-width="1"/></svg>
+  </div>
+  <div class="container">
+    <div class="os-impact__header">
+      <span class="os-section-label os-section-label--light fade-up">Our Impact</span>
+      <h2 class="os-section-heading os-section-heading--light fade-up">
+        <span class="text-reveal-wrapper"><span class="text-reveal-inner">{{ $impact->heading ?? '' }}</span></span>
+      </h2>
+      <p class="os-body-text os-body-text--light fade-up">{{ $impact->description ?? '' }}</p>
+    </div>
+    <div class="os-impact__stats">
+      @if($impact->stat_1_value && $impact->stat_1_label)
+      <div class="os-impact__stat fade-up" data-counter-target="{{ preg_replace('/[^0-9]/', '', $impact->stat_1_value) }}">
+        <span class="os-impact__stat-value" data-counter>{{ $impact->stat_1_value }}</span>
+        <span class="os-impact__stat-line" aria-hidden="true"></span>
+        <span class="os-impact__stat-label">{{ $impact->stat_1_label }}</span>
+      </div>
+      @endif
+      @if($impact->stat_2_value && $impact->stat_2_label)
+      <div class="os-impact__stat fade-up" data-counter-target="{{ preg_replace('/[^0-9]/', '', $impact->stat_2_value) }}">
+        <span class="os-impact__stat-value" data-counter>{{ $impact->stat_2_value }}</span>
+        <span class="os-impact__stat-line" aria-hidden="true"></span>
+        <span class="os-impact__stat-label">{{ $impact->stat_2_label }}</span>
+      </div>
+      @endif
+      @if($impact->stat_3_value && $impact->stat_3_label)
+      <div class="os-impact__stat fade-up" data-counter-target="{{ preg_replace('/[^0-9]/', '', $impact->stat_3_value) }}">
+        <span class="os-impact__stat-value" data-counter>{{ $impact->stat_3_value }}</span>
+        <span class="os-impact__stat-line" aria-hidden="true"></span>
+        <span class="os-impact__stat-label">{{ $impact->stat_3_label }}</span>
+      </div>
+      @endif
+      @if($impact->stat_4_value && $impact->stat_4_label)
+      <div class="os-impact__stat fade-up" data-counter-target="{{ preg_replace('/[^0-9]/', '', $impact->stat_4_value) }}">
+        <span class="os-impact__stat-value" data-counter>{{ $impact->stat_4_value }}</span>
+        <span class="os-impact__stat-line" aria-hidden="true"></span>
+        <span class="os-impact__stat-label">{{ $impact->stat_4_label }}</span>
+      </div>
+      @endif
+    </div>
+  </div>
+</section>
+@endif
+
+{{-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     SECTION 5: VISION ($vision)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --}}
+@if($vision ?? false)
+<section id="vision" class="os-vision" aria-label="Vision for the Future">
+  
+  <div class="os-vision__decor" aria-hidden="true">
+    <svg class="os-vision__horizon" viewBox="0 0 1200 2" preserveAspectRatio="none"><line x1="0" y1="1" x2="1200" y2="1" stroke="rgba(220,38,38,0.15)" stroke-width="1" stroke-dasharray="8 6"/></svg>
+    <svg class="os-vision__arrow" viewBox="0 0 60 60" fill="none"><path d="M10 30h35M35 20l10 10-10 10" stroke="rgba(26,43,122,0.12)" stroke-width="2" stroke-linecap="round"/></svg>
+  </div>
+  <div class="container">
+    <div class="os-beginning__grid">
+      <div class="os-beginning__text">
+        <span class="os-section-label fade-up">Vision for the Future</span>
+        <h2 class="os-section-heading fade-up">
+          <span class="text-reveal-wrapper"><span class="text-reveal-inner">{{ $vision->heading ?? 'Looking Ahead' }}</span></span>
+        </h2>
+        <p class="os-body-text fade-up">{{ $vision->description ?? '' }}</p>
+        @if(($vision->cta_label ?? false) && ($vision->cta_url ?? false))
+      <a href="{{ $vision->cta_url }}" class="os-vision__cta btn btn--primary fade-up">{{ $vision->cta_label }}</a>
+      @endif
+      </div>
+      <div class="os-beginning__image-col">
+        <div class="os-beginning__image-wrap fade-up">
+          <div class="os-beginning__image-accent" aria-hidden="true"></div>
+        @if($vision->background_image_url)
+          <img src="{{ $vision->background_image_url }}" alt="Where It All Began" class="os-beginning__image" loading="lazy" />
+        @endif
         </div>
-    </section>
-    @endif
+      </div>
+    </div>
+  </div>
+</section>
+@endif
 
-    {{-- SECTION 5: Vision for the Future --}}
-    @if($vision ?? false)
-    <section id="vision" class="vision section--dark section-wrapper" aria-label="Vision for the Future" style="background-image: url('{{ $vision->background_image_url ?? asset('') }}'); background-size: cover; background-position: center; position:relative;">
-        <div class="vision__overlay" style="position: absolute; inset: 0; background: rgba(0, 0, 0, 0.7);"></div>
-        <div class="container" style="position: relative; z-index: 1;">
-            <div class="vision__content">
-                <div class="section-label fade-up">
-                    <span>Vision</span>
-                </div>
-                <h2 class="vision__heading section-title">
-                    <span class="vision__heading-line">
-                        <span class="text-reveal-wrapper">
-                            <span class="text-reveal-inner">{{ $vision->heading ?? '' }}</span>
-                        </span>
-                    </span>
-                </h2>
-                <div class="vision__description body-text fade-up">
-                    {!! $vision->description ?? '' !!}
-                </div>
-                @if($vision->cta_label && $vision->cta_url)
-                <a href="{{ $vision->cta_url }}" class="btn btn--primary vision__cta fade-up">
-                    {{ $vision->cta_label ?? '' }}
-                </a>
-                @endif
+{{-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     SECTION 6: OUR JOURNEY — TIMELINE ($timelines)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --}}
+@if(($timelines ?? collect())->count() > 0)
+<section id="journey" class="os-journey" aria-label="Our Journey Timeline">
+  <div class="os-journey__noise" aria-hidden="true"></div>
+
+  {{-- Desktop: Horizontal Pinned Scroll --}}
+  <div class="os-journey__pin-wrap" data-journey-pin>
+    
+    <div class="os-journey__scroll-hint" data-journey-hint>
+      <span>Scroll</span>
+      <span data-lucide="arrow-right"></span>
+    </div>
+
+    <div class="os-journey__track" data-journey-track style="width: {{ $timelines->count() * 100 }}vw;">
+      @foreach($timelines as $index => $item)
+      @php
+        $yearStr = $item->year ?? '';
+        $isNumeric = is_numeric($yearStr);
+        $shortYear = $isNumeric ? substr($yearStr, -2) : $yearStr;
+      @endphp
+      <div class="os-journey__slide" data-journey-slide="{{ $index }}">
+        <div class="os-journey__slide-line" aria-hidden="true"></div>
+        <div class="os-journey__slide-inner">
+          <div class="os-journey__slide-left">
+            <span class="os-journey__year-badge">{{ $yearStr }}</span>
+            <div class="os-journey__marker" aria-hidden="true">
+              <span class="os-journey__marker-dot"></span>
+              <span class="os-journey__marker-line"></span>
             </div>
+            <h3 class="os-journey__slide-title">{{ $item->title ?? '' }}</h3>
+            @if($item->description)
+            <p class="os-journey__slide-desc">{{ $item->description }}</p>
+            @endif
+          </div>
+          <div class="os-journey__slide-right">
+            <span class="os-journey__big-year" aria-hidden="true">{{ $yearStr }}</span>
+            @if($item->icon_url)
+            <div class="os-journey__slide-image">
+              <img src="{{ $item->icon_url }}" alt="{{ $item->title ?? $yearStr }}" loading="lazy" />
+            </div>
+            @else
+            <div class="os-journey__slide-image os-journey__slide-image--fallback">
+              <span class="os-journey__fallback-year">{{ $shortYear }}</span>
+            </div>
+            @endif
+          </div>
         </div>
-    </section>
-    @endif
+      </div>
+      @endforeach
+    </div>
+  </div>
 
-    {{-- SECTION 6: Our Journey (Cinematic Timeline) --}}
-    @if($timelines ?? false && $timelines->count() > 0)
-    <section id="journey" class="journey section--light section-wrapper" aria-label="Our Journey">
-        <div class="container">
-            
-            {{-- Header --}}
-            <div class="journey__header">
-                <div class="section-label fade-up">
-                    <span>Journey</span>
-                </div>
-                <h2 class="journey__heading section-title fade-up">
-                    Our Journey
-                </h2>
-                <p class="journey__subheading fade-up">
-                    A story of vision, growth, and global impact
-                </p>
-            </div>
-
-            {{-- Timeline --}}
-            <div class="journey__timeline">
-                
-                {{-- Center vertical line --}}
-                <div class="journey__line"></div>
-
-                @foreach($timelines as $index => $timeline)
-                <div class="journey__item journey__item--{{ $index % 2 === 0 ? 'left' : 'right' }} fade-up">
-                    
-                    {{-- Center dot with icon --}}
-                    <div class="journey__dot">
-                        @if(!empty($timeline->icon_url))
-                            <img src="{{ $timeline->icon_url ?? '' }}" alt="{{ $timeline->title ?? '' }}" class="journey__dot-icon">
-                        @else
-                            <span class="journey__dot-year">{{ $timeline->year ?? '' }}</span>
-                        @endif
-                    </div>
-
-                    {{-- Content Card --}}
-                    <div class="journey__card">
-                        <div class="journey__year-badge">{{ $timeline->year ?? '' }}</div>
-                        <h3 class="journey__title">{{ $timeline->title ?? '' }}</h3>
-                        <div class="journey__description">{!! $timeline->description ?? '' !!}</div>
-                    </div>
-
-                </div>
-                @endforeach
-
-            </div>
+  {{-- Mobile: Vertical Stacked Cards --}}
+  <div class="os-journey__mobile" data-journey-mobile>
+    <div class="container">
+      <div class="os-journey__mobile-header">
+        <span class="os-section-label fade-up">Journey</span>
+        <h2 class="os-section-heading fade-up">Our <em>Journey</em></h2>
+      </div>
+      @foreach($timelines as $index => $item)
+      @php
+        $yearStr = $item->year ?? '';
+        $shortYear = is_numeric($yearStr) ? substr($yearStr, -2) : $yearStr;
+      @endphp
+      <div class="os-journey__mobile-card fade-up">
+        <div class="os-journey__mobile-card-year" aria-hidden="true">{{ $shortYear }}</div>
+        <span class="os-journey__year-badge">{{ $yearStr }}</span>
+        <h3 class="os-journey__mobile-card-title">{{ $item->title ?? '' }}</h3>
+        @if($item->description)
+        <p class="os-journey__mobile-card-desc">{{ $item->description }}</p>
+        @endif
+        @if($item->icon_url)
+        <div class="os-journey__mobile-card-image">
+          <img src="{{ $item->icon_url }}" alt="{{ $item->title ?? $yearStr }}" loading="lazy" />
         </div>
-    </section>
-    @endif
+        @endif
+      </div>
+      @endforeach
+    </div>
+  </div>
+</section>
+@endif
 
-    {{-- SECTION 7: CEO Message (shared with homepage) --}}
-    @include('sections.ceo-message')
+{{-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     SECTION 7: CEO MESSAGE (shared)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --}}
+@include('sections.ceo-message')
 
-    {{-- SECTION 8: Image Collage / Proof of Activity --}}
-    @include('sections.our-story-gallery')
+{{-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     SECTION 8: TESTIMONIALS
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --}}
+@include('sections.our-story-testimonials')
 
-</div>
+{{-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     SECTION 9: GALLERY
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --}}
+@include('sections.our-story-gallery')
 
-{{-- Final CTA (global closing section, retained as-is) --}}
+{{-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     FINAL CTA
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --}}
 @include('sections.final-cta')
 
+</div>
 @endsection

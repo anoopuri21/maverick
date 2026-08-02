@@ -5,9 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Concerns\HandlesCloudinaryImageFields;
 use App\Filament\Resources\OurStoryGalleryImageResource\Pages;
 use App\Models\OurStoryGalleryImage;
-use App\Services\CloudinaryService;
 use Filament\Forms;
-use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -19,7 +17,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
+use App\Filament\Forms\Components\MediaPicker;
 
 class OurStoryGalleryImageResource extends Resource
 {
@@ -36,18 +34,9 @@ class OurStoryGalleryImageResource extends Resource
     {
         return $form
             ->schema([
-                FileUpload::make('image_url')
+                MediaPicker::forField('image_url', 'our-story/gallery')
                     ->label('Gallery Image')
-                    ->image()
-                    ->imageEditor()
-                    ->required()
-                    ->maxSize(5120)
-                    ->fetchFileInformation(false)
-                    ->getUploadedFileUsing(fn (?string $file): ?array => static::existingCloudinaryImage($file))
-                    ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
-                        return app(CloudinaryService::class)
-                            ->uploadImage($file->getRealPath(), 'our-story/gallery');
-                    }),
+                    ->required(),
                 TextInput::make('caption')
                     ->label('Caption')
                     ->maxLength(255)

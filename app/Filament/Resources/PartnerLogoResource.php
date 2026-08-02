@@ -5,10 +5,8 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\PartnerLogoResource\Pages;
 use App\Filament\Resources\PartnerLogoResource\RelationManagers;
 use App\Models\PartnerLogo;
-use App\Services\CloudinaryService;
 use App\Filament\Concerns\HandlesCloudinaryImageFields;
 use Filament\Forms;
-use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -16,7 +14,7 @@ use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
+use App\Filament\Forms\Components\MediaPicker;
 
 class PartnerLogoResource extends Resource
 {
@@ -33,13 +31,7 @@ class PartnerLogoResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('name')
                     ->required(),
-                Forms\Components\FileUpload::make('logo_url')
-                    ->image()
-                    ->nullable()
-                    ->getUploadedFileUsing(fn (?string $file): ?array => static::existingCloudinaryImage($file))
-                    ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
-                        return app(\App\Services\CloudinaryService::class)->uploadImage($file->getRealPath(), 'partner-logos');
-                    }),
+                MediaPicker::forField('logo_url', 'partner-logos'),
                 Forms\Components\Select::make('type')
                     ->options([
                         'alumni' => 'Alumni Network',

@@ -5,10 +5,8 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\TestimonialResource\Pages;
 use App\Filament\Resources\TestimonialResource\RelationManagers;
 use App\Models\Testimonial;
-use App\Services\CloudinaryService;
 use App\Filament\Concerns\HandlesCloudinaryImageFields;
 use Filament\Forms;
-use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -16,7 +14,7 @@ use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
+use App\Filament\Forms\Components\MediaPicker;
 
 class TestimonialResource extends Resource
 {
@@ -59,19 +57,10 @@ class TestimonialResource extends Resource
                     ->description('Leave empty to auto-generate from YouTube video')
                     ->collapsed()
                     ->schema([
-                        FileUpload::make('thumbnail_url')
+                        MediaPicker::forField('thumbnail_url', 'testimonials')
                             ->label('Custom Thumbnail Image')
-                            ->image()
-                            ->imageEditor()
-                            ->maxSize(2048)
                             ->helperText('Optional: Upload custom thumbnail. YouTube thumbnail will be auto-used if empty.')
-                            ->columnSpanFull()
-                            ->nullable()
-                            ->getUploadedFileUsing(fn (?string $file): ?array => static::existingCloudinaryImage($file))
-                            ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
-                                return app(CloudinaryService::class)
-                                    ->uploadImage($file->getRealPath(), 'testimonials');
-                            }),
+                            ->columnSpanFull(),
                     ]),
 
                 \Filament\Forms\Components\Section::make('Display Settings')

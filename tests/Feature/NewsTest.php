@@ -41,7 +41,7 @@ class NewsTest extends TestCase
         $response = $this->get('/news');
 
         $response->assertStatus(200);
-        $response->assertSee('News & Announcements', false);
+        $response->assertSee('News &amp; <em class="news-masthead__title-em">Announcements</em>', false);
         $response->assertSee('Academy Launches New Global Doctorate Initiative');
         $response->assertSee('Sharjah Campus Welcomes Fall Cohort');
     }

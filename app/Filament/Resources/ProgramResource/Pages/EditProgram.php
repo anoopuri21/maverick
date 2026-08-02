@@ -33,6 +33,8 @@ class EditProgram extends EditRecord
 
     protected function mutateFormDataBeforeSave(array $data): array
     {
+        $data = \App\Filament\Forms\Components\MediaPicker::syncFieldFromAsset($data, 'image_url');
+
         $data = $this->preserveExistingImageFields($data, $this->record);
 
         if (isset($data['seo'])) {

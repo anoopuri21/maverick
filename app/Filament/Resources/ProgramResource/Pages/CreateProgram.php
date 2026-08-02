@@ -13,6 +13,8 @@ class CreateProgram extends CreateRecord
 
     protected function mutateFormDataBeforeCreate(array $data): array
     {
+        $data = \App\Filament\Forms\Components\MediaPicker::syncFieldFromAsset($data, 'image_url');
+
         // Extract SEO data before creating program
         if (isset($data['seo'])) {
             $this->seoData = $data['seo'];
