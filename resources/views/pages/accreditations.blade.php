@@ -112,7 +112,7 @@
                         @endif
                     </div>
                     <h4 class="accreditations__card-name">{{ $logo->name }}</h4>
-                    <span class="accreditations__card-type">{{ ucfirst($logo->type) }}</span>
+                    <!-- <span class="accreditations__card-type">{{ ucfirst($logo->type) }}</span> -->
                 </div>
                 @endforeach
             @endfor
