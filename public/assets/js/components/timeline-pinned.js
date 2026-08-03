@@ -31,6 +31,8 @@ export function initTimelinePinned(element) {
   const track = pinEl.querySelector("[data-journey-track]");
   const slides = pinEl.querySelectorAll("[data-journey-slide]");
   const hint = pinEl.querySelector("[data-journey-hint]");
+  const connectionLine = section?.querySelector(".os-journey__connection-line");
+  const dots = section?.querySelectorAll(".os-journey__dot");
 
   // ── 2. Guard: required elements ───────────────────────────────────
   if (!track || slides.length === 0) return;
@@ -39,15 +41,34 @@ export function initTimelinePinned(element) {
   cleanup();
 
   // ── 4. Reduced motion — skip all animation ────────────────────────
-  if (respectsReducedMotion()) return;
+  if (respectsReducedMotion()) {
+    // Show connection line immediately
+    if (connectionLine) {
+      connectionLine.style.strokeDashoffset = "0";
+    }
+    // Show all dots
+    if (dots) {
+      dots.forEach(dot => dot.classList.add("is-active"));
+    }
+    return;
+  }
 
-  // ── 5. gsap.matchMedia context ────────────────────────────────────
+  // ── 5. Initialize connection line ──────────────────────────────────
+  if (connectionLine) {
+    const lineLength = connectionLine.getTotalLength();
+    connectionLine.style.strokeDasharray = lineLength;
+    connectionLine.style.strokeDashoffset = lineLength;
+  }
+
+  // ── 6. gsap.matchMedia context ────────────────────────────────────
   ctx = gsap.matchMedia();
 
   ctx.add("(min-width: 1024px)", () => {
     // ── DESKTOP: Horizontal pinned scroll ──────────────────────────
     let hintFaded = false;
+    const slideCount = slides.length;
 
+    // Single tween with inline scrollTrigger config
     const tween = gsap.to(track, {
       x: () => -(track.scrollWidth - window.innerWidth),
       ease: "none",
@@ -60,6 +81,7 @@ export function initTimelinePinned(element) {
         anticipatePin: 1,
         invalidateOnRefresh: true,
         onUpdate: (self) => {
+          // Hint fade
           if (!hintFaded && hint && self.progress > 0.05) {
             hintFaded = true;
             gsap.to(hint, {
@@ -68,10 +90,30 @@ export function initTimelinePinned(element) {
               ease: "power2.out",
             });
           }
+
+          // Connection line animation
+          if (connectionLine) {
+            const lineLength = connectionLine.getTotalLength();
+            connectionLine.style.strokeDashoffset =
+              lineLength * (1 - self.progress);
+          }
+
+          // Dot activation based on progress
+          if (dots && dots.length > 0) {
+            const activeIndex = Math.floor(self.progress * slideCount);
+            dots.forEach((dot, i) => {
+              if (i <= activeIndex) {
+                dot.classList.add("is-active");
+              } else {
+                dot.classList.remove("is-active");
+              }
+            });
+          }
         },
       },
     });
 
+    // gsap.matchMedia cleanup
     return () => {
       tween.scrollTrigger?.kill();
       tween.kill();
@@ -87,7 +129,7 @@ export function initTimelinePinned(element) {
 }
 
 /**
- * Cleanup all GSAP context — kills tween + ScrollTrigger + matchMedia
+ * Cleanup all GSAP context
  */
 export function cleanup() {
   if (ctx) {
@@ -98,7 +140,6 @@ export function cleanup() {
 
 /**
  * Default export for lazy loading via lazyLoadComponent
- * Receives DOM element from lazyLoadComponent (entry.target)
  */
 export default function init(element) {
   initTimelinePinned(element);
