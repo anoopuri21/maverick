@@ -726,7 +726,6 @@
   position: relative;
   overflow: hidden;
   border-radius: 16px;
-  cursor: pointer;
   isolation: isolate;
 }
 

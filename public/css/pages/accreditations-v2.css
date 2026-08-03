@@ -200,7 +200,7 @@
 .accred-hero__eyebrow-line {
     width: 40px;
     height: 2px;
-    background: var(--accred-red);
+    background: var(--color-mba-red);
 }
 
 .accred-hero__title {
@@ -215,7 +215,7 @@
 
 .accred-hero__title em {
     font-style: italic;
-    color: var(--accred-red);
+    color: var(--color-mba-red);
 }
 
 .accred-hero__description {
@@ -263,7 +263,7 @@
     font-weight: 700;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--accred-red);
+    color: var(--color-mba-red);
     margin-bottom: 20px;
     font-size: 12px;
 }
@@ -272,23 +272,13 @@
     content: "";
     width: 32px;
     height: 1px;
-    background: var(--accred-red);
+    background: var(--color-mba-red);
     flex-shrink: 0;
 }
 
-.section-title {
-    font-family: var(--font-display);
-    font-size: clamp(36px, 5vw, 72px);
-    font-weight: 600;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    color: var(--accred-navy);
-    margin: 0 0 24px;
-}
-
-.section-title em {
-    font-style: italic;
-    color: var(--accred-red);
+.section-title span {
+    display: block;
+    color: var(--color-mba-red);
 }
 
 .section-wrapper {
@@ -303,23 +293,6 @@
     position: relative;
     background: var(--accred-bg);
     overflow: hidden;
-}
-
-.accreditations__header {
-    text-align: center;
-    margin-bottom: 64px;
-}
-
-.accreditations__header .section-label {
-    justify-content: center;
-}
-
-.accreditations__subtitle {
-    font-size: clamp(15px, 1.3vw, 18px);
-    line-height: 1.7;
-    color: var(--accred-muted);
-    max-width: 600px;
-    margin: 0 auto;
 }
 
 /* Background Geometric Shapes */
@@ -460,13 +433,13 @@
 .accreditations__card:hover {
     transform: translateY(-6px);
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
-    border-color: var(--accred-navy);
+    border-color: var(--color-mba-blue);
 }
 
 .accreditations__card-logo {
     width: 80px;
     height: 80px;
-    background: linear-gradient(135deg, var(--accred-navy-dark), var(--accred-navy));
+    background: linear-gradient(135deg, var(--accred-navy-dark), var(--color-mba-blue));
     border-radius: 12px;
     display: flex;
     align-items: center;
@@ -486,7 +459,7 @@
     font-family: var(--font-display);
     font-size: 0.95rem;
     font-weight: 600;
-    color: var(--accred-navy);
+    color: var(--color-mba-blue);
     margin: 0;
     line-height: 1.4;
 }
@@ -499,23 +472,6 @@
     position: relative;
     background: var(--accred-light);
     overflow: hidden;
-}
-
-.awards__header {
-    text-align: center;
-    margin-bottom: 64px;
-}
-
-.awards__header .section-label {
-    justify-content: center;
-}
-
-.awards__subtitle {
-    font-size: clamp(15px, 1.3vw, 18px);
-    line-height: 1.7;
-    color: var(--accred-muted);
-    max-width: 600px;
-    margin: 0 auto;
 }
 
 /* Awards Carousel */
@@ -562,7 +518,7 @@
     left: 12px;
     z-index: 2;
     padding: 4px 12px;
-    background: var(--accred-red);
+    background: var(--color-mba-red);
     color: #fff;
     font-size: 11px;
     font-weight: 700;
@@ -591,7 +547,7 @@
     font-family: var(--font-display);
     font-size: 1rem;
     font-weight: 600;
-    color: var(--accred-navy);
+    color: var(--color-mba-blue);
     padding: 1.25rem 1.5rem;
     margin: 0;
     line-height: 1.4;
