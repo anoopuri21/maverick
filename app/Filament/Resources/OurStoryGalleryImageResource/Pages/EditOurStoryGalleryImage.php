@@ -15,9 +15,20 @@ class EditOurStoryGalleryImage extends EditRecord
 
     protected function mutateFormDataBeforeSave(array $data): array
     {
+        // Sync asset from MediaPicker
         $data = \App\Filament\Forms\Components\MediaPicker::syncFieldFromAsset($data, 'image_url');
 
-        return $this->preserveExistingImageFields($data, $this->record);
+        // If image_url is null but we have an existing value, preserve it
+        if (empty($data['image_url']) && !empty($this->record->image_url)) {
+            $data['image_url'] = $this->record->image_url;
+        }
+
+        // If image_url_asset_id is null but we have an existing value, preserve it
+        if (empty($data['image_url_asset_id']) && !empty($this->record->image_url_asset_id)) {
+            $data['image_url_asset_id'] = $this->record->image_url_asset_id;
+        }
+
+        return $data;
     }
 
     protected function getHeaderActions(): array
