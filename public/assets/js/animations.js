@@ -1,4 +1,4 @@
-﻿(function () {
+(function () {
   "use strict";
 
   if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
@@ -425,11 +425,7 @@
     const numbersSection = document.querySelector("#numbers");
     if (!numbersSection) return;
 
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
-    if (prefersReducedMotion) {
+    if (AnimationUtils.prefersReducedMotion) {
       gsap.set(
         [
           "#numbers .text-reveal-inner",
@@ -440,7 +436,6 @@
         ],
         { clearProps: "all", opacity: 1 },
       );
-
       gsap.set("#numbers .text-reveal-inner", { y: "0%" });
 
       const cards = document.querySelectorAll(".numbers__card");
@@ -454,312 +449,68 @@
       return;
     }
 
-    ScrollTrigger.matchMedia({
-      "(min-width: 769px)": function () {
-        const headingLines = numbersSection.querySelectorAll(
-          ".numbers__heading-line .text-reveal-inner",
-        );
-        if (headingLines.length) {
-          gsap.fromTo(
-            headingLines,
-            { y: "110%" },
-            {
-              y: "0%",
-              duration: 0.9,
-              stagger: 0.12,
-              ease: "power3.out",
-              scrollTrigger: {
-                trigger: "#numbers",
-                start: "top 75%",
-                toggleActions: "play none none none",
-              },
-            },
-          );
-        }
+    // Shared animations (same for desktop and mobile)
+    AnimationUtils.textReveal(
+      ".numbers__heading-line .text-reveal-inner",
+      { trigger: "#numbers" },
+    );
+    AnimationUtils.sectionLabel("#numbers");
+    AnimationUtils.lineScale(".numbers__section-divider-line", {
+      trigger: ".numbers__section-divider",
+      start: "top 85%",
+      duration: 1.2,
+    });
+    AnimationUtils.fadeUp(".numbers__context", {
+      trigger: ".numbers__context",
+      y: AnimationUtils.responsive(30, 20),
+    });
 
-        const sectionLabel = numbersSection.querySelector(".section-label");
-        if (sectionLabel) {
-          gsap.fromTo(
-            sectionLabel,
-            { opacity: 0, y: 16 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.6,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: "#numbers",
-                start: "top 75%",
-                toggleActions: "play none none none",
-              },
-            },
-          );
-        }
+    // Responsive card animations
+    const cfg = AnimationUtils.responsive(
+      { y: 40, stagger: 0.1, lineStagger: 0.1, lineDelay: 0.3 },
+      { y: 20, stagger: 0.06, lineStagger: 0.06, lineDelay: 0.2 },
+    );
 
-        const dividerLine = numbersSection.querySelector(
-          ".numbers__section-divider-line",
-        );
-        if (dividerLine) {
-          gsap.fromTo(
-            dividerLine,
-            { scaleX: 0, transformOrigin: "left center" },
-            {
-              scaleX: 1,
-              duration: 1.2,
-              ease: "power2.inOut",
-              scrollTrigger: {
-                trigger: ".numbers__section-divider",
-                start: "top 85%",
-                toggleActions: "play none none none",
-              },
-            },
-          );
-        }
+    AnimationUtils.cards(".numbers__card", {
+      trigger: ".numbers__grid",
+      start: "top 80%",
+      y: cfg.y,
+      stagger: cfg.stagger,
+    });
 
-        const numbersContext =
-          numbersSection.querySelector(".numbers__context");
-        if (numbersContext) {
-          gsap.fromTo(
-            numbersContext,
-            { opacity: 0, y: 30 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.8,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: ".numbers__context",
-                start: "top 80%",
-                toggleActions: "play none none none",
-              },
-            },
-          );
-        }
+    AnimationUtils.lineScale(".numbers__card-line", {
+      trigger: ".numbers__grid",
+      start: "top 75%",
+      stagger: cfg.lineStagger,
+      delay: cfg.lineDelay,
+    });
 
-        const cards = numbersSection.querySelectorAll(".numbers__card");
-        if (cards.length) {
-          gsap.fromTo(
-            cards,
-            { opacity: 0, y: 40 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.7,
-              stagger: 0.1,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: ".numbers__grid",
-                start: "top 80%",
-                toggleActions: "play none none none",
-              },
-            },
-          );
+    // Counter animation (unique logic)
+    const counterCards = document.querySelectorAll(".numbers__card");
+    counterCards.forEach((card) => {
+      const targetAttr = card.getAttribute("data-counter-target");
+      const target = parseInt(targetAttr, 10);
+      const counterEl = card.querySelector("[data-counter]");
 
-          const cardLines = numbersSection.querySelectorAll(
-            ".numbers__card-line",
-          );
-          if (cardLines.length) {
-            gsap.fromTo(
-              cardLines,
-              { scaleX: 0, transformOrigin: "left center" },
-              {
-                scaleX: 1,
-                duration: 0.8,
-                stagger: 0.1,
-                ease: "power2.inOut",
-                delay: 0.3,
-                scrollTrigger: {
-                  trigger: ".numbers__grid",
-                  start: "top 75%",
-                  toggleActions: "play none none none",
-                },
-              },
-            );
-          }
-        }
+      if (isNaN(target) || !counterEl) return;
 
-        const counterCards = document.querySelectorAll(".numbers__card");
-        counterCards.forEach((card) => {
-          const targetAttr = card.getAttribute("data-counter-target");
-          const target = parseInt(targetAttr, 10);
-          const counterEl = card.querySelector("[data-counter]");
+      const duration = getCounterDuration(target);
 
-          if (isNaN(target) || !counterEl) return;
+      ScrollTrigger.create({
+        trigger: card,
+        start: "top 85%",
+        once: true,
+        onEnter: () => animateCounter(counterEl, target, duration),
+      });
+    });
 
-          const duration = getCounterDuration(target);
-
-          ScrollTrigger.create({
-            trigger: card,
-            start: "top 85%",
-            once: true,
-            onEnter: () => animateCounter(counterEl, target, duration),
-          });
-        });
-
-        const headerDivider = numbersSection.querySelector(
-          ".numbers__header-divider",
-        );
-        if (headerDivider) {
-          gsap.fromTo(
-            headerDivider,
-            { scaleY: 0, opacity: 0, transformOrigin: "top center" },
-            {
-              scaleY: 1,
-              opacity: 1,
-              duration: 1.0,
-              ease: "power2.out",
-              delay: 0.4,
-              scrollTrigger: {
-                trigger: ".numbers__header",
-                start: "top 75%",
-                toggleActions: "play none none none",
-              },
-            },
-          );
-        }
-      },
-
-      "(max-width: 768px)": function () {
-        const headingLines = numbersSection.querySelectorAll(
-          ".numbers__heading-line .text-reveal-inner",
-        );
-        if (headingLines.length) {
-          gsap.fromTo(
-            headingLines,
-            { y: "110%" },
-            {
-              y: "0%",
-              duration: 0.9,
-              stagger: 0.12,
-              ease: "power3.out",
-              scrollTrigger: {
-                trigger: "#numbers",
-                start: "top 75%",
-                toggleActions: "play none none none",
-              },
-            },
-          );
-        }
-
-        const sectionLabel = numbersSection.querySelector(".section-label");
-        if (sectionLabel) {
-          gsap.fromTo(
-            sectionLabel,
-            { opacity: 0, y: 16 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.6,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: "#numbers",
-                start: "top 75%",
-                toggleActions: "play none none none",
-              },
-            },
-          );
-        }
-
-        const dividerLine = numbersSection.querySelector(
-          ".numbers__section-divider-line",
-        );
-        if (dividerLine) {
-          gsap.fromTo(
-            dividerLine,
-            { scaleX: 0, transformOrigin: "left center" },
-            {
-              scaleX: 1,
-              duration: 1.2,
-              ease: "power2.inOut",
-              scrollTrigger: {
-                trigger: ".numbers__section-divider",
-                start: "top 85%",
-                toggleActions: "play none none none",
-              },
-            },
-          );
-        }
-
-        const numbersContext =
-          numbersSection.querySelector(".numbers__context");
-        if (numbersContext) {
-          gsap.fromTo(
-            numbersContext,
-            { opacity: 0, y: 20 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.8,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: ".numbers__context",
-                start: "top 80%",
-                toggleActions: "play none none none",
-              },
-            },
-          );
-        }
-
-        const cards = numbersSection.querySelectorAll(".numbers__card");
-        if (cards.length) {
-          gsap.fromTo(
-            cards,
-            { opacity: 0, y: 20 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.6,
-              stagger: 0.06,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: ".numbers__grid",
-                start: "top 80%",
-                toggleActions: "play none none none",
-              },
-            },
-          );
-
-          const cardLines = numbersSection.querySelectorAll(
-            ".numbers__card-line",
-          );
-          if (cardLines.length) {
-            gsap.fromTo(
-              cardLines,
-              { scaleX: 0, transformOrigin: "left center" },
-              {
-                scaleX: 1,
-                duration: 0.6,
-                stagger: 0.06,
-                ease: "power2.inOut",
-                delay: 0.2,
-                scrollTrigger: {
-                  trigger: ".numbers__grid",
-                  start: "top 75%",
-                  toggleActions: "play none none none",
-                },
-              },
-            );
-          }
-        }
-
-        const counterCards = document.querySelectorAll(".numbers__card");
-        counterCards.forEach((card) => {
-          const targetAttr = card.getAttribute("data-counter-target");
-          const target = parseInt(targetAttr, 10);
-          const counterEl = card.querySelector("[data-counter]");
-
-          if (isNaN(target) || !counterEl) return;
-
-          const duration = getCounterDuration(target);
-
-          ScrollTrigger.create({
-            trigger: card,
-            start: "top 85%",
-            once: true,
-            onEnter: () => animateCounter(counterEl, target, duration),
-          });
-        });
-      },
+    // Header divider
+    AnimationUtils.lineScale(".numbers__header-divider", {
+      trigger: ".numbers__header",
+      start: "top 75%",
+      delay: 0.4,
+      duration: 1.0,
+      origin: "top center",
     });
   }
 
@@ -975,381 +726,51 @@
   function initWWAAnimations() {
     if (!elementExists("#who-we-are")) return;
 
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
-    if (prefersReducedMotion) {
-      gsap.set(
-        [
-          ".wwa__heading-line .text-reveal-inner",
-          ".wwa__body",
-          ".wwa__stats",
-          ".wwa__cta",
-          ".wwa__image-accent",
-        ],
-        { clearProps: "all", opacity: 1 },
-      );
-      gsap.set(".wwa__heading-line .text-reveal-inner", { y: "0%" });
+    if (AnimationUtils.prefersReducedMotion) {
+      AnimationUtils.setReducedMotion([
+        ".wwa__heading-line .text-reveal-inner",
+        ".wwa__body",
+        ".wwa__stats",
+        ".wwa__cta",
+        ".wwa__image-accent",
+      ]);
       return;
     }
 
-    ScrollTrigger.matchMedia({
-      "(min-width: 769px)": function () {
-        const sectionLabel = document.querySelector(
-          "#who-we-are .section-label",
-        );
-        if (sectionLabel) {
-          gsap.fromTo(
-            sectionLabel,
-            { opacity: 0, y: 16 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.6,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: "#who-we-are",
-                start: "top 75%",
-                toggleActions: "play none none none",
-              },
-            },
-          );
-        }
+    AnimationUtils.sectionLabel("#who-we-are");
+    AnimationUtils.textReveal(".wwa__heading-line .text-reveal-inner", {
+      trigger: "#who-we-are",
+    });
+    AnimationUtils.fadeUp(".wwa__body", {
+      trigger: ".wwa__body",
+      y: AnimationUtils.responsive(30, 20),
+    });
+    AnimationUtils.fadeUp(".wwa__stats", {
+      trigger: ".wwa__stats",
+      y: AnimationUtils.responsive(30, 20),
+    });
+    AnimationUtils.fadeUp(".wwa__cta", {
+      trigger: ".wwa__cta",
+      y: AnimationUtils.responsive(24, 20),
+      start: "top 85%",
+    });
 
-        const headingLines = document.querySelectorAll(
-          ".wwa__heading-line .text-reveal-inner",
-        );
-        if (headingLines.length) {
-          gsap.fromTo(
-            headingLines,
-            { y: "110%" },
-            {
-              y: "0%",
-              duration: 0.9,
-              stagger: 0.12,
-              ease: "power3.out",
-              scrollTrigger: {
-                trigger: "#who-we-are",
-                start: "top 75%",
-                toggleActions: "play none none none",
-              },
-            },
-          );
-        }
+    // Image parallax (unique)
+    AnimationUtils.parallax(".wwa__image", {
+      trigger: ".wwa__image-col",
+      y: AnimationUtils.responsive(-40, -20),
+      scrub: AnimationUtils.responsive(1.5, 1),
+    });
 
-        const bodyText = document.querySelector(".wwa__body");
-        if (bodyText) {
-          gsap.fromTo(
-            bodyText,
-            { opacity: 0, y: 30 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.8,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: ".wwa__body",
-                start: "top 80%",
-                toggleActions: "play none none none",
-              },
-            },
-          );
-        }
-
-        const stats = document.querySelector(".wwa__stats");
-        if (stats) {
-          gsap.fromTo(
-            stats,
-            { opacity: 0, y: 30 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.7,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: ".wwa__stats",
-                start: "top 80%",
-                toggleActions: "play none none none",
-              },
-            },
-          );
-        }
-
-        const cta = document.querySelector(".wwa__cta");
-        if (cta) {
-          gsap.fromTo(
-            cta,
-            { opacity: 0, y: 24 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.6,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: ".wwa__cta",
-                start: "top 85%",
-                toggleActions: "play none none none",
-              },
-            },
-          );
-        }
-
-        const image = document.querySelector(".wwa__image");
-        if (image) {
-          gsap.to(image, {
-            y: -40,
-            ease: "none",
-            scrollTrigger: {
-              trigger: ".wwa__image-col",
-              start: "top bottom",
-              end: "bottom top",
-              scrub: 1.5,
-            },
-          });
-        }
-
-        const imageAccent = document.querySelector(".wwa__image-accent");
-        if (imageAccent) {
-          gsap.fromTo(
-            imageAccent,
-            { opacity: 0 },
-            {
-              opacity: 1,
-              duration: 0.6,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: ".wwa__image-wrapper",
-                start: "top 70%",
-                toggleActions: "play none none none",
-              },
-            },
-          );
-        }
-      },
-
-      "(max-width: 768px)": function () {
-        const sectionLabel = document.querySelector(
-          "#who-we-are .section-label",
-        );
-        if (sectionLabel) {
-          gsap.fromTo(
-            sectionLabel,
-            { opacity: 0, y: 16 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.6,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: "#who-we-are",
-                start: "top 75%",
-                toggleActions: "play none none none",
-              },
-            },
-          );
-        }
-
-        const headingLines = document.querySelectorAll(
-          ".wwa__heading-line .text-reveal-inner",
-        );
-        if (headingLines.length) {
-          gsap.fromTo(
-            headingLines,
-            { y: "110%" },
-            {
-              y: "0%",
-              duration: 0.9,
-              stagger: 0.12,
-              ease: "power3.out",
-              scrollTrigger: {
-                trigger: "#who-we-are",
-                start: "top 75%",
-                toggleActions: "play none none none",
-              },
-            },
-          );
-        }
-
-        const bodyText = document.querySelector(".wwa__body");
-        if (bodyText) {
-          gsap.fromTo(
-            bodyText,
-            { opacity: 0, y: 20 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.8,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: ".wwa__body",
-                start: "top 80%",
-                toggleActions: "play none none none",
-              },
-            },
-          );
-        }
-
-        const stats = document.querySelector(".wwa__stats");
-        if (stats) {
-          gsap.fromTo(
-            stats,
-            { opacity: 0, y: 20 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.7,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: ".wwa__stats",
-                start: "top 80%",
-                toggleActions: "play none none none",
-              },
-            },
-          );
-        }
-
-        const cta = document.querySelector(".wwa__cta");
-        if (cta) {
-          gsap.fromTo(
-            cta,
-            { opacity: 0, y: 20 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.6,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: ".wwa__cta",
-                start: "top 85%",
-                toggleActions: "play none none none",
-              },
-            },
-          );
-        }
-
-        const image = document.querySelector(".wwa__image");
-        if (image) {
-          gsap.to(image, {
-            y: -20,
-            ease: "none",
-            scrollTrigger: {
-              trigger: ".wwa__image-col",
-              start: "top bottom",
-              end: "bottom top",
-              scrub: 1,
-            },
-          });
-        }
-
-        const imageAccent = document.querySelector(".wwa__image-accent");
-        if (imageAccent) {
-          gsap.fromTo(
-            imageAccent,
-            { opacity: 0 },
-            {
-              opacity: 1,
-              duration: 0.6,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: ".wwa__image-wrapper",
-                start: "top 70%",
-                toggleActions: "play none none none",
-              },
-            },
-          );
-        }
-      },
+    // Image accent fade
+    AnimationUtils.fadeUp(".wwa__image-accent", {
+      trigger: ".wwa__image-wrapper",
+      start: "top 70%",
+      duration: 0.6,
     });
   }
 
-  function initCEOAnimations() {
-    if (!elementExists("#ceo-message")) return;
 
-    const ceoImageAccent = document.querySelector(".ceo__image");
-    if (ceoImageAccent) {
-      gsap.fromTo(
-        ceoImageAccent,
-        { opacity: 0 },
-        {
-          opacity: 1,
-          duration: 0.6,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: ".ceo__image-col",
-            start: "top 70%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
-
-    const headingLines = document.querySelectorAll(
-      "#ceo-message .text-reveal-inner",
-    );
-
-    if (headingLines.length) {
-      gsap.fromTo(
-        headingLines,
-        { y: "110%" },
-        {
-          y: "0%",
-          duration: 0.9,
-          stagger: 0.12,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: "#ceo-message",
-            start: "top 70%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
-
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: "#ceo-message",
-        start: "top 75%",
-        toggleActions: "play none none none",
-      },
-    });
-
-    tl.fromTo(
-      ".ceo__image-wrapper",
-      {
-        opacity: 0,
-        scale: 0.95,
-      },
-      {
-        opacity: 1,
-        scale: 1,
-        duration: 0.9,
-        ease: "power2.out",
-      },
-    );
-
-    tl.fromTo(
-      [
-        "#ceo-message .section-label",
-        "#ceo-message .ceo__quote",
-        "#ceo-message .ceo__body",
-        "#ceo-message .ceo__signature",
-      ],
-      {
-        opacity: 0,
-        y: 40,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        stagger: 0.15,
-        duration: 0.8,
-        ease: "power2.out",
-        markers: true,
-      },
-      "-=0.4",
-    );
-  }
 
   // =========================================================
   // What We Do Section Animations
@@ -1358,275 +779,68 @@
   function initWWDAnimations() {
     if (!elementExists("#what-we-do")) return;
 
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
-    if (prefersReducedMotion) {
-      gsap.set(
-        [
-          ".wwd__heading-line .text-reveal-inner",
-          ".wwd__context",
-          ".wwd__card",
-          ".wwd__card-index",
-          ".wwd__card-item",
-        ],
-        { clearProps: "all", opacity: 1 },
-      );
-      gsap.set(".wwd__heading-line .text-reveal-inner", { y: "0%" });
+    if (AnimationUtils.prefersReducedMotion) {
+      AnimationUtils.setReducedMotion([
+        ".wwd__heading-line .text-reveal-inner",
+        ".wwd__context",
+        ".wwd__card",
+        ".wwd__card-index",
+        ".wwd__card-item",
+      ]);
       return;
     }
 
-    ScrollTrigger.matchMedia({
-      "(min-width: 769px)": function () {
-        const sectionLabel = document.querySelector(
-          "#what-we-do .section-label",
+    const cfg = AnimationUtils.responsive(
+      { contextY: 30, cardY: 40, cardStagger: 0.15, indexDelay: 0.3, itemX: -10, itemStagger: 0.08 },
+      { contextY: 20, cardY: 20, cardStagger: 0.1, indexDelay: 0.2, itemX: -8, itemStagger: 0.06 },
+    );
+
+    AnimationUtils.sectionLabel("#what-we-do");
+    AnimationUtils.textReveal(".wwd__heading-line .text-reveal-inner", {
+      trigger: "#what-we-do",
+    });
+    AnimationUtils.fadeUp(".wwd__context", {
+      trigger: ".wwd__context",
+      y: cfg.contextY,
+    });
+    AnimationUtils.cards(".wwd__card", {
+      trigger: ".wwd__grid",
+      start: "top 75%",
+      y: cfg.cardY,
+      stagger: cfg.cardStagger,
+    });
+
+    // Card indexes (unique)
+    AnimationUtils.fadeUp(".wwd__card-index", {
+      trigger: ".wwd__grid",
+      start: "top 75%",
+      y: 0,
+      duration: 0.5,
+      stagger: cfg.cardStagger,
+      delay: cfg.indexDelay,
+    });
+
+    // Card items (unique - slide from left)
+    document.querySelectorAll(".wwd__card").forEach((card) => {
+      const items = card.querySelectorAll(".wwd__card-item");
+      if (items.length) {
+        gsap.fromTo(
+          items,
+          { opacity: 0, x: cfg.itemX },
+          {
+            opacity: 1,
+            x: 0,
+            duration: 0.4,
+            stagger: cfg.itemStagger,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: card,
+              start: "top 70%",
+              toggleActions: "play none none none",
+            },
+          },
         );
-        if (sectionLabel) {
-          gsap.fromTo(
-            sectionLabel,
-            { opacity: 0, y: 16 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.6,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: "#what-we-do",
-                start: "top 75%",
-                toggleActions: "play none none none",
-              },
-            },
-          );
-        }
-
-        const headingLines = document.querySelectorAll(
-          ".wwd__heading-line .text-reveal-inner",
-        );
-        if (headingLines.length) {
-          gsap.fromTo(
-            headingLines,
-            { y: "110%" },
-            {
-              y: "0%",
-              duration: 0.9,
-              stagger: 0.12,
-              ease: "power3.out",
-              scrollTrigger: {
-                trigger: "#what-we-do",
-                start: "top 75%",
-                toggleActions: "play none none none",
-              },
-            },
-          );
-        }
-
-        const contextText = document.querySelector(".wwd__context");
-        if (contextText) {
-          gsap.fromTo(
-            contextText,
-            { opacity: 0, y: 30 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.8,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: ".wwd__context",
-                start: "top 80%",
-                toggleActions: "play none none none",
-              },
-            },
-          );
-        }
-
-        const cards = document.querySelectorAll(".wwd__card");
-        if (cards.length) {
-          gsap.fromTo(
-            cards,
-            { opacity: 0, y: 40 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.7,
-              stagger: 0.15,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: ".wwd__grid",
-                start: "top 75%",
-                toggleActions: "play none none none",
-              },
-            },
-          );
-
-          const cardIndexes = document.querySelectorAll(".wwd__card-index");
-          if (cardIndexes.length) {
-            gsap.fromTo(
-              cardIndexes,
-              { opacity: 0 },
-              {
-                opacity: 1,
-                duration: 0.5,
-                stagger: 0.15,
-                delay: 0.3,
-                ease: "power2.out",
-                scrollTrigger: {
-                  trigger: ".wwd__grid",
-                  start: "top 75%",
-                  toggleActions: "play none none none",
-                },
-              },
-            );
-          }
-
-          cards.forEach((card) => {
-            const items = card.querySelectorAll(".wwd__card-item");
-            if (items.length) {
-              gsap.fromTo(
-                items,
-                { opacity: 0, x: -10 },
-                {
-                  opacity: 1,
-                  x: 0,
-                  duration: 0.4,
-                  stagger: 0.08,
-                  ease: "power2.out",
-                  scrollTrigger: {
-                    trigger: card,
-                    start: "top 70%",
-                    toggleActions: "play none none none",
-                  },
-                },
-              );
-            }
-          });
-        }
-      },
-
-      "(max-width: 768px)": function () {
-        const sectionLabel = document.querySelector(
-          "#what-we-do .section-label",
-        );
-        if (sectionLabel) {
-          gsap.fromTo(
-            sectionLabel,
-            { opacity: 0, y: 16 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.6,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: "#what-we-do",
-                start: "top 75%",
-                toggleActions: "play none none none",
-              },
-            },
-          );
-        }
-
-        const headingLines = document.querySelectorAll(
-          ".wwd__heading-line .text-reveal-inner",
-        );
-        if (headingLines.length) {
-          gsap.fromTo(
-            headingLines,
-            { y: "110%" },
-            {
-              y: "0%",
-              duration: 0.9,
-              stagger: 0.12,
-              ease: "power3.out",
-              scrollTrigger: {
-                trigger: "#what-we-do",
-                start: "top 75%",
-                toggleActions: "play none none none",
-              },
-            },
-          );
-        }
-
-        const contextText = document.querySelector(".wwd__context");
-        if (contextText) {
-          gsap.fromTo(
-            contextText,
-            { opacity: 0, y: 20 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.8,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: ".wwd__context",
-                start: "top 80%",
-                toggleActions: "play none none none",
-              },
-            },
-          );
-        }
-
-        const cards = document.querySelectorAll(".wwd__card");
-        if (cards.length) {
-          gsap.fromTo(
-            cards,
-            { opacity: 0, y: 20 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.6,
-              stagger: 0.1,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: ".wwd__grid",
-                start: "top 75%",
-                toggleActions: "play none none none",
-              },
-            },
-          );
-
-          const cardIndexes = document.querySelectorAll(".wwd__card-index");
-          if (cardIndexes.length) {
-            gsap.fromTo(
-              cardIndexes,
-              { opacity: 0 },
-              {
-                opacity: 1,
-                duration: 0.5,
-                stagger: 0.1,
-                delay: 0.2,
-                ease: "power2.out",
-                scrollTrigger: {
-                  trigger: ".wwd__grid",
-                  start: "top 75%",
-                  toggleActions: "play none none none",
-                },
-              },
-            );
-          }
-
-          cards.forEach((card) => {
-            const items = card.querySelectorAll(".wwd__card-item");
-            if (items.length) {
-              gsap.fromTo(
-                items,
-                { opacity: 0, x: -8 },
-                {
-                  opacity: 1,
-                  x: 0,
-                  duration: 0.4,
-                  stagger: 0.06,
-                  ease: "power2.out",
-                  scrollTrigger: {
-                    trigger: card,
-                    start: "top 70%",
-                    toggleActions: "play none none none",
-                  },
-                },
-              );
-            }
-          });
-        }
-      },
+      }
     });
   }
 
@@ -1650,292 +864,71 @@
       transformOrigin: "left center",
     });
 
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
-    if (prefersReducedMotion) {
-      gsap.set(
-        [
-          ".hwdi__heading-line .text-reveal-inner",
-          ".hwdi__subtitle",
-          ".hwdi__step",
-          ".hwdi__step-number",
-          ".hwdi__step-accent",
-          ".hwdi__connector-line",
-        ],
-        { clearProps: "all", opacity: 1 },
-      );
-      gsap.set(".hwdi__heading-line .text-reveal-inner", { y: "0%" });
+    if (AnimationUtils.prefersReducedMotion) {
+      AnimationUtils.setReducedMotion([
+        ".hwdi__heading-line .text-reveal-inner",
+        ".hwdi__subtitle",
+        ".hwdi__step",
+        ".hwdi__step-number",
+        ".hwdi__step-accent",
+        ".hwdi__connector-line",
+      ]);
       gsap.set(".hwdi__step-number", { scale: 1 });
       gsap.set(".hwdi__step-accent", { scaleY: 1 });
       gsap.set(".hwdi__connector-line", { scaleX: 1 });
       return;
     }
 
-    ScrollTrigger.matchMedia({
-      "(min-width: 769px)": function () {
-        const sectionLabel = document.querySelector(
-          "#how-we-do-it .section-label",
-        );
-        if (sectionLabel) {
-          gsap.fromTo(
-            sectionLabel,
-            { opacity: 0, y: 16 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.6,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: "#how-we-do-it",
-                start: "top 75%",
-                toggleActions: "play none none none",
-              },
-            },
-          );
-        }
+    const cfg = AnimationUtils.responsive(
+      { subtitleY: 20, stepY: 40, stepStagger: 0.2, numScale: 0.8, numEase: "back.out(1.7)", accentStagger: 0.2, accentDur: 0.5, connectorStagger: 0.15 },
+      { subtitleY: 16, stepY: 24, stepStagger: 0.15, numScale: 0.8, numEase: "back.out(1.5)", accentStagger: 0.15, accentDur: 0.4, connectorStagger: 0.15 },
+    );
 
-        const headingLines = document.querySelectorAll(
-          ".hwdi__heading-line .text-reveal-inner",
-        );
-        if (headingLines.length) {
-          gsap.fromTo(
-            headingLines,
-            { y: "110%" },
-            {
-              y: "0%",
-              duration: 0.9,
-              stagger: 0.12,
-              ease: "power3.out",
-              scrollTrigger: {
-                trigger: "#how-we-do-it",
-                start: "top 75%",
-                toggleActions: "play none none none",
-              },
-            },
-          );
-        }
+    AnimationUtils.sectionLabel("#how-we-do-it");
+    AnimationUtils.textReveal(".hwdi__heading-line .text-reveal-inner", {
+      trigger: "#how-we-do-it",
+    });
+    AnimationUtils.fadeUp(".hwdi__subtitle", {
+      trigger: ".hwdi__subtitle",
+      y: cfg.subtitleY,
+    });
+    AnimationUtils.cards(".hwdi__step", {
+      trigger: ".hwdi__steps",
+      start: "top 70%",
+      y: cfg.stepY,
+      stagger: cfg.stepStagger,
+    });
 
-        const subtitle = document.querySelector(".hwdi__subtitle");
-        if (subtitle) {
-          gsap.fromTo(
-            subtitle,
-            { opacity: 0, y: 20 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.7,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: ".hwdi__subtitle",
-                start: "top 80%",
-                toggleActions: "play none none none",
-              },
-            },
-          );
-        }
+    // Step numbers (unique - scale in with bounce)
+    AnimationUtils.scaleIn(".hwdi__step-number", {
+      trigger: ".hwdi__steps",
+      start: "top 70%",
+      scale: cfg.numScale,
+      stagger: cfg.stepStagger,
+    });
 
-        const steps = document.querySelectorAll(".hwdi__step");
-        if (steps.length) {
-          gsap.fromTo(
-            steps,
-            { opacity: 0, y: 40 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.8,
-              stagger: 0.2,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: ".hwdi__steps",
-                start: "top 70%",
-                toggleActions: "play none none none",
-              },
-            },
-          );
-
-          const stepNumbers = document.querySelectorAll(".hwdi__step-number");
-          if (stepNumbers.length) {
-            gsap.fromTo(
-              stepNumbers,
-              { scale: 0.8, opacity: 0 },
-              {
-                scale: 1,
-                opacity: 1,
-                duration: 0.6,
-                stagger: 0.2,
-                ease: "back.out(1.7)",
-                scrollTrigger: {
-                  trigger: ".hwdi__steps",
-                  start: "top 70%",
-                  toggleActions: "play none none none",
-                },
-              },
-            );
-          }
-
-          const stepAccents = document.querySelectorAll(".hwdi__step-accent");
-          if (stepAccents.length) {
-            gsap.fromTo(
-              stepAccents,
-              { scaleY: 0 },
-              {
-                scaleY: 1,
-                duration: 0.5,
-                stagger: 0.2,
-                ease: "power2.out",
-                scrollTrigger: {
-                  trigger: ".hwdi__steps",
-                  start: "top 70%",
-                  toggleActions: "play none none none",
-                },
-              },
-            );
-          }
-        }
-
-        const connectors = document.querySelectorAll(".hwdi__connector-line");
-        if (connectors.length) {
-          gsap.fromTo(
-            connectors,
-            { scaleX: 0 },
-            {
-              scaleX: 1,
-              duration: 0.8,
-              stagger: 0.15,
-              ease: "power2.inOut",
-              scrollTrigger: {
-                trigger: ".hwdi__steps",
-                start: "top 65%",
-                toggleActions: "play none none none",
-              },
-            },
-          );
-        }
+    // Step accents (unique - vertical scale)
+    gsap.fromTo(
+      ".hwdi__step-accent",
+      { scaleY: 0 },
+      {
+        scaleY: 1,
+        duration: cfg.accentDur,
+        stagger: cfg.accentStagger,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: ".hwdi__steps",
+          start: "top 70%",
+          toggleActions: "play none none none",
+        },
       },
+    );
 
-      "(max-width: 768px)": function () {
-        const sectionLabel = document.querySelector(
-          "#how-we-do-it .section-label",
-        );
-        if (sectionLabel) {
-          gsap.fromTo(
-            sectionLabel,
-            { opacity: 0, y: 16 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.6,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: "#how-we-do-it",
-                start: "top 75%",
-                toggleActions: "play none none none",
-              },
-            },
-          );
-        }
-
-        const headingLines = document.querySelectorAll(
-          ".hwdi__heading-line .text-reveal-inner",
-        );
-        if (headingLines.length) {
-          gsap.fromTo(
-            headingLines,
-            { y: "110%" },
-            {
-              y: "0%",
-              duration: 0.9,
-              stagger: 0.12,
-              ease: "power3.out",
-              scrollTrigger: {
-                trigger: "#how-we-do-it",
-                start: "top 75%",
-                toggleActions: "play none none none",
-              },
-            },
-          );
-        }
-
-        const subtitle = document.querySelector(".hwdi__subtitle");
-        if (subtitle) {
-          gsap.fromTo(
-            subtitle,
-            { opacity: 0, y: 16 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.7,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: ".hwdi__subtitle",
-                start: "top 80%",
-                toggleActions: "play none none none",
-              },
-            },
-          );
-        }
-
-        const steps = document.querySelectorAll(".hwdi__step");
-        if (steps.length) {
-          gsap.fromTo(
-            steps,
-            { opacity: 0, y: 24 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.6,
-              stagger: 0.15,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: ".hwdi__steps",
-                start: "top 70%",
-                toggleActions: "play none none none",
-              },
-            },
-          );
-
-          const stepNumbers = document.querySelectorAll(".hwdi__step-number");
-          if (stepNumbers.length) {
-            gsap.fromTo(
-              stepNumbers,
-              { scale: 0.8, opacity: 0 },
-              {
-                scale: 1,
-                opacity: 1,
-                duration: 0.5,
-                stagger: 0.15,
-                ease: "back.out(1.5)",
-                scrollTrigger: {
-                  trigger: ".hwdi__steps",
-                  start: "top 70%",
-                  toggleActions: "play none none none",
-                },
-              },
-            );
-          }
-
-          const stepAccents = document.querySelectorAll(".hwdi__step-accent");
-          if (stepAccents.length) {
-            gsap.fromTo(
-              stepAccents,
-              { scaleY: 0 },
-              {
-                scaleY: 1,
-                duration: 0.4,
-                stagger: 0.15,
-                ease: "power2.out",
-                scrollTrigger: {
-                  trigger: ".hwdi__steps",
-                  start: "top 70%",
-                  toggleActions: "play none none none",
-                },
-              },
-            );
-          }
-        }
-      },
+    // Connector lines (unique - horizontal scale)
+    AnimationUtils.lineScale(".hwdi__connector-line", {
+      trigger: ".hwdi__steps",
+      start: "top 65%",
+      stagger: cfg.connectorStagger,
     });
   }
 
@@ -1946,106 +939,29 @@
   function initAlumniAnimations() {
     if (!elementExists("#alumni-network")) return;
 
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
-    if (prefersReducedMotion) {
-      gsap.set(
-        [
-          "#alumni-network .section-label",
-          ".alumni__heading-line .text-reveal-inner",
-          ".alumni__subtitle",
-          ".alumni__marquee-wrapper",
-        ],
-        { clearProps: "all", opacity: 1 },
-      );
-      gsap.set(".alumni__heading-line .text-reveal-inner", { y: "0%" });
+    if (AnimationUtils.prefersReducedMotion) {
+      AnimationUtils.setReducedMotion([
+        "#alumni-network .section-label",
+        ".alumni__heading-line .text-reveal-inner",
+        ".alumni__subtitle",
+        ".alumni__marquee-wrapper",
+      ]);
       return;
     }
 
-    gsap.set("#alumni-network .section-label", { opacity: 0, y: 16 });
-    gsap.set("#alumni-network .text-reveal-inner", { y: "110%" });
-    gsap.set(".alumni__subtitle", { opacity: 0, y: 20 });
-    gsap.set(".alumni__marquee-wrapper", { opacity: 0, scale: 0.97 });
-
-    const label = document.querySelector("#alumni-network .section-label");
-    if (label) {
-      gsap.fromTo(
-        label,
-        { opacity: 0, y: 16 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#alumni-network",
-            start: "top 75%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
-
-    const headings = document.querySelectorAll(
-      "#alumni-network .text-reveal-inner",
-    );
-    if (headings.length) {
-      gsap.fromTo(
-        headings,
-        { y: "110%" },
-        {
-          y: "0%",
-          duration: 0.9,
-          stagger: 0.12,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: "#alumni-network",
-            start: "top 75%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
-
-    const subtitle = document.querySelector(".alumni__subtitle");
-    if (subtitle) {
-      gsap.fromTo(
-        subtitle,
-        { opacity: 0, y: 20 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.7,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: ".alumni__subtitle",
-            start: "top 80%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
-
-    const marquee = document.querySelector(".alumni__marquee-wrapper");
-    if (marquee) {
-      gsap.fromTo(
-        marquee,
-        { opacity: 0, scale: 0.97 },
-        {
-          opacity: 1,
-          scale: 1,
-          duration: 0.8,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: ".alumni__marquee-wrapper",
-            start: "top 85%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
+    AnimationUtils.sectionLabel("#alumni-network");
+    AnimationUtils.textReveal("#alumni-network .text-reveal-inner", {
+      trigger: "#alumni-network",
+    });
+    AnimationUtils.fadeUp(".alumni__subtitle", {
+      trigger: ".alumni__subtitle",
+      y: 20,
+    });
+    AnimationUtils.scaleIn(".alumni__marquee-wrapper", {
+      trigger: ".alumni__marquee-wrapper",
+      start: "top 85%",
+      scale: 0.97,
+    });
   }
 
   // =========================================================
@@ -2055,88 +971,26 @@
   function initProgramsAnimations() {
     if (!elementExists("#featured-programs")) return;
 
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
-    gsap.set("#featured-programs .section-label", { opacity: 0, y: 16 });
-    gsap.set("#featured-programs .text-reveal-inner", { y: "110%" });
-    gsap.set("#featured-programs .programs__subtitle", { opacity: 0, y: 20 });
-
-    if (prefersReducedMotion) {
-      gsap.set(
-        [
-          "#featured-programs .section-label",
-          "#featured-programs .text-reveal-inner",
-          "#featured-programs .programs__subtitle",
-        ],
-        { clearProps: "all", opacity: 1 },
-      );
-      gsap.set("#featured-programs .text-reveal-inner", { y: "0%" });
+    if (AnimationUtils.prefersReducedMotion) {
+      AnimationUtils.setReducedMotion([
+        "#featured-programs .section-label",
+        "#featured-programs .text-reveal-inner",
+        "#featured-programs .programs__subtitle",
+      ]);
       return;
     }
 
-    const label = document.querySelector("#featured-programs .section-label");
-    if (label) {
-      gsap.fromTo(
-        label,
-        { opacity: 0, y: 16 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#featured-programs",
-            start: "top 75%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
+    AnimationUtils.sectionLabel("#featured-programs");
+    AnimationUtils.textReveal("#featured-programs .text-reveal-inner", {
+      trigger: "#featured-programs",
+      stagger: 0.1,
+    });
+    AnimationUtils.fadeUp("#featured-programs .programs__subtitle", {
+      trigger: "#featured-programs .programs__subtitle",
+      y: 20,
+    });
 
-    const headings = document.querySelectorAll(
-      "#featured-programs .text-reveal-inner",
-    );
-    if (headings.length) {
-      gsap.fromTo(
-        headings,
-        { y: "100%" },
-        {
-          y: "0%",
-          duration: 0.9,
-          stagger: 0.1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: "#featured-programs",
-            start: "top 75%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
-
-    const subtitle = document.querySelector(
-      "#featured-programs .programs__subtitle",
-    );
-    if (subtitle) {
-      gsap.fromTo(
-        subtitle,
-        { opacity: 0, y: 20 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.7,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#featured-programs .programs__subtitle",
-            start: "top 80%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
-
+    // Horizontal scroll (unique - desktop only)
     ScrollTrigger.matchMedia({
       "(min-width: 769px)": function () {
         const track = document.querySelector(".programs__track");
@@ -2163,113 +1017,87 @@
   }
 
   // =========================================================
+  // CEO Section Animations
+  // =========================================================
+
+  function initCEOAnimations() {
+    if (!elementExists("#ceo-message")) return;
+
+    AnimationUtils.fadeUp(".ceo__image", {
+      trigger: ".ceo__image-col",
+      start: "top 70%",
+      duration: 0.6,
+    });
+
+    AnimationUtils.textReveal("#ceo-message .text-reveal-inner", {
+      trigger: "#ceo-message",
+      start: "top 70%",
+    });
+
+    // CEO content timeline (unique)
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#ceo-message",
+        start: "top 75%",
+        toggleActions: "play none none none",
+      },
+    });
+
+    tl.fromTo(
+      ".ceo__image-wrapper",
+      { opacity: 0, scale: 0.95 },
+      { opacity: 1, scale: 1, duration: 0.9, ease: "power2.out" },
+    );
+
+    tl.fromTo(
+      [
+        "#ceo-message .section-label",
+        "#ceo-message .ceo__quote",
+        "#ceo-message .ceo__body",
+        "#ceo-message .ceo__signature",
+      ],
+      { opacity: 0, y: 40 },
+      {
+        opacity: 1,
+        y: 0,
+        stagger: 0.15,
+        duration: 0.8,
+        ease: "power2.out",
+      },
+      "-=0.4",
+    );
+  }
+
+  // =========================================================
   // Why Maverick Section Animations
   // =========================================================
 
   function initWhyMaverickAnimations() {
     if (!elementExists("#why-maverick")) return;
 
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
-    gsap.set("#why-maverick .section-label", { opacity: 0, y: 16 });
-    gsap.set("#why-maverick .text-reveal-inner", { y: "110%" });
-    gsap.set("#why-maverick .why__subtitle", { opacity: 0, y: 20 });
-    gsap.set("#why-maverick .why__tile", { opacity: 0, y: 40 });
-
-    if (prefersReducedMotion) {
-      gsap.set(
-        [
-          "#why-maverick .section-label",
-          "#why-maverick .text-reveal-inner",
-          "#why-maverick .why__subtitle",
-          "#why-maverick .why__tile",
-        ],
-        { clearProps: "all", opacity: 1 },
-      );
-      gsap.set("#why-maverick .text-reveal-inner", { y: "0%" });
+    if (AnimationUtils.prefersReducedMotion) {
+      AnimationUtils.setReducedMotion([
+        "#why-maverick .section-label",
+        "#why-maverick .text-reveal-inner",
+        "#why-maverick .why__subtitle",
+        "#why-maverick .why__tile",
+      ]);
       return;
     }
 
-    const label = document.querySelector("#why-maverick .section-label");
-    if (label) {
-      gsap.fromTo(
-        label,
-        { opacity: 0, y: 16 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#why-maverick",
-            start: "top 75%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
-
-    const headings = document.querySelectorAll(
-      "#why-maverick .text-reveal-inner",
-    );
-    if (headings.length) {
-      gsap.fromTo(
-        headings,
-        { y: "110%" },
-        {
-          y: "0%",
-          duration: 0.9,
-          stagger: 0.12,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: "#why-maverick",
-            start: "top 75%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
-
-    const subtitle = document.querySelector("#why-maverick .why__subtitle");
-    if (subtitle) {
-      gsap.fromTo(
-        subtitle,
-        { opacity: 0, y: 20 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.7,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#why-maverick .why__subtitle",
-            start: "top 80%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
-
-    const tiles = document.querySelectorAll("#why-maverick .why__tile");
-    if (tiles.length) {
-      gsap.fromTo(
-        tiles,
-        { opacity: 0, y: 40 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          stagger: 0.1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#why-maverick .why__grid",
-            start: "top 80%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
+    AnimationUtils.sectionLabel("#why-maverick");
+    AnimationUtils.textReveal("#why-maverick .text-reveal-inner", {
+      trigger: "#why-maverick",
+    });
+    AnimationUtils.fadeUp("#why-maverick .why__subtitle", {
+      trigger: "#why-maverick .why__subtitle",
+      y: 20,
+    });
+    AnimationUtils.cards("#why-maverick .why__tile", {
+      trigger: "#why-maverick .why__grid",
+      start: "top 80%",
+      y: 40,
+    });
   }
   // =========================================================
   // Global Opportunities & Pathways Section Animations
@@ -2278,167 +1106,43 @@
   function initOpportunitiesAnimations() {
     if (!elementExists("#global-opportunities")) return;
 
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
-    if (prefersReducedMotion) {
-      gsap.set(
-        [
-          "#global-opportunities .section-label",
-          "#global-opportunities .text-reveal-inner",
-          "#global-opportunities .opportunities__subtitle",
-          "#global-opportunities .opportunities__column-header",
-          "#global-opportunities .opportunities__item",
-          "#global-opportunities .opportunities__divider",
-        ],
-        { clearProps: "all", opacity: 1 },
-      );
-      gsap.set("#global-opportunities .text-reveal-inner", { y: "0%" });
+    if (AnimationUtils.prefersReducedMotion) {
+      AnimationUtils.setReducedMotion([
+        "#global-opportunities .section-label",
+        "#global-opportunities .text-reveal-inner",
+        "#global-opportunities .opportunities__subtitle",
+        "#global-opportunities .opportunities__column-header",
+        "#global-opportunities .opportunities__item",
+        "#global-opportunities .opportunities__divider",
+      ]);
       return;
     }
 
-    gsap.set("#global-opportunities .section-label", { opacity: 0, y: 16 });
-    gsap.set("#global-opportunities .text-reveal-inner", { y: "110%" });
-    gsap.set("#global-opportunities .opportunities__subtitle", {
-      opacity: 0,
-      y: 20,
-    });
-    gsap.set("#global-opportunities .opportunities__column-header", {
-      opacity: 0,
-      y: 30,
-    });
-    gsap.set("#global-opportunities .opportunities__item", {
-      opacity: 0,
-      y: 24,
-    });
-    gsap.set("#global-opportunities .opportunities__divider", {
-      scaleY: 0,
-      transformOrigin: "top center",
-    });
-
-    const label = document.querySelector(
-      "#global-opportunities .section-label",
-    );
-    if (label) {
-      gsap.to(label, {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: "#global-opportunities",
-          start: "top 75%",
-          toggleActions: "play none none none",
-        },
-      });
-    }
-
-    const headingInner = document.querySelector(
+    AnimationUtils.sectionLabel("#global-opportunities");
+    AnimationUtils.textReveal(
       "#global-opportunities .opportunities__heading .text-reveal-inner",
+      { trigger: "#global-opportunities" },
     );
-    if (headingInner) {
-      gsap.to(headingInner, {
-        y: "0%",
-        duration: 0.9,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: "#global-opportunities",
-          start: "top 75%",
-          toggleActions: "play none none none",
-        },
-      });
-    }
-
-    const subtitle = document.querySelector(
+    AnimationUtils.fadeUp(
       "#global-opportunities .opportunities__subtitle",
+      { trigger: "#global-opportunities", y: 20, delay: 0.2 },
     );
-    if (subtitle) {
-      gsap.to(subtitle, {
-        opacity: 1,
-        y: 0,
-        duration: 0.7,
-        delay: 0.2,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: "#global-opportunities",
-          start: "top 75%",
-          toggleActions: "play none none none",
-        },
-      });
-    }
-
-    const divider = document.querySelector(
+    AnimationUtils.lineScale(
       "#global-opportunities .opportunities__divider",
+      { trigger: "#global-opportunities .opportunities__split", start: "top 80%" },
     );
-    if (divider) {
-      gsap.to(divider, {
-        scaleY: 1,
-        duration: 0.8,
-        ease: "power2.inOut",
-        scrollTrigger: {
-          trigger: "#global-opportunities .opportunities__split",
-          start: "top 80%",
-          toggleActions: "play none none none",
-        },
-      });
-    }
-
-    const columnHeaders = document.querySelectorAll(
+    AnimationUtils.fadeUp(
       "#global-opportunities .opportunities__column-header",
+      { trigger: "#global-opportunities .opportunities__split", start: "top 80%", stagger: 0.15 },
     );
-    if (columnHeaders.length) {
-      gsap.to(columnHeaders, {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        stagger: 0.15,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: "#global-opportunities .opportunities__split",
-          start: "top 80%",
-          toggleActions: "play none none none",
-        },
-      });
-    }
-
-    const leftItems = document.querySelectorAll(
+    AnimationUtils.slideIn(
       "#global-opportunities .opportunities__column--left .opportunities__item",
+      { trigger: "#global-opportunities .opportunities__split", start: "top 75%", x: 0, y: 24, duration: 0.5, stagger: 0.08, delay: 0.3 },
     );
-    if (leftItems.length) {
-      gsap.to(leftItems, {
-        opacity: 1,
-        y: 0,
-        duration: 0.5,
-        stagger: 0.08,
-        delay: 0.3,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: "#global-opportunities .opportunities__split",
-          start: "top 75%",
-          toggleActions: "play none none none",
-        },
-      });
-    }
-
-    const rightItems = document.querySelectorAll(
+    AnimationUtils.slideIn(
       "#global-opportunities .opportunities__column--right .opportunities__item",
+      { trigger: "#global-opportunities .opportunities__split", start: "top 75%", x: 0, y: 24, duration: 0.5, stagger: 0.08, delay: 0.45 },
     );
-    if (rightItems.length) {
-      gsap.to(rightItems, {
-        opacity: 1,
-        y: 0,
-        duration: 0.5,
-        stagger: 0.08,
-        delay: 0.45,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: "#global-opportunities .opportunities__split",
-          start: "top 75%",
-          toggleActions: "play none none none",
-        },
-      });
-    }
   }
 
   // =========================================================
@@ -2448,67 +1152,37 @@
   function initPartnersAnimations() {
     if (!elementExists("#university-partners")) return;
 
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
-    if (prefersReducedMotion) {
-      gsap.set(
-        [
-          "#university-partners .section-label",
-          "#university-partners .text-reveal-inner",
-          "#university-partners .partners__pin",
-          "#university-partners .partners__detail-panel",
-          "#university-partners .partners__mobile-item",
-        ],
-        { clearProps: "all", opacity: 1 },
-      );
-      gsap.set("#university-partners .text-reveal-inner", { y: "0%" });
+    if (AnimationUtils.prefersReducedMotion) {
+      AnimationUtils.setReducedMotion([
+        "#university-partners .section-label",
+        "#university-partners .text-reveal-inner",
+        "#university-partners .partners__pin",
+        "#university-partners .partners__detail-panel",
+        "#university-partners .partners__mobile-item",
+      ]);
       return;
     }
 
-    const label = document.querySelector("#university-partners .section-label");
-    const headings = document.querySelectorAll(
-      "#university-partners .text-reveal-inner",
-    );
-
+    // Mobile items with delay
     setTimeout(() => {
-      const mobileItems = document.querySelectorAll(
+      AnimationUtils.slideIn(
         "#university-partners .partners__mobile-item",
-      );
-      if (mobileItems.length) {
-        gsap.set(mobileItems, { opacity: 0, x: -20 });
-        gsap.to(mobileItems, {
-          opacity: 1,
-          x: 0,
+        {
+          trigger: "#university-partners .partners__mobile-list",
+          start: "top 80%",
+          x: -20,
           duration: 0.5,
           stagger: 0.05,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#university-partners .partners__mobile-list",
-            start: "top 80%",
-            toggleActions: "play none none none",
-          },
-        });
-      }
+        },
+      );
     }, 100);
 
-    const detailPanel = document.querySelector(
-      "#university-partners .partners__detail-panel",
-    );
-    if (detailPanel) {
-      gsap.to(detailPanel, {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: "#university-partners .partners__detail-panel",
-          start: "top 85%",
-          toggleActions: "play none none none",
-        },
-      });
-    }
+    // Detail panel
+    AnimationUtils.fadeUp("#university-partners .partners__detail-panel", {
+      trigger: "#university-partners .partners__detail-panel",
+      start: "top 85%",
+      duration: 0.8,
+    });
   }
 
   // =========================================================
@@ -2518,103 +1192,27 @@
   function initInsightsAnimations() {
     if (!elementExists("#faculty-insights")) return;
 
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
-    if (prefersReducedMotion) {
-      gsap.set(
-        ["#faculty-insights .text-reveal-inner", "#faculty-insights .fade-up"],
-        { clearProps: "all", opacity: 1 },
-      );
-      gsap.set("#faculty-insights .text-reveal-inner", { y: "0%" });
+    if (AnimationUtils.prefersReducedMotion) {
+      AnimationUtils.setReducedMotion([
+        "#faculty-insights .text-reveal-inner",
+        "#faculty-insights .fade-up",
+      ]);
       return;
     }
 
-    const sectionLabel = document.querySelector(
-      "#faculty-insights .section-label",
-    );
-    if (sectionLabel) {
-      gsap.fromTo(
-        sectionLabel,
-        { opacity: 0, y: 16 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#faculty-insights",
-            start: "top 75%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
-
-    const headingLines = document.querySelectorAll(
+    AnimationUtils.sectionLabel("#faculty-insights");
+    AnimationUtils.textReveal(
       "#faculty-insights .insights__heading-line .text-reveal-inner",
+      { trigger: "#faculty-insights" },
     );
-    if (headingLines.length) {
-      gsap.fromTo(
-        headingLines,
-        { y: "110%" },
-        {
-          y: "0%",
-          duration: 0.9,
-          stagger: 0.12,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: "#faculty-insights",
-            start: "top 75%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
-
-    const subtitle = document.querySelector(
-      "#faculty-insights .insights__subtitle",
-    );
-    if (subtitle) {
-      gsap.fromTo(
-        subtitle,
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#faculty-insights",
-            start: "top 75%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
-
-    const cards = document.querySelectorAll(
-      "#faculty-insights .insights__card",
-    );
-    if (cards.length) {
-      gsap.fromTo(
-        cards,
-        { opacity: 0, x: 40 },
-        {
-          opacity: 1,
-          x: 0,
-          duration: 0.7,
-          stagger: 0.12,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#faculty-insights .insights__scroll",
-            start: "top 75%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
+    AnimationUtils.fadeUp("#faculty-insights .insights__subtitle", {
+      trigger: "#faculty-insights",
+      y: 30,
+    });
+    AnimationUtils.slideIn("#faculty-insights .insights__card", {
+      trigger: "#faculty-insights .insights__scroll",
+      x: 40,
+    });
   }
 
   // =========================================================
@@ -2624,101 +1222,28 @@
   function initEventsAnimations() {
     if (!elementExists("#upcoming-events")) return;
 
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
-    if (prefersReducedMotion) {
-      gsap.set(
-        ["#upcoming-events .text-reveal-inner", "#upcoming-events .fade-up"],
-        { clearProps: "all", opacity: 1 },
-      );
-      gsap.set("#upcoming-events .text-reveal-inner", { y: "0%" });
+    if (AnimationUtils.prefersReducedMotion) {
+      AnimationUtils.setReducedMotion([
+        "#upcoming-events .text-reveal-inner",
+        "#upcoming-events .fade-up",
+      ]);
       return;
     }
 
-    const sectionLabel = document.querySelector(
-      "#upcoming-events .section-label",
-    );
-    if (sectionLabel) {
-      gsap.fromTo(
-        sectionLabel,
-        { opacity: 0, y: 16 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#upcoming-events",
-            start: "top 75%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
-
-    const headingLines = document.querySelectorAll(
+    AnimationUtils.sectionLabel("#upcoming-events");
+    AnimationUtils.textReveal(
       "#upcoming-events .events__heading-line .text-reveal-inner",
+      { trigger: "#upcoming-events" },
     );
-    if (headingLines.length) {
-      gsap.fromTo(
-        headingLines,
-        { y: "110%" },
-        {
-          y: "0%",
-          duration: 0.9,
-          stagger: 0.12,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: "#upcoming-events",
-            start: "top 75%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
-
-    const subtitle = document.querySelector(
-      "#upcoming-events .events__subtitle",
-    );
-    if (subtitle) {
-      gsap.fromTo(
-        subtitle,
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#upcoming-events",
-            start: "top 75%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
-
-    const cards = document.querySelectorAll("#upcoming-events .events__card");
-    if (cards.length) {
-      gsap.fromTo(
-        cards,
-        { opacity: 0, x: 40 },
-        {
-          opacity: 1,
-          x: 0,
-          duration: 0.6,
-          stagger: 0.1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#upcoming-events .events__scroll",
-            start: "top 80%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
+    AnimationUtils.fadeUp("#upcoming-events .events__subtitle", {
+      trigger: "#upcoming-events",
+      y: 30,
+    });
+    AnimationUtils.slideIn("#upcoming-events .events__card", {
+      trigger: "#upcoming-events .events__scroll",
+      x: 40,
+      duration: 0.6,
+    });
   }
 
   // =========================================================
@@ -2728,106 +1253,29 @@
   function initTestimonialsAnimations() {
     if (!elementExists("#video-testimonials")) return;
 
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
-    if (prefersReducedMotion) {
-      gsap.set(
-        [
-          "#video-testimonials .text-reveal-inner",
-          "#video-testimonials .fade-up",
-        ],
-        { clearProps: "all", opacity: 1 },
-      );
-      gsap.set("#video-testimonials .text-reveal-inner", { y: "0%" });
+    if (AnimationUtils.prefersReducedMotion) {
+      AnimationUtils.setReducedMotion([
+        "#video-testimonials .text-reveal-inner",
+        "#video-testimonials .fade-up",
+      ]);
       return;
     }
 
-    const sectionLabel = document.querySelector(
-      "#video-testimonials .section-label",
-    );
-    if (sectionLabel) {
-      gsap.fromTo(
-        sectionLabel,
-        { opacity: 0, y: 16 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#video-testimonials",
-            start: "top 75%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
-
-    const headingLines = document.querySelectorAll(
+    AnimationUtils.sectionLabel("#video-testimonials");
+    AnimationUtils.textReveal(
       "#video-testimonials .testimonials__heading-line .text-reveal-inner",
+      { trigger: "#video-testimonials" },
     );
-    if (headingLines.length) {
-      gsap.fromTo(
-        headingLines,
-        { y: "110%" },
-        {
-          y: "0%",
-          duration: 0.9,
-          stagger: 0.12,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: "#video-testimonials",
-            start: "top 75%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
-
-    const subtitle = document.querySelector(
-      "#video-testimonials .testimonials__subtitle",
-    );
-    if (subtitle) {
-      gsap.fromTo(
-        subtitle,
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#video-testimonials",
-            start: "top 75%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
-
-    const cards = document.querySelectorAll(
-      "#video-testimonials .testimonials__card",
-    );
-    if (cards.length) {
-      gsap.fromTo(
-        cards,
-        { opacity: 0, x: 40 },
-        {
-          opacity: 1,
-          x: 0,
-          duration: 0.6,
-          stagger: 0.08,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#video-testimonials .testimonials__scroll",
-            start: "top 75%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
+    AnimationUtils.fadeUp("#video-testimonials .testimonials__subtitle", {
+      trigger: "#video-testimonials",
+      y: 30,
+    });
+    AnimationUtils.slideIn("#video-testimonials .testimonials__card", {
+      trigger: "#video-testimonials .testimonials__scroll",
+      x: 40,
+      duration: 0.6,
+      stagger: 0.08,
+    });
   }
 
   // =========================================================
@@ -2837,115 +1285,35 @@
   function initFinalCTAAnimations() {
     if (!elementExists("#final-cta")) return;
 
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
-    if (prefersReducedMotion) {
-      gsap.set(["#final-cta .text-reveal-inner", "#final-cta .fade-up"], {
-        clearProps: "all",
-        opacity: 1,
-      });
-      gsap.set("#final-cta .text-reveal-inner", { y: "0%" });
+    if (AnimationUtils.prefersReducedMotion) {
+      AnimationUtils.setReducedMotion([
+        "#final-cta .text-reveal-inner",
+        "#final-cta .fade-up",
+      ]);
       return;
     }
 
-    const sectionLabel = document.querySelector("#final-cta .section-label");
-    if (sectionLabel) {
-      gsap.fromTo(
-        sectionLabel,
-        { opacity: 0, y: 16 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#final-cta",
-            start: "top 70%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
-
-    const headingInner = document.querySelector(
-      "#final-cta .text-reveal-inner",
-    );
-    if (headingInner) {
-      gsap.fromTo(
-        headingInner,
-        { y: "110%" },
-        {
-          y: "0%",
-          duration: 0.9,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: "#final-cta",
-            start: "top 70%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
-
-    const subtitle = document.querySelector("#final-cta .final-cta__subtitle");
-    if (subtitle) {
-      gsap.fromTo(
-        subtitle,
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#final-cta",
-            start: "top 70%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
-
-    const buttons = document.querySelectorAll("#final-cta .final-cta__btn");
-    if (buttons.length) {
-      gsap.fromTo(
-        buttons,
-        { opacity: 0, y: 20 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.7,
-          stagger: 0.1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#final-cta .final-cta__buttons",
-            start: "top 70%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
-
-    const phone = document.querySelector("#final-cta .final-cta__phone");
-    if (phone) {
-      gsap.fromTo(
-        phone,
-        { opacity: 0, y: 15 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#final-cta .final-cta__phone",
-            start: "top 75%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
+    AnimationUtils.sectionLabel("#final-cta");
+    AnimationUtils.textReveal("#final-cta .text-reveal-inner", {
+      trigger: "#final-cta",
+      start: "top 70%",
+    });
+    AnimationUtils.fadeUp("#final-cta .final-cta__subtitle", {
+      trigger: "#final-cta",
+      start: "top 70%",
+      y: 30,
+    });
+    AnimationUtils.cards("#final-cta .final-cta__btn", {
+      trigger: "#final-cta .final-cta__buttons",
+      start: "top 70%",
+      y: 20,
+    });
+    AnimationUtils.fadeUp("#final-cta .final-cta__phone", {
+      trigger: "#final-cta .final-cta__phone",
+      start: "top 75%",
+      y: 15,
+      duration: 0.6,
+    });
   }
 
   // =========================================================

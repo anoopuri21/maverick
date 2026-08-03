@@ -14,7 +14,7 @@ import { respectsReducedMotion } from "../shared/utils.js";
 function animateCounter(element, target, duration) {
   const obj = { value: 0 };
   const originalText = element.textContent;
-  
+
   gsap.to(obj, {
     value: target,
     duration: duration,
@@ -23,7 +23,6 @@ function animateCounter(element, target, duration) {
       element.textContent = Math.round(obj.value).toLocaleString("en-US");
     },
     onComplete() {
-      // Restore original text with any suffixes
       element.textContent = originalText;
     },
   });
@@ -34,27 +33,22 @@ function animateCounter(element, target, duration) {
  * @param {string|HTMLElement} selector - CSS selector or DOM element (should be #impact)
  */
 export function initCounterAnimation(selector) {
-  const section = typeof selector === "string" 
-    ? document.querySelector(selector) 
+  const section = typeof selector === "string"
+    ? document.querySelector(selector)
     : selector;
-  
+
   if (!section) return;
 
   if (respectsReducedMotion()) return;
 
-  // Find all [data-counter-target] elements
   const counterCards = section.querySelectorAll("[data-counter-target]");
-  console.log('[counter-animation] elements found:', counterCards.length);
-  
-  if (counterCards.length === 0) {
-    console.warn('[counter-animation] No [data-counter-target] elements found in section:', selector);
-    return;
-  }
-  
+
+  if (counterCards.length === 0) return;
+
   counterCards.forEach((card) => {
     const target = parseInt(card.getAttribute("data-counter-target"), 10);
     const counterEl = card.querySelector("[data-counter]");
-    
+
     if (isNaN(target) || !counterEl) return;
 
     ScrollTrigger.create({

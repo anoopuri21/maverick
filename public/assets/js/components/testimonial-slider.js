@@ -8,7 +8,6 @@ import { respectsReducedMotion } from "../shared/utils.js";
 const GAP = 24;
 const INTERVAL_MS = 3000;
 const TWEEN_DURATION = 3;
-const LOG = "[testimonial-slider]";
 
 function getVisibleCount() {
   const w = window.innerWidth;
@@ -31,21 +30,14 @@ export function initTestimonialSlider(selector) {
   const viewport = section.querySelector(".os-testimonials__viewport");
   const track = section.querySelector(".os-testimonials__track");
 
-  if (!slider || !viewport || !track) {
-    console.warn(LOG, "Missing slider markup");
-    return;
-  }
+  if (!slider || !viewport || !track) return;
 
   if (respectsReducedMotion()) {
-    console.log(LOG, "Reduced motion — static layout, no autoplay");
     section.classList.add("os-testimonials--static");
     return;
   }
 
-  if (typeof gsap === "undefined") {
-    console.warn(LOG, "GSAP not available");
-    return;
-  }
+  if (typeof gsap === "undefined") return;
 
   let originalCards = Array.from(
     track.querySelectorAll(".os-testimonials__card:not([data-clone])"),
@@ -57,8 +49,6 @@ export function initTestimonialSlider(selector) {
   let paused = false;
   let destroyed = false;
   let resizeTimer = null;
-
-  console.log(LOG, "Init", { cards: originalCards.length });
 
   function clearClones() {
     track.querySelectorAll("[data-clone]").forEach((el) => el.remove());
@@ -106,7 +96,6 @@ export function initTestimonialSlider(selector) {
       tween = null;
     }
     gsap.set(track, { x: 0 });
-    console.log(LOG, "Layout", { visible, cardW: Math.round(cardW), step: Math.round(step) });
   }
 
   function goNext() {
@@ -130,7 +119,6 @@ export function initTestimonialSlider(selector) {
   function startAutoplay() {
     stopAutoplay();
     timer = window.setInterval(goNext, INTERVAL_MS);
-    console.log(LOG, "Autoplay started");
   }
 
   function stopAutoplay() {
@@ -143,20 +131,17 @@ export function initTestimonialSlider(selector) {
   function onEnter() {
     paused = true;
     stopAutoplay();
-    console.log(LOG, "Paused (hover)");
   }
 
   function onLeave() {
     paused = false;
     startAutoplay();
-    console.log(LOG, "Resumed (mouseleave)");
   }
 
   function onResize() {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => {
       if (destroyed) return;
-      console.log(LOG, "Resize — rebuild");
       stopAutoplay();
       layout();
       if (!paused) startAutoplay();
@@ -178,7 +163,6 @@ export function initTestimonialSlider(selector) {
       card.style.width = "";
     });
     delete section.dataset.sliderInit;
-    console.log(LOG, "Cleanup");
   }
 
   layout();
