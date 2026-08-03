@@ -24,72 +24,64 @@ export function initTimelinePinned(element) {
       ? element
       : document.querySelector("[data-journey-pin]");
 
-  if (!pinEl) {
-    console.warn("[timeline-pinned] pin element not found — aborting");
-    return;
-  }
+  if (!pinEl) return;
 
   // Scope all queries to the section wrapper (.os-journey)
   const section = pinEl.closest(".os-journey") ?? pinEl.parentElement;
   const track = pinEl.querySelector("[data-journey-track]");
   const slides = pinEl.querySelectorAll("[data-journey-slide]");
   const hint = pinEl.querySelector("[data-journey-hint]");
-
-  console.log("[timeline-pinned] initializing...");
-  console.log("[timeline-pinned] pin element:", pinEl);
-  console.log("[timeline-pinned] track:", track);
-  console.log("[timeline-pinned] slides:", slides.length);
+  const connectionLine = section?.querySelector(".os-journey__connection-line");
+  const dots = section?.querySelectorAll(".os-journey__dot");
 
   // ── 2. Guard: required elements ───────────────────────────────────
-  if (!track) {
-    console.warn("[timeline-pinned] [data-journey-track] not found — aborting");
-    return;
-  }
-
-  if (slides.length === 0) {
-    console.warn(
-      "[timeline-pinned] no [data-journey-slide] elements found — aborting",
-    );
-    return;
-  }
+  if (!track || slides.length === 0) return;
 
   // ── 3. Cleanup any previous context ──────────────────────────────
   cleanup();
 
   // ── 4. Reduced motion — skip all animation ────────────────────────
   if (respectsReducedMotion()) {
-    console.log(
-      "[timeline-pinned] reduced motion detected — skipping animation",
-    );
+    // Show connection line immediately
+    if (connectionLine) {
+      connectionLine.style.strokeDashoffset = "0";
+    }
+    // Show all dots
+    if (dots) {
+      dots.forEach(dot => dot.classList.add("is-active"));
+    }
     return;
   }
 
-  // ── 5. gsap.matchMedia context ────────────────────────────────────
+  // ── 5. Initialize connection line ──────────────────────────────────
+  if (connectionLine) {
+    const lineLength = connectionLine.getTotalLength();
+    connectionLine.style.strokeDasharray = lineLength;
+    connectionLine.style.strokeDashoffset = lineLength;
+  }
+
+  // ── 6. gsap.matchMedia context ────────────────────────────────────
   ctx = gsap.matchMedia();
 
   ctx.add("(min-width: 1024px)", () => {
     // ── DESKTOP: Horizontal pinned scroll ──────────────────────────
-
-    console.log("[timeline-pinned] mode: desktop-pin");
-
-    // Hint fade flag — fire only once
     let hintFaded = false;
+    const slideCount = slides.length;
 
-    // Single tween with inline scrollTrigger config (correct GSAP pattern)
+    // Single tween with inline scrollTrigger config
     const tween = gsap.to(track, {
       x: () => -(track.scrollWidth - window.innerWidth),
       ease: "none",
       scrollTrigger: {
         trigger: pinEl,
         start: "top top",
-        // end is a function so invalidateOnRefresh recalculates correctly
         end: () => "+=" + (track.scrollWidth - window.innerWidth),
         pin: true,
         scrub: 1,
         anticipatePin: 1,
         invalidateOnRefresh: true,
         onUpdate: (self) => {
-          // Hint fade — ek baar only, flag se guard
+          // Hint fade
           if (!hintFaded && hint && self.progress > 0.05) {
             hintFaded = true;
             gsap.to(hint, {
@@ -98,27 +90,33 @@ export function initTimelinePinned(element) {
               ease: "power2.out",
             });
           }
-        },
-        onEnter: () => {
-          console.log("[timeline-pinned] pin entered");
-        },
-        onLeave: () => {
-          console.log("[timeline-pinned] pin exited");
+
+          // Connection line animation
+          if (connectionLine) {
+            const lineLength = connectionLine.getTotalLength();
+            connectionLine.style.strokeDashoffset =
+              lineLength * (1 - self.progress);
+          }
+
+          // Dot activation based on progress
+          if (dots && dots.length > 0) {
+            const activeIndex = Math.floor(self.progress * slideCount);
+            dots.forEach((dot, i) => {
+              if (i <= activeIndex) {
+                dot.classList.add("is-active");
+              } else {
+                dot.classList.remove("is-active");
+              }
+            });
+          }
         },
       },
     });
 
-    console.log(
-      "[timeline-pinned] scroll distance:",
-      track.scrollWidth - window.innerWidth + "px",
-    );
-    console.log("[timeline-pinned] done ✓");
-
-    // gsap.matchMedia cleanup — runs when breakpoint exits
+    // gsap.matchMedia cleanup
     return () => {
       tween.scrollTrigger?.kill();
       tween.kill();
-      console.log("[timeline-pinned] desktop context cleaned up");
     };
   });
 
@@ -126,29 +124,22 @@ export function initTimelinePinned(element) {
     // ── MOBILE: No JS animation ────────────────────────────────────
     // CSS shows .os-journey__mobile, hides .os-journey__pin-wrap
     // reveal-observer.js handles .fade-up on .os-journey__mobile-card
-    console.log(
-      "[timeline-pinned] mode: mobile — CSS + reveal-observer active",
-    );
-
-    // No cleanup needed — nothing created
     return () => {};
   });
 }
 
 /**
- * Cleanup all GSAP context — kills tween + ScrollTrigger + matchMedia
+ * Cleanup all GSAP context
  */
 export function cleanup() {
   if (ctx) {
     ctx.revert();
     ctx = null;
-    console.log("[timeline-pinned] context reverted");
   }
 }
 
 /**
  * Default export for lazy loading via lazyLoadComponent
- * Receives DOM element from lazyLoadComponent (entry.target)
  */
 export default function init(element) {
   initTimelinePinned(element);

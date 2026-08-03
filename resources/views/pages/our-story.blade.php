@@ -20,12 +20,25 @@
     <div class="os-hero__bg-image" style="background-image: url('{{ $hero->image_url }}')"></div>
     @endif
     <div class="os-hero__gradient"></div>
+    <div class="os-hero__noise"></div>
     <div class="os-hero__shapes">
-      <svg class="os-hero__shape os-hero__shape--1" viewBox="0 0 200 200" fill="none"><circle cx="100" cy="100" r="80" stroke="rgba(255,255,255,0.4)" stroke-width="1"/></svg>
-      <svg class="os-hero__shape os-hero__shape--2" viewBox="0 0 300 300" fill="none"><circle cx="150" cy="150" r="120" stroke="rgba(220,38,38,0.4)" stroke-width="1"/></svg>
-      <svg class="os-hero__shape os-hero__shape--3" viewBox="0 0 100 100" fill="none"><rect x="10" y="10" width="80" height="80" rx="8" stroke="rgba(255,255,255,0.4)" stroke-width="1" transform="rotate(20 50 50)"/></svg>
+      <svg class="os-hero__shape os-hero__shape--1" viewBox="0 0 200 200" fill="none"><circle cx="100" cy="100" r="80" stroke="rgba(255,255,255,0.15)" stroke-width="1"/></svg>
+      <svg class="os-hero__shape os-hero__shape--2" viewBox="0 0 300 300" fill="none"><circle cx="150" cy="150" r="120" stroke="rgba(220,38,38,0.2)" stroke-width="1"/></svg>
+      <svg class="os-hero__shape os-hero__shape--3" viewBox="0 0 100 100" fill="none"><rect x="10" y="10" width="80" height="80" rx="8" stroke="rgba(255,255,255,0.15)" stroke-width="1" transform="rotate(20 50 50)"/></svg>
     </div>
     <div class="os-hero__grid-overlay"></div>
+    <div class="os-hero__particles">
+      @for($i = 0; $i < 6; $i++)
+        <div class="os-hero__particle"></div>
+      @endfor
+    </div>
+    <div class="os-hero__scanline"></div>
+    <div class="os-hero__corners">
+      <div class="os-hero__corner os-hero__corner--tl"></div>
+      <div class="os-hero__corner os-hero__corner--tr"></div>
+      <div class="os-hero__corner os-hero__corner--bl"></div>
+      <div class="os-hero__corner os-hero__corner--br"></div>
+    </div>
   </div>
   <div class="container os-hero__content">
     <span class="os-hero__eyebrow fade-up" data-testid="hero-eyebrow">
@@ -203,6 +216,34 @@
 @if(($timelines ?? collect())->count() > 0)
 <section id="journey" class="os-journey" aria-label="Our Journey Timeline">
   <div class="os-journey__noise" aria-hidden="true"></div>
+
+  {{-- Animated Background Geometric Shapes --}}
+  <div class="os-journey__bg-shapes" aria-hidden="true">
+    <div class="os-journey__bg-shape os-journey__bg-shape--circle os-journey__bg-shape--1"></div>
+    <div class="os-journey__bg-shape os-journey__bg-shape--circle os-journey__bg-shape--2"></div>
+    <div class="os-journey__bg-shape os-journey__bg-shape--circle os-journey__bg-shape--3"></div>
+    <div class="os-journey__bg-shape os-journey__bg-shape--triangle os-journey__bg-shape--4"></div>
+    <div class="os-journey__bg-shape os-journey__bg-shape--triangle os-journey__bg-shape--5"></div>
+    <div class="os-journey__bg-shape os-journey__bg-shape--square os-journey__bg-shape--6"></div>
+    <div class="os-journey__bg-shape os-journey__bg-shape--square os-journey__bg-shape--7"></div>
+    <div class="os-journey__bg-shape os-journey__bg-shape--dot os-journey__bg-shape--8"></div>
+    <div class="os-journey__bg-shape os-journey__bg-shape--dot os-journey__bg-shape--9"></div>
+    <div class="os-journey__bg-shape os-journey__bg-shape--dot os-journey__bg-shape--10"></div>
+    <div class="os-journey__bg-shape os-journey__bg-shape--dot os-journey__bg-shape--11"></div>
+    <div class="os-journey__bg-shape os-journey__bg-shape--dot os-journey__bg-shape--12"></div>
+  </div>
+
+  {{-- Connection Line (Desktop only) --}}
+  <div class="os-journey__connection" aria-hidden="true">
+    <svg class="os-journey__connection-svg" viewBox="0 0 1000 4" preserveAspectRatio="none">
+      <line class="os-journey__connection-line" x1="0" y1="2" x2="1000" y2="2" />
+    </svg>
+    <div class="os-journey__dots">
+      @foreach($timelines as $index => $item)
+        <div class="os-journey__dot" data-dot="{{ $index }}"></div>
+      @endforeach
+    </div>
+  </div>
 
   {{-- Desktop: Horizontal Pinned Scroll --}}
   <div class="os-journey__pin-wrap" data-journey-pin>
