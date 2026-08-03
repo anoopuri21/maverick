@@ -31,8 +31,6 @@ export function initTimelinePinned(element) {
   const track = pinEl.querySelector("[data-journey-track]");
   const slides = pinEl.querySelectorAll("[data-journey-slide]");
   const hint = pinEl.querySelector("[data-journey-hint]");
-  const connectionLine = section?.querySelector(".os-journey__connection-line");
-  const dots = section?.querySelectorAll(".os-journey__dot");
 
   // ── 2. Guard: required elements ───────────────────────────────────
   if (!track || slides.length === 0) return;
@@ -42,22 +40,7 @@ export function initTimelinePinned(element) {
 
   // ── 4. Reduced motion — skip all animation ────────────────────────
   if (respectsReducedMotion()) {
-    // Show connection line immediately
-    if (connectionLine) {
-      connectionLine.style.strokeDashoffset = "0";
-    }
-    // Show all dots
-    if (dots) {
-      dots.forEach(dot => dot.classList.add("is-active"));
-    }
     return;
-  }
-
-  // ── 5. Initialize connection line ──────────────────────────────────
-  if (connectionLine) {
-    const lineLength = connectionLine.getTotalLength();
-    connectionLine.style.strokeDasharray = lineLength;
-    connectionLine.style.strokeDashoffset = lineLength;
   }
 
   // ── 6. gsap.matchMedia context ────────────────────────────────────
@@ -88,25 +71,6 @@ export function initTimelinePinned(element) {
               opacity: 0,
               duration: 0.4,
               ease: "power2.out",
-            });
-          }
-
-          // Connection line animation
-          if (connectionLine) {
-            const lineLength = connectionLine.getTotalLength();
-            connectionLine.style.strokeDashoffset =
-              lineLength * (1 - self.progress);
-          }
-
-          // Dot activation based on progress
-          if (dots && dots.length > 0) {
-            const activeIndex = Math.floor(self.progress * slideCount);
-            dots.forEach((dot, i) => {
-              if (i <= activeIndex) {
-                dot.classList.add("is-active");
-              } else {
-                dot.classList.remove("is-active");
-              }
             });
           }
         },

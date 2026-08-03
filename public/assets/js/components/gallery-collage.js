@@ -1,108 +1,197 @@
 /**
- * Gallery collage + lightbox animations
- * Stagger reveal for gallery items and full lightbox functionality
+ * Gallery Section — Draggable Zig-Zag Carousel
+ * Supports drag to scroll, touch devices, and lightbox
  */
 
 import { respectsReducedMotion } from "../shared/utils.js";
 
-let currentIndex = 0;
 let galleryImages = [];
+let currentIndex = 0;
 
 /**
- * Initialize gallery animations
- * @param {string|HTMLElement} selector - CSS selector or DOM element (should be #gallery)
+ * Initialize gallery with drag functionality
+ * @param {string|HTMLElement} selector
  */
 export function initGalleryCollage(selector) {
-  const section = typeof selector === "string" 
-    ? document.querySelector(selector) 
+  const section = typeof selector === "string"
+    ? document.querySelector(selector)
     : selector;
-  
+
   if (!section) return;
 
-  const grid = section.querySelector("[data-gallery-grid]");
-  const items = section.querySelectorAll("[data-gallery-item]");
+  const carousel = section.querySelector("[data-gallery-carousel]");
+  const track = section.querySelector("[data-gallery-track]");
+  const cards = section.querySelectorAll("[data-gallery-card]");
   const lightbox = document.querySelector("#os-lightbox");
-  const lightboxImg = document.querySelector("#os-lightbox-img");
-  const lightboxCaption = document.querySelector("#os-lightbox-caption");
 
-  console.log('[gallery-collage] items found:', items.length);
+  if (!carousel || !track || !cards.length) return;
 
-  if (respectsReducedMotion()) return;
+  // ── 1. Drag to Scroll ──────────────────────────────────────
+  let isDragging = false;
+  let startX = 0;
+  let scrollLeft = 0;
+  let animationId = null;
+  let currentTranslate = 0;
+  let prevTranslate = 0;
 
-  // Stagger reveal for gallery items
-  if (items.length) {
-    gsap.fromTo(
-      items,
-      { opacity: 0, y: 30 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        stagger: 0.08,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: grid,
-          start: "top 80%",
-          once: true,
-        },
-      }
-    );
+  // Get track width for infinite loop
+  const getTrackWidth = () => track.scrollWidth / 3;
+
+  // Auto-slide animation
+  let autoSlideSpeed = 0.5; // pixels per frame
+  let isAutoSliding = true;
+
+  function autoSlide() {
+    if (!isAutoSliding || isDragging) return;
+    
+    currentTranslate -= autoSlideSpeed;
+    
+    // Reset position for infinite loop
+    if (Math.abs(currentTranslate) >= getTrackWidth()) {
+      currentTranslate = 0;
+    }
+    
+    track.style.transform = `translateX(${currentTranslate}px)`;
+    animationId = requestAnimationFrame(autoSlide);
   }
 
-  // Setup lightbox
-  if (!lightbox || !lightboxImg) return;
+  function startAutoSlide() {
+    if (!isAutoSliding) {
+      isAutoSliding = true;
+      autoSlide();
+    }
+  }
 
-  // Collect gallery images
-  items.forEach((item, i) => {
-    const img = item.querySelector(".os-gallery__img");
-    const captionEl = item.querySelector(".os-gallery__caption-text");
-    if (img) {
+  function stopAutoSlide() {
+    isAutoSliding = false;
+    if (animationId) {
+      cancelAnimationFrame(animationId);
+      animationId = null;
+    }
+  }
+
+  // Mouse events
+  carousel.addEventListener("mousedown", (e) => {
+    isDragging = true;
+    carousel.classList.add("is-dragging");
+    startX = e.pageX;
+    prevTranslate = currentTranslate;
+    stopAutoSlide();
+  });
+
+  carousel.addEventListener("mousemove", (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const x = e.pageX;
+    const walk = (x - startX) * 1.5; // Multiply for faster drag
+    currentTranslate = prevTranslate + walk;
+    track.style.transform = `translateX(${currentTranslate}px)`;
+  });
+
+  carousel.addEventListener("mouseup", () => {
+    isDragging = false;
+    carousel.classList.remove("is-dragging");
+    startAutoSlide();
+  });
+
+  carousel.addEventListener("mouseleave", () => {
+    if (isDragging) {
+      isDragging = false;
+      carousel.classList.remove("is-dragging");
+      startAutoSlide();
+    }
+  });
+
+  // Touch events for mobile
+  carousel.addEventListener("touchstart", (e) => {
+    isDragging = true;
+    startX = e.touches[0].pageX;
+    prevTranslate = currentTranslate;
+    stopAutoSlide();
+  }, { passive: true });
+
+  carousel.addEventListener("touchmove", (e) => {
+    if (!isDragging) return;
+    const x = e.touches[0].pageX;
+    const walk = (x - startX) * 1.5;
+    currentTranslate = prevTranslate + walk;
+    track.style.transform = `translateX(${currentTranslate}px)`;
+  }, { passive: true });
+
+  carousel.addEventListener("touchend", () => {
+    isDragging = false;
+    startAutoSlide();
+  });
+
+  // Pause auto-slide on hover
+  carousel.addEventListener("mouseenter", stopAutoSlide);
+  carousel.addEventListener("mouseleave", () => {
+    if (!isDragging) startAutoSlide();
+  });
+
+  // Start auto-slide
+  autoSlide();
+
+  // ── 2. Lightbox ────────────────────────────────────────────
+  const seen = new Set();
+  cards.forEach((card) => {
+    const img = card.querySelector(".os-gallery__img");
+    const captionEl = card.querySelector(".os-gallery__caption-text");
+    if (img && !seen.has(img.src)) {
+      seen.add(img.src);
       galleryImages.push({
         src: img.src,
         alt: img.alt,
         caption: captionEl ? captionEl.textContent : "",
       });
-      item.addEventListener("click", () => openLightbox(i));
+      card.addEventListener("click", (e) => {
+        if (!isDragging) {
+          openLightbox(galleryImages.length - 1);
+        }
+      });
     }
   });
 
-  // Lightbox controls
-  const closeBtn = lightbox.querySelector("[data-lightbox-close]");
-  const prevBtn = lightbox.querySelector("[data-lightbox-prev]");
-  const nextBtn = lightbox.querySelector("[data-lightbox-next]");
+  if (lightbox) {
+    const closeBtn = lightbox.querySelector("[data-lightbox-close]");
+    const prevBtn = lightbox.querySelector("[data-lightbox-prev]");
+    const nextBtn = lightbox.querySelector("[data-lightbox-next]");
 
-  if (closeBtn) closeBtn.addEventListener("click", closeLightbox);
-  if (prevBtn) prevBtn.addEventListener("click", () => navigateLightbox(-1));
-  if (nextBtn) nextBtn.addEventListener("click", () => navigateLightbox(1));
+    if (closeBtn) closeBtn.addEventListener("click", closeLightbox);
+    if (prevBtn) prevBtn.addEventListener("click", () => navigateLightbox(-1));
+    if (nextBtn) nextBtn.addEventListener("click", () => navigateLightbox(1));
 
-  // Click outside to close
-  lightbox.addEventListener("click", (e) => {
-    if (e.target === lightbox) closeLightbox();
-  });
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
 
-  // Keyboard navigation
-  document.addEventListener("keydown", (e) => {
-    if (!lightbox.classList.contains("is-open")) return;
-    if (e.key === "Escape") closeLightbox();
-    if (e.key === "ArrowLeft" && prevBtn) navigateLightbox(-1);
-    if (e.key === "ArrowRight" && nextBtn) navigateLightbox(1);
-  });
+    document.addEventListener("keydown", (e) => {
+      if (!lightbox.classList.contains("is-open")) return;
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowLeft") navigateLightbox(-1);
+      if (e.key === "ArrowRight") navigateLightbox(1);
+    });
+  }
 }
 
 function openLightbox(index) {
   currentIndex = index;
   updateLightbox();
   const lightbox = document.querySelector("#os-lightbox");
-  lightbox.classList.add("is-open");
-  lightbox.setAttribute("aria-hidden", "false");
-  document.body.style.overflow = "hidden";
+  if (lightbox) {
+    lightbox.classList.add("is-open");
+    lightbox.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  }
 }
 
 function closeLightbox() {
   const lightbox = document.querySelector("#os-lightbox");
-  lightbox.classList.remove("is-open");
-  lightbox.setAttribute("aria-hidden", "true");
-  document.body.style.overflow = "";
+  if (lightbox) {
+    lightbox.classList.remove("is-open");
+    lightbox.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  }
 }
 
 function navigateLightbox(direction) {
@@ -119,9 +208,6 @@ function updateLightbox() {
   if (lightboxCaption) lightboxCaption.textContent = galleryImages[currentIndex].caption;
 }
 
-/**
- * Default export for lazy loading
- */
 export default function init(element) {
   initGalleryCollage(element);
 }
