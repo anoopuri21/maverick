@@ -24,25 +24,41 @@ class PartnerLogoResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
     protected static ?string $navigationGroup = 'Content';
+    protected static ?string $navigationLabel = 'Partner Logos';
+    protected static ?string $pluralLabel = 'Partner Logos';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
-                    ->required(),
-                MediaPicker::forField('logo_url', 'partner-logos'),
+                    ->required()
+                    ->maxLength(255)
+                    ->helperText('Organization or institution name'),
+                
+                MediaPicker::forField('logo_url', 'partner-logos')
+                    ->nullable(),
+                
                 Forms\Components\Select::make('type')
+                    ->label('Category')
                     ->options([
-                        'alumni' => 'Alumni Network',
-                        'accreditation' => 'Accreditation',
+                        'alumni' => '🎓 Alumni Network',
+                        'accreditation' => '✅ Accreditation',
+                        'recognition' => '🏆 Recognition',
+                        'award' => '🥇 Award',
                     ])
-                    ->required(),
+                    ->required()
+                    ->searchable()
+                    ->helperText('Select the category this logo belongs to'),
+                
                 Forms\Components\TextInput::make('sort_order')
                     ->numeric()
-                    ->default(0),
+                    ->default(0)
+                    ->helperText('Lower numbers appear first'),
+                
                 Forms\Components\Toggle::make('is_active')
-                    ->default(true),
+                    ->default(true)
+                    ->label('Active'),
             ]);
     }
 
@@ -50,14 +66,53 @@ class PartnerLogoResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name'),
-                ImageColumn::make('logo_url')->size(50),
-                Tables\Columns\TextColumn::make('type')->badge(),
-                Tables\Columns\TextColumn::make('sort_order'),
-                Tables\Columns\IconColumn::make('is_active')->boolean(),
+                Tables\Columns\TextColumn::make('name')
+                    ->searchable()
+                    ->sortable(),
+                
+                ImageColumn::make('logo_url')
+                    ->size(50)
+                    ->label('Logo'),
+                
+                Tables\Columns\TextColumn::make('type')
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'alumni' => 'info',
+                        'accreditation' => 'success',
+                        'recognition' => 'warning',
+                        'award' => 'danger',
+                        default => 'gray',
+                    })
+                    ->formatStateUsing(fn (string $state): string => match ($state) {
+                        'alumni' => '🎓 Alumni',
+                        'accreditation' => '✅ Accreditation',
+                        'recognition' => '🏆 Recognition',
+                        'award' => '🥇 Award',
+                        default => $state,
+                    })
+                    ->sortable(),
+                
+                Tables\Columns\TextColumn::make('sort_order')
+                    ->numeric()
+                    ->sortable()
+                    ->label('Order'),
+                
+                Tables\Columns\IconColumn::make('is_active')
+                    ->boolean()
+                    ->label('Active'),
             ])
             ->filters([
-                //
+                // Type filter dropdown
+                Tables\Filters\SelectFilter::make('type')
+                    ->label('Filter by Category')
+                    ->options([
+                        '' => 'All Categories',
+                        'alumni' => '🎓 Alumni',
+                        'accreditation' => '✅ Accreditation',
+                        'recognition' => '🏆 Recognition',
+                        'award' => '🥇 Award',
+                    ])
+                    ->placeholder('All Categories'),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
@@ -66,7 +121,8 @@ class PartnerLogoResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->defaultSort('sort_order');
     }
 
     public static function getRelations(): array

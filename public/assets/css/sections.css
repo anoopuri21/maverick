@@ -2780,8 +2780,8 @@ body.modal-open {
 /* ----- Header Layout ----- */
 .accreditations__header {
   display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 4rem;
+  grid-template-columns: 1fr;
+  gap: 1rem;
   align-items: center;
   margin-bottom: 4rem;
 }

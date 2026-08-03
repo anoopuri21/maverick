@@ -2,7 +2,7 @@
   <div class="container">
     <div class="wwd__header">
       <div class="wwd__header-left">
-      @if(request()->routeIs('what-we-do'))  
+      @if(request()->routeIs('home'))  
         <div class="section-label">
           <span>What We Do</span>
         </div>
