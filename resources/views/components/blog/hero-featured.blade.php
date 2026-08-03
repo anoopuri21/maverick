@@ -6,7 +6,6 @@
     </div>
     <div class="blog-hero-featured__content">
         <div class="blog-hero-featured__tag">
-            <span class="blog-tag-eyebrow">Featured Article</span>
             <x-blog.category-pill :category="'Blog'" />
         </div>
 

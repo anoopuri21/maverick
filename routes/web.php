@@ -7,7 +7,7 @@ use App\Http\Controllers\PageController;
 Route::get('/', [PageController::class, 'home'])->name('home');
 
 // Dual MBA Programme
-Route::get('/dual-degrees', [PageController::class, 'dualMba'])->name('dual-mba');
+Route::get('/dual-mba-online', [PageController::class, 'dualMba'])->name('dual-mba');
 
 // About Pages
 Route::get('/our-story', [PageController::class, 'ourStory'])->name('our-story');
@@ -18,6 +18,10 @@ Route::get('/csr-community-impact', [PageController::class, 'csrCommunityImpact'
 Route::get('/media-gallery', function () {return view('pages.media-gallery');})->name('media-gallery');
 Route::get('/global-university-partners', function () {return view('pages.global-university-partners');})->name('global-partners');
 Route::get('/pathway-programs', function () {return view('pages.global-bachelors-pathway');})->name('pathway-programs');
+
+// Edutainment
+Route::get('/educational-tours-edutainment', function () {return view('pages.edutainment');})->name('edutainment');
+
 // Contact
 Route::get('/contact', [\App\Http\Controllers\ContactController::class, 'index'])->name('contact');
 Route::post('/contact', [\App\Http\Controllers\ContactController::class, 'submit'])
