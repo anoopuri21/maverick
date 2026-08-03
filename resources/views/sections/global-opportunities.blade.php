@@ -17,86 +17,10 @@
     <!-- ========== SPLIT SCREEN ========== -->
     <div class="opportunities__split">
       <!-- LEFT COLUMN  Global Opportunities -->
-      <!-- DYNAMIC START: opportunities-column -->
-      <div class="opportunities__column opportunities__column--left">
-        <div class="opportunities__column-header">
-          <span class="opportunities__column-index">01</span>
-          <h3 class="opportunities__column-title">
-            {{ $globalOpportunities->left_title }}
-          </h3>
-          <div class="opportunities__column-line"></div>
-        </div>
-
-        <ul class="opportunities__list">
-          <!-- DYNAMIC START: opportunities-items -->
-          <li class="opportunities__item">
-            <a href="{{ $globalOpportunities->opp1_url }}" class="opportunities__link">
-              <span class="opportunities__item-number">01</span>
-              <div class="opportunities__item-content">
-                <h4 class="opportunities__item-title">{{ $globalOpportunities->opp1_title }}</h4>
-                <p class="opportunities__item-desc">
-                  {{ $globalOpportunities->opp1_desc }}
-                </p>
-              </div>
-              <span class="opportunities__item-arrow" aria-hidden="true">→</span>
-            </a>
-          </li>
-
-          <li class="opportunities__item">
-            <a href="{{ $globalOpportunities->opp2_url }}" class="opportunities__link">
-              <span class="opportunities__item-number">02</span>
-              <div class="opportunities__item-content">
-                <h4 class="opportunities__item-title">
-                  {{ $globalOpportunities->opp2_title }}
-                </h4>
-                <p class="opportunities__item-desc">
-                  {{ $globalOpportunities->opp2_desc }}
-                </p>
-              </div>
-              <span class="opportunities__item-arrow" aria-hidden="true">→</span>
-            </a>
-          </li>
-<!-- 
-          <li class="opportunities__item">
-            <a href="{{ $globalOpportunities->opp3_url }}" class="opportunities__link">
-              <span class="opportunities__item-number">03</span>
-              <div class="opportunities__item-content">
-                <h4 class="opportunities__item-title">{{ $globalOpportunities->opp3_title }}</h4>
-                <p class="opportunities__item-desc">
-                  {{ $globalOpportunities->opp3_desc }}
-                </p>
-              </div>
-              <span class="opportunities__item-arrow" aria-hidden="true">→</span>
-            </a>
-          </li>
-
-          <li class="opportunities__item">
-            <a href="{{ $globalOpportunities->opp4_url }}" class="opportunities__link">
-              <span class="opportunities__item-number">04</span>
-              <div class="opportunities__item-content">
-                <h4 class="opportunities__item-title">
-                  {{ $globalOpportunities->opp4_title }}
-                </h4>
-                <p class="opportunities__item-desc">
-                  {{ $globalOpportunities->opp4_desc }}
-                </p>
-              </div>
-              <span class="opportunities__item-arrow" aria-hidden="true">→</span>
-            </a>
-          </li> -->
-          <!-- DYNAMIC END: opportunities-items -->
-        </ul>
-      </div>
-      <!-- DYNAMIC END: opportunities-column -->
-
-      <!-- DIVIDER -->
-      <div class="opportunities__divider" aria-hidden="true"></div>
-
-      <!-- RIGHT COLUMN  Global Pathways -->
       <!-- DYNAMIC START: pathways-column -->
       <div class="opportunities__column opportunities__column--right">
         <div class="opportunities__column-header">
-          <span class="opportunities__column-index">02</span>
+          <span class="opportunities__column-index">01</span>
           <h3 class="opportunities__column-title">{{ $globalOpportunities->right_title }}</h3>
           <div class="opportunities__column-line"></div>
         </div>
@@ -162,6 +86,82 @@
         </ul>
       </div>
       <!-- DYNAMIC END: pathways-column -->
+      <!-- DIVIDER -->
+      <div class="opportunities__divider" aria-hidden="true"></div>
+
+      <!-- RIGHT COLUMN  Global Pathways -->
+      <!-- DYNAMIC START: opportunities-column -->
+      <div class="opportunities__column opportunities__column--left">
+        <div class="opportunities__column-header">
+          <span class="opportunities__column-index">02</span>
+          <h3 class="opportunities__column-title">
+            {{ $globalOpportunities->left_title }}
+          </h3>
+          <div class="opportunities__column-line"></div>
+        </div>
+
+        <ul class="opportunities__list">
+          <!-- DYNAMIC START: opportunities-items -->
+          <li class="opportunities__item">
+            <a href="{{ $globalOpportunities->opp1_url }}" class="opportunities__link">
+              <span class="opportunities__item-number">01</span>
+              <div class="opportunities__item-content">
+                <h4 class="opportunities__item-title">{{ $globalOpportunities->opp1_title }}</h4>
+                <p class="opportunities__item-desc">
+                  {{ $globalOpportunities->opp1_desc }}
+                </p>
+              </div>
+              <span class="opportunities__item-arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+
+          <li class="opportunities__item">
+            <a href="{{ $globalOpportunities->opp2_url }}" class="opportunities__link">
+              <span class="opportunities__item-number">02</span>
+              <div class="opportunities__item-content">
+                <h4 class="opportunities__item-title">
+                  {{ $globalOpportunities->opp2_title }}
+                </h4>
+                <p class="opportunities__item-desc">
+                  {{ $globalOpportunities->opp2_desc }}
+                </p>
+              </div>
+              <span class="opportunities__item-arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+      <!-- 
+          <li class="opportunities__item">
+            <a href="{{ $globalOpportunities->opp3_url }}" class="opportunities__link">
+              <span class="opportunities__item-number">03</span>
+              <div class="opportunities__item-content">
+                <h4 class="opportunities__item-title">{{ $globalOpportunities->opp3_title }}</h4>
+                <p class="opportunities__item-desc">
+                  {{ $globalOpportunities->opp3_desc }}
+                </p>
+              </div>
+              <span class="opportunities__item-arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+
+          <li class="opportunities__item">
+            <a href="{{ $globalOpportunities->opp4_url }}" class="opportunities__link">
+              <span class="opportunities__item-number">04</span>
+              <div class="opportunities__item-content">
+                <h4 class="opportunities__item-title">
+                  {{ $globalOpportunities->opp4_title }}
+                </h4>
+                <p class="opportunities__item-desc">
+                  {{ $globalOpportunities->opp4_desc }}
+                </p>
+              </div>
+              <span class="opportunities__item-arrow" aria-hidden="true">→</span>
+            </a>
+          </li> -->
+          <!-- DYNAMIC END: opportunities-items -->
+        </ul>
+      </div>
+      <!-- DYNAMIC END: opportunities-column -->
+
     </div>
   </div>
 </section>
