@@ -1134,7 +1134,7 @@
 }
 
 /* =========================================================
-   SECTION 9: GALLERY — Zig-Zag Auto-Sliding Carousel
+   SECTION 9: GALLERY — Draggable Zig-Zag Carousel
    ========================================================= */
 .os-gallery {
   padding: clamp(60px, 8vw, 100px) 0;
@@ -1151,59 +1151,54 @@
 .os-gallery__carousel {
   position: relative;
   overflow: hidden;
-  padding: 40px 0;
+  padding: 60px 0;
+  cursor: grab;
+}
+
+.os-gallery__carousel.is-dragging {
+  cursor: grabbing;
 }
 
 /* Track - Horizontal scrolling */
 .os-gallery__track {
   display: flex;
-  gap: 20px;
-  animation: galleryAutoSlide 40s linear infinite;
-  width: max-content;
-}
-
-.os-gallery__track:hover {
-  animation-play-state: paused;
-}
-
-@keyframes galleryAutoSlide {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-33.333%);
-  }
+  gap: 24px;
+  padding: 0 24px;
+  will-change: transform;
+  user-select: none;
 }
 
 /* Card Styles */
 .os-gallery__card {
   flex-shrink: 0;
-  width: 280px;
-  border-radius: 16px;
+  width: 300px;
+  border-radius: 20px;
   overflow: hidden;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+              box-shadow 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
 .os-gallery__card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.18);
 }
 
 /* Zig-Zag Heights */
 .os-gallery__card--tall {
-  height: 380px;
+  height: 400px;
   margin-top: 0;
 }
 
 .os-gallery__card--medium {
-  height: 320px;
-  margin-top: 40px;
+  height: 340px;
+  margin-top: 50px;
 }
 
 .os-gallery__card--short {
-  height: 260px;
-  margin-top: 20px;
+  height: 280px;
+  margin-top: 25px;
 }
 
 /* Card Inner */
@@ -1218,11 +1213,11 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s ease;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .os-gallery__card:hover .os-gallery__img {
-  transform: scale(1.08);
+  transform: scale(1.1);
 }
 
 /* Caption */
@@ -1231,11 +1226,11 @@
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 40px 16px 16px;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  padding: 48px 20px 20px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
   opacity: 0;
-  transform: translateY(10px);
-  transition: all 0.4s ease;
+  transform: translateY(20px);
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .os-gallery__card:hover .os-gallery__caption {
@@ -1245,10 +1240,11 @@
 
 .os-gallery__caption-text {
   font-family: var(--font-body);
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
   color: #ffffff;
   line-height: 1.4;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 /* Gradient fade edges */
@@ -1258,7 +1254,7 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 120px;
+  width: 150px;
   z-index: 2;
   pointer-events: none;
 }
@@ -1273,7 +1269,27 @@
   background: linear-gradient(to left, var(--os-bg), transparent);
 }
 
-/* Responsive */
+/* Responsive Design */
+@media (max-width: 1280px) {
+  .os-gallery__card {
+    width: 260px;
+  }
+  
+  .os-gallery__card--tall {
+    height: 360px;
+  }
+  
+  .os-gallery__card--medium {
+    height: 300px;
+    margin-top: 40px;
+  }
+  
+  .os-gallery__card--short {
+    height: 250px;
+    margin-top: 20px;
+  }
+}
+
 @media (max-width: 1024px) {
   .os-gallery__card {
     width: 240px;
@@ -1285,14 +1301,20 @@
   
   .os-gallery__card--medium {
     height: 270px;
+    margin-top: 35px;
   }
   
   .os-gallery__card--short {
-    height: 220px;
+    height: 230px;
+    margin-top: 18px;
   }
 }
 
 @media (max-width: 768px) {
+  .os-gallery__carousel {
+    padding: 40px 0;
+  }
+  
   .os-gallery__card {
     width: 200px;
   }
@@ -1313,7 +1335,37 @@
   
   .os-gallery__carousel::before,
   .os-gallery__carousel::after {
-    width: 60px;
+    width: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .os-gallery__carousel {
+    padding: 30px 0;
+  }
+  
+  .os-gallery__card {
+    width: 160px;
+    border-radius: 16px;
+  }
+  
+  .os-gallery__card--tall {
+    height: 240px;
+  }
+  
+  .os-gallery__card--medium {
+    height: 200px;
+    margin-top: 25px;
+  }
+  
+  .os-gallery__card--short {
+    height: 170px;
+    margin-top: 12px;
+  }
+  
+  .os-gallery__carousel::before,
+  .os-gallery__carousel::after {
+    width: 40px;
   }
 }
 

@@ -1,6 +1,6 @@
 /**
- * Gallery Section — Zig-Zag Auto-Sliding Carousel
- * Uses CSS animation for auto-sliding, JS only for lightbox
+ * Gallery Section — Draggable Zig-Zag Carousel
+ * Supports drag to scroll, touch devices, and lightbox
  */
 
 import { respectsReducedMotion } from "../shared/utils.js";
@@ -9,7 +9,7 @@ let galleryImages = [];
 let currentIndex = 0;
 
 /**
- * Initialize gallery
+ * Initialize gallery with drag functionality
  * @param {string|HTMLElement} selector
  */
 export function initGalleryCollage(selector) {
@@ -19,16 +19,122 @@ export function initGalleryCollage(selector) {
 
   if (!section) return;
 
-  const cards = section.querySelectorAll(".os-gallery__card");
+  const carousel = section.querySelector("[data-gallery-carousel]");
+  const track = section.querySelector("[data-gallery-track]");
+  const cards = section.querySelectorAll("[data-gallery-card]");
   const lightbox = document.querySelector("#os-lightbox");
-  const lightboxImg = document.querySelector("#os-lightbox-img");
-  const lightboxCaption = document.querySelector("#os-lightbox-caption");
 
-  if (!cards.length) return;
+  if (!carousel || !track || !cards.length) return;
 
-  // Collect unique images (not duplicates)
+  // ── 1. Drag to Scroll ──────────────────────────────────────
+  let isDragging = false;
+  let startX = 0;
+  let scrollLeft = 0;
+  let animationId = null;
+  let currentTranslate = 0;
+  let prevTranslate = 0;
+
+  // Get track width for infinite loop
+  const getTrackWidth = () => track.scrollWidth / 3;
+
+  // Auto-slide animation
+  let autoSlideSpeed = 0.5; // pixels per frame
+  let isAutoSliding = true;
+
+  function autoSlide() {
+    if (!isAutoSliding || isDragging) return;
+    
+    currentTranslate -= autoSlideSpeed;
+    
+    // Reset position for infinite loop
+    if (Math.abs(currentTranslate) >= getTrackWidth()) {
+      currentTranslate = 0;
+    }
+    
+    track.style.transform = `translateX(${currentTranslate}px)`;
+    animationId = requestAnimationFrame(autoSlide);
+  }
+
+  function startAutoSlide() {
+    if (!isAutoSliding) {
+      isAutoSliding = true;
+      autoSlide();
+    }
+  }
+
+  function stopAutoSlide() {
+    isAutoSliding = false;
+    if (animationId) {
+      cancelAnimationFrame(animationId);
+      animationId = null;
+    }
+  }
+
+  // Mouse events
+  carousel.addEventListener("mousedown", (e) => {
+    isDragging = true;
+    carousel.classList.add("is-dragging");
+    startX = e.pageX;
+    prevTranslate = currentTranslate;
+    stopAutoSlide();
+  });
+
+  carousel.addEventListener("mousemove", (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const x = e.pageX;
+    const walk = (x - startX) * 1.5; // Multiply for faster drag
+    currentTranslate = prevTranslate + walk;
+    track.style.transform = `translateX(${currentTranslate}px)`;
+  });
+
+  carousel.addEventListener("mouseup", () => {
+    isDragging = false;
+    carousel.classList.remove("is-dragging");
+    startAutoSlide();
+  });
+
+  carousel.addEventListener("mouseleave", () => {
+    if (isDragging) {
+      isDragging = false;
+      carousel.classList.remove("is-dragging");
+      startAutoSlide();
+    }
+  });
+
+  // Touch events for mobile
+  carousel.addEventListener("touchstart", (e) => {
+    isDragging = true;
+    startX = e.touches[0].pageX;
+    prevTranslate = currentTranslate;
+    stopAutoSlide();
+  }, { passive: true });
+
+  carousel.addEventListener("touchmove", (e) => {
+    if (!isDragging) return;
+    const x = e.touches[0].pageX;
+    const walk = (x - startX) * 1.5;
+    currentTranslate = prevTranslate + walk;
+    track.style.transform = `translateX(${currentTranslate}px)`;
+  }, { passive: true });
+
+  carousel.addEventListener("touchend", () => {
+    isDragging = false;
+    startAutoSlide();
+  });
+
+  // Pause auto-slide on hover
+  carousel.addEventListener("mouseenter", stopAutoSlide);
+  carousel.addEventListener("mouseleave", () => {
+    if (!isDragging) startAutoSlide();
+  });
+
+  // Start auto-slide
+  autoSlide();
+
+  // ── 2. Lightbox ────────────────────────────────────────────
   const seen = new Set();
-  cards.forEach((card, i) => {
+  cards.forEach((card) => {
     const img = card.querySelector(".os-gallery__img");
     const captionEl = card.querySelector(".os-gallery__caption-text");
     if (img && !seen.has(img.src)) {
@@ -38,12 +144,15 @@ export function initGalleryCollage(selector) {
         alt: img.alt,
         caption: captionEl ? captionEl.textContent : "",
       });
-      card.addEventListener("click", () => openLightbox(galleryImages.length - 1));
+      card.addEventListener("click", (e) => {
+        if (!isDragging) {
+          openLightbox(galleryImages.length - 1);
+        }
+      });
     }
   });
 
-  // Setup lightbox
-  if (lightbox && lightboxImg) {
+  if (lightbox) {
     const closeBtn = lightbox.querySelector("[data-lightbox-close]");
     const prevBtn = lightbox.querySelector("[data-lightbox-prev]");
     const nextBtn = lightbox.querySelector("[data-lightbox-next]");
