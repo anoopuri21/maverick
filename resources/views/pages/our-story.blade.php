@@ -20,12 +20,25 @@
     <div class="os-hero__bg-image" style="background-image: url('{{ $hero->image_url }}')"></div>
     @endif
     <div class="os-hero__gradient"></div>
+    <div class="os-hero__noise"></div>
     <div class="os-hero__shapes">
-      <svg class="os-hero__shape os-hero__shape--1" viewBox="0 0 200 200" fill="none"><circle cx="100" cy="100" r="80" stroke="rgba(255,255,255,0.4)" stroke-width="1"/></svg>
-      <svg class="os-hero__shape os-hero__shape--2" viewBox="0 0 300 300" fill="none"><circle cx="150" cy="150" r="120" stroke="rgba(220,38,38,0.4)" stroke-width="1"/></svg>
-      <svg class="os-hero__shape os-hero__shape--3" viewBox="0 0 100 100" fill="none"><rect x="10" y="10" width="80" height="80" rx="8" stroke="rgba(255,255,255,0.4)" stroke-width="1" transform="rotate(20 50 50)"/></svg>
+      <svg class="os-hero__shape os-hero__shape--1" viewBox="0 0 200 200" fill="none"><circle cx="100" cy="100" r="80" stroke="rgba(255,255,255,0.15)" stroke-width="1"/></svg>
+      <svg class="os-hero__shape os-hero__shape--2" viewBox="0 0 300 300" fill="none"><circle cx="150" cy="150" r="120" stroke="rgba(220,38,38,0.2)" stroke-width="1"/></svg>
+      <svg class="os-hero__shape os-hero__shape--3" viewBox="0 0 100 100" fill="none"><rect x="10" y="10" width="80" height="80" rx="8" stroke="rgba(255,255,255,0.15)" stroke-width="1" transform="rotate(20 50 50)"/></svg>
     </div>
     <div class="os-hero__grid-overlay"></div>
+    <div class="os-hero__particles">
+      @for($i = 0; $i < 6; $i++)
+        <div class="os-hero__particle"></div>
+      @endfor
+    </div>
+    <div class="os-hero__scanline"></div>
+    <div class="os-hero__corners">
+      <div class="os-hero__corner os-hero__corner--tl"></div>
+      <div class="os-hero__corner os-hero__corner--tr"></div>
+      <div class="os-hero__corner os-hero__corner--bl"></div>
+      <div class="os-hero__corner os-hero__corner--br"></div>
+    </div>
   </div>
   <div class="container os-hero__content">
     <span class="os-hero__eyebrow fade-up" data-testid="hero-eyebrow">
