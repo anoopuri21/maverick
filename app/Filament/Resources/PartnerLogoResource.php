@@ -36,7 +36,8 @@ class PartnerLogoResource extends Resource
                     ->maxLength(255)
                     ->helperText('Organization or institution name'),
                 
-                MediaPicker::forField('logo_url', 'partner-logos'),
+                MediaPicker::forField('logo_url', 'partner-logos')
+                    ->nullable(),
                 
                 Forms\Components\Select::make('type')
                     ->label('Category')
