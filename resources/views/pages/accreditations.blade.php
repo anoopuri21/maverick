@@ -10,38 +10,6 @@
 @section('content')
 <div class="page-accreditations accred">
 
-@php
-    // Accreditations Data (Simplified: Logo + Title)
-    $accreditations = [
-        ['logo' => 'UOL', 'name' => 'University of London'],
-        ['logo' => 'UON', 'name' => 'University of Northampton'],
-        ['logo' => 'ARU', 'name' => 'Anglia Ruskin University'],
-        ['logo' => 'NCFE', 'name' => 'NCFE CACHE'],
-        ['logo' => 'BAC', 'name' => 'British Accreditation Council'],
-        ['logo' => 'QAA', 'name' => 'Quality Assurance Agency'],
-        ['logo' => 'ASIC', 'name' => 'ASIC Accreditation'],
-        ['logo' => 'UKENIC', 'name' => 'UK ENIC (NARIC)'],
-        ['logo' => 'GAU', 'name' => 'Girne American University'],
-        ['logo' => 'RBS', 'name' => 'Rushford Business School'],
-        ['logo' => 'UCA', 'name' => 'University for the Creative Arts'],
-        ['logo' => 'ICEF', 'name' => 'ICEF Certified Agency'],
-        ['logo' => 'OfS', 'name' => 'Office for Students'],
-        ['logo' => 'HO', 'name' => 'Home Office Sponsor'],
-    ];
-
-    // Awards Data (Logo + Title + Badge)
-    $awards = [
-        ['badge' => 'Education', 'title' => 'Best Emerging Business School 2024', 'image' => 'https://images.pexels.com/photos/2678468/pexels-photo-2678468.jpeg?w=400'],
-        ['badge' => 'Education', 'title' => 'Excellence in Online Learning 2023', 'image' => 'https://images.pexels.com/photos/7092613/pexels-photo-7092613.jpeg?w=400'],
-        ['badge' => 'Industry', 'title' => 'Top 50 Global Online MBA', 'image' => 'https://images.pexels.com/photos/3769021/pexels-photo-3769021.jpeg?w=400'],
-        ['badge' => 'Industry', 'title' => 'Most Innovative Education Provider', 'image' => 'https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?w=400'],
-        ['badge' => 'Media', 'title' => 'Top 100 European Business Schools', 'image' => 'https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?w=400'],
-        ['badge' => 'Media', 'title' => 'Best Online MBA Programmes', 'image' => 'https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?w=400'],
-        ['badge' => 'Conference', 'title' => 'Global Education Summit 2024', 'image' => 'https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg?w=400'],
-        ['badge' => 'Conference', 'title' => 'EdTech World Forum 2023', 'image' => 'https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg?w=400'],
-    ];
-@endphp
-
 {{-- ═══════════════════════════════════════════
      HERO SECTION (Matches Our Story Design)
 ═══════════════════════════════════════════ --}}
@@ -105,9 +73,10 @@
 
 
 {{-- ═══════════════════════════════════════════
-     SECTION 1: ACCREDITATIONS (Logo + Title Slider)
+     SECTION 1: ACCREDITATIONS & PARTNERSHIPS
 ═══════════════════════════════════════════ --}}
-<section class="accreditations section-wrapper" aria-label="Accreditations">
+@if($accreditationLogos->count() > 0)
+<section class="accreditations section-wrapper" aria-label="Accreditations & Partnerships">
     <div class="container">
         <div class="accreditations__header">
             <span class="section-label"><span>Our Credentials</span></span>
@@ -134,23 +103,30 @@
         <div class="accreditations__carousel-track" data-carousel-track>
             {{-- Duplicate for infinite loop --}}
             @for($r = 0; $r < 3; $r++)
-                @foreach($accreditations as $item)
+                @foreach($accreditationLogos as $logo)
                 <div class="accreditations__card" data-card>
                     <div class="accreditations__card-logo">
-                        <span>{{ $item['logo'] }}</span>
+                        @if($logo->logo_url)
+                            <img src="{{ $logo->logo_url }}" alt="{{ $logo->name }}" loading="lazy">
+                        @else
+                            <span>{{ strtoupper(substr($logo->name, 0, 3)) }}</span>
+                        @endif
                     </div>
-                    <h4 class="accreditations__card-name">{{ $item['name'] }}</h4>
+                    <h4 class="accreditations__card-name">{{ $logo->name }}</h4>
+                    <span class="accreditations__card-type">{{ ucfirst($logo->type) }}</span>
                 </div>
                 @endforeach
             @endfor
         </div>
     </div>
 </section>
+@endif
 
 
 {{-- ═══════════════════════════════════════════
-     SECTION 2: AWARDS & RECOGNITION (Badge + Logo + Title)
+     SECTION 2: AWARDS & RECOGNITION
 ═══════════════════════════════════════════ --}}
+@if($awardLogos->count() > 0)
 <section class="awards section-wrapper section--light" aria-label="Awards & Recognition">
     <div class="container">
         <div class="awards__header">
@@ -167,19 +143,26 @@
         <div class="awards__carousel-track" data-awards-track>
             {{-- Duplicate for infinite loop --}}
             @for($r = 0; $r < 3; $r++)
-                @foreach($awards as $award)
+                @foreach($awardLogos as $logo)
                 <div class="awards__card" data-award-card>
-                    <span class="awards__card-badge">{{ $award['badge'] }}</span>
+                    <span class="awards__card-badge">{{ ucfirst($logo->type) }}</span>
                     <div class="awards__card-image">
-                        <img src="{{ $award['image'] }}" alt="{{ $award['title'] }}" loading="lazy" draggable="false">
+                        @if($logo->logo_url)
+                            <img src="{{ $logo->logo_url }}" alt="{{ $logo->name }}" loading="lazy" draggable="false">
+                        @else
+                            <div class="awards__card-placeholder">
+                                <span>{{ strtoupper(substr($logo->name, 0, 3)) }}</span>
+                            </div>
+                        @endif
                     </div>
-                    <h4 class="awards__card-title">{{ $award['title'] }}</h4>
+                    <h4 class="awards__card-title">{{ $logo->name }}</h4>
                 </div>
                 @endforeach
             @endfor
         </div>
     </div>
 </section>
+@endif
 
 </div>
 
@@ -280,9 +263,8 @@ document.addEventListener('DOMContentLoaded', function() {
         autoSlide();
     }
 
-    // Initialize both carousels
-    document.querySelectorAll('[data-carousel]').forEach(initCarousel);
-    document.querySelectorAll('[data-awards-carousel]').forEach(initCarousel);
+    // Initialize all carousels
+    document.querySelectorAll('[data-carousel], [data-awards-carousel]').forEach(initCarousel);
 });
 </script>
 @endpush
