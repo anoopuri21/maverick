@@ -217,6 +217,34 @@
 <section id="journey" class="os-journey" aria-label="Our Journey Timeline">
   <div class="os-journey__noise" aria-hidden="true"></div>
 
+  {{-- Animated Background Geometric Shapes --}}
+  <div class="os-journey__bg-shapes" aria-hidden="true">
+    <div class="os-journey__bg-shape os-journey__bg-shape--circle os-journey__bg-shape--1"></div>
+    <div class="os-journey__bg-shape os-journey__bg-shape--circle os-journey__bg-shape--2"></div>
+    <div class="os-journey__bg-shape os-journey__bg-shape--circle os-journey__bg-shape--3"></div>
+    <div class="os-journey__bg-shape os-journey__bg-shape--triangle os-journey__bg-shape--4"></div>
+    <div class="os-journey__bg-shape os-journey__bg-shape--triangle os-journey__bg-shape--5"></div>
+    <div class="os-journey__bg-shape os-journey__bg-shape--square os-journey__bg-shape--6"></div>
+    <div class="os-journey__bg-shape os-journey__bg-shape--square os-journey__bg-shape--7"></div>
+    <div class="os-journey__bg-shape os-journey__bg-shape--dot os-journey__bg-shape--8"></div>
+    <div class="os-journey__bg-shape os-journey__bg-shape--dot os-journey__bg-shape--9"></div>
+    <div class="os-journey__bg-shape os-journey__bg-shape--dot os-journey__bg-shape--10"></div>
+    <div class="os-journey__bg-shape os-journey__bg-shape--dot os-journey__bg-shape--11"></div>
+    <div class="os-journey__bg-shape os-journey__bg-shape--dot os-journey__bg-shape--12"></div>
+  </div>
+
+  {{-- Connection Line (Desktop only) --}}
+  <div class="os-journey__connection" aria-hidden="true">
+    <svg class="os-journey__connection-svg" viewBox="0 0 1000 4" preserveAspectRatio="none">
+      <line class="os-journey__connection-line" x1="0" y1="2" x2="1000" y2="2" />
+    </svg>
+    <div class="os-journey__dots">
+      @foreach($timelines as $index => $item)
+        <div class="os-journey__dot" data-dot="{{ $index }}"></div>
+      @endforeach
+    </div>
+  </div>
+
   {{-- Desktop: Horizontal Pinned Scroll --}}
   <div class="os-journey__pin-wrap" data-journey-pin>
     

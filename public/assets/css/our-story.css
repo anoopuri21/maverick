@@ -645,6 +645,241 @@
   pointer-events: none;
 }
 
+/* Animated Background Geometric Shapes */
+.os-journey__bg-shapes {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.os-journey__bg-shape {
+  position: absolute;
+  pointer-events: none;
+}
+
+.os-journey__bg-shape--circle {
+  border-radius: 50%;
+  border: 1px solid;
+}
+
+.os-journey__bg-shape--triangle {
+  width: 0;
+  height: 0;
+}
+
+.os-journey__bg-shape--square {
+  border: 1px solid;
+  transform: rotate(45deg);
+}
+
+.os-journey__bg-shape--dot {
+  border-radius: 50%;
+}
+
+/* Shape 1: Large circle top-left */
+.os-journey__bg-shape--1 {
+  top: 8%;
+  left: 5%;
+  width: 150px;
+  height: 150px;
+  border-color: rgba(220, 38, 38, 0.08);
+  animation: journeyFloat 20s ease-in-out infinite;
+}
+
+/* Shape 2: Medium circle bottom-right */
+.os-journey__bg-shape--2 {
+  bottom: 12%;
+  right: 8%;
+  width: 100px;
+  height: 100px;
+  border-color: rgba(26, 43, 122, 0.1);
+  animation: journeyFloat 15s ease-in-out infinite reverse;
+}
+
+/* Shape 3: Small circle center-right */
+.os-journey__bg-shape--3 {
+  top: 40%;
+  right: 15%;
+  width: 60px;
+  height: 60px;
+  border-color: rgba(220, 38, 38, 0.06);
+  animation: journeyFloat 18s ease-in-out infinite 3s;
+}
+
+/* Shape 4: Triangle top-right */
+.os-journey__bg-shape--4 {
+  top: 15%;
+  right: 12%;
+  border-left: 40px solid transparent;
+  border-right: 40px solid transparent;
+  border-bottom: 70px solid rgba(26, 43, 122, 0.04);
+  animation: journeyFloat 22s ease-in-out infinite;
+}
+
+/* Shape 5: Triangle bottom-left */
+.os-journey__bg-shape--5 {
+  bottom: 20%;
+  left: 10%;
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  border-bottom: 52px solid rgba(220, 38, 38, 0.04);
+  animation: journeyFloat 17s ease-in-out infinite 2s;
+}
+
+/* Shape 6: Square center-left */
+.os-journey__bg-shape--6 {
+  top: 50%;
+  left: 8%;
+  width: 50px;
+  height: 50px;
+  border-color: rgba(26, 43, 122, 0.06);
+  animation: journeyFloat 25s ease-in-out infinite;
+}
+
+/* Shape 7: Square bottom-center */
+.os-journey__bg-shape--7 {
+  bottom: 30%;
+  left: 45%;
+  width: 40px;
+  height: 40px;
+  border-color: rgba(220, 38, 38, 0.05);
+  animation: journeyFloat 19s ease-in-out infinite 4s;
+}
+
+/* Dots */
+.os-journey__bg-shape--8 {
+  top: 25%;
+  left: 20%;
+  width: 6px;
+  height: 6px;
+  background: rgba(26, 43, 122, 0.15);
+  animation: journeyFloat 12s ease-in-out infinite;
+}
+
+.os-journey__bg-shape--9 {
+  top: 60%;
+  right: 25%;
+  width: 8px;
+  height: 8px;
+  background: rgba(220, 38, 38, 0.12);
+  animation: journeyFloat 10s ease-in-out infinite 1s;
+}
+
+.os-journey__bg-shape--10 {
+  bottom: 40%;
+  left: 35%;
+  width: 5px;
+  height: 5px;
+  background: rgba(26, 43, 122, 0.12);
+  animation: journeyFloat 14s ease-in-out infinite 2s;
+}
+
+.os-journey__bg-shape--11 {
+  top: 35%;
+  right: 30%;
+  width: 7px;
+  height: 7px;
+  background: rgba(220, 38, 38, 0.1);
+  animation: journeyFloat 11s ease-in-out infinite 3s;
+}
+
+.os-journey__bg-shape--12 {
+  bottom: 15%;
+  right: 35%;
+  width: 4px;
+  height: 4px;
+  background: rgba(26, 43, 122, 0.1);
+  animation: journeyFloat 13s ease-in-out infinite;
+}
+
+@keyframes journeyFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-15px) rotate(2deg);
+  }
+  50% {
+    transform: translateY(-25px) rotate(-1deg);
+  }
+  75% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+}
+
+/* Connection Line (Desktop only) */
+.os-journey__connection {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 4px;
+  z-index: 1;
+  pointer-events: none;
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .os-journey__connection {
+    display: block;
+  }
+}
+
+.os-journey__connection-svg {
+  width: 100%;
+  height: 4px;
+}
+
+.os-journey__connection-line {
+  stroke: var(--os-red);
+  stroke-width: 2;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  transition: stroke-dashoffset 0.1s linear;
+}
+
+.os-journey__dots {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-evenly;
+  transform: translateY(-50%);
+}
+
+.os-journey__dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--os-cream);
+  border: 2px solid var(--os-red);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.os-journey__dot::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid var(--os-red);
+  opacity: 0;
+  transform: scale(0.5);
+  transition: all 0.3s ease;
+}
+
+.os-journey__dot.is-active {
+  background: var(--os-red);
+  transform: scale(1.2);
+}
+
+.os-journey__dot.is-active::before {
+  opacity: 0.3;
+  transform: scale(1);
+}
+
 /* Desktop pin wrapper */
 .os-journey__pin-wrap {
   position: relative;
