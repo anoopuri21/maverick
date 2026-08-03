@@ -7,7 +7,7 @@ use App\Http\Controllers\PageController;
 Route::get('/', [PageController::class, 'home'])->name('home');
 
 // Dual MBA Programme
-Route::get('/dual-degrees', [PageController::class, 'dualMba'])->name('dual-mba');
+Route::get('/dual-mba-online', [PageController::class, 'dualMba'])->name('dual-mba');
 
 // About Pages
 Route::get('/our-story', [PageController::class, 'ourStory'])->name('our-story');
