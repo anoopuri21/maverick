@@ -31,68 +31,33 @@ class PartnerLogoResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Tabs::make('Partner Logo')
-                    ->tabs([
-                        // Tab 1: Basic Info
-                        Forms\Components\Tabs\Tab::make('Basic Info')
-                            ->icon('heroicon-o-information-circle')
-                            ->schema([
-                                Forms\Components\TextInput::make('name')
-                                    ->required()
-                                    ->maxLength(255)
-                                    ->helperText('Organization or institution name'),
-                                
-                                MediaPicker::forField('logo_url', 'partner-logos'),
-                                
-                                Forms\Components\Select::make('type')
-                                    ->label('Category')
-                                    ->options([
-                                        'alumni' => 'Alumni Network',
-                                        'accreditation' => 'Accreditation',
-                                        'recognition' => 'Recognition',
-                                        'award' => 'Award',
-                                    ])
-                                    ->required()
-                                    ->searchable()
-                                    ->helperText('Select the category this logo belongs to'),
-                                
-                                Forms\Components\TextInput::make('sort_order')
-                                    ->numeric()
-                                    ->default(0)
-                                    ->helperText('Lower numbers appear first'),
-                                
-                                Forms\Components\Toggle::make('is_active')
-                                    ->default(true)
-                                    ->label('Active'),
-                            ]),
-
-                        // Tab 2: Display Info
-                        Forms\Components\Tabs\Tab::make('Display Info')
-                            ->icon('heroicon-o-eye')
-                            ->schema([
-                                Forms\Components\Placeholder::make('display_info')
-                                    ->label('')
-                                    ->content('This logo will be displayed on the following pages based on its category:')
-                                    ->columnSpanFull(),
-                                
-                                Forms\Components\Placeholder::make('alumni_info')
-                                    ->label('Alumni Category')
-                                    ->content('→ Homepage Alumni Slider, Our Story Page'),
-                                
-                                Forms\Components\Placeholder::make('accreditation_info')
-                                    ->label('Accreditation Category')
-                                    ->content('→ Homepage Accreditations, Accreditation Page (Partnerships Section)'),
-                                
-                                Forms\Components\Placeholder::make('recognition_info')
-                                    ->label('Recognition Category')
-                                    ->content('→ Homepage Accreditations, Accreditation Page (Partnerships Section)'),
-                                
-                                Forms\Components\Placeholder::make('award_info')
-                                    ->label('Award Category')
-                                    ->content('→ Accreditation Page (Awards & Recognition Section)'),
-                            ]),
+                Forms\Components\TextInput::make('name')
+                    ->required()
+                    ->maxLength(255)
+                    ->helperText('Organization or institution name'),
+                
+                MediaPicker::forField('logo_url', 'partner-logos'),
+                
+                Forms\Components\Select::make('type')
+                    ->label('Category')
+                    ->options([
+                        'alumni' => '🎓 Alumni Network',
+                        'accreditation' => '✅ Accreditation',
+                        'recognition' => '🏆 Recognition',
+                        'award' => '🥇 Award',
                     ])
-                    ->columnSpanFull(),
+                    ->required()
+                    ->searchable()
+                    ->helperText('Select the category this logo belongs to'),
+                
+                Forms\Components\TextInput::make('sort_order')
+                    ->numeric()
+                    ->default(0)
+                    ->helperText('Lower numbers appear first'),
+                
+                Forms\Components\Toggle::make('is_active')
+                    ->default(true)
+                    ->label('Active'),
             ]);
     }
 
@@ -136,14 +101,26 @@ class PartnerLogoResource extends Resource
                     ->label('Active'),
             ])
             ->filters([
-                Tables\Filters\SelectFilter::make('type')
-                    ->options([
-                        'alumni' => 'Alumni Network',
-                        'accreditation' => 'Accreditation',
-                        'recognition' => 'Recognition',
-                        'award' => 'Award',
+                // Tab-style filters for each type
+                Tables\Filters\Tabs::make('Type Filter')
+                    ->tabs([
+                        Tables\Filters\Tabs\Tab::make('All')
+                            ->icon('heroicon-o-rectangle-stack')
+                            ->modifyQueryUsing(fn (Builder $query) => $query),
+                        Tables\Filters\Tabs\Tab::make('Accreditation')
+                            ->icon('heroicon-o-check-badge')
+                            ->modifyQueryUsing(fn (Builder $query) => $query->where('type', 'accreditation')),
+                        Tables\Filters\Tabs\Tab::make('Recognition')
+                            ->icon('heroicon-o-trophy')
+                            ->modifyQueryUsing(fn (Builder $query) => $query->where('type', 'recognition')),
+                        Tables\Filters\Tabs\Tab::make('Awards')
+                            ->icon('heroicon-o-star')
+                            ->modifyQueryUsing(fn (Builder $query) => $query->where('type', 'award')),
+                        Tables\Filters\Tabs\Tab::make('Alumni')
+                            ->icon('heroicon-o-academic-cap')
+                            ->modifyQueryUsing(fn (Builder $query) => $query->where('type', 'alumni')),
                     ])
-                    ->label('Filter by Category'),
+                    ->persistFiltersInSession(),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
