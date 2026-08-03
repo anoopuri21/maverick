@@ -233,18 +233,6 @@
     <div class="os-journey__bg-shape os-journey__bg-shape--dot os-journey__bg-shape--12"></div>
   </div>
 
-  {{-- Connection Line (Desktop only) --}}
-  <div class="os-journey__connection" aria-hidden="true">
-    <svg class="os-journey__connection-svg" viewBox="0 0 1000 4" preserveAspectRatio="none">
-      <line class="os-journey__connection-line" x1="0" y1="2" x2="1000" y2="2" />
-    </svg>
-    <div class="os-journey__dots">
-      @foreach($timelines as $index => $item)
-        <div class="os-journey__dot" data-dot="{{ $index }}"></div>
-      @endforeach
-    </div>
-  </div>
-
   {{-- Desktop: Horizontal Pinned Scroll --}}
   <div class="os-journey__pin-wrap" data-journey-pin>
     
