@@ -119,13 +119,11 @@
         </div>
     </div>
 </section>
-@endif
 
 
 {{-- ═══════════════════════════════════════════
      SECTION 2: AWARDS & RECOGNITION
 ═══════════════════════════════════════════ --}}
-@if($awardLogos->count() > 0)
 <section class="awards section-wrapper section--light" aria-label="Awards & Recognition">
     <div class="container">
         <div class="awards__header">
@@ -161,7 +159,6 @@
         </div>
     </div>
 </section>
-@endif
 
 </div>
 
@@ -171,99 +168,99 @@
 
 @push('scripts')
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Draggable carousel functionality
-    function initCarousel(carousel) {
-        const track = carousel.querySelector('[data-carousel-track], [data-awards-track]');
-        if (!track) return;
+    document.addEventListener('DOMContentLoaded', function() {
+        // Draggable carousel functionality
+        function initCarousel(carousel) {
+            const track = carousel.querySelector('[data-carousel-track], [data-awards-track]');
+            if (!track) return;
 
-        let isDragging = false;
-        let startX = 0;
-        let currentTranslate = 0;
-        let prevTranslate = 0;
-        let isAutoSliding = true;
-        let animationId = null;
+            let isDragging = false;
+            let startX = 0;
+            let currentTranslate = 0;
+            let prevTranslate = 0;
+            let isAutoSliding = true;
+            let animationId = null;
 
-        const getTrackWidth = () => track.scrollWidth / 3;
+            const getTrackWidth = () => track.scrollWidth / 3;
 
-        function autoSlide() {
-            if (!isAutoSliding || isDragging) return;
-            currentTranslate -= 0.5;
-            if (Math.abs(currentTranslate) >= getTrackWidth()) {
-                currentTranslate = 0;
+            function autoSlide() {
+                if (!isAutoSliding || isDragging) return;
+                currentTranslate -= 0.5;
+                if (Math.abs(currentTranslate) >= getTrackWidth()) {
+                    currentTranslate = 0;
+                }
+                track.style.transform = `translateX(${currentTranslate}px)`;
+                animationId = requestAnimationFrame(autoSlide);
             }
-            track.style.transform = `translateX(${currentTranslate}px)`;
-            animationId = requestAnimationFrame(autoSlide);
-        }
 
-        function startAutoSlide() {
-            isAutoSliding = true;
+            function startAutoSlide() {
+                isAutoSliding = true;
+                autoSlide();
+            }
+
+            function stopAutoSlide() {
+                isAutoSliding = false;
+                if (animationId) cancelAnimationFrame(animationId);
+            }
+
+            // Mouse events
+            carousel.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                startX = e.pageX;
+                prevTranslate = currentTranslate;
+                stopAutoSlide();
+            });
+
+            carousel.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                e.preventDefault();
+                currentTranslate = prevTranslate + (e.pageX - startX) * 1.5;
+                track.style.transform = `translateX(${currentTranslate}px)`;
+            });
+
+            carousel.addEventListener('mouseup', () => {
+                isDragging = false;
+                startAutoSlide();
+            });
+
+            carousel.addEventListener('mouseleave', () => {
+                if (isDragging) {
+                    isDragging = false;
+                    startAutoSlide();
+                }
+            });
+
+            // Touch events
+            carousel.addEventListener('touchstart', (e) => {
+                isDragging = true;
+                startX = e.touches[0].pageX;
+                prevTranslate = currentTranslate;
+                stopAutoSlide();
+            }, { passive: true });
+
+            carousel.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+                currentTranslate = prevTranslate + (e.touches[0].pageX - startX) * 1.5;
+                track.style.transform = `translateX(${currentTranslate}px)`;
+            }, { passive: true });
+
+            carousel.addEventListener('touchend', () => {
+                isDragging = false;
+                startAutoSlide();
+            });
+
+            // Hover pause
+            carousel.addEventListener('mouseenter', stopAutoSlide);
+            carousel.addEventListener('mouseleave', () => {
+                if (!isDragging) startAutoSlide();
+            });
+
+            // Start auto-slide
             autoSlide();
         }
 
-        function stopAutoSlide() {
-            isAutoSliding = false;
-            if (animationId) cancelAnimationFrame(animationId);
-        }
-
-        // Mouse events
-        carousel.addEventListener('mousedown', (e) => {
-            isDragging = true;
-            startX = e.pageX;
-            prevTranslate = currentTranslate;
-            stopAutoSlide();
-        });
-
-        carousel.addEventListener('mousemove', (e) => {
-            if (!isDragging) return;
-            e.preventDefault();
-            currentTranslate = prevTranslate + (e.pageX - startX) * 1.5;
-            track.style.transform = `translateX(${currentTranslate}px)`;
-        });
-
-        carousel.addEventListener('mouseup', () => {
-            isDragging = false;
-            startAutoSlide();
-        });
-
-        carousel.addEventListener('mouseleave', () => {
-            if (isDragging) {
-                isDragging = false;
-                startAutoSlide();
-            }
-        });
-
-        // Touch events
-        carousel.addEventListener('touchstart', (e) => {
-            isDragging = true;
-            startX = e.touches[0].pageX;
-            prevTranslate = currentTranslate;
-            stopAutoSlide();
-        }, { passive: true });
-
-        carousel.addEventListener('touchmove', (e) => {
-            if (!isDragging) return;
-            currentTranslate = prevTranslate + (e.touches[0].pageX - startX) * 1.5;
-            track.style.transform = `translateX(${currentTranslate}px)`;
-        }, { passive: true });
-
-        carousel.addEventListener('touchend', () => {
-            isDragging = false;
-            startAutoSlide();
-        });
-
-        // Hover pause
-        carousel.addEventListener('mouseenter', stopAutoSlide);
-        carousel.addEventListener('mouseleave', () => {
-            if (!isDragging) startAutoSlide();
-        });
-
-        // Start auto-slide
-        autoSlide();
-    }
-
-    // Initialize all carousels
-    document.querySelectorAll('[data-carousel], [data-awards-carousel]').forEach(initCarousel);
-});
+        // Initialize all carousels
+        document.querySelectorAll('[data-carousel], [data-awards-carousel]').forEach(initCarousel);
+    });
 </script>
 @endpush
