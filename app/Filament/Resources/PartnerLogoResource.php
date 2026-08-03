@@ -101,26 +101,17 @@ class PartnerLogoResource extends Resource
                     ->label('Active'),
             ])
             ->filters([
-                // Tab-style filters for each type
-                Tables\Filters\Tabs::make('Type Filter')
-                    ->tabs([
-                        Tables\Filters\Tabs\Tab::make('All')
-                            ->icon('heroicon-o-rectangle-stack')
-                            ->modifyQueryUsing(fn (Builder $query) => $query),
-                        Tables\Filters\Tabs\Tab::make('Accreditation')
-                            ->icon('heroicon-o-check-badge')
-                            ->modifyQueryUsing(fn (Builder $query) => $query->where('type', 'accreditation')),
-                        Tables\Filters\Tabs\Tab::make('Recognition')
-                            ->icon('heroicon-o-trophy')
-                            ->modifyQueryUsing(fn (Builder $query) => $query->where('type', 'recognition')),
-                        Tables\Filters\Tabs\Tab::make('Awards')
-                            ->icon('heroicon-o-star')
-                            ->modifyQueryUsing(fn (Builder $query) => $query->where('type', 'award')),
-                        Tables\Filters\Tabs\Tab::make('Alumni')
-                            ->icon('heroicon-o-academic-cap')
-                            ->modifyQueryUsing(fn (Builder $query) => $query->where('type', 'alumni')),
+                // Type filter dropdown
+                Tables\Filters\SelectFilter::make('type')
+                    ->label('Filter by Category')
+                    ->options([
+                        '' => 'All Categories',
+                        'alumni' => '🎓 Alumni',
+                        'accreditation' => '✅ Accreditation',
+                        'recognition' => '🏆 Recognition',
+                        'award' => '🥇 Award',
                     ])
-                    ->persistFiltersInSession(),
+                    ->placeholder('All Categories'),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
