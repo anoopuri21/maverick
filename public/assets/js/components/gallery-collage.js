@@ -24,35 +24,26 @@ export function initGalleryCollage(selector) {
   const cards = section.querySelectorAll("[data-gallery-card]");
   const lightbox = document.querySelector("#os-lightbox");
 
-  if (!carousel || !track || !cards.length) return;
+  if (respectsReducedMotion()) return;
 
-  // ── 1. Drag to Scroll ──────────────────────────────────────
-  let isDragging = false;
-  let startX = 0;
-  let scrollLeft = 0;
-  let animationId = null;
-  let currentTranslate = 0;
-  let prevTranslate = 0;
-
-  // Get track width for infinite loop
-  const getTrackWidth = () => track.scrollWidth / 3;
-
-  // Auto-slide animation
-  let autoSlideSpeed = 0.5; // pixels per frame
-  let isAutoSliding = true;
-
-  function autoSlide() {
-    if (!isAutoSliding || isDragging) return;
-    
-    currentTranslate -= autoSlideSpeed;
-    
-    // Reset position for infinite loop
-    if (Math.abs(currentTranslate) >= getTrackWidth()) {
-      currentTranslate = 0;
-    }
-    
-    track.style.transform = `translateX(${currentTranslate}px)`;
-    animationId = requestAnimationFrame(autoSlide);
+  // Stagger reveal for gallery items
+  if (items.length) {
+    gsap.fromTo(
+      items,
+      { opacity: 0, y: 30 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        stagger: 0.08,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: grid,
+          start: "top 80%",
+          once: true,
+        },
+      },
+    );
   }
 
   function startAutoSlide() {
