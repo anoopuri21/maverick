@@ -421,9 +421,8 @@
 /* Accreditation Card (Logo + Title Only) */
 .accreditations__card {
     flex-shrink: 0;
-    width: 220px;
-    background: var(--accred-bg);
-    border: 1px solid var(--accred-border);
+    width: 320px;
+    border: 1px solid #c8c8c8;
     border-radius: var(--accred-radius);
     padding: 2rem 1.5rem;
     text-align: center;
@@ -437,10 +436,7 @@
 }
 
 .accreditations__card-logo {
-    width: 80px;
-    height: 80px;
-    background: linear-gradient(135deg, var(--accred-navy-dark), var(--color-mba-blue));
-    border-radius: 12px;
+    height: 180px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -456,8 +452,8 @@
 }
 
 .accreditations__card-logo img {
-    max-width: 90%;
-    max-height: 90%;
+    max-width: 100%;
+    max-height: 100%;
     object-fit: contain;
 }
 
@@ -476,9 +472,8 @@
 
 .accreditations__card-name {
     font-family: var(--font-display);
-    font-size: 0.95rem;
     font-weight: 600;
-    color: var(--color-mba-blue);
+    color: var(--color-mba-red);
     margin: 0;
     line-height: 1.4;
 }
@@ -603,7 +598,7 @@
    ========================================================= */
 @media (max-width: 1024px) {
     .accreditations__card {
-        width: 200px;
+        width: 320px;
     }
     
     .awards__card {
