@@ -4,7 +4,7 @@
 @section('meta_description', 'Explore Maverick Business Academy\'s accreditations, partnerships with leading universities, and industry recognition awards.')
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('css/pages/accreditations-v2.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/pages/accreditations.css') }}">
 @endpush
 
 @section('content')
@@ -120,42 +120,88 @@
     </div>
 </section>
 
+{{-- ═══════════════════════════════════════════
+     SECTION 2: CINEMATIC PINNED IMAGE
+═══════════════════════════════════════════ --}}
+@if($cinematicSettings->image_url)
+<section class="accred-cinematic" data-cinematic-pin aria-hidden="true">
+    <div class="accred-cinematic__inner">
+        <div class="accred-cinematic__bg">
+            <img src="{{ $cinematicSettings->image_url }}" 
+                 alt="Cinematic Background" 
+                 class="accred-cinematic__image"
+                 data-cinematic-image>
+            <div class="accred-cinematic__overlay"></div>
+        </div>
+        <div class="accred-cinematic__content" data-cinematic-content>
+            @if($cinematicSettings->heading)
+            <h2 class="accred-cinematic__heading">
+                {!! $cinematicSettings->heading !!}
+            </h2>
+            @endif
+            @if($cinematicSettings->text)
+            <div class="accred-cinematic__text">
+                {!! $cinematicSettings->text !!}
+            </div>
+            @endif
+        </div>
+    </div>
+</section>
+@endif
 
 {{-- ═══════════════════════════════════════════
-     SECTION 2: AWARDS & RECOGNITION
+     SECTION 3: AWARDS
 ═══════════════════════════════════════════ --}}
-<section class="awards section-wrapper section--light" aria-label="Awards & Recognition">
+<section class="awards section-wrapper section--light" aria-label="Awards">
     <div class="container">
         <div class="awards__header">
             <span class="section-label"><span>Achievements</span></span>
-            <h2 class="section-title">Awards <span>& Recognition</span></h2>
+            <h2 class="section-title">Awards</h2>
             <p class="awards__subtitle">
                 Our commitment to excellence has been recognised by leading education bodies worldwide.
             </p>
         </div>
-    </div>
 
-    {{-- Awards Slider --}}
-    <div class="awards__carousel" data-awards-carousel>
-        <div class="awards__carousel-track" data-awards-track>
-            {{-- Duplicate for infinite loop --}}
-            @for($r = 0; $r < 3; $r++)
-                @foreach($awardLogos as $logo)
-                <div class="awards__card" data-award-card>
-                    <span class="awards__card-badge">{{ ucfirst($logo->type) }}</span>
-                    <div class="awards__card-image">
-                        @if($logo->logo_url)
-                            <img src="{{ $logo->logo_url }}" alt="{{ $logo->name }}" loading="lazy" draggable="false">
-                        @else
-                            <div class="awards__card-placeholder">
-                                <span>{{ strtoupper(substr($logo->name, 0, 3)) }}</span>
+        {{-- Awards Grid --}}
+        <div class="awards__grid">
+            @foreach($awardLogos as $logo)
+            <div class="awards__card" onclick="this.classList.toggle('is-flipped')">
+                <div class="awards__card-inner">
+                    {{-- Front Side: Only Logo --}}
+                    <div class="awards__card-front">
+                        <div class="awards__card-body">
+                            @if($logo->logo_url)
+                                <img src="{{ $logo->logo_url }}" alt="{{ $logo->name }}" loading="lazy" class="awards__card-logo">
+                            @else
+                                <div class="awards__card-placeholder">
+                                    <span>{{ strtoupper(substr($logo->name, 0, 3)) }}</span>
+                                </div>
+                            @endif
+                        </div>
+                        <div class="awards__card-footer">
+                            <div class="awards__card-icon">
+                                <span data-lucide="plus"></span>
                             </div>
-                        @endif
+                        </div>
                     </div>
-                    <h4 class="awards__card-title">{{ $logo->name }}</h4>
+
+                    {{-- Back Side: Red Theme with Content --}}
+                    <div class="awards__card-back">
+                        <div class="awards__card-content">
+                            <h4 class="awards__card-title">{{ $logo->name }}</h4>
+                            @if($logo->description)
+                                <p class="awards__card-desc">{{ $logo->description }}</p>
+                            @endif
+                        </div>
+                        <div class="awards__card-footer">
+                            <div class="awards__card-icon awards__card-icon--back">
+                                <span data-lucide="rotate-ccw"></span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                @endforeach
-            @endfor
+            </div>
+            @endforeach
         </div>
     </div>
 </section>
@@ -259,8 +305,8 @@
             autoSlide();
         }
 
-        // Initialize all carousels
-        document.querySelectorAll('[data-carousel], [data-awards-carousel]').forEach(initCarousel);
+        // Initialize accreditations carousel
+        document.querySelectorAll('[data-carousel]').forEach(initCarousel);
     });
 </script>
 @endpush

@@ -50,6 +50,12 @@ class PartnerLogoResource extends Resource
                     ->required()
                     ->searchable()
                     ->helperText('Select the category this logo belongs to'),
+
+                Forms\Components\Textarea::make('description')
+                    ->label('Description')
+                    ->rows(3)
+                    ->maxLength(500)
+                    ->helperText('Short description for Awards & Recognition'),
                 
                 Forms\Components\TextInput::make('sort_order')
                     ->numeric()
