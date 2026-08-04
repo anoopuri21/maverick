@@ -293,6 +293,7 @@
     position: relative;
     background: var(--accred-bg);
     overflow: hidden;
+    padding-bottom: 0;
 }
 
 /* Background Geometric Shapes */
@@ -486,6 +487,7 @@
     position: relative;
     background: var(--accred-light);
     overflow: hidden;
+    padding-top: 0;
 }
 
 /* Awards Carousel */
