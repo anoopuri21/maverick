@@ -178,10 +178,8 @@
                                 </div>
                             @endif
                         </div>
-                        <div class="awards__card-footer">
-                            <div class="awards__card-icon">
-                                <span data-lucide="plus"></span>
-                            </div>
+                        <div class="awards__card-icon">
+                            <span data-lucide="plus"></span>
                         </div>
                     </div>
 
@@ -193,10 +191,8 @@
                                 <p class="awards__card-desc">{{ $logo->description }}</p>
                             @endif
                         </div>
-                        <div class="awards__card-footer">
-                            <div class="awards__card-icon awards__card-icon--back">
-                                <span data-lucide="rotate-ccw"></span>
-                            </div>
+                        <div class="awards__card-icon awards__card-icon--back">
+                            <span data-lucide="rotate-ccw"></span>
                         </div>
                     </div>
                 </div>
