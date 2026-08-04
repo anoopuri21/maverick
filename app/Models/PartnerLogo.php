@@ -13,6 +13,7 @@ class PartnerLogo extends Model
         'name',
         'logo_url',
         'type',
+        'description',
         'sort_order',
         'is_active',
         'logo_url_asset_id',

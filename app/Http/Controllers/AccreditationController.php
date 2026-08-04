@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\PartnerLogo;
+use App\Settings\AccreditationCinematicSettings;
 use Illuminate\Http\Request;
 
 class AccreditationController extends Controller
 {
-    public function index()
+    public function index(AccreditationCinematicSettings $cinematicSettings)
     {
         // Section 1: Accreditations & Partnerships (Accreditation + Alumni types)
         $accreditationLogos = PartnerLogo::select('id', 'name', 'logo_url', 'type', 'sort_order')
@@ -16,16 +17,17 @@ class AccreditationController extends Controller
             ->orderBy('sort_order')
             ->get();
 
-        // Section 2: Awards & Recognition (Award + Recognition types)
-        $awardLogos = PartnerLogo::select('id', 'name', 'logo_url', 'type', 'sort_order')
-            ->whereIn('type', ['award', 'recognition'])
+        // Section 2: Awards & Recognition (Award types only)
+        $awardLogos = PartnerLogo::select('id', 'name', 'logo_url', 'type', 'description', 'sort_order')
+            ->where('type', 'award')
             ->where('is_active', true)
             ->orderBy('sort_order')
             ->get();
 
         return view('pages.accreditations', compact(
             'accreditationLogos',
-            'awardLogos'
+            'awardLogos',
+            'cinematicSettings'
         ));
     }
 }
