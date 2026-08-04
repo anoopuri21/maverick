@@ -4,7 +4,7 @@
 @section('meta_description', 'Explore Maverick Business Academy\'s accreditations, partnerships with leading universities, and industry recognition awards.')
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('css/pages/accreditations-v2.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/pages/accreditations.css') }}">
 @endpush
 
 @section('content')
@@ -76,53 +76,36 @@
      SECTION 1: ACCREDITATIONS & PARTNERSHIPS
 ═══════════════════════════════════════════ --}}
 <section class="accreditations section-wrapper section--light" aria-label="Accreditations">
-    <div class="container">
-        <div class="accreditations__header">
-            <span class="section-label"><span>Our Credentials</span></span>
-            <h2 class="section-title">Accreditations <span>& Partnerships</span></h2>
-            <p class="accreditations__subtitle">
-                We partner with leading universities and hold accreditations from globally respected bodies.
-            </p>
+    ...
+</section>
+
+{{-- ═══════════════════════════════════════════
+     SECTION 2: CINEMATIC PINNED IMAGE
+═══════════════════════════════════════════ --}}
+<section class="accred-cinematic" data-cinematic-pin aria-hidden="true">
+    <div class="accred-cinematic__inner">
+        <div class="accred-cinematic__bg">
+            <img src="https://images.pexels.com/photos/267885/pexels-photo-267885.jpeg?auto=compress&cs=tinysrgb&w=1920" 
+                 alt="Cinematic Background" 
+                 class="accred-cinematic__image"
+                 data-cinematic-image>
+            <div class="accred-cinematic__overlay"></div>
         </div>
-    </div>
-
-    {{-- Background Geometric Shapes --}}
-    <div class="accreditations__bg-shapes" aria-hidden="true">
-        <div class="accreditations__bg-shape accrediations__bg-shape--circle accrediations__bg-shape--1"></div>
-        <div class="accreditations__bg-shape accrediations__bg-shape--circle accrediations__bg-shape--2"></div>
-        <div class="accreditations__bg-shape accrediations__bg-shape--triangle accrediations__bg-shape--3"></div>
-        <div class="accreditations__bg-shape accrediations__bg-shape--square accrediations__bg-shape--4"></div>
-        <div class="accreditations__bg-shape accrediations__bg-shape--dot accrediations__bg-shape--5"></div>
-        <div class="accreditations__bg-shape accrediations__bg-shape--dot accrediations__bg-shape--6"></div>
-        <div class="accreditations__bg-shape accrediations__bg-shape--dot accrediations__bg-shape--7"></div>
-    </div>
-
-    {{-- Draggable Slider --}}
-    <div class="accreditations__carousel" data-carousel>
-        <div class="accreditations__carousel-track" data-carousel-track>
-            {{-- Duplicate for infinite loop --}}
-            @for($r = 0; $r < 3; $r++)
-                @foreach($accreditationLogos as $logo)
-                <div class="accreditations__card" data-card>
-                    <div class="accreditations__card-logo">
-                        @if($logo->logo_url)
-                            <img src="{{ $logo->logo_url }}" alt="{{ $logo->name }}" loading="lazy">
-                        @else
-                            <span>{{ strtoupper(substr($logo->name, 0, 3)) }}</span>
-                        @endif
-                    </div>
-                    <h4 class="accreditations__card-name">{{ $logo->name }}</h4>
-                    <!-- <span class="accreditations__card-type">{{ ucfirst($logo->type) }}</span> -->
-                </div>
-                @endforeach
-            @endfor
+        <div class="accred-cinematic__content" data-cinematic-content>
+            <h2 class="accred-cinematic__heading">
+                Uncompromising <em>Quality</em>,<br>
+                Global <em>Excellence</em>
+            </h2>
+            <p class="accred-cinematic__text">
+                Every partnership we forge and every accreditation we hold is a testament to our 
+                unwavering commitment to providing world-class business education.
+            </p>
         </div>
     </div>
 </section>
 
-
 {{-- ═══════════════════════════════════════════
-     SECTION 2: AWARDS & RECOGNITION
+     SECTION 3: AWARDS & RECOGNITION
 ═══════════════════════════════════════════ --}}
 <section class="awards section-wrapper section--light" aria-label="Awards & Recognition">
     <div class="container">
