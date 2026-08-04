@@ -123,27 +123,31 @@
 {{-- ═══════════════════════════════════════════
      SECTION 2: CINEMATIC PINNED IMAGE
 ═══════════════════════════════════════════ --}}
+@if($cinematicSettings->image_url)
 <section class="accred-cinematic" data-cinematic-pin aria-hidden="true">
     <div class="accred-cinematic__inner">
         <div class="accred-cinematic__bg">
-            <img src="https://images.pexels.com/photos/267885/pexels-photo-267885.jpeg?auto=compress&cs=tinysrgb&w=1920" 
+            <img src="{{ $cinematicSettings->image_url }}" 
                  alt="Cinematic Background" 
                  class="accred-cinematic__image"
                  data-cinematic-image>
             <div class="accred-cinematic__overlay"></div>
         </div>
         <div class="accred-cinematic__content" data-cinematic-content>
+            @if($cinematicSettings->heading)
             <h2 class="accred-cinematic__heading">
-                Uncompromising <em>Quality</em>,<br>
-                Global <em>Excellence</em>
+                {!! $cinematicSettings->heading !!}
             </h2>
-            <p class="accred-cinematic__text">
-                Every partnership we forge and every accreditation we hold is a testament to our 
-                unwavering commitment to providing world-class business education.
-            </p>
+            @endif
+            @if($cinematicSettings->text)
+            <div class="accred-cinematic__text">
+                {!! $cinematicSettings->text !!}
+            </div>
+            @endif
         </div>
     </div>
 </section>
+@endif
 
 {{-- ═══════════════════════════════════════════
      SECTION 3: AWARDS & RECOGNITION

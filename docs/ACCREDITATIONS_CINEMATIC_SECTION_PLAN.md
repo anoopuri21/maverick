@@ -18,8 +18,10 @@ Add a cinematic full-screen pinned-image section to the "Accreditations" page, p
 - **CSS**: `public/css/pages/accreditations.css` (appended to existing styles)
 - **JS Component**: `public/assets/js/components/accreditations-cinematic.js` (GSAP ScrollTrigger)
 - **JS Orchestrator**: `public/assets/js/pages/accreditations.js` (Lazy-loaded)
+- **Settings**: `App\Settings\AccreditationCinematicSettings`
+- **Admin**: `App\Filament\Pages\ManageAccreditationCinematic` (MediaPicker integrated)
 
-## Phase 2 (Future)
-- Make content dynamic via Spatie Settings + Filament.
-- Integrate MediaPicker for the background image.
-- Handle handling of handling handle handle... (following repo conventions).
+## Phase 2 (Completed)
+- Made content dynamic via Spatie Settings + Filament.
+- Integrated MediaPicker for the background image.
+- Updated controller to inject settings into the view.
