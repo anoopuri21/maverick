@@ -16,28 +16,21 @@
     // ═══════════════════════════════════════════
 
     $hero = (object)[
-        'tag' => 'GLOBAL PARTNERSHIPS',
-        'heading_line1' => 'Building Global Pathways Through',
-        'heading_italic' => 'Strategic Academic Partnerships',
-        'description' => 'Maverick Business Academy collaborates with internationally recognized universities and educational institutions to provide learners with access to globally respected qualifications, flexible learning opportunities, and career-focused academic pathways.',
+        'tag' => '',
+        'heading_line1' => 'Global',
+        'heading_italic' => 'University Partners',
+        'description' => 'Our partnerships are more than logos on a page — they are carefully built academic bridges.',
         'background_image' => asset('https://images.pexels.com/photos/5725589/pexels-photo-5725589.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=1600'),
     ];
 
     $overview = (object)[
-        'tag' => 'PARTNERSHIP OVERVIEW',
-        'heading' => 'Borders Should Never',
-        'heading_italic' => 'Limit Ambition',
+        'tag' => 'GLOBAL PARTNERSHIPS',
+        'heading' => 'Building Global Pathways Through ',
+        'heading_italic' => 'Strategic Academic Partnerships',
         'paragraphs' => [
-            'Our partnerships are more than logos on a page — they are carefully built academic bridges. Each collaboration is designed so that credits earned at Maverick transfer directly into degree programmes at our partner universities, saving our students time and money.',
-            'From articulation agreements and validated degrees to joint research and faculty exchange, we work hand-in-hand with institutions that share our belief that world-class education should be within everyone\'s reach.',
+            'Maverick Business Academy collaborates with internationally recognized universities and educational institutions to provide learners with access to globally respected qualifications, flexible learning opportunities, and career-focused academic pathways',
         ],
-        'image' => asset('https://images.pexels.com/photos/7972324/pexels-photo-7972324.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=700&w=900'),
-        'stats' => collect([
-            (object)['number' => '50+', 'label' => 'PARTNER UNIVERSITIES'],
-            (object)['number' => '25+', 'label' => 'COUNTRIES WORLDWIDE'],
-            (object)['number' => '120+', 'label' => 'ARTICULATION PATHWAYS'],
-            (object)['number' => '30k+', 'label' => 'GLOBAL ALUMNI NETWORK'],
-        ]),
+        'image' => asset('https://res.cloudinary.com/i08gwudw/image/upload/v1785340343/maverick-academy/our-story/timeline/qpg8khpl9f0tg6xzyhz5.jpg'),
     ];
 
     $whyPartnerships = (object)[
@@ -75,15 +68,15 @@
     ];
 
     $benefits = (object)[
-        'tag' => 'STUDENT ADVANTAGES',
-        'heading' => 'Benefits of Studying Through',
+        'tag' => 'Student Benefits',
+        'heading' => 'Benefits of Studying Through ',
         'heading_italic' => 'Maverick Partnerships',
-        'main_image' => asset('https://images.pexels.com/photos/5538583/pexels-photo-5538583.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=760'),
-        'secondary_image' => asset('https://images.pexels.com/photos/7972324/pexels-photo-7972324.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=420&w=560'),
+        'main_image' => asset('https://res.cloudinary.com/i08gwudw/image/upload/v1784534077/maverick-academy/programs/igxpmziapl3v5xaqozki.jpg'),
+        'secondary_image' => asset('https://res.cloudinary.com/i08gwudw/image/upload/v1784441348/mba_sa4pmo.jpg'),
         'floating_stat' => (object)['number' => '30k+', 'label' => 'GLOBAL ALUMNI'],
         'items' => collect([
             (object)[
-                'title' => 'Internationally Recognized Qualifications',
+                'title' => 'Access to internationally recognized qualifications ',
                 'description' => 'Degrees and certifications valued by employers across the globe.',
             ],
             (object)[
@@ -104,7 +97,7 @@
                 'description' => 'Qualifications designed to accelerate your professional growth.',
             ],
             (object)[
-                'title' => 'Diverse International Environment',
+                'title' => 'Diverse International Learning Environment ',
                 'description' => 'Learn alongside peers from every corner of the world.',
             ],
         ]),
@@ -222,16 +215,6 @@
 <section class="gup-overview section-wrapper">
     <div class="container">
         <div class="gup-overview__grid">
-
-            {{-- Left: Stats --}}
-            <div class="gup-overview__stats">
-                @foreach($overview->stats as $stat)
-                <div class="gup-stat">
-                    <div class="gup-stat__number">{{ $stat->number }}</div>
-                    <div class="gup-stat__label">{{ $stat->label }}</div>
-                </div>
-                @endforeach
-            </div>
 
             {{-- Right: Content + Image --}}
             <div class="gup-overview__main">

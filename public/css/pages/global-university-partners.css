@@ -202,8 +202,7 @@
 
 .gup-overview__grid {
   display: grid;
-  grid-template-columns: 0.9fr 1.4fr;
-  gap: clamp(32px, 5vw, 80px);
+  grid-template-columns: 1fr;
   align-items: start;
 }
 
@@ -248,9 +247,7 @@
   text-transform: uppercase;
 }
 
-.gup-overview__main {
-  max-width: 62ch;
-}
+.gup-overview__main {}
 
 .gup-overview__label {
   display: inline-block;
