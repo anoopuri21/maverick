@@ -24,8 +24,6 @@
 
     $photoCount = $photos->count();
     $videoCount = $videos->count();
-    $eventCount = $events->count();
-    $pressCount = $pressMentions->count();
 @endphp
 
 
@@ -50,7 +48,7 @@
 
 
 {{-- ═══════════════════════════════════════════
-     2. GALLERY WITH FILTERS + LIGHTBOX
+     2. GALLERY + LIGHTBOX
 ═══════════════════════════════════════════ --}}
 <section class="gallery section-wrapper" id="gallery">
     <div class="container">
@@ -61,22 +59,8 @@
                 Moments <em>Captured</em>
             </h2>
             <p class="section-subheading">
-                A living collection of our community — filter by moment or step into the full-screen lightbox.
+                A living collection of our community — step into the full-screen lightbox.
             </p>
-        </div>
-
-        {{-- Category Filters (driven by data) --}}
-        <div class="gallery__filters" data-gallery-filters>
-            <button type="button" class="gallery-filter is-active" data-filter="all">
-                All
-                <span class="gallery-filter__count">{{ $photoCount }}</span>
-            </button>
-            @foreach($categories as $category)
-                <button type="button" class="gallery-filter" data-filter="{{ $category }}">
-                    {{ $category }}
-                    <span class="gallery-filter__count">{{ $photos->where('category', $category)->count() }}</span>
-                </button>
-            @endforeach
         </div>
 
         @if($photoCount > 0)
@@ -138,15 +122,13 @@
         @if($videoCount > 0)
             <div class="featured-videos__grid" data-videos-grid>
                 @foreach($videos as $video)
-                    <article class="video-card" data-video-url="{{ $video->video_url }}">
+                    <article class="video-card" data-video-url="{{ $video->video_url }}" data-video-item>
                         <button type="button" class="video-card__trigger" data-video-open aria-haspopup="dialog">
                             <div class="video-card__thumb">
-                                @if($video->thumbnail_url)
-                                    <img src="{{ $video->thumbnail_url }}"
-                                         alt="{{ $video->title }}"
-                                         loading="lazy"
-                                         class="video-card__image">
-                                @endif
+                                <img src="{{ $video->auto_thumbnail }}"
+                                     alt="{{ $video->title }}"
+                                     loading="lazy"
+                                     class="video-card__image">
                                 <div class="video-card__play">
                                     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                                         <path d="M8 5v14l11-7z"/>
@@ -161,6 +143,15 @@
                     </article>
                 @endforeach
             </div>
+
+            <div class="gallery__load-more" data-load-more-wrap="videos">
+                <button type="button" class="btn-outline" data-load-more="videos">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                        <path d="M12 5v14M5 12h14"/>
+                    </svg>
+                    Load More Videos
+                </button>
+            </div>
         @else
             <div class="gallery__empty">
                 <p>Featured videos are coming soon.</p>
@@ -172,139 +163,9 @@
 
 
 {{-- ═══════════════════════════════════════════
-     4. RECENT EVENTS SLIDER
+     4. UPCOMING EVENTS (shared section)
 ═══════════════════════════════════════════ --}}
-<section class="recent-events section-wrapper" id="events">
-    <div class="container">
-
-        <div class="section-heading-block">
-            <span class="section-label">HAPPENINGS</span>
-            <h2 class="section-heading">
-                Recent <em>Events</em>
-            </h2>
-            <p class="section-subheading">
-                From summits to ceremonies — the gatherings that bring our global community together.
-            </p>
-        </div>
-
-        @if($eventCount > 0)
-            <div class="recent-events__slider" data-events-slider>
-                <div class="recent-events__track">
-                    @foreach($events as $event)
-                        <article class="event-card">
-                            <div class="event-card__image-wrapper">
-                                @if($event->image_url)
-                                    <img src="{{ $event->image_url }}"
-                                         alt="{{ $event->title }}"
-                                         loading="lazy"
-                                         class="event-card__image">
-                                @endif
-                                @if($event->event_date)
-                                    <span class="event-card__date">{{ $event->event_date->format('d M Y') }}</span>
-                                @endif
-                            </div>
-                            <div class="event-card__content">
-                                <h3 class="event-card__title">{{ $event->title }}</h3>
-                                @if($event->location)
-                                    <p class="event-card__location">
-                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
-                                            <circle cx="12" cy="10" r="3"/>
-                                        </svg>
-                                        {{ $event->location }}
-                                    </p>
-                                @endif
-                            </div>
-                        </article>
-                    @endforeach
-                </div>
-
-                <div class="recent-events__nav">
-                    <button type="button" class="events-nav-btn" data-events-prev aria-label="Previous">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                            <path d="M15 18l-6-6 6-6"/>
-                        </svg>
-                    </button>
-                    <button type="button" class="events-nav-btn" data-events-next aria-label="Next">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                            <path d="M9 18l6-6-6-6"/>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        @else
-            <div class="gallery__empty">
-                <p>Upcoming event highlights will appear here.</p>
-            </div>
-        @endif
-
-    </div>
-</section>
-
-
-{{-- ═══════════════════════════════════════════
-     5. MEDIA COVERAGE
-═══════════════════════════════════════════ --}}
-<section id="how-we-do-it" class="hwdi media-coverage section-wrapper section--light">
-    <div class="container">
-
-        <div class="hwdi__header">
-            <div class="section-label">
-                <span>IN THE PRESS</span>
-            </div>
-            <h2 class="hwdi__heading section-title">
-                <span class="hwdi__heading-line">
-                    <span class="text-reveal-wrapper">
-                        <span class="text-reveal-inner">Media</span>
-                    </span>
-                </span>
-                <span class="hwdi__heading-line hwdi__heading-line--red">
-                    <span class="text-reveal-wrapper">
-                        <span class="text-reveal-inner">Coverage</span>
-                    </span>
-                </span>
-            </h2>
-            <p class="hwdi__subtitle body-text fade-up">
-                What the world's leading publications are saying about the Maverick movement.
-            </p>
-        </div>
-
-        @if($pressCount > 0)
-            <div class="media-coverage__grid">
-                @foreach($pressMentions as $article)
-                    <a href="{{ $article->url ?: '#' }}"
-                       class="media-article"
-                       target="{{ $article->url ? '_blank' : '_self' }}"
-                       rel="{{ $article->url ? 'noopener' : '' }}">
-                        <div class="media-article__logo">
-                            <span>{{ $article->code ?: 'PR' }}</span>
-                        </div>
-                        <div class="media-article__content">
-                            <span class="media-article__publication">{{ $article->publication }}</span>
-                            <h3 class="media-article__title">{{ $article->title }}</h3>
-                            <div class="media-article__meta">
-                                @if($article->publication_date)
-                                    <span class="media-article__date">{{ $article->publication_date }}</span>
-                                @endif
-                                <span class="media-article__read">
-                                    Read Article
-                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
-                                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                                    </svg>
-                                </span>
-                            </div>
-                        </div>
-                    </a>
-                @endforeach
-            </div>
-        @else
-            <div class="gallery__empty">
-                <p>Press mentions are being added.</p>
-            </div>
-        @endif
-
-    </div>
-</section>
+@include('sections.upcoming-events')
 
 </div>
 

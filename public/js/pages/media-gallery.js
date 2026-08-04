@@ -1,72 +1,77 @@
 // ============================================
-// MEDIA GALLERY — dynamic filter, load-more,
-// lightbox, video modal + events slider
+// MEDIA GALLERY — photo/video load-more,
+// lightbox + video modal
 // ============================================
 
 document.addEventListener('DOMContentLoaded', function () {
 
     // ═══════════════════════════════════════════
-    // 1. GALLERY FILTER + LOAD MORE
+    // 1. PHOTOS — show 15 on load, +10 per click
     // ═══════════════════════════════════════════
     const masonry = document.querySelector('[data-masonry]');
-    const filterButtons = Array.from(document.querySelectorAll('.gallery-filter'));
     const galleryItems = masonry ? Array.from(masonry.querySelectorAll('.gallery-item')) : [];
-    const loadMoreBtn = document.querySelector('[data-load-more="photos"]');
+    const photoLoadBtn = document.querySelector('[data-load-more="photos"]');
 
-    const BATCH_SIZE = 8;
-    let activeFilter = 'all';
-    let loadedCount = BATCH_SIZE;
+    const PHOTO_INITIAL = 15;
+    const PHOTO_BATCH = 10;
+    let photoLoaded = Math.min(PHOTO_INITIAL, galleryItems.length);
 
-    function refreshVisibility() {
-        const filtering = activeFilter !== 'all';
+    function refreshPhotos() {
         galleryItems.forEach(function (item, i) {
-            const matches = filtering || item.dataset.category === activeFilter;
-            const loaded = filtering || i < loadedCount;
-            const show = matches && loaded;
-            item.classList.toggle('is-hidden', !show);
+            item.classList.toggle('is-hidden', i >= photoLoaded);
         });
 
-        // Hide load-more when everything relevant is shown.
-        if (loadMoreBtn) {
-            const totalRelevant = filtering
-                ? galleryItems.filter(function (it) {
-                    return it.dataset.category === activeFilter;
-                }).length
-                : galleryItems.length;
-            loadMoreBtn.closest('[data-load-more-wrap]').style.display =
-                loadedCount >= totalRelevant ? 'none' : '';
+        if (photoLoadBtn) {
+            photoLoadBtn.closest('[data-load-more-wrap]').style.display =
+                photoLoaded >= galleryItems.length ? 'none' : '';
         }
     }
 
-    function updateFiltersActive(active) {
-        filterButtons.forEach(function (btn) {
-            btn.classList.toggle('is-active', btn.dataset.filter === active);
-        });
-    }
-
-    if (filterButtons.length) {
-        filterButtons.forEach(function (btn) {
-            btn.addEventListener('click', function () {
-                activeFilter = btn.dataset.filter || 'all';
-                updateFiltersActive(activeFilter);
-                refreshVisibility();
-            });
-        });
-    }
-
-    if (loadMoreBtn) {
-        loadMoreBtn.addEventListener('click', function () {
-            loadedCount += BATCH_SIZE;
-            refreshVisibility();
+    if (photoLoadBtn) {
+        photoLoadBtn.addEventListener('click', function () {
+            photoLoaded = Math.min(photoLoaded + PHOTO_BATCH, galleryItems.length);
+            refreshPhotos();
         });
     }
 
     if (galleryItems.length) {
-        refreshVisibility();
+        refreshPhotos();
     }
 
     // ═══════════════════════════════════════════
-    // 2. LIGHTBOX
+    // 2. VIDEOS — show 6 on load, +6 per click
+    // ═══════════════════════════════════════════
+    const videoItems = Array.from(document.querySelectorAll('[data-video-item]'));
+    const videoLoadBtn = document.querySelector('[data-load-more="videos"]');
+
+    const VIDEO_INITIAL = 6;
+    const VIDEO_BATCH = 6;
+    let videoLoaded = Math.min(VIDEO_INITIAL, videoItems.length);
+
+    function refreshVideos() {
+        videoItems.forEach(function (item, i) {
+            item.classList.toggle('is-hidden', i >= videoLoaded);
+        });
+
+        if (videoLoadBtn) {
+            videoLoadBtn.closest('[data-load-more-wrap]').style.display =
+                videoLoaded >= videoItems.length ? 'none' : '';
+        }
+    }
+
+    if (videoLoadBtn) {
+        videoLoadBtn.addEventListener('click', function () {
+            videoLoaded = Math.min(videoLoaded + VIDEO_BATCH, videoItems.length);
+            refreshVideos();
+        });
+    }
+
+    if (videoItems.length) {
+        refreshVideos();
+    }
+
+    // ═══════════════════════════════════════════
+    // 3. LIGHTBOX
     // ═══════════════════════════════════════════
     const lightbox = document.getElementById('lightbox');
     const lbImage = document.querySelector('[data-lightbox-image]');
@@ -126,7 +131,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (lbNext) lbNext.addEventListener('click', function () { openLightbox(lbIndex + 1); });
 
     // ═══════════════════════════════════════════
-    // 3. VIDEO MODAL
+    // 4. VIDEO MODAL
     // ═══════════════════════════════════════════
     const videoModal = document.getElementById('videoModal');
     const videoFrame = document.querySelector('[data-video-frame]');
@@ -163,47 +168,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     if (videoClose) videoClose.addEventListener('click', closeVideo);
-
-    // ═══════════════════════════════════════════
-    // 4. RECENT EVENTS SLIDER
-    // ═══════════════════════════════════════════
-    const slider = document.querySelector('[data-events-slider]');
-    if (slider) {
-        const track = slider.querySelector('.recent-events__track');
-        const prevBtn = slider.querySelector('[data-events-prev]');
-        const nextBtn = slider.querySelector('[data-events-next]');
-        const cards = Array.from(track.querySelectorAll('.event-card'));
-
-        let currentIndex = 0;
-
-        function getVisibleCards() {
-            const width = window.innerWidth;
-            if (width < 640) return 1;
-            if (width < 991) return 2;
-            return 3;
-        }
-
-        function updateSlider() {
-            const cardWidth = cards[0].offsetWidth + 20;
-            track.style.transform = 'translateX(-' + currentIndex * cardWidth + 'px)';
-        }
-
-        if (prevBtn) prevBtn.addEventListener('click', function () {
-            if (currentIndex > 0) currentIndex--;
-            updateSlider();
-        });
-
-        if (nextBtn) nextBtn.addEventListener('click', function () {
-            const visible = getVisibleCards();
-            if (currentIndex < cards.length - visible) currentIndex++;
-            updateSlider();
-        });
-
-        window.addEventListener('resize', function () {
-            currentIndex = 0;
-            updateSlider();
-        });
-    }
 
     // ═══════════════════════════════════════════
     // 5. KEYBOARD + BACKDROP CLOSE
