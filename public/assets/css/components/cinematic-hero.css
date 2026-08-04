@@ -1,6 +1,6 @@
 /* =========================================================
    CINEMATIC HERO — Reusable Component
-   Matches Our Story hero design system
+   Design matches Our Story hero (Left-aligned)
    ========================================================= */
 
 /* Hero Base */
@@ -169,14 +169,18 @@
 .cinematic-hero__corner--bl { bottom: 0; left: 0; border-bottom: 1.5px solid rgba(255, 255, 255, 0.15); border-left: 1.5px solid rgba(255, 255, 255, 0.15); }
 .cinematic-hero__corner--br { bottom: 0; right: 0; border-bottom: 1.5px solid rgba(255, 255, 255, 0.15); border-right: 1.5px solid rgba(255, 255, 255, 0.15); }
 
-/* Content */
+/* =========================================================
+   CONTENT — Left-aligned (Matches Our Story)
+   ========================================================= */
 .cinematic-hero__content {
     position: relative;
     z-index: 3;
-    text-align: center;
-    padding: calc(var(--navbar-height, 80px) + 60px) 2rem 80px;
+    text-align: left;
+    padding: calc(var(--navbar-height, 80px) + 60px) 0 80px;
     max-width: 900px;
     margin: 0 auto;
+    padding-left: clamp(24px, 5vw, 80px);
+    padding-right: clamp(24px, 5vw, 80px);
 }
 
 /* Eyebrow */
@@ -200,15 +204,15 @@
     background: var(--color-mba-red, #b20202);
 }
 
-/* Title */
+/* Title — Matches Our Story */
 .cinematic-hero__title {
     font-family: var(--font-display, 'PP Neue Montreal', sans-serif);
-    font-size: clamp(42px, 7vw, 100px);
+    font-size: clamp(48px, 8vw, 110px);
     font-weight: 800;
     line-height: 1;
     letter-spacing: -0.03em;
     color: #ffffff;
-    margin: 0 0 24px;
+    margin: 0 0 28px;
     animation: cinematicFadeUp 0.7s ease-out 0.3s both;
 }
 
@@ -217,12 +221,12 @@
     color: var(--color-mba-red, #b20202);
 }
 
-/* Description */
+/* Description — Matches Our Story */
 .cinematic-hero__description {
     font-family: var(--font-body, 'Poppins', sans-serif);
-    font-size: clamp(15px, 1.4vw, 18px);
+    font-size: clamp(16px, 1.5vw, 19px);
     line-height: 1.7;
-    color: rgba(255, 255, 255, 0.75);
+    color: rgba(255, 255, 255, 0.85);
     margin: 0 auto 48px;
     max-width: 650px;
     animation: cinematicFadeUp 0.6s ease-out 0.4s both;
@@ -232,20 +236,9 @@
 .cinematic-hero__scroll-hint {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     gap: 8px;
     animation: cinematicFadeUp 0.5s ease-out 0.6s both;
-}
-
-@keyframes cinematicFadeUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
 
 .cinematic-hero__scroll-text {
@@ -267,6 +260,44 @@
     50% { transform: translateY(8px); }
 }
 
+@keyframes cinematicFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================================================
+   RESPONSIVE — Matches Our Story
+   ========================================================= */
+@media (max-width: 768px) {
+    .cinematic-hero {
+        min-height: 80vh;
+    }
+    
+    .cinematic-hero__corners {
+        inset: 1rem;
+    }
+    
+    .cinematic-hero__content {
+        text-align: left;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    
+    .cinematic-hero__title {
+        font-size: clamp(36px, 10vw, 60px);
+    }
+    
+    .cinematic-hero__description {
+        margin: 0 auto 20px;
+    }
+}
+
 /* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
     .cinematic-hero__bg-image,
@@ -281,17 +312,5 @@
         animation: none !important;
         opacity: 1 !important;
         transform: none !important;
-    }
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .cinematic-hero__corners {
-        inset: 1rem;
-    }
-    
-    .cinematic-hero__content {
-        padding-top: calc(var(--navbar-height, 80px) + 40px);
-        padding-bottom: 60px;
     }
 }
