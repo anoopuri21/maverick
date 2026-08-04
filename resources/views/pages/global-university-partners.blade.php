@@ -4,6 +4,7 @@
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/pages/global-university-partners.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/components/cinematic-hero.css') }}">
 @endpush
 
 @section('content')
@@ -16,11 +17,11 @@
     // ═══════════════════════════════════════════
 
     $hero = (object)[
-        'tag' => '',
-        'heading_line1' => 'Global',
-        'heading_italic' => 'University Partners',
-        'description' => 'Our partnerships are more than logos on a page — they are carefully built academic bridges.',
-        'background_image' => asset('https://images.pexels.com/photos/5725589/pexels-photo-5725589.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=1600'),
+        'tag' => 'GLOBAL PARTNERSHIPS',
+        'heading_line1' => 'Building Global Pathways Through',
+        'heading_italic' => 'Strategic Academic Partnerships',
+        'description' => 'Maverick Business Academy collaborates with internationally recognized universities and educational institutions across five continents, creating academic bridges that connect ambitious learners with globally respected qualifications, cutting-edge research opportunities, and transformative career pathways that transcend geographical boundaries.',
+        'background_image' => 'https://images.pexels.com/photos/5725589/pexels-photo-5725589.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=1600',
     ];
 
     $overview = (object)[
@@ -190,20 +191,50 @@
 
 
 {{-- ═══════════════════════════════════════════
-     1. HERO SECTION
+     1. HERO SECTION (Cinematic Design)
 ═══════════════════════════════════════════ --}}
-<section class="gup-hero" style="background-image: url('{{ $hero->background_image }}');">
-    <div class="gup-hero__overlay"></div>
-    <div class="container gup-hero__content">
-        <span class="gup-hero__tag">{{ $hero->tag }}</span>
-        <h1 class="gup-hero__heading">
-            {{ $hero->heading_line1 }}
-            <em class="gup-hero__heading-italic">{{ $hero->heading_italic }}</em>
+<section class="cinematic-hero" aria-label="Global University Partners Hero">
+    <div class="cinematic-hero__bg" aria-hidden="true">
+        <div class="cinematic-hero__bg-image" style="background-image: url('{{ $hero->background_image }}')"></div>
+        <div class="cinematic-hero__gradient"></div>
+        <div class="cinematic-hero__noise"></div>
+        <div class="cinematic-hero__shapes">
+            <svg class="cinematic-hero__shape cinematic-hero__shape--1" viewBox="0 0 200 200" fill="none">
+                <circle cx="100" cy="100" r="80" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+            </svg>
+            <svg class="cinematic-hero__shape cinematic-hero__shape--2" viewBox="0 0 300 300" fill="none">
+                <circle cx="150" cy="150" r="120" stroke="rgba(220,38,38,0.2)" stroke-width="1"/>
+            </svg>
+            <svg class="cinematic-hero__shape cinematic-hero__shape--3" viewBox="0 0 100 100" fill="none">
+                <rect x="10" y="10" width="80" height="80" rx="8" stroke="rgba(255,255,255,0.15)" stroke-width="1" transform="rotate(20 50 50)"/>
+            </svg>
+        </div>
+        <div class="cinematic-hero__particles">
+            @for($i = 0; $i < 6; $i++)
+                <div class="cinematic-hero__particle"></div>
+            @endfor
+        </div>
+        <div class="cinematic-hero__scanline"></div>
+        <div class="cinematic-hero__corners">
+            <div class="cinematic-hero__corner cinematic-hero__corner--tl"></div>
+            <div class="cinematic-hero__corner cinematic-hero__corner--tr"></div>
+            <div class="cinematic-hero__corner cinematic-hero__corner--bl"></div>
+            <div class="cinematic-hero__corner cinematic-hero__corner--br"></div>
+        </div>
+    </div>
+    <div class="cinematic-hero__content">
+        <span class="cinematic-hero__eyebrow fade-up">
+            <span class="cinematic-hero__eyebrow-line"></span>
+            {{ $hero->tag }}
+        </span>
+        <h1 class="cinematic-hero__title fade-up">
+            {{ $hero->heading_line1 }}<br>
+            <em>{{ $hero->heading_italic }}</em>
         </h1>
-        <p class="gup-hero__description">{{ $hero->description }}</p>
-        <div class="gup-hero__scroll">
-            <span>SCROLL</span>
-            <div class="gup-hero__scroll-line"></div>
+        <p class="cinematic-hero__description fade-up">{{ $hero->description }}</p>
+        <div class="cinematic-hero__scroll-hint fade-up" aria-hidden="true">
+            <span class="cinematic-hero__scroll-text">Scroll to explore</span>
+            <span class="cinematic-hero__scroll-arrow" data-lucide="chevron-down"></span>
         </div>
     </div>
 </section>
