@@ -348,6 +348,48 @@ class PageController extends Controller
 
     public function gallery()
     {
-        return view('pages.media-gallery');
+        $photos = \App\Models\MediaGalleryPhoto::select(
+            'id',
+            'image_url',
+            'caption',
+            'category',
+            'size',
+            'sort_order',
+            'is_active'
+        )
+            ->where('is_active', true)
+            ->orderBy('sort_order')
+            ->get();
+
+        $videos = \App\Models\MediaGalleryVideo::select(
+            'id',
+            'title',
+            'video_url',
+            'thumbnail_url',
+            'duration',
+            'category',
+            'sort_order',
+            'is_active'
+        )
+            ->where('is_active', true)
+            ->orderBy('sort_order')
+            ->get();
+
+        // Events power the shared upcoming-events section (same source as homepage).
+        $events = \App\Models\Event::select('id', 'title', 'description', 'event_date', 'event_type', 'location', 'link_url')
+            ->where('is_active', true)
+            ->orderBy('event_date', 'desc')
+            ->limit(10)
+            ->get();
+
+        $data = [
+            'photos' => $photos,
+            'videos' => $videos,
+            'events' => $events,
+            'photoCount' => $photos->count(),
+            'videoCount' => $videos->count(),
+        ];
+
+        return view('pages.media-gallery', $data);
     }
 }
