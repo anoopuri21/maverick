@@ -282,7 +282,7 @@
 
 .csr-focus__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
 }
 
@@ -631,6 +631,10 @@ box-shadow:  20px 20px 60px #bebebe,
   }
   .accred-hero__heading-italic::after {
     display: none;
+  }
+  .csr-focus__grid {
+    grid-template-columns: 1fr;
+    gap: 4rem;
   }
 }
 

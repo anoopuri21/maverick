@@ -38,12 +38,12 @@
                     <div class="section-label"><span>Our Values</span></div>
                     <h2 class="csr-section-heading">Our <span class="csr-text-accent">Commitment</span></h2>
                     <p class="csr-body-text">
-                         At Maverick Business Academy, we believe education extends beyond classrooms. Through our CSR initiatives, we actively contribute to community development, educational accessibility, professional growth, and social wellbeing.
+                        At Maverick Business Academy, we believe education extends beyond classrooms. Through our CSR initiatives, we actively contribute to community development, educational accessibility, professional growth, and social wellbeing.
                     </p>    
                 </div>
                 <div class="csr-commitment__visual">
                     <div class="csr-commitment__image-container">
-                        <img src="https://images.pexels.com/photos/6565755/pexels-photo-6565755.jpeg" alt="Students and educators community engagement" class="csr-commitment__img" loading="lazy">
+                        <img src="https://res.cloudinary.com/i08gwudw/image/upload/v1785846422/csr-impact_bh8qyb.png" alt="Students and educators community engagement" class="csr-commitment__img" loading="lazy">
                         <div class="csr-decorative-pattern"></div>
                     </div>
                 </div>
