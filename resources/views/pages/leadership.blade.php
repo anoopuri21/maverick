@@ -4,6 +4,7 @@
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/pages/leadership.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/components/cinematic-hero.css') }}">
 @endpush
 
 @section('content')
@@ -17,9 +18,9 @@
 
     $hero = (object)[
         'tag' => 'LEADERSHIP & GOVERNANCE',
-        'heading' => 'The Visionaries Behind',
+        'heading_line1' => 'The Visionaries Behind',
         'heading_italic' => 'Maverick Academy',
-        'description' => 'Meet the distinguished leaders and board members who guide our mission to transform lives through accessible, world-class business education.',
+        'description' => 'Meet the distinguished leaders and board members who guide our mission to transform lives through accessible, world-class business education. Our leadership team brings decades of experience from top universities, Fortune 500 companies, and global education institutions.',
         'background_image' => 'https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=1920',
     ];
 
@@ -91,17 +92,51 @@
 
 
 {{-- ═══════════════════════════════════════════
-     1. HERO SECTION
+     1. HERO SECTION (Cinematic Design)
 ═══════════════════════════════════════════ --}}
-<section class="leadership-hero" style="background-image: url('{{ $hero->background_image }}');">
-    <div class="leadership-hero__overlay"></div>
-    <div class="container leadership-hero__content">
-        <span class="leadership-hero__tag">{{ $hero->tag }}</span>
-        <h1 class="leadership-hero__heading">
-            {{ $hero->heading }}
-            <em class="leadership-hero__heading-italic">{{ $hero->heading_italic }}</em>
+<section class="cinematic-hero cinematic-hero--short" aria-label="Leadership Hero">
+    <div class="cinematic-hero__bg" aria-hidden="true">
+        <div class="cinematic-hero__bg-image" style="background-image: url('{{ $hero->background_image }}')"></div>
+        <div class="cinematic-hero__gradient"></div>
+        <div class="cinematic-hero__noise"></div>
+        <div class="cinematic-hero__shapes">
+            <svg class="cinematic-hero__shape cinematic-hero__shape--1" viewBox="0 0 200 200" fill="none">
+                <circle cx="100" cy="100" r="80" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+            </svg>
+            <svg class="cinematic-hero__shape cinematic-hero__shape--2" viewBox="0 0 300 300" fill="none">
+                <circle cx="150" cy="150" r="120" stroke="rgba(220,38,38,0.2)" stroke-width="1"/>
+            </svg>
+            <svg class="cinematic-hero__shape cinematic-hero__shape--3" viewBox="0 0 100 100" fill="none">
+                <rect x="10" y="10" width="80" height="80" rx="8" stroke="rgba(255,255,255,0.15)" stroke-width="1" transform="rotate(20 50 50)"/>
+            </svg>
+        </div>
+        <div class="cinematic-hero__particles">
+            @for($i = 0; $i < 6; $i++)
+                <div class="cinematic-hero__particle"></div>
+            @endfor
+        </div>
+        <div class="cinematic-hero__scanline"></div>
+        <div class="cinematic-hero__corners">
+            <div class="cinematic-hero__corner cinematic-hero__corner--tl"></div>
+            <div class="cinematic-hero__corner cinematic-hero__corner--tr"></div>
+            <div class="cinematic-hero__corner cinematic-hero__corner--bl"></div>
+            <div class="cinematic-hero__corner cinematic-hero__corner--br"></div>
+        </div>
+    </div>
+    <div class="cinematic-hero__content">
+        <span class="cinematic-hero__eyebrow">
+            <span class="cinematic-hero__eyebrow-line"></span>
+            {{ $hero->tag }}
+        </span>
+        <h1 class="cinematic-hero__title">
+            {{ $hero->heading_line1 }}<br>
+            <em>{{ $hero->heading_italic }}</em>
         </h1>
-        <p class="leadership-hero__description">{{ $hero->description }}</p>
+        <p class="cinematic-hero__description">{{ $hero->description }}</p>
+        <div class="cinematic-hero__scroll-hint" aria-hidden="true">
+            <span class="cinematic-hero__scroll-text">Scroll to explore</span>
+            <span class="cinematic-hero__scroll-arrow" data-lucide="chevron-down"></span>
+        </div>
     </div>
 </section>
 

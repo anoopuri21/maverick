@@ -4,6 +4,7 @@
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/pages/media-gallery.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/components/cinematic-hero.css') }}">
 @endpush
 
 @section('content')
@@ -16,9 +17,9 @@
     // ═══════════════════════════════════════════
     $hero = (object)[
         'tag' => 'MEDIA GALLERY',
-        'heading' => 'Life at Maverick,',
+        'heading_line1' => 'Life at Maverick,',
         'heading_italic' => 'In Pictures',
-        'description' => 'Explore the moments that define our community — from graduation celebrations and campus life to global events and media spotlight.',
+        'description' => 'Explore the moments that define our community — from graduation celebrations and campus life to global events and media spotlight. Every image tells a story of ambition, achievement, and the transformative power of education.',
         'background_image' => 'https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg?auto=compress&cs=tinysrgb&w=1920',
     ];
 
@@ -28,20 +29,50 @@
 
 
 {{-- ═══════════════════════════════════════════
-     1. HERO SECTION
+     1. HERO SECTION (Cinematic Design)
 ═══════════════════════════════════════════ --}}
-<section class="gallery-hero" style="background-image: url('{{ $hero->background_image }}');">
-    <div class="gallery-hero__overlay"></div>
-    <div class="container gallery-hero__content">
-        <span class="gallery-hero__tag">{{ $hero->tag }}</span>
-        <h1 class="gallery-hero__heading">
-            {{ $hero->heading }}
-            <em class="gallery-hero__heading-italic">{{ $hero->heading_italic }}</em>
+<section class="cinematic-hero cinematic-hero--short" aria-label="Media Gallery Hero">
+    <div class="cinematic-hero__bg" aria-hidden="true">
+        <div class="cinematic-hero__bg-image" style="background-image: url('{{ $hero->background_image }}')"></div>
+        <div class="cinematic-hero__gradient"></div>
+        <div class="cinematic-hero__noise"></div>
+        <div class="cinematic-hero__shapes">
+            <svg class="cinematic-hero__shape cinematic-hero__shape--1" viewBox="0 0 200 200" fill="none">
+                <circle cx="100" cy="100" r="80" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+            </svg>
+            <svg class="cinematic-hero__shape cinematic-hero__shape--2" viewBox="0 0 300 300" fill="none">
+                <circle cx="150" cy="150" r="120" stroke="rgba(220,38,38,0.2)" stroke-width="1"/>
+            </svg>
+            <svg class="cinematic-hero__shape cinematic-hero__shape--3" viewBox="0 0 100 100" fill="none">
+                <rect x="10" y="10" width="80" height="80" rx="8" stroke="rgba(255,255,255,0.15)" stroke-width="1" transform="rotate(20 50 50)"/>
+            </svg>
+        </div>
+        <div class="cinematic-hero__particles">
+            @for($i = 0; $i < 6; $i++)
+                <div class="cinematic-hero__particle"></div>
+            @endfor
+        </div>
+        <div class="cinematic-hero__scanline"></div>
+        <div class="cinematic-hero__corners">
+            <div class="cinematic-hero__corner cinematic-hero__corner--tl"></div>
+            <div class="cinematic-hero__corner cinematic-hero__corner--tr"></div>
+            <div class="cinematic-hero__corner cinematic-hero__corner--bl"></div>
+            <div class="cinematic-hero__corner cinematic-hero__corner--br"></div>
+        </div>
+    </div>
+    <div class="cinematic-hero__content">
+        <span class="cinematic-hero__eyebrow">
+            <span class="cinematic-hero__eyebrow-line"></span>
+            {{ $hero->tag }}
+        </span>
+        <h1 class="cinematic-hero__title">
+            {{ $hero->heading_line1 }}<br>
+            <em>{{ $hero->heading_italic }}</em>
         </h1>
-        <p class="gallery-hero__description">{{ $hero->description }}</p>
-        <div class="gallery-hero__scroll">
-            <span>SCROLL</span>
-            <div class="gallery-hero__scroll-line"></div>
+        <p class="cinematic-hero__description">{{ $hero->description }}</p>
+        <div class="cinematic-hero__scroll-hint" aria-hidden="true">
+            <span class="cinematic-hero__scroll-text">Scroll to explore</span>
+            <span class="cinematic-hero__scroll-arrow" data-lucide="chevron-down"></span>
         </div>
     </div>
 </section>
