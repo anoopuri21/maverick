@@ -346,6 +346,79 @@ class PageController extends Controller
 
     public function gallery()
     {
-        return view('pages.media-gallery');
+        $photos = \App\Models\MediaGalleryPhoto::select(
+            'id',
+            'image_url',
+            'caption',
+            'category',
+            'size',
+            'sort_order',
+            'is_active'
+        )
+            ->where('is_active', true)
+            ->orderBy('sort_order')
+            ->get();
+
+        $videos = \App\Models\MediaGalleryVideo::select(
+            'id',
+            'title',
+            'video_url',
+            'thumbnail_url',
+            'duration',
+            'category',
+            'sort_order',
+            'is_active'
+        )
+            ->where('is_active', true)
+            ->orderBy('sort_order')
+            ->get();
+
+        $events = \App\Models\MediaGalleryEvent::select(
+            'id',
+            'title',
+            'event_date',
+            'location',
+            'image_url',
+            'sort_order',
+            'is_active'
+        )
+            ->where('is_active', true)
+            ->orderBy('event_date', 'desc')
+            ->get();
+
+        $pressMentions = \App\Models\MediaPressMention::select(
+            'id',
+            'publication',
+            'code',
+            'title',
+            'url',
+            'publication_date',
+            'sort_order',
+            'is_active'
+        )
+            ->where('is_active', true)
+            ->orderBy('sort_order')
+            ->get();
+
+        // Distinct, ordered categories derived from active photos.
+        $categories = $photos
+            ->pluck('category')
+            ->filter(fn ($c) => filled($c))
+            ->unique()
+            ->values();
+
+        $data = [
+            'photos' => $photos,
+            'videos' => $videos,
+            'events' => $events,
+            'pressMentions' => $pressMentions,
+            'categories' => $categories,
+            'photoCount' => $photos->count(),
+            'videoCount' => $videos->count(),
+            'eventCount' => $events->count(),
+            'pressCount' => $pressMentions->count(),
+        ];
+
+        return view('pages.media-gallery', $data);
     }
 }
