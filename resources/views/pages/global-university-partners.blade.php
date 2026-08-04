@@ -18,8 +18,8 @@
 
     $hero = (object)[
         'tag' => 'GLOBAL PARTNERSHIPS',
-        'heading_line1' => 'Building Global Pathways Through',
-        'heading_italic' => 'Strategic Academic Partnerships',
+        'heading_line1' => 'Global',
+        'heading_italic' => 'University Partners',
         'description' => 'Maverick Business Academy collaborates with internationally recognized universities and educational institutions across five continents, creating academic bridges that connect ambitious learners with globally respected qualifications, cutting-edge research opportunities, and transformative career pathways that transcend geographical boundaries.',
         'background_image' => 'https://images.pexels.com/photos/5725589/pexels-photo-5725589.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=1600',
     ];
@@ -223,16 +223,16 @@
         </div>
     </div>
     <div class="cinematic-hero__content">
-        <span class="cinematic-hero__eyebrow fade-up">
+        <span class="cinematic-hero__eyebrow">
             <span class="cinematic-hero__eyebrow-line"></span>
             {{ $hero->tag }}
         </span>
-        <h1 class="cinematic-hero__title fade-up">
+        <h1 class="cinematic-hero__title">
             {{ $hero->heading_line1 }}<br>
             <em>{{ $hero->heading_italic }}</em>
         </h1>
-        <p class="cinematic-hero__description fade-up">{{ $hero->description }}</p>
-        <div class="cinematic-hero__scroll-hint fade-up" aria-hidden="true">
+        <p class="cinematic-hero__description">{{ $hero->description }}</p>
+        <div class="cinematic-hero__scroll-hint" aria-hidden="true">
             <span class="cinematic-hero__scroll-text">Scroll to explore</span>
             <span class="cinematic-hero__scroll-arrow" data-lucide="chevron-down"></span>
         </div>
