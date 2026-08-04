@@ -63,6 +63,7 @@
 
     <script src="{{ asset('assets/js/main.js') }}" defer></script>
     <script src="{{ asset('assets/js/navigation.js') }}" defer></script>
+    <script src="{{ asset('assets/js/animations-utils.js') }}" defer></script>
     <script src="{{ asset('assets/js/animations.js') }}" defer></script>
     @if(request()->routeIs('our-story'))
     <script src="{{ asset('assets/js/core/animations-core.js') }}" type="module" defer></script>

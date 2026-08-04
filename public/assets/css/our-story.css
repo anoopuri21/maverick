@@ -632,7 +632,7 @@
    ========================================================= */
 .os-journey {
   position: relative;
-  background: var(--os-cream);
+  background: #e8e8e8;
   overflow: hidden;
 }
 .os-journey__noise {

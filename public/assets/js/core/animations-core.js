@@ -13,7 +13,6 @@ let isInitialized = false;
  */
 export function initGSAP() {
   if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") {
-    console.warn("GSAP or ScrollTrigger not loaded");
     return false;
   }
 
@@ -26,12 +25,10 @@ export function initGSAP() {
  */
 export function initLenis() {
   if (typeof Lenis === "undefined") {
-    console.warn("Lenis not loaded");
     return null;
   }
 
   if (respectsReducedMotion()) {
-    console.log("Reduced motion enabled - skipping Lenis");
     return null;
   }
 

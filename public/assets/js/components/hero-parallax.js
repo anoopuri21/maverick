@@ -12,27 +12,23 @@ let triggers = [];
  * @param {string|HTMLElement} selector - CSS selector or DOM element (should be #story-hero)
  */
 export function initHeroParallax(selector) {
-  const hero = typeof selector === "string" 
-    ? document.querySelector(selector) 
+  const hero = typeof selector === "string"
+    ? document.querySelector(selector)
     : selector;
-  
+
   if (!hero) return;
 
   const shapes = hero.querySelectorAll(".os-hero__shape");
-  console.log('[hero-parallax] shapes:', shapes.length);
 
-  if (respectsReducedMotion() || isMobile()) {
-    // Skip parallax on reduced motion or mobile for performance
-    return;
-  }
+  if (respectsReducedMotion() || isMobile()) return;
 
   // Cleanup existing triggers
   cleanup();
 
   // Apply parallax to each shape with different speeds
   shapes.forEach((shape, i) => {
-    const speed = (i + 1) * -40; // Different speeds per shape
-    
+    const speed = (i + 1) * -40;
+
     const trigger = ScrollTrigger.create({
       trigger: hero,
       start: "top top",
@@ -46,7 +42,7 @@ export function initHeroParallax(selector) {
         });
       },
     });
-    
+
     triggers.push(trigger);
   });
 }
