@@ -76,7 +76,48 @@
      SECTION 1: ACCREDITATIONS & PARTNERSHIPS
 ═══════════════════════════════════════════ --}}
 <section class="accreditations section-wrapper section--light" aria-label="Accreditations">
-    ...
+    <div class="container">
+        <div class="accreditations__header">
+            <span class="section-label"><span>Our Credentials</span></span>
+            <h2 class="section-title">Accreditations <span>& Partnerships</span></h2>
+            <p class="accreditations__subtitle">
+                We partner with leading universities and hold accreditations from globally respected bodies.
+            </p>
+        </div>
+    </div>
+
+    {{-- Background Geometric Shapes --}}
+    <div class="accreditations__bg-shapes" aria-hidden="true">
+        <div class="accreditations__bg-shape accrediations__bg-shape--circle accrediations__bg-shape--1"></div>
+        <div class="accreditations__bg-shape accrediations__bg-shape--circle accrediations__bg-shape--2"></div>
+        <div class="accreditations__bg-shape accrediations__bg-shape--triangle accrediations__bg-shape--3"></div>
+        <div class="accreditations__bg-shape accrediations__bg-shape--square accrediations__bg-shape--4"></div>
+        <div class="accreditations__bg-shape accrediations__bg-shape--dot accrediations__bg-shape--5"></div>
+        <div class="accreditations__bg-shape accrediations__bg-shape--dot accrediations__bg-shape--6"></div>
+        <div class="accreditations__bg-shape accrediations__bg-shape--dot accrediations__bg-shape--7"></div>
+    </div>
+
+    {{-- Draggable Slider --}}
+    <div class="accreditations__carousel" data-carousel>
+        <div class="accreditations__carousel-track" data-carousel-track>
+            {{-- Duplicate for infinite loop --}}
+            @for($r = 0; $r < 3; $r++)
+                @foreach($accreditationLogos as $logo)
+                <div class="accreditations__card" data-card>
+                    <div class="accreditations__card-logo">
+                        @if($logo->logo_url)
+                            <img src="{{ $logo->logo_url }}" alt="{{ $logo->name }}" loading="lazy">
+                        @else
+                            <span>{{ strtoupper(substr($logo->name, 0, 3)) }}</span>
+                        @endif
+                    </div>
+                    <h4 class="accreditations__card-name">{{ $logo->name }}</h4>
+                    <!-- <span class="accreditations__card-type">{{ ucfirst($logo->type) }}</span> -->
+                </div>
+                @endforeach
+            @endfor
+        </div>
+    </div>
 </section>
 
 {{-- ═══════════════════════════════════════════

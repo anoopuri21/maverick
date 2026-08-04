@@ -679,15 +679,16 @@
     justify-content: center;
   }
 
-  .accred-cinematic__bg {
-    position: absolute;
-    width: 60vw; /* Initial size */
-    height: 60vh;
-    overflow: hidden;
-    border-radius: 20px;
-    z-index: 1;
-    will-change: width, height, border-radius;
-  }
+    .accred-cinematic__bg {
+      position: absolute;
+      width: 60vw; /* Initial size */
+      height: 60vh;
+      overflow: hidden;
+      border-radius: 20px;
+      z-index: 1;
+      will-change: width, height, border-radius;
+      transform: scale(0.6, 0.6); /* Initial transform */
+    }
 
   .accred-cinematic__image {
     width: 100%;

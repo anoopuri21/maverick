@@ -45,7 +45,8 @@ export function initAccredCinematic(element) {
     gsap.set(bg, {
       width: "60vw",
       height: "60vh",
-      borderRadius: "20px"
+      borderRadius: "20px",
+      scale: 0.6
     });
     gsap.set(image, { scale: 1.2 });
     gsap.set(overlay, { opacity: 0 });
@@ -68,6 +69,7 @@ export function initAccredCinematic(element) {
       width: "100vw",
       height: "100vh",
       borderRadius: "0px",
+      scale: 1,
       ease: "none"
     }, 0)
     .to(image, {
