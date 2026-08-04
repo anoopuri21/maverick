@@ -60,7 +60,7 @@
             <div class="cinematic-hero__corner cinematic-hero__corner--br"></div>
         </div>
     </div>
-    <div class="cinematic-hero__content">
+    <div class="container cinematic-hero__content">
         <span class="cinematic-hero__eyebrow">
             <span class="cinematic-hero__eyebrow-line"></span>
             {{ $hero->tag }}
