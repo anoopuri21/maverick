@@ -5,6 +5,7 @@
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/pages/global-bachelors-pathway.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/components/cinematic-hero.css') }}">
 @endpush
 
 @section('content')
@@ -231,22 +232,76 @@
             'items' => ['Bank statement or financial proof, if required', 'Accommodation details, if required', 'Travel insurance, if required', 'Medical documents, if required', 'Any additional documents requested by the embassy or university'],
         ],
     ]);
+
+    // NEW: Explore Europe Section Data
+    $exploreEurope = collect([
+        (object)[
+            'flag' => '🇭🇺',
+            'country' => 'Hungary',
+            'type' => 'Premium European Pathway',
+            'university' => 'International Business School, Budapest',
+            'highlights' => ['International study experience in Budapest', 'Dual degree opportunities', '100% placement assistance', 'Erasmus+ student exchange'],
+        ],
+        (object)[
+            'flag' => '🇷🇴',
+            'country' => 'Romania',
+            'type' => 'Affordable European Pathway',
+            'university' => 'Aurel Vlaicu University',
+            'highlights' => ['Affordable tuition fees', 'One-year completion route', 'Lower cost of living', 'Direct university progression'],
+        ],
+        (object)[
+            'flag' => '🇲🇩',
+            'country' => 'Moldova',
+            'type' => 'Affordable European Pathway',
+            'university' => 'USPEE, Moldova',
+            'highlights' => ['Lower overall study cost', 'Reduced study duration', 'Student visa guidance', 'Flexible pathway structure'],
+        ],
+    ]);
 @endphp
 
 
 {{-- ═══════════════════════════════════════════
-     1. HERO
+     1. HERO SECTION (Cinematic Design)
 ═══════════════════════════════════════════ --}}
-<section class="gbp-hero" style="background-image: url('{{ $hero->background_image }}');" data-testid="gbp-hero">
-    <div class="gbp-hero__overlay"></div>
-    <div class="container gbp-hero__content">
-        <span class="gbp-hero__tag">{{ $hero->tag }}</span>
-        <h1 class="gbp-hero__heading">
-            {{ $hero->heading }}
-            <em class="gbp-hero__heading-italic">{{ $hero->heading_italic }}</em>
+<section class="cinematic-hero" aria-label="Global Bachelor's Pathway Hero">
+    <div class="cinematic-hero__bg" aria-hidden="true">
+        <div class="cinematic-hero__bg-image" style="background-image: url('{{ $hero->background_image }}')"></div>
+        <div class="cinematic-hero__gradient"></div>
+        <div class="cinematic-hero__noise"></div>
+        <div class="cinematic-hero__shapes">
+            <svg class="cinematic-hero__shape cinematic-hero__shape--1" viewBox="0 0 200 200" fill="none">
+                <circle cx="100" cy="100" r="80" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+            </svg>
+            <svg class="cinematic-hero__shape cinematic-hero__shape--2" viewBox="0 0 300 300" fill="none">
+                <circle cx="150" cy="150" r="120" stroke="rgba(220,38,38,0.2)" stroke-width="1"/>
+            </svg>
+            <svg class="cinematic-hero__shape cinematic-hero__shape--3" viewBox="0 0 100 100" fill="none">
+                <rect x="10" y="10" width="80" height="80" rx="8" stroke="rgba(255,255,255,0.15)" stroke-width="1" transform="rotate(20 50 50)"/>
+            </svg>
+        </div>
+        <div class="cinematic-hero__particles">
+            @for($i = 0; $i < 6; $i++)
+                <div class="cinematic-hero__particle"></div>
+            @endfor
+        </div>
+        <div class="cinematic-hero__scanline"></div>
+        <div class="cinematic-hero__corners">
+            <div class="cinematic-hero__corner cinematic-hero__corner--tl"></div>
+            <div class="cinematic-hero__corner cinematic-hero__corner--tr"></div>
+            <div class="cinematic-hero__corner cinematic-hero__corner--bl"></div>
+            <div class="cinematic-hero__corner cinematic-hero__corner--br"></div>
+        </div>
+    </div>
+    <div class="cinematic-hero__content">
+        <span class="cinematic-hero__eyebrow">
+            <span class="cinematic-hero__eyebrow-line"></span>
+            {{ $hero->tag }}
+        </span>
+        <h1 class="cinematic-hero__title">
+            {{ $hero->heading }}<br>
+            <em>{{ $hero->heading_italic }}</em>
         </h1>
-        <p class="gbp-hero__description">{{ $hero->description }}</p>
-        <p class="gbp-hero__sub">{{ $hero->sub_description }}</p>
+        <p class="cinematic-hero__description">{{ $hero->description }}</p>
 
         <div class="gbp-hero__highlights">
             @foreach($hero->highlights as $h)
@@ -258,18 +313,16 @@
         </div>
 
         <div class="gbp-hero__ctas">
-            <a href="#enquire" class="gbp-btn gbp-btn--primary" data-testid="hero-cta-enquire">Enquire Now
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-            <a href="#advisor" class="gbp-btn gbp-btn--ghost" data-testid="hero-cta-advisor">Speak to an Advisor</a>
-            <a href="#brochure" class="gbp-btn gbp-btn--ghost" data-testid="hero-cta-brochure">Download Brochure</a>
+            <a href="#enquire" class="btn btn--primary" data-testid="hero-cta-enquire">Enquire Now</a>
+            <a href="#advisor" class="btn btn--secondary" data-testid="hero-cta-advisor">Speak to an Advisor</a>
+            <a href="#brochure" class="btn btn--outline" data-testid="hero-cta-brochure">Download Brochure</a>
         </div>
     </div>
 </section>
 
 
 {{-- ═══════════════════════════════════════════
-     2. PROGRAMME OVERVIEW — split with stats
+     2. WHAT IS THE PATHWAY PROGRAMME
 ═══════════════════════════════════════════ --}}
 <section class="gbp-overview section-wrapper" data-testid="gbp-overview">
     <div class="container">
@@ -299,42 +352,7 @@
 
 
 {{-- ═══════════════════════════════════════════
-     3. PATHWAY STRUCTURE — Timeline
-═══════════════════════════════════════════ --}}
-<section class="gbp-stages section-wrapper" data-testid="gbp-stages">
-    <div class="container">
-
-        <div class="section-heading-block">
-            <span class="section-label">PROGRAMME PATHWAY</span>
-            <h2 class="section-heading">
-                A Structured <em>Four-Stage Journey</em>
-            </h2>
-            <p class="section-subheading">
-                From foundational diplomas in the UAE to an internationally recognised European bachelor's degree.
-            </p>
-        </div>
-
-        <div class="gbp-stages__timeline">
-            <div class="gbp-stages__line"></div>
-            @foreach($stages as $index => $stage)
-            <div class="gbp-stage">
-                <div class="gbp-stage__dot">{{ $stage->year }}</div>
-                <div class="gbp-stage__card">
-                    <span class="gbp-stage__duration">{{ $stage->duration }}</span>
-                    <h3 class="gbp-stage__title">{{ $stage->title }}</h3>
-                    <p class="gbp-stage__description">{{ $stage->description }}</p>
-                </div>
-            </div>
-            @endforeach
-        </div>
-
-                <p class="gbp-overview__paragraph" style="margin-top:30px;">{{ $overview->quotes }}</p>
-    </div>
-</section>
-
-
-{{-- ═══════════════════════════════════════════
-     4. WHY THIS PATHWAY — Sticky left + numbered cards
+     3. WHY THIS PATHWAY — Sticky left + numbered cards
 ═══════════════════════════════════════════ --}}
 <section class="gbp-why section-wrapper section--light" data-testid="gbp-why">
     <div class="container">
@@ -374,7 +392,81 @@
 
 
 {{-- ═══════════════════════════════════════════
-     5. STUDY DESTINATIONS — Editorial alternating
+     4. EXPLORE EUROPE WITH YOUR CHOICES
+═══════════════════════════════════════════ --}}
+<section class="gbp-explore section-wrapper" data-testid="gbp-explore">
+    <div class="container">
+        <div class="section-heading-block">
+            <span class="section-label">YOUR OPTIONS</span>
+            <h2 class="section-heading">
+                Explore Europe with <em>Your Choices</em>
+            </h2>
+            <p class="section-subheading">
+                Hungary | Romania | Moldova — With Maverick's Bachelor's Global Pathway, students can choose from multiple European progression routes based on their academic goals, budget, preferred destination, and long-term career plans.
+            </p>
+        </div>
+
+        <div class="gbp-explore__grid">
+            @foreach($exploreEurope as $country)
+            <div class="gbp-explore-card fade-up">
+                <div class="gbp-explore-card__flag">{{ $country->flag }}</div>
+                <h3 class="gbp-explore-card__country">{{ $country->country }}</h3>
+                <span class="gbp-explore-card__type">{{ $country->type }}</span>
+                <p class="gbp-explore-card__university">{{ $country->university }}</p>
+                <ul class="gbp-explore-card__highlights">
+                    @foreach($country->highlights as $highlight)
+                    <li>
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 6L9 17l-5-5"/>
+                        </svg>
+                        {{ $highlight }}
+                    </li>
+                    @endforeach
+                </ul>
+            </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+
+
+{{-- ═══════════════════════════════════════════
+     5. PROGRAMME PATHWAY STRUCTURE
+═══════════════════════════════════════════ --}}
+<section class="gbp-stages section-wrapper" data-testid="gbp-stages">
+    <div class="container">
+
+        <div class="section-heading-block">
+            <span class="section-label">PROGRAMME PATHWAY</span>
+            <h2 class="section-heading">
+                A Structured <em>Four-Stage Journey</em>
+            </h2>
+            <p class="section-subheading">
+                From foundational diplomas in the UAE to an internationally recognised European bachelor's degree.
+            </p>
+        </div>
+
+        <div class="gbp-stages__timeline">
+            <div class="gbp-stages__line"></div>
+            @foreach($stages as $index => $stage)
+            <div class="gbp-stage">
+                <div class="gbp-stage__dot">{{ $stage->year }}</div>
+                <div class="gbp-stage__card">
+                    <span class="gbp-stage__duration">{{ $stage->duration }}</span>
+                    <h3 class="gbp-stage__title">{{ $stage->title }}</h3>
+                    <p class="gbp-stage__description">{{ $stage->description }}</p>
+                </div>
+            </div>
+            @endforeach
+        </div>
+
+                <p class="gbp-overview__paragraph" style="margin-top:30px;">{{ $overview->quotes }}</p>
+    </div>
+</section>
+
+
+{{-- ═══════════════════════════════════════════
+     6. STUDY DESTINATIONS
 ═══════════════════════════════════════════ --}}
 <section class="gbp-destinations section-wrapper" data-testid="gbp-destinations">
     <div class="container">
@@ -428,7 +520,7 @@
 
 
 {{-- ═══════════════════════════════════════════
-     6. COST & TIME ADVANTAGE — Dark editorial band
+     7. COST & TIME ADVANTAGE
 ═══════════════════════════════════════════ --}}
 <section class="gbp-cost" data-testid="gbp-cost">
     <div class="container">
@@ -462,7 +554,7 @@
 
 
 {{-- ═══════════════════════════════════════════
-     7. PATHWAY AREAS — Category cards
+     8. PROGRAMS OFFERED
 ═══════════════════════════════════════════ --}}
 <section class="gbp-areas section-wrapper section--light" data-testid="gbp-areas">
     <div class="container">
@@ -499,7 +591,7 @@
 
 
 {{-- ═══════════════════════════════════════════
-     8. PARTNER UNIVERSITY OPTIONS
+     9. PARTNER UNIVERSITY PROGRESSION
 ═══════════════════════════════════════════ --}}
 <section class="gbp-partners section-wrapper" data-testid="gbp-partners">
     <div class="container">
@@ -539,7 +631,7 @@
 
 
 {{-- ═══════════════════════════════════════════
-     9. ADMISSION REQUIREMENTS — 2-column split
+     10. ADMISSION REQUIREMENTS
 ═══════════════════════════════════════════ --}}
 <section class="gbp-admission section-wrapper section--light" data-testid="gbp-admission">
     <div class="container">
@@ -597,7 +689,7 @@
 
 
 {{-- ═══════════════════════════════════════════
-     10. DOCUMENTS REQUIRED — 3 category cards
+     11. DOCUMENTS REQUIRED
 ═══════════════════════════════════════════ --}}
 <section class="gbp-docs section-wrapper" data-testid="gbp-docs">
     <div class="container">
@@ -630,7 +722,7 @@
 
 
 {{-- ═══════════════════════════════════════════
-     11. FINAL CTA — reuse shared partial + local closing
+     12. FINAL CTA
 ═══════════════════════════════════════════ --}}
 <section class="gbp-final" id="enquire" data-testid="gbp-final">
     <div class="container">
