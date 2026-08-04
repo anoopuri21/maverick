@@ -5,6 +5,7 @@
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/pages/csr-community-impact.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/components/cinematic-hero.css') }}">
 @endpush
 
 @section('content')
@@ -16,16 +17,51 @@
     <div class="csr-decorative-blob csr-decorative-blob--3"></div>
 
     {{-- ==========================================
-         PAGE BANNER (HERO)
+         PAGE BANNER (HERO) - Cinematic Design
          ========================================== --}}
-    <section class="accred-hero" style="background-image: url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=1920')">
-        <div class="accred-hero__overlay"></div>
-        <div class="container accred-hero__content">
-            <span class="accred-hero__tag">CSR & Community Impact</span>
-            <h1 class="accred-hero__heading">
-                CSR & Community Impact
+    <section class="cinematic-hero cinematic-hero--short" aria-label="CSR Hero">
+        <div class="cinematic-hero__bg" aria-hidden="true">
+            <div class="cinematic-hero__bg-image" style="background-image: url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=1920')"></div>
+            <div class="cinematic-hero__gradient"></div>
+            <div class="cinematic-hero__noise"></div>
+            <div class="cinematic-hero__shapes">
+                <svg class="cinematic-hero__shape cinematic-hero__shape--1" viewBox="0 0 200 200" fill="none">
+                    <circle cx="100" cy="100" r="80" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+                </svg>
+                <svg class="cinematic-hero__shape cinematic-hero__shape--2" viewBox="0 0 300 300" fill="none">
+                    <circle cx="150" cy="150" r="120" stroke="rgba(220,38,38,0.2)" stroke-width="1"/>
+                </svg>
+                <svg class="cinematic-hero__shape cinematic-hero__shape--3" viewBox="0 0 100 100" fill="none">
+                    <rect x="10" y="10" width="80" height="80" rx="8" stroke="rgba(255,255,255,0.15)" stroke-width="1" transform="rotate(20 50 50)"/>
+                </svg>
+            </div>
+            <div class="cinematic-hero__particles">
+                @for($i = 0; $i < 6; $i++)
+                    <div class="cinematic-hero__particle"></div>
+                @endfor
+            </div>
+            <div class="cinematic-hero__scanline"></div>
+            <div class="cinematic-hero__corners">
+                <div class="cinematic-hero__corner cinematic-hero__corner--tl"></div>
+                <div class="cinematic-hero__corner cinematic-hero__corner--tr"></div>
+                <div class="cinematic-hero__corner cinematic-hero__corner--bl"></div>
+                <div class="cinematic-hero__corner cinematic-hero__corner--br"></div>
+            </div>
+        </div>
+        <div class="container cinematic-hero__content">
+            <span class="cinematic-hero__eyebrow">
+                <span class="cinematic-hero__eyebrow-line"></span>
+                SOCIAL RESPONSIBILITY
+            </span>
+            <h1 class="cinematic-hero__title">
+                CSR &<br>
+                <em>Community Impact</em>
             </h1>
-            <p class="accred-hero__description">Creating Positive Impact Through Education, Community Engagement, and Social Responsibility.</p>
+            <p class="cinematic-hero__description">Creating Positive Impact Through Education, Community Engagement, and Social Responsibility. Our initiatives empower communities, promote sustainability, and foster inclusive growth.</p>
+            <div class="cinematic-hero__scroll-hint" aria-hidden="true">
+                <span class="cinematic-hero__scroll-text">Scroll to explore</span>
+                <span class="cinematic-hero__scroll-arrow" data-lucide="chevron-down"></span>
+            </div>
         </div>
     </section>
     {{-- ==========================================
