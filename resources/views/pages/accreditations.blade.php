@@ -156,7 +156,7 @@
     <div class="container">
         <div class="awards__header">
             <span class="section-label"><span>Achievements</span></span>
-            <h2 class="section-title">Awards</h2>
+            <h2 class="section-title">Awards <span>& Recognition</span></h2>
             <p class="awards__subtitle">
                 Our commitment to excellence has been recognised by leading education bodies worldwide.
             </p>

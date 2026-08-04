@@ -281,10 +281,6 @@
     color: var(--color-mba-red);
 }
 
-.section-wrapper {
-    padding: clamp(80px, 10vw, 140px) 0;
-}
-
 
 /* =========================================================
    ACCREDITATIONS SECTION (Logo + Title Cards)
@@ -484,10 +480,7 @@
    AWARDS SECTION (Badge + Logo + Title)
    ========================================================= */
 .awards {
-    position: relative;
-    background: var(--accred-light);
-    overflow: hidden;
-    padding-top: 0;
+    background: linear-gradient(180deg, #e8e8e8, transparent);
 }
 
 /* Awards Grid */
@@ -706,7 +699,6 @@
   position: relative;
   width: 100%;
   overflow: hidden;
-  background: #000;
 }
 
 /* Desktop (Pinned) */
