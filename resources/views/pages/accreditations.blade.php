@@ -150,13 +150,13 @@
 @endif
 
 {{-- ═══════════════════════════════════════════
-     SECTION 3: AWARDS & RECOGNITION
+     SECTION 3: AWARDS
 ═══════════════════════════════════════════ --}}
-<section class="awards section-wrapper section--light" aria-label="Awards & Recognition">
+<section class="awards section-wrapper section--light" aria-label="Awards">
     <div class="container">
         <div class="awards__header">
             <span class="section-label"><span>Achievements</span></span>
-            <h2 class="section-title">Awards <span>& Recognition</span></h2>
+            <h2 class="section-title">Awards</h2>
             <p class="awards__subtitle">
                 Our commitment to excellence has been recognised by leading education bodies worldwide.
             </p>
@@ -165,22 +165,23 @@
         {{-- Awards Grid --}}
         <div class="awards__grid">
             @foreach($awardLogos as $logo)
-            <div class="awards__card" data-award-card>
-                <span class="awards__card-badge">{{ ucfirst($logo->type) }}</span>
-                <div class="awards__card-image">
+            <div class="awards__card">
+                <div class="awards__card-header">
+                    <h4 class="awards__card-name">{{ $logo->name }}</h4>
+                </div>
+                <div class="awards__card-body">
                     @if($logo->logo_url)
-                        <img src="{{ $logo->logo_url }}" alt="{{ $logo->name }}" loading="lazy" draggable="false">
+                        <img src="{{ $logo->logo_url }}" alt="{{ $logo->name }}" loading="lazy" class="awards__card-logo">
                     @else
                         <div class="awards__card-placeholder">
                             <span>{{ strtoupper(substr($logo->name, 0, 3)) }}</span>
                         </div>
                     @endif
                 </div>
-                <div class="awards__card-content">
-                    <h4 class="awards__card-title">{{ $logo->name }}</h4>
-                    @if($logo->description)
-                        <p class="awards__card-desc">{{ $logo->description }}</p>
-                    @endif
+                <div class="awards__card-footer">
+                    <div class="awards__card-icon">
+                        <span data-lucide="plus"></span>
+                    </div>
                 </div>
             </div>
             @endforeach
