@@ -18,7 +18,7 @@ class AccreditationController extends Controller
             ->get();
 
         // Section 2: Awards & Recognition (Award + Recognition types)
-        $awardLogos = PartnerLogo::select('id', 'name', 'logo_url', 'type', 'sort_order')
+        $awardLogos = PartnerLogo::select('id', 'name', 'logo_url', 'type', 'description', 'sort_order')
             ->whereIn('type', ['award', 'recognition'])
             ->where('is_active', true)
             ->orderBy('sort_order')

@@ -161,29 +161,29 @@
                 Our commitment to excellence has been recognised by leading education bodies worldwide.
             </p>
         </div>
-    </div>
 
-    {{-- Awards Slider --}}
-    <div class="awards__carousel" data-awards-carousel>
-        <div class="awards__carousel-track" data-awards-track>
-            {{-- Duplicate for infinite loop --}}
-            @for($r = 0; $r < 3; $r++)
-                @foreach($awardLogos as $logo)
-                <div class="awards__card" data-award-card>
-                    <span class="awards__card-badge">{{ ucfirst($logo->type) }}</span>
-                    <div class="awards__card-image">
-                        @if($logo->logo_url)
-                            <img src="{{ $logo->logo_url }}" alt="{{ $logo->name }}" loading="lazy" draggable="false">
-                        @else
-                            <div class="awards__card-placeholder">
-                                <span>{{ strtoupper(substr($logo->name, 0, 3)) }}</span>
-                            </div>
-                        @endif
-                    </div>
-                    <h4 class="awards__card-title">{{ $logo->name }}</h4>
+        {{-- Awards Grid --}}
+        <div class="awards__grid">
+            @foreach($awardLogos as $logo)
+            <div class="awards__card" data-award-card>
+                <span class="awards__card-badge">{{ ucfirst($logo->type) }}</span>
+                <div class="awards__card-image">
+                    @if($logo->logo_url)
+                        <img src="{{ $logo->logo_url }}" alt="{{ $logo->name }}" loading="lazy" draggable="false">
+                    @else
+                        <div class="awards__card-placeholder">
+                            <span>{{ strtoupper(substr($logo->name, 0, 3)) }}</span>
+                        </div>
+                    @endif
                 </div>
-                @endforeach
-            @endfor
+                <div class="awards__card-content">
+                    <h4 class="awards__card-title">{{ $logo->name }}</h4>
+                    @if($logo->description)
+                        <p class="awards__card-desc">{{ $logo->description }}</p>
+                    @endif
+                </div>
+            </div>
+            @endforeach
         </div>
     </div>
 </section>
@@ -287,8 +287,8 @@
             autoSlide();
         }
 
-        // Initialize all carousels
-        document.querySelectorAll('[data-carousel], [data-awards-carousel]').forEach(initCarousel);
+        // Initialize accreditations carousel
+        document.querySelectorAll('[data-carousel]').forEach(initCarousel);
     });
 </script>
 @endpush
