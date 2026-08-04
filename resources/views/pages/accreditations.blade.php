@@ -5,68 +5,60 @@
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/pages/accreditations.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/components/cinematic-hero.css') }}">
 @endpush
 
 @section('content')
 <div class="page-accreditations accred">
 
 {{-- ═══════════════════════════════════════════
-     HERO SECTION (Matches Our Story Design)
+     HERO SECTION (Cinematic Design)
 ═══════════════════════════════════════════ --}}
-<section class="accred-hero" aria-label="Accreditations Hero">
-    <div class="accred-hero__bg" aria-hidden="true">
-        <div class="accred-hero__bg-image" style="background-image: url('https://images.pexels.com/photos/267885/pexels-photo-267885.jpeg?auto=compress&cs=tinysrgb&w=1920')"></div>
-        <div class="accred-hero__gradient"></div>
-        <div class="accred-hero__noise"></div>
-        
-        {{-- Floating Geometric Shapes --}}
-        <div class="accred-hero__shapes">
-            <svg class="accred-hero__shape accred-hero__shape--1" viewBox="0 0 200 200" fill="none">
+<section class="cinematic-hero" aria-label="Accreditations Hero">
+    <div class="cinematic-hero__bg" aria-hidden="true">
+        <div class="cinematic-hero__bg-image" style="background-image: url('https://images.pexels.com/photos/267885/pexels-photo-267885.jpeg?auto=compress&cs=tinysrgb&w=1920')"></div>
+        <div class="cinematic-hero__gradient"></div>
+        <div class="cinematic-hero__noise"></div>
+        <div class="cinematic-hero__shapes">
+            <svg class="cinematic-hero__shape cinematic-hero__shape--1" viewBox="0 0 200 200" fill="none">
                 <circle cx="100" cy="100" r="80" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
             </svg>
-            <svg class="accred-hero__shape accred-hero__shape--2" viewBox="0 0 300 300" fill="none">
+            <svg class="cinematic-hero__shape cinematic-hero__shape--2" viewBox="0 0 300 300" fill="none">
                 <circle cx="150" cy="150" r="120" stroke="rgba(220,38,38,0.2)" stroke-width="1"/>
             </svg>
-            <svg class="accred-hero__shape accred-hero__shape--3" viewBox="0 0 100 100" fill="none">
+            <svg class="cinematic-hero__shape cinematic-hero__shape--3" viewBox="0 0 100 100" fill="none">
                 <rect x="10" y="10" width="80" height="80" rx="8" stroke="rgba(255,255,255,0.15)" stroke-width="1" transform="rotate(20 50 50)"/>
             </svg>
         </div>
-        
-        {{-- Particles --}}
-        <div class="accred-hero__particles">
+        <div class="cinematic-hero__particles">
             @for($i = 0; $i < 6; $i++)
-                <div class="accred-hero__particle"></div>
+                <div class="cinematic-hero__particle"></div>
             @endfor
         </div>
-        
-        {{-- Scanline --}}
-        <div class="accred-hero__scanline"></div>
-        
-        {{-- Corner Brackets --}}
-        <div class="accred-hero__corners">
-            <div class="accred-hero__corner accred-hero__corner--tl"></div>
-            <div class="accred-hero__corner accred-hero__corner--tr"></div>
-            <div class="accred-hero__corner accred-hero__corner--bl"></div>
-            <div class="accred-hero__corner accred-hero__corner--br"></div>
+        <div class="cinematic-hero__scanline"></div>
+        <div class="cinematic-hero__corners">
+            <div class="cinematic-hero__corner cinematic-hero__corner--tl"></div>
+            <div class="cinematic-hero__corner cinematic-hero__corner--tr"></div>
+            <div class="cinematic-hero__corner cinematic-hero__corner--bl"></div>
+            <div class="cinematic-hero__corner cinematic-hero__corner--br"></div>
         </div>
     </div>
-    
-    <div class="container accred-hero__content">
-        <span class="accred-hero__eyebrow fade-up">
-            <span class="accred-hero__eyebrow-line"></span>
+    <div class="cinematic-hero__content">
+        <span class="cinematic-hero__eyebrow">
+            <span class="cinematic-hero__eyebrow-line"></span>
             ACCREDITATIONS & RECOGNITIONS
         </span>
-        <h1 class="accred-hero__title fade-up">
+        <h1 class="cinematic-hero__title">
             Globally Recognised,<br>
             <em>Locally Trusted</em>
         </h1>
-        <p class="accred-hero__description fade-up">
+        <p class="cinematic-hero__description">
             Our commitment to excellence is validated by the world's most respected accreditation bodies, 
-            regulatory authorities, and industry partners.
+            regulatory authorities, and industry partners. Every credential represents our dedication to quality.
         </p>
-        <div class="accred-hero__scroll-hint fade-up" aria-hidden="true">
-            <span class="accred-hero__scroll-text">Scroll to explore</span>
-            <span class="accred-hero__scroll-arrow" data-lucide="chevron-down"></span>
+        <div class="cinematic-hero__scroll-hint" aria-hidden="true">
+            <span class="cinematic-hero__scroll-text">Scroll to explore</span>
+            <span class="cinematic-hero__scroll-arrow" data-lucide="chevron-down"></span>
         </div>
     </div>
 </section>
