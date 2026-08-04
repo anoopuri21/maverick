@@ -1,8 +1,101 @@
 // ============================================
-// GLOBAL UNIVERSITY PARTNERS - Filter Logic
+// GLOBAL UNIVERSITY PARTNERS - Animations & Interactions
 // ============================================
 
 document.addEventListener('DOMContentLoaded', function () {
+
+    // Check for GSAP
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+        console.warn('GSAP or ScrollTrigger not loaded');
+        return;
+    }
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // ═══════════════════════════════════════════
+    // TEXT REVEAL ANIMATION
+    // ═══════════════════════════════════════════
+    const textReveals = document.querySelectorAll('.text-reveal-inner');
+    if (textReveals.length && !prefersReducedMotion) {
+        gsap.set(textReveals, { y: '110%' });
+        gsap.to(textReveals, {
+            y: '0%',
+            duration: 0.9,
+            stagger: 0.12,
+            ease: 'power3.out',
+            scrollTrigger: {
+                trigger: '#university-partners',
+                start: 'top 75%',
+                toggleActions: 'play none none none',
+            },
+        });
+    }
+
+    // ═══════════════════════════════════════════
+    // SECTION LABEL ANIMATION
+    // ═══════════════════════════════════════════
+    const sectionLabel = document.querySelector('#university-partners .section-label');
+    if (sectionLabel && !prefersReducedMotion) {
+        gsap.fromTo(sectionLabel,
+            { opacity: 0, y: 16 },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: '#university-partners',
+                    start: 'top 75%',
+                    toggleActions: 'play none none none',
+                },
+            }
+        );
+    }
+
+    // ═══════════════════════════════════════════
+    // DETAIL PANEL ANIMATION
+    // ═══════════════════════════════════════════
+    const detailPanel = document.querySelector('.partners__detail-panel');
+    if (detailPanel && !prefersReducedMotion) {
+        gsap.fromTo(detailPanel,
+            { opacity: 0, y: 20 },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: '.partners__detail-panel',
+                    start: 'top 85%',
+                    toggleActions: 'play none none none',
+                },
+            }
+        );
+    }
+
+    // ═══════════════════════════════════════════
+    // MOBILE ITEMS ANIMATION
+    // ═══════════════════════════════════════════
+    const mobileItems = document.querySelectorAll('.partners__mobile-item');
+    if (mobileItems.length && !prefersReducedMotion) {
+        gsap.fromTo(mobileItems,
+            { opacity: 0, x: -20 },
+            {
+                opacity: 1,
+                x: 0,
+                duration: 0.5,
+                stagger: 0.05,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: '.partners__mobile-list',
+                    start: 'top 80%',
+                    toggleActions: 'play none none none',
+                },
+            }
+        );
+    }
 
     // ═══════════════════════════════════════════
     // GALLERY FILTER
@@ -29,7 +122,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-
     // ═══════════════════════════════════════════
     // SCROLL REVEAL (Intersection Observer)
     // ═══════════════════════════════════════════
@@ -37,20 +129,20 @@ document.addEventListener('DOMContentLoaded', function () {
         '.gup-stat, .gup-why-card, .gup-benefit, .gup-gallery-item'
     );
 
-    if (!revealElements.length) return;
-
-    const observer = new IntersectionObserver(function (entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-                observer.unobserve(entry.target);
-            }
+    if (revealElements.length) {
+        const observer = new IntersectionObserver(function (entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.15,
+            rootMargin: '0px 0px -80px 0px'
         });
-    }, {
-        threshold: 0.15,
-        rootMargin: '0px 0px -80px 0px'
-    });
 
-    revealElements.forEach(el => observer.observe(el));
+        revealElements.forEach(el => observer.observe(el));
+    }
 
 });
