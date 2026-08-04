@@ -42,14 +42,16 @@ class PageController extends Controller
         ];
 
         // Collections
+        // Alumni section: Alumni type only
         $alumniLogos = PartnerLogo::select('id', 'name', 'logo_url', 'sort_order')
             ->where('type', 'alumni')
             ->where('is_active', true)
             ->orderBy('sort_order')
             ->get();
 
+        // Accreditations, Partnerships & Recognitions section: accreditation + alumni + recognition types
         $accreditationLogos = PartnerLogo::select('id', 'name', 'logo_url', 'sort_order')
-            ->where('type', 'accreditation')
+            ->whereIn('type', ['accreditation', 'alumni', 'recognition'])
             ->where('is_active', true)
             ->orderBy('sort_order')
             ->get();

@@ -241,7 +241,7 @@
       <span data-lucide="arrow-right"></span>
     </div>
 
-    <div class="os-journey__track" data-journey-track style="width: {{ $timelines->count() * 100 }}vw;">
+    <div class="os-journey__track" data-journey-track @style(['width: '.($timelines->count() * 100).'vw'])>
       @foreach($timelines as $index => $item)
       @php
         $yearStr = $item->year ?? '';
@@ -317,14 +317,14 @@
 @include('sections.ceo-message')
 
 {{-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-     SECTION 8: TESTIMONIALS
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --}}
-@include('sections.our-story-testimonials')
-
-{{-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-     SECTION 9: GALLERY
+     SECTION 8: IMAGE SLIDESHOW
      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --}}
 @include('sections.our-story-gallery')
+
+{{-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     SECTION 9: OUR STORY TESTIMONIAL SLIDER
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --}}
+@include('sections.our-story-testimonials')
 
 {{-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
      FINAL CTA

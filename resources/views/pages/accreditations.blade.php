@@ -1,328 +1,266 @@
 @extends('layouts.app')
 
-@section('title', 'Accreditations & Recognition - Maverick Business Academy')
+@section('title', 'Accreditations & Recognitions - Maverick Business Academy')
+@section('meta_description', 'Explore Maverick Business Academy\'s accreditations, partnerships with leading universities, and industry recognition awards.')
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('css/pages/accreditations.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/pages/accreditations-v2.css') }}">
 @endpush
 
 @section('content')
 <div class="page-accreditations accred">
 
-
-@php
-    // ═══════════════════════════════════════════
-    // STATIC DATA (Future: Move to admin/database)
-    // ═══════════════════════════════════════════
-
-    $hero = (object)[
-        'tag' => 'ACCREDITATIONS & RECOGNITION',
-        'heading' => 'Globally Recognised,',
-        'heading_italic' => 'Locally Trusted',
-        'description' => "Our commitment to excellence is validated by the world's most respected accreditation bodies, regulatory authorities, and industry partners.",
-        'background_image' => 'https://images.pexels.com/photos/267885/pexels-photo-267885.jpeg?auto=compress&cs=tinysrgb&w=1920',
-    ];
-
-    // Grouped by category
-    $accreditationCategories = collect([
-        (object)[
-            'icon' => 'graduation-cap',
-            'title' => 'University Partners',
-            'items' => collect([
-                (object)[
-                    'code' => 'UOL',
-                    'name' => 'University of London',
-                    'description' => "Official academic partnership for undergraduate and postgraduate business programmes with one of the UK's most prestigious institutions.",
-                ],
-                (object)[
-                    'code' => 'UON',
-                    'name' => 'University of Northampton',
-                    'description' => 'Validated degree pathways and articulation agreements for seamless progression to full honours degrees.',
-                ],
-                (object)[
-                    'code' => 'ARU',
-                    'name' => 'Anglia Ruskin University',
-                    'description' => 'Joint delivery of executive education programmes and professional development certificates.',
-                ],
-                (object)[
-                    'code' => 'NCFE',
-                    'name' => 'NCFE (Northern Council for Further Education)',
-                    'description' => 'Approved for delivery of NCFE CACHE qualifications in business and professional development.',
-                ],
-            ]),
-        ],
-    ]);
-
-    $qualityAssurance = (object)[
-        'tag' => 'QUALITY ASSURANCE',
-        'heading' => 'Our Commitment to',
-        'heading_italic' => 'Excellence',
-        'description' => 'Every programme at Maverick Academy undergoes rigorous quality assurance processes to ensure our learners receive education that meets the highest global standards.',
-        'image' => asset('https://images.pexels.com/photos/31367501/pexels-photo-31367501.jpeg'),
-        'features' => collect([
-            (object)[
-                'icon' => 'clipboard-list',
-                'title' => 'Curriculum Design',
-                'description' => 'Programmes designed in collaboration with industry experts and academic advisors to ensure relevance and rigour.',
-            ],
-            (object)[
-                'icon' => 'users',
-                'title' => 'Faculty Vetting',
-                'description' => 'All tutors undergo thorough qualification verification and continuous professional development.',
-            ],
-            (object)[
-                'icon' => 'bar-chart',
-                'title' => 'Continuous Assessment',
-                'description' => 'Regular internal audits, student feedback analysis, and external examiner reviews.',
-            ],
-            (object)[
-                'icon' => 'award',
-                'title' => 'External Validation',
-                'description' => 'Annual reviews by accreditation bodies and regulatory authorities to maintain standards.',
-            ],
-            (object)[
-                'icon' => 'refresh-cw',
-                'title' => 'Improvement Cycle',
-                'description' => 'Systematic feedback loops ensure continuous enhancement of teaching and learning.',
-            ],
-            (object)[
-                'icon' => 'shield-check',
-                'title' => 'Compliance Monitoring',
-                'description' => 'Dedicated compliance team ensuring adherence to all regulatory requirements.',
-            ],
-        ]),
-    ];
-
-    $awards = collect([
-        (object)[
-            'title' => 'Best Emerging Business School 2024',
-            'subtitle' => 'Education Today Awards',
-            'image_url' => 'https://images.pexels.com/photos/2678468/pexels-photo-2678468.jpeg?auto=compress&cs=tinysrgb&w=800',
-        ],
-        (object)[
-            'title' => 'Excellence in Online Learning 2023',
-            'subtitle' => 'EdTech Breakthrough',
-            'image_url' => 'https://images.pexels.com/photos/7092613/pexels-photo-7092613.jpeg?auto=compress&cs=tinysrgb&w=800',
-        ],
-        (object)[
-            'title' => 'Innovation in Executive Education 2023',
-            'subtitle' => 'British Education Awards',
-            'image_url' => 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800',
-        ],
-        (object)[
-            'title' => 'Top 50 Global Online MBA',
-            'subtitle' => 'QS World',
-            'image_url' => 'https://images.pexels.com/photos/3769021/pexels-photo-3769021.jpeg?auto=compress&cs=tinysrgb&w=800',
-        ],
-    ]);
-
-    $mediaRankings = collect([
-        (object)['code' => 'FT', 'name' => 'Financial Times', 'rank' => 'Top 100 European Business Schools', 'year' => '2024'],
-        (object)['code' => 'ECO', 'name' => 'The Economist', 'rank' => 'Best Online MBA Programmes', 'year' => '2024'],
-        (object)['code' => 'FOR', 'name' => 'Forbes', 'rank' => 'Most Innovative Education Provider', 'year' => '2023'],
-        (object)['code' => 'TG', 'name' => 'The Guardian', 'rank' => 'Top UK Business Qualifications', 'year' => '2024'],
-        (object)['code' => 'THE', 'name' => 'Times Higher Education', 'rank' => 'Emerging Excellence in HE', 'year' => '2023'],
-        (object)['code' => 'BB', 'name' => 'Bloomberg', 'rank' => 'Rising Stars in Business Education', 'year' => '2024'],
-    ]);
-@endphp
-
-
 {{-- ═══════════════════════════════════════════
-     1. HERO SECTION
+     HERO SECTION (Matches Our Story Design)
 ═══════════════════════════════════════════ --}}
-<section class="accred-hero" style="background-image: url('{{ $hero->background_image }}');">
-    <div class="accred-hero__overlay"></div>
+<section class="accred-hero" aria-label="Accreditations Hero">
+    <div class="accred-hero__bg" aria-hidden="true">
+        <div class="accred-hero__bg-image" style="background-image: url('https://images.pexels.com/photos/267885/pexels-photo-267885.jpeg?auto=compress&cs=tinysrgb&w=1920')"></div>
+        <div class="accred-hero__gradient"></div>
+        <div class="accred-hero__noise"></div>
+        
+        {{-- Floating Geometric Shapes --}}
+        <div class="accred-hero__shapes">
+            <svg class="accred-hero__shape accred-hero__shape--1" viewBox="0 0 200 200" fill="none">
+                <circle cx="100" cy="100" r="80" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+            </svg>
+            <svg class="accred-hero__shape accred-hero__shape--2" viewBox="0 0 300 300" fill="none">
+                <circle cx="150" cy="150" r="120" stroke="rgba(220,38,38,0.2)" stroke-width="1"/>
+            </svg>
+            <svg class="accred-hero__shape accred-hero__shape--3" viewBox="0 0 100 100" fill="none">
+                <rect x="10" y="10" width="80" height="80" rx="8" stroke="rgba(255,255,255,0.15)" stroke-width="1" transform="rotate(20 50 50)"/>
+            </svg>
+        </div>
+        
+        {{-- Particles --}}
+        <div class="accred-hero__particles">
+            @for($i = 0; $i < 6; $i++)
+                <div class="accred-hero__particle"></div>
+            @endfor
+        </div>
+        
+        {{-- Scanline --}}
+        <div class="accred-hero__scanline"></div>
+        
+        {{-- Corner Brackets --}}
+        <div class="accred-hero__corners">
+            <div class="accred-hero__corner accred-hero__corner--tl"></div>
+            <div class="accred-hero__corner accred-hero__corner--tr"></div>
+            <div class="accred-hero__corner accred-hero__corner--bl"></div>
+            <div class="accred-hero__corner accred-hero__corner--br"></div>
+        </div>
+    </div>
+    
     <div class="container accred-hero__content">
-        <span class="accred-hero__tag">{{ $hero->tag }}</span>
-        <h1 class="accred-hero__heading">
-            {{ $hero->heading }}
-            <em class="accred-hero__heading-italic">{{ $hero->heading_italic }}</em>
+        <span class="accred-hero__eyebrow fade-up">
+            <span class="accred-hero__eyebrow-line"></span>
+            ACCREDITATIONS & RECOGNITIONS
+        </span>
+        <h1 class="accred-hero__title fade-up">
+            Globally Recognised,<br>
+            <em>Locally Trusted</em>
         </h1>
-        <p class="accred-hero__description">{{ $hero->description }}</p>
+        <p class="accred-hero__description fade-up">
+            Our commitment to excellence is validated by the world's most respected accreditation bodies, 
+            regulatory authorities, and industry partners.
+        </p>
+        <div class="accred-hero__scroll-hint fade-up" aria-hidden="true">
+            <span class="accred-hero__scroll-text">Scroll to explore</span>
+            <span class="accred-hero__scroll-arrow" data-lucide="chevron-down"></span>
+        </div>
     </div>
 </section>
 
 
 {{-- ═══════════════════════════════════════════
-     2. ACCREDITATIONS & PARTNERSHIPS
+     SECTION 1: ACCREDITATIONS & PARTNERSHIPS
 ═══════════════════════════════════════════ --}}
-<section class="accreditations section-wrapper">
+<section class="accreditations section-wrapper section--light" aria-label="Accreditations">
     <div class="container">
-        
-        <div class="section-heading-block">
-            <span class="section-label">OUR CREDENTIALS</span>
-            <h2 class="section-heading">
-                Accreditations <em>& Partnerships</em>
-            </h2>
-            <p class="section-subheading">
-                We partner with leading universities and hold accreditations from globally respected awarding bodies.
+        <div class="accreditations__header">
+            <span class="section-label"><span>Our Credentials</span></span>
+            <h2 class="section-title">Accreditations <span>& Partnerships</span></h2>
+            <p class="accreditations__subtitle">
+                We partner with leading universities and hold accreditations from globally respected bodies.
             </p>
         </div>
+    </div>
 
-        @foreach($accreditationCategories as $category)
-        <div class="accreditations__category">
-            
-            <div class="category-header">
-                <div class="category-header__icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
-                        <path d="M6 12v5c3 3 9 3 12 0v-5"/>
-                    </svg>
+    {{-- Background Geometric Shapes --}}
+    <div class="accreditations__bg-shapes" aria-hidden="true">
+        <div class="accreditations__bg-shape accrediations__bg-shape--circle accrediations__bg-shape--1"></div>
+        <div class="accreditations__bg-shape accrediations__bg-shape--circle accrediations__bg-shape--2"></div>
+        <div class="accreditations__bg-shape accrediations__bg-shape--triangle accrediations__bg-shape--3"></div>
+        <div class="accreditations__bg-shape accrediations__bg-shape--square accrediations__bg-shape--4"></div>
+        <div class="accreditations__bg-shape accrediations__bg-shape--dot accrediations__bg-shape--5"></div>
+        <div class="accreditations__bg-shape accrediations__bg-shape--dot accrediations__bg-shape--6"></div>
+        <div class="accreditations__bg-shape accrediations__bg-shape--dot accrediations__bg-shape--7"></div>
+    </div>
+
+    {{-- Draggable Slider --}}
+    <div class="accreditations__carousel" data-carousel>
+        <div class="accreditations__carousel-track" data-carousel-track>
+            {{-- Duplicate for infinite loop --}}
+            @for($r = 0; $r < 3; $r++)
+                @foreach($accreditationLogos as $logo)
+                <div class="accreditations__card" data-card>
+                    <div class="accreditations__card-logo">
+                        @if($logo->logo_url)
+                            <img src="{{ $logo->logo_url }}" alt="{{ $logo->name }}" loading="lazy">
+                        @else
+                            <span>{{ strtoupper(substr($logo->name, 0, 3)) }}</span>
+                        @endif
+                    </div>
+                    <h4 class="accreditations__card-name">{{ $logo->name }}</h4>
+                    <!-- <span class="accreditations__card-type">{{ ucfirst($logo->type) }}</span> -->
                 </div>
-                <h3 class="category-header__title">{{ $category->title }}</h3>
-            </div>
-
-            <div class="accreditations__grid">
-                @foreach($category->items as $item)
-                <article class="accred-card">
-                    <div class="accred-card__logo">
-                        <span>{{ $item->code }}</span>
-                    </div>
-                    <h4 class="accred-card__name">{{ $item->name }}</h4>
-                    <p class="accred-card__description">{{ $item->description }}</p>
-                    <div class="accred-card__badge">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
-                            <polyline points="22 4 12 14.01 9 11.01"/>
-                        </svg>
-                        <span>VERIFIED PARTNER</span>
-                    </div>
-                </article>
                 @endforeach
-            </div>
-
+            @endfor
         </div>
-        @endforeach
-
     </div>
 </section>
 
 
 {{-- ═══════════════════════════════════════════
-     3. QUALITY ASSURANCE FRAMEWORK
+     SECTION 2: AWARDS & RECOGNITION
 ═══════════════════════════════════════════ --}}
-<section class="quality section-wrapper section--light">
+<section class="awards section-wrapper section--light" aria-label="Awards & Recognition">
     <div class="container">
-        <div class="quality__grid">
-            
-            {{-- Left: Content --}}
-            <div class="quality__content">
-                <span class="section-label quality__label">{{ $qualityAssurance->tag }}</span>
-                <h2 class="quality__heading">
-                    {{ $qualityAssurance->heading }}
-                    <em>{{ $qualityAssurance->heading_italic }}</em>
-                </h2>
-                <p class="quality__description">{{ $qualityAssurance->description }}</p>
-
-                <div class="quality__features">
-                    @foreach($qualityAssurance->features as $feature)
-                    <div class="quality-feature">
-                        <div class="quality-feature__icon">
-                            <span data-lucide="{{ $feature->icon }}"></span>
-                        </div>
-                        <div class="quality-feature__content">
-                            <h4 class="quality-feature__title">{{ $feature->title }}</h4>
-                            <p class="quality-feature__description">{{ $feature->description }}</p>
-                        </div>
-                    </div>
-                    @endforeach
-                </div>
-            </div>
-
-            {{-- Right: Image --}}
-            <div class="quality__image-wrapper">
-                <img src="{{ $qualityAssurance->image }}" 
-                     alt="Quality Assurance" 
-                     class="quality__image"
-                     loading="lazy">
-            </div>
-
-        </div>
-    </div>
-</section>
-
-
-{{-- ═══════════════════════════════════════════
-     4. AWARDS & RECOGNITION (Slider)
-═══════════════════════════════════════════ --}}
-<section id="awards" class="awards testimonials section-wrapper section--light" aria-label="Awards & Recognition">
-    <div class="container testimonials__inner">
-        
-        <div class="section-heading-block">
-            <span class="section-label">ACHIEVEMENTS</span>
-            <h2 class="section-heading">
-                Awards <em>& Recognition</em>
-            </h2>
-            <p class="section-subheading">
+        <div class="awards__header">
+            <span class="section-label"><span>Achievements</span></span>
+            <h2 class="section-title">Awards <span>& Recognition</span></h2>
+            <p class="awards__subtitle">
                 Our commitment to excellence has been recognised by leading education bodies worldwide.
             </p>
         </div>
+    </div>
 
-        <div class="scroll-row scroll-row--light" data-scroll-row>
-            <button class="scroll-row__btn scroll-row__btn--prev" aria-label="Scroll left" data-scroll-prev>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M15 18l-6-6 6-6" />
-                </svg>
-            </button>
-            <div class="testimonials__scroll" data-scroll-container data-lenis-prevent>
-                <div class="testimonials__track">
-                    @foreach($awards as $award)
-                    <article class="testimonials__card">
-                        <div class="testimonials__card-thumb">
-                            <img src="{{ $award->image_url }}" 
-                                 alt="{{ $award->title }}" 
-                                 loading="lazy" 
-                                 decoding="async" />
-                        </div>
-                        <h3 class="awards__card-title">{{ $award->title }}</h3>
-                        <p class="awards__card-subtitle">{{ $award->subtitle }}</p>
-                    </article>
-                    @endforeach
+    {{-- Awards Slider --}}
+    <div class="awards__carousel" data-awards-carousel>
+        <div class="awards__carousel-track" data-awards-track>
+            {{-- Duplicate for infinite loop --}}
+            @for($r = 0; $r < 3; $r++)
+                @foreach($awardLogos as $logo)
+                <div class="awards__card" data-award-card>
+                    <span class="awards__card-badge">{{ ucfirst($logo->type) }}</span>
+                    <div class="awards__card-image">
+                        @if($logo->logo_url)
+                            <img src="{{ $logo->logo_url }}" alt="{{ $logo->name }}" loading="lazy" draggable="false">
+                        @else
+                            <div class="awards__card-placeholder">
+                                <span>{{ strtoupper(substr($logo->name, 0, 3)) }}</span>
+                            </div>
+                        @endif
+                    </div>
+                    <h4 class="awards__card-title">{{ $logo->name }}</h4>
                 </div>
-            </div>
-            <button class="scroll-row__btn scroll-row__btn--next" aria-label="Scroll right" data-scroll-next>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M9 18l6-6-6-6" />
-                </svg>
-            </button>
+                @endforeach
+            @endfor
         </div>
     </div>
 </section>
 
-
-{{-- ═══════════════════════════════════════════
-     5. MEDIA & RANKINGS (Dark Section)
-═══════════════════════════════════════════ --}}
-<section class="media-rankings">
-    <div class="container">
-        
-        <div class="section-heading-block media-rankings__header">
-            <span class="section-label media-rankings__label">AS FEATURED IN</span>
-            <h2 class="media-rankings__heading">
-                Media <em>& Rankings</em>
-            </h2>
-            <p class="media-rankings__subheading">
-                Recognised by the world's leading business and education publications.
-            </p>
-        </div>
-
-        <div class="media-rankings__grid">
-            @foreach($mediaRankings as $media)
-            <article class="media-card">
-                <div class="media-card__logo">
-                    <span>{{ $media->code }}</span>
-                </div>
-                <h4 class="media-card__name">{{ $media->name }}</h4>
-                <p class="media-card__rank">{{ $media->rank }}</p>
-                <span class="media-card__year">{{ $media->year }}</span>
-            </article>
-            @endforeach
-        </div>
-
-    </div>
-</section>
 </div>
 
-    @include('sections.final-cta')
+@include('sections.final-cta')
 
 @endsection
+
+@push('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Draggable carousel functionality
+        function initCarousel(carousel) {
+            const track = carousel.querySelector('[data-carousel-track], [data-awards-track]');
+            if (!track) return;
+
+            let isDragging = false;
+            let startX = 0;
+            let currentTranslate = 0;
+            let prevTranslate = 0;
+            let isAutoSliding = true;
+            let animationId = null;
+
+            const getTrackWidth = () => track.scrollWidth / 3;
+
+            function autoSlide() {
+                if (!isAutoSliding || isDragging) return;
+                currentTranslate -= 0.5;
+                if (Math.abs(currentTranslate) >= getTrackWidth()) {
+                    currentTranslate = 0;
+                }
+                track.style.transform = `translateX(${currentTranslate}px)`;
+                animationId = requestAnimationFrame(autoSlide);
+            }
+
+            function startAutoSlide() {
+                isAutoSliding = true;
+                autoSlide();
+            }
+
+            function stopAutoSlide() {
+                isAutoSliding = false;
+                if (animationId) cancelAnimationFrame(animationId);
+            }
+
+            // Mouse events
+            carousel.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                startX = e.pageX;
+                prevTranslate = currentTranslate;
+                stopAutoSlide();
+            });
+
+            carousel.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                e.preventDefault();
+                currentTranslate = prevTranslate + (e.pageX - startX) * 1.5;
+                track.style.transform = `translateX(${currentTranslate}px)`;
+            });
+
+            carousel.addEventListener('mouseup', () => {
+                isDragging = false;
+                startAutoSlide();
+            });
+
+            carousel.addEventListener('mouseleave', () => {
+                if (isDragging) {
+                    isDragging = false;
+                    startAutoSlide();
+                }
+            });
+
+            // Touch events
+            carousel.addEventListener('touchstart', (e) => {
+                isDragging = true;
+                startX = e.touches[0].pageX;
+                prevTranslate = currentTranslate;
+                stopAutoSlide();
+            }, { passive: true });
+
+            carousel.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+                currentTranslate = prevTranslate + (e.touches[0].pageX - startX) * 1.5;
+                track.style.transform = `translateX(${currentTranslate}px)`;
+            }, { passive: true });
+
+            carousel.addEventListener('touchend', () => {
+                isDragging = false;
+                startAutoSlide();
+            });
+
+            // Hover pause
+            carousel.addEventListener('mouseenter', stopAutoSlide);
+            carousel.addEventListener('mouseleave', () => {
+                if (!isDragging) startAutoSlide();
+            });
+
+            // Start auto-slide
+            autoSlide();
+        }
+
+        // Initialize all carousels
+        document.querySelectorAll('[data-carousel], [data-awards-carousel]').forEach(initCarousel);
+    });
+</script>
+@endpush

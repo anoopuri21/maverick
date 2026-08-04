@@ -17,7 +17,6 @@
 
     {{-- Stylesheets --}}
     <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/sections.css') }}" />
     @if(request()->routeIs('our-story'))
     <link rel="stylesheet" href="{{ asset('assets/css/our-story.css') }}" />
     @endif

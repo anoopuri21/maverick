@@ -73,7 +73,6 @@ export function initTimelinePinned(element) {
               ease: "power2.out",
             });
           }
-
         },
       },
     });

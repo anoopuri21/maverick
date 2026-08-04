@@ -3098,13 +3098,9 @@ html.lenis body {
 
 .programs__heading {
   margin-bottom: 1rem;
-  color: #0a0a0a;
 }
 
 .programs__subtitle {
-  font-family: "Poppins", sans-serif;
-  font-weight: 300;
-  color: rgba(10, 10, 10, 0.7);
   max-width: 600px;
   margin-bottom: 5rem;
 }
@@ -3323,9 +3319,6 @@ html.lenis body {
 }
 
 .why__subtitle {
-  font-family: "Poppins", sans-serif;
-  font-weight: 300;
-  color: #f5f0eb;
   max-width: 600px;
   margin-bottom: 0;
 }
@@ -3641,12 +3634,7 @@ html.lenis body {
 }
 
 .opportunities__subtitle {
-  font-family: "Poppins", sans-serif;
-  font-weight: 300;
-  font-size: clamp(1rem, 1.4vw, 1.125rem);
-  color: rgba(10, 10, 10, 0.7);
   max-width: 640px;
-  line-height: 1.6;
   margin: 0;
 }
 
@@ -3775,11 +3763,7 @@ html.lenis body {
 }
 
 .opportunities__item-desc {
-  font-family: "Poppins", sans-serif;
-  font-weight: 300;
-  font-size: 0.95rem;
   color: rgba(10, 10, 10, 0.65);
-  line-height: 1.55;
   margin: 0;
 }
 
@@ -4410,12 +4394,7 @@ html.lenis body {
 }
 
 .insights__subtitle {
-  font-family: "Poppins", sans-serif;
-  font-weight: 300;
-  font-size: clamp(1rem, 1.4vw, 1.125rem);
-  color: var(--color-black);
   max-width: 640px;
-  line-height: 1.6;
   margin: 0;
 }
 
@@ -4807,12 +4786,7 @@ html.lenis body {
 }
 
 .testimonials__subtitle {
-  font-family: "Poppins", sans-serif;
-  font-weight: 300;
-  font-size: clamp(1rem, 1.4vw, 1.125rem);
-  color: rgba(10, 10, 10, 0.7);
   max-width: 640px;
-  line-height: 1.6;
   margin: 0;
 }
 
@@ -5033,7 +5007,7 @@ body.modal-open {
 .faq__grid {
   display: grid;
   grid-template-columns: 0.9fr 1.1fr;
-  gap: 5rem;
+  gap: 4rem;
   align-items: start;
 }
 
@@ -5711,9 +5685,8 @@ body.modal-open {
    ===== ACCREDITATIONS, PARTNERSHIPS & RECOGNITIONS SECTION =====
    Maverick Business Academy — Logo Slider & Badges
    ========================================================= */
-
-/* ----- Section Base ----- */
-.accreditations {
+   /* ----- Section Base ----- */
+.awards, .accreditations {
   background-color: #ffffff;
   color: #0a0a0a;
   padding: 120px 0;
@@ -5729,10 +5702,10 @@ body.modal-open {
 /* ----- Header Layout ----- */
 .accreditations__header {
   display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 4rem;
+  grid-template-columns: 1fr;
+  gap: 1rem;
   align-items: center;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
 }
 
 .accreditations__header-content {
@@ -5778,11 +5751,6 @@ body.modal-open {
 }
 
 .accreditations__subheading {
-  font-family: "Poppins", sans-serif;
-  font-weight: 300;
-  font-size: clamp(1rem, 1.4vw, 1.125rem);
-  color: rgba(10, 10, 10, 0.65);
-  line-height: 1.6;
   margin: 0;
   max-width: 600px;
 }
@@ -5999,7 +5967,7 @@ body.modal-open {
 
   .accreditations__header {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 1rem;
     margin-bottom: 2rem;
   }
 
@@ -6131,22 +6099,12 @@ body.modal-open {
 }
 
 .network__subheading {
-  font-family: "Poppins", sans-serif;
-  font-weight: 400;
-  font-size: clamp(1rem, 1.4vw, 1.125rem);
-  color: rgba(10, 10, 10, 0.75);
-  line-height: 1.6;
+  font-weight: 500;
   margin: 0;
   max-width: 700px;
 }
 
 .network__description {
-  font-family: "Poppins", sans-serif;
-  font-weight: 300;
-  font-size: clamp(0.95rem, 1.2vw, 1rem);
-  color: rgba(10, 10, 10, 0.6);
-  line-height: 1.6;
-  margin: 0;
   max-width: 700px;
 }
 
