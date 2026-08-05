@@ -167,6 +167,14 @@
   text-transform: uppercase;
 }
 
+.gup .section-heading-block .section-label::before {
+  content: "";
+  background: var(--color-mba-red);
+}
+.gup .section-heading-block .section-label span {
+  color: var(--color-mba-red);
+}
+
 .gup .section-heading-block .section-heading {
   font-family: var(--font-display);
   font-size: clamp(30px, 4.4vw, 60px);
@@ -831,6 +839,334 @@
   line-height: 1.5;
   margin: 0;
 }
+
+/* ============================================================
+   PARTNER UNIVERSITIES — 3D Cards with Animated Aura Border
+   ============================================================ */
+.gup-partner-cards {
+  padding: clamp(72px, 10vw, 140px) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.gup-partner-cards::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(900px 500px at 30% 0%, rgba(178, 2, 2, 0.18), transparent 60%),
+    radial-gradient(700px 400px at 100% 100%, rgba(15, 41, 131, 0.4), transparent 60%);
+  pointer-events: none;
+}
+
+.gup-partner-cards::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px;
+  pointer-events: none;
+}
+
+.gup-partner-cards > .container {
+  position: relative;
+  z-index: 1;
+}
+
+.gup-partner-cards .section-heading {
+  color: #fff;
+}
+
+.gup-partner-cards .section-heading em {
+  color: var(--g-red);
+  font-style: italic;
+}
+
+.gup-partner-cards .section-subheading {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.gup-partner-cards__grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 28px;
+  perspective: 1400px;
+}
+
+.gup-uni-card {
+  position: relative;
+  grid-column: span 2;
+  border-radius: 22px;
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.5s var(--g-ease);
+}
+
+.gup-uni-card:nth-child(4) {
+  grid-column: 2 / span 2;
+}
+
+.gup-uni-card:nth-child(5) {
+  grid-column: 4 / span 2;
+}
+
+/* Soft glow aura behind card */
+.gup-uni-card__aura {
+  position: absolute;
+  inset: -18px;
+  border-radius: 32px;
+  background: radial-gradient(
+    circle at 50% 40%,
+    rgba(178, 2, 2, 0.35),
+    rgba(15, 41, 131, 0.15) 45%,
+    transparent 70%
+  );
+  opacity: 0;
+  filter: blur(18px);
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.gup-uni-card:hover .gup-uni-card__aura {
+  opacity: 1;
+}
+
+/* Animated rotating border */
+.gup-uni-card__border {
+  position: absolute;
+  inset: 0;
+  border-radius: 22px;
+  padding: 2px;
+  overflow: hidden;
+  opacity: 0.4;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 1;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.gup-uni-card__border::before {
+  content: "";
+  position: absolute;
+  inset: -60%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0%,
+    var(--g-red) 12%,
+    transparent 22%,
+    var(--g-navy) 38%,
+    transparent 48%,
+    #6366f1 62%,
+    transparent 72%,
+    #a855f7 88%,
+    transparent 100%
+  );
+  animation: gup-border-spin 3.5s linear infinite;
+}
+
+.gup-uni-card:hover .gup-uni-card__border {
+  opacity: 1;
+}
+
+.gup-uni-card:hover .gup-uni-card__border::before {
+  animation-duration: 1.8s;
+}
+
+@keyframes gup-border-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.gup-uni-card__inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 380px;
+  padding: 28px 26px 26px;
+  background: linear-gradient(165deg, #0c1a4a 0%, #071444 55%, #0a1235 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 22px;
+  transition:
+    border-color 0.4s ease,
+    box-shadow 0.5s var(--g-ease),
+    transform 0.5s var(--g-ease);
+}
+
+.gup-uni-card:hover .gup-uni-card__inner {
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow:
+    0 28px 56px -18px rgba(0, 0, 0, 0.55),
+    0 0 36px -8px rgba(178, 2, 2, 0.28);
+}
+
+/* Logo */
+.gup-uni-card__logo-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 72px;
+  margin-bottom: 1.25rem;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.gup-uni-card__logo {
+  max-width: 140px;
+  max-height: 48px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.gup-uni-card__logo-fallback {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 56px;
+  height: 36px;
+  padding: 0 12px;
+  border-radius: 8px;
+  background: var(--g-navy-deep);
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #fff;
+}
+
+.gup-uni-card__logo-fallback[hidden] {
+  display: none !important;
+}
+
+.gup-uni-card__name {
+  margin: 0 0 0.75rem;
+  font-family: var(--font-display);
+  font-size: clamp(18px, 1.6vw, 22px);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  color: #fff;
+}
+
+.gup-uni-card__country {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 1.25rem;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.gup-uni-card__flag {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.gup-uni-card__recognition {
+  flex-grow: 1;
+  margin-bottom: 1.5rem;
+  padding-top: 1.15rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.gup-uni-card__recognition-label {
+  display: block;
+  margin-bottom: 0.6rem;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--g-red);
+}
+
+.gup-uni-card__recognition-text {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.gup-uni-card__cta {
+  align-self: flex-start;
+  margin-top: auto;
+  padding: 12px 22px;
+  font-size: 12px;
+  text-decoration: none;
+}
+
+/* Hover lift fallback when JS tilt is off */
+.gup-uni-card:hover {
+  transform: translateY(-6px);
+}
+
+@media (max-width: 1100px) {
+  .gup-partner-cards__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .gup-uni-card,
+  .gup-uni-card:nth-child(4),
+  .gup-uni-card:nth-child(5) {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .gup-partner-cards__grid {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  .gup-uni-card:hover {
+    transform: none;
+  }
+
+  .gup-uni-card__inner {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .gup-partner-cards {
+    padding: 64px 0;
+  }
+
+  .gup-uni-card__inner {
+    padding: 22px 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gup-uni-card__border::before,
+  .gup-uni-card,
+  .gup-uni-card__inner,
+  .gup-uni-card__aura {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
 
 /* ============================================================
    RESPONSIVE

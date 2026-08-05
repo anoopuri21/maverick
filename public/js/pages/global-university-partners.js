@@ -98,6 +98,66 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // ═══════════════════════════════════════════
+    // PARTNER UNIVERSITIES — 3D Tilt + Scroll Reveal
+    // ═══════════════════════════════════════════
+    const uniCards = document.querySelectorAll('.gup-uni-card');
+
+    // Scroll-reveal animation
+    if (uniCards.length && !prefersReducedMotion) {
+        gsap.fromTo(uniCards,
+            { opacity: 0, y: 50, rotateX: 8 },
+            {
+                opacity: 1,
+                y: 0,
+                rotateX: 0,
+                duration: 0.8,
+                stagger: 0.12,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: '.gup-partner-cards__grid',
+                    start: 'top 80%',
+                    toggleActions: 'play none none none',
+                },
+            }
+        );
+    }
+
+    // 3D tilt on mousemove
+    if (uniCards.length && !prefersReducedMotion && window.matchMedia('(pointer: fine)').matches) {
+        uniCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = ((y - centerY) / centerY) * -7;
+                const rotateY = ((x - centerX) / centerX) * 7;
+
+                gsap.to(card, {
+                    rotateX: rotateX,
+                    rotateY: rotateY,
+                    y: -6,
+                    duration: 0.35,
+                    ease: 'power2.out',
+                    transformPerspective: 1200,
+                    transformOrigin: 'center center',
+                });
+            });
+
+            card.addEventListener('mouseleave', () => {
+                gsap.to(card, {
+                    rotateX: 0,
+                    rotateY: 0,
+                    y: 0,
+                    duration: 0.55,
+                    ease: 'power3.out',
+                });
+            });
+        });
+    }
+
+    // ═══════════════════════════════════════════
     // GALLERY FILTER
     // ═══════════════════════════════════════════
     const filterButtons = document.querySelectorAll('.gup-filter');
