@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Global Bachelor\'s Pathway Programme | Study Bachelor\'s in Europe')
+@section('title', "Global Bachelor's Pathway Programme | Study Bachelor's in Europe")
 @section('meta_description', 'Start your Bachelor\'s journey with Maverick Business Academy London and progress to partner universities in Hungary, Romania, or Moldova. Explore affordable European Bachelor\'s pathways with credit transfer, visa support, and career guidance.')
 
 @push('styles')
@@ -9,24 +9,36 @@
 @endpush
 
 @section('content')
-<div class="page-gbp gbp">
+<div class="page-gbp">
 
 @php
-    // ═══════════════════════════════════════════
-    // STATIC DATA (Future: Move to admin/database)
-    // ═══════════════════════════════════════════
-
     $hero = (object)[
         'tag' => 'GLOBAL BACHELOR\'S PATHWAY',
-        'heading' => 'Your Structured Route to a Globally Recognised',
-        'heading_italic' => 'European Bachelor\'s Degree',
-        'description' => 'Begin your Bachelor\'s Degree Pathway in UAE with Maverick Business Academy London and progress towards an internationally recognised European Bachelor\'s degree through our partner university pathways in Hungary, Romania, and Moldova.',
-        'sub_description' => 'Designed for students and parents seeking a smarter, affordable, and globally focused study route, the Maverick Bachelor\'s Global Pathway helps learners begin their academic journey with structured support and progress confidently towards international university completion, leading to an Affordable Bachelor\'s Degree in Europe.',
-        'background_image' => asset('https://images.pexels.com/photos/1462630/pexels-photo-1462630.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=1600'),
+        'heading' => 'Global Bachelor\'s',
+        'heading_italic' => 'Pathway Programme',
+        'sub_heading' => 'Your gateway to a globally recognised European Bachelor\'s degree — structured pathways, flexible learning, and international progression through Maverick Business Academy London.',
+        'background_image' => 'https://images.pexels.com/photos/1462630/pexels-photo-1462630.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=1600',
         'highlights' => collect([
-            (object)['label' => 'Study Route', 'value' => 'UAE / Hybrid / Online + European University Progression'],
+            (object)['label' => 'Study Route', 'value' => 'UAE · Hybrid · Online + European University Progression'],
             (object)['label' => 'Destinations', 'value' => 'Hungary · Romania · Moldova'],
-            (object)['label' => 'Focus', 'value' => 'International Pathways · European Degree · Credit Transfer · Student Visa Support · Career Guidance '],
+            (object)['label' => 'Focus', 'value' => 'International Pathways · European Degree · Credit Transfer'],
+        ]),
+    ];
+
+    $intro = (object)[
+        'tag' => 'YOUR PATHWAY',
+        'heading_line1' => 'Your Structured Route to a',
+        'heading_line2' => 'Globally Recognised European',
+        'heading_italic' => 'Bachelor\'s Degree',
+        'paragraphs' => [
+            'Begin your Bachelor\'s Degree Pathway in UAE with Maverick Business Academy London and progress towards an internationally recognised European Bachelor\'s degree through our partner university pathways in Hungary, Romania, and Moldova.',
+            'Designed for students and parents seeking a smarter, affordable, and globally focused study route, the Maverick Bachelor\'s Global Pathway helps learners begin their academic journey with structured support and progress confidently towards international university completion, leading to an Affordable Bachelor\'s Degree in Europe.',
+        ],
+        'highlights' => collect([
+            (object)['icon' => 'globe', 'label' => 'International Pathways', 'value' => 'Study in UAE, progress to Europe'],
+            (object)['icon' => 'award', 'label' => 'Recognised Degree', 'value' => 'Globally accepted European qualification'],
+            (object)['icon' => 'credit-card', 'label' => 'Cost Effective', 'value' => 'Affordable alternative to full overseas study'],
+            (object)['icon' => 'users', 'label' => 'Full Support', 'value' => 'Visa guidance, career counselling, academic mentoring'],
         ]),
     ];
 
@@ -42,9 +54,9 @@
             (object)['number' => '~6 Mo', 'label' => 'LEVEL 4 DIPLOMA'],
             (object)['number' => '~6 Mo', 'label' => 'LEVEL 5 DIPLOMA'],
             (object)['number' => '', 'label' => 'Progression to International Partner University'],
-            (object)['number' => '', 'label' => 'International Bachelor\'s Degree '],
+            (object)['number' => '', 'label' => 'International Bachelor\'s Degree'],
         ]),
-        'quotes' => 'This route is ideal for students who want an international degree pathway with flexible learning, credit transfer guidance, visa support, and career-focused academic support.'
+        'quotes' => 'This route is ideal for students who want an international degree pathway with flexible learning, credit transfer guidance, visa support, and career-focused academic support.',
     ];
 
     $whyPathway = (object)[
@@ -52,8 +64,7 @@
         'heading' => 'Why Choose This',
         'heading_italic' => 'Pathway Programme?',
         'quote' => 'A smarter alternative to the traditional overseas route — start with Maverick, progress internationally at the right stage.',
-        'paragraph' => 'The Maverick Bachelor\'s Global Pathway is designed to give students a smarter alternative to the traditional 4-year overseas study route. 
-        Instead of moving abroad from year one and paying higher international tuition and living costs, students can begin their journey with Maverick through a Bachelor\'s Degree with Credit Transfer route and progress internationally at a later stage. This creates a more structured, affordable, and globally focused pathway towards completing a European Bachelor\'s degree.',
+        'paragraph' => 'The Maverick Bachelor\'s Global Pathway is designed to give students a smarter alternative to the traditional 4-year overseas study route. Instead of moving abroad from year one and paying higher international tuition and living costs, students can begin their journey with Maverick through a Bachelor\'s Degree with Credit Transfer route and progress internationally at a later stage. This creates a more structured, affordable, and globally focused pathway towards completing a European Bachelor\'s degree.',
         'items' => collect([
             (object)['icon' => 'clock', 'title' => 'Save Time', 'description' => 'The pathway can help students save up to one year compared with the traditional Bachelor\'s route.'],
             (object)['icon' => 'award', 'title' => 'Earn 240 UK Credits', 'description' => 'Students complete structured UK credit-based qualifications before progressing to the university stage.'],
@@ -62,6 +73,30 @@
             (object)['icon' => 'trending-down', 'title' => 'Cost-Effective Study Route', 'description' => 'Students and parents can reduce overall study cost compared with starting the full overseas route from year one.'],
         ]),
     ];
+
+    $exploreEurope = collect([
+        (object)[
+            'flag' => '🇭🇺',
+            'country' => 'Hungary',
+            'type' => 'Premium European Pathway',
+            'university' => 'International Business School, Budapest',
+            'highlights' => ['International study experience in Budapest', 'Dual degree opportunities', '100% placement assistance', 'Erasmus+ student exchange'],
+        ],
+        (object)[
+            'flag' => '🇷🇴',
+            'country' => 'Romania',
+            'type' => 'Affordable European Pathway',
+            'university' => 'Aurel Vlaicu University',
+            'highlights' => ['Affordable tuition fees', 'One-year completion route', 'Lower cost of living', 'Direct university progression'],
+        ],
+        (object)[
+            'flag' => '🇲🇩',
+            'country' => 'Moldova',
+            'type' => 'Affordable European Pathway',
+            'university' => 'USPEE, Moldova',
+            'highlights' => ['Lower overall study cost', 'Reduced study duration', 'Student visa guidance', 'Flexible pathway structure'],
+        ],
+    ]);
 
     $stages = collect([
         (object)['year' => '01', 'title' => 'Level 4 Diploma', 'duration' => 'Approx. 6 Months', 'description' => 'Students begin with a Level 4 Diploma designed to build the academic foundation required for bachelor\'s progression.'],
@@ -72,14 +107,13 @@
 
     $destinations = collect([
         (object)[
+            'slug' => 'hungary',
             'position' => 'right',
-            'flag' => 'HU',
             'name' => 'Hungary',
             'label' => 'PREMIUM EUROPEAN PATHWAY',
             'university' => 'International Business School, Budapest',
-            'description' => 'Hungary is a strong choice for students seeking a premium European study experience, international exposure, and a vibrant student-friendly environment. Through Maverick\'s pathway, students can study Bachelor\'s in Hungary while benefiting from structured academic guidance, career-focused support, and opportunities for global growth.
-            Through Maverick\'s Hungary pathway, students can progress to International Business School, Budapest, one of the leading international business schools in Europe.',
-            'image' => asset('https://images.pexels.com/photos/3722721/pexels-photo-3722721.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=760'),
+            'description' => 'Hungary is a strong choice for students seeking a premium European study experience, international exposure, and a vibrant student-friendly environment. Through Maverick\'s pathway, students can study Bachelor\'s in Hungary while benefiting from structured academic guidance, career-focused support, and opportunities for global growth. Through Maverick\'s Hungary pathway, students can progress to International Business School, Budapest, one of the leading international business schools in Europe.',
+            'image' => 'https://images.pexels.com/photos/3722721/pexels-photo-3722721.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=760',
             'points' => [
                 'International study experience in Budapest',
                 'Dual degree opportunities with University of Buckingham (UK) and Dublin Business School (Ireland)',
@@ -88,18 +122,18 @@
                 '9–12 month post-study work opportunity',
                 'Access to 27+ Schengen countries',
                 'Erasmus+ student exchange opportunity',
-                'No IELTS / TOEFL required, subject to admission requirements',
+                'No IELTS / TOEFL required',
             ],
             'best_for' => 'Students looking for a premium European business education pathway with stronger international exposure and career development support.',
         ],
         (object)[
+            'slug' => 'romania',
             'position' => 'left',
-            'flag' => 'RO',
             'name' => 'Romania',
             'label' => 'AFFORDABLE EUROPEAN PATHWAY',
             'university' => 'Aurel Vlaicu University, Romania',
             'description' => 'Attractive for students who want a European bachelor\'s degree pathway with affordable tuition, lower living costs, and direct university progression. Benefit from structured academic support, reduced study duration, and student visa guidance.',
-            'image' => asset('https://images.pexels.com/photos/207684/pexels-photo-207684.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=760'),
+            'image' => 'https://images.pexels.com/photos/207684/pexels-photo-207684.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=760',
             'points' => [
                 'Affordable tuition fees',
                 'One-year university completion route',
@@ -113,13 +147,13 @@
             'best_for' => 'Students looking for an affordable European bachelor\'s route with reduced study duration and practical academic progression.',
         ],
         (object)[
+            'slug' => 'moldova',
             'position' => 'right',
-            'flag' => 'MD',
             'name' => 'Moldova',
             'label' => 'AFFORDABLE EUROPEAN PATHWAY',
             'university' => 'USPEE, Moldova',
             'description' => 'Another affordable European pathway option for students looking for a cost-effective route to complete their bachelor\'s degree. Progress to USPEE, Moldova through Maverick\'s structured pathway.',
-            'image' => asset('https://images.pexels.com/photos/1519088/pexels-photo-1519088.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=760'),
+            'image' => 'https://images.pexels.com/photos/1519088/pexels-photo-1519088.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=760',
             'points' => [
                 'Affordable tuition fees',
                 'Lower overall study cost',
@@ -141,7 +175,7 @@
         'closing' => 'This makes the pathway a practical option for students and parents who want a balance of affordability, international exposure, academic progression, and career value.',
         'comparisons' => collect([
             (object)['label' => 'Traditional Route', 'value' => '4 Years', 'variant' => 'muted'],
-            (object)['label' => 'Maverick Pathway', 'value' => 'Approximately', 'variant' => 'accent', 'note' => '3 years'],
+            (object)['label' => 'Maverick Pathway', 'value' => '~3 years', 'variant' => 'accent'],
             (object)['label' => 'Time Saving — Hungary', 'value' => 'Up to 12 Months', 'variant' => 'muted'],
             (object)['label' => 'Time Saving — Romania & Moldova', 'value' => 'Up to 24 Months', 'variant' => 'muted'],
         ]),
@@ -178,19 +212,19 @@
         (object)[
             'code' => 'HU',
             'name' => 'Hungary — Premium European Pathway',
-            'description' => 'Progress to International Business School, Budapest through Maverick\'s premium European route. International exposure, career mentoring, internship support, Erasmus+ exchange, and access to the wider Schengen region.',
+            'description' => 'Progress to International Business School, Budapest through Maverick\'s premium European route.',
             'best_for' => ['Business Management', 'International Business', 'Marketing', 'Finance', 'Data Analytics', 'AI & Business', 'Entrepreneurship'],
         ],
         (object)[
             'code' => 'RO',
             'name' => 'Romania — Affordable European Pathway',
-            'description' => 'Progress to Aurel Vlaicu University, Romania through Maverick\'s affordable European pathway. Designed for students looking for affordable tuition, reduced study duration, lower living costs, and direct university progression.',
+            'description' => 'Progress to Aurel Vlaicu University, Romania through Maverick\'s affordable European pathway.',
             'best_for' => ['Business Administration', 'Management', 'Information Technology', 'Data Science', 'Hospitality & Tourism', 'International Business'],
         ],
         (object)[
             'code' => 'MD',
             'name' => 'Moldova — Affordable European Pathway',
-            'description' => 'Progress to USPEE, Moldova through Maverick\'s affordable European pathway. Suitable for students and parents looking for a practical, lower-cost route towards an international bachelor\'s degree.',
+            'description' => 'Progress to USPEE, Moldova through Maverick\'s affordable European pathway.',
             'best_for' => ['Business Administration', 'Management', 'Information Technology', 'Tourism & Hospitality', 'General Business Studies'],
         ],
     ]);
@@ -219,51 +253,26 @@
         (object)[
             'icon' => 'user',
             'title' => 'Personal Documents',
-            'items' => ['Passport copy', 'Passport-size photograph', 'Emirates ID copy, if applicable', 'Updated CV, if applicable'],
+            'items' => ['Passport copy', 'Passport-size photograph', 'Emirates ID copy (if applicable)', 'Updated CV (if applicable)'],
         ],
         (object)[
             'icon' => 'book-open',
             'title' => 'Academic Documents',
-            'items' => ['High school / Grade 12 certificate', 'Academic transcripts / mark sheets', 'Previous diploma or college documents, if applicable', 'English language documents, if required'],
+            'items' => ['High school / Grade 12 certificate', 'Academic transcripts / mark sheets', 'Previous diploma or college documents (if applicable)', 'English language documents (if required)'],
         ],
         (object)[
             'icon' => 'file-check',
             'title' => 'Additional Documents for Visa Stage',
-            'items' => ['Bank statement or financial proof, if required', 'Accommodation details, if required', 'Travel insurance, if required', 'Medical documents, if required', 'Any additional documents requested by the embassy or university'],
-        ],
-    ]);
-
-    // NEW: Explore Europe Section Data
-    $exploreEurope = collect([
-        (object)[
-            'flag' => '🇭🇺',
-            'country' => 'Hungary',
-            'type' => 'Premium European Pathway',
-            'university' => 'International Business School, Budapest',
-            'highlights' => ['International study experience in Budapest', 'Dual degree opportunities', '100% placement assistance', 'Erasmus+ student exchange'],
-        ],
-        (object)[
-            'flag' => '🇷🇴',
-            'country' => 'Romania',
-            'type' => 'Affordable European Pathway',
-            'university' => 'Aurel Vlaicu University',
-            'highlights' => ['Affordable tuition fees', 'One-year completion route', 'Lower cost of living', 'Direct university progression'],
-        ],
-        (object)[
-            'flag' => '🇲🇩',
-            'country' => 'Moldova',
-            'type' => 'Affordable European Pathway',
-            'university' => 'USPEE, Moldova',
-            'highlights' => ['Lower overall study cost', 'Reduced study duration', 'Student visa guidance', 'Flexible pathway structure'],
+            'items' => ['Bank statement or financial proof (if required)', 'Accommodation details (if required)', 'Travel insurance (if required)', 'Medical documents (if required)', 'Any additional documents requested by the embassy or university'],
         ],
     ]);
 @endphp
 
 
 {{-- ═══════════════════════════════════════════
-     1. HERO SECTION (Cinematic Design)
+     1. HERO SECTION (Cinematic)
 ═══════════════════════════════════════════ --}}
-<section class="cinematic-hero" aria-label="Global Bachelor's Pathway Hero">
+<section class="cinematic-hero" aria-label="Global Bachelor's Pathway Hero" data-testid="gbp-hero">
     <div class="cinematic-hero__bg" aria-hidden="true">
         <div class="cinematic-hero__bg-image" style="background-image: url('{{ $hero->background_image }}')"></div>
         <div class="cinematic-hero__gradient"></div>
@@ -292,7 +301,8 @@
             <div class="cinematic-hero__corner cinematic-hero__corner--br"></div>
         </div>
     </div>
-    <div class="cinematic-hero__content">
+
+    <div class="container cinematic-hero__content">
         <span class="cinematic-hero__eyebrow">
             <span class="cinematic-hero__eyebrow-line"></span>
             {{ $hero->tag }}
@@ -301,7 +311,7 @@
             {{ $hero->heading }}<br>
             <em>{{ $hero->heading_italic }}</em>
         </h1>
-        <p class="cinematic-hero__description">{{ $hero->description }}</p>
+        <p class="cinematic-hero__description">{{ $hero->sub_heading }}</p>
 
         <div class="gbp-hero__highlights">
             @foreach($hero->highlights as $h)
@@ -315,34 +325,72 @@
         <div class="gbp-hero__ctas">
             <a href="#enquire" class="btn btn--primary" data-testid="hero-cta-enquire">Enquire Now</a>
             <a href="#advisor" class="btn btn--secondary" data-testid="hero-cta-advisor">Speak to an Advisor</a>
-            <a href="#brochure" class="btn btn--outline" data-testid="hero-cta-brochure">Download Brochure</a>
         </div>
     </div>
 </section>
 
 
 {{-- ═══════════════════════════════════════════
-     2. WHAT IS THE PATHWAY PROGRAMME
+     SECTION 1: YOUR STRUCTURED ROUTE
+     Bold statement band — Dark background
 ═══════════════════════════════════════════ --}}
-<section class="gbp-overview section-wrapper" data-testid="gbp-overview">
+<section class="gbp-intro" aria-label="Your Structured Route" data-testid="gbp-intro">
+    <div class="container">
+        <div class="gbp-intro__content">
+            <span class="gbp-intro__label">
+                <span class="gbp-intro__label-line"></span>
+                {{ $intro->tag }}
+            </span>
+            <h2 class="gbp-intro__heading">
+                <span class="text-reveal-wrapper"><span class="text-reveal-inner">{{ $intro->heading_line1 }}</span></span>
+                <span class="text-reveal-wrapper"><span class="text-reveal-inner">{{ $intro->heading_line2 }}</span></span>
+                <span class="text-reveal-wrapper"><span class="text-reveal-inner"><em>{{ $intro->heading_italic }}</em></span></span>
+            </h2>
+            @foreach($intro->paragraphs as $paragraph)
+            <p class="gbp-intro__paragraph fade-up">{{ $paragraph }}</p>
+            @endforeach
+        </div>
+
+        <div class="gbp-intro__highlights">
+            @foreach($intro->highlights as $highlight)
+            <div class="gbp-intro-card">
+                <div class="gbp-intro-card__icon">
+                    <span data-lucide="{{ $highlight->icon }}"></span>
+                </div>
+                <div class="gbp-intro-card__content">
+                    <span class="gbp-intro-card__label">{{ $highlight->label }}</span>
+                    <span class="gbp-intro-card__value">{{ $highlight->value }}</span>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+
+
+{{-- ═══════════════════════════════════════════
+     SECTION 2: WHAT IS THE PATHWAY PROGRAMME
+═══════════════════════════════════════════ --}}
+<section class="gbp-overview section-wrapper section--light" aria-label="Programme Overview" data-testid="gbp-overview">
     <div class="container">
         <div class="gbp-overview__grid">
-
             <div class="gbp-overview__main">
-                <span class="section-label gbp-overview__label">{{ $overview->tag }}</span>
-                <h2 class="gbp-overview__heading">
-                    {{ $overview->heading }}
-                    <em>{{ $overview->heading_italic }}</em>
+                <span class="section-label"><span>{{ $overview->tag }}</span></span>
+                <h2 class="gbp-overview__heading section-title">
+                    <span class="text-reveal-wrapper"><span class="text-reveal-inner">{{ $overview->heading }}</span></span>
+                    <span class="text-reveal-wrapper"><span class="text-reveal-inner"><em>{{ $overview->heading_italic }}</em></span></span>
                 </h2>
                 @foreach($overview->paragraphs as $paragraph)
-                <p class="gbp-overview__paragraph">{{ $paragraph }}</p>
+                <p class="gbp-overview__paragraph body-text fade-up">{{ $paragraph }}</p>
                 @endforeach
-        </div>
+            </div>
             <div class="gbp-overview__stats">
                 @foreach($overview->stats as $stat)
-                <div class="gbp-stat">
-                    <div class="gbp-stat__number">{{ $stat->number }}</div>
-                    <div class="gbp-stat__label">{{ $stat->label }}</div>
+                <div class="gbp-stat fade-up">
+                    @if($stat->number)
+                    <span class="gbp-stat__number">{{ $stat->number }}</span>
+                    @endif
+                    <span class="gbp-stat__label">{{ $stat->label }}</span>
                 </div>
                 @endforeach
             </div>
@@ -352,40 +400,34 @@
 
 
 {{-- ═══════════════════════════════════════════
-     3. WHY THIS PATHWAY — Sticky left + numbered cards
+     3. WHY CHOOSE THIS PATHWAY?
 ═══════════════════════════════════════════ --}}
-<section class="gbp-why section-wrapper section--light" data-testid="gbp-why">
+<section class="gbp-why section-wrapper section--light section--warm" aria-label="Why Choose This Pathway" data-testid="gbp-why">
     <div class="container">
         <div class="gbp-why__grid">
-
             <div class="gbp-why__sticky">
-                <div class="gbp-why__sticky-inner">
-                    <span class="section-label">{{ $whyPathway->tag }}</span>
-                    <h2 class="gbp-why__heading">
-                        {{ $whyPathway->heading }}
-                        <em>{{ $whyPathway->heading_italic }}</em>
-                    </h2>
-                    <blockquote class="gbp-why__quote">{{ $whyPathway->quote }}</blockquote>
-                    
-                <p class="gbp-overview__paragraph" style="margin-top:30px;">{{ $whyPathway->paragraph }}</p>
-                </div>
+                <span class="section-label"><span>{{ $whyPathway->tag }}</span></span>
+                <h2 class="gbp-why__heading section-title">
+                    <span class="text-reveal-wrapper"><span class="text-reveal-inner">{{ $whyPathway->heading }}</span></span>
+                    <span class="text-reveal-wrapper"><span class="text-reveal-inner"><em>{{ $whyPathway->heading_italic }}</em></span></span>
+                </h2>
+                <blockquote class="gbp-why__quote fade-up">{{ $whyPathway->quote }}</blockquote>
+                <p class="gbp-why__paragraph body-text fade-up">{{ $whyPathway->paragraph }}</p>
             </div>
-
             <div class="gbp-why__cards">
                 @foreach($whyPathway->items as $index => $item)
-                <article class="gbp-why-card">
-                    <div class="gbp-why-card__icon">
+                <article class="gbp-why-card" data-testid="gbp-why-card-{{ $index + 1 }}">
+                    <span class="gbp-why-card__number">0{{ $index + 1 }}</span>
+                    <div class="gbp-why-card__icon" aria-hidden="true">
                         <span data-lucide="{{ $item->icon }}"></span>
                     </div>
-                    <div class="gbp-why-card__content">
-                        <h3 class="gbp-why-card__title">{{ $item->title }}</h3>
+                    <div class="gbp-why-card__body">
+                        <h3 class="gbp-why-card__title card-title">{{ $item->title }}</h3>
                         <p class="gbp-why-card__description">{{ $item->description }}</p>
                     </div>
-                    <span class="gbp-why-card__number">{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</span>
                 </article>
                 @endforeach
             </div>
-
         </div>
     </div>
 </section>
@@ -394,36 +436,35 @@
 {{-- ═══════════════════════════════════════════
      4. EXPLORE EUROPE WITH YOUR CHOICES
 ═══════════════════════════════════════════ --}}
-<section class="gbp-explore section-wrapper" data-testid="gbp-explore">
+<section class="gbp-explore section-wrapper" aria-label="Explore Europe with Your Choices" data-testid="gbp-explore">
     <div class="container">
-        <div class="section-heading-block">
-            <span class="section-label">YOUR OPTIONS</span>
-            <h2 class="section-heading">
-                Explore Europe with <em>Your Choices</em>
+        <div class="gbp-explore__header">
+            <span class="section-label"><span>YOUR OPTIONS</span></span>
+            <h2 class="gbp-explore__heading section-title">
+                <span class="text-reveal-wrapper"><span class="text-reveal-inner">Explore Europe with</span></span>
+                <span class="text-reveal-wrapper"><span class="text-reveal-inner"><em>Your Choices</em></span></span>
             </h2>
-            <p class="section-subheading">
+            <p class="gbp-explore__sub body-text fade-up">
                 Hungary | Romania | Moldova — With Maverick's Bachelor's Global Pathway, students can choose from multiple European progression routes based on their academic goals, budget, preferred destination, and long-term career plans.
             </p>
         </div>
 
         <div class="gbp-explore__grid">
             @foreach($exploreEurope as $country)
-            <div class="gbp-explore-card fade-up">
-                <div class="gbp-explore-card__flag">{{ $country->flag }}</div>
-                <h3 class="gbp-explore-card__country">{{ $country->country }}</h3>
+            <article class="gbp-explore-card" data-testid="gbp-explore-{{ strtolower($country->country) }}">
+                <div class="gbp-explore-card__flag" aria-hidden="true">{{ $country->flag }}</div>
+                <h3 class="gbp-explore-card__country card-title">{{ $country->country }}</h3>
                 <span class="gbp-explore-card__type">{{ $country->type }}</span>
                 <p class="gbp-explore-card__university">{{ $country->university }}</p>
                 <ul class="gbp-explore-card__highlights">
                     @foreach($country->highlights as $highlight)
                     <li>
-                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M20 6L9 17l-5-5"/>
-                        </svg>
+                        <span data-lucide="check" aria-hidden="true"></span>
                         {{ $highlight }}
                     </li>
                     @endforeach
                 </ul>
-            </div>
+            </article>
             @endforeach
         </div>
     </div>
@@ -433,34 +474,34 @@
 {{-- ═══════════════════════════════════════════
      5. PROGRAMME PATHWAY STRUCTURE
 ═══════════════════════════════════════════ --}}
-<section class="gbp-stages section-wrapper" data-testid="gbp-stages">
+<section class="gbp-stages section-wrapper section--light" aria-label="Programme Pathway Structure" data-testid="gbp-stages">
     <div class="container">
-
-        <div class="section-heading-block">
-            <span class="section-label">PROGRAMME PATHWAY</span>
-            <h2 class="section-heading">
-                A Structured <em>Four-Stage Journey</em>
+        <div class="gbp-stages__header">
+            <span class="section-label"><span>PROGRAMME PATHWAY</span></span>
+            <h2 class="gbp-stages__heading section-title">
+                <span class="text-reveal-wrapper"><span class="text-reveal-inner">A Structured</span></span>
+                <span class="text-reveal-wrapper"><span class="text-reveal-inner"><em>Four-Stage Journey</em></span></span>
             </h2>
-            <p class="section-subheading">
+            <p class="gbp-stages__sub body-text fade-up">
                 From foundational diplomas in the UAE to an internationally recognised European bachelor's degree.
             </p>
         </div>
 
         <div class="gbp-stages__timeline">
-            <div class="gbp-stages__line"></div>
-            @foreach($stages as $index => $stage)
-            <div class="gbp-stage">
+            <div class="gbp-stages__line" aria-hidden="true"></div>
+            @foreach($stages as $stage)
+            <div class="gbp-stage" data-testid="gbp-stage-{{ $stage->year }}">
                 <div class="gbp-stage__dot">{{ $stage->year }}</div>
                 <div class="gbp-stage__card">
                     <span class="gbp-stage__duration">{{ $stage->duration }}</span>
-                    <h3 class="gbp-stage__title">{{ $stage->title }}</h3>
+                    <h3 class="gbp-stage__title card-title">{{ $stage->title }}</h3>
                     <p class="gbp-stage__description">{{ $stage->description }}</p>
                 </div>
             </div>
             @endforeach
         </div>
 
-                <p class="gbp-overview__paragraph" style="margin-top:30px;">{{ $overview->quotes }}</p>
+        <p class="gbp-stages__quote body-text fade-up">{{ $overview->quotes }}</p>
     </div>
 </section>
 
@@ -468,53 +509,48 @@
 {{-- ═══════════════════════════════════════════
      6. STUDY DESTINATIONS
 ═══════════════════════════════════════════ --}}
-<section class="gbp-destinations section-wrapper" data-testid="gbp-destinations">
+<section class="gbp-destinations section-wrapper" aria-label="Study Destinations" data-testid="gbp-destinations">
     <div class="container">
-
-        <div class="section-heading-block">
-            <span class="section-label">STUDY DESTINATIONS</span>
-            <h2 class="section-heading">
-                Choose Your European <em>Study Destination</em>
+        <div class="gbp-destinations__header">
+            <span class="section-label"><span>STUDY DESTINATIONS</span></span>
+            <h2 class="gbp-destinations__heading section-title">
+                <span class="text-reveal-wrapper"><span class="text-reveal-inner">Choose Your European</span></span>
+                <span class="text-reveal-wrapper"><span class="text-reveal-inner"><em>Study Destination</em></span></span>
             </h2>
-            <p class="section-subheading">
-                With Maverick\'s Bachelor\'s Global Pathway, students can choose from multiple European progression routes based on their academic goals, budget, preferred destination, and long-term career plans
-            </p>
         </div>
 
         <div class="gbp-destinations__list">
             @foreach($destinations as $dest)
-            <article class="gbp-dest gbp-dest--{{ $dest->position }}">
-                <div class="gbp-dest__image-wrapper">
-                    <img src="{{ $dest->image }}" alt="Study in {{ $dest->name }}" class="gbp-dest__image" loading="lazy">
-                    <span class="gbp-dest__flag">{{ $dest->flag }}</span>
+            <article class="gbp-dest gbp-dest--{{ $dest->position }} gbp-dest--{{ $dest->slug }}" data-testid="gbp-dest-{{ $dest->slug }}">
+                <div class="gbp-dest__media">
+                    <img
+                        class="gbp-dest__image"
+                        src="{{ $dest->image }}"
+                        alt="Study in {{ $dest->name }}"
+                        loading="lazy"
+                        width="760"
+                        height="950"
+                    >
+                    <div class="gbp-dest__overlay" aria-hidden="true"></div>
                 </div>
-                <div class="gbp-dest__content">
+                <div class="gbp-dest__content fade-up">
                     <span class="gbp-dest__label">{{ $dest->label }}</span>
-                    <h3 class="gbp-dest__title">Study in <em>{{ $dest->name }}</em></h3>
-                    <p class="gbp-dest__partner">Partner University · {{ $dest->university }}</p>
-                    <p class="gbp-dest__description">{{ $dest->description }}</p>
-
-                    <h4 class="gbp-dest__subhead">Why Study in {{ $dest->name }}?</h4>
+                    <h3 class="gbp-dest__title card-title">Study in <em>{{ $dest->name }}</em></h3>
+                    <p class="gbp-dest__partner">{{ $dest->university }}</p>
+                    <p class="gbp-dest__description body-text">{{ $dest->description }}</p>
                     <ul class="gbp-dest__points">
                         @foreach($dest->points as $point)
                         <li>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"/>
-                            </svg>
-                            <span>{{ $point }}</span>
+                            <span data-lucide="check" aria-hidden="true"></span>
+                            {{ $point }}
                         </li>
                         @endforeach
                     </ul>
-
-                    <div class="gbp-dest__best-for">
-                        <span class="gbp-dest__best-label">Best For</span>
-                        {{ $dest->best_for }}
-                    </div>
+                    <p class="gbp-dest__best"><strong>Best For:</strong> {{ $dest->best_for }}</p>
                 </div>
             </article>
             @endforeach
         </div>
-
     </div>
 </section>
 
@@ -522,32 +558,26 @@
 {{-- ═══════════════════════════════════════════
      7. COST & TIME ADVANTAGE
 ═══════════════════════════════════════════ --}}
-<section class="gbp-cost" data-testid="gbp-cost">
+<section class="gbp-cost section-wrapper" aria-label="Cost and Time Advantage" data-testid="gbp-cost">
     <div class="container">
         <div class="gbp-cost__grid">
-
-            <div class="gbp-cost__content">
-                <span class="section-label gbp-cost__label">{{ $costTime->tag }}</span>
-                <h2 class="gbp-cost__heading">
-                    {{ $costTime->heading }}
-                    <em>{{ $costTime->heading_italic }}</em>
+            <div class="gbp-cost__main">
+                <span class="section-label"><span>{{ $costTime->tag }}</span></span>
+                <h2 class="gbp-cost__heading section-title">
+                    <span class="text-reveal-wrapper"><span class="text-reveal-inner">{{ $costTime->heading }}</span></span>
+                    <span class="text-reveal-wrapper"><span class="text-reveal-inner"><em>{{ $costTime->heading_italic }}</em></span></span>
                 </h2>
-                <p class="gbp-cost__description">{{ $costTime->description }}</p>
-                <p class="gbp-cost__closing">{{ $costTime->closing }}</p>
+                <p class="gbp-cost__description body-text fade-up">{{ $costTime->description }}</p>
+                <p class="gbp-cost__closing body-text fade-up">{{ $costTime->closing }}</p>
             </div>
-
-            <div class="gbp-cost__table">
+            <div class="gbp-cost__rows">
                 @foreach($costTime->comparisons as $row)
-                <div class="gbp-cost-row gbp-cost-row--{{ $row->variant }}">
-                    <div class="gbp-cost-row__label">{{ $row->label }}</div>
-                    <div class="gbp-cost-row__value">
-                        {{ $row->value }}
-                        @if(isset($row->note))<span class="gbp-cost-row__note">{{ $row->note }}</span>@endif
-                    </div>
+                <div class="gbp-cost-row gbp-cost-row--{{ $row->variant }} fade-up">
+                    <span class="gbp-cost-row__label">{{ $row->label }}</span>
+                    <span class="gbp-cost-row__value">{{ $row->value }}</span>
                 </div>
                 @endforeach
             </div>
-
         </div>
     </div>
 </section>
@@ -556,26 +586,26 @@
 {{-- ═══════════════════════════════════════════
      8. PROGRAMS OFFERED
 ═══════════════════════════════════════════ --}}
-<section class="gbp-areas section-wrapper section--light" data-testid="gbp-areas">
+<section class="gbp-areas section-wrapper section--light" aria-label="Programs Offered" data-testid="gbp-areas">
     <div class="container">
-
-        <div class="section-heading-block">
-            <span class="section-label">PATHWAY AREAS</span>
-            <h2 class="section-heading">
-                Choose a Bachelor's Pathway That Matches <em>Your Career Goals</em>
+        <div class="gbp-areas__header">
+            <span class="section-label"><span>PATHWAY AREAS</span></span>
+            <h2 class="gbp-areas__heading section-title">
+                <span class="text-reveal-wrapper"><span class="text-reveal-inner">Choose a Bachelor's Pathway That Matches</span></span>
+                <span class="text-reveal-wrapper"><span class="text-reveal-inner"><em>Your Career Goals</em></span></span>
             </h2>
-            <p class="section-subheading">
+            <p class="gbp-areas__sub body-text fade-up">
                 Career-focused pathway areas across business, technology, hospitality, and international management fields.
             </p>
         </div>
 
         <div class="gbp-areas__grid">
             @foreach($pathwayAreas as $area)
-            <article class="gbp-area-card">
-                <div class="gbp-area-card__icon">
+            <article class="gbp-area-card" data-testid="gbp-area-{{ $loop->iteration }}">
+                <div class="gbp-area-card__icon" aria-hidden="true">
                     <span data-lucide="{{ $area->icon }}"></span>
                 </div>
-                <h3 class="gbp-area-card__title">{{ $area->title }}</h3>
+                <h3 class="gbp-area-card__title card-title">{{ $area->title }}</h3>
                 <p class="gbp-area-card__description">{{ $area->description }}</p>
                 <ul class="gbp-area-card__list">
                     @foreach($area->items as $item)
@@ -585,7 +615,6 @@
             </article>
             @endforeach
         </div>
-
     </div>
 </section>
 
@@ -593,39 +622,36 @@
 {{-- ═══════════════════════════════════════════
      9. PARTNER UNIVERSITY PROGRESSION
 ═══════════════════════════════════════════ --}}
-<section class="gbp-partners section-wrapper" data-testid="gbp-partners">
+<section class="gbp-partners section-wrapper" aria-label="Partner University Progression" data-testid="gbp-partners">
     <div class="container">
-
-        <div class="section-heading-block">
-            <span class="section-label">PROGRESSION OPTIONS</span>
-            <h2 class="section-heading">
-                Partner University <em>Progression Options</em>
+        <div class="gbp-partners__header">
+            <span class="section-label"><span>PROGRESSION OPTIONS</span></span>
+            <h2 class="gbp-partners__heading section-title">
+                <span class="text-reveal-wrapper"><span class="text-reveal-inner">Partner University</span></span>
+                <span class="text-reveal-wrapper"><span class="text-reveal-inner"><em>Progression Options</em></span></span>
             </h2>
-            <p class="section-subheading">
+            <p class="gbp-partners__sub body-text fade-up">
                 Three European progression routes — pick the one that fits your budget, timeline, and career direction.
             </p>
         </div>
 
         <div class="gbp-partners__grid">
-            @foreach($partnerOptions as $option)
-            <article class="gbp-partner-card">
-                <div class="gbp-partner-card__flag">
-                    <span>{{ $option->code }}</span>
-                </div>
-                <h3 class="gbp-partner-card__title">{{ $option->name }}</h3>
-                <p class="gbp-partner-card__description">{{ $option->description }}</p>
-                <div class="gbp-partner-card__best">
-                    <span class="gbp-partner-card__best-label">Best Suited For</span>
+            @foreach($partnerOptions as $partner)
+            <article class="gbp-partner-card" data-testid="gbp-partner-{{ strtolower($partner->code) }}">
+                <span class="gbp-partner-card__code" aria-hidden="true">{{ $partner->code }}</span>
+                <h3 class="gbp-partner-card__title card-title">{{ $partner->name }}</h3>
+                <p class="gbp-partner-card__description">{{ $partner->description }}</p>
+                <div class="gbp-partner-card__suited">
+                    <span class="gbp-partner-card__suited-label">Best Suited For</span>
                     <div class="gbp-partner-card__tags">
-                        @foreach($option->best_for as $tag)
-                        <span class="gbp-tag">{{ $tag }}</span>
+                        @foreach($partner->best_for as $tag)
+                        <span class="gbp-partner-card__tag">{{ $tag }}</span>
                         @endforeach
                     </div>
                 </div>
             </article>
             @endforeach
         </div>
-
     </div>
 </section>
 
@@ -633,56 +659,40 @@
 {{-- ═══════════════════════════════════════════
      10. ADMISSION REQUIREMENTS
 ═══════════════════════════════════════════ --}}
-<section class="gbp-admission section-wrapper section--light" data-testid="gbp-admission">
+<section class="gbp-admission section-wrapper section--light" aria-label="Admission Requirements" data-testid="gbp-admission">
     <div class="container">
-
-        <div class="section-heading-block">
-            <span class="section-label">ADMISSIONS</span>
-            <h2 class="section-heading">
-                Admission <em>Requirements</em>
+        <div class="gbp-admission__header">
+            <span class="section-label"><span>ADMISSION</span></span>
+            <h2 class="gbp-admission__heading section-title">
+                <span class="text-reveal-wrapper"><span class="text-reveal-inner">Admission</span></span>
+                <span class="text-reveal-wrapper"><span class="text-reveal-inner"><em>Requirements</em></span></span>
             </h2>
-            <p class="section-subheading">
-                Designed for students who want to start their international bachelor's journey through a structured and cost-effective academic route.
-            </p>
         </div>
 
         <div class="gbp-admission__grid">
-
-            <div class="gbp-admission__col">
-                <h3 class="gbp-admission__title">Who Can Apply?</h3>
+            <div class="gbp-admission__card fade-up">
+                <h3 class="gbp-admission__card-title card-title">Who Can Apply?</h3>
                 <ul class="gbp-admission__list">
                     @foreach($eligibility as $item)
                     <li>
-                        <span class="gbp-admission__bullet">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"/>
-                            </svg>
-                        </span>
-                        <span>{{ $item }}</span>
+                        <span data-lucide="check" aria-hidden="true"></span>
+                        {{ $item }}
                     </li>
                     @endforeach
                 </ul>
             </div>
-
-            <div class="gbp-admission__col">
-                <h3 class="gbp-admission__title">General Entry Requirements</h3>
+            <div class="gbp-admission__card fade-up">
+                <h3 class="gbp-admission__card-title card-title">General Entry Requirements</h3>
                 <ul class="gbp-admission__list">
                     @foreach($entryRequirements as $item)
                     <li>
-                        <span class="gbp-admission__bullet">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"/>
-                            </svg>
-                        </span>
-                        <span>{{ $item }}</span>
+                        <span data-lucide="check" aria-hidden="true"></span>
+                        {{ $item }}
                     </li>
                     @endforeach
                 </ul>
-                <p class="gbp-admission__note">
-                    <strong>Note:</strong> No IELTS / TOEFL required, subject to admission requirements.
-                </p>
+                <p class="gbp-admission__note fade-up">No IELTS / TOEFL required, subject to admission requirements.</p>
             </div>
-
         </div>
     </div>
 </section>
@@ -691,23 +701,23 @@
 {{-- ═══════════════════════════════════════════
      11. DOCUMENTS REQUIRED
 ═══════════════════════════════════════════ --}}
-<section class="gbp-docs section-wrapper" data-testid="gbp-docs">
+<section class="gbp-docs section-wrapper" aria-label="Documents Required" data-testid="gbp-docs">
     <div class="container">
-
-        <div class="section-heading-block">
-            <span class="section-label">CHECKLIST</span>
-            <h2 class="section-heading">
-                Documents Required <em>for Admission</em>
+        <div class="gbp-docs__header">
+            <span class="section-label"><span>CHECKLIST</span></span>
+            <h2 class="gbp-docs__heading section-title">
+                <span class="text-reveal-wrapper"><span class="text-reveal-inner">Documents Required</span></span>
+                <span class="text-reveal-wrapper"><span class="text-reveal-inner"><em>for Admission</em></span></span>
             </h2>
         </div>
 
         <div class="gbp-docs__grid">
             @foreach($documentGroups as $group)
-            <article class="gbp-doc-card">
-                <div class="gbp-doc-card__icon">
+            <article class="gbp-doc-card" data-testid="gbp-doc-{{ $loop->iteration }}">
+                <div class="gbp-doc-card__icon" aria-hidden="true">
                     <span data-lucide="{{ $group->icon }}"></span>
                 </div>
-                <h3 class="gbp-doc-card__title">{{ $group->title }}</h3>
+                <h3 class="gbp-doc-card__title card-title">{{ $group->title }}</h3>
                 <ul class="gbp-doc-card__list">
                     @foreach($group->items as $item)
                     <li>{{ $item }}</li>
@@ -716,7 +726,6 @@
             </article>
             @endforeach
         </div>
-
     </div>
 </section>
 
@@ -724,29 +733,97 @@
 {{-- ═══════════════════════════════════════════
      12. FINAL CTA
 ═══════════════════════════════════════════ --}}
-<section class="gbp-final" id="enquire" data-testid="gbp-final">
+<section class="gbp-final section-wrapper" id="enquire" aria-label="Start Your Journey" data-testid="gbp-final">
     <div class="container">
-        <div class="gbp-final__inner">
+        <div class="gbp-final__inner fade-up">
             <span class="gbp-final__eyebrow">Your Global Career Starts Here</span>
-            <h2 class="gbp-final__heading">
+            <h2 class="gbp-final__heading section-title">
                 Start Your Global <em>Bachelor's Journey</em>
             </h2>
             <p class="gbp-final__sub">Your international bachelor's degree pathway starts here.</p>
-            <p class="gbp-final__description">
+            <p class="gbp-final__description body-text">
                 Begin with Maverick Business Academy London and progress towards selected partner universities in Hungary, Romania, or Moldova — with structured academic support, visa guidance, and career-focused counselling.
             </p>
             <div class="gbp-final__ctas">
-                <a href="#advisor" class="gbp-btn gbp-btn--primary" data-testid="final-cta-advisor">Speak to an Admission Advisor
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </a>
-                <a href="#brochure" class="gbp-btn gbp-btn--outline-light" data-testid="final-cta-brochure">Download Brochure</a>
-                <a href="#apply" class="gbp-btn gbp-btn--outline-light" data-testid="final-cta-apply">Apply for the Next Intake</a>
+                <a href="#advisor" class="btn gbp-final__btn gbp-final__btn--solid" id="advisor" data-testid="final-cta-advisor">Speak to an Admission Advisor</a>
+                <a href="#brochure" class="btn gbp-final__btn gbp-final__btn--outline" id="brochure" data-testid="final-cta-brochure">Download Brochure</a>
+                <a href="#apply" class="btn gbp-final__btn gbp-final__btn--outline" id="apply" data-testid="final-cta-apply">Apply for the Next Intake</a>
             </div>
         </div>
     </div>
 </section>
 
-@include('sections.final-cta')
-
 </div>
 @endsection
+
+@push('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    if (typeof AnimationUtils === 'undefined' || typeof gsap === 'undefined') return;
+
+    if (AnimationUtils.prefersReducedMotion) {
+        gsap.set('.fade-up, .text-reveal-inner, .gbp-intro-card, .gbp-why-card, .gbp-explore-card, .gbp-area-card, .gbp-partner-card, .gbp-doc-card, .gbp-stage, .gbp-stages__line', {
+            clearProps: 'all',
+            opacity: 1,
+            y: 0,
+            scaleY: 1,
+        });
+        return;
+    }
+
+    AnimationUtils.textReveal('.gbp-intro .text-reveal-inner', { stagger: 0.15 });
+    AnimationUtils.fadeUp('.gbp-intro .fade-up', { stagger: 0.12, y: 25 });
+    AnimationUtils.cards('.gbp-intro-card', { stagger: 0.1, y: 30 });
+
+    const sections = [
+        '.gbp-overview', '.gbp-why', '.gbp-explore', '.gbp-stages',
+        '.gbp-destinations', '.gbp-cost', '.gbp-areas', '.gbp-partners',
+        '.gbp-admission', '.gbp-docs', '.gbp-final',
+    ];
+
+    sections.forEach((s) => AnimationUtils.sectionLabel(s));
+
+    [
+        '.gbp-overview', '.gbp-why', '.gbp-explore', '.gbp-stages',
+        '.gbp-destinations', '.gbp-cost', '.gbp-areas', '.gbp-partners',
+        '.gbp-admission', '.gbp-docs',
+    ].forEach((s) => AnimationUtils.textReveal(`${s} .text-reveal-inner`));
+
+    sections.forEach((s) => {
+        AnimationUtils.fadeUp(`${s} .fade-up`, { stagger: 0.1 });
+    });
+
+    AnimationUtils.cards('.gbp-why-card', { stagger: 0.12 });
+    AnimationUtils.cards('.gbp-explore-card', { stagger: 0.15 });
+    AnimationUtils.cards('.gbp-area-card', { stagger: 0.1 });
+    AnimationUtils.cards('.gbp-partner-card', { stagger: 0.12 });
+    AnimationUtils.cards('.gbp-doc-card', { stagger: 0.12 });
+    AnimationUtils.cards('.gbp-stage', { stagger: 0.2 });
+
+    const timelineLine = document.querySelector('.gbp-stages__line');
+    if (timelineLine) {
+        gsap.fromTo(timelineLine,
+            { scaleY: 0 },
+            {
+                scaleY: 1,
+                transformOrigin: 'top center',
+                duration: 1.2,
+                ease: 'power2.inOut',
+                scrollTrigger: {
+                    trigger: '.gbp-stages',
+                    start: 'top 70%',
+                    toggleActions: 'play none none none',
+                },
+            }
+        );
+    }
+
+    ['.gbp-dest--hungary .gbp-dest__image', '.gbp-dest--romania .gbp-dest__image', '.gbp-dest--moldova .gbp-dest__image']
+        .forEach((sel) => AnimationUtils.parallax(sel, { y: -30 }));
+
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
+});
+</script>
+@endpush
