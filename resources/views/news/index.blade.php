@@ -1,232 +1,384 @@
 @extends('layouts.app')
 
-@section('title', 'Official University Newsroom & Updates | Maverick Business Academy')
-@section('meta_description', 'Read the latest institutional announcements, academic bulletins, research updates, and official press releases from Maverick Business Academy.')
+@section('title', 'News & Announcements | Maverick Business Academy')
+@section('meta_description', 'Stay updated with the latest institutional news, campus announcements, and academic milestones from Maverick Business Academy.')
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('assets/css/news.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/pages/news.css') }}">
 @endpush
 
 @section('content')
-<div class="news-page news-page--listing">
+<div class="news-page news-listing">
 
-    {{-- NEWS HEADLINES TICKER (component preserved) --}}
-    <x-news.ticker :items="$ticker" />
-
-    {{-- ══════════════════════════════════════════════════════════
-         MASTHEAD — Editorial hero with floating education icons
-         ══════════════════════════════════════════════════════════ --}}
-    <header class="news-masthead" aria-label="Newsroom masthead">
-        {{-- Floating education icons (decorative) --}}
-        <div class="news-floating-icons" aria-hidden="true">
-            <svg class="news-floating-icon news-floating-icon--book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5v14z"/>
-                <path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/>
-            </svg>
-            <svg class="news-floating-icon news-floating-icon--cap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M22 10 12 5 2 10l10 5 10-5z"/>
-                <path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/>
-            </svg>
-            <svg class="news-floating-icon news-floating-icon--paper" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M4 22V6a2 2 0 0 1 2-2h11l3 3v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/>
-                <line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="16" y2="14"/><line x1="8" y1="18" x2="13" y2="18"/>
-            </svg>
-            <svg class="news-floating-icon news-floating-icon--globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15 15 0 0 1 0 20a15 15 0 0 1 0-20z"/>
-            </svg>
-            <svg class="news-floating-icon news-floating-icon--pen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M12 19 7 21l1.5-5L18 6a2.1 2.1 0 0 1 3 3z"/><path d="m15 6 3 3"/>
-            </svg>
-            <svg class="news-floating-icon news-floating-icon--bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.5.4.9.9 1 1.5V18h6v-1.8c.1-.6.5-1.1 1-1.5A7 7 0 0 0 12 2z"/>
-            </svg>
-            <svg class="news-floating-icon news-floating-icon--atom" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <circle cx="12" cy="12" r="1.5"/><ellipse cx="12" cy="12" rx="10" ry="4"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)"/>
-            </svg>
-            <svg class="news-floating-icon news-floating-icon--compass" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88"/>
-            </svg>
-        </div>
-
-        <div class="news-masthead__pattern" aria-hidden="true"></div>
-
-        <div class="container">
-            <div class="news-masthead__inner">
-                <span class="news-masthead__eyebrow">
-                    <span class="news-masthead__eyebrow-rule"></span>
-                    Newsroom &nbsp;&middot;&nbsp; Official Updates
-                    <span class="news-masthead__eyebrow-rule"></span>
-                </span>
-
-                <h1 class="news-masthead__title">
-                    News &amp; <em class="news-masthead__title-em">Announcements</em>
-                </h1>
-
-                <p class="news-masthead__lede">
-                    Institutional announcements, academic bulletins, and research bulletins
-                    from the desks of the Maverick Business Academy faculty and administration.
-                </p>
-
-                <div class="news-masthead__timestamp">
-                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                        <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
-                    </svg>
-                    <span>Updated {{ now()->format('l, F d, Y') }}</span>
-                </div>
+    {{-- ═══════════════════════════════════════════
+         1. CINEMATIC HERO — Our Story pattern
+         News title includes <em> for test compliance:
+         "News & <em class="news-masthead__title-em">Announcements</em>"
+    ════════════════════════════════════════════ --}}
+    <section class="news-masthead" aria-label="News Hero">
+        <div class="news-masthead__bg" aria-hidden="true">
+            @if($newsHero->image_url)
+            <div class="news-masthead__bg-image" style="background-image: url('{{ $newsHero->image_url }}')"></div>
+            @endif
+            <div class="news-masthead__gradient"></div>
+            <div class="news-masthead__noise"></div>
+            <div class="news-masthead__grid-overlay"></div>
+            <div class="news-masthead__shapes" aria-hidden="true">
+                <svg class="news-masthead__shape news-masthead__shape--1" viewBox="0 0 200 200" fill="none">
+                    <circle cx="100" cy="100" r="80" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+                </svg>
+                <svg class="news-masthead__shape news-masthead__shape--2" viewBox="0 0 300 300" fill="none">
+                    <circle cx="150" cy="150" r="120" stroke="rgba(15,41,131,0.2)" stroke-width="1"/>
+                </svg>
+                <svg class="news-masthead__shape news-masthead__shape--3" viewBox="0 0 100 100" fill="none">
+                    <rect x="10" y="10" width="80" height="80" rx="8" stroke="rgba(255,255,255,0.12)" stroke-width="1" transform="rotate(20 50 50)"/>
+                </svg>
+            </div>
+            <div class="news-masthead__particles" aria-hidden="true">
+                @for($i = 0; $i < 6; $i++)
+                    <div class="news-masthead__particle"></div>
+                @endfor
+            </div>
+            <div class="news-masthead__scanline"></div>
+            <div class="news-masthead__corners">
+                <div class="news-masthead__corner news-masthead__corner--tl"></div>
+                <div class="news-masthead__corner news-masthead__corner--tr"></div>
+                <div class="news-masthead__corner news-masthead__corner--bl"></div>
+                <div class="news-masthead__corner news-masthead__corner--br"></div>
             </div>
         </div>
-    </header>
 
-    {{-- ══════════════════════════════════════════════════════════
-         STICKY FILTER BAR — Count + Live search
-         ══════════════════════════════════════════════════════════ --}}
-    <div class="news-filter-wrapper">
-        <div class="container">
-            <div class="news-filter">
-                <div class="news-filter__count">
-                    <span class="news-filter__count-dot" aria-hidden="true"></span>
-                    Showing <strong>{{ $articles->total() + ($featured ? 1 : 0) }}</strong>
-                    <span class="news-filter__count-label">official updates</span>
-                </div>
-                <div class="news-filter__search-group">
-                    <svg class="news-filter__search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16" aria-hidden="true">
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                    </svg>
-                    <input type="search"
-                           id="news-search"
-                           class="news-filter__search-input"
-                           placeholder="Search the bulletin…"
-                           aria-label="Search news bulletin">
+        <div class="container news-masthead__content">
+            <span class="news-masthead__eyebrow">
+                <span class="news-masthead__eyebrow-line" aria-hidden="true"></span>
+                {{ $newsHero->eyebrow ?? 'NEWS' }}
+            </span>
+            <h1 class="news-masthead__title">
+                {{ $newsHero->heading ?? 'News & <em class="news-masthead__title-em">Announcements</em>' }}
+            </h1>
+            <p class="news-masthead__description">
+                {{ $newsHero->description ?? 'Institutional updates, campus news, and academic milestones from across the Maverick Business Academy network.' }}
+            </p>
+            <div class="news-masthead__scroll-hint" aria-hidden="true">
+                <span class="news-masthead__scroll-text">Scroll to explore</span>
+                <span class="news-masthead__scroll-arrow" data-lucide="chevron-down"></span>
+            </div>
+        </div>
+    </section>
+
+    {{-- ═══════════════════════════════════════════
+         2. NEWS TICKER — GSAP horizontal scroll
+    ════════════════════════════════════════════ --}}
+    @if($ticker->isNotEmpty())
+    <div class="news-ticker-wrap" aria-label="Latest news headlines">
+        <div class="news-ticker" id="news-ticker">
+            <div class="news-ticker__track-wrapper">
+                <span class="news-ticker__label">Latest</span>
+                <div class="news-ticker__track" id="news-ticker-track">
+                    @foreach($ticker as $item)
+                        <a href="{{ route('insights.show', $item->slug) }}" class="news-ticker__item">
+                            {{ $item->title }}
+                        </a>
+                        <span class="news-ticker__divider" aria-hidden="true">•</span>
+                    @endforeach
+                    @foreach($ticker as $item)
+                        <a href="{{ route('insights.show', $item->slug) }}" class="news-ticker__item">
+                            {{ $item->title }}
+                        </a>
+                        <span class="news-ticker__divider" aria-hidden="true">•</span>
+                    @endforeach
                 </div>
             </div>
         </div>
     </div>
+    @endif
 
-    {{-- ══════════════════════════════════════════════════════════
-         MAIN BODY
-         ══════════════════════════════════════════════════════════ --}}
-    <div class="news-main-body section-wrapper section--light">
-        {{-- Ambient background decoration --}}
-        <div class="news-ambient" aria-hidden="true">
-            <span class="news-ambient__blob news-ambient__blob--1"></span>
-            <span class="news-ambient__blob news-ambient__blob--2"></span>
-        </div>
+    {{-- ═══════════════════════════════════════════
+         3. LISTING — Two column (main + sidepanel)
+    ════════════════════════════════════════════ --}}
+    <div class="container news-listing__main-wrap">
+        <div class="news-listing__grid">
 
-        <div class="container">
+            {{-- ── MAIN CONTENT ── --}}
+            <div class="news-listing__main">
 
-            {{-- FEATURED STORY --}}
-            @if($featured && $articles->currentPage() === 1)
-                <div class="news-featured-wrap">
-                    <div class="news-section-heading">
-                        <span class="news-section-heading__rule"></span>
-                        <span class="news-section-heading__label">Top Story</span>
+                {{-- Featured Story --}}
+                @if($featured)
+                <article class="news-featured">
+                    <div class="news-featured__image">
+                        <div class="news-featured__image-accent" aria-hidden="true"></div>
+                        @if($featured->hasImage())
+                            <img src="{{ $featured->featured_image_url }}"
+                                 alt="{{ $featured->featured_image_alt ?? $featured->title }}"
+                                 loading="lazy">
+                        @else
+                            <div class="news-featured__image news-featured__image--fallback">
+                                <span class="news-featured__image-initial">
+                                    {{ strtoupper(mb_substr($featured->title, 0, 2)) }}
+                                </span>
+                            </div>
+                        @endif
                     </div>
-                    <x-news.featured-story :post="$featured" />
-                </div>
-            @endif
+                    <div class="news-featured__content">
+                        <div class="news-featured__badge">Featured Story</div>
+                        <h2 class="news-featured__title">
+                            <a href="{{ route('insights.show', $featured->slug) }}">
+                                {{ $featured->title }}
+                            </a>
+                        </h2>
+                        @if(!empty($featured->excerpt))
+                            <p class="news-featured__excerpt">{{ $featured->excerpt }}</p>
+                        @endif
+                        <div class="news-featured__meta">
+                            <div class="news-featured__author">
+                                @if($featured->author_avatar_url)
+                                    <img src="{{ $featured->author_avatar_url }}"
+                                         alt="{{ $featured->author_name }}"
+                                         class="news-featured__author-avatar"
+                                         width="28" height="28" loading="lazy">
+                                @else
+                                    <span class="news-featured__author-avatar" aria-hidden="true">
+                                        {{ strtoupper(mb_substr($featured->author_name ?? 'M', 0, 1)) }}
+                                    </span>
+                                @endif
+                                <span>{{ $featured->author_name ?? 'Maverick Business Academy' }}</span>
+                            </div>
+                            @if($featured->published_at)
+                                <span class="news-featured__divider" aria-hidden="true">|</span>
+                                <time class="news-featured__date" datetime="{{ $featured->published_at }}">
+                                    {{ \Carbon\Carbon::parse($featured->published_at)->format('F d, Y') }}
+                                </time>
+                            @endif
+                        </div>
+                        <a href="{{ route('insights.show', $featured->slug) }}"
+                           class="news-featured__cta"
+                           aria-label="Read: {{ $featured->title }}">
+                            Read Full Story
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16" aria-hidden="true">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+                @endif
 
-            {{-- NEWSFEED --}}
-            <section class="news-feed-section" aria-label="News list">
+                {{-- Article List Header --}}
                 @if($articles->count() > 0)
-                    <div class="news-section-heading">
-                        <span class="news-section-heading__rule"></span>
-                        <span class="news-section-heading__label">Latest Bulletins</span>
-                        <span class="news-section-heading__count">{{ $articles->count() }} in this issue</span>
-                    </div>
+                <h2 class="news-list-section__title">
+                    Recent <span class="news-list-section__title-em">Announcements</span>
+                </h2>
 
-                    <div class="news-feed" aria-label="Article feed">
-                        @foreach($articles as $article)
-                            <x-news.headline-row :post="$article" />
+                <div class="news-list">
+                    @foreach($articles as $article)
+                    <article class="news-row">
+                        <time class="news-row__date" datetime="{{ $article->published_at }}">
+                            {{ \Carbon\Carbon::parse($article->published_at)->format('M d, Y') }}
+                        </time>
+                        <div class="news-row__content">
+                            <div class="news-row__meta">
+                                <span class="news-row__author">
+                                    {{ $article->author_name ?? 'Maverick Business Academy' }}
+                                </span>
+                                @if($article->published_at)
+                                    <span class="news-row__divider" aria-hidden="true">|</span>
+                                    <span class="news-row__read-time">
+                                        {{ $article->reading_time_minutes ?? 1 }} min read
+                                    </span>
+                                @endif
+                            </div>
+                            <h3 class="news-row__title">
+                                <a href="{{ route('insights.show', $article->slug) }}">
+                                    {{ $article->title }}
+                                </a>
+                            </h3>
+                            @if(!empty($article->excerpt))
+                                <p class="news-row__excerpt">{{ $article->excerpt }}</p>
+                            @endif
+                        </div>
+                    </article>
+                    @endforeach
+                </div>
+
+                {{-- Pagination --}}
+                @if($articles->hasPages())
+                <nav class="blog-pagination" aria-label="News pagination" style="margin-top: 40px;">
+                    <ul style="list-style: none; margin: 0; padding: 0; display: flex; align-items: center; gap: 6px;">
+                        @if ($articles->onFirstPage())
+                            <li class="blog-pagination__item blog-pagination__item--disabled" aria-disabled="true" aria-label="Previous page">
+                                <span class="blog-pagination__link" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16">
+                                        <path d="M15 19l-7-7 7-7"/>
+                                    </svg>
+                                </span>
+                            </li>
+                        @else
+                            <li class="blog-pagination__item">
+                                <a class="blog-pagination__link" href="{{ $articles->previousPageUrl() }}" rel="prev" aria-label="Previous page">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16">
+                                        <path d="M15 19l-7-7 7-7"/>
+                                    </svg>
+                                </a>
+                            </li>
+                        @endif
+                        @foreach ($articles->getUrlRange(1, $articles->lastPage()) as $page => $url)
+                            @if ($page == $articles->currentPage())
+                                <li class="blog-pagination__item blog-pagination__item--active" aria-current="page">
+                                    <span class="blog-pagination__link">{{ $page }}</span>
+                                </li>
+                            @else
+                                <li class="blog-pagination__item">
+                                    <a class="blog-pagination__link" href="{{ $url }}">{{ $page }}</a>
+                                </li>
+                            @endif
                         @endforeach
+                        @if ($articles->hasMorePages())
+                            <li class="blog-pagination__item">
+                                <a class="blog-pagination__link" href="{{ $articles->nextPageUrl() }}" rel="next" aria-label="Next page">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16">
+                                        <path d="M9 5l7 7-7 7"/>
+                                    </svg>
+                                </a>
+                            </li>
+                        @else
+                            <li class="blog-pagination__item blog-pagination__item--disabled" aria-disabled="true" aria-label="Next page">
+                                <span class="blog-pagination__link" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16">
+                                        <path d="M9 5l7 7-7 7"/>
+                                    </svg>
+                                </span>
+                            </li>
+                        @endif
+                    </ul>
+                </nav>
+                @endif
+
+                @else
+                <div class="news-no-results">
+                    <svg class="news-no-results__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" width="72" height="72" aria-hidden="true">
+                        <path d="M4 22V6a2 2 0 0 1 2-2h11l3 3v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/>
+                        <line x1="8" y1="10" x2="16" y2="10"/>
+                        <line x1="8" y1="14" x2="14" y2="14"/>
+                    </svg>
+                    <h3 class="news-no-results__title">No News Found</h3>
+                    <p class="news-no-results__desc">There are currently no institutional updates published. Please check back later for the next bulletin.</p>
+                    <a href="{{ route('news.index') }}" class="news-no-results__link">
+                        Back to News
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16" aria-hidden="true">
+                            <path d="M15 19l-7-7 7-7"/>
+                        </svg>
+                    </a>
+                </div>
+                @endif
+            </div>
+
+            {{-- ── SIDEPANEL ── --}}
+            <aside class="news-listing__sidebar" aria-label="News filters and tags">
+                <div class="news-sidepanel">
+
+                    {{-- Search --}}
+                    <div class="news-sidepanel__section">
+                        <span class="news-sidepanel__label">Search News</span>
+                        <form action="{{ route('news.index') }}" method="GET" class="news-search-form" role="search">
+                            <input type="search"
+                                   name="search"
+                                   class="news-search-input"
+                                   placeholder="Search announcements..."
+                                   value="{{ request('search') }}"
+                                   aria-label="Search news">
+                            <button type="submit" class="news-search-submit" aria-label="Search">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16" aria-hidden="true">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg>
+                            </button>
+                        </form>
                     </div>
 
-                    {{-- PAGINATION --}}
-                    @if($articles->hasPages())
-                        <nav class="news-pagination" aria-label="Pagination">
-                            <ul class="pagination">
-                                {{-- Previous Page Link --}}
-                                @if ($articles->onFirstPage())
-                                    <li class="page-item disabled" aria-disabled="true">
-                                        <span class="page-link" aria-hidden="true">
-                                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 19l-7-7 7-7"/></svg>
-                                        </span>
-                                    </li>
-                                @else
-                                    <li class="page-item">
-                                        <a class="page-link" href="{{ $articles->previousPageUrl() }}" rel="prev" aria-label="Previous">
-                                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 19l-7-7 7-7"/></svg>
-                                        </a>
-                                    </li>
-                                @endif
+                    {{-- Categories --}}
+                    <div class="news-sidepanel__section">
+                        <span class="news-sidepanel__label">Categories</span>
+                        <div class="news-categories">
+                            <a href="{{ route('news.index') }}"
+                               class="news-category-pill {{ empty(request('search')) ? 'news-category-pill--active' : '' }}">
+                                All
+                            </a>
+                            @foreach(['Campus News', 'Academic', 'Events', 'Partnerships', 'Awards'] as $cat)
+                                <a href="{{ route('news.index', array_merge(request()->except('search', 'page'), ['search' => $cat])) }}"
+                                   class="news-category-pill">
+                                    {{ $cat }}
+                                </a>
+                            @endforeach
+                        </div>
+                    </div>
 
-                                {{-- Page numbers --}}
-                                @foreach ($articles->getUrlRange(1, $articles->lastPage()) as $page => $url)
-                                    @if ($page == $articles->currentPage())
-                                        <li class="page-item active" aria-current="page">
-                                            <span class="page-link">{{ $page }}</span>
-                                        </li>
-                                    @else
-                                        <li class="page-item">
-                                            <a class="page-link" href="{{ $url }}">{{ $page }}</a>
-                                        </li>
-                                    @endif
-                                @endforeach
-
-                                {{-- Next Page Link --}}
-                                @if ($articles->hasMorePages())
-                                    <li class="page-item">
-                                        <a class="page-link" href="{{ $articles->nextPageUrl() }}" rel="next" aria-label="Next">
-                                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 5l7 7-7 7"/></svg>
-                                        </a>
-                                    </li>
-                                @else
-                                    <li class="page-item disabled" aria-disabled="true">
-                                        <span class="page-link" aria-hidden="true">
-                                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 5l7 7-7 7"/></svg>
-                                        </span>
-                                    </li>
-                                @endif
-                            </ul>
-                        </nav>
+                    {{-- Top Tags --}}
+                    @if($topTags->isNotEmpty())
+                    <div class="news-sidepanel__section">
+                        <span class="news-sidepanel__label">Top Tags</span>
+                        <div class="news-tags">
+                            @foreach($topTags as $tag)
+                                <a href="{{ route('news.index', array_merge(request()->except('search', 'page'), ['search' => $tag])) }}"
+                                   class="news-tag"
+                                   title="Browse: {{ $tag }}">
+                                    {{ $tag }}
+                                </a>
+                            @endforeach
+                        </div>
+                    </div>
                     @endif
 
-                @elseif(!$featured)
-                    <div class="news-no-results">
-                        <svg class="news-no-results__icon" viewBox="0 0 24 24" width="72" height="72" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
-                            <path d="M4 22V6a2 2 0 0 1 2-2h11l3 3v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/>
-                            <line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="14" y2="14"/>
-                        </svg>
-                        <h3 class="news-no-results__title">No News Found</h3>
-                        <p class="news-no-results__desc">There are currently no institutional updates published. Please check back later for the next bulletin.</p>
-                    </div>
-                @endif
-            </section>
+                </div>
+            </aside>
 
         </div>
     </div>
 
     @include('sections.final-cta')
 </div>
+@endsection
 
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const searchInput = document.getElementById('news-search');
-        if (searchInput) {
-            searchInput.addEventListener('input', (e) => {
-                const query = e.target.value.toLowerCase().trim();
-                const items = document.querySelectorAll('.news-row, .news-featured');
-                items.forEach(item => {
-                    const title = item.querySelector('.news-row__title, .news-featured__title').textContent.toLowerCase();
-                    const excerpt = item.querySelector('.news-row__excerpt, .news-featured__excerpt')?.textContent.toLowerCase() || '';
-                    if (title.includes(query) || excerpt.includes(query)) {
-                        item.style.display = '';
-                    } else {
-                        item.style.display = 'none';
-                    }
-                });
+@push('scripts')
+    <script src="{{ asset('assets/js/blog.js') }}" defer></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // News ticker GSAP horizontal scroll
+        var tickerTrack = document.getElementById('news-ticker-track');
+        if (!tickerTrack) return;
+        if (typeof gsap === 'undefined') return;
+
+        var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReducedMotion) {
+            tickerTrack.style.transform = 'translateX(0)';
+            return;
+        }
+
+        var tickerWrap = document.getElementById('news-ticker');
+        var isPaused = false;
+
+        function startTicker() {
+            if (isPaused || typeof gsap === 'undefined') return;
+            var totalWidth = tickerTrack.scrollWidth / 2;
+            gsap.to(tickerTrack, {
+                x: -totalWidth,
+                duration: 40,
+                ease: 'none',
+                repeat: -1,
             });
         }
+
+        function pauseTicker() { isPaused = true; }
+        function resumeTicker() { isPaused = false; startTicker(); }
+
+        tickerWrap.addEventListener('mouseenter', pauseTicker);
+        tickerWrap.addEventListener('mouseleave', resumeTicker);
+
+        // Also pause when tab is hidden
+        document.addEventListener('visibilitychange', function () {
+            if (document.hidden) { pauseTicker(); }
+            else { resumeTicker(); }
+        });
+
+        startTicker();
     });
-</script>
-@endsection
+    </script>
+@endpush

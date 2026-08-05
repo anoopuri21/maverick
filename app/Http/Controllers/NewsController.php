@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Insight;
+use App\Settings\NewsHeroSettings;
 use Illuminate\Http\Request;
 
 class NewsController extends Controller
@@ -21,7 +22,14 @@ class NewsController extends Controller
             ->take(5)
             ->get();
 
-        return view('news.index', compact('featured', 'articles', 'ticker'));
+        // Hero settings (Admin Panel managed via Spatie Settings)
+        $newsHero = app(NewsHeroSettings::class);
+
+        // Top 10 tags from published news items
+        $allTags = Insight::published()->category('news')->pluck('tags')->flatten()->filter()->values();
+        $topTags = $allTags->countBy()->sortDesc()->take(10)->keys();
+
+        return view('news.index', compact('featured', 'articles', 'ticker', 'newsHero', 'topTags'));
     }
 
     public function show(Insight $slug)
