@@ -833,6 +833,266 @@
 }
 
 /* ============================================================
+   PARTNER UNIVERSITIES — 3D Cards with Aura Border
+   ============================================================ */
+.gup-partner-cards {
+  padding: clamp(72px, 10vw, 140px) 0;
+  background: var(--g-navy-deep);
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle radial accent */
+.gup-partner-cards::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(900px 500px at 30% 0%, rgba(178, 2, 2, 0.18), transparent 60%),
+    radial-gradient(700px 400px at 100% 100%, rgba(15, 41, 131, 0.4), transparent 60%);
+  pointer-events: none;
+}
+
+/* Noise overlay */
+.gup-partner-cards::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px;
+  pointer-events: none;
+}
+
+.gup-partner-cards > .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Override heading colors for dark bg */
+.gup-partner-cards .section-heading {
+  color: #fff;
+}
+
+.gup-partner-cards .section-subheading {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* ── Card Grid ── */
+.gup-partner-cards__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 28px;
+  perspective: 1200px;
+}
+
+/* ── Individual Card ── */
+.gup-uni-card {
+  position: relative;
+  border-radius: 20px;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform 0.6s var(--g-ease);
+  will-change: transform;
+}
+
+/* ── Aura Border (animated gradient ring) ── */
+.gup-uni-card__aura {
+  position: absolute;
+  inset: -2px;
+  border-radius: 22px;
+  background: conic-gradient(
+    from var(--aura-angle, 0deg),
+    var(--g-red),
+    var(--g-navy),
+    #6366f1,
+    var(--g-red),
+    var(--g-navy),
+    #6366f1,
+    var(--g-red)
+  );
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 0;
+  animation: aura-spin 4s linear infinite;
+  filter: blur(6px);
+}
+
+.gup-uni-card:hover .gup-uni-card__aura {
+  opacity: 1;
+}
+
+@keyframes aura-spin {
+  to {
+    --aura-angle: 360deg;
+  }
+}
+
+/* Fallback for browsers without @property */
+@supports not (background: conic-gradient(from 0deg, red, blue)) {
+  .gup-uni-card__aura {
+    background: linear-gradient(135deg, var(--g-red), var(--g-navy), #6366f1, var(--g-red));
+    animation: aura-fallback 3s linear infinite;
+  }
+}
+
+@keyframes aura-fallback {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Use a rotating pseudo-element for aura since @property may not work */
+.gup-uni-card__aura {
+  animation: none;
+  background: conic-gradient(
+    var(--g-red),
+    var(--g-navy),
+    #6366f1,
+    #a855f7,
+    var(--g-red)
+  );
+  animation: aura-rotate 3s linear infinite;
+}
+
+@keyframes aura-rotate {
+  0% { filter: blur(6px) hue-rotate(0deg); }
+  100% { filter: blur(6px) hue-rotate(360deg); }
+}
+
+/* ── Card Inner (solid bg above aura) ── */
+.gup-uni-card__inner {
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(180deg, #0c1a4a 0%, #071444 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  overflow: hidden;
+  transition:
+    border-color 0.4s ease,
+    box-shadow 0.5s var(--g-ease);
+}
+
+.gup-uni-card:hover .gup-uni-card__inner {
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow:
+    0 30px 60px -20px rgba(0, 0, 0, 0.5),
+    0 0 40px -10px rgba(178, 2, 2, 0.2);
+}
+
+/* ── Image ── */
+.gup-uni-card__image-wrap {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+}
+
+.gup-uni-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1s var(--g-ease);
+}
+
+.gup-uni-card:hover .gup-uni-card__image {
+  transform: scale(1.08);
+}
+
+.gup-uni-card__image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(7, 20, 68, 0.9) 100%);
+  pointer-events: none;
+}
+
+/* ── Content ── */
+.gup-uni-card__content {
+  padding: 24px 28px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.gup-uni-card__country {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--g-red);
+}
+
+.gup-uni-card__name {
+  font-family: var(--font-display);
+  font-size: clamp(18px, 1.5vw, 22px);
+  font-weight: 500;
+  color: #fff;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.gup-uni-card__abbr {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 28px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.06em;
+  margin-top: 4px;
+  transition: all 0.4s ease;
+}
+
+.gup-uni-card:hover .gup-uni-card__abbr {
+  background: var(--g-red);
+  border-color: var(--g-red);
+  color: #fff;
+}
+
+/* ── 3D Tilt Effect (applied via JS, fallback CSS) ── */
+.gup-uni-card {
+  transform: rotateX(0deg) rotateY(0deg) translateZ(0);
+}
+
+.gup-uni-card:hover {
+  transform: rotateX(-2deg) rotateY(3deg) translateZ(20px);
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .gup-partner-cards__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .gup-partner-cards__grid {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+  .gup-uni-card__content {
+    padding: 20px 22px 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .gup-partner-cards {
+    padding: 64px 0;
+  }
+}
+
+
+/* ============================================================
    RESPONSIVE
    ============================================================ */
 @media (max-width: 1024px) {

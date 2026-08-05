@@ -104,6 +104,44 @@
         ]),
     ];
 
+    $partnerUniversities = collect([
+        (object)[
+            'name' => 'Rushford Business School',
+            'abbreviation' => 'RBS',
+            'country' => 'Switzerland',
+            'image' => 'https://images.pexels.com/photos/2076975/pexels-photo-2076975.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=600&w=800',
+            'logo' => null,
+        ],
+        (object)[
+            'name' => 'Girne American University',
+            'abbreviation' => 'GAU',
+            'country' => 'North Cyprus',
+            'image' => 'https://images.pexels.com/photos/1438081/pexels-photo-1438081.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=600&w=800',
+            'logo' => null,
+        ],
+        (object)[
+            'name' => 'University of the West of Scotland',
+            'abbreviation' => 'UWS',
+            'country' => 'United Kingdom',
+            'image' => 'https://images.pexels.com/photos/1454360/pexels-photo-1454360.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=600&w=800',
+            'logo' => null,
+        ],
+        (object)[
+            'name' => 'University for the Creative Arts',
+            'abbreviation' => 'UCA',
+            'country' => 'United Kingdom',
+            'image' => 'https://images.pexels.com/photos/1595391/pexels-photo-1595391.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=600&w=800',
+            'logo' => null,
+        ],
+        (object)[
+            'name' => 'University of Wolverhampton',
+            'abbreviation' => 'UOW',
+            'country' => 'United Kingdom',
+            'image' => 'https://images.pexels.com/photos/267885/pexels-photo-267885.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=600&w=800',
+            'logo' => null,
+        ],
+    ]);
+
     $galleryCategories = collect([
         (object)['slug' => 'all', 'name' => 'All', 'count' => 11],
         (object)['slug' => 'mou-signings', 'name' => 'MOU Signings', 'count' => 3],
@@ -271,6 +309,49 @@
 </section>
 
 @include('sections.university-partners')
+
+
+{{-- ═══════════════════════════════════════════
+     PARTNER UNIVERSITIES — 3D Cards with Aura
+═══════════════════════════════════════════ --}}
+<section class="gup-partner-cards section-wrapper" data-testid="gup-partner-cards">
+    <div class="container">
+
+        <div class="section-heading-block">
+            <span class="section-label">PARTNER UNIVERSITIES</span>
+            <h2 class="section-heading">
+                Our Global <em>Academic Network</em>
+            </h2>
+            <p class="section-subheading">
+                Maverick Business Academy partners with world-class universities across Europe and beyond, offering students internationally recognised pathways to academic and career success.
+            </p>
+        </div>
+
+        <div class="gup-partner-cards__grid">
+            @foreach($partnerUniversities as $uni)
+            <article class="gup-uni-card" data-testid="uni-card-{{ $uni->abbreviation }}">
+                <div class="gup-uni-card__aura" aria-hidden="true"></div>
+                <div class="gup-uni-card__inner">
+                    <div class="gup-uni-card__image-wrap">
+                        <img src="{{ $uni->image }}"
+                             alt="{{ $uni->name }}, {{ $uni->country }}"
+                             class="gup-uni-card__image"
+                             loading="lazy">
+                        <div class="gup-uni-card__image-overlay"></div>
+                    </div>
+                    <div class="gup-uni-card__content">
+                        <span class="gup-uni-card__country">{{ $uni->country }}</span>
+                        <h3 class="gup-uni-card__name">{{ $uni->name }}</h3>
+                        <span class="gup-uni-card__abbr">{{ $uni->abbreviation }}</span>
+                    </div>
+                </div>
+            </article>
+            @endforeach
+        </div>
+
+    </div>
+</section>
+
 
 {{-- ═══════════════════════════════════════════
      3. WHY OUR PARTNERSHIPS MATTER (Sticky Left)
