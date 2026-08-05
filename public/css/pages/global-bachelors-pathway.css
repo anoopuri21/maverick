@@ -26,64 +26,124 @@
 }
 
 /* =========================================================
-   1. HERO HIGHLIGHTS & CTAS
+   HERO DESCRIPTION TWEAK
    ========================================================= */
 .cinematic-hero .cinematic-hero__description {
   max-width: 720px;
   margin-left: 0;
   margin-right: 0;
-  margin-bottom: 2rem;
+  margin-bottom: 0;
 }
 
-.gbp-hero__highlights {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin: 0 0 2rem;
-  animation: cinematicFadeUp 0.5s ease-out 0.5s both;
+/* =========================================================
+   SNAPSHOT — Study Route / Destinations / Focus
+   ========================================================= */
+.gbp-snapshot {
+  background: var(--color-white);
 }
 
-.gbp-highlight {
+.gbp-snapshot__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.gbp-snapshot-card {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  padding: 14px 22px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  padding: 2rem 1.75rem;
+  background: var(--color-warm-white);
+  border: 1px solid rgba(15, 41, 131, 0.1);
+  border-radius: 18px;
+  transition:
+    border-color var(--transition-fast),
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.gbp-snapshot-card:hover {
+  border-color: var(--color-mba-blue);
+  transform: translateY(-4px);
+  box-shadow: 0 18px 36px rgba(7, 20, 68, 0.1);
+}
+
+.gbp-snapshot-card__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  margin-bottom: 1.25rem;
   border-radius: 14px;
-  backdrop-filter: blur(8px);
-  transition: border-color var(--transition-fast), background var(--transition-fast), transform var(--transition-fast);
+  background: rgba(178, 2, 2, 0.08);
+  color: var(--color-mba-red);
 }
 
-.gbp-highlight:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.3);
-  transform: translateY(-2px);
+.gbp-snapshot-card__icon [data-lucide] {
+  width: 24px;
+  height: 24px;
 }
 
-.gbp-highlight__label {
+.gbp-snapshot-card__title {
+  margin: 0 0 1.25rem;
+  color: var(--color-mba-dark-blue);
+}
+
+.gbp-snapshot-card__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.gbp-snapshot-card__list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 12px;
   font-family: var(--font-body);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  color: rgba(255, 255, 255, 0.55);
-  text-transform: uppercase;
+  font-size: 15px;
+  line-height: 1.5;
+  color: rgba(0, 0, 0, 0.72);
 }
 
-.gbp-highlight__value {
-  font-family: var(--font-body);
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.95);
-  font-weight: 500;
-  line-height: 1.4;
-  max-width: 280px;
+.gbp-snapshot-card__list li:last-child {
+  margin-bottom: 0;
 }
 
-.gbp-hero__ctas {
+.gbp-snapshot-card__list [data-lucide] {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  color: var(--color-mba-red);
+}
+
+.gbp-snapshot__ctas {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 1rem;
-  animation: cinematicFadeUp 0.5s ease-out 0.7s both;
+}
+
+@media (max-width: 1024px) {
+  .gbp-snapshot__grid {
+    grid-template-columns: 1fr;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .gbp-snapshot__ctas {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .gbp-snapshot__ctas .btn {
+    justify-content: center;
+  }
 }
 
 /* =========================================================
@@ -1434,27 +1494,6 @@
    RESPONSIVE — Mobile
    ========================================================= */
 @media (max-width: 768px) {
-  .gbp-hero__highlights {
-    flex-direction: column;
-  }
-
-  .gbp-highlight {
-    width: 100%;
-  }
-
-  .gbp-highlight__value {
-    max-width: none;
-  }
-
-  .gbp-hero__ctas {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .gbp-hero__ctas .btn {
-    justify-content: center;
-  }
-
   .gbp-overview__stats,
   .gbp-explore__grid,
   .gbp-areas__grid,
@@ -1527,7 +1566,7 @@
    REDUCED MOTION
    ========================================================= */
 @media (prefers-reduced-motion: reduce) {
-  .gbp-highlight,
+  .gbp-snapshot-card,
   .gbp-stat,
   .gbp-why-card,
   .gbp-explore-card,
@@ -1538,7 +1577,7 @@
     transition: none;
   }
 
-  .gbp-highlight:hover,
+  .gbp-snapshot-card:hover,
   .gbp-stat:hover,
   .gbp-why-card:hover,
   .gbp-explore-card:hover,

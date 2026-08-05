@@ -18,10 +18,25 @@
         'heading_italic' => 'Pathway Programme',
         'sub_heading' => 'Your gateway to a globally recognised European Bachelor\'s degree — structured pathways, flexible learning, and international progression through Maverick Business Academy London.',
         'background_image' => 'https://images.pexels.com/photos/1462630/pexels-photo-1462630.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=1600',
-        'highlights' => collect([
-            (object)['label' => 'Study Route', 'value' => 'UAE · Hybrid · Online + European University Progression'],
-            (object)['label' => 'Destinations', 'value' => 'Hungary · Romania · Moldova'],
-            (object)['label' => 'Focus', 'value' => 'International Pathways · European Degree · Credit Transfer'],
+    ];
+
+    $snapshot = (object)[
+        'cards' => collect([
+            (object)[
+                'icon' => 'map',
+                'title' => 'Study Route',
+                'items' => ['UAE', 'Hybrid', 'Online', 'European University Progression'],
+            ],
+            (object)[
+                'icon' => 'map-pin',
+                'title' => 'Destinations',
+                'items' => ['Hungary', 'Romania', 'Moldova'],
+            ],
+            (object)[
+                'icon' => 'target',
+                'title' => 'Focus International Pathways',
+                'items' => ['European Degree', 'Credit Transfer'],
+            ],
         ]),
     ];
 
@@ -312,19 +327,37 @@
             <em>{{ $hero->heading_italic }}</em>
         </h1>
         <p class="cinematic-hero__description">{{ $hero->sub_heading }}</p>
+    </div>
+</section>
 
-        <div class="gbp-hero__highlights">
-            @foreach($hero->highlights as $h)
-            <div class="gbp-highlight">
-                <span class="gbp-highlight__label">{{ $h->label }}</span>
-                <span class="gbp-highlight__value">{{ $h->value }}</span>
-            </div>
+
+{{-- ═══════════════════════════════════════════
+     SNAPSHOT — Study Route / Destinations / Focus
+═══════════════════════════════════════════ --}}
+<section class="gbp-snapshot section-wrapper section--light" aria-label="Programme Snapshot" data-testid="gbp-snapshot">
+    <div class="container">
+        <div class="gbp-snapshot__grid">
+            @foreach($snapshot->cards as $card)
+            <article class="gbp-snapshot-card" data-testid="gbp-snapshot-{{ $loop->iteration }}">
+                <div class="gbp-snapshot-card__icon" aria-hidden="true">
+                    <span data-lucide="{{ $card->icon }}"></span>
+                </div>
+                <h3 class="gbp-snapshot-card__title card-title">{{ $card->title }}</h3>
+                <ul class="gbp-snapshot-card__list">
+                    @foreach($card->items as $item)
+                    <li>
+                        <span data-lucide="check" aria-hidden="true"></span>
+                        {{ $item }}
+                    </li>
+                    @endforeach
+                </ul>
+            </article>
             @endforeach
         </div>
 
-        <div class="gbp-hero__ctas">
-            <a href="#enquire" class="btn btn--primary" data-testid="hero-cta-enquire">Enquire Now</a>
-            <a href="#advisor" class="btn btn--secondary" data-testid="hero-cta-advisor">Speak to an Advisor</a>
+        <div class="gbp-snapshot__ctas fade-up">
+            <a href="#enquire" class="btn btn--primary" data-testid="snapshot-cta-enquire">Enquire Now</a>
+            <a href="#advisor" class="btn btn--ghost" data-testid="snapshot-cta-advisor">Speak to an Advisor</a>
         </div>
     </div>
 </section>
@@ -762,7 +795,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typeof AnimationUtils === 'undefined' || typeof gsap === 'undefined') return;
 
     if (AnimationUtils.prefersReducedMotion) {
-        gsap.set('.fade-up, .text-reveal-inner, .gbp-intro-card, .gbp-why-card, .gbp-explore-card, .gbp-area-card, .gbp-partner-card, .gbp-doc-card, .gbp-stage, .gbp-stages__line', {
+        gsap.set('.fade-up, .text-reveal-inner, .gbp-snapshot-card, .gbp-intro-card, .gbp-why-card, .gbp-explore-card, .gbp-area-card, .gbp-partner-card, .gbp-doc-card, .gbp-stage, .gbp-stages__line', {
             clearProps: 'all',
             opacity: 1,
             y: 0,
@@ -770,6 +803,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         return;
     }
+
+    AnimationUtils.cards('.gbp-snapshot-card', { stagger: 0.12 });
+    AnimationUtils.fadeUp('.gbp-snapshot .fade-up', { stagger: 0.1 });
 
     AnimationUtils.textReveal('.gbp-intro .text-reveal-inner', { stagger: 0.15 });
     AnimationUtils.fadeUp('.gbp-intro .fade-up', { stagger: 0.12, y: 25 });
