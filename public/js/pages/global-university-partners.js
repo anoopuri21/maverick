@@ -123,27 +123,25 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // 3D tilt on mousemove
-    if (uniCards.length && !prefersReducedMotion) {
+    if (uniCards.length && !prefersReducedMotion && window.matchMedia('(pointer: fine)').matches) {
         uniCards.forEach(card => {
-            const inner = card.querySelector('.gup-uni-card__inner');
-            if (!inner) return;
-
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
                 const x = e.clientX - rect.left;
                 const y = e.clientY - rect.top;
                 const centerX = rect.width / 2;
                 const centerY = rect.height / 2;
-                const rotateX = ((y - centerY) / centerY) * -8;
-                const rotateY = ((x - centerX) / centerX) * 8;
+                const rotateX = ((y - centerY) / centerY) * -7;
+                const rotateY = ((x - centerX) / centerX) * 7;
 
                 gsap.to(card, {
                     rotateX: rotateX,
                     rotateY: rotateY,
-                    translateZ: 30,
-                    duration: 0.4,
+                    y: -6,
+                    duration: 0.35,
                     ease: 'power2.out',
                     transformPerspective: 1200,
+                    transformOrigin: 'center center',
                 });
             });
 
@@ -151,8 +149,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 gsap.to(card, {
                     rotateX: 0,
                     rotateY: 0,
-                    translateZ: 0,
-                    duration: 0.6,
+                    y: 0,
+                    duration: 0.55,
                     ease: 'power3.out',
                 });
             });

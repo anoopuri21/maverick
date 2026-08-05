@@ -106,39 +106,54 @@
 
     $partnerUniversities = collect([
         (object)[
-            'name' => 'Rushford Business School',
-            'abbreviation' => 'RBS',
-            'country' => 'Switzerland',
-            'image' => 'https://images.pexels.com/photos/2076975/pexels-photo-2076975.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=600&w=800',
-            'logo' => null,
+            'slug' => 'gloucestershire',
+            'name' => 'University of Gloucestershire',
+            'abbreviation' => 'UoG',
+            'country' => 'United Kingdom',
+            'flag' => '🇬🇧',
+            'recognition' => 'A renowned UK university with a strong reputation for business, leadership, and professional education.',
+            'logo' => asset('assets/images/universities/uog-logo.png'),
+            'cta_url' => url('/#featured-programs'),
         ],
         (object)[
+            'slug' => 'uca',
+            'name' => 'University of the Creative Arts',
+            'abbreviation' => 'UCA',
+            'country' => 'United Kingdom',
+            'flag' => '🇬🇧',
+            'recognition' => 'One of the UK\'s leading specialist universities for business, creativity, and innovation.',
+            'logo' => asset('assets/images/universities/uca-logo.png'),
+            'cta_url' => url('/#featured-programs'),
+        ],
+        (object)[
+            'slug' => 'gau',
             'name' => 'Girne American University',
             'abbreviation' => 'GAU',
             'country' => 'North Cyprus',
-            'image' => 'https://images.pexels.com/photos/1438081/pexels-photo-1438081.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=600&w=800',
-            'logo' => null,
+            'flag' => '🇨🇾',
+            'recognition' => 'Internationally recognized university offering undergraduate, postgraduate, and doctoral programs.',
+            'logo' => asset('assets/images/universities/gau-logo.png'),
+            'cta_url' => url('/#featured-programs'),
         ],
         (object)[
-            'name' => 'University of the West of Scotland',
-            'abbreviation' => 'UWS',
-            'country' => 'United Kingdom',
-            'image' => 'https://images.pexels.com/photos/1454360/pexels-photo-1454360.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=600&w=800',
-            'logo' => null,
+            'slug' => 'rbs',
+            'name' => 'Rushford Business School',
+            'abbreviation' => 'RBS',
+            'country' => 'Switzerland',
+            'flag' => '🇨🇭',
+            'recognition' => 'International business school focused on management, leadership, and executive education.',
+            'logo' => asset('assets/images/universities/rbs-logo.png'),
+            'cta_url' => url('/#featured-programs'),
         ],
         (object)[
-            'name' => 'University for the Creative Arts',
-            'abbreviation' => 'UCA',
-            'country' => 'United Kingdom',
-            'image' => 'https://images.pexels.com/photos/1595391/pexels-photo-1595391.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=600&w=800',
-            'logo' => null,
-        ],
-        (object)[
-            'name' => 'University of Wolverhampton',
-            'abbreviation' => 'UOW',
-            'country' => 'United Kingdom',
-            'image' => 'https://images.pexels.com/photos/267885/pexels-photo-267885.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=600&w=800',
-            'logo' => null,
+            'slug' => 'charisma',
+            'name' => 'Charisma University',
+            'abbreviation' => 'CU',
+            'country' => 'Turks & Caicos Islands',
+            'flag' => '🇹🇨',
+            'recognition' => 'International institution offering business, education, health sciences, and doctoral qualifications.',
+            'logo' => asset('assets/images/universities/charisma-logo.png'),
+            'cta_url' => url('/#featured-programs'),
         ],
     ]);
 
@@ -314,11 +329,11 @@
 {{-- ═══════════════════════════════════════════
      PARTNER UNIVERSITIES — 3D Cards with Aura
 ═══════════════════════════════════════════ --}}
-<section class="gup-partner-cards section-wrapper" data-testid="gup-partner-cards">
+<section class="gup-partner-cards section-wrapper" data-testid="gup-partner-cards" aria-label="Partner Universities">
     <div class="container">
 
         <div class="section-heading-block">
-            <span class="section-label">PARTNER UNIVERSITIES</span>
+            <span class="section-label"><span>PARTNER UNIVERSITIES</span></span>
             <h2 class="section-heading">
                 Our Global <em>Academic Network</em>
             </h2>
@@ -329,21 +344,38 @@
 
         <div class="gup-partner-cards__grid">
             @foreach($partnerUniversities as $uni)
-            <article class="gup-uni-card" data-testid="uni-card-{{ $uni->abbreviation }}">
+            <article class="gup-uni-card" data-testid="uni-card-{{ $uni->slug }}">
                 <div class="gup-uni-card__aura" aria-hidden="true"></div>
+                <div class="gup-uni-card__border" aria-hidden="true"></div>
                 <div class="gup-uni-card__inner">
-                    <div class="gup-uni-card__image-wrap">
-                        <img src="{{ $uni->image }}"
-                             alt="{{ $uni->name }}, {{ $uni->country }}"
-                             class="gup-uni-card__image"
-                             loading="lazy">
-                        <div class="gup-uni-card__image-overlay"></div>
+                    <div class="gup-uni-card__logo-wrap">
+                        <img
+                            src="{{ $uni->logo }}"
+                            alt="{{ $uni->name }} logo"
+                            class="gup-uni-card__logo"
+                            loading="lazy"
+                            width="120"
+                            height="60"
+                            onerror="this.style.display='none'; this.nextElementSibling.hidden=false;"
+                        >
+                        <span class="gup-uni-card__logo-fallback" hidden aria-hidden="true">{{ $uni->abbreviation }}</span>
                     </div>
-                    <div class="gup-uni-card__content">
-                        <span class="gup-uni-card__country">{{ $uni->country }}</span>
-                        <h3 class="gup-uni-card__name">{{ $uni->name }}</h3>
-                        <span class="gup-uni-card__abbr">{{ $uni->abbreviation }}</span>
+
+                    <h3 class="gup-uni-card__name">{{ $uni->name }}</h3>
+
+                    <p class="gup-uni-card__country">
+                        <span class="gup-uni-card__flag" aria-hidden="true">{{ $uni->flag }}</span>
+                        {{ $uni->country }}
+                    </p>
+
+                    <div class="gup-uni-card__recognition">
+                        <span class="gup-uni-card__recognition-label">Recognition</span>
+                        <p class="gup-uni-card__recognition-text">{{ $uni->recognition }}</p>
                     </div>
+
+                    <a href="{{ $uni->cta_url }}" class="gup-uni-card__cta btn btn--primary" data-testid="uni-cta-{{ $uni->slug }}">
+                        Explore Programs
+                    </a>
                 </div>
             </article>
             @endforeach
