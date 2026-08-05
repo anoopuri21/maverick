@@ -334,12 +334,13 @@
    3. SIDEPANEL
    ========================================================= */
 
-.blog-sidepanel {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
-  padding: 28px 24px;
-  backdrop-filter: blur(12px);
+   .blog-sidepanel {
+    background: linear-gradient(135deg, var(--color-mba-dark-blue) 0%, #2a3f5f 60%, var(--color-accent) 140%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 28px 24px;
+    backdrop-filter: blur(12px);
+    min-height: 70vh;
 }
 
 .blog-sidepanel__section {
@@ -523,7 +524,7 @@
 }
 
 .blog-featured__content {
-  padding: 40px 36px;
+  padding: 0px 28px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -685,7 +686,7 @@
 
 .blog-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 28px;
 }
 
@@ -722,7 +723,7 @@
 }
 
 .blog-thumb--fallback {
-  background: linear-gradient(135deg, var(--color-mba-blue, #0f2983), var(--color-mba-dark-blue, #071444));
+  background: linear-gradient(200deg, var(--color-mba-dark-blue) 0%, #223350 50%, #16233a 100%);
   color: rgba(255, 255, 255, 0.35);
   font-family: var(--font-display, 'PP Neue Montreal', sans-serif);
   font-size: 36px;
@@ -733,18 +734,22 @@
 .blog-thumb__pattern {
   position: absolute;
   inset: 0;
-  opacity: 0.08;
-  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.15'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 18px 18px;
+  mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
+  -webkit-mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
 }
 
 .blog-thumb__initial {
   position: relative;
   z-index: 1;
-  font-family: var(--font-display, 'PP Neue Montreal', sans-serif);
+  font-family: var(--font-display);
   font-size: 36px;
   font-weight: 700;
   color: rgba(255, 255, 255, 0.35);
   letter-spacing: 0.05em;
+  padding: 1rem;
+  text-align: center;
 }
 
 /* =========================================================
@@ -1187,8 +1192,8 @@
 
 /* Article Header (white section) */
 .blog-article-header {
-  background: #ffffff;
-  padding: 48px 0 40px;
+  background: #e8e8e8;
+  padding: 20px 0px;
   border-bottom: 1px solid var(--color-accent, #ebebf3);
 }
 
@@ -1196,9 +1201,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: flex-end;
-  justify-content: space-between;
-  gap: 24px;
-  margin-bottom: 24px;
+  justify-content: flex-start;
 }
 
 .blog-article-header__badge {

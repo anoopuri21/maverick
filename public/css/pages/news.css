@@ -355,7 +355,7 @@
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--color-mba-blue, #0f2983);
+  color: var(--color-mba-red, #b20202);
   padding: 0 16px 0 0;
   flex-shrink: 0;
   position: sticky;
@@ -369,7 +369,7 @@
   display: block;
   width: 24px;
   height: 2px;
-  background: var(--color-mba-blue, #0f2983);
+  background: var(--color-mba-red, #b20202);
 }
 
 .news-ticker__track-wrapper {
@@ -432,11 +432,12 @@
    ========================================================= */
 
 .news-sidepanel {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(135deg, var(--color-mba-dark-blue) 0%, #2a3f5f 60%, var(--color-accent) 140%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 16px;
   padding: 28px 24px;
   backdrop-filter: blur(12px);
+  min-height: 70vh;
 }
 
 .news-sidepanel__section {

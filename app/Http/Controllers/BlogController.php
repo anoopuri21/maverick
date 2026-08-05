@@ -38,7 +38,7 @@ class BlogController extends Controller
             });
         }
 
-        $paginatedPosts = $query->latest('published_at')->paginate(9)->withQueryString();
+        $paginatedPosts = $query->latest('published_at')->paginate(10)->withQueryString();
 
         // Hero settings (Admin Panel managed via Spatie Settings)
         $blogHero = app(BlogHeroSettings::class);

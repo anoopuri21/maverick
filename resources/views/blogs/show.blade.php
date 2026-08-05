@@ -55,9 +55,6 @@
     <header class="blog-article-header">
         <div class="container">
             <div class="blog-article-header__inner">
-                <div>
-                    <span class="blog-article-header__badge">Blog</span>
-                </div>
                 <div class="blog-article-header__meta">
                     <div class="blog-article-header__author">
                         @if($post->author_avatar_url)
@@ -90,12 +87,6 @@
                     </span>
                 </div>
             </div>
-            <div class="blog-article-header__title-wrap">
-                <h1 class="blog-article-header__title">{{ $post->title }}</h1>
-            </div>
-            @if(!empty($post->excerpt))
-                <p class="blog-article-header__excerpt">{{ $post->excerpt }}</p>
-            @endif
         </div>
     </header>
 

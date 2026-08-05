@@ -54,7 +54,7 @@
                 {{ $newsHero->eyebrow ?? 'NEWS' }}
             </span>
             <h1 class="news-masthead__title">
-                {{ $newsHero->heading ?? 'News & <em class="news-masthead__title-em">Announcements</em>' }}
+                {{ $newsHero->heading ?? 'News & Announcements' }}
             </h1>
             <p class="news-masthead__description">
                 {{ $newsHero->description ?? 'Institutional updates, campus news, and academic milestones from across the Maverick Business Academy network.' }}

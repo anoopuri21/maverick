@@ -93,7 +93,7 @@
                             @endif
                         </div>
                         <div class="blog-featured__content">
-                            <div class="blog-featured__badge">Featured Article</div>
+                            <!-- <div class="blog-featured__badge">Featured Article</div> -->
                             <h2 class="blog-featured__title">
                                 <a href="{{ route('insights.show', $featuredPost->slug) }}">
                                     {{ $featuredPost->title }}
@@ -300,7 +300,7 @@
                         <form action="{{ route('blogs.index') }}" method="GET" class="blog-search-form" role="search">
                             @if($searchQuery)
                                 <button type="submit" class="blog-search-clear visible"
-                                        onclick="event.preventDefault(); window.location.href='{{ route('blogs.index') }}';"
+                                        onclick="event.preventDefault(); window.location.href=`{{ route('blogs.index') }}`"
                                         aria-label="Clear search">
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
                                         <line x1="18" y1="6" x2="6" y2="18"></line>
