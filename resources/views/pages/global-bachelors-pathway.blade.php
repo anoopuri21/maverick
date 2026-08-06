@@ -403,7 +403,7 @@
 
 {{-- ═══════════════════════════════════════════
      SECTION 2: WHAT IS THE PATHWAY PROGRAMME
-     (Now with cinematic roadmap view)
+     Cinematic zigzag roadmap + right-side insight panel
 ═══════════════════════════════════════════ --}}
 <section class="gbp-overview section-wrapper section--light" aria-label="Programme Overview" data-testid="gbp-overview">
     <div class="container">
@@ -418,87 +418,145 @@
             @endforeach
         </div>
 
-        {{-- Roadmap Connector SVG (desktop) --}}
-        <div class="gbp-roadmap-svg-wrap" aria-hidden="true">
-            <svg class="gbp-roadmap-svg" viewBox="0 0 100 280" preserveAspectRatio="none">
-                <defs>
-                    <linearGradient id="gbpRoadmapGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stop-color="#b20202"/>
-                        <stop offset="33%" stop-color="#0f2983"/>
-                        <stop offset="66%" stop-color="#beafff"/>
-                        <stop offset="100%" stop-color="#2e7d32"/>
-                    </linearGradient>
-                    <filter id="gbpRoadmapGlow">
-                        <feGaussianBlur stdDeviation="2" result="blur"/>
-                        <feMerge>
-                            <feMergeNode in="blur"/>
-                            <feMergeNode in="SourceGraphic"/>
-                        </feMerge>
-                    </filter>
-                </defs>
-                <path class="gbp-roadmap-path"
-                      d="M50 0
-                         C35 0, 18 12, 18 40
-                         C18 68, 18 78, 18 92
-                         C18 106, 35 112, 50 115
-                         C65 112, 82 118, 82 138
-                         C82 168, 82 178, 82 188
-                         C82 202, 65 208, 50 212
-                         C35 208, 18 218, 18 238
-                         C18 252, 18 262, 18 268
-                         L50 275"
-                      fill="none"
-                      stroke="url(#gbpRoadmapGrad)"
-                      stroke-width="3"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      filter="url(#gbpRoadmapGlow)"
-                />
-            </svg>
-        </div>
-
-        {{-- Roadmap Stages --}}
-        <div class="gbp-roadmap">
-            @foreach($stages as $index => $stage)
-            <div class="gbp-roadmap-stage gbp-roadmap-stage--{{ $index % 2 === 0 ? 'left' : 'right' }}"
-                 data-testid="gbp-roadmap-{{ $index + 1 }}">
-
-                {{-- Milestone dot on the SVG path --}}
-                <div class="gbp-roadmap-stage__marker-wrap">
-                    <div class="gbp-roadmap-stage__marker">
-                        <span class="gbp-roadmap-stage__number">{{ $stage->year }}</span>
-                        <div class="gbp-roadmap-stage__marker-ring"></div>
-                    </div>
+        <div class="gbp-roadmap-layout">
+            {{-- ═══ LEFT: Zigzag Roadmap ═══ --}}
+            <div class="gbp-roadmap-col">
+                {{-- SVG connector path for desktop --}}
+                <div class="gbp-roadmap-svg-wrap" aria-hidden="true">
+                    <svg class="gbp-roadmap-svg" viewBox="0 0 100 320" preserveAspectRatio="none">
+                        <defs>
+                            <linearGradient id="gbpRoadmapGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#b20202"/>
+                                <stop offset="33%" stop-color="#0f2983"/>
+                                <stop offset="66%" stop-color="#9333ea"/>
+                                <stop offset="100%" stop-color="#059669"/>
+                            </linearGradient>
+                            <filter id="gbpRoadmapGlow">
+                                <feGaussianBlur stdDeviation="2.5" result="blur"/>
+                                <feMerge>
+                                    <feMergeNode in="blur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                        </defs>
+                        <!-- Dotted base path (always visible) -->
+                        <path class="gbp-roadmap-path-base"
+                              d="M50 0
+                                 C30 0, 10 14, 10 44
+                                 C10 74, 10 86, 10 100
+                                 C10 114, 30 120, 50 125
+                                 C70 120, 90 126, 90 146
+                                 C90 166, 90 178, 90 192
+                                 C90 206, 70 212, 50 217
+                                 C30 212, 10 218, 10 238
+                                 C10 252, 10 264, 10 276
+                                 L50 276"
+                              fill="none"
+                              stroke="rgba(15,41,131,0.12)"
+                              stroke-width="2"
+                              stroke-dasharray="4 6"
+                              stroke-linecap="round"
+                        />
+                        <!-- Animated gradient path on top -->
+                        <path class="gbp-roadmap-path"
+                              d="M50 0
+                                 C30 0, 10 14, 10 44
+                                 C10 74, 10 86, 10 100
+                                 C10 114, 30 120, 50 125
+                                 C70 120, 90 126, 90 146
+                                 C90 166, 90 178, 90 192
+                                 C90 206, 70 212, 50 217
+                                 C30 212, 10 218, 10 238
+                                 C10 252, 10 264, 10 276
+                                 L50 276"
+                              fill="none"
+                              stroke="url(#gbpRoadmapGrad)"
+                              stroke-width="3.5"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-dasharray="1200"
+                              stroke-dashoffset="1200"
+                              filter="url(#gbpRoadmapGlow)"
+                        />
+                    </svg>
                 </div>
 
-                {{-- Card content --}}
-                <div class="gbp-roadmap-stage__card">
-                    <div class="gbp-roadmap-stage__accent"></div>
-                    <div class="gbp-roadmap-stage__top">
-                        <span class="gbp-roadmap-stage__duration">{{ $stage->duration }}</span>
-                        <div class="gbp-roadmap-stage__arrow" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                <div class="gbp-roadmap">
+                    @foreach($stages as $index => $stage)
+                    <div class="gbp-roadmap-stage gbp-roadmap-stage--{{ $index % 2 === 0 ? 'left' : 'right' }}"
+                         data-testid="gbp-roadmap-{{ $index + 1 }}"
+                         data-stage-index="{{ $index }}">
+
+                        {{-- Milestone marker (aligned to SVG path center) --}}
+                        <div class="gbp-roadmap-stage__marker-col">
+                            <div class="gbp-roadmap-stage__marker">
+                                <span class="gbp-roadmap-stage__number">{{ $stage->year }}</span>
+                                <div class="gbp-roadmap-stage__marker-ring"></div>
+                                <div class="gbp-roadmap-stage__marker-glow"></div>
+                            </div>
+                        </div>
+
+                        {{-- Card --}}
+                        <div class="gbp-roadmap-stage__card">
+                            <div class="gbp-roadmap-stage__card-top">
+                                <div class="gbp-roadmap-stage__accent-bar"></div>
+                                <span class="gbp-roadmap-stage__duration">{{ $stage->duration }}</span>
+                            </div>
+                            <h3 class="gbp-roadmap-stage__title card-title">{{ $stage->title }}</h3>
+                            <p class="gbp-roadmap-stage__description">{{ $stage->description }}</p>
+                            <div class="gbp-roadmap-stage__card-badge">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                                <span>Next Stage</span>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+
+            {{-- ═══ RIGHT: Your Journey Stages Panel ═══ --}}
+            <aside class="gbp-roadmap-panel" aria-label="Your journey stages">
+                <div class="gbp-roadmap-panel__header">
+                    <span class="gbp-roadmap-panel__label">Your Journey</span>
+                    <h3 class="gbp-roadmap-panel__title">4 Steps to Your Degree</h3>
+                </div>
+                <div class="gbp-roadmap-panel__list">
+                    @foreach($stages as $index => $stage)
+                    <div class="gbp-roadmap-panel__item gbp-roadmap-panel__item--{{ $index + 1 }}"
+                         data-stage-index="{{ $index }}">
+                        <div class="gbp-roadmap-panel__step-num">
+                            <span>{{ $stage->year }}</span>
+                            <div class="gbp-roadmap-panel__step-ring"></div>
+                        </div>
+                        <div class="gbp-roadmap-panel__step-body">
+                            <span class="gbp-roadmap-panel__step-duration">{{ $stage->duration }}</span>
+                            <h4 class="gbp-roadmap-panel__step-title">{{ $stage->title }}</h4>
+                        </div>
+                        <div class="gbp-roadmap-panel__step-connector">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9 18l6-6-6-6"/>
                             </svg>
                         </div>
                     </div>
-                    <h3 class="gbp-roadmap-stage__title card-title">{{ $stage->title }}</h3>
-                    <p class="gbp-roadmap-stage__description">{{ $stage->description }}</p>
-                    <div class="gbp-roadmap-stage__icon-wrap">
-                        <span data-lucide="arrow-right"></span>
+                    @endforeach
+                </div>
+                <div class="gbp-roadmap-panel__footer">
+                    <div class="gbp-roadmap-panel__stat">
+                        <span class="gbp-roadmap-panel__stat-num">4</span>
+                        <span class="gbp-roadmap-panel__stat-label">Stages</span>
+                    </div>
+                    <div class="gbp-roadmap-panel__stat">
+                        <span class="gbp-roadmap-panel__stat-num">~12</span>
+                        <span class="gbp-roadmap-panel__stat-label">Months Total</span>
+                    </div>
+                    <div class="gbp-roadmap-panel__stat">
+                        <span class="gbp-roadmap-panel__stat-num">3</span>
+                        <span class="gbp-roadmap-panel__stat-label">Countries</span>
                     </div>
                 </div>
-
-                {{-- Zigzag connector arrow --}}
-                @if($loop->index < $stages->count() - 1)
-                <div class="gbp-roadmap-connector gbp-roadmap-connector--{{ $index % 2 === 0 ? 'down-right' : 'down-left' }}" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 5v14M5 12l7 7 7-7"/>
-                    </svg>
-                </div>
-                @endif
-            </div>
-            @endforeach
+            </aside>
         </div>
 
         <p class="gbp-overview__quote body-text fade-up">{{ $overview->quotes }}</p>
@@ -578,39 +636,7 @@
 </section>
 
 
-{{-- ═══════════════════════════════════════════
-     5. PROGRAMME PATHWAY STRUCTURE
-═══════════════════════════════════════════ --}}
-<section class="gbp-stages section-wrapper section--light" aria-label="Programme Pathway Structure" data-testid="gbp-stages">
-    <div class="container">
-        <div class="gbp-stages__header">
-            <span class="section-label"><span>PROGRAMME PATHWAY</span></span>
-            <h2 class="gbp-stages__heading section-title">
-                <span class="text-reveal-wrapper"><span class="text-reveal-inner">A Structured</span></span>
-                <span class="text-reveal-wrapper"><span class="text-reveal-inner"><em>Four-Stage Journey</em></span></span>
-            </h2>
-            <p class="gbp-stages__sub body-text fade-up">
-                From foundational diplomas in the UAE to an internationally recognised European bachelor's degree.
-            </p>
-        </div>
 
-        <div class="gbp-stages__timeline">
-            <div class="gbp-stages__line" aria-hidden="true"></div>
-            @foreach($stages as $stage)
-            <div class="gbp-stage" data-testid="gbp-stage-{{ $stage->year }}">
-                <div class="gbp-stage__dot">{{ $stage->year }}</div>
-                <div class="gbp-stage__card">
-                    <span class="gbp-stage__duration">{{ $stage->duration }}</span>
-                    <h3 class="gbp-stage__title card-title">{{ $stage->title }}</h3>
-                    <p class="gbp-stage__description">{{ $stage->description }}</p>
-                </div>
-            </div>
-            @endforeach
-        </div>
-
-        <p class="gbp-stages__quote body-text fade-up">{{ $overview->quotes }}</p>
-    </div>
-</section>
 
 
 {{-- ═══════════════════════════════════════════
@@ -869,7 +895,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typeof AnimationUtils === 'undefined' || typeof gsap === 'undefined') return;
 
     if (AnimationUtils.prefersReducedMotion) {
-        gsap.set('.fade-up, .text-reveal-inner, .gbp-snapshot-card, .gbp-intro-card, .gbp-why-card, .gbp-explore-card, .gbp-area-card, .gbp-partner-card, .gbp-doc-card, .gbp-stage, .gbp-stages__line', {
+        gsap.set('.fade-up, .text-reveal-inner, .gbp-snapshot-card, .gbp-intro-card, .gbp-why-card, .gbp-explore-card, .gbp-area-card, .gbp-partner-card, .gbp-doc-card', {
             clearProps: 'all',
             opacity: 1,
             y: 0,
@@ -886,7 +912,7 @@ document.addEventListener('DOMContentLoaded', () => {
     AnimationUtils.cards('.gbp-intro-card', { stagger: 0.1, y: 30 });
 
     const sections = [
-        '.gbp-overview', '.gbp-why', '.gbp-explore', '.gbp-stages',
+        '.gbp-overview', '.gbp-why', '.gbp-explore',
         '.gbp-destinations', '.gbp-cost', '.gbp-areas', '.gbp-partners',
         '.gbp-admission', '.gbp-docs', '.gbp-final',
     ];
@@ -894,7 +920,7 @@ document.addEventListener('DOMContentLoaded', () => {
     sections.forEach((s) => AnimationUtils.sectionLabel(s));
 
     [
-        '.gbp-overview', '.gbp-why', '.gbp-explore', '.gbp-stages',
+        '.gbp-overview', '.gbp-why', '.gbp-explore',
         '.gbp-destinations', '.gbp-cost', '.gbp-areas', '.gbp-partners',
         '.gbp-admission', '.gbp-docs',
     ].forEach((s) => AnimationUtils.textReveal(`${s} .text-reveal-inner`));
@@ -908,23 +934,23 @@ document.addEventListener('DOMContentLoaded', () => {
     AnimationUtils.cards('.gbp-area-card', { stagger: 0.1 });
     AnimationUtils.cards('.gbp-partner-card', { stagger: 0.12 });
     AnimationUtils.cards('.gbp-doc-card', { stagger: 0.12 });
-    AnimationUtils.cards('.gbp-stage', { stagger: 0.2 });
-
-    // ── Roadmap cinematic animations ──
+    // ── Cinematic Roadmap Animations ──
     const roadmapStages = document.querySelectorAll('.gbp-roadmap-stage');
     const roadmapPath = document.querySelector('.gbp-roadmap-path');
+    const roadmapPathBase = document.querySelector('.gbp-roadmap-path-base');
     const roadmapMarkers = document.querySelectorAll('.gbp-roadmap-stage__marker');
     const roadmapCards = document.querySelectorAll('.gbp-roadmap-stage__card');
-    const roadmapConnectors = document.querySelectorAll('.gbp-roadmap-connector');
+    const roadmapPanelItems = document.querySelectorAll('.gbp-roadmap-panel__item');
+    const roadmapPanelNums = document.querySelectorAll('.gbp-roadmap-panel__step-num');
 
     if (!AnimationUtils.prefersReducedMotion && roadmapStages.length) {
-        // Animate SVG path drawing (dashoffset reveal)
+        // SVG path draw animation
         if (roadmapPath) {
             gsap.fromTo(roadmapPath,
-                { strokeDashoffset: 2000 },
+                { strokeDashoffset: 1200 },
                 {
                     strokeDashoffset: 0,
-                    duration: 2.2,
+                    duration: 2.4,
                     ease: 'power2.inOut',
                     scrollTrigger: {
                         trigger: '.gbp-roadmap',
@@ -935,22 +961,39 @@ document.addEventListener('DOMContentLoaded', () => {
             );
         }
 
-        // Marker ring animation delay per stage
+        // Base dotted path fade-in
+        if (roadmapPathBase) {
+            gsap.fromTo(roadmapPathBase,
+                { opacity: 0 },
+                {
+                    opacity: 1,
+                    duration: 1.0,
+                    delay: 0.3,
+                    ease: 'power1.out',
+                    scrollTrigger: {
+                        trigger: '.gbp-roadmap',
+                        start: 'top 80%',
+                        toggleActions: 'play none none none',
+                    },
+                }
+            );
+        }
+
+        // Marker ring animation per stage
         roadmapMarkers.forEach((marker, i) => {
             const ring = marker.querySelector('.gbp-roadmap-stage__marker-ring');
             if (ring) {
                 gsap.fromTo(ring,
-                    { scale: 0.5, opacity: 0 },
+                    { scale: 0.4, opacity: 0 },
                     {
-                        scale: 1.6,
-                        opacity: 0,
-                        duration: 2.5,
-                        delay: i * 0.3,
+                        scale: 1.7, opacity: 0,
+                        duration: 2.8,
+                        delay: i * 0.35,
                         repeat: -1,
                         ease: 'none',
                         scrollTrigger: {
                             trigger: '.gbp-roadmap',
-                            start: 'top 80%',
+                            start: 'top 75%',
                             toggleActions: 'play none none none',
                         },
                     }
@@ -958,25 +1001,19 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Marker scale-in (staggered, alternating direction)
+        // Markers scale in with bounce
         roadmapMarkers.forEach((marker, i) => {
             const isLeft = i % 2 === 0;
             gsap.fromTo(marker,
+                { scale: 0, opacity: 0, rotate: isLeft ? -15 : 15 },
                 {
-                    scale: 0,
-                    opacity: 0,
-                    rotate: isLeft ? -20 : 20,
-                },
-                {
-                    scale: 1,
-                    opacity: 1,
-                    rotate: 0,
-                    duration: 0.7,
-                    delay: 0.4 + i * 0.15,
+                    scale: 1, opacity: 1, rotate: 0,
+                    duration: 0.65,
+                    delay: 0.35 + i * 0.18,
                     ease: 'back.out(1.7)',
                     scrollTrigger: {
                         trigger: '.gbp-roadmap',
-                        start: 'top 75%',
+                        start: 'top 72%',
                         toggleActions: 'play none none none',
                     },
                 }
@@ -987,20 +1024,32 @@ document.addEventListener('DOMContentLoaded', () => {
         roadmapCards.forEach((card, i) => {
             const isLeft = i % 2 === 0;
             gsap.fromTo(card,
+                { opacity: 0, x: isLeft ? -40 : 40, scale: 0.93 },
                 {
-                    opacity: 0,
-                    x: isLeft ? -50 : 50,
-                    scale: 0.92,
-                },
-                {
-                    opacity: 1,
-                    x: 0,
-                    scale: 1,
-                    duration: 0.8,
-                    delay: 0.5 + i * 0.15,
+                    opacity: 1, x: 0, scale: 1,
+                    duration: 0.75,
+                    delay: 0.45 + i * 0.18,
                     ease: 'power3.out',
                     scrollTrigger: {
                         trigger: '.gbp-roadmap',
+                        start: 'top 68%',
+                        toggleActions: 'play none none none',
+                    },
+                }
+            );
+        });
+
+        // Panel items stagger in from right
+        roadmapPanelItems.forEach((item, i) => {
+            gsap.fromTo(item,
+                { opacity: 0, x: 30 },
+                {
+                    opacity: 1, x: 0,
+                    duration: 0.55,
+                    delay: 0.6 + i * 0.12,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: '.gbp-roadmap-panel',
                         start: 'top 70%',
                         toggleActions: 'play none none none',
                     },
@@ -1008,18 +1057,17 @@ document.addEventListener('DOMContentLoaded', () => {
             );
         });
 
-        // Connectors fade + scale bounce
-        roadmapConnectors.forEach((conn, i) => {
-            gsap.fromTo(conn,
-                { opacity: 0, scale: 0 },
+        // Panel number circles scale in
+        roadmapPanelNums.forEach((num, i) => {
+            gsap.fromTo(num,
+                { scale: 0 },
                 {
-                    opacity: 1,
                     scale: 1,
-                    duration: 0.5,
-                    delay: 0.9 + i * 0.15,
+                    duration: 0.45,
+                    delay: 0.75 + i * 0.12,
                     ease: 'back.out(2)',
                     scrollTrigger: {
-                        trigger: '.gbp-roadmap',
+                        trigger: '.gbp-roadmap-panel',
                         start: 'top 70%',
                         toggleActions: 'play none none none',
                     },
@@ -1027,11 +1075,30 @@ document.addEventListener('DOMContentLoaded', () => {
             );
         });
 
-        // Subtle floating pulse on stage markers (continuous)
+        // Panel footer stats stagger
+        const panelFooterStats = document.querySelectorAll('.gbp-roadmap-panel__stat');
+        panelFooterStats.forEach((stat, i) => {
+            gsap.fromTo(stat,
+                { opacity: 0, y: 12 },
+                {
+                    opacity: 1, y: 0,
+                    duration: 0.4,
+                    delay: 1.0 + i * 0.1,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: '.gbp-roadmap-panel',
+                        start: 'top 65%',
+                        toggleActions: 'play none none none',
+                    },
+                }
+            );
+        });
+
+        // Subtle floating pulse on markers via ScrollTrigger scrub
         roadmapMarkers.forEach((marker) => {
             gsap.to(marker, {
-                scale: 1.06,
-                duration: 1.8,
+                scale: 1.05,
+                duration: 2.0,
                 repeat: -1,
                 yoyo: true,
                 ease: 'sine.inOut',
@@ -1039,36 +1106,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     trigger: '.gbp-roadmap',
                     start: 'top 70%',
                     end: 'bottom 30%',
-                    scrub: 1,
+                    scrub: 1.2,
                 },
             });
         });
     }
 
-    const timelineLine = document.querySelector('.gbp-stages__line');
-    if (timelineLine) {
-        gsap.fromTo(timelineLine,
-            { scaleY: 0 },
-            {
-                scaleY: 1,
-                transformOrigin: 'top center',
-                duration: 1.2,
-                ease: 'power2.inOut',
-                scrollTrigger: {
-                    trigger: '.gbp-stages',
-                    start: 'top 70%',
-                    toggleActions: 'play none none none',
-                },
-            }
-        );
-    }
-
-    ['.gbp-dest--hungary .gbp-dest__image', '.gbp-dest--romania .gbp-dest__image', '.gbp-dest--moldova .gbp-dest__image']
-        .forEach((sel) => AnimationUtils.parallax(sel, { y: -30 }));
-
-    if (typeof lucide !== 'undefined') {
-        lucide.createIcons();
-    }
-});
-</script>
-@endpush
