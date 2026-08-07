@@ -704,10 +704,8 @@
 <section class="gbp-comparison section-wrapper section--light" aria-label="Pathway Comparison" data-testid="gbp-comparison">
     <div class="container">
         <div class="gbp-comparison__header">
-            <span class="section-label"><span>PATHWAY COMPARISON</span></span>
             <h2 class="gbp-comparison__heading section-title">
-                <span class="text-reveal-wrapper"><span class="text-reveal-inner">Compare the Traditional Route with</span></span>
-                <span class="text-reveal-wrapper"><span class="text-reveal-inner">Maverick's <em>Smart Bachelor's Pathway</em></span></span>
+                <span class="text-reveal-wrapper"><span class="text-reveal-inner">Compare the Traditional Route with Maverick's <em>Smart Bachelor's Pathway</em></span></span>
             </h2>
         </div>
 

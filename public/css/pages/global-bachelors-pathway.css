@@ -1232,7 +1232,6 @@
 }
 
 .gbp-comparison__header {
-  max-width: 820px;
   margin: 0 auto 3.5rem;
   text-align: center;
 }
@@ -1244,6 +1243,7 @@
 .gbp-comparison__heading {
   margin: 0;
   color: var(--color-mba-dark-blue);
+  font-size: var(--fs-card-title);
 }
 
 .gbp-comparison__grid {
