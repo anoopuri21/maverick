@@ -128,7 +128,7 @@
             'label' => 'PREMIUM EUROPEAN PATHWAY',
             'university' => 'International Business School, Budapest',
             'description' => 'Hungary is a strong choice for students seeking a premium European study experience, international exposure, and a vibrant student-friendly environment. Through Maverick\'s pathway, students can study Bachelor\'s in Hungary while benefiting from structured academic guidance, career-focused support, and opportunities for global growth. Through Maverick\'s Hungary pathway, students can progress to International Business School, Budapest, one of the leading international business schools in Europe.',
-            'image' => 'https://images.pexels.com/photos/3722721/pexels-photo-3722721.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=760',
+            'image' => 'https://images.pexels.com/photos/16356273/pexels-photo-16356273.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=760',
             'points' => [
                 'International study experience in Budapest',
                 'Dual degree opportunities with University of Buckingham (UK) and Dublin Business School (Ireland)',
@@ -168,7 +168,7 @@
             'label' => 'AFFORDABLE EUROPEAN PATHWAY',
             'university' => 'USPEE, Moldova',
             'description' => 'Another affordable European pathway option for students looking for a cost-effective route to complete their bachelor\'s degree. Progress to USPEE, Moldova through Maverick\'s structured pathway.',
-            'image' => 'https://images.pexels.com/photos/1519088/pexels-photo-1519088.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=760',
+            'image' => 'https://images.pexels.com/photos/346823/pexels-photo-346823.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=760',
             'points' => [
                 'Affordable tuition fees',
                 'Lower overall study cost',
@@ -283,7 +283,6 @@
     ]);
 @endphp
 
-
 {{-- ═══════════════════════════════════════════
      1. HERO SECTION (Cinematic)
 ═══════════════════════════════════════════ --}}
@@ -330,7 +329,6 @@
     </div>
 </section>
 
-
 {{-- ═══════════════════════════════════════════
      SNAPSHOT — Study Route / Destinations / Focus
 ═══════════════════════════════════════════ --}}
@@ -361,7 +359,6 @@
         </div>
     </div>
 </section>
-
 
 {{-- ═══════════════════════════════════════════
      SECTION 1: YOUR STRUCTURED ROUTE
@@ -399,7 +396,6 @@
         </div>
     </div>
 </section>
-
 
 {{-- ═══════════════════════════════════════════
      SECTION 2: WHAT IS THE PATHWAY PROGRAMME
@@ -504,12 +500,6 @@
                             </div>
                             <h3 class="gbp-roadmap-stage__title card-title">{{ $stage->title }}</h3>
                             <p class="gbp-roadmap-stage__description">{{ $stage->description }}</p>
-                            <div class="gbp-roadmap-stage__card-badge">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M5 12h14M12 5l7 7-7 7"/>
-                                </svg>
-                                <span>Next Stage</span>
-                            </div>
                         </div>
                     </div>
                     @endforeach
@@ -563,7 +553,6 @@
     </div>
 </section>
 
-
 {{-- ═══════════════════════════════════════════
      3. WHY CHOOSE THIS PATHWAY?
 ═══════════════════════════════════════════ --}}
@@ -596,7 +585,6 @@
         </div>
     </div>
 </section>
-
 
 {{-- ═══════════════════════════════════════════
      4. EXPLORE EUROPE WITH YOUR CHOICES
@@ -634,10 +622,6 @@
         </div>
     </div>
 </section>
-
-
-
-
 
 {{-- ═══════════════════════════════════════════
      6. STUDY DESTINATIONS
@@ -687,7 +671,6 @@
     </div>
 </section>
 
-
 {{-- ═══════════════════════════════════════════
      7. COST & TIME ADVANTAGE
 ═══════════════════════════════════════════ --}}
@@ -714,7 +697,6 @@
         </div>
     </div>
 </section>
-
 
 {{-- ═══════════════════════════════════════════
      8. PROGRAMS OFFERED
@@ -751,7 +733,6 @@
     </div>
 </section>
 
-
 {{-- ═══════════════════════════════════════════
      9. PARTNER UNIVERSITY PROGRESSION
 ═══════════════════════════════════════════ --}}
@@ -787,7 +768,6 @@
         </div>
     </div>
 </section>
-
 
 {{-- ═══════════════════════════════════════════
      10. ADMISSION REQUIREMENTS
@@ -830,7 +810,6 @@
     </div>
 </section>
 
-
 {{-- ═══════════════════════════════════════════
      11. DOCUMENTS REQUIRED
 ═══════════════════════════════════════════ --}}
@@ -861,7 +840,6 @@
         </div>
     </div>
 </section>
-
 
 {{-- ═══════════════════════════════════════════
      12. FINAL CTA
@@ -984,9 +962,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const ring = marker.querySelector('.gbp-roadmap-stage__marker-ring');
             if (ring) {
                 gsap.fromTo(ring,
-                    { scale: 0.4, opacity: 0 },
+                    {opacity: 0 },
                     {
-                        scale: 1.7, opacity: 0,
+                        opacity: 1,
                         duration: 2.8,
                         delay: i * 0.35,
                         repeat: -1,
@@ -1005,9 +983,9 @@ document.addEventListener('DOMContentLoaded', () => {
         roadmapMarkers.forEach((marker, i) => {
             const isLeft = i % 2 === 0;
             gsap.fromTo(marker,
-                { scale: 0, opacity: 0, rotate: isLeft ? -15 : 15 },
+                { opacity: 0, rotate: isLeft ? -15 : 15 },
                 {
-                    scale: 1, opacity: 1, rotate: 0,
+                    opacity: 1, rotate: 0,
                     duration: 0.65,
                     delay: 0.35 + i * 0.18,
                     ease: 'back.out(1.7)',
@@ -1060,11 +1038,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // Panel number circles scale in
         roadmapPanelNums.forEach((num, i) => {
             gsap.fromTo(num,
-                { scale: 0 },
+                { opacity: 0 },
                 {
-                    scale: 1,
+                    opacity: 1,
                     duration: 0.45,
-                    delay: 0.75 + i * 0.12,
+                    delay: 1.75 + i * 0.12,
                     ease: 'back.out(2)',
                     scrollTrigger: {
                         trigger: '.gbp-roadmap-panel',
@@ -1112,3 +1090,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+});
+</script>
+@endpush
