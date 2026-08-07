@@ -25,7 +25,7 @@ class OurStoryTimelineResource extends Resource
     protected static ?string $model = OurStoryTimeline::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-clock';
-    protected static ?string $navigationGroup = 'Our Story Content';
+    protected static ?string $navigationGroup = 'Our Story Page';
 
     public static function form(Form $form): Form
     {

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Insight;
+use App\Settings\BlogHeroSettings;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
@@ -37,9 +38,16 @@ class BlogController extends Controller
             });
         }
 
-        $paginatedPosts = $query->latest('published_at')->paginate(9)->withQueryString();
+        $paginatedPosts = $query->latest('published_at')->paginate(10)->withQueryString();
 
-        return view('blogs.index', compact('paginatedPosts', 'featuredPost', 'categories', 'activeCategory', 'searchQuery'));
+        // Hero settings (Admin Panel managed via Spatie Settings)
+        $blogHero = app(BlogHeroSettings::class);
+
+        // Top 10 tags from published blog insights
+        $allTags = Insight::published()->category('blogs')->pluck('tags')->flatten()->filter()->values();
+        $topTags = $allTags->countBy()->sortDesc()->take(10)->keys();
+
+        return view('blogs.index', compact('paginatedPosts', 'featuredPost', 'categories', 'activeCategory', 'searchQuery', 'blogHero', 'topTags'));
     }
 
     /**

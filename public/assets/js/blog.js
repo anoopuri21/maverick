@@ -1,162 +1,235 @@
 /**
+ * Blog & News — Shared Detail Page JS
  * Maverick Business Academy
- * Blog Dedicated JS (Animations & Interactive Features)
+ *
+ * Features:
+ *  - Reading progress bar (blog + news detail)
+ *  - TOC active state tracking via IntersectionObserver
+ *  - GSAP entrance animations for detail pages
  */
-(function() {
-    "use strict";
 
-    document.addEventListener("DOMContentLoaded", () => {
-        initCopyLink();
-        initMobileToc();
-        initReadingProgressBar();
-        initParallaxHero();
-        initScrollAnimations();
+(function () {
+  'use strict';
+
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+    console.warn('Blog JS: GSAP or ScrollTrigger not loaded.');
+    return;
+  }
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // =========================================================
+  // 1. READING PROGRESS BAR
+  // =========================================================
+
+  function initProgressBar() {
+    const progressBar = document.getElementById('blog-progress-bar') || document.getElementById('news-progress-bar');
+    const progressFill = document.getElementById('blog-progress-fill') || document.getElementById('news-progress-fill');
+
+    if (!progressBar || !progressFill) return;
+
+    let ticking = false;
+
+    function updateProgress() {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? Math.min((scrollTop / docHeight) * 100, 100) : 0;
+      progressFill.style.width = progress + '%';
+      ticking = false;
+    }
+
+    function onScroll() {
+      if (!ticking) {
+        window.requestAnimationFrame(updateProgress);
+        ticking = true;
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    updateProgress();
+  }
+
+  // =========================================================
+  // 2. TOC ACTIVE TRACKING (Blog Detail only)
+  // =========================================================
+
+  function initTocTracking() {
+    const tocLinks = document.querySelectorAll('.blog-toc__link');
+    if (!tocLinks.length) return;
+
+    const headingIds = Array.from(tocLinks)
+      .map(function (link) { return link.getAttribute('href'); })
+      .map(function (href) { return href ? href.substring(1) : null; })
+      .filter(Boolean);
+
+    if (!headingIds.length) return;
+
+    // Scroll spy: highlight current section in TOC
+    var observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -60% 0px',
+      threshold: 0,
+    };
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var id = entry.target.id;
+          tocLinks.forEach(function (link) {
+            link.classList.toggle('blog-toc__link--active', link.getAttribute('href') === '#' + id);
+          });
+        }
+      });
+    }, observerOptions);
+
+    headingIds.forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) observer.observe(el);
     });
+  }
 
-    /**
-     * 1. Clipboard copy tool for sticky share bar
-     */
-    function initCopyLink() {
-        const copyBtns = document.querySelectorAll(".blog-share-bar__copy-btn");
-        copyBtns.forEach(btn => {
-            btn.addEventListener("click", () => {
-                const url = btn.getAttribute("data-copy-url");
-                if (url) {
-                    navigator.clipboard.writeText(url).then(() => {
-                        btn.classList.add("copied");
-                        setTimeout(() => {
-                            btn.classList.remove("copied");
-                        }, 2000);
-                    }).catch(err => {
-                        console.error("Failed to copy link: ", err);
-                    });
-                }
-            });
-        });
+  // =========================================================
+  // 3. TOC COLLAPSE TOGGLE (Blog Detail only)
+  // =========================================================
+
+  function initTocToggle() {
+    var toggleBtn = document.querySelector('.blog-toc__toggle');
+    var tocList = document.querySelector('.blog-toc__list');
+
+    if (!toggleBtn || !tocList) return;
+
+    toggleBtn.addEventListener('click', function () {
+      var isOpen = !tocList.classList.contains('collapsed');
+      tocList.classList.toggle('collapsed', isOpen);
+      toggleBtn.classList.toggle('open', !isOpen);
+      toggleBtn.querySelector('.blog-toc__toggle-text').textContent = isOpen ? 'Show' : 'Hide';
+      toggleBtn.setAttribute('aria-expanded', String(!isOpen));
+    });
+  }
+
+  // =========================================================
+  // 4. GSAP ENTRANCE ANIMATIONS — Blog Detail
+  // =========================================================
+
+  function initBlogDetailAnimations() {
+    if (prefersReducedMotion) {
+      gsap.set('.blog-detail-hero__eyebrow, .blog-detail-hero__title, .blog-detail-hero__excerpt, .blog-detail-hero__scroll-hint', { clearProps: 'all', opacity: 1 });
+      gsap.set('.blog-article-header__badge, .blog-article-header__title, .blog-article-header__excerpt, .blog-article-header__byline', { clearProps: 'all', opacity: 1 });
+      gsap.set('.blog-featured-image-box img', { clearProps: 'all', opacity: 1, scale: 1 });
+      gsap.set('.blog-toc, .blog-share-bar', { clearProps: 'all', opacity: 1 });
+      gsap.set('.blog-card, .blog-related__title', { clearProps: 'all', opacity: 1 });
+      return;
     }
 
-    /**
-     * 2. Mobile ToC collapsible dropdown behavior
-     */
-    function initMobileToc() {
-        const tocToggle = document.querySelector(".blog-toc__toggle-btn");
-        const toc = document.querySelector(".blog-toc");
-        if (!tocToggle || !toc) return;
+    // Hero content
+    gsap.fromTo('.blog-detail-hero__eyebrow', { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out', scrollTrigger: { trigger: '.blog-detail-hero', start: 'top 80%', toggleActions: 'play none none none' } });
+    gsap.fromTo('.blog-detail-hero__title', { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.7, delay: 0.1, ease: 'power2.out', scrollTrigger: { trigger: '.blog-detail-hero', start: 'top 75%', toggleActions: 'play none none none' } });
+    gsap.fromTo('.blog-detail-hero__excerpt', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, delay: 0.2, ease: 'power2.out', scrollTrigger: { trigger: '.blog-detail-hero', start: 'top 70%', toggleActions: 'play none none none' } });
+    gsap.fromTo('.blog-detail-hero__scroll-hint', { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.5, delay: 0.35, ease: 'power2.out', scrollTrigger: { trigger: '.blog-detail-hero', start: 'top 60%', toggleActions: 'play none none none' } });
 
-        tocToggle.addEventListener("click", () => {
-            const isExpanded = tocToggle.getAttribute("aria-expanded") === "true";
-            tocToggle.setAttribute("aria-expanded", !isExpanded);
+    // Article header
+    gsap.fromTo('.blog-article-header__badge', { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out', scrollTrigger: { trigger: '.blog-article-header', start: 'top 85%', toggleActions: 'play none none none' } });
+    gsap.fromTo('.blog-article-header__title', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.65, delay: 0.08, ease: 'power2.out', scrollTrigger: { trigger: '.blog-article-header', start: 'top 82%', toggleActions: 'play none none none' } });
+    gsap.fromTo('.blog-article-header__excerpt', { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.55, delay: 0.16, ease: 'power2.out', scrollTrigger: { trigger: '.blog-article-header', start: 'top 78%', toggleActions: 'play none none none' } });
+    gsap.fromTo('.blog-article-header__byline', { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.5, delay: 0.24, ease: 'power2.out', scrollTrigger: { trigger: '.blog-article-header', start: 'top 74%', toggleActions: 'play none none none' } });
 
-            const toggleText = tocToggle.querySelector(".blog-toc__toggle-text");
-            if (toggleText) {
-                toggleText.textContent = isExpanded ? "Show" : "Hide";
-            }
+    // Featured image
+    gsap.fromTo('.blog-featured-image-box img', { opacity: 0, scale: 0.95 }, { opacity: 1, scale: 1, duration: 0.7, ease: 'power2.out', scrollTrigger: { trigger: '.blog-featured-image-box', start: 'top 80%', toggleActions: 'play none none none' } });
 
-            toc.classList.toggle("blog-toc--expanded");
-        });
+    // Sidebar elements (TOC + share bar)
+    gsap.fromTo('.blog-toc', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out', scrollTrigger: { trigger: '.blog-detail-sidebar', start: 'top 75%', toggleActions: 'play none none none' } });
+    gsap.fromTo('.blog-share-bar', { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5, delay: 0.1, ease: 'power2.out', scrollTrigger: { trigger: '.blog-share-bar', start: 'top 75%', toggleActions: 'play none none none' } });
+
+    // Related posts
+    gsap.fromTo('.blog-related__title', { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out', scrollTrigger: { trigger: '.blog-related', start: 'top 85%', toggleActions: 'play none none none' } });
+    gsap.fromTo('.blog-related__grid .blog-card', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: 'power2.out', scrollTrigger: { trigger: '.blog-related__grid', start: 'top 80%', toggleActions: 'play none none none' } });
+
+    // Article body headings — stagger per heading
+    var headings = document.querySelectorAll('.blog-article-body h2, .blog-article-body h3');
+    headings.forEach(function (heading, i) {
+      gsap.fromTo(heading, { opacity: 0, y: 16 }, {
+        opacity: 1, y: 0,
+        duration: 0.5,
+        delay: i * 0.05,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: heading,
+          start: 'top 88%',
+          toggleActions: 'play none none none',
+        },
+      });
+    });
+  }
+
+  // =========================================================
+  // 5. GSAP ENTRANCE ANIMATIONS — News Detail
+  // =========================================================
+
+  function initNewsDetailAnimations() {
+    if (prefersReducedMotion) {
+      gsap.set('.news-detail-hero__eyebrow, .news-detail-hero__title, .news-detail-hero__scroll-hint', { clearProps: 'all', opacity: 1 });
+      gsap.set('.news-editorial-header__badge-row, .news-editorial-header__title, .news-editorial-header__excerpt, .news-editorial-header__byline', { clearProps: 'all', opacity: 1 });
+      gsap.set('.news-detail-image-box img', { clearProps: 'all', opacity: 1 });
+      gsap.set('.news-detail-sidebar .blog-share-bar', { clearProps: 'all', opacity: 1 });
+      gsap.set('.news-more-updates__title, .news-feed .news-row', { clearProps: 'all', opacity: 1 });
+      return;
     }
 
-    /**
-     * 3. Reading progress indicator calculation
-     */
-    function initReadingProgressBar() {
-        const fill = document.getElementById("blog-progress-fill");
-        const content = document.getElementById("blog-article-content");
-        if (!fill || !content) return;
+    // Hero
+    gsap.fromTo('.news-detail-hero__eyebrow', { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.55, ease: 'power2.out', scrollTrigger: { trigger: '.news-detail-hero', start: 'top 80%', toggleActions: 'play none none none' } });
+    gsap.fromTo('.news-detail-hero__title', { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.65, delay: 0.1, ease: 'power2.out', scrollTrigger: { trigger: '.news-detail-hero', start: 'top 75%', toggleActions: 'play none none none' } });
+    gsap.fromTo('.news-detail-hero__scroll-hint', { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.5, delay: 0.25, ease: 'power2.out', scrollTrigger: { trigger: '.news-detail-hero', start: 'top 65%', toggleActions: 'play none none none' } });
 
-        window.addEventListener("scroll", () => {
-            const rect = content.getBoundingClientRect();
-            const contentHeight = content.offsetHeight;
-            const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    // Editorial header
+    gsap.fromTo('.news-editorial-header__badge-row', { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out', scrollTrigger: { trigger: '.news-editorial-header', start: 'top 85%', toggleActions: 'play none none none' } });
+    gsap.fromTo('.news-editorial-header__title', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, delay: 0.08, ease: 'power2.out', scrollTrigger: { trigger: '.news-editorial-header', start: 'top 82%', toggleActions: 'play none none none' } });
+    gsap.fromTo('.news-editorial-header__excerpt', { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.55, delay: 0.16, ease: 'power2.out', scrollTrigger: { trigger: '.news-editorial-header', start: 'top 78%', toggleActions: 'play none none none' } });
+    gsap.fromTo('.news-editorial-header__byline', { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.5, delay: 0.24, ease: 'power2.out', scrollTrigger: { trigger: '.news-editorial-header', start: 'top 74%', toggleActions: 'play none none none' } });
 
-            // Calculate progress relative to article start and end
-            const articleTop = rect.top + scrollTop - (window.innerHeight / 2);
-            const totalScrollableDistance = contentHeight - (window.innerHeight / 3);
+    // Featured image
+    gsap.fromTo('.news-detail-image-box img', { opacity: 0, scale: 0.95 }, { opacity: 1, scale: 1, duration: 0.65, ease: 'power2.out', scrollTrigger: { trigger: '.news-detail-image-box', start: 'top 75%', toggleActions: 'play none none none' } });
 
-            let progress = 0;
-            if (scrollTop > articleTop) {
-                progress = ((scrollTop - articleTop) / totalScrollableDistance) * 100;
-            }
+    // Share bar (sidebar)
+    gsap.fromTo('.news-detail-sidebar .blog-share-bar', { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.55, ease: 'power2.out', scrollTrigger: { trigger: '.news-detail-sidebar', start: 'top 75%', toggleActions: 'play none none none' } });
 
-            // Clamp between 0% and 100%
-            progress = Math.min(Math.max(progress, 0), 100);
-            fill.style.width = `${progress}%`;
-        }, { passive: true });
+    // More updates
+    gsap.fromTo('.news-more-updates__title', { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out', scrollTrigger: { trigger: '.news-more-updates', start: 'top 85%', toggleActions: 'play none none none' } });
+    gsap.fromTo('.news-feed .news-row', { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.45, stagger: 0.07, ease: 'power2.out', scrollTrigger: { trigger: '.news-feed', start: 'top 80%', toggleActions: 'play none none none' } });
+
+    // Article body headings
+    var headings = document.querySelectorAll('.news-article-body h2, .news-article-body h3');
+    headings.forEach(function (heading, i) {
+      gsap.fromTo(heading, { opacity: 0, y: 14 }, {
+        opacity: 1, y: 0,
+        duration: 0.45,
+        delay: i * 0.04,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: heading,
+          start: 'top 88%',
+          toggleActions: 'play none none none',
+        },
+      });
+    });
+  }
+
+  // =========================================================
+  // INIT
+  // =========================================================
+
+  document.addEventListener('DOMContentLoaded', function () {
+    initProgressBar();
+
+    if (document.querySelector('.blog-detail')) {
+      initTocTracking();
+      initTocToggle();
+      initBlogDetailAnimations();
     }
 
-    /**
-     * 4. Cinematic parallax effect on detail hero
-     */
-    function initParallaxHero() {
-        const hero = document.getElementById("blog-detail-hero");
-        const img = document.getElementById("blog-detail-hero-img");
-        if (!hero || !img || typeof gsap === "undefined") return;
-
-        gsap.to(img, {
-            y: "30%",
-            ease: "none",
-            scrollTrigger: {
-                trigger: hero,
-                start: "top top",
-                end: "bottom top",
-                scrub: true
-            }
-        });
+    if (document.querySelector('.news-detail')) {
+      initNewsDetailAnimations();
     }
-
-    /**
-     * 5. Smooth scroll entrance animation for cards/sections
-     */
-    function initScrollAnimations() {
-        if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
-
-        // Animate cards staggered as they enter viewport
-        const grid = document.querySelector(".blog-grid");
-        const cards = document.querySelectorAll(".blog-card");
-        if (grid && cards.length > 0) {
-            gsap.fromTo(cards,
-                {
-                    opacity: 0,
-                    y: 40
-                },
-                {
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.8,
-                    stagger: 0.15,
-                    ease: "power2.out",
-                    scrollTrigger: {
-                        trigger: grid,
-                        start: "top 80%",
-                        toggleActions: "play none none none"
-                    }
-                }
-            );
-        }
-
-        // Animate related posts section
-        const relatedGrid = document.querySelector(".blog-grid--related");
-        const relatedCards = document.querySelectorAll(".blog-grid--related .blog-card");
-        if (relatedGrid && relatedCards.length > 0) {
-            gsap.fromTo(relatedCards,
-                {
-                    opacity: 0,
-                    y: 30
-                },
-                {
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.7,
-                    stagger: 0.12,
-                    ease: "power2.out",
-                    scrollTrigger: {
-                        trigger: relatedGrid,
-                        start: "top 85%",
-                        toggleActions: "play none none none"
-                    }
-                }
-            );
-        }
-    }
-
+  });
 })();

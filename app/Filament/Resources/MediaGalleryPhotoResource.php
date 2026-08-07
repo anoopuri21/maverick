@@ -26,7 +26,7 @@ class MediaGalleryPhotoResource extends Resource
     protected static ?string $model = MediaGalleryPhoto::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-photo';
-    protected static ?string $navigationGroup = 'Media Gallery';
+    protected static ?string $navigationGroup = 'Media Gallery Page';
     protected static ?string $navigationLabel = 'Gallery Photos';
     protected static ?int $navigationSort = 1;
 

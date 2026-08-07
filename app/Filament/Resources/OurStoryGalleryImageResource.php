@@ -26,7 +26,7 @@ class OurStoryGalleryImageResource extends Resource
     protected static ?string $model = OurStoryGalleryImage::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-photo';
-    protected static ?string $navigationGroup = 'Our Story Content';
+    protected static ?string $navigationGroup = 'Our Story Page';
     protected static ?string $navigationLabel = 'Gallery Images';
     protected static ?int $navigationSort = 3;
 

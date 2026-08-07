@@ -26,7 +26,7 @@ class MediaGalleryVideoResource extends Resource
     protected static ?string $model = MediaGalleryVideo::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-video-camera';
-    protected static ?string $navigationGroup = 'Media Gallery';
+    protected static ?string $navigationGroup = 'Media Gallery Page';
     protected static ?string $navigationLabel = 'Featured Videos';
     protected static ?int $navigationSort = 2;
 

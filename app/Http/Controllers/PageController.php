@@ -10,13 +10,10 @@ use App\Settings\WhoWeAreSettings;
 use App\Settings\CeoSettings;
 use App\Settings\WhatIsMaverickSettings;
 use App\Models\OurStoryTestimonial;
-// use App\Settings\FinalCtaSettings;
 use App\Models\PartnerLogo;
-// use App\Models\UniversityPartner;
 use App\Models\FacultyInsight;
 use App\Models\Event;
 use App\Models\Testimonial;
-// use App\Settings\WhatWeDoSettings;
 use App\Settings\HowWeDoItSettings;
 use App\Settings\WhyMaverickSettings;
 use App\Settings\GlobalOpportunitiesSettings;
@@ -34,8 +31,6 @@ class PageController extends Controller
             'whoWeAre' => app(WhoWeAreSettings::class),
             'ceo' => app(CeoSettings::class),
             'whatIsMaverick' => app(WhatIsMaverickSettings::class),
-            // 'finalCta' => app(FinalCtaSettings::class),
-            // 'whatWeDo' => app(WhatWeDoSettings::class),
             'howWeDoIt' => app(HowWeDoItSettings::class),
             'whyMaverick' => app(WhyMaverickSettings::class),
             'globalOpportunities' => app(GlobalOpportunitiesSettings::class),
@@ -55,11 +50,6 @@ class PageController extends Controller
             ->where('is_active', true)
             ->orderBy('sort_order')
             ->get();
-
-        // $universityPartners = UniversityPartner::select('id', 'name', 'country', 'city', 'latitude', 'longitude', 'is_hub', 'recognition', 'programs', 'logo_url')
-        //     ->where('is_active', true)
-        //     ->orderBy('country')
-        //     ->get();
 
         $facultyInsights = FacultyInsight::select('id', 'title', 'slug', 'badge', 'image_url', 'link_url', 'sort_order')
             ->where('is_active', true)
@@ -86,28 +76,6 @@ class PageController extends Controller
             ->orderBy('sort_order')
             ->get();
 
-        // Transform data for JS
-        // $universityPartnersJson = $universityPartners
-        //     ->groupBy('country')
-        //     ->map(function ($partners, $country) {
-        //         $first = $partners->first();
-        //         return [
-        //             'id' => strtolower(str_replace(' ', '-', $country)),
-        //             'name' => $country,
-        //             'city' => $first->city ?? '',
-        //             'lat' => (float) ($first->latitude ?? 0),
-        //             'lng' => (float) ($first->longitude ?? 0),
-        //             'isHub' => (bool) ($first->is_hub ?? false),
-        //             'universities' => $partners->map(fn($p) => [
-        //                 'name' => $p->name,
-        //                 'country' => $p->country,
-        //                 'recognition' => $p->recognition ?? '',
-        //                 'programs' => $p->programs ?? [],
-        //             ])->values(),
-        //         ];
-        //     })
-        //     ->values();
-
         $testimonialsJson = $testimonials->map(fn($t) => [
             'category' => strtoupper($t->company ?? 'STUDENT'),
             'name' => $t->name,
@@ -117,11 +85,8 @@ class PageController extends Controller
         ])->values();
 
         $data = array_merge($settings, [
-            // 'featuredPrograms' => $featuredPrograms,
             'alumniLogos' => $alumniLogos,
             'accreditationLogos' => $accreditationLogos,
-            // 'universityPartners' => $universityPartners,
-            // 'universityPartnersJson' => $universityPartnersJson,
             'facultyInsights' => $facultyInsights,
             'events' => $events,
             'testimonials' => $testimonials,
@@ -143,7 +108,6 @@ class PageController extends Controller
             'vision' => app(\App\Settings\OurStoryVisionSettings::class),
             // Shared with homepage
             'ceo' => app(CeoSettings::class),
-            // 'finalCta' => app(FinalCtaSettings::class),
         ];
 
         $ourStoryTestimonials = OurStoryTestimonial::query()

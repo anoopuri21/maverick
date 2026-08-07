@@ -23,7 +23,7 @@ class UniversityPartnerResource extends Resource
     protected static ?string $model = UniversityPartner::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-    protected static ?string $navigationGroup = 'Content';
+    protected static ?string $navigationGroup = 'Global Content';
 
     public static function form(Form $form): Form
     {
