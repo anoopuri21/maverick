@@ -15,6 +15,7 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Forms\Components\MediaPicker;
+use Illuminate\Support\Str;
 
 class FacultyInsightResource extends Resource
 {
@@ -22,7 +23,7 @@ class FacultyInsightResource extends Resource
     protected static ?string $model = FacultyInsight::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-    protected static ?string $navigationGroup = 'Content';
+    protected static ?string $navigationGroup = 'Global Content';
 
     public static function form(Form $form): Form
     {
@@ -32,7 +33,7 @@ class FacultyInsightResource extends Resource
                     ->required()
                     ->live()
                     ->afterStateUpdated(function (Forms\Set $set, $state) {
-                        $set('slug', \Str::slug($state));
+                        $set('slug', Str::slug($state));
                     }),
                 Forms\Components\TextInput::make('slug')
                     ->required()

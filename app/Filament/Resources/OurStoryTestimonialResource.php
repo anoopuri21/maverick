@@ -25,7 +25,7 @@ class OurStoryTestimonialResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-left-right';
 
-    protected static ?string $navigationGroup = 'Our Story Content';
+    protected static ?string $navigationGroup = 'Our Story Page';
 
     protected static ?string $navigationLabel = 'Testimonials';
 

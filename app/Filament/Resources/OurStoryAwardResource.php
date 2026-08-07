@@ -24,7 +24,7 @@ class OurStoryAwardResource extends Resource
     protected static ?string $model = OurStoryAward::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-trophy';
-    protected static ?string $navigationGroup = 'Our Story Content';
+    protected static ?string $navigationGroup = 'Our Story Page';
 
     public static function shouldRegisterNavigation(): bool
     {
