@@ -206,7 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const nextBtn = document.querySelector('[data-dmba-carousel="next"]');
   const dots = document.querySelectorAll('.dmba-testimonials__dot');
 
-  if (track && cards.length > 0) {
+  if (track && cards.length) {
     let currentIndex = 0;
     const cardsPerView = window.innerWidth > 768 ? 3 : 1;
     const maxIndex = Math.max(0, cards.length - cardsPerView);
@@ -221,8 +221,8 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    if (prevBtn) prevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
-    if (nextBtn) nextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
+    prevBtn && prevBtn.addEventListener("click", () => goToSlide(currentIndex - 1));
+    nextBtn && nextBtn.addEventListener("click", () => goToSlide(currentIndex + 1));
     dots.forEach((dot, i) => dot.addEventListener('click', () => goToSlide(i)));
 
     // Auto-play
