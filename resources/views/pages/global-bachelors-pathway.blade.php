@@ -699,6 +699,151 @@
 </section>
 
 {{-- ═══════════════════════════════════════════
+     7.5 PATHWAY COMPARISON
+═══════════════════════════════════════════ --}}
+<section class="gbp-comparison section-wrapper section--light" aria-label="Pathway Comparison" data-testid="gbp-comparison">
+    <div class="container">
+        <div class="gbp-comparison__header">
+            <span class="section-label"><span>PATHWAY COMPARISON</span></span>
+            <h2 class="gbp-comparison__heading section-title">
+                <span class="text-reveal-wrapper"><span class="text-reveal-inner">Compare the Traditional Route with</span></span>
+                <span class="text-reveal-wrapper"><span class="text-reveal-inner">Maverick's <em>Smart Bachelor's Pathway</em></span></span>
+            </h2>
+        </div>
+
+        <div class="gbp-comparison__grid">
+            {{-- ═══ CARD 1 ═══ --}}
+            <article class="gbp-comparison-card" data-testid="gbp-comparison-card-1">
+                <div class="gbp-comparison-card__badge-notch"></div>
+                <div class="gbp-comparison-card__body">
+                    <h3 class="gbp-comparison-card__title">Traditional Route</h3>
+                    <span class="gbp-comparison-card__duration">4 Years</span>
+                    <div class="gbp-comparison-card__divider"></div>
+                    <ul class="gbp-comparison-card__bullets">
+                        <li>
+                            <span class="bullet-dot"></span>
+                            Higher overall tuition & living costs
+                        </li>
+                        <li>
+                            <span class="bullet-dot"></span>
+                            Full overseas study from Year 1
+                        </li>
+                        <li>
+                            <span class="bullet-dot"></span>
+                            Longer time to graduation
+                        </li>
+                    </ul>
+                </div>
+                <div class="gbp-comparison-card__footer">
+                    <div class="gbp-comparison-card__tagline-wrapper">
+                        <div class="gbp-comparison-card__tagline">MORE EXPENSIVE & LONGER</div>
+                    </div>
+                    <div class="gbp-comparison-card__price-panel">
+                        <span class="gbp-comparison-card__price-label">Total Estimated Fees</span>
+                        <div class="gbp-comparison-card__price-value">EUR 58,000</div>
+                    </div>
+                </div>
+            </article>
+
+            {{-- ═══ CARD 2 ═══ --}}
+            <article class="gbp-comparison-card gbp-comparison-card--recommended" data-testid="gbp-comparison-card-2">
+                <div class="gbp-comparison-card__badge-notch"></div>
+                <div class="gbp-comparison-card__body">
+                    <h3 class="gbp-comparison-card__title">Maverick Hybrid / Online Route</h3>
+                    <span class="gbp-comparison-card__duration">Approx 3 Years</span>
+                    <div class="gbp-comparison-card__divider"></div>
+                    <ul class="gbp-comparison-card__bullets">
+                        <li>
+                            <span class="bullet-dot"></span>
+                            Stage 1 & 2 at Maverick (Hybrid/Online)
+                        </li>
+                        <li>
+                            <span class="bullet-dot"></span>
+                            Final University Progression in Europe
+                        </li>
+                        <li>
+                            <span class="bullet-dot"></span>
+                            Flexible & cost-effective
+                        </li>
+                    </ul>
+                </div>
+                <div class="gbp-comparison-card__footer">
+                    <div class="gbp-comparison-card__tagline-wrapper">
+                        <div class="gbp-comparison-card__tagline">SMART & COST-EFFECTIVE</div>
+                    </div>
+                    <div class="gbp-comparison-card__price-panel">
+                        <span class="gbp-comparison-card__price-label">Total Estimated Fees</span>
+                        <div class="gbp-comparison-card__price-list">
+                            <div class="gbp-comparison-card__price-row">
+                                <span class="gbp-comparison-card__price-country">Hungary</span>
+                                <span class="gbp-comparison-card__price-amount">EUR 22,750</span>
+                            </div>
+                            <div class="gbp-comparison-card__price-row">
+                                <span class="gbp-comparison-card__price-country">Romania / Moldova</span>
+                                <span class="gbp-comparison-card__price-amount">EUR 11,250</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            {{-- ═══ CARD 3 ═══ --}}
+            <article class="gbp-comparison-card" data-testid="gbp-comparison-card-3">
+                <div class="gbp-comparison-card__badge-notch"></div>
+                <div class="gbp-comparison-card__body">
+                    <h3 class="gbp-comparison-card__title">Maverick On-Campus Route</h3>
+                    <span class="gbp-comparison-card__duration">Approx 2 Years</span>
+                    <div class="gbp-comparison-card__divider"></div>
+                    <ul class="gbp-comparison-card__bullets">
+                        <li>
+                            <span class="bullet-dot"></span>
+                            Stage 1 & 2 at Maverick (On Campus)
+                        </li>
+                        <li>
+                            <span class="bullet-dot"></span>
+                            Final University Progression in Europe
+                        </li>
+                        <li>
+                            <span class="bullet-dot"></span>
+                            Structured campus learning
+                        </li>
+                    </ul>
+                </div>
+                <div class="gbp-comparison-card__footer">
+                    <div class="gbp-comparison-card__tagline-wrapper">
+                        <div class="gbp-comparison-card__tagline">PREMIUM & STRUCTURED</div>
+                    </div>
+                    <div class="gbp-comparison-card__price-panel">
+                        <span class="gbp-comparison-card__price-label">Total Estimated Fees</span>
+                        <div class="gbp-comparison-card__price-list">
+                            <div class="gbp-comparison-card__price-row">
+                                <span class="gbp-comparison-card__price-country">Hungary</span>
+                                <span class="gbp-comparison-card__price-amount">EUR 25,750</span>
+                            </div>
+                            <div class="gbp-comparison-card__price-row">
+                                <span class="gbp-comparison-card__price-country">Romania / Moldova</span>
+                                <span class="gbp-comparison-card__price-amount">EUR 14,250</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        {{-- ═══ BOTTOM CALLOUT ═══ --}}
+        <div class="gbp-comparison-callout" data-testid="gbp-comparison-callout">
+            <div class="gbp-comparison-callout__left">
+                <span class="gbp-comparison-callout__label">TIME SAVING</span>
+                <div class="gbp-comparison-callout__value">Up to 12 Months (Hungary)</div>
+            </div>
+            <div class="gbp-comparison-callout__right">
+                <p class="gbp-comparison-callout__description">A smarter pathway for students and parents seeking lower cost, reduced duration.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{{-- ═══════════════════════════════════════════
      8. PROGRAMS OFFERED
 ═══════════════════════════════════════════ --}}
 <section class="gbp-areas section-wrapper section--light" aria-label="Programs Offered" data-testid="gbp-areas">
@@ -891,7 +1036,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const sections = [
         '.gbp-overview', '.gbp-why', '.gbp-explore',
-        '.gbp-destinations', '.gbp-cost', '.gbp-areas', '.gbp-partners',
+        '.gbp-destinations', '.gbp-cost', '.gbp-comparison', '.gbp-areas', '.gbp-partners',
         '.gbp-admission', '.gbp-docs', '.gbp-final',
     ];
 
@@ -906,6 +1051,85 @@ document.addEventListener('DOMContentLoaded', () => {
     sections.forEach((s) => {
         AnimationUtils.fadeUp(`${s} .fade-up`, { stagger: 0.1 });
     });
+
+    // ── Pathway Comparison Animations ──
+    if (!AnimationUtils.prefersReducedMotion) {
+        // Heading animation
+        AnimationUtils.textReveal('.gbp-comparison .text-reveal-inner', {
+            duration: 0.8,
+            stagger: 0.15,
+            ease: 'power2.out'
+        });
+
+        // Cards staggered entrance (20% in view)
+        gsap.fromTo('.gbp-comparison-card',
+            { opacity: 0, y: 50 },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                stagger: 0.15,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: '.gbp-comparison__grid',
+                    start: 'top 80%',
+                    toggleActions: 'play none none none'
+                }
+            }
+        );
+
+        // Price panels fade in + scale slightly from 0.9 to 1, 0.3s after cards animate
+        gsap.fromTo('.gbp-comparison-card__price-panel',
+            { opacity: 0, scale: 0.9 },
+            {
+                opacity: 1,
+                scale: 1,
+                duration: 0.4,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: '.gbp-comparison__grid',
+                    start: 'top 80%',
+                    toggleActions: 'play none none none'
+                },
+                delay: 0.45 // Slightly delayed after cards stagger
+            }
+        );
+
+        // Sequential fade in of bullets inside each card
+        document.querySelectorAll('.gbp-comparison-card').forEach((card) => {
+            gsap.fromTo(card.querySelectorAll('.gbp-comparison-card__bullets li'),
+                { opacity: 0, x: -10 },
+                {
+                    opacity: 1,
+                    x: 0,
+                    duration: 0.5,
+                    stagger: 0.08,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: card,
+                        start: 'top 85%',
+                        toggleActions: 'play none none none'
+                    }
+                }
+            );
+        });
+
+        // Bottom TIME SAVING callout
+        gsap.fromTo('.gbp-comparison-callout',
+            { opacity: 0, y: 30 },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: '.gbp-comparison-callout',
+                    start: 'top 90%',
+                    toggleActions: 'play none none none'
+                }
+            }
+        );
+    }
 
     AnimationUtils.cards('.gbp-why-card', { stagger: 0.12 });
     AnimationUtils.cards('.gbp-explore-card', { stagger: 0.15 });
