@@ -207,9 +207,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const nextBtn = document.querySelector('[data-dmba-carousel="next"]');
   const dotsHost = document.querySelector('.dmba-testimonials__dots');
   const controls = document.querySelector('.dmba-testimonials__controls');
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  if (track && cards.length > 0 && prevBtn && nextBtn) {
+  if (track && cards.length && dotsHost) {
     let currentIndex = 0;
     let cardsPerView = 1;
     let maxIndex = 0;
@@ -234,10 +233,21 @@ document.addEventListener('DOMContentLoaded', () => {
       return ((index % (maxIndex + 1)) + (maxIndex + 1)) % (maxIndex + 1);
     }
 
+    function updateDots() {
+      dotsHost.querySelectorAll('.dmba-testimonials__dot').forEach((dot, i) => {
+        dot.classList.toggle('is-active', i === currentIndex);
+      });
+    }
+
+    function goToSlide(index) {
+      currentIndex = wrapIndex(index);
+      track.style.transform = `translateX(-${currentIndex * getStep()}px)`;
+      updateDots();
+    }
+
     function buildDots() {
-      const slideCount = maxIndex + 1;
       dotsHost.innerHTML = '';
-      for (let i = 0; i < slideCount; i += 1) {
+      for (let i = 0; i <= maxIndex; i += 1) {
         const dot = document.createElement('button');
         dot.type = 'button';
         dot.className = 'dmba-testimonials__dot' + (i === currentIndex ? ' is-active' : '');
@@ -248,25 +258,17 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    function updateDots() {
-      dotsHost.querySelectorAll('.dmba-testimonials__dot').forEach((dot, i) => {
-        dot.classList.toggle('is-active', i === currentIndex);
-      });
+    function stopAutoPlay() {
+      if (autoPlayId) {
+        clearInterval(autoPlayId);
+        autoPlayId = null;
+      }
     }
 
-    function goToSlide(index) {
-      currentIndex = wrapIndex(index);
-      const offset = currentIndex * getStep();
-      track.style.transform = `translateX(-${offset}px)`;
-      updateDots();
-    }
-
-    function nextSlide() {
-      goToSlide(currentIndex + 1);
-    }
-
-    function prevSlide() {
-      goToSlide(currentIndex - 1);
+    function startAutoPlay() {
+      if (prefersReducedMotion || maxIndex <= 0) return;
+      stopAutoPlay();
+      autoPlayId = window.setInterval(() => goToSlide(currentIndex + 1), 5000);
     }
 
     function recalc() {
@@ -283,29 +285,17 @@ document.addEventListener('DOMContentLoaded', () => {
       requestAnimationFrame(() => goToSlide(currentIndex));
     }
 
-    function startAutoPlay() {
-      if (prefersReducedMotion || maxIndex <= 0) return;
-      stopAutoPlay();
-      autoPlayId = window.setInterval(nextSlide, 5000);
-    }
-
-    function stopAutoPlay() {
-      if (autoPlayId) {
-        clearInterval(autoPlayId);
-        autoPlayId = null;
-      }
-    }
-
     if (prevBtn) {
       prevBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        prevSlide();
+        goToSlide(currentIndex - 1);
       });
     }
+
     if (nextBtn) {
       nextBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        nextSlide();
+        goToSlide(currentIndex + 1);
       });
     }
 
@@ -324,10 +314,10 @@ document.addEventListener('DOMContentLoaded', () => {
       carousel.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowLeft') {
           e.preventDefault();
-          prevSlide();
+          goToSlide(currentIndex - 1);
         } else if (e.key === 'ArrowRight') {
           e.preventDefault();
-          nextSlide();
+          goToSlide(currentIndex + 1);
         }
       });
     }
