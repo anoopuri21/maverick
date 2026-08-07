@@ -209,7 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const controls = document.querySelector('.dmba-testimonials__controls');
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  if (track && cards.length > 0 && dotsHost) {
+  if (track && cards.length > 0 && prevBtn && nextBtn) {
     let currentIndex = 0;
     let cardsPerView = 1;
     let maxIndex = 0;
