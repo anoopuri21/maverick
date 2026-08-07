@@ -206,7 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const nextBtn = document.querySelector('[data-dmba-carousel="next"]');
   const dots = document.querySelectorAll('.dmba-testimonials__dot');
 
-  if (track && cards.length > 0) {
+  if (track && cards.length > 0 && prevBtn && nextBtn) {
     let currentIndex = 0;
     const cardsPerView = window.innerWidth > 768 ? 3 : 1;
     const maxIndex = Math.max(0, cards.length - cardsPerView);
