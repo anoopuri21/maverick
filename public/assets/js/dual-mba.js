@@ -198,39 +198,140 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // =============================================
-  // TESTIMONIAL CAROUSEL
+  // TESTIMONIAL CAROUSEL (one card per step)
   // =============================================
+  const carousel = document.querySelector('.dmba-testimonials__carousel');
   const track = document.querySelector('.dmba-testimonials__track');
-  const cards = document.querySelectorAll('.dmba-testimonials__card');
+  const cards = Array.from(document.querySelectorAll('.dmba-testimonials__card'));
   const prevBtn = document.querySelector('[data-dmba-carousel="prev"]');
   const nextBtn = document.querySelector('[data-dmba-carousel="next"]');
-  const dots = document.querySelectorAll('.dmba-testimonials__dot');
+  const dotsHost = document.querySelector('.dmba-testimonials__dots');
+  const controls = document.querySelector('.dmba-testimonials__controls');
 
-  if (track && cards.length) {
+  if (track && cards.length && dotsHost) {
     let currentIndex = 0;
-    const cardsPerView = window.innerWidth > 768 ? 3 : 1;
-    const maxIndex = Math.max(0, cards.length - cardsPerView);
+    let cardsPerView = 1;
+    let maxIndex = 0;
+    let autoPlayId = null;
+    let resizeTimer = null;
 
-    function goToSlide(index) {
-      currentIndex = Math.max(0, Math.min(index, maxIndex));
-      const cardWidth = cards[0].offsetWidth + 24; // card width + gap
-      track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+    function getCardsPerView() {
+      const width = window.innerWidth;
+      if (width > 1024) return 3;
+      if (width > 768) return 2;
+      return 1;
+    }
 
-      dots.forEach((dot, i) => {
+    function getStep() {
+      const styles = window.getComputedStyle(track);
+      const gap = parseFloat(styles.columnGap || styles.gap || '24') || 24;
+      return cards[0].offsetWidth + gap;
+    }
+
+    function wrapIndex(index) {
+      if (maxIndex <= 0) return 0;
+      return ((index % (maxIndex + 1)) + (maxIndex + 1)) % (maxIndex + 1);
+    }
+
+    function updateDots() {
+      dotsHost.querySelectorAll('.dmba-testimonials__dot').forEach((dot, i) => {
         dot.classList.toggle('is-active', i === currentIndex);
       });
     }
 
-    prevBtn && prevBtn.addEventListener("click", () => goToSlide(currentIndex - 1));
-    nextBtn && nextBtn.addEventListener("click", () => goToSlide(currentIndex + 1));
-    dots.forEach((dot, i) => dot.addEventListener('click', () => goToSlide(i)));
+    function goToSlide(index) {
+      currentIndex = wrapIndex(index);
+      track.style.transform = `translateX(-${currentIndex * getStep()}px)`;
+      updateDots();
+    }
 
-    // Auto-play
-    let autoPlay = setInterval(() => goToSlide(currentIndex + 1 > maxIndex ? 0 : currentIndex + 1), 5000);
+    function buildDots() {
+      dotsHost.innerHTML = '';
+      for (let i = 0; i <= maxIndex; i += 1) {
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'dmba-testimonials__dot' + (i === currentIndex ? ' is-active' : '');
+        dot.setAttribute('aria-label', `Go to testimonial ${i + 1}`);
+        dot.setAttribute('data-testid', `dmba-dot-${i}`);
+        dot.addEventListener('click', () => goToSlide(i));
+        dotsHost.appendChild(dot);
+      }
+    }
 
-    track.addEventListener('mouseenter', () => clearInterval(autoPlay));
-    track.addEventListener('mouseleave', () => {
-      autoPlay = setInterval(() => goToSlide(currentIndex + 1 > maxIndex ? 0 : currentIndex + 1), 5000);
+    function stopAutoPlay() {
+      if (autoPlayId) {
+        clearInterval(autoPlayId);
+        autoPlayId = null;
+      }
+    }
+
+    function startAutoPlay() {
+      if (prefersReducedMotion || maxIndex <= 0) return;
+      stopAutoPlay();
+      autoPlayId = window.setInterval(() => goToSlide(currentIndex + 1), 5000);
+    }
+
+    function recalc() {
+      cardsPerView = getCardsPerView();
+      cards.forEach((card) => {
+        card.style.setProperty('--dmba-cards-per-view', String(cardsPerView));
+      });
+      track.style.setProperty('--dmba-testimonial-gap', '24px');
+
+      maxIndex = Math.max(0, cards.length - cardsPerView);
+      if (currentIndex > maxIndex) currentIndex = maxIndex;
+
+      buildDots();
+      requestAnimationFrame(() => goToSlide(currentIndex));
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        goToSlide(currentIndex - 1);
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        goToSlide(currentIndex + 1);
+      });
+    }
+
+    [carousel, controls].forEach((el) => {
+      if (!el) return;
+      el.addEventListener('mouseenter', stopAutoPlay);
+      el.addEventListener('mouseleave', startAutoPlay);
+      el.addEventListener('focusin', stopAutoPlay);
+      el.addEventListener('focusout', (e) => {
+        if (!el.contains(e.relatedTarget)) startAutoPlay();
+      });
     });
+
+    if (carousel) {
+      carousel.setAttribute('tabindex', '0');
+      carousel.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+          e.preventDefault();
+          goToSlide(currentIndex - 1);
+        } else if (e.key === 'ArrowRight') {
+          e.preventDefault();
+          goToSlide(currentIndex + 1);
+        }
+      });
+    }
+
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(recalc, 150);
+    });
+
+    recalc();
+    startAutoPlay();
+
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
   }
 });

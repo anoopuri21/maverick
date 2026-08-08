@@ -305,7 +305,7 @@
   <div class="container">
     <div class="dmba-employers__grid">
       <div class="dmba-employers__image-col">
-        <div class="dmba-employers__image-wrapper fade-up">
+        <div class="dmba-employers__image-wrapper">
           <img
             src="https://images.unsplash.com/photo-1758876201598-67fd2a5570ed?w=800&q=80"
             alt="Business professionals in a collaborative work environment"
@@ -320,7 +320,7 @@
 
       <div class="dmba-employers__content">
         <div class="section-label"><span>Employer Value</span></div>
-        <h2 class="dmba-employers__heading section-title">Why Employers Value<br>a Dual MBA</h2>
+        <h2 class="dmba-employers__heading section-title">Why Employers Value a <span class="highlight"><em>Dual MBA</em></span></h2>
         <p class="dmba-employers__desc body-text">
           Today&rsquo;s employers increasingly seek professionals who combine strategic leadership with specialised expertise. Graduating with two MBA qualifications demonstrates:
         </p>
@@ -369,84 +369,95 @@
   <div class="container">
     <div class="dmba-testimonials__header">
       <div class="section-label"><span>Success Stories</span></div>
-      <h2 class="section-title">What Our Graduates Say</h2>
+      <h2 class="section-title">What Our <em>Graduates Say</em></h2>
     </div>
 
-    <div class="dmba-testimonials__carousel">
-      <div class="dmba-testimonials__track" data-testid="dmba-testimonials-track">
-        <div class="dmba-testimonials__card" data-testid="dmba-testimonial-1">
-          <p class="dmba-testimonials__card-quote">"The Dual MBA programme gave me both the strategic breadth and the AI specialisation I needed to transition into a tech leadership role. The flexible format was perfect for my schedule."</p>
-          <div class="dmba-testimonials__card-author">
-            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop" alt="James M." class="dmba-testimonials__card-avatar" loading="lazy" />
-            <div class="dmba-testimonials__card-info">
-              <span class="dmba-testimonials__card-name">James M.</span>
-              <span class="dmba-testimonials__card-role">Tech Director, London</span>
+    <div class="dmba-testimonials__carousel" aria-roledescription="carousel" aria-label="Graduate testimonials">
+      <div class="dmba-testimonials__track" data-testid="dmba-testimonials-track" aria-live="polite">
+        <article class="dmba-testimonials__card" data-testid="dmba-testimonial-1">
+          <span class="dmba-testimonials__card-icon" aria-hidden="true" data-lucide="quote"></span>
+          <p class="dmba-testimonials__card-quote">The Dual MBA programme gave me both the strategic breadth and the AI specialisation I needed to transition into a tech leadership role. The flexible format was perfect for my schedule.</p>
+          <div class="dmba-testimonials__card-footer">
+            <div class="dmba-testimonials__card-author">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop" alt="James M." class="dmba-testimonials__card-avatar" loading="lazy" width="52" height="52" />
+              <div class="dmba-testimonials__card-info">
+                <span class="dmba-testimonials__card-name">James M.</span>
+                <span class="dmba-testimonials__card-role">Tech Director, London</span>
+              </div>
             </div>
+            <span class="dmba-testimonials__card-programme">Dual MBA — AI Specialisation</span>
           </div>
-          <span class="dmba-testimonials__card-programme">Dual MBA &mdash; AI Specialisation</span>
-        </div>
+        </article>
 
-        <div class="dmba-testimonials__card" data-testid="dmba-testimonial-2">
-          <p class="dmba-testimonials__card-quote">"Having two MBA qualifications on my CV opened doors I never expected. I was promoted within 6 months of graduating. The programme is truly world-class."</p>
-          <div class="dmba-testimonials__card-author">
-            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&h=100&fit=crop" alt="Priya S." class="dmba-testimonials__card-avatar" loading="lazy" />
-            <div class="dmba-testimonials__card-info">
-              <span class="dmba-testimonials__card-name">Priya S.</span>
-              <span class="dmba-testimonials__card-role">VP Finance, Dubai</span>
+        <article class="dmba-testimonials__card" data-testid="dmba-testimonial-2">
+          <span class="dmba-testimonials__card-icon" aria-hidden="true" data-lucide="quote"></span>
+          <p class="dmba-testimonials__card-quote">Having two MBA qualifications on my CV opened doors I never expected. I was promoted within 6 months of graduating. The programme is truly world-class.</p>
+          <div class="dmba-testimonials__card-footer">
+            <div class="dmba-testimonials__card-author">
+              <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&h=100&fit=crop" alt="Priya S." class="dmba-testimonials__card-avatar" loading="lazy" width="52" height="52" />
+              <div class="dmba-testimonials__card-info">
+                <span class="dmba-testimonials__card-name">Priya S.</span>
+                <span class="dmba-testimonials__card-role">VP Finance, Dubai</span>
+              </div>
             </div>
+            <span class="dmba-testimonials__card-programme">Dual MBA — Finance</span>
           </div>
-          <span class="dmba-testimonials__card-programme">Dual MBA &mdash; Finance</span>
-        </div>
+        </article>
 
-        <div class="dmba-testimonials__card" data-testid="dmba-testimonial-3">
-          <p class="dmba-testimonials__card-quote">"As an entrepreneur, the General MBA gave me strategy and the Healthcare specialisation gave me domain expertise. This combination helped me launch my healthcare startup."</p>
-          <div class="dmba-testimonials__card-author">
-            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop" alt="Ahmed K." class="dmba-testimonials__card-avatar" loading="lazy" />
-            <div class="dmba-testimonials__card-info">
-              <span class="dmba-testimonials__card-name">Ahmed K.</span>
-              <span class="dmba-testimonials__card-role">Founder & CEO, Riyadh</span>
+        <article class="dmba-testimonials__card" data-testid="dmba-testimonial-3">
+          <span class="dmba-testimonials__card-icon" aria-hidden="true" data-lucide="quote"></span>
+          <p class="dmba-testimonials__card-quote">As an entrepreneur, the General MBA gave me strategy and the Healthcare specialisation gave me domain expertise. This combination helped me launch my healthcare startup.</p>
+          <div class="dmba-testimonials__card-footer">
+            <div class="dmba-testimonials__card-author">
+              <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop" alt="Ahmed K." class="dmba-testimonials__card-avatar" loading="lazy" width="52" height="52" />
+              <div class="dmba-testimonials__card-info">
+                <span class="dmba-testimonials__card-name">Ahmed K.</span>
+                <span class="dmba-testimonials__card-role">Founder &amp; CEO, Riyadh</span>
+              </div>
             </div>
+            <span class="dmba-testimonials__card-programme">Dual MBA — Healthcare</span>
           </div>
-          <span class="dmba-testimonials__card-programme">Dual MBA &mdash; Healthcare</span>
-        </div>
+        </article>
 
-        <div class="dmba-testimonials__card" data-testid="dmba-testimonial-4">
-          <p class="dmba-testimonials__card-quote">"The weekend class format allowed me to continue my career while studying. I gained deep knowledge in HR management alongside a solid business foundation."</p>
-          <div class="dmba-testimonials__card-author">
-            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100&h=100&fit=crop" alt="Sarah L." class="dmba-testimonials__card-avatar" loading="lazy" />
-            <div class="dmba-testimonials__card-info">
-              <span class="dmba-testimonials__card-name">Sarah L.</span>
-              <span class="dmba-testimonials__card-role">HR Director, Singapore</span>
+        <article class="dmba-testimonials__card" data-testid="dmba-testimonial-4">
+          <span class="dmba-testimonials__card-icon" aria-hidden="true" data-lucide="quote"></span>
+          <p class="dmba-testimonials__card-quote">The weekend class format allowed me to continue my career while studying. I gained deep knowledge in HR management alongside a solid business foundation.</p>
+          <div class="dmba-testimonials__card-footer">
+            <div class="dmba-testimonials__card-author">
+              <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100&h=100&fit=crop" alt="Sarah L." class="dmba-testimonials__card-avatar" loading="lazy" width="52" height="52" />
+              <div class="dmba-testimonials__card-info">
+                <span class="dmba-testimonials__card-name">Sarah L.</span>
+                <span class="dmba-testimonials__card-role">HR Director, Singapore</span>
+              </div>
             </div>
+            <span class="dmba-testimonials__card-programme">Dual MBA — HR Management</span>
           </div>
-          <span class="dmba-testimonials__card-programme">Dual MBA &mdash; HR Management</span>
-        </div>
+        </article>
 
-        <div class="dmba-testimonials__card" data-testid="dmba-testimonial-5">
-          <p class="dmba-testimonials__card-quote">"The Dual MBA was the best investment in my career. The international recognition of the qualifications allowed me to move into a senior role in a multinational firm."</p>
-          <div class="dmba-testimonials__card-author">
-            <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=100&h=100&fit=crop" alt="David R." class="dmba-testimonials__card-avatar" loading="lazy" />
-            <div class="dmba-testimonials__card-info">
-              <span class="dmba-testimonials__card-name">David R.</span>
-              <span class="dmba-testimonials__card-role">Senior Manager, New York</span>
+        <article class="dmba-testimonials__card" data-testid="dmba-testimonial-5">
+          <span class="dmba-testimonials__card-icon" aria-hidden="true" data-lucide="quote"></span>
+          <p class="dmba-testimonials__card-quote">The Dual MBA was the best investment in my career. The international recognition of the qualifications allowed me to move into a senior role in a multinational firm.</p>
+          <div class="dmba-testimonials__card-footer">
+            <div class="dmba-testimonials__card-author">
+              <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=100&h=100&fit=crop" alt="David R." class="dmba-testimonials__card-avatar" loading="lazy" width="52" height="52" />
+              <div class="dmba-testimonials__card-info">
+                <span class="dmba-testimonials__card-name">David R.</span>
+                <span class="dmba-testimonials__card-role">Senior Manager, New York</span>
+              </div>
             </div>
+            <span class="dmba-testimonials__card-programme">Dual MBA — Project Management</span>
           </div>
-          <span class="dmba-testimonials__card-programme">Dual MBA &mdash; Project Management</span>
-        </div>
+        </article>
       </div>
     </div>
 
     <div class="dmba-testimonials__controls" data-testid="dmba-testimonials-controls">
-      <button class="dmba-testimonials__btn" data-dmba-carousel="prev" aria-label="Previous testimonial" data-testid="dmba-carousel-prev">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      <button type="button" class="dmba-testimonials__btn" data-dmba-carousel="prev" aria-label="Previous testimonials" data-testid="dmba-carousel-prev">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
       </button>
-      <div class="dmba-testimonials__dots">
-        <span class="dmba-testimonials__dot is-active" data-testid="dmba-dot-0"></span>
-        <span class="dmba-testimonials__dot" data-testid="dmba-dot-1"></span>
-        <span class="dmba-testimonials__dot" data-testid="dmba-dot-2"></span>
-      </div>
-      <button class="dmba-testimonials__btn" data-dmba-carousel="next" aria-label="Next testimonial" data-testid="dmba-carousel-next">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      <div class="dmba-testimonials__dots" role="tablist" aria-label="Testimonial pages" data-testid="dmba-testimonials-dots"></div>
+      <button type="button" class="dmba-testimonials__btn" data-dmba-carousel="next" aria-label="Next testimonials" data-testid="dmba-carousel-next">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </button>
     </div>
   </div>
