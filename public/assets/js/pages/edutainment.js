@@ -26,11 +26,13 @@ document.addEventListener('DOMContentLoaded', () => {
       .from('.edu-hero__ctas', { opacity: 0, y: 15, duration: 0.5, ease: 'power3.out' }, '-=0.2');
   }
 
-  // Ensure visibility if GSAP/ScrollTrigger missing
-  document.querySelectorAll('.fade-up').forEach(el => {
-    el.style.opacity = '1';
-    el.style.transform = 'none';
-  });
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+    document.querySelectorAll('.fade-up').forEach(el => {
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+    });
+    return;
+  }
 
   // =============================================
   // GENERIC FADE-UP ANIMATION
