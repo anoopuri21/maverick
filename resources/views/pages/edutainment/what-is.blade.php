@@ -2,8 +2,14 @@
 <section id="edu-what-is" class="edu-what-is section--light section-wrapper" aria-label="What Is Edutainment">
   <div class="container">
     <div class="edu-section-header">
-      <div class="section-label"><span>Understanding Edutainment</span></div>
-      <h2 class="section-title">What Is <em>Edutainment?</em></h2>
+      <div class="section-label">
+        <span>Understanding Edutainment</span>
+      </div>
+      <h2 class="section-title">
+        <span class="text-reveal-wrapper">
+          <span class="text-reveal-inner">What Is <em>Edutainment?</em></span>
+        </span>
+      </h2>
     </div>
 
     <div class="edu-what-is__grid">

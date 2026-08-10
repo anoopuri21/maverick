@@ -2,8 +2,14 @@
 <section id="edu-faq" class="edu-faq section-wrapper section--light" aria-label="Frequently Asked Questions">
   <div class="container">
     <div class="edu-faq__header">
-      <div class="section-label"><span>FAQs</span></div>
-      <h2 class="section-title">Frequently Asked <em>Questions</em></h2>
+      <div class="section-label">
+        <span>FAQs</span>
+      </div>
+      <h2 class="section-title">
+        <span class="text-reveal-wrapper">
+          <span class="text-reveal-inner">Frequently Asked <em>Questions</em></span>
+        </span>
+      </h2>
     </div>
 
     <div class="edu-faq__list">
@@ -28,14 +34,14 @@
       @endphp
 
       @foreach($faqs as $index => $faq)
-      <div class="edu-faq__item" data-testid="edu-faq-item-{{ $index + 1 }}">
+      <div class="edu-faq__item {{ $index === 0 ? 'is-open' : '' }}" data-testid="edu-faq-item-{{ $index + 1 }}">
         <button class="edu-faq__question" data-testid="edu-faq-q-{{ $index + 1 }}">
-          {{ $faq['q'] }}
-          <svg class="edu-faq__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          <span>{{ $faq['q'] }}</span>
+          <span class="edu-faq__icon">+</span>
         </button>
-        <div class="edu-faq__answer">
+        <div class="edu-faq__answer" style="{{ $index === 0 ? 'max-height: none;' : '' }}">
           <div class="edu-faq__answer-inner">
-            {{ $faq['a'] }}
+            <p>{{ $faq['a'] }}</p>
           </div>
         </div>
       </div>

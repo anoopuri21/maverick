@@ -2,8 +2,17 @@
 <section id="edu-packages" class="edu-packages section-wrapper section--light" aria-label="Package Inclusions">
   <div class="container">
     <div class="edu-packages__header">
-      <div class="section-label"><span>Package Details</span></div>
-      <h2 class="section-title">What Can Be Included in an<br><em>Edutainment Package?</em></h2>
+      <div class="section-label">
+        <span>Package Details</span>
+      </div>
+      <h2 class="section-title">
+        <span class="text-reveal-wrapper">
+          <span class="text-reveal-inner">What Can Be Included in an</span>
+        </span>
+        <span class="text-reveal-wrapper hwdi__heading-line--red">
+          <span class="text-reveal-inner"><em>Edutainment Package?</em></span>
+        </span>
+      </h2>
       <p class="body-text fade-up">Package inclusions depend on the destination, group requirements and selected itinerary. A customised package may include:</p>
     </div>
 

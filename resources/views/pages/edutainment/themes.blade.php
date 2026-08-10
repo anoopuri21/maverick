@@ -2,8 +2,17 @@
 <section id="edu-themes" class="edu-themes section--light section--warm section-wrapper" aria-label="Educational Tour Themes">
   <div class="container">
     <div class="edu-themes__header">
-      <div class="section-label"><span>Tour Themes</span></div>
-      <h2 class="section-title">Educational Tour<br><em>Themes</em></h2>
+      <div class="section-label">
+        <span>Tour Themes</span>
+      </div>
+      <h2 class="section-title">
+        <span class="text-reveal-wrapper">
+          <span class="text-reveal-inner">Educational Tour</span>
+        </span>
+        <span class="text-reveal-wrapper hwdi__heading-line--red">
+          <span class="text-reveal-inner"><em>Themes</em></span>
+        </span>
+      </h2>
       <p class="body-text fade-up">Every group has different learning goals. Maverick can build the programme around one theme or combine several themes into a complete itinerary.</p>
     </div>
 

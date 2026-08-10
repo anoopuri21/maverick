@@ -3,13 +3,23 @@
   <div class="container">
     <div class="edu-intro__grid">
       <div class="edu-intro__statement">
-        <span class="edu-intro__label">Educational Tours That Bring Learning to Life</span>
-        <h2 class="edu-intro__title">
-          Explore the World.<br>
-          Experience <em>New Cultures</em>.<br>
-          Learn Beyond the <em>Classroom</em>.
+        <div class="section-label">
+          <span>Educational Tours That Bring Learning to Life</span>
+        </div>
+        <h2 class="edu-intro__title section-title">
+          <span class="text-reveal-wrapper">
+            <span class="text-reveal-inner">Explore the World.</span>
+          </span>
+          <span class="text-reveal-wrapper hwdi__heading-line--red">
+            <span class="text-reveal-inner">Experience <em>New Cultures</em>.</span>
+          </span>
+          <span class="text-reveal-wrapper">
+            <span class="text-reveal-inner">Learn Beyond the <em>Classroom</em>.</span>
+          </span>
         </h2>
       </div>
+
+      <div class="edu-intro__divider" aria-hidden="true"></div>
 
       <div class="edu-intro__body">
         <p class="fade-up">

@@ -2,8 +2,17 @@
 <section id="edu-institutions" class="edu-institutions section--light section--warm section-wrapper" aria-label="Educational Tours for Schools">
   <div class="container">
     <div class="edu-institutions__header">
-      <div class="section-label"><span>For Institutions</span></div>
-      <h2 class="section-title">Educational Tours for Schools<br><em>and Institutions</em></h2>
+      <div class="section-label">
+        <span>For Institutions</span>
+      </div>
+      <h2 class="section-title">
+        <span class="text-reveal-wrapper">
+          <span class="text-reveal-inner">Educational Tours for Schools</span>
+        </span>
+        <span class="text-reveal-wrapper hwdi__heading-line--red">
+          <span class="text-reveal-inner"><em>and Institutions</em></span>
+        </span>
+      </h2>
       <p class="body-text fade-up">Maverick works with educational organisations to create group experiences aligned with their requirements. Programmes can be designed for:</p>
     </div>
 

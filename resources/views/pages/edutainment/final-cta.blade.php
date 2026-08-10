@@ -7,8 +7,13 @@
 
   <div class="container">
     <div class="edu-cta__content">
-      <h2 class="edu-cta__heading fade-up">
-        Transform a Student Trip into a<br><em>Learning Journey</em>
+      <h2 class="edu-cta__heading">
+        <span class="text-reveal-wrapper">
+          <span class="text-reveal-inner">Transform a Student Trip into a</span>
+        </span>
+        <span class="text-reveal-wrapper hwdi__heading-line--red">
+          <span class="text-reveal-inner"><em>Learning Journey</em></span>
+        </span>
       </h2>
       <p class="edu-cta__description fade-up">
         Let your students discover new cultures, industries, institutions and ideas through an experience they will remember.

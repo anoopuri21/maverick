@@ -2,8 +2,17 @@
 <section id="edu-programmes" class="edu-programmes section-wrapper section--light" aria-label="Our Edutainment Programmes">
   <div class="container">
     <div class="edu-programmes__header">
-      <div class="section-label"><span>Our Programmes</span></div>
-      <h2 class="section-title">Our Edutainment<br><em>Programmes</em></h2>
+      <div class="section-label">
+        <span>Our Programmes</span>
+      </div>
+      <h2 class="section-title">
+        <span class="text-reveal-wrapper">
+          <span class="text-reveal-inner">Our Edutainment</span>
+        </span>
+        <span class="text-reveal-wrapper hwdi__heading-line--red">
+          <span class="text-reveal-inner"><em>Programmes</em></span>
+        </span>
+      </h2>
     </div>
 
     <div class="edu-programmes__grid">

@@ -2,8 +2,17 @@
 <section id="edu-why-choose" class="edu-why-choose section--light section--warm section-wrapper" aria-label="Why Choose Maverick Edutainment">
   <div class="container">
     <div class="edu-why-choose__header">
-      <div class="section-label"><span>Our Value</span></div>
-      <h2 class="section-title">Why Choose Maverick<br><em>Edutainment?</em></h2>
+      <div class="section-label">
+        <span>Our Value</span>
+      </div>
+      <h2 class="section-title">
+        <span class="text-reveal-wrapper">
+          <span class="text-reveal-inner">Why Choose Maverick</span>
+        </span>
+        <span class="text-reveal-wrapper hwdi__heading-line--red">
+          <span class="text-reveal-inner"><em>Edutainment?</em></span>
+        </span>
+      </h2>
     </div>
 
     <div class="edu-why-choose__grid">

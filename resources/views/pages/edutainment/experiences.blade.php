@@ -2,8 +2,17 @@
 <section id="edu-experiences" class="edu-experiences section-wrapper section--light" aria-label="What Students Can Experience">
   <div class="container">
     <div class="edu-experiences__header">
-      <div class="section-label"><span>Experiences</span></div>
-      <h2 class="section-title">What Students<br><em>Can Experience</em></h2>
+      <div class="section-label">
+        <span>Experiences</span>
+      </div>
+      <h2 class="section-title">
+        <span class="text-reveal-wrapper">
+          <span class="text-reveal-inner">What Students</span>
+        </span>
+        <span class="text-reveal-wrapper hwdi__heading-line--red">
+          <span class="text-reveal-inner"><em>Can Experience</em></span>
+        </span>
+      </h2>
       <p class="body-text fade-up">Depending on the destination and selected package, an Edutainment journey can include:</p>
     </div>
 
