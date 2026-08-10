@@ -9,8 +9,11 @@
 
 @section('content')
 
-{{-- ===== S1: HERO ===== --}}
+{{-- ===== HERO ===== --}}
 @include('pages.edutainment.hero')
+
+{{-- ===== S1: INTRO — EXPLORE THE WORLD ===== --}}
+@include('pages.edutainment.intro')
 
 {{-- ===== S2: WHAT IS EDUTAINMENT ===== --}}
 @include('pages.edutainment.what-is')

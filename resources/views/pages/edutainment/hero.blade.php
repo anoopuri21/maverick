@@ -1,4 +1,4 @@
-{{-- ===== S1: HERO — Cinematic World Tour ===== --}}
+{{-- ===== HERO — Cinematic World Tour ===== --}}
 <section id="edu-hero" class="edu-hero" aria-label="Edutainment Hero">
   <div class="edu-hero__bg" aria-hidden="true">
     <div class="edu-hero__bg-image" style="background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1920&q=80')"></div>
@@ -36,37 +36,12 @@
       </span>
 
       <h1 class="edu-hero__title fade-up">
-        Educational Tours That Bring<br><em>Learning to Life</em>
+        Maverick Edutainment:<br><em>Educational Tours That Bring Learning to Life</em>
       </h1>
 
-      <h2 class="edu-hero__subtitle fade-up">
-        Explore the World. Experience New Cultures. Learn Beyond the Classroom.
-      </h2>
-
-      <div class="edu-hero__intro fade-up">
-        <p>
-          Education does not have to remain inside a classroom. Maverick Edutainment creates educational tours and international study trips that combine learning, exploration, culture and entertainment in one meaningful experience.
-        </p>
-        <p>
-          From introducing school students to the innovation, heritage and cultural diversity of the UAE, to taking university learners on an international study tour to China, every programme is designed to turn destinations into learning environments.
-        </p>
-        <p>
-          Students do not simply visit a new place. They observe, participate, interact, question and experience what they have previously learned through books, lectures or online classes.
-        </p>
-        <p>
-          Whether you represent a school, college, university or educational organisation, Maverick can help you create an age-appropriate educational travel programme aligned with your students, learning objectives and preferred destination.
-        </p>
-      </div>
-
-      <p class="edu-hero__emphasis fade-up">
-        <strong>Learning becomes more memorable when students experience it for themselves.</strong>
+      <p class="edu-hero__shortdesc fade-up">
+        Educational tours and international study trips for schools, universities and student groups &mdash; turning destinations into unforgettable learning environments.
       </p>
-
-      <div class="edu-hero__ctas fade-up">
-        <a href="{{ route('contact') }}" class="btn btn--primary">Plan an Educational Tour</a>
-        <a href="{{ route('contact') }}" class="btn btn--secondary">Request a Custom Itinerary</a>
-        <a href="{{ route('contact') }}" class="btn btn--outline">Speak to Our Team</a>
-      </div>
     </div>
   </div>
 

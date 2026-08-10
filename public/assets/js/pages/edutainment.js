@@ -31,11 +31,18 @@ document.addEventListener('DOMContentLoaded', () => {
     heroTl
       .fromTo('.edu-hero__tag', { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' })
       .fromTo('.edu-hero__title', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' }, '-=0.3')
-      .fromTo('.edu-hero__subtitle', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.3')
-      .fromTo('.edu-hero__intro', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.3')
-      .fromTo('.edu-hero__intro p', { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.4, stagger: 0.08, ease: 'power3.out' }, '-=0.3')
-      .fromTo('.edu-hero__emphasis', { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, '-=0.2')
-      .fromTo('.edu-hero__ctas', { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, '-=0.2');
+      .fromTo('.edu-hero__shortdesc', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.3');
+
+    // Intro section — statement + body stagger reveal
+    const introTl = gsap.timeline({
+      scrollTrigger: { trigger: '.edu-intro', start: 'top 75%', once: true },
+    });
+    introTl
+      .fromTo('.edu-intro__label', { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' })
+      .fromTo('.edu-intro__title', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.3')
+      .fromTo('.edu-intro__body p', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.1, ease: 'power3.out' }, '-=0.3')
+      .fromTo('.edu-intro__emphasis', { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, '-=0.2')
+      .fromTo('.edu-intro__ctas', { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, '-=0.2');
 
     // Generic .fade-up — skip hero (handled above) to avoid GSAP conflicts
     document.querySelectorAll('.fade-up').forEach((el) => {

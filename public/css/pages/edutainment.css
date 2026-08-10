@@ -223,48 +223,13 @@
   color: var(--edu-red);
 }
 
-.edu-hero__subtitle {
-  font-family: var(--font-display);
-  font-size: clamp(19px, 2.8vw, 30px);
-  font-weight: 400;
-  line-height: 1.35;
-  color: rgba(255, 255, 255, 0.85);
-  margin: 0 0 28px;
-}
-
-.edu-hero__intro {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  max-width: 760px;
-  margin: 0 0 28px;
-}
-
-.edu-hero__intro p {
+.edu-hero__shortdesc {
   font-family: var(--font-body);
-  font-size: clamp(15px, 1.35vw, 17px);
+  font-size: clamp(15px, 1.5vw, 19px);
   line-height: 1.7;
-  color: rgba(255, 255, 255, 0.72);
+  color: rgba(255, 255, 255, 0.78);
   margin: 0;
-}
-
-.edu-hero__emphasis {
-  font-family: var(--font-body);
-  font-size: clamp(16px, 1.6vw, 19px);
-  font-style: italic;
-  color: rgba(255, 255, 255, 0.95);
-  margin: 0 0 36px;
-}
-
-.edu-hero__emphasis strong {
-  color: #ffffff;
-}
-
-.edu-hero__ctas {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  flex-wrap: wrap;
+  max-width: 640px;
 }
 
 /* Scroll cue */
@@ -296,6 +261,91 @@
   0% { transform: translateY(0); opacity: 1; }
   70% { transform: translateY(12px); opacity: 0; }
   100% { transform: translateY(0); opacity: 0; }
+}
+
+/* =========================================================
+   S1 — INTRO / EXPLORE THE WORLD
+   ========================================================= */
+.edu-intro {
+  position: relative;
+  overflow: hidden;
+}
+
+.edu-intro__grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 64px;
+  align-items: center;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.edu-intro__label {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--edu-red);
+  margin-bottom: 20px;
+}
+
+.edu-intro__title {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 4.5vw, 56px);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--edu-navy);
+  margin: 0;
+}
+
+.edu-intro__title em {
+  font-style: italic;
+  color: var(--edu-red);
+}
+
+.edu-intro__body {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.edu-intro__body p {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.75;
+  color: rgba(0, 0, 0, 0.68);
+  margin: 0;
+}
+
+.edu-intro__emphasis {
+  font-family: var(--font-display);
+  font-size: clamp(17px, 2vw, 21px);
+  font-style: italic;
+  font-weight: 600;
+  color: var(--edu-navy);
+  margin-top: 6px !important;
+}
+
+.edu-intro__emphasis strong {
+  color: var(--edu-navy);
+}
+
+.edu-intro__ctas {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+@media (max-width: 900px) {
+  .edu-intro__grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
 }
 
 /* =========================================================
