@@ -1,5 +1,5 @@
 {{-- ===== S7: WHAT STUDENTS CAN EXPERIENCE ===== --}}
-<section id="edu-experiences" class="edu-experiences section-wrapper" aria-label="What Students Can Experience">
+<section id="edu-experiences" class="edu-experiences section-wrapper section--light" aria-label="What Students Can Experience">
   <div class="container">
     <div class="edu-experiences__header">
       <div class="section-label"><span>Experiences</span></div>

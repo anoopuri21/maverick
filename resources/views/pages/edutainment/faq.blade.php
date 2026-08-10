@@ -1,5 +1,5 @@
 {{-- ===== S11: FREQUENTLY ASKED QUESTIONS ===== --}}
-<section id="edu-faq" class="edu-faq section-wrapper" aria-label="Frequently Asked Questions">
+<section id="edu-faq" class="edu-faq section-wrapper section--light" aria-label="Frequently Asked Questions">
   <div class="container">
     <div class="edu-faq__header">
       <div class="section-label"><span>FAQs</span></div>

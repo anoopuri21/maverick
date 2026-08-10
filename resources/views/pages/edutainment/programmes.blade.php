@@ -1,5 +1,5 @@
 {{-- ===== S5: OUR EDUTAINMENT PROGRAMMES ===== --}}
-<section id="edu-programmes" class="edu-programmes section-wrapper" aria-label="Our Edutainment Programmes">
+<section id="edu-programmes" class="edu-programmes section-wrapper section--light" aria-label="Our Edutainment Programmes">
   <div class="container">
     <div class="edu-programmes__header">
       <div class="section-label"><span>Our Programmes</span></div>
@@ -32,7 +32,7 @@
       {{-- International Study Tours --}}
       <div class="edu-programmes__card fade-up">
         <div class="edu-programmes__card-image">
-          <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&q=80" alt="International Students" loading="lazy">
+          <img src="https://images.pexels.com/photos/8828682/pexels-photo-8828682.jpeg" alt="International Students" loading="lazy">
           <div class="edu-programmes__card-overlay"></div>
         </div>
         <div class="edu-programmes__card-content">
@@ -65,19 +65,27 @@
           <div class="edu-programmes__card-topics">
             <div class="edu-programmes__card-topic">
               <h4>University Exposure</h4>
-              <p>Visit selected universities and learn about their programmes, campuses and research environment.</p>
+              <p>Visit selected universities and learn about their programmes, campuses, research environment and approach to education.</p>
             </div>
             <div class="edu-programmes__card-topic">
               <h4>Business and Industry Visits</h4>
-              <p>Explore how organisations operate within sectors such as technology, manufacturing, e-commerce and AI.</p>
+              <p>Explore how organisations operate within sectors such as technology, manufacturing, e-commerce, finance, logistics and AI.</p>
             </div>
             <div class="edu-programmes__card-topic">
               <h4>Innovation and Entrepreneurship</h4>
-              <p>Discover startup ecosystems, technology centres and emerging business models.</p>
+              <p>Discover startup ecosystems, technology centres, innovation districts and emerging business models.</p>
             </div>
             <div class="edu-programmes__card-topic">
               <h4>Cultural Immersion</h4>
-              <p>Experience Chinese history and traditions through cultural sites, local activities, art and food.</p>
+              <p>Experience Chinese history and traditions through cultural sites, local activities, art, food, language and community interaction.</p>
+            </div>
+            <div class="edu-programmes__card-topic">
+              <h4>Student Interaction</h4>
+              <p>Where available, connect with local or international students and exchange ideas about education, culture and career aspirations.</p>
+            </div>
+            <div class="edu-programmes__card-topic">
+              <h4>Leadership and Global Business Learning</h4>
+              <p>Participate in discussions, workshops or reflection sessions connected to international business, innovation, leadership and cross-cultural management.</p>
             </div>
           </div>
 

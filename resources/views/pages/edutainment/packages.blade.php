@@ -1,5 +1,5 @@
 {{-- ===== S9: WHAT CAN BE INCLUDED IN AN EDUTAINMENT PACKAGE? ===== --}}
-<section id="edu-packages" class="edu-packages section-wrapper" aria-label="Package Inclusions">
+<section id="edu-packages" class="edu-packages section-wrapper section--light" aria-label="Package Inclusions">
   <div class="container">
     <div class="edu-packages__header">
       <div class="section-label"><span>Package Details</span></div>

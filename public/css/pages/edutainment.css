@@ -1,34 +1,34 @@
 /* =========================================================
    EDUTAINMENT PAGE — Maverick Business Academy
-   Cinematic Design System — Custom CSS Only
+   Cinematic Design System (on-brand: mba navy / red / warm-white)
    ========================================================= */
 
-/* ===== Variables ===== */
+/* ===== Theme tokens (mirror main.css design system) ===== */
 :root {
-  --edu-navy: #1a2b7a;
-  --edu-navy-dark: #142260;
-  --edu-red: #dc2626;
+  --edu-blue: var(--color-mba-blue, #0f2983);
+  --edu-navy: var(--color-mba-dark-blue, #071444);
+  --edu-red: var(--color-mba-red, #b20202);
+  --edu-warm: var(--color-warm-white, #f5f0eb);
+  --edu-white: var(--color-white, #ffffff);
   --edu-text: #1a1a1a;
-  --edu-muted: #666666;
-  --edu-bg: #ffffff;
-  --edu-light: #f8f9fb;
-  --edu-warm: #f5f2ed;
-  --edu-border: #e5e7eb;
+  --edu-muted: #5a5a5a;
+  --edu-border: rgba(0, 0, 0, 0.08);
   --edu-radius: 16px;
   --edu-transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 /* =========================================================
-   HERO SECTION
+   HERO SECTION — Cinematic World Tour
    ========================================================= */
 .edu-hero {
   position: relative;
   min-height: 100vh;
+  min-height: 100svh;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: var(--edu-navy-dark);
+  background: var(--edu-navy);
 }
 
 .edu-hero__bg {
@@ -42,20 +42,20 @@
   inset: -20px;
   background-size: cover;
   background-position: center;
-  animation: eduKenBurns 20s ease-in-out infinite alternate;
+  animation: eduKenBurns 22s ease-in-out infinite alternate;
 }
 
 @keyframes eduKenBurns {
   0% { transform: scale(1) translate(0, 0); }
-  100% { transform: scale(1.08) translate(-1%, -1%); }
+  100% { transform: scale(1.1) translate(-1%, -1%); }
 }
 
 .edu-hero__gradient {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(1100px 500px at 80% 100%, rgba(178, 2, 2, 0.28), transparent 60%),
-    linear-gradient(180deg, rgba(7, 20, 68, 0.5) 0%, rgba(7, 20, 68, 0.94) 100%);
+    radial-gradient(1100px 520px at 82% 100%, rgba(178, 2, 2, 0.3), transparent 60%),
+    linear-gradient(180deg, rgba(7, 20, 68, 0.55) 0%, rgba(7, 20, 68, 0.95) 100%);
 }
 
 .edu-hero__noise {
@@ -69,6 +69,40 @@
   z-index: 1;
 }
 
+/* World-route journey motif */
+.edu-hero__route {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.edu-hero__route-dot {
+  animation: eduRouteMove 14s ease-in-out infinite;
+}
+
+@keyframes eduRouteMove {
+  0% { offset-distance: 0%; }
+  100% { offset-distance: 100%; }
+}
+
+.edu-hero__route-dot {
+  offset-path: path("M 40 340 Q 220 120 420 200 T 760 90");
+  offset-rotate: 0deg;
+}
+
+.edu-hero__route-pulse {
+  animation: eduRoutePulse 2.4s ease-out infinite;
+}
+
+@keyframes eduRoutePulse {
+  0% { r: 5; opacity: 0.9; }
+  100% { r: 22; opacity: 0; }
+}
+
+/* Floating shapes */
 .edu-hero__shapes {
   position: absolute;
   inset: 0;
@@ -108,6 +142,7 @@
   66% { transform: translate(-10px, 12px) rotate(-2deg); }
 }
 
+/* Particles */
 .edu-hero__particles {
   position: absolute;
   inset: 0;
@@ -121,7 +156,7 @@
   width: 3px;
   height: 3px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.25);
   animation: eduParticleFloat linear infinite;
 }
 
@@ -140,51 +175,13 @@
   100% { transform: translateY(-200px) scale(0.5); opacity: 0; }
 }
 
-.edu-hero__scanline {
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(220, 38, 38, 0.15), transparent);
-  animation: eduScanline 6s ease-in-out infinite;
-  pointer-events: none;
-  z-index: 2;
-}
-
-@keyframes eduScanline {
-  0% { top: 0%; opacity: 0; }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { top: 100%; opacity: 0; }
-}
-
-.edu-hero__corners {
-  position: absolute;
-  inset: 2rem;
-  pointer-events: none;
-  z-index: 2;
-}
-
-.edu-hero__corner {
-  position: absolute;
-  width: 30px;
-  height: 30px;
-}
-
-.edu-hero__corner--tl { top: 0; left: 0; border-top: 1.5px solid rgba(255, 255, 255, 0.15); border-left: 1.5px solid rgba(255, 255, 255, 0.15); }
-.edu-hero__corner--tr { top: 0; right: 0; border-top: 1.5px solid rgba(255, 255, 255, 0.15); border-right: 1.5px solid rgba(255, 255, 255, 0.15); }
-.edu-hero__corner--bl { bottom: 0; left: 0; border-bottom: 1.5px solid rgba(255, 255, 255, 0.15); border-left: 1.5px solid rgba(255, 255, 255, 0.15); }
-.edu-hero__corner--br { bottom: 0; right: 0; border-bottom: 1.5px solid rgba(255, 255, 255, 0.15); border-right: 1.5px solid rgba(255, 255, 255, 0.15); }
-
-/* Hero Content */
+/* Content */
 .edu-hero__content {
   position: relative;
   z-index: 3;
-  padding-top: calc(var(--navbar-height, 80px) + 60px);
-  padding-bottom: 80px;
-  text-align: center;
-  max-width: 900px;
-  margin: 0 auto;
+  width: 100%;
+  padding-top: calc(var(--navbar-height, 80px) + 56px);
+  padding-bottom: 100px;
 }
 
 .edu-hero__tag {
@@ -196,7 +193,7 @@
   font-weight: 600;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.75);
   margin-bottom: 28px;
 }
 
@@ -208,9 +205,9 @@
 
 .edu-hero__title {
   font-family: var(--font-display);
-  font-size: clamp(36px, 5vw, 64px);
+  font-size: clamp(38px, 6vw, 78px);
   font-weight: 600;
-  line-height: 1.1;
+  line-height: 1.05;
   letter-spacing: -0.03em;
   color: #ffffff;
   margin: 0 0 24px;
@@ -221,101 +218,255 @@
   color: var(--edu-red);
 }
 
-.edu-hero__subtitle {
-  font-family: var(--font-display);
-  font-size: clamp(18px, 2.5vw, 28px);
-  font-weight: 400;
-  line-height: 1.4;
-  color: rgba(255, 255, 255, 0.8);
-  margin: 0 0 24px;
-}
-
-.edu-hero__description {
+.edu-hero__shortdesc {
   font-family: var(--font-body);
-  font-size: clamp(15px, 1.4vw, 18px);
+  font-size: clamp(15px, 1.5vw, 19px);
   line-height: 1.7;
-  color: rgba(255, 255, 255, 0.65);
-  margin: 0 0 24px;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
+  color: rgba(255, 255, 255, 0.78);
+  margin: 0;
+  max-width: 640px;
 }
 
-.edu-hero__highlights {
+/* Scroll cue */
+.edu-hero__scrollcue {
+  position: absolute;
+  left: 50%;
+  bottom: 28px;
+  transform: translateX(-50%);
+  z-index: 3;
+  width: 24px;
+  height: 40px;
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  border-radius: 12px;
   display: flex;
-  flex-wrap: wrap;
-  gap: 12px 24px;
+  align-items: flex-start;
   justify-content: center;
-  margin-bottom: 24px;
+  padding-top: 8px;
 }
 
-.edu-hero__highlight {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--font-body);
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.75);
+.edu-hero__scrollcue span {
+  width: 4px;
+  height: 8px;
+  border-radius: 2px;
+  background: var(--edu-red);
+  animation: eduScroll 1.6s ease-in-out infinite;
 }
 
-.edu-hero__highlight svg {
-  color: #2d8b4e;
-  flex-shrink: 0;
-}
-
-.edu-hero__emphasis {
-  font-family: var(--font-body);
-  font-size: 16px;
-  font-style: italic;
-  color: rgba(255, 255, 255, 0.9);
-  margin: 0 0 32px;
-}
-
-.edu-hero__ctas {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  justify-content: center;
-  flex-wrap: wrap;
+@keyframes eduScroll {
+  0% { transform: translateY(0); opacity: 1; }
+  70% { transform: translateY(12px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 0; }
 }
 
 /* =========================================================
-   WHAT IS EDUTAINMENT
+   S1 — INTRO / EXPLORE THE WORLD
    ========================================================= */
-.edu-what-is__header {
-  text-align: center;
-  max-width: 720px;
-  margin: 0 auto 64px;
+.edu-intro {
+  position: relative;
+  overflow: hidden;
 }
 
-.edu-what-is__header .section-label {
-  justify-content: center;
-}
-
-.edu-what-is__content {
-  max-width: 800px;
+.edu-intro__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 64px;
+  align-items: center;
+  max-width: 1120px;
   margin: 0 auto;
 }
 
-.edu-what-is__lead {
-  font-size: 18px;
-  text-align: center;
-  margin-bottom: 24px;
+.edu-intro__label {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--edu-red);
+  margin-bottom: 20px;
 }
 
-.edu-what-is__list-wrapper {
-  background: var(--edu-light);
-  border-radius: 16px;
-  padding: 40px;
-  margin: 32px 0;
+.edu-intro__title {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 4.5vw, 56px);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--edu-navy);
+  margin: 0;
+}
+
+.edu-intro__title em {
+  font-style: italic;
+  color: var(--edu-red);
+}
+
+.edu-intro__body {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.edu-intro__body p {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.75;
+  color: rgba(0, 0, 0, 0.68);
+  margin: 0;
+}
+
+.edu-intro__emphasis {
+  font-family: var(--font-display);
+  font-size: clamp(17px, 2vw, 21px);
+  font-style: italic;
+  font-weight: 600;
+  color: var(--edu-navy);
+  margin-top: 6px !important;
+}
+
+.edu-intro__emphasis strong {
+  color: var(--edu-navy);
+}
+
+.edu-intro__ctas {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+@media (max-width: 900px) {
+  .edu-intro__grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+/* =========================================================
+   SECTION HEADERS (shared utility)
+   ========================================================= */
+.edu-section-header {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 56px;
+}
+
+.edu-section-header .section-label {
+  justify-content: center;
+}
+
+.edu-section-header .section-title {
+  margin: 0 0 20px;
+}
+
+.edu-section-header .body-text {
+  margin-left: auto;
+  margin-right: auto;
+  color: rgba(0, 0, 0, 0.62);
+}
+
+/* Legacy section header class names still used by some partials */
+.edu-learning-beyond__header,
+.edu-who-for__header,
+.edu-themes__header,
+.edu-experiences__header,
+.edu-why-choose__header,
+.edu-packages__header,
+.edu-institutions__header,
+.edu-faq__header,
+.edu-programmes__header {
+  margin: 0 auto 56px;
+}
+
+.edu-learning-beyond__header .body-text,
+.edu-who-for__header .body-text,
+.edu-themes__header .body-text,
+.edu-experiences__header .body-text,
+.edu-why-choose__header .body-text,
+.edu-packages__header .body-text,
+.edu-institutions__header .body-text,
+.edu-programmes__header .body-text {
+  margin-left: auto;
+  margin-right: auto;
+  color: rgba(0, 0, 0, 0.62);
+}
+
+/* =========================================================
+   S2 — WHAT IS EDUTAINMENT (split definition)
+   ========================================================= */
+.edu-what-is__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 56px;
+  align-items: center;
+  margin: 0 auto 48px;
+}
+
+.edu-what-is__visual {
+  text-align: center;
+}
+
+.edu-what-is__wordmark {
+  font-family: var(--font-display);
+  font-size: clamp(52px, 8vw, 110px);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--edu-navy);
+  letter-spacing: -0.03em;
+}
+
+.edu-what-is__wordmark em {
+  font-style: italic;
+  color: var(--edu-red);
+}
+
+.edu-what-is__wordmark-sub {
+  display: inline-block;
+  margin-top: 12px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.edu-what-is__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.edu-what-is__lead {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--edu-navy);
+  line-height: 1.4;
+  margin: 0;
+}
+
+.edu-what-is__copy p {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(0, 0, 0, 0.68);
+  margin: 0;
 }
 
 .edu-what-is__list-title {
   font-family: var(--font-display);
   font-size: 20px;
   font-weight: 600;
-  color: var(--edu-navy-dark);
+  color: var(--edu-navy);
   margin: 0 0 24px;
+}
+
+.edu-what-is__list-wrapper {
+  background: var(--edu-warm);
+  border-radius: var(--edu-radius);
+  padding: 40px;
+  margin: 0 0 32px;
 }
 
 .edu-what-is__list {
@@ -338,31 +489,42 @@
   flex-shrink: 0;
 }
 
-@media (max-width: 768px) {
+.edu-what-is__quote {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  border-left: 3px solid var(--edu-red);
+  padding-left: 20px;
+}
+
+.edu-what-is__quote p {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-style: italic;
+  color: var(--edu-navy);
+  margin: 0;
+  line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+  .edu-what-is__grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
   .edu-what-is__list {
     grid-template-columns: 1fr;
   }
 }
 
 /* =========================================================
-   LEARNING BEYOND THE CLASSROOM
+   S3 — LEARNING BEYOND THE CLASSROOM
    ========================================================= */
-.edu-learning-beyond__header {
-  text-align: center;
-  max-width: 720px;
-  margin: 0 auto 48px;
-}
-
-.edu-learning-beyond__header .section-label {
-  justify-content: center;
-}
-
 .edu-learning-beyond__subheading {
   text-align: center;
   font-family: var(--font-display);
   font-size: 22px;
   font-weight: 600;
-  color: var(--edu-navy-dark);
+  color: var(--edu-navy);
   margin: 0 0 40px;
 }
 
@@ -370,103 +532,91 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
-  max-width: 1000px;
+  max-width: 1100px;
   margin: 0 auto;
 }
 
 .edu-learning-beyond__card {
-  background: var(--edu-bg);
+  background: var(--edu-white);
   border: 1px solid var(--edu-border);
-  border-radius: 12px;
-  padding: 24px;
+  border-radius: 14px;
+  padding: 28px 24px;
   text-align: center;
   transition: all 0.3s ease;
 }
 
 .edu-learning-beyond__card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-  border-color: var(--edu-navy);
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(7, 20, 68, 0.12);
+  border-color: var(--edu-blue);
 }
 
 .edu-learning-beyond__card-icon {
-  font-size: 32px;
-  margin-bottom: 12px;
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 16px;
+  border-radius: 14px;
+  background: rgba(15, 41, 131, 0.07);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
 }
 
 .edu-learning-beyond__card-title {
   font-family: var(--font-body);
   font-size: 14px;
   font-weight: 600;
-  color: var(--edu-navy-dark);
+  color: var(--edu-navy);
   line-height: 1.4;
   margin: 0;
 }
 
-@media (max-width: 1024px) {
-  .edu-learning-beyond__grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .edu-learning-beyond__grid {
-    grid-template-columns: 1fr;
-  }
-}
+@media (max-width: 1024px) { .edu-learning-beyond__grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .edu-learning-beyond__grid { grid-template-columns: 1fr; } }
 
 /* =========================================================
-   WHO ARE OUR TOURS DESIGNED FOR
+   S4 — WHO ARE OUR TOURS DESIGNED FOR
    ========================================================= */
-.edu-who-for__header {
-  text-align: center;
-  max-width: 720px;
-  margin: 0 auto 64px;
-}
-
-.edu-who-for__header .section-label {
-  justify-content: center;
-}
-
 .edu-who-for__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
-  max-width: 1100px;
+  max-width: 1120px;
   margin: 0 auto 48px;
 }
 
 .edu-who-for__card {
-  background: var(--edu-bg);
+  background: var(--edu-white);
   border: 1px solid var(--edu-border);
-  border-radius: 16px;
-  padding: 32px 24px;
+  border-radius: var(--edu-radius);
+  padding: 32px 26px;
   transition: all 0.3s ease;
 }
 
 .edu-who-for__card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-  border-color: var(--edu-navy);
+  transform: translateY(-6px);
+  box-shadow: 0 16px 44px rgba(7, 20, 68, 0.12);
+  border-color: var(--edu-blue);
 }
 
 .edu-who-for__card-icon {
   width: 56px;
   height: 56px;
-  background: rgba(26, 43, 122, 0.06);
-  border-radius: 12px;
+  background: linear-gradient(135deg, var(--edu-blue), var(--edu-navy));
+  border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--edu-navy);
+  color: #ffffff;
   margin-bottom: 20px;
 }
 
 .edu-who-for__card-title {
   font-family: var(--font-display);
-  font-size: 18px;
+  font-size: 19px;
   font-weight: 600;
-  color: var(--edu-navy-dark);
+  color: var(--edu-navy);
   margin: 0 0 12px;
 }
 
@@ -474,7 +624,7 @@
   font-family: var(--font-body);
   font-size: 14px;
   line-height: 1.7;
-  color: var(--edu-muted);
+  color: rgba(0, 0, 0, 0.62);
   margin: 0;
 }
 
@@ -482,31 +632,12 @@
   text-align: center;
 }
 
-@media (max-width: 1024px) {
-  .edu-who-for__grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .edu-who-for__grid {
-    grid-template-columns: 1fr;
-  }
-}
+@media (max-width: 1024px) { .edu-who-for__grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .edu-who-for__grid { grid-template-columns: 1fr; } }
 
 /* =========================================================
-   OUR EDUTAINMENT PROGRAMMES
+   S5 — OUR EDUTAINMENT PROGRAMMES
    ========================================================= */
-.edu-programmes__header {
-  text-align: center;
-  max-width: 720px;
-  margin: 0 auto 64px;
-}
-
-.edu-programmes__header .section-label {
-  justify-content: center;
-}
-
 .edu-programmes__grid {
   display: flex;
   flex-direction: column;
@@ -519,20 +650,21 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0;
-  background: var(--edu-bg);
+  background: var(--edu-white);
   border: 1px solid var(--edu-border);
-  border-radius: 16px;
+  border-radius: var(--edu-radius);
   overflow: hidden;
   transition: all 0.3s ease;
 }
 
 .edu-programmes__card:hover {
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 18px 48px rgba(7, 20, 68, 0.14);
 }
 
 .edu-programmes__card--featured {
   border-color: var(--edu-red);
   border-width: 2px;
+  box-shadow: 0 0 0 1px rgba(178, 2, 2, 0.15), 0 18px 48px rgba(7, 20, 68, 0.12);
 }
 
 .edu-programmes__card-image {
@@ -555,7 +687,7 @@
 .edu-programmes__card-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to right, transparent 60%, rgba(255, 255, 255, 0.8));
+  background: linear-gradient(to right, transparent 50%, rgba(7, 20, 68, 0.55));
 }
 
 .edu-programmes__card-content {
@@ -583,7 +715,7 @@
   font-family: var(--font-display);
   font-size: 24px;
   font-weight: 600;
-  color: var(--edu-navy-dark);
+  color: var(--edu-navy);
   margin: 0 0 16px;
 }
 
@@ -591,7 +723,7 @@
   font-family: var(--font-body);
   font-size: 15px;
   line-height: 1.7;
-  color: var(--edu-muted);
+  color: rgba(0, 0, 0, 0.62);
   margin: 0 0 20px;
 }
 
@@ -599,9 +731,9 @@
   list-style: none;
   padding: 0;
   margin: 0 0 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 16px;
 }
 
 .edu-programmes__card-list li {
@@ -626,144 +758,133 @@
   margin-bottom: 24px;
 }
 
+.edu-programmes__card-topic {
+  background: rgba(15, 41, 131, 0.04);
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+
 .edu-programmes__card-topic h4 {
   font-family: var(--font-display);
   font-size: 14px;
   font-weight: 600;
-  color: var(--edu-navy-dark);
+  color: var(--edu-navy);
   margin: 0 0 4px;
 }
 
 .edu-programmes__card-topic p {
   font-family: var(--font-body);
   font-size: 13px;
-  line-height: 1.5;
-  color: var(--edu-muted);
+  line-height: 1.55;
+  color: rgba(0, 0, 0, 0.6);
   margin: 0;
 }
 
 @media (max-width: 768px) {
-  .edu-programmes__card {
-    grid-template-columns: 1fr;
-  }
-
-  .edu-programmes__card-image {
-    min-height: 200px;
-  }
-
-  .edu-programmes__card-topics {
-    grid-template-columns: 1fr;
-  }
+  .edu-programmes__card { grid-template-columns: 1fr; }
+  .edu-programmes__card-image { min-height: 200px; }
+  .edu-programmes__card-topics { grid-template-columns: 1fr; }
+  .edu-programmes__card-list { grid-template-columns: 1fr; }
 }
 
 /* =========================================================
-   EDUCATIONAL TOUR THEMES
+   S6 — EDUCATIONAL TOUR THEMES
    ========================================================= */
-.edu-themes__header {
-  text-align: center;
-  max-width: 720px;
-  margin: 0 auto 64px;
-}
-
-.edu-themes__header .section-label {
-  justify-content: center;
-}
-
 .edu-themes__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
-  max-width: 1100px;
+  max-width: 1120px;
   margin: 0 auto;
 }
 
 .edu-themes__card {
-  background: var(--edu-navy-dark);
+  background: linear-gradient(150deg, var(--edu-navy), var(--edu-blue));
   border-radius: 14px;
   padding: 28px 24px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
   transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.edu-themes__card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(120px 120px at 90% 0%, rgba(178, 2, 2, 0.35), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .edu-themes__card:hover {
-  transform: translateY(-4px);
-  background: var(--edu-navy);
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(7, 20, 68, 0.35);
 }
 
+.edu-themes__card:hover::after { opacity: 1; }
+
 .edu-themes__card-icon {
-  width: 44px;
-  height: 44px;
-  background: rgba(255, 255, 255, 0.08);
+  width: 46px;
+  height: 46px;
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #ffffff;
+  position: relative;
+  z-index: 1;
 }
 
 .edu-themes__card-title {
   font-family: var(--font-display);
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 600;
   color: #ffffff;
   margin: 0;
   line-height: 1.3;
+  position: relative;
+  z-index: 1;
 }
 
 .edu-themes__card-desc {
   font-family: var(--font-body);
   font-size: 13px;
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.68);
   margin: 0;
+  position: relative;
+  z-index: 1;
 }
 
-@media (max-width: 1024px) {
-  .edu-themes__grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .edu-themes__grid {
-    grid-template-columns: 1fr;
-  }
-}
+@media (max-width: 1024px) { .edu-themes__grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .edu-themes__grid { grid-template-columns: 1fr; } }
 
 /* =========================================================
-   WHAT STUDENTS CAN EXPERIENCE
+   S7 — WHAT STUDENTS CAN EXPERIENCE
    ========================================================= */
-.edu-experiences__header {
-  text-align: center;
-  max-width: 720px;
-  margin: 0 auto 64px;
-}
-
-.edu-experiences__header .section-label {
-  justify-content: center;
-}
-
 .edu-experiences__grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 24px;
-  max-width: 1000px;
   margin: 0 auto 32px;
 }
 
 .edu-experiences__card {
-  background: var(--edu-bg);
+  background: var(--edu-white);
   border: 1px solid var(--edu-border);
-  border-radius: 16px;
+  border-radius: var(--edu-radius);
   padding: 32px;
   transition: all 0.3s ease;
 }
 
 .edu-experiences__card:hover {
-  border-color: var(--edu-navy);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  border-color: var(--edu-blue);
+  box-shadow: 0 14px 36px rgba(7, 20, 68, 0.1);
+  transform: translateY(-4px);
 }
 
 .edu-experiences__card-header {
@@ -776,19 +897,19 @@
 .edu-experiences__card-icon {
   width: 48px;
   height: 48px;
-  background: rgba(26, 43, 122, 0.06);
-  border-radius: 10px;
+  background: linear-gradient(135deg, var(--edu-blue), var(--edu-navy));
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--edu-navy);
+  color: #ffffff;
 }
 
 .edu-experiences__card-title {
   font-family: var(--font-display);
-  font-size: 18px;
+  font-size: 19px;
   font-weight: 600;
-  color: var(--edu-navy-dark);
+  color: var(--edu-navy);
   margin: 0;
 }
 
@@ -819,31 +940,17 @@
 
 .edu-experiences__note {
   text-align: center;
-  max-width: 700px;
+  max-width: 900px;
   margin: 0 auto;
   font-style: italic;
-  color: var(--edu-muted);
+  color: rgba(0, 0, 0, 0.55);
 }
 
-@media (max-width: 768px) {
-  .edu-experiences__grid {
-    grid-template-columns: 1fr;
-  }
-}
+@media (max-width: 768px) { .edu-experiences__grid { grid-template-columns: 1fr; } }
 
 /* =========================================================
-   WHY CHOOSE MAVERICK EDUTAINMENT
+   S8 — WHY CHOOSE MAVERICK EDUTAINMENT
    ========================================================= */
-.edu-why-choose__header {
-  text-align: center;
-  max-width: 720px;
-  margin: 0 auto 64px;
-}
-
-.edu-why-choose__header .section-label {
-  justify-content: center;
-}
-
 .edu-why-choose__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -858,9 +965,9 @@
 }
 
 .edu-why-choose__image-wrapper {
-  border-radius: 16px;
+  border-radius: var(--edu-radius);
   overflow: hidden;
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 20px 52px rgba(7, 20, 68, 0.18);
 }
 
 .edu-why-choose__image-wrapper img {
@@ -871,20 +978,20 @@
 
 .edu-why-choose__image-accent {
   position: absolute;
-  top: -16px;
-  right: -16px;
+  top: -18px;
+  right: -18px;
   width: 100%;
   height: 100%;
-  background: var(--edu-navy);
+  background: var(--edu-red);
   opacity: 0.08;
-  border-radius: 16px;
+  border-radius: var(--edu-radius);
   z-index: -1;
 }
 
 .edu-why-choose__list {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 22px;
 }
 
 .edu-why-choose__item {
@@ -893,17 +1000,23 @@
   align-items: flex-start;
 }
 
-.edu-why-choose__item svg {
+.edu-why-choose__item > svg {
+  width: 24px;
+  height: 24px;
+  padding: 5px;
+  border-radius: 50%;
+  background: rgba(45, 139, 78, 0.12);
   color: #2d8b4e;
+  box-sizing: border-box;
   flex-shrink: 0;
-  margin-top: 4px;
+  margin-top: 2px;
 }
 
 .edu-why-choose__item h4 {
   font-family: var(--font-display);
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 600;
-  color: var(--edu-navy-dark);
+  color: var(--edu-navy);
   margin: 0 0 4px;
 }
 
@@ -911,45 +1024,33 @@
   font-family: var(--font-body);
   font-size: 14px;
   line-height: 1.6;
-  color: var(--edu-muted);
+  color: rgba(0, 0, 0, 0.62);
   margin: 0;
 }
 
 @media (max-width: 1024px) {
-  .edu-why-choose__grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
+  .edu-why-choose__grid { grid-template-columns: 1fr; gap: 48px; }
 }
 
 /* =========================================================
-   PACKAGE INCLUSIONS
+   S9 — PACKAGE INCLUSIONS
    ========================================================= */
-.edu-packages__header {
-  text-align: center;
-  max-width: 720px;
-  margin: 0 auto 64px;
-}
-
-.edu-packages__header .section-label {
-  justify-content: center;
-}
-
 .edu-packages__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
   max-width: 1000px;
-  margin: 0 auto 32px;
+  margin: 0 auto 28px;
 }
 
 .edu-packages__item {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 14px 16px;
-  background: var(--edu-light);
-  border-radius: 10px;
+  padding: 16px 18px;
+  background: var(--edu-white);
+  border: 1px solid var(--edu-border);
+  border-radius: 12px;
   font-family: var(--font-body);
   font-size: 14px;
   color: var(--edu-text);
@@ -957,13 +1058,19 @@
 }
 
 .edu-packages__item:hover {
-  background: var(--edu-bg);
-  border-color: var(--edu-navy);
-  transform: translateX(4px);
+  border-color: var(--edu-blue);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 26px rgba(7, 20, 68, 0.08);
 }
 
-.edu-packages__item svg {
+.edu-packages__item > svg {
+  width: 22px;
+  height: 22px;
+  padding: 4px;
+  border-radius: 50%;
+  background: rgba(45, 139, 78, 0.12);
   color: #2d8b4e;
+  box-sizing: border-box;
   flex-shrink: 0;
 }
 
@@ -972,54 +1079,35 @@
   max-width: 700px;
   margin: 0 auto 32px;
   font-style: italic;
-  color: var(--edu-muted);
+  color: rgba(0, 0, 0, 0.55);
 }
 
 .edu-packages__cta {
   text-align: center;
 }
 
-@media (max-width: 1024px) {
-  .edu-packages__grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .edu-packages__grid {
-    grid-template-columns: 1fr;
-  }
-}
+@media (max-width: 1024px) { .edu-packages__grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .edu-packages__grid { grid-template-columns: 1fr; } }
 
 /* =========================================================
-   INSTITUTIONS
+   S10 — INSTITUTIONS
    ========================================================= */
-.edu-institutions__header {
-  text-align: center;
-  max-width: 720px;
-  margin: 0 auto 64px;
-}
-
-.edu-institutions__header .section-label {
-  justify-content: center;
-}
-
 .edu-institutions__grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
-  max-width: 1100px;
-  margin: 0 auto 32px;
+  max-width: 1120px;
+  margin: 0 auto 28px;
 }
 
 .edu-institutions__card {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 16px 20px;
-  background: var(--edu-bg);
+  padding: 18px 20px;
+  background: var(--edu-white);
   border: 1px solid var(--edu-border);
-  border-radius: 10px;
+  border-radius: 12px;
   font-family: var(--font-body);
   font-size: 14px;
   color: var(--edu-text);
@@ -1027,12 +1115,19 @@
 }
 
 .edu-institutions__card:hover {
-  border-color: var(--edu-navy);
-  transform: translateX(4px);
+  border-color: var(--edu-blue);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 26px rgba(7, 20, 68, 0.08);
 }
 
-.edu-institutions__card svg {
-  color: var(--edu-navy);
+.edu-institutions__card > svg {
+  width: 30px;
+  height: 30px;
+  padding: 6px;
+  border-radius: 8px;
+  background: rgba(15, 41, 131, 0.08);
+  color: var(--edu-blue);
+  box-sizing: border-box;
   flex-shrink: 0;
 }
 
@@ -1041,40 +1136,20 @@
   max-width: 700px;
   margin: 0 auto 32px;
   font-style: italic;
-  color: var(--edu-muted);
+  color: rgba(0, 0, 0, 0.55);
 }
 
 .edu-institutions__cta {
   text-align: center;
 }
 
-@media (max-width: 1024px) {
-  .edu-institutions__grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .edu-institutions__grid {
-    grid-template-columns: 1fr;
-  }
-}
+@media (max-width: 1024px) { .edu-institutions__grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .edu-institutions__grid { grid-template-columns: 1fr; } }
 
 /* =========================================================
-   FAQ ACCORDION
+   S11 — FAQ ACCORDION
    ========================================================= */
-.edu-faq__header {
-  text-align: center;
-  max-width: 640px;
-  margin: 0 auto 64px;
-}
-
-.edu-faq__header .section-label {
-  justify-content: center;
-}
-
 .edu-faq__list {
-  max-width: 800px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -1082,11 +1157,11 @@
 }
 
 .edu-faq__item {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid var(--edu-border);
 }
 
 .edu-faq__item:first-child {
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  border-top: 1px solid var(--edu-border);
 }
 
 .edu-faq__question {
@@ -1099,7 +1174,7 @@
   font-family: var(--font-display);
   font-size: 17px;
   font-weight: 600;
-  color: var(--edu-navy-dark);
+  color: var(--edu-navy);
   cursor: pointer;
   background: none;
   border: none;
@@ -1108,13 +1183,13 @@
 }
 
 .edu-faq__question:hover {
-  color: var(--edu-navy);
+  color: var(--edu-blue);
 }
 
 .edu-faq__chevron {
   width: 24px;
   height: 24px;
-  color: var(--edu-navy);
+  color: var(--edu-blue);
   flex-shrink: 0;
   transition: transform 0.3s ease;
 }
@@ -1134,16 +1209,16 @@
   font-family: var(--font-body);
   font-size: 15px;
   line-height: 1.7;
-  color: rgba(0, 0, 0, 0.6);
+  color: rgba(0, 0, 0, 0.62);
 }
 
 /* =========================================================
-   FINAL CTA
+   S12 — FINAL CTA
    ========================================================= */
 .edu-cta {
   position: relative;
   overflow: hidden;
-  background: var(--edu-navy-dark);
+  background: var(--edu-navy);
   padding: clamp(80px, 10vh, 140px) 0;
 }
 
@@ -1158,7 +1233,7 @@
   inset: 0;
   background-size: cover;
   background-position: center;
-  opacity: 0.2;
+  opacity: 0.22;
 }
 
 .edu-cta__overlay {
@@ -1171,19 +1246,17 @@
   position: relative;
   z-index: 2;
   text-align: center;
-  max-width: 720px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 24px;
 }
 
 .edu-cta__heading {
   font-family: var(--font-display);
-  font-size: clamp(28px, 4vw, 48px);
+  font-size: clamp(32px, 4.5vw, 56px);
   font-weight: 600;
-  line-height: 1.15;
+  line-height: 1.1;
   letter-spacing: -0.02em;
   color: #ffffff;
   margin: 0;
@@ -1198,13 +1271,13 @@
   font-family: var(--font-body);
   font-size: 16px;
   line-height: 1.7;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.72);
   margin: 0;
 }
 
 .edu-cta__emphasis {
   font-family: var(--font-display);
-  font-size: 20px;
+  font-size: clamp(18px, 2.5vw, 24px);
   font-weight: 600;
   font-style: italic;
   color: #ffffff;
@@ -1216,11 +1289,10 @@
   align-items: center;
   gap: 16px;
   flex-wrap: wrap;
-  justify-content: center;
 }
 
 /* =========================================================
-   BUTTONS (shared)
+   BUTTONS — on-brand (match theme .btn)
    ========================================================= */
 .btn {
   display: inline-flex;
@@ -1253,32 +1325,41 @@
 .btn--secondary {
   background: transparent;
   color: #ffffff;
-  border: 1px solid #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.85);
 }
 
 .btn--secondary:hover {
   background: #ffffff;
-  color: var(--edu-navy-dark);
+  color: var(--edu-navy);
 }
 
 .btn--outline {
   background: transparent;
   color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.35);
 }
 
 .btn--outline:hover {
   border-color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
 }
 
 /* =========================================================
-   REDUCED MOTION
+   RESPONSIVE / REDUCED MOTION
    ========================================================= */
+@media (max-width: 640px) {
+  .edu-hero__content { padding-bottom: 80px; }
+  .edu-hero__scrollcue { display: none; }
+  .edu-section-header { margin-bottom: 40px; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .edu-hero__bg-image,
   .edu-hero__shape,
   .edu-hero__particle,
-  .edu-hero__scanline {
+  .edu-hero__route-dot,
+  .edu-hero__route-pulse,
+  .edu-hero__scrollcue span {
     animation: none !important;
   }
 }
