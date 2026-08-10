@@ -1,25 +1,30 @@
-{{-- ===== S1: HERO — Cinematic Full-Viewport ===== --}}
+{{-- ===== S1: HERO — Cinematic World Tour ===== --}}
 <section id="edu-hero" class="edu-hero" aria-label="Edutainment Hero">
   <div class="edu-hero__bg" aria-hidden="true">
     <div class="edu-hero__bg-image" style="background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1920&q=80')"></div>
     <div class="edu-hero__gradient"></div>
     <div class="edu-hero__noise"></div>
+
+    {{-- World-route journey motif --}}
+    <svg class="edu-hero__route" viewBox="0 0 800 400" fill="none" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <path class="edu-hero__route-line" d="M 40 340 Q 220 120 420 200 T 760 90" stroke="rgba(255,255,255,0.22)" stroke-width="1.5" stroke-dasharray="2 8" stroke-linecap="round"/>
+      <circle class="edu-hero__route-dot" r="5" fill="#ffffff"/>
+      <circle class="edu-hero__route-pulse" r="5" fill="none" stroke="#ffffff" stroke-width="1.5"/>
+      <circle class="edu-hero__route-node" cx="40" cy="340" r="4" fill="rgba(178,2,2,0.9)"/>
+      <circle class="edu-hero__route-node" cx="420" cy="200" r="4" fill="rgba(255,255,255,0.5)"/>
+      <circle class="edu-hero__route-node" cx="760" cy="90" r="4" fill="rgba(178,2,2,0.9)"/>
+    </svg>
+
     <div class="edu-hero__shapes">
-      <svg class="edu-hero__shape edu-hero__shape--1" viewBox="0 0 200 200" fill="none"><circle cx="100" cy="100" r="80" stroke="rgba(255,255,255,0.15)" stroke-width="1"/></svg>
-      <svg class="edu-hero__shape edu-hero__shape--2" viewBox="0 0 300 300" fill="none"><circle cx="150" cy="150" r="120" stroke="rgba(178,2,2,0.2)" stroke-width="1"/></svg>
-      <svg class="edu-hero__shape edu-hero__shape--3" viewBox="0 0 100 100" fill="none"><rect x="10" y="10" width="80" height="80" rx="8" stroke="rgba(255,255,255,0.15)" stroke-width="1" transform="rotate(20 50 50)"/></svg>
+      <svg class="edu-hero__shape edu-hero__shape--1" viewBox="0 0 200 200" fill="none"><circle cx="100" cy="100" r="80" stroke="rgba(255,255,255,0.14)" stroke-width="1"/></svg>
+      <svg class="edu-hero__shape edu-hero__shape--2" viewBox="0 0 300 300" fill="none"><circle cx="150" cy="150" r="120" stroke="rgba(178,2,2,0.22)" stroke-width="1"/></svg>
+      <svg class="edu-hero__shape edu-hero__shape--3" viewBox="0 0 100 100" fill="none"><rect x="10" y="10" width="80" height="80" rx="8" stroke="rgba(255,255,255,0.14)" stroke-width="1" transform="rotate(20 50 50)"/></svg>
     </div>
+
     <div class="edu-hero__particles">
       @for($i = 0; $i < 6; $i++)
         <div class="edu-hero__particle"></div>
       @endfor
-    </div>
-    <div class="edu-hero__scanline"></div>
-    <div class="edu-hero__corners">
-      <div class="edu-hero__corner edu-hero__corner--tl"></div>
-      <div class="edu-hero__corner edu-hero__corner--tr"></div>
-      <div class="edu-hero__corner edu-hero__corner--bl"></div>
-      <div class="edu-hero__corner edu-hero__corner--br"></div>
     </div>
   </div>
 
@@ -27,39 +32,30 @@
     <div class="container">
       <span class="edu-hero__tag fade-up">
         <span class="edu-hero__tag-line"></span>
-        EDUTAINMENT
+        Maverick Edutainment UAE
       </span>
 
       <h1 class="edu-hero__title fade-up">
-        Maverick Edutainment:<br>
-        <em>Educational Tours That Bring Learning to Life</em>
+        Educational Tours That Bring<br><em>Learning to Life</em>
       </h1>
 
       <h2 class="edu-hero__subtitle fade-up">
         Explore the World. Experience New Cultures. Learn Beyond the Classroom.
       </h2>
 
-      <p class="edu-hero__description fade-up">
-        Education does not have to remain inside a classroom. Maverick Edutainment creates educational tours and international study trips that combine learning, exploration, culture and entertainment in one meaningful experience.
-      </p>
-
-      <div class="edu-hero__highlights fade-up">
-        <div class="edu-hero__highlight">
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-          <span>Educational institution visits</span>
-        </div>
-        <div class="edu-hero__highlight">
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-          <span>Cultural and historical exploration</span>
-        </div>
-        <div class="edu-hero__highlight">
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-          <span>Interactive workshops</span>
-        </div>
-        <div class="edu-hero__highlight">
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-          <span>Leadership and team-building</span>
-        </div>
+      <div class="edu-hero__intro fade-up">
+        <p>
+          Education does not have to remain inside a classroom. Maverick Edutainment creates educational tours and international study trips that combine learning, exploration, culture and entertainment in one meaningful experience.
+        </p>
+        <p>
+          From introducing school students to the innovation, heritage and cultural diversity of the UAE, to taking university learners on an international study tour to China, every programme is designed to turn destinations into learning environments.
+        </p>
+        <p>
+          Students do not simply visit a new place. They observe, participate, interact, question and experience what they have previously learned through books, lectures or online classes.
+        </p>
+        <p>
+          Whether you represent a school, college, university or educational organisation, Maverick can help you create an age-appropriate educational travel programme aligned with your students, learning objectives and preferred destination.
+        </p>
       </div>
 
       <p class="edu-hero__emphasis fade-up">
@@ -72,5 +68,9 @@
         <a href="{{ route('contact') }}" class="btn btn--outline">Speak to Our Team</a>
       </div>
     </div>
+  </div>
+
+  <div class="edu-hero__scrollcue" aria-hidden="true">
+    <span></span>
   </div>
 </section>
