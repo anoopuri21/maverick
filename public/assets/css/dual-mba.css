@@ -492,17 +492,19 @@
 }
 
 .dmba-overview__header {
-  text-align: center;
-  max-width: 720px;
   margin: 0 auto 80px;
 }
 
 .dmba-overview__header .section-label {
-  justify-content: center;
+  justify-content: start;
 }
 
 .dmba-overview__heading {
   margin: 0 0 24px;
+}
+
+.dmba-overview__heading span {
+  display: block;
 }
 
 .dmba-overview__desc {
@@ -526,13 +528,11 @@
 }
 
 .dmba-why__header {
-  text-align: center;
-  max-width: 640px;
   margin: 0 auto 64px;
 }
 
-.dmba-why__header .section-label {
-  justify-content: center;
+.dmba-why__header .section-title span {
+  display: block;
 }
 
 .dmba-why__grid {

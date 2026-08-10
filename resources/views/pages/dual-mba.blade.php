@@ -89,7 +89,7 @@
   <div class="container">
     <div class="dmba-overview__header">
       <div class="section-label"><span>Programme Overview</span></div>
-      <h2 class="dmba-overview__heading section-title">One Programme.<br>Two Degrees.</h2>
+      <h2 class="dmba-overview__heading section-title">One Programme. <span class="highlight">Two Degrees.</span></h2>
       <p class="dmba-overview__desc body-text">
         Instead of choosing between broad business knowledge and specialist expertise, you graduate with both &mdash; giving you a significant competitive advantage in today&rsquo;s global employment market.
       </p>
@@ -207,7 +207,7 @@
   <div class="container">
     <div class="dmba-why__header">
       <div class="section-label"><span>Why Choose</span></div>
-      <h2 class="section-title">Why Choose the<br>Dual MBA Programme?</h2>
+      <h2 class="section-title">Why Choose the<span class="highlight">Dual MBA Programme?</span></h2>
     </div>
 
     <div class="dmba-why__grid" data-testid="dmba-why-grid">
@@ -275,7 +275,7 @@
   <div class="container">
     <div class="dmba-specs__header">
       <div class="section-label"><span>Specialisations</span></div>
-      <h2 class="section-title">Choose Your<br>Specialisation</h2>
+      <h2 class="section-title">Choose Your<br><span class="highlight">Specialisation</span></h2>
       <p class="body-text" style="margin-top: 16px; color: rgba(0,0,0,0.6);">Gain advanced expertise in a specific business discipline aligned with your career goals.</p>
     </div>
 
