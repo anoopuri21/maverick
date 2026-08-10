@@ -84,8 +84,10 @@ document.addEventListener('DOMContentLoaded', () => {
       '.edu-who-for__card',
       '.edu-themes__card',
       '.edu-experiences__card',
+      '.edu-why-choose__card',
       '.edu-institutions__card',
       '.edu-packages__item',
+      '.edu-programmes__china-item',
     ];
 
     cardSelectors.forEach((selector) => {
@@ -125,39 +127,6 @@ document.addEventListener('DOMContentLoaded', () => {
           duration: 0.7,
           ease: 'power3.out',
           scrollTrigger: { trigger: card, start: 'top 85%', once: true },
-        },
-      );
-    });
-
-    // Why choose — image + list (skip .fade-up)
-    const whyImage = document.querySelector('.edu-why-choose__image-wrapper');
-    if (whyImage && !whyImage.closest('.fade-up') && !whyImage.classList.contains('fade-up')) {
-      gsap.fromTo(
-        whyImage,
-        { opacity: 0, x: -40 },
-        {
-          opacity: 1,
-          x: 0,
-          duration: 0.8,
-          ease: 'power3.out',
-          scrollTrigger: { trigger: whyImage, start: 'top 80%', once: true },
-        },
-      );
-    }
-
-    document.querySelectorAll('.edu-why-choose__item').forEach((item, i) => {
-      if (item.classList.contains('fade-up')) return;
-
-      gsap.fromTo(
-        item,
-        { opacity: 0, x: 30 },
-        {
-          opacity: 1,
-          x: 0,
-          duration: 0.5,
-          delay: i * 0.1,
-          ease: 'power3.out',
-          scrollTrigger: { trigger: item, start: 'top 90%', once: true },
         },
       );
     });
