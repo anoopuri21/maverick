@@ -569,28 +569,90 @@
   font-family: var(--font-body); font-size: 14px; color: var(--edu-text);
 }
 .edu-programmes__card-list li::before { content: "•"; color: var(--edu-red); font-weight: bold; }
-.edu-programmes__card-topics {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px;
+/* China Study Tour — Experience Cards */
+.edu-programmes__china {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 1080px;
+  margin: 0 auto;
 }
-.edu-programmes__card-topic {
-  background: rgba(15, 41, 131, 0.04);
-  border-left: 3px solid var(--edu-red);
-  border-radius: 8px; padding: 14px 16px;
+
+.edu-programmes__china-item {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: var(--edu-white);
+  border: 1px solid var(--edu-border);
+  border-radius: var(--edu-radius);
+  padding: 28px 24px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
-.edu-programmes__card-topic h4 {
-  font-family: var(--font-display); font-size: 14px; font-weight: 600;
-  color: var(--edu-navy); margin: 0 0 4px;
+.edu-programmes__china-item::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--edu-blue), var(--edu-red));
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
-.edu-programmes__card-topic p {
-  font-family: var(--font-body); font-size: 13px; line-height: 1.55;
+.edu-programmes__china-item:hover::before { opacity: 1; }
+.edu-programmes__china-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 48px rgba(7, 20, 68, 0.14);
+  border-color: transparent;
+}
+
+.edu-programmes__china-icon {
+  width: 48px; height: 48px;
+  background: linear-gradient(135deg, var(--edu-blue), var(--edu-navy));
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  color: #ffffff;
+  flex-shrink: 0;
+}
+
+.edu-programmes__china-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex-grow: 1;
+}
+.edu-programmes__china-title {
+  font-family: var(--font-display);
+  font-size: 17px; font-weight: 600;
+  color: var(--edu-navy); margin: 0;
+}
+.edu-programmes__china-desc {
+  font-family: var(--font-body);
+  font-size: 14px; line-height: 1.6;
   color: var(--edu-muted); margin: 0;
+}
+
+.edu-programmes__china-btn {
+  align-self: flex-start;
+  padding: 10px 20px;
+  font-size: 12px;
+  background: var(--edu-blue);
+  border: 1px solid var(--edu-blue);
+}
+.edu-programmes__china-btn:hover {
+  background: var(--edu-navy);
+  border-color: var(--edu-navy);
+}
+
+@media (max-width: 1024px) {
+  .edu-programmes__china { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 768px) {
   .edu-programmes__card { grid-template-columns: 1fr; }
   .edu-programmes__card-image { min-height: 200px; }
-  .edu-programmes__card-topics { grid-template-columns: 1fr; }
   .edu-programmes__card-list { grid-template-columns: 1fr; }
+  .edu-programmes__china { grid-template-columns: 1fr; }
 }
 
 /* =========================================================
