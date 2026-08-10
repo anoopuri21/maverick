@@ -10,7 +10,7 @@
     </div>
 
     <div class="edu-learning-beyond__media fade-up">
-      <img src="{{ asset('assets/images/edutainment/learning-beyond.jpg') }}" alt="Students experiencing learning beyond the classroom" loading="lazy" />
+      <img src="{{ asset('assets/images/edutainment/learning-beyond.png') }}" alt="Students experiencing learning beyond the classroom" loading="lazy" />
     </div>
 
     <h3 class="edu-learning-beyond__subheading fade-up">Students can return from their journey with:</h3>
