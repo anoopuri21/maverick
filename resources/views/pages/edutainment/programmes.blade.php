@@ -32,7 +32,7 @@
       {{-- International Study Tours --}}
       <div class="edu-programmes__card fade-up">
         <div class="edu-programmes__card-image">
-          <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&q=80" alt="International Students" loading="lazy">
+          <img src="https://images.pexels.com/photos/8828682/pexels-photo-8828682.jpeg" alt="International Students" loading="lazy">
           <div class="edu-programmes__card-overlay"></div>
         </div>
         <div class="edu-programmes__card-content">

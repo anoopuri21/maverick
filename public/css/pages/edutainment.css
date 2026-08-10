@@ -184,11 +184,6 @@
   padding-bottom: 100px;
 }
 
-.edu-hero__content .container {
-  max-width: 900px;
-  margin: 0 auto;
-}
-
 .edu-hero__tag {
   display: inline-flex;
   align-items: center;
@@ -273,7 +268,7 @@
 
 .edu-intro__grid {
   display: grid;
-  grid-template-columns: 1fr 1.1fr;
+  grid-template-columns: 1fr;
   gap: 64px;
   align-items: center;
   max-width: 1120px;
@@ -366,7 +361,6 @@
 }
 
 .edu-section-header .body-text {
-  max-width: 640px;
   margin-left: auto;
   margin-right: auto;
   color: rgba(0, 0, 0, 0.62);
@@ -382,21 +376,7 @@
 .edu-institutions__header,
 .edu-faq__header,
 .edu-programmes__header {
-  text-align: center;
-  max-width: 720px;
   margin: 0 auto 56px;
-}
-
-.edu-learning-beyond__header .section-label,
-.edu-who-for__header .section-label,
-.edu-themes__header .section-label,
-.edu-experiences__header .section-label,
-.edu-why-choose__header .section-label,
-.edu-packages__header .section-label,
-.edu-institutions__header .section-label,
-.edu-faq__header .section-label,
-.edu-programmes__header .section-label {
-  justify-content: center;
 }
 
 .edu-learning-beyond__header .body-text,
@@ -407,7 +387,6 @@
 .edu-packages__header .body-text,
 .edu-institutions__header .body-text,
 .edu-programmes__header .body-text {
-  max-width: 640px;
   margin-left: auto;
   margin-right: auto;
   color: rgba(0, 0, 0, 0.62);
@@ -418,10 +397,9 @@
    ========================================================= */
 .edu-what-is__grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 56px;
   align-items: center;
-  max-width: 1100px;
   margin: 0 auto 48px;
 }
 
@@ -892,7 +870,6 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 24px;
-  max-width: 1000px;
   margin: 0 auto 32px;
 }
 
@@ -963,7 +940,7 @@
 
 .edu-experiences__note {
   text-align: center;
-  max-width: 700px;
+  max-width: 900px;
   margin: 0 auto;
   font-style: italic;
   color: rgba(0, 0, 0, 0.55);
@@ -1173,7 +1150,6 @@
    S11 — FAQ ACCORDION
    ========================================================= */
 .edu-faq__list {
-  max-width: 800px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -1270,11 +1246,9 @@
   position: relative;
   z-index: 2;
   text-align: center;
-  max-width: 720px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 24px;
 }
 
@@ -1315,7 +1289,6 @@
   align-items: center;
   gap: 16px;
   flex-wrap: wrap;
-  justify-content: center;
 }
 
 /* =========================================================
