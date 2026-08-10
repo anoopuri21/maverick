@@ -481,18 +481,18 @@ html.lenis body {
   will-change: transform;
 }
 
-.fade-up {
+html.js .fade-up {
   opacity: 0;
   transform: translateY(40px);
   will-change: transform, opacity;
 }
 
-.fade-in {
+html.js .fade-in {
   opacity: 0;
   will-change: opacity;
 }
 
-.scale-in {
+html.js .scale-in {
   opacity: 0;
   transform: scale(0.9);
   will-change: transform, opacity;

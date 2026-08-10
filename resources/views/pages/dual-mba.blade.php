@@ -84,23 +84,7 @@
   </div>
 </section>
 
-{{-- ===== S2: TRUST BAR ===== --}}
-<section class="dmba-trust" aria-label="Accreditation Partners" data-testid="dmba-trust-section">
-  <div class="container">
-    <div class="dmba-trust__inner">
-      <span class="dmba-trust__label">Awarded By</span>
-      <div class="dmba-trust__divider" aria-hidden="true"></div>
-      <div class="dmba-trust__logos">
-        {{-- Logo placeholders for the 3 partner universities --}}
-        <img src="{{ asset('assets/images/universities/gau-logo.png') }}" alt="Girne American University" class="dmba-trust__logo" onerror="this.style.display='none'" data-testid="dmba-logo-gau" />
-        <img src="{{ asset('assets/images/universities/rbs-logo.png') }}" alt="Rushford Business School" class="dmba-trust__logo" onerror="this.style.display='none'" data-testid="dmba-logo-rbs" />
-        <img src="{{ asset('assets/images/universities/uca-logo.png') }}" alt="University for the Creative Arts" class="dmba-trust__logo" onerror="this.style.display='none'" data-testid="dmba-logo-uca" />
-      </div>
-    </div>
-  </div>
-</section>
-
-{{-- ===== S3: PROGRAMME OVERVIEW ===== --}}
+{{-- ===== S2: PROGRAMME OVERVIEW (merged with Highlights) ===== --}}
 <section id="dmba-overview" class="dmba-overview section--light section-wrapper" aria-label="Programme Overview" data-testid="dmba-overview-section">
   <div class="container">
     <div class="dmba-overview__header">
@@ -111,51 +95,114 @@
       </p>
     </div>
 
-    <div class="dmba-overview__pathway" data-testid="dmba-pathway">
-      {{-- General MBA Card --}}
-      <div class="dmba-overview__card fade-up" data-testid="dmba-card-general">
-        <div class="dmba-overview__card-icon dmba-overview__card-icon--general">
-          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+    <div class="dmba-highlights" data-testid="dmba-highlights-section">
+      <h3 class="dmba-highlights__block-heading">Programme Highlights</h3>
+      <p class="dmba-highlights__block-line">Two MBA Degrees&nbsp;.&nbsp;One Journey&nbsp;.&nbsp;One Affordable Investment</p>
+
+      <div class="dmba-highlights__grid" data-testid="dmba-highlights-grid">
+      <div class="dmba-highlights__card" data-testid="dmba-highlight-general">
+        <div class="dmba-highlights__card-icon dmba-highlights__card-icon--blue">
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
         </div>
-        <h3 class="dmba-overview__card-title">MBA (General)</h3>
-        <p class="dmba-overview__card-text">
-          Build a comprehensive foundation in strategic leadership, finance, marketing, operations, and organisational behaviour.
-        </p>
-        <div class="dmba-overview__card-check">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-          Broad Business Leadership
+        <div class="dmba-highlights__card-body">
+          <h3 class="dmba-highlights__card-title">MBA General</h3>
+          <p class="dmba-highlights__card-text">A comprehensive foundation in strategic leadership, finance, marketing and operations.</p>
         </div>
       </div>
 
-      {{-- Bridge --}}
-      <div class="dmba-overview__bridge" aria-hidden="true">
-        <div class="dmba-overview__bridge-line"></div>
-        <div class="dmba-overview__bridge-icon">
-          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+      <div class="dmba-highlights__card" data-testid="dmba-highlight-specs">
+        <div class="dmba-highlights__card-icon dmba-highlights__card-icon--red">
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
         </div>
-        <span class="dmba-overview__bridge-label">Integrated Pathway</span>
-        <div class="dmba-overview__bridge-line"></div>
+        <div class="dmba-highlights__card-body">
+          <h3 class="dmba-highlights__card-title">MBA with 15+ Specialisations</h3>
+          <p class="dmba-highlights__card-text">Choose from 15+ industry-focused specialisations aligned to your career goals.</p>
+        </div>
       </div>
 
-      {{-- Specialised MBA Card --}}
-      <div class="dmba-overview__card fade-up" data-testid="dmba-card-specialist">
-        <div class="dmba-overview__card-icon dmba-overview__card-icon--specialist">
-          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      <div class="dmba-highlights__card" data-testid="dmba-highlight-global">
+        <div class="dmba-highlights__card-icon dmba-highlights__card-icon--blue">
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
         </div>
-        <h3 class="dmba-overview__card-title">MBA (Specialisation)</h3>
-        <p class="dmba-overview__card-text">
-          Gain advanced expertise in a specific discipline aligned with your career goals &mdash; from AI and Finance to Healthcare and HR.
-        </p>
-        <div class="dmba-overview__card-check">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-          Industry Specialist
+        <div class="dmba-highlights__card-body">
+          <h3 class="dmba-highlights__card-title">Recognised in UAE + Globally</h3>
+          <p class="dmba-highlights__card-text">Internationally recognised qualifications trusted by employers worldwide, including the UAE.</p>
         </div>
       </div>
+
+      <div class="dmba-highlights__card" data-testid="dmba-highlight-triple">
+        <div class="dmba-highlights__card-icon dmba-highlights__card-icon--red">
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.5 13l2.5 8-6-3.5L6 21l2.5-8"/></svg>
+        </div>
+        <div class="dmba-highlights__card-body">
+          <h3 class="dmba-highlights__card-title">Triple Qualification</h3>
+          <p class="dmba-highlights__card-text">Awarded by three internationally recognised universities &mdash; GAU, RBS &amp; UCA.</p>
+        </div>
+      </div>
+
+      <div class="dmba-highlights__card" data-testid="dmba-highlight-two-degrees">
+        <div class="dmba-highlights__card-icon dmba-highlights__card-icon--blue">
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <div class="dmba-highlights__card-body">
+          <h3 class="dmba-highlights__card-title">Two MBA Degrees in One Journey</h3>
+          <p class="dmba-highlights__card-text">Two qualifications from one integrated programme &mdash; without doubling your time.</p>
+        </div>
+      </div>
+
+      <div class="dmba-highlights__card" data-testid="dmba-highlight-investment">
+        <div class="dmba-highlights__card-icon dmba-highlights__card-icon--red">
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v12M15 9.5c0-1.4-1.3-2.5-3-2.5s-3 1.1-3 2.5 1.3 2 3 2.5 3 1.1 3 2.5-1.3 2.5-3 2.5-3-1.1-3-2.5"/></svg>
+        </div>
+        <div class="dmba-highlights__card-body">
+          <h3 class="dmba-highlights__card-title">One Affordable Investment</h3>
+          <p class="dmba-highlights__card-text">Premium-calibre education with flexible payment options and scholarship support.</p>
+        </div>
+      </div>
+    </div>
     </div>
   </div>
 </section>
 
-{{-- ===== S4: WHY CHOOSE DUAL MBA ===== --}}
+{{-- ===== S4: "TWICE" MARKETING — FULL-SCREEN SCROLL STACK ===== --}}
+<section class="dmba-twice" aria-label="Twice the Value" data-testid="dmba-twice-section">
+  <div class="dmba-twice__slides" data-testid="dmba-twice-slides">
+
+    <div class="dmba-twice__slide dmba-twice__slide--1" data-testid="dmba-twice-slide-1">
+      <img
+        src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1600&q=80"
+        alt="" class="dmba-twice__slide-bg" loading="lazy" />
+      <div class="dmba-twice__slide-overlay"></div>
+      <div class="dmba-twice__slide-content">
+        <span class="dmba-twice__label">The Dual Advantage</span>
+        <h2 class="dmba-twice__title">Twice the <em>Value</em>.</h2>
+      </div>
+    </div>
+
+    <div class="dmba-twice__slide dmba-twice__slide--2" data-testid="dmba-twice-slide-2">
+      <img
+        src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1600&q=80"
+        alt="" class="dmba-twice__slide-bg" loading="lazy" />
+      <div class="dmba-twice__slide-overlay"></div>
+      <div class="dmba-twice__slide-content">
+        <h2 class="dmba-twice__title">Twice the <em>Opportunity</em>.</h2>
+      </div>
+    </div>
+
+    <div class="dmba-twice__slide dmba-twice__slide--3" data-testid="dmba-twice-slide-3">
+      <img
+        src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1600&q=80"
+        alt="" class="dmba-twice__slide-bg" loading="lazy" />
+      <div class="dmba-twice__slide-overlay"></div>
+      <div class="dmba-twice__slide-content">
+        <h2 class="dmba-twice__title">Twice the <em>Recognition</em>.</h2>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{{-- ===== S5: WHY CHOOSE DUAL MBA ===== --}}
 <section class="dmba-why section--light section--warm section-wrapper" aria-label="Why Choose Dual MBA" data-testid="dmba-why-section">
   <div class="container">
     <div class="dmba-why__header">
@@ -223,7 +270,7 @@
   </div>
 </section>
 
-{{-- ===== S5: SPECIALISATIONS GRID ===== --}}
+{{-- ===== S6: SPECIALISATIONS GRID ===== --}}
 <section class="dmba-specs section--light section-wrapper" aria-label="MBA Specialisations" data-testid="dmba-specs-section">
   <div class="container">
     <div class="dmba-specs__header">
@@ -300,17 +347,33 @@
   </div>
 </section>
 
-{{-- ===== S6: WHY EMPLOYERS VALUE ===== --}}
+{{-- ===== S7: WHY EMPLOYERS VALUE ===== --}}
 <section class="dmba-employers section--light section--warm section-wrapper" aria-label="Why Employers Value a Dual MBA" data-testid="dmba-employers-section">
   <div class="container">
     <div class="dmba-employers__grid">
       <div class="dmba-employers__image-col">
-        <div class="dmba-employers__image-wrapper">
-          <img
-            src="https://images.unsplash.com/photo-1758876201598-67fd2a5570ed?w=800&q=80"
-            alt="Business professionals in a collaborative work environment"
-            loading="lazy"
-          />
+        <div class="dmba-employers__collage" data-testid="dmba-employers-collage">
+          <figure class="dmba-employers__collage-item dmba-employers__collage-item--lead">
+            <img
+              src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80"
+              alt="Business professionals in a strategic leadership meeting"
+              loading="lazy"
+            />
+          </figure>
+          <figure class="dmba-employers__collage-item dmba-employers__collage-item--team">
+            <img
+              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&q=80"
+              alt="Cross-functional team collaborating across departments"
+              loading="lazy"
+            />
+          </figure>
+          <figure class="dmba-employers__collage-item dmba-employers__collage-item--growth">
+            <img
+              src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&q=80"
+              alt="Professional developing her career and leadership skills"
+              loading="lazy"
+            />
+          </figure>
         </div>
         <div class="dmba-employers__counter">
           <span class="dmba-employers__counter-value" data-dmba-counter="8">0</span>
@@ -364,7 +427,7 @@
   </div>
 </section>
 
-{{-- ===== S7: TESTIMONIALS ===== --}}
+{{-- ===== S8: TESTIMONIALS ===== --}}
 <section class="dmba-testimonials section--light section-wrapper" aria-label="Student Success Stories" data-testid="dmba-testimonials-section">
   <div class="container">
     <div class="dmba-testimonials__header">
@@ -463,7 +526,7 @@
   </div>
 </section>
 
-{{-- ===== S8: APPLICATION PROCESS ===== --}}
+{{-- ===== S9: APPLICATION PROCESS ===== --}}
 <section class="dmba-process section--light section--warm section-wrapper" aria-label="Application Process" data-testid="dmba-process-section">
   <div class="container">
     <div class="dmba-process__header">
@@ -507,7 +570,7 @@
   </div>
 </section>
 
-{{-- ===== S9: FAQ ACCORDION ===== --}}
+{{-- ===== S10: FAQ ACCORDION ===== --}}
 <section class="dmba-faq section--light section-wrapper" aria-label="Frequently Asked Questions" data-testid="dmba-faq-section">
   <div class="container">
     <div class="dmba-faq__header">
@@ -603,7 +666,7 @@
   </div>
 </section>
 
-{{-- ===== S10: FINAL CTA ===== --}}
+{{-- ===== S11: FINAL CTA ===== --}}
 <section class="dmba-cta" aria-label="Apply for Dual MBA" data-testid="dmba-cta-section">
   <div class="dmba-cta__bg" aria-hidden="true">
     <img

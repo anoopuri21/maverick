@@ -5,6 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    {{-- JS availability flag (progressive enhancement) --}}
+    <script>document.documentElement.classList.add('js');</script>
+
     {{-- SEO Meta --}}
     <title>@yield('title', 'Maverick Business Academy | Transforming Learners into Global Leaders')</title>
     <meta name="description" content="@yield('meta_description', 'Maverick Business Academy - Transforming Learners into Global Leaders.')" />

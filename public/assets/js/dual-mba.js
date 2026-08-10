@@ -4,8 +4,15 @@
    ========================================================= */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Ensure GSAP is loaded
-  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+  // Ensure GSAP is loaded. If not, reveal all JS-hidden elements so no
+  // section is ever left blank (progressive enhancement fallback).
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+    document.querySelectorAll('.fade-up, .fade-in, .scale-in').forEach((el) => {
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+    });
+    return;
+  }
 
   gsap.registerPlugin(ScrollTrigger);
 
@@ -40,23 +47,38 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // =============================================
-  // PROGRAMME OVERVIEW — Cards Slide In
+  // "TWICE" SCROLL STACK — Subtle Parallax on slide backgrounds
   // =============================================
-  gsap.from('.dmba-overview__card', {
-    scrollTrigger: { trigger: '.dmba-overview__pathway', start: 'top 75%', once: true },
+  if (!prefersReducedMotion) {
+    document.querySelectorAll('.dmba-twice__slide').forEach((slide) => {
+      const bg = slide.querySelector('.dmba-twice__slide-bg');
+      if (!bg) return;
+      gsap.fromTo(
+        bg,
+        { yPercent: -8 },
+        {
+          yPercent: 8,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: slide,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: true
+          }
+        }
+      );
+    });
+  }
+
+  // =============================================
+  // PROGRAMME HIGHLIGHTS — Staggered Card Reveal
+  // =============================================
+  gsap.from('.dmba-highlights__card', {
+    scrollTrigger: { trigger: '.dmba-highlights__grid', start: 'top 80%', once: true },
     opacity: 0,
     y: 30,
-    duration: 0.6,
-    stagger: 0.2,
-    ease: 'power3.out'
-  });
-
-  gsap.from('.dmba-overview__bridge', {
-    scrollTrigger: { trigger: '.dmba-overview__pathway', start: 'top 75%', once: true },
-    opacity: 0,
-    scale: 0.8,
-    duration: 0.6,
-    delay: 0.3,
+    duration: 0.5,
+    stagger: 0.08,
     ease: 'power3.out'
   });
 
