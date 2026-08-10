@@ -74,7 +74,6 @@
             <h4 class="edu-programmes__china-title">University Exposure</h4>
             <p class="edu-programmes__china-desc">Visit selected universities and learn about their programmes, campuses, research environment and approach to education.</p>
           </div>
-          <a href="{{ route('contact') }}" class="btn edu-programmes__china-btn">Request University Visit</a>
         </div>
 
         <div class="edu-programmes__china-item fade-up">
@@ -85,7 +84,6 @@
             <h4 class="edu-programmes__china-title">Business and Industry Visits</h4>
             <p class="edu-programmes__china-desc">Explore how organisations operate within sectors such as technology, manufacturing, e-commerce, finance, logistics and AI.</p>
           </div>
-          <a href="{{ route('contact') }}" class="btn edu-programmes__china-btn">Request Industry Visit</a>
         </div>
 
         <div class="edu-programmes__china-item fade-up">
@@ -96,7 +94,6 @@
             <h4 class="edu-programmes__china-title">Innovation and Entrepreneurship</h4>
             <p class="edu-programmes__china-desc">Discover startup ecosystems, technology centres, innovation districts and emerging business models.</p>
           </div>
-          <a href="{{ route('contact') }}" class="btn edu-programmes__china-btn">Request Innovation Visit</a>
         </div>
 
         <div class="edu-programmes__china-item fade-up">
@@ -107,7 +104,6 @@
             <h4 class="edu-programmes__china-title">Cultural Immersion</h4>
             <p class="edu-programmes__china-desc">Experience Chinese history and traditions through cultural sites, local activities, art, food, language and community interaction.</p>
           </div>
-          <a href="{{ route('contact') }}" class="btn edu-programmes__china-btn">Request Cultural Experience</a>
         </div>
 
         <div class="edu-programmes__china-item fade-up">
@@ -118,7 +114,6 @@
             <h4 class="edu-programmes__china-title">Student Interaction</h4>
             <p class="edu-programmes__china-desc">Where available, connect with local or international students and exchange ideas about education, culture and career aspirations.</p>
           </div>
-          <a href="{{ route('contact') }}" class="btn edu-programmes__china-btn">Request Student Interaction</a>
         </div>
 
         <div class="edu-programmes__china-item fade-up">
@@ -129,8 +124,11 @@
             <h4 class="edu-programmes__china-title">Leadership and Global Business Learning</h4>
             <p class="edu-programmes__china-desc">Participate in discussions, workshops or reflection sessions connected to international business, innovation, leadership and cross-cultural management.</p>
           </div>
-          <a href="{{ route('contact') }}" class="btn edu-programmes__china-btn">Request Leadership Session</a>
         </div>
+      </div>
+
+      <div class="edu-programmes__china-cta fade-up">
+        <a href="{{ route('contact') }}" class="btn btn--primary">Request a China Study Tour Itinerary</a>
       </div>
     </div>
   </div>

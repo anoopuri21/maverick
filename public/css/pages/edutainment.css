@@ -227,13 +227,8 @@
    ========================================================= */
 .edu-intro { position: relative; overflow: hidden; }
 
-.edu-intro__grid {
-  display: grid;
-  grid-template-columns: 1fr 1.1fr;
-  gap: 64px;
-  align-items: center;
-  max-width: 1120px;
-  margin: 0 auto;
+.edu-intro__frame {
+  max-width: 900px;
 }
 
 .edu-intro__label {
@@ -274,29 +269,11 @@
 .edu-intro__emphasis strong { color: var(--edu-navy); }
 .edu-intro__ctas { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 8px; }
 
-@media (max-width: 900px) {
-  .edu-intro__grid { grid-template-columns: 1fr; gap: 40px; }
-}
-
 /* =========================================================
    S2 — WHAT IS EDUTAINMENT
    ========================================================= */
-.edu-what-is__grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 56px;
-  align-items: center;
-  max-width: 1100px;
-  margin: 0 auto 48px;
-}
-
-.edu-what-is__visual { text-align: center; position: relative; }
-.edu-what-is__visual::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(300px 300px at 50% 50%, rgba(178, 2, 2, 0.08), transparent);
-  z-index: -1;
+.edu-what-is__frame {
+  max-width: 900px;
 }
 
 .edu-what-is__wordmark {
@@ -304,10 +281,11 @@
   font-size: clamp(52px, 8vw, 110px);
   font-weight: 700; line-height: 0.95; letter-spacing: -0.03em;
   color: var(--edu-navy);
+  margin-bottom: 32px;
 }
 .edu-what-is__wordmark em { font-style: italic; color: var(--edu-red); }
 .edu-what-is__wordmark-sub {
-  display: inline-block; margin-top: 14px;
+  display: block; margin-top: 14px;
   font-family: var(--font-body); font-size: 12px; font-weight: 600;
   letter-spacing: 0.22em; text-transform: uppercase;
   color: rgba(0, 0, 0, 0.4);
@@ -358,7 +336,7 @@
   display: flex; gap: 16px; align-items: flex-start;
   border-left: 3px solid var(--edu-red);
   padding-left: 20px;
-  max-width: 760px; margin: 0 auto;
+  max-width: 900px;
 }
 .edu-what-is__quote p {
   font-family: var(--font-display);
@@ -367,8 +345,17 @@
 }
 
 @media (max-width: 900px) {
-  .edu-what-is__grid { grid-template-columns: 1fr; gap: 32px; }
   .edu-what-is__list { grid-template-columns: 1fr; }
+}
+
+/* Left-aligned section header variant */
+.edu-section-header--left {
+  text-align: left;
+  max-width: none;
+  margin: 0 0 40px;
+}
+.edu-section-header--left .section-label {
+  justify-content: flex-start;
 }
 
 /* =========================================================
@@ -632,16 +619,10 @@
   color: var(--edu-muted); margin: 0;
 }
 
-.edu-programmes__china-btn {
-  align-self: flex-start;
-  padding: 10px 20px;
-  font-size: 12px;
-  background: var(--edu-blue);
-  border: 1px solid var(--edu-blue);
-}
-.edu-programmes__china-btn:hover {
-  background: var(--edu-navy);
-  border-color: var(--edu-navy);
+.edu-programmes__china-cta {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 32px;
 }
 
 @media (max-width: 1024px) {
