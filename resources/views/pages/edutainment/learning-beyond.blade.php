@@ -1,5 +1,5 @@
 {{-- ===== S3: LEARNING BEYOND THE CLASSROOM ===== --}}
-<section id="edu-learning-beyond" class="edu-learning-beyond section-wrapper" aria-label="Learning Beyond the Classroom">
+<section id="edu-learning-beyond" class="edu-learning-beyond section-wrapper section--light" aria-label="Learning Beyond the Classroom">
   <div class="container">
     <div class="edu-learning-beyond__header">
       <div class="section-label"><span>Beyond Classroom</span></div>

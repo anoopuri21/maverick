@@ -1,5 +1,5 @@
 {{-- ===== S5: OUR EDUTAINMENT PROGRAMMES ===== --}}
-<section id="edu-programmes" class="edu-programmes section-wrapper" aria-label="Our Edutainment Programmes">
+<section id="edu-programmes" class="edu-programmes section-wrapper section--light" aria-label="Our Edutainment Programmes">
   <div class="container">
     <div class="edu-programmes__header">
       <div class="section-label"><span>Our Programmes</span></div>
