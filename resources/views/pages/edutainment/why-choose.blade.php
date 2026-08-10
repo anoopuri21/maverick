@@ -9,7 +9,7 @@
     <div class="edu-why-choose__grid">
       <div class="edu-why-choose__image-col fade-up">
         <div class="edu-why-choose__image-wrapper">
-          <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&q=80" alt="Students exploring" loading="lazy">
+          <img src="{{ asset('assets/images/edutainment/why-choose.jpg') }}" alt="Students exploring" loading="lazy">
         </div>
         <div class="edu-why-choose__image-accent" aria-hidden="true"></div>
       </div>

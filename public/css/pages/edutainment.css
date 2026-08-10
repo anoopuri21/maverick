@@ -374,6 +374,20 @@
 /* =========================================================
    S3 — LEARNING BEYOND THE CLASSROOM
    ========================================================= */
+.edu-learning-beyond__media {
+  border-radius: var(--edu-radius);
+  overflow: hidden;
+  max-width: 900px;
+  margin: 0 auto 48px;
+  box-shadow: 0 28px 64px rgba(7, 20, 68, 0.2);
+}
+.edu-learning-beyond__media img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  display: block;
+}
+
 .edu-learning-beyond__subheading {
   text-align: center;
   font-family: var(--font-display);

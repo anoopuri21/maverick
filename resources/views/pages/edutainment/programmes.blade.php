@@ -10,7 +10,7 @@
       {{-- UAE Educational Tours --}}
       <div class="edu-programmes__card fade-up">
         <div class="edu-programmes__card-image">
-          <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80" alt="UAE Skyline" loading="lazy">
+          <img src="{{ asset('assets/images/edutainment/dubai-uae-skyline-students-studying-camp-1.jpg') }}" alt="UAE Skyline" loading="lazy">
           <div class="edu-programmes__card-overlay"></div>
         </div>
         <div class="edu-programmes__card-content">
@@ -32,7 +32,7 @@
       {{-- International Study Tours --}}
       <div class="edu-programmes__card fade-up">
         <div class="edu-programmes__card-image">
-          <img src="https://images.pexels.com/photos/8828682/pexels-photo-8828682.jpeg" alt="International Students" loading="lazy">
+          <img src="{{ asset('assets/images/edutainment/international-students-university-campus-1.jpg') }}" alt="International Students" loading="lazy">
           <div class="edu-programmes__card-overlay"></div>
         </div>
         <div class="edu-programmes__card-content">
@@ -54,7 +54,7 @@
       {{-- China Study Tour --}}
       <div class="edu-programmes__card edu-programmes__card--featured fade-up">
         <div class="edu-programmes__card-image">
-          <img src="https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=800&q=80" alt="China" loading="lazy">
+          <img src="{{ asset('assets/images/edutainment/great-wall-china-travel-students-busines-2.jpg') }}" alt="China" loading="lazy">
           <div class="edu-programmes__card-overlay"></div>
         </div>
         <div class="edu-programmes__card-content">
