@@ -355,21 +355,21 @@
         <div class="dmba-employers__collage" data-testid="dmba-employers-collage">
           <figure class="dmba-employers__collage-item dmba-employers__collage-item--lead">
             <img
-              src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80"
+              src="assets/images/01.png"
               alt="Business professionals in a strategic leadership meeting"
               loading="lazy"
             />
           </figure>
           <figure class="dmba-employers__collage-item dmba-employers__collage-item--team">
             <img
-              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&q=80"
+              src="assets/images/02.png"
               alt="Cross-functional team collaborating across departments"
               loading="lazy"
             />
           </figure>
           <figure class="dmba-employers__collage-item dmba-employers__collage-item--growth">
             <img
-              src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&q=80"
+              src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80"
               alt="Professional developing her career and leadership skills"
               loading="lazy"
             />

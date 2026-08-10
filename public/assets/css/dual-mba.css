@@ -729,6 +729,7 @@
   width: 68%;
   height: 62%;
   z-index: 2;
+  border: 6px solid var(--color-warm-white);
 }
 
 .dmba-employers__collage-item--team {
@@ -741,11 +742,12 @@
 }
 
 .dmba-employers__collage-item--growth {
-  top: 6%;
+  top: 25%;
   right: 0;
-  width: 40%;
-  height: 52%;
+  width: 50%;
+  height: 50%;
   z-index: 1;
+  border: 6px solid var(--color-warm-white);
 }
 
 .dmba-employers__counter {
