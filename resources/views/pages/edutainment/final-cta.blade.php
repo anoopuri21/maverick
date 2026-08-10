@@ -1,7 +1,7 @@
 {{-- ===== S12: FINAL CTA ===== --}}
 <section id="edu-cta" class="edu-cta" aria-label="Transform a Student Trip">
   <div class="edu-cta__bg" aria-hidden="true">
-    <div class="edu-cta__bg-image" style="background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1920&q=80')"></div>
+    <div class="edu-cta__bg-image" style="background-image: url('{{ asset('assets/images/edutainment/cta-cinematic.jpg') }}')"></div>
     <div class="edu-cta__overlay"></div>
   </div>
 

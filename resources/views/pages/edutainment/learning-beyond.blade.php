@@ -9,6 +9,10 @@
       <p class="body-text fade-up"><strong>Maverick Edutainment helps connect academic ideas with real places, people and experiences.</strong></p>
     </div>
 
+    <div class="edu-learning-beyond__media fade-up">
+      <img src="{{ asset('assets/images/edutainment/learning-beyond.jpg') }}" alt="Students experiencing learning beyond the classroom" loading="lazy" />
+    </div>
+
     <h3 class="edu-learning-beyond__subheading fade-up">Students can return from their journey with:</h3>
 
     <div class="edu-learning-beyond__grid">

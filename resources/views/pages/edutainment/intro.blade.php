@@ -1,15 +1,13 @@
 {{-- ===== S1: INTRO — Explore the World ===== --}}
 <section id="edu-intro" class="edu-intro section--light section-wrapper" aria-label="Explore the World. Experience New Cultures.">
   <div class="container">
-    <div class="edu-intro__grid">
-      <div class="edu-intro__statement">
-        <span class="edu-intro__label">Educational Tours That Bring Learning to Life</span>
-        <h2 class="edu-intro__title">
-          Explore the World.<br>
-          Experience <em>New Cultures</em>.<br>
-          Learn Beyond the <em>Classroom</em>.
-        </h2>
-      </div>
+    <div class="edu-intro__frame">
+      <span class="edu-intro__label fade-up">Educational Tours That Bring Learning to Life</span>
+      <h2 class="edu-intro__title fade-up">
+        Explore the World.<br>
+        Experience <em>New Cultures</em>.<br>
+        Learn Beyond the <em>Classroom</em>.
+      </h2>
 
       <div class="edu-intro__body">
         <p class="fade-up">

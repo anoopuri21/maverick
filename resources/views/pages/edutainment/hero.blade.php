@@ -1,7 +1,7 @@
 {{-- ===== HERO — Cinematic World Tour ===== --}}
 <section id="edu-hero" class="edu-hero" aria-label="Edutainment Hero">
   <div class="edu-hero__bg" aria-hidden="true">
-    <div class="edu-hero__bg-image" style="background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1920&q=80')"></div>
+    <div class="edu-hero__bg-image" style="background-image: url('{{ asset('assets/images/edutainment/hero-cinematic.jpg') }}')"></div>
     <div class="edu-hero__gradient"></div>
     <div class="edu-hero__noise"></div>
 

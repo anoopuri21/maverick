@@ -1,16 +1,14 @@
 {{-- ===== S2: WHAT IS EDUTAINMENT ===== --}}
 <section id="edu-what-is" class="edu-what-is section--light section-wrapper" aria-label="What Is Edutainment">
   <div class="container">
-    <div class="edu-section-header">
+    <div class="edu-section-header edu-section-header--left">
       <div class="section-label"><span>Understanding Edutainment</span></div>
       <h2 class="section-title">What Is <em>Edutainment?</em></h2>
     </div>
 
-    <div class="edu-what-is__grid">
-      <div class="edu-what-is__visual fade-up">
-        <div class="edu-what-is__wordmark">
-          EDU<em>+</em><br>TAINMENT
-        </div>
+    <div class="edu-what-is__frame">
+      <div class="edu-what-is__wordmark fade-up">
+        EDU<em>+</em><br>TAINMENT
         <span class="edu-what-is__wordmark-sub">Education &times; Entertainment</span>
       </div>
 
