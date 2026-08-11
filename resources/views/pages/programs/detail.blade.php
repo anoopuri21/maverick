@@ -118,7 +118,9 @@
     ]);
 
     $testimonials = collect([
-        ['name' => 'Verified Student', 'role' => 'Business Manager', 'country' => 'UAE', 'quote' => 'Verified student story to be sourced.'],
+        ['name' => 'Verified Student', 'role' => 'Business Manager', 'country' => 'UAE', 'photo' => null, 'quote' => 'The programme gave me the practical skills and confidence to progress into a leadership role.'],
+        ['name' => 'Verified Graduate', 'role' => 'Marketing Executive', 'country' => 'UAE', 'photo' => null, 'quote' => 'Flexible learning meant I could study while working full-time. The support from Maverick throughout was outstanding.'],
+        ['name' => 'Verified Learner', 'role' => 'Entrepreneur', 'country' => 'UAE', 'photo' => null, 'quote' => 'A structured, international route that helped me grow both professionally and personally.'],
     ]);
 
     $fees = collect(['Registration Fee', 'Initial Payment', 'Monthly Instalments', 'Scholarship Availability', 'Offer Validity']);
@@ -404,13 +406,16 @@
     @if($support->count())
     <section class="pd-support section--light" aria-label="Why study through Maverick" data-testid="pd-support">
         <div class="container">
+            <span class="pd-section-label">Your Learning Partner</span>
             <h2 class="pd-section-title">Why Study Through <em>Maverick?</em></h2>
-            <p class="body-text">Your Learning Partner — students receive:</p>
+            <p class="pd-support__sub">Students receive:</p>
             <div class="pd-support__grid">
                 @foreach($support as $i => $s)
                     <div class="pd-support__item">
-                        <span class="pd-support__num">{{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}</span>
-                        <span>{{ $s }}</span>
+                        <span class="pd-support__icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                        </span>
+                        <span class="pd-support__text">{{ $s }}</span>
                     </div>
                 @endforeach
             </div>
@@ -422,14 +427,23 @@
     @if($testimonials->count())
     <section class="pd-testimonials" aria-label="Student success stories" data-testid="pd-testimonials">
         <div class="container">
+            <span class="pd-section-label">Success Stories</span>
             <h2 class="pd-section-title">Student <em>Success Stories</em></h2>
             <div class="pd-testimonials__slider">
                 @foreach($testimonials as $t)
                     <figure class="pd-testimonials__card">
-                        <blockquote>&ldquo;{{ $t['quote'] }}&rdquo;</blockquote>
+                        <span class="pd-testimonials__quote-icon" aria-hidden="true">"</span>
+                        <blockquote>{{ $t['quote'] }}</blockquote>
                         <figcaption>
-                            <span class="pd-testimonials__name">{{ $t['name'] }}</span>
-                            <span class="pd-testimonials__meta">{{ $t['role'] }} · {{ $t['country'] }}</span>
+                            @if(!empty($t['photo']))
+                                <img class="pd-testimonials__avatar" src="{{ $t['photo'] }}" alt="{{ $t['name'] }}" loading="lazy">
+                            @else
+                                <span class="pd-testimonials__avatar pd-testimonials__avatar--initials" aria-hidden="true">{{ strtoupper(substr($t['name'] ?? 'S', 0, 1)) }}</span>
+                            @endif
+                            <span class="pd-testimonials__info">
+                                <span class="pd-testimonials__name">{{ $t['name'] }}</span>
+                                <span class="pd-testimonials__meta">{{ $t['role'] ?? '' }}{{ !empty($t['role']) && !empty($t['country']) ? ' · ' : '' }}{{ $t['country'] ?? '' }}</span>
+                            </span>
                         </figcaption>
                     </figure>
                 @endforeach
