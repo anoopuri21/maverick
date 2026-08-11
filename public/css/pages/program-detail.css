@@ -266,18 +266,18 @@
 .pd-careers__sub { font-size: 16px; color: var(--pd-muted); margin: 0 0 28px; }
 .pd-careers__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 .pd-careers__card {
-  display: flex; flex-direction: column; gap: 14px; align-items: flex-start;
-  background: #fff; border: 1px solid var(--pd-line); border-radius: 14px; padding: 24px;
+  display: flex; align-items: center; gap: 14px;
+  background: #fff; border: 1px solid var(--pd-line); border-radius: 12px; padding: 20px 22px;
   transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
-.pd-careers__card:hover { border-color: var(--pd-red); box-shadow: 0 14px 36px rgba(28,35,51,0.08); }
+.pd-careers__card:hover { border-color: var(--pd-red); box-shadow: 0 12px 32px rgba(28,35,51,0.08); }
 .pd-careers__icon {
-  width: 46px; height: 46px; border-radius: 12px;
-  background: linear-gradient(135deg, var(--pd-navy), var(--pd-navy-deep));
-  color: #fff; display: flex; align-items: center; justify-content: center;
+  width: 34px; height: 34px; border-radius: 50%;
+  background: rgba(236, 31, 36, 0.1); color: var(--pd-red);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
 }
-.pd-careers__icon svg { width: 22px; height: 22px; }
-.pd-careers__label { font-family: var(--font-display); font-size: 16px; font-weight: 600; color: var(--pd-navy); }
+.pd-careers__icon svg { width: 16px; height: 16px; }
+.pd-careers__label { font-family: var(--font-body); font-size: 15px; font-weight: 400; color: var(--pd-ink); }
 
 /* =========================================================
    STEP 5 · STRUCTURE
@@ -291,15 +291,21 @@
 .pd-structure__sub { font-size: 14px; color: var(--pd-muted); }
 .pd-structure__chevron { font-size: 22px; color: var(--pd-red); transition: transform 0.25s ease; }
 .pd-structure__item[open] .pd-structure__chevron { transform: rotate(45deg); }
-.pd-structure__modules { list-style: none; margin: 0; padding: 0 4px 22px; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px 24px; }
-.pd-structure__modules li { font-size: 14px; color: var(--pd-ink); display: flex; align-items: center; gap: 8px; }
-.pd-structure__modules li::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--pd-red); }
+.pd-structure__modules {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
+  padding: 0 4px 22px;
+}
+.pd-structure__module {
+  background: #fff; border: 1px solid var(--pd-line); border-radius: 10px; padding: 16px 18px;
+}
+.pd-structure__module-title { font-family: var(--font-display); font-size: 15px; font-weight: 600; color: var(--pd-navy); margin: 0 0 4px; }
+.pd-structure__module-desc { font-size: 13px; line-height: 1.6; color: var(--pd-muted); margin: 0; }
 
 /* =========================================================
    STEP 6 · UNIVERSITY
    ========================================================= */
 .pd-uni { padding: clamp(40px, 5vw, 64px) 0; }
-.pd-uni__grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(28px, 5vw, 72px); align-items: center; }
+.pd-uni__body { max-width: 72ch; }
 .pd-uni__body p { font-size: 15px; line-height: 1.8; color: var(--pd-muted); margin: 0 0 12px; }
 .pd-uni__meta { font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--pd-navy); font-weight: 600; }
 
@@ -307,11 +313,25 @@
    STEP 6 · ACCREDITATION
    ========================================================= */
 .pd-accred { padding: clamp(36px, 5vw, 56px) 0; }
-.pd-accred__groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
-.pd-accred__group { border: 1px solid var(--pd-line); border-radius: 12px; padding: 24px; }
-.pd-accred__group h3 { font-family: var(--font-display); font-size: 16px; color: var(--pd-navy); margin: 0 0 16px; }
-.pd-accred__list { display: flex; gap: 10px; flex-wrap: wrap; }
-.pd-accred__badge { border: 1px solid var(--pd-line); border-radius: 8px; padding: 12px 20px; font-weight: 600; color: var(--pd-navy); font-size: 14px; background: #fff; }
+.pd-accred__division { margin-bottom: 36px; }
+.pd-accred__division:last-child { margin-bottom: 0; }
+.pd-accred__division-heading {
+  font-family: var(--font-display);
+  font-size: 15px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--pd-navy); margin: 0 0 18px;
+}
+.pd-accred__slider {
+  display: flex; gap: 16px; overflow-x: auto;
+  scroll-snap-type: x mandatory; padding-bottom: 8px; -webkit-overflow-scrolling: touch;
+}
+.pd-accred__logo-box {
+  flex: 0 0 120px; height: 120px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--pd-line); border-radius: 50%;
+  background: #fff; scroll-snap-align: start;
+}
+.pd-accred__logo-img { max-width: 70%; max-height: 70%; object-fit: contain; }
+.pd-accred__logo-text { font-family: var(--font-display); font-size: 15px; font-weight: 600; color: var(--pd-navy); text-align: center; }
 
 /* =========================================================
    STEP 7 · SUPPORT
@@ -399,11 +419,12 @@
    RESPONSIVE
    ========================================================= */
 @media (max-width: 1024px) {
-  .pd-uni__grid, .pd-enquire__inner, .pd-fees__inner { grid-template-columns: 1fr; gap: 28px; }
+  .pd-enquire__inner, .pd-fees__inner { grid-template-columns: 1fr; gap: 28px; }
   .pd-form__row { grid-template-columns: 1fr; }
   .pd-recognition__awarded-grid { grid-template-columns: repeat(2, 1fr); }
   .pd-benefits__grid { grid-template-columns: repeat(2, 1fr); }
   .pd-careers__grid { grid-template-columns: repeat(2, 1fr); }
+  .pd-structure__modules { grid-template-columns: 1fr; }
 }
 @media (max-width: 768px) {
   .pd-learn__list { grid-template-columns: 1fr; }
