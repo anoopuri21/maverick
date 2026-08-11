@@ -333,24 +333,39 @@
     @if($structure->count())
     <section class="pd-structure" id="structure" aria-label="Programme structure" data-testid="pd-structure">
         <div class="container">
+            <span class="pd-section-label">Programme Structure</span>
             <h2 class="pd-section-title">Programme <em>Structure</em></h2>
             <div class="pd-structure__list">
                 @foreach($structure as $i => $stage)
-                    <details class="pd-structure__item" {{ $i === 0 ? 'open' : '' }}>
-                        <summary class="pd-structure__head">
-                            <span class="pd-structure__title">{{ $stage['title'] }}</span>
-                            @if(!empty($stage['subtitle']))<span class="pd-structure__sub">{{ $stage['subtitle'] }}</span>@endif
-                            <span class="pd-structure__chevron" aria-hidden="true">+</span>
+                    <details class="pd-structure__year" {{ $i === 0 ? 'open' : '' }}>
+                        <summary class="pd-structure__year-head">
+                            <span class="pd-structure__year-title">Year {{ $i + 1 }}</span>
+                            @if(!empty($stage['subtitle']))<span class="pd-structure__year-sub">{{ $stage['subtitle'] }}</span>@endif
+                            <span class="pd-structure__year-arrow" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                            </span>
                         </summary>
                         @if(!empty($stage['modules']))
                             <div class="pd-structure__modules">
-                                @foreach($stage['modules'] as $module)
-                                    <div class="pd-structure__module">
-                                        <h4 class="pd-structure__module-title">{{ is_array($module) ? $module['title'] : $module }}</h4>
-                                        @if(is_array($module) && !empty($module['desc']))
-                                            <p class="pd-structure__module-desc">{{ $module['desc'] }}</p>
+                                @foreach($stage['modules'] as $mi => $module)
+                                    <details class="pd-structure__module" {{ $mi === 0 ? 'open' : '' }}>
+                                        <summary class="pd-structure__module-head">
+                                            <span class="pd-structure__module-arrow" aria-hidden="true">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+                                            </span>
+                                            <span class="pd-structure__module-title">Module {{ $mi + 1 }}</span>
+                                        </summary>
+                                        @if(is_array($module))
+                                            <div class="pd-structure__module-content">
+                                                <h5 class="pd-structure__module-name">{{ $module['title'] }}</h5>
+                                                @if(!empty($module['desc']))<p class="pd-structure__module-desc">{{ $module['desc'] }}</p>@endif
+                                            </div>
+                                        @else
+                                            <div class="pd-structure__module-content">
+                                                <p class="pd-structure__module-desc">{{ $module }}</p>
+                                            </div>
                                         @endif
-                                    </div>
+                                    </details>
                                 @endforeach
                             </div>
                         @endif
@@ -557,8 +572,8 @@
 @push('scripts')
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-    // Accordions: close others in same group (structure + FAQ + recognition)
-    document.querySelectorAll('.pd-structure__item, .pd-faq__item').forEach(details => {
+    // Accordions: close others in same group (structure years, structure modules, FAQ)
+    document.querySelectorAll('.pd-structure__year, .pd-structure__module, .pd-faq__item').forEach(details => {
         details.addEventListener('toggle', () => {
             if (!details.open) return;
             const group = details.parentElement;
