@@ -188,7 +188,7 @@
 
 .mp-how__phases {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 24px;
 }
 
@@ -285,7 +285,7 @@
 
 .mp-dest {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 64px;
   align-items: center;
 }
@@ -367,7 +367,7 @@
   padding: 0;
   margin: 0;
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 10px 16px;
 }
 
@@ -416,7 +416,7 @@
    ========================================================= */
 .mp-why__grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 1.2fr;
   gap: 64px;
   align-items: start;
 }
@@ -501,7 +501,7 @@
 
 .mp-audience__grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(2, 1fr);
   gap: 20px;
 }
 
@@ -536,7 +536,7 @@
    ========================================================= */
 .mp-requirements__grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 1.2fr;
   gap: 64px;
   align-items: start;
 }
@@ -550,7 +550,7 @@
   padding: 0;
   margin: 0;
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 14px;
 }
 
@@ -758,7 +758,7 @@
    ========================================================= */
 .mp-notice__panel {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 240px 1fr;
   gap: 40px;
   background: var(--mp-grey);
   border-radius: 16px;
