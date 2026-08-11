@@ -18,7 +18,7 @@
         'heading_italic' => 'Pathway Program',
         'sub_heading' => 'A smarter route to a globally recognised Master\'s degree in Europe',
         'description' => 'The Maverick International Master\'s Pathway Program is designed for graduates and working professionals who want a structured, flexible and cost-effective route towards an international Master\'s degree.',
-        'background_image' => 'https://images.pexels.com/photos/1462630/pexels-photo-1462630.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=1600',
+        'background_image' => 'https://images.pexels.com/photos/256541/pexels-photo-256541.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=1600',
     ];
 
     $destinations = collect([
@@ -140,7 +140,7 @@
             <span class="mp-hero__route-arrow">→</span>
             <span>Partner University</span>
             <span class="mp-hero__route-arrow">→</span>
-            <span>Master\'s Completion</span>
+            <span>Master's Completion</span>
         </div>
     </div>
 </section>
@@ -154,12 +154,12 @@
             <div class="mp-overview__left">
                 <span class="section-label"><span>YOUR PATHWAY</span></span>
                 <h2 class="mp-overview__heading section-title">
-                    <span class="text-reveal-wrapper"><span class="text-reveal-inner">What Is the Maverick Master\'s</span></span>
+                    <span class="text-reveal-wrapper"><span class="text-reveal-inner">What Is the Maverick Master's</span></span>
                     <span class="text-reveal-wrapper"><span class="text-reveal-inner"><em>Pathway Program?</em></span></span>
                 </h2>
             </div>
             <div class="mp-overview__right">
-                <p class="body-text fade-up">The Maverick International Master\'s Pathway Program offers a structured two-phase route towards an internationally recognised Master\'s degree. You begin with a Level 7 Diploma with Maverick, then progress to final-stage study at a partner university in Hungary, Moldova or Romania.</p>
+                <p class="body-text fade-up">The Maverick International Master's Pathway Program offers a structured two-phase route towards an internationally recognised Master's degree. You begin with a Level 7 Diploma with Maverick, then progress to final-stage study at a partner university in Hungary, Moldova or Romania.</p>
                 <p class="body-text fade-up">The pathway is designed for graduates and working professionals who want a flexible, cost-effective and globally focused route towards postgraduate completion, with academic mapping and documentation support throughout.</p>
             </div>
         </div>
@@ -193,7 +193,7 @@
         <div class="mp-how__header">
             <span class="section-label"><span>THE JOURNEY</span></span>
             <h2 class="mp-how__heading section-title">
-                <span class="text-reveal-wrapper"><span class="text-reveal-inner">How the Master\'s Pathway</span></span>
+                <span class="text-reveal-wrapper"><span class="text-reveal-inner">How the Master's Pathway</span></span>
                 <span class="text-reveal-wrapper"><span class="text-reveal-inner"><em>Works</em></span></span>
             </h2>
         </div>
@@ -240,7 +240,7 @@
                 <span class="text-reveal-wrapper"><span class="text-reveal-inner">Study</span></span>
                 <span class="text-reveal-wrapper"><span class="text-reveal-inner"><em>Destinations</em></span></span>
             </h2>
-            <p class="body-text fade-up">Explore the three European destinations where you can complete the final stage of your Master\'s pathway.</p>
+            <p class="body-text fade-up">Explore the three European destinations where you can complete the final stage of your Master's pathway.</p>
         </div>
 
         <div class="mp-destinations__list">
@@ -280,7 +280,7 @@
                 <span class="section-label"><span>WHY MAVERICK</span></span>
                 <h2 class="mp-why__heading section-title">
                     <span class="text-reveal-wrapper"><span class="text-reveal-inner">Why Choose Maverick\'s</span></span>
-                    <span class="text-reveal-wrapper"><span class="text-reveal-inner"><em>Master\'s Pathway?</em></span></span>
+                    <span class="text-reveal-wrapper"><span class="text-reveal-inner"><em>Master's Pathway?</em></span></span>
                 </h2>
                 <p class="mp-why__statement">A pathway built around your life.</p>
             </div>
@@ -336,7 +336,7 @@
                     <span class="text-reveal-wrapper"><span class="text-reveal-inner">Entry</span></span>
                     <span class="text-reveal-wrapper"><span class="text-reveal-inner"><em>Requirements</em></span></span>
                 </h2>
-                <p class="body-text fade-up">To begin your Master\'s Pathway with Maverick, you will need to meet the following entry requirements.</p>
+                <p class="body-text fade-up">To begin your Master's Pathway with Maverick, you will need to meet the following entry requirements.</p>
             </div>
             <ul class="mp-requirements__list">
                 @foreach($requirements as $i => $req)
@@ -403,7 +403,7 @@
         <div class="mp-notice__panel">
             <div class="mp-notice__label">ACADEMIC NOTICE</div>
             <div class="mp-notice__content">
-                <p>Progression to a partner university and the award of a Master\'s degree are <strong>not automatic</strong>. The final award is issued by the destination university after the student completes all required academic, assessment, residency, attendance and graduation requirements, and is subject to admission approval, credit recognition, curriculum alignment and programme requirements. All progression remains subject to the relevant university\'s approval.</p>
+                <p>Progression to a partner university and the award of a Master's degree are <strong>not automatic</strong>. The final award is issued by the destination university after the student completes all required academic, assessment, residency, attendance and graduation requirements, and is subject to admission approval, credit recognition, curriculum alignment and programme requirements. All progression remains subject to the relevant university\'s approval.</p>
             </div>
         </div>
     </div>
@@ -412,21 +412,24 @@
 {{-- ═══════════════════════════════════════════
      9. FINAL CTA
 ═══════════════════════════════════════════ --}}
-<section class="mp-final section-wrapper" id="enquire" aria-label="Start Your Master's Journey" data-testid="mp-final">
+<section class="mp-final" id="enquire" aria-label="Start Your Master's Journey" data-testid="mp-final">
     <div class="container">
-        <div class="mp-final__panel">
-            <span class="section-label"><span>BEGIN TODAY</span></span>
+        <div class="mp-final__inner">
+            <span class="mp-final__eyebrow">Begin Today</span>
             <h2 class="mp-final__heading section-title">
-                <span class="text-reveal-wrapper"><span class="text-reveal-inner">Start Your Master\'s Journey</span></span>
-                <span class="text-reveal-wrapper"><span class="text-reveal-inner">with <em>Maverick</em></span></span>
+                Start Your Master's Journey with <em>Maverick</em>
             </h2>
-            <p class="mp-final__text body-text">Begin your international Master\'s journey with a structured, flexible and cost-effective route towards a globally recognised degree. Request an eligibility assessment today to find out if the Master\'s Pathway is right for you.</p>
-            <div class="mp-final__cta">
-                <a href="{{ route('contact') }}" class="btn btn--primary">Request Eligibility Assessment</a>
+            <p class="mp-final__sub">A structured, flexible and cost-effective route towards a globally recognised degree.</p>
+            <p class="mp-final__description body-text">
+                Begin your international Master's journey with Maverick Business Academy London. Complete a Level 7 Diploma and progress to partner universities in Hungary, Moldova or Romania for final-stage Master's completion. Request an eligibility assessment today to find out if the Master's Pathway is right for you.
+            </p>
+            <div class="mp-final__ctas">
+                <a href="{{ route('contact') }}" class="btn mp-final__btn mp-final__btn--solid">Request Eligibility Assessment</a>
+                <a href="mailto:admissions@mbalondon.org.uk" class="btn mp-final__btn mp-final__btn--outline">Speak to an Advisor</a>
             </div>
             <div class="mp-final__contact">
-                <span>Email: <a href="mailto:admissions@mbalondon.org.uk">admissions@mbalondon.org.uk</a></span>
-                <span>Web: <a href="https://www.mbalondon.org.uk">www.mbalondon.org.uk</a></span>
+                <span>admissions@mbalondon.org.uk</span>
+                <span>www.mbalondon.org.uk</span>
             </div>
         </div>
     </div>
