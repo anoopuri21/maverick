@@ -155,7 +155,7 @@
         </span>
         <h1 class="cinematic-hero__title">
             {{ $hero->heading }}<br>
-            <em>{{ $hero->heading_italic }}</em>
+            <span class="color-red">{{ $hero->heading_italic }}</span>
         </h1>
         <p class="cinematic-hero__description">{{ $hero->sub_heading }}</p>
         <p class="mp-hero__desc">{{ $hero->description }}</p>
@@ -184,7 +184,7 @@
                 <span class="section-label"><span>YOUR PATHWAY</span></span>
                 <h2 class="mp-overview__heading section-title">
                     <span class="text-reveal-wrapper"><span class="text-reveal-inner">What Is the Maverick Master's</span></span>
-                    <span class="text-reveal-wrapper"><span class="text-reveal-inner"><em>Pathway Program?</em></span></span>
+                    <span class="text-reveal-wrapper"><span class="text-reveal-inner"><span class="color-red">Pathway Program?</span></span></span>
                 </h2>
             </div>
             <div class="mp-overview__right">
@@ -224,7 +224,7 @@
             <span class="section-label"><span>THE JOURNEY</span></span>
             <h2 class="mp-how__heading section-title">
                 <span class="text-reveal-wrapper"><span class="text-reveal-inner">How the Master's Pathway</span></span>
-                <span class="text-reveal-wrapper"><span class="text-reveal-inner"><em>Works</em></span></span>
+                <span class="text-reveal-wrapper"><span class="text-reveal-inner"><span class="color-red">Works</span></span></span>
             </h2>
         </div>
 
@@ -268,7 +268,7 @@
             <span class="section-label"><span>STUDY DESTINATIONS</span></span>
             <h2 class="mp-destinations__heading section-title">
                 <span class="text-reveal-wrapper"><span class="text-reveal-inner">Study</span></span>
-                <span class="text-reveal-wrapper"><span class="text-reveal-inner"><em>Destinations</em></span></span>
+                <span class="text-reveal-wrapper"><span class="text-reveal-inner"><span class="color-red">Destinations</span></span></span>
             </h2>
             <p class="body-text fade-up">Explore the three European destinations where you can complete the final stage of your Master's pathway.</p>
         </div>
@@ -283,7 +283,7 @@
                 </div>
                 <div class="mp-dest__content fade-up">
                     <span class="mp-dest__label">{{ $dest->label }}</span>
-                    <h3 class="mp-dest__title card-title">Study in <em>{{ $dest->name }}</em></h3>
+                    <h3 class="mp-dest__title card-title">Study in <span class="color-red">{{ $dest->name }}</span></h3>
                     <p class="mp-dest__partner">{{ $dest->university }}</p>
                     <p class="mp-dest__description body-text">{{ $dest->description }}</p>
                     <ul class="mp-dest__points">
@@ -310,7 +310,7 @@
                 <span class="section-label"><span>WHY MAVERICK</span></span>
                 <h2 class="mp-why__heading section-title">
                     <span class="text-reveal-wrapper"><span class="text-reveal-inner">Why Choose Maverick's</span></span>
-                    <span class="text-reveal-wrapper"><span class="text-reveal-inner"><em>Master's Pathway?</em></span></span>
+                    <span class="text-reveal-wrapper"><span class="text-reveal-inner"><span class="color-red">Master's Pathway?</span></span></span>
                 </h2>
                 <p class="mp-why__statement">A pathway built around your life.</p>
             </div>
@@ -338,7 +338,7 @@
             <span class="section-label"><span>WHO IS IT FOR</span></span>
             <h2 class="mp-audience__heading section-title">
                 <span class="text-reveal-wrapper"><span class="text-reveal-inner">Who Is This Program</span></span>
-                <span class="text-reveal-wrapper"><span class="text-reveal-inner"><em>For?</em></span></span>
+                <span class="text-reveal-wrapper"><span class="text-reveal-inner"><span class="color-red">For?</span></span></span>
             </h2>
             <p class="mp-audience__statement">This Master's Pathway is suitable for:</p>
         </div>
@@ -364,7 +364,7 @@
                 <span class="section-label"><span>ENTRY REQUIREMENTS</span></span>
                 <h2 class="mp-requirements__heading section-title">
                     <span class="text-reveal-wrapper"><span class="text-reveal-inner">Entry</span></span>
-                    <span class="text-reveal-wrapper"><span class="text-reveal-inner"><em>Requirements</em></span></span>
+                    <span class="text-reveal-wrapper"><span class="text-reveal-inner"><span class="color-red">Requirements</span></span></span>
                 </h2>
                 <p class="body-text fade-up">Applicants are generally expected to provide:</p>
             </div>
@@ -389,7 +389,7 @@
             <span class="section-label"><span>APPLICATION PROCESS</span></span>
             <h2 class="mp-process__heading section-title">
                 <span class="text-reveal-wrapper"><span class="text-reveal-inner">Application</span></span>
-                <span class="text-reveal-wrapper"><span class="text-reveal-inner"><em>Process</em></span></span>
+                <span class="text-reveal-wrapper"><span class="text-reveal-inner"><span class="color-red">Process</span></span></span>
             </h2>
         </div>
 
@@ -450,7 +450,7 @@
         <div class="mp-final__inner">
             <span class="mp-final__eyebrow">Take the Next Step</span>
             <h2 class="mp-final__heading section-title">
-                Start Your Master's Journey with <em>Maverick</em>
+                Start Your Master's Journey with <span class="color-red">Maverick</span>
             </h2>
             <p class="mp-final__sub">A structured, flexible and cost-effective route towards a globally recognised degree.</p>
             <p class="mp-final__description body-text">
