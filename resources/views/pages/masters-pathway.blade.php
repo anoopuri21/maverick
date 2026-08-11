@@ -423,12 +423,59 @@
 document.addEventListener('DOMContentLoaded', () => {
     if (typeof AnimationUtils === 'undefined' || typeof gsap === 'undefined') return;
 
-    if (AnimationUtils.prefersReducedMotion) {
-        gsap.set('.mp-overview .fade-up, .mp-benefit, .mp-audience__item, .mp-requirements__item, .mp-timeline__content, .mp-pathway__phase, .mp-how__phase, .mp-dest__content', {
+    const reducedMotion = AnimationUtils.prefersReducedMotion;
+
+    // ---------------------------------------------------------
+    // GENERIC TEXT-REVEAL — animates every .text-reveal-inner on
+    // this page (headings wrapped in .text-reveal-wrapper).
+    // Each heading group is triggered by its own nearest section.
+    // ---------------------------------------------------------
+    function initTextReveals() {
+        const inners = document.querySelectorAll('.page-mp .text-reveal-inner');
+        if (!inners.length) return;
+
+        // Group by their parent wrapper's nearest section so each
+        // heading reveals when its own section enters the viewport.
+        const sections = new Map();
+        inners.forEach((el) => {
+            const section = el.closest('section');
+            if (!section) return;
+            if (!sections.has(section)) sections.set(section, []);
+            sections.get(section).push(el);
+        });
+
+        sections.forEach((els, section) => {
+            gsap.fromTo(
+                els,
+                { y: '110%' },
+                {
+                    y: '0%',
+                    duration: 0.9,
+                    stagger: 0.12,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: section,
+                        start: 'top 78%',
+                        once: true,
+                    },
+                },
+            );
+        });
+    }
+
+    // ---------------------------------------------------------
+    // REDUCED MOTION — reveal everything, no animation
+    // ---------------------------------------------------------
+    if (reducedMotion) {
+        gsap.set('.page-mp .text-reveal-inner', { y: '0%' });
+        gsap.set('.page-mp .fade-up, .page-mp .mp-pathway__phase, .page-mp .mp-how__phase, .page-mp .mp-dest__content', {
             clearProps: 'all', opacity: 1, y: 0,
         });
         return;
     }
+
+    // Text reveals (headings)
+    initTextReveals();
 
     // Pathway phases + connector
     gsap.from('.mp-pathway__phase--1', { scrollTrigger: { trigger: '.mp-pathway', start: 'top 80%', once: true }, opacity: 0, x: -40, duration: 0.7, ease: 'power3.out' });
@@ -438,18 +485,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // How phases
     gsap.from('.mp-how__phase', { scrollTrigger: { trigger: '.mp-how__phases', start: 'top 80%', once: true }, opacity: 0, y: 40, stagger: 0.2, duration: 0.7, ease: 'power3.out' });
 
-    // Benefits
+    // Benefits / audience / requirements / destination content
     AnimationUtils.fadeUp('.mp-benefit', { stagger: 0.1 });
     AnimationUtils.fadeUp('.mp-audience__item', { stagger: 0.06 });
     AnimationUtils.fadeUp('.mp-requirements__item', { stagger: 0.06 });
+    AnimationUtils.fadeUp('.mp-dest__content', { stagger: 0.1 });
 
-    // Destinations
-    document.querySelectorAll('.mp-dest__content').forEach(el => {
-        gsap.from(el, { scrollTrigger: { trigger: el, start: 'top 85%', once: true }, opacity: 0, y: 30, duration: 0.7, ease: 'power3.out' });
-    });
-
-    // Timeline progressive draw + reveal
-    const items = document.querySelectorAll('.mp-timeline__item');
+    // Timeline content reveal
     gsap.fromTo('.mp-timeline__content', { opacity: 0, y: 30 }, {
         scrollTrigger: { trigger: '.mp-timeline', start: 'top 75%', once: true },
         opacity: 1, y: 0, stagger: 0.15, duration: 0.6, ease: 'power3.out',
