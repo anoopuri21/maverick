@@ -150,11 +150,14 @@
     <section class="pd-highlights section--light" aria-label="Quick highlights" data-testid="pd-highlights">
         <div class="container">
             <h2 class="pd-section-title">Quick <em>Highlights</em></h2>
-            <div class="pd-highlights__strip">
+            <div class="pd-highlights__grid">
                 @foreach($highlights as $h)
-                    <div class="pd-highlights__item">
-                        <span class="pd-highlights__label">{{ $h['label'] }}</span>
-                        <span class="pd-highlights__value">{{ $h['value'] }}</span>
+                    <div class="pd-highlights__card">
+                        <span class="pd-highlights__dot" aria-hidden="true"></span>
+                        <div class="pd-highlights__card-text">
+                            <span class="pd-highlights__label">{{ $h['label'] }}</span>
+                            <span class="pd-highlights__value">{{ $h['value'] }}</span>
+                        </div>
                     </div>
                 @endforeach
             </div>
@@ -162,18 +165,41 @@
     </section>
     @endif
 
-    {{-- ============ STEP 2 · RECOGNITION SLIDER ============ --}}
+    {{-- ============ STEP 2 · RECOGNITION & ACCREDITATION ============ --}}
     @if($recognition->count())
     <section class="pd-recognition" aria-label="Recognition and accreditation" data-testid="pd-recognition">
-        <div class="container pd-recognition__inner">
-            <span class="pd-recognition__awarded">Awarded by <strong>{{ $program->partner_university }}</strong></span>
-            <div class="pd-recognition__slider">
-                @foreach($recognition as $r)
-                    <details class="pd-recognition__item">
-                        <summary>{{ $r['name'] }} <span class="pd-recognition__caret">+</span></summary>
-                        <p>{{ $r['note'] }}</p>
-                    </details>
-                @endforeach
+        <div class="container">
+            <h2 class="pd-section-title">Recognition & <em>Accreditation</em></h2>
+
+            {{-- Awarded By --}}
+            @if($program->partner_university)
+            <div class="pd-recognition__group">
+                <h3 class="pd-recognition__heading">Awarded By</h3>
+                <div class="pd-recognition__awarded-grid">
+                    <div class="pd-recognition__awarded-card">
+                        @if(isset($program->award_logo) && $program->award_logo)
+                            <img class="pd-recognition__award-logo" src="{{ $program->award_logo }}" alt="{{ $program->partner_university }}" loading="lazy">
+                        @endif
+                        <div class="pd-recognition__award-text">
+                            <span class="pd-recognition__award-title">{{ $program->partner_university }}</span>
+                            <p class="pd-recognition__award-desc">{{ $university->description ?? 'Awarding university.' }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endif
+
+            {{-- Recognised / Accredited --}}
+            <div class="pd-recognition__group">
+                <h3 class="pd-recognition__heading">Recognised / Accredited</h3>
+                <div class="pd-recognition__slider">
+                    @foreach($recognition as $r)
+                        <div class="pd-recognition__slide">
+                            <span class="pd-recognition__logo">{{ $r['name'] }}</span>
+                            <p class="pd-recognition__note">{{ $r['note'] }}</p>
+                        </div>
+                    @endforeach
+                </div>
             </div>
         </div>
     </section>
@@ -184,13 +210,18 @@
     <section class="pd-snapshot section--light" aria-label="Programme snapshot" data-testid="pd-snapshot">
         <div class="container">
             <h2 class="pd-section-title">Programme at a <em>Glance</em></h2>
-            <div class="pd-snapshot__grid">
-                @foreach($snapshot as $s)
-                    <div class="pd-snapshot__item">
-                        <span class="pd-snapshot__label">{{ $s['label'] }}</span>
-                        <span class="pd-snapshot__value">{{ $s['value'] }}</span>
-                    </div>
-                @endforeach
+            <div class="pd-snapshot__panel">
+                <div class="pd-snapshot__grid">
+                    @foreach($snapshot as $s)
+                        <div class="pd-snapshot__item">
+                            <span class="pd-snapshot__icon" aria-hidden="true">✓</span>
+                            <div class="pd-snapshot__item-body">
+                                <span class="pd-snapshot__label">{{ $s['label'] }}</span>
+                                <span class="pd-snapshot__value">{{ $s['value'] }}</span>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
             </div>
         </div>
     </section>
@@ -470,7 +501,7 @@
 <script>
 document.addEventListener('DOMContentLoaded', () => {
     // Accordions: close others in same group (structure + FAQ + recognition)
-    document.querySelectorAll('.pd-structure__item, .pd-faq__item, .pd-recognition__item').forEach(details => {
+    document.querySelectorAll('.pd-structure__item, .pd-faq__item').forEach(details => {
         details.addEventListener('toggle', () => {
             if (!details.open) return;
             const group = details.parentElement;
@@ -480,7 +511,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (typeof AnimationUtils !== 'undefined' && typeof gsap !== 'undefined' && !AnimationUtils.prefersReducedMotion) {
         AnimationUtils.fadeUp('.pd-hero__content', {});
-        AnimationUtils.fadeUp('.pd-highlights__item', { stagger: 0.05 });
+        AnimationUtils.fadeUp('.pd-highlights__card', { stagger: 0.05 });
         AnimationUtils.fadeUp('.pd-snapshot__item', { stagger: 0.05 });
         AnimationUtils.fadeUp('.pd-benefits__item', { stagger: 0.06 });
         AnimationUtils.fadeUp('.pd-learn__item', { stagger: 0.04 });
