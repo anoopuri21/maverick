@@ -14,7 +14,6 @@
   --mp-line: rgba(28, 35, 51, 0.1);
   overflow-x: hidden;
 }
-
 .page-mp em {
   font-style: italic;
   color: var(--color-mba-red);
@@ -24,12 +23,10 @@
    HERO — Cinematic, warm, light-first
    ========================================================= */
 .mp-hero .cinematic-hero__description {
-  max-width: 640px;
   margin-left: 0;
 }
 
 .mp-hero__desc {
-  max-width: 620px;
   font-family: var(--font-body);
   font-size: clamp(15px, 1.3vw, 17px);
   line-height: 1.7;
@@ -97,7 +94,7 @@
 }
 
 .mp-pathway__phase {
-  background: #fff;
+  background: #ffeeee;
   border: 1px solid var(--mp-line);
   border-radius: 18px;
   padding: 36px 32px;
@@ -177,7 +174,6 @@
 .mp-destinations__header,
 .mp-audience__header,
 .mp-process__header {
-  max-width: 720px;
   margin-bottom: 56px;
 }
 
@@ -579,7 +575,6 @@
    ========================================================= */
 .mp-timeline {
   position: relative;
-  max-width: 960px;
   margin: 0 auto;
   padding: 8px 0;
 }
