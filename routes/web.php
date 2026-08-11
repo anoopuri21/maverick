@@ -36,6 +36,10 @@ Route::get('/blogs', [\App\Http\Controllers\BlogController::class, 'index'])->na
 // News
 Route::get('/news', [\App\Http\Controllers\NewsController::class, 'index'])->name('news.index');
 
+// Programmes — must be registered before the catch-all slug route below
+Route::get('/programs', [\App\Http\Controllers\ProgramController::class, 'index'])->name('programs.index');
+Route::get('/programs/{slug}', [\App\Http\Controllers\ProgramController::class, 'show'])->name('programs.show');
+
 // Unified Detail (WordPress-style root-level permalink)
 // Registered LAST so every other named route above is matched first.
 Route::get('/{slug}', [\App\Http\Controllers\InsightController::class, 'show'])->name('insights.show');
