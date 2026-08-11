@@ -1,0 +1,81 @@
+/* =========================================================
+   PROGRAM LISTING PAGE — Maverick Business Academy
+   ========================================================= */
+.page-pl {
+  --pl-red: var(--color-mba-red);
+  --pl-navy: #2b3979;
+  --pl-navy-deep: #071444;
+  --pl-warm: #faf6f1;
+  --pl-ink: #1c2333;
+  --pl-muted: rgba(28, 35, 51, 0.66);
+  --pl-line: rgba(28, 35, 51, 0.1);
+  overflow-x: hidden;
+}
+.page-pl em { font-style: italic; color: var(--pl-red); }
+.page-pl .section-title { color: var(--pl-navy); }
+
+/* Hero */
+.pl-hero {
+  padding: clamp(64px, 9vw, 120px) 0;
+  background: linear-gradient(180deg, #fff 0%, var(--pl-warm) 100%);
+}
+.pl-hero__inner { display: flex; flex-direction: column; gap: 20px; align-items: flex-start; }
+.pl-hero__eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--pl-red); }
+.pl-hero__title { font-family: var(--font-display); font-size: clamp(38px, 6vw, 72px); font-weight: 600; line-height: 1.05; color: var(--pl-navy); margin: 0; }
+.pl-hero__sub { max-width: 60ch; font-size: 16px; line-height: 1.7; color: var(--pl-muted); margin: 0; }
+
+/* Filter */
+.pl-filter__bar { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 40px; }
+.pl-filter__btn {
+  border: 1px solid var(--pl-line);
+  background: #fff;
+  color: var(--pl-navy);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 10px 18px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.pl-filter__btn:hover { border-color: var(--pl-red); color: var(--pl-red); }
+.pl-filter__btn.is-active { background: var(--pl-red); border-color: var(--pl-red); color: #fff; }
+
+/* Grid */
+.pl-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.pl-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--pl-line);
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.pl-card:hover { transform: translateY(-6px); box-shadow: 0 24px 56px rgba(28, 35, 51, 0.12); }
+.pl-card__media { position: relative; overflow: hidden; }
+.pl-card__media img { width: 100%; height: 220px; object-fit: cover; display: block; transition: transform 0.5s ease; }
+.pl-card:hover .pl-card__media img { transform: scale(1.05); }
+.pl-card__level {
+  position: absolute; top: 14px; left: 14px;
+  background: rgba(7, 20, 68, 0.85);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  border-radius: 999px;
+}
+.pl-card__body { display: flex; flex-direction: column; gap: 10px; padding: 24px; flex: 1; }
+.pl-card__uni { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--pl-red); }
+.pl-card__title { font-family: var(--font-display); font-size: 20px; font-weight: 600; color: var(--pl-navy); margin: 0; line-height: 1.2; }
+.pl-card__meta { display: flex; gap: 16px; font-size: 13px; color: var(--pl-muted); }
+.pl-card__desc { font-size: 14px; line-height: 1.6; color: var(--pl-muted); margin: 0; flex: 1; }
+.pl-card__link { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: var(--pl-navy); }
+.pl-card__link .inline-icon { color: var(--pl-red); transition: transform 0.3s ease; }
+.pl-card:hover .pl-card__link .inline-icon { transform: translateX(4px); }
+
+@media (max-width: 1024px) { .pl-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .pl-grid { grid-template-columns: 1fr; } }
