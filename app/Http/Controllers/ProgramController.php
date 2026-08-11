@@ -41,18 +41,6 @@ class ProgramController extends Controller
             abort(404);
         }
 
-        $relatedPrograms = Program::select(['id', 'title', 'slug', 'partner_university', 'duration', 'short_description', 'image_url'])
-            ->where('is_active', true)
-            ->where('id', '!=', $program->id)
-            ->where(function ($q) use ($program) {
-                if ($program->program_category_id) {
-                    $q->where('program_category_id', $program->program_category_id);
-                }
-            })
-            ->orderBy('sort_order')
-            ->limit(3)
-            ->get();
-
-        return view('pages.programs.detail', compact('program', 'relatedPrograms'));
+        return view('pages.programs.detail', compact('program'));
     }
 }
