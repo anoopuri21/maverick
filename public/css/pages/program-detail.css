@@ -90,24 +90,9 @@
 }
 
 /* =========================================================
-   STEP 1 · HERO
+   STEP 1 · HERO (cinematic — shared component)
    ========================================================= */
-.pd-hero { padding: clamp(36px, 5vw, 64px) 0 clamp(24px, 4vw, 40px); }
-.pd-hero__grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(28px, 5vw, 72px); align-items: center; }
-.pd-hero__content { display: flex; flex-direction: column; gap: 18px; align-items: flex-start; min-width: 0; }
-.pd-hero__category { font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--pd-red); }
-.pd-hero__title { font-family: var(--font-display); font-size: clamp(32px, 4.5vw, 56px); font-weight: 600; line-height: 1.04; letter-spacing: -0.03em; color: var(--pd-navy); margin: 0; }
-.pd-hero__lede { font-size: clamp(15px, 1.3vw, 17px); line-height: 1.7; color: var(--pd-muted); margin: 0; max-width: 52ch; }
-.pd-hero__ctas { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; min-width: 0; }
-.pd-hero__media { min-width: 0; }
-.pd-hero__media img { width: 100%; height: clamp(300px, 40vw, 500px); object-fit: cover; border-radius: 14px; display: block; }
-
-/* Hero facts */
-.pd-herofacts { display: flex; flex-wrap: wrap; gap: 0; border: 1px solid var(--pd-line); border-radius: 12px; overflow: hidden; margin-top: clamp(24px, 4vw, 40px); }
-.pd-herofacts__item { flex: 1 1 160px; display: flex; flex-direction: column; gap: 4px; padding: 16px 22px; border-right: 1px solid var(--pd-line); }
-.pd-herofacts__item:last-child { border-right: 0; }
-.pd-herofacts__label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--pd-muted); }
-.pd-herofacts__value { font-family: var(--font-display); font-size: 16px; font-weight: 600; color: var(--pd-navy); }
+.pd-hero .pd-hero__ctas { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; margin-top: 28px; }
 
 /* =========================================================
    STEP 2 · HIGHLIGHTS
@@ -301,14 +286,13 @@
    RESPONSIVE
    ========================================================= */
 @media (max-width: 1024px) {
-  .pd-hero__grid, .pd-overview__grid, .pd-learn__grid, .pd-uni__grid,
+  .pd-overview__grid, .pd-learn__grid, .pd-uni__grid,
   .pd-enquire__inner, .pd-fees__inner { grid-template-columns: 1fr; gap: 28px; }
   .pd-form__row { grid-template-columns: 1fr; }
 }
 @media (max-width: 768px) {
-  .pd-hero__media img { height: 260px; }
   .pd-learn__list { grid-template-columns: 1fr; }
-  .pd-herofacts__item, .pd-highlights__item { flex: 1 1 45%; border-bottom: 1px solid var(--pd-line); }
+  .pd-highlights__item { flex: 1 1 45%; border-bottom: 1px solid var(--pd-line); }
   .pd-apply { display: flex; }
   .pd-whatsapp { right: 14px; bottom: 80px; }
 }
