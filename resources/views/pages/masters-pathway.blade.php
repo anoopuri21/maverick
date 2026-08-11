@@ -363,11 +363,28 @@
             </h2>
         </div>
 
-        <div class="mp-timeline">
+        <div class="mp-timeline" data-testid="mp-timeline">
+            <span class="mp-timeline__progress" aria-hidden="true"></span>
+            @php
+                $stepIcons = [
+                    '01' => '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
+                    '02' => '<path d="M9 12l2 2 4-4"/><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',
+                    '03' => '<path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>',
+                    '04' => '<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>',
+                    '05' => '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 15l2 2 4-4"/>',
+                    '06' => '<path d="M10.5 22l-3-5M3 14h18l-2.5 8H5.5z"/><path d="M10.5 22L9 14l3-5 3 5-1.5 8"/>',
+                    '07' => '<circle cx="12" cy="8" r="6"/><path d="M15.5 13l2.5 8-6-3.5L6 21l2.5-8"/>',
+                ];
+            @endphp
             @foreach($steps as $i => $step)
             <div class="mp-timeline__item {{ $i % 2 === 0 ? 'is-left' : 'is-right' }}" data-testid="mp-step-{{ $step->num }}">
-                <div class="mp-timeline__node"><span>{{ $step->num }}</span></div>
-                <div class="mp-timeline__content fade-up">
+                <div class="mp-timeline__marker">
+                    <span class="mp-timeline__marker-num">{{ $step->num }}</span>
+                    <span class="mp-timeline__marker-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{!! $stepIcons[$step->num] ?? '<circle cx="12" cy="12" r="10"/>' !!}</svg>
+                    </span>
+                </div>
+                <div class="mp-timeline__card fade-up">
                     <span class="mp-timeline__step">STEP {{ $step->num }}</span>
                     <h3 class="mp-timeline__title">{{ $step->title }}</h3>
                     <p class="mp-timeline__desc">{{ $step->desc }}</p>
@@ -491,11 +508,28 @@ document.addEventListener('DOMContentLoaded', () => {
     AnimationUtils.fadeUp('.mp-requirements__item', { stagger: 0.06 });
     AnimationUtils.fadeUp('.mp-dest__content', { stagger: 0.1 });
 
-    // Timeline content reveal
-    gsap.fromTo('.mp-timeline__content', { opacity: 0, y: 30 }, {
-        scrollTrigger: { trigger: '.mp-timeline', start: 'top 75%', once: true },
-        opacity: 1, y: 0, stagger: 0.15, duration: 0.6, ease: 'power3.out',
-    });
+    // Timeline — progressive line draw + card reveal
+    const timeline = document.querySelector('.mp-timeline');
+    const progress = document.querySelector('.mp-timeline__progress');
+    if (timeline) {
+        if (progress) {
+            gsap.fromTo(progress, { height: '0%' }, {
+                height: '100%',
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: timeline,
+                    start: 'top 70%',
+                    end: 'bottom 60%',
+                    scrub: 0.6,
+                },
+            });
+        }
+        const cards = timeline.querySelectorAll('.mp-timeline__card');
+        gsap.fromTo(cards, { opacity: 0, x: (i) => (i % 2 === 0 ? -40 : 40), y: 20 }, {
+            scrollTrigger: { trigger: timeline, start: 'top 70%', once: true },
+            opacity: 1, x: 0, y: 0, stagger: 0.15, duration: 0.6, ease: 'power3.out',
+        });
+    }
 });
 </script>
 @endpush
