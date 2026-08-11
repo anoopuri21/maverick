@@ -98,35 +98,128 @@
    STEP 2 · HIGHLIGHTS
    ========================================================= */
 .pd-highlights { padding: clamp(36px, 5vw, 56px) 0; }
-.pd-highlights__strip { display: flex; flex-wrap: wrap; gap: 0; border: 1px solid var(--pd-line); border-radius: 12px; overflow: hidden; }
-.pd-highlights__item { flex: 1 1 160px; display: flex; flex-direction: column; gap: 4px; padding: 18px 22px; border-right: 1px solid var(--pd-line); }
-.pd-highlights__item:last-child { border-right: 0; }
+.pd-highlights__grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+.pd-highlights__card {
+  flex: 0 0 calc(33.333% - 20px);
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: #fff;
+  border: 1px solid var(--pd-line);
+  border-radius: 14px;
+  padding: 22px 24px;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.pd-highlights__card:hover { border-color: var(--pd-red); box-shadow: 0 12px 32px rgba(28,35,51,0.08); }
+.pd-highlights__dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--pd-red); margin-top: 6px; flex-shrink: 0;
+}
+.pd-highlights__card-text { display: flex; flex-direction: column; gap: 4px; }
 .pd-highlights__label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--pd-muted); }
-.pd-highlights__value { font-family: var(--font-display); font-size: 16px; font-weight: 600; color: var(--pd-navy); }
+.pd-highlights__value { font-family: var(--font-display); font-size: 17px; font-weight: 600; color: var(--pd-navy); }
 
 /* =========================================================
-   STEP 2 · RECOGNITION
+   STEP 2 · RECOGNITION & ACCREDITATION
    ========================================================= */
-.pd-recognition { border-block: 1px solid var(--pd-line); padding: 18px 0; }
-.pd-recognition__inner { display: flex; gap: 32px; align-items: center; flex-wrap: wrap; justify-content: space-between; }
-.pd-recognition__awarded { font-size: 14px; color: var(--pd-muted); }
-.pd-recognition__awarded strong { color: var(--pd-navy); font-weight: 600; }
-.pd-recognition__slider { display: flex; gap: 10px; flex-wrap: wrap; }
-.pd-recognition__item { border: 1px solid var(--pd-line); border-radius: 10px; padding: 8px 14px; min-width: 110px; }
-.pd-recognition__item summary { cursor: pointer; list-style: none; display: flex; gap: 10px; align-items: center; font-weight: 600; color: var(--pd-navy); font-size: 14px; }
-.pd-recognition__item summary::-webkit-details-marker { display: none; }
-.pd-recognition__caret { color: var(--pd-red); transition: transform 0.2s ease; }
-.pd-recognition__item[open] .pd-recognition__caret { transform: rotate(45deg); }
-.pd-recognition__item p { margin: 8px 0 0; font-size: 13px; line-height: 1.5; color: var(--pd-muted); }
+.pd-recognition { padding: clamp(36px, 5vw, 56px) 0; }
+.pd-recognition__group { margin-bottom: 40px; }
+.pd-recognition__heading {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--pd-navy);
+  margin: 0 0 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--pd-line);
+}
+
+/* Awarded By — cards (4 per row) */
+.pd-recognition__awarded-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.pd-recognition__awarded-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: flex-start;
+  background: #fff;
+  border: 1px solid var(--pd-line);
+  border-radius: 14px;
+  padding: 24px;
+}
+.pd-recognition__award-logo { width: 64px; height: 64px; object-fit: contain; }
+.pd-recognition__award-text { display: flex; flex-direction: column; gap: 6px; }
+.pd-recognition__award-title { font-family: var(--font-display); font-size: 16px; font-weight: 600; color: var(--pd-navy); line-height: 1.3; }
+.pd-recognition__award-desc { font-size: 13px; line-height: 1.6; color: var(--pd-muted); margin: 0; }
+
+/* Recognised / Accredited — logo slider */
+.pd-recognition__slider {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 8px;
+  -webkit-overflow-scrolling: touch;
+}
+.pd-recognition__slide {
+  flex: 0 0 220px;
+  scroll-snap-align: start;
+  background: #fff;
+  border: 1px solid var(--pd-line);
+  border-radius: 14px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.pd-recognition__logo {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--pd-navy);
+}
+.pd-recognition__note { font-size: 13px; line-height: 1.5; color: var(--pd-muted); margin: 0; }
 
 /* =========================================================
    STEP 3 · SNAPSHOT
    ========================================================= */
 .pd-snapshot { padding: clamp(36px, 5vw, 56px) 0; }
-.pd-snapshot__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); border: 1px solid var(--pd-line); border-radius: 12px; overflow: hidden; }
-.pd-snapshot__item { padding: 20px; border-right: 1px solid var(--pd-line); border-bottom: 1px solid var(--pd-line); display: flex; flex-direction: column; gap: 6px; }
+.pd-snapshot__panel { border: 1px solid var(--pd-line); border-radius: 14px; padding: 8px; }
+.pd-snapshot__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+}
+.pd-snapshot__item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--pd-line);
+  border-right: 1px solid var(--pd-line);
+}
+.pd-snapshot__item:nth-child(even) { border-right: 0; }
+.pd-snapshot__item:last-child, .pd-snapshot__item:nth-last-child(2) { border-bottom: 0; }
+.pd-snapshot__icon {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: rgba(236, 31, 36, 0.1);
+  color: var(--pd-red);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700; flex-shrink: 0;
+}
+.pd-snapshot__item-body { display: flex; flex-direction: column; gap: 2px; }
 .pd-snapshot__label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--pd-muted); }
-.pd-snapshot__value { font-family: var(--font-display); font-size: 17px; font-weight: 600; color: var(--pd-navy); }
+.pd-snapshot__value { font-family: var(--font-display); font-size: 16px; font-weight: 600; color: var(--pd-navy); }
 
 /* =========================================================
    STEP 3 · OVERVIEW
@@ -290,9 +383,17 @@
   .pd-enquire__inner, .pd-fees__inner { grid-template-columns: 1fr; gap: 28px; }
   .pd-form__row { grid-template-columns: 1fr; }
 }
+@media (max-width: 1024px) {
+  .pd-recognition__awarded-grid { grid-template-columns: repeat(2, 1fr); }
+}
 @media (max-width: 768px) {
   .pd-learn__list { grid-template-columns: 1fr; }
-  .pd-highlights__item { flex: 1 1 45%; border-bottom: 1px solid var(--pd-line); }
+  .pd-highlights__card { flex: 0 0 calc(50% - 20px); }
+  .pd-recognition__awarded-grid { grid-template-columns: 1fr; }
+  .pd-snapshot__grid { grid-template-columns: 1fr; }
+  .pd-snapshot__item:nth-child(even) { border-right: 1px solid var(--pd-line); }
+  .pd-snapshot__item:last-child { border-right: 0; border-bottom: 0; }
+  .pd-snapshot__item { border-bottom: 1px solid var(--pd-line); }
   .pd-apply { display: flex; }
   .pd-whatsapp { right: 14px; bottom: 80px; }
 }
