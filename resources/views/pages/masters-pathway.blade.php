@@ -18,6 +18,7 @@
         'heading_italic' => 'Pathway Program',
         'sub_heading' => 'A smarter route to a globally recognised Master\'s degree in Europe',
         'description' => 'The Maverick International Master\'s Pathway Program is designed for graduates and working professionals who want a structured, flexible and cost-effective route towards an international Master\'s degree.',
+        'description2' => 'Through this pathway, students complete the first academic phase with Maverick Business Academy London through a Level 7 Diploma carrying 120 UK credits, followed by progression to a partner university for the final stage of study in Hungary, Moldova or Romania, subject to university approval and academic mapping.',
         'background_image' => 'https://images.pexels.com/photos/256541/pexels-photo-256541.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=1600',
     ];
 
@@ -29,10 +30,10 @@
             'university' => 'IBS International Business School',
             'image' => 'https://images.pexels.com/photos/16356273/pexels-photo-16356273.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=950&w=760',
             'position' => 'left',
-            'description' => 'A premium Central European study experience in an academic and business-driven environment, combining a rich educational heritage with a vibrant international atmosphere.',
+            'description' => 'Students may choose Hungary as a premium Central European study destination with international classroom exposure and strong academic progression options. Maverick\'s Hungary route is connected with IBS International Business School, with final-stage study expected to take approximately one academic year, subject to IBS academic mapping and admission approval. The available specialisation areas may include management, finance, marketing, AI, cybersecurity and business analytics.',
             'points' => ['Management', 'Finance', 'Marketing', 'AI', 'Cybersecurity', 'Business Analytics'],
-            'best_for' => 'Graduates and professionals seeking a business-focused European Master\'s pathway.',
-            'qualification' => 'Subject to academic mapping and admission approval.',
+            'best_for' => 'Students looking for a premium European Master\'s experience with specialised business and technology-related study options.',
+            'qualification' => 'Subject to IBS academic mapping and admission approval.',
         ],
         (object)[
             'slug' => 'moldova',
@@ -41,9 +42,9 @@
             'university' => 'USPEE "Constantin Stere University"',
             'image' => 'https://images.pexels.com/photos/346823/pexels-photo-346823.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=950&w=760',
             'position' => 'right',
-            'description' => 'A broad and subject-aligned European study route designed to be accessible, flexible and well matched to a learner\'s academic background and career direction.',
-            'points' => ['Flexible study route', 'Subject-aligned pathway', 'Structured academic progression', 'Cost-effective option'],
-            'best_for' => 'Learners seeking a broad, subject-aligned pathway toward an international Master\'s.',
+            'description' => 'Moldova is positioned as a flexible and cost-efficient European degree completion destination. Students complete a relevant Level 7 Diploma carrying 120 UK credits, aligned with their intended Master\'s specialisation. The Moldova route is connected with USPEE "Constantin Stere University", where students may progress to the university-defined final stage, subject to admission, residency requirements, academic compatibility and credit mapping.',
+            'points' => ['Level 7 Diploma carrying 120 UK credits', 'Subject-aligned pathway', 'Flexible and cost-efficient completion'],
+            'best_for' => 'Students looking for a cost-effective European Master\'s completion route with flexible academic options.',
             'qualification' => 'Subject to admission, residency requirements, academic compatibility and credit mapping.',
         ],
         (object)[
@@ -53,19 +54,19 @@
             'university' => 'Aurel Vlaicu University of Arad',
             'image' => 'https://images.pexels.com/photos/207684/pexels-photo-207684.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=950&w=760',
             'position' => 'left',
-            'description' => 'A practical European study option offering a strong on-campus final-stage experience within a welcoming and internationally minded academic environment.',
-            'points' => ['On-campus final-stage experience', 'Practical European study option', 'International academic environment', 'Structured progression'],
-            'best_for' => 'Students who want a hands-on, on-campus European Master\'s completion experience.',
+            'description' => 'Romania provides a practical European study option for students who want to complete the final university stage on campus. The Romania route is connected with Aurel Vlaicu University of Arad, where eligible students may progress after completing the 120 UK-credit Level 7 stage. Final progression is subject to admission, credit recognition, curriculum alignment and selected programme requirements.',
+            'points' => ['On-campus final-stage Master\'s experience', 'Direct European progression', '120 UK-credit Level 7 stage'],
+            'best_for' => 'Students looking for direct European progression and an on-campus final-stage Master\'s experience.',
             'qualification' => 'Final progression is subject to admission, credit recognition, curriculum alignment and selected programme requirements.',
         ],
     ]);
 
     $benefits = collect([
-        (object)['num' => '01', 'title' => 'Flexible First Phase', 'desc' => 'Begin your Level 7 Diploma online with Maverick, fitting your studies around work and life.'],
-        (object)['num' => '02', 'title' => 'Cost-Efficient Route', 'desc' => 'A structured and affordable route towards an international Master\'s degree, without the full cost of overseas study from day one.'],
-        (object)['num' => '03', 'title' => 'European University Progression', 'desc' => 'Progress towards final-stage Master\'s completion at a partner university in Hungary, Moldova or Romania.'],
-        (object)['num' => '04', 'title' => 'Academic Mapping Support', 'desc' => 'Our team supports academic mapping and documentation, so your Level 7 achievement is positioned clearly for university review.'],
-        (object)['num' => '05', 'title' => 'Career-Focused Learning', 'desc' => 'Learn through a curriculum aligned to today\'s business and professional landscape.'],
+        (object)['num' => '01', 'title' => 'Flexible First Phase', 'desc' => 'Start your postgraduate journey online or through Maverick while continuing your professional and personal commitments.'],
+        (object)['num' => '02', 'title' => 'Cost-Efficient Route', 'desc' => 'Reduce the period of full-time overseas study and lower your overall exposure to international tuition and living costs.'],
+        (object)['num' => '03', 'title' => 'European University Progression', 'desc' => 'Progress towards final-stage Master\'s completion in Hungary, Moldova or Romania, subject to university approval.'],
+        (object)['num' => '04', 'title' => 'Academic Mapping Support', 'desc' => 'Maverick supports students with documentation, credit mapping coordination, university communication and progression guidance.'],
+        (object)['num' => '05', 'title' => 'Career-Focused Learning', 'desc' => 'Develop advanced academic, analytical, leadership, research and management capabilities for professional growth.'],
     ]);
 
     $audience = collect([
@@ -89,13 +90,13 @@
     ]);
 
     $steps = collect([
-        (object)['num' => '01', 'title' => 'Academic Consultation', 'desc' => 'Discuss your background, goals and the pathway options available to you with our academic team.'],
-        (object)['num' => '02', 'title' => 'Eligibility Review', 'desc' => 'Our team reviews your qualifications and profile to confirm your suitability for the pathway.'],
-        (object)['num' => '03', 'title' => 'Phase 1 Enrolment', 'desc' => 'Enrol on your Level 7 Diploma with Maverick and begin your online first phase.'],
-        (object)['num' => '04', 'title' => 'University Mapping', 'desc' => 'We support academic mapping and documentation with your chosen partner university.'],
-        (object)['num' => '05', 'title' => 'Conditional or Final Offer', 'desc' => 'Receive a conditional or final offer based on the university\'s review of your academic profile.'],
-        (object)['num' => '06', 'title' => 'Visa & Travel Preparation', 'desc' => 'Prepare your visa and travel arrangements for your on-campus final stage abroad.'],
-        (object)['num' => '07', 'title' => 'University Completion', 'desc' => 'Complete your final semester or year on campus and earn your Master\'s degree.'],
+        (object)['num' => '01', 'title' => 'Academic Consultation', 'desc' => 'Choose your preferred destination and intended Master\'s specialisation.'],
+        (object)['num' => '02', 'title' => 'Eligibility Review', 'desc' => 'Submit your academic documents, CV, passport and required records.'],
+        (object)['num' => '03', 'title' => 'Phase 1 Enrolment', 'desc' => 'Begin the Level 7 Diploma / subject-aligned Level 7 stage with Maverick.'],
+        (object)['num' => '04', 'title' => 'University Mapping', 'desc' => 'Maverick coordinates academic records for credit evaluation and progression review.'],
+        (object)['num' => '05', 'title' => 'Conditional or Final Offer', 'desc' => 'The destination university confirms eligibility, remaining modules, fees and conditions.'],
+        (object)['num' => '06', 'title' => 'Visa & Travel Preparation', 'desc' => 'Complete tuition payment, documentation, accommodation and visa formalities.'],
+        (object)['num' => '07', 'title' => 'University Completion', 'desc' => 'Complete the final semester/year, dissertation, project or final assessment and graduate.'],
     ]);
 @endphp
 
@@ -131,6 +132,7 @@
         </h1>
         <p class="cinematic-hero__description">{{ $hero->sub_heading }}</p>
         <p class="mp-hero__desc">{{ $hero->description }}</p>
+        <p class="mp-hero__desc">{{ $hero->description2 }}</p>
         <div class="mp-hero__ctas">
             <a href="#enquire" class="btn btn--primary">Check Eligibility</a>
             <a href="{{ route('contact') }}" class="btn btn--secondary">Speak to an Advisor</a>
@@ -159,8 +161,9 @@
                 </h2>
             </div>
             <div class="mp-overview__right">
-                <p class="body-text fade-up">The Maverick International Master's Pathway Program offers a structured two-phase route towards an internationally recognised Master's degree. You begin with a Level 7 Diploma with Maverick, then progress to final-stage study at a partner university in Hungary, Moldova or Romania.</p>
-                <p class="body-text fade-up">The pathway is designed for graduates and working professionals who want a flexible, cost-effective and globally focused route towards postgraduate completion, with academic mapping and documentation support throughout.</p>
+                <p class="body-text fade-up">The Maverick Master's Pathway Program is a two-phase international study route created for learners who want to begin their postgraduate journey with flexibility and progress towards a European university qualification.</p>
+                <p class="body-text fade-up">In Phase 1, students complete a Level 7 Diploma with 120 UK credits through Maverick. In Phase 2, eligible students may apply for university progression, where the completed Level 7 qualification is reviewed for credit mapping and advanced-entry consideration by the destination university.</p>
+                <p class="body-text fade-up">This pathway is ideal for students who want to reduce the time and cost of full-time overseas study while still gaining international academic exposure during the university completion stage.</p>
             </div>
         </div>
 
@@ -310,7 +313,7 @@
                 <span class="text-reveal-wrapper"><span class="text-reveal-inner">Who Is This Program</span></span>
                 <span class="text-reveal-wrapper"><span class="text-reveal-inner"><em>For?</em></span></span>
             </h2>
-            <p class="mp-audience__statement">Designed for ambitious learners at different stages of their professional journey.</p>
+            <p class="mp-audience__statement">This Master's Pathway is suitable for:</p>
         </div>
 
         <div class="mp-audience__grid">
@@ -336,7 +339,7 @@
                     <span class="text-reveal-wrapper"><span class="text-reveal-inner">Entry</span></span>
                     <span class="text-reveal-wrapper"><span class="text-reveal-inner"><em>Requirements</em></span></span>
                 </h2>
-                <p class="body-text fade-up">To begin your Master's Pathway with Maverick, you will need to meet the following entry requirements.</p>
+                <p class="body-text fade-up">Applicants are generally expected to provide:</p>
             </div>
             <ul class="mp-requirements__list">
                 @foreach($requirements as $i => $req)
@@ -403,7 +406,8 @@
         <div class="mp-notice__panel">
             <div class="mp-notice__label">ACADEMIC NOTICE</div>
             <div class="mp-notice__content">
-                <p>Progression to a partner university and the award of a Master's degree are <strong>not automatic</strong>. The final award is issued by the destination university after the student completes all required academic, assessment, residency, attendance and graduation requirements, and is subject to admission approval, credit recognition, curriculum alignment and programme requirements. All progression remains subject to the relevant university\'s approval.</p>
+                <p>Progression is <strong>not automatic</strong>. Admission, credit recognition, advanced standing, specialisation availability, final duration and award requirements are determined by the destination university after formal academic evaluation.</p>
+                <p>Students must meet all university admission, language, attendance, residency, assessment, dissertation, financial and immigration requirements. Programme structures, fees, visa rules and timelines may change as per university and government regulations.</p>
             </div>
         </div>
     </div>
@@ -415,13 +419,13 @@
 <section class="mp-final" id="enquire" aria-label="Start Your Master's Journey" data-testid="mp-final">
     <div class="container">
         <div class="mp-final__inner">
-            <span class="mp-final__eyebrow">Begin Today</span>
+            <span class="mp-final__eyebrow">Take the Next Step</span>
             <h2 class="mp-final__heading section-title">
                 Start Your Master's Journey with <em>Maverick</em>
             </h2>
             <p class="mp-final__sub">A structured, flexible and cost-effective route towards a globally recognised degree.</p>
             <p class="mp-final__description body-text">
-                Begin your international Master's journey with Maverick Business Academy London. Complete a Level 7 Diploma and progress to partner universities in Hungary, Moldova or Romania for final-stage Master's completion. Request an eligibility assessment today to find out if the Master's Pathway is right for you.
+                Take the first step towards an international Master's degree through a structured, flexible and cost-effective European progression route. Speak to our admissions team today to check your eligibility, destination options and academic pathway.
             </p>
             <div class="mp-final__ctas">
                 <a href="{{ route('contact') }}" class="btn mp-final__btn mp-final__btn--solid">Request Eligibility Assessment</a>
