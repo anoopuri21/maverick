@@ -1,0 +1,973 @@
+/* =========================================================
+   MASTER'S PATHWAY — Page Styles
+   Maverick Business Academy — Warm Premium Education
+   BEM Methodology
+   ========================================================= */
+
+/* Page-scoped brand tokens (harmonised with existing Maverick system) */
+.page-mp {
+  --mp-navy-deep: #071444;
+  --mp-warm: #faf6f1;
+  --mp-grey: #f5f6f8;
+  --mp-ink: #1c2333;
+  --mp-muted: rgba(28, 35, 51, 0.66);
+  --mp-line: rgba(28, 35, 51, 0.1);
+  overflow-x: hidden;
+}
+
+.page-mp em {
+  font-style: italic;
+  color: var(--color-mba-red);
+}
+
+/* =========================================================
+   HERO — Cinematic, warm, light-first
+   ========================================================= */
+.mp-hero .cinematic-hero__description {
+  max-width: 640px;
+  margin-left: 0;
+}
+
+.mp-hero__desc {
+  max-width: 620px;
+  font-family: var(--font-body);
+  font-size: clamp(15px, 1.3vw, 17px);
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 16px 0 0;
+}
+
+.mp-hero__ctas {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+}
+
+.mp-hero__route {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  font-family: var(--font-display);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.mp-hero__route-arrow {
+  color: var(--color-mba-red);
+  font-size: 18px;
+}
+
+/* =========================================================
+   1. PATHWAY OVERVIEW
+   ========================================================= */
+.mp-overview__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 64px;
+  align-items: start;
+  margin-bottom: 72px;
+}
+
+.mp-overview__heading {
+  margin: 0;
+}
+
+.mp-overview__right {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Pathway diagram */
+.mp-pathway {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 0;
+  align-items: center;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.mp-pathway__phase {
+  background: #fff;
+  border: 1px solid var(--mp-line);
+  border-radius: 18px;
+  padding: 36px 32px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.mp-pathway__phase:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 48px rgba(43, 57, 121, 0.1);
+}
+
+.mp-pathway__phase-label {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-mba-red);
+  margin-bottom: 12px;
+}
+
+.mp-pathway__phase-title {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 2.4vw, 30px);
+  font-weight: 600;
+  color: var(--color-mba-blue);
+  margin: 0 0 8px;
+}
+
+.mp-pathway__phase-meta {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-mba-red);
+  margin: 0 0 10px;
+}
+
+.mp-pathway__phase-desc {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--mp-muted);
+  margin: 0;
+}
+
+.mp-pathway__connector {
+  position: relative;
+  width: 120px;
+  height: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mp-pathway__connector-line {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, var(--color-mba-red), var(--color-mba-blue));
+}
+
+.mp-pathway__connector-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--color-mba-red);
+  box-shadow: 0 0 0 6px rgba(236, 31, 36, 0.12);
+  position: relative;
+  z-index: 1;
+}
+
+/* =========================================================
+   2. HOW THE PATHWAY WORKS
+   ========================================================= */
+.mp-how__header,
+.mp-destinations__header,
+.mp-audience__header,
+.mp-process__header {
+  max-width: 720px;
+  margin-bottom: 56px;
+}
+
+.mp-how__phases {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.mp-how__phase {
+  background: #fff;
+  border: 1px solid var(--mp-line);
+  border-top: 3px solid var(--color-mba-red);
+  border-radius: 16px;
+  padding: 36px 32px;
+}
+
+.mp-how__phase-num {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  color: var(--color-mba-red);
+}
+
+.mp-how__phase-title {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 2.4vw, 30px);
+  font-weight: 600;
+  color: var(--color-mba-blue);
+  margin: 12px 0 6px;
+}
+
+.mp-how__phase-sub {
+  font-family: var(--font-display);
+  font-size: 15px;
+  color: var(--mp-muted);
+  margin: 0 0 24px;
+}
+
+.mp-how__phase-facts {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 0;
+}
+
+.mp-how__phase-facts div {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 12px;
+  align-items: baseline;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--mp-line);
+}
+
+.mp-how__phase-facts div:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.mp-how__phase-facts dt {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--mp-muted);
+}
+
+.mp-how__phase-facts dd {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--color-mba-blue);
+  margin: 0;
+}
+
+.mp-how__notice {
+  margin-top: 40px;
+  background: var(--mp-warm);
+  border-left: 3px solid var(--color-mba-red);
+  border-radius: 12px;
+  padding: 28px 32px;
+}
+
+.mp-how__notice p {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--color-mba-blue);
+  margin: 0;
+}
+
+/* =========================================================
+   3. STUDY DESTINATIONS
+   ========================================================= */
+.mp-destinations__list {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+
+.mp-dest {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.mp-dest--right .mp-dest__media {
+  order: 2;
+}
+
+.mp-dest__media {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 24px 56px rgba(43, 57, 121, 0.18);
+}
+
+.mp-dest__image {
+  width: 100%;
+  height: 560px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.mp-dest:hover .mp-dest__image {
+  transform: scale(1.04);
+}
+
+.mp-dest__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(7, 20, 68, 0.35), transparent 55%);
+}
+
+.mp-dest__country {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  font-family: var(--font-display);
+  font-size: 40px;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+}
+
+.mp-dest__content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.mp-dest__label {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-mba-red);
+}
+
+.mp-dest__title {
+  margin: 0;
+  color: var(--color-mba-blue);
+}
+
+.mp-dest__partner {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-mba-blue);
+  margin: 0;
+}
+
+.mp-dest__description {
+  margin: 0;
+}
+
+.mp-dest__points {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 16px;
+}
+
+.mp-dest__points li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--mp-ink);
+}
+
+.mp-dest__point-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-mba-red);
+  flex-shrink: 0;
+}
+
+.mp-dest__best {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--mp-ink);
+  margin: 0;
+}
+
+.mp-dest__best strong {
+  color: var(--color-mba-blue);
+}
+
+.mp-dest__qualification {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--mp-muted);
+  margin: 0;
+  padding-top: 8px;
+  border-top: 1px solid var(--mp-line);
+}
+
+/* =========================================================
+   4. WHY CHOOSE MAVERICK
+   ========================================================= */
+.mp-why__grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 64px;
+  align-items: start;
+}
+
+.mp-why__heading {
+  margin: 0 0 20px;
+}
+
+.mp-why__statement {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2.4vw, 28px);
+  font-weight: 600;
+  font-style: italic;
+  color: var(--color-mba-red);
+  margin: 0;
+}
+
+.mp-why__right {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.mp-benefit {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  background: #fff;
+  border: 1px solid var(--mp-line);
+  border-radius: 14px;
+  padding: 24px 28px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.mp-benefit:hover {
+  transform: translateX(4px);
+  box-shadow: 0 16px 40px rgba(43, 57, 121, 0.1);
+  border-color: transparent;
+}
+
+.mp-benefit__num {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--color-mba-red);
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.mp-benefit__body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mp-benefit__title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-mba-blue);
+  margin: 0;
+}
+
+.mp-benefit__desc {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--mp-muted);
+  margin: 0;
+}
+
+/* =========================================================
+   5. WHO IS THIS PROGRAM FOR
+   ========================================================= */
+.mp-audience__statement {
+  font-family: var(--font-display);
+  font-size: clamp(18px, 2vw, 22px);
+  font-weight: 500;
+  color: var(--color-mba-blue);
+  margin: 0;
+}
+
+.mp-audience__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.mp-audience__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  background: #fff;
+  border: 1px solid var(--mp-line);
+  border-radius: 14px;
+  padding: 26px 28px;
+}
+
+.mp-audience__index {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-mba-red);
+  flex-shrink: 0;
+}
+
+.mp-audience__text {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--mp-ink);
+  margin: 0;
+}
+
+/* =========================================================
+   6. ENTRY REQUIREMENTS
+   ========================================================= */
+.mp-requirements__grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 64px;
+  align-items: start;
+}
+
+.mp-requirements__heading {
+  margin: 0 0 20px;
+}
+
+.mp-requirements__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.mp-requirements__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  background: #fff;
+  border: 1px solid var(--mp-line);
+  border-radius: 12px;
+  padding: 20px 22px;
+}
+
+.mp-requirements__index {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-mba-red);
+  flex-shrink: 0;
+}
+
+.mp-requirements__text {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--mp-ink);
+}
+
+/* =========================================================
+   7. APPLICATION PROCESS — TIMELINE
+   ========================================================= */
+.mp-timeline {
+  position: relative;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 8px 0;
+}
+
+/* Central progress track */
+.mp-timeline::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 3px;
+  transform: translateX(-50%);
+  background: var(--mp-line);
+  border-radius: 3px;
+}
+
+/* Progress line that draws on scroll */
+.mp-timeline__progress {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 3px;
+  transform: translateX(-50%);
+  background: linear-gradient(var(--color-mba-red), var(--color-mba-blue));
+  border-radius: 3px;
+  height: 0;
+  z-index: 1;
+}
+
+.mp-timeline__item {
+  position: relative;
+  width: 50%;
+  padding: 0 56px 56px 0;
+}
+
+.mp-timeline__item.is-right {
+  margin-left: 50%;
+  padding: 0 0 56px 56px;
+}
+
+/* Marker node with number + icon */
+.mp-timeline__marker {
+  position: absolute;
+  top: 0;
+  right: -32px;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--color-mba-blue);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  color: #fff;
+  z-index: 2;
+  box-shadow: 0 0 0 8px #fff, 0 0 0 9px var(--mp-line);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.mp-timeline__item.is-right .mp-timeline__marker {
+  left: -32px;
+  right: auto;
+}
+
+.mp-timeline__marker-num {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.mp-timeline__marker-icon {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-mba-red);
+}
+
+.mp-timeline__marker-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.mp-timeline__item:hover .mp-timeline__marker {
+  transform: scale(1.06);
+  background: var(--color-mba-red);
+  box-shadow: 0 0 0 8px #fff, 0 0 0 9px rgba(236, 31, 36, 0.3);
+}
+
+.mp-timeline__item:hover .mp-timeline__marker-icon {
+  color: #fff;
+}
+
+/* Rich content card */
+.mp-timeline__card {
+  position: relative;
+  background: #fff;
+  border: 1px solid var(--mp-line);
+  border-radius: 16px;
+  padding: 28px 30px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.mp-timeline__card::before {
+  content: "";
+  position: absolute;
+  top: 30px;
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+}
+
+.mp-timeline__item:not(.is-right) .mp-timeline__card::before {
+  right: -8px;
+  border-left: 8px solid #fff;
+}
+
+.mp-timeline__item.is-right .mp-timeline__card::before {
+  left: -8px;
+  border-right: 8px solid #fff;
+}
+
+.mp-timeline__card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 44px rgba(43, 57, 121, 0.12);
+  border-color: transparent;
+}
+
+.mp-timeline__step {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-mba-red);
+}
+
+.mp-timeline__step::before {
+  content: "";
+  width: 20px;
+  height: 2px;
+  background: var(--color-mba-red);
+}
+
+.mp-timeline__title {
+  font-family: var(--font-display);
+  font-size: 21px;
+  font-weight: 600;
+  color: var(--color-mba-blue);
+  margin: 12px 0 8px;
+}
+
+.mp-timeline__desc {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--mp-muted);
+  margin: 0;
+}
+
+/* =========================================================
+   8. IMPORTANT ACADEMIC NOTICE
+   ========================================================= */
+.mp-notice__panel {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 40px;
+  background: var(--mp-grey);
+  border-radius: 16px;
+  padding: 44px 48px;
+  border-left: 4px solid var(--color-mba-red);
+}
+
+.mp-notice__label {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-mba-red);
+}
+
+.mp-notice__content p {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--color-mba-blue);
+  margin: 0;
+}
+
+/* =========================================================
+   9. FINAL CTA — shared site CTA pattern (brand-red section)
+   ========================================================= */
+.mp-final {
+  color: var(--color-white);
+  padding: clamp(64px, 8vw, 110px) 0;
+}
+
+.mp-final__inner {
+  margin: 0 auto;
+  padding: clamp(40px, 6vw, 72px) clamp(24px, 4vw, 48px);
+  text-align: center;
+  background: var(--color-mba-red);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 24px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.2);
+}
+
+.mp-final__eyebrow {
+  display: inline-block;
+  margin-bottom: 1.25rem;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.mp-final__heading {
+  margin: 0 0 1rem;
+  color: var(--color-white);
+}
+
+.mp-final__heading em {
+  color: var(--color-white);
+  opacity: 0.92;
+}
+
+.mp-final__sub {
+  margin: 0 0 1rem;
+  font-family: var(--font-display);
+  font-size: clamp(18px, 2vw, 22px);
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.mp-final__description {
+  margin: 0 auto 2rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.mp-final__ctas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.875rem;
+}
+
+.mp-final__btn {
+  border: 1px solid transparent;
+}
+
+.mp-final__btn--solid {
+  background: var(--color-white);
+  color: var(--color-mba-red);
+}
+
+.mp-final__btn--solid:hover {
+  background: var(--color-mba-dark-blue);
+  color: var(--color-white);
+}
+
+.mp-final__btn--outline {
+  background: transparent;
+  color: var(--color-white);
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+.mp-final__btn--outline:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--color-white);
+}
+
+.mp-final__contact {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem 2rem;
+  margin-top: 1.75rem;
+  font-family: var(--font-body);
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width: 1024px) {
+  .mp-overview__grid,
+  .mp-why__grid,
+  .mp-requirements__grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .mp-pathway {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .mp-pathway__connector {
+    width: 2px;
+    height: 60px;
+    margin: 0 auto;
+  }
+
+  .mp-pathway__connector-line {
+    inset: 0;
+    background: linear-gradient(to bottom, var(--color-mba-red), var(--color-mba-blue));
+  }
+
+  .mp-dest {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .mp-dest--right .mp-dest__media {
+    order: 0;
+  }
+
+  .mp-timeline__item,
+  .mp-timeline__item.is-right {
+    width: 100%;
+    margin-left: 0;
+    padding: 0 0 40px 64px;
+  }
+
+  .mp-timeline::before,
+  .mp-timeline__progress {
+    left: 28px;
+    transform: none;
+  }
+
+  .mp-timeline__marker {
+    left: 0;
+    right: auto;
+    width: 56px;
+    height: 56px;
+  }
+
+  .mp-timeline__item.is-right .mp-timeline__marker {
+    left: 0;
+  }
+
+  .mp-timeline__card::before {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .mp-how__phases {
+    grid-template-columns: 1fr;
+  }
+
+  .mp-how__phase-facts div {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .mp-dest__points,
+  .mp-audience__grid,
+  .mp-requirements__list {
+    grid-template-columns: 1fr;
+  }
+
+  .mp-notice__panel {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 32px 28px;
+  }
+
+  .mp-hero__route {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .mp-hero__route-arrow {
+    transform: rotate(90deg);
+  }
+}
