@@ -60,23 +60,36 @@
     ]);
 
     $careers = collect([
-        ['icon' => 'briefcase', 'label' => 'Business Manager'],
-        ['icon' => 'settings', 'label' => 'Operations Manager'],
-        ['icon' => 'megaphone', 'label' => 'Marketing Executive'],
-        ['icon' => 'users', 'label' => 'Human Resource Executive'],
-        ['icon' => 'trending-up', 'label' => 'Business Analyst'],
-        ['icon' => 'clipboard-list', 'label' => 'Project Coordinator'],
-        ['icon' => 'lightbulb', 'label' => 'Entrepreneur'],
-        ['icon' => 'bar-chart', 'label' => 'Sales Manager'],
-        ['icon' => 'rocket', 'label' => 'Business Development Executive'],
-        ['icon' => 'target', 'label' => 'Management Consultant'],
+        'Business Manager', 'Operations Manager', 'Marketing Executive', 'Human Resource Executive',
+        'Business Analyst', 'Project Coordinator', 'Entrepreneur', 'Sales Manager',
+        'Business Development Executive', 'Management Consultant',
     ]);
 
     $structure = collect([
-        ['title' => 'Year 1', 'subtitle' => 'Business Foundations', 'modules' => ['Principles of Management', 'Business Economics', 'Accounting Fundamentals', 'Marketing Essentials']],
-        ['title' => 'Year 2', 'subtitle' => 'Core Business Functions', 'modules' => ['Financial Management', 'Organisational Behaviour', 'Operations Management', 'Business Law']],
-        ['title' => 'Year 3', 'subtitle' => 'Advanced Business Management', 'modules' => ['Strategic Management', 'International Business', 'Entrepreneurship', 'Human Resource Management']],
-        ['title' => 'Year 4', 'subtitle' => 'Leadership, Strategy & Internship / Capstone', 'modules' => ['Leadership & Change', 'Business Strategy', 'Internship / Capstone', 'Global Business Perspectives']],
+        ['title' => 'Year 1', 'subtitle' => 'Business Foundations', 'modules' => [
+            ['title' => 'Principles of Management', 'desc' => 'Core concepts of managing people and organisations.'],
+            ['title' => 'Business Economics', 'desc' => 'Economic principles applied to business decisions.'],
+            ['title' => 'Accounting Fundamentals', 'desc' => 'Basics of financial and management accounting.'],
+            ['title' => 'Marketing Essentials', 'desc' => 'Foundations of marketing and market analysis.'],
+        ]],
+        ['title' => 'Year 2', 'subtitle' => 'Core Business Functions', 'modules' => [
+            ['title' => 'Financial Management', 'desc' => 'Managing financial resources and planning.'],
+            ['title' => 'Organisational Behaviour', 'desc' => 'Understanding people and behaviour in organisations.'],
+            ['title' => 'Operations Management', 'desc' => 'Designing and managing business operations.'],
+            ['title' => 'Business Law', 'desc' => 'Legal frameworks relevant to business.'],
+        ]],
+        ['title' => 'Year 3', 'subtitle' => 'Advanced Business Management', 'modules' => [
+            ['title' => 'Strategic Management', 'desc' => 'Developing and executing organisational strategy.'],
+            ['title' => 'International Business', 'desc' => 'Operating across global markets and cultures.'],
+            ['title' => 'Entrepreneurship', 'desc' => 'Creating and scaling new ventures.'],
+            ['title' => 'Human Resource Management', 'desc' => 'Managing talent, teams and organisational culture.'],
+        ]],
+        ['title' => 'Year 4', 'subtitle' => 'Leadership, Strategy & Internship / Capstone', 'modules' => [
+            ['title' => 'Leadership & Change', 'desc' => 'Leading teams and managing organisational change.'],
+            ['title' => 'Business Strategy', 'desc' => 'Advanced strategic thinking and decision-making.'],
+            ['title' => 'Internship / Capstone', 'desc' => 'Practical application through an internship or final project.'],
+            ['title' => 'Global Business Perspectives', 'desc' => 'Contemporary issues shaping the global business landscape.'],
+        ]],
     ]);
 
     $support = collect([
@@ -90,10 +103,18 @@
         'establishment' => 'Established 1985',
     ];
 
+    // Accreditation groups: each item may have a logo image URL or fall back to text.
     $accreditationGroups = collect([
-        ['group' => 'Institutional Recognition', 'items' => collect(['GAU', 'YÖDAK'])],
-        ['group' => 'International Accreditation', 'items' => collect(['IACBE'])],
-        ['group' => 'Professional Recognition', 'items' => collect(['YÖK'])],
+        ['group' => 'Institutional Recognition', 'items' => collect([
+            ['name' => 'GAU', 'logo' => null],
+            ['name' => 'YÖDAK', 'logo' => null],
+        ])],
+        ['group' => 'International Accreditation', 'items' => collect([
+            ['name' => 'IACBE', 'logo' => null],
+        ])],
+        ['group' => 'Professional Recognition', 'items' => collect([
+            ['name' => 'YÖK', 'logo' => null],
+        ])],
     ]);
 
     $testimonials = collect([
@@ -295,8 +316,10 @@
             <div class="pd-careers__grid">
                 @foreach($careers as $i => $career)
                     <div class="pd-careers__card">
-                        <span class="pd-careers__icon inline-icon" data-lucide="{{ $career['icon'] }}"></span>
-                        <span class="pd-careers__label">{{ $career['label'] }}</span>
+                        <span class="pd-careers__icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                        </span>
+                        <span class="pd-careers__label">{{ $career }}</span>
                     </div>
                 @endforeach
             </div>
@@ -318,11 +341,16 @@
                             <span class="pd-structure__chevron" aria-hidden="true">+</span>
                         </summary>
                         @if(!empty($stage['modules']))
-                            <ul class="pd-structure__modules">
+                            <div class="pd-structure__modules">
                                 @foreach($stage['modules'] as $module)
-                                    <li>{{ $module }}</li>
+                                    <div class="pd-structure__module">
+                                        <h4 class="pd-structure__module-title">{{ is_array($module) ? $module['title'] : $module }}</h4>
+                                        @if(is_array($module) && !empty($module['desc']))
+                                            <p class="pd-structure__module-desc">{{ $module['desc'] }}</p>
+                                        @endif
+                                    </div>
                                 @endforeach
-                            </ul>
+                            </div>
                         @endif
                     </details>
                 @endforeach
@@ -334,7 +362,8 @@
     {{-- ============ STEP 6 · UNIVERSITY ============ --}}
     @if($university->name)
     <section class="pd-uni section--light" aria-label="About the awarding university" data-testid="pd-uni">
-        <div class="container pd-uni__grid">
+        <div class="container">
+            <span class="pd-section-label">About the University</span>
             <h2 class="pd-section-title">A Globally Connected <em>University</em></h2>
             <div class="pd-uni__body">
                 <p>{{ $university->description }}</p>
@@ -348,19 +377,25 @@
     @if($accreditationGroups->count())
     <section class="pd-accred" aria-label="Accreditation and recognition" data-testid="pd-accred">
         <div class="container">
+            <span class="pd-section-label">Accreditation & Recognition</span>
             <h2 class="pd-section-title">Accreditation & <em>Recognition</em></h2>
-            <div class="pd-accred__groups">
-                @foreach($accreditationGroups as $g)
-                    <div class="pd-accred__group">
-                        <h3>{{ $g['group'] }}</h3>
-                        <div class="pd-accred__list">
-                            @foreach($g['items'] as $item)
-                                <span class="pd-accred__badge">{{ $item }}</span>
-                            @endforeach
+
+            @foreach($accreditationGroups as $g)
+            <div class="pd-accred__division">
+                <h3 class="pd-accred__division-heading">{{ $g['group'] }}</h3>
+                <div class="pd-accred__slider">
+                    @foreach($g['items'] as $item)
+                        <div class="pd-accred__logo-box">
+                            @if(!empty($item['logo']))
+                                <img class="pd-accred__logo-img" src="{{ $item['logo'] }}" alt="{{ $item['name'] }}" loading="lazy">
+                            @else
+                                <span class="pd-accred__logo-text">{{ $item['name'] }}</span>
+                            @endif
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                </div>
             </div>
+            @endforeach
         </div>
     </section>
     @endif
