@@ -191,7 +191,7 @@
 {{-- ═══════════════════════════════════════════
      2. HOW THE PATHWAY WORKS
 ═══════════════════════════════════════════ --}}
-<section class="mp-how section-wrapper" aria-label="How the Master's Pathway Works" data-testid="mp-how">
+<section class="mp-how section-wrapper section--light" aria-label="How the Master's Pathway Works" data-testid="mp-how">
     <div class="container">
         <div class="mp-how__header">
             <span class="section-label"><span>THE JOURNEY</span></span>
@@ -276,13 +276,13 @@
 {{-- ═══════════════════════════════════════════
      4. WHY CHOOSE MAVERICK
 ═══════════════════════════════════════════ --}}
-<section class="mp-why section-wrapper section--warm" aria-label="Why Choose Maverick's Master's Pathway" data-testid="mp-why">
+<section class="mp-why section-wrapper section--light" aria-label="Why Choose Maverick's Master's Pathway" data-testid="mp-why">
     <div class="container">
         <div class="mp-why__grid">
             <div class="mp-why__left">
                 <span class="section-label"><span>WHY MAVERICK</span></span>
                 <h2 class="mp-why__heading section-title">
-                    <span class="text-reveal-wrapper"><span class="text-reveal-inner">Why Choose Maverick\'s</span></span>
+                    <span class="text-reveal-wrapper"><span class="text-reveal-inner">Why Choose Maverick's</span></span>
                     <span class="text-reveal-wrapper"><span class="text-reveal-inner"><em>Master's Pathway?</em></span></span>
                 </h2>
                 <p class="mp-why__statement">A pathway built around your life.</p>
@@ -330,7 +330,7 @@
 {{-- ═══════════════════════════════════════════
      6. ENTRY REQUIREMENTS
 ═══════════════════════════════════════════ --}}
-<section class="mp-requirements section-wrapper" aria-label="Entry Requirements" data-testid="mp-requirements">
+<section class="mp-requirements section-wrapper section--light" aria-label="Entry Requirements" data-testid="mp-requirements">
     <div class="container">
         <div class="mp-requirements__grid">
             <div class="mp-requirements__intro">
@@ -401,7 +401,7 @@
 {{-- ═══════════════════════════════════════════
      8. IMPORTANT ACADEMIC NOTICE
 ═══════════════════════════════════════════ --}}
-<section class="mp-notice section-wrapper" aria-label="Important Academic Notice" data-testid="mp-notice">
+<section class="mp-notice section-wrapper section--light" aria-label="Important Academic Notice" data-testid="mp-notice">
     <div class="container">
         <div class="mp-notice__panel">
             <div class="mp-notice__label">ACADEMIC NOTICE</div>
@@ -412,6 +412,8 @@
         </div>
     </div>
 </section>
+
+@include('sections.faculty-insights')
 
 {{-- ═══════════════════════════════════════════
      9. FINAL CTA
