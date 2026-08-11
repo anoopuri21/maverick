@@ -98,6 +98,33 @@
         (object)['num' => '06', 'title' => 'Visa & Travel Preparation', 'desc' => 'Complete tuition payment, documentation, accommodation and visa formalities.'],
         (object)['num' => '07', 'title' => 'University Completion', 'desc' => 'Complete the final semester/year, dissertation, project or final assessment and graduate.'],
     ]);
+
+    $facultyInsights = collect([
+        (object)[
+            'title' => 'Navigating International Master\'s Progression',
+            'badge' => 'Master\'s Pathway',
+            'image_url' => 'https://images.pexels.com/photos/256541/pexels-photo-256541.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=560&w=640',
+            'link_url' => route('contact'),
+        ],
+        (object)[
+            'title' => 'Why Academic Mapping Matters for Your Study Route',
+            'badge' => 'Academic Mapping',
+            'image_url' => 'https://images.pexels.com/photos/207691/pexels-photo-207691.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=560&w=640',
+            'link_url' => route('contact'),
+        ],
+        (object)[
+            'title' => 'Building a Career-Focused Learning Journey',
+            'badge' => 'Career Focus',
+            'image_url' => 'https://images.pexels.com/photos/346823/pexels-photo-346823.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=560&w=640',
+            'link_url' => route('contact'),
+        ],
+        (object)[
+            'title' => 'From Level 7 Diploma to European Completion',
+            'badge' => 'Progression',
+            'image_url' => 'https://images.pexels.com/photos/16356273/pexels-photo-16356273.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=560&w=640',
+            'link_url' => route('contact'),
+        ],
+    ]);
 @endphp
 
 {{-- ═══════════════════════════════════════════
