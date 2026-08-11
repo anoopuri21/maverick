@@ -5,6 +5,7 @@
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/pages/program-detail.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/components/cinematic-hero.css') }}">
 @endpush
 
 @section('content')
@@ -14,13 +15,6 @@
     // Every section is optional; render only if content exists.
     // ------------------------------------------------------------------
     $cat = $program->programCategory;
-
-    // Hero facts (only existing fields)
-    $heroFacts = collect([
-        ['label' => 'Awarded By', 'value' => $program->partner_university],
-        ['label' => 'Duration', 'value' => $program->duration],
-        ['label' => 'Level', 'value' => $program->level],
-    ])->filter(fn ($f) => !empty($f['value']))->values();
 
     // Quick highlights (from structure doc)
     $highlights = collect([
@@ -113,38 +107,42 @@
         <a href="{{ route('contact') }}" class="pd-apply__ghost">Enquire</a>
     </aside>
 
-    {{-- ============ STEP 1 · HERO ============ --}}
-    <section class="pd-hero" id="top" aria-label="{{ $program->title }}" data-testid="pd-hero">
-        <div class="container pd-hero__grid">
-            <div class="pd-hero__content">
-                @if($cat)<span class="pd-hero__category">{{ $cat->name }}</span>@endif
-                <h1 class="pd-hero__title">{{ $program->title }}</h1>
-                @if($program->short_description)<p class="pd-hero__lede">{{ $program->short_description }}</p>@endif
-                <div class="pd-hero__ctas">
-                    <a href="#enquire" class="btn pd-btn pd-btn--primary">Apply Now</a>
-                    <a href="#structure" class="btn pd-btn pd-btn--ghost">Download Brochure</a>
-                    <a href="{{ route('contact') }}" class="btn pd-btn pd-btn--link">Enquire Now</a>
-                </div>
+    {{-- ============ STEP 1 · HERO (cinematic — same as other pages) ============ --}}
+    <section class="cinematic-hero pd-hero" id="top" aria-label="{{ $program->title }}" data-testid="pd-hero">
+        <div class="cinematic-hero__bg" aria-hidden="true">
+            <div class="cinematic-hero__bg-image" style="background-image: url('{{ $program->image_url ?? asset('assets/images/homepage/mba.jpg') }}')"></div>
+            <div class="cinematic-hero__gradient"></div>
+            <div class="cinematic-hero__noise"></div>
+            <div class="cinematic-hero__shapes">
+                <svg class="cinematic-hero__shape cinematic-hero__shape--1" viewBox="0 0 200 200" fill="none"><circle cx="100" cy="100" r="80" stroke="rgba(255,255,255,0.15)" stroke-width="1"/></svg>
+                <svg class="cinematic-hero__shape cinematic-hero__shape--2" viewBox="0 0 300 300" fill="none"><circle cx="150" cy="150" r="120" stroke="rgba(236,31,36,0.22)" stroke-width="1"/></svg>
+                <svg class="cinematic-hero__shape cinematic-hero__shape--3" viewBox="0 0 100 100" fill="none"><rect x="10" y="10" width="80" height="80" rx="8" stroke="rgba(255,255,255,0.15)" stroke-width="1" transform="rotate(20 50 50)"/></svg>
             </div>
-            @if($program->image_url)
-                <div class="pd-hero__media">
-                    <img src="{{ $program->image_url }}" alt="{{ $program->title }}" loading="eager" width="900" height="620">
-                </div>
-            @endif
+            <div class="cinematic-hero__particles">
+                @for($i = 0; $i < 6; $i++)
+                    <div class="cinematic-hero__particle"></div>
+                @endfor
+            </div>
+            <div class="cinematic-hero__scanline"></div>
         </div>
 
-        @if($heroFacts->count())
-        <div class="container">
-            <div class="pd-herofacts">
-                @foreach($heroFacts as $f)
-                    <div class="pd-herofacts__item">
-                        <span class="pd-herofacts__label">{{ $f['label'] }}</span>
-                        <span class="pd-herofacts__value">{{ $f['value'] }}</span>
-                    </div>
-                @endforeach
+        <div class="container cinematic-hero__content">
+            @if($cat)
+                <span class="cinematic-hero__eyebrow">
+                    <span class="cinematic-hero__eyebrow-line"></span>
+                    {{ $cat->name }}
+                </span>
+            @endif
+            <h1 class="cinematic-hero__title">{{ $program->title }}</h1>
+            @if($program->short_description)
+                <p class="cinematic-hero__description">{{ $program->short_description }}</p>
+            @endif
+            <div class="pd-hero__ctas">
+                <a href="#enquire" class="btn btn--primary">Apply Now</a>
+                <a href="#structure" class="btn btn--secondary">Download Brochure</a>
+                <a href="{{ route('contact') }}" class="btn btn--outline">Enquire Now</a>
             </div>
         </div>
-        @endif
     </section>
 
     {{-- ============ STEP 2 · QUICK HIGHLIGHTS ============ --}}
@@ -482,7 +480,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (typeof AnimationUtils !== 'undefined' && typeof gsap !== 'undefined' && !AnimationUtils.prefersReducedMotion) {
         AnimationUtils.fadeUp('.pd-hero__content', {});
-        AnimationUtils.fadeUp('.pd-herofacts__item', { stagger: 0.05 });
         AnimationUtils.fadeUp('.pd-highlights__item', { stagger: 0.05 });
         AnimationUtils.fadeUp('.pd-snapshot__item', { stagger: 0.05 });
         AnimationUtils.fadeUp('.pd-benefits__item', { stagger: 0.06 });
