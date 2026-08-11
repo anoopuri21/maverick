@@ -118,15 +118,19 @@
     ]);
 
     $testimonials = collect([
-        ['name' => 'Verified Student', 'role' => 'Business Manager', 'country' => 'UAE', 'photo' => null, 'quote' => 'The programme gave me the practical skills and confidence to progress into a leadership role.'],
-        ['name' => 'Verified Graduate', 'role' => 'Marketing Executive', 'country' => 'UAE', 'photo' => null, 'quote' => 'Flexible learning meant I could study while working full-time. The support from Maverick throughout was outstanding.'],
-        ['name' => 'Verified Learner', 'role' => 'Entrepreneur', 'country' => 'UAE', 'photo' => null, 'quote' => 'A structured, international route that helped me grow both professionally and personally.'],
+        ['name' => 'Verified Student', 'role' => 'Business Manager', 'country' => 'UAE', 'category' => 'STUDENT', 'thumb' => null, 'video' => null],
+        ['name' => 'Verified Graduate', 'role' => 'Marketing Executive', 'country' => 'UAE', 'category' => 'GRADUATE', 'thumb' => null, 'video' => null],
+        ['name' => 'Verified Learner', 'role' => 'Entrepreneur', 'country' => 'UAE', 'category' => 'STUDENT', 'thumb' => null, 'video' => null],
     ]);
 
     $fees = collect(['Registration Fee', 'Initial Payment', 'Monthly Instalments', 'Scholarship Availability', 'Offer Validity']);
 
     $faqs = $program->faqs;
-    $reviews = collect(); // empty -> no review section
+    $reviews = collect([
+        ['name' => 'Rahul S.', 'avatar' => null, 'rating' => 5, 'review' => 'Great programme structure and excellent support throughout my studies.'],
+        ['name' => 'Fatima A.', 'avatar' => null, 'rating' => 5, 'review' => 'The flexible learning approach let me balance work and study. Highly recommended.'],
+        ['name' => 'Mohammed K.', 'avatar' => null, 'rating' => 4, 'review' => 'A solid international pathway with very helpful advisors.'],
+    ]);
 @endphp
 
 <div class="page-pd">
@@ -438,30 +442,48 @@
     </section>
     @endif
 
-    {{-- ============ STEP 7 · TESTIMONIALS ============ --}}
+    {{-- ============ STEP 7 · TESTIMONIALS (video, like home) ============ --}}
     @if($testimonials->count())
     <section class="pd-testimonials" aria-label="Student success stories" data-testid="pd-testimonials">
         <div class="container">
-            <span class="pd-section-label">Success Stories</span>
-            <h2 class="pd-section-title">Student <em>Success Stories</em></h2>
-            <div class="pd-testimonials__slider">
-                @foreach($testimonials as $t)
-                    <figure class="pd-testimonials__card">
-                        <span class="pd-testimonials__quote-icon" aria-hidden="true">"</span>
-                        <blockquote>{{ $t['quote'] }}</blockquote>
-                        <figcaption>
-                            @if(!empty($t['photo']))
-                                <img class="pd-testimonials__avatar" src="{{ $t['photo'] }}" alt="{{ $t['name'] }}" loading="lazy">
-                            @else
-                                <span class="pd-testimonials__avatar pd-testimonials__avatar--initials" aria-hidden="true">{{ strtoupper(substr($t['name'] ?? 'S', 0, 1)) }}</span>
-                            @endif
-                            <span class="pd-testimonials__info">
-                                <span class="pd-testimonials__name">{{ $t['name'] }}</span>
-                                <span class="pd-testimonials__meta">{{ $t['role'] ?? '' }}{{ !empty($t['role']) && !empty($t['country']) ? ' · ' : '' }}{{ $t['country'] ?? '' }}</span>
-                            </span>
-                        </figcaption>
-                    </figure>
-                @endforeach
+            <span class="pd-section-label">Testimonials</span>
+            <h2 class="pd-section-title">Student Success <em>Stories</em></h2>
+            <div class="scroll-row scroll-row--light" data-scroll-row>
+                <button class="scroll-row__btn scroll-row__btn--prev" aria-label="Scroll left" data-scroll-prev>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6" /></svg>
+                </button>
+                <div class="pd-testimonials__scroll" data-scroll-container data-lenis-prevent>
+                    <div class="pd-testimonials__track">
+                        @foreach($testimonials as $t)
+                            <article class="testimonials__card pd-testimonials__card" data-testid="pd-testimonial-card">
+                                <span class="testimonials__card-badge">{{ $t['category'] ?? 'STUDENT' }}</span>
+                                <div class="testimonials__card-thumb">
+                                    @if(!empty($t['thumb']))
+                                        <img src="{{ $t['thumb'] }}" alt="{{ $t['name'] }}" loading="lazy">
+                                    @else
+                                        <div class="img-placeholder pd-testimonials__thumb-ph" aria-hidden="true"></div>
+                                    @endif
+                                    @if(!empty($t['video']))
+                                        <a class="testimonials__play" href="{{ $t['video'] }}" data-modal-video="{{ $t['video'] }}" aria-label="Play {{ $t['name'] }}'s video" data-testid="pd-play">
+                                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                                        </a>
+                                    @else
+                                        <span class="testimonials__play" aria-hidden="true">
+                                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                        </span>
+                                    @endif
+                                </div>
+                                <div class="testimonials__card-info">
+                                    <h3 class="testimonials__card-name">{{ $t['name'] }}</h3>
+                                    <p class="testimonials__card-role">{{ $t['role'] ?? '' }}{{ !empty($t['role']) && !empty($t['country']) ? ' · ' : '' }}{{ $t['country'] ?? '' }}</p>
+                                </div>
+                            </article>
+                        @endforeach
+                    </div>
+                </div>
+                <button class="scroll-row__btn scroll-row__btn--next" aria-label="Scroll right" data-scroll-next>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6" /></svg>
+                </button>
             </div>
         </div>
     </section>
@@ -508,7 +530,7 @@
     <section class="pd-enquire section--light" id="enquire" aria-label="Enquire about this programme" data-testid="pd-enquire">
         <div class="container pd-enquire__inner">
             <div class="pd-enquire__intro">
-                <h2 class="pd-section-title">Enquire About This <em>Programme</em></h2>
+                <h2 class="pd-section-title pd-section-title--single">Enquire About This Programme</h2>
                 <p class="body-text">Speak to our admissions team to check your eligibility and get started.</p>
             </div>
             <form class="pd-form" action="{{ route('contact') }}" method="POST">
@@ -527,20 +549,55 @@
                         <label for="pd-phone">Phone</label>
                         <input id="pd-phone" name="phone" type="tel" required>
                     </div>
+                    <div class="pd-form__field">
+                        <label for="pd-country">Country</label>
+                        <input id="pd-country" name="country" type="text">
+                    </div>
+                    <div class="pd-form__field">
+                        <label for="pd-study-mode">Study mode</label>
+                        <select id="pd-study-mode" name="study_mode">
+                            <option value="">Select study mode</option>
+                            <option value="online">Online</option>
+                            <option value="hybrid">Hybrid</option>
+                            <option value="part-time">Part-time</option>
+                        </select>
+                    </div>
+                    <div class="pd-form__field">
+                        <label for="pd-message">Message</label>
+                        <textarea id="pd-message" name="message" rows="2"></textarea>
+                    </div>
                 </div>
                 <button type="submit" class="btn pd-btn pd-btn--primary">Submit Enquiry</button>
             </form>
         </div>
     </section>
 
-    {{-- ============ STEP 8 · REVIEWS ============ --}}
+    {{-- ============ STEP 8 · REVIEWS (Google ratings) ============ --}}
     @if($reviews->count())
-    <section class="pd-reviews" aria-label="Student reviews" data-testid="pd-reviews">
+    <section class="pd-reviews" aria-label="Student reviews with Google ratings" data-testid="pd-reviews">
         <div class="container">
-            <h2 class="pd-section-title">What Students <em>Say</em></h2>
-            <div class="pd-reviews__slider">
+            <span class="pd-section-label">Reviews</span>
+            <h2 class="pd-section-title pd-section-title--single">Student Reviews with Google Ratings</h2>
+            <div class="pd-reviews__grid">
                 @foreach($reviews as $r)
-                    <div class="pd-reviews__card">{{ $r }}</div>
+                    <div class="pd-reviews__card">
+                        @if(!empty($r['avatar']))
+                            <img class="pd-reviews__avatar" src="{{ $r['avatar'] }}" alt="{{ $r['name'] }}" loading="lazy">
+                        @else
+                            <span class="pd-reviews__avatar pd-reviews__avatar--initials">{{ strtoupper(substr($r['name'] ?? 'S', 0, 1)) }}</span>
+                        @endif
+                        <div class="pd-reviews__content">
+                            <span class="pd-reviews__name">{{ $r['name'] ?? '' }}</span>
+                            @if(!empty($r['rating']))
+                                <span class="pd-reviews__stars" aria-label="{{ $r['rating'] }} out of 5">
+                                    @for($i = 1; $i <= 5; $i++)
+                                        <span class="{{ $i <= $r['rating'] ? 'is-filled' : '' }}">★</span>
+                                    @endfor
+                                </span>
+                            @endif
+                            <p class="pd-reviews__text">{{ $r['review'] ?? '' }}</p>
+                        </div>
+                    </div>
                 @endforeach
             </div>
         </div>
