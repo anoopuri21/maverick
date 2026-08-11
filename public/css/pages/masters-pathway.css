@@ -6,7 +6,6 @@
 
 /* Page-scoped brand tokens (harmonised with existing Maverick system) */
 .page-mp {
-  --mp-red: #ec1f24;
   --mp-navy: #2b3979;
   --mp-navy-deep: #071444;
   --mp-warm: #faf6f1;
@@ -19,7 +18,7 @@
 
 .page-mp em {
   font-style: italic;
-  color: var(--mp-red);
+  color: var(--color-mba-red);
 }
 
 .page-mp .section-title {
@@ -67,7 +66,7 @@
 }
 
 .mp-hero__route-arrow {
-  color: var(--mp-red);
+  color: var(--color-mba-red);
   font-size: 18px;
 }
 
@@ -76,7 +75,7 @@
    ========================================================= */
 .mp-overview__grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 64px;
   align-items: start;
   margin-bottom: 72px;
@@ -123,7 +122,7 @@
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--mp-red);
+  color: var(--color-mba-red);
   margin-bottom: 12px;
 }
 
@@ -139,7 +138,7 @@
   font-family: var(--font-display);
   font-size: 15px;
   font-weight: 600;
-  color: var(--mp-red);
+  color: var(--color-mba-red);
   margin: 0 0 10px;
 }
 
@@ -163,14 +162,14 @@
 .mp-pathway__connector-line {
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, var(--mp-red), var(--mp-navy));
+  background: linear-gradient(90deg, var(--color-mba-red), var(--mp-navy));
 }
 
 .mp-pathway__connector-dot {
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background: var(--mp-red);
+  background: var(--color-mba-red);
   box-shadow: 0 0 0 6px rgba(236, 31, 36, 0.12);
   position: relative;
   z-index: 1;
@@ -189,14 +188,14 @@
 
 .mp-how__phases {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 24px;
 }
 
 .mp-how__phase {
   background: #fff;
   border: 1px solid var(--mp-line);
-  border-top: 3px solid var(--mp-red);
+  border-top: 3px solid var(--color-mba-red);
   border-radius: 16px;
   padding: 36px 32px;
 }
@@ -206,7 +205,7 @@
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.16em;
-  color: var(--mp-red);
+  color: var(--color-mba-red);
 }
 
 .mp-how__phase-title {
@@ -262,7 +261,7 @@
 .mp-how__notice {
   margin-top: 40px;
   background: var(--mp-warm);
-  border-left: 3px solid var(--mp-red);
+  border-left: 3px solid var(--color-mba-red);
   border-radius: 12px;
   padding: 28px 32px;
 }
@@ -286,7 +285,7 @@
 
 .mp-dest {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 64px;
   align-items: center;
 }
@@ -343,7 +342,7 @@
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--mp-red);
+  color: var(--color-mba-red);
 }
 
 .mp-dest__title {
@@ -368,7 +367,7 @@
   padding: 0;
   margin: 0;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 10px 16px;
 }
 
@@ -385,7 +384,7 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--mp-red);
+  background: var(--color-mba-red);
   flex-shrink: 0;
 }
 
@@ -417,7 +416,7 @@
    ========================================================= */
 .mp-why__grid {
   display: grid;
-  grid-template-columns: 1fr 1.2fr;
+  grid-template-columns: 1fr;
   gap: 64px;
   align-items: start;
 }
@@ -431,7 +430,7 @@
   font-size: clamp(20px, 2.4vw, 28px);
   font-weight: 600;
   font-style: italic;
-  color: var(--mp-red);
+  color: var(--color-mba-red);
   margin: 0;
 }
 
@@ -462,7 +461,7 @@
   font-family: var(--font-display);
   font-size: 28px;
   font-weight: 700;
-  color: var(--mp-red);
+  color: var(--color-mba-red);
   line-height: 1;
   flex-shrink: 0;
 }
@@ -502,7 +501,7 @@
 
 .mp-audience__grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: 20px;
 }
 
@@ -520,7 +519,7 @@
   font-family: var(--font-display);
   font-size: 16px;
   font-weight: 700;
-  color: var(--mp-red);
+  color: var(--color-mba-red);
   flex-shrink: 0;
 }
 
@@ -537,7 +536,7 @@
    ========================================================= */
 .mp-requirements__grid {
   display: grid;
-  grid-template-columns: 1fr 1.2fr;
+  grid-template-columns: 1fr;
   gap: 64px;
   align-items: start;
 }
@@ -551,7 +550,7 @@
   padding: 0;
   margin: 0;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 14px;
 }
 
@@ -569,7 +568,7 @@
   font-family: var(--font-display);
   font-size: 14px;
   font-weight: 700;
-  color: var(--mp-red);
+  color: var(--color-mba-red);
   flex-shrink: 0;
 }
 
@@ -610,7 +609,7 @@
   left: 50%;
   width: 3px;
   transform: translateX(-50%);
-  background: linear-gradient(var(--mp-red), var(--mp-navy));
+  background: linear-gradient(var(--color-mba-red), var(--mp-navy));
   border-radius: 3px;
   height: 0;
   z-index: 1;
@@ -665,7 +664,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--mp-red);
+  color: var(--color-mba-red);
 }
 
 .mp-timeline__marker-icon svg {
@@ -675,7 +674,7 @@
 
 .mp-timeline__item:hover .mp-timeline__marker {
   transform: scale(1.06);
-  background: var(--mp-red);
+  background: var(--color-mba-red);
   box-shadow: 0 0 0 8px #fff, 0 0 0 9px rgba(236, 31, 36, 0.3);
 }
 
@@ -728,14 +727,14 @@
   font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--mp-red);
+  color: var(--color-mba-red);
 }
 
 .mp-timeline__step::before {
   content: "";
   width: 20px;
   height: 2px;
-  background: var(--mp-red);
+  background: var(--color-mba-red);
 }
 
 .mp-timeline__title {
@@ -759,12 +758,12 @@
    ========================================================= */
 .mp-notice__panel {
   display: grid;
-  grid-template-columns: 240px 1fr;
+  grid-template-columns: 1fr;
   gap: 40px;
   background: var(--mp-grey);
   border-radius: 16px;
   padding: 44px 48px;
-  border-left: 4px solid var(--mp-red);
+  border-left: 4px solid var(--color-mba-red);
 }
 
 .mp-notice__label {
@@ -773,7 +772,7 @@
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--mp-red);
+  color: var(--color-mba-red);
 }
 
 .mp-notice__content p {
@@ -907,7 +906,7 @@
 
   .mp-pathway__connector-line {
     inset: 0;
-    background: linear-gradient(to bottom, var(--mp-red), var(--mp-navy));
+    background: linear-gradient(to bottom, var(--color-mba-red), var(--mp-navy));
   }
 
   .mp-dest {

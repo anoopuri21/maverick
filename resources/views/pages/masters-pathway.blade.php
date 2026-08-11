@@ -515,6 +515,47 @@ document.addEventListener('DOMContentLoaded', () => {
     AnimationUtils.fadeUp('.mp-requirements__item', { stagger: 0.06 });
     AnimationUtils.fadeUp('.mp-dest__content', { stagger: 0.1 });
 
+    // Generic fallback: reveal ANY remaining .fade-up element that has
+    // no ScrollTrigger of its own yet (e.g. overview/destinations/
+    // requirements intro paragraphs), and make sure it is never stuck
+    // hidden even if the trigger point was already passed on load.
+    document.querySelectorAll('.page-mp .fade-up').forEach((el) => {
+        // Skip elements already handled by an explicit animation above.
+        if (el.classList.contains('mp-benefit')) return;
+        if (el.classList.contains('mp-audience__item')) return;
+        if (el.classList.contains('mp-requirements__item')) return;
+        if (el.classList.contains('mp-timeline__card')) return;
+        if (el.closest('.mp-dest__content')) return;
+
+        el.setAttribute('data-mp-fade', 'done');
+        gsap.fromTo(el,
+            { opacity: 0, y: 30 },
+            {
+                opacity: 1, y: 0,
+                duration: 0.6,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: el,
+                    start: 'top 92%',
+                    once: true,
+                },
+            },
+        );
+    });
+
+    // Guard: ensure any .fade-up already within the viewport on load is
+    // revealed (in case ScrollTrigger's initial refresh misses it).
+    requestAnimationFrame(() => {
+        document.querySelectorAll('.page-mp .fade-up').forEach((el) => {
+            if (parseFloat(getComputedStyle(el).opacity) < 0.5) {
+                const r = el.getBoundingClientRect();
+                if (r.top < window.innerHeight && r.bottom > 0) {
+                    gsap.to(el, { opacity: 1, y: 0, duration: 0.4, overwrite: true });
+                }
+            }
+        });
+    });
+
     // Timeline — progressive line draw + card reveal
     const timeline = document.querySelector('.mp-timeline');
     const progress = document.querySelector('.mp-timeline__progress');
