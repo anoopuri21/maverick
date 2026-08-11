@@ -60,9 +60,16 @@
     ]);
 
     $careers = collect([
-        'Business Manager', 'Operations Manager', 'Marketing Executive', 'Human Resource Executive',
-        'Business Analyst', 'Project Coordinator', 'Entrepreneur', 'Sales Manager',
-        'Business Development Executive', 'Management Consultant',
+        ['icon' => 'briefcase', 'label' => 'Business Manager'],
+        ['icon' => 'settings', 'label' => 'Operations Manager'],
+        ['icon' => 'megaphone', 'label' => 'Marketing Executive'],
+        ['icon' => 'users', 'label' => 'Human Resource Executive'],
+        ['icon' => 'trending-up', 'label' => 'Business Analyst'],
+        ['icon' => 'clipboard-list', 'label' => 'Project Coordinator'],
+        ['icon' => 'lightbulb', 'label' => 'Entrepreneur'],
+        ['icon' => 'bar-chart', 'label' => 'Sales Manager'],
+        ['icon' => 'rocket', 'label' => 'Business Development Executive'],
+        ['icon' => 'target', 'label' => 'Management Consultant'],
     ]);
 
     $structure = collect([
@@ -230,8 +237,9 @@
     {{-- ============ STEP 3 · OVERVIEW ============ --}}
     @if($program->description)
     <section class="pd-overview" aria-label="Programme overview" data-testid="pd-overview">
-        <div class="container pd-overview__grid">
-            <h2 class="pd-overview__title">Build the business skills that <em>move organisations forward</em>.</h2>
+        <div class="container">
+            <span class="pd-section-label">Overview</span>
+            <h2 class="pd-section-title">Programme <em>Overview</em></h2>
             <p class="pd-overview__body">{{ $program->description }}</p>
         </div>
     </section>
@@ -241,15 +249,14 @@
     @if($benefits->count())
     <section class="pd-benefits section--light" aria-label="Why choose this programme" data-testid="pd-benefits">
         <div class="container">
+            <span class="pd-section-label">Why Choose</span>
             <h2 class="pd-section-title">Why Choose This <em>Programme?</em></h2>
-            <div class="pd-benefits__list">
+            <div class="pd-benefits__grid">
                 @foreach($benefits as $i => $b)
-                    <div class="pd-benefits__item">
+                    <div class="pd-benefits__card">
                         <span class="pd-benefits__num">{{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}</span>
-                        <div>
-                            <h3>{{ $b['title'] }}</h3>
-                            <p>{{ $b['desc'] }}</p>
-                        </div>
+                        <h3>{{ $b['title'] }}</h3>
+                        <p>{{ $b['desc'] }}</p>
                     </div>
                 @endforeach
             </div>
@@ -260,16 +267,16 @@
     {{-- ============ STEP 4 · WHAT YOU'LL LEARN ============ --}}
     @if($learning->count())
     <section class="pd-learn" aria-label="What you'll learn" data-testid="pd-learn">
-        <div class="container pd-learn__grid">
-            <div class="pd-learn__intro">
+        <div class="container">
+            <div class="pd-learn__header">
                 <span class="pd-section-label">Learning Outcomes</span>
                 <h2 class="pd-section-title">What You'll <em>Learn</em></h2>
-                <p class="body-text">Students will learn to:</p>
+                <p class="pd-learn__sub">Students will learn to:</p>
             </div>
             <ol class="pd-learn__list">
                 @foreach($learning as $i => $cap)
                     <li class="pd-learn__item">
-                        <span class="pd-learn__num">{{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}</span>
+                        <span class="pd-learn__tick" aria-hidden="true">✓</span>
                         <span>{{ $cap }}</span>
                     </li>
                 @endforeach
@@ -282,13 +289,14 @@
     @if($careers->count())
     <section class="pd-careers section--light" aria-label="Career opportunities" data-testid="pd-careers">
         <div class="container">
+            <span class="pd-section-label">Careers</span>
             <h2 class="pd-section-title">Where This Degree Can <em>Take You</em></h2>
-            <p class="body-text">Potential careers include:</p>
+            <p class="pd-careers__sub">Potential careers include:</p>
             <div class="pd-careers__grid">
                 @foreach($careers as $i => $career)
-                    <div class="pd-careers__item">
-                        <span class="pd-careers__num">{{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}</span>
-                        <span>{{ $career }}</span>
+                    <div class="pd-careers__card">
+                        <span class="pd-careers__icon inline-icon" data-lucide="{{ $career['icon'] }}"></span>
+                        <span class="pd-careers__label">{{ $career['label'] }}</span>
                     </div>
                 @endforeach
             </div>
@@ -513,9 +521,9 @@ document.addEventListener('DOMContentLoaded', () => {
         AnimationUtils.fadeUp('.pd-hero__content', {});
         AnimationUtils.fadeUp('.pd-highlights__card', { stagger: 0.05 });
         AnimationUtils.fadeUp('.pd-snapshot__item', { stagger: 0.05 });
-        AnimationUtils.fadeUp('.pd-benefits__item', { stagger: 0.06 });
+        AnimationUtils.fadeUp('.pd-benefits__card', { stagger: 0.06 });
         AnimationUtils.fadeUp('.pd-learn__item', { stagger: 0.04 });
-        AnimationUtils.fadeUp('.pd-careers__item', { stagger: 0.04 });
+        AnimationUtils.fadeUp('.pd-careers__card', { stagger: 0.04 });
         AnimationUtils.fadeUp('.pd-support__item', { stagger: 0.04 });
         AnimationUtils.fadeUp('.pd-testimonials__card', { stagger: 0.1 });
     }

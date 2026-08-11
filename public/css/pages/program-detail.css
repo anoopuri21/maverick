@@ -225,39 +225,59 @@
    STEP 3 · OVERVIEW
    ========================================================= */
 .pd-overview { padding: clamp(40px, 5vw, 64px) 0; }
-.pd-overview__grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(28px, 5vw, 72px); align-items: center; }
-.pd-overview__title { font-family: var(--font-display); font-size: clamp(26px, 3.4vw, 42px); font-weight: 600; line-height: 1.15; letter-spacing: -0.02em; color: var(--pd-navy); margin: 0; }
-.pd-overview__body { font-size: 15px; line-height: 1.8; color: var(--pd-muted); margin: 0; }
+.pd-overview__body {
+  font-size: 16px; line-height: 1.8; color: var(--pd-muted); margin: 0; max-width: 72ch;
+}
 
 /* =========================================================
    STEP 4 · WHY CHOOSE
    ========================================================= */
 .pd-benefits { padding: clamp(36px, 5vw, 56px) 0; }
-.pd-benefits__list { display: flex; flex-direction: column; }
-.pd-benefits__item { display: flex; gap: 22px; align-items: flex-start; padding: 20px 4px; border-bottom: 1px solid var(--pd-line); }
-.pd-benefits__item:first-child { border-top: 1px solid var(--pd-line); }
-.pd-benefits__num { font-family: var(--font-display); font-size: 18px; font-weight: 700; color: var(--pd-red); min-width: 40px; }
-.pd-benefits__item h3 { font-family: var(--font-display); font-size: 18px; font-weight: 600; color: var(--pd-navy); margin: 0 0 4px; }
-.pd-benefits__item p { font-size: 14px; color: var(--pd-muted); margin: 0; line-height: 1.6; }
+.pd-benefits__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.pd-benefits__card {
+  display: flex; flex-direction: column; gap: 12px;
+  background: #fff; border: 1px solid var(--pd-line); border-radius: 14px; padding: 26px 24px;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.pd-benefits__card:hover { border-color: var(--pd-red); box-shadow: 0 14px 36px rgba(28,35,51,0.08); }
+.pd-benefits__num { font-family: var(--font-display); font-size: 22px; font-weight: 700; color: var(--pd-red); }
+.pd-benefits__card h3 { font-family: var(--font-display); font-size: 18px; font-weight: 600; color: var(--pd-navy); margin: 0; }
+.pd-benefits__card p { font-size: 14px; color: var(--pd-muted); margin: 0; line-height: 1.6; }
 
 /* =========================================================
    STEP 4 · WHAT YOU'LL LEARN
    ========================================================= */
 .pd-learn { padding: clamp(36px, 5vw, 56px) 0; }
-.pd-learn__grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(28px, 5vw, 72px); align-items: start; }
-.pd-learn__intro .body-text { color: var(--pd-muted); }
-.pd-learn__list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 24px; }
-.pd-learn__item { display: flex; gap: 14px; align-items: baseline; padding: 12px 0; border-bottom: 1px solid var(--pd-line); font-size: 15px; color: var(--pd-ink); }
-.pd-learn__num { font-family: var(--font-display); font-weight: 700; color: var(--pd-red); min-width: 30px; }
+.pd-learn__header { max-width: 720px; margin-bottom: 32px; }
+.pd-learn__sub { font-size: 16px; color: var(--pd-muted); margin: 12px 0 0; }
+.pd-learn__list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 14px 32px; }
+.pd-learn__item { display: flex; gap: 12px; align-items: flex-start; padding: 14px 0; border-bottom: 1px solid var(--pd-line); font-size: 15px; color: var(--pd-ink); }
+.pd-learn__tick {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: rgba(236, 31, 36, 0.1); color: var(--pd-red);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700; flex-shrink: 0; margin-top: 1px;
+}
 
 /* =========================================================
    STEP 5 · CAREERS
    ========================================================= */
 .pd-careers { padding: clamp(36px, 5vw, 56px) 0; }
-.pd-careers .body-text { color: var(--pd-muted); }
-.pd-careers__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
-.pd-careers__item { display: flex; gap: 12px; align-items: center; padding: 16px 18px; border: 1px solid var(--pd-line); border-radius: 10px; font-size: 14px; color: var(--pd-ink); background: #fff; }
-.pd-careers__num { font-family: var(--font-display); font-weight: 700; color: var(--pd-red); }
+.pd-careers__sub { font-size: 16px; color: var(--pd-muted); margin: 0 0 28px; }
+.pd-careers__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.pd-careers__card {
+  display: flex; flex-direction: column; gap: 14px; align-items: flex-start;
+  background: #fff; border: 1px solid var(--pd-line); border-radius: 14px; padding: 24px;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.pd-careers__card:hover { border-color: var(--pd-red); box-shadow: 0 14px 36px rgba(28,35,51,0.08); }
+.pd-careers__icon {
+  width: 46px; height: 46px; border-radius: 12px;
+  background: linear-gradient(135deg, var(--pd-navy), var(--pd-navy-deep));
+  color: #fff; display: flex; align-items: center; justify-content: center;
+}
+.pd-careers__icon svg { width: 22px; height: 22px; }
+.pd-careers__label { font-family: var(--font-display); font-size: 16px; font-weight: 600; color: var(--pd-navy); }
 
 /* =========================================================
    STEP 5 · STRUCTURE
@@ -379,12 +399,11 @@
    RESPONSIVE
    ========================================================= */
 @media (max-width: 1024px) {
-  .pd-overview__grid, .pd-learn__grid, .pd-uni__grid,
-  .pd-enquire__inner, .pd-fees__inner { grid-template-columns: 1fr; gap: 28px; }
+  .pd-uni__grid, .pd-enquire__inner, .pd-fees__inner { grid-template-columns: 1fr; gap: 28px; }
   .pd-form__row { grid-template-columns: 1fr; }
-}
-@media (max-width: 1024px) {
   .pd-recognition__awarded-grid { grid-template-columns: repeat(2, 1fr); }
+  .pd-benefits__grid { grid-template-columns: repeat(2, 1fr); }
+  .pd-careers__grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 768px) {
   .pd-learn__list { grid-template-columns: 1fr; }
@@ -394,6 +413,7 @@
   .pd-snapshot__item:nth-child(even) { border-right: 1px solid var(--pd-line); }
   .pd-snapshot__item:last-child { border-right: 0; border-bottom: 0; }
   .pd-snapshot__item { border-bottom: 1px solid var(--pd-line); }
+  .pd-benefits__grid, .pd-careers__grid { grid-template-columns: 1fr; }
   .pd-apply { display: flex; }
   .pd-whatsapp { right: 14px; bottom: 80px; }
 }
