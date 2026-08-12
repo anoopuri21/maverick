@@ -72,7 +72,7 @@
   left: 50%;
   transform: translateX(-50%);
   z-index: 50;
-  display: none;
+  display: flex;
   gap: 10px;
   background: #fff;
   border: 1px solid var(--pd-line);
@@ -83,11 +83,15 @@
 .pd-apply__primary {
   padding: 12px 24px; border-radius: 999px; background: var(--pd-red); color: #fff;
   font-weight: 600; text-transform: uppercase; font-size: 13px; letter-spacing: 0.04em; text-decoration: none;
+  transition: background 0.25s ease;
 }
+.pd-apply__primary:hover { background: #c81e1e; }
 .pd-apply__ghost {
   padding: 12px 24px; border-radius: 999px; color: var(--pd-navy);
   font-weight: 600; text-transform: uppercase; font-size: 13px; letter-spacing: 0.04em; text-decoration: none;
+  transition: background 0.25s ease;
 }
+.pd-apply__ghost:hover { background: rgba(43, 57, 121, 0.08); }
 
 /* =========================================================
    STEP 1 · HERO (cinematic — shared component)
@@ -394,39 +398,32 @@
 .pd-support__text { font-family: var(--font-body); font-size: 14px; color: var(--pd-ink); }
 
 /* =========================================================
-   STEP 7 · TESTIMONIALS
+   STEP 7 · TESTIMONIALS (video, like home)
    ========================================================= */
 .pd-testimonials { padding: clamp(36px, 5vw, 56px) 0; }
-.pd-testimonials__slider { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-.pd-testimonials__card {
-  position: relative;
-  border: 1px solid var(--pd-line); border-radius: 16px; padding: 32px 28px 28px;
-  margin: 0; background: #fff;
-  transition: box-shadow 0.25s ease;
+.pd-testimonials .scroll-row { margin-top: 8px; }
+.pd-testimonials__scroll {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
 }
-.pd-testimonials__card:hover { box-shadow: 0 16px 40px rgba(28,35,51,0.08); }
-.pd-testimonials__quote-icon {
-  position: absolute; top: 20px; right: 24px;
-  font-family: var(--font-display); font-size: 64px; line-height: 1;
-  color: rgba(236, 31, 36, 0.1); font-weight: 700;
+.pd-testimonials__scroll::-webkit-scrollbar { display: none; }
+.pd-testimonials__track {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 2rem;
+  padding: 2rem 0;
+  width: max-content;
 }
-.pd-testimonials__card blockquote {
-  font-size: 15px; line-height: 1.7; color: var(--pd-ink);
-  margin: 0 0 24px; position: relative; z-index: 1;
-}
-.pd-testimonials__card figcaption { display: flex; align-items: center; gap: 14px; }
-.pd-testimonials__avatar {
-  width: 48px; height: 48px; border-radius: 50%; object-fit: cover;
-  border: 2px solid var(--pd-line);
-}
-.pd-testimonials__avatar--initials {
+.pd-testimonials__card { flex: 0 0 380px; }
+.pd-testimonials__thumb-ph {
+  width: 100%;
+  height: 100%;
   background: linear-gradient(135deg, var(--pd-navy), var(--pd-navy-deep));
-  color: #fff; display: flex; align-items: center; justify-content: center;
-  font-family: var(--font-display); font-size: 18px; font-weight: 600;
 }
-.pd-testimonials__info { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
-.pd-testimonials__name { font-family: var(--font-display); font-size: 16px; font-weight: 600; color: var(--pd-navy); }
-.pd-testimonials__meta { font-size: 13px; color: var(--pd-muted); }
 
 /* =========================================================
    STEP 8 · FEES
@@ -457,18 +454,42 @@
 .pd-enquire { padding: clamp(40px, 5vw, 64px) 0; }
 .pd-enquire__inner { display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(28px, 5vw, 72px); align-items: start; }
 .pd-enquire__intro .body-text { color: var(--pd-muted); }
+.pd-section-title--single { letter-spacing: -0.01em; }
 .pd-form { background: #fff; border: 1px solid var(--pd-line); border-radius: 14px; padding: 28px; display: flex; flex-direction: column; gap: 16px; }
 .pd-form__row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 .pd-form__field { display: flex; flex-direction: column; gap: 6px; }
 .pd-form__field label { font-size: 13px; font-weight: 600; color: var(--pd-navy); }
-.pd-form__field input { border: 1px solid var(--pd-line); border-radius: 8px; padding: 12px 14px; font-family: var(--font-body); font-size: 14px; }
+.pd-form__field input,
+.pd-form__field select,
+.pd-form__field textarea {
+  border: 1px solid var(--pd-line); border-radius: 8px; padding: 12px 14px;
+  font-family: var(--font-body); font-size: 14px; color: var(--pd-ink); background: #fff;
+}
+.pd-form__field textarea { resize: vertical; }
 
 /* =========================================================
-   STEP 8 · REVIEWS
+   STEP 8 · REVIEWS (Google ratings)
    ========================================================= */
 .pd-reviews { padding: clamp(36px, 5vw, 56px) 0; }
-.pd-reviews__slider { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
-.pd-reviews__card { border: 1px solid var(--pd-line); border-radius: 14px; padding: 24px; background: #fff; }
+.pd-reviews__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+.pd-reviews__card {
+  display: flex; gap: 16px; align-items: flex-start;
+  border: 1px solid var(--pd-line); border-radius: 14px; padding: 24px; background: #fff;
+}
+.pd-reviews__avatar {
+  width: 48px; height: 48px; border-radius: 50%; object-fit: cover; flex-shrink: 0;
+  border: 2px solid var(--pd-line);
+}
+.pd-reviews__avatar--initials {
+  background: linear-gradient(135deg, var(--pd-navy), var(--pd-navy-deep));
+  color: #fff; display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 18px; font-weight: 600;
+}
+.pd-reviews__content { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.pd-reviews__name { font-family: var(--font-display); font-size: 16px; font-weight: 600; color: var(--pd-navy); }
+.pd-reviews__stars { display: inline-flex; gap: 2px; font-size: 16px; color: var(--pd-line); }
+.pd-reviews__stars .is-filled { color: #f5a623; }
+.pd-reviews__text { font-size: 14px; line-height: 1.6; color: var(--pd-muted); margin: 0; }
 
 /* =========================================================
    FINAL CTA
@@ -511,8 +532,7 @@
   .pd-snapshot__item:last-child { border-right: 0; border-bottom: 0; }
   .pd-snapshot__item { border-bottom: 1px solid var(--pd-line); }
   .pd-benefits__grid, .pd-careers__grid, .pd-support__grid { grid-template-columns: 1fr; }
-  .pd-apply { display: flex; }
-  .pd-whatsapp { right: 14px; bottom: 80px; }
+  .pd-whatsapp { right: 14px; bottom: 88px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .page-pd * { transition: none !important; }
