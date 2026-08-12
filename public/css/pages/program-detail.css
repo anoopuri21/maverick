@@ -105,28 +105,23 @@
 .pd-highlights__grid {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
+  gap: 12px;
 }
 .pd-highlights__card {
-  flex: 0 0 calc(33.333% - 20px);
+  flex: 1 1 calc(33.333% - 12px);
+  min-width: 180px;
   display: flex;
-  align-items: flex-start;
-  gap: 14px;
+  align-items: center;
   background: #fff;
   border: 1px solid var(--pd-line);
-  border-radius: 14px;
-  padding: 22px 24px;
+  border-radius: 10px;
+  padding: 14px 16px;
   transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
-.pd-highlights__card:hover { border-color: var(--pd-red); box-shadow: 0 12px 32px rgba(28,35,51,0.08); }
-.pd-highlights__dot {
-  width: 10px; height: 10px; border-radius: 50%;
-  background: var(--pd-red); margin-top: 6px; flex-shrink: 0;
-}
-.pd-highlights__card-text { display: flex; flex-direction: column; gap: 4px; }
-.pd-highlights__label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--pd-muted); }
-.pd-highlights__value { font-family: var(--font-display); font-size: 17px; font-weight: 600; color: var(--pd-navy); }
+.pd-highlights__card:hover { border-color: var(--pd-red); box-shadow: 0 10px 24px rgba(28,35,51,0.07); }
+.pd-highlights__card-text { display: flex; flex-direction: column; gap: 2px; }
+.pd-highlights__label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--pd-muted); }
+.pd-highlights__value { font-family: var(--font-display); font-size: 14px; font-weight: 600; color: var(--pd-navy); }
 
 /* =========================================================
    STEP 2 · RECOGNITION & ACCREDITATION
@@ -195,35 +190,56 @@
 .pd-recognition__note { font-size: 13px; line-height: 1.5; color: var(--pd-muted); margin: 0; }
 
 /* =========================================================
-   STEP 3 · SNAPSHOT
+   EXPERIMENT · TWO-COLUMN LAYOUT (7:3) + STICKY SIDEBAR
    ========================================================= */
-.pd-snapshot { padding: clamp(36px, 5vw, 56px) 0; }
-.pd-snapshot__panel { border: 1px solid var(--pd-line); border-radius: 14px; padding: 8px; }
-.pd-snapshot__grid {
+.pd-layout {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0;
+  grid-template-columns: 7fr 3fr;
+  gap: clamp(24px, 3vw, 56px);
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0;
+  align-items: stretch;
 }
-.pd-snapshot__item {
+.pd-layout__main,
+.pd-layout__side { min-width: 0; }
+.pd-layout__main > * { min-width: 0; }
+.pd-layout__sticky {
+  position: sticky;
+  top: calc(var(--navbar-height, 80px) + 24px);
+}
+
+/* Right sticky box — "Programme at a Glance" */
+.pd-snapshot-box {
+  background: #fff;
+  border: 1px solid var(--pd-line);
+  border-radius: 16px;
+  padding: 26px 24px 24px;
+  box-shadow: 0 18px 48px rgba(28, 35, 51, 0.1);
+}
+.pd-snapshot-box .pd-section-label { margin-bottom: 18px; }
+.pd-snapshot-box__list { border-top: 1px solid var(--pd-line); }
+.pd-snapshot-box__item {
   display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 18px 20px;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 13px 0;
   border-bottom: 1px solid var(--pd-line);
-  border-right: 1px solid var(--pd-line);
 }
-.pd-snapshot__item:nth-child(even) { border-right: 0; }
-.pd-snapshot__item:last-child, .pd-snapshot__item:nth-last-child(2) { border-bottom: 0; }
-.pd-snapshot__icon {
-  width: 22px; height: 22px; border-radius: 50%;
-  background: rgba(236, 31, 36, 0.1);
-  color: var(--pd-red);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 12px; font-weight: 700; flex-shrink: 0;
+.pd-snapshot-box__label {
+  font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--pd-muted); flex-shrink: 0;
 }
-.pd-snapshot__item-body { display: flex; flex-direction: column; gap: 2px; }
-.pd-snapshot__label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--pd-muted); }
-.pd-snapshot__value { font-family: var(--font-display); font-size: 16px; font-weight: 600; color: var(--pd-navy); }
+.pd-snapshot-box__value {
+  font-family: var(--font-display); font-size: 14px; font-weight: 600;
+  color: var(--pd-navy); text-align: right; line-height: 1.35;
+}
+.pd-snapshot-box__actions {
+  display: flex; flex-direction: column; gap: 10px; margin-top: 22px;
+}
+.pd-snapshot-box__cta { width: 100%; padding: 12px 18px; font-size: 13px; }
+.pd-snapshot-box__cta--ghost { background: transparent; }
 
 /* =========================================================
    STEP 3 · OVERVIEW
@@ -515,6 +531,13 @@
 /* =========================================================
    RESPONSIVE
    ========================================================= */
+@media (max-width: 1120px) {
+  /* Collapse the 7:3 experiment to a single column; "Programme at a Glance"
+     becomes a compact intro box at the top of the page. */
+  .pd-layout { grid-template-columns: 1fr; gap: 28px; }
+  .pd-layout__side { order: -1; }
+  .pd-layout__sticky { position: static; }
+}
 @media (max-width: 1024px) {
   .pd-enquire__inner, .pd-fees__inner { grid-template-columns: 1fr; gap: 28px; }
   .pd-form__row { grid-template-columns: 1fr; }
@@ -525,15 +548,125 @@
 }
 @media (max-width: 768px) {
   .pd-learn__list { grid-template-columns: 1fr; }
-  .pd-highlights__card { flex: 0 0 calc(50% - 20px); }
+  .pd-highlights__card { flex: 1 1 calc(50% - 12px); min-width: 0; }
   .pd-recognition__awarded-grid { grid-template-columns: 1fr; }
-  .pd-snapshot__grid { grid-template-columns: 1fr; }
-  .pd-snapshot__item:nth-child(even) { border-right: 1px solid var(--pd-line); }
-  .pd-snapshot__item:last-child { border-right: 0; border-bottom: 0; }
-  .pd-snapshot__item { border-bottom: 1px solid var(--pd-line); }
   .pd-benefits__grid, .pd-careers__grid, .pd-support__grid { grid-template-columns: 1fr; }
   .pd-whatsapp { right: 14px; bottom: 88px; }
 }
+@media (max-width: 480px) {
+  .pd-highlights__card { flex: 1 1 100%; }
+}
 @media (prefers-reduced-motion: reduce) {
   .page-pd * { transition: none !important; }
+}
+
+/* =========================================================
+   STEP 8 · REVIEWS (shared Our Story testimonials slider)
+   Reuses the exact same slider as the our-story page — only the
+   heading differs. CSS below mirrors sections/our-story-testimonials.
+   ========================================================= */
+.page-pd {
+  --os-red: var(--pd-red);
+  --os-navy: var(--pd-navy);
+  --os-muted: var(--pd-muted);
+  --os-radius: 16px;
+  --os-transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.page-pd .os-testimonials {
+  padding: clamp(36px, 5vw, 56px) 0;
+  background: transparent;
+}
+.page-pd .os-testimonials__header { text-align: left; margin-bottom: 32px; }
+.page-pd .os-testimonials__header .os-section-label { justify-content: flex-start; }
+.page-pd .os-testimonials .os-section-heading {
+  font-size: clamp(24px, 3vw, 32px);
+}
+.os-testimonials__slider { position: relative; }
+.os-testimonials__viewport {
+  overflow: hidden;
+  width: 100%;
+  container-type: inline-size;
+}
+.os-testimonials__track { display: flex; gap: 24px; will-change: transform; }
+.os-testimonials__card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 0 0 calc((100cqi - 48px) / 3);
+  width: calc((100cqi - 48px) / 3);
+  background: #ffffff;
+  border: 1px solid var(--pd-line);
+  border-radius: var(--os-radius);
+  padding: 32px 26px;
+  overflow: hidden;
+  transition: border-color var(--os-transition), transform var(--os-transition), box-shadow var(--os-transition);
+}
+.os-testimonials__card::before {
+  content: "\201C";
+  position: absolute;
+  top: 12px;
+  right: 20px;
+  font-family: var(--font-display);
+  font-size: 120px;
+  font-weight: 700;
+  line-height: 1;
+  color: rgba(26, 43, 122, 0.06);
+  pointer-events: none;
+  user-select: none;
+}
+.os-testimonials__card:hover {
+  border-color: rgba(236, 31, 36, 0.25);
+  transform: translateY(-4px);
+  box-shadow: 0 14px 36px rgba(28, 35, 51, 0.1);
+}
+.os-testimonials__stars { display: flex; align-items: center; gap: 4px; position: relative; z-index: 1; }
+.os-testimonials__star { width: 16px; height: 16px; flex-shrink: 0; }
+.os-testimonials__star--filled { color: #f5a623; fill: #f5a623; }
+.os-testimonials__star--empty { color: rgba(28, 35, 51, 0.2); fill: none; }
+.os-testimonials__quote {
+  position: relative; z-index: 1; margin: 0;
+  font-family: var(--font-body); font-size: 15px; font-style: italic;
+  line-height: 1.7; color: var(--pd-muted); flex: 1;
+}
+.os-testimonials__author {
+  display: flex; align-items: center; gap: 14px;
+  position: relative; z-index: 1; margin-top: auto;
+}
+.os-testimonials__photo {
+  width: 48px; height: 48px; border-radius: 50%; object-fit: cover;
+  border: 2px solid var(--pd-line); flex-shrink: 0;
+}
+.os-testimonials__initials {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 48px; height: 48px; border-radius: 50%;
+  background: var(--pd-navy); color: #ffffff;
+  font-family: var(--font-display); font-size: 18px; font-weight: 600; flex-shrink: 0;
+}
+.os-testimonials__name {
+  font-family: var(--font-display); font-size: 15px;
+  font-weight: 600; color: var(--pd-navy);
+}
+
+/* Reduced motion / static: wrap into a readable grid */
+.os-testimonials--static .os-testimonials__viewport { overflow: visible; }
+.os-testimonials--static .os-testimonials__track { flex-wrap: wrap; transform: none !important; }
+.os-testimonials--static .os-testimonials__card {
+  flex: 0 0 calc((100cqi - 48px) / 3);
+  width: calc((100cqi - 48px) / 3);
+}
+
+@media (max-width: 1024px) {
+  .os-testimonials__card,
+  .os-testimonials--static .os-testimonials__card {
+    flex: 0 0 calc((100cqi - 24px) / 2);
+    width: calc((100cqi - 24px) / 2);
+  }
+}
+@media (max-width: 768px) {
+  .os-testimonials__card,
+  .os-testimonials--static .os-testimonials__card {
+    flex: 0 0 100cqi;
+    width: 100cqi;
+  }
 }

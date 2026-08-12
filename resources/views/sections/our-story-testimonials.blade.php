@@ -1,10 +1,17 @@
 @if(($ourStoryTestimonials ?? collect())->count() > 0)
-<section id="testimonials" class="os-testimonials" aria-label="Student Testimonials">
+@php
+    // Optional overrides so the same shared slider can be reused across pages
+    // with different ids, labels and headings.
+    $osTestimonialsId      = $osTestimonialsId ?? 'testimonials';
+    $osTestimonialsLabel   = $osTestimonialsLabel ?? 'Testimonials';
+    $osTestimonialsHeading = $osTestimonialsHeading ?? 'What Our Students Say';
+@endphp
+<section id="{{ $osTestimonialsId }}" class="os-testimonials" aria-label="{{ $osTestimonialsLabel }}">
   <div class="container">
     <div class="os-testimonials__header">
-      <span class="os-section-label fade-up">Testimonials</span>
+      <span class="os-section-label fade-up">{{ $osTestimonialsLabel }}</span>
       <h2 class="os-section-heading os-section-heading--center fade-up">
-        What Our Students Say
+        {{ $osTestimonialsHeading }}
       </h2>
     </div>
     

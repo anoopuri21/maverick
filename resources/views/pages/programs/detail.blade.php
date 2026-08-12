@@ -131,6 +131,15 @@
         ['name' => 'Fatima A.', 'avatar' => null, 'rating' => 5, 'review' => 'The flexible learning approach let me balance work and study. Highly recommended.'],
         ['name' => 'Mohammed K.', 'avatar' => null, 'rating' => 4, 'review' => 'A solid international pathway with very helpful advisors.'],
     ]);
+
+    // Reuse the shared Our Story testimonials slider shape (same partial as
+    // the our-story page) — only the heading differs per page.
+    $ourStoryTestimonials = $reviews->map(fn ($r) => (object) [
+        'name' => $r['name'] ?? '',
+        'rating' => $r['rating'] ?? 5,
+        'testimonial' => $r['review'] ?? '',
+        'photo' => $r['avatar'] ?? null,
+    ])->values();
 @endphp
 
 <div class="page-pd">
@@ -179,6 +188,14 @@
         </div>
     </section>
 
+    {{-- ================================================================
+         EXPERIMENT · TWO-COLUMN LAYOUT (7:3)
+         Quick Highlights → Reviews run in the left column; the
+         "Programme at a Glance" (snapshot) is a sticky box on the right.
+         ================================================================ --}}
+    <div class="pd-layout">
+        <div class="pd-layout__main">
+
     {{-- ============ STEP 2 · QUICK HIGHLIGHTS ============ --}}
     @if($highlights->count())
     <section class="pd-highlights section--light" aria-label="Quick highlights" data-testid="pd-highlights">
@@ -187,7 +204,6 @@
             <div class="pd-highlights__grid">
                 @foreach($highlights as $h)
                     <div class="pd-highlights__card">
-                        <span class="pd-highlights__dot" aria-hidden="true"></span>
                         <div class="pd-highlights__card-text">
                             <span class="pd-highlights__label">{{ $h['label'] }}</span>
                             <span class="pd-highlights__value">{{ $h['value'] }}</span>
@@ -231,28 +247,6 @@
                         <div class="pd-recognition__slide">
                             <span class="pd-recognition__logo">{{ $r['name'] }}</span>
                             <p class="pd-recognition__note">{{ $r['note'] }}</p>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        </div>
-    </section>
-    @endif
-
-    {{-- ============ STEP 3 · SNAPSHOT ============ --}}
-    @if($snapshot->count())
-    <section class="pd-snapshot section--light" aria-label="Programme snapshot" data-testid="pd-snapshot">
-        <div class="container">
-            <h2 class="pd-section-title">Programme at a <em>Glance</em></h2>
-            <div class="pd-snapshot__panel">
-                <div class="pd-snapshot__grid">
-                    @foreach($snapshot as $s)
-                        <div class="pd-snapshot__item">
-                            <span class="pd-snapshot__icon" aria-hidden="true">✓</span>
-                            <div class="pd-snapshot__item-body">
-                                <span class="pd-snapshot__label">{{ $s['label'] }}</span>
-                                <span class="pd-snapshot__value">{{ $s['value'] }}</span>
-                            </div>
                         </div>
                     @endforeach
                 </div>
@@ -572,37 +566,41 @@
         </div>
     </section>
 
-    {{-- ============ STEP 8 · REVIEWS (Google ratings) ============ --}}
-    @if($reviews->count())
-    <section class="pd-reviews" aria-label="Student reviews with Google ratings" data-testid="pd-reviews">
-        <div class="container">
-            <span class="pd-section-label">Reviews</span>
-            <h2 class="pd-section-title pd-section-title--single">Student Reviews with Google Ratings</h2>
-            <div class="pd-reviews__grid">
-                @foreach($reviews as $r)
-                    <div class="pd-reviews__card">
-                        @if(!empty($r['avatar']))
-                            <img class="pd-reviews__avatar" src="{{ $r['avatar'] }}" alt="{{ $r['name'] }}" loading="lazy">
-                        @else
-                            <span class="pd-reviews__avatar pd-reviews__avatar--initials">{{ strtoupper(substr($r['name'] ?? 'S', 0, 1)) }}</span>
-                        @endif
-                        <div class="pd-reviews__content">
-                            <span class="pd-reviews__name">{{ $r['name'] ?? '' }}</span>
-                            @if(!empty($r['rating']))
-                                <span class="pd-reviews__stars" aria-label="{{ $r['rating'] }} out of 5">
-                                    @for($i = 1; $i <= 5; $i++)
-                                        <span class="{{ $i <= $r['rating'] ? 'is-filled' : '' }}">★</span>
-                                    @endfor
-                                </span>
-                            @endif
-                            <p class="pd-reviews__text">{{ $r['review'] ?? '' }}</p>
-                        </div>
+    {{-- ============ STEP 8 · REVIEWS (shared Our Story slider) ============ --}}
+    @include('sections.our-story-testimonials', [
+        'osTestimonialsId'      => 'pd-reviews',
+        'osTestimonialsLabel'   => 'Reviews',
+        'osTestimonialsHeading' => 'Student Reviews with Google Ratings',
+    ])
+
+        </div>{{-- /.pd-layout__main --}}
+
+        {{-- ==========================================================
+             RIGHT STICKY SIDEBAR · "Programme at a Glance"
+             ========================================================== --}}
+        @if($snapshot->count())
+        <aside class="pd-layout__side" aria-label="Programme at a glance">
+            <div class="pd-layout__sticky">
+                <div class="pd-snapshot-box" data-testid="pd-snapshot">
+                    <span class="pd-section-label">Programme at a Glance</span>
+                    <div class="pd-snapshot-box__list">
+                        @foreach($snapshot as $s)
+                            <div class="pd-snapshot-box__item">
+                                <span class="pd-snapshot-box__label">{{ $s['label'] }}</span>
+                                <span class="pd-snapshot-box__value">{{ $s['value'] }}</span>
+                            </div>
+                        @endforeach
                     </div>
-                @endforeach
+                    <div class="pd-snapshot-box__actions">
+                        <a href="#enquire" class="btn pd-btn pd-btn--primary pd-snapshot-box__cta">Apply Now</a>
+                        <a href="{{ route('contact') }}" class="btn pd-btn pd-btn--ghost pd-snapshot-box__cta pd-snapshot-box__cta--ghost">Enquire</a>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
-    @endif
+        </aside>
+        @endif
+
+    </div>{{-- /.pd-layout --}}
 
     {{-- ============ FINAL CTA ============ --}}
     <section class="pd-cta" aria-label="Take the next step" data-testid="pd-cta">
