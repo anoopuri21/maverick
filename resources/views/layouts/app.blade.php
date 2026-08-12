@@ -78,6 +78,9 @@
     <script src="{{ asset('assets/js/core/reveal-observer.js') }}" type="module" defer></script>
     <script src="{{ asset('assets/js/pages/accreditations.js') }}" type="module" defer></script>
     @endif
+    @if(request()->routeIs('programs.show'))
+    <script src="{{ asset('assets/js/pages/program-detail.js') }}" type="module" defer></script>
+    @endif
     <script src="{{ asset('assets/js/partners.js') }}" defer></script>
     <script src="{{ asset('assets/js/testimonials.js') }}" defer></script>
     <script src="{{ asset('assets/js/scroll-controls.js') }}" defer></script>
