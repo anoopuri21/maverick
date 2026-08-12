@@ -221,34 +221,67 @@
         <div class="container">
             <h2 class="pd-section-title">Recognition & <em>Accreditation</em></h2>
 
-            {{-- Awarded By --}}
+            {{-- Awarded By — count-aware slider (3+ = arrows+snap, 1–2 = static) --}}
             @if($program->partner_university)
+            @php
+                $awardedItems = collect([[
+                    'title' => $program->partner_university,
+                    'desc'  => $university->description ?? 'Awarding university.',
+                    'logo'  => $program->award_logo ?? null,
+                ]]);
+            @endphp
             <div class="pd-recognition__group">
                 <h3 class="pd-recognition__heading">Awarded By</h3>
-                <div class="pd-recognition__awarded-grid">
-                    <div class="pd-recognition__awarded-card">
-                        @if(isset($program->award_logo) && $program->award_logo)
-                            <img class="pd-recognition__award-logo" src="{{ $program->award_logo }}" alt="{{ $program->partner_university }}" loading="lazy">
-                        @endif
-                        <div class="pd-recognition__award-text">
-                            <span class="pd-recognition__award-title">{{ $program->partner_university }}</span>
-                            <p class="pd-recognition__award-desc">{{ $university->description ?? 'Awarding university.' }}</p>
+                <div class="pd-slider pd-slider--awarded" data-pd-slider data-pd-min="3">
+                    <button class="pd-slider__btn pd-slider__btn--prev" type="button" aria-label="Previous awarding body" data-pd-prev>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+                    </button>
+                    <div class="pd-slider__scroller" data-pd-scroller data-lenis-prevent>
+                        <div class="pd-slider__track">
+                            @foreach($awardedItems as $aw)
+                                <div class="pd-slider__item">
+                                    <div class="pd-recognition__awarded-card">
+                                        @if(!empty($aw['logo']))
+                                            <img class="pd-recognition__award-logo" src="{{ $aw['logo'] }}" alt="{{ $aw['title'] }}" loading="lazy">
+                                        @endif
+                                        <div class="pd-recognition__award-text">
+                                            <span class="pd-recognition__award-title">{{ $aw['title'] }}</span>
+                                            <p class="pd-recognition__award-desc">{{ $aw['desc'] }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
+                    <button class="pd-slider__btn pd-slider__btn--next" type="button" aria-label="Next awarding body" data-pd-next>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+                    </button>
                 </div>
             </div>
             @endif
 
-            {{-- Recognised / Accredited --}}
+            {{-- Recognised / Accredited — same reusable slider --}}
             <div class="pd-recognition__group">
                 <h3 class="pd-recognition__heading">Recognised / Accredited</h3>
-                <div class="pd-recognition__slider">
-                    @foreach($recognition as $r)
-                        <div class="pd-recognition__slide">
-                            <span class="pd-recognition__logo">{{ $r['name'] }}</span>
-                            <p class="pd-recognition__note">{{ $r['note'] }}</p>
+                <div class="pd-slider pd-slider--recognised" data-pd-slider data-pd-min="3">
+                    <button class="pd-slider__btn pd-slider__btn--prev" type="button" aria-label="Previous accreditation" data-pd-prev>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+                    </button>
+                    <div class="pd-slider__scroller" data-pd-scroller data-lenis-prevent>
+                        <div class="pd-slider__track">
+                            @foreach($recognition as $r)
+                                <div class="pd-slider__item">
+                                    <div class="pd-recognition__slide">
+                                        <span class="pd-recognition__logo">{{ $r['name'] }}</span>
+                                        <p class="pd-recognition__note">{{ $r['note'] }}</p>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
-                    @endforeach
+                    </div>
+                    <button class="pd-slider__btn pd-slider__btn--next" type="button" aria-label="Next accreditation" data-pd-next>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+                    </button>
                 </div>
             </div>
         </div>
@@ -522,10 +555,23 @@
 
     {{-- ============ STEP 8 · ENQUIRY ============ --}}
     <section class="pd-enquire section--light" id="enquire" aria-label="Enquire about this programme" data-testid="pd-enquire">
+        <div class="pd-enquire__particles" aria-hidden="true">
+            @for($i = 1; $i <= 12; $i++)
+                <span class="pd-enquire__orb"></span>
+            @endfor
+        </div>
         <div class="container pd-enquire__inner">
             <div class="pd-enquire__intro">
                 <h2 class="pd-section-title pd-section-title--single">Enquire About This Programme</h2>
                 <p class="body-text">Speak to our admissions team to check your eligibility and get started.</p>
+                <div class="pd-enquire__visual">
+                    <img
+                        src="{{ asset('assets/images/programs/enquire-seminar.jpg') }}"
+                        alt="Students collaborating in a lecture hall"
+                        width="1600"
+                        height="900"
+                    >
+                </div>
             </div>
             <form class="pd-form" action="{{ route('contact') }}" method="POST">
                 @csrf
@@ -556,9 +602,9 @@
                             <option value="part-time">Part-time</option>
                         </select>
                     </div>
-                    <div class="pd-form__field">
+                    <div class="pd-form__field pd-form__field--full">
                         <label for="pd-message">Message</label>
-                        <textarea id="pd-message" name="message" rows="2"></textarea>
+                        <textarea id="pd-message" name="message" rows="3"></textarea>
                     </div>
                 </div>
                 <button type="submit" class="btn pd-btn pd-btn--primary">Submit Enquiry</button>
