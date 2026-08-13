@@ -188,116 +188,75 @@
         </div>
     </section>
 
-    {{-- ================================================================
-         EXPERIMENT · TWO-COLUMN LAYOUT (7:3)
-         Quick Highlights → Reviews run in the left column; the
-         "Programme at a Glance" (snapshot) is a sticky box on the right.
-         ================================================================ --}}
-    <div class="pd-layout">
-        <div class="pd-layout__main">
-
-    {{-- ============ STEP 2 · QUICK HIGHLIGHTS ============ --}}
-    @if($highlights->count())
-    <section class="pd-highlights section--light" aria-label="Quick highlights" data-testid="pd-highlights">
-        <div class="container">
-            <h2 class="pd-section-title">Quick <em>Highlights</em></h2>
-            <div class="pd-highlights__grid">
-                @foreach($highlights as $h)
-                    <div class="pd-highlights__card">
-                        <div class="pd-highlights__card-text">
-                            <span class="pd-highlights__label">{{ $h['label'] }}</span>
-                            <span class="pd-highlights__value">{{ $h['value'] }}</span>
-                        </div>
-                    </div>
+        {{-- ============ ACCREDITATION LOGO STRIP (trust opener, after hero) ============ --}}
+    @if($recognition->count())
+    <section class="pd-logo-strip" aria-label="Accredited and recognised by" data-testid="pd-logo-strip">
+        <div class="container pd-logo-strip__inner">
+            <span class="pd-logo-strip__label">Accredited &amp; Recognised By</span>
+            <div class="pd-logo-strip__row">
+                @if($program->partner_university)
+                    <span class="pd-logo-strip__logo">{{ $program->partner_university }}</span>
+                @endif
+                @foreach($recognition as $r)
+                    <span class="pd-logo-strip__logo">{{ $r['name'] }}</span>
                 @endforeach
             </div>
         </div>
     </section>
     @endif
 
-    {{-- ============ STEP 2 · RECOGNITION & ACCREDITATION ============ --}}
-    @if($recognition->count())
-    <section class="pd-recognition" aria-label="Recognition and accreditation" data-testid="pd-recognition">
-        <div class="container">
-            <h2 class="pd-section-title">Recognition & <em>Accreditation</em></h2>
+    {{-- ============ IN-PAGE ANCHOR NAV ============ --}}
+    @if($structure->count() || $careers->count() || $university->name || $faqs->count())
+    <nav class="pd-anchor-nav" aria-label="Programme sections" data-testid="pd-anchor-nav">
+        <div class="container pd-anchor-nav__inner">
+            <div class="pd-anchor-nav__row">
+                @if($structure->count())<a href="#structure" class="pd-anchor-nav__link">Programme Structure</a>@endif
+                @if($careers->count())<a href="#careers" class="pd-anchor-nav__link">Careers</a>@endif
+                @if($university->name)<a href="#university" class="pd-anchor-nav__link">University</a>@endif
+                @if($faqs->count())<a href="#faq" class="pd-anchor-nav__link">FAQ</a>@endif
+                <a href="#enquire" class="pd-anchor-nav__link pd-anchor-nav__link--cta">Enquire</a>
+            </div>
+        </div>
+    </nav>
+    @endif
 
-            {{-- Awarded By — count-aware slider (3+ = arrows+snap, 1–2 = static) --}}
-            @if($program->partner_university)
-            @php
-                $awardedItems = collect([[
-                    'title' => $program->partner_university,
-                    'desc'  => $university->description ?? 'Awarding university.',
-                    'logo'  => $program->award_logo ?? null,
-                ]]);
-            @endphp
-            <div class="pd-recognition__group">
-                <h3 class="pd-recognition__heading">Awarded By</h3>
-                <div class="pd-slider pd-slider--awarded" data-pd-slider data-pd-min="3">
-                    <button class="pd-slider__btn pd-slider__btn--prev" type="button" aria-label="Previous awarding body" data-pd-prev>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
-                    </button>
-                    <div class="pd-slider__scroller" data-pd-scroller data-lenis-prevent>
-                        <div class="pd-slider__track">
-                            @foreach($awardedItems as $aw)
-                                <div class="pd-slider__item">
-                                    <div class="pd-recognition__awarded-card">
-                                        @if(!empty($aw['logo']))
-                                            <img class="pd-recognition__award-logo" src="{{ $aw['logo'] }}" alt="{{ $aw['title'] }}" loading="lazy">
-                                        @endif
-                                        <div class="pd-recognition__award-text">
-                                            <span class="pd-recognition__award-title">{{ $aw['title'] }}</span>
-                                            <p class="pd-recognition__award-desc">{{ $aw['desc'] }}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
+{{-- ================================================================
+         EXPERIMENT · TWO-COLUMN LAYOUT (7:3)
+         Quick Highlights → Reviews run in the left column; the
+         "Programme at a Glance" (snapshot) is a sticky box on the right.
+         ================================================================ --}}
+    <div class="pd-layout">
+        <div class="pd-layout__main">
+    {{-- ============ M2 · INTRO (Overview + Highlights, editorial pair) ============ --}}
+    @if($highlights->count() || $program->description)
+    <section class="pd-intro section--light" aria-label="Programme introduction" data-testid="pd-intro">
+        <div class="container pd-intro__grid">
+            <div class="pd-intro__editorial">
+                <span class="pd-section-label">Programme Overview</span>
+                <h2 class="pd-section-title">Programme <em>Overview</em></h2>
+                @if($program->description)
+                    <p class="pd-intro__body">{{ $program->description }}</p>
+                @endif
+            </div>
+            @if($highlights->count())
+            <div class="pd-intro__stats">
+                <div class="pd-highlights__grid">
+                    @foreach($highlights as $h)
+                        <div class="pd-highlights__card">
+                            <div class="pd-highlights__card-text">
+                                <span class="pd-highlights__label">{{ $h['label'] }}</span>
+                                <span class="pd-highlights__value">{{ $h['value'] }}</span>
+                            </div>
                         </div>
-                    </div>
-                    <button class="pd-slider__btn pd-slider__btn--next" type="button" aria-label="Next awarding body" data-pd-next>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
-                    </button>
+                    @endforeach
                 </div>
             </div>
             @endif
-
-            {{-- Recognised / Accredited — same reusable slider --}}
-            <div class="pd-recognition__group">
-                <h3 class="pd-recognition__heading">Recognised / Accredited</h3>
-                <div class="pd-slider pd-slider--recognised" data-pd-slider data-pd-min="3">
-                    <button class="pd-slider__btn pd-slider__btn--prev" type="button" aria-label="Previous accreditation" data-pd-prev>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
-                    </button>
-                    <div class="pd-slider__scroller" data-pd-scroller data-lenis-prevent>
-                        <div class="pd-slider__track">
-                            @foreach($recognition as $r)
-                                <div class="pd-slider__item">
-                                    <div class="pd-recognition__slide">
-                                        <span class="pd-recognition__logo">{{ $r['name'] }}</span>
-                                        <p class="pd-recognition__note">{{ $r['note'] }}</p>
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
-                    <button class="pd-slider__btn pd-slider__btn--next" type="button" aria-label="Next accreditation" data-pd-next>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
-                    </button>
-                </div>
-            </div>
         </div>
     </section>
     @endif
 
-    {{-- ============ STEP 3 · OVERVIEW ============ --}}
-    @if($program->description)
-    <section class="pd-overview" aria-label="Programme overview" data-testid="pd-overview">
-        <div class="container">
-            <span class="pd-section-label">Overview</span>
-            <h2 class="pd-section-title">Programme <em>Overview</em></h2>
-            <p class="pd-overview__body">{{ $program->description }}</p>
-        </div>
-    </section>
-    @endif
+
 
     {{-- ============ STEP 4 · WHY CHOOSE ============ --}}
     @if($benefits->count())
@@ -317,48 +276,47 @@
         </div>
     </section>
     @endif
-
-    {{-- ============ STEP 4 · WHAT YOU'LL LEARN ============ --}}
-    @if($learning->count())
-    <section class="pd-learn" aria-label="What you'll learn" data-testid="pd-learn">
-        <div class="container">
-            <div class="pd-learn__header">
-                <span class="pd-section-label">Learning Outcomes</span>
-                <h2 class="pd-section-title">What You'll <em>Learn</em></h2>
-                <p class="pd-learn__sub">Students will learn to:</p>
+    {{-- ============ M3 · OUTCOMES & CAREERS (Learn list + Careers, 2-col editorial) ============ --}}
+    @if($learning->count() || $careers->count())
+    <section id="careers" class="pd-outcomes" aria-label="Learning outcomes and careers" data-testid="pd-outcomes">
+        <div class="container pd-outcomes__grid">
+            @if($learning->count())
+            <div class="pd-outcomes__col pd-outcomes__col--learn">
+                <span class="pd-section-label">What You'll Learn</span>
+                <h2 class="pd-section-title">Learning <em>Outcomes</em></h2>
+                <p class="pd-outcomes__sub">Students will learn to:</p>
+                <ol class="pd-learn__list pd-learn__list--single">
+                    @foreach($learning as $i => $cap)
+                        <li class="pd-learn__item">
+                            <span class="pd-learn__tick" aria-hidden="true">✓</span>
+                            <span>{{ $cap }}</span>
+                        </li>
+                    @endforeach
+                </ol>
             </div>
-            <ol class="pd-learn__list">
-                @foreach($learning as $i => $cap)
-                    <li class="pd-learn__item">
-                        <span class="pd-learn__tick" aria-hidden="true">✓</span>
-                        <span>{{ $cap }}</span>
-                    </li>
-                @endforeach
-            </ol>
+            @endif
+            @if($careers->count())
+            <div class="pd-outcomes__col pd-outcomes__col--careers">
+                <span class="pd-section-label">Careers</span>
+                <h2 class="pd-section-title">Where This Degree Can <em>Take You</em></h2>
+                <p class="pd-outcomes__sub">Potential careers include:</p>
+                <div class="pd-careers__grid pd-careers__grid--vertical">
+                    @foreach($careers as $i => $career)
+                        <div class="pd-careers__card">
+                            <span class="pd-careers__icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                            </span>
+                            <span class="pd-careers__label">{{ $career }}</span>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+            @endif
         </div>
     </section>
     @endif
 
-    {{-- ============ STEP 5 · CAREERS ============ --}}
-    @if($careers->count())
-    <section class="pd-careers section--light" aria-label="Career opportunities" data-testid="pd-careers">
-        <div class="container">
-            <span class="pd-section-label">Careers</span>
-            <h2 class="pd-section-title">Where This Degree Can <em>Take You</em></h2>
-            <p class="pd-careers__sub">Potential careers include:</p>
-            <div class="pd-careers__grid">
-                @foreach($careers as $i => $career)
-                    <div class="pd-careers__card">
-                        <span class="pd-careers__icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-                        </span>
-                        <span class="pd-careers__label">{{ $career }}</span>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
-    @endif
+
 
     {{-- ============ STEP 5 · PROGRAMME STRUCTURE ============ --}}
     @if($structure->count())
@@ -409,7 +367,7 @@
 
     {{-- ============ STEP 6 · UNIVERSITY ============ --}}
     @if($university->name)
-    <section class="pd-uni section--light" aria-label="About the awarding university" data-testid="pd-uni">
+    <section id="university" class="pd-uni section--light" aria-label="About the awarding university" data-testid="pd-uni">
         <div class="container">
             <span class="pd-section-label">About the University</span>
             <h2 class="pd-section-title">A Globally Connected <em>University</em></h2>
@@ -538,7 +496,7 @@
 
     {{-- ============ STEP 8 · FAQ ============ --}}
     @if($faqs->count())
-    <section class="pd-faq" aria-label="Frequently asked questions" data-testid="pd-faq">
+    <section id="faq" class="pd-faq" aria-label="Frequently asked questions" data-testid="pd-faq">
         <div class="container">
             <h2 class="pd-section-title">Frequently Asked <em>Questions</em></h2>
             <div class="pd-faq__list">
