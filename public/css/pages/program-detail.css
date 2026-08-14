@@ -209,7 +209,6 @@
 /* =========================================================
    STEP 4 · WHAT YOU'LL LEARN
    ========================================================= */
-.pd-learn { padding: clamp(28px, 4vw, 44px) 0; }
 
 
 .pd-learn__list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 14px 32px; }
@@ -224,7 +223,6 @@
 /* =========================================================
    STEP 5 · CAREERS
    ========================================================= */
-.pd-careers { padding: clamp(28px, 4vw, 44px) 0; }
 
 .pd-careers__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 .pd-careers__card {
@@ -320,7 +318,7 @@
 /* =========================================================
    STEP 6 · UNIVERSITY
    ========================================================= */
-.pd-uni { padding: clamp(32px, 4.5vw, 52px) 0; }
+.pd-uni { padding: clamp(28px, 4vw, 44px) 0; }
 .pd-uni__inner { display: grid; grid-template-columns: 1fr; gap: clamp(20px, 3vw, 40px); align-items: start; }
 .pd-uni__inner--with-image { grid-template-columns: 1.1fr 1fr; }
 .pd-uni__media { border-radius: 14px; overflow: hidden; position: relative; }
@@ -860,7 +858,7 @@
 /* =========================================================
    M2 · INTRO (Overview + Highlights editorial pair)
    ========================================================= */
-.pd-intro { padding: clamp(32px, 4.5vw, 52px) 0; }
+.pd-intro { padding: clamp(28px, 4vw, 44px) 0; }
 .pd-intro__grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: clamp(28px, 4vw, 56px); align-items: start; }
 .pd-intro__body { font-size: 15px; line-height: 1.8; color: var(--pd-muted); margin: 0; }
 .pd-intro__stats .pd-highlights__grid { flex-wrap: wrap; }
@@ -869,7 +867,7 @@
 /* =========================================================
    M3 · OUTCOMES & CAREERS (2-col editorial)
    ========================================================= */
-.pd-outcomes { padding: clamp(32px, 4.5vw, 52px) 0; }
+.pd-outcomes { padding: clamp(28px, 4vw, 44px) 0; }
 .pd-outcomes__grid { display: flex; flex-direction: column; gap: clamp(36px, 5vw, 56px); align-items: stretch; }
 .pd-outcomes__sub { font-size: 14px; color: var(--pd-muted); margin: 0 0 18px; }
 /* Learn list — bordered box on parent, items borderless, 2 columns */
@@ -987,5 +985,65 @@
 
 /* Hide the fixed dots on small screens (overlaps content in single column) */
 @media (max-width: 1120px) {
+  .pd-dots { display: none; }
+}
+
+/* =========================================================
+   UI POLISH — scroll progress + reveal + focus-visible
+   ========================================================= */
+/* Scroll progress bar (fixed at top, red) */
+.pd-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 60;
+  background: var(--pd-red);
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  transition: transform 0.1s linear;
+  pointer-events: none;
+}
+
+/* Reveal-on-scroll: hidden until .is-revealed added by JS.
+   Uses opacity + translate only, so layout never collapses and content
+   is never lost if JS fails (fallback reveals after timeout). */
+.pd-progress + .page-pd,
+[data-reveal] {
+  /* default visible */
+}
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+[data-reveal].is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Ensure section content that is data-reveal keeps its space (it does,
+   opacity/transform don't affect layout). Reduced motion: never hide. */
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Accessible focus-visible outlines across interactive elements */
+.page-pd a:focus-visible,
+.page-pd button:focus-visible,
+.page-pd summary:focus-visible,
+.page-pd [tabindex]:focus-visible {
+  outline: 2px solid var(--pd-red);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Hide scrollspy dots on touch / very small screens to avoid overlap */
+@media (hover: none), (max-width: 1120px) {
   .pd-dots { display: none; }
 }
