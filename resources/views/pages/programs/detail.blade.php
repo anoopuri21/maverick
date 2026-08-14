@@ -26,11 +26,13 @@
         ['label' => 'Scholarships', 'value' => 'Available (verify)'],
     ])->filter(fn ($h) => !empty($h['value']) && !str_starts_with($h['value'], 'VERIFY'))->values();
 
-    // Recognition slider
+    // Recognition slider — each item may carry a logo URL.
+    // GAU logo added now; other logos to be provided by client later.
     $recognition = collect([
-        ['name' => 'IACBE', 'note' => 'International Accreditation Council for Business Education'],
-        ['name' => 'YÖK', 'note' => 'Higher Education Council of Turkey'],
-        ['name' => 'YÖDAK', 'note' => 'Higher Education Planning, Supervision, Accreditation and Coordination Committee (North Cyprus)'],
+        ['name' => 'Girne American University', 'logo' => 'https://www.gau.edu.tr/template/gau/assets/img/logo2_en.png'],
+        ['name' => 'IACBE', 'logo' => null, 'note' => 'International Accreditation Council for Business Education'],
+        ['name' => 'YÖK', 'logo' => null, 'note' => 'Higher Education Council of Turkey'],
+        ['name' => 'YÖDAK', 'logo' => null, 'note' => 'Higher Education Planning, Supervision, Accreditation and Coordination Committee (North Cyprus)'],
     ]);
 
     // Snapshot
@@ -212,14 +214,19 @@
     @if($recognition->count())
     <section class="pd-logo-strip" aria-label="Accredited and recognised by" data-testid="pd-logo-strip">
         <div class="container pd-logo-strip__inner">
-            <span class="pd-logo-strip__label">Accredited &amp; Recognised By</span>
-            <div class="pd-logo-strip__row">
-                @if($program->partner_university)
-                    <span class="pd-logo-strip__logo">{{ $program->partner_university }}</span>
-                @endif
-                @foreach($recognition as $r)
-                    <span class="pd-logo-strip__logo">{{ $r['name'] }}</span>
-                @endforeach
+            <h2 class="pd-logo-strip__label">Accredited &amp; Recognised By</h2>
+            <div class="pd-logo-strip__marquee" data-pd-marquee data-lenis-prevent>
+                <div class="pd-logo-strip__track">
+                    @foreach($recognition->merge($recognition) as $r)
+                        <div class="pd-logo-strip__logo">
+                            @if(!empty($r['logo']))
+                                <img src="{{ $r['logo'] }}" alt="{{ $r['name'] }}" loading="lazy">
+                            @else
+                                <span>{{ $r['name'] }}</span>
+                            @endif
+                        </div>
+                    @endforeach
+                </div>
             </div>
         </div>
     </section>

@@ -688,6 +688,8 @@
   .pd-enquire__particles { display: none; }
   .pd-enquire__orb { animation: none; }
   .pd-slider__scroller { scroll-behavior: auto; }
+  .pd-logo-strip__track { animation: none; }
+  .pd-logo-strip__marquee { overflow-x: auto; mask-image: none; }
 }
 
 /* =========================================================
@@ -836,18 +838,71 @@
 /* =========================================================
    ACCREDITATION LOGO STRIP (trust opener after hero)
    ========================================================= */
-.pd-logo-strip { padding: clamp(20px, 3vw, 32px) 0; border-bottom: 1px solid var(--pd-line); }
-.pd-logo-strip__inner { display: flex; align-items: center; gap: clamp(16px, 3vw, 40px); flex-wrap: wrap; }
-.pd-logo-strip__label {
-  font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
-  color: var(--pd-muted); font-weight: 700; flex-shrink: 0;
+.pd-logo-strip {
+  padding: clamp(20px, 3vw, 32px) 0;
+  border-bottom: 1px solid var(--pd-line);
+  background: #f5f2ec; /* soft warm strip */
 }
-.pd-logo-strip__row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.pd-logo-strip__inner {
+  display: flex;
+  align-items: center;
+  gap: clamp(20px, 4vw, 48px);
+}
+.pd-logo-strip__label {
+  flex-shrink: 0;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--pd-navy);
+  margin: 0;
+  max-width: 220px;
+  line-height: 1.3;
+}
+/* Marquee — seamless loop of logos */
+.pd-logo-strip__marquee {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.pd-logo-strip__track {
+  display: flex;
+  align-items: center;
+  gap: clamp(28px, 4vw, 48px);
+  width: max-content;
+  animation: pd-logo-marquee 26s linear infinite;
+}
+.pd-logo-strip__marquee:hover .pd-logo-strip__track { animation-play-state: paused; }
 .pd-logo-strip__logo {
-  display: inline-flex; align-items: center; justify-content: center;
-  padding: 8px 16px; border: 1px solid var(--pd-line); border-radius: 999px;
-  font-family: var(--font-display); font-size: 13px; font-weight: 600; color: var(--pd-navy);
-  background: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 56px;
+  flex-shrink: 0;
+}
+.pd-logo-strip__logo img {
+  max-height: 56px;
+  max-width: 180px;
+  width: auto;
+  object-fit: contain;
+  filter: grayscale(1);
+  opacity: 0.85;
+  transition: filter 0.25s ease, opacity 0.25s ease;
+}
+.pd-logo-strip__logo img:hover { filter: grayscale(0); opacity: 1; }
+.pd-logo-strip__logo span {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--pd-navy);
+  white-space: nowrap;
+}
+@keyframes pd-logo-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }
 
 /* =========================================================
@@ -889,7 +944,8 @@
   .pd-intro__grid, .pd-outcomes__grid { grid-template-columns: 1fr; gap: 28px; }
 }
 @media (max-width: 768px) {
-  .pd-logo-strip__inner { flex-direction: column; align-items: flex-start; }
+  .pd-logo-strip__inner { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .pd-logo-strip__label { max-width: none; }
   .pd-anchor-nav__row { overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; }
   .pd-anchor-nav__link { white-space: nowrap; }
 }
