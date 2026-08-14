@@ -10,44 +10,63 @@ return new class extends Migration
      * Admin-driven programme detail content.
      * Each block is stored as JSON on the programmes row (no extra tables).
      * Lists → arrays; paragraphs → RichEditor HTML strings.
+     *
+     * Idempotent: only adds a column if it does not already exist, so the
+     * migration is safe to re-run on any environment (including production).
      */
     public function up(): void
     {
-        Schema::table('programs', function (Blueprint $table) {
-            $table->json('highlights')->nullable();
-            $table->json('recognition')->nullable();
-            $table->json('snapshot')->nullable();
-            $table->json('benefits')->nullable();
-            $table->json('learning')->nullable();
-            $table->json('careers')->nullable();
-            $table->json('structure')->nullable();
-            $table->json('support')->nullable();
-            $table->json('university')->nullable();
-            $table->json('accreditation_groups')->nullable();
-            $table->json('testimonials')->nullable();
-            $table->json('fees')->nullable();
-            $table->json('reviews')->nullable();
+        $columns = [
+            'highlights',
+            'recognition',
+            'snapshot',
+            'benefits',
+            'learning',
+            'careers',
+            'structure',
+            'support',
+            'university',
+            'accreditation_groups',
+            'testimonials',
+            'fees',
+            'reviews',
+        ];
+
+        Schema::table('programs', function (Blueprint $table) use ($columns) {
+            foreach ($columns as $column) {
+                if (Schema::hasColumn('programs', $column)) {
+                    continue;
+                }
+                $table->json($column)->nullable();
+            }
         });
     }
 
     public function down(): void
     {
-        Schema::table('programs', function (Blueprint $table) {
-            $table->dropColumn([
-                'highlights',
-                'recognition',
-                'snapshot',
-                'benefits',
-                'learning',
-                'careers',
-                'structure',
-                'support',
-                'university',
-                'accreditation_groups',
-                'testimonials',
-                'fees',
-                'reviews',
-            ]);
+        $columns = [
+            'highlights',
+            'recognition',
+            'snapshot',
+            'benefits',
+            'learning',
+            'careers',
+            'structure',
+            'support',
+            'university',
+            'accreditation_groups',
+            'testimonials',
+            'fees',
+            'reviews',
+        ];
+
+        Schema::table('programs', function (Blueprint $table) use ($columns) {
+            foreach ($columns as $column) {
+                if (! Schema::hasColumn('programs', $column)) {
+                    continue;
+                }
+                $table->dropColumn($column);
+            }
         });
     }
 };
