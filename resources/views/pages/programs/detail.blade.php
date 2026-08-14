@@ -69,10 +69,10 @@
 
     $structure = collect([
         ['title' => 'Year 1', 'subtitle' => 'Business Foundations', 'modules' => [
-            ['title' => 'Principles of Management', 'desc' => 'Core concepts of managing people and organisations.'],
-            ['title' => 'Business Economics', 'desc' => 'Economic principles applied to business decisions.'],
-            ['title' => 'Accounting Fundamentals', 'desc' => 'Basics of financial and management accounting.'],
-            ['title' => 'Marketing Essentials', 'desc' => 'Foundations of marketing and market analysis.'],
+            ['title' => 'Principles of Management', 'overview' => 'Core concepts of managing people and organisations — from planning and organising to leading and controlling, students build a practical framework for effective management.', 'list' => ['Planning & strategy', 'Organisational structures', 'Leadership styles', 'Control systems']],
+            ['title' => 'Business Economics', 'overview' => 'Economic principles applied to business decisions, covering both micro and macroeconomic influences on firms and markets.', 'list' => ['Demand & supply', 'Market structures', 'Cost & pricing', 'Macro environment']],
+            ['title' => 'Accounting Fundamentals', 'overview' => 'Basics of financial and management accounting — reading, interpreting and using financial information to guide decisions.', 'list' => ['Financial statements', 'Double-entry bookkeeping', 'Budgeting', 'Ratio analysis']],
+            ['title' => 'Marketing Essentials', 'overview' => 'Foundations of marketing and market analysis, from segmentation and targeting to building and positioning a brand.', 'list' => ['Market research', 'Segmentation', 'Branding', 'Marketing mix']],
         ]],
         ['title' => 'Year 2', 'subtitle' => 'Core Business Functions', 'modules' => [
             ['title' => 'Financial Management', 'desc' => 'Managing financial resources and planning.'],
@@ -368,12 +368,25 @@
                                             <span class="pd-structure__module-arrow" aria-hidden="true">
                                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
                                             </span>
-                                            <span class="pd-structure__module-title">Module {{ $mi + 1 }}</span>
+                                            <span class="pd-structure__module-title">{{ is_array($module) ? ($module['title'] ?? ('Module '.($mi + 1))) : $module }}</span>
                                         </summary>
                                         @if(is_array($module))
                                             <div class="pd-structure__module-content">
-                                                <h5 class="pd-structure__module-name">{{ $module['title'] }}</h5>
-                                                @if(!empty($module['desc']))<p class="pd-structure__module-desc">{{ $module['desc'] }}</p>@endif
+                                                @if(!empty($module['overview']))
+                                                    <p class="pd-structure__module-desc">{{ $module['overview'] }}</p>
+                                                @elseif(!empty($module['desc']))
+                                                    <p class="pd-structure__module-desc">{{ $module['desc'] }}</p>
+                                                @endif
+                                                @if(!empty($module['list']) && is_array($module['list']))
+                                                    <ul class="pd-structure__module-list">
+                                                        @foreach($module['list'] as $li)
+                                                            <li class="pd-structure__module-li">
+                                                                <span class="pd-structure__module-tick" aria-hidden="true">✓</span>
+                                                                <span>{{ $li }}</span>
+                                                            </li>
+                                                        @endforeach
+                                                    </ul>
+                                                @endif
                                             </div>
                                         @else
                                             <div class="pd-structure__module-content">
