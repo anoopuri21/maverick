@@ -121,7 +121,10 @@
   line-height: 1.08;
   letter-spacing: -0.025em;
 }
-.pd-hero .cinematic-hero__description { max-width: 52ch; margin-bottom: 20px; }
+.pd-hero .cinematic-hero__description {
+  max-width: 52ch;
+  margin: 0 0 24px; /* left-aligned — matches title baseline (no auto centering) */
+}
 /* vertical rule beside eyebrow */
 .pd-hero .cinematic-hero__content { position: relative; }
 .pd-hero .cinematic-hero__content::before {
@@ -160,21 +163,22 @@
    STEP 2 · HIGHLIGHTS
    ========================================================= */
 .pd-highlights { padding: clamp(28px, 4vw, 44px) 0; }
-/* Highlights = stat list (no card chrome) */
+/* Highlights = clean single-column stat stack (no card chrome, no boxes) */
 .pd-highlights__grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px 24px;
+  grid-template-columns: 1fr;
+  row-gap: 0;
 }
 .pd-highlights__card {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  padding: 12px 0;
+  padding: 20px 0;
   border-bottom: 1px solid var(--pd-line);
 }
+.pd-highlights__card:last-child { border-bottom: 0; }
 .pd-highlights__card-text { display: flex; flex-direction: column; gap: 2px; }
-.pd-highlights__label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--pd-muted); }
+.pd-highlights__label { font-size: var(--pd-fs-label); letter-spacing: 0.14em; text-transform: uppercase; color: var(--pd-muted); }
 .pd-highlights__value { font-family: var(--font-display); font-size: var(--pd-fs-stat); font-weight: 600; color: var(--pd-navy); line-height: 1.2; }
 
 /* =========================================================
@@ -263,13 +267,6 @@
   padding: 20px 0;
   border-bottom: 1px solid var(--pd-line);
 }
-.pd-benefits__index {
-  font-family: var(--font-display);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  color: var(--pd-navy);
-}
 .pd-benefits__title-row { display: flex; align-items: center; gap: 10px; }
 .pd-benefits__icon { color: var(--pd-red); display: inline-flex; align-items: center; justify-content: center; }
 .pd-benefits__icon i { width: 18px; height: 18px; }
@@ -305,37 +302,26 @@
    STEP 5 · CAREERS
    ========================================================= */
 
-.pd-careers__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-.pd-careers__card {
-  display: flex; align-items: center; gap: 12px;
-  background: #fff; border: 1px solid var(--pd-line); border-radius: 12px; padding: 16px 18px;
-  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+/* Careers = flexible chip/pill flow (fills space, no empty column) */
+.pd-careers__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
-.pd-careers__card:hover { border-color: var(--pd-red); box-shadow: 0 8px 20px rgba(28,35,51,0.05); }
-.pd-careers__icon {
-  width: 34px; height: 34px; border-radius: 50%;
-  background: rgba(236, 31, 36, 0.1); color: var(--pd-red);
-  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-}
-.pd-careers__icon svg { width: 16px; height: 16px; }
-.pd-careers__label { font-family: var(--font-body); font-size: 15px; font-weight: 400; color: var(--pd-ink); }
-/* Careers = bordered-left list (different language from Learn ticks) */
-.pd-careers__list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.pd-careers__item {
-  position: relative;
-  padding: 12px 0 12px 16px;
-  border-left: 2px solid var(--pd-navy);
+.pd-careers__chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 16px;
+  border: 1px solid var(--pd-line);
+  border-radius: 999px;
+  background: #fff;
   font-family: var(--font-body);
-  font-size: 15px;
-  font-weight: 400;
+  font-size: 14px;
+  font-weight: 500;
   color: var(--pd-ink);
-  line-height: 1.5;
+  transition: border-color 0.2s ease, color 0.2s ease;
 }
-.pd-careers__item + .pd-careers__item { margin-top: 0; }
+.pd-careers__chip:hover { border-color: var(--pd-red); color: var(--pd-red); }
 
 /* =========================================================
    STEP 5 · STRUCTURE
@@ -557,30 +543,35 @@
 }
 .pd-support__intro { position: sticky; top: calc(var(--navbar-height, 80px) + 12px); }
 .pd-support__sub { font-size: 16px; color: var(--pd-muted); margin: 0; }
-/* Vertical timeline */
+/* Vertical timeline — 2 columns so the space fills (no empty gap below heading) */
 .pd-support__timeline {
   list-style: none;
   margin: 0;
-  padding: 0 0 0 20px;
-  border-left: 1px solid var(--pd-navy);
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 28px;
+  row-gap: 0;
 }
 .pd-support__step {
   position: relative;
   padding: 14px 0;
+  border-left: 1px solid var(--pd-navy);
 }
 .pd-support__dot {
   position: absolute;
-  left: -24px;
+  left: -5px;
   top: 18px;
   width: 8px;
   height: 8px;
   border-radius: 50%;
   background: var(--pd-red);
 }
-.pd-support__text { font-family: var(--font-body); font-size: 16px; color: var(--pd-ink); line-height: 1.5; }
+.pd-support__text { font-family: var(--font-body); font-size: 15px; color: var(--pd-ink); line-height: 1.5; padding-left: 20px; }
 @media (max-width: 768px) {
   .pd-support__inner { grid-template-columns: 1fr; }
   .pd-support__intro { position: static; }
+  .pd-support__timeline { grid-template-columns: 1fr; }
 }
 
 /* =========================================================
@@ -616,25 +607,28 @@
    ========================================================= */
 /* Fees = inverted navy band (the one deep-colour moment) */
 .pd-fees { padding: clamp(28px, 4vw, 44px) 0; color: #fff; }
-.pd-fees__inner { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 5vw, 72px); align-items: center; }
+.pd-fees__inner { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 5vw, 72px); align-items: center; }
 .pd-fees .pd-section-title { color: #fff; }
 .pd-fees .pd-section-title em { color: var(--pd-red); }
-.pd-fees__text .body-text { color: rgba(255,255,255,0.8); }
-.pd-fees__side { display: flex; flex-direction: column; gap: 16px; align-items: flex-start; }
-.pd-fees__list { display: flex; flex-wrap: wrap; gap: 8px 0; }
+.pd-fees__text .body-text { color: rgba(255,255,255,0.8); margin: 0; }
+.pd-fees__side { display: flex; flex-direction: column; gap: 22px; align-items: stretch; }
+.pd-fees__list { display: flex; flex-wrap: wrap; gap: 10px; }
 .pd-fees__chip {
-  font-size: 15px;
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 18px;
+  border: 1px solid rgba(255,255,255,0.35);
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
   color: #fff;
+  background: rgba(255,255,255,0.06);
   text-decoration: none;
-  padding: 2px 10px;
-  transition: color 0.2s ease;
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
 }
-.pd-fees__chip:hover { color: var(--pd-red); text-decoration: underline; }
-.pd-fees__chip + .pd-fees__chip::before {
-  content: "·";
-  margin-right: 18px;
-  color: rgba(255,255,255,0.5);
-}
+.pd-fees__chip:hover { border-color: var(--pd-red); color: var(--pd-red); background: rgba(255,255,255,0.1); }
+.pd-fees__side .pd-btn--primary { align-self: flex-start; }
+@media (max-width: 768px) { .pd-fees__inner { grid-template-columns: 1fr; gap: 24px; } }
 
 /* =========================================================
    STEP 8 · FAQ
@@ -774,7 +768,6 @@
   .pd-form__row { grid-template-columns: 1fr; }
   .pd-enquire__visual { min-height: 220px; }
   .pd-benefits__grid { grid-template-columns: repeat(2, 1fr); }
-  .pd-careers__grid { grid-template-columns: repeat(2, 1fr); }
   .pd-support__grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (min-width: 769px) {
@@ -782,7 +775,6 @@
 }
 @media (max-width: 768px) {
   .pd-learn__list { grid-template-columns: 1fr; }
-  .pd-highlights__card { flex: 1 1 calc(50% - 12px); min-width: 0; }
   /* Enquire: image becomes a full-bleed crop above the intro */
   .pd-enquire__visual {
     display: block;
@@ -796,10 +788,9 @@
   .pd-enquire__particles { display: none; }
   .pd-slider__btn--prev { left: 0; }
   .pd-slider__btn--next { right: 0; }
-  .pd-benefits__grid, .pd-careers__grid, .pd-support__grid { grid-template-columns: 1fr; }
+  .pd-benefits__grid, .pd-support__grid { grid-template-columns: 1fr; }
   /* Keep outcomes (What You'll Learn / Careers) in 2 columns as requested */
   .pd-learn__list--single { grid-template-columns: 1fr 1fr; gap: 10px 24px; padding: 6px 20px; }
-  .pd-careers__grid--vertical { grid-template-columns: 1fr 1fr; }
   /* Snapshot box CTA buttons: desktop only */
   .pd-snapshot-box__actions { display: none; }
   /* Sticky Apply/Enquire bar: mobile only */
@@ -809,9 +800,6 @@
      (Floating buttons are direct children of <body>, so scope via :has.) */
   body:has(.page-pd) .floating-action--whatsapp { bottom: 5.5rem; }
   body:has(.page-pd) .floating-action--scroll { bottom: 9.5rem; }
-}
-@media (max-width: 480px) {
-  .pd-highlights__card { flex: 1 1 100%; }
 }
 @media (prefers-reduced-motion: reduce) {
   /* Allow essential colour transitions, forbid transform/opacity motion */
@@ -1040,8 +1028,6 @@
 .pd-intro { padding: clamp(28px, 4vw, 44px) 0; }
 .pd-intro__grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: clamp(28px, 4vw, 56px); align-items: start; }
 .pd-intro__body { font-size: 15px; line-height: 1.8; color: var(--pd-muted); margin: 0; }
-.pd-intro__stats .pd-highlights__grid { flex-wrap: wrap; }
-.pd-intro__stats .pd-highlights__card { flex: 1 1 calc(50% - 12px); min-width: 150px; }
 
 /* =========================================================
    M3 · OUTCOMES & CAREERS (2-col editorial)
@@ -1061,173 +1047,59 @@
   padding: 16px 0;
 }
 /* Careers grid — bordered box on parent, cards borderless, 2 columns */
-.pd-careers__grid--vertical {
-  grid-template-columns: 1fr 1fr;
-  border: 1px solid var(--pd-line);
-  border-radius: 14px;
-  padding: 12px;
-  gap: 8px;
-}
-.pd-careers__grid--vertical .pd-careers__card {
-  border: none;
-  border-radius: 0;
-  padding: 14px 18px;
-  background: transparent;
-  box-shadow: none;
-}
+
 
 /* =========================================================
-   RESPONSIVE for new Phase 2 blocks
+   REVIEWS — Google review card (7A)
+   Only active for the programme detail variant (os-testimonials--google).
+   Author top with Google badge, name, rating, then a clampable quote
+   (max 8 lines) with a read more / read less toggle.
    ========================================================= */
-@media (max-width: 1024px) {
-  .pd-intro__grid, .pd-outcomes__grid { grid-template-columns: 1fr; gap: 28px; }
+.page-pd .os-testimonials--google .os-testimonials__track {
+  flex-wrap: wrap;
+  justify-content: center;
 }
-@media (max-width: 768px) {
-  .pd-logo-strip__inner { flex-direction: column; align-items: flex-start; gap: 16px; }
-  .pd-logo-strip__label { max-width: none; }
-  .pd-anchor-nav__row { overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; }
-  .pd-anchor-nav__link { white-space: nowrap; }
+.page-pd .os-testimonials--google .os-testimonials__card {
+  flex: 0 0 calc((100% - 48px) / 3);
+  max-width: 400px;
 }
-
-/* =========================================================
-   LEFT-SIDE SCROLLSPY DOTS
-   Vertical rail on the left edge. One dot per rendered section.
-   Hover reveals the section label. Active dot reflects current section.
-   ========================================================= */
-.pd-dots {
-  position: fixed;
-  left: 22px;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 40;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-.pd-dots__item {
-  position: relative;
+.page-pd .os-testimonials--google .os-rev__head {
   display: flex;
   align-items: center;
-  text-decoration: none;
-  outline: none;
+  gap: 12px;
 }
-.pd-dots__dot {
-  display: block;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  border: 1px solid var(--pd-navy);
-  background: transparent;
-  transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+.page-pd .os-testimonials--google .os-rev__avatar { position: relative; flex-shrink: 0; }
+.page-pd .os-testimonials--google .os-rev__photo,
+.page-pd .os-testimonials--google .os-rev__initials {
+  width: 52px; height: 52px; border-radius: 50%; object-fit: cover;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--pd-navy); color: #fff; font-family: var(--font-display);
+  font-weight: 600; font-size: 20px;
 }
-/* Label — revealed on hover/focus, slides in to the right of the dot */
-.pd-dots__label {
-  position: absolute;
-  left: 22px;
-  top: 50%;
-  transform: translateY(-50%);
-  white-space: nowrap;
-  font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  color: var(--pd-navy);
-  background: #fff;
-  border: 1px solid var(--pd-line);
-  border-radius: 999px;
-  padding: 4px 10px;
-  opacity: 0;
-  transform: translateY(-50%) translateX(-4px);
-  pointer-events: none;
-  transition: opacity 0.2s ease, transform 0.2s ease;
-  box-shadow: 0 4px 12px rgba(28, 35, 51, 0.08);
+.page-pd .os-testimonials--google .os-rev__google {
+  position: absolute; right: -4px; bottom: -4px; width: 22px; height: 22px;
+  border-radius: 50%; background: #fff; border: 1px solid var(--pd-line);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
 }
-.pd-dots__item:hover .pd-dots__label,
-.pd-dots__item:focus-visible .pd-dots__label {
-  opacity: 1;
-  transform: translateY(-50%) translateX(0);
+.page-pd .os-testimonials--google .os-rev__meta { display: flex; flex-direction: column; gap: 2px; }
+.page-pd .os-testimonials--google .os-rev__name { font-family: var(--font-display); font-size: 15px; font-weight: 600; color: var(--pd-navy); }
+.page-pd .os-testimonials--google .os-rev__quote {
+  margin: 0; font-family: var(--font-body); font-size: 14px; font-style: normal;
+  line-height: 1.6; color: var(--pd-muted);
+  display: -webkit-box; -webkit-line-clamp: 8; -webkit-box-orient: vertical; overflow: hidden;
 }
-.pd-dots__item:hover .pd-dots__dot,
-.pd-dots__item:focus-visible .pd-dots__dot {
-  transform: scale(1.35);
+.page-pd .os-testimonials--google .os-testimonials__card.is-expanded .os-rev__quote {
+  -webkit-line-clamp: unset; display: block;
 }
-/* Active section */
-.pd-dots__item.is-active .pd-dots__dot {
-  background: var(--pd-red);
-  border-color: var(--pd-red);
-  transform: scale(1.15);
+.page-pd .os-testimonials--google .os-rev__toggle {
+  margin-top: 10px; padding: 0; border: 0; background: none;
+  font-family: var(--font-body); font-size: 13px; font-weight: 600; color: var(--pd-red); cursor: pointer;
 }
-.pd-dots__item.is-active .pd-dots__label {
-  color: var(--pd-red);
-  border-color: rgba(236, 31, 36, 0.35);
+.page-pd .os-testimonials--google .os-rev__toggle:hover { text-decoration: underline; }
+@media (max-width: 1024px) {
+  .page-pd .os-testimonials--google .os-testimonials__card { flex: 0 0 calc((100% - 24px) / 2); }
 }
-
-/* Hide the fixed dots on small screens (overlaps content in single column) */
-@media (max-width: 1120px) {
-  .pd-dots { display: none; }
-}
-
-/* =========================================================
-   UI POLISH — scroll progress + reveal + focus-visible
-   ========================================================= */
-/* Scroll progress bar (fixed at top, red) */
-.pd-progress {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  z-index: calc(var(--z-navbar, 1000) + 1);
-  background: var(--pd-red);
-  transform-origin: 0 50%;
-  transform: scaleX(0);
-  transition: transform 0.1s linear;
-  pointer-events: none;
-}
-
-/* Reveal-on-scroll: hidden ONLY when JS is enabled (.js on <html>) and only
-   until .is-revealed is added. Without JS, content stays fully visible —
-   the rule gates opacity:0 behind the .js class so content is never hidden. */
-.js [data-reveal] {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-.js [data-reveal].is-revealed {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Reduced motion: never hide. */
-@media (prefers-reduced-motion: reduce) {
-  .js [data-reveal] {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-}
-
-/* Accessible focus-visible outlines across interactive elements */
-.page-pd a:focus-visible,
-.page-pd button:focus-visible,
-.page-pd summary:focus-visible,
-.page-pd [tabindex]:focus-visible {
-  outline: 2px solid var(--pd-red);
-  outline-offset: 2px;
-  border-radius: 4px;
-}
-
-/* Hide scrollspy dots on touch / very small screens to avoid overlap */
-@media (hover: none), (max-width: 1120px) {
-  .pd-dots { display: none; }
-}
-
-/* =========================================================
-   PRINT — hide chrome, show logos static
-   ========================================================= */
-@media print {
-  .pd-dots, .pd-progress, .pd-apply, .pd-whatsapp,
-  .page-pd .floating-action { display: none !important; }
-  .pd-logo-strip__track { animation: none; }
-  .page-pd { overflow: visible; }
+@media (max-width: 768px) {
+  .page-pd .os-testimonials--google .os-testimonials__card { flex: 0 0 100%; }
 }

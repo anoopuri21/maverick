@@ -108,9 +108,27 @@ function initMarquee(marquee) {
   io.observe(marquee);
 }
 
+/** Google review cards: 8-line clamp with read more / read less toggle. */
+function initGoogleReviews(scope) {
+  scope.querySelectorAll("[data-clamp-toggle]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const card = btn.closest(".os-testimonials__card");
+      const expanded = card.classList.toggle("is-expanded");
+      btn.setAttribute("aria-expanded", String(expanded));
+      btn.textContent = expanded ? "Read less" : "Read more";
+    });
+  });
+}
+
 function initProgramDetail() {
-  if (document.querySelector("#pd-reviews")) {
-    initTestimonialSlider("#pd-reviews");
+  const reviews = document.querySelector("#pd-reviews");
+  if (reviews) {
+    // Google variant is a responsive grid, not an autoplay slider.
+    if (reviews.classList.contains("os-testimonials--google")) {
+      initGoogleReviews(reviews);
+    } else {
+      initTestimonialSlider("#pd-reviews");
+    }
   }
   document.querySelectorAll("[data-pd-dots]").forEach(initScrollSpy);
   document.querySelectorAll("[data-pd-marquee]").forEach(initMarquee);
