@@ -206,7 +206,6 @@
             <div class="pd-benefits__grid">
                 @foreach($benefits as $i => $b)
                     <div class="pd-benefits__card">
-                        <span class="pd-benefits__index" aria-hidden="true">{{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}</span>
                         <div class="pd-benefits__title-row">
                             <span class="pd-benefits__icon" aria-hidden="true">
                                 <i data-lucide="{{ $b['icon'] ?? 'sparkles' }}"></i>
@@ -244,11 +243,11 @@
                 <span class="pd-section-label">Careers</span>
                 <h2 class="pd-section-title">Where This Degree Can <em>Take You</em></h2>
                 <p class="pd-outcomes__sub">Potential careers include:</p>
-                <ul class="pd-careers__list">
+                <div class="pd-careers__chips">
                     @foreach($careers as $i => $career)
-                        <li class="pd-careers__item">{{ $career }}</li>
+                        <span class="pd-careers__chip">{{ $career }}</span>
                     @endforeach
-                </ul>
+                </div>
             </div>
             @endif
         </div>
@@ -578,6 +577,7 @@
         'osTestimonialsId'      => 'pd-reviews',
         'osTestimonialsLabel'   => 'Reviews',
         'osTestimonialsHeading' => 'Student Reviews with Google Ratings',
+        'osTestimonialsVariant' => 'google',
     ])
 
 
