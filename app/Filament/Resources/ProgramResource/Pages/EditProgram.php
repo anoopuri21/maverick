@@ -38,7 +38,15 @@ class EditProgram extends EditRecord
         $data = $this->preserveExistingImageFields($data, $this->record);
 
         if (isset($data['seo'])) {
-            $this->seoData = $data['seo'];
+            // MediaPicker stores the asset id in "{field}_asset_id" and syncs the
+            // URL into "{field}". The seo_metadata table only persists the URL
+            // columns, so strip the transient asset-id keys before saving.
+            $seo = $data['seo'];
+            unset(
+                $seo['og_image_url_asset_id'],
+                $seo['twitter_image_url_asset_id'],
+            );
+            $this->seoData = $seo;
             unset($data['seo']);
         }
         return $data;

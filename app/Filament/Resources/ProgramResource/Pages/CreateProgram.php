@@ -17,7 +17,14 @@ class CreateProgram extends CreateRecord
 
         // Extract SEO data before creating program
         if (isset($data['seo'])) {
-            $this->seoData = $data['seo'];
+            // MediaPicker stores "{field}_asset_id"; seo_metadata only has URL
+            // columns, so drop the transient asset-id keys before creating.
+            $seo = $data['seo'];
+            unset(
+                $seo['og_image_url_asset_id'],
+                $seo['twitter_image_url_asset_id'],
+            );
+            $this->seoData = $seo;
             unset($data['seo']);
         }
         return $data;

@@ -26,6 +26,9 @@
     <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}" />
 
     @stack('styles')
+
+    {{-- Head meta (SEO tags injected per page) --}}
+    @stack('head')
 </head>
 
 <body class="is-loading" style="min-height: 100vh;">
