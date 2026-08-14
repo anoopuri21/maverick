@@ -17,7 +17,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        // Load global helper functions. This guarantees media_url() etc. are
+        // available even when composer autoload has not been regenerated
+        // (e.g. right after a git pull on a server).
+        $helpers = app_path('helpers.php');
+        if (is_file($helpers)) {
+            require_once $helpers;
+        }
     }
 
     /**
