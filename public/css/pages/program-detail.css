@@ -12,7 +12,9 @@
   --pd-ink: #1c2333;
   --pd-muted: rgba(28, 35, 51, 0.68);
   --pd-line: rgba(28, 35, 51, 0.1);
-  overflow-x: hidden;
+  /* clip instead of hidden: hidden creates a scroll container that breaks
+     position:sticky on descendants (the "Programme at a Glance" sidebar). */
+  overflow-x: clip;
 }
 .page-pd em { font-style: italic; color: var(--pd-red); }
 .page-pd .section-title { color: var(--pd-navy); }
@@ -260,7 +262,7 @@
 .pd-layout__main > * { min-width: 0; }
 .pd-layout__sticky {
   position: sticky;
-  top: calc(var(--navbar-height, 80px) + 24px);
+  top: 85px;
 }
 
 /* Right sticky box — "Programme at a Glance" */
@@ -890,4 +892,82 @@
   .pd-logo-strip__inner { flex-direction: column; align-items: flex-start; }
   .pd-anchor-nav__row { overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; }
   .pd-anchor-nav__link { white-space: nowrap; }
+}
+
+/* =========================================================
+   LEFT-SIDE SCROLLSPY DOTS
+   Vertical rail on the left edge. One dot per rendered section.
+   Hover reveals the section label. Active dot reflects current section.
+   ========================================================= */
+.pd-dots {
+  position: fixed;
+  left: 22px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.pd-dots__item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  outline: none;
+}
+.pd-dots__dot {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid var(--pd-navy);
+  background: transparent;
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+/* Label — revealed on hover/focus, slides in to the right of the dot */
+.pd-dots__label {
+  position: absolute;
+  left: 22px;
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--pd-navy);
+  background: #fff;
+  border: 1px solid var(--pd-line);
+  border-radius: 999px;
+  padding: 4px 10px;
+  opacity: 0;
+  transform: translateY(-50%) translateX(-4px);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 4px 12px rgba(28, 35, 51, 0.08);
+}
+.pd-dots__item:hover .pd-dots__label,
+.pd-dots__item:focus-visible .pd-dots__label {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+.pd-dots__item:hover .pd-dots__dot,
+.pd-dots__item:focus-visible .pd-dots__dot {
+  transform: scale(1.35);
+}
+/* Active section */
+.pd-dots__item.is-active .pd-dots__dot {
+  background: var(--pd-red);
+  border-color: var(--pd-red);
+  transform: scale(1.15);
+}
+.pd-dots__item.is-active .pd-dots__label {
+  color: var(--pd-red);
+  border-color: rgba(236, 31, 36, 0.35);
+}
+
+/* Hide the fixed dots on small screens (overlaps content in single column) */
+@media (max-width: 1120px) {
+  .pd-dots { display: none; }
 }
