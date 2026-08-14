@@ -112,7 +112,49 @@
 /* =========================================================
    STEP 1 · HERO (cinematic — shared component)
    ========================================================= */
-.pd-hero .pd-hero__ctas { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; margin-top: 28px; }
+/* Programme detail hero — short cinematic dossier hero (scoped to .pd-hero only) */
+.pd-hero.cinematic-hero { min-height: min(68vh, 620px); }
+.pd-hero .cinematic-hero__title {
+  font-size: var(--pd-fs-hero);
+  font-weight: 700;
+  max-width: 18ch;
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+}
+.pd-hero .cinematic-hero__description { max-width: 52ch; margin-bottom: 20px; }
+/* vertical rule beside eyebrow */
+.pd-hero .cinematic-hero__content { position: relative; }
+.pd-hero .cinematic-hero__content::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1px;
+  height: 48px;
+  background: rgba(255,255,255,0.2);
+}
+.pd-hero .cinematic-hero__content > * { padding-left: 18px; }
+
+/* Meta / trust strip */
+.pd-hero__meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+.pd-hero__meta-item {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.72);
+}
+.pd-hero__meta-rule { width: 1px; height: 12px; background: rgba(255,255,255,0.35); flex-shrink: 0; }
+.pd-hero .pd-hero__ctas { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; margin-top: 6px; }
+
+@media (max-width: 768px) {
+  .pd-hero.cinematic-hero { min-height: min(72vh, 560px); }
+}
 
 /* =========================================================
    STEP 2 · HIGHLIGHTS

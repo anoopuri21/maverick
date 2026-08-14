@@ -54,7 +54,7 @@
     </aside>
 
     {{-- ============ STEP 1 · HERO (cinematic — same as other pages) ============ --}}
-    <section class="cinematic-hero pd-hero" id="top" aria-label="{{ $program->title }}" data-testid="pd-hero">
+    <section class="cinematic-hero cinematic-hero--short pd-hero" id="top" aria-label="{{ $program->title }}" data-testid="pd-hero">
         <div class="cinematic-hero__bg" aria-hidden="true">
             <div class="cinematic-hero__bg-image" style="background-image: url('{{ $program->image_url ?? asset('assets/images/homepage/mba.jpg') }}')"></div>
             <div class="cinematic-hero__gradient"></div>
@@ -65,11 +65,17 @@
                 <svg class="cinematic-hero__shape cinematic-hero__shape--3" viewBox="0 0 100 100" fill="none"><rect x="10" y="10" width="80" height="80" rx="8" stroke="rgba(255,255,255,0.15)" stroke-width="1" transform="rotate(20 50 50)"/></svg>
             </div>
             <div class="cinematic-hero__particles">
-                @for($i = 0; $i < 6; $i++)
+                @for($i = 0; $i < 4; $i++)
                     <div class="cinematic-hero__particle"></div>
                 @endfor
             </div>
             <div class="cinematic-hero__scanline"></div>
+            <div class="cinematic-hero__corners">
+                <div class="cinematic-hero__corner cinematic-hero__corner--tl"></div>
+                <div class="cinematic-hero__corner cinematic-hero__corner--tr"></div>
+                <div class="cinematic-hero__corner cinematic-hero__corner--bl"></div>
+                <div class="cinematic-hero__corner cinematic-hero__corner--br"></div>
+            </div>
         </div>
 
         <div class="container cinematic-hero__content">
@@ -83,9 +89,19 @@
             @if($program->short_description)
                 <p class="cinematic-hero__description">{{ $program->short_description }}</p>
             @endif
+            @if($program->partner_university || $program->duration || $program->level || $reviews->count())
+            <div class="pd-hero__meta">
+                @if($program->partner_university)<span class="pd-hero__meta-item">{{ $program->partner_university }}</span>@endif
+                @if($program->duration)<span class="pd-hero__meta-rule"></span><span class="pd-hero__meta-item">{{ $program->duration }}</span>@endif
+                @if($program->level)<span class="pd-hero__meta-rule"></span><span class="pd-hero__meta-item">{{ $program->level }}</span>@endif
+                @if($reviews->count())<span class="pd-hero__meta-rule"></span><span class="pd-hero__meta-item">{{ $reviews->count() }} Google reviews</span>@endif
+            </div>
+            @endif
             <div class="pd-hero__ctas">
                 <a href="#enquire" class="btn btn--primary">Apply Now</a>
-                <a href="#structure" class="btn btn--secondary">Download Brochure</a>
+                @if($program->brochure_url)
+                    <a href="{{ $program->brochure_url }}" target="_blank" rel="noopener" class="btn btn--secondary">Download Brochure</a>
+                @endif
                 <a href="{{ route('contact') }}" class="btn btn--outline">Enquire Now</a>
             </div>
         </div>

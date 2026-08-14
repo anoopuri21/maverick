@@ -107,6 +107,12 @@ class ProgramResource extends Resource
                                     ->label('Program Image')
                                     ->helperText('Recommended: 800x540px. Max 5MB.')
                                     ->columnSpanFull(),
+
+                                TextInput::make('brochure_url')
+                                    ->label('Brochure URL')
+                                    ->url()
+                                    ->helperText('Optional. When set, a "Download Brochure" button shows in the hero (opens in a new tab).')
+                                    ->columnSpanFull(),
                             ]),
 
                         // Tab 3: FAQs
