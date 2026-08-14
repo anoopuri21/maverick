@@ -658,27 +658,6 @@
 .pd-reviews__text { font-size: 14px; line-height: 1.6; color: var(--pd-muted); margin: 0; }
 
 /* =========================================================
-   FINAL CTA
-   ========================================================= */
-.pd-cta { background: var(--pd-navy-deep); }
-.pd-cta__inner { padding: clamp(48px, 7vw, 88px) 24px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 24px; }
-.pd-cta__title { font-family: var(--font-display); font-size: clamp(28px, 4vw, 48px); font-weight: 600; color: #fff; margin: 0; }
-.pd-cta__actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
-.pd-cta .pd-btn--primary { background: #fff; color: var(--pd-navy); border-color: #fff; }
-.pd-cta .pd-btn--primary:hover { background: transparent; color: #fff; }
-.pd-cta .pd-btn--ghost { color: #fff; border-color: rgba(255,255,255,0.5); }
-.pd-cta .pd-btn--ghost:hover { background: #fff; color: var(--pd-navy); }
-
-/* WhatsApp */
-.pd-whatsapp {
-  position: fixed; right: 20px; bottom: 20px; z-index: 50;
-  width: 54px; height: 54px; border-radius: 50%;
-  background: #25d366; color: #fff;
-  display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
-}
-
-/* =========================================================
    RESPONSIVE
    ========================================================= */
 @media (max-width: 1120px) {
@@ -709,11 +688,15 @@
   /* Keep outcomes (What You'll Learn / Careers) in 2 columns as requested */
   .pd-learn__list--single { grid-template-columns: 1fr 1fr; gap: 10px 24px; padding: 6px 20px; }
   .pd-careers__grid--vertical { grid-template-columns: 1fr 1fr; }
-  .pd-whatsapp { right: 14px; bottom: 88px; }
   /* Snapshot box CTA buttons: desktop only */
   .pd-snapshot-box__actions { display: none; }
   /* Sticky Apply/Enquire bar: mobile only */
   .pd-apply { display: flex; }
+  /* On programme pages the mobile Apply/Enquire bar sits at the bottom,
+     so lift the global floating buttons above it to avoid overlap.
+     (Floating buttons are direct children of <body>, so scope via :has.) */
+  body:has(.page-pd) .floating-action--whatsapp { bottom: 5.5rem; }
+  body:has(.page-pd) .floating-action--scroll { bottom: 9.5rem; }
 }
 @media (max-width: 480px) {
   .pd-highlights__card { flex: 1 1 100%; }

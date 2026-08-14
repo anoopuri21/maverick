@@ -533,6 +533,38 @@
         </div>
     </section>
 
+
+
+
+        </div>{{-- /.pd-layout__main --}}
+
+        {{-- ==========================================================
+             RIGHT STICKY SIDEBAR · "Programme at a Glance"
+             ========================================================== --}}
+        @if($snapshot->count())
+        <aside class="pd-layout__side" aria-label="Programme at a glance">
+            <div class="pd-layout__sticky">
+                <div class="pd-snapshot-box" data-testid="pd-snapshot">
+                    <span class="pd-section-label">Programme at a Glance</span>
+                    <div class="pd-snapshot-box__list">
+                        @foreach($snapshot as $s)
+                            <div class="pd-snapshot-box__item">
+                                <span class="pd-snapshot-box__label">{{ $s['label'] }}</span>
+                                <span class="pd-snapshot-box__value">{{ $s['value'] }}</span>
+                            </div>
+                        @endforeach
+                    </div>
+                    <div class="pd-snapshot-box__actions">
+                        <a href="#enquire" class="btn pd-btn pd-btn--primary pd-snapshot-box__cta">Apply Now</a>
+                        <a href="{{ route('contact') }}" class="btn pd-btn pd-btn--ghost pd-snapshot-box__cta pd-snapshot-box__cta--ghost">Enquire</a>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        @endif
+
+    </div>{{-- /.pd-layout --}}
+
     {{-- ============ STEP 8 · FAQ ============ --}}
     @if($faqs->count())
     <section id="faq" class="pd-faq" aria-label="Frequently asked questions" data-testid="pd-faq">
@@ -599,6 +631,17 @@
                             <option value="part-time">Part-time</option>
                         </select>
                     </div>
+                    <div class="pd-form__field">
+                        <label for="pd-qualification">Highest qualification</label>
+                        <select id="pd-qualification" name="qualification">
+                            <option value="">Select qualification</option>
+                            <option value="high-school">High School / Secondary</option>
+                            <option value="diploma">Diploma</option>
+                            <option value="bachelor">Bachelor's Degree</option>
+                            <option value="master">Master's Degree</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
                     <div class="pd-form__field pd-form__field--full">
                         <label for="pd-message">Message</label>
                         <textarea id="pd-message" name="message" rows="3"></textarea>
@@ -616,52 +659,8 @@
         'osTestimonialsHeading' => 'Student Reviews with Google Ratings',
     ])
 
-        </div>{{-- /.pd-layout__main --}}
-
-        {{-- ==========================================================
-             RIGHT STICKY SIDEBAR · "Programme at a Glance"
-             ========================================================== --}}
-        @if($snapshot->count())
-        <aside class="pd-layout__side" aria-label="Programme at a glance">
-            <div class="pd-layout__sticky">
-                <div class="pd-snapshot-box" data-testid="pd-snapshot">
-                    <span class="pd-section-label">Programme at a Glance</span>
-                    <div class="pd-snapshot-box__list">
-                        @foreach($snapshot as $s)
-                            <div class="pd-snapshot-box__item">
-                                <span class="pd-snapshot-box__label">{{ $s['label'] }}</span>
-                                <span class="pd-snapshot-box__value">{{ $s['value'] }}</span>
-                            </div>
-                        @endforeach
-                    </div>
-                    <div class="pd-snapshot-box__actions">
-                        <a href="#enquire" class="btn pd-btn pd-btn--primary pd-snapshot-box__cta">Apply Now</a>
-                        <a href="{{ route('contact') }}" class="btn pd-btn pd-btn--ghost pd-snapshot-box__cta pd-snapshot-box__cta--ghost">Enquire</a>
-                    </div>
-                </div>
-            </div>
-        </aside>
-        @endif
-
-    </div>{{-- /.pd-layout --}}
 
     {{-- ============ FINAL CTA ============ --}}
-    <section class="pd-cta" aria-label="Take the next step" data-testid="pd-cta">
-        <div class="container pd-cta__inner">
-            <h2 class="pd-cta__title">Ready to Take the <em>Next Step?</em></h2>
-            <div class="pd-cta__actions">
-                <a href="#enquire" class="btn pd-btn pd-btn--primary">Apply Now</a>
-                <a href="{{ route('contact') }}" class="btn pd-btn pd-btn--ghost">Speak to an Advisor</a>
-            </div>
-        </div>
-    </section>
-
-    @if(!empty($site->whatsapp_number))
-        <a class="pd-whatsapp" href="https://wa.me/{{ $site->whatsapp_number }}" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
-            <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 1.8a8.2 8.2 0 1 1-4.2 15.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 0 1 12 3.8z"/></svg>
-        </a>
-    @endif
-
     @include('sections.final-cta')
 
 </div>
