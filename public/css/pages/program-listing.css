@@ -164,11 +164,12 @@
 /* Empty state */
 .pl-empty { font-size: 15px; color: var(--pl-muted); padding: 2rem; text-align: center; }
 
-/* Entrance reveal (matches detail pattern) */
-.pl-card { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
-.pl-card.is-revealed { opacity: 1; transform: translateY(0); }
+/* Entrance reveal (matches detail pattern) — gated behind .js so content
+   is never hidden when JS is disabled */
+.js .pl-card { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
+.js .pl-card.is-revealed { opacity: 1; transform: translateY(0); }
 @media (prefers-reduced-motion: reduce) {
-  .pl-card { opacity: 1; transform: none; transition: none; }
+  .js .pl-card { opacity: 1; transform: none; transition: none; }
 }
 
 /* Accessible focus */
