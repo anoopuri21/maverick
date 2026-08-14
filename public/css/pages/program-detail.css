@@ -12,6 +12,18 @@
   --pd-ink: #1c2333;
   --pd-muted: rgba(28, 35, 51, 0.68);
   --pd-line: rgba(28, 35, 51, 0.1);
+  /* Band colours (explicit section backgrounds) */
+  --pd-band-paper: #ffffff;
+  --pd-band-warm: var(--pd-warm);
+  --pd-band-tint: var(--pd-blue-tint);
+  --pd-band-navy: var(--pd-navy);
+  /* Type scale — compact "editorial dossier" */
+  --pd-fs-hero: clamp(32px, 4.2vw, 56px);
+  --pd-fs-h2: clamp(26px, 2.8vw, 36px);
+  --pd-fs-h3: 18px;
+  --pd-fs-body: 15px;
+  --pd-fs-label: 11px;
+  --pd-fs-stat: clamp(22px, 2.4vw, 28px);
   /* clip instead of hidden: hidden creates a scroll container that breaks
      position:sticky on descendants (the "Programme at a Glance" sidebar). */
   overflow-x: clip;
@@ -22,10 +34,10 @@
 /* Shared title — refined, calmer (subtle + compact) */
 .pd-section-title {
   font-family: var(--font-display);
-  font-size: clamp(20px, 2.4vw, 28px);
+  font-size: var(--pd-fs-h2);
   font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: -0.015em;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
   color: var(--pd-navy);
   margin: 0 0 18px;
 }
@@ -136,16 +148,25 @@
   gap: clamp(24px, 3vw, 56px);
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 0;
+  padding: 0 var(--container-padding);
   align-items: stretch;
 }
 .pd-layout__main,
 .pd-layout__side { min-width: 0; }
 .pd-layout__main > * { min-width: 0; }
+/* Neutralize double container-padding on sections inside the 7:3 layout */
+.pd-layout__main > section > .container { max-width: none; padding: 0; }
+.pd-layout__main > section > .container > * { max-width: none; }
 .pd-layout__sticky {
   position: sticky;
-  top: 85px;
+  top: calc(var(--navbar-height, 80px) + 12px);
 }
+
+/* Section colour bands (explicit backgrounds — no two identical neighbours) */
+.pd-band--paper { background: var(--pd-band-paper); }
+.pd-band--warm  { background: var(--pd-band-warm); }
+.pd-band--tint  { background: var(--pd-band-tint); }
+.pd-band--navy  { background: var(--pd-band-navy); }
 
 /* Right sticky box — "Programme at a Glance" */
 .pd-snapshot-box {

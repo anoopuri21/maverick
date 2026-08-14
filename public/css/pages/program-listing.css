@@ -9,6 +9,14 @@
   --pl-ink: #1c2333;
   --pl-muted: rgba(28, 35, 51, 0.68);
   --pl-line: rgba(28, 35, 51, 0.1);
+  /* Type scale — matches detail (catalogue family) */
+  --pl-fs-hero: clamp(32px, 4.2vw, 52px);
+  --pl-fs-h2: clamp(26px, 2.8vw, 36px);
+  --pl-fs-h3: 18px;
+  --pl-fs-body: 15px;
+  --pl-fs-label: 11px;
+  --pl-fs-stat: clamp(22px, 2.4vw, 28px);
+  /* Compact vertical rhythm, matching detail */
   overflow-x: hidden;
 }
 .page-pl em { font-style: italic; color: var(--pl-red); }

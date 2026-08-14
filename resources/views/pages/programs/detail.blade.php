@@ -125,12 +125,21 @@
     </nav>
     @endif
 
-    {{-- ============ M2 · INTRO (Overview + Highlights, editorial pair) ============ --}}
+    
+{{-- ================================================================
+         EXPERIMENT · TWO-COLUMN LAYOUT (7:3)
+         Quick Highlights → Reviews run in the left column; the
+         "Programme at a Glance" (snapshot) is a sticky box on the right.
+         ================================================================ --}}
+    <div class="pd-layout">
+        <div class="pd-layout__main">
+
+{{-- ============ M2 · INTRO (Overview + Highlights, editorial pair) ============ --}}
     @if($highlights->count() || $program->description)
-    <section id="overview" class="pd-intro section--light" aria-label="Programme introduction" data-testid="pd-intro" data-reveal>
+    <section id="overview" class="pd-intro pd-band--paper" aria-label="Programme introduction" data-testid="pd-intro" data-reveal>
         <div class="container pd-intro__grid">
             <div class="pd-intro__editorial">
-                <span class="pd-section-label">Programme Overview</span>
+                <span class="pd-section-label">Overview</span>
                 <h2 class="pd-section-title">Programme <em>Overview</em></h2>
                 @if($program->description)
                     <div class="pd-intro__body">{!! $program->description !!}</div>
@@ -154,18 +163,11 @@
     </section>
     @endif
 
-{{-- ================================================================
-         EXPERIMENT · TWO-COLUMN LAYOUT (7:3)
-         Quick Highlights → Reviews run in the left column; the
-         "Programme at a Glance" (snapshot) is a sticky box on the right.
-         ================================================================ --}}
-    <div class="pd-layout">
-        <div class="pd-layout__main">
     
 
     {{-- ============ STEP 4 · WHY CHOOSE ============ --}}
     @if($benefits->count())
-    <section id="why-choose" class="pd-benefits section--light" aria-label="Why choose this programme" data-testid="pd-benefits" data-reveal>
+    <section id="why-choose" class="pd-benefits pd-band--warm" aria-label="Why choose this programme" data-testid="pd-benefits" data-reveal>
         <div class="container">
             <span class="pd-section-label">Why Choose</span>
             <h2 class="pd-section-title">Why Choose This <em>Programme?</em></h2>
@@ -185,7 +187,7 @@
     @endif
     {{-- ============ M3 · OUTCOMES & CAREERS (Learn list + Careers, 2-col editorial) ============ --}}
     @if($learning->count() || $careers->count())
-    <section id="careers" class="pd-outcomes" aria-label="Learning outcomes and careers" data-testid="pd-outcomes" data-reveal>
+    <section id="careers" class="pd-outcomes pd-band--paper" aria-label="Learning outcomes and careers" data-testid="pd-outcomes" data-reveal>
         <div class="container pd-outcomes__grid">
             @if($learning->count())
             <div class="pd-outcomes__col pd-outcomes__col--learn">
@@ -227,9 +229,9 @@
 
     {{-- ============ STEP 5 · PROGRAMME STRUCTURE ============ --}}
     @if($structure->count())
-    <section class="pd-structure" id="structure" aria-label="Programme structure" data-testid="pd-structure">
+    <section class="pd-structure pd-band--warm" id="structure" aria-label="Programme structure" data-testid="pd-structure">
         <div class="container">
-            <span class="pd-section-label">Programme Structure</span>
+            <span class="pd-section-label">Curriculum</span>
             <h2 class="pd-section-title">Programme <em>Structure</em></h2>
             <div class="pd-structure__list">
                 @foreach($structure as $i => $stage)
@@ -287,9 +289,9 @@
 
     {{-- ============ STEP 6 · UNIVERSITY ============ --}}
     @if($university->name)
-    <section id="university" class="pd-uni section--light" aria-label="About the awarding university" data-testid="pd-uni" data-reveal>
+    <section id="university" class="pd-uni pd-band--paper" aria-label="About the awarding university" data-testid="pd-uni" data-reveal>
         <div class="container">
-            <span class="pd-section-label">About the University</span>
+            <span class="pd-section-label">University</span>
             <h2 class="pd-section-title">A Globally Connected <em>University</em></h2>
             <div class="pd-uni__inner {{ !empty($university->image) ? 'pd-uni__inner--with-image' : '' }}">
                 @if(!empty($university->image))
@@ -308,7 +310,7 @@
 
     {{-- ============ STEP 6 · ACCREDITATION ============ --}}
     @if($accreditationGroups->count())
-    <section id="accreditation" class="pd-accred" aria-label="Accreditation and recognition" data-testid="pd-accred" data-reveal>
+    <section id="accreditation" class="pd-accred pd-band--tint" aria-label="Accreditation and recognition" data-testid="pd-accred" data-reveal>
         <div class="container">
             <span class="pd-section-label">Accreditation & Recognition</span>
             <h2 class="pd-section-title">Accreditation & <em>Recognition</em></h2>
@@ -335,9 +337,9 @@
 
     {{-- ============ STEP 7 · MAVERICK SUPPORT ============ --}}
     @if($support->count())
-    <section id="support" class="pd-support section--light" aria-label="Why study through Maverick" data-testid="pd-support" data-reveal>
+    <section id="support" class="pd-support pd-band--paper" aria-label="Why study through Maverick" data-testid="pd-support" data-reveal>
         <div class="container">
-            <span class="pd-section-label">Your Learning Partner</span>
+            <span class="pd-section-label">Support</span>
             <h2 class="pd-section-title">Why Study Through <em>Maverick?</em></h2>
             <p class="pd-support__sub">Students receive:</p>
             <div class="pd-support__grid">
@@ -356,9 +358,9 @@
 
     {{-- ============ STEP 7 · TESTIMONIALS (video, like home) ============ --}}
     @if($testimonials->count())
-    <section id="testimonials" class="pd-testimonials" aria-label="Student success stories" data-testid="pd-testimonials" data-reveal>
+    <section id="testimonials" class="pd-testimonials pd-band--warm" aria-label="Student success stories" data-testid="pd-testimonials" data-reveal>
         <div class="container">
-            <span class="pd-section-label">Testimonials</span>
+            <span class="pd-section-label">Stories</span>
             <h2 class="pd-section-title">Student Success <em>Stories</em></h2>
             <div class="scroll-row scroll-row--light" data-scroll-row>
                 <button class="scroll-row__btn scroll-row__btn--prev" aria-label="Scroll left" data-scroll-prev>
@@ -402,7 +404,7 @@
     @endif
 
     {{-- ============ STEP 8 · FEES ============ --}}
-    <section id="fees" class="pd-fees section--light" aria-label="Fees and scholarships" data-testid="pd-fees" data-reveal>
+    <section id="fees" class="pd-fees pd-band--navy" aria-label="Fees and scholarships" data-testid="pd-fees" data-reveal>
         <div class="container pd-fees__inner">
             <div class="pd-fees__text">
                 <h2 class="pd-section-title">Fees & <em>Scholarships</em></h2>
@@ -471,7 +473,7 @@
     @endif
 
     {{-- ============ STEP 8 · ENQUIRY ============ --}}
-    <section class="pd-enquire section--light" id="enquire" aria-label="Enquire about this programme" data-testid="pd-enquire">
+    <section class="pd-enquire pd-band--warm" id="enquire" aria-label="Enquire about this programme" data-testid="pd-enquire">
         <div class="pd-enquire__particles" aria-hidden="true">
             @for($i = 1; $i <= 12; $i++)
                 <span class="pd-enquire__orb"></span>
