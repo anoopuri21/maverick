@@ -22,101 +22,26 @@
 @php
     // ------------------------------------------------------------------
     // PROGRAMME CONTENT MODEL — admin-driven (from Program model JSON casts)
+    // Normalized via model accessors so the blade stays clean.
     // Every section is optional; render only if content exists.
     // ------------------------------------------------------------------
     $cat = $program->programCategory;
-
-    // Quick highlights — [{label, value}]
-    $highlights = collect($program->highlights ?? []);
-
-    // Recognition logos — [{name, logo, note}]
-    $recognition = collect($program->recognition ?? []);
-
-    // Snapshot — [{label, value}]
-    $snapshot = collect($program->snapshot ?? []);
-
-    // Benefits (Why Choose) — [{title, desc, icon}]
-    $benefits = collect($program->benefits ?? []);
-
-    // Learning outcomes — [{item}]
-    $learning = collect($program->learning ?? [])->map(fn ($l) => $l['item'] ?? $l)->values();
-
-    // Careers — [{title}]
-    $careers = collect($program->careers ?? [])->map(fn ($c) => $c['title'] ?? $c)->values();
-
-    // Programme structure — [{title, subtitle, modules: [{title, overview/desc, list: [{point}]}]}]
-    $structure = collect($program->structure ?? [])->map(function ($stage) {
-        return [
-            'title'    => $stage['title'] ?? '',
-            'subtitle' => $stage['subtitle'] ?? '',
-            'modules'  => collect($stage['modules'] ?? [])->map(function ($m) {
-                return [
-                    'title'    => $m['title'] ?? '',
-                    'overview' => $m['overview'] ?? null,
-                    'desc'     => $m['desc'] ?? null,
-                    'list'     => collect($m['list'] ?? [])->map(fn ($li) => $li['point'] ?? $li)->values()->all(),
-                ];
-            })->values()->all(),
-        ];
-    })->values();
-
-    // Maverick Support — [{item}]
-    $support = collect($program->support ?? [])->map(fn ($s) => $s['item'] ?? $s)->values();
-
-    // About the University — [{name, description, establishment}] (first row wins)
-    $uniRow = collect($program->university ?? [])->first() ?? [];
-    $university = (object) [
-        'name'          => $uniRow['name'] ?? $program->partner_university,
-        'description'   => $uniRow['description'] ?? null,
-        'establishment' => $uniRow['establishment'] ?? null,
-        'image'         => $uniRow['image'] ?? null,
-    ];
-
-    // Accreditation groups — [{group, items: [{name, logo}]}]
-    $accreditationGroups = collect($program->accreditation_groups ?? [])->map(function ($g) {
-        return [
-            'group' => $g['group'] ?? '',
-            'items' => collect($g['items'] ?? []),
-        ];
-    })->values();
-
-    // Video testimonials — [{name, role, country, category, thumb, video}]
-    $testimonials = collect($program->testimonials ?? []);
-
-    // Fees — [{title}]
-    $fees = collect($program->fees ?? [])->map(fn ($f) => $f['title'] ?? $f)->values();
-
-    $faqs = $program->faqs;
-
-    // Reviews (Google ratings) — [{name, avatar, rating, review}]
-    $reviews = collect($program->reviews ?? []);
-
-    // Reuse the shared Our Story testimonials slider shape (same partial as
-    // the our-story page) — only the heading differs per page.
-    $ourStoryTestimonials = $reviews->map(fn ($r) => (object) [
-        'name'        => $r['name'] ?? '',
-        'rating'      => $r['rating'] ?? 5,
-        'testimonial' => $r['review'] ?? '',
-        'photo'       => $r['avatar'] ?? null,
-    ])->values();
-
-    // ------------------------------------------------------------------
-    // SECTION NAV (left-side scrollspy dots)
-    // Only dots for sections that actually render (content exists).
-    // ------------------------------------------------------------------
-    $sectionNav = collect([
-        ['id' => 'overview',       'label' => 'Overview',       'render' => ($highlights->count() || $program->description)],
-        ['id' => 'why-choose',     'label' => 'Why Choose',     'render' => $benefits->count() > 0],
-        ['id' => 'careers',        'label' => 'Careers',        'render' => ($learning->count() || $careers->count())],
-        ['id' => 'structure',      'label' => 'Structure',      'render' => $structure->count() > 0],
-        ['id' => 'university',     'label' => 'University',     'render' => !empty($university->name)],
-        ['id' => 'accreditation',  'label' => 'Accreditation',  'render' => $accreditationGroups->count() > 0],
-        ['id' => 'support',        'label' => 'Support',        'render' => $support->count() > 0],
-        ['id' => 'testimonials',   'label' => 'Testimonials',   'render' => $testimonials->count() > 0],
-        ['id' => 'fees',           'label' => 'Fees',           'render' => $fees->count() > 0],
-        ['id' => 'faq',            'label' => 'FAQ',            'render' => $faqs->count() > 0],
-        ['id' => 'enquire',        'label' => 'Enquire',        'render' => true],
-    ])->filter(fn ($s) => $s['render'])->values();
+    $highlights          = $program->highlights_list;
+    $recognition         = $program->recognition_list;
+    $snapshot            = $program->snapshot_list;
+    $benefits            = $program->benefits_list;
+    $learning            = $program->learning_list;
+    $careers             = $program->careers_list;
+    $structure           = $program->structure_list;
+    $support             = $program->support_list;
+    $university          = $program->university_object;
+    $accreditationGroups = $program->accreditation_groups_list;
+    $testimonials        = $program->testimonials_list;
+    $fees                = $program->fees_list;
+    $faqs                = $program->faqs;
+    $reviews             = $program->reviews_list;
+    $ourStoryTestimonials = $program->review_testimonial_objects;
+    $sectionNav          = $program->section_nav;
 @endphp
 
 <div class="page-pd">
