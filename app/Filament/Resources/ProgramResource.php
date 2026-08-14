@@ -162,7 +162,8 @@ class ProgramResource extends Resource
                                     ->helperText('Logo strip shown under the hero.')
                                     ->schema([
                                         TextInput::make('name')->required(),
-                                        TextInput::make('logo')->url()->label('Logo URL'),
+                                        TextInput::make('logo')->url()->label('Logo URL')->helperText('Or choose from the media library below.'),
+                                        MediaPicker::forField('logo', 'programs/recognition')->label('Logo Image'),
                                         RichEditor::make('note')->label('Note (optional)'),
                                     ])
                                     ->collapsible()
@@ -257,9 +258,11 @@ class ProgramResource extends Resource
                                 Repeater::make('university')
                                     ->label('About the University')
                                     ->schema([
-                                        TextInput::make('name')->label('University Name'),
-                                        RichEditor::make('description')->label('Description'),
+                                        TextInput::make('name')->label('University Name')->columnSpan(2),
+                                        RichEditor::make('description')->label('Description')->columnSpan(2),
                                         TextInput::make('establishment')->label('Established (e.g. "Established 1985")'),
+                                        TextInput::make('image')->label('Image URL')->url()->helperText('Or choose from the media library below.'),
+                                        MediaPicker::forField('image', 'programs/university')->label('University Image'),
                                     ])
                                     ->collapsible()
                                     ->columns(2)
@@ -275,7 +278,8 @@ class ProgramResource extends Resource
                                             ->label('Logos')
                                             ->schema([
                                                 TextInput::make('name')->label('Name')->required(),
-                                                TextInput::make('logo')->label('Logo URL'),
+                                                TextInput::make('logo')->label('Logo URL')->helperText('Or choose from the media library below.'),
+                                                MediaPicker::forField('logo', 'programs/accreditation')->label('Logo Image'),
                                             ])
                                             ->collapsible()
                                             ->columns(2)
@@ -294,7 +298,8 @@ class ProgramResource extends Resource
                                         TextInput::make('role'),
                                         TextInput::make('country'),
                                         TextInput::make('category')->label('Badge (e.g. STUDENT)'),
-                                        TextInput::make('thumb')->label('Thumbnail URL'),
+                                        TextInput::make('thumb')->label('Thumbnail URL')->helperText('Or choose from the media library below.'),
+                                        MediaPicker::forField('thumb', 'programs/testimonials')->label('Thumbnail Image'),
                                         TextInput::make('video')->label('Video URL'),
                                     ])
                                     ->collapsible()
@@ -317,7 +322,8 @@ class ProgramResource extends Resource
                                     ->label('Student Reviews')
                                     ->schema([
                                         TextInput::make('name')->required(),
-                                        TextInput::make('avatar')->label('Avatar URL'),
+                                        TextInput::make('avatar')->label('Avatar URL')->helperText('Or choose from the media library below.'),
+                                        MediaPicker::forField('avatar', 'programs/reviews')->label('Avatar Image'),
                                         TextInput::make('rating')->label('Rating (1-5)')->numeric()->minValue(1)->maxValue(5),
                                         RichEditor::make('review')->label('Review Text'),
                                     ])

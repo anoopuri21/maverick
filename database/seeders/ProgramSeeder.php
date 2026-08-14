@@ -142,7 +142,7 @@ class ProgramSeeder extends Seeder
                 ['item' => 'Graduation Support'],
             ],
             'university' => [
-                ['name' => 'Girne American University', 'description' => "<p>Girne American University (GAU), established in 1985, is one of Northern Cyprus' leading universities. It offers internationally focused education with programmes designed to prepare graduates for the global workplace.</p>", 'establishment' => 'Established 1985'],
+                ['name' => 'Girne American University', 'description' => "<p>Girne American University (GAU), established in 1985, is one of Northern Cyprus' leading universities. It offers internationally focused education with programmes designed to prepare graduates for the global workplace.</p>", 'establishment' => 'Established 1985', 'image' => null],
             ],
             'accreditation_groups' => [
                 ['group' => 'Institutional Recognition', 'items' => [
