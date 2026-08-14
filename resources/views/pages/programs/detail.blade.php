@@ -190,10 +190,13 @@
             <div class="pd-benefits__grid">
                 @foreach($benefits as $i => $b)
                     <div class="pd-benefits__card">
-                        <span class="pd-benefits__icon" aria-hidden="true">
-                            <i data-lucide="{{ $b['icon'] ?? 'sparkles' }}"></i>
-                        </span>
-                        <h3>{{ $b['title'] }}</h3>
+                        <span class="pd-benefits__index" aria-hidden="true">{{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}</span>
+                        <div class="pd-benefits__title-row">
+                            <span class="pd-benefits__icon" aria-hidden="true">
+                                <i data-lucide="{{ $b['icon'] ?? 'sparkles' }}"></i>
+                            </span>
+                            <h3>{{ $b['title'] }}</h3>
+                        </div>
                         <div class="pd-benefits__desc">{!! $b['desc'] ?? '' !!}</div>
                     </div>
                 @endforeach
@@ -225,16 +228,11 @@
                 <span class="pd-section-label">Careers</span>
                 <h2 class="pd-section-title">Where This Degree Can <em>Take You</em></h2>
                 <p class="pd-outcomes__sub">Potential careers include:</p>
-                <div class="pd-careers__grid pd-careers__grid--vertical">
+                <ul class="pd-careers__list">
                     @foreach($careers as $i => $career)
-                        <div class="pd-careers__card">
-                            <span class="pd-careers__icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-                            </span>
-                            <span class="pd-careers__label">{{ $career }}</span>
-                        </div>
+                        <li class="pd-careers__item">{{ $career }}</li>
                     @endforeach
-                </div>
+                </ul>
             </div>
             @endif
         </div>
@@ -253,7 +251,7 @@
                 @foreach($structure as $i => $stage)
                     <details class="pd-structure__year" {{ $i === 0 ? 'open' : '' }}>
                         <summary class="pd-structure__year-head">
-                            <span class="pd-structure__year-title">Year {{ $i + 1 }}</span>
+                            <span class="pd-structure__year-title">{{ $stage['title'] ?: 'Year '.($i + 1) }}</span>
                             @if(!empty($stage['subtitle']))<span class="pd-structure__year-sub">{{ $stage['subtitle'] }}</span>@endif
                             <span class="pd-structure__year-arrow" aria-hidden="true">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
@@ -354,20 +352,20 @@
     {{-- ============ STEP 7 · MAVERICK SUPPORT ============ --}}
     @if($support->count())
     <section id="support" class="pd-support pd-band--paper" aria-label="Why study through Maverick" data-testid="pd-support" data-reveal>
-        <div class="container">
-            <span class="pd-section-label">Support</span>
-            <h2 class="pd-section-title">Why Study Through <em>Maverick?</em></h2>
-            <p class="pd-support__sub">Students receive:</p>
-            <div class="pd-support__grid">
-                @foreach($support as $i => $s)
-                    <div class="pd-support__item">
-                        <span class="pd-support__icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-                        </span>
-                        <span class="pd-support__text">{{ $s }}</span>
-                    </div>
-                @endforeach
+        <div class="container pd-support__inner">
+            <div class="pd-support__intro">
+                <span class="pd-section-label">Support</span>
+                <h2 class="pd-section-title">Why Study Through <em>Maverick?</em></h2>
+                <p class="pd-support__sub">Students receive:</p>
             </div>
+            <ol class="pd-support__timeline">
+                @foreach($support as $i => $s)
+                    <li class="pd-support__step">
+                        <span class="pd-support__dot" aria-hidden="true"></span>
+                        <span class="pd-support__text">{{ $s }}</span>
+                    </li>
+                @endforeach
+            </ol>
         </div>
     </section>
     @endif
