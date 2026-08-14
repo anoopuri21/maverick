@@ -133,7 +133,7 @@
                 <span class="pd-section-label">Programme Overview</span>
                 <h2 class="pd-section-title">Programme <em>Overview</em></h2>
                 @if($program->description)
-                    <p class="pd-intro__body">{{ $program->description }}</p>
+                    <div class="pd-intro__body">{!! $program->description !!}</div>
                 @endif
             </div>
             @if($highlights->count())
