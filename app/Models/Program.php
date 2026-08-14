@@ -22,6 +22,7 @@ class Program extends Model
         'short_description',
         'description',
         'image_url',
+        'brochure_url',
         'is_featured',
         'is_active',
         'sort_order',

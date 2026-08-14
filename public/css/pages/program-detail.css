@@ -12,6 +12,18 @@
   --pd-ink: #1c2333;
   --pd-muted: rgba(28, 35, 51, 0.68);
   --pd-line: rgba(28, 35, 51, 0.1);
+  /* Band colours (explicit section backgrounds) */
+  --pd-band-paper: #ffffff;
+  --pd-band-warm: var(--pd-warm);
+  --pd-band-tint: var(--pd-blue-tint);
+  --pd-band-navy: var(--pd-navy);
+  /* Type scale — compact "editorial dossier" */
+  --pd-fs-hero: clamp(32px, 4.2vw, 56px);
+  --pd-fs-h2: clamp(26px, 2.8vw, 36px);
+  --pd-fs-h3: 18px;
+  --pd-fs-body: 15px;
+  --pd-fs-label: 11px;
+  --pd-fs-stat: clamp(22px, 2.4vw, 28px);
   /* clip instead of hidden: hidden creates a scroll container that breaks
      position:sticky on descendants (the "Programme at a Glance" sidebar). */
   overflow-x: clip;
@@ -22,10 +34,10 @@
 /* Shared title — refined, calmer (subtle + compact) */
 .pd-section-title {
   font-family: var(--font-display);
-  font-size: clamp(20px, 2.4vw, 28px);
+  font-size: var(--pd-fs-h2);
   font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: -0.015em;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
   color: var(--pd-navy);
   margin: 0 0 18px;
 }
@@ -100,32 +112,70 @@
 /* =========================================================
    STEP 1 · HERO (cinematic — shared component)
    ========================================================= */
-.pd-hero .pd-hero__ctas { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; margin-top: 28px; }
+/* Programme detail hero — short cinematic dossier hero (scoped to .pd-hero only) */
+.pd-hero.cinematic-hero { min-height: min(68vh, 620px); }
+.pd-hero .cinematic-hero__title {
+  font-size: var(--pd-fs-hero);
+  font-weight: 700;
+  max-width: 18ch;
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+}
+.pd-hero .cinematic-hero__description { max-width: 52ch; margin-bottom: 20px; }
+/* vertical rule beside eyebrow */
+.pd-hero .cinematic-hero__content { position: relative; }
+.pd-hero .cinematic-hero__content::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1px;
+  height: 48px;
+  background: rgba(255,255,255,0.2);
+}
+.pd-hero .cinematic-hero__content > * { padding-left: 18px; }
+
+/* Meta / trust strip */
+.pd-hero__meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+.pd-hero__meta-item {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.72);
+}
+.pd-hero__meta-rule { width: 1px; height: 12px; background: rgba(255,255,255,0.35); flex-shrink: 0; }
+.pd-hero .pd-hero__ctas { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; margin-top: 6px; }
+
+@media (max-width: 768px) {
+  .pd-hero.cinematic-hero { min-height: min(72vh, 560px); }
+}
 
 /* =========================================================
    STEP 2 · HIGHLIGHTS
    ========================================================= */
 .pd-highlights { padding: clamp(28px, 4vw, 44px) 0; }
+/* Highlights = stat list (no card chrome) */
 .pd-highlights__grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px 24px;
 }
 .pd-highlights__card {
-  flex: 1 1 calc(33.333% - 12px);
-  min-width: 180px;
   display: flex;
-  align-items: center;
-  background: #fff;
-  border: 1px solid var(--pd-line);
-  border-radius: 10px;
-  padding: 14px 16px;
-  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--pd-line);
 }
-.pd-highlights__card:hover { border-color: var(--pd-red); box-shadow: 0 6px 16px rgba(28,35,51,0.05); }
 .pd-highlights__card-text { display: flex; flex-direction: column; gap: 2px; }
-.pd-highlights__label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--pd-muted); }
-.pd-highlights__value { font-family: var(--font-display); font-size: 14px; font-weight: 600; color: var(--pd-navy); }
+.pd-highlights__label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--pd-muted); }
+.pd-highlights__value { font-family: var(--font-display); font-size: var(--pd-fs-stat); font-weight: 600; color: var(--pd-navy); line-height: 1.2; }
 
 /* =========================================================
    EXPERIMENT · TWO-COLUMN LAYOUT (7:3) + STICKY SIDEBAR
@@ -136,16 +186,25 @@
   gap: clamp(24px, 3vw, 56px);
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 0;
+  padding: 0 var(--container-padding);
   align-items: stretch;
 }
 .pd-layout__main,
 .pd-layout__side { min-width: 0; }
 .pd-layout__main > * { min-width: 0; }
+/* Neutralize double container-padding on sections inside the 7:3 layout */
+.pd-layout__main > section > .container { max-width: none; padding: 0; }
+.pd-layout__main > section > .container > * { max-width: none; }
 .pd-layout__sticky {
   position: sticky;
-  top: 85px;
+  top: calc(var(--navbar-height, 80px) + 12px);
 }
+
+/* Section colour bands (explicit backgrounds — no two identical neighbours) */
+.pd-band--paper { background: var(--pd-band-paper); }
+.pd-band--warm  { background: var(--pd-band-warm); }
+.pd-band--tint  { background: var(--pd-band-tint); }
+.pd-band--navy  { background: var(--pd-band-navy); }
 
 /* Right sticky box — "Programme at a Glance" */
 .pd-snapshot-box {
@@ -154,6 +213,18 @@
   border-radius: 16px;
   padding: 26px 24px 24px;
   box-shadow: 0 10px 28px rgba(28, 35, 51, 0.06);
+}
+.pd-snapshot-box__title {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--pd-navy);
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 6px;
 }
 .pd-snapshot-box .pd-section-label { margin-bottom: 18px; }
 .pd-snapshot-box__list { border-top: 1px solid var(--pd-line); }
@@ -183,28 +254,38 @@
    STEP 4 · WHY CHOOSE
    ========================================================= */
 .pd-benefits { padding: clamp(28px, 4vw, 44px) 0; }
-.pd-benefits__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+/* Why Choose = numbered 2-col list with inline icon */
+.pd-benefits__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 48px; }
 .pd-benefits__card {
-  display: flex; flex-direction: column; gap: 10px;
-  background: #fff; border: 1px solid var(--pd-line); border-radius: 12px; padding: 22px 20px;
-  transition: border-color 0.25s ease, box-shadow 0.25s ease;
-}
-.pd-benefits__card:hover { border-color: var(--pd-red); box-shadow: 0 8px 20px rgba(28,35,51,0.05); }
-.pd-benefits__icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: rgba(236, 31, 36, 0.1);
-  color: var(--pd-red);
   display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--pd-line);
 }
-.pd-benefits__icon i { width: 22px; height: 22px; }
-.pd-benefits__card h3 { font-family: var(--font-display); font-size: 18px; font-weight: 500; color: var(--pd-navy); margin: 0; }
+.pd-benefits__index {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--pd-navy);
+}
+.pd-benefits__title-row { display: flex; align-items: center; gap: 10px; }
+.pd-benefits__icon { color: var(--pd-red); display: inline-flex; align-items: center; justify-content: center; }
+.pd-benefits__icon i { width: 18px; height: 18px; }
+.pd-benefits__card h3 {
+  font-family: var(--font-display);
+  font-size: var(--pd-fs-h3);
+  font-weight: 500;
+  color: var(--pd-navy);
+  margin: 0;
+  line-height: 1.3;
+}
 .pd-benefits__card p,
 .pd-benefits__desc { font-size: 14px; color: var(--pd-muted); margin: 0; line-height: 1.6; }
+@media (max-width: 768px) {
+  .pd-benefits__grid { grid-template-columns: 1fr; }
+}
 
 /* =========================================================
    STEP 4 · WHAT YOU'LL LEARN
@@ -238,6 +319,23 @@
 }
 .pd-careers__icon svg { width: 16px; height: 16px; }
 .pd-careers__label { font-family: var(--font-body); font-size: 15px; font-weight: 400; color: var(--pd-ink); }
+/* Careers = bordered-left list (different language from Learn ticks) */
+.pd-careers__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.pd-careers__item {
+  position: relative;
+  padding: 12px 0 12px 16px;
+  border-left: 2px solid var(--pd-navy);
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--pd-ink);
+  line-height: 1.5;
+}
+.pd-careers__item + .pd-careers__item { margin-top: 0; }
 
 /* =========================================================
    STEP 5 · STRUCTURE
@@ -328,7 +426,9 @@
   min-height: 260px;
   object-fit: cover;
   display: block;
+  transition: transform 0.4s ease;
 }
+.pd-uni__media:hover img { transform: scale(1.04); }
 .pd-uni__body { max-width: 72ch; }
 .pd-uni__body p,
 .pd-uni__body-content { font-size: 15px; line-height: 1.8; color: var(--pd-muted); margin: 0 0 12px; }
@@ -420,38 +520,68 @@
   font-size: 15px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
   color: var(--pd-navy); margin: 0 0 18px;
 }
+/* Accreditation = flat logo row (no boxes) */
 .pd-accred__slider {
-  display: flex; gap: 16px; overflow-x: auto;
-  scroll-snap-type: x mandatory; padding-bottom: 8px; -webkit-overflow-scrolling: touch;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+  align-items: center;
 }
 .pd-accred__logo-box {
-  flex: 0 0 120px; height: 120px;
-  display: flex; align-items: center; justify-content: center;
-  border: 1px solid var(--pd-line); border-radius: 50%;
-  background: #fff; scroll-snap-align: start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
 }
-.pd-accred__logo-img { max-width: 70%; max-height: 70%; object-fit: contain; }
-.pd-accred__logo-text { font-family: var(--font-display); font-size: 15px; font-weight: 600; color: var(--pd-navy); text-align: center; }
+.pd-accred__logo-img {
+  max-height: 48px;
+  width: auto;
+  object-fit: contain;
+  filter: grayscale(0.85);
+  opacity: 0.9;
+  transition: filter 0.25s ease, opacity 0.25s ease;
+}
+.pd-accred__logo-img:hover { filter: grayscale(0); opacity: 1; }
+.pd-accred__logo-text { font-family: var(--font-display); font-size: 16px; font-weight: 600; color: var(--pd-navy); }
 
 /* =========================================================
    STEP 7 · SUPPORT
    ========================================================= */
 .pd-support { padding: clamp(28px, 4vw, 44px) 0; }
-.pd-support__sub { font-size: 16px; color: var(--pd-muted); margin: 0 0 28px; }
-.pd-support__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-.pd-support__item {
-  display: flex; align-items: center; gap: 12px;
-  background: #fff; border: 1px solid var(--pd-line); border-radius: 12px; padding: 14px 16px;
-  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+/* Support = asymmetric split: sticky intro (left 38%) + vertical timeline */
+.pd-support__inner {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: clamp(28px, 4vw, 64px);
+  align-items: start;
 }
-.pd-support__item:hover { border-color: var(--pd-red); box-shadow: 0 8px 20px rgba(28,35,51,0.05); }
-.pd-support__icon {
-  width: 30px; height: 30px; border-radius: 50%;
-  background: rgba(236, 31, 36, 0.1); color: var(--pd-red);
-  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+.pd-support__intro { position: sticky; top: calc(var(--navbar-height, 80px) + 12px); }
+.pd-support__sub { font-size: 16px; color: var(--pd-muted); margin: 0; }
+/* Vertical timeline */
+.pd-support__timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 20px;
+  border-left: 1px solid var(--pd-navy);
 }
-.pd-support__icon svg { width: 14px; height: 14px; }
-.pd-support__text { font-family: var(--font-body); font-size: 14px; color: var(--pd-ink); }
+.pd-support__step {
+  position: relative;
+  padding: 14px 0;
+}
+.pd-support__dot {
+  position: absolute;
+  left: -24px;
+  top: 18px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--pd-red);
+}
+.pd-support__text { font-family: var(--font-body); font-size: 16px; color: var(--pd-ink); line-height: 1.5; }
+@media (max-width: 768px) {
+  .pd-support__inner { grid-template-columns: 1fr; }
+  .pd-support__intro { position: static; }
+}
 
 /* =========================================================
    STEP 7 · TESTIMONIALS (video, like home)
@@ -470,11 +600,11 @@
 .pd-testimonials__track {
   display: flex;
   flex-wrap: nowrap;
-  gap: 2rem;
+  gap: 1.25rem;
   padding: 2rem 0;
   width: max-content;
 }
-.pd-testimonials__card { flex: 0 0 380px; }
+.pd-testimonials__card { flex: 0 0 300px; }
 .pd-testimonials__thumb-ph {
   width: 100%;
   height: 100%;
@@ -484,13 +614,27 @@
 /* =========================================================
    STEP 8 · FEES
    ========================================================= */
-.pd-fees { padding: clamp(28px, 4vw, 44px) 0; }
+/* Fees = inverted navy band (the one deep-colour moment) */
+.pd-fees { padding: clamp(28px, 4vw, 44px) 0; color: #fff; }
 .pd-fees__inner { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 5vw, 72px); align-items: center; }
-.pd-fees__text .body-text { color: var(--pd-muted); }
+.pd-fees .pd-section-title { color: #fff; }
+.pd-fees .pd-section-title em { color: var(--pd-red); }
+.pd-fees__text .body-text { color: rgba(255,255,255,0.8); }
 .pd-fees__side { display: flex; flex-direction: column; gap: 16px; align-items: flex-start; }
-.pd-fees__list { display: flex; gap: 10px; flex-wrap: wrap; }
-.pd-fees__chip { border: 1px solid var(--pd-line); border-radius: 999px; padding: 10px 18px; font-size: 14px; color: var(--pd-navy); background: #fff; text-decoration: none; transition: border-color 0.2s ease, color 0.2s ease; }
-.pd-fees__chip:hover { border-color: var(--pd-red); color: var(--pd-red); }
+.pd-fees__list { display: flex; flex-wrap: wrap; gap: 8px 0; }
+.pd-fees__chip {
+  font-size: 15px;
+  color: #fff;
+  text-decoration: none;
+  padding: 2px 10px;
+  transition: color 0.2s ease;
+}
+.pd-fees__chip:hover { color: var(--pd-red); text-decoration: underline; }
+.pd-fees__chip + .pd-fees__chip::before {
+  content: "·";
+  margin-right: 18px;
+  color: rgba(255,255,255,0.5);
+}
 
 /* =========================================================
    STEP 8 · FAQ
@@ -554,6 +698,13 @@
   font-family: var(--font-body); font-size: 14px; color: var(--pd-ink); background: #fff;
 }
 .pd-form__field textarea { resize: vertical; min-height: 88px; }
+.pd-form__field input:focus,
+.pd-form__field select:focus,
+.pd-form__field textarea:focus {
+  border-color: var(--pd-navy);
+  outline: 2px solid var(--pd-red);
+  outline-offset: 2px;
+}
 
 /* Enquiry — CSS-only floating orbs (behind content, opacity ≤ 0.12) */
 .pd-enquire__particles {
@@ -594,10 +745,29 @@
    ========================================================= */
 @media (max-width: 1120px) {
   /* Collapse the 7:3 experiment to a single column; "Programme at a Glance"
-     becomes a compact intro box at the top of the page. */
+     becomes a horizontal snap scroller above the article. */
   .pd-layout { grid-template-columns: 1fr; gap: 28px; }
   .pd-layout__side { order: -1; }
   .pd-layout__sticky { position: static; }
+  .pd-snapshot-box__list {
+    display: flex;
+    gap: 28px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 8px;
+  }
+  .pd-snapshot-box__item {
+    flex: 0 0 auto;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    border-bottom: none;
+    scroll-snap-align: start;
+    padding: 12px 0;
+  }
+  .pd-snapshot-box__item + .pd-snapshot-box__item { border-left: 1px solid var(--pd-line); padding-left: 28px; }
+  .pd-snapshot-box__actions { display: none; }
 }
 @media (max-width: 1024px) {
   .pd-enquire__inner, .pd-fees__inner { grid-template-columns: 1fr; gap: 28px; }
@@ -613,7 +783,17 @@
 @media (max-width: 768px) {
   .pd-learn__list { grid-template-columns: 1fr; }
   .pd-highlights__card { flex: 1 1 calc(50% - 12px); min-width: 0; }
-  .pd-enquire__visual { display: none; }
+  /* Enquire: image becomes a full-bleed crop above the intro */
+  .pd-enquire__visual {
+    display: block;
+    flex: none;
+    min-height: 0;
+    height: 140px;
+    margin: 0 calc(var(--container-padding) * -1);
+    border-radius: 0;
+  }
+  .pd-enquire__visual img { height: 100%; }
+  .pd-enquire__particles { display: none; }
   .pd-slider__btn--prev { left: 0; }
   .pd-slider__btn--next { right: 0; }
   .pd-benefits__grid, .pd-careers__grid, .pd-support__grid { grid-template-columns: 1fr; }
@@ -634,12 +814,17 @@
   .pd-highlights__card { flex: 1 1 100%; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .page-pd * { transition: none !important; }
+  /* Allow essential colour transitions, forbid transform/opacity motion */
+  .page-pd * {
+    animation: none !important;
+    scroll-behavior: auto !important;
+    transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease !important;
+  }
   .pd-enquire__particles { display: none; }
-  .pd-enquire__orb { animation: none; }
-  .pd-slider__scroller { scroll-behavior: auto; }
   .pd-logo-strip__track { animation: none; }
   .pd-logo-strip__marquee { overflow-x: auto; mask-image: none; }
+  .pd-progress { display: none; }
+  .cinematic-hero__scroll-hint { display: none; }
 }
 
 /* =========================================================
@@ -655,27 +840,19 @@
   --os-transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 .page-pd .os-section-label {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
+  display: block;
+  font-size: var(--pd-fs-label);
   font-weight: 700;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--os-red);
-  margin-bottom: 16px;
-}
-.page-pd .os-section-label::before {
-  content: "";
-  width: 32px;
-  height: 1px;
-  background: var(--os-red);
-  flex-shrink: 0;
+  margin-bottom: 10px;
 }
 .page-pd .os-section-heading {
   font-family: var(--font-display);
-  font-size: clamp(24px, 3vw, 32px);
+  font-size: var(--pd-fs-h2);
   font-weight: 600;
-  line-height: 1.12;
+  line-height: 1.15;
   letter-spacing: -0.02em;
   color: var(--pd-navy);
   margin: 0;
@@ -825,6 +1002,8 @@
   width: max-content;
   animation: pd-logo-marquee 26s linear infinite;
 }
+/* second (duplicate) set joins the same flex layout, hidden from AT */
+.pd-logo-strip__duplicate { display: contents; }
 .pd-logo-strip__marquee:hover .pd-logo-strip__track { animation-play-state: paused; }
 .pd-logo-strip__logo {
   display: inline-flex;
@@ -997,8 +1176,8 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 3px;
-  z-index: 60;
+  height: 2px;
+  z-index: calc(var(--z-navbar, 1000) + 1);
   background: var(--pd-red);
   transform-origin: 0 50%;
   transform: scaleX(0);
@@ -1006,27 +1185,22 @@
   pointer-events: none;
 }
 
-/* Reveal-on-scroll: hidden until .is-revealed added by JS.
-   Uses opacity + translate only, so layout never collapses and content
-   is never lost if JS fails (fallback reveals after timeout). */
-.pd-progress + .page-pd,
-[data-reveal] {
-  /* default visible */
-}
-[data-reveal] {
+/* Reveal-on-scroll: hidden ONLY when JS is enabled (.js on <html>) and only
+   until .is-revealed is added. Without JS, content stays fully visible —
+   the rule gates opacity:0 behind the .js class so content is never hidden. */
+.js [data-reveal] {
   opacity: 0;
   transform: translateY(24px);
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
-[data-reveal].is-revealed {
+.js [data-reveal].is-revealed {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Ensure section content that is data-reveal keeps its space (it does,
-   opacity/transform don't affect layout). Reduced motion: never hide. */
+/* Reduced motion: never hide. */
 @media (prefers-reduced-motion: reduce) {
-  [data-reveal] {
+  .js [data-reveal] {
     opacity: 1;
     transform: none;
     transition: none;
@@ -1046,4 +1220,14 @@
 /* Hide scrollspy dots on touch / very small screens to avoid overlap */
 @media (hover: none), (max-width: 1120px) {
   .pd-dots { display: none; }
+}
+
+/* =========================================================
+   PRINT — hide chrome, show logos static
+   ========================================================= */
+@media print {
+  .pd-dots, .pd-progress, .pd-apply, .pd-whatsapp,
+  .page-pd .floating-action { display: none !important; }
+  .pd-logo-strip__track { animation: none; }
+  .page-pd { overflow: visible; }
 }

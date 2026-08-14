@@ -81,11 +81,39 @@ function initScrollSpy(rail) {
   });
 }
 
+/**
+ * Pause the logo marquee when it is off-screen to save cycles.
+ * Toggles animation-play-state via IntersectionObserver.
+ */
+function initMarquee(marquee) {
+  if (marquee.dataset.pdMarqueeInit === "true") return;
+  marquee.dataset.pdMarqueeInit = "true";
+
+  const track = marquee.querySelector(".pd-logo-strip__track");
+  if (!track) return;
+
+  const reduced = prefersReducedMotion();
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (reduced) {
+          track.style.animationPlayState = "paused";
+          return;
+        }
+        track.style.animationPlayState = entry.isIntersecting ? "running" : "paused";
+      });
+    },
+    { rootMargin: "0px 0px 0px 0px", threshold: 0 },
+  );
+  io.observe(marquee);
+}
+
 function initProgramDetail() {
   if (document.querySelector("#pd-reviews")) {
     initTestimonialSlider("#pd-reviews");
   }
   document.querySelectorAll("[data-pd-dots]").forEach(initScrollSpy);
+  document.querySelectorAll("[data-pd-marquee]").forEach(initMarquee);
 }
 
 if (document.readyState === "loading") {

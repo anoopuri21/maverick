@@ -54,7 +54,7 @@
     </aside>
 
     {{-- ============ STEP 1 · HERO (cinematic — same as other pages) ============ --}}
-    <section class="cinematic-hero pd-hero" id="top" aria-label="{{ $program->title }}" data-testid="pd-hero">
+    <section class="cinematic-hero cinematic-hero--short pd-hero" id="top" aria-label="{{ $program->title }}" data-testid="pd-hero">
         <div class="cinematic-hero__bg" aria-hidden="true">
             <div class="cinematic-hero__bg-image" style="background-image: url('{{ $program->image_url ?? asset('assets/images/homepage/mba.jpg') }}')"></div>
             <div class="cinematic-hero__gradient"></div>
@@ -65,11 +65,17 @@
                 <svg class="cinematic-hero__shape cinematic-hero__shape--3" viewBox="0 0 100 100" fill="none"><rect x="10" y="10" width="80" height="80" rx="8" stroke="rgba(255,255,255,0.15)" stroke-width="1" transform="rotate(20 50 50)"/></svg>
             </div>
             <div class="cinematic-hero__particles">
-                @for($i = 0; $i < 6; $i++)
+                @for($i = 0; $i < 4; $i++)
                     <div class="cinematic-hero__particle"></div>
                 @endfor
             </div>
             <div class="cinematic-hero__scanline"></div>
+            <div class="cinematic-hero__corners">
+                <div class="cinematic-hero__corner cinematic-hero__corner--tl"></div>
+                <div class="cinematic-hero__corner cinematic-hero__corner--tr"></div>
+                <div class="cinematic-hero__corner cinematic-hero__corner--bl"></div>
+                <div class="cinematic-hero__corner cinematic-hero__corner--br"></div>
+            </div>
         </div>
 
         <div class="container cinematic-hero__content">
@@ -83,10 +89,24 @@
             @if($program->short_description)
                 <p class="cinematic-hero__description">{{ $program->short_description }}</p>
             @endif
+            @if($program->partner_university || $program->duration || $program->level || $reviews->count())
+            <div class="pd-hero__meta">
+                @if($program->partner_university)<span class="pd-hero__meta-item">{{ $program->partner_university }}</span>@endif
+                @if($program->duration)<span class="pd-hero__meta-rule"></span><span class="pd-hero__meta-item">{{ $program->duration }}</span>@endif
+                @if($program->level)<span class="pd-hero__meta-rule"></span><span class="pd-hero__meta-item">{{ $program->level }}</span>@endif
+                @if($reviews->count())<span class="pd-hero__meta-rule"></span><span class="pd-hero__meta-item">{{ $reviews->count() }} Google reviews</span>@endif
+            </div>
+            @endif
             <div class="pd-hero__ctas">
                 <a href="#enquire" class="btn btn--primary">Apply Now</a>
-                <a href="#structure" class="btn btn--secondary">Download Brochure</a>
+                @if($program->brochure_url)
+                    <a href="{{ $program->brochure_url }}" target="_blank" rel="noopener" class="btn btn--secondary">Download Brochure</a>
+                @endif
                 <a href="{{ route('contact') }}" class="btn btn--outline">Enquire Now</a>
+            </div>
+            <div class="cinematic-hero__scroll-hint" aria-hidden="true">
+                <span class="cinematic-hero__scroll-text">Scroll to explore</span>
+                <span class="cinematic-hero__scroll-arrow" data-lucide="chevron-down"></span>
             </div>
         </div>
     </section>
@@ -98,7 +118,7 @@
             <h2 class="pd-logo-strip__label">Accredited &amp; Recognised By</h2>
             <div class="pd-logo-strip__marquee" data-pd-marquee data-lenis-prevent>
                 <div class="pd-logo-strip__track">
-                    @foreach($recognition->merge($recognition) as $r)
+                    @foreach($recognition as $r)
                         <div class="pd-logo-strip__logo">
                             @if(!empty($r['logo']))
                                 <img src="{{ $r['logo'] }}" alt="{{ $r['name'] }}" loading="lazy">
@@ -107,6 +127,18 @@
                             @endif
                         </div>
                     @endforeach
+                    {{-- duplicate for seamless loop; hidden from screen readers --}}
+                    <div class="pd-logo-strip__duplicate" aria-hidden="true">
+                        @foreach($recognition as $r)
+                            <div class="pd-logo-strip__logo">
+                                @if(!empty($r['logo']))
+                                    <img src="{{ $r['logo'] }}" alt="" loading="lazy">
+                                @else
+                                    <span>{{ $r['name'] }}</span>
+                                @endif
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>
@@ -125,12 +157,21 @@
     </nav>
     @endif
 
-    {{-- ============ M2 · INTRO (Overview + Highlights, editorial pair) ============ --}}
+    
+{{-- ================================================================
+         EXPERIMENT · TWO-COLUMN LAYOUT (7:3)
+         Quick Highlights → Reviews run in the left column; the
+         "Programme at a Glance" (snapshot) is a sticky box on the right.
+         ================================================================ --}}
+    <div class="pd-layout">
+        <div class="pd-layout__main">
+
+{{-- ============ M2 · INTRO (Overview + Highlights, editorial pair) ============ --}}
     @if($highlights->count() || $program->description)
-    <section id="overview" class="pd-intro section--light" aria-label="Programme introduction" data-testid="pd-intro" data-reveal>
+    <section id="overview" class="pd-intro pd-band--paper" aria-label="Programme introduction" data-testid="pd-intro" data-reveal>
         <div class="container pd-intro__grid">
             <div class="pd-intro__editorial">
-                <span class="pd-section-label">Programme Overview</span>
+                <span class="pd-section-label">Overview</span>
                 <h2 class="pd-section-title">Programme <em>Overview</em></h2>
                 @if($program->description)
                     <div class="pd-intro__body">{!! $program->description !!}</div>
@@ -154,28 +195,24 @@
     </section>
     @endif
 
-{{-- ================================================================
-         EXPERIMENT · TWO-COLUMN LAYOUT (7:3)
-         Quick Highlights → Reviews run in the left column; the
-         "Programme at a Glance" (snapshot) is a sticky box on the right.
-         ================================================================ --}}
-    <div class="pd-layout">
-        <div class="pd-layout__main">
     
 
     {{-- ============ STEP 4 · WHY CHOOSE ============ --}}
     @if($benefits->count())
-    <section id="why-choose" class="pd-benefits section--light" aria-label="Why choose this programme" data-testid="pd-benefits" data-reveal>
+    <section id="why-choose" class="pd-benefits pd-band--warm" aria-label="Why choose this programme" data-testid="pd-benefits" data-reveal>
         <div class="container">
             <span class="pd-section-label">Why Choose</span>
             <h2 class="pd-section-title">Why Choose This <em>Programme?</em></h2>
             <div class="pd-benefits__grid">
                 @foreach($benefits as $i => $b)
                     <div class="pd-benefits__card">
-                        <span class="pd-benefits__icon" aria-hidden="true">
-                            <i data-lucide="{{ $b['icon'] ?? 'sparkles' }}"></i>
-                        </span>
-                        <h3>{{ $b['title'] }}</h3>
+                        <span class="pd-benefits__index" aria-hidden="true">{{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}</span>
+                        <div class="pd-benefits__title-row">
+                            <span class="pd-benefits__icon" aria-hidden="true">
+                                <i data-lucide="{{ $b['icon'] ?? 'sparkles' }}"></i>
+                            </span>
+                            <h3>{{ $b['title'] }}</h3>
+                        </div>
                         <div class="pd-benefits__desc">{!! $b['desc'] ?? '' !!}</div>
                     </div>
                 @endforeach
@@ -185,7 +222,7 @@
     @endif
     {{-- ============ M3 · OUTCOMES & CAREERS (Learn list + Careers, 2-col editorial) ============ --}}
     @if($learning->count() || $careers->count())
-    <section id="careers" class="pd-outcomes" aria-label="Learning outcomes and careers" data-testid="pd-outcomes" data-reveal>
+    <section id="careers" class="pd-outcomes pd-band--paper" aria-label="Learning outcomes and careers" data-testid="pd-outcomes" data-reveal>
         <div class="container pd-outcomes__grid">
             @if($learning->count())
             <div class="pd-outcomes__col pd-outcomes__col--learn">
@@ -207,16 +244,11 @@
                 <span class="pd-section-label">Careers</span>
                 <h2 class="pd-section-title">Where This Degree Can <em>Take You</em></h2>
                 <p class="pd-outcomes__sub">Potential careers include:</p>
-                <div class="pd-careers__grid pd-careers__grid--vertical">
+                <ul class="pd-careers__list">
                     @foreach($careers as $i => $career)
-                        <div class="pd-careers__card">
-                            <span class="pd-careers__icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-                            </span>
-                            <span class="pd-careers__label">{{ $career }}</span>
-                        </div>
+                        <li class="pd-careers__item">{{ $career }}</li>
                     @endforeach
-                </div>
+                </ul>
             </div>
             @endif
         </div>
@@ -227,15 +259,15 @@
 
     {{-- ============ STEP 5 · PROGRAMME STRUCTURE ============ --}}
     @if($structure->count())
-    <section class="pd-structure" id="structure" aria-label="Programme structure" data-testid="pd-structure">
+    <section class="pd-structure pd-band--warm" id="structure" aria-label="Programme structure" data-testid="pd-structure">
         <div class="container">
-            <span class="pd-section-label">Programme Structure</span>
+            <span class="pd-section-label">Curriculum</span>
             <h2 class="pd-section-title">Programme <em>Structure</em></h2>
             <div class="pd-structure__list">
                 @foreach($structure as $i => $stage)
                     <details class="pd-structure__year" {{ $i === 0 ? 'open' : '' }}>
                         <summary class="pd-structure__year-head">
-                            <span class="pd-structure__year-title">Year {{ $i + 1 }}</span>
+                            <span class="pd-structure__year-title">{{ $stage['title'] ?: 'Year '.($i + 1) }}</span>
                             @if(!empty($stage['subtitle']))<span class="pd-structure__year-sub">{{ $stage['subtitle'] }}</span>@endif
                             <span class="pd-structure__year-arrow" aria-hidden="true">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
@@ -287,14 +319,14 @@
 
     {{-- ============ STEP 6 · UNIVERSITY ============ --}}
     @if($university->name)
-    <section id="university" class="pd-uni section--light" aria-label="About the awarding university" data-testid="pd-uni" data-reveal>
+    <section id="university" class="pd-uni pd-band--paper" aria-label="About the awarding university" data-testid="pd-uni" data-reveal>
         <div class="container">
-            <span class="pd-section-label">About the University</span>
+            <span class="pd-section-label">University</span>
             <h2 class="pd-section-title">A Globally Connected <em>University</em></h2>
             <div class="pd-uni__inner {{ !empty($university->image) ? 'pd-uni__inner--with-image' : '' }}">
                 @if(!empty($university->image))
                 <div class="pd-uni__media">
-                    <img src="{{ media_url($university->image) }}" alt="{{ $university->name }}" loading="lazy">
+                    <img src="{{ media_url($university->image) }}" alt="{{ $university->name }}" loading="lazy" width="1200" height="800">
                 </div>
                 @endif
                 <div class="pd-uni__body">
@@ -308,7 +340,7 @@
 
     {{-- ============ STEP 6 · ACCREDITATION ============ --}}
     @if($accreditationGroups->count())
-    <section id="accreditation" class="pd-accred" aria-label="Accreditation and recognition" data-testid="pd-accred" data-reveal>
+    <section id="accreditation" class="pd-accred pd-band--tint" aria-label="Accreditation and recognition" data-testid="pd-accred" data-reveal>
         <div class="container">
             <span class="pd-section-label">Accreditation & Recognition</span>
             <h2 class="pd-section-title">Accreditation & <em>Recognition</em></h2>
@@ -335,30 +367,30 @@
 
     {{-- ============ STEP 7 · MAVERICK SUPPORT ============ --}}
     @if($support->count())
-    <section id="support" class="pd-support section--light" aria-label="Why study through Maverick" data-testid="pd-support" data-reveal>
-        <div class="container">
-            <span class="pd-section-label">Your Learning Partner</span>
-            <h2 class="pd-section-title">Why Study Through <em>Maverick?</em></h2>
-            <p class="pd-support__sub">Students receive:</p>
-            <div class="pd-support__grid">
-                @foreach($support as $i => $s)
-                    <div class="pd-support__item">
-                        <span class="pd-support__icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-                        </span>
-                        <span class="pd-support__text">{{ $s }}</span>
-                    </div>
-                @endforeach
+    <section id="support" class="pd-support pd-band--paper" aria-label="Why study through Maverick" data-testid="pd-support" data-reveal>
+        <div class="container pd-support__inner">
+            <div class="pd-support__intro">
+                <span class="pd-section-label">Support</span>
+                <h2 class="pd-section-title">Why Study Through <em>Maverick?</em></h2>
+                <p class="pd-support__sub">Students receive:</p>
             </div>
+            <ol class="pd-support__timeline">
+                @foreach($support as $i => $s)
+                    <li class="pd-support__step">
+                        <span class="pd-support__dot" aria-hidden="true"></span>
+                        <span class="pd-support__text">{{ $s }}</span>
+                    </li>
+                @endforeach
+            </ol>
         </div>
     </section>
     @endif
 
     {{-- ============ STEP 7 · TESTIMONIALS (video, like home) ============ --}}
     @if($testimonials->count())
-    <section id="testimonials" class="pd-testimonials" aria-label="Student success stories" data-testid="pd-testimonials" data-reveal>
+    <section id="testimonials" class="pd-testimonials pd-band--warm" aria-label="Student success stories" data-testid="pd-testimonials" data-reveal>
         <div class="container">
-            <span class="pd-section-label">Testimonials</span>
+            <span class="pd-section-label">Stories</span>
             <h2 class="pd-section-title">Student Success <em>Stories</em></h2>
             <div class="scroll-row scroll-row--light" data-scroll-row>
                 <button class="scroll-row__btn scroll-row__btn--prev" aria-label="Scroll left" data-scroll-prev>
@@ -402,7 +434,7 @@
     @endif
 
     {{-- ============ STEP 8 · FEES ============ --}}
-    <section id="fees" class="pd-fees section--light" aria-label="Fees and scholarships" data-testid="pd-fees" data-reveal>
+    <section id="fees" class="pd-fees pd-band--navy" aria-label="Fees and scholarships" data-testid="pd-fees" data-reveal>
         <div class="container pd-fees__inner">
             <div class="pd-fees__text">
                 <h2 class="pd-section-title">Fees & <em>Scholarships</em></h2>
@@ -433,6 +465,7 @@
         <aside class="pd-layout__side" aria-label="Programme at a glance">
             <div class="pd-layout__sticky">
                 <div class="pd-snapshot-box" data-testid="pd-snapshot">
+                    <span class="pd-snapshot-box__title">{{ $program->title }}</span>
                     <span class="pd-section-label">Programme at a Glance</span>
                     <div class="pd-snapshot-box__list">
                         @foreach($snapshot as $s)
@@ -471,7 +504,7 @@
     @endif
 
     {{-- ============ STEP 8 · ENQUIRY ============ --}}
-    <section class="pd-enquire section--light" id="enquire" aria-label="Enquire about this programme" data-testid="pd-enquire">
+    <section class="pd-enquire pd-band--warm" id="enquire" aria-label="Enquire about this programme" data-testid="pd-enquire">
         <div class="pd-enquire__particles" aria-hidden="true">
             @for($i = 1; $i <= 12; $i++)
                 <span class="pd-enquire__orb"></span>
