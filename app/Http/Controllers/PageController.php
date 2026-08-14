@@ -166,6 +166,7 @@ class PageController extends Controller
             'ourStoryTestimonials' => $ourStoryTestimonials,
             'testimonials' => $testimonials,
             'testimonialsJson' => $testimonialsJson,
+            'ourStorySeo' => app(\App\Settings\OurStorySeoSettings::class),
         ]);
 
         return view('pages.our-story', $data);

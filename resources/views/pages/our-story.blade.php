@@ -1,7 +1,17 @@
 @extends('layouts.app')
 
-@section('title', 'Our Story | Maverick Business Academy')
-@section('meta_description', 'Discover the journey of Maverick Business Academy from inception to becoming a global leader in business education.')
+@section('title', ($ourStorySeo->meta_title ?? 'Our Story | Maverick Business Academy'))
+@section('meta_description', ($ourStorySeo->meta_description ?? 'Discover the journey of Maverick Business Academy from inception to becoming a global leader in business education.'))
+
+@push('head')
+    @include('partials.seo-meta', ['seo' => $ourStorySeo])
+@endpush
+
+@if(!empty($ourStorySeo->custom_body_scripts))
+@push('scripts')
+    {!! $ourStorySeo->custom_body_scripts !!}
+@endpush
+@endif
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('assets/css/our-story.css') }}">

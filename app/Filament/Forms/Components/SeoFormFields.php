@@ -10,9 +10,8 @@ use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Grid;
-use App\Services\CloudinaryService;
+use App\Filament\Forms\Components\MediaPicker;
 use App\Filament\Concerns\HandlesCloudinaryImageFields;
-use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class SeoFormFields
 {
@@ -84,20 +83,14 @@ class SeoFormFields
                                 ->helperText('Description for social shares. Leave blank to use Meta Description.')
                                 ->columnSpanFull(),
 
-                            FileUpload::make('seo.og_image_url')
-                                ->label('OG Image')
-                                ->image()
-                                ->imageEditor()
-                                ->maxSize(5120)
-                                ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
-                                ->helperText('Recommended: 1200x630px. Used for Facebook, LinkedIn shares.')
-                                ->columnSpanFull()
-                                ->nullable()
-                                ->getUploadedFileUsing(fn (?string $file): ?array => static::existingCloudinaryImage($file))
-                                ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
-                                    return app(CloudinaryService::class)
-                                        ->uploadImage($file->getRealPath(), 'seo/og-images');
-                                }),
+                            TextInput::make('seo.og_image_url')
+                                ->label('OG Image URL')
+                                ->url()
+                                ->helperText('Recommended: 1200x630px. Used for Facebook, LinkedIn shares. Or choose from the media library below.')
+                                ->columnSpanFull(),
+
+                            MediaPicker::forField('seo.og_image_url', 'seo/og-images')
+                                ->label('OG Image'),
 
                             Select::make('seo.og_type')
                                 ->label('OG Type')
@@ -133,19 +126,14 @@ class SeoFormFields
                                 ->rows(3)
                                 ->columnSpanFull(),
 
-                            FileUpload::make('seo.twitter_image_url')
-                                ->label('Twitter Image')
-                                ->image()
-                                ->imageEditor()
-                                ->maxSize(5120)
-                                ->helperText('Recommended: 1200x628px')
-                                ->columnSpanFull()
-                                ->nullable()
-                                ->getUploadedFileUsing(fn (?string $file): ?array => static::existingCloudinaryImage($file))
-                                ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
-                                    return app(CloudinaryService::class)
-                                        ->uploadImage($file->getRealPath(), 'seo/twitter-images');
-                                }),
+                            TextInput::make('seo.twitter_image_url')
+                                ->label('Twitter Image URL')
+                                ->url()
+                                ->helperText('Recommended: 1200x628px. Or choose from the media library below.')
+                                ->columnSpanFull(),
+
+                            MediaPicker::forField('seo.twitter_image_url', 'seo/twitter-images')
+                                ->label('Twitter Image'),
                         ]),
 
                     // Advanced Tab

@@ -22,8 +22,9 @@ class ProgramCategoryResource extends Resource
     protected static ?string $model = ProgramCategory::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-    protected static ?string $navigationGroup = 'Global Content';
+    protected static ?string $navigationGroup = 'Programs';
     protected static ?string $navigationLabel = 'Program Categories';
+    protected static ?int $navigationSort = 1;
 
     public static function form(Form $form): Form
     {

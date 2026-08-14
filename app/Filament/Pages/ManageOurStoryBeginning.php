@@ -28,6 +28,8 @@ class ManageOurStoryBeginning extends SettingsPage
     protected static ?string $navigationGroup = 'Our Story Page';
     protected static ?string $navigationLabel = 'How It Started';
     protected static ?int $navigationSort = 2;
+
+    protected static bool $shouldRegisterNavigation = false;
     protected static string $settings = OurStoryBeginningSettings::class;
 
     public function form(Form $form): Form

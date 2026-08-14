@@ -28,6 +28,8 @@ class ManageOurStoryToday extends SettingsPage
     protected static ?string $navigationGroup = 'Our Story Page';
     protected static ?string $navigationLabel = 'What We Do Today';
     protected static ?int $navigationSort = 3;
+
+    protected static bool $shouldRegisterNavigation = false;
     protected static string $settings = OurStoryTodaySettings::class;
 
     public function form(Form $form): Form

@@ -29,6 +29,8 @@ class ManageOurStoryVision extends SettingsPage
     protected static ?string $navigationGroup = 'Our Story Page';
     protected static ?string $navigationLabel = 'Vision for the Future';
     protected static ?int $navigationSort = 6;
+
+    protected static bool $shouldRegisterNavigation = false;
     protected static string $settings = OurStoryVisionSettings::class;
 
     public function form(Form $form): Form

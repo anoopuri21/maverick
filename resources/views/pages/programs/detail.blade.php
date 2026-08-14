@@ -8,6 +8,16 @@
     <link rel="stylesheet" href="{{ asset('assets/css/components/cinematic-hero.css') }}">
 @endpush
 
+@push('head')
+    @include('partials.seo-meta', ['seo' => $program->seo])
+@endpush
+
+@if(!empty($program->seo) && !empty($program->seo->custom_body_scripts))
+@push('scripts')
+    {!! $program->seo->custom_body_scripts !!}
+@endpush
+@endif
+
 @section('content')
 @php
     // ------------------------------------------------------------------
