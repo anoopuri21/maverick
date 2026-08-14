@@ -22,104 +22,30 @@
 @php
     // ------------------------------------------------------------------
     // PROGRAMME CONTENT MODEL — admin-driven (from Program model JSON casts)
+    // Normalized via model accessors so the blade stays clean.
     // Every section is optional; render only if content exists.
     // ------------------------------------------------------------------
     $cat = $program->programCategory;
-
-    // Quick highlights — [{label, value}]
-    $highlights = collect($program->highlights ?? []);
-
-    // Recognition logos — [{name, logo, note}]
-    $recognition = collect($program->recognition ?? []);
-
-    // Snapshot — [{label, value}]
-    $snapshot = collect($program->snapshot ?? []);
-
-    // Benefits (Why Choose) — [{title, desc, icon}]
-    $benefits = collect($program->benefits ?? []);
-
-    // Learning outcomes — [{item}]
-    $learning = collect($program->learning ?? [])->map(fn ($l) => $l['item'] ?? $l)->values();
-
-    // Careers — [{title}]
-    $careers = collect($program->careers ?? [])->map(fn ($c) => $c['title'] ?? $c)->values();
-
-    // Programme structure — [{title, subtitle, modules: [{title, overview/desc, list: [{point}]}]}]
-    $structure = collect($program->structure ?? [])->map(function ($stage) {
-        return [
-            'title'    => $stage['title'] ?? '',
-            'subtitle' => $stage['subtitle'] ?? '',
-            'modules'  => collect($stage['modules'] ?? [])->map(function ($m) {
-                return [
-                    'title'    => $m['title'] ?? '',
-                    'overview' => $m['overview'] ?? null,
-                    'desc'     => $m['desc'] ?? null,
-                    'list'     => collect($m['list'] ?? [])->map(fn ($li) => $li['point'] ?? $li)->values()->all(),
-                ];
-            })->values()->all(),
-        ];
-    })->values();
-
-    // Maverick Support — [{item}]
-    $support = collect($program->support ?? [])->map(fn ($s) => $s['item'] ?? $s)->values();
-
-    // About the University — [{name, description, establishment}] (first row wins)
-    $uniRow = collect($program->university ?? [])->first() ?? [];
-    $university = (object) [
-        'name'          => $uniRow['name'] ?? $program->partner_university,
-        'description'   => $uniRow['description'] ?? null,
-        'establishment' => $uniRow['establishment'] ?? null,
-        'image'         => $uniRow['image'] ?? null,
-    ];
-
-    // Accreditation groups — [{group, items: [{name, logo}]}]
-    $accreditationGroups = collect($program->accreditation_groups ?? [])->map(function ($g) {
-        return [
-            'group' => $g['group'] ?? '',
-            'items' => collect($g['items'] ?? []),
-        ];
-    })->values();
-
-    // Video testimonials — [{name, role, country, category, thumb, video}]
-    $testimonials = collect($program->testimonials ?? []);
-
-    // Fees — [{title}]
-    $fees = collect($program->fees ?? [])->map(fn ($f) => $f['title'] ?? $f)->values();
-
-    $faqs = $program->faqs;
-
-    // Reviews (Google ratings) — [{name, avatar, rating, review}]
-    $reviews = collect($program->reviews ?? []);
-
-    // Reuse the shared Our Story testimonials slider shape (same partial as
-    // the our-story page) — only the heading differs per page.
-    $ourStoryTestimonials = $reviews->map(fn ($r) => (object) [
-        'name'        => $r['name'] ?? '',
-        'rating'      => $r['rating'] ?? 5,
-        'testimonial' => $r['review'] ?? '',
-        'photo'       => $r['avatar'] ?? null,
-    ])->values();
-
-    // ------------------------------------------------------------------
-    // SECTION NAV (left-side scrollspy dots)
-    // Only dots for sections that actually render (content exists).
-    // ------------------------------------------------------------------
-    $sectionNav = collect([
-        ['id' => 'overview',       'label' => 'Overview',       'render' => ($highlights->count() || $program->description)],
-        ['id' => 'why-choose',     'label' => 'Why Choose',     'render' => $benefits->count() > 0],
-        ['id' => 'careers',        'label' => 'Careers',        'render' => ($learning->count() || $careers->count())],
-        ['id' => 'structure',      'label' => 'Structure',      'render' => $structure->count() > 0],
-        ['id' => 'university',     'label' => 'University',     'render' => !empty($university->name)],
-        ['id' => 'accreditation',  'label' => 'Accreditation',  'render' => $accreditationGroups->count() > 0],
-        ['id' => 'support',        'label' => 'Support',        'render' => $support->count() > 0],
-        ['id' => 'testimonials',   'label' => 'Testimonials',   'render' => $testimonials->count() > 0],
-        ['id' => 'fees',           'label' => 'Fees',           'render' => $fees->count() > 0],
-        ['id' => 'faq',            'label' => 'FAQ',            'render' => $faqs->count() > 0],
-        ['id' => 'enquire',        'label' => 'Enquire',        'render' => true],
-    ])->filter(fn ($s) => $s['render'])->values();
+    $highlights          = $program->highlights_list;
+    $recognition         = $program->recognition_list;
+    $snapshot            = $program->snapshot_list;
+    $benefits            = $program->benefits_list;
+    $learning            = $program->learning_list;
+    $careers             = $program->careers_list;
+    $structure           = $program->structure_list;
+    $support             = $program->support_list;
+    $university          = $program->university_object;
+    $accreditationGroups = $program->accreditation_groups_list;
+    $testimonials        = $program->testimonials_list;
+    $fees                = $program->fees_list;
+    $faqs                = $program->faqs;
+    $reviews             = $program->reviews_list;
+    $ourStoryTestimonials = $program->review_testimonial_objects;
+    $sectionNav          = $program->section_nav;
 @endphp
 
 <div class="page-pd">
+    <div class="pd-progress" aria-hidden="true"></div>
 
     {{-- ============ STICKY SIDEBAR / BOTTOM BAR ============ --}}
     <aside class="pd-apply" data-testid="pd-apply">
@@ -201,13 +127,13 @@
 
     {{-- ============ M2 · INTRO (Overview + Highlights, editorial pair) ============ --}}
     @if($highlights->count() || $program->description)
-    <section id="overview" class="pd-intro section--light" aria-label="Programme introduction" data-testid="pd-intro">
+    <section id="overview" class="pd-intro section--light" aria-label="Programme introduction" data-testid="pd-intro" data-reveal>
         <div class="container pd-intro__grid">
             <div class="pd-intro__editorial">
                 <span class="pd-section-label">Programme Overview</span>
                 <h2 class="pd-section-title">Programme <em>Overview</em></h2>
                 @if($program->description)
-                    <p class="pd-intro__body">{{ $program->description }}</p>
+                    <div class="pd-intro__body">{!! $program->description !!}</div>
                 @endif
             </div>
             @if($highlights->count())
@@ -239,7 +165,7 @@
 
     {{-- ============ STEP 4 · WHY CHOOSE ============ --}}
     @if($benefits->count())
-    <section id="why-choose" class="pd-benefits section--light" aria-label="Why choose this programme" data-testid="pd-benefits">
+    <section id="why-choose" class="pd-benefits section--light" aria-label="Why choose this programme" data-testid="pd-benefits" data-reveal>
         <div class="container">
             <span class="pd-section-label">Why Choose</span>
             <h2 class="pd-section-title">Why Choose This <em>Programme?</em></h2>
@@ -259,7 +185,7 @@
     @endif
     {{-- ============ M3 · OUTCOMES & CAREERS (Learn list + Careers, 2-col editorial) ============ --}}
     @if($learning->count() || $careers->count())
-    <section id="careers" class="pd-outcomes" aria-label="Learning outcomes and careers" data-testid="pd-outcomes">
+    <section id="careers" class="pd-outcomes" aria-label="Learning outcomes and careers" data-testid="pd-outcomes" data-reveal>
         <div class="container pd-outcomes__grid">
             @if($learning->count())
             <div class="pd-outcomes__col pd-outcomes__col--learn">
@@ -361,7 +287,7 @@
 
     {{-- ============ STEP 6 · UNIVERSITY ============ --}}
     @if($university->name)
-    <section id="university" class="pd-uni section--light" aria-label="About the awarding university" data-testid="pd-uni">
+    <section id="university" class="pd-uni section--light" aria-label="About the awarding university" data-testid="pd-uni" data-reveal>
         <div class="container">
             <span class="pd-section-label">About the University</span>
             <h2 class="pd-section-title">A Globally Connected <em>University</em></h2>
@@ -382,7 +308,7 @@
 
     {{-- ============ STEP 6 · ACCREDITATION ============ --}}
     @if($accreditationGroups->count())
-    <section id="accreditation" class="pd-accred" aria-label="Accreditation and recognition" data-testid="pd-accred">
+    <section id="accreditation" class="pd-accred" aria-label="Accreditation and recognition" data-testid="pd-accred" data-reveal>
         <div class="container">
             <span class="pd-section-label">Accreditation & Recognition</span>
             <h2 class="pd-section-title">Accreditation & <em>Recognition</em></h2>
@@ -409,7 +335,7 @@
 
     {{-- ============ STEP 7 · MAVERICK SUPPORT ============ --}}
     @if($support->count())
-    <section id="support" class="pd-support section--light" aria-label="Why study through Maverick" data-testid="pd-support">
+    <section id="support" class="pd-support section--light" aria-label="Why study through Maverick" data-testid="pd-support" data-reveal>
         <div class="container">
             <span class="pd-section-label">Your Learning Partner</span>
             <h2 class="pd-section-title">Why Study Through <em>Maverick?</em></h2>
@@ -430,7 +356,7 @@
 
     {{-- ============ STEP 7 · TESTIMONIALS (video, like home) ============ --}}
     @if($testimonials->count())
-    <section id="testimonials" class="pd-testimonials" aria-label="Student success stories" data-testid="pd-testimonials">
+    <section id="testimonials" class="pd-testimonials" aria-label="Student success stories" data-testid="pd-testimonials" data-reveal>
         <div class="container">
             <span class="pd-section-label">Testimonials</span>
             <h2 class="pd-section-title">Student Success <em>Stories</em></h2>
@@ -476,7 +402,7 @@
     @endif
 
     {{-- ============ STEP 8 · FEES ============ --}}
-    <section id="fees" class="pd-fees section--light" aria-label="Fees and scholarships" data-testid="pd-fees">
+    <section id="fees" class="pd-fees section--light" aria-label="Fees and scholarships" data-testid="pd-fees" data-reveal>
         <div class="container pd-fees__inner">
             <div class="pd-fees__text">
                 <h2 class="pd-section-title">Fees & <em>Scholarships</em></h2>
@@ -529,7 +455,7 @@
 
     {{-- ============ STEP 8 · FAQ ============ --}}
     @if($faqs->count())
-    <section id="faq" class="pd-faq" aria-label="Frequently asked questions" data-testid="pd-faq">
+    <section id="faq" class="pd-faq" aria-label="Frequently asked questions" data-testid="pd-faq" data-reveal>
         <div class="container">
             <h2 class="pd-section-title">Frequently Asked <em>Questions</em></h2>
             <div class="pd-faq__list">
@@ -640,15 +566,46 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Scroll progress bar
+    const progress = document.querySelector('.pd-progress');
+    if (progress) {
+        const updateProgress = () => {
+            const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+            const pct = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+            progress.style.transform = `scaleX(${pct / 100})`;
+        };
+        updateProgress();
+        window.addEventListener('scroll', updateProgress, { passive: true });
+    }
+
+    // Reveal-on-scroll for sections/cards (vanilla, respects reduced-motion).
+    // Elements with [data-reveal] start hidden via CSS and animate in when
+    // they enter the viewport. Headings reveal just before body content.
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const revealTargets = document.querySelectorAll('[data-reveal]');
+    if (revealTargets.length && !prefersReduced && 'IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-revealed');
+                    io.unobserve(entry.target);
+                }
+            });
+        }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
+        revealTargets.forEach((el) => io.observe(el));
+    } else if (prefersReduced) {
+        // Reduced motion: show everything immediately (never hide content).
+        revealTargets.forEach((el) => el.classList.add('is-revealed'));
+    }
+
+    // Fallback: if JS animation fails for any reason, reveal everything so
+    // content is never left hidden.
+    window.setTimeout(() => {
+        document.querySelectorAll('[data-reveal]:not(.is-revealed)').forEach((el) => el.classList.add('is-revealed'));
+    }, 3000);
+
     if (typeof AnimationUtils !== 'undefined' && typeof gsap !== 'undefined' && !AnimationUtils.prefersReducedMotion) {
         AnimationUtils.fadeUp('.pd-hero__content', {});
-        AnimationUtils.fadeUp('.pd-highlights__card', { stagger: 0.05 });
-        AnimationUtils.fadeUp('.pd-snapshot__item', { stagger: 0.05 });
-        AnimationUtils.fadeUp('.pd-benefits__card', { stagger: 0.06 });
-        AnimationUtils.fadeUp('.pd-learn__item', { stagger: 0.04 });
-        AnimationUtils.fadeUp('.pd-careers__card', { stagger: 0.04 });
-        AnimationUtils.fadeUp('.pd-support__item', { stagger: 0.04 });
-        AnimationUtils.fadeUp('.pd-testimonials__card', { stagger: 0.1 });
     }
 });
 </script>

@@ -64,8 +64,8 @@
 .pd-btn--primary:hover { background: #c81e1e; }
 .pd-btn--ghost { background: transparent; color: var(--pd-navy); border-color: var(--pd-navy); }
 .pd-btn--ghost:hover { background: var(--pd-navy); color: #fff; }
-.pd-btn--link { background: transparent; color: var(--pd-navy); border-color: transparent; }
-.pd-btn--link:hover { text-decoration: underline; }
+
+
 
 /* =========================================================
    STICKY APPLY / ENQUIRE
@@ -128,124 +128,6 @@
 .pd-highlights__value { font-family: var(--font-display); font-size: 14px; font-weight: 600; color: var(--pd-navy); }
 
 /* =========================================================
-   STEP 2 · RECOGNITION & ACCREDITATION
-   ========================================================= */
-.pd-recognition { padding: clamp(28px, 4vw, 44px) 0; }
-.pd-recognition__group { margin-bottom: 40px; }
-.pd-recognition__heading {
-  font-family: var(--font-display);
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--pd-navy);
-  margin: 0 0 20px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--pd-line);
-}
-
-/* Awarded By — card */
-.pd-recognition__awarded-card {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  align-items: flex-start;
-  height: 100%;
-  background: #fff;
-  border: 1px solid var(--pd-line);
-  border-radius: 14px;
-  padding: 24px;
-}
-.pd-recognition__award-logo { width: 64px; height: 64px; object-fit: contain; }
-.pd-recognition__award-text { display: flex; flex-direction: column; gap: 6px; }
-.pd-recognition__award-title { font-family: var(--font-display); font-size: 16px; font-weight: 600; color: var(--pd-navy); line-height: 1.3; }
-.pd-recognition__award-desc { font-size: 13px; line-height: 1.6; color: var(--pd-muted); margin: 0; }
-
-/* Recognised / Accredited — card */
-.pd-recognition__slide {
-  height: 100%;
-  background: #fff;
-  border: 1px solid var(--pd-line);
-  border-radius: 14px;
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-.pd-recognition__logo {
-  font-family: var(--font-display);
-  font-size: 20px;
-  font-weight: 600;
-  color: var(--pd-navy);
-}
-.pd-recognition__note { font-size: 13px; line-height: 1.5; color: var(--pd-muted); margin: 0; }
-
-/* Reusable count-aware slider (Awarded By + Recognised) */
-.pd-slider { position: relative; }
-.pd-slider__scroller {
-  overflow-x: auto;
-  overflow-y: hidden;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
-}
-.pd-slider__scroller::-webkit-scrollbar { display: none; }
-.pd-slider__track {
-  display: flex;
-  gap: 16px;
-}
-.pd-slider__item {
-  flex: 0 0 calc((100% - 16px) / 2.2);
-  scroll-snap-align: start;
-  min-width: 200px;
-}
-.pd-slider--awarded .pd-slider__item { flex-basis: calc((100% - 16px) / 1.35); }
-.pd-slider__btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 2;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 1px solid var(--pd-line);
-  background: #fff;
-  color: var(--pd-navy);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 6px 18px rgba(28, 35, 51, 0.1);
-  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
-}
-.pd-slider__btn svg { width: 18px; height: 18px; }
-.pd-slider__btn--prev { left: -8px; }
-.pd-slider__btn--next { right: -8px; }
-.pd-slider__btn:hover {
-  background: var(--pd-navy);
-  color: #fff;
-  border-color: var(--pd-navy);
-}
-.pd-slider__btn:disabled {
-  opacity: 0;
-  pointer-events: none;
-}
-.pd-slider.is-static .pd-slider__btn { display: none; }
-.pd-slider.is-static .pd-slider__scroller {
-  overflow: visible;
-  scroll-snap-type: none;
-}
-.pd-slider.is-static .pd-slider__track {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-}
-.pd-slider--awarded.is-static .pd-slider__track {
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-}
-.pd-slider.is-static .pd-slider__item { flex: none; }
-
-/* =========================================================
    EXPERIMENT · TWO-COLUMN LAYOUT (7:3) + STICKY SIDEBAR
    ========================================================= */
 .pd-layout {
@@ -298,14 +180,6 @@
 .pd-snapshot-box__cta--ghost { background: transparent; }
 
 /* =========================================================
-   STEP 3 · OVERVIEW
-   ========================================================= */
-.pd-overview { padding: clamp(32px, 4.5vw, 52px) 0; }
-.pd-overview__body {
-  font-size: 16px; line-height: 1.8; color: var(--pd-muted); margin: 0; max-width: 72ch;
-}
-
-/* =========================================================
    STEP 4 · WHY CHOOSE
    ========================================================= */
 .pd-benefits { padding: clamp(28px, 4vw, 44px) 0; }
@@ -335,9 +209,8 @@
 /* =========================================================
    STEP 4 · WHAT YOU'LL LEARN
    ========================================================= */
-.pd-learn { padding: clamp(28px, 4vw, 44px) 0; }
-.pd-learn__header { max-width: 720px; margin-bottom: 32px; }
-.pd-learn__sub { font-size: 16px; color: var(--pd-muted); margin: 12px 0 0; }
+
+
 .pd-learn__list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 14px 32px; }
 .pd-learn__item { display: flex; gap: 12px; align-items: flex-start; padding: 14px 0; border-bottom: 1px solid var(--pd-line); font-size: 15px; color: var(--pd-ink); }
 .pd-learn__tick {
@@ -350,8 +223,7 @@
 /* =========================================================
    STEP 5 · CAREERS
    ========================================================= */
-.pd-careers { padding: clamp(28px, 4vw, 44px) 0; }
-.pd-careers__sub { font-size: 16px; color: var(--pd-muted); margin: 0 0 28px; }
+
 .pd-careers__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 .pd-careers__card {
   display: flex; align-items: center; gap: 12px;
@@ -423,10 +295,7 @@
   font-family: var(--font-display); font-size: 15px; font-weight: 600; color: var(--pd-navy);
 }
 .pd-structure__module-content { padding: 0 4px 16px 38px; }
-.pd-structure__module-name {
-  font-family: var(--font-display); font-size: 14px; font-weight: 600; color: var(--pd-ink);
-  margin: 0 0 4px;
-}
+
 .pd-structure__module-desc { font-size: 13px; line-height: 1.6; color: var(--pd-muted); margin: 0 0 12px; }
 .pd-structure__module-list {
   list-style: none; margin: 0; padding: 0;
@@ -449,7 +318,7 @@
 /* =========================================================
    STEP 6 · UNIVERSITY
    ========================================================= */
-.pd-uni { padding: clamp(32px, 4.5vw, 52px) 0; }
+.pd-uni { padding: clamp(28px, 4vw, 44px) 0; }
 .pd-uni__inner { display: grid; grid-template-columns: 1fr; gap: clamp(20px, 3vw, 40px); align-items: start; }
 .pd-uni__inner--with-image { grid-template-columns: 1.1fr 1fr; }
 .pd-uni__media { border-radius: 14px; overflow: hidden; position: relative; }
@@ -721,30 +590,6 @@
 }
 
 /* =========================================================
-   STEP 8 · REVIEWS (Google ratings)
-   ========================================================= */
-.pd-reviews { padding: clamp(28px, 4vw, 44px) 0; }
-.pd-reviews__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-.pd-reviews__card {
-  display: flex; gap: 16px; align-items: flex-start;
-  border: 1px solid var(--pd-line); border-radius: 14px; padding: 24px; background: #fff;
-}
-.pd-reviews__avatar {
-  width: 48px; height: 48px; border-radius: 50%; object-fit: cover; flex-shrink: 0;
-  border: 2px solid var(--pd-line);
-}
-.pd-reviews__avatar--initials {
-  background: linear-gradient(135deg, var(--pd-navy), var(--pd-navy-deep));
-  color: #fff; display: flex; align-items: center; justify-content: center;
-  font-family: var(--font-display); font-size: 18px; font-weight: 600;
-}
-.pd-reviews__content { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
-.pd-reviews__name { font-family: var(--font-display); font-size: 16px; font-weight: 600; color: var(--pd-navy); }
-.pd-reviews__stars { display: inline-flex; gap: 2px; font-size: 16px; color: var(--pd-line); }
-.pd-reviews__stars .is-filled { color: #f5a623; }
-.pd-reviews__text { font-size: 14px; line-height: 1.6; color: var(--pd-muted); margin: 0; }
-
-/* =========================================================
    RESPONSIVE
    ========================================================= */
 @media (max-width: 1120px) {
@@ -1011,23 +856,9 @@
 }
 
 /* =========================================================
-   IN-PAGE ANCHOR NAV
-   ========================================================= */
-.pd-anchor-nav { padding: 18px 0; border-bottom: 1px solid var(--pd-line); background: #fff; }
-.pd-anchor-nav__row { display: flex; flex-wrap: wrap; gap: 8px; }
-.pd-anchor-nav__link {
-  display: inline-flex; padding: 8px 14px; border-radius: 999px;
-  font-size: 13px; font-weight: 600; color: var(--pd-navy); text-decoration: none;
-  border: 1px solid transparent; transition: background 0.2s ease, color 0.2s ease;
-}
-.pd-anchor-nav__link:hover { background: rgba(43,57,121,0.06); }
-.pd-anchor-nav__link--cta { color: #fff; background: var(--pd-red); border-color: var(--pd-red); }
-.pd-anchor-nav__link--cta:hover { background: #c81e1e; }
-
-/* =========================================================
    M2 · INTRO (Overview + Highlights editorial pair)
    ========================================================= */
-.pd-intro { padding: clamp(32px, 4.5vw, 52px) 0; }
+.pd-intro { padding: clamp(28px, 4vw, 44px) 0; }
 .pd-intro__grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: clamp(28px, 4vw, 56px); align-items: start; }
 .pd-intro__body { font-size: 15px; line-height: 1.8; color: var(--pd-muted); margin: 0; }
 .pd-intro__stats .pd-highlights__grid { flex-wrap: wrap; }
@@ -1036,7 +867,7 @@
 /* =========================================================
    M3 · OUTCOMES & CAREERS (2-col editorial)
    ========================================================= */
-.pd-outcomes { padding: clamp(32px, 4.5vw, 52px) 0; }
+.pd-outcomes { padding: clamp(28px, 4vw, 44px) 0; }
 .pd-outcomes__grid { display: flex; flex-direction: column; gap: clamp(36px, 5vw, 56px); align-items: stretch; }
 .pd-outcomes__sub { font-size: 14px; color: var(--pd-muted); margin: 0 0 18px; }
 /* Learn list — bordered box on parent, items borderless, 2 columns */
@@ -1154,5 +985,65 @@
 
 /* Hide the fixed dots on small screens (overlaps content in single column) */
 @media (max-width: 1120px) {
+  .pd-dots { display: none; }
+}
+
+/* =========================================================
+   UI POLISH — scroll progress + reveal + focus-visible
+   ========================================================= */
+/* Scroll progress bar (fixed at top, red) */
+.pd-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 60;
+  background: var(--pd-red);
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  transition: transform 0.1s linear;
+  pointer-events: none;
+}
+
+/* Reveal-on-scroll: hidden until .is-revealed added by JS.
+   Uses opacity + translate only, so layout never collapses and content
+   is never lost if JS fails (fallback reveals after timeout). */
+.pd-progress + .page-pd,
+[data-reveal] {
+  /* default visible */
+}
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+[data-reveal].is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Ensure section content that is data-reveal keeps its space (it does,
+   opacity/transform don't affect layout). Reduced motion: never hide. */
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Accessible focus-visible outlines across interactive elements */
+.page-pd a:focus-visible,
+.page-pd button:focus-visible,
+.page-pd summary:focus-visible,
+.page-pd [tabindex]:focus-visible {
+  outline: 2px solid var(--pd-red);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Hide scrollspy dots on touch / very small screens to avoid overlap */
+@media (hover: none), (max-width: 1120px) {
   .pd-dots { display: none; }
 }
