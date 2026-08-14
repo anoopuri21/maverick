@@ -140,6 +140,26 @@
         'testimonial' => $r['review'] ?? '',
         'photo' => $r['avatar'] ?? null,
     ])->values();
+
+    // ------------------------------------------------------------------
+    // SECTION NAV (left-side scrollspy dots)
+    // Only dots for sections that actually render (content exists).
+    // id = anchor target, label = hover tooltip, render = same guard used
+    // by the section's @if.
+    // ------------------------------------------------------------------
+    $sectionNav = collect([
+        ['id' => 'overview',       'label' => 'Overview',       'render' => ($highlights->count() || $program->description)],
+        ['id' => 'why-choose',     'label' => 'Why Choose',     'render' => $benefits->count() > 0],
+        ['id' => 'careers',        'label' => 'Careers',        'render' => ($learning->count() || $careers->count())],
+        ['id' => 'structure',      'label' => 'Structure',      'render' => $structure->count() > 0],
+        ['id' => 'university',     'label' => 'University',     'render' => !empty($university->name)],
+        ['id' => 'accreditation',  'label' => 'Accreditation',  'render' => $accreditationGroups->count() > 0],
+        ['id' => 'support',        'label' => 'Support',        'render' => $support->count() > 0],
+        ['id' => 'testimonials',   'label' => 'Testimonials',   'render' => $testimonials->count() > 0],
+        ['id' => 'fees',           'label' => 'Fees',           'render' => true],
+        ['id' => 'faq',            'label' => 'FAQ',            'render' => $faqs->count() > 0],
+        ['id' => 'enquire',        'label' => 'Enquire',        'render' => true],
+    ])->filter(fn ($s) => $s['render'])->values();
 @endphp
 
 <div class="page-pd">
@@ -205,31 +225,21 @@
     </section>
     @endif
 
-    {{-- ============ IN-PAGE ANCHOR NAV ============ --}}
-    @if($structure->count() || $careers->count() || $university->name || $faqs->count())
-    <nav class="pd-anchor-nav" aria-label="Programme sections" data-testid="pd-anchor-nav">
-        <div class="container pd-anchor-nav__inner">
-            <div class="pd-anchor-nav__row">
-                @if($structure->count())<a href="#structure" class="pd-anchor-nav__link">Programme Structure</a>@endif
-                @if($careers->count())<a href="#careers" class="pd-anchor-nav__link">Careers</a>@endif
-                @if($university->name)<a href="#university" class="pd-anchor-nav__link">University</a>@endif
-                @if($faqs->count())<a href="#faq" class="pd-anchor-nav__link">FAQ</a>@endif
-                <a href="#enquire" class="pd-anchor-nav__link pd-anchor-nav__link--cta">Enquire</a>
-            </div>
-        </div>
+    {{-- ============ LEFT-SIDE SCROLLSPY DOTS ============ --}}
+    @if($sectionNav->count())
+    <nav class="pd-dots" aria-label="Programme sections" data-pd-dots data-testid="pd-dots">
+        @foreach($sectionNav as $s)
+            <a class="pd-dots__item" href="#{{ $s['id'] }}" data-pd-dot="{{ $s['id'] }}" aria-label="{{ $s['label'] }}">
+                <span class="pd-dots__dot" aria-hidden="true"></span>
+                <span class="pd-dots__label">{{ $s['label'] }}</span>
+            </a>
+        @endforeach
     </nav>
     @endif
 
-{{-- ================================================================
-         EXPERIMENT · TWO-COLUMN LAYOUT (7:3)
-         Quick Highlights → Reviews run in the left column; the
-         "Programme at a Glance" (snapshot) is a sticky box on the right.
-         ================================================================ --}}
-    <div class="pd-layout">
-        <div class="pd-layout__main">
     {{-- ============ M2 · INTRO (Overview + Highlights, editorial pair) ============ --}}
     @if($highlights->count() || $program->description)
-    <section class="pd-intro section--light" aria-label="Programme introduction" data-testid="pd-intro">
+    <section id="overview" class="pd-intro section--light" aria-label="Programme introduction" data-testid="pd-intro">
         <div class="container pd-intro__grid">
             <div class="pd-intro__editorial">
                 <span class="pd-section-label">Programme Overview</span>
@@ -256,11 +266,18 @@
     </section>
     @endif
 
-
+{{-- ================================================================
+         EXPERIMENT · TWO-COLUMN LAYOUT (7:3)
+         Quick Highlights → Reviews run in the left column; the
+         "Programme at a Glance" (snapshot) is a sticky box on the right.
+         ================================================================ --}}
+    <div class="pd-layout">
+        <div class="pd-layout__main">
+    
 
     {{-- ============ STEP 4 · WHY CHOOSE ============ --}}
     @if($benefits->count())
-    <section class="pd-benefits section--light" aria-label="Why choose this programme" data-testid="pd-benefits">
+    <section id="why-choose" class="pd-benefits section--light" aria-label="Why choose this programme" data-testid="pd-benefits">
         <div class="container">
             <span class="pd-section-label">Why Choose</span>
             <h2 class="pd-section-title">Why Choose This <em>Programme?</em></h2>
@@ -381,7 +398,7 @@
 
     {{-- ============ STEP 6 · ACCREDITATION ============ --}}
     @if($accreditationGroups->count())
-    <section class="pd-accred" aria-label="Accreditation and recognition" data-testid="pd-accred">
+    <section id="accreditation" class="pd-accred" aria-label="Accreditation and recognition" data-testid="pd-accred">
         <div class="container">
             <span class="pd-section-label">Accreditation & Recognition</span>
             <h2 class="pd-section-title">Accreditation & <em>Recognition</em></h2>
@@ -408,7 +425,7 @@
 
     {{-- ============ STEP 7 · MAVERICK SUPPORT ============ --}}
     @if($support->count())
-    <section class="pd-support section--light" aria-label="Why study through Maverick" data-testid="pd-support">
+    <section id="support" class="pd-support section--light" aria-label="Why study through Maverick" data-testid="pd-support">
         <div class="container">
             <span class="pd-section-label">Your Learning Partner</span>
             <h2 class="pd-section-title">Why Study Through <em>Maverick?</em></h2>
@@ -429,7 +446,7 @@
 
     {{-- ============ STEP 7 · TESTIMONIALS (video, like home) ============ --}}
     @if($testimonials->count())
-    <section class="pd-testimonials" aria-label="Student success stories" data-testid="pd-testimonials">
+    <section id="testimonials" class="pd-testimonials" aria-label="Student success stories" data-testid="pd-testimonials">
         <div class="container">
             <span class="pd-section-label">Testimonials</span>
             <h2 class="pd-section-title">Student Success <em>Stories</em></h2>
@@ -475,7 +492,7 @@
     @endif
 
     {{-- ============ STEP 8 · FEES ============ --}}
-    <section class="pd-fees section--light" aria-label="Fees and scholarships" data-testid="pd-fees">
+    <section id="fees" class="pd-fees section--light" aria-label="Fees and scholarships" data-testid="pd-fees">
         <div class="container pd-fees__inner">
             <div class="pd-fees__text">
                 <h2 class="pd-section-title">Fees & <em>Scholarships</em></h2>
