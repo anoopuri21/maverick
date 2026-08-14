@@ -28,6 +28,8 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\KeyValue;
 use App\Filament\Forms\Components\MediaPicker;
 
 class ProgramResource extends Resource
@@ -92,7 +94,7 @@ class ProgramResource extends Resource
                                     ->label('Short Description')
                                     ->rows(3)
                                     ->maxLength(300)
-                                    ->helperText('Used in cards & listings.')
+                                    ->helperText('Used in cards & listings. Plain text (no rich formatting).')
                                     ->columnSpanFull(),
 
                                 RichEditor::make('description')
@@ -137,7 +139,195 @@ class ProgramResource extends Resource
                                     ->columnSpanFull(),
                             ]),
 
-                        // Tab 4: SEO (Reusable Component!)
+                        // Tab 4: Detail Sections (admin-driven content)
+                        Tab::make('Detail Sections')
+                            ->icon('heroicon-o-squares-2x2')
+                            ->schema([
+                                // Quick Highlights — list of label/value pairs
+                                Repeater::make('highlights')
+                                    ->label('Quick Highlights')
+                                    ->helperText('Key facts shown near the top.')
+                                    ->schema([
+                                        TextInput::make('label')->required(),
+                                        TextInput::make('value')->required(),
+                                    ])
+                                    ->collapsible()
+                                    ->columns(2)
+                                    ->defaultItems(0)
+                                    ->addActionLabel('Add Highlight'),
+
+                                // Recognition / Accreditation logos
+                                Repeater::make('recognition')
+                                    ->label('Recognition & Accreditation Logos')
+                                    ->helperText('Logo strip shown under the hero.')
+                                    ->schema([
+                                        TextInput::make('name')->required(),
+                                        TextInput::make('logo')->url()->label('Logo URL'),
+                                        RichEditor::make('note')->label('Note (optional)'),
+                                    ])
+                                    ->collapsible()
+                                    ->columns(2)
+                                    ->defaultItems(0)
+                                    ->addActionLabel('Add Recognition'),
+
+                                // Snapshot ("Programme at a Glance") — label/value pairs
+                                Repeater::make('snapshot')
+                                    ->label('Programme at a Glance')
+                                    ->schema([
+                                        TextInput::make('label')->required(),
+                                        TextInput::make('value')->required(),
+                                    ])
+                                    ->collapsible()
+                                    ->columns(2)
+                                    ->defaultItems(0)
+                                    ->addActionLabel('Add Snapshot Item'),
+
+                                // Benefits (Why Choose) — icon + title + desc
+                                Repeater::make('benefits')
+                                    ->label('Why Choose (Benefits)')
+                                    ->schema([
+                                        TextInput::make('icon')->label('Icon (lucide name)')->default('sparkles'),
+                                        TextInput::make('title')->required(),
+                                        RichEditor::make('desc')->label('Description'),
+                                    ])
+                                    ->collapsible()
+                                    ->columns(3)
+                                    ->defaultItems(0)
+                                    ->addActionLabel('Add Benefit'),
+
+                                // Learning outcomes — simple list
+                                Repeater::make('learning')
+                                    ->label("What You'll Learn (Outcomes)")
+                                    ->schema([
+                                        TextInput::make('item')->label('Outcome')->required(),
+                                    ])
+                                    ->collapsible()
+                                    ->defaultItems(0)
+                                    ->addActionLabel('Add Outcome'),
+
+                                // Careers — simple list
+                                Repeater::make('careers')
+                                    ->label('Career Opportunities')
+                                    ->schema([
+                                        TextInput::make('title')->label('Career Title')->required(),
+                                    ])
+                                    ->collapsible()
+                                    ->defaultItems(0)
+                                    ->addActionLabel('Add Career'),
+
+                                // Programme structure — nested Year → Modules → list
+                                Repeater::make('structure')
+                                    ->label('Programme Structure')
+                                    ->schema([
+                                        TextInput::make('title')->label('Year Title (e.g. Year 1)')->required(),
+                                        TextInput::make('subtitle')->label('Year Subtitle'),
+                                        Repeater::make('modules')
+                                            ->label('Modules')
+                                            ->schema([
+                                                TextInput::make('title')->label('Module Name')->required(),
+                                                RichEditor::make('overview')->label('Overview'),
+                                                Repeater::make('list')
+                                                    ->label('Points')
+                                                    ->schema([
+                                                        TextInput::make('point')->label('Point')->required(),
+                                                    ])
+                                                    ->collapsible()
+                                                    ->defaultItems(0)
+                                                    ->addActionLabel('Add Point'),
+                                            ])
+                                            ->collapsible()
+                                            ->defaultItems(0)
+                                            ->addActionLabel('Add Module'),
+                                    ])
+                                    ->collapsible()
+                                    ->defaultItems(0)
+                                    ->addActionLabel('Add Year'),
+
+                                // Maverick Support — simple list
+                                Repeater::make('support')
+                                    ->label('Why Study Through Maverick (Support)')
+                                    ->schema([
+                                        TextInput::make('item')->label('Support Point')->required(),
+                                    ])
+                                    ->collapsible()
+                                    ->defaultItems(0)
+                                    ->addActionLabel('Add Support Point'),
+
+                                // About the University
+                                Repeater::make('university')
+                                    ->label('About the University')
+                                    ->schema([
+                                        TextInput::make('name')->label('University Name'),
+                                        RichEditor::make('description')->label('Description'),
+                                        TextInput::make('establishment')->label('Established (e.g. "Established 1985")'),
+                                    ])
+                                    ->collapsible()
+                                    ->columns(2)
+                                    ->defaultItems(0)
+                                    ->addActionLabel('Add University'),
+
+                                // Accreditation groups — group with nested logo items
+                                Repeater::make('accreditation_groups')
+                                    ->label('Accreditation & Recognition')
+                                    ->schema([
+                                        TextInput::make('group')->label('Group Name')->required(),
+                                        Repeater::make('items')
+                                            ->label('Logos')
+                                            ->schema([
+                                                TextInput::make('name')->label('Name')->required(),
+                                                TextInput::make('logo')->label('Logo URL'),
+                                            ])
+                                            ->collapsible()
+                                            ->columns(2)
+                                            ->defaultItems(0)
+                                            ->addActionLabel('Add Logo'),
+                                    ])
+                                    ->collapsible()
+                                    ->defaultItems(0)
+                                    ->addActionLabel('Add Group'),
+
+                                // Student testimonials (video)
+                                Repeater::make('testimonials')
+                                    ->label('Student Success Stories (Video)')
+                                    ->schema([
+                                        TextInput::make('name')->required(),
+                                        TextInput::make('role'),
+                                        TextInput::make('country'),
+                                        TextInput::make('category')->label('Badge (e.g. STUDENT)'),
+                                        TextInput::make('thumb')->label('Thumbnail URL'),
+                                        TextInput::make('video')->label('Video URL'),
+                                    ])
+                                    ->collapsible()
+                                    ->columns(2)
+                                    ->defaultItems(0)
+                                    ->addActionLabel('Add Testimonial'),
+
+                                // Fees — simple list
+                                Repeater::make('fees')
+                                    ->label('Fee Structure Items')
+                                    ->schema([
+                                        TextInput::make('title')->label('Fee Item')->required(),
+                                    ])
+                                    ->collapsible()
+                                    ->defaultItems(0)
+                                    ->addActionLabel('Add Fee Item'),
+
+                                // Reviews (Google ratings)
+                                Repeater::make('reviews')
+                                    ->label('Student Reviews')
+                                    ->schema([
+                                        TextInput::make('name')->required(),
+                                        TextInput::make('avatar')->label('Avatar URL'),
+                                        TextInput::make('rating')->label('Rating (1-5)')->numeric()->minValue(1)->maxValue(5),
+                                        RichEditor::make('review')->label('Review Text'),
+                                    ])
+                                    ->collapsible()
+                                    ->columns(2)
+                                    ->defaultItems(0)
+                                    ->addActionLabel('Add Review'),
+                            ]),
+
+                        // Tab 5: SEO (Reusable Component!)
                         Tab::make('SEO')
                             ->icon('heroicon-o-magnifying-glass')
                             ->schema(SeoFormFields::make()),

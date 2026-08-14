@@ -329,7 +329,8 @@
 }
 .pd-benefits__icon i { width: 22px; height: 22px; }
 .pd-benefits__card h3 { font-family: var(--font-display); font-size: 18px; font-weight: 500; color: var(--pd-navy); margin: 0; }
-.pd-benefits__card p { font-size: 14px; color: var(--pd-muted); margin: 0; line-height: 1.6; }
+.pd-benefits__card p,
+.pd-benefits__desc { font-size: 14px; color: var(--pd-muted); margin: 0; line-height: 1.6; }
 
 /* =========================================================
    STEP 4 · WHAT YOU'LL LEARN
@@ -450,7 +451,9 @@
    ========================================================= */
 .pd-uni { padding: clamp(32px, 4.5vw, 52px) 0; }
 .pd-uni__body { max-width: 72ch; }
-.pd-uni__body p { font-size: 15px; line-height: 1.8; color: var(--pd-muted); margin: 0 0 12px; }
+.pd-uni__body p,
+.pd-uni__body-content { font-size: 15px; line-height: 1.8; color: var(--pd-muted); margin: 0 0 12px; }
+.pd-uni__body-content p { margin: 0 0 12px; }
 .pd-uni__meta { font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--pd-navy); font-weight: 600; }
 
 /* =========================================================
