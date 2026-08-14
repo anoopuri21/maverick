@@ -13,12 +13,18 @@ class ProgramController extends Controller
      */
     public function index()
     {
-        $categories = ProgramCategory::where('is_active', true)->orderBy('name')->get();
+        $categories = ProgramCategory::withCount([
+                'programs' => fn ($q) => $q->where('is_active', true),
+            ])
+            ->where('is_active', true)
+            ->orderBy('name')
+            ->get();
 
         $programs = Program::select([
                 'id', 'program_category_id', 'title', 'slug', 'partner_university',
                 'duration', 'level', 'short_description', 'description', 'image_url', 'sort_order',
             ])
+            ->with('programCategory')
             ->where('is_active', true)
             ->orderBy('sort_order')
             ->orderBy('title')
