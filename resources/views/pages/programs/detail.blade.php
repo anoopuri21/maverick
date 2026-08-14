@@ -59,6 +59,7 @@
         'name'          => $uniRow['name'] ?? $program->partner_university,
         'description'   => $uniRow['description'] ?? null,
         'establishment' => $uniRow['establishment'] ?? null,
+        'image'         => $uniRow['image'] ?? null,
     ];
 
     // Accreditation groups — [{group, items: [{name, logo}]}]
@@ -354,9 +355,16 @@
         <div class="container">
             <span class="pd-section-label">About the University</span>
             <h2 class="pd-section-title">A Globally Connected <em>University</em></h2>
-            <div class="pd-uni__body">
-                <div class="pd-uni__body-content">{!! $university->description ?? '' !!}</div>
-                @if($university->establishment)<span class="pd-uni__meta">{{ $university->establishment }}</span>@endif
+            <div class="pd-uni__inner {{ !empty($university->image) ? 'pd-uni__inner--with-image' : '' }}">
+                @if(!empty($university->image))
+                <div class="pd-uni__media">
+                    <img src="{{ media_url($university->image) }}" alt="{{ $university->name }}" loading="lazy">
+                </div>
+                @endif
+                <div class="pd-uni__body">
+                    <div class="pd-uni__body-content">{!! $university->description ?? '' !!}</div>
+                    @if($university->establishment)<span class="pd-uni__meta">{{ $university->establishment }}</span>@endif
+                </div>
             </div>
         </div>
     </section>
