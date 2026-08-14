@@ -76,7 +76,7 @@
   left: 50%;
   transform: translateX(-50%);
   z-index: 50;
-  display: flex;
+  display: none; /* mobile-only sticky bar */
   gap: 10px;
   background: #fff;
   border: 1px solid var(--pd-line);
@@ -87,13 +87,13 @@
 .pd-apply__primary {
   padding: 12px 24px; border-radius: 999px; background: var(--pd-red); color: #fff;
   font-weight: 600; text-transform: uppercase; font-size: 13px; letter-spacing: 0.04em; text-decoration: none;
-  transition: background 0.25s ease;
+  white-space: nowrap; transition: background 0.25s ease;
 }
 .pd-apply__primary:hover { background: #c81e1e; }
 .pd-apply__ghost {
   padding: 12px 24px; border-radius: 999px; color: var(--pd-navy);
   font-weight: 600; text-transform: uppercase; font-size: 13px; letter-spacing: 0.04em; text-decoration: none;
-  transition: background 0.25s ease;
+  white-space: nowrap; transition: background 0.25s ease;
 }
 .pd-apply__ghost:hover { background: rgba(43, 57, 121, 0.08); }
 
@@ -316,8 +316,19 @@
   transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 .pd-benefits__card:hover { border-color: var(--pd-red); box-shadow: 0 8px 20px rgba(28,35,51,0.05); }
-.pd-benefits__num { font-family: var(--font-display); font-size: 22px; font-weight: 700; color: var(--pd-red); }
-.pd-benefits__card h3 { font-family: var(--font-display); font-size: 18px; font-weight: 600; color: var(--pd-navy); margin: 0; }
+.pd-benefits__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(236, 31, 36, 0.1);
+  color: var(--pd-red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.pd-benefits__icon i { width: 22px; height: 22px; }
+.pd-benefits__card h3 { font-family: var(--font-display); font-size: 18px; font-weight: 500; color: var(--pd-navy); margin: 0; }
 .pd-benefits__card p { font-size: 14px; color: var(--pd-muted); margin: 0; line-height: 1.6; }
 
 /* =========================================================
@@ -679,6 +690,10 @@
   .pd-slider__btn--next { right: 0; }
   .pd-benefits__grid, .pd-careers__grid, .pd-support__grid { grid-template-columns: 1fr; }
   .pd-whatsapp { right: 14px; bottom: 88px; }
+  /* Snapshot box CTA buttons: desktop only */
+  .pd-snapshot-box__actions { display: none; }
+  /* Sticky Apply/Enquire bar: mobile only */
+  .pd-apply { display: flex; }
 }
 @media (max-width: 480px) {
   .pd-highlights__card { flex: 1 1 100%; }

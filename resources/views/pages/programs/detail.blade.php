@@ -48,11 +48,11 @@
     ])->filter(fn ($s) => !empty($s['value']) && !str_starts_with($s['value'], 'VERIFY'))->values();
 
     $benefits = collect([
-        ['title' => 'Develop Leadership Skills', 'desc' => 'Learn how to lead teams and organisations.'],
-        ['title' => 'Industry-Relevant Curriculum', 'desc' => 'Practical learning aligned with current business practices.'],
-        ['title' => 'International Recognition', 'desc' => 'Graduate with an internationally recognised university qualification.'],
-        ['title' => 'Career Progression', 'desc' => 'Prepare for leadership roles across multiple industries.'],
-        ['title' => 'Flexible Learning', 'desc' => 'Designed to support both students and working professionals.'],
+        ['title' => 'Develop Leadership Skills', 'desc' => 'Learn how to lead teams and organisations.', 'icon' => 'users'],
+        ['title' => 'Industry-Relevant Curriculum', 'desc' => 'Practical learning aligned with current business practices.', 'icon' => 'book-open'],
+        ['title' => 'International Recognition', 'desc' => 'Graduate with an internationally recognised university qualification.', 'icon' => 'globe'],
+        ['title' => 'Career Progression', 'desc' => 'Prepare for leadership roles across multiple industries.', 'icon' => 'trending-up'],
+        ['title' => 'Flexible Learning', 'desc' => 'Designed to support both students and working professionals.', 'icon' => 'laptop'],
     ]);
 
     $learning = collect([
@@ -108,14 +108,14 @@
     // Accreditation groups: each item may have a logo image URL or fall back to text.
     $accreditationGroups = collect([
         ['group' => 'Institutional Recognition', 'items' => collect([
-            ['name' => 'GAU', 'logo' => null],
-            ['name' => 'YÖDAK', 'logo' => null],
+            ['name' => 'GAU', 'logo' => 'https://www.gau.edu.tr/storage//uploads/0/0/0/logo-gau-3-1681804294.png?vs=1'],
+            ['name' => 'YÖDAK', 'logo' => 'https://www.gau.edu.tr/storage//uploads/0/0/0/1786107476028-1786107474.png?vs=1'],
         ])],
         ['group' => 'International Accreditation', 'items' => collect([
-            ['name' => 'IACBE', 'logo' => null],
+            ['name' => 'IACBE', 'logo' => 'https://www.gau.edu.tr/storage//uploads/0/0/0/1786107837072-1786107836.png?vs=1'],
         ])],
         ['group' => 'Professional Recognition', 'items' => collect([
-            ['name' => 'YÖK', 'logo' => null],
+            ['name' => 'YÖK', 'logo' => 'https://www.gau.edu.tr/storage//uploads/0/0/0/1786107465646-1786107464.png?vs=1'],
         ])],
     ]);
 
@@ -291,7 +291,9 @@
             <div class="pd-benefits__grid">
                 @foreach($benefits as $i => $b)
                     <div class="pd-benefits__card">
-                        <span class="pd-benefits__num">{{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}</span>
+                        <span class="pd-benefits__icon" aria-hidden="true">
+                            <i data-lucide="{{ $b['icon'] ?? 'sparkles' }}"></i>
+                        </span>
                         <h3>{{ $b['title'] }}</h3>
                         <p>{{ $b['desc'] }}</p>
                     </div>
