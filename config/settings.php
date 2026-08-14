@@ -23,6 +23,7 @@ return [
         \App\Settings\OurStoryImpactSettings::class,
         \App\Settings\OurStoryCeoQuoteSettings::class,
         \App\Settings\OurStoryVisionSettings::class,
+        \App\Settings\OurStorySeoSettings::class,
         \App\Settings\AccreditationCinematicSettings::class,
     ],
 

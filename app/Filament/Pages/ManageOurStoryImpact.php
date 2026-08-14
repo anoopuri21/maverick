@@ -16,6 +16,8 @@ class ManageOurStoryImpact extends SettingsPage
     protected static ?string $navigationGroup = 'Our Story Page';
     protected static ?string $navigationLabel = 'Our Impact';
     protected static ?int $navigationSort = 4;
+
+    protected static bool $shouldRegisterNavigation = false;
     protected static string $settings = OurStoryImpactSettings::class;
 
     public function form(Form $form): Form

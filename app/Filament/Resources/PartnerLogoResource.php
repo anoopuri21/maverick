@@ -14,6 +14,7 @@ use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Resources\Components\Tab;
 use App\Filament\Forms\Components\MediaPicker;
 
 class PartnerLogoResource extends Resource
@@ -45,11 +46,10 @@ class PartnerLogoResource extends Resource
                         'alumni' => '🎓 Alumni Network',
                         'accreditation' => '✅ Accreditation',
                         'recognition' => '🏆 Recognition',
-                        'award' => '🥇 Award',
                     ])
                     ->required()
                     ->searchable()
-                    ->helperText('Select the category this logo belongs to'),
+                    ->helperText('Select the category this logo belongs to. Awards are managed under the Accreditations Page section.'),
 
                 Forms\Components\Textarea::make('description')
                     ->label('Description')
@@ -86,14 +86,12 @@ class PartnerLogoResource extends Resource
                         'alumni' => 'info',
                         'accreditation' => 'success',
                         'recognition' => 'warning',
-                        'award' => 'danger',
                         default => 'gray',
                     })
                     ->formatStateUsing(fn (string $state): string => match ($state) {
                         'alumni' => '🎓 Alumni',
                         'accreditation' => '✅ Accreditation',
                         'recognition' => '🏆 Recognition',
-                        'award' => '🥇 Award',
                         default => $state,
                     })
                     ->sortable(),
@@ -116,7 +114,6 @@ class PartnerLogoResource extends Resource
                         'alumni' => '🎓 Alumni',
                         'accreditation' => '✅ Accreditation',
                         'recognition' => '🏆 Recognition',
-                        'award' => '🥇 Award',
                     ])
                     ->placeholder('All Categories'),
             ])
@@ -144,6 +141,27 @@ class PartnerLogoResource extends Resource
             'index' => Pages\ListPartnerLogos::route('/'),
             'create' => Pages\CreatePartnerLogo::route('/create'),
             'edit' => Pages\EditPartnerLogo::route('/{record}/edit'),
+        ];
+    }
+
+    /**
+     * Tabs above the table (left of the search bar) that filter by category.
+     * "Awards" are managed separately under the Accreditations Page section.
+     */
+    public static function getTabs(): array
+    {
+        return [
+            'all' => Tab::make('All')
+                ->icon('heroicon-m-squares-2x2'),
+            'alumni' => Tab::make('Alumni')
+                ->icon('heroicon-m-academic-cap')
+                ->modifyQueryUsing(fn (Builder $query) => $query->where('type', 'alumni')),
+            'accreditation' => Tab::make('Accreditations')
+                ->icon('heroicon-m-check-badge')
+                ->modifyQueryUsing(fn (Builder $query) => $query->where('type', 'accreditation')),
+            'recognition' => Tab::make('Recognitions')
+                ->icon('heroicon-m-trophy')
+                ->modifyQueryUsing(fn (Builder $query) => $query->where('type', 'recognition')),
         ];
     }
 }
