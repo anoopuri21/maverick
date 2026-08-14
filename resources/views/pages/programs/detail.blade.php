@@ -104,6 +104,10 @@
                 @endif
                 <a href="{{ route('contact') }}" class="btn btn--outline">Enquire Now</a>
             </div>
+            <div class="cinematic-hero__scroll-hint" aria-hidden="true">
+                <span class="cinematic-hero__scroll-text">Scroll to explore</span>
+                <span class="cinematic-hero__scroll-arrow" data-lucide="chevron-down"></span>
+            </div>
         </div>
     </section>
 
@@ -114,7 +118,7 @@
             <h2 class="pd-logo-strip__label">Accredited &amp; Recognised By</h2>
             <div class="pd-logo-strip__marquee" data-pd-marquee data-lenis-prevent>
                 <div class="pd-logo-strip__track">
-                    @foreach($recognition->merge($recognition) as $r)
+                    @foreach($recognition as $r)
                         <div class="pd-logo-strip__logo">
                             @if(!empty($r['logo']))
                                 <img src="{{ $r['logo'] }}" alt="{{ $r['name'] }}" loading="lazy">
@@ -123,6 +127,18 @@
                             @endif
                         </div>
                     @endforeach
+                    {{-- duplicate for seamless loop; hidden from screen readers --}}
+                    <div class="pd-logo-strip__duplicate" aria-hidden="true">
+                        @foreach($recognition as $r)
+                            <div class="pd-logo-strip__logo">
+                                @if(!empty($r['logo']))
+                                    <img src="{{ $r['logo'] }}" alt="" loading="lazy">
+                                @else
+                                    <span>{{ $r['name'] }}</span>
+                                @endif
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>
@@ -310,7 +326,7 @@
             <div class="pd-uni__inner {{ !empty($university->image) ? 'pd-uni__inner--with-image' : '' }}">
                 @if(!empty($university->image))
                 <div class="pd-uni__media">
-                    <img src="{{ media_url($university->image) }}" alt="{{ $university->name }}" loading="lazy">
+                    <img src="{{ media_url($university->image) }}" alt="{{ $university->name }}" loading="lazy" width="1200" height="800">
                 </div>
                 @endif
                 <div class="pd-uni__body">
@@ -449,6 +465,7 @@
         <aside class="pd-layout__side" aria-label="Programme at a glance">
             <div class="pd-layout__sticky">
                 <div class="pd-snapshot-box" data-testid="pd-snapshot">
+                    <span class="pd-snapshot-box__title">{{ $program->title }}</span>
                     <span class="pd-section-label">Programme at a Glance</span>
                     <div class="pd-snapshot-box__list">
                         @foreach($snapshot as $s)

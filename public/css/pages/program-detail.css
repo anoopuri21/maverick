@@ -214,6 +214,18 @@
   padding: 26px 24px 24px;
   box-shadow: 0 10px 28px rgba(28, 35, 51, 0.06);
 }
+.pd-snapshot-box__title {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--pd-navy);
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 6px;
+}
 .pd-snapshot-box .pd-section-label { margin-bottom: 18px; }
 .pd-snapshot-box__list { border-top: 1px solid var(--pd-line); }
 .pd-snapshot-box__item {
@@ -686,6 +698,13 @@
   font-family: var(--font-body); font-size: 14px; color: var(--pd-ink); background: #fff;
 }
 .pd-form__field textarea { resize: vertical; min-height: 88px; }
+.pd-form__field input:focus,
+.pd-form__field select:focus,
+.pd-form__field textarea:focus {
+  border-color: var(--pd-navy);
+  outline: 2px solid var(--pd-red);
+  outline-offset: 2px;
+}
 
 /* Enquiry — CSS-only floating orbs (behind content, opacity ≤ 0.12) */
 .pd-enquire__particles {
@@ -726,10 +745,29 @@
    ========================================================= */
 @media (max-width: 1120px) {
   /* Collapse the 7:3 experiment to a single column; "Programme at a Glance"
-     becomes a compact intro box at the top of the page. */
+     becomes a horizontal snap scroller above the article. */
   .pd-layout { grid-template-columns: 1fr; gap: 28px; }
   .pd-layout__side { order: -1; }
   .pd-layout__sticky { position: static; }
+  .pd-snapshot-box__list {
+    display: flex;
+    gap: 28px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 8px;
+  }
+  .pd-snapshot-box__item {
+    flex: 0 0 auto;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    border-bottom: none;
+    scroll-snap-align: start;
+    padding: 12px 0;
+  }
+  .pd-snapshot-box__item + .pd-snapshot-box__item { border-left: 1px solid var(--pd-line); padding-left: 28px; }
+  .pd-snapshot-box__actions { display: none; }
 }
 @media (max-width: 1024px) {
   .pd-enquire__inner, .pd-fees__inner { grid-template-columns: 1fr; gap: 28px; }
@@ -745,7 +783,17 @@
 @media (max-width: 768px) {
   .pd-learn__list { grid-template-columns: 1fr; }
   .pd-highlights__card { flex: 1 1 calc(50% - 12px); min-width: 0; }
-  .pd-enquire__visual { display: none; }
+  /* Enquire: image becomes a full-bleed crop above the intro */
+  .pd-enquire__visual {
+    display: block;
+    flex: none;
+    min-height: 0;
+    height: 140px;
+    margin: 0 calc(var(--container-padding) * -1);
+    border-radius: 0;
+  }
+  .pd-enquire__visual img { height: 100%; }
+  .pd-enquire__particles { display: none; }
   .pd-slider__btn--prev { left: 0; }
   .pd-slider__btn--next { right: 0; }
   .pd-benefits__grid, .pd-careers__grid, .pd-support__grid { grid-template-columns: 1fr; }
@@ -766,12 +814,17 @@
   .pd-highlights__card { flex: 1 1 100%; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .page-pd * { transition: none !important; }
+  /* Allow essential colour transitions, forbid transform/opacity motion */
+  .page-pd * {
+    animation: none !important;
+    scroll-behavior: auto !important;
+    transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease !important;
+  }
   .pd-enquire__particles { display: none; }
-  .pd-enquire__orb { animation: none; }
-  .pd-slider__scroller { scroll-behavior: auto; }
   .pd-logo-strip__track { animation: none; }
   .pd-logo-strip__marquee { overflow-x: auto; mask-image: none; }
+  .pd-progress { display: none; }
+  .cinematic-hero__scroll-hint { display: none; }
 }
 
 /* =========================================================
@@ -949,6 +1002,8 @@
   width: max-content;
   animation: pd-logo-marquee 26s linear infinite;
 }
+/* second (duplicate) set joins the same flex layout, hidden from AT */
+.pd-logo-strip__duplicate { display: contents; }
 .pd-logo-strip__marquee:hover .pd-logo-strip__track { animation-play-state: paused; }
 .pd-logo-strip__logo {
   display: inline-flex;
@@ -1121,8 +1176,8 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 3px;
-  z-index: 60;
+  height: 2px;
+  z-index: calc(var(--z-navbar, 1000) + 1);
   background: var(--pd-red);
   transform-origin: 0 50%;
   transform: scaleX(0);
@@ -1170,4 +1225,14 @@
 /* Hide scrollspy dots on touch / very small screens to avoid overlap */
 @media (hover: none), (max-width: 1120px) {
   .pd-dots { display: none; }
+}
+
+/* =========================================================
+   PRINT — hide chrome, show logos static
+   ========================================================= */
+@media print {
+  .pd-dots, .pd-progress, .pd-apply, .pd-whatsapp,
+  .page-pd .floating-action { display: none !important; }
+  .pd-logo-strip__track { animation: none; }
+  .page-pd { overflow: visible; }
 }
