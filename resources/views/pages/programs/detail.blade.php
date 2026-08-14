@@ -27,12 +27,12 @@
     ])->filter(fn ($h) => !empty($h['value']) && !str_starts_with($h['value'], 'VERIFY'))->values();
 
     // Recognition slider — each item may carry a logo URL.
-    // GAU logo added now; other logos to be provided by client later.
+    // All four accreditation logos supplied by the client.
     $recognition = collect([
         ['name' => 'Girne American University', 'logo' => 'https://www.gau.edu.tr/template/gau/assets/img/logo2_en.png'],
-        ['name' => 'IACBE', 'logo' => null, 'note' => 'International Accreditation Council for Business Education'],
-        ['name' => 'YÖK', 'logo' => null, 'note' => 'Higher Education Council of Turkey'],
-        ['name' => 'YÖDAK', 'logo' => null, 'note' => 'Higher Education Planning, Supervision, Accreditation and Coordination Committee (North Cyprus)'],
+        ['name' => 'IACBE', 'logo' => 'https://www.gau.edu.tr/storage//uploads/0/0/0/1786107837072-1786107836.png?vs=1', 'note' => 'International Accreditation Council for Business Education'],
+        ['name' => 'YÖK', 'logo' => 'https://www.gau.edu.tr/storage//uploads/0/0/0/1786107465646-1786107464.png?vs=1', 'note' => 'Higher Education Council of Turkey'],
+        ['name' => 'YÖDAK', 'logo' => 'https://www.gau.edu.tr/storage//uploads/0/0/0/1786107476028-1786107474.png?vs=1', 'note' => 'Higher Education Planning, Supervision, Accreditation and Coordination Committee (North Cyprus)'],
     ]);
 
     // Snapshot
