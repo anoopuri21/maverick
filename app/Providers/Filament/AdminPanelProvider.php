@@ -17,6 +17,9 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Filament\Support\Facades\FilamentView;
+use Filament\View\PanelsRenderHook;
+use Illuminate\Support\Facades\Blade;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -50,6 +53,33 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-            ]);
+            ])
+            ->renderHook(
+                PanelsRenderHook::PAGE_END,
+                fn (): string => Blade::render(<<<'HTML'
+                    <script>
+                        // Accordion behaviour for the Programme "Detail Sections" tab.
+                        // Expanding a section closes all its siblings, so only a single
+                        // section is open at a time. Runs in the capture phase (before
+                        // Filament's own toggle) and only acts when the clicked section
+                        // is currently collapsed (i.e. about to open).
+                        document.addEventListener('click', (e) => {
+                            const header = e.target.closest('header');
+                            if (! header) return;
+                            const section = header.parentElement;
+                            if (! section || ! section.matches('[data-pd-accordion]')) return;
+                            if (! section.classList.contains('fi-collapsed')) return; // collapsing, not opening
+                            const group = section.getAttribute('data-pd-accordion-group');
+                            if (! group) return;
+                            document.querySelectorAll('[data-pd-accordion-group="' + group + '"]').forEach((sib) => {
+                                if (sib !== section && ! sib.classList.contains('fi-collapsed')) {
+                                    window.dispatchEvent(new CustomEvent('collapse-section', { detail: { id: sib.id } }));
+                                }
+                            });
+                        }, true);
+                    </script>
+                    HTML,
+                ),
+            );
     }
 }
