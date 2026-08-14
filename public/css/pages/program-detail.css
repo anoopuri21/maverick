@@ -329,7 +329,8 @@
 }
 .pd-benefits__icon i { width: 22px; height: 22px; }
 .pd-benefits__card h3 { font-family: var(--font-display); font-size: 18px; font-weight: 500; color: var(--pd-navy); margin: 0; }
-.pd-benefits__card p { font-size: 14px; color: var(--pd-muted); margin: 0; line-height: 1.6; }
+.pd-benefits__card p,
+.pd-benefits__desc { font-size: 14px; color: var(--pd-muted); margin: 0; line-height: 1.6; }
 
 /* =========================================================
    STEP 4 · WHAT YOU'LL LEARN
@@ -426,14 +427,33 @@
   font-family: var(--font-display); font-size: 14px; font-weight: 600; color: var(--pd-ink);
   margin: 0 0 4px;
 }
-.pd-structure__module-desc { font-size: 13px; line-height: 1.6; color: var(--pd-muted); margin: 0; }
+.pd-structure__module-desc { font-size: 13px; line-height: 1.6; color: var(--pd-muted); margin: 0 0 12px; }
+.pd-structure__module-list {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px;
+}
+.pd-structure__module-li {
+  display: flex; gap: 10px; align-items: flex-start;
+  font-size: 13px; line-height: 1.5; color: var(--pd-ink);
+}
+.pd-structure__module-tick {
+  width: 18px; height: 18px; border-radius: 50%;
+  background: rgba(236, 31, 36, 0.1); color: var(--pd-red);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 700; flex-shrink: 0; margin-top: 1px;
+}
+@media (max-width: 768px) {
+  .pd-structure__module-list { grid-template-columns: 1fr; }
+}
 
 /* =========================================================
    STEP 6 · UNIVERSITY
    ========================================================= */
 .pd-uni { padding: clamp(32px, 4.5vw, 52px) 0; }
 .pd-uni__body { max-width: 72ch; }
-.pd-uni__body p { font-size: 15px; line-height: 1.8; color: var(--pd-muted); margin: 0 0 12px; }
+.pd-uni__body p,
+.pd-uni__body-content { font-size: 15px; line-height: 1.8; color: var(--pd-muted); margin: 0 0 12px; }
+.pd-uni__body-content p { margin: 0 0 12px; }
 .pd-uni__meta { font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--pd-navy); font-weight: 600; }
 
 /* =========================================================
@@ -641,27 +661,6 @@
 .pd-reviews__text { font-size: 14px; line-height: 1.6; color: var(--pd-muted); margin: 0; }
 
 /* =========================================================
-   FINAL CTA
-   ========================================================= */
-.pd-cta { background: var(--pd-navy-deep); }
-.pd-cta__inner { padding: clamp(48px, 7vw, 88px) 24px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 24px; }
-.pd-cta__title { font-family: var(--font-display); font-size: clamp(28px, 4vw, 48px); font-weight: 600; color: #fff; margin: 0; }
-.pd-cta__actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
-.pd-cta .pd-btn--primary { background: #fff; color: var(--pd-navy); border-color: #fff; }
-.pd-cta .pd-btn--primary:hover { background: transparent; color: #fff; }
-.pd-cta .pd-btn--ghost { color: #fff; border-color: rgba(255,255,255,0.5); }
-.pd-cta .pd-btn--ghost:hover { background: #fff; color: var(--pd-navy); }
-
-/* WhatsApp */
-.pd-whatsapp {
-  position: fixed; right: 20px; bottom: 20px; z-index: 50;
-  width: 54px; height: 54px; border-radius: 50%;
-  background: #25d366; color: #fff;
-  display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
-}
-
-/* =========================================================
    RESPONSIVE
    ========================================================= */
 @media (max-width: 1120px) {
@@ -689,11 +688,18 @@
   .pd-slider__btn--prev { left: 0; }
   .pd-slider__btn--next { right: 0; }
   .pd-benefits__grid, .pd-careers__grid, .pd-support__grid { grid-template-columns: 1fr; }
-  .pd-whatsapp { right: 14px; bottom: 88px; }
+  /* Keep outcomes (What You'll Learn / Careers) in 2 columns as requested */
+  .pd-learn__list--single { grid-template-columns: 1fr 1fr; gap: 10px 24px; padding: 6px 20px; }
+  .pd-careers__grid--vertical { grid-template-columns: 1fr 1fr; }
   /* Snapshot box CTA buttons: desktop only */
   .pd-snapshot-box__actions { display: none; }
   /* Sticky Apply/Enquire bar: mobile only */
   .pd-apply { display: flex; }
+  /* On programme pages the mobile Apply/Enquire bar sits at the bottom,
+     so lift the global floating buttons above it to avoid overlap.
+     (Floating buttons are direct children of <body>, so scope via :has.) */
+  body:has(.page-pd) .floating-action--whatsapp { bottom: 5.5rem; }
+  body:has(.page-pd) .floating-action--scroll { bottom: 9.5rem; }
 }
 @media (max-width: 480px) {
   .pd-highlights__card { flex: 1 1 100%; }
@@ -947,10 +953,34 @@
    M3 · OUTCOMES & CAREERS (2-col editorial)
    ========================================================= */
 .pd-outcomes { padding: clamp(32px, 4.5vw, 52px) 0; }
-.pd-outcomes__grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 4vw, 56px); align-items: start; }
+.pd-outcomes__grid { display: flex; flex-direction: column; gap: clamp(36px, 5vw, 56px); align-items: stretch; }
 .pd-outcomes__sub { font-size: 14px; color: var(--pd-muted); margin: 0 0 18px; }
-.pd-learn__list--single { grid-template-columns: 1fr; }
-.pd-careers__grid--vertical { grid-template-columns: 1fr; }
+/* Learn list — bordered box on parent, items borderless, 2 columns */
+.pd-learn__list--single {
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid var(--pd-line);
+  border-radius: 14px;
+  padding: 6px 28px;
+}
+.pd-learn__list--single .pd-learn__item {
+  border-bottom: none;
+  padding: 16px 0;
+}
+/* Careers grid — bordered box on parent, cards borderless, 2 columns */
+.pd-careers__grid--vertical {
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid var(--pd-line);
+  border-radius: 14px;
+  padding: 12px;
+  gap: 8px;
+}
+.pd-careers__grid--vertical .pd-careers__card {
+  border: none;
+  border-radius: 0;
+  padding: 14px 18px;
+  background: transparent;
+  box-shadow: none;
+}
 
 /* =========================================================
    RESPONSIVE for new Phase 2 blocks

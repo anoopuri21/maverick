@@ -31,7 +31,7 @@
             </div>
 
             <blockquote class="os-testimonials__quote">
-              {{ $item->testimonial }}
+              {!! $item->testimonial !!}
             </blockquote>
 
             <div class="os-testimonials__author">

@@ -11,143 +11,87 @@
 @section('content')
 @php
     // ------------------------------------------------------------------
-    // PROGRAMME CONTENT MODEL — Udemy-style detail
+    // PROGRAMME CONTENT MODEL — admin-driven (from Program model JSON casts)
     // Every section is optional; render only if content exists.
     // ------------------------------------------------------------------
     $cat = $program->programCategory;
 
-    // Quick highlights (from structure doc)
-    $highlights = collect([
-        ['label' => 'Awarded By', 'value' => $program->partner_university],
-        ['label' => 'Duration', 'value' => $program->duration],
-        ['label' => 'ECTS Credits', 'value' => 'VERIFY'],
-        ['label' => 'Learning', 'value' => 'Flexible'],
-        ['label' => 'Curriculum', 'value' => 'Industry-Focused'],
-        ['label' => 'Scholarships', 'value' => 'Available (verify)'],
-    ])->filter(fn ($h) => !empty($h['value']) && !str_starts_with($h['value'], 'VERIFY'))->values();
+    // Quick highlights — [{label, value}]
+    $highlights = collect($program->highlights ?? []);
 
-    // Recognition slider — each item may carry a logo URL.
-    // All four accreditation logos supplied by the client.
-    $recognition = collect([
-        ['name' => 'Girne American University', 'logo' => 'https://www.gau.edu.tr/template/gau/assets/img/logo2_en.png'],
-        ['name' => 'IACBE', 'logo' => 'https://www.gau.edu.tr/storage//uploads/0/0/0/1786107837072-1786107836.png?vs=1', 'note' => 'International Accreditation Council for Business Education'],
-        ['name' => 'YÖK', 'logo' => 'https://www.gau.edu.tr/storage//uploads/0/0/0/1786107465646-1786107464.png?vs=1', 'note' => 'Higher Education Council of Turkey'],
-        ['name' => 'YÖDAK', 'logo' => 'https://www.gau.edu.tr/storage//uploads/0/0/0/1786107476028-1786107474.png?vs=1', 'note' => 'Higher Education Planning, Supervision, Accreditation and Coordination Committee (North Cyprus)'],
-    ]);
+    // Recognition logos — [{name, logo, note}]
+    $recognition = collect($program->recognition ?? []);
 
-    // Snapshot
-    $snapshot = collect([
-        ['label' => 'Degree Award', 'value' => $program->level],
-        ['label' => 'Awarding University', 'value' => $program->partner_university],
-        ['label' => 'Duration', 'value' => $program->duration],
-        ['label' => 'Study Mode', 'value' => 'Online / Hybrid'],
-        ['label' => 'Intakes', 'value' => 'Multiple'],
-        ['label' => 'Assessment', 'value' => 'Assignments & Examinations'],
-        ['label' => 'Credits', 'value' => 'VERIFY'],
-        ['label' => 'Eligibility', 'value' => 'VERIFY'],
-    ])->filter(fn ($s) => !empty($s['value']) && !str_starts_with($s['value'], 'VERIFY'))->values();
+    // Snapshot — [{label, value}]
+    $snapshot = collect($program->snapshot ?? []);
 
-    $benefits = collect([
-        ['title' => 'Develop Leadership Skills', 'desc' => 'Learn how to lead teams and organisations.', 'icon' => 'users'],
-        ['title' => 'Industry-Relevant Curriculum', 'desc' => 'Practical learning aligned with current business practices.', 'icon' => 'book-open'],
-        ['title' => 'International Recognition', 'desc' => 'Graduate with an internationally recognised university qualification.', 'icon' => 'globe'],
-        ['title' => 'Career Progression', 'desc' => 'Prepare for leadership roles across multiple industries.', 'icon' => 'trending-up'],
-        ['title' => 'Flexible Learning', 'desc' => 'Designed to support both students and working professionals.', 'icon' => 'laptop'],
-    ]);
+    // Benefits (Why Choose) — [{title, desc, icon}]
+    $benefits = collect($program->benefits ?? []);
 
-    $learning = collect([
-        'Develop strategic thinking', 'Apply business management principles', 'Analyse financial information',
-        'Understand marketing strategies', 'Improve organisational performance', 'Lead diverse teams',
-        'Make ethical business decisions', 'Manage business operations effectively',
-    ]);
+    // Learning outcomes — [{item}]
+    $learning = collect($program->learning ?? [])->map(fn ($l) => $l['item'] ?? $l)->values();
 
-    $careers = collect([
-        'Business Manager', 'Operations Manager', 'Marketing Executive', 'Human Resource Executive',
-        'Business Analyst', 'Project Coordinator', 'Entrepreneur', 'Sales Manager',
-        'Business Development Executive', 'Management Consultant',
-    ]);
+    // Careers — [{title}]
+    $careers = collect($program->careers ?? [])->map(fn ($c) => $c['title'] ?? $c)->values();
 
-    $structure = collect([
-        ['title' => 'Year 1', 'subtitle' => 'Business Foundations', 'modules' => [
-            ['title' => 'Principles of Management', 'desc' => 'Core concepts of managing people and organisations.'],
-            ['title' => 'Business Economics', 'desc' => 'Economic principles applied to business decisions.'],
-            ['title' => 'Accounting Fundamentals', 'desc' => 'Basics of financial and management accounting.'],
-            ['title' => 'Marketing Essentials', 'desc' => 'Foundations of marketing and market analysis.'],
-        ]],
-        ['title' => 'Year 2', 'subtitle' => 'Core Business Functions', 'modules' => [
-            ['title' => 'Financial Management', 'desc' => 'Managing financial resources and planning.'],
-            ['title' => 'Organisational Behaviour', 'desc' => 'Understanding people and behaviour in organisations.'],
-            ['title' => 'Operations Management', 'desc' => 'Designing and managing business operations.'],
-            ['title' => 'Business Law', 'desc' => 'Legal frameworks relevant to business.'],
-        ]],
-        ['title' => 'Year 3', 'subtitle' => 'Advanced Business Management', 'modules' => [
-            ['title' => 'Strategic Management', 'desc' => 'Developing and executing organisational strategy.'],
-            ['title' => 'International Business', 'desc' => 'Operating across global markets and cultures.'],
-            ['title' => 'Entrepreneurship', 'desc' => 'Creating and scaling new ventures.'],
-            ['title' => 'Human Resource Management', 'desc' => 'Managing talent, teams and organisational culture.'],
-        ]],
-        ['title' => 'Year 4', 'subtitle' => 'Leadership, Strategy & Internship / Capstone', 'modules' => [
-            ['title' => 'Leadership & Change', 'desc' => 'Leading teams and managing organisational change.'],
-            ['title' => 'Business Strategy', 'desc' => 'Advanced strategic thinking and decision-making.'],
-            ['title' => 'Internship / Capstone', 'desc' => 'Practical application through an internship or final project.'],
-            ['title' => 'Global Business Perspectives', 'desc' => 'Contemporary issues shaping the global business landscape.'],
-        ]],
-    ]);
+    // Programme structure — [{title, subtitle, modules: [{title, overview/desc, list: [{point}]}]}]
+    $structure = collect($program->structure ?? [])->map(function ($stage) {
+        return [
+            'title'    => $stage['title'] ?? '',
+            'subtitle' => $stage['subtitle'] ?? '',
+            'modules'  => collect($stage['modules'] ?? [])->map(function ($m) {
+                return [
+                    'title'    => $m['title'] ?? '',
+                    'overview' => $m['overview'] ?? null,
+                    'desc'     => $m['desc'] ?? null,
+                    'list'     => collect($m['list'] ?? [])->map(fn ($li) => $li['point'] ?? $li)->values()->all(),
+                ];
+            })->values()->all(),
+        ];
+    })->values();
 
-    $support = collect([
-        'Dedicated Academic Support', 'Experienced Faculty', 'Flexible Learning', 'Student Success Team',
-        'Assignment Support', 'Affordable Instalments', 'Career Guidance', 'Graduation Support', 'Documentation Assistance',
-    ]);
+    // Maverick Support — [{item}]
+    $support = collect($program->support ?? [])->map(fn ($s) => $s['item'] ?? $s)->values();
 
+    // About the University — [{name, description, establishment}] (first row wins)
+    $uniRow = collect($program->university ?? [])->first() ?? [];
     $university = (object) [
-        'name' => $program->partner_university,
-        'description' => 'Girne American University (GAU), established in 1985, is one of Northern Cyprus\' leading universities. It offers internationally focused education with programmes designed to prepare graduates for the global workplace.',
-        'establishment' => 'Established 1985',
+        'name'          => $uniRow['name'] ?? $program->partner_university,
+        'description'   => $uniRow['description'] ?? null,
+        'establishment' => $uniRow['establishment'] ?? null,
     ];
 
-    // Accreditation groups: each item may have a logo image URL or fall back to text.
-    $accreditationGroups = collect([
-        ['group' => 'Institutional Recognition', 'items' => collect([
-            ['name' => 'GAU', 'logo' => 'https://www.gau.edu.tr/storage//uploads/0/0/0/logo-gau-3-1681804294.png?vs=1'],
-            ['name' => 'YÖDAK', 'logo' => 'https://www.gau.edu.tr/storage//uploads/0/0/0/1786107476028-1786107474.png?vs=1'],
-        ])],
-        ['group' => 'International Accreditation', 'items' => collect([
-            ['name' => 'IACBE', 'logo' => 'https://www.gau.edu.tr/storage//uploads/0/0/0/1786107837072-1786107836.png?vs=1'],
-        ])],
-        ['group' => 'Professional Recognition', 'items' => collect([
-            ['name' => 'YÖK', 'logo' => 'https://www.gau.edu.tr/storage//uploads/0/0/0/1786107465646-1786107464.png?vs=1'],
-        ])],
-    ]);
+    // Accreditation groups — [{group, items: [{name, logo}]}]
+    $accreditationGroups = collect($program->accreditation_groups ?? [])->map(function ($g) {
+        return [
+            'group' => $g['group'] ?? '',
+            'items' => collect($g['items'] ?? []),
+        ];
+    })->values();
 
-    $testimonials = collect([
-        ['name' => 'Verified Student', 'role' => 'Business Manager', 'country' => 'UAE', 'category' => 'STUDENT', 'thumb' => null, 'video' => null],
-        ['name' => 'Verified Graduate', 'role' => 'Marketing Executive', 'country' => 'UAE', 'category' => 'GRADUATE', 'thumb' => null, 'video' => null],
-        ['name' => 'Verified Learner', 'role' => 'Entrepreneur', 'country' => 'UAE', 'category' => 'STUDENT', 'thumb' => null, 'video' => null],
-    ]);
+    // Video testimonials — [{name, role, country, category, thumb, video}]
+    $testimonials = collect($program->testimonials ?? []);
 
-    $fees = collect(['Registration Fee', 'Initial Payment', 'Monthly Instalments', 'Scholarship Availability', 'Offer Validity']);
+    // Fees — [{title}]
+    $fees = collect($program->fees ?? [])->map(fn ($f) => $f['title'] ?? $f)->values();
 
     $faqs = $program->faqs;
-    $reviews = collect([
-        ['name' => 'Rahul S.', 'avatar' => null, 'rating' => 5, 'review' => 'Great programme structure and excellent support throughout my studies.'],
-        ['name' => 'Fatima A.', 'avatar' => null, 'rating' => 5, 'review' => 'The flexible learning approach let me balance work and study. Highly recommended.'],
-        ['name' => 'Mohammed K.', 'avatar' => null, 'rating' => 4, 'review' => 'A solid international pathway with very helpful advisors.'],
-    ]);
+
+    // Reviews (Google ratings) — [{name, avatar, rating, review}]
+    $reviews = collect($program->reviews ?? []);
 
     // Reuse the shared Our Story testimonials slider shape (same partial as
     // the our-story page) — only the heading differs per page.
     $ourStoryTestimonials = $reviews->map(fn ($r) => (object) [
-        'name' => $r['name'] ?? '',
-        'rating' => $r['rating'] ?? 5,
+        'name'        => $r['name'] ?? '',
+        'rating'      => $r['rating'] ?? 5,
         'testimonial' => $r['review'] ?? '',
-        'photo' => $r['avatar'] ?? null,
+        'photo'       => $r['avatar'] ?? null,
     ])->values();
 
     // ------------------------------------------------------------------
     // SECTION NAV (left-side scrollspy dots)
     // Only dots for sections that actually render (content exists).
-    // id = anchor target, label = hover tooltip, render = same guard used
-    // by the section's @if.
     // ------------------------------------------------------------------
     $sectionNav = collect([
         ['id' => 'overview',       'label' => 'Overview',       'render' => ($highlights->count() || $program->description)],
@@ -158,7 +102,7 @@
         ['id' => 'accreditation',  'label' => 'Accreditation',  'render' => $accreditationGroups->count() > 0],
         ['id' => 'support',        'label' => 'Support',        'render' => $support->count() > 0],
         ['id' => 'testimonials',   'label' => 'Testimonials',   'render' => $testimonials->count() > 0],
-        ['id' => 'fees',           'label' => 'Fees',           'render' => true],
+        ['id' => 'fees',           'label' => 'Fees',           'render' => $fees->count() > 0],
         ['id' => 'faq',            'label' => 'FAQ',            'render' => $faqs->count() > 0],
         ['id' => 'enquire',        'label' => 'Enquire',        'render' => true],
     ])->filter(fn ($s) => $s['render'])->values();
@@ -295,7 +239,7 @@
                             <i data-lucide="{{ $b['icon'] ?? 'sparkles' }}"></i>
                         </span>
                         <h3>{{ $b['title'] }}</h3>
-                        <p>{{ $b['desc'] }}</p>
+                        <div class="pd-benefits__desc">{!! $b['desc'] ?? '' !!}</div>
                     </div>
                 @endforeach
             </div>
@@ -368,12 +312,25 @@
                                             <span class="pd-structure__module-arrow" aria-hidden="true">
                                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
                                             </span>
-                                            <span class="pd-structure__module-title">Module {{ $mi + 1 }}</span>
+                                            <span class="pd-structure__module-title">{{ is_array($module) ? ($module['title'] ?? ('Module '.($mi + 1))) : $module }}</span>
                                         </summary>
                                         @if(is_array($module))
                                             <div class="pd-structure__module-content">
-                                                <h5 class="pd-structure__module-name">{{ $module['title'] }}</h5>
-                                                @if(!empty($module['desc']))<p class="pd-structure__module-desc">{{ $module['desc'] }}</p>@endif
+                                                @if(!empty($module['overview']))
+                                                    <div class="pd-structure__module-desc">{!! $module['overview'] ?? '' !!}</div>
+                                                    @elseif(!empty($module['desc']))
+                                                    <div class="pd-structure__module-desc">{!! $module['desc'] ?? '' !!}</div>
+                                                @endif
+                                                @if(!empty($module['list']) && is_array($module['list']))
+                                                    <ul class="pd-structure__module-list">
+                                                        @foreach($module['list'] as $li)
+                                                            <li class="pd-structure__module-li">
+                                                                <span class="pd-structure__module-tick" aria-hidden="true">✓</span>
+                                                                <span>{{ $li }}</span>
+                                                            </li>
+                                                        @endforeach
+                                                    </ul>
+                                                @endif
                                             </div>
                                         @else
                                             <div class="pd-structure__module-content">
@@ -398,7 +355,7 @@
             <span class="pd-section-label">About the University</span>
             <h2 class="pd-section-title">A Globally Connected <em>University</em></h2>
             <div class="pd-uni__body">
-                <p>{{ $university->description }}</p>
+                <div class="pd-uni__body-content">{!! $university->description ?? '' !!}</div>
                 @if($university->establishment)<span class="pd-uni__meta">{{ $university->establishment }}</span>@endif
             </div>
         </div>
@@ -520,6 +477,38 @@
         </div>
     </section>
 
+
+
+
+        </div>{{-- /.pd-layout__main --}}
+
+        {{-- ==========================================================
+             RIGHT STICKY SIDEBAR · "Programme at a Glance"
+             ========================================================== --}}
+        @if($snapshot->count())
+        <aside class="pd-layout__side" aria-label="Programme at a glance">
+            <div class="pd-layout__sticky">
+                <div class="pd-snapshot-box" data-testid="pd-snapshot">
+                    <span class="pd-section-label">Programme at a Glance</span>
+                    <div class="pd-snapshot-box__list">
+                        @foreach($snapshot as $s)
+                            <div class="pd-snapshot-box__item">
+                                <span class="pd-snapshot-box__label">{{ $s['label'] }}</span>
+                                <span class="pd-snapshot-box__value">{{ $s['value'] }}</span>
+                            </div>
+                        @endforeach
+                    </div>
+                    <div class="pd-snapshot-box__actions">
+                        <a href="#enquire" class="btn pd-btn pd-btn--primary pd-snapshot-box__cta">Apply Now</a>
+                        <a href="{{ route('contact') }}" class="btn pd-btn pd-btn--ghost pd-snapshot-box__cta pd-snapshot-box__cta--ghost">Enquire</a>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        @endif
+
+    </div>{{-- /.pd-layout --}}
+
     {{-- ============ STEP 8 · FAQ ============ --}}
     @if($faqs->count())
     <section id="faq" class="pd-faq" aria-label="Frequently asked questions" data-testid="pd-faq">
@@ -586,6 +575,17 @@
                             <option value="part-time">Part-time</option>
                         </select>
                     </div>
+                    <div class="pd-form__field">
+                        <label for="pd-qualification">Highest qualification</label>
+                        <select id="pd-qualification" name="qualification">
+                            <option value="">Select qualification</option>
+                            <option value="high-school">High School / Secondary</option>
+                            <option value="diploma">Diploma</option>
+                            <option value="bachelor">Bachelor's Degree</option>
+                            <option value="master">Master's Degree</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
                     <div class="pd-form__field pd-form__field--full">
                         <label for="pd-message">Message</label>
                         <textarea id="pd-message" name="message" rows="3"></textarea>
@@ -603,52 +603,8 @@
         'osTestimonialsHeading' => 'Student Reviews with Google Ratings',
     ])
 
-        </div>{{-- /.pd-layout__main --}}
-
-        {{-- ==========================================================
-             RIGHT STICKY SIDEBAR · "Programme at a Glance"
-             ========================================================== --}}
-        @if($snapshot->count())
-        <aside class="pd-layout__side" aria-label="Programme at a glance">
-            <div class="pd-layout__sticky">
-                <div class="pd-snapshot-box" data-testid="pd-snapshot">
-                    <span class="pd-section-label">Programme at a Glance</span>
-                    <div class="pd-snapshot-box__list">
-                        @foreach($snapshot as $s)
-                            <div class="pd-snapshot-box__item">
-                                <span class="pd-snapshot-box__label">{{ $s['label'] }}</span>
-                                <span class="pd-snapshot-box__value">{{ $s['value'] }}</span>
-                            </div>
-                        @endforeach
-                    </div>
-                    <div class="pd-snapshot-box__actions">
-                        <a href="#enquire" class="btn pd-btn pd-btn--primary pd-snapshot-box__cta">Apply Now</a>
-                        <a href="{{ route('contact') }}" class="btn pd-btn pd-btn--ghost pd-snapshot-box__cta pd-snapshot-box__cta--ghost">Enquire</a>
-                    </div>
-                </div>
-            </div>
-        </aside>
-        @endif
-
-    </div>{{-- /.pd-layout --}}
 
     {{-- ============ FINAL CTA ============ --}}
-    <section class="pd-cta" aria-label="Take the next step" data-testid="pd-cta">
-        <div class="container pd-cta__inner">
-            <h2 class="pd-cta__title">Ready to Take the <em>Next Step?</em></h2>
-            <div class="pd-cta__actions">
-                <a href="#enquire" class="btn pd-btn pd-btn--primary">Apply Now</a>
-                <a href="{{ route('contact') }}" class="btn pd-btn pd-btn--ghost">Speak to an Advisor</a>
-            </div>
-        </div>
-    </section>
-
-    @if(!empty($site->whatsapp_number))
-        <a class="pd-whatsapp" href="https://wa.me/{{ $site->whatsapp_number }}" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
-            <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 1.8a8.2 8.2 0 1 1-4.2 15.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 0 1 12 3.8z"/></svg>
-        </a>
-    @endif
-
     @include('sections.final-cta')
 
 </div>

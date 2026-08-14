@@ -226,8 +226,14 @@
   }
 
   if (whatsappBtn) {
-    const phone = '971500000000';
-    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-    whatsappBtn.setAttribute('href', isMobile ? `https://wa.me/${phone}` : `https://web.whatsapp.com/send?phone=${phone}`);
+    // WhatsApp is a global, always-visible contact action (no scroll threshold).
+    whatsappBtn.classList.add('is-visible');
+    // Use the number already set in the layout (blade) — fall back to a link
+    // rewrite only for mobile so it opens the app vs web client.
+    if (!whatsappBtn.getAttribute('href') || whatsappBtn.getAttribute('href').indexOf('wa.me') === -1) {
+      const phone = '971500000000';
+      const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+      whatsappBtn.setAttribute('href', isMobile ? `https://wa.me/${phone}` : `https://web.whatsapp.com/send?phone=${phone}`);
+    }
   }
 })();
