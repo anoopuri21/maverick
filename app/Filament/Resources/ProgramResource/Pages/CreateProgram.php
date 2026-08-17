@@ -15,10 +15,9 @@ class CreateProgram extends CreateRecord
     {
         $data = \App\Filament\Forms\Components\MediaPicker::syncFieldFromAsset($data, 'image_url');
 
-        // Extract SEO data before creating program
+        $data = ProgramResource::cleanJsonForSave($data);
+
         if (isset($data['seo'])) {
-            // MediaPicker stores "{field}_asset_id"; seo_metadata only has URL
-            // columns, so drop the transient asset-id keys before creating.
             $seo = $data['seo'];
             unset(
                 $seo['og_image_url_asset_id'],
@@ -27,6 +26,7 @@ class CreateProgram extends CreateRecord
             $this->seoData = $seo;
             unset($data['seo']);
         }
+
         return $data;
     }
 

@@ -2,36 +2,32 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Concerns\HandlesCloudinaryImageFields;
+use App\Filament\Forms\Components\MediaPicker;
+use App\Filament\Forms\Components\SeoFormFields;
 use App\Filament\Resources\ProgramResource\Pages;
-use App\Filament\Resources\ProgramResource\RelationManagers;
+use App\Models\MediaAsset;
 use App\Models\Program;
-use Filament\Forms;
 use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Tabs;
+use Filament\Forms\Components\Tabs\Tab;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\IconColumn;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Illuminate\Support\Str;
 use Filament\Tables\Columns\ImageColumn;
-use Filament\Forms\Components\Tabs;
-use Filament\Forms\Components\Tabs\Tab;
-use App\Filament\Forms\Components\SeoFormFields;
-use App\Filament\Concerns\HandlesCloudinaryImageFields;
-
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Toggle;
-use Filament\Forms\Components\Textarea;
-use Filament\Forms\Components\Repeater;
-use Filament\Forms\Components\KeyValue;
-use Filament\Forms\Components\Section;
-use App\Filament\Forms\Components\MediaPicker;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Filters\TernaryFilter;
+use Filament\Tables\Table;
 
 class ProgramResource extends Resource
 {
@@ -50,9 +46,9 @@ class ProgramResource extends Resource
             ->schema([
                 Tabs::make('Program Details')
                     ->tabs([
-                        // Tab 1: Basic Information
                         Tab::make('Basic Information')
                             ->icon('heroicon-o-information-circle')
+                            #->description('Core programme identity shown in listings, sticky bar, and hero badges.')
                             ->schema([
                                 Grid::make(2)->schema([
                                     Select::make('program_category_id')
@@ -60,75 +56,193 @@ class ProgramResource extends Resource
                                         ->relationship('programCategory', 'name')
                                         ->required()
                                         ->searchable()
-                                        ->preload(),
+                                        ->preload()
+                                        ->validationAttribute('category'),
 
                                     TextInput::make('title')
                                         ->required()
                                         ->live(onBlur: true)
-                                        ->afterStateUpdated(fn ($state, callable $set) => 
-                                            $set('slug', \Illuminate\Support\Str::slug($state))
-                                        ),
+                                        ->afterStateUpdated(fn ($state, Set $set) => $set('slug', \Illuminate\Support\Str::slug($state)))
+                                        ->validationAttribute('programme title'),
 
                                     TextInput::make('slug')
                                         ->required()
-                                        ->unique(ignoreRecord: true),
+                                        ->unique(ignoreRecord: true)
+                                        ->helperText('URL slug for /programs/{slug}'),
 
                                     TextInput::make('partner_university')
-                                        ->label('Partner University'),
+                                        ->label('Partner University')
+                                        ->placeholder('e.g. Girne American University')
+                                        ->helperText('Shown in recognition header and as GAU fallback name.'),
 
-                                    TextInput::make('duration'),
-                                    TextInput::make('level'),
+                                    TextInput::make('duration')
+                                        ->placeholder('e.g. 20–24 Months')
+                                        ->helperText('Shown in hero meta row.'),
+
+                                    TextInput::make('level')
+                                        ->placeholder('e.g. Undergraduate')
+                                        ->helperText('Shown in hero badge.'),
+
+                                    TextInput::make('sort_order')
+                                        ->label('Sort Order')
+                                        ->numeric()
+                                        ->default(0)
+                                        ->helperText('Lower numbers appear first in admin list and listings.'),
                                 ]),
 
-                                Toggle::make('is_featured')
-                                    ->label('Featured on Homepage'),
+                                Grid::make(2)->schema([
+                                    Toggle::make('is_featured')
+                                        ->label('Featured on Homepage'),
 
-                                Toggle::make('is_active')
-                                    ->label('Active')
-                                    ->default(true),
+                                    Toggle::make('is_active')
+                                        ->label('Active')
+                                        ->default(true)
+                                        ->helperText('Inactive programmes are hidden from the public site.'),
+                                ]),
                             ]),
 
-                        // Tab 2: Content & Media
-                        Tab::make('Content & Media')
-                            ->icon('heroicon-o-document-text')
+                        Tab::make('Hero & Media')
+                            ->icon('heroicon-o-photo')
+                            #->description('Hero background, overview copy, and brochure. Powers sections 1 (Hero) and 4 (Overview).')
                             ->schema([
                                 Textarea::make('short_description')
                                     ->label('Short Description')
                                     ->rows(3)
                                     ->maxLength(300)
-                                    ->helperText('Used in cards & listings. Plain text (no rich formatting).')
+                                    ->placeholder('A concise summary for the hero and listing cards.')
+                                    ->helperText('Plain text only. Shown as the hero lead paragraph.')
                                     ->columnSpanFull(),
 
                                 RichEditor::make('description')
-                                    ->label('Full Description')
+                                    ->label('Programme Overview')
+                                    ->helperText('Full overview copy shown in the Programme Overview section.')
                                     ->columnSpanFull(),
 
-                                MediaPicker::forField('image_url', 'programs')
-                                    ->label('Program Image')
-                                    ->helperText('Recommended: 800x540px. Max 5MB.')
-                                    ->columnSpanFull(),
+                                Section::make('Hero Image')
+                                    #->description('Background image for the cinematic hero. Falls back to a default if empty.')
+                                    ->schema([
+                                        TextInput::make('image_url')
+                                            ->label('Hero Image URL')
+                                            ->url()
+                                            ->helperText('Recommended: 800×540px. Or choose from the media library below.')
+                                            ->columnSpanFull(),
+                                        MediaPicker::forField('image_url', 'programs')
+                                            ->label('Hero Image')
+                                            ->columnSpanFull(),
+                                    ]),
 
                                 TextInput::make('brochure_url')
                                     ->label('Brochure URL')
                                     ->url()
-                                    ->helperText('Optional. When set, a "Download Brochure" button shows in the hero (opens in a new tab).')
+                                    ->placeholder('https://...')
+                                    ->helperText('Optional. When set, a Download Brochure button can show in the hero.')
                                     ->columnSpanFull(),
                             ]),
 
-                        // Tab 3: FAQs
+                        Tab::make('Programme Sections')
+                            ->icon('heroicon-o-squares-2x2')
+                            #'Content blocks on the programme detail page, in page order. Empty sections are hidden publicly.')
+                            ->schema([
+                                Section::make('Quick Highlights')
+                                    #->description('Tick-list shown in the hero (§1). Also used in the overview figure stat.')
+                                    ->collapsible()
+                                    ->collapsed(false)
+                                    ->schema([static::highlightsRepeater()]),
+
+                                Section::make('Programme Snapshot')
+                                    #->description('Bento grid tiles (§3) and first six items in the hero Programme at a Glance card.')
+                                    ->collapsible()
+                                    ->collapsed(true)
+                                    ->schema([static::snapshotRepeater()]),
+
+                                Section::make('Why Choose This Programme')
+                                    #->description('Pillar cards in the Why Choose section (§5).')
+                                    ->collapsible()
+                                    ->collapsed(true)
+                                    ->schema([static::benefitsRepeater()]),
+
+                                Section::make("What You'll Learn")
+                                    #->description('Learning outcome items (§6).')
+                                    ->collapsible()
+                                    ->collapsed(true)
+                                    ->schema([static::learningRepeater()]),
+
+                                Section::make('Career Opportunities')
+                                    #->description('Career cloud tiles (§7).')
+                                    ->collapsible()
+                                    ->collapsed(true)
+                                    ->schema([static::careersRepeater()]),
+
+                                Section::make('Programme Structure')
+                                    #->description('Year-by-year accordion with modules (§8). Module titles shown as a list on the public page.')
+                                    ->collapsible()
+                                    ->collapsed(true)
+                                    ->schema([static::structureRepeater()]),
+
+                                Section::make('About the Awarding University')
+                                    #->description('Dark university panel (§9) and campus image in overview (§4). Only the first entry is shown on the page.')
+                                    ->collapsible()
+                                    ->collapsed(true)
+                                    ->schema([static::universityRepeater()]),
+
+                                Section::make('Why Study Through Maverick')
+                                    #->description('Support perk grid (§11). All cards look identical — no featured item.')
+                                    ->collapsible()
+                                    ->collapsed(true)
+                                    ->schema([static::supportRepeater()]),
+
+                                Section::make('Student Success Stories')
+                                    #->description('Video testimonial slider (§12).')
+                                    ->collapsible()
+                                    ->collapsed(true)
+                                    ->schema([static::testimonialsRepeater()]),
+
+                                Section::make('Fees & Scholarships')
+                                    #->description('Fee chips linking to enquiry (§13).')
+                                    ->collapsible()
+                                    ->collapsed(true)
+                                    ->schema([static::feesRepeater()]),
+
+                                Section::make('Student Reviews')
+                                    #->description('Google-style review cards (§16). Avatar photo optional — initials used as fallback.')
+                                    ->collapsible()
+                                    ->collapsed(true)
+                                    ->schema([static::reviewsRepeater()]),
+                            ]),
+
+                        Tab::make('Accreditation & Recognition')
+                            ->icon('heroicon-o-check-badge')
+                            #->description('Logo marquee under the hero (§2) and grouped accreditation grid (§10).')
+                            ->schema([
+                                Section::make('Recognition Marquee')
+                                    #->description('Scrolling logo strip shown directly under the hero.')
+                                    ->collapsible()
+                                    ->collapsed(false)
+                                    ->schema([static::recognitionRepeater()]),
+
+                                Section::make('Accreditation Groups')
+                                    #->description('Grouped logo grids in the Accreditation & Recognition section.')
+                                    ->collapsible()
+                                    ->collapsed(true)
+                                    ->schema([static::accreditationGroupsRepeater()]),
+                            ]),
+
                         Tab::make('FAQs')
                             ->icon('heroicon-o-question-mark-circle')
+                            #->description('Accordion on the programme page (§14). Only active FAQs are shown.')
                             ->schema([
-                                \Filament\Forms\Components\Repeater::make('faqs')
+                                Repeater::make('faqs')
                                     ->relationship()
                                     ->schema([
                                         TextInput::make('question')
                                             ->required()
+                                            ->validationAttribute('question')
                                             ->columnSpanFull(),
 
                                         Textarea::make('answer')
                                             ->required()
                                             ->rows(4)
+                                            ->validationAttribute('answer')
                                             ->columnSpanFull(),
 
                                         Grid::make(2)->schema([
@@ -137,6 +251,7 @@ class ProgramResource extends Resource
                                                 ->default(0),
 
                                             Toggle::make('is_active')
+                                                ->label('Active')
                                                 ->default(true),
                                         ]),
                                     ])
@@ -147,280 +262,6 @@ class ProgramResource extends Resource
                                     ->columnSpanFull(),
                             ]),
 
-                        // Tab 4: Detail Sections (admin-driven content)
-                        Tab::make('Detail Sections')
-                            ->icon('heroicon-o-squares-2x2')
-                            ->schema([
-                                // Quick Highlights — list of label/value pairs
-                            Section::make('Quick Highlights')
-                                ->collapsible()
-                                ->collapsed(false)
-                                ->extraAttributes(['data-pd-accordion' => 'true', 'data-pd-accordion-group' => 'detail-sections'])
-                                ->schema([
-                                                                    Repeater::make('highlights')
-                                                                        ->label('Quick Highlights')
-                                                                        ->helperText('Key facts shown near the top.')
-                                                                        ->schema([
-                                                                            TextInput::make('label')->required(),
-                                                                            TextInput::make('value')->required(),
-                                                                        ])
-                                                                        ->collapsible()
-                                                                        ->columns(2)
-                                                                        ->defaultItems(0)
-                                                                        ->addActionLabel('Add Highlight'),
-                                ]),
-
-                                // Recognition / Accreditation logos
-                            Section::make('Recognition & Accreditation Logos')
-                                ->collapsible()
-                                ->collapsed(true)
-                                ->extraAttributes(['data-pd-accordion' => 'true', 'data-pd-accordion-group' => 'detail-sections'])
-                                ->schema([
-                                                                    Repeater::make('recognition')
-                                                                        ->label('Recognition & Accreditation Logos')
-                                                                        ->helperText('Logo strip shown under the hero.')
-                                                                        ->schema([
-                                                                            TextInput::make('name')->required(),
-                                                                            TextInput::make('logo')->url()->label('Logo URL')->helperText('Or choose from the media library below.'),
-                                                                            MediaPicker::forField('logo', 'programs/recognition')->label('Logo Image'),
-                                                                            RichEditor::make('note')->label('Note (optional)'),
-                                                                        ])
-                                                                        ->collapsible()
-                                                                        ->columns(2)
-                                                                        ->defaultItems(0)
-                                                                        ->addActionLabel('Add Recognition'),
-                                ]),
-
-                                // Snapshot ("Programme at a Glance") — label/value pairs
-                            Section::make('Programme at a Glance')
-                                ->collapsible()
-                                ->collapsed(true)
-                                ->extraAttributes(['data-pd-accordion' => 'true', 'data-pd-accordion-group' => 'detail-sections'])
-                                ->schema([
-                                                                    Repeater::make('snapshot')
-                                                                        ->label('Programme at a Glance')
-                                                                        ->schema([
-                                                                            TextInput::make('label')->required(),
-                                                                            TextInput::make('value')->required(),
-                                                                        ])
-                                                                        ->collapsible()
-                                                                        ->columns(2)
-                                                                        ->defaultItems(0)
-                                                                        ->addActionLabel('Add Snapshot Item'),
-                                ]),
-
-                                // Benefits (Why Choose) — icon + title + desc
-                            Section::make('Why Choose (Benefits)')
-                                ->collapsible()
-                                ->collapsed(true)
-                                ->extraAttributes(['data-pd-accordion' => 'true', 'data-pd-accordion-group' => 'detail-sections'])
-                                ->schema([
-                                                                    Repeater::make('benefits')
-                                                                        ->label('Why Choose (Benefits)')
-                                                                        ->schema([
-                                                                            TextInput::make('icon')->label('Icon (lucide name)')->default('sparkles'),
-                                                                            TextInput::make('title')->required(),
-                                                                            RichEditor::make('desc')->label('Description'),
-                                                                        ])
-                                                                        ->collapsible()
-                                                                        ->columns(3)
-                                                                        ->defaultItems(0)
-                                                                        ->addActionLabel('Add Benefit'),
-                                ]),
-
-                                // Learning outcomes — simple list
-                            Section::make("What You'll Learn")
-                                ->collapsible()
-                                ->collapsed(true)
-                                ->extraAttributes(['data-pd-accordion' => 'true', 'data-pd-accordion-group' => 'detail-sections'])
-                                ->schema([
-                                                                    Repeater::make('learning')
-                                                                        ->label("What You'll Learn (Outcomes)")
-                                                                        ->schema([
-                                                                            TextInput::make('item')->label('Outcome')->required(),
-                                                                        ])
-                                                                        ->collapsible()
-                                                                        ->defaultItems(0)
-                                                                        ->addActionLabel('Add Outcome'),
-                                ]),
-
-                                // Careers — simple list
-                            Section::make('Career Opportunities')
-                                ->collapsible()
-                                ->collapsed(true)
-                                ->extraAttributes(['data-pd-accordion' => 'true', 'data-pd-accordion-group' => 'detail-sections'])
-                                ->schema([
-                                                                    Repeater::make('careers')
-                                                                        ->label('Career Opportunities')
-                                                                        ->schema([
-                                                                            TextInput::make('title')->label('Career Title')->required(),
-                                                                        ])
-                                                                        ->collapsible()
-                                                                        ->defaultItems(0)
-                                                                        ->addActionLabel('Add Career'),
-                                ]),
-
-                                // Programme structure — nested Year → Modules → list
-                            Section::make('Programme Structure')
-                                ->collapsible()
-                                ->collapsed(true)
-                                ->extraAttributes(['data-pd-accordion' => 'true', 'data-pd-accordion-group' => 'detail-sections'])
-                                ->schema([
-                                                                    Repeater::make('structure')
-                                                                        ->label('Programme Structure')
-                                                                        ->schema([
-                                                                            TextInput::make('title')->label('Year Title (e.g. Year 1)')->required(),
-                                                                            TextInput::make('subtitle')->label('Year Subtitle'),
-                                                                            Repeater::make('modules')
-                                                                                ->label('Modules')
-                                                                                ->schema([
-                                                                                    TextInput::make('title')->label('Module Name')->required(),
-                                                                                    RichEditor::make('overview')->label('Overview'),
-                                                                                    Repeater::make('list')
-                                                                                        ->label('Points')
-                                                                                        ->schema([
-                                                                                            TextInput::make('point')->label('Point')->required(),
-                                                                                        ])
-                                                                                        ->collapsible()
-                                                                                        ->defaultItems(0)
-                                                                                        ->addActionLabel('Add Point'),
-                                                                                ])
-                                                                                ->collapsible()
-                                                                                ->defaultItems(0)
-                                                                                ->addActionLabel('Add Module'),
-                                                                        ])
-                                                                        ->collapsible()
-                                                                        ->defaultItems(0)
-                                                                        ->addActionLabel('Add Year'),
-                                ]),
-
-                                // Maverick Support — simple list
-                            Section::make('Why Study Through Maverick')
-                                ->collapsible()
-                                ->collapsed(true)
-                                ->extraAttributes(['data-pd-accordion' => 'true', 'data-pd-accordion-group' => 'detail-sections'])
-                                ->schema([
-                                                                    Repeater::make('support')
-                                                                        ->label('Why Study Through Maverick (Support)')
-                                                                        ->schema([
-                                                                            TextInput::make('item')->label('Support Point')->required(),
-                                                                        ])
-                                                                        ->collapsible()
-                                                                        ->defaultItems(0)
-                                                                        ->addActionLabel('Add Support Point'),
-                                ]),
-
-                                // About the University
-                            Section::make('About the University')
-                                ->collapsible()
-                                ->collapsed(true)
-                                ->extraAttributes(['data-pd-accordion' => 'true', 'data-pd-accordion-group' => 'detail-sections'])
-                                ->schema([
-                                                                    Repeater::make('university')
-                                                                        ->label('About the University')
-                                                                        ->schema([
-                                                                            TextInput::make('name')->label('University Name')->columnSpan(2),
-                                                                            RichEditor::make('description')->label('Description')->columnSpan(2),
-                                                                            TextInput::make('establishment')->label('Established (e.g. "Established 1985")'),
-                                                                            TextInput::make('image')->label('Image URL')->url()->helperText('Or choose from the media library below.'),
-                                                                            MediaPicker::forField('image', 'programs/university')->label('University Image'),
-                                                                        ])
-                                                                        ->collapsible()
-                                                                        ->columns(2)
-                                                                        ->defaultItems(0)
-                                                                        ->addActionLabel('Add University'),
-                                ]),
-
-                                // Accreditation groups — group with nested logo items
-                            Section::make('Accreditation & Recognition')
-                                ->collapsible()
-                                ->collapsed(true)
-                                ->extraAttributes(['data-pd-accordion' => 'true', 'data-pd-accordion-group' => 'detail-sections'])
-                                ->schema([
-                                                                    Repeater::make('accreditation_groups')
-                                                                        ->label('Accreditation & Recognition')
-                                                                        ->schema([
-                                                                            TextInput::make('group')->label('Group Name')->required(),
-                                                                            Repeater::make('items')
-                                                                                ->label('Logos')
-                                                                                ->schema([
-                                                                                    TextInput::make('name')->label('Name')->required(),
-                                                                                    TextInput::make('logo')->label('Logo URL')->helperText('Or choose from the media library below.'),
-                                                                                    MediaPicker::forField('logo', 'programs/accreditation')->label('Logo Image'),
-                                                                                ])
-                                                                                ->collapsible()
-                                                                                ->columns(2)
-                                                                                ->defaultItems(0)
-                                                                                ->addActionLabel('Add Logo'),
-                                                                        ])
-                                                                        ->collapsible()
-                                                                        ->defaultItems(0)
-                                                                        ->addActionLabel('Add Group'),
-                                ]),
-
-                                // Student testimonials (video)
-                            Section::make('Student Success Stories')
-                                ->collapsible()
-                                ->collapsed(true)
-                                ->extraAttributes(['data-pd-accordion' => 'true', 'data-pd-accordion-group' => 'detail-sections'])
-                                ->schema([
-                                                                    Repeater::make('testimonials')
-                                                                        ->label('Student Success Stories (Video)')
-                                                                        ->schema([
-                                                                            TextInput::make('name')->required(),
-                                                                            TextInput::make('role'),
-                                                                            TextInput::make('country'),
-                                                                            TextInput::make('category')->label('Badge (e.g. STUDENT)'),
-                                                                            TextInput::make('thumb')->label('Thumbnail URL')->helperText('Or choose from the media library below.'),
-                                                                            MediaPicker::forField('thumb', 'programs/testimonials')->label('Thumbnail Image'),
-                                                                            TextInput::make('video')->label('Video URL'),
-                                                                        ])
-                                                                        ->collapsible()
-                                                                        ->columns(2)
-                                                                        ->defaultItems(0)
-                                                                        ->addActionLabel('Add Testimonial'),
-                                ]),
-
-                                // Fees — simple list
-                            Section::make('Fee Structure Items')
-                                ->collapsible()
-                                ->collapsed(true)
-                                ->extraAttributes(['data-pd-accordion' => 'true', 'data-pd-accordion-group' => 'detail-sections'])
-                                ->schema([
-                                                                    Repeater::make('fees')
-                                                                        ->label('Fee Structure Items')
-                                                                        ->schema([
-                                                                            TextInput::make('title')->label('Fee Item')->required(),
-                                                                        ])
-                                                                        ->collapsible()
-                                                                        ->defaultItems(0)
-                                                                        ->addActionLabel('Add Fee Item'),
-                                ]),
-
-                                // Reviews (Google ratings)
-                            Section::make('Student Reviews')
-                                ->collapsible()
-                                ->collapsed(true)
-                                ->extraAttributes(['data-pd-accordion' => 'true', 'data-pd-accordion-group' => 'detail-sections'])
-                                ->schema([
-                                                                    Repeater::make('reviews')
-                                                                        ->label('Student Reviews')
-                                                                        ->schema([
-                                                                            TextInput::make('name')->required(),
-                                                                            TextInput::make('avatar')->label('Avatar URL')->helperText('Or choose from the media library below.'),
-                                                                            MediaPicker::forField('avatar', 'programs/reviews')->label('Avatar Image'),
-                                                                            TextInput::make('rating')->label('Rating (1-5)')->numeric()->minValue(1)->maxValue(5),
-                                                                            RichEditor::make('review')->label('Review Text'),
-                                                                        ])
-                                                                        ->collapsible()
-                                                                        ->columns(2)
-                                                                        ->defaultItems(0)
-                                                                        ->addActionLabel('Add Review'),
-                                ]),
-                        ]),
-
-
-                        // Tab 5: SEO (Reusable Component!)
                         Tab::make('SEO')
                             ->icon('heroicon-o-magnifying-glass')
                             ->schema(SeoFormFields::make()),
@@ -433,20 +274,53 @@ class ProgramResource extends Resource
     {
         return $table
             ->columns([
+                ImageColumn::make('image_url')
+                    ->label('Hero')
+                    ->size(40),
+
                 TextColumn::make('title')
                     ->sortable()
-                    ->searchable(),
+                    ->searchable()
+                    ->limit(40),
+
                 TextColumn::make('programCategory.name')
                     ->label('Category')
                     ->sortable(),
-                TextColumn::make('partner_university'),
+
+                TextColumn::make('partner_university')
+                    ->searchable()
+                    ->toggleable()
+                    ->limit(30),
+
+                TextColumn::make('duration')
+                    ->toggleable(),
+
+                TextColumn::make('level')
+                    ->toggleable(),
+
+                TextColumn::make('sort_order')
+                    ->label('Order')
+                    ->sortable(),
+
                 IconColumn::make('is_featured')
-                    ->boolean(),
+                    ->boolean()
+                    ->label('Featured'),
+
                 IconColumn::make('is_active')
-                    ->boolean(),
+                    ->boolean()
+                    ->label('Active'),
             ])
+            ->defaultSort('sort_order')
             ->filters([
-                //
+                TernaryFilter::make('is_active')
+                    ->label('Active'),
+
+                TernaryFilter::make('is_featured')
+                    ->label('Featured'),
+
+                SelectFilter::make('program_category_id')
+                    ->label('Category')
+                    ->relationship('programCategory', 'name'),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
@@ -460,9 +334,7 @@ class ProgramResource extends Resource
 
     public static function getRelations(): array
     {
-        return [
-            //
-        ];
+        return [];
     }
 
     public static function getPages(): array
@@ -472,5 +344,477 @@ class ProgramResource extends Resource
             'create' => Pages\CreateProgram::route('/create'),
             'edit' => Pages\EditProgram::route('/{record}/edit'),
         ];
+    }
+
+    /**
+     * Strip transient MediaPicker keys and sync nested media URLs before save.
+     */
+    public static function cleanJsonForSave(array $data): array
+    {
+        foreach ($data['recognition'] ?? [] as &$row) {
+            static::syncNestedMediaField($row, 'logo');
+        }
+        unset($row);
+
+        foreach ($data['university'] ?? [] as &$row) {
+            static::syncNestedMediaField($row, 'image');
+        }
+        unset($row);
+
+        foreach ($data['testimonials'] ?? [] as &$row) {
+            static::syncNestedMediaField($row, 'thumb');
+        }
+        unset($row);
+
+        foreach ($data['reviews'] ?? [] as &$row) {
+            static::syncNestedMediaField($row, 'avatar');
+        }
+        unset($row);
+
+        foreach ($data['accreditation_groups'] ?? [] as &$group) {
+            foreach ($group['items'] ?? [] as &$item) {
+                static::syncNestedMediaField($item, 'logo');
+            }
+            unset($item);
+        }
+        unset($group);
+
+        if (isset($data['recognition'])) {
+            static::stripAssetIdKeys($data['recognition']);
+        }
+        if (isset($data['university'])) {
+            static::stripAssetIdKeys($data['university']);
+        }
+        if (isset($data['testimonials'])) {
+            static::stripAssetIdKeys($data['testimonials']);
+        }
+        if (isset($data['reviews'])) {
+            static::stripAssetIdKeys($data['reviews']);
+        }
+
+        foreach ($data['accreditation_groups'] ?? [] as &$group) {
+            if (isset($group['items'])) {
+                static::stripAssetIdKeys($group['items']);
+            }
+        }
+        unset($group);
+
+        return $data;
+    }
+
+    protected static function syncNestedMediaField(array &$row, string $field): void
+    {
+        $assetKey = "{$field}_asset_id";
+
+        if (! array_key_exists($assetKey, $row)) {
+            return;
+        }
+
+        if (! empty($row[$assetKey])) {
+            $asset = MediaAsset::query()->find($row[$assetKey]);
+
+            if ($asset) {
+                $row[$field] = $asset->url;
+            }
+        } elseif (empty($row[$field])) {
+            $row[$field] = null;
+        }
+
+        unset($row[$assetKey]);
+    }
+
+    protected static function stripAssetIdKeys(array &$rows): void
+    {
+        foreach ($rows as &$row) {
+            foreach (array_keys($row) as $key) {
+                if (str_ends_with($key, '_asset_id')) {
+                    unset($row[$key]);
+                }
+            }
+        }
+        unset($row);
+    }
+
+    /** @return array<string, string> */
+    protected static function lucideIconOptions(): array
+    {
+        return [
+            'users' => 'users — Leadership / teams',
+            'book-open' => 'book-open — Curriculum',
+            'globe' => 'globe — International',
+            'trending-up' => 'trending-up — Career growth',
+            'laptop' => 'laptop — Flexible learning',
+            'sparkles' => 'sparkles — Highlights',
+            'shield' => 'shield — Accreditation',
+            'award' => 'award — Recognition',
+            'graduation-cap' => 'graduation-cap — Graduation',
+            'briefcase' => 'briefcase — Business',
+            'target' => 'target — Goals',
+            'lightbulb' => 'lightbulb — Innovation',
+            'heart-handshake' => 'heart-handshake — Support',
+            'clock' => 'clock — Duration',
+            'map-pin' => 'map-pin — Location',
+        ];
+    }
+
+    protected static function highlightsRepeater(): Repeater
+    {
+        return Repeater::make('highlights')
+            ->schema([
+                TextInput::make('label')
+                    ->required()
+                    ->placeholder('e.g. Duration')
+                    ->validationAttribute('highlight label'),
+                TextInput::make('value')
+                    ->required()
+                    ->placeholder('e.g. 20–24 Months')
+                    ->validationAttribute('highlight value'),
+            ])
+            ->reorderable()
+            ->collapsible()
+            ->columns(2)
+            ->defaultItems(0)
+            ->itemLabel(fn (array $state): ?string => $state['value'] ?? $state['label'] ?? 'Highlight')
+            ->addActionLabel('Add Highlight');
+    }
+
+    protected static function snapshotRepeater(): Repeater
+    {
+        return Repeater::make('snapshot')
+            ->schema([
+                TextInput::make('label')
+                    ->required()
+                    ->placeholder('e.g. Degree Award')
+                    ->validationAttribute('snapshot label'),
+                TextInput::make('value')
+                    ->required()
+                    ->placeholder('e.g. BSc')
+                    ->validationAttribute('snapshot value'),
+            ])
+            ->reorderable()
+            ->collapsible()
+            ->columns(2)
+            ->defaultItems(0)
+            ->itemLabel(fn (array $state): ?string => $state['label'] ?? 'Snapshot item')
+            ->addActionLabel('Add Snapshot Item');
+    }
+
+    protected static function benefitsRepeater(): Repeater
+    {
+        return Repeater::make('benefits')
+            ->schema([
+                Grid::make(2)->schema([
+                    Select::make('icon_preset')
+                        ->label('Icon preset')
+                        ->options(static::lucideIconOptions())
+                        ->searchable()
+                        ->dehydrated(false)
+                        ->live()
+                        ->afterStateUpdated(fn ($state, Set $set) => filled($state) ? $set('icon', $state) : null)
+                        ->helperText('Pick a common Lucide icon, or enter a custom name below.'),
+
+                    TextInput::make('icon')
+                        ->label('Icon name (Lucide)')
+                        ->required()
+                        ->default('sparkles')
+                        ->placeholder('e.g. book-open-check')
+                        ->helperText('Any Lucide icon name. Overrides the preset when typed manually.'),
+                ]),
+                TextInput::make('title')
+                    ->required()
+                    ->placeholder('e.g. Develop Leadership Skills')
+                    ->validationAttribute('benefit title')
+                    ->columnSpanFull(),
+                RichEditor::make('desc')
+                    ->label('Description')
+                    ->columnSpanFull(),
+            ])
+            ->reorderable()
+            ->collapsible()
+            ->defaultItems(0)
+            ->itemLabel(fn (array $state): ?string => $state['title'] ?? 'Benefit')
+            ->addActionLabel('Add Benefit');
+    }
+
+    protected static function learningRepeater(): Repeater
+    {
+        return Repeater::make('learning')
+            ->schema([
+                TextInput::make('item')
+                    ->label('Outcome')
+                    ->required()
+                    ->placeholder('e.g. Develop strategic thinking')
+                    ->validationAttribute('learning outcome'),
+            ])
+            ->reorderable()
+            ->collapsible()
+            ->defaultItems(0)
+            ->itemLabel(fn (array $state): ?string => $state['item'] ?? 'Outcome')
+            ->addActionLabel('Add Outcome');
+    }
+
+    protected static function careersRepeater(): Repeater
+    {
+        return Repeater::make('careers')
+            ->schema([
+                TextInput::make('title')
+                    ->label('Career Title')
+                    ->required()
+                    ->placeholder('e.g. Business Manager')
+                    ->validationAttribute('career title'),
+            ])
+            ->reorderable()
+            ->collapsible()
+            ->defaultItems(0)
+            ->itemLabel(fn (array $state): ?string => $state['title'] ?? 'Career')
+            ->addActionLabel('Add Career');
+    }
+
+    protected static function structureRepeater(): Repeater
+    {
+        return Repeater::make('structure')
+            ->schema([
+                TextInput::make('title')
+                    ->label('Year Title')
+                    ->required()
+                    ->placeholder('Year 1')
+                    ->validationAttribute('year title'),
+                TextInput::make('subtitle')
+                    ->label('Year Subtitle')
+                    ->placeholder('Business Foundations'),
+                Repeater::make('modules')
+                    ->label('Modules')
+                    ->schema([
+                        TextInput::make('title')
+                            ->label('Module Name')
+                            ->required()
+                            ->validationAttribute('module title'),
+                        RichEditor::make('overview')
+                            ->label('Overview')
+                            ->helperText('Optional extended copy (not shown in the public list view).'),
+                        RichEditor::make('desc')
+                            ->label('Description')
+                            ->helperText('Optional alternate description (stored for future use).'),
+                        Repeater::make('list')
+                            ->label('Key Points')
+                            ->schema([
+                                TextInput::make('point')
+                                    ->label('Point')
+                                    ->required()
+                                    ->validationAttribute('module point'),
+                            ])
+                            ->collapsible()
+                            ->collapsed(true)
+                            ->defaultItems(0)
+                            ->itemLabel(fn (array $state): ?string => $state['point'] ?? 'Point')
+                            ->addActionLabel('Add Point'),
+                    ])
+                    ->collapsible()
+                    ->collapsed(true)
+                    ->defaultItems(0)
+                    ->itemLabel(fn (array $state): ?string => isset($state['title']) ? 'Module: '.$state['title'] : 'Module')
+                    ->addActionLabel('Add Module'),
+            ])
+            ->reorderable()
+            ->collapsible()
+            ->defaultItems(0)
+            ->itemLabel(fn (array $state): ?string => $state['title'] ?? 'Year')
+            ->addActionLabel('Add Year');
+    }
+
+    protected static function universityRepeater(): Repeater
+    {
+        return Repeater::make('university')
+            ->maxItems(1)
+            ->schema([
+                TextInput::make('name')
+                    ->label('University Name')
+                    ->placeholder('e.g. Girne American University')
+                    ->columnSpanFull(),
+                RichEditor::make('description')
+                    ->label('Description')
+                    ->columnSpanFull(),
+                TextInput::make('establishment')
+                    ->label('Established')
+                    ->placeholder('Established 1985'),
+                TextInput::make('image')
+                    ->label('Campus Image URL')
+                    ->url()
+                    ->helperText('Or choose from the media library below.'),
+                MediaPicker::forField('image', 'programs/university')
+                    ->label('Campus Image'),
+            ])
+            ->collapsible()
+            ->columns(2)
+            ->defaultItems(0)
+            ->addActionLabel('Add University');
+    }
+
+    protected static function supportRepeater(): Repeater
+    {
+        return Repeater::make('support')
+            ->schema([
+                TextInput::make('item')
+                    ->label('Support Point')
+                    ->required()
+                    ->placeholder('e.g. Dedicated Academic Support')
+                    ->validationAttribute('support point'),
+            ])
+            ->reorderable()
+            ->collapsible()
+            ->defaultItems(0)
+            ->itemLabel(fn (array $state): ?string => $state['item'] ?? 'Support point')
+            ->addActionLabel('Add Support Point');
+    }
+
+    protected static function testimonialsRepeater(): Repeater
+    {
+        return Repeater::make('testimonials')
+            ->schema([
+                TextInput::make('name')
+                    ->required()
+                    ->validationAttribute('student name'),
+                TextInput::make('role')
+                    ->placeholder('e.g. MBA Graduate'),
+                TextInput::make('country')
+                    ->placeholder('e.g. UAE'),
+                TextInput::make('category')
+                    ->label('Badge')
+                    ->placeholder('e.g. STUDENT'),
+                TextInput::make('thumb')
+                    ->label('Thumbnail URL')
+                    ->url()
+                    ->helperText('Video card thumbnail. Or choose from the media library below.'),
+                MediaPicker::forField('thumb', 'programs/testimonials')
+                    ->label('Thumbnail Image'),
+                TextInput::make('video')
+                    ->label('Video URL')
+                    ->url()
+                    ->placeholder('https://...')
+                    ->helperText('YouTube or hosted video URL for the play button.')
+                    ->columnSpanFull(),
+            ])
+            ->reorderable()
+            ->collapsible()
+            ->columns(2)
+            ->defaultItems(0)
+            ->itemLabel(fn (array $state): ?string => $state['name'] ?? 'Testimonial')
+            ->addActionLabel('Add Testimonial');
+    }
+
+    protected static function feesRepeater(): Repeater
+    {
+        return Repeater::make('fees')
+            ->schema([
+                TextInput::make('title')
+                    ->label('Fee Item')
+                    ->required()
+                    ->placeholder('e.g. Tuition Fees')
+                    ->validationAttribute('fee item'),
+            ])
+            ->reorderable()
+            ->collapsible()
+            ->defaultItems(0)
+            ->itemLabel(fn (array $state): ?string => $state['title'] ?? 'Fee item')
+            ->addActionLabel('Add Fee Item');
+    }
+
+    protected static function reviewsRepeater(): Repeater
+    {
+        return Repeater::make('reviews')
+            ->schema([
+                TextInput::make('name')
+                    ->required()
+                    ->validationAttribute('reviewer name'),
+                TextInput::make('avatar')
+                    ->label('Avatar URL')
+                    ->url()
+                    ->helperText('Optional. Or choose from the media library below.'),
+                MediaPicker::forField('avatar', 'programs/reviews')
+                    ->label('Avatar Image'),
+                Select::make('rating')
+                    ->options([
+                        1 => '1 star',
+                        2 => '2 stars',
+                        3 => '3 stars',
+                        4 => '4 stars',
+                        5 => '5 stars',
+                    ])
+                    ->default(5)
+                    ->required()
+                    ->validationAttribute('rating'),
+                RichEditor::make('review')
+                    ->label('Review Text')
+                    ->columnSpanFull(),
+            ])
+            ->reorderable()
+            ->collapsible()
+            ->columns(2)
+            ->defaultItems(0)
+            ->itemLabel(fn (array $state): ?string => $state['name'] ?? 'Review')
+            ->addActionLabel('Add Review');
+    }
+
+    protected static function recognitionRepeater(): Repeater
+    {
+        return Repeater::make('recognition')
+            ->schema([
+                TextInput::make('name')
+                    ->required()
+                    ->validationAttribute('organisation name'),
+                TextInput::make('logo')
+                    ->label('Logo URL')
+                    ->url()
+                    ->helperText('Or choose from the media library below.'),
+                MediaPicker::forField('logo', 'programs/recognition')
+                    ->label('Logo Image'),
+                RichEditor::make('note')
+                    ->label('Note (optional)')
+                    ->helperText('Short caption shown under the name in the marquee.')
+                    ->columnSpanFull(),
+            ])
+            ->reorderable()
+            ->collapsible()
+            ->columns(2)
+            ->defaultItems(0)
+            ->itemLabel(fn (array $state): ?string => $state['name'] ?? 'Recognition')
+            ->addActionLabel('Add Recognition Logo');
+    }
+
+    protected static function accreditationGroupsRepeater(): Repeater
+    {
+        return Repeater::make('accreditation_groups')
+            ->schema([
+                TextInput::make('group')
+                    ->label('Group Name')
+                    ->required()
+                    ->placeholder('e.g. International Accreditation')
+                    ->validationAttribute('group name'),
+                Repeater::make('items')
+                    ->label('Logos')
+                    ->schema([
+                        TextInput::make('name')
+                            ->label('Name')
+                            ->required()
+                            ->validationAttribute('logo name'),
+                        TextInput::make('logo')
+                            ->label('Logo URL')
+                            ->url()
+                            ->helperText('Or choose from the media library below.'),
+                        MediaPicker::forField('logo', 'programs/accreditation')
+                            ->label('Logo Image'),
+                    ])
+                    ->reorderable()
+                    ->collapsible()
+                    ->columns(2)
+                    ->defaultItems(0)
+                    ->itemLabel(fn (array $state): ?string => $state['name'] ?? 'Logo')
+                    ->addActionLabel('Add Logo'),
+            ])
+            ->reorderable()
+            ->collapsible()
+            ->defaultItems(0)
+            ->itemLabel(fn (array $state): ?string => $state['group'] ?? 'Group')
+            ->addActionLabel('Add Group');
     }
 }

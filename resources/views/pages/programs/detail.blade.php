@@ -39,6 +39,24 @@
                       || $fees->contains(fn($f) => stripos($f, 'scholar') !== false)
                       || $snapshot->contains(fn($s) => stripos(($s['label'] ?? '').' '.($s['value'] ?? ''), 'scholar') !== false);
     $verifyTag = '<span class="verify-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>verify</span>';
+    $initials = fn (?string $name, int $take = 2) =>
+        collect(preg_split('/\s+/', trim($name ?? '')))
+            ->filter()
+            ->map(fn ($w) => mb_substr($w, 0, 1))
+            ->take($take)
+            ->implode('');
+    $heroBgUrl = media_url($program->image_url, 'assets/images/edutainment/hero-cinematic.jpg');
+    $uniImgUrl = media_url($university->image ?? null, 'assets/images/edutainment/international-students-university-campus-1.jpg');
+    $learnImgUrl = asset('assets/images/edutainment/dubai-uae-skyline-students-studying-camp-1.jpg');
+    $renderLogoChip = function (?string $name, ?string $logo, string $chipClass, string $fallbackClass, int $take = 2) use ($initials) {
+        $url = media_url($logo);
+        $abbr = e($initials($name, $take));
+        $alt = e($name ?? '');
+        if ($url) {
+            return '<span class="' . $chipClass . '"><img src="' . e($url) . '" alt="' . $alt . '" loading="lazy" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><span class="' . $fallbackClass . '" hidden>' . $abbr . '</span></span>';
+        }
+        return '<span class="' . $chipClass . '"><span class="' . $fallbackClass . '">' . $abbr . '</span></span>';
+    };
 @endphp
 
 <div class="page-pd">
@@ -57,7 +75,7 @@
 
     {{-- ============ 1. HERO (Cinematic Dark) ============ --}}
     <section class="hero" id="top" aria-label="{{ $program->title }}">
-        <div class="hero-backdrop"></div>
+        <div class="hero-backdrop" style="--hero-bg: url('{{ $heroBgUrl }}')"></div>
         @if($hasScholarship)<span class="ribbon">Scholarship Available</span>@endif
         <div class="container">
             <div class="hero-badge rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>{{ $program->level ?: 'Undergraduate' }} @if($cat) · {{ $cat->name }} @endif</div>
@@ -109,10 +127,10 @@
             <div class="rec-track">
                 <div class="rec-slider">
                     @foreach($recognition as $r)
-                        <div class="rec-card"><span class="rec-logo">{{ $r['name'] }}</span><div><div class="t">{{ $r['name'] }}</div>@if(!empty($r['note']))<div class="s">{!! strip_tags($r['note']) !!}</div>@endif</div></div>
+                        <div class="rec-card">{!! $renderLogoChip($r['name'] ?? '', $r['logo'] ?? null, 'rec-logo', 'rec-logo-fallback', 3) !!}<div><div class="t">{{ $r['name'] }}</div>@if(!empty($r['note']))<div class="s">{!! strip_tags($r['note']) !!}</div>@endif</div></div>
                     @endforeach
                     @foreach($recognition as $r)
-                        <div class="rec-card" aria-hidden="true"><span class="rec-logo">{{ $r['name'] }}</span><div><div class="t">{{ $r['name'] }}</div>@if(!empty($r['note']))<div class="s">{!! strip_tags($r['note']) !!}</div>@endif</div></div>
+                        <div class="rec-card" aria-hidden="true">{!! $renderLogoChip($r['name'] ?? '', $r['logo'] ?? null, 'rec-logo', 'rec-logo-fallback', 3) !!}<div><div class="t">{{ $r['name'] }}</div>@if(!empty($r['note']))<div class="s">{!! strip_tags($r['note']) !!}</div>@endif</div></div>
                     @endforeach
                 </div>
             </div>
@@ -152,7 +170,8 @@
             </div>
             @if($highlights->count())
             <div class="ov-figure rv rv-d1">
-                <div class="bg"></div><div class="fg"></div>
+                @if($uniImgUrl)<img class="ov-photo" src="{{ $uniImgUrl }}" alt="Campus at {{ $university->name ?? 'partner university' }}" loading="lazy">@endif
+                <div class="ov-shade"></div>
                 @if($hasScholarship)<span class="badge">Globally Recognised</span>@endif
                 <div class="stat">
                     <div class="num">{{ $highlights->first()['value'] ?? 'Leadership' }}</div>
@@ -196,6 +215,7 @@
             <div class="learn-sticky rv">
                 <span class="kicker">What You'll Learn</span>
                 <h2 class="d" style="font-size:clamp(28px,3.4vw,42px);line-height:1.06;letter-spacing:-.03em;margin:14px 0 18px">Learning <em>Outcomes</em></h2>
+                <figure class="learn-photo"><img src="{{ $learnImgUrl }}" alt="Students in a collaborative learning environment" loading="lazy"></figure>
                 <p style="font-size:16px;line-height:1.7;color:var(--muted)">Students will learn to:</p>
             </div>
             <div class="learn-field">
@@ -243,11 +263,11 @@
                     <summary><span class="y-num">Y{{ $i + 1 }}</span><span class="y-main"><div class="y-lab">Year {{ $i + 1 }}</div><div class="y-title">{{ $stage['title'] }}</div></span><span class="plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary>
                     <div class="struct-mods">
                         @if(!empty($stage['subtitle']))<div class="m-lab">{{ $stage['subtitle'] }}</div>@endif
-                        <div class="mods">
+                        <ul class="mod-list">
                             @foreach($stage['modules'] as $m)
-                                <div class="mod-card">{{ $m['title'] }}</div>
+                                <li class="mod-row">{{ $m['title'] }}</li>
                             @endforeach
-                        </div>
+                        </ul>
                     </div>
                 </details>
                 @endforeach
@@ -262,7 +282,8 @@
         <div class="tex-grid"></div>
         <div class="container gau-grid">
             <div class="gau-photo rv">
-                <div class="img"></div><div class="glow"></div>
+                @if($uniImgUrl)<img class="gau-img" src="{{ $uniImgUrl }}" alt="{{ $university->name }}" loading="lazy">@endif
+                <div class="glow"></div>
                 @if($university->name)<span class="logo">{{ collect(preg_split('/\s+/', $university->name))->map(fn($w) => mb_substr($w, 0, 1))->take(3)->implode('') }}</span>@endif
                 @if($university->establishment)<div class="est"><div class="k">Established</div><div class="v">{{ str_replace('Established ', '', $university->establishment) }}</div></div>@endif
             </div>
@@ -294,7 +315,7 @@
                 <div class="acc-col rv rv-d{{ min($loop->iteration % 3 + 1, 3) }}"><div class="h-lab">{{ $g['group'] }}</div>
                     <div class="acc-logos">
                         @foreach($g['items'] as $item)
-                            <div class="acc-logo"><span class="sq">{{ collect(preg_split('/\s+/', $item['name']))->map(fn($w) => mb_substr($w, 0, 1))->take(2)->implode('') }}</span>{{ $item['name'] }}</div>
+                            <div class="acc-logo">{!! $renderLogoChip($item['name'] ?? '', $item['logo'] ?? null, 'sq', 'sq-fallback', 2) !!}{{ $item['name'] }}</div>
                         @endforeach
                     </div>
                 </div>
@@ -315,7 +336,7 @@
             </div>
             <div class="mav-grid">
                 @foreach($support as $i => $s)
-                    <div class="mav-card @if($i === 0) active @endif rv rv-d{{ min($i % 3 + 1, 3) }}">
+                    <div class="mav-card rv rv-d{{ min($i % 3 + 1, 3) }}">
                         <span class="ic"><i data-lucide="{{ $i % 2 === 0 ? 'book-open-check' : 'users-round' }}"></i></span>
                         <div class="nm">{{ $s }}</div>
                         <div class="ds">Support designed to help you succeed at every stage.</div>
@@ -476,7 +497,14 @@
             <div class="rev-flow">
                 @foreach($reviews as $r)
                 <div class="rev-card">
-                    <div class="head"><span class="ava">{{ collect(preg_split('/\s+/', $r['name'] ?? ''))->map(fn($w) => mb_substr($w, 0, 1))->take(2)->implode('') }}</span><div><div class="nm">{{ $r['name'] }}</div><div class="rl" style="font-size:12px;color:var(--muted)">Student</div></div></div>
+                    <div class="head"><span class="ava">@php $avatarUrl = media_url($r['avatar'] ?? null); @endphp
+                        @if($avatarUrl)
+                            <img class="ava-img" src="{{ $avatarUrl }}" alt="{{ $r['name'] }}" loading="lazy" onerror="this.hidden=true;this.nextElementSibling.hidden=false">
+                            <span class="ava-fallback" hidden>{{ $initials($r['name'] ?? '') }}</span>
+                        @else
+                            <span class="ava-fallback">{{ $initials($r['name'] ?? '') }}</span>
+                        @endif
+                    </span><div><div class="nm">{{ $r['name'] }}</div><div class="rl" style="font-size:12px;color:var(--muted)">Student</div></div></div>
                     <div class="stars">@for($i = 1; $i <= ($r['rating'] ?? 5); $i++)<svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 1-5 5 1 7-6-4-6 4 1-7-5-5 7-1z"/></svg>@endfor</div>
                     <div class="q">{!! $r['review'] ?? '' !!}</div>
                 </div>
