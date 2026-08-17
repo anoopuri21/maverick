@@ -12,7 +12,7 @@ class AccreditationController extends Controller
     {
         // Section 1: Accreditations & Partnerships (Accreditation + Alumni types)
         $accreditationLogos = PartnerLogo::select('id', 'name', 'logo_url', 'type', 'sort_order')
-            ->whereIn('type', ['accreditation', 'alumni'])
+            ->whereIn('type', ['accreditation', 'recognition'])
             ->where('is_active', true)
             ->orderBy('sort_order')
             ->get();

@@ -9,7 +9,7 @@
         <h2 class="programs__heading section-title">
           <span class="hwdi__heading-line">
             <span class="text-reveal-wrapper">
-              <span class="text-reveal-inner">Accreditations, Partnerships & </span>
+              <span class="text-reveal-inner">Accreditations & </span>
             </span>
           </span>
           <span class="hwdi__heading-line hwdi__heading-line--red">
@@ -23,21 +23,6 @@
         </p>
       </div>
 
-      <!-- Badge Cards -->
-      <div class="accreditations__badges fade-up">
-        <div class="accred-card accred-card--badge">
-          <span class="accred-card__icon">🏆</span>
-          <span class="accred-card__text">Accredited</span>
-        </div>
-        <div class="accred-card accred-card--badge">
-          <span class="accred-card__icon">🤝</span>
-          <span class="accred-card__text">Partnerships</span>
-        </div>
-        <div class="accred-card accred-card--badge">
-          <span class="accred-card__icon">⭐</span>
-          <span class="accred-card__text">Recognized</span>
-        </div>
-      </div>
     </div>
 
     <!-- Logo Slider -->
