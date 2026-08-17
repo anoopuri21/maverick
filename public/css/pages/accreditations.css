@@ -844,3 +844,113 @@
     color: rgba(255, 255, 255, 0.9);
   }
 }
+
+/* =========================================================
+   AWARDS — Flat Design 2.0 + Micro-Animations
+   ("The Interactive Academy")
+   ========================================================= */
+.award-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 22px;
+  padding: 1.5rem 0 0.5rem;
+}
+.award-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--accred-bg);
+  border: 1px solid var(--accred-border);
+  border-radius: var(--accred-radius);
+  overflow: hidden;
+  transition: transform .38s cubic-bezier(.2,.7,.2,1), box-shadow .38s ease, border-color .38s ease;
+}
+.award-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 46px rgba(26, 43, 122, .14);
+  border-color: rgba(220, 38, 38, .28);
+}
+.award-card__media {
+  position: relative;
+  height: 220px;
+  background: #ffffff;
+  border-bottom: 1px solid var(--accred-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  overflow: hidden;
+}
+.award-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;   /* never crops — whole image scales to fit */
+  object-position: center;
+  filter: grayscale(18%);
+  transition: transform .5s cubic-bezier(.2,.7,.2,1), filter .5s ease;
+}
+.award-card:hover .award-card__img {
+  transform: scale(1.06);
+  filter: grayscale(0%);
+}
+.award-card__placeholder {
+  font-family: var(--font-display, "PP Neue Montreal", sans-serif);
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--accred-navy);
+  letter-spacing: .02em;
+}
+.award-card__body {
+  padding: 22px 24px 28px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.award-card__kicker {
+  font-family: var(--font-display, "PP Neue Montreal", sans-serif);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--accred-red);
+  margin-bottom: 8px;
+}
+.award-card__title {
+  font-family: var(--font-display, "PP Neue Montreal", sans-serif);
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--accred-navy-dark);
+  margin-bottom: 10px;
+}
+.award-card__desc {
+  font-family: var(--font-body, "Poppins", sans-serif);
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--accred-muted);
+  margin: 0;
+}
+.award-card__accent {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: var(--accred-red);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .45s cubic-bezier(.2,.7,.2,1);
+}
+.award-card:hover .award-card__accent { transform: scaleX(1); }
+
+.js .award-card[data-reveal] { opacity: 0; transform: translateY(24px); }
+.js .award-card[data-reveal].is-revealed { opacity: 1; transform: none; transition: opacity .6s ease, transform .6s cubic-bezier(.2,.7,.2,1); }
+
+@media (max-width: 480px) {
+  .award-grid { grid-template-columns: 1fr; gap: 18px; }
+  .award-card__media { height: 170px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .award-card, .award-card__img, .award-card__accent, .award-card[data-reveal] { transition: none !important; }
+  .js .award-card[data-reveal] { opacity: 1; transform: none; }
+}
