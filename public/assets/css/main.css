@@ -4448,7 +4448,7 @@ html.js .scale-in {
   display: flex;
   flex-wrap: nowrap;
   gap: 2rem;
-  padding: 3rem var(--container-padding, 2rem);
+  padding: 1rem;
   width: max-content;
 }
 
@@ -4475,7 +4475,7 @@ html.js .scale-in {
 
 .insights__card-image {
   width: 100%;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 1 / 1;
   overflow: hidden;
 }
 
