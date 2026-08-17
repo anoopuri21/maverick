@@ -5,7 +5,6 @@
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/pages/program-detail.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/components/cinematic-hero.css') }}">
 @endpush
 
 @push('head')
@@ -20,11 +19,6 @@
 
 @section('content')
 @php
-    // ------------------------------------------------------------------
-    // PROGRAMME CONTENT MODEL — admin-driven (from Program model JSON casts)
-    // Normalized via model accessors so the blade stays clean.
-    // Every section is optional; render only if content exists.
-    // ------------------------------------------------------------------
     $cat = $program->programCategory;
     $highlights          = $program->highlights_list;
     $recognition         = $program->recognition_list;
@@ -40,154 +34,129 @@
     $fees                = $program->fees_list;
     $faqs                = $program->faqs;
     $reviews             = $program->reviews_list;
-    $ourStoryTestimonials = $program->review_testimonial_objects;
-    $sectionNav          = $program->section_nav;
+    // Scholarship ribbon only if content mentions scholarships
+    $hasScholarship = $highlights->contains(fn($h) => stripos(($h['label'] ?? '').' '.($h['value'] ?? ''), 'scholar') !== false)
+                      || $fees->contains(fn($f) => stripos($f, 'scholar') !== false)
+                      || $snapshot->contains(fn($s) => stripos(($s['label'] ?? '').' '.($s['value'] ?? ''), 'scholar') !== false);
+    $verifyTag = '<span class="verify-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>verify</span>';
 @endphp
 
 <div class="page-pd">
-    <div class="pd-progress" aria-hidden="true"></div>
 
-    {{-- ============ STICKY SIDEBAR / BOTTOM BAR ============ --}}
-    <aside class="pd-apply" data-testid="pd-apply">
-        <a href="#enquire" class="pd-apply__primary">Apply Now</a>
-        <a href="{{ route('contact') }}" class="pd-apply__ghost">Enquire</a>
-    </aside>
-
-    {{-- ============ STEP 1 · HERO (cinematic — same as other pages) ============ --}}
-    <section class="cinematic-hero cinematic-hero--short pd-hero" id="top" aria-label="{{ $program->title }}" data-testid="pd-hero">
-        <div class="cinematic-hero__bg" aria-hidden="true">
-            <div class="cinematic-hero__bg-image" style="background-image: url('{{ $program->image_url ?? asset('assets/images/homepage/mba.jpg') }}')"></div>
-            <div class="cinematic-hero__gradient"></div>
-            <div class="cinematic-hero__noise"></div>
-            <div class="cinematic-hero__shapes">
-                <svg class="cinematic-hero__shape cinematic-hero__shape--1" viewBox="0 0 200 200" fill="none"><circle cx="100" cy="100" r="80" stroke="rgba(255,255,255,0.15)" stroke-width="1"/></svg>
-                <svg class="cinematic-hero__shape cinematic-hero__shape--2" viewBox="0 0 300 300" fill="none"><circle cx="150" cy="150" r="120" stroke="rgba(236,31,36,0.22)" stroke-width="1"/></svg>
-                <svg class="cinematic-hero__shape cinematic-hero__shape--3" viewBox="0 0 100 100" fill="none"><rect x="10" y="10" width="80" height="80" rx="8" stroke="rgba(255,255,255,0.15)" stroke-width="1" transform="rotate(20 50 50)"/></svg>
-            </div>
-            <div class="cinematic-hero__particles">
-                @for($i = 0; $i < 4; $i++)
-                    <div class="cinematic-hero__particle"></div>
-                @endfor
-            </div>
-            <div class="cinematic-hero__scanline"></div>
-            <div class="cinematic-hero__corners">
-                <div class="cinematic-hero__corner cinematic-hero__corner--tl"></div>
-                <div class="cinematic-hero__corner cinematic-hero__corner--tr"></div>
-                <div class="cinematic-hero__corner cinematic-hero__corner--bl"></div>
-                <div class="cinematic-hero__corner cinematic-hero__corner--br"></div>
+    {{-- ============ STICKY BAR ============ --}}
+    <div class="sticky-bar">
+        <div class="sticky-inner">
+            <a href="#top" class="sticky-brand"><span class="mark">M</span><span class="d">Maverick</span><span class="sticky-name"> · {{ $program->title }}</span></a>
+            <div class="sticky-ctas">
+                <span class="sticky-note">Admissions open</span>
+                <a href="#enquire" class="btn sticky-enquire"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span>Enquire Now</span></a>
+                <a href="#enquire" class="btn sticky-apply"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8"/></svg><span>Apply Now</span></a>
             </div>
         </div>
+    </div>
 
-        <div class="container cinematic-hero__content">
-            @if($cat)
-                <span class="cinematic-hero__eyebrow">
-                    <span class="cinematic-hero__eyebrow-line"></span>
-                    {{ $cat->name }}
-                </span>
-            @endif
-            <h1 class="cinematic-hero__title">{{ $program->title }}</h1>
-            @if($program->short_description)
-                <p class="cinematic-hero__description">{{ $program->short_description }}</p>
-            @endif
-            @if($program->partner_university || $program->duration || $program->level || $reviews->count())
-            <div class="pd-hero__meta">
-                @if($program->partner_university)<span class="pd-hero__meta-item">{{ $program->partner_university }}</span>@endif
-                @if($program->duration)<span class="pd-hero__meta-rule"></span><span class="pd-hero__meta-item">{{ $program->duration }}</span>@endif
-                @if($program->level)<span class="pd-hero__meta-rule"></span><span class="pd-hero__meta-item">{{ $program->level }}</span>@endif
-                @if($reviews->count())<span class="pd-hero__meta-rule"></span><span class="pd-hero__meta-item">{{ $reviews->count() }} Google reviews</span>@endif
-            </div>
-            @endif
-            <div class="pd-hero__ctas">
-                <a href="#enquire" class="btn btn--primary">Apply Now</a>
-                @if($program->brochure_url)
-                    <a href="{{ $program->brochure_url }}" target="_blank" rel="noopener" class="btn btn--secondary">Download Brochure</a>
+    {{-- ============ 1. HERO (Cinematic Dark) ============ --}}
+    <section class="hero" id="top" aria-label="{{ $program->title }}">
+        <div class="hero-backdrop"></div>
+        @if($hasScholarship)<span class="ribbon">Scholarship Available</span>@endif
+        <div class="container">
+            <div class="hero-badge rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>{{ $program->level ?: 'Undergraduate' }} @if($cat) · {{ $cat->name }} @endif</div>
+            <div class="hero-grid">
+                <div class="hero-copy">
+                    <h1 class="d rv">{{ $program->title }}</h1>
+                    @if($program->short_description)<p class="lead rv rv-d1">{{ $program->short_description }}</p>@endif
+                    <div class="hero-ctas rv rv-d2">
+                        <a href="#enquire" class="btn btn-red">Apply Now<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                        <a href="{{ route('contact') }}" class="btn btn-outline">Download Brochure<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></a>
+                        <a href="#enquire" class="btn btn-outline">Enquire Now</a>
+                    </div>
+                    @if($highlights->count())
+                    <div class="hero-hl rv rv-d3">
+                        <div class="hl-lab">Quick Highlights</div>
+                        <div class="hl-grid">
+                            @foreach($highlights as $h)
+                                <div class="hl"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span>{{ $h['value'] ?? $h['label'] }}</div>
+                            @endforeach
+                        </div>
+                    </div>
+                    @endif
+                    <div class="hero-meta rv rv-d4">
+                        @if($program->duration)<span class="m"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>{{ $program->duration }}</span><span class="sep"></span>@endif
+                        @if($program->level)<span class="m"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>{{ $program->level }}</span><span class="sep"></span>@endif
+                        @if($reviews->count())<span class="m"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>{{ $reviews->count() }} Google reviews</span>@endif
+                    </div>
+                </div>
+                @if($snapshot->count())
+                <div class="hero-card rv rv-d2">
+                    <h3>Programme at a Glance</h3>
+                    @foreach($snapshot->take(6) as $s)
+                        <div class="hc-row"><span class="l">{{ $s['label'] }}</span><span class="v">{{ $s['value'] }}</span></div>
+                    @endforeach
+                </div>
                 @endif
-                <a href="{{ route('contact') }}" class="btn btn--outline">Enquire Now</a>
-            </div>
-            <div class="cinematic-hero__scroll-hint" aria-hidden="true">
-                <span class="cinematic-hero__scroll-text">Scroll to explore</span>
-                <span class="cinematic-hero__scroll-arrow" data-lucide="chevron-down"></span>
             </div>
         </div>
     </section>
 
-        {{-- ============ ACCREDITATION LOGO STRIP (trust opener, after hero) ============ --}}
+    {{-- ============ 2. RECOGNITION STRIP (slider) ============ --}}
     @if($recognition->count())
-    <section class="pd-logo-strip" aria-label="Accredited and recognised by" data-testid="pd-logo-strip">
-        <div class="container pd-logo-strip__inner">
-            <h2 class="pd-logo-strip__label">Accredited &amp; Recognised By</h2>
-            <div class="pd-logo-strip__marquee" data-pd-marquee data-lenis-prevent>
-                <div class="pd-logo-strip__track">
+    <section class="recognition" aria-label="Accredited and recognised by">
+        <div class="container">
+            <div class="rec-head rv">
+                <span class="lab">Awarded By · <b>{{ $program->partner_university ?? ($recognition->first()['name'] ?? '') }}</b></span>
+                <span class="lab">Recognised / Accredited</span>
+            </div>
+            <div class="rec-track">
+                <div class="rec-slider">
                     @foreach($recognition as $r)
-                        <div class="pd-logo-strip__logo">
-                            @if(!empty($r['logo']))
-                                <img src="{{ $r['logo'] }}" alt="{{ $r['name'] }}" loading="lazy">
-                            @else
-                                <span>{{ $r['name'] }}</span>
-                            @endif
-                        </div>
+                        <div class="rec-card"><span class="rec-logo">{{ $r['name'] }}</span><div><div class="t">{{ $r['name'] }}</div>@if(!empty($r['note']))<div class="s">{!! strip_tags($r['note']) !!}</div>@endif</div></div>
                     @endforeach
-                    {{-- duplicate for seamless loop; hidden from screen readers --}}
-                    <div class="pd-logo-strip__duplicate" aria-hidden="true">
-                        @foreach($recognition as $r)
-                            <div class="pd-logo-strip__logo">
-                                @if(!empty($r['logo']))
-                                    <img src="{{ $r['logo'] }}" alt="" loading="lazy">
-                                @else
-                                    <span>{{ $r['name'] }}</span>
-                                @endif
-                            </div>
-                        @endforeach
-                    </div>
+                    @foreach($recognition as $r)
+                        <div class="rec-card" aria-hidden="true"><span class="rec-logo">{{ $r['name'] }}</span><div><div class="t">{{ $r['name'] }}</div>@if(!empty($r['note']))<div class="s">{!! strip_tags($r['note']) !!}</div>@endif</div></div>
+                    @endforeach
                 </div>
             </div>
         </div>
     </section>
     @endif
 
-    {{-- ============ LEFT-SIDE SCROLLSPY DOTS ============ --}}
-    @if($sectionNav->count())
-    <nav class="pd-dots" aria-label="Programme sections" data-pd-dots data-testid="pd-dots">
-        @foreach($sectionNav as $s)
-            <a class="pd-dots__item" href="#{{ $s['id'] }}" data-pd-dot="{{ $s['id'] }}" aria-label="{{ $s['label'] }}">
-                <span class="pd-dots__dot" aria-hidden="true"></span>
-                <span class="pd-dots__label">{{ $s['label'] }}</span>
-            </a>
-        @endforeach
-    </nav>
+    {{-- ============ 3. SNAPSHOT (Bento Grid) ============ --}}
+    @if($snapshot->count())
+    <section class="snapshot section tex-mesh" aria-label="Programme snapshot">
+        <div class="container">
+            <div class="sec-head rv">
+                <span class="kicker">Programme Snapshot</span>
+                <h2>Everything at a <em>Glance</em></h2>
+            </div>
+            <div class="snap-grid">
+                @foreach($snapshot as $i => $s)
+                    <div class="snap-tile @if($i === 0) snap-feat @endif rv rv-d{{ min($i % 4 + 1, 4) }}">
+                        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 7 7 1-5 5 1 7-6-4-6 4 1-7-5-5 7-1z"/></svg></span>
+                        <div><div class="k">{{ $s['label'] }}</div><div class="v">{{ $s['value'] }}</div></div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
     @endif
 
-    
-{{-- ================================================================
-         EXPERIMENT · TWO-COLUMN LAYOUT (7:3)
-         Quick Highlights → Reviews run in the left column; the
-         "Programme at a Glance" (snapshot) is a sticky box on the right.
-         ================================================================ --}}
-    <div class="pd-layout">
-        <div class="pd-layout__main">
-
-{{-- ============ M2 · INTRO (Overview + Highlights, editorial pair) ============ --}}
-    @if($highlights->count() || $program->description)
-    <section id="overview" class="pd-intro pd-band--paper" aria-label="Programme introduction" data-testid="pd-intro" data-reveal>
-        <div class="container pd-intro__grid">
-            <div class="pd-intro__editorial">
-                <span class="pd-section-label">Overview</span>
-                <h2 class="pd-section-title">Programme <em>Overview</em></h2>
-                @if($program->description)
-                    <div class="pd-intro__body">{!! $program->description !!}</div>
-                @endif
+    {{-- ============ 4. OVERVIEW (Flat + Editorial) ============ --}}
+    @if($program->description)
+    <section class="overview section" aria-label="Programme introduction">
+        <div class="container ov-grid">
+            <div class="ov-copy rv">
+                <span class="kicker">Programme Overview</span>
+                <h2 class="d" style="font-size:clamp(28px,3.4vw,42px);line-height:1.06;letter-spacing:-.03em;margin:14px 0 22px">About this <em>Programme</em></h2>
+                <div class="ov-rule"></div>
+                <div class="ov-copy"><p>{!! $program->description !!}</p></div>
             </div>
             @if($highlights->count())
-            <div class="pd-intro__stats">
-                <div class="pd-highlights__grid">
-                    @foreach($highlights as $h)
-                        <div class="pd-highlights__card">
-                            <div class="pd-highlights__card-text">
-                                <span class="pd-highlights__label">{{ $h['label'] }}</span>
-                                <span class="pd-highlights__value">{{ $h['value'] }}</span>
-                            </div>
-                        </div>
-                    @endforeach
+            <div class="ov-figure rv rv-d1">
+                <div class="bg"></div><div class="fg"></div>
+                @if($hasScholarship)<span class="badge">Globally Recognised</span>@endif
+                <div class="stat">
+                    <div class="num">{{ $highlights->first()['value'] ?? 'Leadership' }}</div>
+                    <div class="cap">{{ collect($highlights->pluck('value'))->implode(' · ') }}</div>
                 </div>
             </div>
             @endif
@@ -195,394 +164,343 @@
     </section>
     @endif
 
-    
-
-    {{-- ============ STEP 4 · WHY CHOOSE ============ --}}
+    {{-- ============ 5. WHY CHOOSE (Flat + 2D) ============ --}}
     @if($benefits->count())
-    <section id="why-choose" class="pd-benefits pd-band--warm" aria-label="Why choose this programme" data-testid="pd-benefits" data-reveal>
+    <section class="why section tex-grid" aria-label="Why choose this programme">
         <div class="container">
-            <span class="pd-section-label">Why Choose</span>
-            <h2 class="pd-section-title">Why Choose This <em>Programme?</em></h2>
-            <div class="pd-benefits__grid">
+            <div class="sec-head rv">
+                <span class="kicker">Why Choose</span>
+                <h2>Why Choose This <em>Programme?</em></h2>
+            </div>
+            <div class="why-grid">
                 @foreach($benefits as $i => $b)
-                    <div class="pd-benefits__card">
-                        <div class="pd-benefits__title-row">
-                            <span class="pd-benefits__icon" aria-hidden="true">
-                                <i data-lucide="{{ $b['icon'] ?? 'sparkles' }}"></i>
-                            </span>
-                            <h3>{{ $b['title'] }}</h3>
-                        </div>
-                        <div class="pd-benefits__desc">{!! $b['desc'] ?? '' !!}</div>
+                    <div class="why-card w-{{ min($i % 5 + 1, 5) }} rv rv-d{{ min($i % 3 + 1, 3) }}">
+                        <span class="why-index">{{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}</span>
+                        <span class="why-illu"><i data-lucide="{{ $b['icon'] ?? 'sparkles' }}"></i></span>
+                        <h4>{{ $b['title'] }}</h4>
+                        <p>{!! $b['desc'] ?? '' !!}</p>
+                    </div>
+                @endforeach
+                @if($university->name)
+                <div class="w-note rv rv-d2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span>An internationally recognised pathway awarded by {{ $university->name }}.</span></div>
+                @endif
+            </div>
+        </div>
+    </section>
+    @endif
+
+    {{-- ============ 6. WHAT YOU'LL LEARN (Organic) ============ --}}
+    @if($learning->count())
+    <section class="learn section tex-mesh" aria-label="Learning outcomes">
+        <div class="container learn-wrap">
+            <div class="learn-sticky rv">
+                <span class="kicker">What You'll Learn</span>
+                <h2 class="d" style="font-size:clamp(28px,3.4vw,42px);line-height:1.06;letter-spacing:-.03em;margin:14px 0 18px">Learning <em>Outcomes</em></h2>
+                <p style="font-size:16px;line-height:1.7;color:var(--muted)">Students will learn to:</p>
+            </div>
+            <div class="learn-field">
+                @foreach($learning as $i => $cap)
+                    <div class="learn-item rv rv-d{{ min($i % 4 + 1, 4) }}"><span class="n">{{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}</span><span class="txt">{{ $cap }}</span></div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+    @endif
+
+    {{-- ============ 7. CAREER OPPORTUNITIES (Bento cloud) ============ --}}
+    @if($careers->count())
+    <section class="careers section tex-grid" aria-label="Career opportunities">
+        <div class="container">
+            <div class="sec-head rv">
+                <span class="kicker">Career Opportunities</span>
+                <h2>Where This Degree Can <em>Take You</em></h2>
+                <p>Potential careers include:</p>
+            </div>
+            <div class="career-cloud">
+                @foreach($careers as $i => $career)
+                    <div class="career-tile @if($i === 0) career-tile--feat @else c-s @endif rv rv-d{{ min($i % 4 + 1, 4) }}">
+                        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7a2 2 0 0 1 2-2h4l2 3h9a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2z"/></svg></span>
+                        <span class="nm">{{ $career }}</span>
                     </div>
                 @endforeach
             </div>
         </div>
     </section>
     @endif
-    {{-- ============ M3 · OUTCOMES & CAREERS (Learn list + Careers, 2-col editorial) ============ --}}
-    @if($learning->count() || $careers->count())
-    <section id="careers" class="pd-outcomes pd-band--paper" aria-label="Learning outcomes and careers" data-testid="pd-outcomes" data-reveal>
-        <div class="container pd-outcomes__grid">
-            @if($learning->count())
-            <div class="pd-outcomes__col pd-outcomes__col--learn">
-                <span class="pd-section-label">What You'll Learn</span>
-                <h2 class="pd-section-title">Learning <em>Outcomes</em></h2>
-                <p class="pd-outcomes__sub">Students will learn to:</p>
-                <ol class="pd-learn__list pd-learn__list--single">
-                    @foreach($learning as $i => $cap)
-                        <li class="pd-learn__item">
-                            <span class="pd-learn__tick" aria-hidden="true">✓</span>
-                            <span>{{ $cap }}</span>
-                        </li>
-                    @endforeach
-                </ol>
-            </div>
-            @endif
-            @if($careers->count())
-            <div class="pd-outcomes__col pd-outcomes__col--careers">
-                <span class="pd-section-label">Careers</span>
-                <h2 class="pd-section-title">Where This Degree Can <em>Take You</em></h2>
-                <p class="pd-outcomes__sub">Potential careers include:</p>
-                <div class="pd-careers__chips">
-                    @foreach($careers as $i => $career)
-                        <span class="pd-careers__chip">{{ $career }}</span>
-                    @endforeach
-                </div>
-            </div>
-            @endif
-        </div>
-    </section>
-    @endif
 
-
-
-    {{-- ============ STEP 5 · PROGRAMME STRUCTURE ============ --}}
+    {{-- ============ 8. PROGRAMME STRUCTURE (accordions) ============ --}}
     @if($structure->count())
-    <section class="pd-structure pd-band--warm" id="structure" aria-label="Programme structure" data-testid="pd-structure">
+    <section class="structure section" aria-label="Programme structure">
         <div class="container">
-            <span class="pd-section-label">Curriculum</span>
-            <h2 class="pd-section-title">Programme <em>Structure</em></h2>
-            <div class="pd-structure__list">
+            <div class="sec-head center rv">
+                <span class="kicker">Programme Structure</span>
+                <h2>Your Journey, <em>Year by Year</em></h2>
+                <p>A structured curriculum that builds from foundations through to advanced study.</p>
+            </div>
+            <div class="struct-list">
                 @foreach($structure as $i => $stage)
-                    <details class="pd-structure__year" {{ $i === 0 ? 'open' : '' }}>
-                        <summary class="pd-structure__year-head">
-                            <span class="pd-structure__year-title">{{ $stage['title'] ?: 'Year '.($i + 1) }}</span>
-                            @if(!empty($stage['subtitle']))<span class="pd-structure__year-sub">{{ $stage['subtitle'] }}</span>@endif
-                            <span class="pd-structure__year-arrow" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-                            </span>
-                        </summary>
-                        @if(!empty($stage['modules']))
-                            <div class="pd-structure__modules">
-                                @foreach($stage['modules'] as $mi => $module)
-                                    <details class="pd-structure__module" {{ $mi === 0 ? 'open' : '' }}>
-                                        <summary class="pd-structure__module-head">
-                                            <span class="pd-structure__module-arrow" aria-hidden="true">
-                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
-                                            </span>
-                                            <span class="pd-structure__module-title">{{ is_array($module) ? ($module['title'] ?? ('Module '.($mi + 1))) : $module }}</span>
-                                        </summary>
-                                        @if(is_array($module))
-                                            <div class="pd-structure__module-content">
-                                                @if(!empty($module['overview']))
-                                                    <div class="pd-structure__module-desc">{!! $module['overview'] ?? '' !!}</div>
-                                                    @elseif(!empty($module['desc']))
-                                                    <div class="pd-structure__module-desc">{!! $module['desc'] ?? '' !!}</div>
-                                                @endif
-                                                @if(!empty($module['list']) && is_array($module['list']))
-                                                    <ul class="pd-structure__module-list">
-                                                        @foreach($module['list'] as $li)
-                                                            <li class="pd-structure__module-li">
-                                                                <span class="pd-structure__module-tick" aria-hidden="true">✓</span>
-                                                                <span>{{ $li }}</span>
-                                                            </li>
-                                                        @endforeach
-                                                    </ul>
-                                                @endif
-                                            </div>
-                                        @else
-                                            <div class="pd-structure__module-content">
-                                                <p class="pd-structure__module-desc">{{ $module }}</p>
-                                            </div>
-                                        @endif
-                                    </details>
-                                @endforeach
-                            </div>
-                        @endif
-                    </details>
+                <details class="struct-item rv" @if($i === 0) open @endif>
+                    <summary><span class="y-num">Y{{ $i + 1 }}</span><span class="y-main"><div class="y-lab">Year {{ $i + 1 }}</div><div class="y-title">{{ $stage['title'] }}</div></span><span class="plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+                    <div class="struct-mods">
+                        @if(!empty($stage['subtitle']))<div class="m-lab">{{ $stage['subtitle'] }}</div>@endif
+                        <div class="mods">
+                            @foreach($stage['modules'] as $m)
+                                <div class="mod-card">{{ $m['title'] }}</div>
+                            @endforeach
+                        </div>
+                    </div>
+                </details>
                 @endforeach
             </div>
         </div>
     </section>
     @endif
 
-    {{-- ============ STEP 6 · UNIVERSITY ============ --}}
+    {{-- ============ 9. ABOUT GAU (Cinematic Dark) ============ --}}
     @if($university->name)
-    <section id="university" class="pd-uni pd-band--paper" aria-label="About the awarding university" data-testid="pd-uni" data-reveal>
-        <div class="container">
-            <span class="pd-section-label">University</span>
-            <h2 class="pd-section-title">A Globally Connected <em>University</em></h2>
-            <div class="pd-uni__inner {{ !empty($university->image) ? 'pd-uni__inner--with-image' : '' }}">
-                @if(!empty($university->image))
-                <div class="pd-uni__media">
-                    <img src="{{ media_url($university->image) }}" alt="{{ $university->name }}" loading="lazy" width="1200" height="800">
+    <section class="gau section" aria-label="About the awarding university">
+        <div class="tex-grid"></div>
+        <div class="container gau-grid">
+            <div class="gau-photo rv">
+                <div class="img"></div><div class="glow"></div>
+                @if($university->name)<span class="logo">{{ collect(preg_split('/\s+/', $university->name))->map(fn($w) => mb_substr($w, 0, 1))->take(3)->implode('') }}</span>@endif
+                @if($university->establishment)<div class="est"><div class="k">Established</div><div class="v">{{ str_replace('Established ', '', $university->establishment) }}</div></div>@endif
+            </div>
+            <div class="gau-copy rv rv-d1">
+                <span class="kicker">The University</span>
+                <h2>A Globally Connected <em>University</em></h2>
+                @if($university->description)<p>{!! $university->description !!}</p>@endif
+                <div class="gau-metrics">
+                    @if($university->establishment)<div class="gau-metric"><div class="num">{{ str_replace('Established ', '', $university->establishment) }}<small>+</small></div><div class="lbl">Established</div></div>@endif
+                    <div class="gau-metric"><div class="num">Intl<small></small></div><div class="lbl">International outlook</div></div>
                 </div>
-                @endif
-                <div class="pd-uni__body">
-                    <div class="pd-uni__body-content">{!! $university->description ?? '' !!}</div>
-                    @if($university->establishment)<span class="pd-uni__meta">{{ $university->establishment }}</span>@endif
-                </div>
+                <div class="gau-tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Internationally focused curriculum</div>
+                <div class="gau-tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Designed for the global workplace</div>
             </div>
         </div>
     </section>
     @endif
 
-    {{-- ============ STEP 6 · ACCREDITATION ============ --}}
+    {{-- ============ 10. ACCREDITATION (logo grids) ============ --}}
     @if($accreditationGroups->count())
-    <section id="accreditation" class="pd-accred pd-band--tint" aria-label="Accreditation and recognition" data-testid="pd-accred" data-reveal>
+    <section class="accred section tex-grid" aria-label="Accreditation and recognition">
         <div class="container">
-            <span class="pd-section-label">Accreditation & Recognition</span>
-            <h2 class="pd-section-title">Accreditation & <em>Recognition</em></h2>
+            <div class="sec-head rv">
+                <span class="kicker">Accreditation</span>
+                <h2>Accreditation &amp; <em>Recognition</em></h2>
+            </div>
+            <div class="acc-wrap">
+                @foreach($accreditationGroups as $g)
+                <div class="acc-col rv rv-d{{ min($loop->iteration % 3 + 1, 3) }}"><div class="h-lab">{{ $g['group'] }}</div>
+                    <div class="acc-logos">
+                        @foreach($g['items'] as $item)
+                            <div class="acc-logo"><span class="sq">{{ collect(preg_split('/\s+/', $item['name']))->map(fn($w) => mb_substr($w, 0, 1))->take(2)->implode('') }}</span>{{ $item['name'] }}</div>
+                        @endforeach
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+    @endif
 
-            @foreach($accreditationGroups as $g)
-            <div class="pd-accred__division">
-                <h3 class="pd-accred__division-heading">{{ $g['group'] }}</h3>
-                <div class="pd-accred__slider">
-                    @foreach($g['items'] as $item)
-                        <div class="pd-accred__logo-box">
-                            @if(!empty($item['logo']))
-                                <img class="pd-accred__logo-img" src="{{ $item['logo'] }}" alt="{{ $item['name'] }}" loading="lazy">
-                            @else
-                                <span class="pd-accred__logo-text">{{ $item['name'] }}</span>
-                            @endif
+    {{-- ============ 11. WHY MAVERICK (3x3 grid) ============ --}}
+    @if($support->count())
+    <section class="maverick section tex-mesh" aria-label="Why study through Maverick">
+        <div class="container">
+            <div class="sec-head center rv">
+                <span class="kicker">Your Learning Partner</span>
+                <h2>Why Study Through <em>Maverick?</em></h2>
+                <p>Students receive:</p>
+            </div>
+            <div class="mav-grid">
+                @foreach($support as $i => $s)
+                    <div class="mav-card @if($i === 0) active @endif rv rv-d{{ min($i % 3 + 1, 3) }}">
+                        <span class="ic"><i data-lucide="{{ $i % 2 === 0 ? 'book-open-check' : 'users-round' }}"></i></span>
+                        <div class="nm">{{ $s }}</div>
+                        <div class="ds">Support designed to help you succeed at every stage.</div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+    @endif
+
+    {{-- ============ 12. SUCCESS STORIES (slider) ============ --}}
+    @if($testimonials->count())
+    <section class="stories section" aria-label="Student success stories">
+        <div class="container">
+            <div class="sec-head rv">
+                <span class="kicker">Stories</span>
+                <h2>Student Success <em>Stories</em></h2>
+            </div>
+            <div class="story-shell">
+                <div class="story-window">
+                    <div class="story-track" id="storyTrack">
+                        @foreach($testimonials as $t)
+                        <div class="story-card">
+                            <div class="story-media"><div class="art"></div><span class="tag">@if(!empty($t['category'])){{ $t['category'] }} · @endif@if(!empty($t['video']))Video @else Story @endif</span>
+                                @if(!empty($t['video']))<div class="play"><a href="{{ $t['video'] }}" class="pp" data-modal-video="{{ $t['video'] }}" aria-label="Play {{ $t['name'] }}'s video"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></a></div>@endif
+                            </div>
+                            <div class="story-body">
+                                <div class="story-by">
+                                    <span class="story-ava">{{ collect(preg_split('/\s+/', $t['name']))->map(fn($w) => mb_substr($w, 0, 1))->take(2)->implode('') }}</span>
+                                    <div><div class="nm">{{ $t['name'] }}</div>
+                                    <div class="rl">@if(!empty($t['role'])){{ $t['role'] }}@endif@if(!empty($t['country'])) · {{ $t['country'] }}@endif</div></div>
+                                </div>
+                            </div>
                         </div>
+                        @endforeach
+                    </div>
+                </div>
+                @if($testimonials->count() > 3)
+                <div class="story-nav">
+                    <button class="story-btn" id="storyPrev" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+                    <button class="story-btn" id="storyNext" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>
+                </div>
+                @endif
+            </div>
+        </div>
+    </section>
+    @endif
+
+    {{-- ============ 13. FEES (Cinematic Dark) ============ --}}
+    @if($fees->count())
+    <section class="fees section" aria-label="Fees and scholarships">
+        <div class="tex-grid"></div>
+        <div class="container fees-grid">
+            <div class="rv">
+                <span class="kicker">Fees &amp; Scholarships</span>
+                <h2 class="d" style="font-family:var(--font-display);font-size:clamp(28px,3.4vw,42px);line-height:1.06;letter-spacing:-.03em;color:#fff;margin:14px 0 14px">Fees &amp; <em style="color:var(--color-mba-red)">Scholarships</em></h2>
+                <p style="font-size:16px;line-height:1.7;color:rgba(255,255,255,.72);max-width:46ch">Fee structure varies by intake and study mode. Select any option to receive the full details.</p>
+                <div class="fee-list">
+                    @foreach($fees as $fee)
+                        <a href="#enquire" class="fee-chip"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 15h4M7 11h10"/></svg></span><div><span class="nm">{{ $fee }}</span><span class="rm">View details →</span></div></a>
                     @endforeach
                 </div>
             </div>
-            @endforeach
-        </div>
-    </section>
-    @endif
-
-    {{-- ============ STEP 7 · MAVERICK SUPPORT ============ --}}
-    @if($support->count())
-    <section id="support" class="pd-support pd-band--paper" aria-label="Why study through Maverick" data-testid="pd-support" data-reveal>
-        <div class="container pd-support__inner">
-            <div class="pd-support__intro">
-                <span class="pd-section-label">Support</span>
-                <h2 class="pd-section-title">Why Study Through <em>Maverick?</em></h2>
-                <p class="pd-support__sub">Students receive:</p>
-            </div>
-            <ol class="pd-support__timeline">
-                @foreach($support as $i => $s)
-                    <li class="pd-support__step">
-                        <span class="pd-support__dot" aria-hidden="true"></span>
-                        <span class="pd-support__text">{{ $s }}</span>
-                    </li>
-                @endforeach
-            </ol>
-        </div>
-    </section>
-    @endif
-
-    {{-- ============ STEP 7 · TESTIMONIALS (video, like home) ============ --}}
-    @if($testimonials->count())
-    <section id="testimonials" class="pd-testimonials pd-band--warm" aria-label="Student success stories" data-testid="pd-testimonials" data-reveal>
-        <div class="container">
-            <span class="pd-section-label">Stories</span>
-            <h2 class="pd-section-title">Student Success <em>Stories</em></h2>
-            <div class="scroll-row scroll-row--light" data-scroll-row>
-                <button class="scroll-row__btn scroll-row__btn--prev" aria-label="Scroll left" data-scroll-prev>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6" /></svg>
-                </button>
-                <div class="pd-testimonials__scroll" data-scroll-container data-lenis-prevent>
-                    <div class="pd-testimonials__track">
-                        @foreach($testimonials as $t)
-                            <article class="testimonials__card pd-testimonials__card" data-testid="pd-testimonial-card">
-                                <span class="testimonials__card-badge">{{ $t['category'] ?? 'STUDENT' }}</span>
-                                <div class="testimonials__card-thumb">
-                                    @if(!empty($t['thumb']))
-                                        <img src="{{ $t['thumb'] }}" alt="{{ $t['name'] }}" loading="lazy">
-                                    @else
-                                        <div class="img-placeholder pd-testimonials__thumb-ph" aria-hidden="true"></div>
-                                    @endif
-                                    @if(!empty($t['video']))
-                                        <a class="testimonials__play" href="{{ $t['video'] }}" data-modal-video="{{ $t['video'] }}" aria-label="Play {{ $t['name'] }}'s video" data-testid="pd-play">
-                                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-                                        </a>
-                                    @else
-                                        <span class="testimonials__play" aria-hidden="true">
-                                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                                        </span>
-                                    @endif
-                                </div>
-                                <div class="testimonials__card-info">
-                                    <h3 class="testimonials__card-name">{{ $t['name'] }}</h3>
-                                    <p class="testimonials__card-role">{{ $t['role'] ?? '' }}{{ !empty($t['role']) && !empty($t['country']) ? ' · ' : '' }}{{ $t['country'] ?? '' }}</p>
-                                </div>
-                            </article>
-                        @endforeach
-                    </div>
-                </div>
-                <button class="scroll-row__btn scroll-row__btn--next" aria-label="Scroll right" data-scroll-next>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6" /></svg>
-                </button>
+            <div class="fees-side rv rv-d1">
+                <div class="k">Admissions</div>
+                <h3>Request the full fee structure</h3>
+                <p>Speak to our admissions team for a personalised breakdown based on your intake and study mode.</p>
+                <a href="{{ route('contact') }}" class="fees-cta">Request Fee Structure <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                <p class="fee-note">No commitment required. We'll connect you with an advisor.</p>
             </div>
         </div>
     </section>
     @endif
 
-    {{-- ============ STEP 8 · FEES ============ --}}
-    <section id="fees" class="pd-fees pd-band--navy" aria-label="Fees and scholarships" data-testid="pd-fees" data-reveal>
-        <div class="container pd-fees__inner">
-            <div class="pd-fees__text">
-                <h2 class="pd-section-title">Fees & <em>Scholarships</em></h2>
-                <p class="body-text">Fee structure varies by intake and study mode. Request the full fee structure for details.</p>
-            </div>
-            <div class="pd-fees__side">
-                @if($fees->count())
-                    <div class="pd-fees__list">
-                        @foreach($fees as $fee)
-                            <a href="{{ route('contact') }}" class="pd-fees__chip">{{ $fee }}</a>
-                        @endforeach
-                    </div>
-                @endif
-                <a href="{{ route('contact') }}" class="btn pd-btn pd-btn--primary">Request Fee Structure</a>
-            </div>
-        </div>
-    </section>
-
-
-
-
-        </div>{{-- /.pd-layout__main --}}
-
-        {{-- ==========================================================
-             RIGHT STICKY SIDEBAR · "Programme at a Glance"
-             ========================================================== --}}
-        @if($snapshot->count())
-        <aside class="pd-layout__side" aria-label="Programme at a glance">
-            <div class="pd-layout__sticky">
-                <div class="pd-snapshot-box" data-testid="pd-snapshot">
-                    <span class="pd-snapshot-box__title">{{ $program->title }}</span>
-                    <span class="pd-section-label">Programme at a Glance</span>
-                    <div class="pd-snapshot-box__list">
-                        @foreach($snapshot as $s)
-                            <div class="pd-snapshot-box__item">
-                                <span class="pd-snapshot-box__label">{{ $s['label'] }}</span>
-                                <span class="pd-snapshot-box__value">{{ $s['value'] }}</span>
-                            </div>
-                        @endforeach
-                    </div>
-                    <div class="pd-snapshot-box__actions">
-                        <a href="#enquire" class="btn pd-btn pd-btn--primary pd-snapshot-box__cta">Apply Now</a>
-                        <a href="{{ route('contact') }}" class="btn pd-btn pd-btn--ghost pd-snapshot-box__cta pd-snapshot-box__cta--ghost">Enquire</a>
-                    </div>
-                </div>
-            </div>
-        </aside>
-        @endif
-
-    </div>{{-- /.pd-layout --}}
-
-    {{-- ============ STEP 8 · FAQ ============ --}}
+    {{-- ============ 14. FAQ (accordion + organic dividers) ============ --}}
     @if($faqs->count())
-    <section id="faq" class="pd-faq" aria-label="Frequently asked questions" data-testid="pd-faq" data-reveal>
+    <section class="faq section" aria-label="Frequently asked questions">
+        <div class="faq-divider top"><svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 Q360,80 720,40 T1440,40 V0 H0 Z" fill="#071444" opacity="1"/></svg></div>
+        <div class="faq-divider bot"><svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 Q360,0 720,40 T1440,40 V80 H0 Z" fill="#071444" opacity="1"/></svg></div>
         <div class="container">
-            <h2 class="pd-section-title">Frequently Asked <em>Questions</em></h2>
-            <div class="pd-faq__list">
+            <div class="sec-head center rv">
+                <span class="kicker">Questions</span>
+                <h2>Frequently Asked <em>Questions</em></h2>
+            </div>
+            <div class="faq-wrap">
                 @foreach($faqs as $i => $faq)
-                    <details class="pd-faq__item" {{ $i === 0 ? 'open' : '' }}>
-                        <summary class="pd-faq__question">{{ $faq->question }}<span class="pd-faq__chevron" aria-hidden="true">+</span></summary>
-                        <div class="pd-faq__answer">{{ $faq->answer }}</div>
-                    </details>
+                <details class="faq-item rv" @if($i === 0) open @endif><summary>{{ $faq->question }}<span class="plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary><div class="faq-ans">{{ $faq->answer }}</div></details>
                 @endforeach
             </div>
         </div>
     </section>
     @endif
 
-    {{-- ============ STEP 8 · ENQUIRY ============ --}}
-    <section class="pd-enquire pd-band--warm" id="enquire" aria-label="Enquire about this programme" data-testid="pd-enquire">
-        <div class="pd-enquire__particles" aria-hidden="true">
-            @for($i = 1; $i <= 12; $i++)
-                <span class="pd-enquire__orb"></span>
-            @endfor
-        </div>
-        <div class="container pd-enquire__inner">
-            <div class="pd-enquire__intro">
-                <h2 class="pd-section-title pd-section-title--single">Enquire About This Programme</h2>
-                <p class="body-text">Speak to our admissions team to check your eligibility and get started.</p>
-                <div class="pd-enquire__visual">
-                    <img
-                        src="{{ asset('assets/images/programs/enquire-seminar.jpg') }}"
-                        alt="Students collaborating in a lecture hall"
-                        width="1600"
-                        height="900"
-                    >
+    {{-- ============ 15. ENQUIRY FORM ============ --}}
+    <section class="enquiry section" id="enquire" aria-label="Enquire about this programme">
+        <div class="container enq-grid">
+            <div class="enq-copy rv">
+                <span class="kicker">Enquire</span>
+                <h2 class="d" style="font-size:clamp(28px,3.4vw,42px);line-height:1.06;letter-spacing:-.03em;margin:14px 0 18px">Enquire About This <em>Programme</em></h2>
+                <p>Share a few details and our admissions team will reach out to guide you through the next steps.</p>
+                <div class="enq-points">
+                    <div class="enq-point"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span>Personal eligibility review</div>
+                    <div class="enq-point"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span>Guidance on fees &amp; instalments</div>
+                    <div class="enq-point"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span>Application &amp; study-mode support</div>
+                </div>
+                <div class="enq-trust">
+                    <span class="trust-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 1-5 5 1 7-6-4-6 4 1-7-5-5 7-1z"/></svg>Flexible study</span>
+                    @if($reviews->count())<span class="trust-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 1-5 5 1 7-6-4-6 4 1-7-5-5 7-1z"/></svg>{{ $reviews->count() }} Google reviews</span>@endif
                 </div>
             </div>
-            <form class="pd-form" action="{{ route('contact') }}" method="POST">
+            <form class="enq-form rv rv-d1" action="{{ route('contact') }}" method="POST">
                 @csrf
                 <input type="hidden" name="programme" value="{{ $program->title }}">
-                <div class="pd-form__row">
-                    <div class="pd-form__field">
-                        <label for="pd-name">Full name</label>
-                        <input id="pd-name" name="name" type="text" required>
-                    </div>
-                    <div class="pd-form__field">
-                        <label for="pd-email">Email</label>
-                        <input id="pd-email" name="email" type="email" required>
-                    </div>
-                    <div class="pd-form__field">
-                        <label for="pd-phone">Phone</label>
-                        <input id="pd-phone" name="phone" type="tel" required>
-                    </div>
-                    <div class="pd-form__field">
-                        <label for="pd-country">Country</label>
-                        <input id="pd-country" name="country" type="text">
-                    </div>
-                    <div class="pd-form__field">
-                        <label for="pd-study-mode">Study mode</label>
-                        <select id="pd-study-mode" name="study_mode">
-                            <option value="">Select study mode</option>
-                            <option value="online">Online</option>
-                            <option value="hybrid">Hybrid</option>
-                            <option value="part-time">Part-time</option>
-                        </select>
-                    </div>
-                    <div class="pd-form__field">
-                        <label for="pd-qualification">Highest qualification</label>
-                        <select id="pd-qualification" name="qualification">
-                            <option value="">Select qualification</option>
-                            <option value="high-school">High School / Secondary</option>
-                            <option value="diploma">Diploma</option>
-                            <option value="bachelor">Bachelor's Degree</option>
-                            <option value="master">Master's Degree</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                    <div class="pd-form__field pd-form__field--full">
-                        <label for="pd-message">Message</label>
-                        <textarea id="pd-message" name="message" rows="3"></textarea>
-                    </div>
+                <h3>Request a call back</h3>
+                <p class="fs">Fields marked * are required.</p>
+                <div class="f-row">
+                    <div class="fld"><label for="pd-name">Full Name *</label><input id="pd-name" name="name" type="text" required></div>
+                    <div class="fld"><label for="pd-email">Email *</label><input id="pd-email" name="email" type="email" required></div>
                 </div>
-                <button type="submit" class="btn pd-btn pd-btn--primary">Submit Enquiry</button>
+                <div class="f-row">
+                    <div class="fld"><label for="pd-phone">Phone *</label><input id="pd-phone" name="phone" type="tel" required></div>
+                    <div class="fld"><label for="pd-country">Country</label><input id="pd-country" name="country" type="text"></div>
+                </div>
+                <div class="fld"><label for="pd-study-mode">Preferred Study Mode</label>
+                    <select id="pd-study-mode" name="study_mode"><option value="">Select study mode</option><option>Online</option><option>Hybrid</option><option>Part-time</option></select>
+                </div>
+                <div class="fld"><label for="pd-qualification">Highest Qualification</label>
+                    <select id="pd-qualification" name="qualification"><option value="">Select qualification</option><option value="high-school">High School / Secondary</option><option value="diploma">Diploma</option><option value="bachelor">Bachelor's Degree</option><option value="master">Master's Degree</option><option value="other">Other</option></select>
+                </div>
+                <div class="fld"><label for="pd-message">Message</label><textarea id="pd-message" name="message" rows="3"></textarea></div>
+                <button type="submit" class="enq-submit">Submit Enquiry</button>
             </form>
         </div>
     </section>
 
-    {{-- ============ STEP 8 · REVIEWS (shared Our Story slider) ============ --}}
-    @include('sections.our-story-testimonials', [
-        'osTestimonialsId'      => 'pd-reviews',
-        'osTestimonialsLabel'   => 'Reviews',
-        'osTestimonialsHeading' => 'Student Reviews with Google Ratings',
-        'osTestimonialsVariant' => 'google',
-    ])
-
+    {{-- ============ 16. REVIEWS (Google rating) ============ --}}
+    @if($reviews->count())
+    <section class="reviews section tex-grid" aria-label="Student reviews">
+        <div class="container">
+            <div class="sec-head center rv">
+                <span class="kicker">Reviews</span>
+                <h2>Student <em>Reviews</em></h2>
+            </div>
+            @php
+                $avg = round($reviews->avg('rating'), 1);
+                $fullStars = (int) round($avg);
+            @endphp
+            <div class="rev-top rv">
+                <div class="rating-badge">
+                    <div class="glogo">G</div>
+                    <div class="score">{{ $avg }}</div>
+                    <div class="stars">
+                        @for($i = 1; $i <= 5; $i++)<svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 1-5 5 1 7-6-4-6 4 1-7-5-5 7-1z"/></svg>@endfor
+                    </div>
+                    <div class="based">Based on {{ $reviews->count() }} student reviews</div>
+                </div>
+            </div>
+            <div class="rev-flow">
+                @foreach($reviews as $r)
+                <div class="rev-card">
+                    <div class="head"><span class="ava">{{ collect(preg_split('/\s+/', $r['name'] ?? ''))->map(fn($w) => mb_substr($w, 0, 1))->take(2)->implode('') }}</span><div><div class="nm">{{ $r['name'] }}</div><div class="rl" style="font-size:12px;color:var(--muted)">Student</div></div></div>
+                    <div class="stars">@for($i = 1; $i <= ($r['rating'] ?? 5); $i++)<svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 1-5 5 1 7-6-4-6 4 1-7-5-5 7-1z"/></svg>@endfor</div>
+                    <div class="q">{!! $r['review'] ?? '' !!}</div>
+                </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+    @endif
 
     {{-- ============ FINAL CTA ============ --}}
-    @include('sections.final-cta')
+    <section class="final" aria-label="Call to action">
+        <div class="glow"></div>
+        <div class="container">
+            <h2 class="d rv">Ready to Begin Your <em>Journey?</em></h2>
+            <p class="rv">Speak to our admissions team today and take the first step toward a globally recognised degree.</p>
+            <div class="ctas rv">
+                <a href="#enquire" class="btn btn-red">Apply Now<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                <a href="#enquire" class="btn btn-outline">Enquire Now</a>
+            </div>
+        </div>
+    </section>
+
+    {{-- ============ FLOATING WHATSAPP ============ --}}
+    <a class="whatsapp" href="{{ route('contact') }}" aria-label="Chat on WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></a>
 
 </div>
 @endsection
@@ -590,8 +508,8 @@
 @push('scripts')
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-    // Accordions: close others in same group (structure years, structure modules, FAQ)
-    document.querySelectorAll('.pd-structure__year, .pd-structure__module, .pd-faq__item').forEach(details => {
+    // Accordions: close others in same group (structure, FAQ)
+    document.querySelectorAll('.struct-item, .faq-item').forEach(details => {
         details.addEventListener('toggle', () => {
             if (!details.open) return;
             const group = details.parentElement;
@@ -599,46 +517,34 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Scroll progress bar
-    const progress = document.querySelector('.pd-progress');
-    if (progress) {
-        const updateProgress = () => {
-            const scrollable = document.documentElement.scrollHeight - window.innerHeight;
-            const pct = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
-            progress.style.transform = `scaleX(${pct / 100})`;
-        };
-        updateProgress();
-        window.addEventListener('scroll', updateProgress, { passive: true });
-    }
-
-    // Reveal-on-scroll for sections/cards (vanilla, respects reduced-motion).
-    // Elements with [data-reveal] start hidden via CSS and animate in when
-    // they enter the viewport. Headings reveal just before body content.
+    // Reveal-on-scroll (vanilla, respects reduced-motion, never hides content without JS)
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const revealTargets = document.querySelectorAll('[data-reveal]');
+    const revealTargets = document.querySelectorAll('.page-pd .rv');
     if (revealTargets.length && !prefersReduced && 'IntersectionObserver' in window) {
         const io = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-revealed');
-                    io.unobserve(entry.target);
-                }
+                if (entry.isIntersecting) { entry.target.classList.add('in'); io.unobserve(entry.target); }
             });
-        }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
+        }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
         revealTargets.forEach((el) => io.observe(el));
     } else if (prefersReduced) {
-        // Reduced motion: show everything immediately (never hide content).
-        revealTargets.forEach((el) => el.classList.add('is-revealed'));
+        revealTargets.forEach((el) => el.classList.add('in'));
     }
+    // Fail-open: never leave content hidden
+    window.setTimeout(() => { document.querySelectorAll('.page-pd .rv:not(.in)').forEach(el => el.classList.add('in')); }, 3000);
 
-    // Fallback: if JS animation fails for any reason, reveal everything so
-    // content is never left hidden.
-    window.setTimeout(() => {
-        document.querySelectorAll('[data-reveal]:not(.is-revealed)').forEach((el) => el.classList.add('is-revealed'));
-    }, 3000);
-
-    if (typeof AnimationUtils !== 'undefined' && typeof gsap !== 'undefined' && !AnimationUtils.prefersReducedMotion) {
-        AnimationUtils.fadeUp('.pd-hero__content', {});
+    // Story slider
+    const track = document.getElementById('storyTrack');
+    if (track) {
+        const cards = track.children.length;
+        let si = 0;
+        const perView = () => window.innerWidth > 1000 ? 3 : window.innerWidth > 640 ? 2 : 1;
+        function update(){ const v = perView(); const max = Math.max(0, cards - v); si = Math.min(si, max); track.style.transform = `translateX(-${si * (100 / v)}%)`; }
+        const n = document.getElementById('storyNext'), p = document.getElementById('storyPrev');
+        if (n) n.addEventListener('click', () => { si += 1; update(); });
+        if (p) p.addEventListener('click', () => { si -= 1; update(); });
+        window.addEventListener('resize', () => { si = 0; update(); });
+        update();
     }
 });
 </script>
