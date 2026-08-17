@@ -371,12 +371,17 @@
             <div class="pd-support__intro">
                 <span class="pd-section-label">Support</span>
                 <h2 class="pd-section-title">Why Study Through <em>Maverick?</em></h2>
-                <p class="pd-support__sub">Students receive:</p>
+                <p class="pd-support__lede">Students receive:</p>
+                {{-- PLACEHOLDER COPY — replace with client-approved narrative before publish --}}
+                <p class="pd-support__note">Dedicated guidance at every stage of your journey — from your first application to graduation.</p>
+                <a class="pd-support__cta pd-btn pd-btn--ghost" href="#enquire">Talk to a Student Advisor</a>
             </div>
-            <ol class="pd-support__timeline">
+            <ol class="pd-support__rail">
                 @foreach($support as $i => $s)
-                    <li class="pd-support__step">
-                        <span class="pd-support__dot" aria-hidden="true"></span>
+                    <li class="pd-support__row">
+                        <span class="pd-support__check" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg>
+                        </span>
                         <span class="pd-support__text">{{ $s }}</span>
                     </li>
                 @endforeach

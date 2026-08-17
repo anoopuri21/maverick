@@ -533,8 +533,8 @@
 /* =========================================================
    STEP 7 · SUPPORT
    ========================================================= */
-.pd-support { padding: clamp(28px, 4vw, 44px) 0; }
-/* Support = asymmetric split: sticky intro (left 38%) + vertical timeline */
+.pd-support { padding: clamp(28px, 4vw, 48px) 0; }
+/* Support = asymmetric editorial split: sticky intro (left) + "Support Rail" */
 .pd-support__inner {
   display: grid;
   grid-template-columns: 2fr 3fr;
@@ -542,36 +542,44 @@
   align-items: start;
 }
 .pd-support__intro { position: sticky; top: calc(var(--navbar-height, 80px) + 12px); }
-.pd-support__sub { font-size: 16px; color: var(--pd-muted); margin: 0; }
-/* Vertical timeline — 2 columns so the space fills (no empty gap below heading) */
-.pd-support__timeline {
+.pd-support__lede { font-size: 16px; font-weight: 600; color: var(--pd-ink); margin: 0 0 12px; }
+.pd-support__note { font-size: 14px; color: var(--pd-muted); line-height: 1.6; margin: 0 0 22px; max-width: 36ch; }
+.pd-support__cta { margin-top: 4px; }
+/* Support Rail — refined benefit rows, hairline-ruled (no cards, no chips) */
+.pd-support__rail {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  column-gap: 28px;
-  row-gap: 0;
+  column-gap: clamp(24px, 3vw, 48px);
+  border-top: 1px solid var(--pd-line);
 }
-.pd-support__step {
-  position: relative;
-  padding: 14px 0;
-  border-left: 1px solid var(--pd-navy);
+.pd-support__row {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--pd-line);
 }
-.pd-support__dot {
-  position: absolute;
-  left: -5px;
-  top: 18px;
-  width: 8px;
-  height: 8px;
+.pd-support__check {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  margin-top: 1px;
   border-radius: 50%;
-  background: var(--pd-red);
+  background: var(--pd-navy);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
-.pd-support__text { font-family: var(--font-body); font-size: 15px; color: var(--pd-ink); line-height: 1.5; padding-left: 20px; }
+.pd-support__check svg { width: 11px; height: 11px; }
+.pd-support__text { font-family: var(--font-body); font-size: 15px; font-weight: 500; color: var(--pd-ink); line-height: 1.5; }
 @media (max-width: 768px) {
   .pd-support__inner { grid-template-columns: 1fr; }
   .pd-support__intro { position: static; }
-  .pd-support__timeline { grid-template-columns: 1fr; }
+  .pd-support__rail { grid-template-columns: 1fr; }
 }
 
 /* =========================================================
@@ -768,7 +776,6 @@
   .pd-form__row { grid-template-columns: 1fr; }
   .pd-enquire__visual { min-height: 220px; }
   .pd-benefits__grid { grid-template-columns: repeat(2, 1fr); }
-  .pd-support__grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (min-width: 769px) {
   .pd-enquire__visual { display: block; }
@@ -788,7 +795,7 @@
   .pd-enquire__particles { display: none; }
   .pd-slider__btn--prev { left: 0; }
   .pd-slider__btn--next { right: 0; }
-  .pd-benefits__grid, .pd-support__grid { grid-template-columns: 1fr; }
+  .pd-benefits__grid { grid-template-columns: 1fr; }
   /* Keep outcomes (What You'll Learn / Careers) in 2 columns as requested */
   .pd-learn__list--single { grid-template-columns: 1fr 1fr; gap: 10px 24px; padding: 6px 20px; }
   /* Snapshot box CTA buttons: desktop only */
