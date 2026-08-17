@@ -71,7 +71,7 @@
     <div class="container">
         <div class="accreditations__header">
             <span class="section-label"><span>Our Credentials</span></span>
-            <h2 class="section-title">Accreditations <span>& Partnerships</span></h2>
+            <h2 class="section-title">Accreditations <span>& Recognition</span></h2>
             <p class="accreditations__subtitle">
                 We partner with leading universities and hold accreditations from globally respected bodies.
             </p>
@@ -148,7 +148,7 @@
     <div class="container">
         <div class="awards__header">
             <span class="section-label"><span>Achievements</span></span>
-            <h2 class="section-title">Awards <span>& Recognition</span></h2>
+            <h2 class="section-title">Awards <span>& Achievements</span></h2>
             <p class="awards__subtitle">
                 Our commitment to excellence has been recognised by leading education bodies worldwide.
             </p>
