@@ -376,13 +376,14 @@
                 <p class="pd-support__note">Dedicated guidance at every stage of your journey — from your first application to graduation.</p>
                 <a class="pd-support__cta pd-btn pd-btn--ghost" href="#enquire">Talk to a Student Advisor</a>
             </div>
-            <ol class="pd-support__rail">
+            <ol class="pd-support__path">
                 @foreach($support as $i => $s)
-                    <li class="pd-support__row">
-                        <span class="pd-support__check" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg>
-                        </span>
-                        <span class="pd-support__text">{{ $s }}</span>
+                    <li class="pd-support__node">
+                        <span class="pd-support__node-core" aria-hidden="true"></span>
+                        <div class="pd-support__node-pane">
+                            <span class="pd-support__node-index">{{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}</span>
+                            <p class="pd-support__node-text">{{ $s }}</p>
+                        </div>
                     </li>
                 @endforeach
             </ol>
