@@ -154,43 +154,30 @@
             </p>
         </div>
 
-        {{-- Awards Grid --}}
-        <div class="awards__grid">
+        {{-- Awards Grid — Flat 2.0 + Micro-animations --}}
+        @if($awardLogos->count())
+        <div class="award-grid">
             @foreach($awardLogos as $logo)
-            <div class="awards__card" onclick="this.classList.toggle('is-flipped')">
-                <div class="awards__card-inner">
-                    {{-- Front Side: Only Logo --}}
-                    <div class="awards__card-front">
-                        <div class="awards__card-body">
-                            @if($logo->logo_url)
-                                <img src="{{ $logo->logo_url }}" alt="{{ $logo->name }}" loading="lazy" class="awards__card-logo">
-                            @else
-                                <div class="awards__card-placeholder">
-                                    <span>{{ strtoupper(substr($logo->name, 0, 3)) }}</span>
-                                </div>
-                            @endif
-                        </div>
-                        <div class="awards__card-icon">
-                            <span data-lucide="plus"></span>
-                        </div>
-                    </div>
-
-                    {{-- Back Side: Red Theme with Content --}}
-                    <div class="awards__card-back">
-                        <div class="awards__card-content">
-                            <h4 class="awards__card-title">{{ $logo->name }}</h4>
-                            @if($logo->description)
-                                <p class="awards__card-desc">{{ $logo->description }}</p>
-                            @endif
-                        </div>
-                        <div class="awards__card-icon awards__card-icon--back">
-                            <span data-lucide="rotate-ccw"></span>
-                        </div>
-                    </div>
+            <article class="award-card" data-reveal>
+                <div class="award-card__media">
+                    @if($logo->logo_url)
+                        <img src="{{ media_url($logo->logo_url) }}" alt="{{ $logo->name }}" loading="lazy" class="award-card__img">
+                    @else
+                        <span class="award-card__placeholder">{{ strtoupper(substr($logo->name, 0, 3)) }}</span>
+                    @endif
                 </div>
-            </div>
+                <div class="award-card__body">
+                    <span class="award-card__kicker">Award</span>
+                    <h4 class="award-card__title">{{ $logo->name }}</h4>
+                    @if($logo->description)
+                        <p class="award-card__desc">{{ $logo->description }}</p>
+                    @endif
+                </div>
+                <span class="award-card__accent" aria-hidden="true"></span>
+            </article>
             @endforeach
         </div>
+        @endif
     </div>
 </section>
 
@@ -295,6 +282,20 @@
 
         // Initialize accreditations carousel
         document.querySelectorAll('[data-carousel]').forEach(initCarousel);
+
+        // Award cards reveal-on-scroll (micro-animation, reduced-motion safe)
+        const awardReveals = document.querySelectorAll('.award-card[data-reveal]');
+        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (awardReveals.length && !prefersReduced && 'IntersectionObserver' in window) {
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) { entry.target.classList.add('is-revealed'); io.unobserve(entry.target); }
+                });
+            }, { rootMargin: '0px 0px -8% 0px', threshold: 0.1 });
+            awardReveals.forEach((el, i) => setTimeout(() => io.observe(el), i * 70));
+        } else {
+            awardReveals.forEach((el) => el.classList.add('is-revealed'));
+        }
     });
 </script>
 @endpush
