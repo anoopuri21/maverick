@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\View;
 use App\Models\Program;
 use App\Settings\FinalCtaSettings;
@@ -16,7 +17,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        // Load global helper functions. This guarantees media_url() etc. are
+        // available even when composer autoload has not been regenerated
+        // (e.g. right after a git pull on a server).
+        $helpers = app_path('helpers.php');
+        if (is_file($helpers)) {
+            require_once $helpers;
+        }
     }
 
     /**
@@ -24,6 +31,20 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // Preview / reverse-proxy: generate asset URLs from the incoming host
+        // so CSS/JS load on the sandbox preview domain (local only).
+        if ($this->app->environment('local') && ! $this->app->runningInConsole()) {
+            $host = $_SERVER['HTTP_X_FORWARDED_HOST'] ?? $_SERVER['HTTP_HOST'] ?? null;
+            $proto = $_SERVER['HTTP_X_FORWARDED_PROTO']
+                ?? ((! empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http');
+            if ($host) {
+                URL::forceRootUrl($proto.'://'.$host);
+                if ($proto === 'https') {
+                    URL::forceScheme('https');
+                }
+            }
+        }
+
         // Share site settings globally
         \Illuminate\Support\Facades\View::composer('*', function ($view) {
             $view->with('site', app(\App\Settings\SiteSettings::class));

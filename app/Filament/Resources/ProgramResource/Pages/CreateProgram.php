@@ -15,11 +15,18 @@ class CreateProgram extends CreateRecord
     {
         $data = \App\Filament\Forms\Components\MediaPicker::syncFieldFromAsset($data, 'image_url');
 
-        // Extract SEO data before creating program
+        $data = ProgramResource::cleanJsonForSave($data);
+
         if (isset($data['seo'])) {
-            $this->seoData = $data['seo'];
+            $seo = $data['seo'];
+            unset(
+                $seo['og_image_url_asset_id'],
+                $seo['twitter_image_url_asset_id'],
+            );
+            $this->seoData = $seo;
             unset($data['seo']);
         }
+
         return $data;
     }
 

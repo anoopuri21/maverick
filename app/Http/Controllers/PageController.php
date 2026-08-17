@@ -46,7 +46,7 @@ class PageController extends Controller
 
         // Accreditations, Partnerships & Recognitions section: accreditation + alumni + recognition types
         $accreditationLogos = PartnerLogo::select('id', 'name', 'logo_url', 'sort_order')
-            ->whereIn('type', ['accreditation', 'alumni', 'recognition'])
+            ->whereIn('type', ['accreditation', 'recognition'])
             ->where('is_active', true)
             ->orderBy('sort_order')
             ->get();
@@ -132,7 +132,7 @@ class PageController extends Controller
 
         // Shared collections (same sources as homepage)
         $accreditationLogos = PartnerLogo::select('id', 'name', 'logo_url', 'sort_order')
-            ->where('type', 'accreditation')
+            ->whereIn('type', ['accreditation', 'recognition'])
             ->where('is_active', true)
             ->orderBy('sort_order')
             ->get();
@@ -166,6 +166,7 @@ class PageController extends Controller
             'ourStoryTestimonials' => $ourStoryTestimonials,
             'testimonials' => $testimonials,
             'testimonialsJson' => $testimonialsJson,
+            'ourStorySeo' => app(\App\Settings\OurStorySeoSettings::class),
         ]);
 
         return view('pages.our-story', $data);

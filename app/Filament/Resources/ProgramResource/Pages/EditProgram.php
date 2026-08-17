@@ -24,10 +24,12 @@ class EditProgram extends EditRecord
 
     protected function mutateFormDataBeforeFill(array $data): array
     {
-        // Load existing SEO data into form
         if ($this->record->seo) {
             $data['seo'] = $this->record->seo->toArray();
         }
+
+        $data = $this->syncBenefitIconPresets($data);
+
         return $data;
     }
 
@@ -37,10 +39,37 @@ class EditProgram extends EditRecord
 
         $data = $this->preserveExistingImageFields($data, $this->record);
 
+        $data = ProgramResource::cleanJsonForSave($data);
+
         if (isset($data['seo'])) {
-            $this->seoData = $data['seo'];
+            $seo = $data['seo'];
+            unset(
+                $seo['og_image_url_asset_id'],
+                $seo['twitter_image_url_asset_id'],
+            );
+            $this->seoData = $seo;
             unset($data['seo']);
         }
+
+        return $data;
+    }
+
+    /** Sync icon_preset select from stored icon values on load. */
+    protected function syncBenefitIconPresets(array $data): array
+    {
+        $options = array_keys([
+            'users' => 1, 'book-open' => 1, 'globe' => 1, 'trending-up' => 1, 'laptop' => 1,
+            'sparkles' => 1, 'shield' => 1, 'award' => 1, 'graduation-cap' => 1, 'briefcase' => 1,
+            'target' => 1, 'lightbulb' => 1, 'heart-handshake' => 1, 'clock' => 1, 'map-pin' => 1,
+        ]);
+
+        foreach ($data['benefits'] ?? [] as $i => $benefit) {
+            $icon = $benefit['icon'] ?? null;
+            if ($icon && in_array($icon, $options, true)) {
+                $data['benefits'][$i]['icon_preset'] = $icon;
+            }
+        }
+
         return $data;
     }
 

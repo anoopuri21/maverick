@@ -6,7 +6,7 @@
       <!-- COLUMN 1: Logo + About + Newsletter -->
       <div class="footer__col footer__col--brand">
         <a href="{{ route('home') }}" class="footer__logo" aria-label="Maverick Business Academy Home">
-          <img src="{{ $site->logo_white_url ?? asset('assets/images/logo-white.png') }}" alt="Maverick Business Academy Logo" class="footer__logo-img">
+          <img src="{{ media_url($site->logo_white_url, 'assets/images/logo-white.png') }}" alt="Maverick Business Academy Logo" class="footer__logo-img">
         </a>
 
         <p class="footer__about">

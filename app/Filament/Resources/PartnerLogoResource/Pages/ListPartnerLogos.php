@@ -16,4 +16,9 @@ class ListPartnerLogos extends ListRecords
             Actions\CreateAction::make(),
         ];
     }
+
+    public function getTabs(): array
+    {
+        return PartnerLogoResource::getTabs();
+    }
 }

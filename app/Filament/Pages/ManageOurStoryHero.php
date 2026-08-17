@@ -28,6 +28,8 @@ class ManageOurStoryHero extends SettingsPage
     protected static ?string $navigationGroup = 'Our Story Page';
     protected static ?string $navigationLabel = 'Hero Section';
     protected static ?int $navigationSort = 1;
+
+    protected static bool $shouldRegisterNavigation = false;
     protected static string $settings = OurStoryHeroSettings::class;
 
     public function form(Form $form): Form

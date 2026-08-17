@@ -4,9 +4,9 @@
     <!-- Logo -->
     <a href="{{ route('home') }}" class="navbar__logo" aria-label="Maverick Business Academy Home">
       <div class="navbar__logo-placeholder">
-        <img src="{{ $site->logo_white_url ?? asset('assets/images/logo-white.png') }}" alt="Maverick Business Academy Logo"
+        <img src="{{ media_url($site->logo_white_url, 'assets/images/logo-white.png') }}" alt="Maverick Business Academy Logo"
           class="navbar__logo-img white-logo" />
-        <img src="{{ $site->logo_url ?? asset('assets/images/logo.png') }}" alt="Maverick Business Academy Logo"
+        <img src="{{ media_url($site->logo_url, 'assets/images/logo.png') }}" alt="Maverick Business Academy Logo"
           class="navbar__logo-img regular-logo" />
       </div>
     </a>
@@ -463,7 +463,7 @@
   <!-- Mobile Menu Overlay -->
   <div class="navbar__mobile" id="mobile-menu" data-lenis-prevent aria-hidden="true">
     <div class="navbar__mobile-inner">
-      <img src="{{ $site->logo_white_url ?? asset('assets/images/logo-white.png') }}" alt="Maverick Business Academy Logo" class="navbar__logo-img white-logo"
+      <img src="{{ media_url($site->logo_white_url, 'assets/images/logo-white.png') }}" alt="Maverick Business Academy Logo" class="navbar__logo-img white-logo"
         style="position: absolute; top: 10px; left: 24px; width: calc(100vw - 120px); height: auto;" />
       <nav class="navbar__mobile-nav">
         <ul class="navbar__mobile-menu">

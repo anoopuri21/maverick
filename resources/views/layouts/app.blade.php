@@ -26,6 +26,9 @@
     <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}" />
 
     @stack('styles')
+
+    {{-- Head meta (SEO tags injected per page) --}}
+    @stack('head')
 </head>
 
 <body class="is-loading" style="min-height: 100vh;">
@@ -54,7 +57,7 @@
     </button>
 
     <a id="whatsapp-float" class="floating-action floating-action--whatsapp" href="https://wa.me/{{ $site->whatsapp_number }}" target="_blank" rel="noopener noreferrer" aria-label="Contact via WhatsApp">
-        <span aria-hidden="true" data-lucide="message-circle-more"></span>
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 1.8a8.2 8.2 0 1 1-4.2 15.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 0 1 12 3.8z"/></svg>
     </a>
 
     {{-- Scripts --}}
@@ -77,6 +80,12 @@
     <script src="{{ asset('assets/js/core/animations-core.js') }}" type="module" defer></script>
     <script src="{{ asset('assets/js/core/reveal-observer.js') }}" type="module" defer></script>
     <script src="{{ asset('assets/js/pages/accreditations.js') }}" type="module" defer></script>
+    @endif
+    @if(request()->routeIs('programs.show'))
+    <script src="{{ asset('assets/js/pages/program-detail.js') }}" type="module" defer></script>
+    @endif
+    @if(request()->routeIs('programs.index'))
+    <script src="{{ asset('assets/js/pages/program-listing.js') }}" defer></script>
     @endif
     <script src="{{ asset('assets/js/partners.js') }}" defer></script>
     <script src="{{ asset('assets/js/testimonials.js') }}" defer></script>
