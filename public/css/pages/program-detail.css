@@ -146,12 +146,12 @@
 .page-pd .rec-head .lab b{color:var(--color-mba-dark-blue)}
 .page-pd .rec-track{overflow:hidden;position:relative;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
 .page-pd .rec-slider{display:flex;gap:22px;animation:scrollx 22s linear infinite;width:max-content}
-.page-pd .rec-card{flex:0 0 auto;display:flex;align-items:center;gap:14px;background:var(--color-light-bg);border:1px solid var(--line);border-radius:16px;padding:14px 20px;min-width:230px}
-.page-pd .rec-logo{width:46px;height:46px;flex:none;border-radius:12px;background:var(--white);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:700;font-size:13px;color:var(--color-mba-blue);overflow:hidden;padding:4px}
-.page-pd .rec-logo img{width:100%;height:100%;object-fit:contain}
-.page-pd .rec-logo-fallback{display:flex;align-items:center;justify-content:center;width:100%;height:100%}
-.page-pd .rec-card .t{font-size:14px;font-weight:600}
-.page-pd .rec-card .s{font-size:11.5px;color:var(--muted);line-height:1.4;max-width:24ch}
+.page-pd .rec-card{flex:0 0 auto;display:flex;align-items:center;justify-content:center;background:var(--white);border:1px solid var(--line);border-radius:18px;padding:18px;min-width:120px;height:132px;transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s ease,border-color .35s ease}
+.page-pd .rec-card:hover{transform:translateY(-4px);box-shadow:0 16px 34px rgba(15,41,131,.14);border-color:rgba(178,2,2,.35)}
+.page-pd .rec-logo{width:96px;height:96px;flex:none;border-radius:16px;background:var(--white);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:700;font-size:22px;color:var(--color-mba-blue);overflow:hidden;padding:10px}
+.page-pd .rec-logo img{width:100%;height:100%;object-fit:contain;filter:grayscale(20%);transition:transform .5s cubic-bezier(.2,.7,.2,1),filter .5s ease}
+.page-pd .rec-card:hover .rec-logo img{transform:scale(1.06);filter:grayscale(0%)}
+.page-pd .rec-logo-fallback{display:flex;align-items:center;justify-content:center;width:100%;height:100%;text-align:center;line-height:1.1}
 @keyframes scrollx{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 @media (prefers-reduced-motion:reduce){.page-pd .rec-slider{animation:none;flex-wrap:wrap}}
 @media(max-width:560px){.page-pd .rec-head{flex-direction:column;align-items:flex-start;gap:8px}.page-pd .rec-head .lab{white-space:normal;line-height:1.5}}
@@ -291,15 +291,20 @@
 .page-pd .gau-copy h2{font-family:var(--font-display);font-size:clamp(28px,3.4vw,42px);line-height:1.06;letter-spacing:-.03em;margin-bottom:20px}
 .page-pd .gau-copy h2 em{font-style:italic;color:var(--color-mba-red)}
 .page-pd .gau-copy>p{font-size:15.5px;line-height:1.75;color:rgba(255,255,255,.8);margin-bottom:26px}
-.page-pd .gau-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:26px}
-.page-pd .gau-metric{background:rgba(255,255,255,.07);border:1px solid var(--line-dark);border-radius:18px;padding:20px}
+/* List content in the university description → red dot + ring animation */
+.page-pd .gau-copy ul,
+.page-pd .gau-copy ol{list-style:none;margin:0 0 24px;padding:0}
+.page-pd .gau-copy li{position:relative;padding-left:28px;margin-bottom:12px;color:rgba(255,255,255,.88);font-size:15px;line-height:1.6}
+.page-pd .gau-copy li::before{content:"";position:absolute;left:2px;top:9px;width:11px;height:11px;border-radius:50%;background:var(--color-mba-red);box-shadow:0 0 0 0 rgba(178,2,2,.55);animation:gauRing 1.9s ease-out infinite}
+.page-pd .gau-copy li:last-child{margin-bottom:0}
+@keyframes gauRing{0%{box-shadow:0 0 0 0 rgba(178,2,2,.55)}100%{box-shadow:0 0 0 10px rgba(178,2,2,0)}}
+.page-pd .gau-metrics{display:flex;gap:12px;margin-bottom:26px}
+.page-pd .gau-metric{background:rgba(255,255,255,.07);border:1px solid var(--line-dark);border-radius:18px;padding:20px;min-width:150px}
 .page-pd .gau-metric .num{font-family:var(--font-display);font-size:28px;font-weight:700;color:#fff;line-height:1}
 .page-pd .gau-metric .num small{font-size:16px;color:var(--color-gold)}
 .page-pd .gau-metric .lbl{font-size:12px;color:rgba(255,255,255,.6);margin-top:6px}
-.page-pd .gau-tick{display:flex;align-items:flex-start;gap:12px;font-size:14px;color:rgba(255,255,255,.85);margin-bottom:12px}
-.page-pd .gau-tick svg{width:20px;height:20px;color:var(--color-mba-red);flex:none;margin-top:2px}
 @media(max-width:900px){.page-pd .gau-grid{grid-template-columns:1fr}.page-pd .gau-photo{min-height:320px}}
-@media(max-width:560px){.page-pd .gau-metrics{grid-template-columns:1fr 1fr}}
+@media (prefers-reduced-motion:reduce){.page-pd .gau-copy li::before{animation:none;box-shadow:none;background:var(--color-mba-red)}}
 
 /* ============================================================
    10. ACCREDITATION (logo grids)

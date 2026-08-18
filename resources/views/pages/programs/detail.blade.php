@@ -86,7 +86,7 @@
                     <div class="hero-ctas rv rv-d2">
                         <a href="#enquire" class="btn btn-red">Apply Now<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
                         <a href="{{ route('contact') }}" class="btn btn-outline">Download Brochure<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></a>
-                        <a href="#enquire" class="btn btn-outline">Enquire Now</a>
+                        <a href="#enquire" class="btn btn-outline">Enquire Now<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
                     </div>
                     @if($highlights->count())
                     <div class="hero-hl rv rv-d3">
@@ -122,15 +122,15 @@
         <div class="container">
             <div class="rec-head rv">
                 <span class="lab">Awarded By · <b>{{ $program->partner_university ?? ($recognition->first()['name'] ?? '') }}</b></span>
-                <span class="lab">Recognised / Accredited</span>
+                <span class="lab">Recognised &amp; Accredited</span>
             </div>
             <div class="rec-track">
                 <div class="rec-slider">
                     @foreach($recognition as $r)
-                        <div class="rec-card">{!! $renderLogoChip($r['name'] ?? '', $r['logo'] ?? null, 'rec-logo', 'rec-logo-fallback', 3) !!}<div><div class="t">{{ $r['name'] }}</div>@if(!empty($r['note']))<div class="s">{!! strip_tags($r['note']) !!}</div>@endif</div></div>
+                        <div class="rec-card">{!! $renderLogoChip($r['name'] ?? '', $r['logo'] ?? null, 'rec-logo', 'rec-logo-fallback', 3) !!}</div>
                     @endforeach
                     @foreach($recognition as $r)
-                        <div class="rec-card" aria-hidden="true">{!! $renderLogoChip($r['name'] ?? '', $r['logo'] ?? null, 'rec-logo', 'rec-logo-fallback', 3) !!}<div><div class="t">{{ $r['name'] }}</div>@if(!empty($r['note']))<div class="s">{!! strip_tags($r['note']) !!}</div>@endif</div></div>
+                        <div class="rec-card" aria-hidden="true">{!! $renderLogoChip($r['name'] ?? '', $r['logo'] ?? null, 'rec-logo', 'rec-logo-fallback', 3) !!}</div>
                     @endforeach
                 </div>
             </div>
@@ -291,12 +291,11 @@
                 <span class="kicker">The University</span>
                 <h2>A Globally Connected <em>University</em></h2>
                 @if($university->description)<p>{!! $university->description !!}</p>@endif
+                @if($university->establishment)
                 <div class="gau-metrics">
-                    @if($university->establishment)<div class="gau-metric"><div class="num">{{ str_replace('Established ', '', $university->establishment) }}<small>+</small></div><div class="lbl">Established</div></div>@endif
-                    <div class="gau-metric"><div class="num">Intl<small></small></div><div class="lbl">International outlook</div></div>
+                    <div class="gau-metric"><div class="num">{{ str_replace('Established ', '', $university->establishment) }}<small>+</small></div><div class="lbl">Established</div></div>
                 </div>
-                <div class="gau-tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Internationally focused curriculum</div>
-                <div class="gau-tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Designed for the global workplace</div>
+                @endif
             </div>
         </div>
     </section>
