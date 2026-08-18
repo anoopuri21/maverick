@@ -60,7 +60,8 @@ class AppServiceProvider extends ServiceProvider
 
         View::composer('sections.featured-programs', function ($view) {
             $view->with('featuredPrograms', 
-                Program::select('id', 'title', 'slug', 'partner_university', 'short_description', 'image_url', 'sort_order')
+                Program::select('id', 'title', 'slug', 'university_partner_id', 'short_description', 'image_url', 'sort_order')
+                    ->with('universityPartner')
                     ->where('is_featured', true)
                     ->where('is_active', true)
                     ->orderBy('sort_order')
@@ -70,7 +71,8 @@ class AppServiceProvider extends ServiceProvider
         });
 
         View::composer('sections.university-partners', function ($view) {
-            $universityPartners = UniversityPartner::select('id', 'name', 'country', 'city', 'latitude', 'longitude', 'is_hub', 'recognition', 'programs', 'logo_url')
+            $universityPartners = UniversityPartner::select('id', 'name', 'country', 'city', 'latitude', 'longitude', 'is_hub', 'recognition', 'logo_url')
+                ->with(['programs' => fn ($q) => $q->where('is_active', true)->orderBy('sort_order')])
                 ->where('is_active', true)
                 ->orderBy('country')
                 ->get();
@@ -86,12 +88,18 @@ class AppServiceProvider extends ServiceProvider
                         'lat' => (float) ($first->latitude ?? 0),
                         'lng' => (float) ($first->longitude ?? 0),
                         'isHub' => (bool) ($first->is_hub ?? false),
-                        'universities' => $partners->map(fn($p) => [
-                            'name' => $p->name,
-                            'country' => $p->country,
-                            'recognition' => $p->recognition ?? '',
-                            'programs' => $p->programs ?? [],
-                        ])->values(),
+                        'universities' => $partners->map(function ($p) {
+                            return [
+                                'name' => $p->name,
+                                'country' => $p->country,
+                                'recognition' => $p->recognition ?? '',
+                                // Each linked program becomes {name, url} for the map's Program Offered cards.
+                                'programs' => $p->programs->map(fn ($pr) => [
+                                    'name' => $pr->title,
+                                    'url' => route('programs.show', $pr->slug),
+                                ])->values()->all(),
+                            ];
+                        })->values(),
                     ];
                 })
                 ->values();

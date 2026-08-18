@@ -19,12 +19,26 @@ class ProgramSeeder extends Seeder
             ['name' => 'Bachelors', 'icon' => 'graduation-cap', 'description' => 'Undergraduate business and management programmes.', 'is_active' => true]
         );
 
+        // University partner (single source of truth). Created once; program links via FK.
+        $university = \App\Models\UniversityPartner::firstOrCreate(
+            ['slug' => 'girne-american-university'],
+            [
+                'name' => 'Girne American University',
+                'country' => 'Northern Cyprus',
+                'country_code' => 'CY',
+                'slug' => 'girne-american-university',
+                'description' => "<p>Girne American University (GAU), established in 1985, is one of Northern Cyprus' leading universities. It offers internationally focused education with programmes designed to prepare graduates for the global workplace.</p>",
+                'is_active' => true,
+                'sort_order' => 1,
+            ]
+        );
+
         $program = Program::firstOrCreate(
             ['slug' => 'bsc-business-management'],
             [
                 'program_category_id' => $category->id,
+                'university_partner_id' => $university->id,
                 'title' => 'Bachelor of Business Management (BSc)',
-                'partner_university' => 'Girne American University',
                 'duration' => '20–24 Months', // VERIFY vs GAU 4 years
                 'level' => 'BSc',
                 'short_description' => 'Develop leadership, strategic thinking, entrepreneurial, and management skills through an internationally recognised bachelor\'s degree awarded by Girne American University (GAU).',
@@ -140,9 +154,6 @@ class ProgramSeeder extends Seeder
                 ['item' => 'Affordable Instalments'],
                 ['item' => 'Career Guidance'],
                 ['item' => 'Graduation Support'],
-            ],
-            'university' => [
-                ['name' => 'Girne American University', 'description' => "<p>Girne American University (GAU), established in 1985, is one of Northern Cyprus' leading universities. It offers internationally focused education with programmes designed to prepare graduates for the global workplace.</p>", 'establishment' => 'Established 1985', 'image' => null],
             ],
             'accreditation_groups' => [
                 ['group' => 'Institutional Recognition', 'items' => [

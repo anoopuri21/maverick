@@ -12,11 +12,13 @@ class ProgramCategory extends Model
         'slug',
         'icon',
         'description',
+        'sort_order',
         'is_active',
     ];
 
     protected $casts = [
         'is_active' => 'boolean',
+        'sort_order' => 'integer',
     ];
 
     public function programs(): HasMany

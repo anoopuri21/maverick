@@ -66,7 +66,7 @@
                     @endif
                     <div class="pl-card__body">
                         @if($program->programCategory)<span class="pl-card__cat">{{ $program->programCategory->name }}</span>@endif
-                        @if($program->partner_university)<span class="pl-card__uni">{{ $program->partner_university }}</span>@endif
+                        @if($program->universityPartner)<span class="pl-card__uni">{{ $program->universityPartner->name }}</span>@endif
                         <h2 class="pl-card__title">{{ $program->title }}</h2>
                         @if($program->duration || $program->level)
                             <span class="pl-card__meta">

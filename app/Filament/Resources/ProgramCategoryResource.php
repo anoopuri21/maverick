@@ -43,6 +43,10 @@ class ProgramCategoryResource extends Resource
                     ->label('Lucide Icon Name'),
                 Forms\Components\Textarea::make('description')
                     ->columnSpanFull(),
+                Forms\Components\TextInput::make('sort_order')
+                    ->numeric()
+                    ->default(0)
+                    ->helperText('Lower numbers appear first in the navbar and listings.'),
                 Forms\Components\Toggle::make('is_active')
                     ->default(true),
             ]);
@@ -57,6 +61,10 @@ class ProgramCategoryResource extends Resource
                     ->searchable(),
                 TextColumn::make('slug'),
                 TextColumn::make('icon'),
+                TextColumn::make('sort_order')
+                    ->numeric()
+                    ->sortable()
+                    ->label('Order'),
                 IconColumn::make('is_active')
                     ->boolean(),
                 TextColumn::make('created_at')

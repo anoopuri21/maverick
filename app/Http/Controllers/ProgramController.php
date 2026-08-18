@@ -21,10 +21,10 @@ class ProgramController extends Controller
             ->get();
 
         $programs = Program::select([
-                'id', 'program_category_id', 'title', 'slug', 'partner_university',
+                'id', 'program_category_id', 'university_partner_id', 'title', 'slug',
                 'duration', 'level', 'short_description', 'description', 'image_url', 'sort_order',
             ])
-            ->with('programCategory')
+            ->with(['programCategory', 'universityPartner'])
             ->where('is_active', true)
             ->orderBy('sort_order')
             ->orderBy('title')
