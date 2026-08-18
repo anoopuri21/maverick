@@ -48,6 +48,33 @@
     $heroBgUrl = media_url($program->image_url, 'assets/images/edutainment/hero-cinematic.jpg');
     $uniImgUrl = media_url($university->image ?? null, 'assets/images/edutainment/international-students-university-campus-1.jpg');
     $learnImgUrl = asset('assets/images/edutainment/dubai-uae-skyline-students-studying-camp-1.jpg');
+    // Mirrors Testimonial::getAutoThumbnailAttribute() / getEmbedUrlAttribute() for JSON testimonials
+    $youtubeId = function (?string $url): ?string {
+        $url = trim($url ?? '');
+        if ($url === '') return null;
+        if (preg_match('/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i', $url, $m)) return $m[1];
+        if (preg_match('/^([a-zA-Z0-9_-]{11})$/', $url, $m)) return $m[1];
+        return null;
+    };
+    $storyThumb = function (array $t) use ($youtubeId): ?array {
+        if ($url = media_url($t['thumb'] ?? null)) {
+            return ['src' => $url, 'retry' => null];
+        }
+        if ($id = $youtubeId($t['video'] ?? null)) {
+            return [
+                'src'   => "https://img.youtube.com/vi/{$id}/maxresdefault.jpg",
+                'retry' => "https://img.youtube.com/vi/{$id}/hqdefault.jpg",
+            ];
+        }
+        return null;
+    };
+    $embedUrl = function (?string $url) use ($youtubeId): ?string {
+        $url = trim($url ?? '');
+        if ($url === '') return null;
+        if ($id = $youtubeId($url)) return "https://www.youtube.com/embed/{$id}?autoplay=1&rel=0";
+        if (preg_match('/vimeo\.com\/(?:.*\/)?(\d+)/i', $url, $m)) return "https://player.vimeo.com/video/{$m[1]}?autoplay=1";
+        return $url;
+    };
     $renderLogoChip = function (?string $name, ?string $logo, string $chipClass, string $fallbackClass, int $take = 2) use ($initials) {
         $url = media_url($logo);
         $abbr = e($initials($name, $take));
@@ -139,7 +166,7 @@
     @endif
 
     {{-- ============ 3. SNAPSHOT (Bento Grid) ============ --}}
-    @if($snapshot->count())
+    <!-- @if($snapshot->count())
     <section class="snapshot section tex-mesh" aria-label="Programme snapshot">
         <div class="container">
             <div class="sec-head rv">
@@ -156,7 +183,7 @@
             </div>
         </div>
     </section>
-    @endif
+    @endif -->
 
     {{-- ============ 4. OVERVIEW (Flat + Editorial) ============ --}}
     @if($program->description)
@@ -309,17 +336,39 @@
                 <span class="kicker">Accreditation</span>
                 <h2>Accreditation &amp; <em>Recognition</em></h2>
             </div>
-            <div class="acc-wrap">
-                @foreach($accreditationGroups as $g)
-                <div class="acc-col rv rv-d{{ min($loop->iteration % 3 + 1, 3) }}"><div class="h-lab">{{ $g['group'] }}</div>
-                    <div class="acc-logos">
-                        @foreach($g['items'] as $item)
-                            <div class="acc-logo">{!! $renderLogoChip($item['name'] ?? '', $item['logo'] ?? null, 'sq', 'sq-fallback', 2) !!}{{ $item['name'] }}</div>
-                        @endforeach
+            @php
+                $accItems = $accreditationGroups->flatMap(function ($g) {
+                    return collect($g['items'] ?? [])->map(fn ($item) => [
+                        'group' => $g['group'] ?? null,
+                        'name'  => $item['name'] ?? '',
+                        'logo'  => $item['logo'] ?? null,
+                    ]);
+                })->values();
+            @endphp
+            @if($accItems->count())
+            <div class="acc-board rv" data-acc-board>
+                <div class="acc-board-head">
+                    <!-- <span class="acc-caption">{{ $accItems->count() }} {{ Str::plural('accreditation', $accItems->count()) }} across {{ $accreditationGroups->count() }} {{ Str::plural('category', $accreditationGroups->count()) }}</span> -->
+                    <div class="acc-nav">
+                        <button type="button" class="acc-btn" data-acc-prev aria-label="Show previous accreditations"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+                        <button type="button" class="acc-btn" data-acc-next aria-label="Show next accreditations"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>
                     </div>
                 </div>
-                @endforeach
+                <div class="acc-rail-mask">
+                    <ul class="acc-rail" data-acc-rail>
+                        @php $prevGroup = null; @endphp
+                        @foreach($accItems as $item)
+                            <li class="acc-tile @if($prevGroup !== null && $prevGroup === $item['group']) is-same-group @endif">
+                                @if(!empty($item['group']))<span class="acc-eyebrow">{{ $item['group'] }}</span>@endif
+                                <span class="acc-plate">{!! $renderLogoChip($item['name'], $item['logo'], 'acc-plate-in', 3) !!}</span>
+                                @if(!empty($item['name']))<span class="acc-name">{{ $item['name'] }}</span>@endif
+                            </li>
+                            @php $prevGroup = $item['group']; @endphp
+                        @endforeach
+                    </ul>
+                </div>
             </div>
+            @endif
         </div>
     </section>
     @endif
@@ -354,13 +403,24 @@
                 <span class="kicker">Stories</span>
                 <h2>Student Success <em>Stories</em></h2>
             </div>
-            <div class="story-shell">
-                <div class="story-window">
+            <div class="story-shell" id="storyShell">
+                <div class="story-window" tabindex="0" role="group" aria-label="Student success stories carousel">
                     <div class="story-track" id="storyTrack">
                         @foreach($testimonials as $t)
+                        @php
+                            $thumb = $storyThumb($t);
+                            $embed = $embedUrl($t['video'] ?? null);
+                            $storyInitials = $initials($t['name'] ?? '');
+                        @endphp
                         <div class="story-card">
-                            <div class="story-media"><div class="art"></div><span class="tag">@if(!empty($t['category'])){{ $t['category'] }} · @endif@if(!empty($t['video']))Video @else Story @endif</span>
-                                @if(!empty($t['video']))<div class="play"><a href="{{ $t['video'] }}" class="pp" data-modal-video="{{ $t['video'] }}" aria-label="Play {{ $t['name'] }}'s video"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></a></div>@endif
+                            <div class="story-media">
+                                <div class="art" aria-hidden="true">@if($storyInitials)<span class="art-mono">{{ $storyInitials }}</span>@endif<svg class="art-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+                                @if($thumb)
+                                    <img class="story-thumb" src="{{ $thumb['src'] }}" alt="{{ $t['name'] ?? 'Student story' }}" loading="lazy" @if($thumb['retry']) data-retry="{{ $thumb['retry'] }}" @endif onerror="if(this.dataset.retry){this.src=this.dataset.retry;delete this.dataset.retry;}else{this.closest('.story-media').classList.add('no-thumb');}">
+                                    <span class="story-shade" aria-hidden="true"></span>
+                                @endif
+                                <span class="tag">@if(!empty($t['category'])){{ $t['category'] }} · @endif@if(!empty($t['video']))Video @else Story @endif</span>
+                                @if($embed)<div class="play"><a href="{{ $t['video'] }}" class="pp" target="_blank" rel="noopener" data-video-embed="{{ $embed }}" data-video-title="{{ $t['name'] ?? 'Student story' }}" aria-label="Play {{ $t['name'] ?? 'student' }}'s video"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></a></div>@endif
                             </div>
                             <div class="story-body">
                                 <div class="story-by">
@@ -373,10 +433,10 @@
                         @endforeach
                     </div>
                 </div>
-                @if($testimonials->count() > 3)
+                @if($testimonials->count() > 1)
                 <div class="story-nav">
-                    <button class="story-btn" id="storyPrev" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
-                    <button class="story-btn" id="storyNext" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>
+                    <button type="button" class="story-btn" id="storyPrev" aria-label="Previous stories" aria-controls="storyTrack"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+                    <button type="button" class="story-btn" id="storyNext" aria-label="Next stories" aria-controls="storyTrack"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>
                 </div>
                 @endif
             </div>
@@ -505,7 +565,15 @@
                         @endif
                     </span><div><div class="nm">{{ $r['name'] }}</div><div class="rl" style="font-size:12px;color:var(--muted)">Student</div></div></div>
                     <div class="stars">@for($i = 1; $i <= ($r['rating'] ?? 5); $i++)<svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 1-5 5 1 7-6-4-6 4 1-7-5-5 7-1z"/></svg>@endfor</div>
-                    <div class="q">{!! $r['review'] ?? '' !!}</div>
+                    @if(!empty($r['review']))
+                    <div class="q-wrap" data-rev-clamp>
+                        <div class="q" id="rev-q-{{ $loop->index }}">{!! $r['review'] !!}</div>
+                        <button type="button" class="rev-more" aria-expanded="false" aria-controls="rev-q-{{ $loop->index }}">
+                            <span class="rev-more-label">Read more</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                        </button>
+                    </div>
+                    @endif
                 </div>
                 @endforeach
             </div>
@@ -515,13 +583,17 @@
 
     {{-- ============ FINAL CTA ============ --}}
     <section class="final" aria-label="Call to action">
-        <div class="glow"></div>
         <div class="container">
-            <h2 class="d rv">Ready to Begin Your <em>Journey?</em></h2>
-            <p class="rv">Speak to our admissions team today and take the first step toward a globally recognised degree.</p>
-            <div class="ctas rv">
-                <a href="#enquire" class="btn btn-red">Apply Now<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-                <a href="#enquire" class="btn btn-outline">Enquire Now</a>
+            <div class="final-card rv">
+                <div class="glow" aria-hidden="true"></div>
+                <div class="final-inner">
+                    <h2 class="d">Ready to Begin Your <em>Journey?</em></h2>
+                    <p>Speak to our admissions team today and take the first step toward a globally recognised degree.</p>
+                    <div class="ctas">
+                        <a href="#enquire" class="btn btn-white">Apply Now<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                        <a href="#enquire" class="btn btn-outline">Enquire Now</a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -560,18 +632,230 @@ document.addEventListener('DOMContentLoaded', () => {
     // Fail-open: never leave content hidden
     window.setTimeout(() => { document.querySelectorAll('.page-pd .rv:not(.in)').forEach(el => el.classList.add('in')); }, 3000);
 
+    // Reviews: 10-line clamp with expand/collapse, one open at a time
+    const revWraps = Array.from(document.querySelectorAll('[data-rev-clamp]'));
+    if (revWraps.length) {
+        const clampHeight = q => {
+            const lines = parseInt(getComputedStyle(q).getPropertyValue('--rev-lines'), 10) || 10;
+            const lh = parseFloat(getComputedStyle(q).lineHeight) || 22;
+            return Math.round(lines * lh);
+        };
+
+        const collapse = wrap => {
+            const q = wrap.querySelector('.q');
+            const btn = wrap.querySelector('.rev-more');
+            if (!q || !wrap.classList.contains('is-open')) return;
+            q.style.maxHeight = q.scrollHeight + 'px';
+            // Force a reflow so the transition runs from the measured height
+            void q.offsetHeight;
+            wrap.classList.remove('is-open');
+            q.style.maxHeight = clampHeight(q) + 'px';
+            if (btn) {
+                btn.setAttribute('aria-expanded', 'false');
+                const label = btn.querySelector('.rev-more-label');
+                if (label) label.textContent = 'Read more';
+            }
+        };
+
+        const expand = wrap => {
+            const q = wrap.querySelector('.q');
+            const btn = wrap.querySelector('.rev-more');
+            if (!q) return;
+            revWraps.forEach(other => { if (other !== wrap) collapse(other); });
+            wrap.classList.add('is-open');
+            q.style.maxHeight = q.scrollHeight + 'px';
+            if (btn) {
+                btn.setAttribute('aria-expanded', 'true');
+                const label = btn.querySelector('.rev-more-label');
+                if (label) label.textContent = 'Show less';
+            }
+        };
+
+        revWraps.forEach(wrap => {
+            const q = wrap.querySelector('.q');
+            const btn = wrap.querySelector('.rev-more');
+            if (!q || !btn) return;
+
+            wrap.classList.add('is-clamped');
+            if (q.scrollHeight <= q.clientHeight + 2) {
+                wrap.classList.remove('is-clamped');
+                return;
+            }
+
+            // Once the transition settles, drop the cap so reflows can't re-clip the text
+            q.addEventListener('transitionend', e => {
+                if (e.propertyName !== 'max-height') return;
+                if (wrap.classList.contains('is-open')) q.style.maxHeight = 'none';
+                else q.style.maxHeight = '';
+            });
+
+            btn.addEventListener('click', () => {
+                if (wrap.classList.contains('is-open')) collapse(wrap);
+                else expand(wrap);
+            });
+        });
+    }
+
+    // Accreditation rail: arrows + drag, only when the logos actually overflow
+    document.querySelectorAll('[data-acc-board]').forEach(board => {
+        const rail = board.querySelector('[data-acc-rail]');
+        if (!rail) return;
+        const prev = board.querySelector('[data-acc-prev]');
+        const next = board.querySelector('[data-acc-next]');
+
+        const step = () => {
+            const tile = rail.querySelector('.acc-tile');
+            const gap = parseFloat(getComputedStyle(rail).columnGap) || 14;
+            return tile ? tile.getBoundingClientRect().width + gap : rail.clientWidth * 0.8;
+        };
+        const syncArrows = () => {
+            const max = rail.scrollWidth - rail.clientWidth;
+            if (prev) prev.disabled = rail.scrollLeft <= 1;
+            if (next) next.disabled = rail.scrollLeft >= max - 1;
+        };
+        const measure = () => {
+            board.classList.toggle('is-scrollable', rail.scrollWidth > rail.clientWidth + 1);
+            syncArrows();
+        };
+
+        if (prev) prev.addEventListener('click', () => rail.scrollBy({ left: -step(), behavior: prefersReduced ? 'auto' : 'smooth' }));
+        if (next) next.addEventListener('click', () => rail.scrollBy({ left: step(), behavior: prefersReduced ? 'auto' : 'smooth' }));
+        rail.addEventListener('scroll', syncArrows, { passive: true });
+        window.addEventListener('resize', measure);
+        rail.querySelectorAll('img').forEach(img => {
+            if (!img.complete) img.addEventListener('load', measure, { once: true });
+        });
+
+        // Pointer drag-to-scroll (threshold keeps clicks/links intact)
+        let dragging = false, startX = 0, startScroll = 0, moved = 0;
+        rail.addEventListener('pointerdown', e => {
+            if (e.pointerType === 'touch' || !board.classList.contains('is-scrollable')) return;
+            dragging = true; moved = 0;
+            startX = e.clientX;
+            startScroll = rail.scrollLeft;
+        });
+        rail.addEventListener('pointermove', e => {
+            if (!dragging) return;
+            const dx = e.clientX - startX;
+            if (Math.abs(dx) > 4) {
+                if (!moved) board.classList.add('is-dragging');
+                moved = Math.abs(dx);
+                rail.scrollLeft = startScroll - dx;
+            }
+        });
+        const endDrag = () => {
+            if (!dragging) return;
+            dragging = false;
+            board.classList.remove('is-dragging');
+        };
+        rail.addEventListener('pointerup', endDrag);
+        rail.addEventListener('pointercancel', endDrag);
+        rail.addEventListener('pointerleave', endDrag);
+
+        measure();
+    });
+
     // Story slider
     const track = document.getElementById('storyTrack');
     if (track) {
+        const shell = document.getElementById('storyShell');
         const cards = track.children.length;
+        const next = document.getElementById('storyNext');
+        const prev = document.getElementById('storyPrev');
+        const perView = () => (window.innerWidth > 1000 ? 3 : window.innerWidth > 640 ? 2 : 1);
         let si = 0;
-        const perView = () => window.innerWidth > 1000 ? 3 : window.innerWidth > 640 ? 2 : 1;
-        function update(){ const v = perView(); const max = Math.max(0, cards - v); si = Math.min(si, max); track.style.transform = `translateX(-${si * (100 / v)}%)`; }
-        const n = document.getElementById('storyNext'), p = document.getElementById('storyPrev');
-        if (n) n.addEventListener('click', () => { si += 1; update(); });
-        if (p) p.addEventListener('click', () => { si -= 1; update(); });
-        window.addEventListener('resize', () => { si = 0; update(); });
+
+        const update = () => {
+            const v = perView();
+            const max = Math.max(0, cards - v);
+            si = Math.min(Math.max(si, 0), max);
+            track.style.transform = si ? `translateX(-${si * (100 / v)}%)` : '';
+            if (shell) shell.classList.toggle('is-scrollable', max > 0);
+            [[prev, si <= 0], [next, si >= max]].forEach(([btn, off]) => {
+                if (!btn) return;
+                btn.disabled = off;
+                btn.setAttribute('aria-disabled', off ? 'true' : 'false');
+            });
+        };
+        const go = delta => { si += delta; update(); };
+
+        if (next) next.addEventListener('click', () => go(1));
+        if (prev) prev.addEventListener('click', () => go(-1));
+        window.addEventListener('resize', update);
+
+        const win = track.parentElement;
+        if (win) win.addEventListener('keydown', e => {
+            if (e.key === 'ArrowRight') { go(1); e.preventDefault(); }
+            else if (e.key === 'ArrowLeft') { go(-1); e.preventDefault(); }
+        });
+
         update();
+    }
+
+    // Video modal for story play buttons
+    const videoTriggers = document.querySelectorAll('[data-video-embed]');
+    if (videoTriggers.length) {
+        let overlay = null, lastFocus = null;
+
+        const close = () => {
+            if (!overlay) return;
+            overlay.remove();
+            overlay = null;
+            document.body.style.overflow = '';
+            document.removeEventListener('keydown', onKeydown);
+            if (lastFocus) lastFocus.focus();
+        };
+        function onKeydown(e) {
+            if (!overlay) return;
+            if (e.key === 'Escape') { close(); return; }
+            if (e.key !== 'Tab') return;
+            const focusable = overlay.querySelectorAll('button, iframe');
+            if (!focusable.length) return;
+            const first = focusable[0], last = focusable[focusable.length - 1];
+            if (e.shiftKey && document.activeElement === first) { last.focus(); e.preventDefault(); }
+            else if (!e.shiftKey && document.activeElement === last) { first.focus(); e.preventDefault(); }
+        }
+
+        const open = (src, title) => {
+            close();
+            lastFocus = document.activeElement;
+            overlay = document.createElement('div');
+            overlay.className = 'pd-vmodal';
+            overlay.setAttribute('role', 'dialog');
+            overlay.setAttribute('aria-modal', 'true');
+            overlay.setAttribute('aria-label', title || 'Video');
+            overlay.innerHTML =
+                '<div class="pd-vmodal-frame">' +
+                    '<button type="button" class="pd-vmodal-close" aria-label="Close video">' +
+                        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>' +
+                    '</button>' +
+                    '<div class="pd-vmodal-media"></div>' +
+                '</div>';
+
+            const frame = document.createElement('iframe');
+            frame.src = src;
+            frame.title = title || 'Video';
+            frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+            frame.allowFullscreen = true;
+            frame.setAttribute('frameborder', '0');
+            overlay.querySelector('.pd-vmodal-media').appendChild(frame);
+
+            overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
+            overlay.querySelector('.pd-vmodal-close').addEventListener('click', close);
+            document.addEventListener('keydown', onKeydown);
+            document.body.style.overflow = 'hidden';
+            document.body.appendChild(overlay);
+            overlay.querySelector('.pd-vmodal-close').focus();
+        };
+
+        videoTriggers.forEach(trigger => {
+            trigger.addEventListener('click', e => {
+                const src = trigger.dataset.videoEmbed;
+                if (!src) return;
+                e.preventDefault();
+                open(src, trigger.dataset.videoTitle);
+            });
+        });
     }
 });
 </script>
