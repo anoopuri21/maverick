@@ -80,9 +80,16 @@ class UniversityPartnerResource extends Resource
                             ->columnSpanFull(),
                         \Filament\Forms\Components\Placeholder::make('programs_link')
                             ->label('Programs Offered')
-                            ->content(fn ($record) => $record?->programs?->count()
-                                ? $record->programs->pluck('title')->implode(' · ')
-                                : 'No programs linked yet. Link them from the Programs resource (University Partner dropdown).')
+                            ->content(function ($record) {
+                                if (! $record) {
+                                    return 'Save this university first, then link programs from the Programs resource.';
+                                }
+                                $count = $record->programs()->count();
+                                if ($count === 0) {
+                                    return 'No programs linked yet. Link them from the Programs resource (University Partner dropdown).';
+                                }
+                                return $record->programs()->pluck('title')->implode(' · ');
+                            })
                             ->columnSpanFull(),
                     ]),
 
