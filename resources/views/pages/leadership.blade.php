@@ -69,25 +69,6 @@
         ],
     ]);
 
-    $boardMembers = collect([
-        (object)['name' => 'Dame Victoria Ashford', 'role' => 'CHAIRPERSON', 'image_url' => 'https://images.pexels.com/photos/762020/pexels-photo-762020.jpeg?auto=compress&cs=tinysrgb&w=800'],
-        (object)['name' => 'Lord Richard Pemberton', 'role' => 'VICE CHAIR', 'image_url' => 'https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=800'],
-        (object)['name' => 'Prof. Mei-Lin Zhang', 'role' => 'NON-EXECUTIVE DIRECTOR', 'image_url' => 'https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=800'],
-        (object)['name' => 'Sir Marcus Thompson', 'role' => 'NON-EXECUTIVE DIRECTOR', 'image_url' => 'https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=800'],
-        (object)['name' => 'Fatima Al-Hassan', 'role' => 'NON-EXECUTIVE DIRECTOR', 'image_url' => 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=800'],
-        (object)['name' => 'Jonathan Clarke', 'role' => 'NON-EXECUTIVE DIRECTOR', 'image_url' => 'https://images.pexels.com/photos/1043474/pexels-photo-1043474.jpeg?auto=compress&cs=tinysrgb&w=800'],
-        (object)['name' => 'Dr. Patricia Mendez', 'role' => 'NON-EXECUTIVE DIRECTOR', 'image_url' => 'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=800'],
-        (object)['name' => 'Andrew Blackwell', 'role' => 'COMPANY SECRETARY', 'image_url' => 'https://images.pexels.com/photos/1516680/pexels-photo-1516680.jpeg?auto=compress&cs=tinysrgb&w=800'],
-    ]);
-
-    $advisors = collect([
-        (object)['name' => 'Prof. Rajesh Kapoor', 'expertise' => 'Digital Transformation', 'image_url' => 'https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=800'],
-        (object)['name' => 'Dr. Angela Morrison', 'expertise' => 'Executive Education', 'image_url' => 'https://images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg?auto=compress&cs=tinysrgb&w=800'],
-        (object)['name' => 'William Frost', 'expertise' => 'Corporate Strategy', 'image_url' => 'https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=800'],
-        (object)['name' => 'Dr. Chioma Eze', 'expertise' => 'International Accreditation', 'image_url' => 'https://images.pexels.com/photos/3760856/pexels-photo-3760856.jpeg?auto=compress&cs=tinysrgb&w=800'],
-        (object)['name' => 'Thomas Bergström', 'expertise' => 'Sustainability & ESG', 'image_url' => 'https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=800'],
-        (object)['name' => 'Dr. Yasmin Patel', 'expertise' => 'Lifelong Learning', 'image_url' => 'https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg?auto=compress&cs=tinysrgb&w=800'],
-    ]);
 @endphp
 
 
@@ -183,77 +164,8 @@
 
     </div>
 </section>
+    @include('sections.alumni-network')
 
-
-{{-- ═══════════════════════════════════════════
-     3. BOARD OF DIRECTORS
-═══════════════════════════════════════════ --}}
-<section class="board-directors section-wrapper section--light">
-    <div class="container">
-        
-        <div class="section-heading-block">
-            <span class="section-label">GOVERNANCE</span>
-            <h2 class="section-heading">
-                Board of <em>Directors</em>
-            </h2>
-            <p class="section-subheading">
-                Distinguished leaders providing strategic oversight and governance excellence.
-            </p>
-        </div>
-
-        <div class="board-directors__grid">
-            @foreach($boardMembers as $member)
-            <article class="board-card">
-                <div class="board-card__image-wrapper">
-                    <img src="{{ $member->image_url }}" 
-                         alt="{{ $member->name }}" 
-                         class="board-card__image"
-                         loading="lazy">
-                </div>
-                <h3 class="board-card__name">{{ $member->name }}</h3>
-                <p class="board-card__role">{{ $member->role }}</p>
-            </article>
-            @endforeach
-        </div>
-
-    </div>
-</section>
-
-
-{{-- ═══════════════════════════════════════════
-     4. ADVISORY BOARD
-═══════════════════════════════════════════ --}}
-<section class="advisory-board section-wrapper">
-    <div class="container">
-        
-        <div class="section-heading-block">
-            <span class="section-label">EXTERNAL EXPERTISE</span>
-            <h2 class="section-heading">
-                Advisory <em>Board</em>
-            </h2>
-            <p class="section-subheading">
-                Industry experts and thought leaders who guide our strategic direction.
-            </p>
-        </div>
-
-        <div class="advisory-board__grid">
-            @foreach($advisors as $advisor)
-            <article class="advisor-card">
-                <div class="advisor-card__image-wrapper">
-                    <img src="{{ $advisor->image_url }}" 
-                         alt="{{ $advisor->name }}" 
-                         class="advisor-card__image"
-                         loading="lazy">
-                    <span class="advisor-card__badge">ADVISOR</span>
-                </div>
-                <h3 class="advisor-card__name">{{ $advisor->name }}</h3>
-                <p class="advisor-card__expertise">{{ $advisor->expertise }}</p>
-            </article>
-            @endforeach
-        </div>
-
-    </div>
-</section>
 
 </div>
 

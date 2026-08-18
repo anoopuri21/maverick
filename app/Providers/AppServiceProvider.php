@@ -116,6 +116,17 @@ class AppServiceProvider extends ServiceProvider
             $view->with('finalCta', app(FinalCtaSettings::class));
         });
 
+        // Alumni Network — supply $alumniLogos on any page that includes it
+        // (home, leadership, etc.). Alumni type only, active, sorted.
+        View::composer('sections.alumni-network', function ($view) {
+            $alumniLogos = \App\Models\PartnerLogo::select('id', 'name', 'logo_url', 'sort_order')
+                ->where('type', 'alumni')
+                ->where('is_active', true)
+                ->orderBy('sort_order')
+                ->get();
+            $view->with('alumniLogos', $alumniLogos);
+        });
+
         View::composer([
             'sections.what-we-do',
             'pages.csr-community-impact',
