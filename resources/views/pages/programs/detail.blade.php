@@ -64,7 +64,7 @@
     {{-- ============ STICKY BAR ============ --}}
     <div class="sticky-bar">
         <div class="sticky-inner">
-            <a href="#top" class="sticky-brand"><span class="mark">M</span><span class="d">Maverick</span><span class="sticky-name"> · {{ $program->title }}</span></a>
+            <a href="#top" class="sticky-brand"><span class="sticky-name">{{ $program->title }}</span></a>
             <div class="sticky-ctas">
                 <span class="sticky-note">Admissions open</span>
                 <a href="#enquire" class="btn sticky-enquire"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span>Enquire Now</span></a>
