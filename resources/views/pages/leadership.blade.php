@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
-@section('title', 'Leadership & Board - Maverick Business Academy')
+@section('title', ($leadershipSeo->meta_title ?? 'Leadership & Board - Maverick Business Academy'))
+@section('meta_description', ($leadershipSeo->meta_description ?? 'Meet the distinguished leaders and board members guiding Maverick Business Academy.'))
+
+@push('head')
+    @include('partials.seo-meta', ['seo' => $leadershipSeo])
+@endpush
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/pages/leadership.css') }}">
@@ -12,63 +17,9 @@
 
 
 @php
-    // ═══════════════════════════════════════════
-    // STATIC DATA (Future: Move to admin/database)
-    // ═══════════════════════════════════════════
-
-    $hero = (object)[
-        'tag' => 'LEADERSHIP & GOVERNANCE',
-        'heading_line1' => 'The Visionaries Behind',
-        'heading_italic' => 'Maverick Academy',
-        'description' => 'Meet the distinguished leaders and board members who guide our mission to transform lives through accessible, world-class business education. Our leadership team brings decades of experience from top universities, Fortune 500 companies, and global education institutions.',
-        'background_image' => 'https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=1920',
-    ];
-
-    $executiveTeam = collect([
-        (object)[
-            'name' => 'Dr. Elizabeth Chen',
-            'designation' => 'Chief Academic Officer',
-            'bio' => 'Former Dean at London School of Economics with 25+ years in higher education. Dr. Chen oversees all academic programmes and faculty development, ensuring world-class educational standards.',
-            'image_url' => 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=800',
-            'linkedin_url' => '#',
-        ],
-        (object)[
-            'name' => "Michael O'Brien",
-            'designation' => 'Chief Operating Officer',
-            'bio' => 'Previously led operations at Pearson Education for 15 years. Michael ensures seamless delivery of our programmes across all global touchpoints and drives operational excellence.',
-            'image_url' => 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=800',
-            'linkedin_url' => '#',
-        ],
-        (object)[
-            'name' => 'Amara Okonkwo',
-            'designation' => 'Chief Strategy Officer',
-            'bio' => "Former McKinsey partner and Harvard MBA. Amara leads our strategic initiatives, global expansion efforts, and corporate partnerships that shape Maverick's future.",
-            'image_url' => 'https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&w=800',
-            'linkedin_url' => '#',
-        ],
-        (object)[
-            'name' => 'Robert Williams',
-            'designation' => 'Chief Financial Officer',
-            'bio' => 'Chartered accountant with experience at KPMG and Deloitte. Robert oversees financial strategy, investor relations, and ensures sustainable growth for the academy.',
-            'image_url' => 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=800',
-            'linkedin_url' => '#',
-        ],
-        (object)[
-            'name' => 'Dr. Sarah Mitchell',
-            'designation' => 'Chief Digital Officer',
-            'bio' => 'Tech visionary and former Google executive. Sarah drives our digital transformation, online learning platform development, and AI-powered educational innovations.',
-            'image_url' => 'https://images.pexels.com/photos/3760263/pexels-photo-3760263.jpeg?auto=compress&cs=tinysrgb&w=800',
-            'linkedin_url' => '#',
-        ],
-        (object)[
-            'name' => 'David Oyelaran',
-            'designation' => 'Chief Marketing Officer',
-            'bio' => "Brand strategist with 20+ years building global education brands. David leads our marketing, communications, and student recruitment efforts worldwide.",
-            'image_url' => 'https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=800',
-            'linkedin_url' => '#',
-        ],
-    ]);
-
+    // Admin-managed via LeadershipHeroSettings / LeadershipLeadersSettings.
+    $hero = app(\App\Settings\LeadershipHeroSettings::class);
+    $executiveTeam = collect($leaders->items ?? []);
 @endphp
 
 
@@ -129,12 +80,12 @@
     <div class="container">
         
         <div class="section-heading-block">
-            <span class="section-label">LEADERSHIP</span>
+            <span class="section-label">{{ $leaders->label ?? 'LEADERSHIP' }}</span>
             <h2 class="section-heading">
-                Executive <em>Leadership Team</em>
+                {{ $leaders->heading ?? 'Executive ' }}<em>{{ $leaders->heading_italic ?? 'Leadership Team' }}</em>
             </h2>
             <p class="section-subheading">
-                The visionary leaders driving our mission to transform lives through education.
+                {{ $leaders->subheading ?? 'The visionary leaders driving our mission to transform lives through education.' }}
             </p>
         </div>
 
@@ -142,16 +93,16 @@
             @foreach($executiveTeam as $member)
             <article class="team-card">
                 <div class="team-card__image-wrapper">
-                    <img src="{{ $member->image_url }}" 
-                         alt="{{ $member->name }}" 
+                    <img src="{{ $member['image_url'] ?? '' }}" 
+                         alt="{{ $member['name'] ?? '' }}" 
                          class="team-card__image"
                          loading="lazy">
                 </div>
                 <div class="team-card__content">
-                    <h3 class="team-card__name">{{ $member->name }}</h3>
-                    <p class="team-card__designation">{{ strtoupper($member->designation) }}</p>
-                    <p class="team-card__bio">{{ $member->bio }}</p>
-                    <a href="{{ $member->linkedin_url }}" class="team-card__linkedin" target="_blank" rel="noopener">
+                    <h3 class="team-card__name">{{ $member['name'] ?? '' }}</h3>
+                    <p class="team-card__designation">{{ strtoupper($member['designation'] ?? '') }}</p>
+                    <p class="team-card__bio">{{ $member['bio'] ?? '' }}</p>
+                    <a href="{{ $member['linkedin_url'] ?? '#' }}" class="team-card__linkedin" target="_blank" rel="noopener">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/>
                         </svg>
