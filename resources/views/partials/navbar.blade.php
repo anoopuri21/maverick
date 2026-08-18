@@ -80,7 +80,6 @@
                 </div>
               </div>
             </div>
-          </div>
         </li>
 
         <li class="navbar__item navbar__item--has-dropdown" role="none">
