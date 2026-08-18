@@ -71,7 +71,8 @@ class AppServiceProvider extends ServiceProvider
         });
 
         View::composer('sections.university-partners', function ($view) {
-            $universityPartners = UniversityPartner::select('id', 'name', 'country', 'city', 'latitude', 'longitude', 'is_hub', 'recognition', 'programs', 'logo_url')
+            $universityPartners = UniversityPartner::select('id', 'name', 'country', 'city', 'latitude', 'longitude', 'is_hub', 'recognition', 'logo_url')
+                ->withCount('programs')
                 ->where('is_active', true)
                 ->orderBy('country')
                 ->get();
@@ -91,7 +92,7 @@ class AppServiceProvider extends ServiceProvider
                             'name' => $p->name,
                             'country' => $p->country,
                             'recognition' => $p->recognition ?? '',
-                            'programs' => $p->programs ?? [],
+                            'programs' => $p->programs_count, // programs relation count (column dropped)
                         ])->values(),
                     ];
                 })
