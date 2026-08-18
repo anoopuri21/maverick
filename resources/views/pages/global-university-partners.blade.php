@@ -1,6 +1,17 @@
 @extends('layouts.app')
 
-@section('title', 'Global University Partners - Maverick Business Academy')
+@section('title', ($globalPartnersSeo->meta_title ?? 'Global University Partners - Maverick Business Academy'))
+@section('meta_description', ($globalPartnersSeo->meta_description ?? 'Explore Maverick Business Academy\'s global university partnerships.'))
+
+@push('head')
+    @include('partials.seo-meta', ['seo' => $globalPartnersSeo])
+@endpush
+
+@if(!empty($globalPartnersSeo->custom_body_scripts))
+@push('scripts')
+    {!! $globalPartnersSeo->custom_body_scripts !!}
+@endpush
+@endif
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/pages/global-university-partners.css') }}">
@@ -10,265 +21,20 @@
 @section('content')
 <div class="page-gup gup">
 
-
 @php
-    // ═══════════════════════════════════════════
-    // STATIC DATA (Future: Move to admin/database)
-    // ═══════════════════════════════════════════
-
-    $hero = (object)[
-        'tag' => 'GLOBAL PARTNERSHIPS',
-        'heading_line1' => 'Global',
-        'heading_italic' => 'University Partners',
-        'description' => 'Maverick Business Academy collaborates with internationally recognized universities and educational institutions across five continents, creating academic bridges that connect ambitious learners with globally respected qualifications, cutting-edge research opportunities, and transformative career pathways that transcend geographical boundaries.',
-        'background_image' => 'https://images.pexels.com/photos/5725589/pexels-photo-5725589.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=1600',
-    ];
-
-    $overview = (object)[
-        'tag' => 'GLOBAL PARTNERSHIPS',
-        'heading' => 'Building Global Pathways Through ',
-        'heading_italic' => 'Strategic Academic Partnerships',
-        'paragraphs' => [
-            'Maverick Business Academy collaborates with internationally recognized universities and educational institutions to provide learners with access to globally respected qualifications, flexible learning opportunities, and career-focused academic pathways',
-        ],
-        'image' => asset('https://res.cloudinary.com/i08gwudw/image/upload/v1785340343/maverick-academy/our-story/timeline/qpg8khpl9f0tg6xzyhz5.jpg'),
-    ];
-
-    $whyPartnerships = (object)[
-        'tag' => 'OUR VALUE',
-        'heading' => 'Why Our Partnerships',
-        'heading_italic' => 'Matter',
-        'quote' => 'Every partnership we sign is measured against one question — does it open a new door for our students?',
-        'items' => collect([
-            (object)[
-                'icon' => 'graduation-cap',
-                'title' => 'Internationally Recognized Qualifications',
-                'description' => 'Access degrees and certifications respected by employers and institutions worldwide.',
-            ],
-            (object)[
-                'icon' => 'globe',
-                'title' => 'Global Learning Opportunities',
-                'description' => 'Study across borders through partner campuses and international exchange programs.',
-            ],
-            (object)[
-                'icon' => 'book-open',
-                'title' => 'Flexible Study Pathways',
-                'description' => 'Choose from full-time, part-time, online, and hybrid learning formats.',
-            ],
-            (object)[
-                'icon' => 'award',
-                'title' => 'Academic Excellence',
-                'description' => 'Learn from world-class faculty and follow curricula aligned with global standards.',
-            ],
-            (object)[
-                'icon' => 'rocket',
-                'title' => 'Career Advancement',
-                'description' => 'Unlock opportunities with qualifications that accelerate professional growth.',
-            ],
-        ]),
-    ];
-
-    $benefits = (object)[
-        'tag' => 'Student Benefits',
-        'heading' => 'Benefits of Studying Through ',
-        'heading_italic' => 'Maverick Partnerships',
-        'main_image' => asset('https://res.cloudinary.com/i08gwudw/image/upload/v1784534077/maverick-academy/programs/igxpmziapl3v5xaqozki.jpg'),
-        'secondary_image' => asset('https://res.cloudinary.com/i08gwudw/image/upload/v1784441348/mba_sa4pmo.jpg'),
-        'floating_stat' => (object)['number' => '30k+', 'label' => 'GLOBAL ALUMNI'],
-        'items' => collect([
-            (object)[
-                'title' => 'Access to internationally recognized qualifications ',
-                'description' => 'Degrees and certifications valued by employers across the globe.',
-            ],
-            (object)[
-                'title' => 'Flexible Learning Formats',
-                'description' => 'Full-time, part-time, online and hybrid — learning that fits your life.',
-            ],
-            (object)[
-                'title' => 'Global Alumni Networks',
-                'description' => 'Join 30,000+ graduates building careers in over 50 countries.',
-                'highlighted' => true,
-            ],
-            (object)[
-                'title' => 'Industry-Relevant Curriculum',
-                'description' => 'Programmes shaped with employers and updated for the real world of work.',
-            ],
-            (object)[
-                'title' => 'Career Progression Opportunities',
-                'description' => 'Qualifications designed to accelerate your professional growth.',
-            ],
-            (object)[
-                'title' => 'Diverse International Learning Environment ',
-                'description' => 'Learn alongside peers from every corner of the world.',
-            ],
-        ]),
-    ];
-
-    $partnerUniversities = collect([
-        (object)[
-            'slug' => 'rbs',
-            'name' => 'Rushford Business School',
-            'abbreviation' => 'RBS',
-            'country' => 'Switzerland',
-            'flag' => '🇨🇭',
-            'recognition' => 'International business school focused on management, leadership, and executive education.',
-            'logo' => asset('assets/images/universities/rbs-logo.png'),
-            'cta_url' => url('/programs'),
-        ],
-        (object)[
-            'slug' => 'gau',
-            'name' => 'Girne American University',
-            'abbreviation' => 'GAU',
-            'country' => 'North Cyprus',
-            'flag' => '🇨🇾',
-            'recognition' => 'Internationally recognized university offering undergraduate, postgraduate, and doctoral programs.',
-            'logo' => asset('assets/images/universities/gau-logo.png'),
-            'cta_url' => url('/programs'),
-        ],
-        (object)[
-            'slug' => 'gloucestershire',
-            'name' => 'University of the West of Scotland',
-            'abbreviation' => 'UWS',
-            'country' => 'United Kingdom',
-            'flag' => '🇬🇧',
-            'recognition' => 'A renowned UK university with a strong reputation for business, leadership, and professional education.',
-            'logo' => asset('assets/images/universities/uog-logo.png'),
-            'cta_url' => url('/programs'),
-        ],
-        (object)[
-            'slug' => 'uca',
-            'name' => 'University of the Creative Arts',
-            'abbreviation' => 'UCA',
-            'country' => 'United Kingdom',
-            'flag' => '🇬🇧',
-            'recognition' => 'One of the UK\'s leading specialist universities for business, creativity, and innovation.',
-            'logo' => asset('assets/images/universities/uca-logo.png'),
-            'cta_url' => url('/programs'),
-        ],
-        (object)[
-            'slug' => 'wolverhampton',
-            'name' => 'University of Wolverhampton',
-            'abbreviation' => 'UoW',
-            'country' => 'Turks & Caicos Islands',
-            'flag' => '🇹🇨',
-            'recognition' => 'International institution offering business, education, health sciences, and doctoral qualifications.',
-            'logo' => asset('assets/images/universities/uow-logo.png'),
-            'cta_url' => url('/programs'),
-        ],
-        (object)[
-            'slug' => 'gatehouse',
-            'name' => 'Gatehouse University',
-            'abbreviation' => 'GH',
-            'country' => 'North Cyprus',
-            'flag' => '🇨🇾',
-            'recognition' => 'Internationally recognized university offering undergraduate, postgraduate, and doctoral programs.',
-            'logo' => asset('assets/images/universities/gau-logo.png'),
-            'cta_url' => url('/programs'),
-        ],
-        (object)[
-            'slug' => 'qualifi',
-            'name' => 'Qualifi University',
-            'abbreviation' => 'QU',
-            'country' => 'North Cyprus',
-            'flag' => '🇨🇾',
-            'recognition' => 'Internationally recognized university offering undergraduate, postgraduate, and doctoral programs.',
-            'logo' => asset('assets/images/universities/gau-logo.png'),
-            'cta_url' => url('/programs'),
-        ],
-    ]);
-
-    $galleryCategories = collect([
-        (object)['slug' => 'all', 'name' => 'All', 'count' => 11],
-        (object)['slug' => 'mou-signings', 'name' => 'MOU Signings', 'count' => 3],
-        (object)['slug' => 'graduations', 'name' => 'Graduations', 'count' => 2],
-        (object)['slug' => 'university-visits', 'name' => 'University Visits', 'count' => 2],
-        (object)['slug' => 'conferences', 'name' => 'Conferences', 'count' => 2],
-        (object)['slug' => 'forums', 'name' => 'Forums', 'count' => 2],
-    ]);
-
-    $galleryItems = collect([
-        (object)[
-            'category' => 'mou-signings',
-            'badge' => 'Forum',
-            'date' => '14 Feb 2025',
-            'title' => null,
-            'caption' => 'Cross-Border Learning Roundtable',
-            'image' => asset('https://images.pexels.com/photos/11299318/pexels-photo-11299318.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=700&w=940'),
-            'size' => 'medium',
-        ],
-        (object)[
-            'category' => 'mou-signings',
-            'badge' => 'MOU SIGNING',
-            'date' => '28 Oct 2024',
-            'title' => null,
-            'caption' => null,
-            'image' => asset('https://images.pexels.com/photos/7433919/pexels-photo-7433919.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=700&w=940'),
-            'size' => 'tall',
-        ],
-        (object)[
-            'category' => 'university-visits',
-            'badge' => 'UNIVERSITY VISIT',
-            'date' => '03 Jun 2024',
-            'title' => 'Partner Campus Tour — Toronto',
-            'caption' => 'Scoping new articulation routes across North America.',
-            'image' => asset('https://images.pexels.com/photos/27238168/pexels-photo-27238168.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=700'),
-            'size' => 'tall',
-        ],
-        (object)[
-            'category' => 'graduations',
-            'badge' => 'Conference',
-            'date' => '18 Dec 2024',
-            'title' => 'Global Education Summit London',
-            'caption' => null,
-            'image' => asset('https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=700&w=940'),
-            'size' => 'tall',
-        ],
-        (object)[
-            'category' => 'mou-signings',
-            'badge' => 'MOU SIGNING',
-            'date' => '17 May 2024',
-            'title' => 'Kuala Lumpur Academic Alliance',
-            'caption' => null,
-            'image' => asset('https://images.pexels.com/photos/17682883/pexels-photo-17682883.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=800'),
-            'size' => 'medium',
-        ],
-        (object)[
-            'category' => 'graduations',
-            'badge' => 'GRADUATION',
-            'date' => '18 Dec 2024',
-            'title' => 'Class of 2024 — Caps in the Air',
-            'caption' => null,
-            'image' => asset('https://images.pexels.com/photos/31290544/pexels-photo-31290544.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=700&w=940'),
-            'size' => 'medium',
-        ],
-        (object)[
-            'category' => 'conferences',
-            'badge' => 'CONFERENCE',
-            'date' => '05 Nov 2024',
-            'title' => 'UK–Oman Digital Connectivity Forum',
-            'caption' => null,
-            'image' => asset('https://images.pexels.com/photos/29335353/pexels-photo-29335353.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=700&w=940'),
-            'size' => 'medium',
-        ],
-        (object)[
-            'category' => 'forums',
-            'badge' => 'FORUM',
-            'date' => '21 Mar 2024',
-            'title' => 'International Education Forum',
-            'caption' => null,
-            'image' => asset('https://images.pexels.com/photos/7640781/pexels-photo-7640781.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=800'),
-            'size' => 'wide',
-        ],
-    ]);
+    $whyItems = collect($whyPartnerships->items ?? []);
+    $benefitItems = collect($benefits->items ?? []);
 @endphp
-
 
 {{-- ═══════════════════════════════════════════
      1. HERO SECTION (Cinematic Design)
 ═══════════════════════════════════════════ --}}
+@if(filled($hero->heading_line1) || filled($hero->heading_italic))
 <section class="cinematic-hero" aria-label="Global University Partners Hero">
     <div class="cinematic-hero__bg" aria-hidden="true">
-        <div class="cinematic-hero__bg-image" style="background-image: url('{{ $hero->background_image }}')"></div>
+        @if($heroBg = media_url($hero->background_image))
+        <div class="cinematic-hero__bg-image" style="background-image: url('{{ $heroBg }}')"></div>
+        @endif
         <div class="cinematic-hero__gradient"></div>
         <div class="cinematic-hero__noise"></div>
         <div class="cinematic-hero__shapes">
@@ -296,52 +62,60 @@
         </div>
     </div>
     <div class="container cinematic-hero__content">
+        @if(filled($hero->tag))
         <span class="cinematic-hero__eyebrow">
             <span class="cinematic-hero__eyebrow-line"></span>
             {{ $hero->tag }}
         </span>
+        @endif
         <h1 class="cinematic-hero__title">
-            {{ $hero->heading_line1 }}<br>
-            <em>{{ $hero->heading_italic }}</em>
+            @if(filled($hero->heading_line1)){{ $hero->heading_line1 }}<br>@endif
+            @if(filled($hero->heading_italic))<em>{{ $hero->heading_italic }}</em>@endif
         </h1>
+        @if(filled($hero->description))
         <p class="cinematic-hero__description">{{ $hero->description }}</p>
+        @endif
         <div class="cinematic-hero__scroll-hint" aria-hidden="true">
             <span class="cinematic-hero__scroll-text">Scroll to explore</span>
             <span class="cinematic-hero__scroll-arrow" data-lucide="chevron-down"></span>
         </div>
     </div>
 </section>
+@endif
 
 
 {{-- ═══════════════════════════════════════════
      2. PARTNERSHIP OVERVIEW (Split with Stats)
 ═══════════════════════════════════════════ --}}
+@if(filled($overview->heading) || filled($overview->paragraph))
 <section class="gup-overview section-wrapper">
     <div class="container">
         <div class="gup-overview__grid">
-
-            {{-- Right: Content + Image --}}
             <div class="gup-overview__main">
+                @if(filled($overview->tag))
                 <span class="section-label gup-overview__label">{{ $overview->tag }}</span>
+                @endif
                 <h2 class="gup-overview__heading">
                     {{ $overview->heading }}
-                    <em>{{ $overview->heading_italic }}</em>
+                    @if(filled($overview->heading_italic))<em>{{ $overview->heading_italic }}</em>@endif
                 </h2>
-                @foreach($overview->paragraphs as $paragraph)
-                <p class="gup-overview__paragraph">{{ $paragraph }}</p>
-                @endforeach
+                @if(filled($overview->paragraph))
+                <p class="gup-overview__paragraph">{{ $overview->paragraph }}</p>
+                @endif
 
+                @if($overviewImg = media_url($overview->image))
                 <div class="gup-overview__image-wrapper">
-                    <img src="{{ $overview->image }}" 
-                         alt="Partnership" 
+                    <img src="{{ $overviewImg }}"
+                         alt="Partnership"
                          class="gup-overview__image"
                          loading="lazy">
                 </div>
+                @endif
             </div>
-
         </div>
     </div>
 </section>
+@endif
 
 @include('sections.university-partners')
 
@@ -349,18 +123,23 @@
 {{-- ═══════════════════════════════════════════
      PARTNER UNIVERSITIES — 3D Cards with Aura
 ═══════════════════════════════════════════ --}}
+@if($partnerUniversities->isNotEmpty())
 <section class="gup-partner-cards section-wrapper" data-testid="gup-partner-cards" aria-label="Partner Universities">
     <div class="container">
 
+        @if(filled($cards->label) || filled($cards->heading))
         <div class="section-heading-block">
-            <span class="section-label"><span>PARTNER UNIVERSITIES</span></span>
+            @if(filled($cards->label))
+            <span class="section-label"><span>{{ $cards->label }}</span></span>
+            @endif
             <h2 class="section-heading">
-                Our Global <em>Academic Network</em>
+                {{ $cards->heading }}@if(filled($cards->heading_italic))<em>{{ $cards->heading_italic }}</em>@endif
             </h2>
-            <p class="section-subheading">
-                Maverick Business Academy partners with world-class universities across Europe and beyond, offering students internationally recognised pathways to academic and career success.
-            </p>
+            @if(filled($cards->subheading))
+            <p class="section-subheading">{{ $cards->subheading }}</p>
+            @endif
         </div>
+        @endif
 
         <div class="gup-partner-cards__grid">
             @foreach($partnerUniversities as $uni)
@@ -369,6 +148,7 @@
                 <div class="gup-uni-card__border" aria-hidden="true"></div>
                 <div class="gup-uni-card__inner">
                     <div class="gup-uni-card__logo-wrap">
+                        @if($uni->logo)
                         <img
                             src="{{ $uni->logo }}"
                             alt="{{ $uni->name }} logo"
@@ -378,22 +158,27 @@
                             height="60"
                             onerror="this.style.display='none'; this.nextElementSibling.hidden=false;"
                         >
-                        <span class="gup-uni-card__logo-fallback" hidden aria-hidden="true">{{ $uni->abbreviation }}</span>
+                        @endif
+                        <span class="gup-uni-card__logo-fallback" @if($uni->logo) hidden @endif aria-hidden="true">{{ $uni->display_abbreviation }}</span>
                     </div>
 
                     <h3 class="gup-uni-card__name">{{ $uni->name }}</h3>
 
                     <p class="gup-uni-card__country">
-                        <span class="gup-uni-card__flag" aria-hidden="true">{{ $uni->flag }}</span>
+                        @if(filled($uni->flag_emoji))
+                        <span class="gup-uni-card__flag" aria-hidden="true">{{ $uni->flag_emoji }}</span>
+                        @endif
                         {{ $uni->country }}
                     </p>
 
+                    @if(filled($uni->recognition))
                     <div class="gup-uni-card__recognition">
                         <span class="gup-uni-card__recognition-label">Recognition</span>
                         <p class="gup-uni-card__recognition-text">{{ $uni->recognition }}</p>
                     </div>
+                    @endif
 
-                    <a href="{{ $uni->cta_url }}" class="gup-uni-card__cta btn btn--primary" data-testid="uni-cta-{{ $uni->slug }}">
+                    <a href="{{ $uni->cta_link }}" class="gup-uni-card__cta btn btn--primary" data-testid="uni-cta-{{ $uni->slug }}">
                         Explore Programs
                     </a>
                 </div>
@@ -403,149 +188,194 @@
 
     </div>
 </section>
+@endif
 
 
 {{-- ═══════════════════════════════════════════
      3. WHY OUR PARTNERSHIPS MATTER (Sticky Left)
 ═══════════════════════════════════════════ --}}
+@if($whyItems->isNotEmpty() || filled($whyPartnerships->heading))
 <section class="gup-why section-wrapper">
     <div class="container">
         <div class="gup-why__grid">
 
-            {{-- Left: Sticky Content --}}
             <div class="gup-why__sticky">
                 <div class="gup-why__sticky-inner">
+                    @if(filled($whyPartnerships->tag))
                     <span class="section-label">{{ $whyPartnerships->tag }}</span>
+                    @endif
                     <h2 class="gup-why__heading">
                         {{ $whyPartnerships->heading }}
-                        <em>{{ $whyPartnerships->heading_italic }}</em>
+                        @if(filled($whyPartnerships->heading_italic))<em>{{ $whyPartnerships->heading_italic }}</em>@endif
                     </h2>
+                    @if(filled($whyPartnerships->quote))
                     <blockquote class="gup-why__quote">
                         {{ $whyPartnerships->quote }}
                     </blockquote>
+                    @endif
                 </div>
             </div>
 
-            {{-- Right: Scrollable Cards --}}
+            @if($whyItems->isNotEmpty())
             <div class="gup-why__cards">
-                @foreach($whyPartnerships->items as $index => $item)
+                @foreach($whyItems as $index => $item)
+                @if(filled($item['title'] ?? null))
                 <article class="gup-why-card">
+                    @if(filled($item['icon'] ?? null))
                     <div class="gup-why-card__icon">
-                        <span data-lucide="{{ $item->icon }}"></span>
+                        <span data-lucide="{{ $item['icon'] }}"></span>
                     </div>
+                    @endif
                     <div class="gup-why-card__content">
-                        <h3 class="gup-why-card__title">{{ $item->title }}</h3>
-                        <p class="gup-why-card__description">{{ $item->description }}</p>
+                        <h3 class="gup-why-card__title">{{ $item['title'] }}</h3>
+                        @if(filled($item['description'] ?? null))
+                        <p class="gup-why-card__description">{{ $item['description'] }}</p>
+                        @endif
                     </div>
                     <span class="gup-why-card__number">{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</span>
                 </article>
+                @endif
                 @endforeach
             </div>
+            @endif
 
         </div>
     </div>
 </section>
+@endif
 
 
 {{-- ═══════════════════════════════════════════
      4. STUDENT BENEFITS (Checklist + Image Collage)
 ═══════════════════════════════════════════ --}}
+@if($benefitItems->isNotEmpty() || filled($benefits->heading))
 <section class="gup-benefits section-wrapper section--light">
     <div class="container">
         <div class="gup-benefits__grid">
 
-            {{-- Left: Content --}}
             <div class="gup-benefits__content">
+                @if(filled($benefits->tag))
                 <span class="section-label gup-benefits__label">{{ $benefits->tag }}</span>
+                @endif
                 <h2 class="gup-benefits__heading">
                     {{ $benefits->heading }}
-                    <em>{{ $benefits->heading_italic }}</em>
+                    @if(filled($benefits->heading_italic))<em>{{ $benefits->heading_italic }}</em>@endif
                 </h2>
 
+                @if($benefitItems->isNotEmpty())
                 <ul class="gup-benefits__list">
-                    @foreach($benefits->items as $item)
-                    <li class="gup-benefit {{ ($item->highlighted ?? false) ? 'gup-benefit--highlighted' : '' }}">
+                    @foreach($benefitItems as $item)
+                    @if(filled($item['title'] ?? null))
+                    <li class="gup-benefit {{ !empty($item['highlighted']) ? 'gup-benefit--highlighted' : '' }}">
                         <span class="gup-benefit__icon">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="20 6 9 17 4 12"></polyline>
                             </svg>
                         </span>
                         <div class="gup-benefit__content">
-                            <h4 class="gup-benefit__title">{{ $item->title }}</h4>
-                            <p class="gup-benefit__description">{{ $item->description }}</p>
+                            <h4 class="gup-benefit__title">{{ $item['title'] }}</h4>
+                            @if(filled($item['description'] ?? null))
+                            <p class="gup-benefit__description">{{ $item['description'] }}</p>
+                            @endif
                         </div>
                     </li>
+                    @endif
                     @endforeach
                 </ul>
+                @endif
             </div>
 
-            {{-- Right: Image Collage --}}
+            @php
+                $benefitsMain = media_url($benefits->main_image);
+                $benefitsSecondary = media_url($benefits->secondary_image);
+            @endphp
+            @if($benefitsMain || $benefitsSecondary || filled($benefits->stat_number) || filled($benefits->stat_label))
             <div class="gup-benefits__visual">
                 <div class="gup-benefits__dots"></div>
-                
+
+                @if($benefitsMain)
                 <div class="gup-benefits__main-image">
-                    <img src="{{ $benefits->main_image }}" 
-                         alt="Students" 
+                    <img src="{{ $benefitsMain }}"
+                         alt="Students"
                          loading="lazy">
                 </div>
+                @endif
 
+                @if($benefitsSecondary)
                 <div class="gup-benefits__secondary-image">
-                    <img src="{{ $benefits->secondary_image }}" 
-                         alt="Students walking" 
+                    <img src="{{ $benefitsSecondary }}"
+                         alt="Students walking"
                          loading="lazy">
                 </div>
+                @endif
 
+                @if(filled($benefits->stat_number) || filled($benefits->stat_label))
                 <div class="gup-benefits__floating-stat">
-                    <div class="gup-benefits__floating-number">{{ $benefits->floating_stat->number }}</div>
-                    <div class="gup-benefits__floating-label">{{ $benefits->floating_stat->label }}</div>
+                    @if(filled($benefits->stat_number))
+                    <div class="gup-benefits__floating-number">{{ $benefits->stat_number }}</div>
+                    @endif
+                    @if(filled($benefits->stat_label))
+                    <div class="gup-benefits__floating-label">{{ $benefits->stat_label }}</div>
+                    @endif
                 </div>
+                @endif
             </div>
+            @endif
 
         </div>
     </div>
 </section>
+@endif
 
 
 {{-- ═══════════════════════════════════════════
      5. PARTNERSHIP JOURNEY (Gallery)
 ═══════════════════════════════════════════ --}}
+@if($galleryItems->isNotEmpty())
 <section class="gup-journey section-wrapper">
     <div class="container">
 
+        @if(filled($journey->label) || filled($journey->heading))
         <div class="section-heading-block">
-            <span class="section-label">MOMENTS</span>
+            @if(filled($journey->label))
+            <span class="section-label">{{ $journey->label }}</span>
+            @endif
             <h2 class="section-heading">
-                Our Partnership <em>Journey</em>
+                {{ $journey->heading }}@if(filled($journey->heading_italic))<em>{{ $journey->heading_italic }}</em>@endif
             </h2>
-            <p class="section-subheading">
-                A visual journey through our global collaborations, milestones, and academic partnerships.
-            </p>
+            @if(filled($journey->subheading))
+            <p class="section-subheading">{{ $journey->subheading }}</p>
+            @endif
         </div>
+        @endif
 
-        {{-- Category Filters --}}
+        @if($galleryCategories->count() > 1)
         <div class="gup-journey__filters">
             @foreach($galleryCategories as $category)
-            <button class="gup-filter {{ $category->slug === 'all' ? 'is-active' : '' }}" 
-                    data-filter="{{ $category->slug }}">
-                {{ $category->name }}
-                <span class="gup-filter__count">{{ $category->count }}</span>
+            <button class="gup-filter {{ $category['slug'] === 'all' ? 'is-active' : '' }}"
+                    data-filter="{{ $category['slug'] }}">
+                {{ $category['name'] }}
+                <span class="gup-filter__count">{{ $category['count'] }}</span>
             </button>
             @endforeach
         </div>
+        @endif
 
-        {{-- Masonry Gallery --}}
         <div class="gup-journey__gallery">
             @foreach($galleryItems as $item)
-            <div class="gup-gallery-item gup-gallery-item--{{ $item->size }}" 
+            @if($item->image)
+            <div class="gup-gallery-item gup-gallery-item--{{ $item->size }}"
                  data-category="{{ $item->category }}">
-                <img src="{{ $item->image }}" 
-                     alt="{{ $item->title ?? $item->badge }}" 
+                <img src="{{ $item->image }}"
+                     alt="{{ $item->title ?? $item->badge }}"
                      loading="lazy"
                      class="gup-gallery-item__image">
-                
+
                 <div class="gup-gallery-item__top">
                     <span class="gup-gallery-item__badge">{{ $item->badge }}</span>
-                    <span class="gup-gallery-item__date">{{ $item->date }}</span>
+                    @if($item->formatted_date)
+                    <span class="gup-gallery-item__date">{{ $item->formatted_date }}</span>
+                    @endif
                 </div>
 
                 @if($item->title || $item->caption)
@@ -559,11 +389,13 @@
                 </div>
                 @endif
             </div>
+            @endif
             @endforeach
         </div>
 
     </div>
 </section>
+@endif
 
 </div>
 

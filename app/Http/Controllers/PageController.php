@@ -17,6 +17,15 @@ use App\Models\Testimonial;
 use App\Settings\HowWeDoItSettings;
 use App\Settings\WhyMaverickSettings;
 use App\Settings\GlobalOpportunitiesSettings;
+use App\Models\GupPartnerUniversity;
+use App\Models\PartnershipGalleryItem;
+use App\Settings\GlobalPartnersBenefitsSettings;
+use App\Settings\GlobalPartnersCardsSettings;
+use App\Settings\GlobalPartnersHeroSettings;
+use App\Settings\GlobalPartnersJourneySettings;
+use App\Settings\GlobalPartnersOverviewSettings;
+use App\Settings\GlobalPartnersSeoSettings;
+use App\Settings\GlobalPartnersWhySettings;
 
 class PageController extends Controller
 {
@@ -356,5 +365,46 @@ class PageController extends Controller
         ];
 
         return view('pages.media-gallery', $data);
+    }
+
+    public function globalUniversityPartners()
+    {
+        $galleryItems = PartnershipGalleryItem::query()
+            ->where('is_active', true)
+            ->orderBy('sort_order')
+            ->get();
+
+        $categoryCounts = $galleryItems->countBy('category');
+
+        $galleryCategories = collect([
+            ['slug' => 'all', 'name' => 'All', 'count' => $galleryItems->count()],
+        ]);
+
+        foreach (PartnershipGalleryItem::CATEGORIES as $slug => $name) {
+            $count = (int) ($categoryCounts[$slug] ?? 0);
+            if ($count > 0) {
+                $galleryCategories->push([
+                    'slug' => $slug,
+                    'name' => $name,
+                    'count' => $count,
+                ]);
+            }
+        }
+
+        return view('pages.global-university-partners', [
+            'hero' => app(GlobalPartnersHeroSettings::class),
+            'overview' => app(GlobalPartnersOverviewSettings::class),
+            'cards' => app(GlobalPartnersCardsSettings::class),
+            'whyPartnerships' => app(GlobalPartnersWhySettings::class),
+            'benefits' => app(GlobalPartnersBenefitsSettings::class),
+            'journey' => app(GlobalPartnersJourneySettings::class),
+            'globalPartnersSeo' => app(GlobalPartnersSeoSettings::class),
+            'partnerUniversities' => GupPartnerUniversity::query()
+                ->where('is_active', true)
+                ->orderBy('sort_order')
+                ->get(),
+            'galleryItems' => $galleryItems,
+            'galleryCategories' => $galleryCategories,
+        ]);
     }
 }

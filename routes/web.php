@@ -16,7 +16,7 @@ Route::get('/leadership-board', function () {return view('pages.leadership');})-
 Route::get('/accreditations', [\App\Http\Controllers\AccreditationController::class, 'index'])->name('accreditations');
 Route::get('/csr-community-impact', [PageController::class, 'csrCommunityImpact'])->name('csr');
 Route::get('/media-gallery', [PageController::class, 'gallery'])->name('media-gallery');
-Route::get('/global-university-partners', function () {return view('pages.global-university-partners');})->name('global-partners');
+Route::get('/global-university-partners', [PageController::class, 'globalUniversityPartners'])->name('global-partners');
 Route::get('/global-bachelors-pathway', function () {return view('pages.global-bachelors-pathway');})->name('global-bachelors-pathway');
 Route::get('/masters-pathway', function () {return view('pages.masters-pathway');})->name('masters-pathway');
 

@@ -25,6 +25,13 @@ return [
         \App\Settings\OurStoryVisionSettings::class,
         \App\Settings\OurStorySeoSettings::class,
         \App\Settings\AccreditationCinematicSettings::class,
+        \App\Settings\GlobalPartnersHeroSettings::class,
+        \App\Settings\GlobalPartnersOverviewSettings::class,
+        \App\Settings\GlobalPartnersCardsSettings::class,
+        \App\Settings\GlobalPartnersWhySettings::class,
+        \App\Settings\GlobalPartnersBenefitsSettings::class,
+        \App\Settings\GlobalPartnersJourneySettings::class,
+        \App\Settings\GlobalPartnersSeoSettings::class,
     ],
 
     /*
