@@ -9,6 +9,7 @@ use App\Filament\Resources\ProgramResource\Pages;
 use App\Models\MediaAsset;
 use App\Models\Program;
 use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
@@ -70,10 +71,14 @@ class ProgramResource extends Resource
                                         ->unique(ignoreRecord: true)
                                         ->helperText('URL slug for /programs/{slug}'),
 
-                                    TextInput::make('partner_university')
-                                        ->label('Partner University')
-                                        ->placeholder('e.g. Girne American University')
-                                        ->helperText('Shown in recognition header and as GAU fallback name.'),
+                                    Select::make('university_partner_id')
+                                        ->label('University Partner')
+                                        ->relationship('universityPartner', 'name')
+                                        ->searchable()
+                                        ->preload()
+                                        ->placeholder('Select a university (or leave empty)')
+                                        ->helperText('Select the university offering this program. University details are managed once under University Partners — no need to re-type.'),
+
 
                                     TextInput::make('duration')
                                         ->placeholder('e.g. 20–24 Months')
@@ -179,11 +184,15 @@ class ProgramResource extends Resource
                                     ->collapsed(true)
                                     ->schema([static::structureRepeater()]),
 
-                                Section::make('About the Awarding University')
-                                    #->description('Dark university panel (§9) and campus image in overview (§4). Only the first entry is shown on the page.')
+                                Section::make('Awarding University')
+                                    ->description('The university offering this program is selected above under Basic Information (University Partner). Its name, description and image are managed once in University Partners and shown in the About-the-University section and recognition header.')
                                     ->collapsible()
                                     ->collapsed(true)
-                                    ->schema([static::universityRepeater()]),
+                                    ->schema([
+                                        \Filament\Forms\Components\Placeholder::make('university_link')
+                                            ->label('University Partner')
+                                            ->content(fn ($record) => $record?->universityPartner?->name ?? 'No university linked yet.'),
+                                    ]),
 
                                 Section::make('Why Study Through Maverick')
                                     #->description('Support perk grid (§11). All cards look identical — no featured item.')
@@ -287,9 +296,11 @@ class ProgramResource extends Resource
                     ->label('Category')
                     ->sortable(),
 
-                TextColumn::make('partner_university')
+                TextColumn::make('universityPartner.name')
+                    ->label('University')
                     ->searchable()
                     ->toggleable()
+                    ->placeholder('—')
                     ->limit(30),
 
                 TextColumn::make('duration')
@@ -356,11 +367,6 @@ class ProgramResource extends Resource
         }
         unset($row);
 
-        foreach ($data['university'] ?? [] as &$row) {
-            static::syncNestedMediaField($row, 'image');
-        }
-        unset($row);
-
         foreach ($data['testimonials'] ?? [] as &$row) {
             static::syncNestedMediaField($row, 'thumb');
         }
@@ -381,9 +387,6 @@ class ProgramResource extends Resource
 
         if (isset($data['recognition'])) {
             static::stripAssetIdKeys($data['recognition']);
-        }
-        if (isset($data['university'])) {
-            static::stripAssetIdKeys($data['university']);
         }
         if (isset($data['testimonials'])) {
             static::stripAssetIdKeys($data['testimonials']);
@@ -620,34 +623,6 @@ class ProgramResource extends Resource
             ->defaultItems(0)
             ->itemLabel(fn (array $state): ?string => $state['title'] ?? 'Year')
             ->addActionLabel('Add Year');
-    }
-
-    protected static function universityRepeater(): Repeater
-    {
-        return Repeater::make('university')
-            ->maxItems(1)
-            ->schema([
-                TextInput::make('name')
-                    ->label('University Name')
-                    ->placeholder('e.g. Girne American University')
-                    ->columnSpanFull(),
-                RichEditor::make('description')
-                    ->label('Description')
-                    ->columnSpanFull(),
-                TextInput::make('establishment')
-                    ->label('Established')
-                    ->placeholder('Established 1985'),
-                TextInput::make('image')
-                    ->label('Campus Image URL')
-                    ->url()
-                    ->helperText('Or choose from the media library below.'),
-                MediaPicker::forField('image', 'programs/university')
-                    ->label('Campus Image'),
-            ])
-            ->collapsible()
-            ->columns(2)
-            ->defaultItems(0)
-            ->addActionLabel('Add University');
     }
 
     protected static function supportRepeater(): Repeater

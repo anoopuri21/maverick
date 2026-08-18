@@ -60,7 +60,8 @@ class AppServiceProvider extends ServiceProvider
 
         View::composer('sections.featured-programs', function ($view) {
             $view->with('featuredPrograms', 
-                Program::select('id', 'title', 'slug', 'partner_university', 'short_description', 'image_url', 'sort_order')
+                Program::select('id', 'title', 'slug', 'university_partner_id', 'short_description', 'image_url', 'sort_order')
+                    ->with('universityPartner')
                     ->where('is_featured', true)
                     ->where('is_active', true)
                     ->orderBy('sort_order')

@@ -31,8 +31,8 @@
                loading="lazy" decoding="async" width="800" height="540" />
           <div class="programs__card-header">
             <span class="programs__card-index">{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</span>
-            @if($program->partner_university)
-              <span class="programs__card-badge">{{ $program->partner_university }}</span>
+            @if($program->universityPartner)
+              <span class="programs__card-badge">{{ $program->universityPartner->name }}</span>
             @endif
           </div>
           <div class="programs__card-body">

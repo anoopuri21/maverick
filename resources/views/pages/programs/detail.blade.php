@@ -148,7 +148,7 @@
     <section class="recognition" aria-label="Accredited and recognised by">
         <div class="container">
             <div class="rec-head rv">
-                <span class="lab">Awarded By · <b>{{ $program->partner_university ?? ($recognition->first()['name'] ?? '') }}</b></span>
+                <span class="lab">Awarded By · <b>{{ $program->universityPartner->name ?? ($recognition->first()['name'] ?? '') }}</b></span>
                 <span class="lab">Recognised &amp; Accredited</span>
             </div>
             <div class="rec-track">

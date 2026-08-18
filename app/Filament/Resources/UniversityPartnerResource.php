@@ -70,19 +70,19 @@ class UniversityPartnerResource extends Resource
                         \Filament\Forms\Components\Textarea::make('description')->columnSpanFull(),
                     ]),
 
-                \Filament\Forms\Components\Section::make('Programs Offered')
+                \Filament\Forms\Components\Section::make('URL & Programs')
                     ->schema([
-                        \Filament\Forms\Components\Repeater::make('programs')
-                            ->schema([
-                                \Filament\Forms\Components\TextInput::make('name')
-                                    ->label('Program Name')
-                                    ->required(),
-                                \Filament\Forms\Components\TextInput::make('url')
-                                    ->label('Program URL')
-                                    ->required(),
-                            ])
-                            ->columns(2)
-                            ->addActionLabel('Add Program')
+                        \Filament\Forms\Components\TextInput::make('slug')
+                            ->label('Slug / Initials')
+                            ->helperText('Unique URL identifier (e.g. gau). Used to disambiguate programs with the same name across universities.')
+                            ->required()
+                            ->unique(ignoreRecord: true)
+                            ->columnSpanFull(),
+                        \Filament\Forms\Components\Placeholder::make('programs_link')
+                            ->label('Programs Offered')
+                            ->content(fn ($record) => $record?->programs?->count()
+                                ? $record->programs->pluck('title')->implode(' · ')
+                                : 'No programs linked yet. Link them from the Programs resource (University Partner dropdown).')
                             ->columnSpanFull(),
                     ]),
 

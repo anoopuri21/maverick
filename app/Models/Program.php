@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use App\Concerns\HasMediaAssets;
+use App\Models\UniversityPartner;
 
 class Program extends Model
 {
@@ -14,9 +15,9 @@ class Program extends Model
 
     protected $fillable = [
         'program_category_id',
+        'university_partner_id',
         'title',
         'slug',
-        'partner_university',
         'duration',
         'level',
         'short_description',
@@ -35,7 +36,6 @@ class Program extends Model
         'careers',
         'structure',
         'support',
-        'university',
         'accreditation_groups',
         'testimonials',
         'fees',
@@ -54,7 +54,6 @@ class Program extends Model
         'careers' => 'array',
         'structure' => 'array',
         'support' => 'array',
-        'university' => 'array',
         'accreditation_groups' => 'array',
         'testimonials' => 'array',
         'fees' => 'array',
@@ -64,6 +63,14 @@ class Program extends Model
     public function programCategory(): BelongsTo
     {
         return $this->belongsTo(ProgramCategory::class);
+    }
+
+    /**
+     * The single university offering this program (1 program = 1 university).
+     */
+    public function universityPartner(): BelongsTo
+    {
+        return $this->belongsTo(UniversityPartner::class);
     }
         public function seo(): MorphOne
     {
@@ -150,16 +157,16 @@ class Program extends Model
             ->values();
     }
 
-    /** About the University — first row as an object */
+    /** About the University — derived from the linked UniversityPartner (single source). */
     public function getUniversityObjectAttribute(): object
     {
-        $row = collect($this->university ?? [])->first() ?? [];
+        $partner = $this->universityPartner;
 
         return (object) [
-            'name'          => $row['name'] ?? $this->partner_university,
-            'description'   => $row['description'] ?? null,
-            'establishment' => $row['establishment'] ?? null,
-            'image'         => $row['image'] ?? null,
+            'name'          => $partner->name ?? null,
+            'description'   => $partner->description ?? null,
+            'establishment' => null,
+            'image'         => $partner->logo_url ?? null,
         ];
     }
 
