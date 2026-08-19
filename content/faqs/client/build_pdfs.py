@@ -399,6 +399,48 @@ def build_strategy_report():
         'competition.', st_body))
     flows.append(PageBreak())
 
+    # ----- Annex: How was this ranking derived? (client Q&A) -----
+    flows.append(Paragraph('How Was This Ranking Derived?', st_provider))
+    flows.append(Paragraph('Common questions about the basis of this report', st_note))
+    flows.append(HRFlowable(width='100%', thickness=1.1, color=GOLD, spaceAfter=8))
+
+    qa = [
+     ('Is this ranking based on search-volume data from keyword tools?',
+      'No - deliberately. This is a <b>prioritisation framework, not a traffic forecast</b>. Pre-launch '
+      'volume estimates for long-tail, question-format queries are notoriously unreliable: keyword tools '
+      'aggregate and round long-tail data heavily, and most "People Also Ask" questions never appear in '
+      'volume databases at all. Rather than attach numbers we cannot stand behind, we state none. '
+      'Every figure in this report is a <b>relative priority score</b>, not a search-volume estimate.'),
+     ('So what is each score actually based on?',
+      'Each question is scored 1-5 on four weighted dimensions (see Methodology): the global demand of its '
+      '<b>query family</b>, its <b>featured-snippet/PAA opportunity</b>, its <b>conversion intent</b>, and its '
+      '<b>ranking feasibility</b> for this domain. The demand dimension draws on established search-behaviour '
+      'patterns in the education niche - families such as "MBA without GMAT", "PhD vs DBA" and "what is a '
+      'top-up degree" are well-documented, evergreen high-demand patterns that surface repeatedly in '
+      'People Also Ask boxes worldwide. Snippet opportunity follows established format observations: '
+      'comparison ("X vs Y"), definitional ("what is...") and "how long" questions win answer boxes most often.'),
+     ('What sources were used?',
+      'Three source layers: (1) the client\'s own programme data (programme list and repository records); '
+      '(2) official provider sources - admissions portals and awarding-body specifications - for every '
+      'verifiable fact referenced in a question\'s context (durations, credits, entry routes, regulator '
+      'recognition); and (3) publicly established SEO practice for question-format content. No paid '
+      'keyword-tool exports were used, and none are cited.'),
+     ('What decisions is the ranking used for?',
+      'Three practical decisions: the <b>on-page order</b> of questions within each section (higher tiers '
+      'first), the <b>priority of questions in FAQPage structured data</b> at publish time, and the '
+      '<b>internal-linking plan</b> (hub, comparison and progression questions each link differently). '
+      'It is a build-sequence tool - not a promise of traffic.'),
+     ('How will the ranking be validated?',
+      'With real data. Thirty to sixty days after publication, every tier is checked against <b>Google '
+      'Search Console</b> impressions and query reports - actual evidence of what users searched and where '
+      'the pages appeared - and the priorities are revised where reality differs from the assessment. '
+      'Optionally, indicative volume ranges from Google Keyword Planner can be added for Tier 1 questions '
+      'before launch if desired.')]
+    for q, a in qa:
+        flows.append(Paragraph('Q. ' + clean_text(q), st_q))
+        flows.append(Paragraph(clean_text(a), st_body))
+    flows.append(PageBreak())
+
     for name, sub, rows in RANK_DATA:
         flows.append(Paragraph(clean_text(name), st_provider))
         flows.append(Paragraph(clean_text(sub), st_note))
