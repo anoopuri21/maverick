@@ -82,3 +82,7 @@
   entry); (4) UCA entry conflict resolved via source hierarchy (Rushford route criteria
   apply). Each file now carries a Still open / ✅ Resolved verification split.
   **NOT PUBLISHED — publishing on owner instruction only.**
+- **2026-08-19** — 📤 **PDF-ONLY PUBLICATION (owner instruction):** the 3 client-review
+  PDFs published at `public/downloads/faqs/` (with branded index page) + live preview
+  server started. Website FAQ content, seeders, schema — ALL remain unpublished/local
+  until further owner instruction.
