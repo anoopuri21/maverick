@@ -25,6 +25,9 @@ use App\Settings\GlobalPartnersHeroSettings;
 use App\Settings\GlobalPartnersJourneySettings;
 use App\Settings\GlobalPartnersOverviewSettings;
 use App\Settings\GlobalPartnersSeoSettings;
+use App\Settings\LeadershipHeroSettings;
+use App\Settings\LeadershipLeadersSettings;
+use App\Settings\LeadershipSeoSettings;
 use App\Settings\GlobalPartnersWhySettings;
 
 class PageController extends Controller
@@ -405,6 +408,21 @@ class PageController extends Controller
                 ->get(),
             'galleryItems' => $galleryItems,
             'galleryCategories' => $galleryCategories,
+        ]);
+    }
+
+    /**
+     * Leadership Board page — admin-managed via Leadership*Settings.
+     */
+    public function leadershipBoard()
+    {
+        $leaders = app(LeadershipLeadersSettings::class);
+        $leaders->items = array_values($leaders->items ?? []);
+
+        return view('pages.leadership', [
+            'hero' => app(LeadershipHeroSettings::class),
+            'leaders' => $leaders,
+            'leadershipSeo' => app(LeadershipSeoSettings::class),
         ]);
     }
 }

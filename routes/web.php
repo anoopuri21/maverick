@@ -12,7 +12,7 @@ Route::get('/dual-mba-online', [PageController::class, 'dualMba'])->name('dual-m
 // About Pages
 Route::get('/our-story', [PageController::class, 'ourStory'])->name('our-story');
 Route::get('/about-us', [PageController::class, 'aboutUs'])->name('about-us');
-Route::get('/leadership-board', function () {return view('pages.leadership');})->name('leadership');
+Route::get('/leadership-board', [PageController::class, 'leadershipBoard'])->name('leadership');
 Route::get('/accreditations', [\App\Http\Controllers\AccreditationController::class, 'index'])->name('accreditations');
 Route::get('/csr-community-impact', [PageController::class, 'csrCommunityImpact'])->name('csr');
 Route::get('/media-gallery', [PageController::class, 'gallery'])->name('media-gallery');
