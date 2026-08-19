@@ -67,11 +67,13 @@ current transfer/registration arrangements between institutions.] -->
 **Q. What are the entry requirements for the Global MBA?**
 
 The core requirement is a **recognised bachelor's degree (or equivalent academic title) in
-any discipline**. Your professional profile supports your application, and English
+any discipline** — this is the published criterion on the official admissions portal for
+this delivery route. Your professional profile supports your application, and English
 proficiency evidence is required, with waivers available for eligible applicants.
-<!-- [VERIFY: conflicting third-party criteria exist (min age 21, 3+ years management
-experience, higher English scores via a different delivery route) — confirm which entry
-route applies to the current offer.] --> Final eligibility is confirmed through an
+<!-- CONFLICT RESOLVED 2026-08-19: stricter criteria found earlier (min age 21, 3+ yrs
+management experience, higher English scores) belong to a DIFFERENT delivery partner's
+route of the same award, not the Rushford-delivered route in our listing. Official
+apply.rushford.ch criteria apply. --> Final eligibility is confirmed through an
 individual admissions review.
 
 ### Fees, Scholarships & Payments
@@ -105,16 +107,23 @@ partnership ecosystem.
 
 ---
 
-## Facts to Verify (owner action before approval)
+## Facts to Verify (updated 2026-08-19 after deep research — see Resolved section)
+
+### Still open
 
 | # | Item | What the draft currently says | What needs confirming |
 |---|------|-------------------------------|----------------------|
 | 1 | Triple certification wording | 2 MBA awards + Ofqual-regulated Level 7 Diploma | Approved public phrasing (diploma awarding body name?) under country-neutral rule |
 | 2 | Structure details | Two stages; thesis ≈ 6 months / 30 ECTS | Current stage split and inter-institution transfer arrangements |
-| 3 | Entry criteria conflict ⚠️ | Bachelor's in any discipline (official portal) | A different delivery route lists min age 21 + 3 yrs management experience + higher English scores — which applies to OUR offer? |
-| 4 | Fees | CHF 9,900 / deposit + 6×CHF 1,400 (official portal, published) | Confirm current pricing for this offer/intake + scholarship options |
-| 5 | Weekly commitment | ~12–15 hrs/week (brochure) | Confirm for current offer |
-| 6 | UCA heritage claim | "Long creative-education heritage" (soft) | Approved public wording for UCA under country-neutral rule |
+| 3 | Fees | CHF 9,900 / deposit + 6×CHF 1,400 (official portal, published) | Confirm current pricing for this offer/intake + scholarship options |
+| 4 | Weekly commitment | ~12–15 hrs/week (brochure) | Confirm for current offer |
+| 5 | UCA heritage claim | "Long creative-education heritage" (soft) | Decision taken: keep neutral phrasing (no dates) — revisit only if owner wants heritage claims |
+
+### ✅ Resolved (2026-08-19 deep research)
+
+| Item | Resolution |
+|------|-----------|
+| Entry-criteria conflict | **Resolved by source hierarchy:** our listing is the Rushford-delivered route ("Global MBA + Rushford Business School") → official apply.rushford.ch criteria apply (**bachelor's in any discipline**). The stricter criteria (age 21 / 3 yrs experience / IELTS 7) belong to a different delivery partner's route of the same award and do NOT apply to our offer |
 
 ---
 

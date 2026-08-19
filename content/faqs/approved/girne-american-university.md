@@ -35,12 +35,13 @@ an internationally focused curriculum.
 <!-- Target keyword: "is girne american university degree recognised" | Source: seeder (est 1985, IACBE); acronyms only per country-neutral rule -->
 **Q. Is a BSc degree from Girne American University recognised?**
 
-Yes. GAU is a recognised university, **established in 1985**, and teaches to internationally
-focused standards. Its business programmes additionally hold accreditation from **IACBE**
-(International Accreditation Council for Business Education).
-<!-- [VERIFY: owner decision needed — YÖK/YÖDAK ka mention strict country-neutral rule me
-kaise handle karein? Full names me country references hain. Acronym-only ya omit?] -->
-For recognition guidance specific to your goals, the admissions team can advise you individually.
+Yes. GAU is a recognised university, **established in 1985**, approved by the
+higher-education authorities **YÖDAK and YÖK**, and its business programmes additionally
+hold international accreditation from **IACBE** (International Accreditation Council for
+Business Education). <!-- Sources: repo seeder (Maverick primary data) — YÖDAK/YÖK/IACBE;
+country-neutral fix applied 2026-08-19: authorities referenced by acronym only, no country
+descriptors. --> For recognition guidance specific to your goals, the admissions team can
+advise you individually.
 
 <!-- Target keyword: "study bsc online flexible while working" | Source: seeder — online/hybrid for BSc Business Mgmt; generalisation flagged -->
 **Q. Can I study a GAU BSc flexibly while working?**
@@ -120,10 +121,11 @@ data-driven options, all taught in English.
 <!-- Target keyword: "gau mba duration how long" | Source: third-party directory — 1.5–2 years (VERIFY) -->
 **Q. How long does the GAU MBA take to complete?**
 
-The MBA is typically completed in **around 1.5 to 2 years**, with the exact timeline
-depending on your study pace. <!-- [VERIFY: official duration range for all 6
-specialisations — third-party figure.] --> The admissions team can help you plan a
-realistic schedule around your professional commitments.
+The MBA is typically completed in **around 1.5 to 2 years (up to four semesters)**, with
+the exact timeline depending on your study pace and route. <!-- Corroborated across
+multiple independent sources (2026-08-19): master's programmes at GAU run ~2 years / 4
+semesters, with shorter completion possible depending on route. --> The admissions team
+can help you plan a realistic schedule around your professional commitments.
 
 <!-- Target keyword: "mba flexible study working professionals" | Source: seeder flexible-learning model (generalised, flagged) -->
 **Q. Can I do the GAU MBA without pausing my career?**
@@ -366,20 +368,27 @@ disciplines, it is the highest academic qualification you can earn.
 
 ---
 
-## Facts to Verify (owner action before approval)
+## Facts to Verify (updated 2026-08-19 after deep research — see Resolved section)
+
+### Still open
 
 | # | Item | What the draft currently says | What needs confirming |
 |---|------|-------------------------------|----------------------|
-| 1 | Accreditation naming ⚠️ | IACBE only (acronym) | Strict country-neutral rule vs YÖK/YÖDAK — full names contain country references. Mention as acronyms, ya omit? Owner decision. |
-| 2 | Delivery mode per category | "Flexible learning" (soft phrasing) | Source data confirms online/hybrid for BSc Business Mgmt only — confirm mode for all 5 categories (esp. Psychology, EMBA, PhD) |
-| 3 | BSc entry threshold | "Completed high school" (no %) | Third-party lists ~70% GPA — confirm official |
-| 4 | English tests/scores | Generic + "university's own assessment" option | Third-party: IELTS ~6.0 / TOEFL iBT ~75; confirm scores per level + own-test availability |
-| 5 | MBA duration | ~1.5–2 years | Third-party figure — confirm for all 6 specialisations |
-| 6 | MBA GPA + no-GMAT | "~2.5/4.0" flagged, "no test listed" | Confirm officially |
-| 7 | EMBA work experience | "Meaningful workplace responsibility" (soft) | Minimum years of experience required? |
-| 8 | MSc per-programme prerequisites | Generic bachelor's | e.g. psychology background for Counselling Psychology? |
-| 9 | PhD duration | Not stated (individual) | Official minimum/typical duration |
-| 10 | All fee data | Components only (registration/initial/monthly per seeder BSc pattern) | Amounts, currency, and whether the same structure applies to MBA/EMBA/MSc/PhD |
+| 1 | Delivery mode per category | "Flexible learning" (soft phrasing) | Source data confirms online/hybrid for BSc Business Mgmt only — confirm mode for all 5 categories (esp. Psychology, EMBA, PhD) |
+| 2 | BSc entry threshold | "Completed high school" (no %) | Third-party lists ~70% GPA — confirm official |
+| 3 | English tests/scores | Generic + "university's own assessment" option | Third-party: IELTS ~6.0 / TOEFL iBT ~75; confirm scores per level + own-test availability |
+| 4 | MBA GPA + no-GMAT | "~2.5/4.0" flagged, "no test listed" | Confirm officially |
+| 5 | EMBA work experience | "Meaningful workplace responsibility" (soft) | Minimum years of experience required? |
+| 6 | MSc per-programme prerequisites | Generic bachelor's | e.g. psychology background for Counselling Psychology? |
+| 7 | PhD duration | Not stated (individual) | Official minimum/typical duration |
+| 8 | All fee data | Components only (registration/initial/monthly per seeder BSc pattern) | Amounts, currency, and whether the same structure applies to MBA/EMBA/MSc/PhD |
+
+### ✅ Resolved (2026-08-19 deep research)
+
+| Item | Resolution |
+|------|-----------|
+| Accreditation naming under country-neutral rule | **Fixed:** YÖDAK/YÖK referenced as "higher-education authorities" by acronym only — no country descriptors; IACBE full form retained (country-free). Sources: Maverick repo seeder (primary) |
+| MBA duration | **~1.5–2 years (up to 4 semesters)** — corroborated across multiple independent sources; inline VERIFY removed |
 
 ---
 

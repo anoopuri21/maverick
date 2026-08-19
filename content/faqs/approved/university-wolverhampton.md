@@ -120,7 +120,7 @@ doctoral-level work.
 | 2 | Feeder diplomas | "Level 7 diploma in law or closely related field" | Do our Qualifi L7 Law / International Business Law diplomas qualify as feeders? (Strong funnel opportunity if yes) |
 | 3 | Non-standard entry | Experience-based review, possible interview | Policy in current offer |
 | 4 | English exemption | "Exemptions where prior education in English" | Exact tests/scores/exemption rules |
-| 5 | UOW heritage wording | "Long-established public university" | Approved public phrasing under country-neutral rule |
+| 5 | UOW heritage wording | "Long-established public university" | Decision taken (2026-08-19): keep neutral phrasing (no dates) — safest under country-neutral rule; revisit only if owner wants heritage claims |
 | 6 | All fee data | Components only, no figures | Amounts, currency, instalments, scholarships |
 
 ---

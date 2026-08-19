@@ -37,25 +37,34 @@ target keyword + source reference, invisible after upload.)*
    only in RBS; "MBA vs EMBA" only in GAU; L7-definitional only in Gatehouse; ladder angle
    only in Qualifi).
 
-## 3. ⚠️ Consolidated verification backlog (before publishing)
+## 3. ⚠️ Verification backlog — UPDATED after deep research (2026-08-19)
 
-**Publish-blockers (resolve first):**
-1. **RBS/GAU durations** — third-party figures used (MBA 12–24 mo / MSc 18–24 mo / GAU MBA
-   1.5–2 yr); GAU BSc duration conflict (20–24 months vs 4-year curriculum) still open from
-   the seeder.
-2. **Accreditation/regulation wording** — GAU (YÖK/YÖDAK under country-neutral rule),
-   Gatehouse & Qualifi (Ofqual-regulated status), UWS/UOW/UCA heritage phrasing.
-3. **UWS top-up structure** — 3 answers depend on the ~1-year top-up assumption.
-4. **UCA entry-criteria conflict** — official portal (bachelor's, any discipline) vs
-   alternate route (age 21 + 3 yrs experience + higher English scores).
+### ✅ Top 4 publish-blockers — RESOLVED & FIXED IN CONTENT
 
-**High-value confirmations (unlock funnel content):**
-5. **Qualifi L7 Law → UOW LLM feeder** — completes the "diploma → master's" ladder story;
-   add bidirectional links on confirmation.
-6. **Qualifi L5 → degree top-up receiving programmes** (e.g. business degree routes).
-7. **All fee amounts + currencies** (only UCA has portal-published figures: CHF 9,900 /
+| # | Blocker | Resolution (source) | Fixed in |
+|---|---------|--------------------|----------|
+| 1 | **Durations** | RBS MBA = **16 months / 90 ECTS**; RBS MSc = **60/90/120 ECTS → ~12/18/24-month routes**; RBS BBA = **180 ECTS / 6 semesters / ~36 months** (all official rushford.ch); GAU MBA = **~1.5–2 years / up to 4 semesters** (corroborated multi-source). *(Old GAU BSc 20–24-month figure exists only in the repo seeder, not in FAQ content — seeder fix is a separate dev task.)* | RBS + GAU files |
+| 2 | **Accreditation wording** | Gatehouse Awards = **Ofqual-recognised AO** (confirmed; Edu Leadership QAN 610/7539/5); Qualifi = **Ofqual-approved & regulated, ref RN5160**, QANs on RQF; GAU YÖDAK/YÖK = phrased country-neutrally as "higher-education authorities" (acronyms only); UWS/UOW/UCA heritage = decision to keep neutral phrasing, no dates | Gatehouse, Qualifi, GAU, UWS, UOW, UCA files |
+| 3 | **UWS top-up structure** | **Confirmed top-up route, ~12 months, online** — consistent across 3 independent partner institutions; entry = completed HND/equivalent or relevant work experience (subject to approval) | UWS file |
+| 4 | **UCA entry-criteria conflict** | **Resolved by source hierarchy:** our offer is the Rushford-delivered route → official apply.rushford.ch criteria apply (**bachelor's, any discipline**); the stricter criteria belong to a different delivery partner's route | UCA file |
+
+**Bonus finding:** RBS MBA specialisations also carry an **Ofqual-regulated Level 7
+Diploma award by default** (official portal) — added to content as a value point (WES
+wording remained excluded).
+
+### Still open (non-blocking — need partner offer sheets, not public research)
+
+1. **All fee amounts + currencies** (only UCA has portal-published figures: CHF 9,900 /
    1,800 + 6×1,400 — reconfirm for our intake).
-8. **Delivery mode per category** (esp. GAU Psychology/EMBA/PhD).
+2. **English test thresholds** per provider/level (official levels vs third-party figures).
+3. **Qualifi L7 Law → UOW LLM feeder** + L5 → degree top-up receiving programmes in OUR
+   portfolio (funnel unlockers).
+4. **Delivery mode per GAU category** (esp. Psychology/EMBA/PhD) + entry thresholds
+   (GAU ~70% BSc, RBS ~55%, EMBA experience years, EPD full form).
+5. Gatehouse QANs for the 3 remaining tracks.
+
+> Har file ke andar ab "Still open" vs "✅ Resolved" ka split table hai — jo bacha hai wo
+> sab partner offer-sheet level ka data hai, public research se aage clear nahi ho sakta.
 
 ## 4. Recommended next steps
 

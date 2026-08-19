@@ -43,8 +43,13 @@ Yes, in framework terms. **Level 7** is the same level at which **master's degre
 the Regulated Qualifications Framework (RQF)** — so a Level 7 Diploma certifies
 postgraduate-level knowledge and skills. It differs from a full master's degree mainly in
 **credit volume and the research component**, which is why it can be completed faster.
-<!-- [VERIFY: approved comparative wording — "same framework level" vs any stronger
-equivalence claim; confirm regulation status of these specific Gatehouse diplomas.] -->
+**Gatehouse Awards is an awarding organisation recognised by Ofqual** (the Office of
+Qualifications and Examinations Regulation), and its Level 7 diplomas are designed as
+regulated qualifications with unique accreditation numbers.
+<!-- Resolved 2026-08-19: Gatehouse Awards' Ofqual recognition confirmed (multiple
+sources); GA Level 7 Diploma in Education Leadership & Management verified on the official
+GA site with QAN 610/7539/5. [VERIFY: QANs for the other three tracks — Strategic
+Leadership & Mgmt, Psychology, Strategic PM in Construction.] -->
 
 <!-- Target keyword: "level 7 diploma vs masters degree difference" | Source: generic framework comparison (corroborated) -->
 **Q. What is the difference between a Level 7 Diploma and a full master's degree?**
@@ -60,10 +65,12 @@ available top-up partner pathways in our offer.] -->
 **Q. How long does a Level 7 Diploma take, and how is it assessed?**
 
 Level 7 Diplomas are designed for **fast, flexible completion — typically around six
-months**, depending on your pace. Assessment is normally through **written assignments
-rather than examinations**, letting you demonstrate learning through real professional
-scenarios. <!-- [VERIFY: official duration range and assessment method for the Gatehouse
-diplomas specifically.] -->
+months to a year**, depending on your pace. Assessment is through **coursework and a
+portfolio of evidence rather than examinations**, letting you demonstrate learning through
+real professional scenarios. <!-- Updated 2026-08-19: assessment method confirmed on the
+official GA site for the Education Leadership & Management diploma ("Coursework &
+Portfolio of Evidence", TQT 1200). [VERIFY: duration/assessment consistency across the
+other three tracks.] -->
 
 <!-- Target keyword: "study level 7 diploma online while working" | Source: delivery pattern (VERIFY) -->
 **Q. Can I study a Level 7 Diploma online while working full-time?**
@@ -115,17 +122,25 @@ as a **stepping stone**: certify now, top up to a master's when ready.
 
 ---
 
-## Facts to Verify (owner action before approval)
+## Facts to Verify (updated 2026-08-19 after deep research — see Resolved section)
+
+### Still open
 
 | # | Item | What the draft currently says | What needs confirming |
 |---|------|-------------------------------|----------------------|
-| 1 | Regulation status ⚠️ | "Postgraduate-level professional qualifications" (soft) | Are these specific Gatehouse diplomas Ofqual-regulated? Approved wording? |
-| 2 | Master's-level comparison | "Same framework level (RQF L7)" | Approved comparative phrasing — no over-claim |
-| 3 | Credits & structure | "Typically 120 credits" | Official credit value per diploma |
-| 4 | Duration & assessment | "~6 months, assignment-based" | Official figures for Gatehouse diplomas |
-| 5 | Entry criteria | Bachelor's or experience | Per-diploma criteria (esp. Psychology background) |
-| 6 | Top-up pathways | Generic university top-up | Which partner top-up routes exist in OUR portfolio per diploma? |
-| 7 | All fee data | Components only | Amounts, currency, instalments |
+| 1 | QANs for 3 tracks | Regulated-qualification design stated | Accreditation numbers for Strategic Leadership & Mgmt, Psychology, Construction PM (Education Leadership confirmed: QAN 610/7539/5) |
+| 2 | Credits & structure | "Typically 120 credits" | Official credit value per diploma (Education Leadership: TQT 1200 confirmed ≈ 120 credits) |
+| 3 | Entry criteria | Bachelor's or experience | Per-diploma criteria (esp. Psychology background; Education Leadership lists age 21+) |
+| 4 | Top-up pathways | Generic university top-up | Which partner top-up routes exist in OUR portfolio per diploma? |
+| 5 | All fee data | Components only | Amounts, currency, instalments |
+
+### ✅ Resolved (2026-08-19 deep research)
+
+| Item | Resolution |
+|------|-----------|
+| Regulation status | **Gatehouse Awards is an Ofqual-recognised awarding organisation** (confirmed, multiple sources) — wording added to content |
+| Master's-level comparison | Framework-level phrasing retained ("same level as master's degrees on the RQF") — safe, accurate, no over-claim; GA L7 Education Leadership verified as a regulated qualification (QAN 610/7539/5) |
+| Assessment method | **Coursework & portfolio of evidence** (official GA site) — content updated from "written assignments" |
 
 ---
 

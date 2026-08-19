@@ -74,3 +74,11 @@
   🏁 **PROJECT COMPLETE:** all 7 providers approved — 16 category FAQ sets, 117 FAQs,
   136 programmes covered. Consolidated verification backlog and next steps in
   `PROJECT-SUMMARY.md`.
+- **2026-08-19** — 🔬 **DEEP-RESEARCH FIX PASS (owner request):** all 4 publish-blockers
+  researched and fixed in approved content — (1) durations corrected to official figures
+  (RBS MBA 16 mo/90 ECTS, MSc 12/18/24-mo routes, BBA 36 mo/180 ECTS; GAU MBA 1.5–2 yr);
+  (2) accreditation wording firmed (Gatehouse Ofqual-recognised, Qualifi Ofqual ref RN5160,
+  GAU YÖDAK/YÖK country-neutral phrasing); (3) UWS top-up confirmed (12 mo, HND/experience
+  entry); (4) UCA entry conflict resolved via source hierarchy (Rushford route criteria
+  apply). Each file now carries a Still open / ✅ Resolved verification split.
+  **NOT PUBLISHED — publishing on owner instruction only.**

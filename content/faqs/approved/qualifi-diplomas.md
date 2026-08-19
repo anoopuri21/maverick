@@ -33,11 +33,13 @@ choose.
 <!-- Target keyword: "is qualifi recognised awarding body" | Source: provider trust anchor — status to confirm -->
 **Q. Is Qualifi a recognised awarding organisation?**
 
-Qualifi is an established **awarding organisation** whose qualifications are positioned on
-a regulated qualifications framework and recognised by institutions and employers
-internationally. <!-- [VERIFY: approved public wording for Qualifi's regulation/recognition
-status under the country-neutral rule.] --> Recognition guidance for your goals is
-available from the admissions team.
+Yes. **Qualifi is an awarding organisation approved and regulated by Ofqual** (the Office
+of Qualifications and Examinations Regulation), and its diplomas are accredited to the
+**Regulated Qualifications Framework (RQF)**, each carrying its own unique qualification
+accreditation number that appears on your final certificate.
+<!-- Resolved 2026-08-19: Qualifi's Ofqual approval confirmed (regulator reference RN5160);
+qualifications carry QANs on the RQF (e.g. L5 Extended Business Management QAN 610/1675/5). -->
+Recognition guidance for your goals is available from the admissions team.
 
 <!-- Target keyword: "what is a level 3 diploma who is it for" | Source: RQF framework positioning (generic) -->
 **Q. What is a Level 3 Diploma, and who is it for?**
@@ -99,10 +101,13 @@ training management. It is the widest level of the Qualifi ladder for specialisi
 **Q. What does "Extended Diploma" mean at Level 5?**
 
 An **Extended Diploma carries a larger credit volume** than a standard diploma at the same
-level — a fuller programme of study that takes you deeper into your subject. Level 5 sits
-at **higher-education level**, so an Extended Diploma here represents substantial
-undergraduate-level learning in your field.
-<!-- [VERIFY: official credit value of the Qualifi L5 Extended Diplomas.] -->
+level — the Qualifi Level 5 Extended Diplomas carry **240 credits, combining Level 4 and
+Level 5 study (120 credits at each level)**. That makes them academically comparable to
+the **first two years of a bachelor's degree**, representing substantial higher-education
+learning in your field.
+<!-- Resolved 2026-08-19: 240-credit structure (120 L4 + 120 L5) confirmed across multiple
+delivery-centre specifications of Qualifi L5 Extended Diplomas (e.g. Business Management
+QAN 610/1675/5: 12 units, TQT 2400). -->
 
 <!-- Target keyword: "which level diploma should i start" | Source: ladder guidance (generic) -->
 **Q. Which level should I start at — Level 3 or Level 5?**
@@ -137,10 +142,13 @@ current offers confirmed by the admissions team for your chosen track and intake
 <!-- Target keyword: "level 5 diploma to degree final year top up" | Source: standard L5 progression (VERIFY pathways) -->
 **Q. Can a Level 5 Extended Diploma lead to a bachelor's degree?**
 
-Yes — this is the level's biggest advantage. Level 5 study positions you for **advanced
-entry towards the final stage of a bachelor's degree (a degree top-up route)**, subject to
-the receiving institution's criteria. <!-- [VERIFY: confirmed top-up pathways in our
-portfolio — e.g. business-track L5 → final-year business degree routes.] --> Alternatively,
+Yes — this is the level's biggest advantage. Because the Extended Diploma covers **240
+credits across Levels 4 and 5** (comparable to the first two years of a bachelor's
+degree), it is designed to support **direct entry into the final year of a bachelor's
+degree (a degree top-up route)**, subject to the receiving institution's criteria.
+<!-- Resolved 2026-08-19: final-year top-up progression confirmed as the standard,
+published purpose of Qualifi L5 Extended Diplomas across delivery-centre specifications.
+[VERIFY: confirmed receiving top-up programmes within OUR portfolio.] --> Alternatively,
 you can step into supervisory and specialist roles in your field with a recognised
 higher-level credential.
 
@@ -229,18 +237,26 @@ worldwide.
 
 ---
 
-## Facts to Verify (owner action before approval)
+## Facts to Verify (updated 2026-08-19 after deep research — see Resolved section)
+
+### Still open
 
 | # | Item | What the draft currently says | What needs confirming |
 |---|------|-------------------------------|----------------------|
-| 1 | Qualifi regulation/recognition ⚠️ | "Established awarding organisation" (soft) | Approved public wording (regulated status) under country-neutral rule |
-| 2 | L5 Extended credit value | "Larger credit volume" (soft) | Official credits |
-| 3 | Internal ladder L3→L5 | "Progression towards Level 5" | Confirmed internal route in our offer |
-| 4 | L5 → degree top-up pathways | Generic top-up framing | Confirmed receiving programmes in OUR portfolio (e.g. business degree top-up) |
-| 5 | L7 → master's/LLM feeders ⚠️ | Subject-based routes listed | Confirm Qualifi L7 Law → UOW LLM feeder + management → MBA routes (links both ways once confirmed) |
-| 6 | Entry criteria per level/track | Typical patterns | Official criteria (esp. IT/cyber prerequisites at L5; Law/Psychology/Data Science at L7) |
-| 7 | Durations & assessment | "Months, assignment-based" (soft) | Official figures per level |
-| 8 | All fee data | Components only | Amounts, currency, instalments per level |
+| 1 | Internal ladder L3→L5 | "Progression towards Level 5" | Confirmed internal route in our offer |
+| 2 | L5 → degree top-up pathways | Final-year entry (standard published purpose) | Confirmed receiving programmes in OUR portfolio (e.g. business degree top-up) |
+| 3 | L7 → master's/LLM feeders ⚠️ | Subject-based routes listed | Confirm Qualifi L7 Law → UOW LLM feeder + management → MBA routes (links both ways once confirmed) |
+| 4 | Entry criteria per level/track | Typical patterns | Official criteria (esp. IT/cyber prerequisites at L5; Law/Psychology/Data Science at L7; L5 sources indicate 18+ and L3/equivalent) |
+| 5 | Durations & assessment | "Months, assignment-based" (soft) | Official figures per level (L5 sources indicate 12–24 months, online self-paced) |
+| 6 | All fee data | Components only | Amounts, currency, instalments per level |
+
+### ✅ Resolved (2026-08-19 deep research)
+
+| Item | Resolution |
+|------|-----------|
+| Qualifi regulation/recognition | **Approved and regulated by Ofqual (regulator reference RN5160)**; qualifications accredited to the RQF with unique QANs — content updated |
+| L5 Extended credit value | **240 credits (120 at Level 4 + 120 at Level 5)**, TQT 2400 — comparable to the first two years of a bachelor's degree; content updated |
+| L5 top-up purpose | **Final-year degree top-up entry is the standard published progression purpose** of the L5 Extended Diplomas — content firmed (receiving-programme specifics still open, #2) |
 
 ---
 

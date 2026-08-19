@@ -34,7 +34,10 @@ choice of **seven specialisations**, all delivered fully online:
 - Project Management
 
 Every specialisation builds the same core business foundation, so you can align your degree
-with your career goals without compromising on fundamentals.
+with your career goals without compromising on fundamentals. The BBA carries **180 ECTS
+credits**, structured across **six semesters (typically around 36 months)**, with flexible
+online pacing. <!-- Source: rushford.ch official BBA page — 180 ECTS / 6 semesters / 36
+months (verified 2026-08-19); pacing on the online route confirmed as flexible. -->
 
 <!-- Target keyword: "is rushford bba fully online" | Source: educations.com profile — 100% online -->
 **Q. Are Rushford BBA programmes taught fully online?**
@@ -117,7 +120,11 @@ Rushford offers the **Master of Business Administration (MBA)** as a general-man
 degree plus **11 specialised tracks**, including Strategic Management, Finance, Marketing,
 Human Resource Management, Logistics & Supply Chain, Healthcare Leadership, Entrepreneurship
 and Innovation, Sustainability, Real Estate, Hospitality & Tourism, and Health Economics —
-all delivered fully online in English.
+all delivered fully online in English. MBA specialisations also lead to an additional
+**Ofqual-regulated Level 7 Diploma award** by default, published on the official admissions
+portal — two credentials from one programme.
+<!-- Source: apply.rushford.ch official MBA specialisation pages (verified 2026-08-19);
+     the portal's "WES approved" wording remains EXCLUDED per compliance blacklist. -->
 
 <!-- Target keyword: "online mba for working professionals" | Source: educations.com — 100% online, flexible -->
 **Q. Can I complete the Rushford MBA while working full-time?**
@@ -129,10 +136,11 @@ directly in your workplace — without pausing your career or relocating.
 <!-- Target keyword: "rushford mba duration how long" | Source: shiksha.com — 12–24 months (third-party) -->
 **Q. How long does the Rushford MBA take to complete?**
 
-The MBA is designed for flexible pacing, typically completed within **12 to 24 months**
-depending on your study speed and chosen track. <!-- [VERIFY: official duration range per
-specialisation — third-party figure; confirm before publishing.] --> The admissions team can
-help you plan a realistic timeline around your other commitments.
+The MBA has a **nominal duration of 16 months**, carrying **90 ECTS credits**, with flexible
+pacing built in so working professionals can align the timeline with their commitments.
+The admissions team can help you plan a realistic schedule around your other commitments.
+<!-- Source: apply.rushford.ch official course pages — "Nominal duration: 16 months (90 ECTS)"
+     confirmed across MBA specialisations (verified 2026-08-19). -->
 
 ### Eligibility & Admission
 
@@ -209,9 +217,12 @@ on your career direction, and the admissions team can help you decide.
 <!-- Target keyword: "rushford msc duration" | Source: shiksha.com — 18–24 months (third-party) -->
 **Q. How long does a Rushford MSc take to complete?**
 
-MSc programmes are typically completed within **18 to 24 months**, with flexible pacing that
-suits both recent graduates and working professionals. <!-- [VERIFY: official duration range
-— third-party figure.] -->
+The MSc offers **three credit routes with matching durations**: a **60 ECTS route
+(around 12 months)**, a **90 ECTS route (around 18 months)** including a master's thesis,
+and a **120 ECTS route (around 24 months)** including a capstone consulting project. You
+can choose the depth that fits your goals — the admissions team will help you select the
+right route. <!-- Source: rushford.ch official MSc pages — 60/90/120 ECTS route structure
+     (verified 2026-08-19). -->
 
 ### Eligibility & Admission
 
@@ -335,19 +346,27 @@ authority in your specialisation, strengthening your credibility worldwide.
 
 ---
 
-## Facts to Verify (owner action before approval)
+## Facts to Verify (updated 2026-08-19 after deep research — see Resolved section)
+
+### Still open
 
 | # | Item | What the draft currently says | What needs confirming |
 |---|------|-------------------------------|----------------------|
 | 1 | Accreditation wording | "EduQua-certified" | Approved public wording + any additional recognitions to add or remove |
 | 2 | BBA entry score | "Upper-secondary completed" (no % shown) | Third-party lists ~55% minimum — confirm official criteria |
 | 3 | English test thresholds (UG/PG) | Generic "recognised tests + waivers" | Third-party lists IELTS 5.5 / TOEFL 58 / PTE 50 / Duolingo 90 — confirm official levels |
-| 4 | MBA duration | 12–24 months | Third-party figure — confirm official range for all 12 tracks |
-| 5 | MSc duration | 18–24 months | Third-party figure — confirm official range for all 9 programmes |
-| 6 | GMAT/GRE not required | "No entrance exam listed" | Confirm officially across all MBA tracks |
-| 7 | EPD terminology | "EPD pathway" (full form not stated) | Confirm full form and public positioning |
-| 8 | All fee data | Components only, no figures | Amounts, billing currency, instalment plans, scholarship availability per category |
-| 9 | BBA duration | Not stated (no source) | Add once official duration is available |
+| 4 | EPD terminology | "EPD pathway" (full form not stated) | Confirm full form and public positioning |
+| 5 | Fee data (BBA/MBA/MSc/Doctoral) | Components only, no figures | Amounts, billing currency, instalment plans, scholarship availability per category |
+
+### ✅ Resolved (2026-08-19 deep research — official rushford.ch / apply.rushford.ch)
+
+| Item | Resolution |
+|------|-----------|
+| MBA duration | **16 months (90 ECTS)** — official nominal duration across specialisation pages (was: third-party 12–24 mo) |
+| MSc duration | **60/90/120 ECTS routes → ~12/18/24 months** — official route structure (was: third-party 18–24 mo) |
+| BBA duration | **180 ECTS, 6 semesters, ~36 months** — official BBA page (was: not stated) |
+| GMAT/GRE not required | Official course pages list no admission test among entry requirements — wording retained |
+| MBA bonus award | MBA specialisations also carry an **Ofqual-regulated Level 7 Diploma** by default (official portal); WES wording excluded per blacklist |
 
 ---
 

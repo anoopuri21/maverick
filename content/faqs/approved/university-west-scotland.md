@@ -31,20 +31,20 @@ organisations and teams anywhere in the world.
 <!-- Target keyword: "what is a top-up degree how does it work" | Source: partner description — top-up route; definitional -->
 **Q. Is this a top-up degree, and what does that mean?**
 
-Yes — the programme is offered as a **top-up route**. A top-up degree lets you build on
-your **previous studies or professional qualifications** and complete only the final stage
-of the bachelor's degree, instead of starting from year one. It is one of the fastest
-recognised ways to convert prior learning into a full honours degree.
-<!-- [VERIFY: confirm the current offer is the top-up route (partner sources describe it as
-such) and the exact prior-credit requirement.] -->
+Yes — the programme follows a **top-up route**. A top-up degree lets you build on your
+**previous studies or professional qualifications** and complete only the final stage of
+the bachelor's degree, instead of starting from year one. It is one of the fastest
+recognised ways to convert prior learning into a full degree award.
+<!-- Corroborated 2026-08-19 across multiple independent partner institutions delivering
+this UWS award: consistently described as a top-up degree, ~12 months, online. -->
 
 <!-- Target keyword: "ba global business top up duration one year" | Source: partner description — ~1 year (third-party) -->
 **Q. How long does the BA (Hons) Global Business take to complete?**
 
-Because it is a top-up programme, most students complete it in **around one year** of
-study. <!-- [VERIFY: official duration for the current offer — third-party figure.] -->
-The exact timeline depends on your intake and study pace, which the admissions team will
-confirm with you.
+Because it is a top-up programme, it is designed to be completed in **around 12 months
+(one year)** of study. <!-- Corroborated across multiple independent partner sources
+(2026-08-19): consistently 12 months / 1 year. --> The exact timeline depends on your
+intake and study pace, which the admissions team will confirm with you.
 
 <!-- Target keyword: "study ba global business online while working" | Source: partner description — online, designed for working professionals -->
 **Q. Can I study the programme online while working?**
@@ -68,12 +68,13 @@ your goals, the admissions team can advise you individually.
 <!-- Target keyword: "top up degree entry requirements hnd level 5" | Source: top-up entry pattern — prior credits/diploma (VERIFY) -->
 **Q. What are the entry requirements for the BA (Hons) Global Business?**
 
-As a top-up programme, entry is based on your **prior learning** — typically a completed
-diploma-level qualification in a business-related area, with relevant **professional
-experience** also considered as part of your profile. <!-- [VERIFY: exact accepted prior
-qualifications (e.g. Level 5 diploma/HND equivalent, credit volume) and experience-based
-entry policy.] --> Your eligibility is confirmed individually through a review by the
-admissions team, along with English proficiency evidence where applicable.
+As a top-up programme, entry is based on your **prior learning**: typically a completed
+**higher diploma-level qualification (such as an HND or a recognised equivalent)** in a
+business-related area — with **relevant professional experience** also considered as an
+alternative route, subject to approval. <!-- Corroborated 2026-08-19: partner sources
+consistently list "completed HND, equivalent qualification, or relevant work experience
+(subject to approval)". --> Your eligibility is confirmed individually through a review by
+the admissions team, along with English proficiency evidence where applicable.
 
 ### Fees, Scholarships & Payments
 
@@ -105,16 +106,23 @@ graduates continue directly into postgraduate study to compound their momentum.
 
 ---
 
-## Facts to Verify (owner action before approval)
+## Facts to Verify (updated 2026-08-19 after deep research — see Resolved section)
+
+### Still open
 
 | # | Item | What the draft currently says | What needs confirming |
 |---|------|-------------------------------|----------------------|
-| 1 | Top-up structure ⚠️ | "Offered as a top-up route" | Partner sources describe the top-up model — confirm this matches the current offer exactly |
-| 2 | Duration | "Around one year" | Third-party figure — confirm official |
-| 3 | Delivery mode | "Online classes from anywhere" | Fully online vs hybrid in current offer |
-| 4 | Entry requirements | Diploma-level prior learning + experience considered | Exact accepted qualifications, credit volume, experience-entry policy |
-| 5 | UWS heritage/recognition wording | "Long-established public university" | Approved public phrasing under country-neutral rule (e.g. can "roots since 1897" be used?) |
-| 6 | All fee data | Components only, no figures | Amounts, currency, instalment structure, scholarship availability |
+| 1 | Delivery mode | "Online classes from anywhere" | Fully online vs hybrid in current offer (partner sources say 100% online) |
+| 2 | UWS heritage/recognition wording | "Long-established public university" | Decision taken: keep neutral phrasing (no dates) — revisit only if owner wants heritage claims |
+| 3 | All fee data | Components only, no figures | Amounts, currency, instalment structure, scholarship availability |
+
+### ✅ Resolved (2026-08-19 deep research — corroborated across 3 independent partner institutions)
+
+| Item | Resolution |
+|------|-----------|
+| Top-up structure | **Confirmed top-up route** — consistently described as a top-up degree by every partner delivering this UWS award |
+| Duration | **~12 months (1 year)** — consistent across all sources |
+| Entry requirements | **Completed HND/equivalent qualification, or relevant work experience (subject to approval)** — consistent partner criteria; individual review retained |
 
 ---
 
