@@ -119,10 +119,10 @@
           </button>
           <ul class="navbar__dropdown" data-dropdown="pathways" aria-hidden="true">
             <li>
-              <a href="{{ route('global-pathways.programs') }}" class="navbar__dropdown-link">Pathway Programs</a>
+              <a href="{{ url('/global-pathways#pathways') }}" class="navbar__dropdown-link">Pathway Programs</a>
             </li>
             <li>
-              <a href="{{ route('global-pathways.opportunities') }}" class="navbar__dropdown-link">Global Opportunities</a>
+              <a href="{{ url('/global-pathways#opportunities') }}" class="navbar__dropdown-link">Global Opportunities</a>
             </li>
           </ul>
         </li>
@@ -243,10 +243,10 @@
             </button>
             <ul class="navbar__mobile-submenu" data-mobile-submenu="pathways">
               <li>
-                <a href="{{ route('global-pathways.programs') }}" class="navbar__mobile-sublink">Pathway Programs</a>
+                <a href="{{ url('/global-pathways#pathways') }}" class="navbar__mobile-sublink">Pathway Programs</a>
               </li>
               <li>
-                <a href="{{ route('global-pathways.opportunities') }}" class="navbar__mobile-sublink">Global
+                <a href="{{ url('/global-pathways#opportunities') }}" class="navbar__mobile-sublink">Global
                   Opportunities</a>
               </li>
             </ul>
