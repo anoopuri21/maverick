@@ -1,0 +1,85 @@
+name: CI
+
+on:
+  push:
+    branches: [arena/01a019ff-maverick]
+  pull_request:
+    branches: [dev/overall-development]
+
+jobs:
+  php-checks:
+    name: PHP Checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP 8.3
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: mbstring, intl, sqlite3, pdo_sqlite, gd, zip
+          coverage: none
+
+      - name: Composer validate
+        run: composer validate --no-check-publish
+
+      - name: PHP syntax lint
+        run: |
+          find app bootstrap config database routes tests -name '*.php' -print0 \
+            | xargs -0 -n1 -P4 php -l > /dev/null
+          echo "All PHP files pass syntax check"
+
+      - name: Cache Composer packages
+        uses: actions/cache@v4
+        with:
+          path: vendor
+          key: composer-${{ runner.os }}-${{ hashFiles('composer.lock') }}
+          restore-keys: composer-${{ runner.os }}-
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress --no-interaction
+
+      - name: Security audit (dependencies)
+        run: composer audit
+
+      - name: Prepare application
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+
+      - name: Migration smoke test (fresh SQLite)
+        env:
+          DB_CONNECTION: sqlite
+          DB_DATABASE: ${{ github.workspace }}/database/ci-smoke.sqlite
+        run: |
+          touch database/ci-smoke.sqlite
+          php artisan migrate --force
+          php artisan migrate:status | tail -5
+
+      - name: PHPUnit tests
+        run: vendor/bin/phpunit --colors=always
+
+      - name: Laravel Pint (style — warning only)
+        run: |
+          vendor/bin/pint --test \
+            || echo "::warning::Laravel Pint found code-style issues (non-blocking for now)"
+
+  frontend-build:
+    name: Frontend Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Vite production build
+        run: npm run build
