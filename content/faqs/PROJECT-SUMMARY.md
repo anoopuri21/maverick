@@ -16,7 +16,7 @@
 | 5 | University of Wolverhampton (UOW) | 1 (Master of Laws — LLM) | 9 | 1 | `approved/university-wolverhampton.md` |
 | 6 | Gatehouse Diplomas | 1 (Level 7 Diplomas) | 9 | 4 | `approved/gatehouse-diplomas.md` |
 | 7 | Qualifi Diplomas | 3 (L3 · L5 Extended · L7) | 19 | 45 | `approved/qualifi-diplomas.md` |
-| | **TOTAL** | **16** | **117** | **136** | + 7 selection/ranking reports in `reports/` |
+| | **TOTAL** | **16 + 7 practical guides** | **142** | **136** | + 7 selection/ranking reports in `reports/` |
 
 *(FAQ count = visible published questions; every question carries an HTML-comment layer with
 target keyword + source reference, invisible after upload.)*

@@ -100,11 +100,18 @@
 |---|---|---|
 | 2.0 | P0+P1 fixes all files (duplicate, naming, thin answers, entity leads, Qualifi differentiation) | ✅ Done |
 | 2.1 | RBS — "Applying & Practical Information" (+5 boost-topic FAQs) | ✅ Approved 2026-08-20 |
-| 2.2 | GAU — "Applying & Practical Information" (+5 boost-topic FAQs) | 🔵 In Review |
-| 2.3 | UWS boost-topics | ⬜ Pending |
-| 2.4 | UCA boost-topics | ⬜ Pending |
-| 2.5 | UOW boost-topics | ⬜ Pending |
-| 2.6 | Gatehouse boost-topics | ⬜ Pending |
-| 2.7 | Qualifi boost-topics | ⬜ Pending |
-| 2.8 | Comparison-table upgrades (4 questions) | ⬜ Pending |
-| 2.9 | PDFs regenerate + FAQPage JSON-LD | ⬜ Pending |
+| 2.2 | GAU — "Applying & Practical Information" (+5 boost-topic FAQs) | ✅ Approved 2026-08-20 |
+| 2.3 | UWS boost-topics (+3) | ✅ Done 2026-08-20 (owner delegated) |
+| 2.4 | UCA boost-topics (+3) | ✅ Done 2026-08-20 (owner delegated) |
+| 2.5 | UOW boost-topics (+3) | ✅ Done 2026-08-20 (owner delegated) |
+| 2.6 | Gatehouse boost-topics (+3) | ✅ Done 2026-08-20 (owner delegated) |
+| 2.7 | Qualifi boost-topics (+3) | ✅ Done 2026-08-20 (owner delegated) |
+| 2.8 | Comparison-table upgrades (4 questions) | ✅ Done 2026-08-20 |
+| 2.9 | PDFs regenerated (142 FAQs) + JSON-LD schema (local only) | ✅ Done 2026-08-20 |
+
+- **2026-08-20** — 🏁 **PHASE 2 COMPLETE (owner delegated full ownership after Cycle 2.2):**
+  boost-topic sections for all 7 providers (+25 FAQs, total 142), 4 comparison tables,
+  FAQPage JSON-LD (schema/, LOCAL ONLY), PDFs regenerated & republished (29pp pack).
+  Final verification audit: 9/9 requirements PASS (R1's single flag = matcher artifact on
+  internal listing label, manually verified covered). Details:
+  `reports/phase2-completion-report.md`. Website content remains UNPUBLISHED.
