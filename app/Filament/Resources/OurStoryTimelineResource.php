@@ -29,6 +29,12 @@ class OurStoryTimelineResource extends Resource
     protected static ?int $navigationSort = 2;
     protected static ?string $navigationLabel = 'Timeline';
 
+    public static function shouldRegisterNavigation(): bool
+    {
+        // Managed from the Our Story Page tabs (ManageOurStory).
+        return false;
+    }
+
     public static function form(Form $form): Form
     {
         return $form

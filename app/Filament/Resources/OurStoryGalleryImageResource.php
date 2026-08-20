@@ -30,6 +30,12 @@ class OurStoryGalleryImageResource extends Resource
     protected static ?string $navigationLabel = 'Gallery Images';
     protected static ?int $navigationSort = 3;
 
+    public static function shouldRegisterNavigation(): bool
+    {
+        // Managed from the Our Story Page tabs (ManageOurStory).
+        return false;
+    }
+
     public static function form(Form $form): Form
     {
         return $form

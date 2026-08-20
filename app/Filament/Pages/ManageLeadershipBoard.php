@@ -27,9 +27,9 @@ class ManageLeadershipBoard extends Page implements HasForms
     use InteractsWithForms;
 
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
-    protected static ?string $navigationGroup = 'About';
+    protected static ?string $navigationGroup = 'About Section';
     protected static ?string $navigationLabel = 'Leadership Board Page';
-    protected static ?int $navigationSort = 5;
+    protected static ?int $navigationSort = 6;
     protected static string $view = 'filament.pages.manage-leadership-board';
 
     public array $data = [];
