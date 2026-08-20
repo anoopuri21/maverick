@@ -152,15 +152,27 @@
         <li class="navbar__item" role="none">
           <a href="{{ route('contact') }}" class="navbar__link" role="menuitem">Contact Us</a>
         </li>
+
+        <li class="navbar__item navbar__item--has-dropdown" role="none">
+          <button class="navbar__link navbar__link--trigger" role="menuitem" aria-haspopup="true"
+            aria-expanded="false" data-menu="student-login">
+            Student Login
+            <span class="navbar__arrow" aria-hidden="true"></span>
+          </button>
+          <ul class="navbar__dropdown navbar__dropdown--student" data-dropdown="student-login" aria-hidden="true">
+            <li>
+              <a href="http://studentportal.mbalondon.org.uk/" target="_blank" rel="noopener"
+                class="navbar__dropdown-link">Undergraduate</a>
+            </li>
+            <li>
+              <a href="https://courses.augment.org/enroll/2988173?price_id=3844078" target="_blank" rel="noopener"
+                class="navbar__dropdown-link">Masters</a>
+            </li>
+          </ul>
+        </li>
       </ul>
     </nav>
 
-    <!-- CTA Button -->
-    <div class="navbar__cta">
-      <a href="{{ $site->apply_now_url }}" class="btn btn--primary navbar__cta-btn">
-        Apply Now
-      </a>
-    </div>
 
     <!-- Mobile Hamburger -->
     <button class="navbar__hamburger" aria-label="Toggle mobile menu" aria-expanded="false"
@@ -275,12 +287,25 @@
           <li class="navbar__mobile-item">
             <a href="{{ route('contact') }}" class="navbar__mobile-link">Contact Us</a>
           </li>
+
+          <li class="navbar__mobile-item">
+            <button class="navbar__mobile-link navbar__mobile-trigger" data-mobile-menu="student-login">
+              Student Login
+              <span class="navbar__mobile-arrow"></span>
+            </button>
+            <ul class="navbar__mobile-submenu" data-mobile-submenu="student-login">
+              <li>
+                <a href="http://studentportal.mbalondon.org.uk/" target="_blank" rel="noopener"
+                  class="navbar__mobile-sublink">Undergraduate</a>
+              </li>
+              <li>
+                <a href="https://courses.augment.org/enroll/2988173?price_id=3844078" target="_blank" rel="noopener"
+                  class="navbar__mobile-sublink">Masters</a>
+              </li>
+            </ul>
+          </li>
         </ul>
       </nav>
-
-      <div class="navbar__mobile-cta">
-        <a href="{{ url('/apply/') }}" class="btn btn--primary">Apply Now</a>
-      </div>
     </div>
   </div>
 </header>
