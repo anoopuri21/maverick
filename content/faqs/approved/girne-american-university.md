@@ -380,6 +380,62 @@ disciplines, it is the highest academic qualification you can earn.
 
 ---
 
+## Applying & Practical Information
+*Provider-level questions — apply to all GAU programmes. (Phase 2 addition.)*
+
+<!-- Target keyword: "university eligibility review how it works" | Source: consultative admissions model (seeder pattern); distinct from RBS "how to apply" -->
+**Q. How does the GAU eligibility review work?**
+
+The eligibility review is a **free, no-obligation assessment** of your academic background,
+work experience and goals — done before you formally commit to anything. The admissions
+team maps you to the right programme and level, confirms any scholarship you qualify for,
+and only then moves you to enrolment. It replaces guesswork with a clear, personal answer
+to "am I eligible?". <!-- [VERIFY: confirm review is free/no-obligation in our offer.] -->
+
+<!-- Target keyword: "documents translation attestation university admission" | Source: universityfairs.com — translations required if not in English (third-party) -->
+**Q. Do my documents need to be translated or attested?**
+
+If your academic documents are not in English, **official translations are required
+alongside the originals**. The admissions team tells you exactly which documents need
+translation and what counts as an acceptable format for your region — before you spend
+money on unnecessary attestations. <!-- [VERIFY: attestation/apostille requirements per
+document type in our offer.] -->
+
+<!-- Target keyword: "how to verify university degree employer" | Source: standard verification practice (VERIFY GAU process) -->
+**Q. How can an employer or institution verify my GAU degree?**
+
+Degree verification is a standard process: employers or institutions can confirm your
+award **directly with the university's records office**, and your final documents
+(degree certificate and transcripts) carry the university's official seals and security
+features. Graduates can also request **additional official copies or verification
+letters** when applying for jobs or further study.
+<!-- [VERIFY: GAU's exact verification channel/process for graduate records.] -->
+
+<!-- Target keyword: "how do university scholarships work online students" | Source: repo seeder — scholarships available, intake-linked, offer validity -->
+**Q. How do GAU scholarships actually work?**
+
+GAU scholarships are **confirmed during your eligibility review** and applied directly to
+your fee plan — you don't apply for them separately after admission. Two things matter:
+offers are **intake-linked**, and they carry a **defined validity period**. Practically,
+that means completing your eligibility review early is the single best way to secure the
+strongest available benefit for your start date.
+
+<!-- Target keyword: "online student support services distance learning" | Source: repo seeder — support list (verified Maverick data) -->
+**Q. What support will I get as a distance learner at GAU?**
+
+You are never studying alone. Support includes:
+
+- **Dedicated academic support** and **experienced faculty**
+- A **student success team** tracking your progress
+- **Assignment support** when you need guidance
+- **Career guidance** during your studies
+- **Graduation support** at the finish line
+
+This support layer is what converts flexible learning from a brochure promise into
+completed degrees.
+
+---
+
 ## Facts to Verify (updated 2026-08-19 after deep research — see Resolved section)
 
 ### Still open

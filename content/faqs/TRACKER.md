@@ -99,8 +99,8 @@
 | Cycle | Task | Status |
 |---|---|---|
 | 2.0 | P0+P1 fixes all files (duplicate, naming, thin answers, entity leads, Qualifi differentiation) | ✅ Done |
-| 2.1 | RBS — "Applying & Practical Information" (+5 boost-topic FAQs) | 🔵 In Review |
-| 2.2 | GAU boost-topics | ⬜ Pending |
+| 2.1 | RBS — "Applying & Practical Information" (+5 boost-topic FAQs) | ✅ Approved 2026-08-20 |
+| 2.2 | GAU — "Applying & Practical Information" (+5 boost-topic FAQs) | 🔵 In Review |
 | 2.3 | UWS boost-topics | ⬜ Pending |
 | 2.4 | UCA boost-topics | ⬜ Pending |
 | 2.5 | UOW boost-topics | ⬜ Pending |
