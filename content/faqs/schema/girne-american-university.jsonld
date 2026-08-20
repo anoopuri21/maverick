@@ -1,0 +1,302 @@
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "Which BSc programmes are available at Girne American University?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "GAU offers ten BSc programmes spanning business, social science and technology fields: Business Management, International Business Management, Marketing, Accounting, Accounting and Finance Management, Economics, Human Resources Management, Management Information Systems, Tourism and Hospitality Management, and Psychology. All are taught in English to an internationally focused curriculum."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Is a BSc degree from Girne American University recognised?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes. GAU is a recognised university, established in 1985, approved by the higher-education authorities YÖDAK and YÖK, and its business programmes additionally hold international accreditation from IACBE (International Accreditation Council for Business Education). For recognition guidance specific to your goals, the admissions team can advise you individually."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Can I study a GAU BSc flexibly while working?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes — GAU's BSc programmes follow a flexible learning model designed to support both full-time students and working professionals, so you can progress your degree alongside your other commitments. Throughout your studies you are backed by *dedicated academic support, assignment guidance and a student success team*, which is what makes studying while working genuinely manageable rather than just possible."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How are students assessed on the BSc programmes?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "GAU's BSc programmes are assessed through assignments and examinations across the programme stages, building both applied and academic skills. Assignments let you demonstrate understanding through practical business scenarios, while examinations consolidate your core knowledge — so your final award reflects both capability and depth. Dedicated academic support and assignment guidance are available throughout your studies."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What are the entry requirements for the BSc programmes?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "You need a completed high-school (upper-secondary) qualification or a recognised equivalent. Your eligibility is confirmed individually through a review by the admissions team, which considers your overall academic profile."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Do I need IELTS or TOEFL to join a BSc programme?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Programmes are taught in English, so evidence of English proficiency is required — but a formal test certificate is not the only route. Recognised scores are accepted, and an alternative English assessment arranged through the university may be available if you don't hold one. The admissions team will confirm the simplest route for your profile."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How do BSc fees and scholarships work?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Fees follow an instalment-friendly structure — a registration fee, an initial payment, and monthly instalments across your studies — with scholarships available, confirmed during your eligibility review. Scholarship offers are typically intake-linked with a defined validity period, so completing your review early helps secure the available benefit."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What can I do after completing a GAU BSc?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Your career direction follows your specialisation — from business, marketing, finance and HR roles to hospitality management, economic analysis, information systems and psychology-related pathways. Graduates also hold a recognised undergraduate qualification for progression to postgraduate study, including GAU's own MBA, EMBA and MSc programmes, subject to admission criteria."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Which MBA specialisations does Girne American University offer?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "GAU offers the MBA with six specialisations: Business Management, Financial Management, International Business Management, Marketing, Management Information Systems, and Data Science/Analytics Management — combining classic management depth with contemporary, data-driven options, all taught in English."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How long does the GAU MBA take to complete?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "The MBA is typically completed in around 1.5 to 2 years (up to four semesters), with the exact timeline depending on your study pace and route. The admissions team can help you plan a realistic schedule around your professional commitments."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Can I do the GAU MBA without pausing my career?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes — the GAU MBA follows a flexible learning structure designed specifically for working professionals. You can schedule study around your job, apply new frameworks directly in your workplace from the first modules, and progress at a pace that fits your role — many candidates treat the programme itself as an extended, real-world business project."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What are the entry requirements for the GAU MBA?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "You need a recognised bachelor's degree in any discipline, plus evidence of English proficiency (recognised test scores, or an alternative assessment where available). *No entrance examination such as GMAT or GRE is listed* among the requirements — admission is based on your academic and professional profile. Final eligibility is confirmed through an individual admissions review."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What is the fee structure for the MBA?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "MBA tuition follows an instalment-based structure to keep payments manageable while you study, with scholarship availability confirmed during your eligibility review. Exact amounts, currency and current offers are confirmed by the admissions team for your intake."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What career outcomes can the GAU MBA support?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "The MBA prepares you for management and senior-professional roles aligned with your specialisation — from business leadership, financial management and marketing strategy to information systems and data-driven decision-making roles. It also provides a master's-level foundation for doctoral study, subject to admission criteria."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Which Executive MBA specialisations does GAU offer?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "GAU offers one of the widest EMBA portfolios available — 16 specialisations — spanning banking and finance, healthcare, public administration, engineering, supply chain, digital marketing, sustainability, media, sport management and more. Whatever sector you lead in, there is an EMBA track aligned to it."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What is the difference between an MBA and an Executive MBA?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "An MBA builds broad management capability and suits professionals at earlier or mid-career stages. An Executive MBA (EMBA) is designed for *experienced professionals and leaders* — it assumes workplace maturity and focuses on strategic, sector-specific leadership. Both are master's-level qualifications; the right choice depends on your experience level and career stage, and the admissions team can help you decide."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Can I complete the EMBA while working full-time?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes — that is exactly who the GAU Executive MBA is built for. The flexible structure is designed around the schedules of working executives and managers, so you can lead your organisation and study in parallel, applying strategic insights to your role immediately."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What are the entry requirements for the EMBA?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "You need a recognised bachelor's degree, and your professional experience forms a key part of your application — the EMBA is aimed at candidates with meaningful workplace responsibility. Eligibility is confirmed individually through an admissions review of your academic and professional profile, along with English proficiency evidence or an applicable alternative assessment."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How are EMBA fees structured?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "EMBA tuition is payable through structured instalments, keeping the investment manageable alongside your professional income. Exact fees, currency and any current scholarship or fee-support offers are confirmed by the admissions team for your chosen specialisation and intake."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What impact can the EMBA have on my career?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "The EMBA is built to accelerate movement into senior leadership — directorships, executive management and strategic roles — within your sector. Because the 16 tracks map to specific industries (healthcare, banking, public administration, energy, sport and more), your qualification signals both leadership capability and sector authority, wherever in the world you work."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Which thesis-based MSc programmes does GAU offer?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "GAU offers four MSc programmes with thesis: Business Management, Economics, Healthcare Management, and Counselling Psychology. Each combines taught study with a *supervised research thesis*, taught and written in English."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What does \"MSc with Thesis\" actually mean?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "An MSc \"with thesis\" is a research-oriented master's degree: alongside taught modules, you plan and complete an original, supervised research project (thesis) in your field. It develops deeper analytical and research skills than a purely taught master's — which is why it is the preferred route for students considering doctoral study or research-based careers."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Who should choose the thesis-based MSc route?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Choose the thesis route if you want to specialise deeply, build genuine research capability, or keep the door open to a PhD. It suits aspiring researchers, analysts, academics and professionals whose fields value evidence-based expertise — such as healthcare management, economics and counselling psychology."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What do I need to be eligible for a thesis-based MSc?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "A recognised bachelor's degree is required, plus evidence of English proficiency (recognised scores or an alternative assessment where available). Some programmes may consider your academic background relative to the chosen field. Final eligibility is confirmed through an individual admissions review."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What do the thesis-based MSc programmes cost, and is scholarship support available?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Tuition for GAU's thesis-based MSc programmes follows an instalment-based structure, so payments are spread across both the taught and research stages of your degree. Scholarship support is reviewed as part of your application, with any offer linked to your intake. Exact amounts, currency and current offers are confirmed by the admissions team during your eligibility review."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Does a thesis-based MSc help me get into a PhD?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes — significantly. A completed, supervised thesis is *direct evidence of research capability, which doctoral admissions value highly. Graduates progress to PhD study* (including GAU's own PhD portfolio) subject to admission criteria, or into specialist and research-informed roles in their field."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Which PhD programmes does Girne American University offer?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "GAU offers seven PhD programmes: Business Management, Marketing, Management Information Systems, Psychology, Educational Administration, Law, and Tourism & Hospitality. Each is a research doctorate completed under academic supervision, in English."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Can I pursue a GAU PhD while continuing to work?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Doctoral research is structured around your own research schedule, which many candidates run alongside professional roles — especially where the research connects to their field of work. The admissions team can advise on planning a sustainable research timeline."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How long does a PhD at GAU take?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "PhD duration at GAU is individual — it depends on your research topic, pathway and pace. The journey typically moves through *proposal development, supervised research and thesis completion*, and your realistic timeline is mapped with the admissions team when you discuss your research proposal, so you start with a plan rather than an open-ended commitment."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What are the entry requirements for the PhD programmes?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Doctoral applicants typically need: A recognised master's degree in a relevant field A research proposal outlining your intended study area A CV and academic reference letters Evidence of English proficiency at doctoral level Final eligibility is confirmed through an individual admissions review, which may include a discussion of your research plans."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How are PhD fees structured?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "PhD tuition is payable through structured instalments across the research period. Exact amounts, currency and any current fee-support offers are confirmed by the admissions team for your programme and intake."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What can a PhD from GAU lead to?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "A PhD establishes you as a researcher and authority in your field — opening academic careers (lecturing, research, supervision), senior specialist and policy roles, and leadership positions where doctoral-level expertise carries weight. Across all seven disciplines, it is the highest academic qualification you can earn."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How does the GAU eligibility review work?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "The eligibility review is a free, no-obligation assessment of your academic background, work experience and goals — done before you formally commit to anything. The admissions team maps you to the right programme and level, confirms any scholarship you qualify for, and only then moves you to enrolment. It replaces guesswork with a clear, personal answer to \"am I eligible?\"."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Do my documents need to be translated or attested?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "If your academic documents are not in English, *official translations are required alongside the originals*. The admissions team tells you exactly which documents need translation and what counts as an acceptable format for your region — before you spend money on unnecessary attestations."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How can an employer or institution verify my GAU degree?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Degree verification is a standard process: employers or institutions can confirm your award directly with the university's records office, and your final documents (degree certificate and transcripts) carry the university's official seals and security features. Graduates can also request *additional official copies or verification letters* when applying for jobs or further study."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How do GAU scholarships actually work?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "GAU scholarships are confirmed during your eligibility review and applied directly to your fee plan — you don't apply for them separately after admission. Two things matter: offers are intake-linked, and they carry a defined validity period. Practically, that means completing your eligibility review early is the single best way to secure the strongest available benefit for your start date."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What support will I get as a distance learner at GAU?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "You are never studying alone. Support includes: Dedicated academic support and experienced faculty A student success team tracking your progress Assignment support when you need guidance Career guidance during your studies Graduation support at the finish line This support layer is what converts flexible learning from a brochure promise into completed degrees."
+   }
+  }
+ ]
+}

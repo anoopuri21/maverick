@@ -1,0 +1,102 @@
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "What is the Global MBA offered through UCA and Rushford Business School?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "The Global MBA is a triple-certified master's programme: on completion you receive *two MBA awards — one from the University for the Creative Arts (UCA) and one from Rushford Business School (RBS) — plus an Ofqual-regulated Level 7 Diploma*. It is delivered fully online in English, so you can study from anywhere in the world."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What does a \"dual MBA award\" actually mean, and why does it matter?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "A dual award means you complete *one programme of study but graduate with two separate MBA qualifications* from two different institutions. This widens the recognition of your credentials with employers and academic bodies, and gives your CV two institutional endorsements for a single investment of time and money."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How long does the Global MBA take, and how many credits is it worth?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "The Global MBA takes 12 to 18 months and carries *90 ECTS credits (180 equivalent credits)*. The pace is flexible, so working professionals can align the timeline with their commitments — the admissions team will help you plan your intake and schedule."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Is the Global MBA delivered fully online?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes — the Global MBA is delivered through fully online e-learning, with a weekly study commitment designed to fit around professional life, so you can complete both MBA awards without stepping away from your career."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How is the Global MBA structured?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "The programme runs in two stages: a taught stage covering strategic management, leadership, planning and decision-making, followed by a master's thesis stage completed under the awarding university's framework. This structure means you finish with both applied coursework and a substantial piece of master's-level research."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What are the entry requirements for the Global MBA?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "The core requirement is a *recognised bachelor's degree (or equivalent academic title) in any discipline* — this is the published criterion on the official admissions portal for this delivery route. Your professional profile supports your application, and English proficiency evidence is required, with waivers available for eligible applicants. Final eligibility is confirmed through an individual admissions review."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What does the Global MBA cost, and can I pay in instalments?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes — two payment routes are published on the official admissions portal: a *one-time payment (CHF 9,900), or an instalment plan* (initial deposit of CHF 1,800 plus six monthly instalments of CHF 1,400). The admissions team will confirm the exact fee and best payment route for your intake."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What career advantage does the Global MBA give?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "You graduate with two MBA awards and a regulated Level 7 diploma — a distinctive credential set for senior management, strategy and leadership roles with organisations that operate internationally. The dual endorsement is particularly valuable when your career spans multiple markets or you work with globally distributed teams."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Can I continue to a doctorate after the Global MBA?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes. The Global MBA is a full master's-level qualification, satisfying the standard entry route for doctoral study — including PhD and DBA programmes — subject to admission criteria. Rushford's own doctoral portfolio makes this a natural next step within the same partnership ecosystem."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Do I receive two separate MBA certificates?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes — the dual award means you receive separate credentials from each institution: an MBA awarded by the University for the Creative Arts and an MBA awarded by Rushford Business School, alongside the Ofqual-regulated Level 7 Diploma. Each stands on its own for job applications, further study and verification."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Can my employer sponsor my Global MBA?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Employer sponsorship is common for executive education, and the programme's *published, instalment-friendly fee structure* makes it straightforward to propose internally: a defined cost, a defined timeline, and skills applied to the business from the first modules. The admissions team can support sponsorship conversations with documentation."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What support will I get during the master's thesis stage?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "The thesis is completed *under academic supervision within the awarding university's framework* — you are guided through topic selection, research design and submission rather than left to figure it out alone. It is the stage where the Global MBA turns your professional experience into a substantial, examined piece of master's-level work."
+   }
+  }
+ ]
+}

@@ -1,0 +1,182 @@
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "Which Qualifi Level 3 Diplomas are available?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Eight Level 3 Diplomas are offered across business, management, entrepreneurship, health and social care, hospitality and tourism, accounting and finance, and information technology — giving you a foundation-level entry point into whichever career direction you choose."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Is Qualifi a recognised awarding organisation?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes. Qualifi is an awarding organisation approved and regulated by Ofqual (the Office of Qualifications and Examinations Regulation), and its diplomas are accredited to the Regulated Qualifications Framework (RQF), each carrying its own unique qualification accreditation number that appears on your final certificate. Recognition guidance for your goals is available from the admissions team."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What is a Level 3 Diploma, and who is it for?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "A Level 3 Diploma is a foundation-level qualification — the stage that prepares you for higher-level study or your first professional roles. It suits *school-leavers, career starters and career changers* who want a structured, recognised entry point into a field without committing to a full degree straight away."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What do I need to enrol in a Level 3 Diploma?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Entry is designed to be accessible: typically a completed school-level education, with your profile reviewed individually by the admissions team. No prior professional qualification is expected at this level."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How much does a Level 3 Diploma cost to study?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Level 3 fees are kept accessible and instalment-friendly, reflecting the diploma's role as an entry point to the qualification ladder. Exact amounts, currency and any current offers are confirmed by the admissions team during your eligibility review, so you know the full picture before you commit."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What can I progress to after a Level 3 Diploma?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Two clear routes open up: step into entry-level roles in your chosen field, or continue up the ladder — including progression towards Level 5 study and, over time, degree-level and postgraduate qualifications. Many learners use Level 3 as the first rung of a planned journey to higher qualifications."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Which Level 5 Extended Diplomas can I choose from?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Fourteen Level 5 Extended Diplomas are offered — from business, law, psychology and accounting to a deep technology cluster (IT, networking, web design, e-commerce, cyber security) plus health and social care, occupational health and safety, and education and training management. It is the widest level of the Qualifi ladder for specialising early."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What does \"Extended Diploma\" mean at Level 5?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "An Extended Diploma carries a larger credit volume than a standard diploma at the same level — the Qualifi Level 5 Extended Diplomas carry *240 credits, combining Level 4 and Level 5 study (120 credits at each level)*. That makes them academically comparable to the first two years of a bachelor's degree, representing substantial higher-education learning in your field."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Which level should I start at — Level 3 or Level 5?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "It depends on where you are today. Start at Level 3 if you're building from school-level education or changing fields; start at Level 5 if you already have foundation-level qualifications or relevant work experience and want to move faster towards degree-level recognition. The admissions team will review your background and recommend the level that fits — you never need to guess."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What are the entry requirements for a Level 5 Extended Diploma?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Entry to a Level 5 Extended Diploma typically requires a *Level 3 qualification or equivalent — with relevant work experience* also considered as an alternative route, reviewed individually. This flexibility exists because Level 5 study is designed for both ladder-climbers coming up from Level 3 and working adults formalising what they already do professionally. English proficiency evidence may be requested where applicable."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What is the fee structure for a Level 5 Extended Diploma?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Because the Extended Diploma spans 240 credits across two levels of study, fees are payable through manageable instalments spread across the programme. Exact amounts, currency and any current offers are confirmed by the admissions team for your chosen track and intake — including how the payment plan maps to your study stages."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Can a Level 5 Extended Diploma lead to a bachelor's degree?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes — this is the level's biggest advantage. Because the Extended Diploma covers *240 credits across Levels 4 and 5 (comparable to the first two years of a bachelor's degree), it is designed to support direct entry into the final year of a bachelor's degree (a degree top-up route)*, subject to the receiving institution's criteria. Alternatively, you can step into supervisory and specialist roles in your field with a recognised higher-level credential."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Which specialisations do the Qualifi Level 7 Diplomas cover?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Twenty-three Level 7 Diplomas — the widest postgraduate-level diploma range in our portfolio — covering strategy, leadership, project and risk management, marketing, HR, accounting and finance, law, health and safety, hospitality, IT, data science, cyber security, supply chain and education management. If your profession has a leadership track, there is almost certainly a Level 7 route for it here."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Who are the Qualifi Level 7 Diplomas designed for?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "They are built for graduates and experienced professionals who want postgraduate-level certification focused on applied, workplace-ready capability — managers formalising their experience, specialists stepping up to strategic roles, and professionals preparing a bridge towards a full master's qualification."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Do I need a degree to enrol in a Qualifi Level 7 Diploma?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Not necessarily. Typical entry is a bachelor's degree or equivalent, but applicants with substantial relevant professional experience may be considered through an individual review — at this level, workplace seniority genuinely counts."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How long do the Level 7 Diplomas take, and how are they assessed?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "The diplomas follow a flexible, self-paced model with assignment-based assessment, designed to complete within months rather than years — the exact timeline depends on your track and pace. The admissions team will map a realistic plan with you."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How are Level 7 Diploma fees structured?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "With 23 tracks at the same level, Qualifi Level 7 tuition follows a consistent instalment-based structure across your study period — so choosing your specialisation is an academic decision, not a financial calculation. Exact amounts, currency and current offers are confirmed by the admissions team for your chosen track and intake."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What can I progress to after a Qualifi Level 7 Diploma?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Progression routes follow your subject area, subject to admission criteria: Management and strategy tracks → master's-level top-up routes, including MBA pathways Law tracks → progression towards a Master of Laws (LLM) top-up route All tracks → senior professional roles carrying postgraduate-level certification This ladder design means your diploma is never a dead end — it is a stage in a longer qualification journey."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What career impact can a Qualifi Level 7 Diploma have?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Postgraduate-level certification in your exact professional lane — from cyber security leadership and supply chain crisis management to educational leadership and international business law. Because the 23 tracks are sector-specific, the diploma signals both seniority and domain authority, strengthening promotion cases and senior-role applications worldwide."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Can I stack Qualifi diplomas over time — Level 3, then 5, then 7?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes — stacking is exactly how the ladder is designed to be used. Each level is a complete qualification in its own right, so you can step off after any rung, work, and return when ready: Level 3 for your foundation, Level 5 Extended for higher-education standing, Level 7 for postgraduate-level certification. Your career never has to pause for your education, or vice versa."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Do Qualifi diplomas expire or need renewing?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "No. A regulated qualification is awarded for life — once achieved, your diploma does not lapse, require renewal fees, or need re-examination. Unlike memberships or licences, it is a permanent academic credential; anything you add later (a higher level, a degree top-up) builds on it rather than replacing it."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Will my certificate show the official accreditation number?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes — each Qualifi qualification carries a unique *Qualification Accreditation Number (QAN), and this number appears on your final certification document*. That single line matters: it lets any employer or institution match your certificate directly to the regulated qualifications register, making verification quick and dispute-proof."
+   }
+  }
+ ]
+}

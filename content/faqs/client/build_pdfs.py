@@ -65,13 +65,13 @@ DISCLAIMER = ('Fee amounts, scholarships and entry requirements are confirmed in
               'during the admissions eligibility review and may change without notice.')
 
 PROVIDER_ORDER = [
-    ('rushford-business-school.md', 'Rushford Business School (RBS)', '4 categories - BBA | MBA | MSc | Doctoral (PhD/DBA/EPD)', 30, 41),
-    ('girne-american-university.md', 'Girne American University (GAU)', '5 categories - BSc | MBA | Executive MBA | MSc (Thesis) | PhD', 32, 43),
-    ('university-west-scotland.md', 'University of the West of Scotland (UWS)', '1 category - BA (Hons) Global Business', 9, 1),
-    ('university-creative-arts.md', 'University for the Creative Arts (UCA)', '1 category - Global MBA (dual award with RBS)', 9, 1),
-    ('university-wolverhampton.md', 'University of Wolverhampton (UOW)', '1 category - Master of Laws (LLM)', 9, 1),
-    ('gatehouse-diplomas.md', 'Gatehouse Level 7 Diplomas', '1 category - Level 7 Diplomas (4 tracks)', 9, 4),
-    ('qualifi-diplomas.md', 'Qualifi Diplomas', '3 categories - Level 3 | Level 5 Extended | Level 7', 19, 45),
+    ('rushford-business-school.md', 'Rushford Business School (RBS)', '4 categories + practical guide - BBA | MBA | MSc | Doctoral', 35, 41),
+    ('girne-american-university.md', 'Girne American University (GAU)', '5 categories + practical guide - BSc | MBA | EMBA | MSc (Thesis) | PhD', 37, 43),
+    ('university-west-scotland.md', 'University of the West of Scotland (UWS)', '1 category + practical guide - BA (Hons) Global Business', 12, 1),
+    ('university-creative-arts.md', 'University for the Creative Arts (UCA)', '1 category + practical guide - Global MBA (dual award with RBS)', 12, 1),
+    ('university-wolverhampton.md', 'University of Wolverhampton (UOW)', '1 category + practical guide - Master of Laws (LLM)', 12, 1),
+    ('gatehouse-diplomas.md', 'Gatehouse Level 7 Diplomas', '1 category + practical guide - Level 7 Diplomas (4 tracks)', 12, 4),
+    ('qualifi-diplomas.md', 'Qualifi Diplomas', '3 categories + practical guide - Level 3 | Level 5 Extended | Level 7', 22, 45),
 ]
 
 def parse_faq_md(path):
@@ -119,7 +119,34 @@ def parse_faq_md(path):
     while i < len(lines):
         ln = lines[i].rstrip()
         stripped = ln.strip()
-        if stripped.startswith('# ') and not stripped.startswith('## '):
+        if stripped.startswith('|'):
+            flush_para(); flush_bullets(); flush_quote()
+            tbl_lines = []
+            while i < len(lines) and lines[i].strip().startswith('|'):
+                tbl_lines.append(lines[i].strip()); i += 1
+            i -= 1
+            rows = []
+            for tl in tbl_lines:
+                cells = [c.strip() for c in tl.strip('|').split('|')]
+                if all(re.fullmatch(r':?-{2,}:?', c) for c in cells if c):
+                    continue
+                rows.append(cells)
+            if rows:
+                ncol = max(len(r) for r in rows)
+                data = []
+                for ri, r in enumerate(rows):
+                    r = r + [''] * (ncol - len(r))
+                    sty = st_tbl_b if ri == 0 else st_tbl
+                    data.append([Paragraph(inline(c) if ri else ('<b>'+inline(c)+'</b>'), sty) for c in r])
+                cw = [(168/ncol)*mm]*ncol
+                t = Table(data, colWidths=cw, repeatRows=1)
+                t.setStyle(TableStyle([('BACKGROUND', (0,0), (-1,0), NAVY),
+                                       ('ROWBACKGROUNDS', (0,1), (-1,-1), [colors.white, LIGHT]),
+                                       ('GRID', (0,0), (-1,-1), 0.4, RULE),
+                                       ('VALIGN', (0,0), (-1,-1), 'TOP'),
+                                       ('TOPPADDING', (0,0), (-1,-1), 3.5), ('BOTTOMPADDING', (0,0), (-1,-1), 3.5)]))
+                flows.append(Spacer(1, 3)); flows.append(t); flows.append(Spacer(1, 5))
+        elif stripped.startswith('# ') and not stripped.startswith('## '):
             pass  # provider title handled by section header
         elif stripped.startswith('> '):
             flush_para(); flush_bullets(); quote.append(stripped[2:])
@@ -199,8 +226,8 @@ def cover(flows, title, subtitle, stats_rows):
 def build_faq_pack():
     flows = []
     cover(flows, 'Education FAQ Content Pack',
-          'Website FAQ content for university partner programmes<br/>7 providers | 16 programme-category FAQ sets | 117 FAQs | 136 programmes covered',
-          [['Providers', '7'], ['FAQ sets (categories)', '16'], ['Total FAQs', '117'],
+          'Website FAQ content for university partner programmes<br/>7 providers | 16 category FAQ sets + practical guides | 142 FAQs | 136 programmes covered',
+          [['Providers', '7'], ['FAQ sets (categories)', '16'], ['Total FAQs', '142'],
            ['Programmes covered', '136'], ['Content language', 'English'],
            ['Audience', 'Global (country-neutral)']])
     # contents
@@ -239,7 +266,7 @@ def build_faq_pack():
 TIER_LABEL = {1: 'Tier 1 - Very High', 2: 'Tier 2 - High', 3: 'Tier 3 - Medium', 4: 'Tier 4 - Branded'}
 
 RANK_DATA = [
- ('Rushford Business School (RBS)', '30 questions | 4 categories (BBA, MBA, MSc, Doctoral)', [
+ ('Rushford Business School (RBS)', '35 questions | 4 categories + practical guide', [
   (1,'Do I need GMAT or GRE for the MBA?','Biggest global MBA objection query; genuine differentiator',1,4.85),
   (2,'PhD vs DBA - the difference','Top doctoral comparison query; strong PAA candidate',1,4.60),
   (3,'BBA without an English test?','High-demand "without IELTS" family; entry-barrier remover',1,4.45),
@@ -269,8 +296,13 @@ RANK_DATA = [
   (25,'MSc programmes (hub)','Category index',4,3.45),
   (25,'Doctoral options (hub)','Category index',4,3.45),
   (29,'Doctorate after the MBA','Lifetime-value pathway question',3,3.40),
-  (30,'Is the BBA fully online?','Delivery-mode filter for distance learners',4,3.20)]),
- ('Girne American University (GAU)', '32 questions | 5 categories (BSc, MBA, EMBA, MSc Thesis, PhD)', [
+  (30,'Is the BBA fully online?','Delivery-mode filter for distance learners',4,3.20),
+  ('P2','How do I apply?','Action-intent application query',2,4.25),
+  ('P2','Documents needed to apply','Application-stage checklist query',2,3.90),
+  ('P2','Are online degrees taken seriously?','No.1 unspoken objection; verified credential facts',1,4.70),
+  ('P2','When can I start?','Urgency and planning query',2,3.85),
+  ('P2','What if I need more time?','Risk-reversal; official 3-year no-fee extension',2,3.75)]),
+ ('Girne American University (GAU)', '37 questions | 5 categories + practical guide', [
   (1,'MBA vs Executive MBA','Top comparison query; routes to both categories',1,4.60),
   (2,'Study a BSc flexibly while working','Working-learner filter question',1,4.45),
   (2,'IELTS/TOEFL needed? (own-test option)','USP: university-arranged English assessment',1,4.45),
@@ -302,8 +334,13 @@ RANK_DATA = [
   (27,'EMBA specialisations (hub)','Index showcasing 16-track width',4,3.45),
   (27,'Thesis MSc programmes (hub)','Category index',4,3.45),
   (27,'PhD programmes (hub)','Category index',4,3.45),
-  (32,'How students are assessed','Transparency and trust builder',3,3.40)]),
- ('University of the West of Scotland (UWS)', '9 questions | BA (Hons) Global Business (top-up)', [
+  (32,'How students are assessed','Transparency and trust builder',3,3.40),
+  ('P2','How the eligibility review works','Review-first admissions angle',2,3.90),
+  ('P2','Document translation/attestation','High-value practical query for global applicants',2,4.00),
+  ('P2','How employers verify the degree','Trust and verification query',2,3.75),
+  ('P2','How scholarships actually work','Intake-linked benefit mechanics',2,4.20),
+  ('P2','Distance-learner support','Support-system reassurance (verified data)',3,3.65)]),
+ ('University of the West of Scotland (UWS)', '12 questions | BA (Hons) Global Business (top-up) + practical guide', [
   (1,'What is a top-up degree?','USP definitional; strong snippet family',1,4.60),
   (2,'Study online while working','Working-professional career-upgrade angle',1,4.45),
   (3,'Is UWS recognised?','Trust objection',2,4.25),
@@ -312,8 +349,11 @@ RANK_DATA = [
   (6,'Master\'s or MBA afterwards','Pathway cross-sell',2,4.00),
   (7,'Careers after the degree','ROI and promotion-case framing',2,3.85),
   (8,'Fee structure','Decision-stage',3,3.50),
-  (9,'Programme overview (hub)','Anchor question',4,3.45)]),
- ('University for the Creative Arts (UCA)', '9 questions | Global MBA (dual award with RBS)', [
+  (9,'Programme overview (hub)','Anchor question',4,3.45),
+  ('P2','Work experience into a degree','Experience-to-credential family',2,4.30),
+  ('P2','What the certificate says','Top-up stigma neutraliser',2,4.10),
+  ('P2','Weekly study hours','Time-commitment practicality',3,3.70)]),
+ ('University for the Creative Arts (UCA)', '12 questions | Global MBA (dual award) + practical guide', [
   (1,'What a dual MBA award means','Core USP; high-value comparison family',1,4.85),
   (2,'Duration & credits (12-18 months, 90 ECTS)','Officially verified; snippet pattern',2,4.10),
   (2,'Fully online delivery','Delivery-mode filter',2,4.10),
@@ -322,8 +362,11 @@ RANK_DATA = [
   (6,'Career advantage of the dual award','ROI differentiation',2,3.85),
   (7,'Programme overview (hub)','Triple-certification hook',4,3.70),
   (8,'Programme structure (two stages)','Academic-rigour signal',3,3.65),
-  (9,'Doctorate afterwards','Pathway cross-sell',3,3.40)]),
- ('University of Wolverhampton (UOW)', '9 questions | Master of Laws (LLM)', [
+  (9,'Doctorate afterwards','Pathway cross-sell',3,3.40),
+  ('P2','Two separate certificates?','Dual-award mechanics',2,3.95),
+  ('P2','Employer sponsorship','Corporate-funding angle',3,3.60),
+  ('P2','Thesis-stage support','Supervision reassurance',3,3.55)]),
+ ('University of Wolverhampton (UOW)', '12 questions | Master of Laws (LLM) + practical guide', [
   (1,'LLM without a law degree?','Top PAA family for law-adjacent professionals',1,4.70),
   (2,'The LLM top-up route','Fastest-route hook; portfolio funnel question',2,4.50),
   (3,'Is UOW recognised?','Trust objection',2,4.25),
@@ -332,8 +375,11 @@ RANK_DATA = [
   (6,'LLM career opportunities','ROI with compliance-safe practice-rights note',2,3.85),
   (7,'Fee structure','Decision-stage',3,3.50),
   (8,'Programme overview (hub)','Anchor question',4,3.45),
-  (9,'Doctoral study after the LLM','Pathway cross-sell',3,3.40)]),
- ('Gatehouse Level 7 Diplomas', '9 questions | 4 diploma tracks', [
+  (9,'Doctoral study after the LLM','Pathway cross-sell',3,3.40),
+  ('P2','Which professionals benefit most','Audience-fit segmentation',2,3.80),
+  ('P2','The legal research project','Programme-core transparency',3,3.60),
+  ('P2','Straight after degree or work first','Timing-guidance query',3,3.65)]),
+ ('Gatehouse Level 7 Diplomas', '12 questions | 4 diploma tracks + practical guide', [
   (1,'What is a Level 7 Diploma?','Education-stage definitional; category traffic engine',1,4.60),
   (1,'Level 7 Diploma vs full master\'s','Comparison magnet; sets up top-up upsell',1,4.60),
   (3,'Top-up to a full master\'s','Portfolio funnel hook',2,4.25),
@@ -342,8 +388,11 @@ RANK_DATA = [
   (4,'Entry requirements (degree or experience)','Captures senior non-graduates',2,4.10),
   (7,'Career impact','"Months not years" ROI',2,3.85),
   (8,'Fee structure','Decision-stage',3,3.50),
-  (9,'Diplomas overview (hub)','Category index',4,3.45)]),
- ('Qualifi Diplomas', '19 questions | 3 categories (L3, L5 Extended, L7)', [
+  (9,'Diplomas overview (hub)','Category index',4,3.45),
+  ('P2','Portfolio-of-evidence assessment','Assessment-mechanics transparency (official)',3,3.60),
+  ('P2','Diploma vs short courses/CPD','Regulated-vs-unregulated differentiation',2,4.05),
+  ('P2','Ideal career stage','Audience-fit reassurance',3,3.50)]),
+ ('Qualifi Diplomas', '22 questions | 3 categories + practical guide', [
   (1,'Which level should I start at?','Decision-guidance star; routes undecided prospects',1,4.85),
   (2,'L5 Extended to a bachelor\'s top-up','Funnel star; degree-ladder story',1,4.70),
   (3,'Is Qualifi recognised?','Provider trust anchor (Ofqual-regulated)',2,4.25),
@@ -362,15 +411,18 @@ RANK_DATA = [
   (14,'Level 7 fees','Decision-stage',3,3.50),
   (17,'Level 3 diplomas (hub)','Category index',4,3.45),
   (17,'Level 5 Extended diplomas (hub)','Category index',4,3.45),
-  (17,'Level 7 diplomas (hub)','Category index',4,3.45)]),
+  (17,'Level 7 diplomas (hub)','Category index',4,3.45),
+  ('P2','Stacking diplomas over time','Ladder-mechanics; staged progression',2,4.15),
+  ('P2','Do diplomas expire?','Lifetime-credential trust query',3,3.70),
+  ('P2','QAN on the certificate','Verified verification-detail (official)',3,3.65)]),
 ]
 
 def build_strategy_report():
     flows = []
     cover(flows, 'FAQ Strategy & Ranking Report',
-          'Question selection rationale and global search-priority ranking<br/>for all 117 FAQs across 7 education providers',
-          [['Questions analysed', '117'], ['Tier 1 (Very High demand)', '18'],
-           ['Tier 2 (High demand)', '58'], ['Tier 3 (Medium)', '21'], ['Tier 4 (Branded/hub)', '20']])
+          'Question selection rationale and global search-priority ranking<br/>for all 142 FAQs across 7 education providers',
+          [['Questions analysed', '142'], ['Tier 1 (Very High demand)', '19'],
+           ['Tier 2 (High demand)', '72'], ['Tier 3 (Medium)', '31'], ['Tier 4 (Branded/hub)', '20']])
 
     flows.append(Paragraph('Methodology', st_provider)); flows.append(Spacer(1, 4))
     flows.append(Paragraph('Every question was selected using three filters: <b>(a) student psychology</b> - what '
@@ -397,6 +449,7 @@ def build_strategy_report():
         'exactly one provider page (e.g. "PhD vs DBA" only on the RBS page, "MBA vs EMBA" only on GAU, Level 7 '
         'definitions only on Gatehouse, the qualification-ladder angle only on Qualifi), eliminating internal keyword '
         'competition.', st_body))
+    flows.append(Paragraph('Rows marked "P2" are Phase 2 boost-topic additions (practical/application questions), scored on the same model.', st_note))
     flows.append(PageBreak())
 
     # ----- Annex: How was this ranking derived? (client Q&A) -----

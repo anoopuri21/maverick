@@ -1,0 +1,102 @@
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "What is the Master of Laws (LLM) from the University of Wolverhampton?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "The Master of Laws (LLM) is a *postgraduate law degree awarded by the University of Wolverhampton (UOW), delivered through flexible online learning*. It deepens your command of legal analysis, research and argument — a recognised master's-level credential for legal and compliance careers worldwide."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How does the LLM top-up route work?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "The top-up route lets you convert a Level 7 postgraduate diploma in a law-related field into a full LLM by completing the final master's stage — centred on an *independent legal research project — in as little as around six months*. It is designed for professionals who have already completed diploma-level legal study and want the full master's award."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Can I do the LLM without a traditional law degree?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Possibly, yes. Standard entry is via a law or joint-law honours degree, but applicants with significant professional experience in relevant legal or regulatory areas may be considered through a non-standard entry review — sometimes including an interview. The admissions team will assess your profile individually."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Can I complete the LLM while working?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes — the UOW Master of Laws is delivered through online and distance learning, built for working legal and compliance professionals — you can study around court schedules, client work or office hours, from anywhere in the world."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Is a degree from the University of Wolverhampton recognised?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes. UOW is a long-established public university whose degrees are recognised internationally by employers and academic institutions. For recognition guidance specific to your goals, the admissions team can advise you individually."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What are the entry requirements for the LLM?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Entry depends on your route: Top-up route: a completed Level 7 postgraduate diploma in law or a closely related field Standard route: an honours degree in law or a joint-law subject Non-standard route: significant relevant professional experience, assessed individually English proficiency evidence is required, with exemptions available where your prior education was completed in English."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How are the LLM fees structured?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Tuition follows an instalment-friendly structure, keeping payments manageable across your studies. Exact amounts, currency and any current scholarship or fee-support offers are confirmed by the admissions team during your eligibility review."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What career opportunities can the LLM support?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "The LLM strengthens careers across *legal practice support, corporate counsel teams, compliance, regulatory affairs, contracts, arbitration support, policy and academia*. For practising professionals, it signals master's-level expertise; for career-changers, it opens law-adjacent roles where advanced legal knowledge is valued. Please note: the LLM is an academic qualification. Rights to practise law are governed by the professional regulatory body in each jurisdiction and are not conferred by the degree itself."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Can I progress to doctoral study after the LLM?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes. The LLM is a full master's-level qualification and satisfies the standard entry route for doctoral study in law and related fields — including PhD programmes — subject to admission criteria. The independent research component of the LLM is strong preparation for doctoral-level work."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Which professionals benefit most from an LLM?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "The LLM pays off fastest for professionals whose work touches law daily without requiring a practising licence: *compliance and regulatory officers, contract and procurement managers, HR leaders, company secretaries, risk managers, paralegals* stepping up, and practising lawyers formalising specialist depth. If interpreting rules, drafting terms or managing legal exposure is part of your role, the LLM converts that experience into a recognised master's-level credential."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What is the independent legal research project like?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "It is the centrepiece of the LLM: you choose a legal issue relevant to your field, analyse it critically under supervision, and propose defensible solutions — the same skill set senior legal and compliance work demands. Graduates typically pick topics from their own industry, so the project doubles as evidence of expertise in their day job."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Should I take the LLM straight after my degree, or work first?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Both routes work — they simply produce different advantages. Coming straight from study, you carry momentum and research sharpness into the LLM. Coming from practice, your professional context makes every module and the research project immediately applicable. The admissions review considers your profile either way, so the honest answer is: start when the qualification serves your next career move."
+   }
+  }
+ ]
+}

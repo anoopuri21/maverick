@@ -1,0 +1,102 @@
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "Which Gatehouse Level 7 Diplomas are available?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Four Level 7 Diplomas are offered, each aligned to a distinct professional track: Strategic Leadership & Management — for current and aspiring senior managers Educational Leadership & Management — for education professionals moving into leadership Psychology — for advanced study of psychological theory and practice Strategic Project Management in Construction — for construction-sector project leaders All are delivered flexibly and assessed at postgraduate level."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What is a Level 7 Diploma — is it really master's level?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes, in framework terms. Level 7 is the same level at which *master's degrees sit on the Regulated Qualifications Framework (RQF)* — so a Level 7 Diploma certifies postgraduate-level knowledge and skills. It differs from a full master's degree mainly in credit volume and the research component, which is why it can be completed faster. Gatehouse Awards is an awarding organisation recognised by Ofqual (the Office of Qualifications and Examinations Regulation), and its Level 7 diplomas are designed as regulated qualifications with unique accreditation numbers."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What is the difference between a Level 7 Diploma and a full master's degree?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "A Level 7 Diploma typically carries 120 credits of taught, applied study, while a full master's degree adds a dissertation/research stage (usually 60 further credits). In practice: the diploma gets you postgraduate-level certification faster, and you can later top up to a full master's by completing the research stage with a university, subject to admission criteria. | Next step | Master's top-up route | Doctoral entry |"
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How long does a Level 7 Diploma take, and how is it assessed?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Level 7 Diplomas are designed for *fast, flexible completion — typically around six months to a year, depending on your pace. Assessment is through coursework and a portfolio of evidence rather than examinations*, letting you demonstrate learning through real professional scenarios."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Can I study a Level 7 Diploma online while working full-time?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes — the Gatehouse Level 7 Diplomas follow a flexible, self-paced online model built for working professionals. Most learners study alongside their current role, apply the material directly at work, and use real workplace scenarios in their coursework — which is exactly what portfolio-based assessment rewards."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What are the entry requirements for a Level 7 Diploma?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Entry is typically open to holders of a bachelor's degree or equivalent qualification, and applicants with substantial relevant professional experience may also be considered — Level 7 study values workplace seniority alongside academic history. Eligibility is confirmed individually by the admissions team."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How are the fees structured for the Level 7 Diplomas?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Tuition follows an instalment-friendly structure, keeping payments manageable across your study period. Exact amounts, currency and any current offers are confirmed by the admissions team during your eligibility review."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Can a Level 7 Diploma lead to a full master's degree?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes — this is one of its biggest advantages. After completing the diploma, you can progress to a master's top-up route, completing the final research stage with a university to earn the full master's award, subject to admission criteria."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What career impact can a Level 7 Diploma have?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "The diploma signals postgraduate-level capability in months, not years — strengthening cases for promotion into senior management, education leadership, psychology-informed roles and construction project leadership, depending on your track. It is equally valuable as a stepping stone: certify now, top up to a master's when ready."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How does portfolio-of-evidence assessment actually work?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Instead of sitting examinations, you build a portfolio that documents your competence — coursework, workplace-based tasks, reflective accounts and supporting evidence gathered as you study. For working professionals this is a genuine advantage: your day job generates your evidence, and assessment measures what you can actually do at postgraduate level."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How does a Level 7 Diploma compare with short courses and certificates?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "The difference is regulation and framework level. A short course or CPD certificate shows attendance or exposure; a Level 7 Diploma from an Ofqual-recognised awarding organisation is a *regulated qualification at the same framework level as master's degrees*, with a unique accreditation number and defined qualification time. One decorates a CV; the other changes what your CV certifies."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Is there an ideal career stage for Level 7 study?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Level 7 Diplomas are built for *practising professionals and adults with workplace responsibility* — aspiring and established managers, leaders and senior practitioners. There is no \"too late\": because assessment draws on your work, more experience often means a stronger portfolio."
+   }
+  }
+ ]
+}

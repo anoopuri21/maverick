@@ -1,0 +1,102 @@
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "What is the BA (Hons) in Global Business from UWS?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "The BA (Hons) in Global Business is an *honours-level bachelor's degree awarded by the University of the West of Scotland (UWS)*. It develops your understanding of international markets, business strategy and cross-cultural management — preparing you to work with organisations and teams anywhere in the world."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Is this a top-up degree, and what does that mean?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes — the programme follows a top-up route. A top-up degree lets you build on your previous studies or professional qualifications and complete only the final stage of the bachelor's degree, instead of starting from year one. It is one of the fastest recognised ways to convert prior learning into a full degree award."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How long does the BA (Hons) Global Business take to complete?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Because it is a top-up programme, it is designed to be completed in *around 12 months (one year)* of study. The exact timeline depends on your intake and study pace, which the admissions team will confirm with you."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Can I study the programme online while working?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes — the BA (Hons) Global Business is designed for working professionals, with online classes you can join from anywhere in the world. This means you can upgrade your qualifications to an honours degree without pausing your career or relocating."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Is a degree from the University of the West of Scotland recognised?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes. UWS is a long-established public university, and its degrees are recognised internationally by employers and academic institutions. For recognition guidance specific to your goals, the admissions team can advise you individually."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What are the entry requirements for the BA (Hons) Global Business?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Entry to this top-up programme is based on your prior learning. You typically need a completed higher diploma-level qualification (such as an HND or recognised equivalent) in a business-related area. Relevant professional experience is also considered as an alternative route, subject to approval. Your eligibility is confirmed individually through a review by the admissions team, along with English proficiency evidence where applicable."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How are the fees structured for this programme?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Tuition follows an instalment-friendly structure, keeping payments manageable across your study period. Exact amounts, currency and any current scholarship or fee-support offers are confirmed by the admissions team during your eligibility review."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What can I do after completing the BA (Hons) Global Business?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Graduates move into globally oriented business roles — international operations, business development, marketing, supply chain and management positions with organisations that work across borders. For professionals already in work, the honours degree strengthens promotion cases and formalises experience with a recognised qualification."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Can I progress to a master's or MBA after this degree?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes. The BA (Hons) is a full honours bachelor's qualification, which is the standard entry credential for master's-level study — including MBA and specialised master's programmes — subject to the admission criteria of your chosen programme. Many top-up graduates continue directly into postgraduate study to compound their momentum."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Can I turn my work experience into a degree?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes — that is precisely what this top-up route is designed for. If you hold a completed HND or equivalent qualification, or bring *relevant professional experience (subject to approval)*, you can enter directly at the final stage and convert years of real-world work into a full BA (Hons) awarded by UWS in around 12 months. Your experience stops being \"just experience\" and becomes a recognised academic credential."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What will my final certificate say?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Your award is the *BA (Hons) in Global Business from the University of the West of Scotland* — the degree itself, not a special variant. A top-up is an entry route, and the qualification you graduate with is the honours degree conferred by the university."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How many hours a week will I need to study?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Plan for consistent weekly study alongside your job — most successful top-up students protect fixed study slots rather than cramming. The exact guided-hours expectation for your intake is confirmed by the admissions team, so you can agree a realistic routine before you start."
+   }
+  }
+ ]
+}
