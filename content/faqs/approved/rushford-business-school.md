@@ -346,6 +346,67 @@ authority in your specialisation, strengthening your credibility worldwide.
 
 ---
 
+## Applying & Practical Information
+*Provider-level questions — apply to all Rushford programmes. (Phase 2 addition.)*
+
+<!-- Target keyword: "how to apply rushford business school online" | Source: standard admissions flow (VERIFY steps) -->
+**Q. How do I apply for a Rushford Business School programme?**
+
+Applying is designed to be simple and consultative:
+
+1. **Eligibility review** — share your academic background and goals with the admissions team
+2. **Documents** — submit your supporting documents for verification
+3. **Offer** — receive your admission decision and offer details
+4. **Enrolment** — confirm your intake, complete registration and begin your studies
+
+There is no barrier to finding out where you stand — the eligibility review is the natural
+first step. <!-- [VERIFY: exact application steps, application fee (if any) and typical
+decision turnaround for our offer.] -->
+
+<!-- Target keyword: "documents required for online university admission" | Source: standard requirements (VERIFY exact list) -->
+**Q. What documents do I need to apply?**
+
+Typically you will need:
+
+- **Academic transcripts and certificates** for your highest completed qualification
+- A **valid identity document** (passport or national ID)
+- An up-to-date **CV** (for postgraduate and doctoral applications)
+- **English proficiency evidence** — or details supporting a waiver
+
+The admissions team confirms the exact checklist for your programme and level during your
+eligibility review, so nothing is left to guesswork.
+<!-- [VERIFY: official per-level document checklist for our offer.] -->
+
+<!-- Target keyword: "are online degrees respected by employers" | Source: verified programme facts (ECTS, EduQua, Ofqual L7) -->
+**Q. Are online degrees taken seriously by employers?**
+
+Yes — when they carry the same academic weight as their on-campus equivalents, and
+Rushford's do. The programmes carry **standard ECTS credits** (90 ECTS for the MBA, 180
+for the BBA), the school is **EduQua-certified**, and MBA specialisations additionally
+carry an **Ofqual-regulated Level 7 Diploma**. What employers evaluate is the credential
+and the capability behind it — not the room you studied in. Employer attitudes worldwide
+have shifted decisively as leading institutions moved core programmes online.
+
+<!-- Target keyword: "rushford intake dates when can i start" | Source: semester-based intakes observed on portal (VERIFY calendar) -->
+**Q. When can I start my programme?**
+
+Rushford runs **multiple intake windows across the year**, so you are never far from a
+start date. Once your eligibility review is complete, the admissions team confirms the
+next available intake for your programme and helps you plan backwards from it — documents,
+enrolment and preparation. <!-- [VERIFY: current intake calendar per category.] -->
+
+<!-- Target keyword: "what if i need more time online degree extension" | Source: rushford.ch — extended duration up to 3 years without additional fee (MSc page) -->
+**Q. What happens if I need more time to finish?**
+
+Life happens — and the online programmes are built for it. Rushford's online study model
+allows you to complete your degree over an **extended duration of up to three years
+without paying an additional fee**, published on the official programme pages. That
+safety net means enrolling is a commitment to finishing, not a bet against your calendar.
+<!-- [VERIFY: confirmed on official MSc page — confirm the same extension policy applies
+across BBA/MBA/Doctoral categories in our offer.] -->
+
+---
+
 ## Facts to Verify (updated 2026-08-19 after deep research — see Resolved section)
 
 ### Still open

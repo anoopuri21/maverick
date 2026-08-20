@@ -93,3 +93,18 @@
   8 over-length first sentences, 10 thin answers, 12 boost-topic gaps identified.
   Full findings + Phase 2 plan: `reports/quality-audit-report.md`. Awaiting owner
   decision on Phase 2 scope.
+
+## Phase 2 Board (started 2026-08-20, Option B)
+
+| Cycle | Task | Status |
+|---|---|---|
+| 2.0 | P0+P1 fixes all files (duplicate, naming, thin answers, entity leads, Qualifi differentiation) | ✅ Done |
+| 2.1 | RBS — "Applying & Practical Information" (+5 boost-topic FAQs) | 🔵 In Review |
+| 2.2 | GAU boost-topics | ⬜ Pending |
+| 2.3 | UWS boost-topics | ⬜ Pending |
+| 2.4 | UCA boost-topics | ⬜ Pending |
+| 2.5 | UOW boost-topics | ⬜ Pending |
+| 2.6 | Gatehouse boost-topics | ⬜ Pending |
+| 2.7 | Qualifi boost-topics | ⬜ Pending |
+| 2.8 | Comparison-table upgrades (4 questions) | ⬜ Pending |
+| 2.9 | PDFs regenerate + FAQPage JSON-LD | ⬜ Pending |
