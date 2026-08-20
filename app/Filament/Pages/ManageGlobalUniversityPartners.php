@@ -32,10 +32,16 @@ class ManageGlobalUniversityPartners extends Page implements HasForms
     use InteractsWithForms;
 
     protected static ?string $navigationIcon = 'heroicon-o-globe-alt';
-    protected static ?string $navigationGroup = 'Global Partners Page';
+    protected static ?string $navigationGroup = 'About Section';
     protected static ?string $navigationLabel = 'Page Content';
-    protected static ?int $navigationSort = 1;
+    protected static ?int $navigationSort = 7;
     protected static string $view = 'filament.pages.manage-global-university-partners';
+
+    public static function shouldRegisterNavigation(): bool
+    {
+        // Rendered inside ManageGlobalPartnersPage ("Page Content" tab).
+        return false;
+    }
 
     public array $data = [];
 

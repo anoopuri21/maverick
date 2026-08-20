@@ -2,8 +2,11 @@
 
 namespace App\Filament\Pages;
 
+use App\Filament\Concerns\HandlesCloudinaryImageFields;
+use App\Filament\Forms\Components\MediaPicker;
 use App\Settings\GlobalOpportunitiesSettings;
 use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -12,10 +15,13 @@ use Filament\Pages\SettingsPage;
 
 class ManageGlobalOpportunities extends SettingsPage
 {
+    use HandlesCloudinaryImageFields;
+
     protected static ?string $navigationIcon = 'heroicon-o-globe-alt';
-    protected static ?string $navigationGroup = 'Homepage';
+    // Individual top-level link (moved out of the Homepage group).
+    protected static ?string $navigationGroup = null;
     protected static ?string $navigationLabel = 'Global Opportunities';
-    protected static ?int $navigationSort = 10;
+    protected static ?int $navigationSort = 12;
     protected static string $settings = GlobalOpportunitiesSettings::class;
 
     public function form(Form $form): Form
@@ -26,77 +32,68 @@ class ManageGlobalOpportunities extends SettingsPage
                 Textarea::make('subtitle')->rows(2)->columnSpanFull(),
             ]),
 
-            Section::make('Left Column: Global Opportunities')->schema([
-                TextInput::make('left_title')->required()->columnSpanFull(),
-
-                Section::make('Item 1')->schema([
-                    Grid::make(3)->schema([
-                        TextInput::make('opp1_title')->columnSpan(1),
-                        TextInput::make('opp1_url')->label('URL')->columnSpan(2),
-                    ]),
-                    Textarea::make('opp1_desc')->label('Description')->rows(2),
-                ])->collapsible(),
-
-                Section::make('Item 2')->schema([
-                    Grid::make(3)->schema([
-                        TextInput::make('opp2_title')->columnSpan(1),
-                        TextInput::make('opp2_url')->label('URL')->columnSpan(2),
-                    ]),
-                    Textarea::make('opp2_desc')->label('Description')->rows(2),
-                ])->collapsible(),
-
-                Section::make('Item 3')->schema([
-                    Grid::make(3)->schema([
-                        TextInput::make('opp3_title')->columnSpan(1),
-                        TextInput::make('opp3_url')->label('URL')->columnSpan(2),
-                    ]),
-                    Textarea::make('opp3_desc')->label('Description')->rows(2),
-                ])->collapsible(),
-
-                Section::make('Item 4')->schema([
-                    Grid::make(3)->schema([
-                        TextInput::make('opp4_title')->columnSpan(1),
-                        TextInput::make('opp4_url')->label('URL')->columnSpan(2),
-                    ]),
-                    Textarea::make('opp4_desc')->label('Description')->rows(2),
-                ])->collapsible(),
+            Section::make('Global Opportunities Items')->schema([
+                TextInput::make('left_title')->label('Column Title')->required()->columnSpanFull(),
+                Repeater::make('opportunities')
+                    ->label('Opportunity Items')
+                    ->schema([
+                        Grid::make(2)->schema([
+                            TextInput::make('title')->required(),
+                            TextInput::make('url')->label('URL'),
+                        ]),
+                        Textarea::make('desc')->label('Description')->rows(2)->columnSpanFull(),
+                        MediaPicker::forField('image', 'global-opportunities')
+                            ->label('Image')
+                            ->helperText('Upload from library (priority) or use the URL field below.')
+                            ->columnSpanFull(),
+                        TextInput::make('image_url')->label('Image URL (fallback)')
+                            ->helperText('Used only if no image is uploaded.'),
+                    ])
+                    ->reorderable()
+                    ->collapsible()
+                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
+                    ->columnSpanFull(),
             ]),
 
-            Section::make('Right Column: Global Pathways')->schema([
-                TextInput::make('right_title')->required()->columnSpanFull(),
-
-                Section::make('Item 1')->schema([
-                    Grid::make(3)->schema([
-                        TextInput::make('path1_title')->columnSpan(1),
-                        TextInput::make('path1_url')->label('URL')->columnSpan(2),
-                    ]),
-                    Textarea::make('path1_desc')->label('Description')->rows(2),
-                ])->collapsible(),
-
-                Section::make('Item 2')->schema([
-                    Grid::make(3)->schema([
-                        TextInput::make('path2_title')->columnSpan(1),
-                        TextInput::make('path2_url')->label('URL')->columnSpan(2),
-                    ]),
-                    Textarea::make('path2_desc')->label('Description')->rows(2),
-                ])->collapsible(),
-
-                Section::make('Item 3')->schema([
-                    Grid::make(3)->schema([
-                        TextInput::make('path3_title')->columnSpan(1),
-                        TextInput::make('path3_url')->label('URL')->columnSpan(2),
-                    ]),
-                    Textarea::make('path3_desc')->label('Description')->rows(2),
-                ])->collapsible(),
-
-                Section::make('Item 4')->schema([
-                    Grid::make(3)->schema([
-                        TextInput::make('path4_title')->columnSpan(1),
-                        TextInput::make('path4_url')->label('URL')->columnSpan(2),
-                    ]),
-                    Textarea::make('path4_desc')->label('Description')->rows(2),
-                ])->collapsible(),
+            Section::make('Global Pathways Items')->schema([
+                TextInput::make('right_title')->label('Column Title')->required()->columnSpanFull(),
+                Repeater::make('pathways')
+                    ->label('Pathway Items')
+                    ->schema([
+                        Grid::make(2)->schema([
+                            TextInput::make('title')->required(),
+                            TextInput::make('url')->label('URL'),
+                        ]),
+                        Textarea::make('desc')->label('Description')->rows(2)->columnSpanFull(),
+                        MediaPicker::forField('image', 'global-pathways')
+                            ->label('Image')
+                            ->helperText('Upload from library (priority) or use the URL field below.')
+                            ->columnSpanFull(),
+                        TextInput::make('image_url')->label('Image URL (fallback)')
+                            ->helperText('Used only if no image is uploaded.'),
+                    ])
+                    ->reorderable()
+                    ->collapsible()
+                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
+                    ->columnSpanFull(),
             ]),
         ]);
+    }
+
+    protected function mutateFormDataBeforeSave(array $data): array
+    {
+        // Sync MediaPicker asset id -> image for each item (image priority).
+        foreach ($data['opportunities'] ?? [] as &$item) {
+            $item = \App\Filament\Forms\Components\MediaPicker::syncFieldFromAsset($item, 'image');
+        }
+        unset($item);
+        foreach ($data['pathways'] ?? [] as &$item) {
+            $item = \App\Filament\Forms\Components\MediaPicker::syncFieldFromAsset($item, 'image');
+        }
+        unset($item);
+
+        $data['opportunities'] = array_values($data['opportunities'] ?? []);
+        $data['pathways'] = array_values($data['pathways'] ?? []);
+        return $data;
     }
 }

@@ -857,6 +857,37 @@ html.js .scale-in {
   background: rgba(255, 255, 255, 0.03);
 }
 
+/* Student Login dropdown — modern, premium */
+.navbar__dropdown--student {
+  min-width: 220px;
+  border-radius: 16px;
+  background: linear-gradient(165deg, var(--color-mba-dark-blue) 0%, #0b1e57 100%);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.55);
+  padding: 10px 8px;
+}
+.navbar__dropdown--student::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 24px;
+  right: 24px;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--color-mba-red), var(--color-accent, #f7b500));
+}
+.navbar__dropdown--student .navbar__dropdown-link {
+  border-radius: 10px;
+  font-weight: 500;
+  padding: 13px 20px;
+  border-left: none;
+}
+.navbar__dropdown--student .navbar__dropdown-link:hover {
+  padding-left: 24px;
+  background: rgba(255, 255, 255, 0.08);
+  border-left: none;
+}
+
 .inline-icon {
   display: inline-flex;
   align-items: center;

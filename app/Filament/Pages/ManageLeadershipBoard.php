@@ -27,9 +27,9 @@ class ManageLeadershipBoard extends Page implements HasForms
     use InteractsWithForms;
 
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
-    protected static ?string $navigationGroup = 'About';
+    protected static ?string $navigationGroup = 'About Section';
     protected static ?string $navigationLabel = 'Leadership Board Page';
-    protected static ?int $navigationSort = 5;
+    protected static ?int $navigationSort = 6;
     protected static string $view = 'filament.pages.manage-leadership-board';
 
     public array $data = [];
@@ -75,12 +75,14 @@ class ManageLeadershipBoard extends Page implements HasForms
                                 Repeater::make('leaders.items')
                                     ->label('Leadership Cards')
                                     ->schema([
-                                        TextInput::make('name')->required(),
-                                        TextInput::make('designation')->required(),
-                                        Textarea::make('bio')->rows(3)->required(),
+                                        TextInput::make('name'),
+                                        TextInput::make('designation'),
+                                        Textarea::make('bio')->rows(3),
                                         MediaPicker::forField('image_url', 'leadership/leaders')
                                             ->label('Photo'),
-                                        TextInput::make('linkedin_url')->url()->label('LinkedIn URL')->default('#'),
+                                        TextInput::make('linkedin_url')
+                                            ->label('LinkedIn URL')
+                                            ->default('#'),
                                     ])
                                     ->reorderable()
                                     ->collapsible()
@@ -95,7 +97,7 @@ class ManageLeadershipBoard extends Page implements HasForms
                                 Textarea::make('seo.meta_description')->label('Meta Description')->rows(3)->maxLength(160),
                                 Textarea::make('seo.meta_keywords')->label('Meta Keywords')->rows(2),
                                 Grid::make(2)->schema([
-                                    TextInput::make('seo.canonical_url')->label('Canonical URL')->url(),
+                                    TextInput::make('seo.canonical_url')->label('Canonical URL'),
                                     Select::make('seo.robots')->label('Robots')
                                         ->options([
                                             'index, follow' => 'Index, Follow (Default)',
@@ -129,14 +131,25 @@ class ManageLeadershipBoard extends Page implements HasForms
     {
         $data = $this->form->getState();
 
-        $this->saveSettingsGroup(LeadershipHeroSettings::class, $data['hero'] ?? []);
+        // Denormalize MediaPicker asset ids → URLs before persisting (same
+        // convention as ProgramResource). Otherwise an uploaded image never
+        // writes its URL and the hero/leaders/seo image won't display.
+        $hero = $data['hero'] ?? [];
+        $hero = \App\Filament\Forms\Components\MediaPicker::syncFieldFromAsset($hero, 'background_image');
 
         $leaders = $data['leaders'] ?? [];
+        foreach ($leaders['items'] ?? [] as &$item) {
+            $item = \App\Filament\Forms\Components\MediaPicker::syncFieldFromAsset($item, 'image_url');
+        }
+        unset($item);
         $leaders['items'] = array_values($leaders['items'] ?? []);
-        $this->saveSettingsGroup(LeadershipLeadersSettings::class, $leaders);
 
         $seo = $data['seo'] ?? [];
-        unset($seo['og_image_url_asset_id'], $seo['twitter_image_url_asset_id']);
+        $seo = \App\Filament\Forms\Components\MediaPicker::syncFieldFromAsset($seo, 'og_image_url');
+        $seo = \App\Filament\Forms\Components\MediaPicker::syncFieldFromAsset($seo, 'twitter_image_url');
+
+        $this->saveSettingsGroup(LeadershipHeroSettings::class, $hero);
+        $this->saveSettingsGroup(LeadershipLeadersSettings::class, $leaders);
         $this->saveSettingsGroup(LeadershipSeoSettings::class, $seo);
 
         Notification::make()
@@ -149,7 +162,65 @@ class ManageLeadershipBoard extends Page implements HasForms
     protected function saveSettingsGroup(string $settingsClass, array $payload): void
     {
         $settings = app($settingsClass);
+        $payload = $this->ensureAllSettingsProperties($settings, $payload);
         $payload = $this->preserveExistingImageFields($payload, $settings);
-        $settings->fill($payload)->save();
+        $this->ensureSettingsRowsExist($settings);
+        // Reload from DB so Spatie no longer treats freshly-created rows as
+        // "default-loaded" (which would still throw MissingSettings on save).
+        app()->forgetInstance($settingsClass);
+        app($settingsClass)->fill($payload)->save();
+    }
+
+    /**
+     * Merge any missing settings properties from the current settings instance
+     * so Spatie's save() never throws MissingSettings, regardless of what the
+     * form submitted. Generic — works for any Spatie Settings class and keeps
+     * untouched fields (e.g. nested MediaPicker URLs) intact.
+     *
+     * @param  object  $settings  Spatie Settings instance (already loaded)
+     * @param  array<string, mixed>  $payload
+     * @return array<string, mixed>
+     */
+    protected function ensureAllSettingsProperties(object $settings, array $payload): array
+    {
+        $reflection = new \ReflectionClass($settings);
+
+        foreach ($reflection->getProperties(\ReflectionProperty::IS_PUBLIC) as $property) {
+            if ($property->isStatic()) {
+                continue;
+            }
+
+            $name = $property->getName();
+
+            if (! array_key_exists($name, $payload)) {
+                $payload[$name] = $settings->{$name} ?? $property->getDefaultValue();
+            }
+        }
+
+        return $payload;
+    }
+
+    /**
+     * Ensure every reflected setting property has a DB row so Spatie's save()
+     * never throws MissingSettings. Spatie marks default-loaded (rowless)
+     * properties as missing on save, so we materialise the rows first.
+     * Generic — works for any Spatie Settings class.
+     */
+    protected function ensureSettingsRowsExist(object $settings): void
+    {
+        $mapper = app(\Spatie\LaravelSettings\SettingsMapper::class);
+        $getConfig = new \ReflectionMethod($mapper, 'getConfig');
+        $getConfig->setAccessible(true);
+        $config = $getConfig->invoke($mapper, get_class($settings));
+
+        $repo = $config->getRepository();
+        $group = $config->getGroup();
+        $existing = collect($repo->getPropertiesInGroup($group))->keys();
+
+        foreach ($config->getReflectedProperties()->keys() as $name) {
+            if (! $existing->contains($name)) {
+                $repo->createProperty($group, $name, $settings->{$name} ?? null);
+            }
+        }
     }
 }

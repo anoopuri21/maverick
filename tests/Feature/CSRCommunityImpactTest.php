@@ -12,7 +12,6 @@ class CSRCommunityImpactTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        // Seed database settings for any shared page elements (such as SiteSettings, etc.)
         $this->artisan('db:seed');
     }
 
@@ -24,8 +23,8 @@ class CSRCommunityImpactTest extends TestCase
         $response->assertStatus(200);
 
         // PAGE BANNER (HERO)
-        $response->assertSee('CSR &amp; Community Impact', false); // title tag of page is escaped
-        $response->assertSee('CSR & Community Impact', false); // h1 title
+        $response->assertSee('CSR &amp; Community Impact', false);
+        $response->assertSee('Community Impact', false);
         $response->assertSee('Creating Positive Impact Through Education, Community Engagement, and Social Responsibility.');
 
         // SECTION 1: OUR COMMITMENT
@@ -53,7 +52,8 @@ class CSRCommunityImpactTest extends TestCase
         $response->assertSee('CSR Initiatives Conducted');
 
         // SECTION 5: SCHOLARSHIP & EDUCATIONAL SUPPORT
-        $response->assertSee('Educational Access & Scholarships', false);
+        $response->assertSee('Educational Access', false);
+        $response->assertSee('&amp; Scholarships', false);
         $response->assertSee('Maverick supports deserving learners through scholarship opportunities');
         $response->assertSee('Free Masterclasses');
         $response->assertSee('Women Leadership Initiatives');

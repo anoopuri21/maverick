@@ -24,9 +24,15 @@ class PartnershipGalleryItemResource extends Resource
     protected static ?string $model = PartnershipGalleryItem::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-photo';
-    protected static ?string $navigationGroup = 'Global Partners Page';
+    protected static ?string $navigationGroup = 'About Section';
     protected static ?string $navigationLabel = 'Partnership Gallery';
-    protected static ?int $navigationSort = 3;
+    protected static ?int $navigationSort = 9;
+
+        public static function shouldRegisterNavigation(): bool
+    {
+        // Managed from the consolidated About Section page tabs.
+        return false;
+    }
 
     public static function form(Form $form): Form
     {

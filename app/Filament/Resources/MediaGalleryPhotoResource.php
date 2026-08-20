@@ -26,9 +26,15 @@ class MediaGalleryPhotoResource extends Resource
     protected static ?string $model = MediaGalleryPhoto::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-photo';
-    protected static ?string $navigationGroup = 'Media Gallery Page';
+    protected static ?string $navigationGroup = 'About Section';
     protected static ?string $navigationLabel = 'Gallery Photos';
-    protected static ?int $navigationSort = 1;
+    protected static ?int $navigationSort = 12;
+
+        public static function shouldRegisterNavigation(): bool
+    {
+        // Managed from the consolidated About Section page tabs.
+        return false;
+    }
 
     public static function form(Form $form): Form
     {

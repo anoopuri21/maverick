@@ -31,6 +31,12 @@ class OurStoryTestimonialResource extends Resource
 
     protected static ?int $navigationSort = 4;
 
+    public static function shouldRegisterNavigation(): bool
+    {
+        // Managed from the Our Story Page tabs (ManageOurStory).
+        return false;
+    }
+
     public static function form(Form $form): Form
     {
         return $form

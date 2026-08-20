@@ -29,7 +29,7 @@ class ManageOurStory extends Page implements HasForms
 
     protected static ?string $navigationIcon = 'heroicon-o-book-open';
     protected static ?string $navigationGroup = 'About Section';
-    protected static ?string $navigationLabel = 'Our Story';
+    protected static ?string $navigationLabel = 'Our Story Page';
     protected static ?int $navigationSort = 1;
     protected static string $view = 'filament.pages.manage-our-story';
 

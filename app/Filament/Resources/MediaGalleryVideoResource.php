@@ -26,9 +26,15 @@ class MediaGalleryVideoResource extends Resource
     protected static ?string $model = MediaGalleryVideo::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-video-camera';
-    protected static ?string $navigationGroup = 'Media Gallery Page';
+    protected static ?string $navigationGroup = 'About Section';
     protected static ?string $navigationLabel = 'Featured Videos';
-    protected static ?int $navigationSort = 2;
+    protected static ?int $navigationSort = 13;
+
+        public static function shouldRegisterNavigation(): bool
+    {
+        // Managed from the consolidated About Section page tabs.
+        return false;
+    }
 
     public static function form(Form $form): Form
     {

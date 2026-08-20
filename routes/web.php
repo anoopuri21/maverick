@@ -17,8 +17,10 @@ Route::get('/accreditations', [\App\Http\Controllers\AccreditationController::cl
 Route::get('/csr-community-impact', [PageController::class, 'csrCommunityImpact'])->name('csr');
 Route::get('/media-gallery', [PageController::class, 'gallery'])->name('media-gallery');
 Route::get('/global-university-partners', [PageController::class, 'globalUniversityPartners'])->name('global-partners');
+Route::get('/pathway-programs', [PageController::class, 'pathwayPrograms'])->name('pathway-programs');
+Route::get('/global-opportunities', [PageController::class, 'globalOpportunities'])->name('global-opportunities');
 Route::get('/global-bachelors-pathway', function () {return view('pages.global-bachelors-pathway');})->name('global-bachelors-pathway');
-Route::get('/masters-pathway', function () {return view('pages.masters-pathway');})->name('masters-pathway');
+Route::get('/masters-pathways', function () {return view('pages.masters-pathway');})->name('masters-pathways');
 
 // Edutainment
 Route::get('/educational-tours-edutainment', function () {return view('pages.edutainment');})->name('edutainment');
@@ -42,4 +44,9 @@ Route::get('/programs/{slug}', [\App\Http\Controllers\ProgramController::class, 
 
 // Unified Detail (WordPress-style root-level permalink)
 // Registered LAST so every other named route above is matched first.
+
+
+Route::get('/events', [\App\Http\Controllers\PageController::class, 'events'])->name('events');
+Route::get('/student-success', [\App\Http\Controllers\PageController::class, 'studentSuccess'])->name('student-success');
+
 Route::get('/{slug}', [\App\Http\Controllers\InsightController::class, 'show'])->name('insights.show');

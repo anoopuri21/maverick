@@ -138,12 +138,18 @@
                 </div>
 
                 @if ($upload)
-                    <div class="mt-4 flex justify-center">
-                        <img
-                            src="{{ $upload->temporaryUrl() }}"
-                            alt="Preview"
-                            class="max-h-40 rounded-lg object-contain"
-                        />
+                    <div class="mt-4 flex flex-col items-center gap-2">
+                        @if (method_exists($upload, 'isPreviewable') && $upload->isPreviewable())
+                            <img
+                                src="{{ $upload->temporaryUrl() }}"
+                                alt="Preview"
+                                class="max-h-40 rounded-lg object-contain"
+                            />
+                        @else
+                            <p class="text-sm text-gray-500 dark:text-gray-400">
+                                {{ $upload->getClientOriginalName() }}
+                            </p>
+                        @endif
                     </div>
                 @endif
             </div>
