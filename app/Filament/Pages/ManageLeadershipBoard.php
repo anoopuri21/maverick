@@ -151,12 +151,13 @@ class ManageLeadershipBoard extends Page implements HasForms
     protected function saveSettingsGroup(string $settingsClass, array $payload): void
     {
         $settings = app($settingsClass);
-        // Merge missing reflected properties from the CURRENT settings values
-        // (not class defaults) so Spatie never throws MissingSettings AND any
-        // untouched field (e.g. a nested MediaPicker URL) keeps its DB value.
         $payload = $this->ensureAllSettingsProperties($settings, $payload);
         $payload = $this->preserveExistingImageFields($payload, $settings);
-        $settings->fill($payload)->save();
+        $this->ensureSettingsRowsExist($settings);
+        // Reload from DB so Spatie no longer treats freshly-created rows as
+        // "default-loaded" (which would still throw MissingSettings on save).
+        app()->forgetInstance($settingsClass);
+        app($settingsClass)->fill($payload)->save();
     }
 
     /**
@@ -186,5 +187,29 @@ class ManageLeadershipBoard extends Page implements HasForms
         }
 
         return $payload;
+    }
+
+    /**
+     * Ensure every reflected setting property has a DB row so Spatie's save()
+     * never throws MissingSettings. Spatie marks default-loaded (rowless)
+     * properties as missing on save, so we materialise the rows first.
+     * Generic — works for any Spatie Settings class.
+     */
+    protected function ensureSettingsRowsExist(object $settings): void
+    {
+        $mapper = app(\Spatie\LaravelSettings\SettingsMapper::class);
+        $getConfig = new \ReflectionMethod($mapper, 'getConfig');
+        $getConfig->setAccessible(true);
+        $config = $getConfig->invoke($mapper, get_class($settings));
+
+        $repo = $config->getRepository();
+        $group = $config->getGroup();
+        $existing = collect($repo->getPropertiesInGroup($group))->keys();
+
+        foreach ($config->getReflectedProperties()->keys() as $name) {
+            if (! $existing->contains($name)) {
+                $repo->createProperty($group, $name, $settings->{$name} ?? null);
+            }
+        }
     }
 }
