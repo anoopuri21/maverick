@@ -115,3 +115,15 @@
   Final verification audit: 9/9 requirements PASS (R1's single flag = matcher artifact on
   internal listing label, manually verified covered). Details:
   `reports/phase2-completion-report.md`. Website content remains UNPUBLISHED.
+
+## Cycle 3 — Site Pages (started 2026-08-20)
+
+| Cycle | Page | FAQs | Status | Draft |
+|---|---|---|---|---|
+| 3.1 | Homepage (brand-level; destination: Filament → Manage Homepage FAQs) | 8 | 🔵 In Review | `drafts/site-homepage.md` |
+| 3.2 | Edutainment / Educational Tours (upgrade of 15 hardcoded on-page FAQs → 10) | 10 | 🔵 In Review | `drafts/edutainment.md` |
+
+- **2026-08-20** — Cycle 3 drafted: homepage set (8 brand-level Qs — model, awards, global
+  access, support) + Edutainment upgraded set (10 Qs — safety/supervision NEW, parent-trust
+  first, destination-neutral phrasing pending owner decision on naming). QA: 160 total
+  questions project-wide, 0 duplicates, both drafts country-neutral. Awaiting owner review.
