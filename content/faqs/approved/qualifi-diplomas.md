@@ -62,10 +62,12 @@ minimum age policy.] -->
 ### Fees, Scholarships & Payments
 
 <!-- Target keyword: "level 3 diploma fees" | Source: none for amounts -->
-**Q. How are Level 3 Diploma fees structured?**
+**Q. How much does a Level 3 Diploma cost to study?**
 
-Fees follow an **instalment-friendly structure** with exact amounts, currency and current
-offers confirmed by the admissions team during your eligibility review.
+Level 3 fees are kept **accessible and instalment-friendly**, reflecting the diploma's role
+as an entry point to the qualification ladder. Exact amounts, currency and any current
+offers are confirmed by the admissions team during your eligibility review, so you know
+the full picture before you commit.
 <!-- [VERIFY: fee amounts, currency and instalment structure.] -->
 
 ### Careers & Outcomes
@@ -84,13 +86,13 @@ planned journey to higher qualifications.
 ## Category 2 — Level 5 Extended Diplomas
 *Applies to all 14 diplomas: Business Management · Health and Social Care · Psychology ·
 Hospitality and Tourism Management · Accounting and Finance · Law · Information Technology ·
-IT-Networking · IT-Web Design · IT-E-commerce · Cyber Security · Networking and Cyber
+IT - Networking · IT - Web Design · IT - E-commerce · Cyber Security · Networking and Cyber
 Security · Occupational Health and Safety · Education and Training Management.*
 
 ### General Information
 
 <!-- Target keyword: "qualifi level 5 extended diploma list" | Source: inputs/listing.md -->
-**Q. Which Level 5 Extended Diplomas are available?**
+**Q. Which Level 5 Extended Diplomas can I choose from?**
 
 Fourteen **Level 5 Extended Diplomas** are offered — from business, law, psychology and
 accounting to a deep technology cluster (IT, networking, web design, e-commerce, cyber
@@ -123,18 +125,23 @@ fits — you never need to guess.
 <!-- Target keyword: "level 5 diploma entry requirements experience" | Source: typical L5 entry pattern (VERIFY) -->
 **Q. What are the entry requirements for a Level 5 Extended Diploma?**
 
-Typically a **Level 3 qualification or equivalent** — with **relevant work experience**
-also considered as an alternative entry route, reviewed individually.
+Entry to a Level 5 Extended Diploma typically requires a **Level 3 qualification or
+equivalent** — with **relevant work experience** also considered as an alternative route,
+reviewed individually. This flexibility exists because Level 5 study is designed for both
+ladder-climbers coming up from Level 3 and working adults formalising what they already do
+professionally.
 <!-- [VERIFY: official per-programme criteria, esp. technical prerequisites for the IT and
 cyber security tracks.] --> English proficiency evidence may be requested where applicable.
 
 ### Fees, Scholarships & Payments
 
 <!-- Target keyword: "level 5 extended diploma fees" | Source: none for amounts -->
-**Q. How are Level 5 Extended Diploma fees structured?**
+**Q. What is the fee structure for a Level 5 Extended Diploma?**
 
-Fees are payable through **manageable instalments**, with exact amounts, currency and any
-current offers confirmed by the admissions team for your chosen track and intake.
+Because the Extended Diploma spans **240 credits across two levels of study**, fees are
+payable through **manageable instalments** spread across the programme. Exact amounts,
+currency and any current offers are confirmed by the admissions team for your chosen
+track and intake — including how the payment plan maps to your study stages.
 <!-- [VERIFY: fee amounts, currency and instalment structure.] -->
 
 ### Careers & Outcomes
@@ -158,15 +165,15 @@ higher-level credential.
 *Applies to all 23 diplomas: Business Strategy · Ethical Leadership · Executive Management ·
 Strategic Management and Innovation · Strategic Management and Leadership · Project
 Management · Risk Management · Strategic Marketing · Health and Social Care · Psychology ·
-Occupational Health and Safety Management · International OHS Management · Process Safety
-Management · Hospitality and Tourism Management · Human Resource Management · Accounting and
+Occupational Health and Safety Management · International Diploma in Occupational Health
+and Safety Management · International Diploma in Process Safety Management · Hospitality and Tourism Management · Human Resource Management · Accounting and
 Finance · Law · International Business Law · IT · Data Science · Cyber Security · Logistics
 and Supply Chain Crisis Management · Educational Management and Leadership.*
 
 ### General Information
 
 <!-- Target keyword: "qualifi level 7 diploma specialisations 23 tracks" | Source: inputs/listing.md -->
-**Q. Which Qualifi Level 7 Diplomas are available?**
+**Q. Which specialisations do the Qualifi Level 7 Diplomas cover?**
 
 **Twenty-three Level 7 Diplomas** — the widest postgraduate-level diploma range in our
 portfolio — covering strategy, leadership, project and risk management, marketing, HR,
@@ -206,9 +213,10 @@ diplomas.] --> The admissions team will map a realistic plan with you.
 <!-- Target keyword: "qualifi level 7 diploma fees" | Source: none for amounts -->
 **Q. How are Level 7 Diploma fees structured?**
 
-Tuition follows an **instalment-based structure** across your study period. Exact amounts,
-currency and current offers are confirmed by the admissions team for your chosen track and
-intake. <!-- [VERIFY: fee amounts, currency and instalment structure.] -->
+With **23 tracks at the same level**, Qualifi Level 7 tuition follows a consistent
+**instalment-based structure** across your study period — so choosing your specialisation
+is an academic decision, not a financial calculation. Exact amounts, currency and current
+offers are confirmed by the admissions team for your chosen track and intake. <!-- [VERIFY: fee amounts, currency and instalment structure.] -->
 
 ### Careers & Outcomes
 

@@ -116,8 +116,8 @@ Economics · Entrepreneurship and Innovation · Finance · Master of Business Ad
 <!-- Target keyword: "rushford mba specialisations list" | Source: inputs/listing.md -->
 **Q. Which MBA specialisations are available at Rushford Business School?**
 
-Rushford offers the **Master of Business Administration (MBA)** as a general-management
-degree plus **11 specialised tracks**, including Strategic Management, Finance, Marketing,
+Rushford Business School offers **twelve MBA options: a general-management MBA plus 11
+specialised tracks**. Specialisations include Strategic Management, Finance, Marketing,
 Human Resource Management, Logistics & Supply Chain, Healthcare Leadership, Entrepreneurship
 and Innovation, Sustainability, Real Estate, Hospitality & Tourism, and Health Economics —
 all delivered fully online in English. MBA specialisations also lead to an additional
@@ -261,7 +261,7 @@ international business. It also provides a strong academic foundation for progre
 *Applies to all 13 research specialisations: Supply Chain Management · Quality Management ·
 Operational Management · Marketing · Human Resource Management · Healthcare Management ·
 International Business · Financial Management · Educational Management & Leadership · Data
-Analytics · Hospitality, Travel & Tourism · Logistics & Supply Chain Management · Global
+Analytics · Hospitality, Travel, & Tourism · Logistics & Supply Chain Management · Global
 Leadership & Strategy.*
 
 ### General Information

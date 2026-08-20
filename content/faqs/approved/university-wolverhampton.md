@@ -50,8 +50,8 @@ will assess your profile individually.
 <!-- Target keyword: "llm online while working lawyers" | Source: partner description — online/distance for working professionals -->
 **Q. Can I complete the LLM while working?**
 
-Yes. The programme is delivered through **online and distance learning**, built for
-**working legal and compliance professionals** — you can study around court schedules,
+Yes — the UOW Master of Laws is delivered through **online and distance learning**, built
+for **working legal and compliance professionals** — you can study around court schedules,
 client work or office hours, from anywhere in the world.
 
 <!-- Target keyword: "is university of wolverhampton recognised" | Source: public-university status; wording to confirm -->

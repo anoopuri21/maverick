@@ -46,17 +46,22 @@ advise you individually.
 <!-- Target keyword: "study bsc online flexible while working" | Source: seeder — online/hybrid for BSc Business Mgmt; generalisation flagged -->
 **Q. Can I study a GAU BSc flexibly while working?**
 
-Yes. The BSc programmes follow a **flexible learning model** designed to support both
+Yes — GAU's BSc programmes follow a **flexible learning model** designed to support both
 full-time students and working professionals, so you can progress your degree alongside
-your other commitments. <!-- [VERIFY: online/hybrid delivery confirmed in source data for
+your other commitments. Throughout your studies you are backed by **dedicated academic
+support, assignment guidance and a student success team**, which is what makes studying
+while working genuinely manageable rather than just possible. <!-- [VERIFY: online/hybrid delivery confirmed in source data for
 BSc Business Management only — confirm the same mode applies to all 10 BSc programmes,
 especially Psychology.] -->
 
 <!-- Target keyword: "how are bsc students assessed" | Source: seeder — assignments & examinations (BSc Business Mgmt) -->
 **Q. How are students assessed on the BSc programmes?**
 
-Assessment is carried out through **assignments and examinations** across the programme
-stages, building both applied and academic skills. <!-- [VERIFY: assessment pattern
+GAU's BSc programmes are assessed through **assignments and examinations** across the
+programme stages, building both applied and academic skills. Assignments let you
+demonstrate understanding through practical business scenarios, while examinations
+consolidate your core knowledge — so your final award reflects both capability and
+depth. <!-- [VERIFY: assessment pattern
 confirmed for BSc Business Management — confirm consistency across all 10 programmes.] -->
 Dedicated academic support and assignment guidance are available throughout your studies.
 
@@ -130,8 +135,11 @@ can help you plan a realistic schedule around your professional commitments.
 <!-- Target keyword: "mba flexible study working professionals" | Source: seeder flexible-learning model (generalised, flagged) -->
 **Q. Can I do the GAU MBA without pausing my career?**
 
-Yes. The MBA follows a **flexible learning structure** designed for working professionals,
-letting you apply new skills directly in your workplace as you study.
+Yes — the GAU MBA follows a **flexible learning structure** designed specifically for
+working professionals. You can schedule study around your job, apply new frameworks
+directly in your workplace from the first modules, and progress at a pace that fits your
+role — many candidates treat the programme itself as an extended, real-world business
+project.
 <!-- [VERIFY: delivery mode (online/hybrid/on-campus options) for the MBA category in the current offer.] -->
 
 ### Eligibility & Admission
@@ -197,7 +205,7 @@ experience level and career stage, and the admissions team can help you decide.
 <!-- Target keyword: "executive mba while working full time" | Source: EMBA design purpose (generic) -->
 **Q. Can I complete the EMBA while working full-time?**
 
-Yes — that is exactly who the EMBA is built for. The **flexible structure** is designed
+Yes — that is exactly who the GAU Executive MBA is built for. The **flexible structure** is designed
 around the schedules of working executives and managers, so you can lead your organisation
 and study in parallel, applying strategic insights to your role immediately.
 <!-- [VERIFY: delivery mode (online/hybrid) for the EMBA category in the current offer.] -->
@@ -282,11 +290,13 @@ admissions review.
 ### Fees, Scholarships & Payments
 
 <!-- Target keyword: "msc fees scholarships" | Source: fee-component pattern (VERIFY for MSc) -->
-**Q. How are MSc fees structured, and are scholarships available?**
+**Q. What do the thesis-based MSc programmes cost, and is scholarship support available?**
 
-MSc tuition follows an **instalment-based structure**, with scholarship availability
-confirmed during your eligibility review. Exact amounts, currency and current offers are
-confirmed by the admissions team for your intake.
+Tuition for GAU's thesis-based MSc programmes follows an **instalment-based structure**,
+so payments are spread across both the taught and research stages of your degree.
+**Scholarship support is reviewed as part of your application**, with any offer linked to
+your intake. Exact amounts, currency and current offers are confirmed by the admissions
+team during your eligibility review.
 <!-- [VERIFY: MSc fee amounts, currency and instalment structure.] -->
 
 ### Careers & Outcomes
@@ -326,9 +336,11 @@ research timeline.
 <!-- Target keyword: "how long does phd take" | Source: no verified figure — honest framing -->
 **Q. How long does a PhD at GAU take?**
 
-PhD duration is **individual** — it depends on your research topic, pathway and pace.
-Typical doctoral timelines are confirmed with the admissions team when you discuss your
-research proposal. <!-- [VERIFY: official minimum/typical PhD duration — no figure in
+PhD duration at GAU is **individual** — it depends on your research topic, pathway and
+pace. The journey typically moves through **proposal development, supervised research and
+thesis completion**, and your realistic timeline is mapped with the admissions team when
+you discuss your research proposal, so you start with a plan rather than an open-ended
+commitment. <!-- [VERIFY: official minimum/typical PhD duration — no figure in
 source data; add once confirmed.] -->
 
 ### Eligibility & Admission

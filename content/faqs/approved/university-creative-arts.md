@@ -47,8 +47,9 @@ their commitments — the admissions team will help you plan your intake and sch
 <!-- Target keyword: "global mba online study mode" | Source: apply.rushford.ch — online, e-learning (official) -->
 **Q. Is the Global MBA delivered fully online?**
 
-Yes. The programme is delivered through **fully online e-learning**, with a weekly study
-commitment designed to fit around professional life.
+Yes — the Global MBA is delivered through **fully online e-learning**, with a weekly study
+commitment designed to fit around professional life, so you can complete both MBA awards
+without stepping away from your career.
 <!-- [VERIFY: weekly commitment (source brochure suggests ~12–15 hrs/week) — confirm for current offer.] -->
 
 <!-- Target keyword: "global mba structure thesis stage" | Source: rushford.ch — staged structure with master's thesis (official) -->

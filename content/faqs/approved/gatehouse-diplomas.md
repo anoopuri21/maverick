@@ -75,9 +75,10 @@ other three tracks.] -->
 <!-- Target keyword: "study level 7 diploma online while working" | Source: delivery pattern (VERIFY) -->
 **Q. Can I study a Level 7 Diploma online while working full-time?**
 
-Yes. The diplomas follow a **flexible, self-paced online model** built for working
-professionals — most learners study alongside their current role and apply the material
-directly at work. <!-- [VERIFY: delivery mode in current offer.] -->
+Yes — the Gatehouse Level 7 Diplomas follow a **flexible, self-paced online model** built
+for working professionals. Most learners study alongside their current role, apply the
+material directly at work, and use real workplace scenarios in their coursework — which
+is exactly what portfolio-based assessment rewards. <!-- [VERIFY: delivery mode in current offer.] -->
 
 ### Eligibility & Admission
 

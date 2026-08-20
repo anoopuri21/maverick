@@ -49,8 +49,8 @@ intake and study pace, which the admissions team will confirm with you.
 <!-- Target keyword: "study ba global business online while working" | Source: partner description — online, designed for working professionals -->
 **Q. Can I study the programme online while working?**
 
-Yes. The programme is designed for **working professionals**, with **online classes you can
-join from anywhere in the world**. This means you can upgrade your qualifications to an
+Yes — the BA (Hons) Global Business is designed for **working professionals**, with
+**online classes you can join from anywhere in the world**. This means you can upgrade your qualifications to an
 honours degree without pausing your career or relocating.
 <!-- [VERIFY: delivery mode (fully online vs hybrid) in the current offer.] -->
 
@@ -68,9 +68,9 @@ your goals, the admissions team can advise you individually.
 <!-- Target keyword: "top up degree entry requirements hnd level 5" | Source: top-up entry pattern — prior credits/diploma (VERIFY) -->
 **Q. What are the entry requirements for the BA (Hons) Global Business?**
 
-As a top-up programme, entry is based on your **prior learning**: typically a completed
-**higher diploma-level qualification (such as an HND or a recognised equivalent)** in a
-business-related area — with **relevant professional experience** also considered as an
+Entry to this top-up programme is based on your **prior learning**. You typically need a
+completed **higher diploma-level qualification (such as an HND or recognised equivalent)**
+in a business-related area. **Relevant professional experience** is also considered as an
 alternative route, subject to approval. <!-- Corroborated 2026-08-19: partner sources
 consistently list "completed HND, equivalent qualification, or relevant work experience
 (subject to approval)". --> Your eligibility is confirmed individually through a review by
