@@ -123,6 +123,38 @@ as a **stepping stone**: certify now, top up to a master's when ready.
 
 ---
 
+## Applying & Practical Information
+*Provider-level questions. (Phase 2 addition.)*
+
+<!-- Target keyword: "portfolio of evidence assessment how it works" | Source: official GA site — coursework & portfolio (Edu Leadership) -->
+**Q. How does portfolio-of-evidence assessment actually work?**
+
+Instead of sitting examinations, you **build a portfolio that documents your competence**
+— coursework, workplace-based tasks, reflective accounts and supporting evidence gathered
+as you study. For working professionals this is a genuine advantage: your day job
+generates your evidence, and assessment measures what you can actually do at
+postgraduate level.
+
+<!-- Target keyword: "level 7 diploma vs short course certificate cpd" | Source: regulated vs unregulated distinction (framework facts) -->
+**Q. How does a Level 7 Diploma compare with short courses and certificates?**
+
+The difference is **regulation and framework level**. A short course or CPD certificate
+shows attendance or exposure; a Level 7 Diploma from an Ofqual-recognised awarding
+organisation is a **regulated qualification at the same framework level as master's
+degrees**, with a unique accreditation number and defined qualification time. One
+decorates a CV; the other changes what your CV certifies.
+
+<!-- Target keyword: "ideal career stage postgraduate diploma" | Source: GA Edu Leadership lists age 21+ (VERIFY other tracks) -->
+**Q. Is there an ideal career stage for Level 7 study?**
+
+Level 7 Diplomas are built for **practising professionals and adults with workplace
+responsibility** — aspiring and established managers, leaders and senior practitioners.
+There is no "too late": because assessment draws on your work, more experience often
+means a stronger portfolio. <!-- [VERIFY: minimum age/entry stage per track — Education
+Leadership specifies 21+.] -->
+
+---
+
 ## Facts to Verify (updated 2026-08-19 after deep research — see Resolved section)
 
 ### Still open

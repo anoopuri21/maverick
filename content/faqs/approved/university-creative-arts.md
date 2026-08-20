@@ -108,6 +108,38 @@ partnership ecosystem.
 
 ---
 
+## Applying & Practical Information
+*Provider-level questions. (Phase 2 addition.)*
+
+<!-- Target keyword: "dual degree two certificates separate" | Source: dual-award structure (VERIFY issuance mechanics) -->
+**Q. Do I receive two separate MBA certificates?**
+
+Yes — the dual award means you receive **separate credentials from each institution**:
+an MBA awarded by the University for the Creative Arts and an MBA awarded by Rushford
+Business School, alongside the Ofqual-regulated Level 7 Diploma. Each stands on its own
+for job applications, further study and verification.
+<!-- [VERIFY: certificate issuance mechanics and timing for each award.] -->
+
+<!-- Target keyword: "employer sponsorship mba tuition" | Source: standard practice (VERIFY invoicing) -->
+**Q. Can my employer sponsor my Global MBA?**
+
+Employer sponsorship is common for executive education, and the programme's **published,
+instalment-friendly fee structure** makes it straightforward to propose internally: a
+defined cost, a defined timeline, and skills applied to the business from the first
+modules. The admissions team can support sponsorship conversations with documentation.
+<!-- [VERIFY: invoicing/sponsorship arrangements available in our offer.] -->
+
+<!-- Target keyword: "mba thesis supervision support online" | Source: staged structure with thesis stage (VERIFY supervision specifics) -->
+**Q. What support will I get during the master's thesis stage?**
+
+The thesis is completed **under academic supervision within the awarding university's
+framework** — you are guided through topic selection, research design and submission
+rather than left to figure it out alone. It is the stage where the Global MBA turns your
+professional experience into a substantial, examined piece of master's-level work.
+<!-- [VERIFY: supervision model and contact structure at the thesis stage.] -->
+
+---
+
 ## Facts to Verify (updated 2026-08-19 after deep research — see Resolved section)
 
 ### Still open

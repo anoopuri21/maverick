@@ -106,6 +106,37 @@ graduates continue directly into postgraduate study to compound their momentum.
 
 ---
 
+## Applying & Practical Information
+*Provider-level questions. (Phase 2 addition.)*
+
+<!-- Target keyword: "turn work experience into a degree" | Source: corroborated top-up entry (experience route) -->
+**Q. Can I turn my work experience into a degree?**
+
+Yes — that is precisely what this top-up route is designed for. If you hold a completed
+**HND or equivalent qualification**, or bring **relevant professional experience (subject
+to approval)**, you can enter directly at the final stage and convert years of real-world
+work into a full **BA (Hons) awarded by UWS** in around 12 months. Your experience stops
+being "just experience" and becomes a recognised academic credential.
+
+<!-- Target keyword: "does a top-up degree certificate say top up" | Source: standard top-up award practice (VERIFY certificate policy) -->
+**Q. What will my final certificate say?**
+
+Your award is the **BA (Hons) in Global Business from the University of the West of
+Scotland** — the degree itself, not a special variant. A top-up is an entry route, and
+the qualification you graduate with is the honours degree conferred by the university.
+<!-- [VERIFY: confirm certificate wording policy with the awarding university before
+publishing this answer.] -->
+
+<!-- Target keyword: "study hours per week online degree" | Source: none for hours — honest framing (VERIFY) -->
+**Q. How many hours a week will I need to study?**
+
+Plan for **consistent weekly study alongside your job** — most successful top-up students
+protect fixed study slots rather than cramming. The exact guided-hours expectation for
+your intake is confirmed by the admissions team, so you can agree a realistic routine
+before you start. <!-- [VERIFY: official weekly study-hours guidance for this programme.] -->
+
+---
+
 ## Facts to Verify (updated 2026-08-19 after deep research — see Resolved section)
 
 ### Still open

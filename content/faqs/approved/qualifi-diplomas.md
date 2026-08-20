@@ -245,6 +245,36 @@ worldwide.
 
 ---
 
+## Applying & Practical Information
+*Provider-level questions. (Phase 2 addition.)*
+
+<!-- Target keyword: "can i stack diplomas level 3 5 7 over time" | Source: ladder design (levels framework) -->
+**Q. Can I stack Qualifi diplomas over time — Level 3, then 5, then 7?**
+
+Yes — stacking is exactly how the ladder is designed to be used. Each level is a
+**complete qualification in its own right**, so you can step off after any rung, work,
+and return when ready: Level 3 for your foundation, Level 5 Extended for
+higher-education standing, Level 7 for postgraduate-level certification. Your career
+never has to pause for your education, or vice versa.
+
+<!-- Target keyword: "do diplomas expire need renewal" | Source: standard for regulated qualifications -->
+**Q. Do Qualifi diplomas expire or need renewing?**
+
+No. A regulated qualification is **awarded for life** — once achieved, your diploma does
+not lapse, require renewal fees, or need re-examination. Unlike memberships or licences,
+it is a permanent academic credential; anything you add later (a higher level, a degree
+top-up) builds on it rather than replacing it.
+
+<!-- Target keyword: "qualification accreditation number on certificate" | Source: delivery-centre spec — QAN appears on final certificate (verified) -->
+**Q. Will my certificate show the official accreditation number?**
+
+Yes — each Qualifi qualification carries a unique **Qualification Accreditation Number
+(QAN)**, and this number **appears on your final certification document**. That single
+line matters: it lets any employer or institution match your certificate directly to the
+regulated qualifications register, making verification quick and dispute-proof.
+
+---
+
 ## Facts to Verify (updated 2026-08-19 after deep research — see Resolved section)
 
 ### Still open

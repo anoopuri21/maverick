@@ -112,6 +112,39 @@ doctoral-level work.
 
 ---
 
+## Applying & Practical Information
+*Provider-level questions. (Phase 2 addition.)*
+
+<!-- Target keyword: "who should do an llm which professionals" | Source: generic audience mapping -->
+**Q. Which professionals benefit most from an LLM?**
+
+The LLM pays off fastest for professionals whose work touches law daily without requiring
+a practising licence: **compliance and regulatory officers, contract and procurement
+managers, HR leaders, company secretaries, risk managers, paralegals** stepping up, and
+practising lawyers formalising specialist depth. If interpreting rules, drafting terms or
+managing legal exposure is part of your role, the LLM converts that experience into a
+recognised master's-level credential.
+
+<!-- Target keyword: "llm independent legal research project" | Source: partner description of top-up route (VERIFY) -->
+**Q. What is the independent legal research project like?**
+
+It is the centrepiece of the LLM: you choose a **legal issue relevant to your field**,
+analyse it critically under supervision, and propose defensible solutions — the same
+skill set senior legal and compliance work demands. Graduates typically pick topics from
+their own industry, so the project doubles as evidence of expertise in their day job.
+<!-- [VERIFY: project scope, supervision and assessment details in our offer.] -->
+
+<!-- Target keyword: "llm after law degree or work experience first" | Source: guidance angle (generic) -->
+**Q. Should I take the LLM straight after my degree, or work first?**
+
+Both routes work — they simply produce different advantages. Coming straight from study,
+you carry momentum and research sharpness into the LLM. Coming from practice, your
+professional context makes every module and the research project immediately applicable.
+The admissions review considers your profile either way, so the honest answer is: start
+when the qualification serves your next career move.
+
+---
+
 ## Facts to Verify (owner action before approval)
 
 | # | Item | What the draft currently says | What needs confirming |
