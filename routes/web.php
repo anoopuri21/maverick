@@ -46,4 +46,7 @@ Route::get('/programs/{slug}', [\App\Http\Controllers\ProgramController::class, 
 Route::get('/pathway-programs', [\App\Http\Controllers\GlobalPathwayController::class, 'pathwayPrograms'])->name('global-pathways.programs');
 Route::get('/global-opportunities', [\App\Http\Controllers\GlobalPathwayController::class, 'globalOpportunities'])->name('global-pathways.opportunities');
 
+Route::get('/events', [\App\Http\Controllers\PageController::class, 'events'])->name('events');
+Route::get('/student-success', [\App\Http\Controllers\PageController::class, 'studentSuccess'])->name('student-success');
+
 Route::get('/{slug}', [\App\Http\Controllers\InsightController::class, 'show'])->name('insights.show');

@@ -425,4 +425,16 @@ class PageController extends Controller
             'leadershipSeo' => app(LeadershipSeoSettings::class),
         ]);
     }
+    /** /events — editorial events page */
+    public function events()
+    {
+        return view('pages.events');
+    }
+
+    /** /student-success — editorial student stories page */
+    public function studentSuccess()
+    {
+        return view('pages.student-success');
+    }
+
 }
