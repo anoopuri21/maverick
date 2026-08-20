@@ -2,12 +2,12 @@
 
 namespace App\Filament\Pages;
 
+use App\Filament\Concerns\HandlesCloudinaryImageFields;
 use App\Filament\Forms\Components\MediaPicker;
 use App\Settings\GlobalOpportunitiesSettings;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Section;
-use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -15,8 +15,11 @@ use Filament\Pages\SettingsPage;
 
 class ManageGlobalOpportunities extends SettingsPage
 {
+    use HandlesCloudinaryImageFields;
+
     protected static ?string $navigationIcon = 'heroicon-o-globe-alt';
-    protected static ?string $navigationGroup = 'Homepage';
+    // Individual top-level link (moved out of the Homepage group).
+    protected static ?string $navigationGroup = null;
     protected static ?string $navigationLabel = 'Global Opportunities';
     protected static ?int $navigationSort = 12;
     protected static string $settings = GlobalOpportunitiesSettings::class;
@@ -29,22 +32,22 @@ class ManageGlobalOpportunities extends SettingsPage
                 Textarea::make('subtitle')->rows(2)->columnSpanFull(),
             ]),
 
-            Section::make('Left Column: Global Opportunities')->schema([
+            Section::make('Global Opportunities Items')->schema([
                 TextInput::make('left_title')->label('Column Title')->required()->columnSpanFull(),
                 Repeater::make('opportunities')
                     ->label('Opportunity Items')
                     ->schema([
                         Grid::make(2)->schema([
                             TextInput::make('title')->required(),
-                            TextInput::make('url')->label('Link URL'),
+                            TextInput::make('url')->label('URL'),
                         ]),
                         Textarea::make('desc')->label('Description')->rows(2)->columnSpanFull(),
-                        Grid::make(2)->schema([
-                            MediaPicker::forField('image_url', 'homepage/opportunities')
-                                ->label('Image (Media Library)'),
-                            TextInput::make('image_url_input')->label('Or Image URL')->url(),
-                        ]),
-                        Select::make('icon')->options(self::icons())->searchable()->default('sparkles'),
+                        MediaPicker::forField('image', 'global-opportunities')
+                            ->label('Image')
+                            ->helperText('Upload from library (priority) or use the URL field below.')
+                            ->columnSpanFull(),
+                        TextInput::make('image_url')->label('Image URL (fallback)')
+                            ->helperText('Used only if no image is uploaded.'),
                     ])
                     ->reorderable()
                     ->collapsible()
@@ -52,22 +55,22 @@ class ManageGlobalOpportunities extends SettingsPage
                     ->columnSpanFull(),
             ]),
 
-            Section::make('Right Column: Global Pathways')->schema([
+            Section::make('Global Pathways Items')->schema([
                 TextInput::make('right_title')->label('Column Title')->required()->columnSpanFull(),
                 Repeater::make('pathways')
                     ->label('Pathway Items')
                     ->schema([
                         Grid::make(2)->schema([
                             TextInput::make('title')->required(),
-                            TextInput::make('url')->label('Link URL'),
+                            TextInput::make('url')->label('URL'),
                         ]),
                         Textarea::make('desc')->label('Description')->rows(2)->columnSpanFull(),
-                        Grid::make(2)->schema([
-                            MediaPicker::forField('image_url', 'homepage/pathways')
-                                ->label('Image (Media Library)'),
-                            TextInput::make('image_url_input')->label('Or Image URL')->url(),
-                        ]),
-                        Select::make('icon')->options(self::icons())->searchable()->default('sparkles'),
+                        MediaPicker::forField('image', 'global-pathways')
+                            ->label('Image')
+                            ->helperText('Upload from library (priority) or use the URL field below.')
+                            ->columnSpanFull(),
+                        TextInput::make('image_url')->label('Image URL (fallback)')
+                            ->helperText('Used only if no image is uploaded.'),
                     ])
                     ->reorderable()
                     ->collapsible()
@@ -79,28 +82,18 @@ class ManageGlobalOpportunities extends SettingsPage
 
     protected function mutateFormDataBeforeSave(array $data): array
     {
-        foreach (['opportunities', 'pathways'] as $key) {
-            foreach ($data[$key] ?? [] as &$item) {
-                $item = MediaPicker::syncFieldFromAsset($item, 'image_url');
-                if (empty($item['image_url']) && ! empty($item['image_url_input'])) {
-                    $item['image_url'] = $item['image_url_input'];
-                }
-                unset($item['image_url_input']);
-            }
-            unset($item);
-            $data[$key] = array_values($data[$key] ?? []);
+        // Sync MediaPicker asset id -> image for each item (image priority).
+        foreach ($data['opportunities'] ?? [] as &$item) {
+            $item = \App\Filament\Forms\Components\MediaPicker::syncFieldFromAsset($item, 'image');
         }
-        return $data;
-    }
+        unset($item);
+        foreach ($data['pathways'] ?? [] as &$item) {
+            $item = \App\Filament\Forms\Components\MediaPicker::syncFieldFromAsset($item, 'image');
+        }
+        unset($item);
 
-    /** @return array<string,string> */
-    protected static function icons(): array
-    {
-        return [
-            'sparkles' => 'sparkles', 'globe' => 'globe', 'users' => 'users',
-            'briefcase' => 'briefcase', 'trending-up' => 'trending-up', 'laptop' => 'laptop',
-            'graduation-cap' => 'graduation-cap', 'layers' => 'layers', 'rocket' => 'rocket',
-            'award' => 'award', 'compass' => 'compass', 'book-open' => 'book-open',
-        ];
+        $data['opportunities'] = array_values($data['opportunities'] ?? []);
+        $data['pathways'] = array_values($data['pathways'] ?? []);
+        return $data;
     }
 }
