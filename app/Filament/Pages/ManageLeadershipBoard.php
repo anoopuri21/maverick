@@ -75,16 +75,14 @@ class ManageLeadershipBoard extends Page implements HasForms
                                 Repeater::make('leaders.items')
                                     ->label('Leadership Cards')
                                     ->schema([
-                                        TextInput::make('name')->required(),
-                                        TextInput::make('designation')->required(),
-                                        Textarea::make('bio')->rows(3)->required(),
+                                        TextInput::make('name'),
+                                        TextInput::make('designation'),
+                                        Textarea::make('bio')->rows(3),
                                         MediaPicker::forField('image_url', 'leadership/leaders')
                                             ->label('Photo'),
                                         TextInput::make('linkedin_url')
                                             ->label('LinkedIn URL')
-                                            ->helperText('Leave as # or empty if not available.')
-                                            ->default('#')
-                                            ->rules(['nullable', 'string', 'max:255']),
+                                            ->default('#'),
                                     ])
                                     ->reorderable()
                                     ->collapsible()
@@ -99,7 +97,7 @@ class ManageLeadershipBoard extends Page implements HasForms
                                 Textarea::make('seo.meta_description')->label('Meta Description')->rows(3)->maxLength(160),
                                 Textarea::make('seo.meta_keywords')->label('Meta Keywords')->rows(2),
                                 Grid::make(2)->schema([
-                                    TextInput::make('seo.canonical_url')->label('Canonical URL')->url(),
+                                    TextInput::make('seo.canonical_url')->label('Canonical URL'),
                                     Select::make('seo.robots')->label('Robots')
                                         ->options([
                                             'index, follow' => 'Index, Follow (Default)',
