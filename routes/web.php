@@ -18,6 +18,7 @@ Route::get('/csr-community-impact', [PageController::class, 'csrCommunityImpact'
 Route::get('/media-gallery', [PageController::class, 'gallery'])->name('media-gallery');
 Route::get('/global-university-partners', [PageController::class, 'globalUniversityPartners'])->name('global-partners');
 Route::get('/pathway-programs', [PageController::class, 'pathwayPrograms'])->name('pathway-programs');
+Route::get('/global-opportunities', [PageController::class, 'globalOpportunities'])->name('global-opportunities');
 Route::get('/global-bachelors-pathway', function () {return view('pages.global-bachelors-pathway');})->name('global-bachelors-pathway');
 Route::get('/masters-pathways', function () {return view('pages.masters-pathway');})->name('masters-pathways');
 

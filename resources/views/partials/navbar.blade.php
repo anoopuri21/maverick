@@ -122,7 +122,7 @@
               <a href="{{ route('pathway-programs') }}" class="navbar__dropdown-link">Pathway Programs</a>
             </li>
             <li>
-              <a href="{{ url('/#opportunities') }}" class="navbar__dropdown-link">Global Opportunities</a>
+              <a href="{{ route('global-opportunities') }}" class="navbar__dropdown-link">Global Opportunities</a>
             </li>
           </ul>
         </li>
@@ -246,8 +246,7 @@
                 <a href="{{ route('pathway-programs') }}" class="navbar__mobile-sublink">Pathway Programs</a>
               </li>
               <li>
-                <a href="{{ url('/#opportunities') }}" class="navbar__mobile-sublink">Global
-                  Opportunities</a>
+                <a href="{{ route('global-opportunities') }}" class="navbar__mobile-sublink">Global Opportunities</a>
               </li>
             </ul>
           </li>

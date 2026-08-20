@@ -18,6 +18,7 @@ use App\Settings\HowWeDoItSettings;
 use App\Settings\WhyMaverickSettings;
 use App\Settings\GlobalOpportunitiesSettings;
 use App\Settings\PathwayProgramsSettings;
+use App\Settings\GlobalOpportunitiesPageSettings;
 use App\Models\GupPartnerUniversity;
 use App\Models\PartnershipGalleryItem;
 use App\Settings\GlobalPartnersBenefitsSettings;
@@ -363,6 +364,18 @@ class PageController extends Controller
             'leadershipSeo' => app(LeadershipSeoSettings::class),
         ]);
     }
+    /** /global-opportunities — Global Opportunities landing page */
+    public function globalOpportunities()
+    {
+        $settings = app(GlobalOpportunitiesSettings::class);
+
+        return view('pages.global-opportunities', [
+            'hero' => app(GlobalOpportunitiesPageSettings::class),
+            'pageSettings' => app(GlobalOpportunitiesPageSettings::class),
+            'opportunityItems' => array_values($settings->opportunities ?? []),
+        ]);
+    }
+
     /** /events — editorial events page */
     public function events()
     {
