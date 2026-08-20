@@ -131,14 +131,25 @@ class ManageLeadershipBoard extends Page implements HasForms
     {
         $data = $this->form->getState();
 
-        $this->saveSettingsGroup(LeadershipHeroSettings::class, $data['hero'] ?? []);
+        // Denormalize MediaPicker asset ids → URLs before persisting (same
+        // convention as ProgramResource). Otherwise an uploaded image never
+        // writes its URL and the hero/leaders/seo image won't display.
+        $hero = $data['hero'] ?? [];
+        $hero = \App\Filament\Forms\Components\MediaPicker::syncFieldFromAsset($hero, 'background_image');
 
         $leaders = $data['leaders'] ?? [];
+        foreach ($leaders['items'] ?? [] as &$item) {
+            $item = \App\Filament\Forms\Components\MediaPicker::syncFieldFromAsset($item, 'image_url');
+        }
+        unset($item);
         $leaders['items'] = array_values($leaders['items'] ?? []);
-        $this->saveSettingsGroup(LeadershipLeadersSettings::class, $leaders);
 
         $seo = $data['seo'] ?? [];
-        unset($seo['og_image_url_asset_id'], $seo['twitter_image_url_asset_id']);
+        $seo = \App\Filament\Forms\Components\MediaPicker::syncFieldFromAsset($seo, 'og_image_url');
+        $seo = \App\Filament\Forms\Components\MediaPicker::syncFieldFromAsset($seo, 'twitter_image_url');
+
+        $this->saveSettingsGroup(LeadershipHeroSettings::class, $hero);
+        $this->saveSettingsGroup(LeadershipLeadersSettings::class, $leaders);
         $this->saveSettingsGroup(LeadershipSeoSettings::class, $seo);
 
         Notification::make()
