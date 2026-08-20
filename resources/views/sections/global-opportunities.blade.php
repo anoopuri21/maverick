@@ -22,7 +22,7 @@
       @endphp
 
       <!-- LEFT COLUMN — Global Opportunities -->
-      <div class="opportunities__column opportunities__column--right">
+      <div class="opportunities__column opportunities__column--right" id="opportunities">
         <div class="opportunities__column-header">
           <span class="opportunities__column-index">01</span>
           <h3 class="opportunities__column-title">{{ $globalOpportunities->left_title }}</h3>
@@ -51,7 +51,7 @@
       <div class="opportunities__divider" aria-hidden="true"></div>
 
       <!-- RIGHT COLUMN — Global Pathways -->
-      <div class="opportunities__column opportunities__column--left">
+      <div class="opportunities__column opportunities__column--left" id="pathways">
         <div class="opportunities__column-header">
           <span class="opportunities__column-index">02</span>
           <h3 class="opportunities__column-title">{{ $globalOpportunities->right_title }}</h3>
