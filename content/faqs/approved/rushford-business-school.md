@@ -214,6 +214,12 @@ such as finance, marketing or supply chain — making it ideal for building spec
 expertise. Both are delivered online and internationally focused; the right choice depends
 on your career direction, and the admissions team can help you decide.
 
+| | MBA | MSc |
+|---|---|---|
+| Focus | Broad management & leadership | Deep specialism in one field |
+| Best for | Cross-functional and senior roles | Specialist and analyst careers |
+| Credits | 90 ECTS | 60, 90 or 120 ECTS by route |
+
 <!-- Target keyword: "rushford msc duration" | Source: shiksha.com — 18–24 months (third-party) -->
 **Q. How long does a Rushford MSc take to complete?**
 
@@ -284,6 +290,12 @@ research careers. A **DBA** applies doctoral-level research to real business pro
 making it ideal for **senior professionals and business leaders** who want to research
 within their own industry context. Both are rigorous doctoral qualifications — they differ
 in orientation, not in level.
+
+| | PhD | DBA |
+|---|---|---|
+| Orientation | Original academic research | Applied business research |
+| Ideal for | Academic and research careers | Senior professionals and leaders |
+| Outcome focus | Contribution to theory | Real-world business solutions |
 
 <!-- Target keyword: "how long does online dba take" | Source: apply.rushford.ch — 3 years average; educations.com — 2–3 years, pathway-based -->
 **Q. How long does a Rushford doctoral programme take?**

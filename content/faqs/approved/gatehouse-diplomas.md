@@ -58,7 +58,14 @@ A Level 7 Diploma typically carries **120 credits** of taught, applied study, wh
 master's degree adds a **dissertation/research stage (usually 60 further credits)**. In
 practice: the diploma gets you postgraduate-level certification faster, and you can later
 **top up to a full master's** by completing the research stage with a university, subject
-to admission criteria. <!-- [VERIFY: credit structure of the Gatehouse diplomas and
+to admission criteria.
+
+| | Level 7 Diploma | Full master's degree |
+|---|---|---|
+| Credits | Typically 120 | Typically 180 |
+| Research stage | Not required | Dissertation (usually 60 credits) |
+| Typical time | Months | One to two-plus years |
+| Next step | Master's top-up route | Doctoral entry | <!-- [VERIFY: credit structure of the Gatehouse diplomas and
 available top-up partner pathways in our offer.] -->
 
 <!-- Target keyword: "level 7 diploma duration assignments no exams" | Source: typical L7 delivery pattern (VERIFY for Gatehouse) -->

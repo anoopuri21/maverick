@@ -202,6 +202,12 @@ and leaders** — it assumes workplace maturity and focuses on strategic, sector
 leadership. Both are master's-level qualifications; the right choice depends on your
 experience level and career stage, and the admissions team can help you decide.
 
+| | MBA | Executive MBA |
+|---|---|---|
+| Career stage | Early to mid-career | Experienced professionals and leaders |
+| Focus | Broad management capability | Strategic, sector-specific leadership |
+| Assumes | Building experience | Workplace seniority |
+
 <!-- Target keyword: "executive mba while working full time" | Source: EMBA design purpose (generic) -->
 **Q. Can I complete the EMBA while working full-time?**
 
