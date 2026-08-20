@@ -29,23 +29,22 @@
           <div class="opportunities__column-line"></div>
         </div>
 
-        <div class="go-cards">
+        <ul class="opportunities__list">
           @foreach($opportunities as $i => $item)
-          <a href="{{ $item['url'] ?? '#' }}" class="go-card">
-            @if(!empty($item['image_url']))
-            <div class="go-card__img"><img src="{{ $item['image_url'] }}" alt="{{ $item['title'] ?? '' }}" loading="lazy"></div>
-            @endif
-            <div class="go-card__body">
-              <span class="go-card__num">{{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}</span>
-              <h4 class="go-card__title">{{ $item['title'] ?? '' }}</h4>
-              @if(!empty($item['desc']))
-              <p class="go-card__desc">{{ $item['desc'] }}</p>
-              @endif
-              <span class="go-card__link">Explore →</span>
-            </div>
-          </a>
+          <li class="opportunities__item">
+            <a href="{{ $item['url'] ?? '#' }}" class="opportunities__link">
+              <span class="opportunities__item-number">{{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}</span>
+              <div class="opportunities__item-content">
+                <h4 class="opportunities__item-title">{{ $item['title'] ?? '' }}</h4>
+                @if(!empty($item['desc']))
+                <p class="opportunities__item-desc">{{ $item['desc'] }}</p>
+                @endif
+              </div>
+              <span class="opportunities__item-arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
           @endforeach
-        </div>
+        </ul>
       </div>
 
       <!-- DIVIDER -->
@@ -59,23 +58,22 @@
           <div class="opportunities__column-line"></div>
         </div>
 
-        <div class="go-cards">
+        <ul class="opportunities__list">
           @foreach($pathways as $i => $item)
-          <a href="{{ $item['url'] ?? '#' }}" class="go-card">
-            @if(!empty($item['image_url']))
-            <div class="go-card__img"><img src="{{ $item['image_url'] }}" alt="{{ $item['title'] ?? '' }}" loading="lazy"></div>
-            @endif
-            <div class="go-card__body">
-              <span class="go-card__num">{{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}</span>
-              <h4 class="go-card__title">{{ $item['title'] ?? '' }}</h4>
-              @if(!empty($item['desc']))
-              <p class="go-card__desc">{{ $item['desc'] }}</p>
-              @endif
-              <span class="go-card__link">Explore →</span>
-            </div>
-          </a>
+          <li class="opportunities__item">
+            <a href="{{ $item['url'] ?? '#' }}" class="opportunities__link">
+              <span class="opportunities__item-number">{{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}</span>
+              <div class="opportunities__item-content">
+                <h4 class="opportunities__item-title">{{ $item['title'] ?? '' }}</h4>
+                @if(!empty($item['desc']))
+                <p class="opportunities__item-desc">{{ $item['desc'] }}</p>
+                @endif
+              </div>
+              <span class="opportunities__item-arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
           @endforeach
-        </div>
+        </ul>
       </div>
     </div>
   </div>

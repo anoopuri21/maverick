@@ -121,6 +121,9 @@
             <li>
               <a href="{{ url('/#pathways') }}" class="navbar__dropdown-link">Pathway Programs</a>
             </li>
+            <li>
+              <a href="{{ url('/#opportunities') }}" class="navbar__dropdown-link">Global Opportunities</a>
+            </li>
           </ul>
         </li>
 
@@ -146,9 +149,6 @@
           </ul>
         </li>
 
-        <li class="navbar__item" role="none">
-          <a href="{{ url('/#opportunities') }}" class="navbar__link" role="menuitem">Global Opportunities</a>
-        </li>
         <li class="navbar__item" role="none">
           <a href="{{ route('contact') }}" class="navbar__link" role="menuitem">Contact Us</a>
         </li>
@@ -245,6 +245,10 @@
               <li>
                 <a href="{{ url('/#pathways') }}" class="navbar__mobile-sublink">Pathway Programs</a>
               </li>
+              <li>
+                <a href="{{ url('/#opportunities') }}" class="navbar__mobile-sublink">Global
+                  Opportunities</a>
+              </li>
             </ul>
           </li>
 
@@ -269,9 +273,6 @@
             </ul>
           </li>
 
-          <li class="navbar__mobile-item">
-            <a href="{{ url('/#opportunities') }}" class="navbar__mobile-link">Global Opportunities</a>
-          </li>
           <li class="navbar__mobile-item">
             <a href="{{ route('contact') }}" class="navbar__mobile-link">Contact Us</a>
           </li>
