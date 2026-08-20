@@ -117,18 +117,19 @@
                             <span data-lucide="graduation-cap" aria-hidden="true"></span>
                         </div>
                         @endif
+                        <span class="pp-row__media-badge">{{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}</span>
                     </div>
 
                     <div class="pp-row__content">
-                        <span class="pp-row__number">{{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}</span>
+                        <span class="pp-row__kicker">Pathway {{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}</span>
                         <h3 class="pp-row__title">{{ $item['title'] ?? '' }}</h3>
                         @if(!empty($item['desc']))
                         <p class="pp-row__desc">{{ $item['desc'] }}</p>
                         @endif
                         @if(!empty($item['url']))
-                        <a href="{{ $item['url'] }}" class="pp-row__link">
+                        <a href="{{ $item['url'] }}" class="pp-row__cta">
                             <span>Explore Programme</span>
-                            <span class="pp-row__link-icon" data-lucide="arrow-right" aria-hidden="true"></span>
+                            <span class="pp-row__cta-icon" data-lucide="arrow-right" aria-hidden="true"></span>
                         </a>
                         @endif
                     </div>
