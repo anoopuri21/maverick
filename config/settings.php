@@ -32,6 +32,13 @@ return [
         \App\Settings\GlobalPartnersBenefitsSettings::class,
         \App\Settings\GlobalPartnersJourneySettings::class,
         \App\Settings\GlobalPartnersSeoSettings::class,
+        \App\Settings\CsrHeroSettings::class,
+        \App\Settings\CsrCommitmentSettings::class,
+        \App\Settings\CsrFocusSettings::class,
+        \App\Settings\CsrGallerySettings::class,
+        \App\Settings\CsrImpactSettings::class,
+        \App\Settings\CsrScholarshipSettings::class,
+        \App\Settings\CsrSeoSettings::class,
     ],
 
     /*
