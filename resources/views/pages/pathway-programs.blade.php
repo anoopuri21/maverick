@@ -98,7 +98,7 @@
          Row 1: image left / content right
          Row 2: content left / image right ... and so on
     ═══════════════════════════════════════════ --}}
-    <section class="pp-pathways section-wrapper" aria-label="Pathway Programmes" data-testid="pp-pathways">
+    <section class="pp-pathways section-wrapper section--light" aria-label="Pathway Programmes" data-testid="pp-pathways">
         <div class="container">
             <div class="pp-pathways__header">
                 <span class="section-label"><span>Our Pathways</span></span>

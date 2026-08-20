@@ -70,7 +70,7 @@
     {{-- ═══════════════════════════════════════════
          OVERVIEW — editorial, human, SEO
     ═══════════════════════════════════════════ --}}
-    <section class="go-overview section-wrapper" aria-label="Global Opportunities Overview" data-testid="go-overview">
+    <section class="go-overview section-wrapper section--light" aria-label="Global Opportunities Overview" data-testid="go-overview">
         <div class="container">
             <div class="go-overview__inner">
                 @if(filled($pageSettings->overview_label))
