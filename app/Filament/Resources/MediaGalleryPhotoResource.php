@@ -30,6 +30,12 @@ class MediaGalleryPhotoResource extends Resource
     protected static ?string $navigationLabel = 'Gallery Photos';
     protected static ?int $navigationSort = 12;
 
+        public static function shouldRegisterNavigation(): bool
+    {
+        // Managed from the consolidated About Section page tabs.
+        return false;
+    }
+
     public static function form(Form $form): Form
     {
         return $form

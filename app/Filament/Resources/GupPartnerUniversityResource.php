@@ -28,6 +28,12 @@ class GupPartnerUniversityResource extends Resource
     protected static ?string $navigationLabel = 'Partner Universities';
     protected static ?int $navigationSort = 8;
 
+        public static function shouldRegisterNavigation(): bool
+    {
+        // Managed from the consolidated About Section page tabs.
+        return false;
+    }
+
     public static function form(Form $form): Form
     {
         return $form->schema([

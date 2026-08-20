@@ -35,6 +35,12 @@ class AccreditationAwardResource extends Resource
         return parent::getEloquentQuery()->where('type', 'award');
     }
 
+        public static function shouldRegisterNavigation(): bool
+    {
+        // Managed from the consolidated About Section page tabs.
+        return false;
+    }
+
     public static function form(Form $form): Form
     {
         return $form

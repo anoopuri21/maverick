@@ -21,6 +21,12 @@ class ManageAccreditationCinematic extends SettingsPage
     protected static ?int $navigationSort = 10;
     protected static string $settings = AccreditationCinematicSettings::class;
 
+    public static function shouldRegisterNavigation(): bool
+    {
+        // Rendered inside ManageAccreditationPage ("Cinematic Section" tab).
+        return false;
+    }
+
     protected function mutateFormDataBeforeSave(array $data): array
     {
         $data = MediaPicker::syncFieldFromAsset($data, 'image_url');

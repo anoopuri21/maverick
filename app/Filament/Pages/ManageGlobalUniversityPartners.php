@@ -37,6 +37,12 @@ class ManageGlobalUniversityPartners extends Page implements HasForms
     protected static ?int $navigationSort = 7;
     protected static string $view = 'filament.pages.manage-global-university-partners';
 
+    public static function shouldRegisterNavigation(): bool
+    {
+        // Rendered inside ManageGlobalPartnersPage ("Page Content" tab).
+        return false;
+    }
+
     public array $data = [];
 
     public function mount(): void
