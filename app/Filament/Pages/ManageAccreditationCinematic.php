@@ -16,9 +16,9 @@ class ManageAccreditationCinematic extends SettingsPage
     use HandlesCloudinaryImageFields;
 
     protected static ?string $navigationIcon = 'heroicon-o-presentation-chart-bar';
-    protected static ?string $navigationGroup = 'Accreditations Page';
+    protected static ?string $navigationGroup = 'About Section';
     protected static ?string $navigationLabel = 'Cinematic Section';
-    protected static ?int $navigationSort = 2;
+    protected static ?int $navigationSort = 10;
     protected static string $settings = AccreditationCinematicSettings::class;
 
     protected function mutateFormDataBeforeSave(array $data): array

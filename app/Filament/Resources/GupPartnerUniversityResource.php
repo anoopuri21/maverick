@@ -24,9 +24,9 @@ class GupPartnerUniversityResource extends Resource
     protected static ?string $model = GupPartnerUniversity::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-building-library';
-    protected static ?string $navigationGroup = 'Global Partners Page';
+    protected static ?string $navigationGroup = 'About Section';
     protected static ?string $navigationLabel = 'Partner Universities';
-    protected static ?int $navigationSort = 2;
+    protected static ?int $navigationSort = 8;
 
     public static function form(Form $form): Form
     {

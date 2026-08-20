@@ -22,10 +22,10 @@ class AccreditationAwardResource extends Resource
     protected static ?string $model = PartnerLogo::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-trophy';
-    protected static ?string $navigationGroup = 'Accreditations Page';
+    protected static ?string $navigationGroup = 'About Section';
     protected static ?string $navigationLabel = 'Awards & Recognition';
     protected static ?string $pluralLabel = 'Awards & Recognition';
-    protected static ?int $navigationSort = 3;
+    protected static ?int $navigationSort = 11;
 
     /**
      * Only manage logos of type "award" here.
