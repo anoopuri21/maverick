@@ -24,6 +24,14 @@ class AppServiceProvider extends ServiceProvider
         if (is_file($helpers)) {
             require_once $helpers;
         }
+
+        // Make settings migrations idempotent: add() skips existing settings
+        // instead of throwing SettingAlreadyExists, so `php artisan migrate`
+        // is safe to run repeatedly. Applies to all settings migrations.
+        $this->app->bind(
+            \Spatie\LaravelSettings\Migrations\SettingsMigrator::class,
+            \App\Settings\SafeSettingsMigrator::class
+        );
     }
 
     /**
