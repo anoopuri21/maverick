@@ -42,8 +42,8 @@ Route::get('/programs/{slug}', [\App\Http\Controllers\ProgramController::class, 
 
 // Unified Detail (WordPress-style root-level permalink)
 // Registered LAST so every other named route above is matched first.
-Route::get('/global-pathways', [\App\Http\Controllers\GlobalPathwayController::class, 'index'])->name('global-pathways.index');
-Route::get('/global-pathways/pathway-programs', [\App\Http\Controllers\GlobalPathwayController::class, 'pathwayPrograms'])->name('global-pathways.programs');
-Route::get('/global-pathways/global-opportunities', [\App\Http\Controllers\GlobalPathwayController::class, 'globalOpportunities'])->name('global-pathways.opportunities');
+
+Route::get('/pathway-programs', [\App\Http\Controllers\GlobalPathwayController::class, 'pathwayPrograms'])->name('global-pathways.programs');
+Route::get('/global-opportunities', [\App\Http\Controllers\GlobalPathwayController::class, 'globalOpportunities'])->name('global-pathways.opportunities');
 
 Route::get('/{slug}', [\App\Http\Controllers\InsightController::class, 'show'])->name('insights.show');

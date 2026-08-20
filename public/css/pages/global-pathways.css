@@ -64,3 +64,20 @@
   .gpw-item .num{font-size:26px}
   .gpw-item .link{grid-column:2}
 }
+
+/* ===== Cards design (design system) ===== */
+.gpw-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
+.gpw-card{position:relative;background:#fff;border:1px solid var(--gp-line);border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:14px;transition:transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s ease,border-color .3s ease;overflow:hidden}
+.gpw-card:hover{transform:translateY(-5px);box-shadow:0 18px 40px rgba(11,19,48,.10);border-color:rgba(15,41,131,.28)}
+.gpw-card .card-top{display:flex;align-items:center;justify-content:space-between}
+.gpw-card .card-ic{width:46px;height:46px;border-radius:14px;background:var(--gp-light);color:var(--gp-blue);display:flex;align-items:center;justify-content:center}
+.gpw-card .card-ic svg{width:22px;height:22px}
+.gpw-card .card-num{font-family:"PP Neue Montreal",sans-serif;font-size:30px;font-weight:700;color:rgba(15,41,131,.18)}
+.gpw-card h3{font-family:"PP Neue Montreal",sans-serif;font-size:20px;font-weight:600;letter-spacing:-.01em;margin:0}
+.gpw-card p{font-size:14px;color:var(--gp-muted);line-height:1.6;margin:0}
+.gpw-card .card-link{display:inline-flex;align-items:center;gap:8px;margin-top:auto;color:var(--gp-blue);font-weight:600;font-size:14px;text-decoration:none}
+.gpw-card .card-link svg{width:17px;height:17px;transition:transform .25s}
+.gpw-card .card-link:hover svg{transform:translateX(4px)}
+.gpw-card::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--gp-red);transform:scaleX(0);transform-origin:left;transition:transform .4s ease}
+.gpw-card:hover::after{transform:scaleX(1)}
+@media(max-width:640px){.gpw-cards{grid-template-columns:1fr}}

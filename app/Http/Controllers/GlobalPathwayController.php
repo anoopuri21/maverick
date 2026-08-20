@@ -6,24 +6,17 @@ use App\Models\GlobalPathway;
 
 class GlobalPathwayController extends Controller
 {
-    /** /global-pathways — single hub page with tabbed sections */
-    public function index()
-    {
-        $pathways = GlobalPathway::where('type', 'pathway-programs')->where('is_active', true)->first();
-        $opportunities = GlobalPathway::where('type', 'global-opportunities')->where('is_active', true)->first();
-
-        return view('pages.global-pathways.index', compact('pathways', 'opportunities'));
-    }
-
-    /** @deprecated kept for old direct links — redirect to hub */
+    /** /pathway-programs — page from slug */
     public function pathwayPrograms()
     {
-        return redirect()->route('global-pathways.index');
+        $page = GlobalPathway::where('slug', 'pathway-programs')->where('is_active', true)->first();
+        return view('pages.global-pathways.pathway-programs', compact('page'));
     }
 
-    /** @deprecated kept for old direct links — redirect to hub */
+    /** /global-opportunities — page from slug */
     public function globalOpportunities()
     {
-        return redirect()->route('global-pathways.index');
+        $page = GlobalPathway::where('slug', 'global-opportunities')->where('is_active', true)->first();
+        return view('pages.global-pathways.global-opportunities', compact('page'));
     }
 }

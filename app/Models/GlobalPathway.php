@@ -9,6 +9,7 @@ class GlobalPathway extends Model
 {
     protected $fillable = [
         'type',
+        'slug',
         'title',
         'eyebrow',
         'heading',

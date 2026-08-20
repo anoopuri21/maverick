@@ -35,7 +35,7 @@ class GlobalPathwayResource extends Resource
     {
         return $form->schema([
             Section::make('Basics')->schema([
-                Grid::make(2)->schema([
+                Grid::make(3)->schema([
                     Select::make('type')
                         ->options([
                             'pathway-programs' => 'Pathway Programs',
@@ -43,6 +43,7 @@ class GlobalPathwayResource extends Resource
                         ])
                         ->required(),
                     TextInput::make('title')->required(),
+                    TextInput::make('slug')->helperText('URL slug, e.g. pathway-programs'),
                 ]),
                 TextInput::make('eyebrow')->label('Eyebrow'),
                 Grid::make(2)->schema([
