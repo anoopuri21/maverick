@@ -80,7 +80,11 @@ class ManageLeadershipBoard extends Page implements HasForms
                                         Textarea::make('bio')->rows(3)->required(),
                                         MediaPicker::forField('image_url', 'leadership/leaders')
                                             ->label('Photo'),
-                                        TextInput::make('linkedin_url')->url()->label('LinkedIn URL')->default('#'),
+                                        TextInput::make('linkedin_url')
+                                            ->label('LinkedIn URL')
+                                            ->helperText('Leave as # or empty if not available.')
+                                            ->default('#')
+                                            ->rules(['nullable', 'string', 'max:255']),
                                     ])
                                     ->reorderable()
                                     ->collapsible()
@@ -149,7 +153,40 @@ class ManageLeadershipBoard extends Page implements HasForms
     protected function saveSettingsGroup(string $settingsClass, array $payload): void
     {
         $settings = app($settingsClass);
+        // Merge missing reflected properties from the CURRENT settings values
+        // (not class defaults) so Spatie never throws MissingSettings AND any
+        // untouched field (e.g. a nested MediaPicker URL) keeps its DB value.
+        $payload = $this->ensureAllSettingsProperties($settings, $payload);
         $payload = $this->preserveExistingImageFields($payload, $settings);
         $settings->fill($payload)->save();
+    }
+
+    /**
+     * Merge any missing settings properties from the current settings instance
+     * so Spatie's save() never throws MissingSettings, regardless of what the
+     * form submitted. Generic — works for any Spatie Settings class and keeps
+     * untouched fields (e.g. nested MediaPicker URLs) intact.
+     *
+     * @param  object  $settings  Spatie Settings instance (already loaded)
+     * @param  array<string, mixed>  $payload
+     * @return array<string, mixed>
+     */
+    protected function ensureAllSettingsProperties(object $settings, array $payload): array
+    {
+        $reflection = new \ReflectionClass($settings);
+
+        foreach ($reflection->getProperties(\ReflectionProperty::IS_PUBLIC) as $property) {
+            if ($property->isStatic()) {
+                continue;
+            }
+
+            $name = $property->getName();
+
+            if (! array_key_exists($name, $payload)) {
+                $payload[$name] = $settings->{$name} ?? $property->getDefaultValue();
+            }
+        }
+
+        return $payload;
     }
 }
