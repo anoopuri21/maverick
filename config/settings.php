@@ -17,6 +17,7 @@ return [
         \App\Settings\HowWeDoItSettings::class,
         \App\Settings\WhyMaverickSettings::class,
         \App\Settings\GlobalOpportunitiesSettings::class,
+        \App\Settings\PathwayProgramsSettings::class,
         \App\Settings\OurStoryHeroSettings::class,
         \App\Settings\OurStoryBeginningSettings::class,
         \App\Settings\OurStoryTodaySettings::class,

@@ -1,0 +1,220 @@
+/* ═══════════════════════════════════════════════
+   Pathway Programs page
+   Overview + minimal responsive cards grid + CTA
+   Uses brand design tokens from main.css
+═══════════════════════════════════════════════ */
+
+.page-pathways {
+  background: var(--color-warm-white, #f5f0eb);
+}
+
+/* ── Overview ─────────────────────────────── */
+.pw-overview {
+  padding-top: clamp(56px, 8vw, 96px);
+  padding-bottom: clamp(40px, 6vw, 72px);
+}
+
+.pw-overview__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-body, 'Poppins');
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-mba-red, #b20202);
+  margin-bottom: 20px;
+}
+
+.pw-overview__label-line {
+  width: 32px;
+  height: 2px;
+  background: var(--color-mba-red, #b20202);
+}
+
+.pw-overview__heading {
+  font-family: var(--font-display, 'PP Neue Montreal');
+  font-size: clamp(30px, 4.5vw, 52px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-mba-dark-blue, #071444);
+  margin: 0 0 24px;
+  max-width: 22ch;
+}
+
+.pw-overview__heading em {
+  font-style: italic;
+  color: var(--color-mba-red, #b20202);
+}
+
+.pw-overview__body {
+  max-width: 760px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.pw-overview__body p {
+  font-family: var(--font-body, 'Poppins');
+  font-size: clamp(15px, 1.4vw, 17px);
+  line-height: 1.75;
+  color: #4a4a55;
+  margin: 0;
+}
+
+/* ── Cards ─────────────────────────────────── */
+.pw-cards {
+  padding: clamp(24px, 4vw, 48px) 0 clamp(64px, 8vw, 104px);
+}
+
+.pw-cards__header {
+  text-align: center;
+  margin-bottom: clamp(32px, 4vw, 56px);
+}
+
+.pw-cards__title {
+  color: var(--color-mba-dark-blue, #071444);
+}
+
+.pw-cards__title em {
+  font-style: italic;
+  color: var(--color-mba-red, #b20202);
+}
+
+.pw-cards__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.pw-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid rgba(15, 41, 131, 0.12);
+  border-radius: var(--border-radius-bento, 24px);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.3s ease;
+}
+
+.pw-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 48px rgba(11, 19, 48, 0.12);
+}
+
+.pw-card__media {
+  position: relative;
+  height: 190px;
+  background: linear-gradient(150deg, var(--color-mba-blue, #0f2983), var(--color-mba-dark-blue, #071444));
+  overflow: hidden;
+}
+
+.pw-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.pw-card:hover .pw-card__media img {
+  transform: scale(1.05);
+}
+
+.pw-card__media--placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pw-card__media--placeholder svg {
+  width: 44px;
+  height: 44px;
+  stroke: rgba(255, 255, 255, 0.85);
+}
+
+.pw-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 24px;
+  flex: 1;
+}
+
+.pw-card__index {
+  font-family: var(--font-display, 'PP Neue Montreal');
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--color-mba-red, #b20202);
+}
+
+.pw-card__title {
+  font-family: var(--font-display, 'PP Neue Montreal');
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--color-mba-dark-blue, #071444);
+  margin: 0;
+}
+
+.pw-card__desc {
+  font-family: var(--font-body, 'Poppins');
+  font-size: 14px;
+  line-height: 1.6;
+  color: #5a5a66;
+  margin: 0;
+  flex: 1;
+}
+
+.pw-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-body, 'Poppins');
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-mba-blue, #0f2983);
+  margin-top: 8px;
+}
+
+.pw-card::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: var(--color-mba-red, #b20202);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.pw-card:hover::after {
+  transform: scaleX(1);
+}
+
+.pw-cards__empty {
+  text-align: center;
+  font-family: var(--font-body, 'Poppins');
+  color: #5a5a66;
+  padding: 40px 0;
+}
+
+/* ── Responsive ────────────────────────────── */
+@media (max-width: 992px) {
+  .pw-cards__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 620px) {
+  .pw-cards__grid {
+    grid-template-columns: 1fr;
+  }
+}

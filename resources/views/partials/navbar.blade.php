@@ -119,7 +119,7 @@
           </button>
           <ul class="navbar__dropdown" data-dropdown="pathways" aria-hidden="true">
             <li>
-              <a href="{{ url('/#pathways') }}" class="navbar__dropdown-link">Pathway Programs</a>
+              <a href="{{ route('pathway-programs') }}" class="navbar__dropdown-link">Pathway Programs</a>
             </li>
             <li>
               <a href="{{ url('/#opportunities') }}" class="navbar__dropdown-link">Global Opportunities</a>
@@ -243,7 +243,7 @@
             </button>
             <ul class="navbar__mobile-submenu" data-mobile-submenu="pathways">
               <li>
-                <a href="{{ url('/#pathways') }}" class="navbar__mobile-sublink">Pathway Programs</a>
+                <a href="{{ route('pathway-programs') }}" class="navbar__mobile-sublink">Pathway Programs</a>
               </li>
               <li>
                 <a href="{{ url('/#opportunities') }}" class="navbar__mobile-sublink">Global

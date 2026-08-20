@@ -17,6 +17,7 @@ use App\Models\Testimonial;
 use App\Settings\HowWeDoItSettings;
 use App\Settings\WhyMaverickSettings;
 use App\Settings\GlobalOpportunitiesSettings;
+use App\Settings\PathwayProgramsSettings;
 use App\Models\GupPartnerUniversity;
 use App\Models\PartnershipGalleryItem;
 use App\Settings\GlobalPartnersBenefitsSettings;
@@ -245,6 +246,18 @@ class PageController extends Controller
             'impact' => $impact,
             'scholarship' => $scholarship,
             'csrSeo' => app(CsrSeoSettings::class),
+        ]);
+    }
+
+    public function pathwayPrograms()
+    {
+        $settings = app(GlobalOpportunitiesSettings::class);
+
+        return view('pages.pathway-programs', [
+            'hero' => app(PathwayProgramsSettings::class),
+            'overview' => app(PathwayProgramsSettings::class),
+            'globalOpportunities' => $settings,
+            'cards' => array_values($settings->pathways ?? []),
         ]);
     }
 
