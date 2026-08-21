@@ -19,6 +19,7 @@ return [
         \App\Settings\GlobalOpportunitiesSettings::class,
         \App\Settings\PathwayProgramsSettings::class,
         \App\Settings\GlobalOpportunitiesPageSettings::class,
+        \App\Settings\HomepageSeoSettings::class,
         \App\Settings\OurStoryHeroSettings::class,
         \App\Settings\OurStoryBeginningSettings::class,
         \App\Settings\OurStoryTodaySettings::class,

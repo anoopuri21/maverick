@@ -69,6 +69,7 @@ class PageController extends Controller
             'howWeDoIt' => app(HowWeDoItSettings::class),
             'whyMaverick' => app(WhyMaverickSettings::class),
             'globalOpportunities' => app(GlobalOpportunitiesSettings::class),
+            'homeSeo' => app(\App\Settings\HomepageSeoSettings::class),
         ];
 
         // Collections

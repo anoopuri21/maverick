@@ -1,7 +1,17 @@
 @extends('layouts.app')
 
-@section('title', 'Maverick Business Academy | Transforming Learners into Global Leaders')
-@section('meta_description', 'Globally recognized qualifications, international pathways, and career-focused learning.')
+@section('title', ($homeSeo->meta_title ?? 'Maverick Business Academy | Transforming Learners into Global Leaders'))
+@section('meta_description', ($homeSeo->meta_description ?? 'Globally recognized qualifications, international pathways, and career-focused learning.'))
+
+@push('head')
+    @include('partials.seo-meta', ['seo' => $homeSeo])
+@endpush
+
+@if(!empty($homeSeo->custom_body_scripts))
+@push('scripts')
+    {!! $homeSeo->custom_body_scripts !!}
+@endpush
+@endif
 
 @section('content')
 
