@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', ($program->title ?? 'Programme') . ' | Maverick Business Academy')
-@section('meta_description', $program->short_description ?? 'Explore this Maverick Business Academy programme.')
+@section('title', ($program->seo?->meta_title ?? (($program->title ?? 'Programme') . ' | Maverick Business Academy')))
+@section('meta_description', $program->seo?->meta_description ?? $program->short_description ?? 'Explore this Maverick Business Academy programme.')
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/pages/program-detail.css') }}">

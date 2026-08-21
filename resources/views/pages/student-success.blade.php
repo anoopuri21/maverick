@@ -1,7 +1,17 @@
 @extends('layouts.app')
 
-@section('title', 'Student Success - Maverick Business Academy')
-@section('meta_description', 'Real stories from Maverick students and graduates — their journeys, achievements and transformations.')
+@section('title', ($studentSuccessSeo->meta_title ?? 'Student Success - Maverick Business Academy'))
+@section('meta_description', ($studentSuccessSeo->meta_description ?? 'Real stories from Maverick students and graduates — their journeys, achievements and transformations.'))
+
+@push('head')
+    @include('partials.seo-meta', ['seo' => $studentSuccessSeo])
+@endpush
+
+@if(!empty($studentSuccessSeo->custom_body_scripts))
+@push('scripts')
+    {!! $studentSuccessSeo->custom_body_scripts !!}
+@endpush
+@endif
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('assets/css/components/cinematic-hero.css') }}">

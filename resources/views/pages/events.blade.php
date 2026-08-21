@@ -1,7 +1,17 @@
 @extends('layouts.app')
 
-@section('title', 'Events - Maverick Business Academy')
-@section('meta_description', 'Explore upcoming events, webinars, workshops and masterclasses from Maverick Business Academy.')
+@section('title', ($eventsSeo->meta_title ?? 'Events - Maverick Business Academy'))
+@section('meta_description', ($eventsSeo->meta_description ?? 'Explore upcoming events, webinars, workshops and masterclasses from Maverick Business Academy.'))
+
+@push('head')
+    @include('partials.seo-meta', ['seo' => $eventsSeo])
+@endpush
+
+@if(!empty($eventsSeo->custom_body_scripts))
+@push('scripts')
+    {!! $eventsSeo->custom_body_scripts !!}
+@endpush
+@endif
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('assets/css/components/cinematic-hero.css') }}">

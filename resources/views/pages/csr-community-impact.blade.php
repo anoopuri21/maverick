@@ -7,6 +7,12 @@
     @include('partials.seo-meta', ['seo' => $csrSeo])
 @endpush
 
+@if(!empty($csrSeo->custom_body_scripts))
+@push('scripts')
+    {!! $csrSeo->custom_body_scripts !!}
+@endpush
+@endif
+
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/pages/csr-community-impact.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/components/cinematic-hero.css') }}">

@@ -44,6 +44,7 @@ if (! function_exists('edu_cta_class')) {
         return match ($style) {
             'secondary' => 'btn btn--secondary',
             'outline' => 'btn btn--outline',
+            'ghost' => 'btn btn--ghost',
             default => 'btn btn--primary',
         };
     }

@@ -197,14 +197,16 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.dmba-faq__question').forEach(btn => {
     btn.addEventListener('click', () => {
       const item = btn.closest('.dmba-faq__item');
-      const answer = item.querySelector('.dmba-faq__answer');
+      const answer = item?.querySelector('.dmba-faq__answer');
+      if (!item || !answer) return;
       const isOpen = item.classList.contains('is-open');
 
       // Close all others
       document.querySelectorAll('.dmba-faq__item.is-open').forEach(openItem => {
         if (openItem !== item) {
           openItem.classList.remove('is-open');
-          openItem.querySelector('.dmba-faq__answer').style.maxHeight = '0';
+          const openAnswer = openItem.querySelector('.dmba-faq__answer');
+          if (openAnswer) openAnswer.style.maxHeight = '0';
         }
       });
 
@@ -230,7 +232,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const dotsHost = document.querySelector('.dmba-testimonials__dots');
   const controls = document.querySelector('.dmba-testimonials__controls');
 
-  if (track && cards.length && dotsHost) {
+  if (track && cards.length && dotsHost && controls) {
     let currentIndex = 0;
     let cardsPerView = 1;
     let maxIndex = 0;

@@ -1,7 +1,17 @@
 @extends('layouts.app')
 
-@section('title', 'Pathway Programs | Maverick Business Academy London')
-@section('meta_description', 'Explore structured global pathway programmes at Maverick Business Academy London. Start closer to home, progress to internationally recognised partner universities, and build your future with flexible, career-focused learning.')
+@section('title', ($pathwayProgramsSeo->meta_title ?? 'Pathway Programs | Maverick Business Academy London'))
+@section('meta_description', ($pathwayProgramsSeo->meta_description ?? 'Explore structured global pathway programmes at Maverick Business Academy London. Start closer to home, progress to internationally recognised partner universities, and build your future with flexible, career-focused learning.'))
+
+@push('head')
+    @include('partials.seo-meta', ['seo' => $pathwayProgramsSeo])
+@endpush
+
+@if(!empty($pathwayProgramsSeo->custom_body_scripts))
+@push('scripts')
+    {!! $pathwayProgramsSeo->custom_body_scripts !!}
+@endpush
+@endif
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/pages/pathway-programs.css') }}">

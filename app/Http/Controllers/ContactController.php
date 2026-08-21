@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ContactFormRequest;
 use App\Mail\ContactFormSubmitted;
+use App\Settings\ContactSeoSettings;
 use App\Settings\SiteSettings;
 use Illuminate\Support\Facades\Mail;
 
@@ -15,7 +16,9 @@ class ContactController extends Controller
     public function index()
     {
         $site = app(SiteSettings::class);
-        return view('pages.contact', compact('site'));
+        $contactSeo = app(ContactSeoSettings::class);
+
+        return view('pages.contact', compact('site', 'contactSeo'));
     }
 
     /**

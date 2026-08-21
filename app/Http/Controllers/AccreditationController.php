@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\PartnerLogo;
 use App\Settings\AccreditationCinematicSettings;
+use App\Settings\AccreditationsSeoSettings;
 use Illuminate\Http\Request;
 
 class AccreditationController extends Controller
@@ -24,10 +25,11 @@ class AccreditationController extends Controller
             ->orderBy('sort_order')
             ->get();
 
-        return view('pages.accreditations', compact(
-            'accreditationLogos',
-            'awardLogos',
-            'cinematicSettings'
-        ));
+        return view('pages.accreditations', [
+            'accreditationLogos' => $accreditationLogos,
+            'awardLogos' => $awardLogos,
+            'cinematicSettings' => $cinematicSettings,
+            'accreditationsSeo' => app(AccreditationsSeoSettings::class),
+        ]);
     }
 }

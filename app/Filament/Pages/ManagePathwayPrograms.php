@@ -17,9 +17,9 @@ class ManagePathwayPrograms extends SettingsPage
     use HandlesCloudinaryImageFields;
 
     protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
-    protected static ?string $navigationGroup = null;
+    protected static ?string $navigationGroup = 'Global Pathways';
     protected static ?string $navigationLabel = 'Pathway Programs Page';
-    protected static ?int $navigationSort = 11;
+    protected static ?int $navigationSort = 2;
     protected static string $settings = PathwayProgramsSettings::class;
 
     public function form(Form $form): Form

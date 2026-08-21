@@ -1,7 +1,17 @@
 @extends('layouts.app')
 
-@section('title', 'Programmes | Maverick Business Academy')
-@section('meta_description', 'Explore Maverick Business Academy programmes — Bachelors, Masters, MBA, Diplomas and professional courses.')
+@section('title', ($programsListingSeo->meta_title ?? 'Programmes | Maverick Business Academy'))
+@section('meta_description', ($programsListingSeo->meta_description ?? 'Explore Maverick Business Academy programmes — Bachelors, Masters, MBA, Diplomas and professional courses.'))
+
+@push('head')
+    @include('partials.seo-meta', ['seo' => $programsListingSeo])
+@endpush
+
+@if(!empty($programsListingSeo->custom_body_scripts))
+@push('scripts')
+    {!! $programsListingSeo->custom_body_scripts !!}
+@endpush
+@endif
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('assets/css/components/cinematic-hero.css') }}">
@@ -13,7 +23,7 @@
 
     <section class="cinematic-hero cinematic-hero--short pl-hero" aria-label="Programmes" data-testid="pl-hero">
         <div class="cinematic-hero__bg" aria-hidden="true">
-            <div class="cinematic-hero__bg-image" style="background-image: url('{{ asset('assets/images/homepage/mba.jpg') }}')"></div>
+            <div class="cinematic-hero__bg-image" @style(['background-image: url(' . asset('assets/images/homepage/mba.jpg') . ')'])></div>
             <div class="cinematic-hero__gradient"></div>
             <div class="cinematic-hero__noise"></div>
             <div class="cinematic-hero__scanline"></div>
