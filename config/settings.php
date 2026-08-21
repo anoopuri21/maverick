@@ -101,6 +101,7 @@ return [
         \App\Settings\EventsSeoSettings::class,
         \App\Settings\StudentSuccessSeoSettings::class,
         \App\Settings\ProgramsListingSeoSettings::class,
+        \App\Settings\FacultyVoiceSeoSettings::class,
     ],
 
     /*

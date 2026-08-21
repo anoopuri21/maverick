@@ -18,6 +18,9 @@
         Real-world perspectives from the minds shaping global business
         education
       </p>
+      <a href="{{ route('faculty-voice.index') }}" class="insights__view-all">
+        View all Faculty Voices <span aria-hidden="true">→</span>
+      </a>
     </div>
 
     <div class="scroll-row scroll-row--light" data-scroll-row>
@@ -30,7 +33,7 @@
         <div class="insights__track">
           @forelse($facultyInsights as $insight)
             <article class="insights__card fade-up">
-              <a href="{{ $insight->link_url ?? '#' }}" class="insights__card-link">
+              <a href="{{ $insight->permalink() }}" class="insights__card-link">
                 <div class="insights__card-image">
                   <img src="{{ $insight->image_url }}"
                        alt="{{ $insight->title }}"
