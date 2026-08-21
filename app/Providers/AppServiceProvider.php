@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\View;
 use App\Models\Program;
 use App\Settings\FinalCtaSettings;
 use App\Settings\WhatWeDoSettings;
+use App\Models\FacultyInsight;
 use App\Models\UniversityPartner;
 
 class AppServiceProvider extends ServiceProvider
@@ -74,6 +75,17 @@ class AppServiceProvider extends ServiceProvider
                     ->where('is_active', true)
                     ->orderBy('sort_order')
                     ->limit(10)
+                    ->get()
+            );
+        });
+
+        View::composer('sections.faculty-insights', function ($view) {
+            $view->with(
+                'facultyInsights',
+                FacultyInsight::select('id', 'title', 'slug', 'badge', 'image_url', 'link_url', 'sort_order')
+                    ->where('is_active', true)
+                    ->orderBy('sort_order')
+                    ->limit(6)
                     ->get()
             );
         });

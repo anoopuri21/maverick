@@ -41,9 +41,9 @@ class ManageEdutainment extends Page implements HasForms
     use InteractsWithForms;
 
     protected static ?string $navigationIcon = 'heroicon-o-globe-alt';
-    protected static ?string $navigationGroup = 'About Section';
+    protected static ?string $navigationGroup = 'Global Pathways';
     protected static ?string $navigationLabel = 'Edutainment Page';
-    protected static ?int $navigationSort = 15;
+    protected static ?int $navigationSort = 5;
     protected static string $view = 'filament.pages.manage-edutainment';
 
     public array $data = [];

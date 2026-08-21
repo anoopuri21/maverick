@@ -22,11 +22,11 @@ class MediaAssetResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-photo';
 
-    protected static ?string $navigationGroup = 'Media';
+    protected static ?string $navigationGroup = 'Site Settings';
 
     protected static ?string $navigationLabel = 'Media Library';
 
-    protected static ?int $navigationSort = 1;
+    protected static ?int $navigationSort = 2;
 
     public static function form(Form $form): Form
     {

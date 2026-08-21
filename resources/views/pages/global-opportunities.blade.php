@@ -1,7 +1,17 @@
 @extends('layouts.app')
 
-@section('title', 'Global Opportunities | Maverick Business Academy London')
-@section('meta_description', 'Explore global opportunities at Maverick Business Academy London — study abroad, student exchange, international internships and European partnership programmes. Build experience the world recognises.')
+@section('title', ($globalOpportunitiesSeo->meta_title ?? 'Global Opportunities | Maverick Business Academy London'))
+@section('meta_description', ($globalOpportunitiesSeo->meta_description ?? 'Explore global opportunities at Maverick Business Academy London — study abroad, student exchange, international internships and European partnership programmes. Build experience the world recognises.'))
+
+@push('head')
+    @include('partials.seo-meta', ['seo' => $globalOpportunitiesSeo])
+@endpush
+
+@if(!empty($globalOpportunitiesSeo->custom_body_scripts))
+@push('scripts')
+    {!! $globalOpportunitiesSeo->custom_body_scripts !!}
+@endpush
+@endif
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/pages/global-opportunities.css') }}">

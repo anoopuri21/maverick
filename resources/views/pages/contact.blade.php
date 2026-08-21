@@ -1,7 +1,17 @@
 @extends('layouts.app')
 
-@section('title', 'Contact Us | Maverick Business Academy London')
-@section('meta_description', 'Connect with the admissions and partnerships team at Maverick Business Academy London. Reach our Sharjah / Dubai campus for inquiries.')
+@section('title', ($contactSeo->meta_title ?? 'Contact Us | Maverick Business Academy London'))
+@section('meta_description', ($contactSeo->meta_description ?? 'Connect with the admissions and partnerships team at Maverick Business Academy London. Reach our Sharjah / Dubai campus for inquiries.'))
+
+@push('head')
+    @include('partials.seo-meta', ['seo' => $contactSeo])
+@endpush
+
+@if(!empty($contactSeo->custom_body_scripts))
+@push('scripts')
+    {!! $contactSeo->custom_body_scripts !!}
+@endpush
+@endif
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('assets/css/contact.css') }}" />

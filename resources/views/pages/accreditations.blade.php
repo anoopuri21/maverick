@@ -1,7 +1,17 @@
 @extends('layouts.app')
 
-@section('title', 'Accreditations & Recognitions - Maverick Business Academy')
-@section('meta_description', 'Explore Maverick Business Academy\'s accreditations, partnerships with leading universities, and industry recognition awards.')
+@section('title', ($accreditationsSeo->meta_title ?? 'Accreditations & Recognitions - Maverick Business Academy'))
+@section('meta_description', ($accreditationsSeo->meta_description ?? 'Explore Maverick Business Academy\'s accreditations, partnerships with leading universities, and industry recognition awards.'))
+
+@push('head')
+    @include('partials.seo-meta', ['seo' => $accreditationsSeo])
+@endpush
+
+@if(!empty($accreditationsSeo->custom_body_scripts))
+@push('scripts')
+    {!! $accreditationsSeo->custom_body_scripts !!}
+@endpush
+@endif
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/pages/accreditations.css') }}">

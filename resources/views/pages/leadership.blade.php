@@ -7,6 +7,12 @@
     @include('partials.seo-meta', ['seo' => $leadershipSeo])
 @endpush
 
+@if(!empty($leadershipSeo->custom_body_scripts))
+@push('scripts')
+    {!! $leadershipSeo->custom_body_scripts !!}
+@endpush
+@endif
+
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/pages/leadership.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/components/cinematic-hero.css') }}">

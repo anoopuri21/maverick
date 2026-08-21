@@ -33,7 +33,8 @@ class InsightResource extends Resource
 
     protected static ?string $navigationLabel = 'Blogs & Insights';
     protected static ?string $navigationIcon = 'heroicon-o-newspaper';
-    protected static ?string $navigationGroup = 'Global Content';
+    protected static ?string $navigationGroup = 'Insights';
+    protected static ?int $navigationSort = 1;
 
     public static function form(Form $form): Form
     {

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Program;
 use App\Models\ProgramCategory;
+use App\Settings\ProgramsListingSeoSettings;
 use Illuminate\Http\Request;
 
 class ProgramController extends Controller
@@ -30,7 +31,11 @@ class ProgramController extends Controller
             ->orderBy('title')
             ->get();
 
-        return view('pages.programs.index', compact('categories', 'programs'));
+        return view('pages.programs.index', [
+            'categories' => $categories,
+            'programs' => $programs,
+            'programsListingSeo' => app(ProgramsListingSeoSettings::class),
+        ]);
     }
 
     /**

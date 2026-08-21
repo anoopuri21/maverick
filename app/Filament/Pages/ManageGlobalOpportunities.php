@@ -18,10 +18,9 @@ class ManageGlobalOpportunities extends SettingsPage
     use HandlesCloudinaryImageFields;
 
     protected static ?string $navigationIcon = 'heroicon-o-globe-alt';
-    // Individual top-level link (moved out of the Homepage group).
-    protected static ?string $navigationGroup = null;
+    protected static ?string $navigationGroup = 'Global Pathways';
     protected static ?string $navigationLabel = 'Global Opportunities';
-    protected static ?int $navigationSort = 12;
+    protected static ?int $navigationSort = 1;
     protected static string $settings = GlobalOpportunitiesSettings::class;
 
     public function form(Form $form): Form

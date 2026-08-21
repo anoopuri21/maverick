@@ -1,6 +1,17 @@
 @extends('layouts.app')
 
-@section('title', 'Media Gallery - Maverick Business Academy')
+@section('title', ($mediaGallerySeo->meta_title ?? 'Media Gallery - Maverick Business Academy'))
+@section('meta_description', ($mediaGallerySeo->meta_description ?? 'Photos, videos and campus moments from Maverick Business Academy.'))
+
+@push('head')
+    @include('partials.seo-meta', ['seo' => $mediaGallerySeo])
+@endpush
+
+@if(!empty($mediaGallerySeo->custom_body_scripts))
+@push('scripts')
+    {!! $mediaGallerySeo->custom_body_scripts !!}
+@endpush
+@endif
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/pages/media-gallery.css') }}">
