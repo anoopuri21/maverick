@@ -23,7 +23,7 @@ Route::get('/global-bachelors-pathway', function () {return view('pages.global-b
 Route::get('/masters-pathways', function () {return view('pages.masters-pathway');})->name('masters-pathways');
 
 // Edutainment
-Route::get('/educational-tours-edutainment', function () {return view('pages.edutainment');})->name('edutainment');
+Route::get('/educational-tours-edutainment', [PageController::class, 'edutainment'])->name('edutainment');
 
 // Contact
 Route::get('/contact', [\App\Http\Controllers\ContactController::class, 'index'])->name('contact');

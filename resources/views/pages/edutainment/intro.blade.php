@@ -1,38 +1,57 @@
 {{-- ===== S1: INTRO — Explore the World ===== --}}
+@php
+    $introCtas = collect($intro->ctas ?? [])->filter(fn ($cta) => filled($cta['label'] ?? null) && filled($cta['url'] ?? null));
+    $hasIntroTitle = filled($intro->title_line1 ?? null)
+        || filled($intro->title_line2 ?? null)
+        || filled($intro->title_line2_italic ?? null)
+        || filled($intro->title_line3 ?? null)
+        || filled($intro->title_line3_italic ?? null);
+    $showIntro = filled($intro->label ?? null)
+        || $hasIntroTitle
+        || html_filled($intro->body ?? null)
+        || filled($intro->emphasis ?? null)
+        || $introCtas->isNotEmpty();
+@endphp
+@if($showIntro)
 <section id="edu-intro" class="edu-intro section--light section-wrapper" aria-label="Explore the World. Experience New Cultures.">
   <div class="container">
     <div class="edu-intro__frame">
-      <span class="edu-intro__label fade-up">Educational Tours That Bring Learning to Life</span>
+      @if(filled($intro->label))
+      <span class="edu-intro__label fade-up">{{ $intro->label }}</span>
+      @endif
+
+      @if($hasIntroTitle)
       <h2 class="edu-intro__title fade-up">
-        Explore the World.<br>
-        Experience <em>New Cultures</em>.<br>
-        Learn Beyond the <em>Classroom</em>.
+        @if(filled($intro->title_line1)){{ $intro->title_line1 }}<br>@endif
+        @if(filled($intro->title_line2) || filled($intro->title_line2_italic))
+          {{ $intro->title_line2 }}@if(filled($intro->title_line2) && filled($intro->title_line2_italic)) @endif@if(filled($intro->title_line2_italic))<em>{{ $intro->title_line2_italic }}</em>@endif.<br>
+        @endif
+        @if(filled($intro->title_line3) || filled($intro->title_line3_italic))
+          {{ $intro->title_line3 }}@if(filled($intro->title_line3) && filled($intro->title_line3_italic)) @endif@if(filled($intro->title_line3_italic))<em>{{ $intro->title_line3_italic }}</em>@endif.
+        @endif
       </h2>
+      @endif
 
       <div class="edu-intro__body">
-        <p class="fade-up">
-          Education does not have to remain inside a classroom. Maverick Edutainment creates educational tours and international study trips that combine learning, exploration, culture and entertainment in one meaningful experience.
-        </p>
-        <p class="fade-up">
-          From introducing school students to the innovation, heritage and cultural diversity of the UAE, to taking university learners on an international study tour to China, every programme is designed to turn destinations into learning environments.
-        </p>
-        <p class="fade-up">
-          Students do not simply visit a new place. They observe, participate, interact, question and experience what they have previously learned through books, lectures or online classes.
-        </p>
-        <p class="fade-up">
-          Whether you represent a school, college, university or educational organisation, Maverick can help you create an age-appropriate educational travel programme aligned with your students, learning objectives and preferred destination.
-        </p>
+        @if(html_filled($intro->body ?? null))
+          <div class="edu-richtext">{!! $intro->body !!}</div>
+        @endif
 
+        @if(filled($intro->emphasis))
         <p class="edu-intro__emphasis fade-up">
-          <strong>Learning becomes more memorable when students experience it for themselves.</strong>
+          <strong>{{ $intro->emphasis }}</strong>
         </p>
+        @endif
 
+        @if($introCtas->isNotEmpty())
         <div class="edu-intro__ctas fade-up">
-          <a href="{{ route('contact') }}" class="btn btn--primary">Plan an Educational Tour</a>
-          <a href="{{ route('contact') }}" class="btn btn--secondary">Request a Custom Itinerary</a>
-          <a href="{{ route('contact') }}" class="btn btn--outline">Speak to Our Team</a>
+          @foreach($introCtas as $cta)
+            <a href="{{ edu_href($cta['url']) }}" class="{{ edu_cta_class($cta['style'] ?? 'primary') }}">{{ $cta['label'] }}</a>
+          @endforeach
         </div>
+        @endif
       </div>
     </div>
   </div>
 </section>
+@endif

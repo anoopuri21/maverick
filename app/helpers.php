@@ -30,3 +30,36 @@ if (! function_exists('media_url')) {
         return asset(ltrim($value, '/'));
     }
 }
+
+if (! function_exists('html_filled')) {
+    function html_filled(?string $value): bool
+    {
+        return filled(trim(html_entity_decode(strip_tags($value ?? ''), ENT_QUOTES | ENT_HTML5, 'UTF-8')));
+    }
+}
+
+if (! function_exists('edu_cta_class')) {
+    function edu_cta_class(?string $style): string
+    {
+        return match ($style) {
+            'secondary' => 'btn btn--secondary',
+            'outline' => 'btn btn--outline',
+            default => 'btn btn--primary',
+        };
+    }
+}
+
+if (! function_exists('edu_href')) {
+    function edu_href(?string $url): ?string
+    {
+        if (! filled($url)) {
+            return null;
+        }
+
+        if (\Illuminate\Support\Str::startsWith($url, ['http://', 'https://', '//', 'mailto:', 'tel:', '#'])) {
+            return $url;
+        }
+
+        return url($url);
+    }
+}
