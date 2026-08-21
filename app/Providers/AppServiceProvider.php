@@ -82,7 +82,7 @@ class AppServiceProvider extends ServiceProvider
         View::composer('sections.faculty-insights', function ($view) {
             $view->with(
                 'facultyInsights',
-                FacultyInsight::select('id', 'title', 'slug', 'badge', 'image_url', 'link_url', 'sort_order')
+                FacultyInsight::select('id', 'title', 'slug', 'badge', 'image_url', 'link_url', 'excerpt', 'faculty_name', 'faculty_role', 'content', 'sort_order')
                     ->where('is_active', true)
                     ->orderBy('sort_order')
                     ->limit(6)

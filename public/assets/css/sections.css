@@ -1470,6 +1470,20 @@
   margin: 0;
 }
 
+.insights__view-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-mba-dark-blue, #071444);
+  text-decoration: none;
+}
+
+.insights__view-all span {
+  color: var(--color-mba-red, #ec1f24);
+}
+
 /* ----- Scroll Container ----- */
 .insights__scroll {
   width: 100%;
