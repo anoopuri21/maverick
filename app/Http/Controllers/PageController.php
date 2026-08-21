@@ -38,6 +38,20 @@ use App\Settings\CsrGallerySettings;
 use App\Settings\CsrImpactSettings;
 use App\Settings\CsrScholarshipSettings;
 use App\Settings\CsrSeoSettings;
+use App\Settings\EdutainmentExperiencesSettings;
+use App\Settings\EdutainmentFaqSettings;
+use App\Settings\EdutainmentFinalCtaSettings;
+use App\Settings\EdutainmentHeroSettings;
+use App\Settings\EdutainmentInstitutionsSettings;
+use App\Settings\EdutainmentIntroSettings;
+use App\Settings\EdutainmentLearningBeyondSettings;
+use App\Settings\EdutainmentPackagesSettings;
+use App\Settings\EdutainmentProgrammesSettings;
+use App\Settings\EdutainmentSeoSettings;
+use App\Settings\EdutainmentThemesSettings;
+use App\Settings\EdutainmentWhatIsSettings;
+use App\Settings\EdutainmentWhoForSettings;
+use App\Settings\EdutainmentWhyChooseSettings;
 
 class PageController extends Controller
 {
@@ -55,6 +69,7 @@ class PageController extends Controller
             'howWeDoIt' => app(HowWeDoItSettings::class),
             'whyMaverick' => app(WhyMaverickSettings::class),
             'globalOpportunities' => app(GlobalOpportunitiesSettings::class),
+            'homeSeo' => app(\App\Settings\HomepageSeoSettings::class),
         ];
 
         // Collections
@@ -373,6 +388,66 @@ class PageController extends Controller
             'hero' => app(GlobalOpportunitiesPageSettings::class),
             'pageSettings' => app(GlobalOpportunitiesPageSettings::class),
             'opportunityItems' => array_values($settings->opportunities ?? []),
+        ]);
+    }
+
+    public function edutainment()
+    {
+        $intro = app(EdutainmentIntroSettings::class);
+        $intro->ctas = array_values($intro->ctas ?? []);
+
+        $whatIs = app(EdutainmentWhatIsSettings::class);
+        $whatIs->items = array_values($whatIs->items ?? []);
+
+        $learning = app(EdutainmentLearningBeyondSettings::class);
+        $learning->cards = array_values($learning->cards ?? []);
+
+        $whoFor = app(EdutainmentWhoForSettings::class);
+        $whoFor->cards = array_values($whoFor->cards ?? []);
+        $whoFor->ctas = array_values($whoFor->ctas ?? []);
+
+        $programmes = app(EdutainmentProgrammesSettings::class);
+        $programmes->cards = array_values($programmes->cards ?? []);
+        $programmes->china_items = array_values($programmes->china_items ?? []);
+
+        $themes = app(EdutainmentThemesSettings::class);
+        $themes->cards = array_values($themes->cards ?? []);
+
+        $experiences = app(EdutainmentExperiencesSettings::class);
+        $experiences->categories = array_values($experiences->categories ?? []);
+
+        $whyChoose = app(EdutainmentWhyChooseSettings::class);
+        $whyChoose->cards = array_values($whyChoose->cards ?? []);
+
+        $packages = app(EdutainmentPackagesSettings::class);
+        $packages->items = array_values($packages->items ?? []);
+        $packages->ctas = array_values($packages->ctas ?? []);
+
+        $institutions = app(EdutainmentInstitutionsSettings::class);
+        $institutions->tiles = array_values($institutions->tiles ?? []);
+        $institutions->ctas = array_values($institutions->ctas ?? []);
+
+        $faq = app(EdutainmentFaqSettings::class);
+        $faq->items = array_values($faq->items ?? []);
+
+        $finalCta = app(EdutainmentFinalCtaSettings::class);
+        $finalCta->ctas = array_values($finalCta->ctas ?? []);
+
+        return view('pages.edutainment', [
+            'hero' => app(EdutainmentHeroSettings::class),
+            'intro' => $intro,
+            'whatIs' => $whatIs,
+            'learning' => $learning,
+            'whoFor' => $whoFor,
+            'programmes' => $programmes,
+            'themes' => $themes,
+            'experiences' => $experiences,
+            'whyChoose' => $whyChoose,
+            'packages' => $packages,
+            'institutions' => $institutions,
+            'faq' => $faq,
+            'finalCta' => $finalCta,
+            'edutainmentSeo' => app(EdutainmentSeoSettings::class),
         ]);
     }
 
