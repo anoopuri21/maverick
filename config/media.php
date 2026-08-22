@@ -18,4 +18,24 @@ return [
         'image/',
     ],
 
+    'schema_skip_tables' => [
+        'migrations',
+        'cache',
+        'cache_locks',
+        'jobs',
+        'job_batches',
+        'failed_jobs',
+        'sessions',
+        'password_reset_tokens',
+        'personal_access_tokens',
+        'media_assets',
+        'media_recycle_logs',
+        'telescope_entries',
+        'telescope_entries_tags',
+        'telescope_monitoring',
+        'pulse_values',
+        'pulse_entries',
+        'pulse_aggregates',
+    ],
+
 ];

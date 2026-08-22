@@ -115,6 +115,7 @@ return [
         \App\Settings\AccreditationsPageSettings::class,
         \App\Settings\MediaGalleryPageSettings::class,
         \App\Settings\ProgramsDetailChromeSettings::class,
+        \App\Settings\ZohoSettings::class,
     ],
 
     /*

@@ -26,7 +26,8 @@
         ═══════════════════════════════════════════ --}}
         <section class="cinematic-hero" aria-label="Accreditations Hero">
             <div class="cinematic-hero__bg" aria-hidden="true">
-                <div class="cinematic-hero__bg-image" style="background-image: url('{{ $accreditationsPage->hero_background_image ?? 'https://images.pexels.com/photos/267885/pexels-photo-267885.jpeg?auto=compress&cs=tinysrgb&w=1920' }}')"></div>
+                @php $accredHeroBg = media_url($accreditationsPage->hero_background_image ?? null, 'https://images.pexels.com/photos/267885/pexels-photo-267885.jpeg?auto=compress&cs=tinysrgb&w=1920'); @endphp
+                <div class="cinematic-hero__bg-image" @if($accredHeroBg) style="background-image: url('{{ $accredHeroBg }}')" @endif></div>
                 <div class="cinematic-hero__gradient"></div>
                 <div class="cinematic-hero__noise"></div>
                 <div class="cinematic-hero__shapes">

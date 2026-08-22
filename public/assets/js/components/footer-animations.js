@@ -24,19 +24,33 @@ export function initFooterAnimations(selector) {
 
   // Newsletter form handling
   const form = footer.querySelector("[data-newsletter-form]");
-  if (form) {
-    form.addEventListener("submit", (e) => {
+  if (form && form.dataset.newsletterBound !== "1") {
+    form.dataset.newsletterBound = "1";
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
       const input = form.querySelector(".footer__newsletter-input");
       const btn = form.querySelector(".footer__newsletter-btn span");
-      if (input && input.value && btn) {
-        const orig = btn.textContent;
-        btn.textContent = "Subscribed";
-        input.value = "";
-        setTimeout(() => {
-          btn.textContent = orig;
-        }, 2500);
+      if (!input || !input.value || !btn) return;
+      const orig = btn.textContent;
+      try {
+        const res = await fetch(form.action, {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "X-Requested-With": "XMLHttpRequest",
+          },
+          body: new FormData(form),
+        });
+        if (res.ok) {
+          btn.textContent = "Subscribed";
+          input.value = "";
+        }
+      } catch (_) {
+        /* keep button usable */
       }
+      setTimeout(() => {
+        btn.textContent = orig;
+      }, 2500);
     });
   }
 

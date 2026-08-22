@@ -504,7 +504,7 @@
                     @if($reviews->count())<span class="trust-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 1-5 5 1 7-6-4-6 4 1-7-5-5 7-1z"/></svg>{{ $reviews->count() }} Google reviews</span>@endif
                 </div>
             </div>
-            <form class="enq-form rv rv-d1" action="{{ route('contact') }}" method="POST">
+            <form class="enq-form rv rv-d1" action="{{ route('programs.enquire') }}" method="POST">
                 @csrf
                 <input type="hidden" name="programme" value="{{ $program->title }}">
                 <h3>Request a call back</h3>
