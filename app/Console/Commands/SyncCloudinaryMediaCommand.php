@@ -20,7 +20,7 @@ class SyncCloudinaryMediaCommand extends Command
     {
         $folder = $this->option('folder') ?: $cloudinary->resolveBaseFolder();
         $dryRun = (bool) $this->option('dry-run');
-        $diskEnv = app()->environment();
+        $diskEnv = $cloudinary->diskEnv();
 
         $this->info('Syncing Cloudinary prefix: '.$folder.($dryRun ? ' (dry-run)' : ''));
 
@@ -78,8 +78,9 @@ class SyncCloudinaryMediaCommand extends Command
                             'height' => isset($resource['height']) ? (int) $resource['height'] : null,
                             'cloudinary_public_id' => $publicId,
                             'url' => $secureUrl,
-                            'folder' => $this->folderFromPublicId($publicId),
+                            'folder' => $cloudinary->normalizeFolderPath($this->folderFromPublicId($publicId)),
                             'disk_env' => $diskEnv,
+                            'used' => false,
                         ]);
 
                         $created++;

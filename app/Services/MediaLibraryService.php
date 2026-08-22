@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\MediaAsset;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Log;
@@ -16,7 +17,16 @@ class MediaLibraryService
 
     public function currentDiskEnv(): string
     {
-        return app()->environment();
+        return $this->cloudinary->diskEnv();
+    }
+
+    public function scopeLibrary(Builder $query): Builder
+    {
+        if ($this->cloudinary->usesEnvFolder()) {
+            $query->where('disk_env', $this->currentDiskEnv());
+        }
+
+        return $query;
     }
 
     /**
@@ -52,10 +62,14 @@ class MediaLibraryService
         $hash = hash_file('sha256', $path);
         $diskEnv = $this->currentDiskEnv();
 
-        $existing = MediaAsset::withoutGlobalScopes([SoftDeletingScope::class])
-            ->where('hash', $hash)
-            ->where('disk_env', $diskEnv)
-            ->first();
+        $existingQuery = MediaAsset::withoutGlobalScopes([SoftDeletingScope::class])
+            ->where('hash', $hash);
+
+        if ($this->cloudinary->usesEnvFolder()) {
+            $existingQuery->where('disk_env', $diskEnv);
+        }
+
+        $existing = $existingQuery->first();
 
         if ($existing) {
             if ($existing->trashed()) {
@@ -87,11 +101,13 @@ class MediaLibraryService
             'height' => $dimensions[1] ?? null,
             'cloudinary_public_id' => $publicId,
             'url' => $url,
-            'folder' => $folder,
+            'folder' => $uploaded['folder'] ?? $this->cloudinary->resolveUploadFolder($folder),
             'disk_env' => $diskEnv,
+            'used' => false,
+            'is_duplicate' => false,
         ]);
 
-        Log::info('[media-library] Created new asset', ['id' => $asset->id, 'hash' => $hash, 'folder' => $folder]);
+        Log::info('[media-library] Created new asset', ['id' => $asset->id, 'hash' => $hash, 'folder' => $asset->folder]);
 
         return $asset;
     }

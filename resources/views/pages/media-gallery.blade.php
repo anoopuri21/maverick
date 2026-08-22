@@ -29,6 +29,10 @@
 
     $photoCount = $photos->count();
     $videoCount = $videos->count();
+    $galleryHeroBg = media_url(
+        $mediaGalleryPage->hero_background_image ?? null,
+        'https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg?auto=compress&cs=tinysrgb&w=1920'
+    );
 @endphp
 
 
@@ -37,7 +41,7 @@
 ═══════════════════════════════════════════ --}}
 <section class="cinematic-hero cinematic-hero--short" aria-label="Media Gallery Hero">
     <div class="cinematic-hero__bg" aria-hidden="true">
-        <div class="cinematic-hero__bg-image" style="background-image: url('{{ $mediaGalleryPage->hero_background_image ?? 'https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg?auto=compress&cs=tinysrgb&w=1920' }}')"></div>
+        <div class="cinematic-hero__bg-image" @if($galleryHeroBg) style="background-image: url('{{ $galleryHeroBg }}')" @endif></div>
         <div class="cinematic-hero__gradient"></div>
         <div class="cinematic-hero__noise"></div>
         <div class="cinematic-hero__shapes">

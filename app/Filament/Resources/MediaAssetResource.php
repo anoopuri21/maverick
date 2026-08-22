@@ -69,6 +69,10 @@ class MediaAssetResource extends Resource
                     ->disabled()
                     ->dehydrated(false)
                     ->visibleOn('edit'),
+                Forms\Components\Placeholder::make('used_display')
+                    ->label('Used')
+                    ->content(fn (?MediaAsset $record): string => $record?->used ? 'Yes' : 'No')
+                    ->visibleOn('edit'),
             ]);
     }
 
@@ -83,6 +87,10 @@ class MediaAssetResource extends Resource
                 TextColumn::make('original_name')
                     ->label('Name')
                     ->searchable()
+                    ->sortable(),
+                Tables\Columns\IconColumn::make('used')
+                    ->label('Used')
+                    ->boolean()
                     ->sortable(),
                 TextColumn::make('folder')
                     ->badge()
@@ -103,6 +111,16 @@ class MediaAssetResource extends Resource
             ])
             ->defaultSort('id', 'desc')
             ->filters([
+                Tables\Filters\TernaryFilter::make('used')
+                    ->label('Used')
+                    ->placeholder('All')
+                    ->trueLabel('Used')
+                    ->falseLabel('Unused'),
+                Tables\Filters\TernaryFilter::make('is_duplicate')
+                    ->label('Duplicate')
+                    ->placeholder('All')
+                    ->trueLabel('Duplicates')
+                    ->falseLabel('Unique'),
                 Tables\Filters\SelectFilter::make('folder')
                     ->options(fn () => MediaAsset::query()
                     ->whereNotNull('folder')
