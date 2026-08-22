@@ -26,9 +26,15 @@ class MediaGalleryPhotoResource extends Resource
     protected static ?string $model = MediaGalleryPhoto::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-photo';
-    protected static ?string $navigationGroup = 'Media Gallery Page';
+    protected static ?string $navigationGroup = 'About Section';
     protected static ?string $navigationLabel = 'Gallery Photos';
-    protected static ?int $navigationSort = 1;
+    protected static ?int $navigationSort = 12;
+
+        public static function shouldRegisterNavigation(): bool
+    {
+        // Managed from the consolidated About Section page tabs.
+        return false;
+    }
 
     public static function form(Form $form): Form
     {
@@ -36,7 +42,7 @@ class MediaGalleryPhotoResource extends Resource
             ->schema([
                 MediaPicker::forField('image_url', 'media-gallery/photos')
                     ->label('Photo')
-                    ->required(),
+                    ,
                 TextInput::make('caption')
                     ->label('Caption')
                     ->maxLength(255)
@@ -62,7 +68,7 @@ class MediaGalleryPhotoResource extends Resource
                     ->default('medium')
                     ->helperText('Controls the item footprint in the masonry collage.'),
                 TextInput::make('sort_order')
-                    ->numeric()
+                    ->numeric()->nullable()
                     ->default(0),
                 Forms\Components\Toggle::make('is_active')
                     ->default(true),

@@ -7,7 +7,7 @@ use App\Filament\Resources\OurStoryTestimonialResource\Pages;
 use App\Models\OurStoryTestimonial;
 use Filament\Forms;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -31,12 +31,17 @@ class OurStoryTestimonialResource extends Resource
 
     protected static ?int $navigationSort = 4;
 
+    public static function shouldRegisterNavigation(): bool
+    {
+        // Managed from the Our Story Page tabs (ManageOurStory).
+        return false;
+    }
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 TextInput::make('name')
-                    ->required()
                     ->maxLength(255),
                 Select::make('rating')
                     ->options([
@@ -47,16 +52,14 @@ class OurStoryTestimonialResource extends Resource
                         5 => '5',
                     ])
                     ->default(5)
-                    ->required(),
-                Textarea::make('testimonial')
-                    ->required()
-                    ->rows(4)
+                    ,
+                RichEditor::make('testimonial')
                     ->columnSpanFull(),
                 MediaPicker::make('media_asset_id')
                     ->folder('our-story/testimonials')
                     ->urlField('photo'),
                 TextInput::make('sort_order')
-                    ->numeric()
+                    ->numeric()->nullable()
                     ->default(0),
                 Forms\Components\Toggle::make('is_active')
                     ->default(true),

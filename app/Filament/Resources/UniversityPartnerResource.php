@@ -33,9 +33,9 @@ class UniversityPartnerResource extends Resource
                     ->schema([
                         \Filament\Forms\Components\Grid::make(2)->schema([
                             \Filament\Forms\Components\TextInput::make('name')
-                                ->required(),
+                                ,
                             \Filament\Forms\Components\TextInput::make('country')
-                                ->required(),
+                                ,
                             \Filament\Forms\Components\TextInput::make('country_code')
                                 ->maxLength(3)
                                 ->helperText('e.g. UAE, UK, USA'),
@@ -47,10 +47,10 @@ class UniversityPartnerResource extends Resource
                     ->schema([
                         \Filament\Forms\Components\Grid::make(3)->schema([
                             \Filament\Forms\Components\TextInput::make('latitude')
-                                ->numeric()
+                                ->numeric()->nullable()
                                 ->helperText('e.g. 25.2048'),
                             \Filament\Forms\Components\TextInput::make('longitude')
-                                ->numeric()
+                                ->numeric()->nullable()
                                 ->helperText('e.g. 55.2708'),
                             \Filament\Forms\Components\Toggle::make('is_hub')
                                 ->label('Main Hub')
@@ -64,33 +64,39 @@ class UniversityPartnerResource extends Resource
                             ->helperText('e.g. AACSB Accredited, QAA Reviewed')
                             ->columnSpanFull(),
                         MediaPicker::forField('logo_url', 'university-partners')
-                            ->label('Logo')
-                            ->columnSpanFull(),
-                        \Filament\Forms\Components\TextInput::make('website_url')->url(),
-                        \Filament\Forms\Components\Textarea::make('description')->columnSpanFull(),
+                    ->label('Logo')
+                    ->columnSpanFull(),
+                        \Filament\Forms\Components\TextInput::make('website_url')->url()->nullable(),
+                        \Filament\Forms\Components\RichEditor::make('description')->columnSpanFull(),
                     ]),
 
-                \Filament\Forms\Components\Section::make('Programs Offered')
+                \Filament\Forms\Components\Section::make('URL & Programs')
                     ->schema([
-                        \Filament\Forms\Components\Repeater::make('programs')
-                            ->schema([
-                                \Filament\Forms\Components\TextInput::make('name')
-                                    ->label('Program Name')
-                                    ->required(),
-                                \Filament\Forms\Components\TextInput::make('url')
-                                    ->label('Program URL')
-                                    ->required(),
-                            ])
-                            ->columns(2)
-                            ->addActionLabel('Add Program')
+                        \Filament\Forms\Components\TextInput::make('slug')
+                            ->label('Slug / Initials')
+                            ->helperText('Unique URL identifier (e.g. gau). Used to disambiguate programs with the same name across universities.')
+                            
                             ->columnSpanFull(),
+                        \Filament\Forms\Components\Placeholder::make('programs_link')
+                            ->label('Programs Offered')
+                            ->content(function ($record) {
+                                if (! $record) {
+                                    return 'Save this university first, then link programs from the Programs resource.';
+                                }
+                                $count = $record->programs()->count();
+                                if ($count === 0) {
+                                    return 'No programs linked yet. Link them from the Programs resource (University Partner dropdown).';
+                                }
+                                return $record->programs()->pluck('title')->implode(' · ');
+                            })
+                    ->columnSpanFull(),
                     ]),
 
                 \Filament\Forms\Components\Section::make('Display')
                     ->schema([
                         \Filament\Forms\Components\Grid::make(2)->schema([
                             \Filament\Forms\Components\TextInput::make('sort_order')
-                                ->numeric()
+                                ->numeric()->nullable()
                                 ->default(0),
                             \Filament\Forms\Components\Toggle::make('is_active')
                                 ->default(true),

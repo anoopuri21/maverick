@@ -31,18 +31,20 @@ class ProgramCategoryResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
-                    ->required()
                     ->live(onBlur: true)
                     ->afterStateUpdated(function (Set $set, ?string $state) {
                         $set('slug', Str::slug($state));
                     }),
                 Forms\Components\TextInput::make('slug')
-                    ->required()
-                    ->unique(ignoreRecord: true),
+                    ,
                 Forms\Components\TextInput::make('icon')
                     ->label('Lucide Icon Name'),
-                Forms\Components\Textarea::make('description')
+                Forms\Components\RichEditor::make('description')
                     ->columnSpanFull(),
+                Forms\Components\TextInput::make('sort_order')
+                    ->numeric()->nullable()
+                    ->default(0)
+                    ->helperText('Lower numbers appear first in the navbar and listings.'),
                 Forms\Components\Toggle::make('is_active')
                     ->default(true),
             ]);
@@ -57,6 +59,10 @@ class ProgramCategoryResource extends Resource
                     ->searchable(),
                 TextColumn::make('slug'),
                 TextColumn::make('icon'),
+                TextColumn::make('sort_order')
+                    ->numeric()->nullable()
+                    ->sortable()
+                    ->label('Order'),
                 IconColumn::make('is_active')
                     ->boolean(),
                 TextColumn::make('created_at')

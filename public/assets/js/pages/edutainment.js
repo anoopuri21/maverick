@@ -138,13 +138,15 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.edu-faq__question').forEach((btn) => {
     btn.addEventListener('click', () => {
       const item = btn.closest('.edu-faq__item');
-      const answer = item.querySelector('.edu-faq__answer');
+      const answer = item?.querySelector('.edu-faq__answer');
+      if (!item || !answer) return;
       const isOpen = item.classList.contains('is-open');
 
       document.querySelectorAll('.edu-faq__item.is-open').forEach((openItem) => {
         if (openItem !== item) {
           openItem.classList.remove('is-open');
-          openItem.querySelector('.edu-faq__answer').style.maxHeight = '0';
+          const openAnswer = openItem.querySelector('.edu-faq__answer');
+          if (openAnswer) openAnswer.style.maxHeight = '0';
         }
       });
 

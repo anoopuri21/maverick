@@ -18,21 +18,22 @@ class EventResource extends Resource
     protected static ?string $model = Event::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-    protected static ?string $navigationGroup = 'Global Content';
+    protected static ?string $navigationGroup = 'Insights';
+    protected static ?int $navigationSort = 2;
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\TextInput::make('title')
-                    ->required(),
+                    ,
                 Forms\Components\DatePicker::make('event_date')
-                    ->required(),
+                    ,
                 Forms\Components\TextInput::make('event_type'),
-                Forms\Components\Textarea::make('description'),
+                Forms\Components\RichEditor::make('description'),
                 Forms\Components\TextInput::make('location'),
                 Forms\Components\TextInput::make('link_url')
-                    ->url(),
+                    ->url()->nullable(),
                 Forms\Components\Toggle::make('is_active'),
             ]);
     }

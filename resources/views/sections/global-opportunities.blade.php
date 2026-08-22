@@ -1,167 +1,111 @@
 <section id="global-opportunities" class="opportunities section-wrapper section--light"
   aria-label="Global Opportunities and Pathways">
   <div class="container opportunities__inner">
-    <!-- ========== HEADER (Editorial Style) ========== -->
     <div class="opportunities__header">
       <div class="section-label"><span>Beyond Borders</span></div>
+      @if(filled($globalOpportunities->heading ?? null))
       <h2 class="opportunities__heading section-title">
         <span class="text-reveal-wrapper">
           <span class="text-reveal-inner">{{ $globalOpportunities->heading }}</span>
         </span>
       </h2>
+      @endif
+      @if(filled($globalOpportunities->subtitle ?? null))
       <p class="opportunities__subtitle body-text">
         {{ $globalOpportunities->subtitle }}
       </p>
+      @endif
     </div>
 
-    <!-- ========== SPLIT SCREEN ========== -->
     <div class="opportunities__split">
-      <!-- LEFT COLUMN  Global Opportunities -->
-      <!-- DYNAMIC START: pathways-column -->
-      <div class="opportunities__column opportunities__column--right">
+      @php
+        $opportunities = collect(settings_array(data_get($globalOpportunities ?? null, 'opportunities', [])))
+            ->filter(fn ($item) => is_array($item) && (filled($item['title'] ?? null) || filled($item['desc'] ?? null) || filled($item['url'] ?? null)));
+        $pathways = collect(settings_array(data_get($globalOpportunities ?? null, 'pathways', [])))
+            ->filter(fn ($item) => is_array($item) && (filled($item['title'] ?? null) || filled($item['desc'] ?? null) || filled($item['url'] ?? null)));
+      @endphp
+
+      <div class="opportunities__column opportunities__column--right" id="opportunities">
         <div class="opportunities__column-header">
           <span class="opportunities__column-index">01</span>
-          <h3 class="opportunities__column-title">{{ $globalOpportunities->right_title }}</h3>
+          @if(filled($globalOpportunities->left_title ?? null))
+          <h3 class="opportunities__column-title">{{ $globalOpportunities->left_title }}</h3>
+          @endif
           <div class="opportunities__column-line"></div>
         </div>
 
+        @if($opportunities->isNotEmpty())
         <ul class="opportunities__list">
-          <!-- DYNAMIC START: pathways-items -->
+          @foreach($opportunities as $i => $item)
+          @php $itemHref = edu_href($item['url'] ?? null); @endphp
           <li class="opportunities__item">
-            <a href="{{ $globalOpportunities->path1_url }}" class="opportunities__link">
-              <span class="opportunities__item-number">01</span>
+            @if($itemHref)
+            <a href="{{ $itemHref }}" class="opportunities__link">
+            @else
+            <div class="opportunities__link">
+            @endif
+              <span class="opportunities__item-number">{{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}</span>
               <div class="opportunities__item-content">
-                <h4 class="opportunities__item-title">{{ $globalOpportunities->path1_title }}</h4>
-                <p class="opportunities__item-desc">
-                  {{ $globalOpportunities->path1_desc }}
-                </p>
+                @if(filled($item['title'] ?? null))
+                <h4 class="opportunities__item-title">{{ $item['title'] }}</h4>
+                @endif
+                @if(!empty($item['desc']))
+                <p class="opportunities__item-desc">{!! rich_html($item['desc'] ?? null) !!}</p>
+                @endif
               </div>
               <span class="opportunities__item-arrow" aria-hidden="true">→</span>
+            @if($itemHref)
             </a>
+            @else
+            </div>
+            @endif
           </li>
-
-          <li class="opportunities__item">
-            <a href="{{ $globalOpportunities->path2_url }}" class="opportunities__link">
-              <span class="opportunities__item-number">02</span>
-              <div class="opportunities__item-content">
-                <h4 class="opportunities__item-title">{{ $globalOpportunities->path2_title }}</h4>
-                <p class="opportunities__item-desc">
-                  {{ $globalOpportunities->path2_desc }}
-                </p>
-              </div>
-              <span class="opportunities__item-arrow" aria-hidden="true">→</span>
-            </a>
-          </li>
-
-          <li class="opportunities__item">
-            <a href="{{ $globalOpportunities->path3_url }}" class="opportunities__link">
-              <span class="opportunities__item-number">03</span>
-              <div class="opportunities__item-content">
-                <h4 class="opportunities__item-title">
-                  {{ $globalOpportunities->path3_title }}
-                </h4>
-                <p class="opportunities__item-desc">
-                  {{ $globalOpportunities->path3_desc }}
-                </p>
-              </div>
-              <span class="opportunities__item-arrow" aria-hidden="true">→</span>
-            </a>
-          </li>
-
-          <li class="opportunities__item">
-            <a href="{{ $globalOpportunities->path4_url }}" class="opportunities__link">
-              <span class="opportunities__item-number">04</span>
-              <div class="opportunities__item-content">
-                <h4 class="opportunities__item-title">
-                  {{ $globalOpportunities->path4_title }}
-                </h4>
-                <p class="opportunities__item-desc">
-                  {{ $globalOpportunities->path4_desc }}
-                </p>
-              </div>
-              <span class="opportunities__item-arrow" aria-hidden="true">→</span>
-            </a>
-          </li>
-          <!-- DYNAMIC END: pathways-items -->
+          @endforeach
         </ul>
+        @endif
       </div>
-      <!-- DYNAMIC END: pathways-column -->
-      <!-- DIVIDER -->
+
       <div class="opportunities__divider" aria-hidden="true"></div>
 
-      <!-- RIGHT COLUMN  Global Pathways -->
-      <!-- DYNAMIC START: opportunities-column -->
-      <div class="opportunities__column opportunities__column--left">
+      <div class="opportunities__column opportunities__column--left" id="pathways">
         <div class="opportunities__column-header">
           <span class="opportunities__column-index">02</span>
-          <h3 class="opportunities__column-title">
-            {{ $globalOpportunities->left_title }}
-          </h3>
+          @if(filled($globalOpportunities->right_title ?? null))
+          <h3 class="opportunities__column-title">{{ $globalOpportunities->right_title }}</h3>
+          @endif
           <div class="opportunities__column-line"></div>
         </div>
 
+        @if($pathways->isNotEmpty())
         <ul class="opportunities__list">
-          <!-- DYNAMIC START: opportunities-items -->
+          @foreach($pathways as $i => $item)
+          @php $itemHref = edu_href($item['url'] ?? null); @endphp
           <li class="opportunities__item">
-            <a href="{{ $globalOpportunities->opp1_url }}" class="opportunities__link">
-              <span class="opportunities__item-number">01</span>
+            @if($itemHref)
+            <a href="{{ $itemHref }}" class="opportunities__link">
+            @else
+            <div class="opportunities__link">
+            @endif
+              <span class="opportunities__item-number">{{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}</span>
               <div class="opportunities__item-content">
-                <h4 class="opportunities__item-title">{{ $globalOpportunities->opp1_title }}</h4>
-                <p class="opportunities__item-desc">
-                  {{ $globalOpportunities->opp1_desc }}
-                </p>
+                @if(filled($item['title'] ?? null))
+                <h4 class="opportunities__item-title">{{ $item['title'] }}</h4>
+                @endif
+                @if(!empty($item['desc']))
+                <p class="opportunities__item-desc">{!! rich_html($item['desc'] ?? null) !!}</p>
+                @endif
               </div>
               <span class="opportunities__item-arrow" aria-hidden="true">→</span>
+            @if($itemHref)
             </a>
+            @else
+            </div>
+            @endif
           </li>
-
-          <li class="opportunities__item">
-            <a href="{{ $globalOpportunities->opp2_url }}" class="opportunities__link">
-              <span class="opportunities__item-number">02</span>
-              <div class="opportunities__item-content">
-                <h4 class="opportunities__item-title">
-                  {{ $globalOpportunities->opp2_title }}
-                </h4>
-                <p class="opportunities__item-desc">
-                  {{ $globalOpportunities->opp2_desc }}
-                </p>
-              </div>
-              <span class="opportunities__item-arrow" aria-hidden="true">→</span>
-            </a>
-          </li>
-      <!-- 
-          <li class="opportunities__item">
-            <a href="{{ $globalOpportunities->opp3_url }}" class="opportunities__link">
-              <span class="opportunities__item-number">03</span>
-              <div class="opportunities__item-content">
-                <h4 class="opportunities__item-title">{{ $globalOpportunities->opp3_title }}</h4>
-                <p class="opportunities__item-desc">
-                  {{ $globalOpportunities->opp3_desc }}
-                </p>
-              </div>
-              <span class="opportunities__item-arrow" aria-hidden="true">→</span>
-            </a>
-          </li>
-
-          <li class="opportunities__item">
-            <a href="{{ $globalOpportunities->opp4_url }}" class="opportunities__link">
-              <span class="opportunities__item-number">04</span>
-              <div class="opportunities__item-content">
-                <h4 class="opportunities__item-title">
-                  {{ $globalOpportunities->opp4_title }}
-                </h4>
-                <p class="opportunities__item-desc">
-                  {{ $globalOpportunities->opp4_desc }}
-                </p>
-              </div>
-              <span class="opportunities__item-arrow" aria-hidden="true">→</span>
-            </a>
-          </li> -->
-          <!-- DYNAMIC END: opportunities-items -->
+          @endforeach
         </ul>
+        @endif
       </div>
-      <!-- DYNAMIC END: opportunities-column -->
-
     </div>
   </div>
 </section>

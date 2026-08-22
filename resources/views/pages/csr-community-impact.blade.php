@@ -1,11 +1,21 @@
 @extends('layouts.app')
 
-@section('title', 'CSR & Community Impact | Maverick Business Academy London')
-@section('meta_description', 'Completely redesigned CSR & Community Impact page of Maverick Business Academy London — Creating Positive Impact Through Education, Community Engagement, and Social Responsibility.')
+@section('title', ($csrSeo->meta_title ?? 'CSR & Community Impact | Maverick Business Academy London'))
+@section('meta_description', ($csrSeo->meta_description ?? 'Creating Positive Impact Through Education, Community Engagement, and Social Responsibility.'))
+
+@push('head')
+    @include('partials.seo-meta', ['seo' => $csrSeo])
+@endpush
+
+@if(!empty($csrSeo->custom_body_scripts))
+@push('scripts')
+    {!! $csrSeo->custom_body_scripts !!}
+@endpush
+@endif
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('css/pages/csr-community-impact.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/components/cinematic-hero.css') }}">
+    <link rel="stylesheet" href="{{ cached_asset('css/pages/csr-community-impact.css') }}" />
+    <link rel="stylesheet" href="{{ cached_asset('assets/css/components/cinematic-hero.css') }}">
 @endpush
 
 @section('content')
@@ -21,7 +31,9 @@
          ========================================== --}}
     <section class="cinematic-hero cinematic-hero--short" aria-label="CSR Hero">
         <div class="cinematic-hero__bg" aria-hidden="true">
-            <div class="cinematic-hero__bg-image" style="background-image: url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=1920')"></div>
+            @if(filled($hero->background_image))
+            <div class="cinematic-hero__bg-image" style="background-image: url('{{ $hero->background_image }}')"></div>
+            @endif
             <div class="cinematic-hero__gradient"></div>
             <div class="cinematic-hero__noise"></div>
             <div class="cinematic-hero__shapes">
@@ -49,21 +61,28 @@
             </div>
         </div>
         <div class="container cinematic-hero__content">
+            @if(filled($hero->tag))
             <span class="cinematic-hero__eyebrow">
                 <span class="cinematic-hero__eyebrow-line"></span>
-                SOCIAL RESPONSIBILITY
+                {{ $hero->tag }}
             </span>
+            @endif
+            @if(filled($hero->heading_line1 ?? null) || filled($hero->heading_italic ?? null))
             <h1 class="cinematic-hero__title">
-                CSR &<br>
-                <em>Community Impact</em>
+                @if(filled($hero->heading_line1 ?? null)){{ $hero->heading_line1 }}@endif
+                @if(filled($hero->heading_italic ?? null))<br><em>{{ $hero->heading_italic }}</em>@endif
             </h1>
-            <p class="cinematic-hero__description">Creating Positive Impact Through Education, Community Engagement, and Social Responsibility. Our initiatives empower communities, promote sustainability, and foster inclusive growth.</p>
+            @endif
+            @if(html_filled($hero->description ?? null))
+            <p class="cinematic-hero__description">{!! rich_html($hero->description ?? null) !!}</p>
+            @endif
             <div class="cinematic-hero__scroll-hint" aria-hidden="true">
                 <span class="cinematic-hero__scroll-text">Scroll to explore</span>
                 <span class="cinematic-hero__scroll-arrow" data-lucide="chevron-down"></span>
             </div>
         </div>
     </section>
+
     {{-- ==========================================
          SECTION 1: OUR COMMITMENT
          ========================================== --}}
@@ -71,15 +90,19 @@
         <div class="container">
             <div class="csr-commitment__grid">
                 <div class="csr-commitment__content">
-                    <div class="section-label"><span>Our Values</span></div>
-                    <h2 class="csr-section-heading">Our <span class="csr-text-accent">Commitment</span></h2>
-                    <p class="csr-body-text">
-                        At Maverick Business Academy, we believe education extends beyond classrooms. Through our CSR initiatives, we actively contribute to community development, educational accessibility, professional growth, and social wellbeing.
-                    </p>    
+                    @if(filled($commitment->label))
+                    <div class="section-label"><span>{{ $commitment->label }}</span></div>
+                    @endif
+                    <h2 class="csr-section-heading">{{ $commitment->heading }}<span class="csr-text-accent">{{ $commitment->heading_italic }}</span></h2>
+                    @if(html_filled($commitment->body ?? null))
+                    <div class="csr-body-text">{!! rich_html($commitment->body ?? null) !!}</div>
+                    @endif
                 </div>
                 <div class="csr-commitment__visual">
                     <div class="csr-commitment__image-container">
-                        <img src="https://res.cloudinary.com/i08gwudw/image/upload/v1785846422/csr-impact_bh8qyb.png" alt="Students and educators community engagement" class="csr-commitment__img" loading="lazy">
+                        @if(filled($commitment->image_url))
+                        <img src="{{ $commitment->image_url }}" alt="Students and educators community engagement" class="csr-commitment__img" loading="lazy">
+                        @endif
                         <div class="csr-decorative-pattern"></div>
                     </div>
                 </div>
@@ -90,86 +113,102 @@
     {{-- ==========================================
          SECTION 2: CSR FOCUS AREAS (Icon Cards)
          ========================================== --}}
+    @if(!empty($focus->items))
     <section class="csr-focus section--light">
         <div class="container">
             <div class="csr-section-header">
-            <div class="section-label"><span>Pillars</span></div>
-                <h2 class="csr-section-heading">CSR Focus <span class="csr-text-accent">Areas</span></h2>
+                @if(filled($focus->label))
+                <div class="section-label"><span>{{ $focus->label }}</span></div>
+                @endif
+                <h2 class="csr-section-heading">{{ $focus->heading }}<span class="csr-text-accent">{{ $focus->heading_italic }}</span></h2>
             </div>
 
             <div class="csr-focus__grid">
-                @foreach($focusAreas as $card)
+                @foreach(collect($focus->items ?? []) as $card)
+                @if(!is_array($card)) @continue @endif
                 <div class="csr-focus-card">
                     <div class="csr-focus-card__icon-wrapper">
-                        <span class="csr-focus-card__icon" data-lucide="{{ $card['icon'] }}"></span>
+                        <span class="csr-focus-card__icon" data-lucide="{{ $card['icon'] ?? 'circle' }}"></span>
                     </div>
-                    <h3 class="csr-focus-card__title">{{ $card['title'] }}</h3>
+                    <h3 class="csr-focus-card__title">{{ $card['title'] ?? '' }}</h3>
+                    @if(collect($card['activities'] ?? [])->isNotEmpty())
                     <ul class="csr-focus-card__list">
-                        @foreach($card['activities'] as $activity)
+                        @foreach(collect($card['activities'] ?? []) as $activity)
                         <li class="csr-focus-card__item">
                             <span class="csr-focus-card__item-dot"></span>
-                            {{ $activity }}
+                            {{ is_array($activity) ? ($activity['activity'] ?? '') : $activity }}
                         </li>
                         @endforeach
                     </ul>
-                </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
-
-    {{-- ==========================================
-         SECTION 3: CSR ACTIVITIES GALLERY (⭐ MAIN SECTION)
-         ========================================== --}}
-    <section class="csr-gallery section--light">
-        <div class="container">
-            <div class="csr-section-header">
-            <div class="section-label"><span>Our Impact In Action</span></div>
-                <h2 class="csr-section-heading">CSR <span class="csr-text-accent">Activities</span></h2>
-            </div>
-
-            <div class="csr-gallery__grid">
-                @foreach($galleryActivities as $index => $item)
-                @php
-                    // Create an asymmetrical layout sequence
-                    // Card 0, 3: large (span 7) | Card 1, 2: medium (span 5)
-                    $cardClass = ($index % 4 === 0 || $index % 4 === 3) ? 'csr-gallery-card--large' : 'csr-gallery-card--medium';
-                @endphp
-                <div class="csr-gallery-card {{ $cardClass }}">
-                    <div class="csr-gallery-card__image-wrapper">
-                        <img src="{{ $item['image'] }}" alt="{{ $item['title'] }}" class="csr-gallery-card__image" loading="lazy">
-                    </div>
-                    <div class="csr-gallery-card__content">
-                        <h3 class="csr-gallery-card__title">{{ $item['title'] }}</h3>
-                        <p class="csr-gallery-card__desc">{{ $item['description'] }}</p>
-                    </div>
-                </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
-
-    {{-- ==========================================
-         SECTION 4: IMPACT NUMBERS (Counters)
-         ========================================== --}}
-    @if($impactNumbers && count($impactNumbers) > 0)
-    <section class="csr-impact section--dark">
-        <div class="csr-impact__pattern"></div>
-        <div class="container">
-            <div class="csr-impact__grid">
-                @foreach($impactNumbers as $counter)
-                <div class="csr-impact-card">
-                    <div class="csr-impact-card__number-wrapper">
-                        <span class="csr-impact-card__number" data-target="{{ $counter['value'] }}">0</span><span class="csr-impact-card__suffix">{{ $counter['suffix'] }}</span>
-                    </div>
-                    <div class="csr-impact-card__divider"></div>
-                    <div class="csr-impact-card__label">{{ $counter['label'] }}</div>
+                    @endif
                 </div>
                 @endforeach
             </div>
         </div>
     </section>
     @endif
+
+    {{-- ==========================================
+         SECTION 3: CSR ACTIVITIES GALLERY (⭐ MAIN SECTION)
+         ========================================== --}}
+    @if(!empty($gallery->items))
+    <section class="csr-gallery section--light">
+        <div class="container">
+            <div class="csr-section-header">
+                @if(filled($gallery->label))
+                <div class="section-label"><span>{{ $gallery->label }}</span></div>
+                @endif
+                <h2 class="csr-section-heading">{{ $gallery->heading }}<span class="csr-text-accent">{{ $gallery->heading_italic }}</span></h2>
+            </div>
+
+            <div class="csr-gallery__grid">
+                @foreach(collect($gallery->items ?? []) as $index => $item)
+                @php
+                    $cardClass = ($index % 4 === 0 || $index % 4 === 3) ? 'csr-gallery-card--large' : 'csr-gallery-card--medium';
+                @endphp
+                <div class="csr-gallery-card {{ $cardClass }}">
+                    <div class="csr-gallery-card__image-wrapper">
+                        @if(filled($item['image'] ?? null))
+                        <img src="{{ $item['image'] }}" alt="{{ $item['title'] ?? '' }}" class="csr-gallery-card__image" loading="lazy">
+                        @endif
+                    </div>
+                    <div class="csr-gallery-card__content">
+                        <h3 class="csr-gallery-card__title">{{ $item['title'] ?? '' }}</h3>
+                        @if(html_filled($item['description'] ?? null))
+                        <div class="csr-gallery-card__desc">{!! rich_html($item['description'] ?? null) !!}</div>
+                        @endif
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+    @endif
+
+    {{-- ==========================================
+         SECTION 4: IMPACT NUMBERS (Counters)
+         ========================================== --}}
+    @if(!empty($impact->items))
+    <section class="csr-impact section--dark">
+        <div class="csr-impact__pattern"></div>
+        <div class="container">
+            <div class="csr-impact__grid">
+                @foreach(collect($impact->items ?? []) as $counter)
+                @if(! is_array($counter) || (! filled($counter['value'] ?? null) && ! filled($counter['label'] ?? null))) @continue @endif
+                @php $impactTarget = is_numeric($counter['value'] ?? null) ? $counter['value'] : 0; @endphp
+                <div class="csr-impact-card">
+                    <div class="csr-impact-card__number-wrapper">
+                        <span class="csr-impact-card__number" data-target="{{ $impactTarget }}">0</span><span class="csr-impact-card__suffix">{{ $counter['suffix'] ?? '' }}</span>
+                    </div>
+                    <div class="csr-impact-card__divider"></div>
+                    <div class="csr-impact-card__label">{{ $counter['label'] ?? '' }}</div>
+                </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+    @endif
+
     {{-- ==========================================
          SECTION 5: SCHOLARSHIP & EDUCATIONAL SUPPORT
          ========================================== --}}
@@ -177,25 +216,29 @@
         <div class="container">
             <div class="csr-scholarship__split">
                 <div class="csr-scholarship__intro">
-                <div class="section-label"><span>Scholarship & Educational Support</span></div>
-                    <h2 class="csr-section-heading">Educational Access  <span class="csr-text-accent">& Scholarships</span></h2>
-                    <p class="csr-body-text">
-                    Maverick supports deserving learners through scholarship opportunities, flexible learning pathways, and professional development initiatives that help individuals achieve their educational goals.
-                    </p>
+                    @if(filled($scholarship->label))
+                    <div class="section-label"><span>{{ $scholarship->label }}</span></div>
+                    @endif
+                    <h2 class="csr-section-heading">{{ $scholarship->heading }}<span class="csr-text-accent">{{ $scholarship->heading_italic }}</span></h2>
+                    @if(html_filled($scholarship->body ?? null))
+                    <div class="csr-body-text">{!! rich_html($scholarship->body ?? null) !!}</div>
+                    @endif
                 </div>
 
+                @if(!empty($scholarship->items))
                 <div class="csr-scholarship__checklist">
                     <div class="csr-checklist-grid">
-                        @foreach($scholarshipActivities as $item)
+                        @foreach(collect($scholarship->items ?? []) as $item)
                         <div class="csr-checklist-card">
                             <div class="csr-checklist-card__icon-wrapper">
                                 <span class="csr-checklist-card__icon" data-lucide="check"></span>
                             </div>
-                            <span class="csr-checklist-card__text">{{ $item }}</span>
+                            <span class="csr-checklist-card__text">{{ is_array($item) ? ($item['item'] ?? '') : $item }}</span>
                         </div>
                         @endforeach
                     </div>
                 </div>
+                @endif
             </div>
         </div>
     </section>
@@ -209,5 +252,5 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('js/pages/csr-community-impact.js') }}" defer></script>
+    <script src="{{ cached_asset('js/pages/csr-community-impact.js') }}" defer></script>
 @endpush

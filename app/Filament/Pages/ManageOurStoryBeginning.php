@@ -40,10 +40,10 @@ class ManageOurStoryBeginning extends SettingsPage
                 ->schema([
                     TextInput::make('badge')
                         ->label('Badge Label')
-                        ->required(),
+                        ,
                     TextInput::make('heading')
                         ->label('Heading')
-                        ->required(),
+                        ,
                     RichEditor::make('paragraph_1')
                         ->label('Paragraph 1')
                         ->toolbarButtons([
@@ -56,7 +56,7 @@ class ManageOurStoryBeginning extends SettingsPage
                             'redo',
                             'undo',
                         ])
-                        ->columnSpanFull(),
+                    ->columnSpanFull(),
                     RichEditor::make('paragraph_2')
                         ->label('Paragraph 2')
                         ->toolbarButtons([
@@ -69,7 +69,7 @@ class ManageOurStoryBeginning extends SettingsPage
                             'redo',
                             'undo',
                         ])
-                        ->columnSpanFull(),
+                    ->columnSpanFull(),
                 ]),
 
             Section::make('Section Image')
@@ -85,8 +85,7 @@ class ManageOurStoryBeginning extends SettingsPage
                         ->nullable()
                         ->getUploadedFileUsing(fn (?string $file): ?array => static::existingCloudinaryImage($file))
                         ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
-                            return app(CloudinaryService::class)
-                                ->uploadImage($file->getRealPath(), 'our-story/beginning');
+                            return cloudinary_upload($file->getRealPath() ?: null, 'our-story/beginning');
                         }),
                 ]),
         ]);

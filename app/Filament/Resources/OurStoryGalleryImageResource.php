@@ -30,13 +30,19 @@ class OurStoryGalleryImageResource extends Resource
     protected static ?string $navigationLabel = 'Gallery Images';
     protected static ?int $navigationSort = 3;
 
+    public static function shouldRegisterNavigation(): bool
+    {
+        // Managed from the Our Story Page tabs (ManageOurStory).
+        return false;
+    }
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 MediaPicker::forField('image_url', 'our-story/gallery')
                     ->label('Gallery Image')
-                    ->required(),
+                    ,
                 TextInput::make('caption')
                     ->label('Caption')
                     ->maxLength(255)
@@ -55,7 +61,7 @@ class OurStoryGalleryImageResource extends Resource
                     ->searchable()
                     ->nullable(),
                 TextInput::make('sort_order')
-                    ->numeric()
+                    ->numeric()->nullable()
                     ->default(0),
                 Forms\Components\Toggle::make('is_active')
                     ->default(true),

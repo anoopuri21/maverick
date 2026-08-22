@@ -79,6 +79,10 @@ return [
             'transport' => 'array',
         ],
 
+        'zoho' => [
+            'transport' => 'zoho',
+        ],
+
         'failover' => [
             'transport' => 'failover',
             'mailers' => [

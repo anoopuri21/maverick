@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ContactFormRequest;
-use App\Mail\ContactFormSubmitted;
+use App\Services\FormMailer;
+use App\Settings\ContactPageSettings;
+use App\Settings\ContactSeoSettings;
 use App\Settings\SiteSettings;
-use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
@@ -14,8 +15,11 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $site = app(SiteSettings::class);
-        return view('pages.contact', compact('site'));
+        $site = safe_settings(SiteSettings::class);
+        $contactPage = safe_settings(ContactPageSettings::class);
+        $contactSeo = safe_settings(ContactSeoSettings::class);
+
+        return view('pages.contact', compact('site', 'contactPage', 'contactSeo'));
     }
 
     /**
@@ -32,15 +36,15 @@ class ContactController extends Controller
             return back()->with('success', 'Thank you! We\'ll get back to you within 24 hours.');
         }
 
-        $site = app(SiteSettings::class);
-        $recipient = $site->email ?? config('mail.contact_recipient') ?? 'admissions@mbalondon.org.uk';
-
-        try {
-            Mail::to($recipient)->send(new ContactFormSubmitted($validated));
-        } catch (\Exception $e) {
-            // Silently log or continue to ensure the user receives the success state in case of SMTP misconfig in dev.
-            logger()->error('Failed to send contact email: ' . $e->getMessage());
-        }
+        app(FormMailer::class)->send([
+            'Name' => $validated['name'] ?? '',
+            'Email' => $validated['email'] ?? '',
+            'Phone' => $validated['phone'] ?? '',
+            'Subject' => $validated['subject'] ?? '',
+            'Message' => $validated['message'] ?? '',
+        ], 'New Contact Form Submission from '.($validated['name'] ?? 'Guest'), [
+            'reply_to' => $validated['email'] ?? null,
+        ]);
 
         // Zapier integration (non-blocking)
         if ($webhookUrl = config('services.zapier.contact_webhook_url')) {
@@ -51,6 +55,9 @@ class ContactController extends Controller
             }
         }
 
-        return back()->with('success', 'Thank you! We\'ll get back to you within 24 hours.');
+        $contactPage = safe_settings(ContactPageSettings::class);
+        $successMessage = $contactPage->success_message ?? 'Thank you! We\'ll get back to you within 24 hours.';
+
+        return back()->with('success', $successMessage);
     }
 }

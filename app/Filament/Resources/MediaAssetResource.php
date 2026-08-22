@@ -22,11 +22,11 @@ class MediaAssetResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-photo';
 
-    protected static ?string $navigationGroup = 'Media';
+    protected static ?string $navigationGroup = 'Site Settings';
 
     protected static ?string $navigationLabel = 'Media Library';
 
-    protected static ?int $navigationSort = 1;
+    protected static ?int $navigationSort = 2;
 
     public static function form(Form $form): Form
     {
@@ -36,14 +36,12 @@ class MediaAssetResource extends Resource
                     ->label('Upload Image')
                     ->image()
                     ->imageEditor()
-                    ->required(fn (string $operation): bool => $operation === 'create')
                     ->visibleOn('create')
                     ->maxSize(5120)
                     ->dehydrated(false),
                 TextInput::make('folder')
                     ->label('Folder')
                     ->default('library')
-                    ->required()
                     ->maxLength(255)
                     ->visibleOn('create')
                     ->dehydrated(false),
@@ -71,6 +69,10 @@ class MediaAssetResource extends Resource
                     ->disabled()
                     ->dehydrated(false)
                     ->visibleOn('edit'),
+                Forms\Components\Placeholder::make('used_display')
+                    ->label('Used')
+                    ->content(fn (?MediaAsset $record): string => $record?->used ? 'Yes' : 'No')
+                    ->visibleOn('edit'),
             ]);
     }
 
@@ -85,6 +87,10 @@ class MediaAssetResource extends Resource
                 TextColumn::make('original_name')
                     ->label('Name')
                     ->searchable()
+                    ->sortable(),
+                Tables\Columns\IconColumn::make('used')
+                    ->label('Used')
+                    ->boolean()
                     ->sortable(),
                 TextColumn::make('folder')
                     ->badge()
@@ -105,18 +111,28 @@ class MediaAssetResource extends Resource
             ])
             ->defaultSort('id', 'desc')
             ->filters([
+                Tables\Filters\TernaryFilter::make('used')
+                    ->label('Used')
+                    ->placeholder('All')
+                    ->trueLabel('Used')
+                    ->falseLabel('Unused'),
+                Tables\Filters\TernaryFilter::make('is_duplicate')
+                    ->label('Duplicate')
+                    ->placeholder('All')
+                    ->trueLabel('Duplicates')
+                    ->falseLabel('Unique'),
                 Tables\Filters\SelectFilter::make('folder')
                     ->options(fn () => MediaAsset::query()
-                        ->whereNotNull('folder')
-                        ->distinct()
-                        ->pluck('folder', 'folder')
-                        ->all()),
+                    ->whereNotNull('folder')
+                    ->distinct()
+                    ->pluck('folder', 'folder')
+                    ->all()),
                 Tables\Filters\SelectFilter::make('disk_env')
                     ->options(fn () => MediaAsset::query()
-                        ->whereNotNull('disk_env')
-                        ->distinct()
-                        ->pluck('disk_env', 'disk_env')
-                        ->all()),
+                    ->whereNotNull('disk_env')
+                    ->distinct()
+                    ->pluck('disk_env', 'disk_env')
+                    ->all()),
                 Tables\Filters\TrashedFilter::make(),
             ])
             ->actions([

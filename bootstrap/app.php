@@ -24,16 +24,8 @@ return Application::configure(basePath: dirname(__DIR__))
         });
     })
     ->withExceptions(function (Exceptions $exceptions) {
-        // Log all errors
-        $exceptions->report(function (\Throwable $e) {
-            \Illuminate\Support\Facades\Log::error('Application error', [
-                'message' => $e->getMessage(),
-                'file' => $e->getFile(),
-                'line' => $e->getLine(),
-            ]);
-        });
-
-        // Custom friendly 500 page only for public frontend routes in production
+        // Custom friendly 500 page only for public frontend routes in production.
+        // (Do not double-log here — Laravel's default reporter already writes to LOG_CHANNEL.)
         $exceptions->render(function (\Throwable $e, Request $request) {
             // Never touch admin routes — let Filament handle them
             if ($request->is('admin') || $request->is('admin/*')) {

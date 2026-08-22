@@ -29,15 +29,19 @@ class OurStoryTimelineResource extends Resource
     protected static ?int $navigationSort = 2;
     protected static ?string $navigationLabel = 'Timeline';
 
+    public static function shouldRegisterNavigation(): bool
+    {
+        // Managed from the Our Story Page tabs (ManageOurStory).
+        return false;
+    }
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\TextInput::make('year')
-                    ->required()
                     ->maxLength(10),
                 Forms\Components\TextInput::make('title')
-                    ->required()
                     ->maxLength(255),
                 RichEditor::make('description')
                     ->toolbarButtons([
@@ -56,7 +60,7 @@ class OurStoryTimelineResource extends Resource
                     ->label('Icon')
                     ->helperText('Optional timeline icon image'),
                 Forms\Components\TextInput::make('sort_order')
-                    ->numeric()
+                    ->numeric()->nullable()
                     ->default(0),
                 Forms\Components\Toggle::make('is_active')
                     ->default(true),

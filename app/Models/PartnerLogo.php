@@ -23,4 +23,15 @@ class PartnerLogo extends Model
         'is_active' => 'boolean',
         'sort_order' => 'integer',
     ];
+
+    protected static function booted(): void
+    {
+        static::saving(function (self $logo) {
+            $logo->name = (string) ($logo->name ?? '');
+
+            if (! in_array($logo->type, ['alumni', 'accreditation', 'recognition', 'award'], true)) {
+                $logo->type = 'alumni';
+            }
+        });
+    }
 }

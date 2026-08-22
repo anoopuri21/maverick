@@ -45,8 +45,7 @@ class ManageSiteSettings extends SettingsPage
                             ->nullable()
                             ->getUploadedFileUsing(fn (?string $file): ?array => static::existingCloudinaryImage($file))
                             ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
-                                return app(CloudinaryService::class)
-                                    ->uploadImage($file->getRealPath(), 'site');
+                                return cloudinary_upload($file->getRealPath() ?: null, 'site');
                             }),
                         FileUpload::make('logo_white_url')
                             ->label('Logo (White)')
@@ -56,8 +55,7 @@ class ManageSiteSettings extends SettingsPage
                             ->nullable()
                             ->getUploadedFileUsing(fn (?string $file): ?array => static::existingCloudinaryImage($file))
                             ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
-                                return app(CloudinaryService::class)
-                                    ->uploadImage($file->getRealPath(), 'site');
+                                return cloudinary_upload($file->getRealPath() ?: null, 'site');
                             }),
                     ]),
                 ]),
@@ -65,29 +63,29 @@ class ManageSiteSettings extends SettingsPage
             Section::make('Contact Info')
                 ->schema([
                     Grid::make(2)->schema([
-                        TextInput::make('phone')->label('Primary Phone')->required(),
+                        TextInput::make('phone')->label('Primary Phone'),
                         TextInput::make('phone_secondary')->label('Secondary Phone')->nullable(),
                         TextInput::make('whatsapp_number')
                             ->label('WhatsApp Number (with country code, no +)')
                             ->helperText('Example: 971501441670')
-                            ->required(),
-                        TextInput::make('email')->email()->required(),
+                            ,
+                        TextInput::make('email')->email()->nullable(),
                         TextInput::make('office_hours')->label('Office Hours')->nullable(),
                         TextInput::make('apply_now_url')
                             ->label('Apply Now Button URL')
-                            ->required(),
+                            ,
                     ]),
-                    TextInput::make('address')->required()->columnSpanFull(),
+                    TextInput::make('address')->columnSpanFull(),
                 ]),
 
             Section::make('Social Links')
                 ->schema([
                     Grid::make(2)->schema([
-                        TextInput::make('facebook_url')->url(),
-                        TextInput::make('instagram_url')->url(),
-                        TextInput::make('linkedin_url')->url(),
-                        TextInput::make('twitter_url')->label('Twitter / X URL')->url(),
-                        TextInput::make('youtube_url')->url(),
+                        TextInput::make('facebook_url')->url()->nullable(),
+                        TextInput::make('instagram_url')->url()->nullable(),
+                        TextInput::make('linkedin_url')->url()->nullable(),
+                        TextInput::make('twitter_url')->label('Twitter / X URL')->url()->nullable(),
+                        TextInput::make('youtube_url')->url()->nullable(),
                     ]),
                 ]),
         ]);

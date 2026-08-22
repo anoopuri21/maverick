@@ -5,6 +5,7 @@ namespace App\Filament\Resources\MediaAssetResource\Pages;
 use App\Filament\Resources\MediaAssetResource;
 use App\Models\MediaAsset;
 use App\Services\MediaLibraryService;
+use Filament\Notifications\Notification;
 use Filament\Resources\Pages\CreateRecord;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
@@ -18,7 +19,12 @@ class CreateMediaAsset extends CreateRecord
         $file = is_array($state) ? ($state[0] ?? null) : $state;
 
         if (! $file instanceof TemporaryUploadedFile) {
-            throw new \RuntimeException('Please upload an image.');
+            Notification::make()
+                ->title('Please upload an image.')
+                ->danger()
+                ->send();
+
+            $this->halt();
         }
 
         $folder = $this->data['folder'] ?? 'library';
@@ -26,11 +32,24 @@ class CreateMediaAsset extends CreateRecord
             $folder = 'library';
         }
 
-        $asset = app(MediaLibraryService::class)->store(
-            $file,
-            $folder,
-            $file->getClientOriginalName(),
-        );
+        try {
+            $asset = app(MediaLibraryService::class)->store(
+                $file,
+                $folder,
+                $file->getClientOriginalName(),
+            );
+        } catch (\Throwable $e) {
+            report($e);
+
+            Notification::make()
+                ->title('Could not store media asset')
+                ->danger()
+                ->send();
+
+            $this->halt();
+
+            throw new \RuntimeException('Could not store media asset.');
+        }
 
         $asset->update([
             'original_name' => $data['original_name'] ?? $asset->original_name,

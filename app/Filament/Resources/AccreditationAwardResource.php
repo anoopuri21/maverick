@@ -22,10 +22,10 @@ class AccreditationAwardResource extends Resource
     protected static ?string $model = PartnerLogo::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-trophy';
-    protected static ?string $navigationGroup = 'Accreditations Page';
+    protected static ?string $navigationGroup = 'About Section';
     protected static ?string $navigationLabel = 'Awards & Recognition';
     protected static ?string $pluralLabel = 'Awards & Recognition';
-    protected static ?int $navigationSort = 3;
+    protected static ?int $navigationSort = 11;
 
     /**
      * Only manage logos of type "award" here.
@@ -35,26 +35,30 @@ class AccreditationAwardResource extends Resource
         return parent::getEloquentQuery()->where('type', 'award');
     }
 
+        public static function shouldRegisterNavigation(): bool
+    {
+        // Managed from the consolidated About Section page tabs.
+        return false;
+    }
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
-                    ->required()
                     ->maxLength(255)
                     ->helperText('Award or organisation name'),
 
                 MediaPicker::forField('logo_url', 'partner-logos')
                     ->nullable(),
 
-                Forms\Components\Textarea::make('description')
+                Forms\Components\RichEditor::make('description')
                     ->label('Description')
-                    ->rows(3)
                     ->maxLength(500)
                     ->helperText('Short description for this award'),
 
                 Forms\Components\TextInput::make('sort_order')
-                    ->numeric()
+                    ->numeric()->nullable()
                     ->default(0)
                     ->helperText('Lower numbers appear first'),
 
@@ -81,7 +85,7 @@ class AccreditationAwardResource extends Resource
                     ->toggleable(),
 
                 Tables\Columns\TextColumn::make('sort_order')
-                    ->numeric()
+                    ->numeric()->nullable()
                     ->sortable()
                     ->label('Order'),
 

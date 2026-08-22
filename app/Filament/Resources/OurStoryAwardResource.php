@@ -39,13 +39,12 @@ class OurStoryAwardResource extends Resource
             ->schema([
                 MediaPicker::forField('image_url', 'our-story/awards')
                     ->label('Award Image')
-                    ->required(),
+                    ,
                 Forms\Components\TextInput::make('title')
                     ->label('Award Title')
-                    ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('sort_order')
-                    ->numeric()
+                    ->numeric()->nullable()
                     ->default(0),
                 Forms\Components\Toggle::make('is_active')
                     ->default(true),

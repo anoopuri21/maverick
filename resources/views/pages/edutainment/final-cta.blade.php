@@ -1,30 +1,57 @@
 {{-- ===== S12: FINAL CTA ===== --}}
+@php
+    $ctaButtons = collect($finalCta->ctas ?? [])->filter(fn ($cta) => filled($cta['label'] ?? null) && filled($cta['url'] ?? null));
+    $showWhatsapp = ($finalCta->show_whatsapp ?? false)
+        && filled($finalCta->whatsapp_label ?? null)
+        && filled($site->whatsapp_number ?? null);
+    $showFinalCta = filled($finalCta->heading ?? null)
+        || filled($finalCta->heading_italic ?? null)
+        || html_filled($finalCta->body ?? null)
+        || filled($finalCta->emphasis ?? null)
+        || filled($finalCta->background_image ?? null)
+        || $ctaButtons->isNotEmpty()
+        || $showWhatsapp;
+@endphp
+@if($showFinalCta)
 <section id="edu-cta" class="edu-cta" aria-label="Transform a Student Trip">
   <div class="edu-cta__bg" aria-hidden="true">
-    <div class="edu-cta__bg-image" style="background-image: url('{{ asset('assets/images/edutainment/cta-cinematic.jpg') }}')"></div>
+    @if(filled($finalCta->background_image))
+    <div class="edu-cta__bg-image" style="background-image: url('{{ media_url($finalCta->background_image) }}')"></div>
+    @endif
     <div class="edu-cta__overlay"></div>
   </div>
 
   <div class="container">
     <div class="edu-cta__content">
+      @if(filled($finalCta->heading) || filled($finalCta->heading_italic))
       <h2 class="edu-cta__heading fade-up">
-        Transform a Student Trip into a<br><em>Learning Journey</em>
+        @if(filled($finalCta->heading)){{ $finalCta->heading }}@endif
+        @if(filled($finalCta->heading) && filled($finalCta->heading_italic))<br>@endif
+        @if(filled($finalCta->heading_italic))<em>{{ $finalCta->heading_italic }}</em>@endif
       </h2>
-      <p class="edu-cta__description fade-up">
-        Let your students discover new cultures, industries, institutions and ideas through an experience they will remember.
-      </p>
-      <p class="edu-cta__description fade-up">
-        Whether you are planning a school educational tour within the UAE or an international student study trip to China, Maverick Edutainment can help turn your objective into a structured learning experience.
-      </p>
-      <p class="edu-cta__emphasis fade-up">
-        <strong>See more. Experience more. Learn more.</strong>
-      </p>
+      @endif
 
+      @if(html_filled($finalCta->body ?? null))
+      <div class="edu-richtext fade-up">{!! rich_html($finalCta->body ?? null) !!}</div>
+      @endif
+
+      @if(filled($finalCta->emphasis))
+      <p class="edu-cta__emphasis fade-up">
+        <strong>{{ $finalCta->emphasis }}</strong>
+      </p>
+      @endif
+
+      @if($ctaButtons->isNotEmpty() || $showWhatsapp)
       <div class="edu-cta__buttons fade-up">
-        <a href="{{ route('contact') }}" class="btn btn--primary">Plan Your Educational Tour</a>
-        <a href="{{ route('contact') }}" class="btn btn--secondary">Request an Itinerary</a>
-        <a href="https://wa.me/{{ $site->whatsapp_number ?? '' }}" class="btn btn--outline" target="_blank" rel="noopener noreferrer">Enquire on WhatsApp</a>
+        @foreach($ctaButtons as $cta)
+          <a href="{{ edu_href($cta['url']) }}" class="{{ edu_cta_class($cta['style'] ?? 'primary') }}">{{ $cta['label'] }}</a>
+        @endforeach
+        @if($showWhatsapp)
+        <a href="https://wa.me/{{ $site->whatsapp_number }}" class="btn btn--outline" target="_blank" rel="noopener noreferrer">{{ $finalCta->whatsapp_label }}</a>
+        @endif
       </div>
+      @endif
     </div>
   </div>
 </section>
+@endif

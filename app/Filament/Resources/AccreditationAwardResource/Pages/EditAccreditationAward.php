@@ -20,8 +20,12 @@ class EditAccreditationAward extends EditRecord
     protected function mutateFormDataBeforeSave(array $data): array
     {
         $data = \App\Filament\Forms\Components\MediaPicker::syncFieldFromAsset($data, 'logo_url');
-        // Keep type locked to award.
         $data['type'] = 'award';
+
+        if (empty($data['logo_url']) && ! empty($this->record->logo_url)) {
+            $data['logo_url'] = $this->record->logo_url;
+        }
+
         return $data;
     }
 }

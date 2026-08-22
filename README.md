@@ -57,11 +57,19 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
-<!-- alias php='/opt/cpanel/ea-php83/root/usr/bin/php'
+## Shared hosting / production
+
+See **[docs/SHARED_HOSTING.md](docs/SHARED_HOSTING.md)** for the full hardening checklist (config/route/view cache, APP_KEY rules, Cloudinary media, queues, OPCache).
+
+Quick deploy (document root must be `public/`):
+
+```bash
+alias php='/opt/cpanel/ea-php83/root/usr/bin/php'
 alias composer='/opt/cpanel/ea-php83/root/usr/bin/php /usr/local/bin/composer'
 cd ~/demo.vsinfosys.in
 git pull origin main
-composer install --no-dev --optimize-autoloader
-php artisan migrate --force
-php artisan optimize:clear
-php artisan config:cache -->
+composer install --no-dev --optimize-autoloader --no-interaction
+bash scripts/shared-hosting-optimize.sh
+```
+
+Never run `php artisan key:generate` on an existing production `.env`.

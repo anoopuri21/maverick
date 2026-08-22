@@ -24,11 +24,11 @@ class ManageNumbers extends SettingsPage
             Section::make('Section Heading')
                 ->schema([
                     Grid::make(3)->schema([
-                        TextInput::make('heading_line1')->required(),
-                        TextInput::make('heading_line2')->required(),
+                        TextInput::make('heading_line1'),
+                        TextInput::make('heading_line2'),
                         TextInput::make('heading_line3')
                             ->label('Line 3 (Red/Accent)')
-                            ->required(),
+                            ,
                     ]),
                     TextInput::make('context_text')
                         ->label('Context Paragraph')

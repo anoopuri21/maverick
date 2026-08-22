@@ -18,8 +18,9 @@
         @foreach($galleryImages as $idx => $img)
         <div class="os-gallery__card {{ $idx % 3 === 0 ? 'os-gallery__card--tall' : ($idx % 3 === 1 ? 'os-gallery__card--medium' : 'os-gallery__card--short') }}" data-gallery-card>
           <div class="os-gallery__card-inner">
+            @if($url = media_url($img->image_url ?? null))
             <img
-              src="{{ $img->image_url }}"
+              src="{{ $url }}"
               alt="{{ $img->caption ?? 'Maverick Business Academy' }}"
               class="os-gallery__img"
               loading="{{ $r === 0 ? 'eager' : 'lazy' }}"
@@ -29,6 +30,7 @@
             <div class="os-gallery__caption">
               <span class="os-gallery__caption-text">{{ $img->caption }}</span>
             </div>
+            @endif
             @endif
           </div>
         </div>

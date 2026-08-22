@@ -33,23 +33,7 @@ class MediaGalleryVideo extends Model
      */
     public function getAutoThumbnailAttribute(): string
     {
-        // If an explicit thumbnail was uploaded, use it.
-        if (! empty($this->thumbnail_url)) {
-            return $this->thumbnail_url;
-        }
-
-        $url = trim($this->video_url ?? '');
-
-        // YouTube patterns
-        if (preg_match('/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i', $url, $matches)) {
-            return "https://img.youtube.com/vi/{$matches[1]}/maxresdefault.jpg";
-        }
-
-        // Just a YouTube video ID (11 chars)
-        if (preg_match('/^[a-zA-Z0-9_-]{11}$/', $url)) {
-            return "https://img.youtube.com/vi/{$url}/maxresdefault.jpg";
-        }
-
-        return asset('assets/images/placeholder.jpg');
+        return youtube_thumbnail_url($this->video_url, $this->thumbnail_url)
+            ?: asset('assets/images/placeholder.jpg');
     }
 }

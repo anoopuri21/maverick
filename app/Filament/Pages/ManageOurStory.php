@@ -21,15 +21,19 @@ use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
+use App\Filament\Concerns\EnsuresSettingsRowsExist;
+use App\Filament\Concerns\HandlesCloudinaryImageFields;
 use App\Filament\Forms\Components\MediaPicker;
 
 class ManageOurStory extends Page implements HasForms
 {
     use InteractsWithForms;
+    use HandlesCloudinaryImageFields;
+    use EnsuresSettingsRowsExist;
 
     protected static ?string $navigationIcon = 'heroicon-o-book-open';
     protected static ?string $navigationGroup = 'About Section';
-    protected static ?string $navigationLabel = 'Our Story';
+    protected static ?string $navigationLabel = 'Our Story Page';
     protected static ?int $navigationSort = 1;
     protected static string $view = 'filament.pages.manage-our-story';
 
@@ -37,14 +41,13 @@ class ManageOurStory extends Page implements HasForms
 
     public function mount(): void
     {
-        // Load all our-story settings + seo into the form state.
         $this->form->fill([
-            'hero' => app(OurStoryHeroSettings::class)->toArray(),
-            'beginning' => app(OurStoryBeginningSettings::class)->toArray(),
-            'today' => app(OurStoryTodaySettings::class)->toArray(),
-            'impact' => app(OurStoryImpactSettings::class)->toArray(),
-            'vision' => app(OurStoryVisionSettings::class)->toArray(),
-            'seo' => app(OurStorySeoSettings::class)->toArray(),
+            'hero' => safe_settings(OurStoryHeroSettings::class)->toArray(),
+            'beginning' => safe_settings(OurStoryBeginningSettings::class)->toArray(),
+            'today' => safe_settings(OurStoryTodaySettings::class)->toArray(),
+            'impact' => safe_settings(OurStoryImpactSettings::class)->toArray(),
+            'vision' => safe_settings(OurStoryVisionSettings::class)->toArray(),
+            'seo' => safe_settings(OurStorySeoSettings::class)->toArray(),
         ]);
     }
 
@@ -119,7 +122,7 @@ class ManageOurStory extends Page implements HasForms
                                 Textarea::make('seo.meta_description')->label('Meta Description')->rows(3)->maxLength(160),
                                 Textarea::make('seo.meta_keywords')->label('Meta Keywords')->rows(2),
                                 Grid::make(2)->schema([
-                                    TextInput::make('seo.canonical_url')->label('Canonical URL')->url(),
+                                    TextInput::make('seo.canonical_url')->label('Canonical URL')->url()->nullable(),
                                     Select::make('seo.robots')->label('Robots')
                                         ->options([
                                             'index, follow' => 'Index, Follow (Default)',
@@ -130,7 +133,7 @@ class ManageOurStory extends Page implements HasForms
                                 ]),
                                 TextInput::make('seo.og_title')->label('OG Title')->maxLength(60),
                                 Textarea::make('seo.og_description')->label('OG Description')->rows(3)->maxLength(200),
-                                TextInput::make('seo.og_image_url')->label('OG Image URL')->url(),
+                                TextInput::make('seo.og_image_url')->label('OG Image URL')->url()->nullable(),
                                 MediaPicker::forField('seo.og_image_url', 'our-story/seo')->label('OG Image'),
                                 Grid::make(2)->schema([
                                     Select::make('seo.og_type')->label('OG Type')
@@ -147,7 +150,7 @@ class ManageOurStory extends Page implements HasForms
                                 ]),
                                 TextInput::make('seo.twitter_title')->label('Twitter Title')->maxLength(70),
                                 Textarea::make('seo.twitter_description')->label('Twitter Description')->rows(3)->maxLength(200),
-                                TextInput::make('seo.twitter_image_url')->label('Twitter Image URL')->url(),
+                                TextInput::make('seo.twitter_image_url')->label('Twitter Image URL')->url()->nullable(),
                                 MediaPicker::forField('seo.twitter_image_url', 'our-story/seo')->label('Twitter Image'),
                                 Textarea::make('seo.schema_json')->label('Schema.org JSON-LD')->rows(6)->helperText('Must be valid JSON-LD'),
                                 Textarea::make('seo.custom_head_scripts')->label('Custom Head Scripts')->rows(4),
@@ -160,23 +163,49 @@ class ManageOurStory extends Page implements HasForms
 
     public function save(): void
     {
-        $data = $this->form->getState();
+        try {
+            $data = $this->form->getState();
 
-        // Persist each settings group.
-        app(OurStoryHeroSettings::class)->fill($data['hero'] ?? [])->save();
-        app(OurStoryBeginningSettings::class)->fill($data['beginning'] ?? [])->save();
-        app(OurStoryTodaySettings::class)->fill($data['today'] ?? [])->save();
-        app(OurStoryImpactSettings::class)->fill($data['impact'] ?? [])->save();
-        app(OurStoryVisionSettings::class)->fill($data['vision'] ?? [])->save();
+            $hero = MediaPicker::syncFieldFromAsset($data['hero'] ?? [], 'image_url');
+            $beginning = MediaPicker::syncFieldFromAsset($data['beginning'] ?? [], 'image_url');
+            $today = MediaPicker::syncFieldFromAsset($data['today'] ?? [], 'image_url');
+            $impact = $data['impact'] ?? [];
+            $vision = MediaPicker::syncFieldFromAsset($data['vision'] ?? [], 'image_url');
+            $seo = MediaPicker::syncFieldFromAsset($data['seo'] ?? [], 'og_image_url');
+            $seo = MediaPicker::syncFieldFromAsset($seo, 'twitter_image_url');
+            unset($seo['og_image_url_asset_id'], $seo['twitter_image_url_asset_id']);
 
-        // SEO: strip transient media-asset keys before saving settings.
-        $seo = $data['seo'] ?? [];
-        unset($seo['og_image_url_asset_id'], $seo['twitter_image_url_asset_id']);
-        app(OurStorySeoSettings::class)->fill($seo)->save();
+            $this->saveSettingsGroup(OurStoryHeroSettings::class, $hero);
+            $this->saveSettingsGroup(OurStoryBeginningSettings::class, $beginning);
+            $this->saveSettingsGroup(OurStoryTodaySettings::class, $today);
+            $this->saveSettingsGroup(OurStoryImpactSettings::class, $impact);
+            $this->saveSettingsGroup(OurStoryVisionSettings::class, $vision);
+            $this->saveSettingsGroup(OurStorySeoSettings::class, $seo);
 
-        Notification::make()
-            ->title('Our Story saved')
-            ->success()
-            ->send();
+            Notification::make()
+                ->title('Our Story saved')
+                ->success()
+                ->send();
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            throw $e;
+        } catch (\Throwable $e) {
+            report($e);
+
+            Notification::make()
+                ->title('Could not save Our Story page')
+                ->danger()
+                ->send();
+        }
+    }
+
+    /** @param  class-string  $settingsClass */
+    protected function saveSettingsGroup(string $settingsClass, array $payload): void
+    {
+        $settings = app($settingsClass);
+        $payload = $this->ensureAllSettingsProperties($settings, $payload);
+        $payload = $this->preserveExistingImageFields($payload, $settings);
+        $this->ensureSettingsRowsExist($settings);
+        app()->forgetInstance($settingsClass);
+        app($settingsClass)->fill($payload)->save();
     }
 }

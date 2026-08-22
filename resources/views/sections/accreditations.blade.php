@@ -31,13 +31,15 @@
         @forelse($accreditationLogos as $logo)
           <div class="accred-card" data-name="{{ $logo->name }}">
             <div class="accred-card__logo-wrapper">
-              <img src="{{ $logo->logo_url }}" alt="{{ $logo->name }}" />
+              @if($url = media_url($logo->logo_url ?? null))
+              <img src="{{ $url }}" alt="{{ $logo->name }}" loading="lazy" decoding="async" />
+              @endif
             </div>
           </div>
         @empty
           <div class="accred-card" data-name="Accreditation">
             <div class="accred-card__logo-wrapper">
-              <img src="{{ asset('assets/images/alumni/alumn-1.png') }}" alt="Accreditation" />
+              <img src="{{ cached_asset('assets/images/alumni/alumn-1.png') }}" alt="Accreditation" loading="lazy" decoding="async" />
             </div>
           </div>
         @endforelse
