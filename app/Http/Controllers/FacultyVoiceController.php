@@ -4,20 +4,30 @@ namespace App\Http\Controllers;
 
 use App\Models\FacultyInsight;
 use App\Settings\FacultyVoiceSeoSettings;
+use App\Settings\FacultyVoicePageSettings;
 use Illuminate\Http\Request;
 
 class FacultyVoiceController extends Controller
 {
     public function index()
     {
+        $cardColumns = [
+            'id', 'title', 'slug', 'badge', 'excerpt', 'faculty_name', 'faculty_role',
+            'image_url', 'hero_image_url', 'faculty_avatar_url', 'link_url',
+            'published_at', 'reading_time_minutes', 'sort_order',
+        ];
+
         $voices = FacultyInsight::published()
+            ->select($cardColumns)
+            ->hasPublicSlug()
             ->orderBy('sort_order')
             ->orderByDesc('published_at')
             ->paginate(9);
 
         return view('pages.faculty-voice.index', [
+            'facultyVoicePage' => safe_settings(FacultyVoicePageSettings::class),
             'voices' => $voices,
-            'facultyVoiceSeo' => app(FacultyVoiceSeoSettings::class),
+            'facultyVoiceSeo' => safe_settings(FacultyVoiceSeoSettings::class),
         ]);
     }
 
@@ -27,7 +37,15 @@ class FacultyVoiceController extends Controller
             ->where('slug', $slug)
             ->firstOrFail();
 
-        $relatedQuery = FacultyInsight::published()->where('id', '!=', $insight->id);
+        $cardColumns = [
+            'id', 'title', 'slug', 'badge', 'excerpt', 'faculty_name', 'faculty_role',
+            'image_url', 'hero_image_url', 'faculty_avatar_url', 'link_url',
+            'published_at', 'reading_time_minutes', 'sort_order',
+        ];
+
+        $relatedQuery = FacultyInsight::published()
+            ->select($cardColumns)
+            ->where('id', '!=', $insight->id);
 
         $related = collect();
 

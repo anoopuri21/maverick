@@ -14,8 +14,8 @@
 @endif
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('css/pages/masters-pathway.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/components/cinematic-hero.css') }}">
+    <link rel="stylesheet" href="{{ cached_asset('css/pages/masters-pathway.css') }}">
+    <link rel="stylesheet" href="{{ cached_asset('assets/css/components/cinematic-hero.css') }}">
 @endpush
 
 @section('content')
@@ -35,5 +35,5 @@
 @endsection
 
 @push('scripts')
-<script src="{{ asset('assets/js/pages/masters-pathway.js') }}" defer></script>
+<script src="{{ cached_asset('assets/js/pages/masters-pathway.js') }}" defer></script>
 @endpush

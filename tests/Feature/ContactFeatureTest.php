@@ -26,7 +26,7 @@ class ContactFeatureTest extends TestCase
         $response = $this->get('/contact');
 
         $response->assertStatus(200);
-        $response->assertSee("Let's Start a Conversation", false);
+        $response->assertSee("Let's Start a Conversation");
         $response->assertSee("Sharjah");
     }
 

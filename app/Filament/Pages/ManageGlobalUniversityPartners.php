@@ -2,6 +2,7 @@
 
 namespace App\Filament\Pages;
 
+use App\Filament\Concerns\EnsuresSettingsRowsExist;
 use App\Filament\Concerns\HandlesCloudinaryImageFields;
 use App\Filament\Forms\Components\MediaPicker;
 use App\Settings\GlobalPartnersBenefitsSettings;
@@ -17,6 +18,7 @@ use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Tabs\Tab;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
@@ -29,6 +31,7 @@ use Filament\Pages\Page;
 class ManageGlobalUniversityPartners extends Page implements HasForms
 {
     use HandlesCloudinaryImageFields;
+    use EnsuresSettingsRowsExist;
     use InteractsWithForms;
 
     protected static ?string $navigationIcon = 'heroicon-o-globe-alt';
@@ -77,10 +80,10 @@ class ManageGlobalUniversityPartners extends Page implements HasForms
                                 TextInput::make('hero.tag')->label('Eyebrow Tag'),
                                 TextInput::make('hero.heading_line1')->label('Heading Line 1'),
                                 TextInput::make('hero.heading_italic')->label('Heading (Italic)'),
-                                Textarea::make('hero.description')->rows(4)->columnSpanFull(),
+                                RichEditor::make('hero.description')->columnSpanFull(),
                                 MediaPicker::forField('hero.background_image', 'global-partners/hero')
-                                    ->label('Background Image')
-                                    ->columnSpanFull(),
+                    ->label('Background Image')
+                    ->columnSpanFull(),
                             ]),
 
                         Tab::make('Overview')
@@ -89,10 +92,10 @@ class ManageGlobalUniversityPartners extends Page implements HasForms
                                 TextInput::make('overview.tag')->label('Section Label'),
                                 TextInput::make('overview.heading')->label('Heading'),
                                 TextInput::make('overview.heading_italic')->label('Heading (Italic)'),
-                                Textarea::make('overview.paragraph')->rows(4)->columnSpanFull(),
+                                RichEditor::make('overview.paragraph')->columnSpanFull(),
                                 MediaPicker::forField('overview.image', 'global-partners/overview')
-                                    ->label('Image')
-                                    ->columnSpanFull(),
+                    ->label('Image')
+                    ->columnSpanFull(),
                             ]),
 
                         Tab::make('Partner Cards Heading')
@@ -110,20 +113,20 @@ class ManageGlobalUniversityPartners extends Page implements HasForms
                                 TextInput::make('why.tag')->label('Section Label'),
                                 TextInput::make('why.heading')->label('Heading'),
                                 TextInput::make('why.heading_italic')->label('Heading (Italic)'),
-                                Textarea::make('why.quote')->rows(3)->columnSpanFull(),
+                                RichEditor::make('why.quote')->columnSpanFull(),
                                 Repeater::make('why.items')
                                     ->schema([
                                         Select::make('icon')
                                             ->options($this->lucideIconOptions())
                                             ->searchable()
-                                            ->required(),
-                                        TextInput::make('title')->required(),
-                                        Textarea::make('description')->rows(2)->required(),
+                                            ,
+                                        TextInput::make('title'),
+                                        RichEditor::make('description'),
                                     ])
-                                    ->reorderable()
-                                    ->collapsible()
-                                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
-                                    ->columnSpanFull(),
+                    ->reorderable()
+                    ->collapsible()
+                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
+                    ->columnSpanFull(),
                             ]),
 
                         Tab::make('Student Benefits')
@@ -134,9 +137,9 @@ class ManageGlobalUniversityPartners extends Page implements HasForms
                                 TextInput::make('benefits.heading_italic')->label('Heading (Italic)'),
                                 Grid::make(2)->schema([
                                     MediaPicker::forField('benefits.main_image', 'global-partners/benefits')
-                                        ->label('Main Image'),
+                    ->label('Main Image'),
                                     MediaPicker::forField('benefits.secondary_image', 'global-partners/benefits')
-                                        ->label('Secondary Image'),
+                    ->label('Secondary Image'),
                                 ]),
                                 Grid::make(2)->schema([
                                     TextInput::make('benefits.stat_number')->label('Floating Stat Number'),
@@ -144,14 +147,14 @@ class ManageGlobalUniversityPartners extends Page implements HasForms
                                 ]),
                                 Repeater::make('benefits.items')
                                     ->schema([
-                                        TextInput::make('title')->required(),
-                                        Textarea::make('description')->rows(2)->required(),
+                                        TextInput::make('title'),
+                                        RichEditor::make('description'),
                                         Toggle::make('highlighted')->label('Highlighted'),
                                     ])
-                                    ->reorderable()
-                                    ->collapsible()
-                                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
-                                    ->columnSpanFull(),
+                    ->reorderable()
+                    ->collapsible()
+                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
+                    ->columnSpanFull(),
                             ]),
 
                         Tab::make('Journey Heading')
@@ -170,7 +173,7 @@ class ManageGlobalUniversityPartners extends Page implements HasForms
                                 Textarea::make('seo.meta_description')->label('Meta Description')->rows(3)->maxLength(160),
                                 Textarea::make('seo.meta_keywords')->label('Meta Keywords')->rows(2),
                                 Grid::make(2)->schema([
-                                    TextInput::make('seo.canonical_url')->label('Canonical URL')->url(),
+                                    TextInput::make('seo.canonical_url')->label('Canonical URL')->url()->nullable(),
                                     Select::make('seo.robots')->label('Robots')
                                         ->options([
                                             'index, follow' => 'Index, Follow (Default)',
@@ -209,38 +212,52 @@ class ManageGlobalUniversityPartners extends Page implements HasForms
 
     public function save(): void
     {
-        $data = $this->form->getState();
+        try {
+            $data = $this->form->getState();
 
-        $this->saveSettingsGroup(GlobalPartnersHeroSettings::class, $data['hero'] ?? []);
-        $this->saveSettingsGroup(GlobalPartnersOverviewSettings::class, $data['overview'] ?? []);
-        app(GlobalPartnersCardsSettings::class)->fill($data['cards'] ?? [])->save();
+            $this->saveSettingsGroup(GlobalPartnersHeroSettings::class, $data['hero'] ?? []);
+            $this->saveSettingsGroup(GlobalPartnersOverviewSettings::class, $data['overview'] ?? []);
+            $this->saveSettingsGroup(GlobalPartnersCardsSettings::class, $data['cards'] ?? []);
 
-        $why = $data['why'] ?? [];
-        $why['items'] = array_values($why['items'] ?? []);
-        app(GlobalPartnersWhySettings::class)->fill($why)->save();
+            $why = $data['why'] ?? [];
+            $why['items'] = settings_array($why['items'] ?? []);
+            $this->saveSettingsGroup(GlobalPartnersWhySettings::class, $why);
 
-        $benefits = $data['benefits'] ?? [];
-        $benefits['items'] = array_values($benefits['items'] ?? []);
-        $this->saveSettingsGroup(GlobalPartnersBenefitsSettings::class, $benefits);
+            $benefits = $data['benefits'] ?? [];
+            $benefits['items'] = settings_array($benefits['items'] ?? []);
+            $this->saveSettingsGroup(GlobalPartnersBenefitsSettings::class, $benefits);
 
-        app(GlobalPartnersJourneySettings::class)->fill($data['journey'] ?? [])->save();
+            $this->saveSettingsGroup(GlobalPartnersJourneySettings::class, $data['journey'] ?? []);
 
-        $seo = $data['seo'] ?? [];
-        unset($seo['og_image_url_asset_id'], $seo['twitter_image_url_asset_id']);
-        $this->saveSettingsGroup(GlobalPartnersSeoSettings::class, $seo);
+            $seo = $data['seo'] ?? [];
+            unset($seo['og_image_url_asset_id'], $seo['twitter_image_url_asset_id']);
+            $this->saveSettingsGroup(GlobalPartnersSeoSettings::class, $seo);
 
-        Notification::make()
-            ->title('Global University Partners saved')
-            ->success()
-            ->send();
+            Notification::make()
+                ->title('Global University Partners saved')
+                ->success()
+                ->send();
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            throw $e;
+        } catch (\Throwable $e) {
+            report($e);
+
+            Notification::make()
+                ->title('Could not save Global University Partners page')
+                ->danger()
+                ->send();
+        }
     }
 
     /** @param  class-string  $settingsClass */
     protected function saveSettingsGroup(string $settingsClass, array $payload): void
     {
         $settings = app($settingsClass);
+        $payload = $this->ensureAllSettingsProperties($settings, $payload);
         $payload = $this->preserveExistingImageFields($payload, $settings);
-        $settings->fill($payload)->save();
+        $this->ensureSettingsRowsExist($settings);
+        app()->forgetInstance($settingsClass);
+        app($settingsClass)->fill($payload)->save();
     }
 
     /** @return array<string, string> */

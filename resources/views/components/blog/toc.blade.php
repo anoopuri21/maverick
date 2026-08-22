@@ -1,6 +1,6 @@
 @props(['headings'])
 
-@if(count($headings) > 0)
+@if(count($headings ?? []) > 0)
 <nav class="blog-toc" aria-label="Table of contents">
     <div class="blog-toc__header">
         <h3 class="blog-toc__title">Table of Contents</h3>

@@ -24,7 +24,7 @@
       </h2>
       @endif
       @if(html_filled($overview->description ?? null))
-      <div class="dmba-overview__desc body-text dmba-richtext">{!! $overview->description !!}</div>
+      <div class="dmba-overview__desc body-text dmba-richtext">{!! rich_html($overview->description ?? null) !!}</div>
       @endif
     </div>
     @endif
@@ -49,8 +49,8 @@
           @endif
           <div class="dmba-highlights__card-body">
             <h3 class="dmba-highlights__card-title">{{ $card['title'] }}</h3>
-            @if(filled($card['text'] ?? null))
-            <p class="dmba-highlights__card-text">{{ $card['text'] }}</p>
+            @if(html_filled($card['text'] ?? null))
+            <div class="dmba-highlights__card-text">{!! rich_html($card['text'] ?? null) !!}</div>
             @endif
           </div>
         </div>

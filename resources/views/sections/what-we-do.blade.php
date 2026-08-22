@@ -22,7 +22,7 @@
       </div>
       <div class="wwd__header-right">
         <p class="wwd__context body-text fade-up">
-          {{ $whatWeDo->context_text }}
+          {!! rich_html($whatWeDo->context_text ?? null) !!}
         </p>
       </div>
     </div>
@@ -34,17 +34,19 @@
           <span class="wwd__card-index accent-text">01</span>
           <h3 class="wwd__card-title">{{ $whatWeDo->pillar1_title }}</h3>
           <p class="wwd__card-desc">
-            {{ $whatWeDo->pillar1_desc }}
+            {!! rich_html($whatWeDo->pillar1_desc ?? null) !!}
           </p>
           <ul class="wwd__card-list">
             <li class="wwd__card-item">{{ $whatWeDo->pillar1_item1 }}</li>
             <li class="wwd__card-item">{{ $whatWeDo->pillar1_item2 }}</li>
             <li class="wwd__card-item">{{ $whatWeDo->pillar1_item3 }}</li>
           </ul>
-          <a href="{{ $whatWeDo->pillar1_cta_url }}" class="wwd__card-cta">
+          @if($href = edu_href($whatWeDo->pillar1_cta_url ?? null))
+          <a href="{{ $href }}" class="wwd__card-cta">
             {{ $whatWeDo->pillar1_cta_text }}
             <span class="wwd__card-arrow" aria-hidden="true">→</span>
           </a>
+          @endif
         </div>
       </div>
 
@@ -54,17 +56,19 @@
           <span class="wwd__card-index accent-text">02</span>
           <h3 class="wwd__card-title">{{ $whatWeDo->pillar2_title }}</h3>
           <p class="wwd__card-desc">
-            {{ $whatWeDo->pillar2_desc }}
+            {!! rich_html($whatWeDo->pillar2_desc ?? null) !!}
           </p>
           <ul class="wwd__card-list">
             <li class="wwd__card-item">{{ $whatWeDo->pillar2_item1 }}</li>
             <li class="wwd__card-item">{{ $whatWeDo->pillar2_item2 }}</li>
             <li class="wwd__card-item">{{ $whatWeDo->pillar2_item3 }}</li>
           </ul>
-          <a href="{{ $whatWeDo->pillar2_cta_url }}" class="wwd__card-cta">
+          @if($href = edu_href($whatWeDo->pillar2_cta_url ?? null))
+          <a href="{{ $href }}" class="wwd__card-cta">
             {{ $whatWeDo->pillar2_cta_text }}
             <span class="wwd__card-arrow" aria-hidden="true">→</span>
           </a>
+          @endif
         </div>
       </div>
 
@@ -74,7 +78,7 @@
           <span class="wwd__card-index accent-text">03</span>
           <h3 class="wwd__card-title">{{ $whatWeDo->pillar3_title }}</h3>
           <p class="wwd__card-desc">
-            {{ $whatWeDo->pillar3_desc }}
+            {!! rich_html($whatWeDo->pillar3_desc ?? null) !!}
           </p>
           <ul class="wwd__card-list">
             <li class="wwd__card-item">{{ $whatWeDo->pillar3_item1 }}</li>
@@ -82,10 +86,12 @@
             <li class="wwd__card-item">{{ $whatWeDo->pillar3_item3 }}</li>
             <li class="wwd__card-item">{{ $whatWeDo->pillar3_item4 }}</li>
           </ul>
-          <a href="{{ $whatWeDo->pillar3_cta_url }}" class="wwd__card-cta">
+          @if($href = edu_href($whatWeDo->pillar3_cta_url ?? null))
+          <a href="{{ $href }}" class="wwd__card-cta">
             {{ $whatWeDo->pillar3_cta_text }}
             <span class="wwd__card-arrow" aria-hidden="true">→</span>
           </a>
+          @endif
         </div>
       </div>
     </div>

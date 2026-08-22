@@ -16,4 +16,9 @@ class ManageFacultyVoiceSeo extends ManagesPageSeo
     protected static string $mediaFolder = 'faculty-voice-seo';
 
     protected static string $pageLabel = 'the Faculty Voice listing page';
+
+    public static function shouldRegisterNavigation(): bool
+    {
+        return false;
+    }
 }

@@ -13,7 +13,9 @@ return [
     |
     */
 
-    'default' => env('QUEUE_CONNECTION', 'database'),
+    // Shared hosting: default to sync (no long-running worker). Use database + cron
+    // queue:work --stop-when-empty only when you intentionally queue jobs.
+    'default' => env('QUEUE_CONNECTION', 'sync'),
 
     /*
     |--------------------------------------------------------------------------

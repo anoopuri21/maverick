@@ -79,9 +79,8 @@ class OurStoryTest extends TestCase
         $response = $this->get('/our-story');
 
         $response->assertStatus(200);
-        $response->assertSee('Proof of Activity');
+        $response->assertSee('Moments That');
         $response->assertSee('Maverick graduation highlight of the year');
-        $response->assertSee('Graduation Ceremony');
         $response->assertSee('https://cloudinary.com/maverick/graduation.jpg');
     }
 

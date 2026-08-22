@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Filament\Resources\PartnershipGalleryItemResource;
+use App\Livewire\Concerns\MutatesEmbeddedMediaPicker;
 use App\Models\PartnershipGalleryItem;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
@@ -20,6 +21,7 @@ class PartnershipGalleryItemTable extends Component implements HasForms, HasTabl
 {
     use InteractsWithForms;
     use InteractsWithTable;
+    use MutatesEmbeddedMediaPicker;
 
     public function table(Table $table): Table
     {
@@ -28,11 +30,13 @@ class PartnershipGalleryItemTable extends Component implements HasForms, HasTabl
                 ->query(PartnershipGalleryItem::query())
                 ->headerActions([
                     \Filament\Tables\Actions\CreateAction::make()
-                        ->form(fn (Form $form) => PartnershipGalleryItemResource::form($form)),
+                        ->form(fn (Form $form) => PartnershipGalleryItemResource::form($form))
+                        ->mutateFormDataUsing(fn (array $data) => $this->mutateEmbeddedMedia($data, 'image_url')),
                 ])
                 ->actions([
                     \Filament\Tables\Actions\EditAction::make()
-                        ->form(fn (Form $form) => PartnershipGalleryItemResource::form($form)),
+                        ->form(fn (Form $form) => PartnershipGalleryItemResource::form($form))
+                        ->mutateFormDataUsing(fn (array $data) => $this->mutateEmbeddedMedia($data, 'image_url', $this->getMountedTableActionRecord())),
                     \Filament\Tables\Actions\DeleteAction::make(),
                 ]),
         );

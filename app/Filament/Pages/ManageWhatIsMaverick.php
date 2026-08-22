@@ -23,25 +23,23 @@ class ManageWhatIsMaverick extends SettingsPage
             Section::make('Heading')
                 ->schema([
                     TextInput::make('heading')
-                        ->required()
                         ->columnSpanFull(),
                 ]),
 
             Section::make('Impact Statements')
                 ->columns(1)
                 ->schema([
-                    TextInput::make('statement1')->label('Statement 1')->required(),
-                    TextInput::make('statement2')->label('Statement 2')->required(),
-                    TextInput::make('statement3')->label('Statement 3')->required(),
-                    TextInput::make('statement4')->label('Statement 4')->required(),
-                    TextInput::make('statement5')->label('Statement 5')->required(),
+                    TextInput::make('statement1')->label('Statement 1'),
+                    TextInput::make('statement2')->label('Statement 2'),
+                    TextInput::make('statement3')->label('Statement 3'),
+                    TextInput::make('statement4')->label('Statement 4'),
+                    TextInput::make('statement5')->label('Statement 5'),
                 ]),
 
             Section::make('Final Text')
                 ->schema([
                     TextInput::make('final_text')
                         ->label('Final Accent Text')
-                        ->required()
                         ->columnSpanFull(),
                 ]),
         ]);

@@ -12,4 +12,9 @@ class ManageEventsSeo extends ManagesPageSeo
     protected static string $settings = EventsSeoSettings::class;
     protected static string $mediaFolder = 'events-seo';
     protected static string $pageLabel = 'the Events page';
+
+    public static function shouldRegisterNavigation(): bool
+    {
+        return false;
+    }
 }

@@ -37,7 +37,7 @@
         <div class="why__tile-bottom">
           <h3 class="why__tile-title">{{ $whyMaverick->tile1_title }}</h3>
           <p class="why__tile-description">
-            {{ $whyMaverick->tile1_desc }}
+            {!! rich_html($whyMaverick->tile1_desc ?? null) !!}
           </p>
           <div class="why__tile-line"></div>
         </div>
@@ -58,7 +58,7 @@
         </div>
         <div class="why__tile-bottom">
           <h3 class="why__tile-title">{{ $whyMaverick->tile2_title }}</h3>
-          <p class="why__tile-description">{{ $whyMaverick->tile2_desc }}</p>
+          <p class="why__tile-description">{!! rich_html($whyMaverick->tile2_desc ?? null) !!}</p>
           <div class="why__tile-line"></div>
         </div>
       </div>
@@ -77,7 +77,7 @@
         </div>
         <div class="why__tile-bottom">
           <h3 class="why__tile-title">{{ $whyMaverick->tile3_title }}</h3>
-          <p class="why__tile-description">{{ $whyMaverick->tile3_desc }}</p>
+          <p class="why__tile-description">{!! rich_html($whyMaverick->tile3_desc ?? null) !!}</p>
           <div class="why__tile-line"></div>
         </div>
       </div>
@@ -94,7 +94,7 @@
         </div>
         <div class="why__tile-bottom">
           <h3 class="why__tile-title">{{ $whyMaverick->tile4_title }}</h3>
-          <p class="why__tile-description">{{ $whyMaverick->tile4_desc }}</p>
+          <p class="why__tile-description">{!! rich_html($whyMaverick->tile4_desc ?? null) !!}</p>
           <div class="why__tile-line"></div>
         </div>
       </div>
@@ -112,7 +112,7 @@
         </div>
         <div class="why__tile-bottom">
           <h3 class="why__tile-title">{{ $whyMaverick->tile5_title }}</h3>
-          <p class="why__tile-description">{{ $whyMaverick->tile5_desc }}</p>
+          <p class="why__tile-description">{!! rich_html($whyMaverick->tile5_desc ?? null) !!}</p>
           <div class="why__tile-line"></div>
         </div>
       </div>
@@ -130,7 +130,7 @@
         </div>
         <div class="why__tile-bottom">
           <h3 class="why__tile-title">{{ $whyMaverick->tile6_title }}</h3>
-          <p class="why__tile-description">{{ $whyMaverick->tile6_desc }}</p>
+          <p class="why__tile-description">{!! rich_html($whyMaverick->tile6_desc ?? null) !!}</p>
           <div class="why__tile-line"></div>
         </div>
       </div>

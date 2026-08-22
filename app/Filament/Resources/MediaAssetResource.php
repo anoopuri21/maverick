@@ -36,14 +36,12 @@ class MediaAssetResource extends Resource
                     ->label('Upload Image')
                     ->image()
                     ->imageEditor()
-                    ->required(fn (string $operation): bool => $operation === 'create')
                     ->visibleOn('create')
                     ->maxSize(5120)
                     ->dehydrated(false),
                 TextInput::make('folder')
                     ->label('Folder')
                     ->default('library')
-                    ->required()
                     ->maxLength(255)
                     ->visibleOn('create')
                     ->dehydrated(false),
@@ -107,16 +105,16 @@ class MediaAssetResource extends Resource
             ->filters([
                 Tables\Filters\SelectFilter::make('folder')
                     ->options(fn () => MediaAsset::query()
-                        ->whereNotNull('folder')
-                        ->distinct()
-                        ->pluck('folder', 'folder')
-                        ->all()),
+                    ->whereNotNull('folder')
+                    ->distinct()
+                    ->pluck('folder', 'folder')
+                    ->all()),
                 Tables\Filters\SelectFilter::make('disk_env')
                     ->options(fn () => MediaAsset::query()
-                        ->whereNotNull('disk_env')
-                        ->distinct()
-                        ->pluck('disk_env', 'disk_env')
-                        ->all()),
+                    ->whereNotNull('disk_env')
+                    ->distinct()
+                    ->pluck('disk_env', 'disk_env')
+                    ->all()),
                 Tables\Filters\TrashedFilter::make(),
             ])
             ->actions([

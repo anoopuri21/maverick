@@ -39,35 +39,33 @@ class GupPartnerUniversityResource extends Resource
         return $form->schema([
             Forms\Components\Section::make('University Details')->schema([
                 Forms\Components\Grid::make(2)->schema([
-                    Forms\Components\TextInput::make('name')->required()->maxLength(255),
+                    Forms\Components\TextInput::make('name')->maxLength(255),
                     Forms\Components\TextInput::make('slug')
-                        ->required()
-                        ->unique(ignoreRecord: true)
+                        
                         ->helperText('URL-safe identifier for this card.'),
                     Forms\Components\TextInput::make('abbreviation')
                         ->maxLength(12)
                         ->helperText('Logo fallback initials, e.g. GAU'),
-                    Forms\Components\TextInput::make('country')->required(),
+                    Forms\Components\TextInput::make('country'),
                     Forms\Components\TextInput::make('flag_emoji')
                         ->label('Flag Emoji')
                         ->maxLength(8)
                         ->helperText('e.g. 🇬🇧'),
                 ]),
-                Forms\Components\Textarea::make('recognition')
-                    ->rows(3)
+                Forms\Components\RichEditor::make('recognition')
                     ->columnSpanFull(),
                 MediaPicker::forField('logo_url', 'global-partners/universities')
                     ->label('Logo')
                     ->columnSpanFull(),
                 Forms\Components\TextInput::make('cta_url')
                     ->label('CTA URL')
-                    ->url()
+                    ->url()->nullable()
                     ->helperText('Defaults to /programs when empty.')
                     ->columnSpanFull(),
             ]),
             Forms\Components\Section::make('Display')->schema([
                 Forms\Components\Grid::make(2)->schema([
-                    Forms\Components\TextInput::make('sort_order')->numeric()->default(0),
+                    Forms\Components\TextInput::make('sort_order')->numeric()->nullable()->default(0),
                     Forms\Components\Toggle::make('is_active')->default(true),
                 ]),
             ]),

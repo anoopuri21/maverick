@@ -41,7 +41,7 @@
                 <h3 class="gbp-area-card__title card-title">{{ $area['title'] }}</h3>
                 @endif
                 @if(filled($area['description'] ?? null))
-                <p class="gbp-area-card__description">{{ $area['description'] }}</p>
+                <p class="gbp-area-card__description">{!! rich_html($area['description'] ?? null) !!}</p>
                 @endif
                 @php $items = collect($area['items'] ?? [])->filter(fn ($i) => filled($i)); @endphp
                 @if($items->isNotEmpty())

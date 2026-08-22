@@ -39,13 +39,11 @@ class PartnershipGalleryItemResource extends Resource
         return $form->schema([
             MediaPicker::forField('image_url', 'global-partners/gallery')
                 ->label('Photo')
-                ->required(),
+                ,
             Forms\Components\Select::make('category')
                 ->options(PartnershipGalleryItem::CATEGORIES)
-                ->required()
                 ->searchable(),
             Forms\Components\TextInput::make('badge')
-                ->required()
                 ->maxLength(100),
             Forms\Components\DatePicker::make('event_date')
                 ->label('Event Date'),
@@ -57,9 +55,9 @@ class PartnershipGalleryItemResource extends Resource
             Forms\Components\Select::make('size')
                 ->options(PartnershipGalleryItem::SIZES)
                 ->default('medium')
-                ->required(),
+                ,
             Forms\Components\TextInput::make('sort_order')
-                ->numeric()
+                ->numeric()->nullable()
                 ->default(0),
             Forms\Components\Toggle::make('is_active')
                 ->default(true),

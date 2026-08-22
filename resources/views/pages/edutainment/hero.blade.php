@@ -56,7 +56,7 @@
 
       @if(html_filled($hero->description ?? null))
       <div class="edu-hero__shortdesc fade-up edu-richtext">
-        {!! $hero->description !!}
+        {!! rich_html($hero->description ?? null) !!}
       </div>
       @endif
     </div>

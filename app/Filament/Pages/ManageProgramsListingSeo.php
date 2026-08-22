@@ -12,4 +12,9 @@ class ManageProgramsListingSeo extends ManagesPageSeo
     protected static string $settings = ProgramsListingSeoSettings::class;
     protected static string $mediaFolder = 'programs-listing-seo';
     protected static string $pageLabel = 'the Programmes listing page';
+
+    public static function shouldRegisterNavigation(): bool
+    {
+        return false;
+    }
 }

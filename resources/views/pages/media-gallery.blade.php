@@ -14,8 +14,8 @@
 @endif
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('css/pages/media-gallery.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/components/cinematic-hero.css') }}">
+    <link rel="stylesheet" href="{{ cached_asset('css/pages/media-gallery.css') }}">
+    <link rel="stylesheet" href="{{ cached_asset('assets/css/components/cinematic-hero.css') }}">
 @endpush
 
 @section('content')
@@ -26,13 +26,6 @@
     // HERO (decorative only — all gallery content
     // is loaded dynamically from the database)
     // ═══════════════════════════════════════════
-    $hero = (object)[
-        'tag' => 'MEDIA GALLERY',
-        'heading_line1' => 'Life at Maverick,',
-        'heading_italic' => 'In Pictures',
-        'description' => 'Explore the moments that define our community — from graduation celebrations and campus life to global events and media spotlight. Every image tells a story of ambition, achievement, and the transformative power of education.',
-        'background_image' => 'https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg?auto=compress&cs=tinysrgb&w=1920',
-    ];
 
     $photoCount = $photos->count();
     $videoCount = $videos->count();
@@ -44,7 +37,7 @@
 ═══════════════════════════════════════════ --}}
 <section class="cinematic-hero cinematic-hero--short" aria-label="Media Gallery Hero">
     <div class="cinematic-hero__bg" aria-hidden="true">
-        <div class="cinematic-hero__bg-image" style="background-image: url('{{ $hero->background_image }}')"></div>
+        <div class="cinematic-hero__bg-image" style="background-image: url('{{ $mediaGalleryPage->hero_background_image ?? 'https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg?auto=compress&cs=tinysrgb&w=1920' }}')"></div>
         <div class="cinematic-hero__gradient"></div>
         <div class="cinematic-hero__noise"></div>
         <div class="cinematic-hero__shapes">
@@ -74,13 +67,13 @@
     <div class="container cinematic-hero__content">
         <span class="cinematic-hero__eyebrow">
             <span class="cinematic-hero__eyebrow-line"></span>
-            {{ $hero->tag }}
+            {{ $mediaGalleryPage->hero_tag ?? 'MEDIA GALLERY' }}
         </span>
         <h1 class="cinematic-hero__title">
-            {{ $hero->heading_line1 }}<br>
-            <em>{{ $hero->heading_italic }}</em>
+            {{ $mediaGalleryPage->hero_heading_line1 ?? 'Life at Maverick,' }}<br>
+            <em>{{ $mediaGalleryPage->hero_heading_italic ?? 'In Pictures' }}</em>
         </h1>
-        <p class="cinematic-hero__description">{{ $hero->description }}</p>
+        <p class="cinematic-hero__description">{!! html_filled($mediaGalleryPage->hero_description ?? null) ? rich_html($mediaGalleryPage->hero_description ?? null) : 'Explore the moments that define our community — from graduation celebrations and campus life to global events and media spotlight. Every image tells a story of ambition, achievement, and the transformative power of education.' !!}</p>
         <div class="cinematic-hero__scroll-hint" aria-hidden="true">
             <span class="cinematic-hero__scroll-text">Scroll to explore</span>
             <span class="cinematic-hero__scroll-arrow" data-lucide="chevron-down"></span>
@@ -96,27 +89,29 @@
     <div class="container">
 
         <div class="section-heading-block">
-            <span class="section-label">GALLERY</span>
+            <span class="section-label">{{ $mediaGalleryPage->photos_label ?? 'GALLERY' }}</span>
             <h2 class="section-heading">
-                Moments <em>Captured</em>
+                {{ $mediaGalleryPage->photos_heading ?? 'Moments' }} <em>Captured</em>
             </h2>
             <p class="section-subheading">
-                A living collection of our community — step into the full-screen lightbox.
+                {{ $mediaGalleryPage->photos_subheading ?? 'A living collection of our community — step into the full-screen lightbox.' }}
             </p>
         </div>
 
         @if($photoCount > 0)
             <div class="gallery__masonry" id="galleryMasonry" data-masonry>
                 @foreach($photos as $index => $photo)
+                    @php $photoUrl = media_url($photo->image_url ?? null); @endphp
+                    @if(! $photoUrl) @continue @endif
                     <figure class="gallery-item gallery-item--{{ $photo->size ?: 'medium' }}"
                             data-category="{{ $photo->category ?: 'all' }}"
-                            data-src="{{ $photo->image_url }}"
+                            data-src="{{ $photoUrl }}"
                             data-caption="{{ $photo->caption }}"
                             data-index="{{ $index }}"
                             tabindex="0"
                             role="button"
                             aria-label="{{ $photo->caption ?: 'Open photo' }}">
-                        <img src="{{ $photo->image_url }}"
+                        <img src="{{ $photoUrl }}"
                              alt="{{ $photo->caption ?: 'Maverick gallery photo' }}"
                              loading="lazy"
                              class="gallery-item__image">
@@ -152,12 +147,12 @@
     <div class="container">
 
         <div class="section-heading-block">
-            <span class="section-label">WATCH</span>
+            <span class="section-label">{{ $mediaGalleryPage->videos_label ?? 'WATCH' }}</span>
             <h2 class="section-heading">
-                Featured <em>Videos</em>
+                {{ $mediaGalleryPage->videos_heading ?? 'Featured' }} <em>Videos</em>
             </h2>
             <p class="section-subheading">
-                Relive our proudest moments through the lens — from graduation days to executive forums.
+                {{ $mediaGalleryPage->videos_subheading ?? 'Relive our proudest moments through the lens — from graduation days to executive forums.' }}
             </p>
         </div>
 
@@ -256,5 +251,5 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('js/pages/media-gallery.js') }}" defer></script>
+    <script src="{{ cached_asset('js/pages/media-gallery.js') }}" defer></script>
 @endpush

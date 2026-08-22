@@ -14,8 +14,8 @@
 @endif
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('assets/css/components/cinematic-hero.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/pages/editorial-pages.css') }}">
+    <link rel="stylesheet" href="{{ cached_asset('assets/css/components/cinematic-hero.css') }}">
+    <link rel="stylesheet" href="{{ cached_asset('css/pages/editorial-pages.css') }}">
 @endpush
 
 @section('content')
@@ -24,7 +24,8 @@
     {{-- Cinematic Hero (same structure as other pages) --}}
     <section class="cinematic-hero" aria-label="Events Hero">
         <div class="cinematic-hero__bg" aria-hidden="true">
-            <div class="cinematic-hero__bg-image" style="background-image: url('https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg?auto=compress&cs=tinysrgb&w=1920')"></div>
+            @php $eventsHeroBg = media_url($eventsPage->hero_background_image ?? null, 'https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg?auto=compress&cs=tinysrgb&w=1920'); @endphp
+            <div class="cinematic-hero__bg-image" @if($eventsHeroBg) style="background-image: url('{{ $eventsHeroBg }}')" @endif></div>
             <div class="cinematic-hero__gradient"></div>
             <div class="cinematic-hero__noise"></div>
             <div class="cinematic-hero__shapes">
@@ -42,40 +43,45 @@
             </div>
         </div>
         <div class="container cinematic-hero__content">
-            <span class="cinematic-hero__eyebrow"><span class="cinematic-hero__eyebrow-line"></span>Upcoming Events</span>
-            <h1 class="cinematic-hero__title">Discover Our <em>Events</em></h1>
-            <p class="cinematic-hero__description">Webinars, workshops and masterclasses designed to keep you learning, connected and ahead.</p>
+            <span class="cinematic-hero__eyebrow"><span class="cinematic-hero__eyebrow-line"></span>{{ $eventsPage->hero_tag ?? 'Upcoming Events' }}</span>
+            <h1 class="cinematic-hero__title">{{ $eventsPage->hero_heading ?? 'Discover Our' }} <em>{{ $eventsPage->hero_heading_italic ?? 'Events' }}</em></h1>
+            <p class="cinematic-hero__description">{!! html_filled($eventsPage->hero_description ?? null) ? rich_html($eventsPage->hero_description ?? null) : 'Webinars, workshops and masterclasses designed to keep you learning, connected and ahead.' !!}</p>
             <div class="cinematic-hero__scroll-hint" aria-hidden="true"><span class="cinematic-hero__scroll-text">Scroll to explore</span><span class="cinematic-hero__scroll-arrow" data-lucide="chevron-down"></span></div>
         </div>
     </section>
 
     {{-- Editorial events list --}}
-    @php
-        $events = collect([
-            ['day'=>'28','month'=>'Aug','title'=>'Global Business Masterclass','desc'=>'An intensive masterclass on global business strategy led by industry leaders.','tag'=>'Webinar'],
-            ['day'=>'12','month'=>'Sep','title'=>'Alumni Networking Evening','desc'=>'Connect with Maverick alumni and industry professionals over an evening of networking.','tag'=>'Networking'],
-            ['day'=>'03','month'=>'Oct','title'=>'Study Abroad Information Session','desc'=>'Learn about our study-abroad semesters and dual-degree pathways.','tag'=>'Info Session'],
-            ['day'=>'21','month'=>'Nov','title'=>'Digital Marketing Workshop','desc'=>'A hands-on workshop on modern digital marketing and growth strategy.','tag'=>'Workshop'],
-        ]);
-    @endphp
     <section class="section">
         <div class="container">
             <div class="sec-head">
-                <div class="sec-label">What's On</div>
-                <h2 class="sec-title">Upcoming <em>Events</em></h2>
-                <p class="sec-sub">Save the date — opportunities to learn, connect and grow with the Maverick community.</p>
+                <div class="sec-label">{{ $eventsPage->section_label ?? "What's On" }}</div>
+                <h2 class="sec-title">{{ $eventsPage->section_heading ?? 'Upcoming' }} <em>{{ $eventsPage->section_heading_italic ?? 'Events' }}</em></h2>
+                <p class="sec-sub">{{ $eventsPage->section_subheading ?? 'Save the date — opportunities to learn, connect and grow with the Maverick community.' }}</p>
             </div>
             <div class="ep-events">
-                @foreach($events as $e)
+                @forelse($events as $e)
                 <div class="ep-event">
-                    <div class="date"><div class="d">{{ $e['day'] }}</div><div class="m">{{ $e['month'] }}</div></div>
-                    <div class="info">
-                        <h3>{{ $e['title'] }}</h3>
-                        <p>{{ $e['desc'] }}</p>
+                    <div class="date">
+                        <div class="d">{{ $e->event_date ? $e->event_date->format('d') : '00' }}</div>
+                        <div class="m">{{ $e->event_date ? $e->event_date->format('M') : '---' }}</div>
                     </div>
-                    <span class="tag">{{ $e['tag'] }}</span>
+                    <div class="info">
+                        @if(filled($e->title))
+                        <h3>{{ $e->title }}</h3>
+                        @endif
+                        @if(filled($e->description))
+                        <p>{!! rich_html($e->description ?? null) !!}</p>
+                        @endif
+                    </div>
+                    @if(filled($e->event_type))
+                    <span class="tag">{{ $e->event_type }}</span>
+                    @endif
                 </div>
-                @endforeach
+                @empty
+                <div class="ep-events-empty">
+                    <p>No events currently scheduled. Check back soon!</p>
+                </div>
+                @endforelse
             </div>
         </div>
     </section>

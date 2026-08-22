@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use App\Concerns\EnsuresUniqueSlug;
 use App\Concerns\HasMediaAssets;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class FacultyInsight extends Model
 {
+    use EnsuresUniqueSlug;
     use HasMediaAssets;
 
     protected $fillable = [
@@ -67,7 +69,8 @@ class FacultyInsight extends Model
     {
         return $query->active()
             ->whereNotNull('published_at')
-            ->where('published_at', '<=', now());
+            ->where('published_at', '<=', now())
+            ->hasPublicSlug();
     }
 
     public function permalink(): string
@@ -76,7 +79,11 @@ class FacultyInsight extends Model
             return $this->link_url;
         }
 
-        return route('faculty-voice.show', $this->slug);
+        if (filled($this->slug)) {
+            return route('faculty-voice.show', $this->slug);
+        }
+
+        return url('/faculty-voice');
     }
 
     public function featuredImageUrl(): ?string

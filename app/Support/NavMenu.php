@@ -4,7 +4,7 @@ namespace App\Support;
 
 use App\Models\Program;
 use App\Models\ProgramCategory;
-use Illuminate\Support\Facades\Cache;
+use App\Support\PublicContentCache;
 
 /**
  * Single source of truth for the Programs mega-menu.
@@ -26,12 +26,14 @@ class NavMenu
 {
     public static function programs(): array
     {
-        return Cache::remember('navmenu.programs', 300, function () {
+        return PublicContentCache::remember(PublicContentCache::NAVMENU_PROGRAMS, function () {
             $categories = ProgramCategory::with([
-                    'programs' => fn ($q) => $q->where('is_active', true)
-                        ->with('universityPartner')
+                    'programs' => fn ($q) => $q->select('id', 'program_category_id', 'university_partner_id', 'title', 'slug', 'sort_order')
+                        ->where('is_active', true)
+                        ->with('universityPartner:id,name')
                         ->orderBy('sort_order')->orderBy('title'),
                 ])
+                ->select('id', 'name', 'slug', 'icon', 'sort_order')
                 ->where('is_active', true)
                 ->orderBy('sort_order')
                 ->orderBy('name')

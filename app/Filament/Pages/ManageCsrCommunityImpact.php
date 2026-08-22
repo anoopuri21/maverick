@@ -2,6 +2,7 @@
 
 namespace App\Filament\Pages;
 
+use App\Filament\Concerns\EnsuresSettingsRowsExist;
 use App\Filament\Concerns\HandlesCloudinaryImageFields;
 use App\Filament\Forms\Components\MediaPicker;
 use App\Settings\CsrCommitmentSettings;
@@ -16,6 +17,7 @@ use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Tabs\Tab;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
@@ -27,6 +29,7 @@ use Filament\Pages\Page;
 class ManageCsrCommunityImpact extends Page implements HasForms
 {
     use HandlesCloudinaryImageFields;
+    use EnsuresSettingsRowsExist;
     use InteractsWithForms;
 
     protected static ?string $navigationIcon = 'heroicon-o-heart';
@@ -85,10 +88,10 @@ class ManageCsrCommunityImpact extends Page implements HasForms
                                 TextInput::make('hero.tag')->label('Eyebrow Tag'),
                                 TextInput::make('hero.heading_line1')->label('Heading Line 1'),
                                 TextInput::make('hero.heading_italic')->label('Heading (Italic)'),
-                                Textarea::make('hero.description')->rows(4)->columnSpanFull(),
+                                RichEditor::make('hero.description')->columnSpanFull(),
                                 MediaPicker::forField('hero.background_image', 'csr/hero')
-                                    ->label('Background Image')
-                                    ->columnSpanFull(),
+                    ->label('Background Image')
+                    ->columnSpanFull(),
                             ]),
 
                         Tab::make('Commitment')
@@ -97,10 +100,10 @@ class ManageCsrCommunityImpact extends Page implements HasForms
                                 TextInput::make('commitment.label')->label('Section Label'),
                                 TextInput::make('commitment.heading')->label('Heading'),
                                 TextInput::make('commitment.heading_italic')->label('Heading (Italic)'),
-                                Textarea::make('commitment.body')->rows(4)->columnSpanFull(),
+                                RichEditor::make('commitment.body')->columnSpanFull(),
                                 MediaPicker::forField('commitment.image_url', 'csr/commitment')
-                                    ->label('Section Image')
-                                    ->columnSpanFull(),
+                    ->label('Section Image')
+                    ->columnSpanFull(),
                             ]),
 
                         Tab::make('Focus Areas')
@@ -112,20 +115,20 @@ class ManageCsrCommunityImpact extends Page implements HasForms
                                 Repeater::make('focus.items')
                                     ->label('Focus Area Cards')
                                     ->schema([
-                                        TextInput::make('title')->required(),
-                                        TextInput::make('icon')->label('Lucide Icon Name')->required(),
+                                        TextInput::make('title'),
+                                        TextInput::make('icon')->label('Lucide Icon Name'),
                                         Repeater::make('activities')
                                             ->label('Activities')
                                             ->simple(
-                                                TextInput::make('activity')->required(),
+                                                TextInput::make('activity'),
                                             )
-                                            ->reorderable()
-                                            ->columnSpanFull(),
+                    ->reorderable()
+                    ->columnSpanFull(),
                                     ])
-                                    ->reorderable()
-                                    ->collapsible()
-                                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
-                                    ->columnSpanFull(),
+                    ->reorderable()
+                    ->collapsible()
+                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
+                    ->columnSpanFull(),
                             ]),
 
                         Tab::make('Gallery')
@@ -137,16 +140,16 @@ class ManageCsrCommunityImpact extends Page implements HasForms
                                 Repeater::make('gallery.items')
                                     ->label('Gallery Items')
                                     ->schema([
-                                        TextInput::make('title')->required(),
-                                        Textarea::make('description')->rows(2)->columnSpanFull(),
+                                        TextInput::make('title'),
+                                        RichEditor::make('description')->columnSpanFull(),
                                         MediaPicker::forField('image', 'csr/gallery')
-                                            ->label('Image')
-                                            ->columnSpanFull(),
+                    ->label('Image')
+                    ->columnSpanFull(),
                                     ])
-                                    ->reorderable()
-                                    ->collapsible()
-                                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
-                                    ->columnSpanFull(),
+                    ->reorderable()
+                    ->collapsible()
+                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
+                    ->columnSpanFull(),
                             ]),
 
                         Tab::make('Impact Numbers')
@@ -156,15 +159,15 @@ class ManageCsrCommunityImpact extends Page implements HasForms
                                     ->label('Impact Counters')
                                     ->schema([
                                         Grid::make(3)->schema([
-                                            TextInput::make('value')->numeric()->required(),
+                                            TextInput::make('value')->numeric()->nullable(),
                                             TextInput::make('suffix')->label('Suffix (e.g. +)'),
-                                            TextInput::make('label')->required(),
+                                            TextInput::make('label'),
                                         ]),
                                     ])
-                                    ->reorderable()
-                                    ->collapsible()
-                                    ->itemLabel(fn (array $state): ?string => $state['label'] ?? null)
-                                    ->columnSpanFull(),
+                    ->reorderable()
+                    ->collapsible()
+                    ->itemLabel(fn (array $state): ?string => $state['label'] ?? null)
+                    ->columnSpanFull(),
                             ]),
 
                         Tab::make('Scholarships')
@@ -173,14 +176,14 @@ class ManageCsrCommunityImpact extends Page implements HasForms
                                 TextInput::make('scholarship.label')->label('Section Label'),
                                 TextInput::make('scholarship.heading')->label('Heading'),
                                 TextInput::make('scholarship.heading_italic')->label('Heading (Italic)'),
-                                Textarea::make('scholarship.body')->rows(4)->columnSpanFull(),
+                                RichEditor::make('scholarship.body')->columnSpanFull(),
                                 Repeater::make('scholarship.items')
                                     ->label('Checklist Items')
                                     ->simple(
-                                        TextInput::make('item')->required(),
+                                        TextInput::make('item'),
                                     )
-                                    ->reorderable()
-                                    ->columnSpanFull(),
+                    ->reorderable()
+                    ->columnSpanFull(),
                             ]),
 
                         Tab::make('SEO')
@@ -222,7 +225,8 @@ class ManageCsrCommunityImpact extends Page implements HasForms
 
     public function save(): void
     {
-        $data = $this->form->getState();
+        try {
+            $data = $this->form->getState();
 
         $hero = $data['hero'] ?? [];
         $hero = MediaPicker::syncFieldFromAsset($hero, 'background_image');
@@ -232,10 +236,13 @@ class ManageCsrCommunityImpact extends Page implements HasForms
 
         $focus = $data['focus'] ?? [];
         foreach ($focus['items'] ?? [] as &$item) {
+            if (! is_array($item)) {
+                continue;
+            }
             $item['activities'] = array_values(array_filter(
                 array_map(
                     fn ($activity) => is_array($activity) ? ($activity['activity'] ?? null) : $activity,
-                    $item['activities'] ?? []
+                    is_array($item['activities'] ?? null) ? $item['activities'] : []
                 )
             ));
         }
@@ -244,6 +251,9 @@ class ManageCsrCommunityImpact extends Page implements HasForms
 
         $gallery = $data['gallery'] ?? [];
         foreach ($gallery['items'] ?? [] as &$item) {
+            if (! is_array($item)) {
+                continue;
+            }
             $item = MediaPicker::syncFieldFromAsset($item, 'image');
         }
         unset($item);
@@ -272,10 +282,20 @@ class ManageCsrCommunityImpact extends Page implements HasForms
         $this->saveSettingsGroup(CsrScholarshipSettings::class, $scholarship);
         $this->saveSettingsGroup(CsrSeoSettings::class, $seo);
 
-        Notification::make()
-            ->title('CSR Community Impact saved')
-            ->success()
-            ->send();
+            Notification::make()
+                ->title('CSR Community Impact saved')
+                ->success()
+                ->send();
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            throw $e;
+        } catch (\Throwable $e) {
+            report($e);
+
+            Notification::make()
+                ->title('Could not save CSR Community Impact page')
+                ->danger()
+                ->send();
+        }
     }
 
     /** @param  class-string  $settingsClass */
@@ -289,40 +309,4 @@ class ManageCsrCommunityImpact extends Page implements HasForms
         app($settingsClass)->fill($payload)->save();
     }
 
-    protected function ensureAllSettingsProperties(object $settings, array $payload): array
-    {
-        $reflection = new \ReflectionClass($settings);
-
-        foreach ($reflection->getProperties(\ReflectionProperty::IS_PUBLIC) as $property) {
-            if ($property->isStatic()) {
-                continue;
-            }
-
-            $name = $property->getName();
-
-            if (! array_key_exists($name, $payload)) {
-                $payload[$name] = $settings->{$name} ?? $property->getDefaultValue();
-            }
-        }
-
-        return $payload;
-    }
-
-    protected function ensureSettingsRowsExist(object $settings): void
-    {
-        $mapper = app(\Spatie\LaravelSettings\SettingsMapper::class);
-        $getConfig = new \ReflectionMethod($mapper, 'getConfig');
-        $getConfig->setAccessible(true);
-        $config = $getConfig->invoke($mapper, get_class($settings));
-
-        $repo = $config->getRepository();
-        $group = $config->getGroup();
-        $existing = collect($repo->getPropertiesInGroup($group))->keys();
-
-        foreach ($config->getReflectedProperties()->keys() as $name) {
-            if (! $existing->contains($name)) {
-                $repo->createProperty($group, $name, $settings->{$name} ?? null);
-            }
-        }
-    }
 }
