@@ -42,11 +42,10 @@ class MediaGalleryVideoResource extends Resource
             ->schema([
                 TextInput::make('title')
                     ->label('Title')
-                    ->required()
                     ->maxLength(255),
                 TextInput::make('video_url')
                     ->label('Video URL')
-                    ->url()
+                    ->url()->nullable()
                     ->nullable()
                     ->placeholder('https://www.youtube.com/watch?v=...'),
                 MediaPicker::forField('thumbnail_url', 'media-gallery/videos')
@@ -69,7 +68,7 @@ class MediaGalleryVideoResource extends Resource
                     ->searchable()
                     ->nullable(),
                 TextInput::make('sort_order')
-                    ->numeric()
+                    ->numeric()->nullable()
                     ->default(0),
                 Forms\Components\Toggle::make('is_active')
                     ->default(true),

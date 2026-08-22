@@ -14,8 +14,8 @@
 @endif
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('css/pages/global-opportunities.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/components/cinematic-hero.css') }}">
+    <link rel="stylesheet" href="{{ cached_asset('css/pages/global-opportunities.css') }}">
+    <link rel="stylesheet" href="{{ cached_asset('assets/css/components/cinematic-hero.css') }}">
 @endpush
 
 @section('content')
@@ -64,11 +64,11 @@
             </span>
             @endif
             <h1 class="cinematic-hero__title">
-                {{ $hero->heading }}<br>
-                <em>{{ $hero->heading_italic }}</em>
+                @if(filled($hero->heading ?? null)){{ $hero->heading }}@endif
+                @if(filled($hero->heading_italic ?? null))<br><em>{{ $hero->heading_italic }}</em>@endif
             </h1>
             @if(filled($hero->description))
-            <p class="cinematic-hero__description">{{ $hero->description }}</p>
+            <p class="cinematic-hero__description">{!! rich_html($hero->description ?? null) !!}</p>
             @endif
             <div class="cinematic-hero__scroll-hint" aria-hidden="true">
                 <span class="cinematic-hero__scroll-text">Scroll to explore</span>
@@ -86,17 +86,15 @@
                 @if(filled($pageSettings->overview_label))
                 <span class="section-label go-overview__label"><span>{{ $pageSettings->overview_label }}</span></span>
                 @endif
+                @if(filled($pageSettings->overview_heading ?? null) || filled($pageSettings->overview_heading_italic ?? null))
                 <h2 class="go-overview__heading section-title">
                     {{ $pageSettings->overview_heading }}
-                    <em>{{ $pageSettings->overview_heading_italic }}</em>
+                    @if(filled($pageSettings->overview_heading_italic ?? null))<em>{{ $pageSettings->overview_heading_italic }}</em>@endif
                 </h2>
-                @if(filled($pageSettings->overview_body))
-                <div class="go-overview__body">
-                    @foreach(explode("\n\n", $pageSettings->overview_body) as $paragraph)
-                        @if(trim($paragraph))
-                        <p class="body-text">{{ $paragraph }}</p>
-                        @endif
-                    @endforeach
+                @endif
+                @if(html_filled($pageSettings->overview_body ?? null))
+                <div class="go-overview__body body-text">
+                    {!! rich_html($pageSettings->overview_body ?? null) !!}
                 </div>
                 @endif
             </div>
@@ -118,13 +116,19 @@
                 </h2>
             </div>
 
-            @if(count($opportunityItems))
+            @if(count($opportunityItems ?? []))
                 <div class="go-cards__grid">
                     @foreach($opportunityItems as $i => $item)
-                    <a href="{{ $item['url'] ?? '#' }}" class="go-card" data-testid="go-card-{{ $loop->iteration }}">
+                    @if(! is_array($item)) @continue @endif
+                    @php $cardHref = edu_href($item['url'] ?? null); $cardImg = media_url($item['image'] ?? $item['image_url'] ?? null); @endphp
+                    @if($cardHref)
+                    <a href="{{ $cardHref }}" class="go-card" data-testid="go-card-{{ $loop->iteration }}">
+                    @else
+                    <div class="go-card" data-testid="go-card-{{ $loop->iteration }}">
+                    @endif
                         <div class="go-card__media">
-                            @if(!empty($item['image']) || !empty($item['image_url']))
-                            <img class="go-card__img" src="{{ $item['image'] ?? $item['image_url'] }}" alt="{{ $item['title'] ?? 'Global opportunity' }}" loading="lazy">
+                            @if($cardImg)
+                            <img class="go-card__img" src="{{ $cardImg }}" alt="{{ $item['title'] ?? 'Global opportunity' }}" loading="lazy">
                             @else
                             <div class="go-card__img go-card__img--placeholder">
                                 <span data-lucide="globe" aria-hidden="true"></span>
@@ -135,14 +139,18 @@
                         <div class="go-card__body">
                             <h3 class="go-card__title">{{ $item['title'] ?? '' }}</h3>
                             @if(!empty($item['desc']))
-                            <p class="go-card__desc">{{ $item['desc'] }}</p>
+                            <p class="go-card__desc">{!! rich_html($item['desc'] ?? null) !!}</p>
                             @endif
                             <span class="go-card__cta">
                                 <span>Discover</span>
                                 <span class="go-card__cta-icon" data-lucide="arrow-right" aria-hidden="true"></span>
                             </span>
                         </div>
+                    @if($cardHref)
                     </a>
+                    @else
+                    </div>
+                    @endif
                     @endforeach
                 </div>
             @else

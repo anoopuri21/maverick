@@ -5,13 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use App\Concerns\EnsuresUniqueSlug;
 use App\Concerns\HasMediaAssets;
 
 class Insight extends Model
 {
-    use HasMediaAssets;
-
+    use EnsuresUniqueSlug;
     use HasFactory;
+    use HasMediaAssets;
 
     protected $fillable = [
         'legacy_id', 'title', 'slug', 'excerpt', 'content',
@@ -35,10 +36,16 @@ class Insight extends Model
         return 'slug';
     }
 
+    public function resolveRouteBinding($value, $field = null)
+    {
+        return static::published()->where($field ?? $this->getRouteKeyName(), $value)->firstOrFail();
+    }
+
     public function scopePublished(Builder $query): Builder
     {
         return $query->whereNotNull('published_at')
-            ->where('published_at', '<=', now());
+            ->where('published_at', '<=', now())
+            ->hasPublicSlug();
     }
 
     public function scopeCategory(Builder $query, string $category): Builder
@@ -86,6 +93,16 @@ class Insight extends Model
                     $query->update(['is_featured' => false]);
                 }
             }
+        });
+
+        static::saved(function () {
+            \Illuminate\Support\Facades\Cache::store('file')->forget('blogs.top_tags');
+            \Illuminate\Support\Facades\Cache::store('file')->forget('news.top_tags');
+        });
+
+        static::deleted(function () {
+            \Illuminate\Support\Facades\Cache::store('file')->forget('blogs.top_tags');
+            \Illuminate\Support\Facades\Cache::store('file')->forget('news.top_tags');
         });
     }
 }

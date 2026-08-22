@@ -2,11 +2,11 @@
 
 namespace App\Filament\Pages;
 
+use App\Filament\Concerns\HandlesCloudinaryImageFields;
 use App\Settings\CeoSettings;
-use App\Services\CloudinaryService;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Section;
-use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Pages\SettingsPage;
@@ -14,6 +14,7 @@ use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class ManageCeoMessage extends SettingsPage
 {
+    use HandlesCloudinaryImageFields;
     protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-left-right';
     protected static ?string $navigationGroup = 'Homepage';
     protected static ?string $navigationLabel = 'CEO Message';
@@ -28,28 +29,24 @@ class ManageCeoMessage extends SettingsPage
                 ->schema([
                     TextInput::make('name')
                         ->label('CEO Name')
-                        ->required(),
+                        ,
                     TextInput::make('designation')
                         ->label('Designation')
-                        ->required(),
+                        ,
                     TextInput::make('badge_text')
                         ->label('Badge Text (on image)'),
                 ]),
 
             Section::make('Message Content')
                 ->schema([
-                    Textarea::make('quote')
+                    RichEditor::make('quote')
                         ->label('Quote')
-                        ->rows(3)
-                        ->required()
                         ->columnSpanFull(),
-                    Textarea::make('body_paragraph1')
+                    RichEditor::make('body_paragraph1')
                         ->label('Paragraph 1')
-                        ->rows(4)
                         ->columnSpanFull(),
-                    Textarea::make('body_paragraph2')
+                    RichEditor::make('body_paragraph2')
                         ->label('Paragraph 2')
-                        ->rows(4)
                         ->columnSpanFull(),
                 ]),
 
@@ -62,17 +59,11 @@ class ManageCeoMessage extends SettingsPage
                         ->maxSize(5120)
                         ->columnSpanFull()
                         ->fetchFileInformation(false)
-                        ->getUploadedFileUsing(function (string $file) {
-                            return [
-                                'name' => basename(parse_url($file, PHP_URL_PATH)),
-                                'size' => 0,
-                                'type' => null,
-                                'url' => $file,   // 👈 Direct Cloudinary URL
-                            ];
+                        ->getUploadedFileUsing(function (?string $file) {
+                            return static::existingCloudinaryImage($file);
                         })
-                        ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
-                            return app(CloudinaryService::class)
-                                ->uploadImage($file->getRealPath(), 'homepage/ceo');
+                    ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
+                            return cloudinary_upload($file->getRealPath() ?: null, 'homepage/ceo');
                         }),
                 ]),
         ]);

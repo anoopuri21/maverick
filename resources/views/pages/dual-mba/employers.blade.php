@@ -53,7 +53,7 @@
         </h2>
         @endif
         @if(html_filled($employers->description ?? null))
-        <div class="dmba-employers__desc body-text dmba-richtext">{!! $employers->description !!}</div>
+        <div class="dmba-employers__desc body-text dmba-richtext">{!! rich_html($employers->description ?? null) !!}</div>
         @endif
 
         @if($employerItems->isNotEmpty())

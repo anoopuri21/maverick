@@ -14,7 +14,7 @@
 @endif
 
 @push('styles')
-<link rel="stylesheet" href="{{ asset('css/pages/edutainment.css') }}" />
+<link rel="stylesheet" href="{{ cached_asset('css/pages/edutainment.css') }}" />
 @endpush
 
 @section('content')
@@ -36,5 +36,5 @@
 @endsection
 
 @push('scripts')
-<script src="{{ asset('assets/js/pages/edutainment.js') }}" defer></script>
+<script src="{{ cached_asset('assets/js/pages/edutainment.js') }}" defer></script>
 @endpush

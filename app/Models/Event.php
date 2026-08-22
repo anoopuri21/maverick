@@ -20,4 +20,15 @@ class Event extends Model
         'is_active' => 'boolean',
         'event_date' => 'date',
     ];
+
+    protected static function booted(): void
+    {
+        static::saving(function (self $event) {
+            $event->title = (string) ($event->title ?? '');
+
+            if (empty($event->event_date)) {
+                $event->event_date = now()->toDateString();
+            }
+        });
+    }
 }

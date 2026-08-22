@@ -4,7 +4,7 @@
 @section('meta_description', 'Stay updated with the latest institutional news, campus announcements, and academic milestones from Maverick Business Academy.')
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('css/pages/news.css') }}">
+    <link rel="stylesheet" href="{{ cached_asset('css/pages/news.css') }}">
 @endpush
 
 @section('content')
@@ -17,7 +17,7 @@
     ════════════════════════════════════════════ --}}
     <section class="news-masthead" aria-label="News Hero">
         <div class="news-masthead__bg" aria-hidden="true">
-            @if($newsHero->image_url)
+            @if(filled($newsHero->image_url ?? null))
             <div class="news-masthead__bg-image" style="background-image: url('{{ $newsHero->image_url }}')"></div>
             @endif
             <div class="news-masthead__gradient"></div>
@@ -54,10 +54,14 @@
                 {{ $newsHero->eyebrow ?? 'NEWS' }}
             </span>
             <h1 class="news-masthead__title">
-                {{ $newsHero->heading ?? 'News & Announcements' }}
+                @if(filled($newsHero->heading ?? null))
+                    {{ $newsHero->heading }}
+                @else
+                    News &amp; <em class="news-masthead__title-em">Announcements</em>
+                @endif
             </h1>
             <p class="news-masthead__description">
-                {{ $newsHero->description ?? 'Institutional updates, campus news, and academic milestones from across the Maverick Business Academy network.' }}
+                {!! html_filled($newsHero->description ?? null) ? rich_html($newsHero->description ?? null) : 'Institutional updates, campus news, and academic milestones from across the Maverick Business Academy network.' !!}
             </p>
             <div class="news-masthead__scroll-hint" aria-hidden="true">
                 <span class="news-masthead__scroll-text">Scroll to explore</span>
@@ -131,8 +135,8 @@
                         @endif
                         <div class="news-featured__meta">
                             <div class="news-featured__author">
-                                @if($featured->author_avatar_url)
-                                    <img src="{{ $featured->author_avatar_url }}"
+                                @if($url = media_url($featured->author_avatar_url ?? null))
+                                    <img src="{{ $url }}"
                                          alt="{{ $featured->author_name }}"
                                          class="news-featured__author-avatar"
                                          width="28" height="28" loading="lazy">
@@ -172,7 +176,7 @@
                     @foreach($articles as $article)
                     <article class="news-row">
                         <time class="news-row__date" datetime="{{ $article->published_at }}">
-                            {{ \Carbon\Carbon::parse($article->published_at)->format('M d, Y') }}
+                            {{ $article->published_at ? \Carbon\Carbon::parse($article->published_at)->format('M d, Y') : '' }}
                         </time>
                         <div class="news-row__content">
                             <div class="news-row__meta">
@@ -338,7 +342,7 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('assets/js/blog.js') }}" defer></script>
+    <script src="{{ cached_asset('assets/js/blog.js') }}" defer></script>
     <script>
     document.addEventListener('DOMContentLoaded', function () {
         // News ticker GSAP horizontal scroll

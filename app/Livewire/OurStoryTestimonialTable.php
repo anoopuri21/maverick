@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Filament\Forms\Components\MediaPicker;
 use App\Filament\Resources\OurStoryTestimonialResource;
 use App\Models\OurStoryTestimonial;
 use Filament\Forms\Concerns\InteractsWithForms;
@@ -28,11 +29,21 @@ class OurStoryTestimonialTable extends Component implements HasForms, HasTable
                 ->query(OurStoryTestimonial::query())
                 ->headerActions([
                     \Filament\Tables\Actions\CreateAction::make()
-                        ->form(fn (Form $form) => OurStoryTestimonialResource::form($form)),
+                        ->form(fn (Form $form) => OurStoryTestimonialResource::form($form))
+                        ->mutateFormDataUsing(fn (array $data) => MediaPicker::syncUrlFromAsset($data, 'photo')),
                 ])
                 ->actions([
                     \Filament\Tables\Actions\EditAction::make()
-                        ->form(fn (Form $form) => OurStoryTestimonialResource::form($form)),
+                        ->form(fn (Form $form) => OurStoryTestimonialResource::form($form))
+                        ->mutateFormDataUsing(function (array $data) {
+                            $data = MediaPicker::syncUrlFromAsset($data, 'photo');
+                            $record = $this->getMountedTableActionRecord();
+                            if (empty($data['photo']) && $record && filled($record->photo)) {
+                                $data['photo'] = $record->photo;
+                            }
+
+                            return $data;
+                        }),
                     \Filament\Tables\Actions\DeleteAction::make(),
                 ]),
         );

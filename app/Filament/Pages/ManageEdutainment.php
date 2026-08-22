@@ -2,6 +2,7 @@
 
 namespace App\Filament\Pages;
 
+use App\Filament\Concerns\EnsuresSettingsRowsExist;
 use App\Filament\Concerns\HandlesCloudinaryImageFields;
 use App\Filament\Forms\Components\MediaPicker;
 use App\Settings\EdutainmentExperiencesSettings;
@@ -38,6 +39,7 @@ use Throwable;
 class ManageEdutainment extends Page implements HasForms
 {
     use HandlesCloudinaryImageFields;
+    use EnsuresSettingsRowsExist;
     use InteractsWithForms;
 
     protected static ?string $navigationIcon = 'heroicon-o-globe-alt';
@@ -132,8 +134,8 @@ class ManageEdutainment extends Page implements HasForms
                                 RichEditor::make('hero.description')->label('Description')->columnSpanFull(),
                                 TextInput::make('hero.background_image')->hidden(),
                                 MediaPicker::forField('hero.background_image', 'edutainment/hero')
-                                    ->label('Background Image')
-                                    ->columnSpanFull(),
+                    ->label('Background Image')
+                    ->columnSpanFull(),
                             ]),
 
                         Tab::make('Intro')
@@ -178,19 +180,19 @@ class ManageEdutainment extends Page implements HasForms
                                 RichEditor::make('learning.body')->label('Body')->columnSpanFull(),
                                 TextInput::make('learning.image')->hidden(),
                                 MediaPicker::forField('learning.image', 'edutainment/learning-beyond')
-                                    ->label('Section Image')
-                                    ->columnSpanFull(),
+                    ->label('Section Image')
+                    ->columnSpanFull(),
                                 TextInput::make('learning.cards_heading')->label('Cards Heading')->columnSpanFull(),
                                 Repeater::make('learning.cards')
                                     ->label('Outcome Cards')
                                     ->schema([
                                         TextInput::make('icon')->label('Emoji / Icon'),
-                                        TextInput::make('title')->required(),
+                                        TextInput::make('title'),
                                     ])
-                                    ->reorderable()
-                                    ->collapsible()
-                                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
-                                    ->columnSpanFull(),
+                    ->reorderable()
+                    ->collapsible()
+                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
+                    ->columnSpanFull(),
                             ]),
 
                         Tab::make('Who For')
@@ -202,13 +204,13 @@ class ManageEdutainment extends Page implements HasForms
                                     ->label('Audience Cards')
                                     ->schema([
                                         $this->iconSelect(),
-                                        TextInput::make('title')->required(),
-                                        Textarea::make('description')->rows(3)->columnSpanFull(),
+                                        TextInput::make('title'),
+                                        RichEditor::make('description')->columnSpanFull(),
                                     ])
-                                    ->reorderable()
-                                    ->collapsible()
-                                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
-                                    ->columnSpanFull(),
+                    ->reorderable()
+                    ->collapsible()
+                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
+                    ->columnSpanFull(),
                                 $this->ctaRepeater('whoFor.ctas'),
                             ]),
 
@@ -221,35 +223,35 @@ class ManageEdutainment extends Page implements HasForms
                                     ->schema([
                                         TextInput::make('image')->hidden(),
                                         MediaPicker::forField('image', 'edutainment/programmes')
-                                            ->label('Card Image')
-                                            ->columnSpanFull(),
+                    ->label('Card Image')
+                    ->columnSpanFull(),
                                         Grid::make(2)->schema([
                                             TextInput::make('badge')->label('Badge'),
                                             Toggle::make('is_featured')->label('Featured Card'),
                                         ]),
-                                        TextInput::make('title')->required(),
-                                        Textarea::make('description')->rows(3)->columnSpanFull(),
+                                        TextInput::make('title'),
+                                        RichEditor::make('description')->columnSpanFull(),
                                         $this->stringListRepeater('bullets', 'Bullet Points'),
                                         Grid::make(2)->schema([
                                             TextInput::make('cta_label')->label('CTA Label'),
                                             TextInput::make('cta_url')->label('CTA URL'),
                                         ]),
                                     ])
-                                    ->reorderable()
-                                    ->collapsible()
-                                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
-                                    ->columnSpanFull(),
+                    ->reorderable()
+                    ->collapsible()
+                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
+                    ->columnSpanFull(),
                                 Repeater::make('programmes.china_items')
                                     ->label('Featured Experience Items')
                                     ->schema([
                                         $this->iconSelect(),
-                                        TextInput::make('title')->required(),
-                                        Textarea::make('description')->rows(3)->columnSpanFull(),
+                                        TextInput::make('title'),
+                                        RichEditor::make('description')->columnSpanFull(),
                                     ])
-                                    ->reorderable()
-                                    ->collapsible()
-                                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
-                                    ->columnSpanFull(),
+                    ->reorderable()
+                    ->collapsible()
+                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
+                    ->columnSpanFull(),
                                 Grid::make(2)->schema([
                                     TextInput::make('programmes.china_cta_label')->label('Featured Block CTA Label'),
                                     TextInput::make('programmes.china_cta_url')->label('Featured Block CTA URL'),
@@ -265,13 +267,13 @@ class ManageEdutainment extends Page implements HasForms
                                     ->label('Theme Cards')
                                     ->schema([
                                         $this->iconSelect(),
-                                        TextInput::make('title')->required(),
-                                        Textarea::make('description')->rows(3)->columnSpanFull(),
+                                        TextInput::make('title'),
+                                        RichEditor::make('description')->columnSpanFull(),
                                     ])
-                                    ->reorderable()
-                                    ->collapsible()
-                                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
-                                    ->columnSpanFull(),
+                    ->reorderable()
+                    ->collapsible()
+                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
+                    ->columnSpanFull(),
                             ]),
 
                         Tab::make('Experiences')
@@ -283,13 +285,13 @@ class ManageEdutainment extends Page implements HasForms
                                     ->label('Experience Categories')
                                     ->schema([
                                         $this->iconSelect(),
-                                        TextInput::make('title')->required(),
+                                        TextInput::make('title'),
                                         $this->stringListRepeater('items', 'List Items'),
                                     ])
-                                    ->reorderable()
-                                    ->collapsible()
-                                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
-                                    ->columnSpanFull(),
+                    ->reorderable()
+                    ->collapsible()
+                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
+                    ->columnSpanFull(),
                                 TextInput::make('experiences.note')->label('Closing Note')->columnSpanFull(),
                             ]),
 
@@ -301,13 +303,13 @@ class ManageEdutainment extends Page implements HasForms
                                     ->label('Value Cards')
                                     ->schema([
                                         $this->iconSelect(),
-                                        TextInput::make('title')->required(),
-                                        Textarea::make('description')->rows(3)->columnSpanFull(),
+                                        TextInput::make('title'),
+                                        RichEditor::make('description')->columnSpanFull(),
                                     ])
-                                    ->reorderable()
-                                    ->collapsible()
-                                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
-                                    ->columnSpanFull(),
+                    ->reorderable()
+                    ->collapsible()
+                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
+                    ->columnSpanFull(),
                             ]),
 
                         Tab::make('Packages')
@@ -329,12 +331,12 @@ class ManageEdutainment extends Page implements HasForms
                                     ->label('Programme Type Tiles')
                                     ->schema([
                                         $this->iconSelect(),
-                                        TextInput::make('label')->required(),
+                                        TextInput::make('label'),
                                     ])
-                                    ->reorderable()
-                                    ->collapsible()
-                                    ->itemLabel(fn (array $state): ?string => $state['label'] ?? null)
-                                    ->columnSpanFull(),
+                    ->reorderable()
+                    ->collapsible()
+                    ->itemLabel(fn (array $state): ?string => $state['label'] ?? null)
+                    ->columnSpanFull(),
                                 TextInput::make('institutions.note')->label('Note')->columnSpanFull(),
                                 $this->ctaRepeater('institutions.ctas'),
                             ]),
@@ -346,13 +348,13 @@ class ManageEdutainment extends Page implements HasForms
                                 Repeater::make('faq.items')
                                     ->label('Questions')
                                     ->schema([
-                                        TextInput::make('question')->required()->columnSpanFull(),
+                                        TextInput::make('question')->columnSpanFull(),
                                         RichEditor::make('answer')->columnSpanFull(),
                                     ])
-                                    ->reorderable()
-                                    ->collapsible()
-                                    ->itemLabel(fn (array $state): ?string => $state['question'] ?? null)
-                                    ->columnSpanFull(),
+                    ->reorderable()
+                    ->collapsible()
+                    ->itemLabel(fn (array $state): ?string => $state['question'] ?? null)
+                    ->columnSpanFull(),
                             ]),
 
                         Tab::make('Final CTA')
@@ -364,8 +366,8 @@ class ManageEdutainment extends Page implements HasForms
                                 TextInput::make('finalCta.emphasis')->label('Emphasis Line')->columnSpanFull(),
                                 TextInput::make('finalCta.background_image')->hidden(),
                                 MediaPicker::forField('finalCta.background_image', 'edutainment/cta')
-                                    ->label('Background Image')
-                                    ->columnSpanFull(),
+                    ->label('Background Image')
+                    ->columnSpanFull(),
                                 $this->ctaRepeater('finalCta.ctas'),
                                 Grid::make(2)->schema([
                                     TextInput::make('finalCta.whatsapp_label')->label('WhatsApp Button Label'),
@@ -517,42 +519,6 @@ class ManageEdutainment extends Page implements HasForms
         app($settingsClass)->fill($payload)->save();
     }
 
-    protected function ensureAllSettingsProperties(object $settings, array $payload): array
-    {
-        $reflection = new \ReflectionClass($settings);
-
-        foreach ($reflection->getProperties(\ReflectionProperty::IS_PUBLIC) as $property) {
-            if ($property->isStatic()) {
-                continue;
-            }
-
-            $name = $property->getName();
-
-            if (! array_key_exists($name, $payload)) {
-                $payload[$name] = $settings->{$name} ?? $property->getDefaultValue();
-            }
-        }
-
-        return $payload;
-    }
-
-    protected function ensureSettingsRowsExist(object $settings): void
-    {
-        $mapper = app(\Spatie\LaravelSettings\SettingsMapper::class);
-        $getConfig = new \ReflectionMethod($mapper, 'getConfig');
-        $getConfig->setAccessible(true);
-        $config = $getConfig->invoke($mapper, get_class($settings));
-
-        $repo = $config->getRepository();
-        $group = $config->getGroup();
-        $existing = collect($repo->getPropertiesInGroup($group))->keys();
-
-        foreach ($config->getReflectedProperties()->keys() as $name) {
-            if (! $existing->contains($name)) {
-                $repo->createProperty($group, $name, $settings->{$name} ?? null);
-            }
-        }
-    }
 
     protected function sectionHeaderFields(string $prefix): array
     {
@@ -570,8 +536,8 @@ class ManageEdutainment extends Page implements HasForms
         return Repeater::make($name)
             ->label('Buttons')
             ->schema([
-                TextInput::make('label')->required(),
-                TextInput::make('url')->required(),
+                TextInput::make('label'),
+                TextInput::make('url'),
                 Select::make('style')
                     ->options([
                         'primary' => 'Primary',
@@ -590,7 +556,7 @@ class ManageEdutainment extends Page implements HasForms
     {
         return Repeater::make($name)
             ->label($label)
-            ->simple(TextInput::make('item')->required())
+            ->simple(TextInput::make('item'))
             ->reorderable()
             ->columnSpanFull();
     }

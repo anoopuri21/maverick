@@ -42,7 +42,7 @@ class MediaGalleryPhotoResource extends Resource
             ->schema([
                 MediaPicker::forField('image_url', 'media-gallery/photos')
                     ->label('Photo')
-                    ->required(),
+                    ,
                 TextInput::make('caption')
                     ->label('Caption')
                     ->maxLength(255)
@@ -68,7 +68,7 @@ class MediaGalleryPhotoResource extends Resource
                     ->default('medium')
                     ->helperText('Controls the item footprint in the masonry collage.'),
                 TextInput::make('sort_order')
-                    ->numeric()
+                    ->numeric()->nullable()
                     ->default(0),
                 Forms\Components\Toggle::make('is_active')
                     ->default(true),

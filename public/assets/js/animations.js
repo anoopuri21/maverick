@@ -1333,21 +1333,35 @@
     }
 
     const newsletterForm = document.querySelector("[data-newsletter-form]");
-    if (newsletterForm) {
-      newsletterForm.addEventListener("submit", (e) => {
+    if (newsletterForm && newsletterForm.dataset.newsletterBound !== "1") {
+      newsletterForm.dataset.newsletterBound = "1";
+      newsletterForm.addEventListener("submit", async (e) => {
         e.preventDefault();
         const input = newsletterForm.querySelector(".footer__newsletter-input");
         const btn = newsletterForm.querySelector(
           ".footer__newsletter-btn span",
         );
-        if (input && input.value && btn) {
-          const originalText = btn.textContent;
-          btn.textContent = "Subscribed ✓";
-          input.value = "";
-          setTimeout(() => {
-            btn.textContent = originalText;
-          }, 2500);
+        if (!input || !input.value || !btn) return;
+        const originalText = btn.textContent;
+        try {
+          const res = await fetch(newsletterForm.action, {
+            method: "POST",
+            headers: {
+              Accept: "application/json",
+              "X-Requested-With": "XMLHttpRequest",
+            },
+            body: new FormData(newsletterForm),
+          });
+          if (res.ok) {
+            btn.textContent = "Subscribed ✓";
+            input.value = "";
+          }
+        } catch (_) {
+          /* keep button usable */
         }
+        setTimeout(() => {
+          btn.textContent = originalText;
+        }, 2500);
       });
     }
 

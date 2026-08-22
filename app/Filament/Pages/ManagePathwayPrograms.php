@@ -7,6 +7,7 @@ use App\Filament\Forms\Components\MediaPicker;
 use App\Settings\PathwayProgramsSettings;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Section;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -30,13 +31,13 @@ class ManagePathwayPrograms extends SettingsPage
                     TextInput::make('tag')->label('Eyebrow / Tag')->columnSpanFull(),
                 ]),
                 Grid::make(2)->schema([
-                    TextInput::make('heading')->label('Heading')->required(),
-                    TextInput::make('heading_italic')->label('Heading (Italic)')->required(),
+                    TextInput::make('heading')->label('Heading'),
+                    TextInput::make('heading_italic')->label('Heading (Italic)'),
                 ]),
-                Textarea::make('description')->label('Sub Heading')->rows(3)->columnSpanFull(),
+                RichEditor::make('description')->label('Sub Heading')->columnSpanFull(),
                 Grid::make(2)->schema([
                     MediaPicker::forField('background_image', 'pathway-programs')
-                        ->label('Background Image (Media Library)'),
+                    ->label('Background Image (Media Library)'),
                     TextInput::make('background_image_url_input')->label('Or Image URL')
                         ->helperText('Used only if no media-library image is uploaded.'),
                 ]),
@@ -48,7 +49,17 @@ class ManagePathwayPrograms extends SettingsPage
                     TextInput::make('overview_heading')->label('Heading'),
                     TextInput::make('overview_heading_italic')->label('Heading (Italic)'),
                 ]),
-                Textarea::make('overview_body')->label('Body')->rows(6)->columnSpanFull(),
+                RichEditor::make('overview_body')->label('Body')->columnSpanFull(),
+            ]),
+
+            Section::make('Pathways List')->schema([
+                TextInput::make('pathways_label')->label('Section Label'),
+                Grid::make(2)->schema([
+                    TextInput::make('pathways_heading')->label('Heading'),
+                    TextInput::make('pathways_heading_italic')->label('Heading (Italic)'),
+                ]),
+                TextInput::make('pathways_cta_label')->label('Pathway CTA Button Label'),
+                Textarea::make('pathways_empty_message')->label('Empty State Message')->rows(2),
             ]),
         ]);
     }

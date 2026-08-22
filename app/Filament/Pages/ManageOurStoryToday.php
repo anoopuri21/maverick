@@ -40,10 +40,10 @@ class ManageOurStoryToday extends SettingsPage
                 ->schema([
                     TextInput::make('badge')
                         ->label('Badge Label')
-                        ->required(),
+                        ,
                     TextInput::make('heading')
                         ->label('Heading')
-                        ->required(),
+                        ,
                     RichEditor::make('description')
                         ->label('Description')
                         ->toolbarButtons([
@@ -56,7 +56,7 @@ class ManageOurStoryToday extends SettingsPage
                             'redo',
                             'undo',
                         ])
-                        ->columnSpanFull(),
+                    ->columnSpanFull(),
                 ]),
 
             Section::make('Section Image')
@@ -72,8 +72,7 @@ class ManageOurStoryToday extends SettingsPage
                         ->nullable()
                         ->getUploadedFileUsing(fn (?string $file): ?array => static::existingCloudinaryImage($file))
                         ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
-                            return app(CloudinaryService::class)
-                                ->uploadImage($file->getRealPath(), 'our-story/today');
+                            return cloudinary_upload($file->getRealPath() ?: null, 'our-story/today');
                         }),
                 ]),
         ]);

@@ -57,7 +57,7 @@
                     <p class="gbp-dest__partner">{{ $dest['university'] }}</p>
                     @endif
                     @if(html_filled($dest['description'] ?? null))
-                    <div class="gbp-dest__description body-text gbp-richtext">{!! $dest['description'] !!}</div>
+                    <div class="gbp-dest__description body-text gbp-richtext">{!! rich_html($dest['description'] ?? null) !!}</div>
                     @endif
                     @if($points->isNotEmpty())
                     <ul class="gbp-dest__points">

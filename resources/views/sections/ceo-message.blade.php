@@ -1,4 +1,5 @@
 <section id="ceo-message" class="ceo section-wrapper section--light" aria-label="Founder and CEO Message">
+  @isset($ceo)
   <div class="container">
 
     <div class="ceo__grid">
@@ -9,13 +10,18 @@
 
           <!-- Replace with actual image later -->
           <div class="ceo__image">
-            <img src="{{ $ceo->image_url ?? asset('assets/images/placeholder.jpg') }}"
-              alt="{{ $ceo->name }}, {{ $ceo->designation }}" />
+            @if($url = media_url($ceo->image_url ?? null, 'assets/images/placeholder.jpg'))
+            <img src="{{ $url }}"
+              alt="{{ trim(($ceo->name ?? '').', '.($ceo->designation ?? ''), ', ') }}"
+              loading="lazy" decoding="async" />
+            @endif
           </div>
 
+          @if(filled($ceo->badge_text ?? null))
           <div class="ceo__badge">
             {{ $ceo->badge_text }}
           </div>
+          @endif
 
         </div>
       </div>
@@ -45,21 +51,26 @@
           </span>
         </h2>
 
+        @if(html_filled($ceo->quote ?? null))
         <blockquote class="ceo__quote fade-up">
-          "{{ $ceo->quote }}"
+          "{!! rich_html($ceo->quote ?? null) !!}"
         </blockquote>
+        @endif
 
+        @if(html_filled($ceo->body_paragraph1 ?? null) || html_filled($ceo->body_paragraph2 ?? null))
         <div class="ceo__body fade-up">
-
-          <p>
-            {{ $ceo->body_paragraph1 }}
-          </p>
-
-          <p>
-            {{ $ceo->body_paragraph2 }}
-          </p>
-
+          @if(html_filled($ceo->body_paragraph1 ?? null))
+          <div>
+            {!! rich_html($ceo->body_paragraph1 ?? null) !!}
+          </div>
+          @endif
+          @if(html_filled($ceo->body_paragraph2 ?? null))
+          <div>
+            {!! rich_html($ceo->body_paragraph2 ?? null) !!}
+          </div>
+          @endif
         </div>
+        @endif
 
         <div class="ceo__signature fade-up">
 
@@ -80,4 +91,5 @@
     </div>
 
   </div>
+  @endisset
 </section>

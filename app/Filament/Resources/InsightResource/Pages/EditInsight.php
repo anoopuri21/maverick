@@ -21,6 +21,10 @@ class EditInsight extends EditRecord
     {
         $data = \App\Filament\Forms\Components\MediaPicker::syncFieldFromAsset($data, 'featured_image_url');
 
+        if (empty($data['featured_image_url']) && ! empty($this->record->featured_image_url)) {
+            $data['featured_image_url'] = $this->record->featured_image_url;
+        }
+
         return $data;
     }
 }

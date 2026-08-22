@@ -12,4 +12,9 @@ class ManageStudentSuccessSeo extends ManagesPageSeo
     protected static string $settings = StudentSuccessSeoSettings::class;
     protected static string $mediaFolder = 'student-success-seo';
     protected static string $pageLabel = 'the Student Success page';
+
+    public static function shouldRegisterNavigation(): bool
+    {
+        return false;
+    }
 }

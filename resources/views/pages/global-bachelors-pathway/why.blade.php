@@ -26,10 +26,10 @@
                 </h2>
                 @endif
                 @if(html_filled($why->quote ?? null))
-                <blockquote class="gbp-why__quote fade-up gbp-richtext">{!! $why->quote !!}</blockquote>
+                <blockquote class="gbp-why__quote fade-up gbp-richtext">{!! rich_html($why->quote ?? null) !!}</blockquote>
                 @endif
                 @if(html_filled($why->paragraph ?? null))
-                <div class="gbp-why__paragraph body-text fade-up gbp-richtext">{!! $why->paragraph !!}</div>
+                <div class="gbp-why__paragraph body-text fade-up gbp-richtext">{!! rich_html($why->paragraph ?? null) !!}</div>
                 @endif
             </div>
             @if($whyItems->isNotEmpty())
@@ -47,7 +47,7 @@
                         <h3 class="gbp-why-card__title card-title">{{ $item['title'] }}</h3>
                         @endif
                         @if(filled($item['description'] ?? null))
-                        <p class="gbp-why-card__description">{{ $item['description'] }}</p>
+                        <p class="gbp-why-card__description">{!! rich_html($item['description'] ?? null) !!}</p>
                         @endif
                     </div>
                 </article>

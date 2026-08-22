@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Filament\Resources\OurStoryTimelineResource;
+use App\Livewire\Concerns\MutatesEmbeddedMediaPicker;
 use App\Models\OurStoryTimeline;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
@@ -21,6 +22,7 @@ class OurStoryTimelineTable extends Component implements HasForms, HasTable
 {
     use InteractsWithForms;
     use InteractsWithTable;
+    use MutatesEmbeddedMediaPicker;
 
     public function table(Table $table): Table
     {
@@ -29,11 +31,13 @@ class OurStoryTimelineTable extends Component implements HasForms, HasTable
                 ->query(OurStoryTimeline::query())
                 ->headerActions([
                     \Filament\Tables\Actions\CreateAction::make()
-                        ->form(fn (Form $form) => OurStoryTimelineResource::form($form)),
+                        ->form(fn (Form $form) => OurStoryTimelineResource::form($form))
+                        ->mutateFormDataUsing(fn (array $data) => $this->mutateEmbeddedMedia($data, 'icon_url')),
                 ])
                 ->actions([
                     \Filament\Tables\Actions\EditAction::make()
-                        ->form(fn (Form $form) => OurStoryTimelineResource::form($form)),
+                        ->form(fn (Form $form) => OurStoryTimelineResource::form($form))
+                        ->mutateFormDataUsing(fn (array $data) => $this->mutateEmbeddedMedia($data, 'icon_url', $this->getMountedTableActionRecord())),
                     \Filament\Tables\Actions\DeleteAction::make(),
                 ]),
         );

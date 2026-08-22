@@ -26,4 +26,12 @@ class OurStoryTimeline extends Model
         'is_active' => 'boolean',
         'sort_order' => 'integer',
     ];
+
+    protected static function booted(): void
+    {
+        static::saving(function (self $item) {
+            $item->year = (string) ($item->year ?? '');
+            $item->title = (string) ($item->title ?? '');
+        });
+    }
 }

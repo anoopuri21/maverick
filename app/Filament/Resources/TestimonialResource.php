@@ -34,7 +34,7 @@ class TestimonialResource extends Resource
                     ->schema([
                         \Filament\Forms\Components\Grid::make(2)->schema([
                             \Filament\Forms\Components\TextInput::make('name')
-                                ->required(),
+                                ,
                             \Filament\Forms\Components\TextInput::make('designation')
                                 ->helperText('e.g. MBA Student, Director'),
                             \Filament\Forms\Components\TextInput::make('company')
@@ -49,8 +49,7 @@ class TestimonialResource extends Resource
                             ->label('YouTube Video URL')
                             ->placeholder('https://youtube.com/watch?v=xxxxx OR https://youtu.be/xxxxx')
                             ->helperText('Paste any YouTube URL format. Example: https://www.youtube.com/watch?v=4p0rsCEljgo')
-                            ->required()
-                            ->url()
+                            ->url()->nullable()
                             ->columnSpanFull(),
                     ]),
 
@@ -59,16 +58,16 @@ class TestimonialResource extends Resource
                     ->collapsed()
                     ->schema([
                         MediaPicker::forField('thumbnail_url', 'testimonials')
-                            ->label('Custom Thumbnail Image')
-                            ->helperText('Optional: Upload custom thumbnail. YouTube thumbnail will be auto-used if empty.')
-                            ->columnSpanFull(),
+                    ->label('Custom Thumbnail Image')
+                    ->helperText('Optional: Upload custom thumbnail. YouTube thumbnail will be auto-used if empty.')
+                    ->columnSpanFull(),
                     ]),
 
                 \Filament\Forms\Components\Section::make('Display Settings')
                     ->schema([
                         \Filament\Forms\Components\Grid::make(2)->schema([
                             \Filament\Forms\Components\TextInput::make('sort_order')
-                                ->numeric()
+                                ->numeric()->nullable()
                                 ->default(0)
                                 ->helperText('Lower number = shown first'),
                             \Filament\Forms\Components\Toggle::make('is_active')
