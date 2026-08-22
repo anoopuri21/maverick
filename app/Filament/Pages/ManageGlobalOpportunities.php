@@ -8,6 +8,7 @@ use App\Settings\GlobalOpportunitiesSettings;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Section;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -27,24 +28,24 @@ class ManageGlobalOpportunities extends SettingsPage
     {
         return $form->schema([
             Section::make('Section Heading')->schema([
-                TextInput::make('heading')->required()->columnSpanFull(),
+                TextInput::make('heading')->columnSpanFull(),
                 Textarea::make('subtitle')->rows(2)->columnSpanFull(),
             ]),
 
             Section::make('Global Opportunities Items')->schema([
-                TextInput::make('left_title')->label('Column Title')->required()->columnSpanFull(),
+                TextInput::make('left_title')->label('Column Title')->columnSpanFull(),
                 Repeater::make('opportunities')
                     ->label('Opportunity Items')
                     ->schema([
                         Grid::make(2)->schema([
-                            TextInput::make('title')->required(),
+                            TextInput::make('title'),
                             TextInput::make('url')->label('URL'),
                         ]),
-                        Textarea::make('desc')->label('Description')->rows(2)->columnSpanFull(),
+                        RichEditor::make('desc')->label('Description')->columnSpanFull(),
                         MediaPicker::forField('image', 'global-opportunities')
-                            ->label('Image')
-                            ->helperText('Upload from library (priority) or use the URL field below.')
-                            ->columnSpanFull(),
+                    ->label('Image')
+                    ->helperText('Upload from library (priority) or use the URL field below.')
+                    ->columnSpanFull(),
                         TextInput::make('image_url')->label('Image URL (fallback)')
                             ->helperText('Used only if no image is uploaded.'),
                     ])
@@ -55,19 +56,19 @@ class ManageGlobalOpportunities extends SettingsPage
             ]),
 
             Section::make('Global Pathways Items')->schema([
-                TextInput::make('right_title')->label('Column Title')->required()->columnSpanFull(),
+                TextInput::make('right_title')->label('Column Title')->columnSpanFull(),
                 Repeater::make('pathways')
                     ->label('Pathway Items')
                     ->schema([
                         Grid::make(2)->schema([
-                            TextInput::make('title')->required(),
+                            TextInput::make('title'),
                             TextInput::make('url')->label('URL'),
                         ]),
-                        Textarea::make('desc')->label('Description')->rows(2)->columnSpanFull(),
+                        RichEditor::make('desc')->label('Description')->columnSpanFull(),
                         MediaPicker::forField('image', 'global-pathways')
-                            ->label('Image')
-                            ->helperText('Upload from library (priority) or use the URL field below.')
-                            ->columnSpanFull(),
+                    ->label('Image')
+                    ->helperText('Upload from library (priority) or use the URL field below.')
+                    ->columnSpanFull(),
                         TextInput::make('image_url')->label('Image URL (fallback)')
                             ->helperText('Used only if no image is uploaded.'),
                     ])

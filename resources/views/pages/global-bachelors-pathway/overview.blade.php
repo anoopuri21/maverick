@@ -90,7 +90,7 @@
                             <h3 class="gbp-roadmap-stage__title card-title">{{ $stage['title'] }}</h3>
                             @endif
                             @if(filled($stage['description'] ?? null))
-                            <p class="gbp-roadmap-stage__description">{{ $stage['description'] }}</p>
+                            <p class="gbp-roadmap-stage__description">{!! rich_html($stage['description'] ?? null) !!}</p>
                             @endif
                         </div>
                     </div>
@@ -153,7 +153,7 @@
         @endif
 
         @if(html_filled($overview->quote ?? null))
-        <div class="gbp-overview__quote body-text fade-up gbp-richtext">{!! $overview->quote !!}</div>
+        <div class="gbp-overview__quote body-text fade-up gbp-richtext">{!! rich_html($overview->quote ?? null) !!}</div>
         @endif
     </div>
 </section>

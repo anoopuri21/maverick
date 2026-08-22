@@ -40,10 +40,8 @@ class OurStoryTimelineResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('year')
-                    ->required()
                     ->maxLength(10),
                 Forms\Components\TextInput::make('title')
-                    ->required()
                     ->maxLength(255),
                 RichEditor::make('description')
                     ->toolbarButtons([
@@ -62,7 +60,7 @@ class OurStoryTimelineResource extends Resource
                     ->label('Icon')
                     ->helperText('Optional timeline icon image'),
                 Forms\Components\TextInput::make('sort_order')
-                    ->numeric()
+                    ->numeric()->nullable()
                     ->default(0),
                 Forms\Components\Toggle::make('is_active')
                     ->default(true),

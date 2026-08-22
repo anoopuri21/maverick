@@ -7,34 +7,38 @@ use Illuminate\Support\Facades\Log;
 
 class CloudinaryService
 {
-    protected Cloudinary $cloudinary;
+    protected ?Cloudinary $cloudinary = null;
 
-    public function __construct()
+    protected function client(): Cloudinary
     {
+        if ($this->cloudinary instanceof Cloudinary) {
+            return $this->cloudinary;
+        }
+
         $cloudName = config('services.cloudinary.cloud_name');
-        $apiKey    = config('services.cloudinary.api_key');
+        $apiKey = config('services.cloudinary.api_key');
         $apiSecret = config('services.cloudinary.api_secret');
 
-        // Validate credentials
         if (empty($cloudName) || empty($apiKey) || empty($apiSecret)) {
             throw new \RuntimeException(
-                'Cloudinary credentials are missing. Please check your .env file for: ' .
-                'CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET. ' .
+                'Cloudinary credentials are missing. Please check your .env file for: '.
+                'CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET. '.
                 'After adding them, run: php artisan config:clear'
             );
         }
 
-        // Pass configuration directly to Cloudinary constructor
         $this->cloudinary = new Cloudinary([
             'cloud' => [
                 'cloud_name' => $cloudName,
-                'api_key'    => $apiKey,
+                'api_key' => $apiKey,
                 'api_secret' => $apiSecret,
             ],
             'url' => [
                 'secure' => true,
             ],
         ]);
+
+        return $this->cloudinary;
     }
 
     /**
@@ -57,7 +61,7 @@ class CloudinaryService
         try {
             $fullFolder = $this->resolveBaseFolder().'/'.$folder;
 
-            $result = $this->cloudinary->uploadApi()->upload($filePath, [
+            $result = $this->client()->uploadApi()->upload($filePath, [
                 'folder' => $fullFolder,
                 'resource_type' => 'image',
                 'transformation' => [
@@ -116,7 +120,7 @@ class CloudinaryService
                 $options['next_cursor'] = $nextCursor;
             }
 
-            $result = $this->cloudinary->adminApi()->assets($options);
+            $result = $this->client()->adminApi()->assets($options);
 
             return [
                 'resources' => isset($result['resources']) && is_array($result['resources'])
@@ -141,14 +145,16 @@ class CloudinaryService
     {
         try {
             $publicId = $this->extractPublicId($imageUrl);
-            if (!$publicId) {
+            if (! $publicId) {
                 return false;
             }
 
-            $this->cloudinary->uploadApi()->destroy($publicId);
+            $this->client()->uploadApi()->destroy($publicId);
+
             return true;
         } catch (\Exception $e) {
-            Log::error('Cloudinary delete failed: ' . $e->getMessage());
+            Log::error('Cloudinary delete failed: '.$e->getMessage());
+
             return false;
         }
     }
@@ -158,7 +164,7 @@ class CloudinaryService
      */
     protected function extractPublicId(string $url): ?string
     {
-        if (!str_contains($url, 'cloudinary.com')) {
+        if (! str_contains($url, 'cloudinary.com')) {
             return null;
         }
 

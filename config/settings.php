@@ -102,6 +102,19 @@ return [
         \App\Settings\StudentSuccessSeoSettings::class,
         \App\Settings\ProgramsListingSeoSettings::class,
         \App\Settings\FacultyVoiceSeoSettings::class,
+        \App\Settings\BlogHeroSettings::class,
+        \App\Settings\NewsHeroSettings::class,
+        \App\Settings\LeadershipHeroSettings::class,
+        \App\Settings\LeadershipLeadersSettings::class,
+        \App\Settings\LeadershipSeoSettings::class,
+        \App\Settings\EventsPageSettings::class,
+        \App\Settings\StudentSuccessPageSettings::class,
+        \App\Settings\ContactPageSettings::class,
+        \App\Settings\ProgramsListingPageSettings::class,
+        \App\Settings\FacultyVoicePageSettings::class,
+        \App\Settings\AccreditationsPageSettings::class,
+        \App\Settings\MediaGalleryPageSettings::class,
+        \App\Settings\ProgramsDetailChromeSettings::class,
     ],
 
     /*
@@ -114,8 +127,10 @@ return [
      * Set enabled to false during development for instant updates
      */
     'cache' => [
-        'enabled' => env('SETTINGS_CACHE_ENABLED', false),
-        'store' => null,
+        // Cross-request settings cache. Use file/redis — database cache
+        // adds a query per settings group and doesn't reduce SQL.
+        'enabled' => env('SETTINGS_CACHE_ENABLED', true),
+        'store' => env('SETTINGS_CACHE_STORE', 'file'),
         'prefix' => 'settings.',
         'ttl' => null,
     ],

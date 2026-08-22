@@ -28,7 +28,7 @@
             <div class="mp-final__sub mp-richtext">{!! $finalCta->sub !!}</div>
             @endif
             @if(html_filled($finalCta->description ?? null))
-            <div class="mp-final__description body-text mp-richtext">{!! $finalCta->description !!}</div>
+            <div class="mp-final__description body-text mp-richtext">{!! rich_html($finalCta->description ?? null) !!}</div>
             @endif
             @if($finalCtas->isNotEmpty())
             <div class="mp-final__ctas">

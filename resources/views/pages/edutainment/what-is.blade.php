@@ -43,7 +43,7 @@
         <div class="edu-what-is__lead fade-up edu-richtext">{!! $whatIs->lead !!}</div>
         @endif
         @if(html_filled($whatIs->body ?? null))
-        <div class="edu-richtext fade-up">{!! $whatIs->body !!}</div>
+        <div class="edu-richtext fade-up">{!! rich_html($whatIs->body ?? null) !!}</div>
         @endif
       </div>
       @endif
@@ -69,9 +69,9 @@
     @if(html_filled($whatIs->quote ?? null) || filled($whatIs->quote ?? null))
     <div class="edu-what-is__quote fade-up">
       @if(strip_tags($whatIs->quote) !== $whatIs->quote)
-        {!! $whatIs->quote !!}
+        {!! rich_html($whatIs->quote ?? null) !!}
       @else
-        <p>&ldquo;{{ $whatIs->quote }}&rdquo;</p>
+        <p>&ldquo;{!! rich_html($whatIs->quote ?? null) !!}&rdquo;</p>
       @endif
     </div>
     @endif

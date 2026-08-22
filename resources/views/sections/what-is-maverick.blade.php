@@ -11,7 +11,7 @@
       </div>
 
       <h2 class="wim__heading display-text">
-        {{ $whatIsMaverick->heading }}
+        {{ $whatIsMaverick->heading ?? '' }}
       </h2>
     </div>
 

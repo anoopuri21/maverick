@@ -23,7 +23,7 @@ class ManageFinalCta extends SettingsPage
 
             Section::make('Content')
                 ->schema([
-                    TextInput::make('heading')->required()->columnSpanFull(),
+                    TextInput::make('heading')->columnSpanFull(),
                     TextInput::make('subtitle')->columnSpanFull(),
                 ]),
 

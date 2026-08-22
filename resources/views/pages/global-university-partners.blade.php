@@ -14,8 +14,8 @@
 @endif
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('css/pages/global-university-partners.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/components/cinematic-hero.css') }}">
+    <link rel="stylesheet" href="{{ cached_asset('css/pages/global-university-partners.css') }}">
+    <link rel="stylesheet" href="{{ cached_asset('assets/css/components/cinematic-hero.css') }}">
 @endpush
 
 @section('content')
@@ -73,7 +73,7 @@
             @if(filled($hero->heading_italic))<em>{{ $hero->heading_italic }}</em>@endif
         </h1>
         @if(filled($hero->description))
-        <p class="cinematic-hero__description">{{ $hero->description }}</p>
+        <p class="cinematic-hero__description">{!! rich_html($hero->description ?? null) !!}</p>
         @endif
         <div class="cinematic-hero__scroll-hint" aria-hidden="true">
             <span class="cinematic-hero__scroll-text">Scroll to explore</span>
@@ -100,7 +100,7 @@
                     @if(filled($overview->heading_italic))<em>{{ $overview->heading_italic }}</em>@endif
                 </h2>
                 @if(filled($overview->paragraph))
-                <p class="gup-overview__paragraph">{{ $overview->paragraph }}</p>
+                <p class="gup-overview__paragraph">{!! rich_html($overview->paragraph ?? null) !!}</p>
                 @endif
 
                 @if($overviewImg = media_url($overview->image))
@@ -174,7 +174,7 @@
                     @if(filled($uni->recognition))
                     <div class="gup-uni-card__recognition">
                         <span class="gup-uni-card__recognition-label">Recognition</span>
-                        <p class="gup-uni-card__recognition-text">{{ $uni->recognition }}</p>
+                        <p class="gup-uni-card__recognition-text">{!! rich_html($uni->recognition ?? null) !!}</p>
                     </div>
                     @endif
 
@@ -210,7 +210,7 @@
                     </h2>
                     @if(filled($whyPartnerships->quote))
                     <blockquote class="gup-why__quote">
-                        {{ $whyPartnerships->quote }}
+                        {!! rich_html($whyPartnerships->quote ?? null) !!}
                     </blockquote>
                     @endif
                 </div>
@@ -229,7 +229,7 @@
                     <div class="gup-why-card__content">
                         <h3 class="gup-why-card__title">{{ $item['title'] }}</h3>
                         @if(filled($item['description'] ?? null))
-                        <p class="gup-why-card__description">{{ $item['description'] }}</p>
+                        <p class="gup-why-card__description">{!! rich_html($item['description'] ?? null) !!}</p>
                         @endif
                     </div>
                     <span class="gup-why-card__number">{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</span>
@@ -275,7 +275,7 @@
                         <div class="gup-benefit__content">
                             <h4 class="gup-benefit__title">{{ $item['title'] }}</h4>
                             @if(filled($item['description'] ?? null))
-                            <p class="gup-benefit__description">{{ $item['description'] }}</p>
+                            <p class="gup-benefit__description">{!! rich_html($item['description'] ?? null) !!}</p>
                             @endif
                         </div>
                     </li>
@@ -403,5 +403,5 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('js/pages/global-university-partners.js') }}" defer></script>
+    <script src="{{ cached_asset('js/pages/global-university-partners.js') }}" defer></script>
 @endpush

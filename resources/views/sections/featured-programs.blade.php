@@ -23,12 +23,14 @@
 
   <div class="programs__scroll-wrapper">
     <div class="programs__track">
-      @forelse($featuredPrograms as $index => $program)
+      @forelse(($featuredPrograms ?? collect()) as $index => $program)
         <div class="programs__card">
+          @if($url = media_url($program->image_url ?? null, 'assets/images/homepage/mba.jpg'))
           <img class="programs__card-media"
-               src="{{ $program->image_url ?? asset('assets/images/homepage/mba.jpg') }}"
+               src="{{ $url }}"
                alt="{{ $program->title }}"
                loading="lazy" decoding="async" width="800" height="540" />
+          @endif
           <div class="programs__card-header">
             <span class="programs__card-index">{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</span>
             @if($program->universityPartner)
@@ -41,12 +43,14 @@
               <p class="programs__card-subtitle">{{ $program->short_description }}</p>
             @endif
             <div class="programs__card-line"></div>
-            <a href="/programs/{{ $program->slug }}/" class="programs__card-link">
+            @if(filled($program->slug))
+            <a href="{{ route('programs.show', $program->slug) }}" class="programs__card-link">
               Learn More
               <span class="programs__card-arrow" aria-hidden="true">
                 <span class="inline-icon" data-lucide="move-right"></span>
               </span>
             </a>
+            @endif
           </div>
         </div>
       @empty

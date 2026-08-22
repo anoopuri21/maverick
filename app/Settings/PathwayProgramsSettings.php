@@ -20,6 +20,12 @@ class PathwayProgramsSettings extends Settings
     public ?string $overview_heading_italic = null;
     public ?string $overview_body = null;
 
+    public ?string $pathways_label = null;
+    public ?string $pathways_heading = null;
+    public ?string $pathways_heading_italic = null;
+    public ?string $pathways_cta_label = null;
+    public ?string $pathways_empty_message = null;
+
     public static function group(): string
     {
         return 'pathway_programs';

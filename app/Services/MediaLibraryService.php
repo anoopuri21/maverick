@@ -30,8 +30,23 @@ class MediaLibraryService
         $path = $this->resolvePath($file);
         $originalName ??= $this->resolveOriginalName($file);
 
-        if (! is_readable($path)) {
-            throw new \RuntimeException('Media file is not readable: '.$path);
+        if ($path === false || $path === '' || ! is_readable($path)) {
+            throw new \RuntimeException('Media file is not readable.');
+        }
+
+        $maxKb = (int) config('media.max_upload_kilobytes', 5120);
+        $sizeBytes = filesize($path) ?: 0;
+        if ($maxKb > 0 && $sizeBytes > ($maxKb * 1024)) {
+            throw new \RuntimeException("Media file exceeds the {$maxKb} KB upload limit.");
+        }
+
+        $mime = mime_content_type($path) ?: '';
+        $allowedPrefixes = config('media.allowed_mime_prefixes', ['image/']);
+        $mimeOk = $mime === '' || collect($allowedPrefixes)->contains(
+            fn (string $prefix) => str_starts_with($mime, $prefix)
+        );
+        if (! $mimeOk) {
+            throw new \RuntimeException('Only image uploads are allowed in the media library.');
         }
 
         $hash = hash_file('sha256', $path);
@@ -66,8 +81,8 @@ class MediaLibraryService
         $asset = MediaAsset::create([
             'hash' => $hash,
             'original_name' => $originalName,
-            'mime_type' => mime_content_type($path) ?: null,
-            'size_bytes' => filesize($path) ?: null,
+            'mime_type' => $mime !== '' ? $mime : null,
+            'size_bytes' => $sizeBytes ?: null,
             'width' => $dimensions[0] ?? null,
             'height' => $dimensions[1] ?? null,
             'cloudinary_public_id' => $publicId,
@@ -81,7 +96,7 @@ class MediaLibraryService
         return $asset;
     }
 
-    protected function resolvePath(string|UploadedFile|TemporaryUploadedFile $file): string
+    protected function resolvePath(string|UploadedFile|TemporaryUploadedFile $file): string|false
     {
         if (is_string($file)) {
             return $file;

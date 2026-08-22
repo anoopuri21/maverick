@@ -21,7 +21,7 @@
         'titleBreak' => $learning->title_break,
       ])
       @if(html_filled($learning->body ?? null))
-      <div class="edu-richtext fade-up">{!! $learning->body !!}</div>
+      <div class="edu-richtext fade-up">{!! rich_html($learning->body ?? null) !!}</div>
       @endif
     </div>
     @endif

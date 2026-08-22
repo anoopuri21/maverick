@@ -39,7 +39,7 @@
                 <h3 class="gbp-partner-card__title card-title">{{ $partner['name'] }}</h3>
                 @endif
                 @if(filled($partner['description'] ?? null))
-                <p class="gbp-partner-card__description">{{ $partner['description'] }}</p>
+                <p class="gbp-partner-card__description">{!! rich_html($partner['description'] ?? null) !!}</p>
                 @endif
                 @php $tags = collect($partner['best_for'] ?? [])->filter(fn ($t) => filled($t)); @endphp
                 @if($tags->isNotEmpty())

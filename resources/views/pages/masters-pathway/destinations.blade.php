@@ -57,7 +57,7 @@
                     <p class="mp-dest__partner">{{ $dest['university'] }}</p>
                     @endif
                     @if(html_filled($dest['description'] ?? null))
-                    <div class="mp-dest__description body-text mp-richtext">{!! $dest['description'] !!}</div>
+                    <div class="mp-dest__description body-text mp-richtext">{!! rich_html($dest['description'] ?? null) !!}</div>
                     @endif
                     @if($points->isNotEmpty())
                     <ul class="mp-dest__points">

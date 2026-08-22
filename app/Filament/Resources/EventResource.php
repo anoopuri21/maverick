@@ -26,14 +26,14 @@ class EventResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('title')
-                    ->required(),
+                    ,
                 Forms\Components\DatePicker::make('event_date')
-                    ->required(),
+                    ,
                 Forms\Components\TextInput::make('event_type'),
-                Forms\Components\Textarea::make('description'),
+                Forms\Components\RichEditor::make('description'),
                 Forms\Components\TextInput::make('location'),
                 Forms\Components\TextInput::make('link_url')
-                    ->url(),
+                    ->url()->nullable(),
                 Forms\Components\Toggle::make('is_active'),
             ]);
     }

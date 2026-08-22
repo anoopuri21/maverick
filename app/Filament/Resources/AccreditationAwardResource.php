@@ -46,21 +46,19 @@ class AccreditationAwardResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
-                    ->required()
                     ->maxLength(255)
                     ->helperText('Award or organisation name'),
 
                 MediaPicker::forField('logo_url', 'partner-logos')
                     ->nullable(),
 
-                Forms\Components\Textarea::make('description')
+                Forms\Components\RichEditor::make('description')
                     ->label('Description')
-                    ->rows(3)
                     ->maxLength(500)
                     ->helperText('Short description for this award'),
 
                 Forms\Components\TextInput::make('sort_order')
-                    ->numeric()
+                    ->numeric()->nullable()
                     ->default(0)
                     ->helperText('Lower numbers appear first'),
 
@@ -87,7 +85,7 @@ class AccreditationAwardResource extends Resource
                     ->toggleable(),
 
                 Tables\Columns\TextColumn::make('sort_order')
-                    ->numeric()
+                    ->numeric()->nullable()
                     ->sortable()
                     ->label('Order'),
 

@@ -9,7 +9,7 @@
     <div class="edu-programmes__china-body">
       <h4 class="edu-programmes__china-title">{{ $item['title'] }}</h4>
       @if(filled($item['description'] ?? null))
-      <p class="edu-programmes__china-desc">{{ $item['description'] }}</p>
+      <p class="edu-programmes__china-desc">{!! rich_html($item['description'] ?? null) !!}</p>
       @endif
     </div>
   </div>

@@ -5,13 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Concerns\EnsuresUniqueSlug;
 use App\Concerns\HasMediaAssets;
 
 class BlogPost extends Model
 {
-    use HasMediaAssets;
-
+    use EnsuresUniqueSlug;
     use HasFactory;
+    use HasMediaAssets;
 
     protected $fillable = [
         'legacy_id',
@@ -61,7 +62,8 @@ class BlogPost extends Model
     public function scopePublished(Builder $query): Builder
     {
         return $query->whereNotNull('published_at')
-            ->where('published_at', '<=', now());
+            ->where('published_at', '<=', now())
+            ->hasPublicSlug();
     }
 
     public function scopeFeatured(Builder $query): Builder

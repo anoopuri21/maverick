@@ -34,7 +34,7 @@
 
       <div class="edu-intro__body">
         @if(html_filled($intro->body ?? null))
-          <div class="edu-richtext">{!! $intro->body !!}</div>
+          <div class="edu-richtext">{!! rich_html($intro->body ?? null) !!}</div>
         @endif
 
         @if(filled($intro->emphasis))

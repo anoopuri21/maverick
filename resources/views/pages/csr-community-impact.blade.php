@@ -14,8 +14,8 @@
 @endif
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('css/pages/csr-community-impact.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/components/cinematic-hero.css') }}">
+    <link rel="stylesheet" href="{{ cached_asset('css/pages/csr-community-impact.css') }}" />
+    <link rel="stylesheet" href="{{ cached_asset('assets/css/components/cinematic-hero.css') }}">
 @endpush
 
 @section('content')
@@ -67,12 +67,14 @@
                 {{ $hero->tag }}
             </span>
             @endif
+            @if(filled($hero->heading_line1 ?? null) || filled($hero->heading_italic ?? null))
             <h1 class="cinematic-hero__title">
-                {{ $hero->heading_line1 }}<br>
-                <em>{{ $hero->heading_italic }}</em>
+                @if(filled($hero->heading_line1 ?? null)){{ $hero->heading_line1 }}@endif
+                @if(filled($hero->heading_italic ?? null))<br><em>{{ $hero->heading_italic }}</em>@endif
             </h1>
-            @if(filled($hero->description))
-            <p class="cinematic-hero__description">{{ $hero->description }}</p>
+            @endif
+            @if(html_filled($hero->description ?? null))
+            <p class="cinematic-hero__description">{!! rich_html($hero->description ?? null) !!}</p>
             @endif
             <div class="cinematic-hero__scroll-hint" aria-hidden="true">
                 <span class="cinematic-hero__scroll-text">Scroll to explore</span>
@@ -92,8 +94,8 @@
                     <div class="section-label"><span>{{ $commitment->label }}</span></div>
                     @endif
                     <h2 class="csr-section-heading">{{ $commitment->heading }}<span class="csr-text-accent">{{ $commitment->heading_italic }}</span></h2>
-                    @if(filled($commitment->body))
-                    <p class="csr-body-text">{{ $commitment->body }}</p>
+                    @if(html_filled($commitment->body ?? null))
+                    <div class="csr-body-text">{!! rich_html($commitment->body ?? null) !!}</div>
                     @endif
                 </div>
                 <div class="csr-commitment__visual">
@@ -122,15 +124,16 @@
             </div>
 
             <div class="csr-focus__grid">
-                @foreach($focus->items as $card)
+                @foreach(collect($focus->items ?? []) as $card)
+                @if(!is_array($card)) @continue @endif
                 <div class="csr-focus-card">
                     <div class="csr-focus-card__icon-wrapper">
                         <span class="csr-focus-card__icon" data-lucide="{{ $card['icon'] ?? 'circle' }}"></span>
                     </div>
                     <h3 class="csr-focus-card__title">{{ $card['title'] ?? '' }}</h3>
-                    @if(!empty($card['activities']))
+                    @if(collect($card['activities'] ?? [])->isNotEmpty())
                     <ul class="csr-focus-card__list">
-                        @foreach($card['activities'] as $activity)
+                        @foreach(collect($card['activities'] ?? []) as $activity)
                         <li class="csr-focus-card__item">
                             <span class="csr-focus-card__item-dot"></span>
                             {{ is_array($activity) ? ($activity['activity'] ?? '') : $activity }}
@@ -159,7 +162,7 @@
             </div>
 
             <div class="csr-gallery__grid">
-                @foreach($gallery->items as $index => $item)
+                @foreach(collect($gallery->items ?? []) as $index => $item)
                 @php
                     $cardClass = ($index % 4 === 0 || $index % 4 === 3) ? 'csr-gallery-card--large' : 'csr-gallery-card--medium';
                 @endphp
@@ -171,7 +174,9 @@
                     </div>
                     <div class="csr-gallery-card__content">
                         <h3 class="csr-gallery-card__title">{{ $item['title'] ?? '' }}</h3>
-                        <p class="csr-gallery-card__desc">{{ $item['description'] ?? '' }}</p>
+                        @if(html_filled($item['description'] ?? null))
+                        <div class="csr-gallery-card__desc">{!! rich_html($item['description'] ?? null) !!}</div>
+                        @endif
                     </div>
                 </div>
                 @endforeach
@@ -188,10 +193,12 @@
         <div class="csr-impact__pattern"></div>
         <div class="container">
             <div class="csr-impact__grid">
-                @foreach($impact->items as $counter)
+                @foreach(collect($impact->items ?? []) as $counter)
+                @if(! is_array($counter) || (! filled($counter['value'] ?? null) && ! filled($counter['label'] ?? null))) @continue @endif
+                @php $impactTarget = is_numeric($counter['value'] ?? null) ? $counter['value'] : 0; @endphp
                 <div class="csr-impact-card">
                     <div class="csr-impact-card__number-wrapper">
-                        <span class="csr-impact-card__number" data-target="{{ $counter['value'] ?? 0 }}">0</span><span class="csr-impact-card__suffix">{{ $counter['suffix'] ?? '' }}</span>
+                        <span class="csr-impact-card__number" data-target="{{ $impactTarget }}">0</span><span class="csr-impact-card__suffix">{{ $counter['suffix'] ?? '' }}</span>
                     </div>
                     <div class="csr-impact-card__divider"></div>
                     <div class="csr-impact-card__label">{{ $counter['label'] ?? '' }}</div>
@@ -213,15 +220,15 @@
                     <div class="section-label"><span>{{ $scholarship->label }}</span></div>
                     @endif
                     <h2 class="csr-section-heading">{{ $scholarship->heading }}<span class="csr-text-accent">{{ $scholarship->heading_italic }}</span></h2>
-                    @if(filled($scholarship->body))
-                    <p class="csr-body-text">{{ $scholarship->body }}</p>
+                    @if(html_filled($scholarship->body ?? null))
+                    <div class="csr-body-text">{!! rich_html($scholarship->body ?? null) !!}</div>
                     @endif
                 </div>
 
                 @if(!empty($scholarship->items))
                 <div class="csr-scholarship__checklist">
                     <div class="csr-checklist-grid">
-                        @foreach($scholarship->items as $item)
+                        @foreach(collect($scholarship->items ?? []) as $item)
                         <div class="csr-checklist-card">
                             <div class="csr-checklist-card__icon-wrapper">
                                 <span class="csr-checklist-card__icon" data-lucide="check"></span>
@@ -245,5 +252,5 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('js/pages/csr-community-impact.js') }}" defer></script>
+    <script src="{{ cached_asset('js/pages/csr-community-impact.js') }}" defer></script>
 @endpush

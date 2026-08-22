@@ -42,7 +42,7 @@ class OurStoryGalleryImageResource extends Resource
             ->schema([
                 MediaPicker::forField('image_url', 'our-story/gallery')
                     ->label('Gallery Image')
-                    ->required(),
+                    ,
                 TextInput::make('caption')
                     ->label('Caption')
                     ->maxLength(255)
@@ -61,7 +61,7 @@ class OurStoryGalleryImageResource extends Resource
                     ->searchable()
                     ->nullable(),
                 TextInput::make('sort_order')
-                    ->numeric()
+                    ->numeric()->nullable()
                     ->default(0),
                 Forms\Components\Toggle::make('is_active')
                     ->default(true),

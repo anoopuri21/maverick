@@ -37,10 +37,10 @@ class ManageWhoWeAre extends SettingsPage
             Section::make('Heading')
                 ->schema([
                     Grid::make(2)->schema([
-                        TextInput::make('heading_line1')->required(),
+                        TextInput::make('heading_line1'),
                         TextInput::make('heading_line2')
                             ->label('Line 2 (Red/Accent)')
-                            ->required(),
+                            ,
                     ]),
                     TextInput::make('body_text')
                         ->label('Body Text')
@@ -73,8 +73,7 @@ class ManageWhoWeAre extends SettingsPage
                         ->nullable()
                         ->getUploadedFileUsing(fn (?string $file): ?array => static::existingCloudinaryImage($file))
                         ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
-                            return app(CloudinaryService::class)
-                                ->uploadImage($file->getRealPath(), 'homepage/who-we-are');
+                            return cloudinary_upload($file->getRealPath() ?: null, 'homepage/who-we-are');
                         }),
                 ]),
         ]);

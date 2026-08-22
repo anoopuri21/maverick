@@ -5,7 +5,7 @@ namespace App\Filament\Pages;
 use App\Settings\WhatWeDoSettings;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Section;
-use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Pages\SettingsPage;
@@ -23,15 +23,15 @@ class ManageWhatWeDo extends SettingsPage
         return $form->schema([
             Section::make('Section Heading')->schema([
                 Grid::make(2)->schema([
-                    TextInput::make('heading_line1')->required(),
-                    TextInput::make('heading_line2')->label('Line 2 (Red/Accent)')->required(),
+                    TextInput::make('heading_line1'),
+                    TextInput::make('heading_line2')->label('Line 2 (Red/Accent)'),
                 ]),
-                Textarea::make('context_text')->rows(2)->columnSpanFull(),
+                RichEditor::make('context_text')->columnSpanFull(),
             ]),
 
             Section::make('Pillar 1: Academic Qualifications')->schema([
-                TextInput::make('pillar1_title')->required(),
-                Textarea::make('pillar1_desc')->rows(2)->columnSpanFull(),
+                TextInput::make('pillar1_title'),
+                RichEditor::make('pillar1_desc')->columnSpanFull(),
                 Grid::make(3)->schema([
                     TextInput::make('pillar1_item1')->label('Item 1'),
                     TextInput::make('pillar1_item2')->label('Item 2'),
@@ -44,8 +44,8 @@ class ManageWhatWeDo extends SettingsPage
             ]),
 
             Section::make('Pillar 2: Professional Development')->schema([
-                TextInput::make('pillar2_title')->required(),
-                Textarea::make('pillar2_desc')->rows(2)->columnSpanFull(),
+                TextInput::make('pillar2_title'),
+                RichEditor::make('pillar2_desc')->columnSpanFull(),
                 Grid::make(3)->schema([
                     TextInput::make('pillar2_item1')->label('Item 1'),
                     TextInput::make('pillar2_item2')->label('Item 2'),
@@ -58,8 +58,8 @@ class ManageWhatWeDo extends SettingsPage
             ]),
 
             Section::make('Pillar 3: International Opportunities')->schema([
-                TextInput::make('pillar3_title')->required(),
-                Textarea::make('pillar3_desc')->rows(2)->columnSpanFull(),
+                TextInput::make('pillar3_title'),
+                RichEditor::make('pillar3_desc')->columnSpanFull(),
                 Grid::make(2)->schema([
                     TextInput::make('pillar3_item1')->label('Item 1'),
                     TextInput::make('pillar3_item2')->label('Item 2'),

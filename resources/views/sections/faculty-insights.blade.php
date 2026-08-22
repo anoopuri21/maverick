@@ -35,9 +35,11 @@
             <article class="insights__card fade-up">
               <a href="{{ $insight->permalink() }}" class="insights__card-link">
                 <div class="insights__card-image">
-                  <img src="{{ $insight->image_url }}"
+                  @if($url = media_url($insight->image_url ?? $insight->featuredImageUrl()))
+                  <img src="{{ $url }}"
                        alt="{{ $insight->title }}"
                        loading="lazy" decoding="async" width="320" height="280" />
+                  @endif
                 </div>
                 <div class="insights__card-body">
                   @if($insight->badge)

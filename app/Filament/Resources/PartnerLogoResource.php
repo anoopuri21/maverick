@@ -33,13 +33,10 @@ class PartnerLogoResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
-                    ->required()
                     ->maxLength(255)
                     ->helperText('Organization or institution name'),
-                
                 MediaPicker::forField('logo_url', 'partner-logos')
                     ->nullable(),
-                
                 Forms\Components\Select::make('type')
                     ->label('Category')
                     ->options([
@@ -47,21 +44,17 @@ class PartnerLogoResource extends Resource
                         'accreditation' => '✅ Accreditation',
                         'recognition' => '🏆 Recognition',
                     ])
-                    ->required()
                     ->searchable()
                     ->helperText('Select the category this logo belongs to. Awards are managed under the Accreditations Page section.'),
 
-                Forms\Components\Textarea::make('description')
+                Forms\Components\RichEditor::make('description')
                     ->label('Description')
-                    ->rows(3)
                     ->maxLength(500)
                     ->helperText('Short description for Awards & Recognition'),
-                
                 Forms\Components\TextInput::make('sort_order')
-                    ->numeric()
+                    ->numeric()->nullable()
                     ->default(0)
                     ->helperText('Lower numbers appear first'),
-                
                 Forms\Components\Toggle::make('is_active')
                     ->default(true)
                     ->label('Active'),
@@ -75,11 +68,9 @@ class PartnerLogoResource extends Resource
                 Tables\Columns\TextColumn::make('name')
                     ->searchable()
                     ->sortable(),
-                
                 ImageColumn::make('logo_url')
                     ->size(50)
                     ->label('Logo'),
-                
                 Tables\Columns\TextColumn::make('type')
                     ->badge()
                     ->color(fn (string $state): string => match ($state) {
@@ -95,12 +86,10 @@ class PartnerLogoResource extends Resource
                         default => $state,
                     })
                     ->sortable(),
-                
                 Tables\Columns\TextColumn::make('sort_order')
-                    ->numeric()
+                    ->numeric()->nullable()
                     ->sortable()
                     ->label('Order'),
-                
                 Tables\Columns\IconColumn::make('is_active')
                     ->boolean()
                     ->label('Active'),

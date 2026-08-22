@@ -2,6 +2,7 @@
 
 namespace App\Filament\Pages;
 
+use App\Filament\Concerns\EnsuresSettingsRowsExist;
 use App\Filament\Concerns\HandlesCloudinaryImageFields;
 use App\Filament\Forms\Components\MediaPicker;
 use App\Settings\MpAudienceSettings;
@@ -35,6 +36,7 @@ use Throwable;
 class ManageMastersPathway extends Page implements HasForms
 {
     use HandlesCloudinaryImageFields;
+    use EnsuresSettingsRowsExist;
     use InteractsWithForms;
 
     protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
@@ -117,7 +119,7 @@ class ManageMastersPathway extends Page implements HasForms
                                     ->reorderable()->collapsible()->columnSpanFull(),
                                 TextInput::make('hero.background_image')->hidden(),
                                 MediaPicker::forField('hero.background_image', 'mp/hero')
-                                    ->label('Background Image')->columnSpanFull(),
+                    ->label('Background Image')->columnSpanFull(),
                                 Repeater::make('hero.ctas')
                                     ->label('Buttons')
                                     ->schema([
@@ -129,9 +131,9 @@ class ManageMastersPathway extends Page implements HasForms
                                             'ghost' => 'Ghost',
                                         ])->default('primary'),
                                     ])
-                                    ->reorderable()->collapsible()
-                                    ->itemLabel(fn (array $state): ?string => $state['label'] ?? null)
-                                    ->columnSpanFull(),
+                    ->reorderable()->collapsible()
+                    ->itemLabel(fn (array $state): ?string => $state['label'] ?? null)
+                    ->columnSpanFull(),
                                 Repeater::make('hero.route_steps')
                                     ->label('Route Steps')
                                     ->schema([TextInput::make('label')])
@@ -156,11 +158,11 @@ class ManageMastersPathway extends Page implements HasForms
                                         TextInput::make('label')->label('Phase Label'),
                                         TextInput::make('title')->label('Title'),
                                         TextInput::make('meta')->label('Meta'),
-                                        Textarea::make('desc')->label('Description')->rows(2)->columnSpanFull(),
+                                        RichEditor::make('desc')->label('Description')->columnSpanFull(),
                                     ])
-                                    ->reorderable()->collapsible()
-                                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
-                                    ->columnSpanFull(),
+                    ->reorderable()->collapsible()
+                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
+                    ->columnSpanFull(),
                             ]),
 
                         Tab::make('How it works')
@@ -181,13 +183,13 @@ class ManageMastersPathway extends Page implements HasForms
                                                 TextInput::make('label')->label('Label'),
                                                 TextInput::make('value')->label('Value'),
                                             ])
-                                            ->reorderable()->collapsible()
-                                            ->itemLabel(fn (array $state): ?string => $state['label'] ?? null)
-                                            ->columnSpanFull(),
+                    ->reorderable()->collapsible()
+                    ->itemLabel(fn (array $state): ?string => $state['label'] ?? null)
+                    ->columnSpanFull(),
                                     ])
-                                    ->reorderable()->collapsible()
-                                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
-                                    ->columnSpanFull(),
+                    ->reorderable()->collapsible()
+                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
+                    ->columnSpanFull(),
                                 RichEditor::make('how.notice')->label('Notice')->columnSpanFull(),
                             ]),
 
@@ -215,9 +217,9 @@ class ManageMastersPathway extends Page implements HasForms
                                         Textarea::make('best_for')->label('Best Suited For')->rows(2)->columnSpanFull(),
                                         Textarea::make('qualification')->label('Qualification Note')->rows(2)->columnSpanFull(),
                                     ])
-                                    ->reorderable()->collapsible()
-                                    ->itemLabel(fn (array $state): ?string => $state['name'] ?? null)
-                                    ->columnSpanFull(),
+                    ->reorderable()->collapsible()
+                    ->itemLabel(fn (array $state): ?string => $state['name'] ?? null)
+                    ->columnSpanFull(),
                             ]),
 
                         Tab::make('Why Choose')
@@ -231,11 +233,11 @@ class ManageMastersPathway extends Page implements HasForms
                                     ->label('Benefits')
                                     ->schema([
                                         TextInput::make('title')->label('Title'),
-                                        Textarea::make('desc')->label('Description')->rows(3)->columnSpanFull(),
+                                        RichEditor::make('desc')->label('Description')->columnSpanFull(),
                                     ])
-                                    ->reorderable()->collapsible()
-                                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
-                                    ->columnSpanFull(),
+                    ->reorderable()->collapsible()
+                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
+                    ->columnSpanFull(),
                             ]),
 
                         Tab::make('Audience')
@@ -270,11 +272,11 @@ class ManageMastersPathway extends Page implements HasForms
                                         $this->iconSelect(),
                                         TextInput::make('num')->label('Number (e.g. 01)'),
                                         TextInput::make('title')->label('Title'),
-                                        Textarea::make('desc')->label('Description')->rows(3)->columnSpanFull(),
+                                        RichEditor::make('desc')->label('Description')->columnSpanFull(),
                                     ])
-                                    ->reorderable()->collapsible()
-                                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
-                                    ->columnSpanFull(),
+                    ->reorderable()->collapsible()
+                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
+                    ->columnSpanFull(),
                             ]),
 
                         Tab::make('Notice')
@@ -302,18 +304,18 @@ class ManageMastersPathway extends Page implements HasForms
                                             'outline' => 'Outline',
                                         ])->default('solid'),
                                     ])
-                                    ->reorderable()->collapsible()
-                                    ->itemLabel(fn (array $state): ?string => $state['label'] ?? null)
-                                    ->columnSpanFull(),
+                    ->reorderable()->collapsible()
+                    ->itemLabel(fn (array $state): ?string => $state['label'] ?? null)
+                    ->columnSpanFull(),
                                 Repeater::make('finalCta.contacts')
                                     ->label('Contact Lines')
                                     ->schema([
                                         TextInput::make('label'),
                                         TextInput::make('url')->label('URL (optional)'),
                                     ])
-                                    ->reorderable()->collapsible()
-                                    ->itemLabel(fn (array $state): ?string => $state['label'] ?? null)
-                                    ->columnSpanFull(),
+                    ->reorderable()->collapsible()
+                    ->itemLabel(fn (array $state): ?string => $state['label'] ?? null)
+                    ->columnSpanFull(),
                             ]),
 
                         Tab::make('SEO')
@@ -433,42 +435,6 @@ class ManageMastersPathway extends Page implements HasForms
         app($settingsClass)->fill($payload)->save();
     }
 
-    protected function ensureAllSettingsProperties(object $settings, array $payload): array
-    {
-        $reflection = new \ReflectionClass($settings);
-
-        foreach ($reflection->getProperties(\ReflectionProperty::IS_PUBLIC) as $property) {
-            if ($property->isStatic()) {
-                continue;
-            }
-
-            $name = $property->getName();
-
-            if (! array_key_exists($name, $payload)) {
-                $payload[$name] = $settings->{$name} ?? $property->getDefaultValue();
-            }
-        }
-
-        return $payload;
-    }
-
-    protected function ensureSettingsRowsExist(object $settings): void
-    {
-        $mapper = app(\Spatie\LaravelSettings\SettingsMapper::class);
-        $getConfig = new \ReflectionMethod($mapper, 'getConfig');
-        $getConfig->setAccessible(true);
-        $config = $getConfig->invoke($mapper, get_class($settings));
-
-        $repo = $config->getRepository();
-        $group = $config->getGroup();
-        $existing = collect($repo->getPropertiesInGroup($group))->keys();
-
-        foreach ($config->getReflectedProperties()->keys() as $name) {
-            if (! $existing->contains($name)) {
-                $repo->createProperty($group, $name, $settings->{$name} ?? null);
-            }
-        }
-    }
 
     protected function stringListRepeater(string $name, string $label): Repeater
     {

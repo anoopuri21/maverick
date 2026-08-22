@@ -26,7 +26,7 @@
                 </h2>
                 @endif
                 @if(html_filled($cost->description ?? null))
-                <div class="gbp-cost__description body-text fade-up gbp-richtext">{!! $cost->description !!}</div>
+                <div class="gbp-cost__description body-text fade-up gbp-richtext">{!! rich_html($cost->description ?? null) !!}</div>
                 @endif
                 @if(html_filled($cost->closing ?? null))
                 <div class="gbp-cost__closing body-text fade-up gbp-richtext">{!! $cost->closing !!}</div>

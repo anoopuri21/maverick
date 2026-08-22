@@ -140,11 +140,13 @@
 # 10. DEPLOYMENT CHECKLIST
 # ------------------------------------------
 # Before deploying to production (demo.vsinfosys.in):
-# ✅ Run migrations on server
-# ✅ Clear all caches: config, view, route, cache
-# ✅ Verify APP_DEBUG=false in production .env
-# ✅ Test admin login after deployment
-# ✅ Verify Cloudinary images load correctly
+# ✅ Document root = public/
+# ✅ Never regenerate APP_KEY on existing prod .env
+# ✅ Run: bash scripts/shared-hosting-optimize.sh
+#    (migrate --force, optimize:clear, config/route/view cache)
+# ✅ APP_DEBUG=false, QUEUE_CONNECTION=sync, CACHE_STORE=file
+# ✅ Test admin login + Cloudinary images
+# ✅ Full checklist: docs/SHARED_HOSTING.md
 
 
 # ------------------------------------------

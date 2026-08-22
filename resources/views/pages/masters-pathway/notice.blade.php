@@ -9,7 +9,7 @@
             <div class="mp-notice__label">{{ $notice->label }}</div>
             @endif
             @if(html_filled($notice->body ?? null))
-            <div class="mp-notice__content mp-richtext">{!! $notice->body !!}</div>
+            <div class="mp-notice__content mp-richtext">{!! rich_html($notice->body ?? null) !!}</div>
             @endif
         </div>
     </div>

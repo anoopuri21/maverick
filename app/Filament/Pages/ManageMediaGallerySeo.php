@@ -12,4 +12,9 @@ class ManageMediaGallerySeo extends ManagesPageSeo
     protected static string $settings = MediaGallerySeoSettings::class;
     protected static string $mediaFolder = 'media-gallery-seo';
     protected static string $pageLabel = 'the Media Gallery page';
+
+    public static function shouldRegisterNavigation(): bool
+    {
+        return false;
+    }
 }

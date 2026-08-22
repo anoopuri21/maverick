@@ -6,6 +6,7 @@ use App\Settings\WhyMaverickSettings;
 use App\Filament\Concerns\HasStrictValidation;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Section;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -31,15 +32,12 @@ class ManageWhyMaverick extends SettingsPage
                     Grid::make(2)->schema([
                         TextInput::make('heading_line1')
                             ->label('Heading Line 1')
-                            ->required()
                             ->maxLength(100),
                         TextInput::make('heading_line2')
                             ->label('Line 2 (Red/Accent)')
-                            ->required()
                             ->maxLength(100),
                     ]),
                     Textarea::make('subtitle')
-                        ->required()
                         ->rows(2)
                         ->maxLength(300)
                         ->columnSpanFull(),
@@ -48,10 +46,8 @@ class ManageWhyMaverick extends SettingsPage
             Section::make('Tile 1: International Qualifications (Large)')
                 ->schema([
                     TextInput::make('tile1_title')
-                        ->required()
                         ->maxLength(80),
-                    Textarea::make('tile1_desc')
-                        ->rows(2)
+                    RichEditor::make('tile1_desc')
                         ->maxLength(300)
                         ->helperText('Optional')
                         ->columnSpanFull(),
@@ -60,10 +56,8 @@ class ManageWhyMaverick extends SettingsPage
             Section::make('Tile 2: Global University Network')
                 ->schema([
                     TextInput::make('tile2_title')
-                        ->required()
                         ->maxLength(80),
-                    Textarea::make('tile2_desc')
-                        ->rows(2)
+                    RichEditor::make('tile2_desc')
                         ->maxLength(300)
                         ->helperText('Optional')
                         ->columnSpanFull(),
@@ -72,10 +66,8 @@ class ManageWhyMaverick extends SettingsPage
             Section::make('Tile 3: Flexible Learning')
                 ->schema([
                     TextInput::make('tile3_title')
-                        ->required()
                         ->maxLength(80),
-                    Textarea::make('tile3_desc')
-                        ->rows(2)
+                    RichEditor::make('tile3_desc')
                         ->maxLength(300)
                         ->helperText('Optional')
                         ->columnSpanFull(),
@@ -84,10 +76,8 @@ class ManageWhyMaverick extends SettingsPage
             Section::make('Tile 4: Career Advancement')
                 ->schema([
                     TextInput::make('tile4_title')
-                        ->required()
                         ->maxLength(80),
-                    Textarea::make('tile4_desc')
-                        ->rows(2)
+                    RichEditor::make('tile4_desc')
                         ->maxLength(300)
                         ->helperText('Optional')
                         ->columnSpanFull(),
@@ -96,10 +86,8 @@ class ManageWhyMaverick extends SettingsPage
             Section::make('Tile 5: Industry Engagement')
                 ->schema([
                     TextInput::make('tile5_title')
-                        ->required()
                         ->maxLength(80),
-                    Textarea::make('tile5_desc')
-                        ->rows(2)
+                    RichEditor::make('tile5_desc')
                         ->maxLength(300)
                         ->helperText('Optional')
                         ->columnSpanFull(),
@@ -108,10 +96,8 @@ class ManageWhyMaverick extends SettingsPage
             Section::make('Tile 6: Academic Excellence')
                 ->schema([
                     TextInput::make('tile6_title')
-                        ->required()
                         ->maxLength(80),
-                    Textarea::make('tile6_desc')
-                        ->rows(2)
+                    RichEditor::make('tile6_desc')
                         ->maxLength(300)
                         ->helperText('Optional')
                         ->columnSpanFull(),

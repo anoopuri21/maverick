@@ -14,7 +14,7 @@
 @endif
 
 @push('styles')
-<link rel="stylesheet" href="{{ asset('assets/css/dual-mba.css') }}" />
+<link rel="stylesheet" href="{{ cached_asset('assets/css/dual-mba.css') }}" />
 @endpush
 
 @section('content')
@@ -33,5 +33,5 @@
 @endsection
 
 @push('scripts')
-<script src="{{ asset('assets/js/dual-mba.js') }}" defer></script>
+<script src="{{ cached_asset('assets/js/dual-mba.js') }}" defer></script>
 @endpush

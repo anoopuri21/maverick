@@ -44,7 +44,7 @@
                     <h3 class="mp-timeline__title">{{ $step['title'] }}</h3>
                     @endif
                     @if(filled($step['desc'] ?? null))
-                    <p class="mp-timeline__desc">{{ $step['desc'] }}</p>
+                    <p class="mp-timeline__desc">{!! rich_html($step['desc'] ?? null) !!}</p>
                     @endif
                 </div>
             </div>

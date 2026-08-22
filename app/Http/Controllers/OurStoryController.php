@@ -21,13 +21,13 @@ class OurStoryController extends Controller
 {
     public function index(): View
     {
-        $hero = app(OurStoryHeroSettings::class);
-        $beginning = app(OurStoryBeginningSettings::class);
-        $today = app(OurStoryTodaySettings::class);
-        $impact = app(OurStoryImpactSettings::class);
-        $vision = app(OurStoryVisionSettings::class);
-        $ceo = app(CeoSettings::class);
-        // $finalCta = app(FinalCtaSettings::class);
+        $hero = safe_settings(OurStoryHeroSettings::class);
+        $beginning = safe_settings(OurStoryBeginningSettings::class);
+        $today = safe_settings(OurStoryTodaySettings::class);
+        $impact = safe_settings(OurStoryImpactSettings::class);
+        $vision = safe_settings(OurStoryVisionSettings::class);
+        $ceo = safe_settings(CeoSettings::class);
+        $finalCta = safe_settings(FinalCtaSettings::class);
 
         $timelines = OurStoryTimeline::query()
             ->where('is_active', true)
@@ -54,6 +54,7 @@ class OurStoryController extends Controller
         $facultyInsights = FacultyInsight::query()
             ->select('id', 'title', 'slug', 'badge', 'image_url', 'link_url', 'sort_order')
             ->where('is_active', true)
+            ->hasPublicSlug()
             ->orderBy('sort_order')
             ->limit(6)
             ->get();

@@ -23,7 +23,7 @@
         <div class="dmba-process__step-content">
           <h3 class="dmba-process__step-title">{{ $step['title'] }}</h3>
           @if(filled($step['description'] ?? null))
-          <p class="dmba-process__step-desc">{{ $step['description'] }}</p>
+          <p class="dmba-process__step-desc">{!! rich_html($step['description'] ?? null) !!}</p>
           @endif
         </div>
       </div>
