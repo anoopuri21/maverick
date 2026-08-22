@@ -44,13 +44,13 @@
         </div>
         <div class="container cinematic-hero__content">
             @if(filled($studentSuccessPage->hero_tag ?? null))
-            <span class="cinematic-hero__eyebrow"><span class="cinematic-hero__eyebrow-line"></span>{{ $studentSuccessPage->hero_tag }}</span>
+                <span class="cinematic-hero__eyebrow"><span class="cinematic-hero__eyebrow-line"></span>{{ $studentSuccessPage->hero_tag }}</span>
             @endif
             @if(filled($studentSuccessPage->hero_heading ?? null) || filled($studentSuccessPage->hero_heading_italic ?? null))
-            <h1 class="cinematic-hero__title">{{ $studentSuccessPage->hero_heading }} @if(filled($studentSuccessPage->hero_heading_italic ?? null))<em>{{ $studentSuccessPage->hero_heading_italic }}</em>@endif</h1>
+                <h1 class="cinematic-hero__title">{{ $studentSuccessPage->hero_heading }} @if(filled($studentSuccessPage->hero_heading_italic ?? null))<em>{{ $studentSuccessPage->hero_heading_italic }}</em>@endif</h1>
             @endif
             @if(filled($studentSuccessPage->hero_description ?? null))
-            <p class="cinematic-hero__description">{!! rich_html($studentSuccessPage->hero_description ?? null) !!}</p>
+                <div class="cinematic-hero__desc__text">{!! rich_html($studentSuccessPage->hero_description ?? null) !!}</div>
             @endif
             <div class="cinematic-hero__scroll-hint" aria-hidden="true"><span class="cinematic-hero__scroll-text">Scroll to explore</span><span class="cinematic-hero__scroll-arrow" data-lucide="chevron-down"></span></div>
         </div>
@@ -108,19 +108,21 @@
             @endif
         </div>
     </section>
-
-    <div class="ep-vmodal" id="successVideoModal" role="dialog" aria-modal="true" aria-label="Video player" hidden>
-        <button type="button" class="ep-vmodal__close" data-video-close aria-label="Close video">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path d="M18 6L6 18M6 6l12 12"/>
-            </svg>
-        </button>
-        <div class="ep-vmodal__frame" data-video-frame></div>
-    </div>
     @endif
-
-    @include('sections.final-cta')
 </div>
+
+@if(($videoTotal ?? 0) > 0)
+<div class="ep-vmodal" id="successVideoModal" role="dialog" aria-modal="true" aria-label="Video player" hidden>
+    <button type="button" class="ep-vmodal__close" data-video-close aria-label="Close video">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M18 6L6 18M6 6l12 12"/>
+        </svg>
+    </button>
+    <div class="ep-vmodal__frame" data-video-frame></div>
+</div>
+@endif
+
+@include('sections.final-cta')
 @endsection
 
 @push('scripts')

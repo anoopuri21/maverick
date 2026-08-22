@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProgramEnquiryRequest;
 use App\Models\Program;
 use App\Models\ProgramCategory;
+use App\Services\FormMailer;
 use App\Settings\ProgramsListingSeoSettings;
 use App\Settings\ProgramsListingPageSettings;
 use App\Settings\ProgramsDetailChromeSettings;
@@ -75,5 +77,38 @@ class ProgramController extends Controller
             'program' => $program,
             'chrome' => safe_settings(ProgramsDetailChromeSettings::class),
         ]);
+    }
+
+    public function enquire(ProgramEnquiryRequest $request, FormMailer $formMailer)
+    {
+        $data = $request->validated();
+
+        $qualifications = [
+            'high-school' => 'High School / Secondary',
+            'diploma' => 'Diploma',
+            'bachelor' => "Bachelor's Degree",
+            'master' => "Master's Degree",
+            'other' => 'Other',
+        ];
+
+        $qualification = $data['qualification'] ?? '';
+        if (isset($qualifications[$qualification])) {
+            $qualification = $qualifications[$qualification];
+        }
+
+        $formMailer->send([
+            'Programme' => $data['programme'] ?? '',
+            'Name' => $data['name'] ?? '',
+            'Email' => $data['email'] ?? '',
+            'Phone' => $data['phone'] ?? '',
+            'Country' => $data['country'] ?? '',
+            'Study mode' => $data['study_mode'] ?? '',
+            'Qualification' => $qualification,
+            'Message' => $data['message'] ?? '',
+        ], 'Programme enquiry'.(filled($data['programme'] ?? null) ? ': '.$data['programme'] : ''), [
+            'reply_to' => $data['email'] ?? null,
+        ]);
+
+        return back()->with('success', 'Thank you! We will get back to you shortly.');
     }
 }

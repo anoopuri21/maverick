@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Mail\ContactFormSubmitted;
+use App\Mail\GenericFormMail;
 use App\Settings\SiteSettings;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Mail;
@@ -64,10 +64,12 @@ class ContactFeatureTest extends TestCase
         $response->assertStatus(302);
         $response->assertSessionHas('success', 'Thank you! We\'ll get back to you within 24 hours.');
 
-        Mail::assertSent(ContactFormSubmitted::class, function ($mail) {
+        Mail::assertSent(GenericFormMail::class, function ($mail) {
+            $values = collect($mail->rows)->pluck('value', 'label');
+
             return $mail->hasTo('admissions@mbalondon.org.uk') &&
-                   $mail->data['name'] === 'John Doe' &&
-                   $mail->data['subject'] === 'Admissions';
+                   $values->get('Name') === 'John Doe' &&
+                   $values->get('Subject') === 'Admissions';
         });
     }
 
@@ -92,7 +94,7 @@ class ContactFeatureTest extends TestCase
         $response->assertSessionHas('success', 'Thank you! We\'ll get back to you within 24 hours.');
 
         // But no mail should be sent
-        Mail::assertNotSent(ContactFormSubmitted::class);
+        Mail::assertNotSent(GenericFormMail::class);
     }
 
     /**

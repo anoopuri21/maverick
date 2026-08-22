@@ -20,8 +20,9 @@
             Get insights on programs, events, and industry trends.
           </p>
 
-          <form class="footer__newsletter-form" data-newsletter-form>
-            <input type="email" class="footer__newsletter-input" placeholder="Your email address" required
+          <form class="footer__newsletter-form" data-newsletter-form action="{{ route('newsletter.subscribe') }}" method="POST">
+            @csrf
+            <input type="email" name="email" class="footer__newsletter-input" placeholder="Your email address" required
               aria-label="Email for newsletter" />
             <button type="submit" class="footer__newsletter-btn" aria-label="Subscribe">
               <span>Subscribe</span>
