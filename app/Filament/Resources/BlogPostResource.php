@@ -25,7 +25,6 @@ use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Str;
 use App\Filament\Forms\Components\MediaPicker;
 
@@ -44,7 +43,6 @@ class BlogPostResource extends Resource
         return $form->schema([
             Section::make('Content')->schema([
                 TextInput::make('title')
-                    ->required()
                     ->live(onBlur: true)
                     ->afterStateUpdated(function (string $operation, $state, Set $set, Get $get) {
                         // Only auto-fill slug if it's currently empty
@@ -55,8 +53,6 @@ class BlogPostResource extends Resource
                     }),
 
                 TextInput::make('slug')
-                    ->required()
-                    ->unique(ignoreRecord: true)
                     ->maxLength(255),
 
                 Textarea::make('excerpt')
@@ -65,7 +61,6 @@ class BlogPostResource extends Resource
                     ->rows(3),
 
                 RichEditor::make('content')
-                    ->required()
                     ->columnSpanFull()
                     ->fileAttachmentsDirectory('blog-content-images'),
             ]),
@@ -84,7 +79,6 @@ class BlogPostResource extends Resource
                 Select::make('category')
                     ->options(['Blogs' => 'Blogs'])
                     ->default('Blogs')
-                    ->required()
                     ->native(false),
 
                 TagsInput::make('tags')
@@ -98,8 +92,8 @@ class BlogPostResource extends Resource
                     ->afterStateUpdated(function ($state, $record) {
                         if ($state === true) {
                             BlogPost::where('is_featured', true)
-                                ->when($record, fn ($query) => $query->where('id', '!=', $record->id))
-                                ->update(['is_featured' => false]);
+                    ->when($record, fn ($query) => $query->where('id', '!=', $record->id))
+                    ->update(['is_featured' => false]);
                         }
                     }),
             ]),
@@ -107,24 +101,24 @@ class BlogPostResource extends Resource
             Section::make('Author')->schema([
                 TextInput::make('author_name')
                     ->default('Maverick Business Academy')
-                    ->required(),
+                    ,
 
                 TextInput::make('author_avatar_url')
                     ->label('Author Avatar URL')
-                    ->url(),
+                    ->nullable(),
 
-                Textarea::make('author_bio')
+                RichEditor::make('author_bio')
                     ->maxLength(500)
-                    ->rows(2),
+                    ,
             ]),
 
             Section::make('Publishing')->schema([
                 DateTimePicker::make('published_at')
                     ->default(now())
-                    ->required(),
+                    ,
 
                 TextInput::make('reading_time_minutes')
-                    ->numeric()
+                    ->numeric()->nullable()
                     ->minValue(1)
                     ->suffix('minutes')
                     ->helperText('Auto-calculated during import; override manually if needed.'),

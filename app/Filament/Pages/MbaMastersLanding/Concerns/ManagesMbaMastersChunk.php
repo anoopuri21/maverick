@@ -1,0 +1,76 @@
+<?php
+
+namespace App\Filament\Pages\MbaMastersLanding\Concerns;
+
+use App\Filament\Forms\Components\MediaPicker;
+use Filament\Forms\Components\Placeholder;
+use Filament\Forms\Components\RichEditor;
+use Filament\Notifications\Notification;
+use Illuminate\Validation\ValidationException;
+use Throwable;
+
+trait ManagesMbaMastersChunk
+{
+    public ?array $data = [];
+
+    protected function richEditorToolbar(): array
+    {
+        return [
+            'bold',
+            'italic',
+            'underline',
+            'link',
+            'bulletList',
+            'orderedList',
+            'redo',
+            'undo',
+        ];
+    }
+
+    protected function richEditor(string $name, string $label): RichEditor
+    {
+        return RichEditor::make($name)
+            ->label($label)
+            ->toolbarButtons($this->richEditorToolbar())
+            ->columnSpanFull();
+    }
+
+    protected function chunkHint(string $text): Placeholder
+    {
+        return Placeholder::make('_chunk_hint')
+            ->label('')
+            ->content($text)
+            ->columnSpanFull();
+    }
+
+    protected function syncImageIfSelected(array $payload, string $field): array
+    {
+        if (! empty($payload["{$field}_asset_id"])) {
+            return MediaPicker::syncFieldFromAsset($payload, $field);
+        }
+
+        return $payload;
+    }
+
+    protected function getFormStateOrNotify(): ?array
+    {
+        try {
+            return $this->form->getState();
+        } catch (ValidationException $e) {
+            throw $e;
+        } catch (Throwable $e) {
+            report($e);
+            Notification::make()->title('Could not save')->danger()->send();
+
+            return null;
+        }
+    }
+
+    protected function notifySaved(string $chunk): void
+    {
+        Notification::make()
+            ->title("MBA Masters — {$chunk} saved")
+            ->success()
+            ->send();
+    }
+}

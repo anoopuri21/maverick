@@ -145,6 +145,12 @@
   margin: 0; max-width: 640px;
 }
 
+.edu-hero__shortdesc p {
+  margin: 0;
+  color: inherit;
+  font: inherit;
+}
+
 .edu-hero__scrollcue {
   position: absolute; left: 50%; bottom: 28px; transform: translateX(-50%);
   z-index: 3; width: 24px; height: 40px;
@@ -214,7 +220,13 @@
 .edu-why-choose__header .body-text,
 .edu-packages__header .body-text,
 .edu-institutions__header .body-text,
-.edu-programmes__header .body-text {
+.edu-programmes__header .body-text,
+.edu-learning-beyond__header .edu-richtext p,
+.edu-who-for__header .edu-richtext p,
+.edu-themes__header .edu-richtext p,
+.edu-experiences__header .edu-richtext p,
+.edu-packages__header .edu-richtext p,
+.edu-institutions__header .edu-richtext p {
   margin: 16px 0 0;
   color: var(--edu-muted);
   text-align: left;
@@ -295,6 +307,12 @@
   margin: 0;
 }
 
+.edu-intro__body .edu-richtext {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
 .edu-intro__emphasis {
   font-family: var(--font-display);
   font-size: clamp(17px, 2vw, 22px);
@@ -369,6 +387,21 @@
   line-height: 1.75;
   color: var(--edu-muted);
   margin: 0;
+}
+
+.edu-what-is__lead p {
+  font-family: var(--font-display);
+  font-size: clamp(18px, 1.8vw, 22px);
+  font-weight: 600;
+  color: var(--edu-navy);
+  line-height: 1.45;
+  margin: 0;
+}
+
+.edu-what-is__copy .edu-richtext {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .edu-what-is__list-title {
@@ -1411,6 +1444,24 @@
   font-size: clamp(15px, 1.2vw, 17px);
   line-height: 1.75;
   color: rgba(255, 255, 255, 0.74);
+  margin: 0;
+}
+
+.edu-cta__content .edu-richtext {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.edu-cta__content .edu-richtext p {
+  font-family: var(--font-body);
+  font-size: clamp(15px, 1.2vw, 17px);
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.74);
+  margin: 0;
+}
+
+.edu-faq__answer-inner p {
   margin: 0;
 }
 

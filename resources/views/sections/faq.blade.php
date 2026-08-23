@@ -31,20 +31,20 @@
         <div>
           <img
             src="https://img.magnific.com/free-vector/tiny-business-people-with-giant-faq-letters-gadget-users-searching-instructions-useful-information-flat-vector-illustration-customer-support-solution-concept-banner-landing-web-page_74855-23409.jpg"
-            class="faq-img" alt="Frequently Asked Questions" />
+            class="faq-img" alt="Frequently Asked Questions" loading="lazy" decoding="async" />
         </div>
 
       </div>
 
       <div class="faq__accordion">
-        @forelse($homepageFaqs as $index => $faq)
+        @forelse(($homepageFaqs ?? collect()) as $index => $faq)
           <div class="faq__item {{ $index === 0 ? 'active' : '' }}">
             <button class="faq__question">
               <span>{{ $faq->question }}</span>
               <span class="faq__icon">+</span>
             </button>
             <div class="faq__answer">
-              <p>{{ $faq->answer }}</p>
+              {!! rich_html($faq->answer ?? null) !!}
             </div>
           </div>
         @empty

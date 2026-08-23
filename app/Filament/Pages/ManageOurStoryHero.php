@@ -39,7 +39,6 @@ class ManageOurStoryHero extends SettingsPage
             Section::make('Hero Content')
                 ->schema([
                     TextInput::make('heading')
-                        ->required()
                         ->columnSpanFull(),
                     RichEditor::make('description')
                         ->label('Description')
@@ -53,7 +52,7 @@ class ManageOurStoryHero extends SettingsPage
                             'redo',
                             'undo',
                         ])
-                        ->columnSpanFull(),
+                    ->columnSpanFull(),
                 ]),
 
             Section::make('Hero Image')
@@ -69,8 +68,7 @@ class ManageOurStoryHero extends SettingsPage
                         ->nullable()
                         ->getUploadedFileUsing(fn (?string $file): ?array => static::existingCloudinaryImage($file))
                         ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
-                            return app(CloudinaryService::class)
-                                ->uploadImage($file->getRealPath(), 'our-story/hero');
+                            return cloudinary_upload($file->getRealPath() ?: null, 'our-story/hero');
                         }),
                 ]),
         ]);

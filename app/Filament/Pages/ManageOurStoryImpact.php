@@ -28,7 +28,7 @@ class ManageOurStoryImpact extends SettingsPage
                 ->schema([
                     TextInput::make('heading')
                         ->label('Heading')
-                        ->required(),
+                        ,
                     RichEditor::make('description')
                         ->label('Description')
                         ->toolbarButtons([
@@ -41,7 +41,7 @@ class ManageOurStoryImpact extends SettingsPage
                             'redo',
                             'undo',
                         ])
-                        ->columnSpanFull(),
+                    ->columnSpanFull(),
                 ]),
 
             Section::make('Stats')

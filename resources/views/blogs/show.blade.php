@@ -3,8 +3,17 @@
 @section('title', ($post->meta_title ?? $post->title) . ' | Maverick Business Academy')
 @section('meta_description', $post->meta_description ?? $post->excerpt)
 
+@push('head')
+    @include('partials.seo-meta', ['seo' => (object) [
+        'meta_title' => ($post->meta_title ?? $post->title) . ' | Maverick Business Academy',
+        'meta_description' => $post->meta_description ?? $post->excerpt,
+        'og_image_url' => $post->featured_image_url,
+        'og_type' => 'article',
+    ]])
+@endpush
+
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('css/pages/blog.css') }}">
+    <link rel="stylesheet" href="{{ cached_asset('css/pages/blog.css') }}">
 @endpush
 
 @section('content')
@@ -57,8 +66,8 @@
             <div class="blog-article-header__inner">
                 <div class="blog-article-header__meta">
                     <div class="blog-article-header__author">
-                        @if($post->author_avatar_url)
-                            <img src="{{ $post->author_avatar_url }}"
+                        @if($url = media_url($post->author_avatar_url ?? null))
+                            <img src="{{ $url }}"
                                  alt="{{ $post->author_name }}"
                                  class="blog-article-header__author-avatar"
                                  width="32" height="32" loading="lazy">
@@ -138,7 +147,7 @@
             <aside class="blog-detail-sidebar" aria-label="Article navigation">
 
                 {{-- Table of Contents --}}
-                @if(count($headings) > 0)
+                @if(count($headings ?? []) > 0)
                 <nav class="blog-toc" aria-label="Table of contents">
                     <div class="blog-toc__header">
                         <h3 class="blog-toc__title">Table of Contents</h3>
@@ -212,7 +221,7 @@
     {{-- ═══════════════════════════════════════════
          RELATED POSTS
     ════════════════════════════════════════════ --}}
-    @if($relatedPosts->isNotEmpty())
+    @if(($relatedPosts ?? collect())->isNotEmpty())
     <section class="blog-related" aria-labelledby="related-posts-heading">
         <div class="container">
             <div class="blog-related__header">
@@ -247,8 +256,8 @@
                                 <p class="blog-card__excerpt">{{ $relatedPost->excerpt }}</p>
                             @endif
                             <div class="blog-card__author">
-                                @if($relatedPost->author_avatar_url)
-                                    <img src="{{ $relatedPost->author_avatar_url }}"
+                                    @if($url = media_url($relatedPost->author_avatar_url ?? null))
+                                    <img src="{{ $url }}"
                                          alt="{{ $relatedPost->author_name }}"
                                          class="blog-card__author-avatar"
                                          width="28" height="28" loading="lazy">
@@ -293,7 +302,7 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('assets/js/blog.js') }}" defer></script>
+    <script src="{{ cached_asset('assets/js/blog.js') }}" defer></script>
     <script>
     document.addEventListener('DOMContentLoaded', function () {
         // Copy-to-clipboard for share bar

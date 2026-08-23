@@ -26,9 +26,15 @@ class MediaGalleryVideoResource extends Resource
     protected static ?string $model = MediaGalleryVideo::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-video-camera';
-    protected static ?string $navigationGroup = 'Media Gallery Page';
+    protected static ?string $navigationGroup = 'About Section';
     protected static ?string $navigationLabel = 'Featured Videos';
-    protected static ?int $navigationSort = 2;
+    protected static ?int $navigationSort = 13;
+
+        public static function shouldRegisterNavigation(): bool
+    {
+        // Managed from the consolidated About Section page tabs.
+        return false;
+    }
 
     public static function form(Form $form): Form
     {
@@ -36,11 +42,10 @@ class MediaGalleryVideoResource extends Resource
             ->schema([
                 TextInput::make('title')
                     ->label('Title')
-                    ->required()
                     ->maxLength(255),
                 TextInput::make('video_url')
                     ->label('Video URL')
-                    ->url()
+                    ->nullable()
                     ->nullable()
                     ->placeholder('https://www.youtube.com/watch?v=...'),
                 MediaPicker::forField('thumbnail_url', 'media-gallery/videos')
@@ -63,7 +68,7 @@ class MediaGalleryVideoResource extends Resource
                     ->searchable()
                     ->nullable(),
                 TextInput::make('sort_order')
-                    ->numeric()
+                    ->numeric()->nullable()
                     ->default(0),
                 Forms\Components\Toggle::make('is_active')
                     ->default(true),

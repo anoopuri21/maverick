@@ -28,15 +28,15 @@ class ManageHero extends SettingsPage
                 ->schema([
                     TextInput::make('eyebrow')
                         ->label('Eyebrow Text')
-                        ->required(),
+                        ,
                     Grid::make(3)->schema([
-                        TextInput::make('headline_line1')->required(),
-                        TextInput::make('headline_line2')->required(),
+                        TextInput::make('headline_line1'),
+                        TextInput::make('headline_line2'),
                         TextInput::make('headline_line3')
                             ->label('Headline Line 3 (Accent/Red)')
-                            ->required(),
+                            ,
                     ]),
-                    TextInput::make('subheading')->required()->columnSpanFull(),
+                    TextInput::make('subheading')->columnSpanFull(),
                 ]),
 
             Section::make('CTA Buttons')
@@ -53,7 +53,7 @@ class ManageHero extends SettingsPage
                 ->schema([
                     TextInput::make('video_url')
                         ->label('Cloudinary Video URL')
-                        ->url()
+                        ->nullable()
                         ->helperText('WebM format recommended.')
                         ->columnSpanFull(),
                 ]),

@@ -3,8 +3,17 @@
 @section('title', ($article->meta_title ?? $article->title) . ' | Maverick Business Academy')
 @section('meta_description', $article->meta_description ?? $article->excerpt)
 
+@push('head')
+    @include('partials.seo-meta', ['seo' => (object) [
+        'meta_title' => ($article->meta_title ?? $article->title) . ' | Maverick Business Academy',
+        'meta_description' => $article->meta_description ?? $article->excerpt,
+        'og_image_url' => $article->featured_image_url,
+        'og_type' => 'article',
+    ]])
+@endpush
+
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('css/pages/news.css') }}">
+    <link rel="stylesheet" href="{{ cached_asset('css/pages/news.css') }}">
 @endpush
 
 @section('content')
@@ -71,8 +80,8 @@
 
             <div class="news-editorial-header__byline">
                 <div class="news-editorial-header__author">
-                    @if($article->author_avatar_url)
-                        <img src="{{ $article->author_avatar_url }}"
+                    @if($url = media_url($article->author_avatar_url ?? null))
+                        <img src="{{ $url }}"
                              alt="{{ $article->author_name }}"
                              class="news-editorial-header__author-avatar"
                              width="34" height="34" loading="lazy">
@@ -104,7 +113,7 @@
 
                 @if(!empty($article->author_bio))
                     <span class="news-editorial-header__byline-divider" aria-hidden="true">&bull;</span>
-                    <span class="news-editorial-header__author-bio">{{ $article->author_bio }}</span>
+                    <span class="news-editorial-header__author-bio">{!! rich_html($article->author_bio ?? null) !!}</span>
                 @endif
             </div>
         </div>
@@ -201,7 +210,7 @@
     {{-- ═══════════════════════════════════════════
          MORE UPDATES
     ════════════════════════════════════════════ --}}
-    @if($moreUpdates->isNotEmpty())
+    @if(($moreUpdates ?? collect())->isNotEmpty())
     <section class="news-more-updates" aria-labelledby="more-updates-heading">
         <div class="news-ambient" aria-hidden="true">
             <span class="news-ambient__blob news-ambient__blob--1"></span>
@@ -255,7 +264,7 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('assets/js/blog.js') }}" defer></script>
+    <script src="{{ cached_asset('assets/js/blog.js') }}" defer></script>
     <script>
     document.addEventListener('DOMContentLoaded', function () {
         // Copy-to-clipboard for share bar

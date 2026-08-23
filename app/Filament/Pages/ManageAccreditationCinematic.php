@@ -16,10 +16,16 @@ class ManageAccreditationCinematic extends SettingsPage
     use HandlesCloudinaryImageFields;
 
     protected static ?string $navigationIcon = 'heroicon-o-presentation-chart-bar';
-    protected static ?string $navigationGroup = 'Accreditations Page';
+    protected static ?string $navigationGroup = 'About Section';
     protected static ?string $navigationLabel = 'Cinematic Section';
-    protected static ?int $navigationSort = 2;
+    protected static ?int $navigationSort = 10;
     protected static string $settings = AccreditationCinematicSettings::class;
+
+    public static function shouldRegisterNavigation(): bool
+    {
+        // Rendered inside ManageAccreditationPage ("Cinematic Section" tab).
+        return false;
+    }
 
     protected function mutateFormDataBeforeSave(array $data): array
     {
@@ -35,7 +41,6 @@ class ManageAccreditationCinematic extends SettingsPage
             Section::make('Section Content')
                 ->schema([
                     TextInput::make('heading')
-                        ->required()
                         ->columnSpanFull(),
                     RichEditor::make('text')
                         ->label('Description')
@@ -47,14 +52,14 @@ class ManageAccreditationCinematic extends SettingsPage
                             'redo',
                             'undo',
                         ])
-                        ->columnSpanFull(),
+                    ->columnSpanFull(),
                 ]),
 
             Section::make('Background Media')
                 ->schema([
                     MediaPicker::forField('image_url', 'accreditations/cinematic')
-                        ->label('Background Image')
-                        ->columnSpanFull(),
+                    ->label('Background Image')
+                    ->columnSpanFull(),
                 ]),
         ]);
     }

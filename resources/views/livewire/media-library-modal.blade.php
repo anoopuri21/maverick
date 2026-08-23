@@ -78,11 +78,23 @@
             @else
                 <div class="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
                     @foreach ($assets as $asset)
+                        @php
+                            $isSelected = $selectedAssetId === $asset->id;
+                        @endphp
                         <button
                             type="button"
                             wire:click="selectAsset({{ $asset->id }})"
-                            class="group overflow-hidden rounded-xl border border-gray-200 bg-white text-left transition hover:border-primary-500 hover:ring-2 hover:ring-primary-500/20 dark:border-white/10 dark:bg-white/5 dark:hover:border-primary-400"
+                            @class([
+                                'group relative overflow-hidden rounded-xl border bg-white text-left transition dark:bg-white/5',
+                                'border-primary-600 ring-2 ring-primary-500/30 dark:border-primary-400' => $isSelected,
+                                'border-gray-200 hover:border-primary-500 hover:ring-2 hover:ring-primary-500/20 dark:border-white/10 dark:hover:border-primary-400' => ! $isSelected,
+                            ])
                         >
+                            @if ($isSelected)
+                                <span class="absolute right-1.5 top-1.5 z-10 flex h-5 w-5 items-center justify-center rounded-full bg-primary-600 text-white shadow-sm dark:bg-primary-500">
+                                    <x-filament::icon icon="heroicon-m-check" class="h-3.5 w-3.5" />
+                                </span>
+                            @endif
                             <div class="aspect-square overflow-hidden bg-gray-100 dark:bg-gray-800">
                                 <img
                                     src="{{ $asset->url }}"
@@ -138,12 +150,18 @@
                 </div>
 
                 @if ($upload)
-                    <div class="mt-4 flex justify-center">
-                        <img
-                            src="{{ $upload->temporaryUrl() }}"
-                            alt="Preview"
-                            class="max-h-40 rounded-lg object-contain"
-                        />
+                    <div class="mt-4 flex flex-col items-center gap-2">
+                        @if (method_exists($upload, 'isPreviewable') && $upload->isPreviewable())
+                            <img
+                                src="{{ $upload->temporaryUrl() }}"
+                                alt="Preview"
+                                class="max-h-40 rounded-lg object-contain"
+                            />
+                        @else
+                            <p class="text-sm text-gray-500 dark:text-gray-400">
+                                {{ $upload->getClientOriginalName() }}
+                            </p>
+                        @endif
                     </div>
                 @endif
             </div>

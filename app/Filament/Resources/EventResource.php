@@ -11,28 +11,28 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class EventResource extends Resource
 {
     protected static ?string $model = Event::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-    protected static ?string $navigationGroup = 'Global Content';
+    protected static ?string $navigationGroup = 'Insights';
+    protected static ?int $navigationSort = 2;
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\TextInput::make('title')
-                    ->required(),
+                    ,
                 Forms\Components\DatePicker::make('event_date')
-                    ->required(),
+                    ,
                 Forms\Components\TextInput::make('event_type'),
-                Forms\Components\Textarea::make('description'),
+                Forms\Components\RichEditor::make('description'),
                 Forms\Components\TextInput::make('location'),
                 Forms\Components\TextInput::make('link_url')
-                    ->url(),
+                    ->nullable(),
                 Forms\Components\Toggle::make('is_active'),
             ]);
     }
@@ -49,7 +49,7 @@ class EventResource extends Resource
                 Tables\Columns\IconColumn::make('is_active')->boolean(),
             ])
             ->filters([
-                //
+                Tables\Filters\TernaryFilter::make('is_active'),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

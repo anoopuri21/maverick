@@ -127,6 +127,18 @@
   max-width: 520px;
 }
 
+.dmba-hero__sub p,
+.dmba-overview__desc p,
+.dmba-employers__desc p,
+.dmba-cta__sub p,
+.dmba-faq__answer-inner p,
+.dmba-richtext p {
+  margin: 0;
+  color: inherit;
+  font: inherit;
+  line-height: inherit;
+}
+
 /* Quick Stats Strip */
 .dmba-hero__stats {
   display: flex;
@@ -424,9 +436,14 @@
   justify-content: center;
 }
 
-.dmba-twice__slide--1 { z-index: 1; }
-.dmba-twice__slide--2 { z-index: 2; }
-.dmba-twice__slide--3 { z-index: 3; }
+.dmba-twice__slide:nth-child(1) { z-index: 1; }
+.dmba-twice__slide:nth-child(2) { z-index: 2; }
+.dmba-twice__slide:nth-child(3) { z-index: 3; }
+.dmba-twice__slide:nth-child(4) { z-index: 4; }
+.dmba-twice__slide:nth-child(5) { z-index: 5; }
+.dmba-twice__slide:nth-child(6) { z-index: 6; }
+.dmba-twice__slide:nth-child(7) { z-index: 7; }
+.dmba-twice__slide:nth-child(8) { z-index: 8; }
 
 .dmba-twice__slide-bg {
   position: absolute;

@@ -11,7 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::table('university_partners', function (Blueprint $table) {
+            $table->index(['is_active', 'sort_order'], 'unipartners_active_sort_idx');
+        });
     }
 
     /**
@@ -19,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::table('university_partners', function (Blueprint $table) {
+            $table->dropIndex('unipartners_active_sort_idx');
+        });
     }
 };

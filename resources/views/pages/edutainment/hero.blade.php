@@ -1,11 +1,20 @@
 {{-- ===== HERO — Cinematic World Tour ===== --}}
+@php
+    $showHero = filled($hero->tag ?? null)
+        || filled($hero->heading ?? null)
+        || filled($hero->heading_italic ?? null)
+        || html_filled($hero->description ?? null)
+        || filled($hero->background_image ?? null);
+@endphp
+@if($showHero)
 <section id="edu-hero" class="edu-hero" aria-label="Edutainment Hero">
   <div class="edu-hero__bg" aria-hidden="true">
-    <div class="edu-hero__bg-image" style="background-image: url('{{ asset('assets/images/edutainment/hero-cinematic.jpg') }}')"></div>
+    @if(filled($hero->background_image))
+    <div class="edu-hero__bg-image" style="background-image: url('{{ media_url($hero->background_image) }}')"></div>
+    @endif
     <div class="edu-hero__gradient"></div>
     <div class="edu-hero__noise"></div>
 
-    {{-- World-route journey motif --}}
     <svg class="edu-hero__route" viewBox="0 0 800 400" fill="none" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
       <path class="edu-hero__route-line" d="M 40 340 Q 220 120 420 200 T 760 90" stroke="rgba(255,255,255,0.22)" stroke-width="1.5" stroke-dasharray="2 8" stroke-linecap="round"/>
       <circle class="edu-hero__route-dot" r="5" fill="#ffffff"/>
@@ -30,18 +39,26 @@
 
   <div class="edu-hero__content">
     <div class="container">
+      @if(filled($hero->tag))
       <span class="edu-hero__tag fade-up">
         <span class="edu-hero__tag-line"></span>
-        Maverick Edutainment UAE
+        {{ $hero->tag }}
       </span>
+      @endif
 
+      @if(filled($hero->heading) || filled($hero->heading_italic))
       <h1 class="edu-hero__title fade-up">
-        Maverick Edutainment:<br><em>Educational Tours That Bring Learning to Life</em>
+        @if(filled($hero->heading)){{ $hero->heading }}@endif
+        @if(filled($hero->heading) && filled($hero->heading_italic))<br>@endif
+        @if(filled($hero->heading_italic))<em>{{ $hero->heading_italic }}</em>@endif
       </h1>
+      @endif
 
-      <p class="edu-hero__shortdesc fade-up">
-        Educational tours and international study trips for schools, universities and student groups &mdash; turning destinations into unforgettable learning environments.
-      </p>
+      @if(html_filled($hero->description ?? null))
+      <div class="edu-hero__shortdesc fade-up edu-richtext">
+        {!! rich_html($hero->description ?? null) !!}
+      </div>
+      @endif
     </div>
   </div>
 
@@ -49,3 +66,4 @@
     <span></span>
   </div>
 </section>
+@endif

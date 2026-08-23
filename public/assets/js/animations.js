@@ -1333,21 +1333,50 @@
     }
 
     const newsletterForm = document.querySelector("[data-newsletter-form]");
-    if (newsletterForm) {
-      newsletterForm.addEventListener("submit", (e) => {
+    if (newsletterForm && newsletterForm.dataset.newsletterBound !== "1") {
+      newsletterForm.dataset.newsletterBound = "1";
+      newsletterForm.addEventListener("submit", async (e) => {
         e.preventDefault();
         const input = newsletterForm.querySelector(".footer__newsletter-input");
         const btn = newsletterForm.querySelector(
           ".footer__newsletter-btn span",
         );
-        if (input && input.value && btn) {
-          const originalText = btn.textContent;
-          btn.textContent = "Subscribed ✓";
-          input.value = "";
-          setTimeout(() => {
-            btn.textContent = originalText;
-          }, 2500);
+        if (!input || !input.value || !btn) return;
+        const originalText = btn.textContent;
+        let resetDelay = 2500;
+        try {
+          const res = await fetch(newsletterForm.action, {
+            method: "POST",
+            headers: {
+              Accept: "application/json",
+              "X-Requested-With": "XMLHttpRequest",
+            },
+            body: new FormData(newsletterForm),
+          });
+          let data = {};
+          try {
+            data = await res.json();
+          } catch (_) {
+            /* non-JSON response */
+          }
+
+          if (res.ok && data.ok) {
+            btn.textContent = data.message || "Subscribed ✓";
+            input.value = "";
+            resetDelay = 5000;
+          } else if (res.status === 422) {
+            btn.textContent = data.errors?.email?.[0] || "Invalid email";
+          } else if (res.status === 429) {
+            btn.textContent = "Too many tries. Wait a moment.";
+          } else {
+            btn.textContent = data.message || "Something went wrong";
+          }
+        } catch (_) {
+          btn.textContent = "Network error";
         }
+        setTimeout(() => {
+          btn.textContent = originalText;
+        }, resetDelay);
       });
     }
 

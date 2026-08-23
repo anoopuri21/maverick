@@ -11,6 +11,9 @@ class OurStoryTestimonial extends Model
 
     protected $fillable = [
         'name',
+        'organisation',
+        'position',
+        'country',
         'rating',
         'testimonial',
         'photo',
@@ -24,6 +27,17 @@ class OurStoryTestimonial extends Model
         'sort_order' => 'integer',
         'rating' => 'integer',
     ];
+
+    protected static function booted(): void
+    {
+        static::saving(function (self $item) {
+            $item->name = (string) ($item->name ?? '');
+            $item->testimonial = (string) ($item->testimonial ?? '');
+            if ($item->rating === null) {
+                $item->rating = 5;
+            }
+        });
+    }
 
     public function mediaAsset()
     {

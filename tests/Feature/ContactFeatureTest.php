@@ -2,8 +2,10 @@
 
 namespace Tests\Feature;
 
-use App\Mail\ContactFormSubmitted;
+use App\Mail\GenericFormMail;
+use App\Models\ZapierWebhook;
 use App\Settings\SiteSettings;
+use App\Support\ZapierEvents;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Mail;
 use Tests\TestCase;
@@ -26,7 +28,7 @@ class ContactFeatureTest extends TestCase
         $response = $this->get('/contact');
 
         $response->assertStatus(200);
-        $response->assertSee("Let's Start a Conversation", false);
+        $response->assertSee("Let's Start a Conversation");
         $response->assertSee("Sharjah");
     }
 
@@ -64,10 +66,12 @@ class ContactFeatureTest extends TestCase
         $response->assertStatus(302);
         $response->assertSessionHas('success', 'Thank you! We\'ll get back to you within 24 hours.');
 
-        Mail::assertSent(ContactFormSubmitted::class, function ($mail) {
+        Mail::assertSent(GenericFormMail::class, function ($mail) {
+            $values = collect($mail->rows)->pluck('value', 'label');
+
             return $mail->hasTo('admissions@mbalondon.org.uk') &&
-                   $mail->data['name'] === 'John Doe' &&
-                   $mail->data['subject'] === 'Admissions';
+                   $values->get('Name') === 'John Doe' &&
+                   $values->get('Subject') === 'Admissions';
         });
     }
 
@@ -92,7 +96,7 @@ class ContactFeatureTest extends TestCase
         $response->assertSessionHas('success', 'Thank you! We\'ll get back to you within 24 hours.');
 
         // But no mail should be sent
-        Mail::assertNotSent(ContactFormSubmitted::class);
+        Mail::assertNotSent(GenericFormMail::class);
     }
 
     /**
@@ -103,7 +107,11 @@ class ContactFeatureTest extends TestCase
         Mail::fake();
         \Illuminate\Support\Facades\Http::fake();
 
-        config(['services.zapier.contact_webhook_url' => 'https://hooks.zapier.com/hooks/catch/test']);
+        ZapierWebhook::create([
+            'event_key' => ZapierEvents::CONTACT_SUBMITTED,
+            'url' => 'https://hooks.zapier.com/hooks/catch/test',
+            'is_enabled' => true,
+        ]);
 
         $response = $this->post('/contact', [
             'name' => 'John Zapier',
@@ -134,7 +142,11 @@ class ContactFeatureTest extends TestCase
             '*' => \Illuminate\Support\Facades\Http::response('Error', 500),
         ]);
 
-        config(['services.zapier.contact_webhook_url' => 'https://hooks.zapier.com/hooks/catch/test']);
+        ZapierWebhook::create([
+            'event_key' => ZapierEvents::CONTACT_SUBMITTED,
+            'url' => 'https://hooks.zapier.com/hooks/catch/test',
+            'is_enabled' => true,
+        ]);
 
         $response = $this->post('/contact', [
             'name' => 'John Failure',

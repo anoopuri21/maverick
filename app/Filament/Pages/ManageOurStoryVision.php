@@ -41,7 +41,7 @@ class ManageOurStoryVision extends SettingsPage
                 ->schema([
                     TextInput::make('heading')
                         ->label('Heading')
-                        ->required(),
+                        ,
                     RichEditor::make('description')
                         ->label('Description')
                         ->toolbarButtons([
@@ -54,7 +54,7 @@ class ManageOurStoryVision extends SettingsPage
                             'redo',
                             'undo',
                         ])
-                        ->columnSpanFull(),
+                    ->columnSpanFull(),
                     Grid::make(2)->schema([
                         TextInput::make('cta_label')
                             ->label('CTA Button Text'),
@@ -76,8 +76,7 @@ class ManageOurStoryVision extends SettingsPage
                         ->nullable()
                         ->getUploadedFileUsing(fn (?string $file): ?array => static::existingCloudinaryImage($file))
                         ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
-                            return app(CloudinaryService::class)
-                                ->uploadImage($file->getRealPath(), 'our-story/vision');
+                            return cloudinary_upload($file->getRealPath() ?: null, 'our-story/vision');
                         }),
                 ]),
         ]);

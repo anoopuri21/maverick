@@ -9,6 +9,7 @@ use App\Filament\Resources\ProgramResource\Pages;
 use App\Models\MediaAsset;
 use App\Models\Program;
 use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
@@ -19,8 +20,10 @@ use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
 use Filament\Forms\Set;
 use Filament\Resources\Resource;
+use Illuminate\Support\HtmlString;
 use Filament\Tables;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\ImageColumn;
@@ -49,31 +52,31 @@ class ProgramResource extends Resource
                         Tab::make('Basic Information')
                             ->icon('heroicon-o-information-circle')
                             #->description('Core programme identity shown in listings, sticky bar, and hero badges.')
-                            ->schema([
+                    ->schema([
                                 Grid::make(2)->schema([
                                     Select::make('program_category_id')
                                         ->label('Category')
                                         ->relationship('programCategory', 'name')
-                                        ->required()
                                         ->searchable()
                                         ->preload()
                                         ->validationAttribute('category'),
 
                                     TextInput::make('title')
-                                        ->required()
                                         ->live(onBlur: true)
                                         ->afterStateUpdated(fn ($state, Set $set) => $set('slug', \Illuminate\Support\Str::slug($state)))
                                         ->validationAttribute('programme title'),
 
                                     TextInput::make('slug')
-                                        ->required()
-                                        ->unique(ignoreRecord: true)
                                         ->helperText('URL slug for /programs/{slug}'),
 
-                                    TextInput::make('partner_university')
-                                        ->label('Partner University')
-                                        ->placeholder('e.g. Girne American University')
-                                        ->helperText('Shown in recognition header and as GAU fallback name.'),
+                                    Select::make('university_partner_id')
+                                        ->label('University Partner')
+                                        ->relationship('universityPartner', 'name')
+                                        ->searchable()
+                                        ->preload()
+                                        ->placeholder('Select a university (or leave empty)')
+                                        ->helperText('Select the university offering this program. University details are managed once under University Partners — no need to re-type.'),
+
 
                                     TextInput::make('duration')
                                         ->placeholder('e.g. 20–24 Months')
@@ -85,7 +88,7 @@ class ProgramResource extends Resource
 
                                     TextInput::make('sort_order')
                                         ->label('Sort Order')
-                                        ->numeric()
+                                        ->numeric()->nullable()
                                         ->default(0)
                                         ->helperText('Lower numbers appear first in admin list and listings.'),
                                 ]),
@@ -104,7 +107,7 @@ class ProgramResource extends Resource
                         Tab::make('Hero & Media')
                             ->icon('heroicon-o-photo')
                             #->description('Hero background, overview copy, and brochure. Powers sections 1 (Hero) and 4 (Overview).')
-                            ->schema([
+                    ->schema([
                                 Textarea::make('short_description')
                                     ->label('Short Description')
                                     ->rows(3)
@@ -120,20 +123,20 @@ class ProgramResource extends Resource
 
                                 Section::make('Hero Image')
                                     #->description('Background image for the cinematic hero. Falls back to a default if empty.')
-                                    ->schema([
+                    ->schema([
                                         TextInput::make('image_url')
                                             ->label('Hero Image URL')
-                                            ->url()
+                                            ->nullable()
                                             ->helperText('Recommended: 800×540px. Or choose from the media library below.')
                                             ->columnSpanFull(),
                                         MediaPicker::forField('image_url', 'programs')
-                                            ->label('Hero Image')
-                                            ->columnSpanFull(),
+                    ->label('Hero Image')
+                    ->columnSpanFull(),
                                     ]),
 
                                 TextInput::make('brochure_url')
                                     ->label('Brochure URL')
-                                    ->url()
+                                    ->nullable()
                                     ->placeholder('https://...')
                                     ->helperText('Optional. When set, a Download Brochure button can show in the hero.')
                                     ->columnSpanFull(),
@@ -142,112 +145,113 @@ class ProgramResource extends Resource
                         Tab::make('Programme Sections')
                             ->icon('heroicon-o-squares-2x2')
                             #'Content blocks on the programme detail page, in page order. Empty sections are hidden publicly.')
-                            ->schema([
+                    ->schema([
                                 Section::make('Quick Highlights')
                                     #->description('Tick-list shown in the hero (§1). Also used in the overview figure stat.')
-                                    ->collapsible()
-                                    ->collapsed(false)
-                                    ->schema([static::highlightsRepeater()]),
+                    ->collapsible()
+                    ->collapsed(false)
+                    ->schema([static::highlightsRepeater()]),
 
                                 Section::make('Programme Snapshot')
                                     #->description('Bento grid tiles (§3) and first six items in the hero Programme at a Glance card.')
-                                    ->collapsible()
-                                    ->collapsed(true)
-                                    ->schema([static::snapshotRepeater()]),
+                    ->collapsible()
+                    ->collapsed(true)
+                    ->schema([static::snapshotRepeater()]),
 
                                 Section::make('Why Choose This Programme')
                                     #->description('Pillar cards in the Why Choose section (§5).')
-                                    ->collapsible()
-                                    ->collapsed(true)
-                                    ->schema([static::benefitsRepeater()]),
+                    ->collapsible()
+                    ->collapsed(true)
+                    ->schema([static::benefitsRepeater()]),
 
                                 Section::make("What You'll Learn")
                                     #->description('Learning outcome items (§6).')
-                                    ->collapsible()
-                                    ->collapsed(true)
-                                    ->schema([static::learningRepeater()]),
+                    ->collapsible()
+                    ->collapsed(true)
+                    ->schema([static::learningRepeater()]),
 
                                 Section::make('Career Opportunities')
                                     #->description('Career cloud tiles (§7).')
-                                    ->collapsible()
-                                    ->collapsed(true)
-                                    ->schema([static::careersRepeater()]),
+                    ->collapsible()
+                    ->collapsed(true)
+                    ->schema([static::careersRepeater()]),
 
                                 Section::make('Programme Structure')
                                     #->description('Year-by-year accordion with modules (§8). Module titles shown as a list on the public page.')
-                                    ->collapsible()
-                                    ->collapsed(true)
-                                    ->schema([static::structureRepeater()]),
+                    ->collapsible()
+                    ->collapsed(true)
+                    ->schema([static::structureRepeater()]),
 
-                                Section::make('About the Awarding University')
-                                    #->description('Dark university panel (§9) and campus image in overview (§4). Only the first entry is shown on the page.')
+                                Section::make('Awarding University')
+                                    ->description('The university offering this program is selected above under Basic Information (University Partner). Its name, description and image are managed once in University Partners and shown in the About-the-University section and recognition header.')
                                     ->collapsible()
                                     ->collapsed(true)
-                                    ->schema([static::universityRepeater()]),
+                                    ->schema([
+                                        \Filament\Forms\Components\Placeholder::make('university_link')
+                                            ->label('University Partner')
+                                            ->content(fn ($record) => $record?->universityPartner?->name ?? 'No university linked yet.'),
+                                    ]),
 
                                 Section::make('Why Study Through Maverick')
                                     #->description('Support perk grid (§11). All cards look identical — no featured item.')
-                                    ->collapsible()
-                                    ->collapsed(true)
-                                    ->schema([static::supportRepeater()]),
+                    ->collapsible()
+                    ->collapsed(true)
+                    ->schema([static::supportRepeater()]),
 
                                 Section::make('Student Success Stories')
                                     #->description('Video testimonial slider (§12).')
-                                    ->collapsible()
-                                    ->collapsed(true)
-                                    ->schema([static::testimonialsRepeater()]),
+                    ->collapsible()
+                    ->collapsed(true)
+                    ->schema([static::testimonialsRepeater()]),
 
                                 Section::make('Fees & Scholarships')
                                     #->description('Fee chips linking to enquiry (§13).')
-                                    ->collapsible()
-                                    ->collapsed(true)
-                                    ->schema([static::feesRepeater()]),
+                    ->collapsible()
+                    ->collapsed(true)
+                    ->schema([static::feesRepeater()]),
 
                                 Section::make('Student Reviews')
                                     #->description('Google-style review cards (§16). Avatar photo optional — initials used as fallback.')
-                                    ->collapsible()
-                                    ->collapsed(true)
-                                    ->schema([static::reviewsRepeater()]),
+                    ->collapsible()
+                    ->collapsed(true)
+                    ->schema([static::reviewsRepeater()]),
                             ]),
 
                         Tab::make('Accreditation & Recognition')
                             ->icon('heroicon-o-check-badge')
                             #->description('Logo marquee under the hero (§2) and grouped accreditation grid (§10).')
-                            ->schema([
+                    ->schema([
                                 Section::make('Recognition Marquee')
                                     #->description('Scrolling logo strip shown directly under the hero.')
-                                    ->collapsible()
-                                    ->collapsed(false)
-                                    ->schema([static::recognitionRepeater()]),
+                    ->collapsible()
+                    ->collapsed(false)
+                    ->schema([static::recognitionRepeater()]),
 
                                 Section::make('Accreditation Groups')
                                     #->description('Grouped logo grids in the Accreditation & Recognition section.')
-                                    ->collapsible()
-                                    ->collapsed(true)
-                                    ->schema([static::accreditationGroupsRepeater()]),
+                    ->collapsible()
+                    ->collapsed(true)
+                    ->schema([static::accreditationGroupsRepeater()]),
                             ]),
 
                         Tab::make('FAQs')
                             ->icon('heroicon-o-question-mark-circle')
                             #->description('Accordion on the programme page (§14). Only active FAQs are shown.')
-                            ->schema([
+                    ->schema([
                                 Repeater::make('faqs')
                                     ->relationship()
                                     ->schema([
                                         TextInput::make('question')
-                                            ->required()
                                             ->validationAttribute('question')
                                             ->columnSpanFull(),
 
-                                        Textarea::make('answer')
-                                            ->required()
-                                            ->rows(4)
+                                        RichEditor::make('answer')
                                             ->validationAttribute('answer')
                                             ->columnSpanFull(),
 
                                         Grid::make(2)->schema([
                                             TextInput::make('sort_order')
-                                                ->numeric()
+                                                ->numeric()->nullable()
                                                 ->default(0),
 
                                             Toggle::make('is_active')
@@ -287,9 +291,11 @@ class ProgramResource extends Resource
                     ->label('Category')
                     ->sortable(),
 
-                TextColumn::make('partner_university')
+                TextColumn::make('universityPartner.name')
+                    ->label('University')
                     ->searchable()
                     ->toggleable()
+                    ->placeholder('—')
                     ->limit(30),
 
                 TextColumn::make('duration')
@@ -346,6 +352,12 @@ class ProgramResource extends Resource
         ];
     }
 
+    public static function getEloquentQuery(): \Illuminate\Database\Eloquent\Builder
+    {
+        return parent::getEloquentQuery()
+            ->with(['programCategory:id,name', 'universityPartner:id,name']);
+    }
+
     /**
      * Strip transient MediaPicker keys and sync nested media URLs before save.
      */
@@ -353,11 +365,6 @@ class ProgramResource extends Resource
     {
         foreach ($data['recognition'] ?? [] as &$row) {
             static::syncNestedMediaField($row, 'logo');
-        }
-        unset($row);
-
-        foreach ($data['university'] ?? [] as &$row) {
-            static::syncNestedMediaField($row, 'image');
         }
         unset($row);
 
@@ -381,9 +388,6 @@ class ProgramResource extends Resource
 
         if (isset($data['recognition'])) {
             static::stripAssetIdKeys($data['recognition']);
-        }
-        if (isset($data['university'])) {
-            static::stripAssetIdKeys($data['university']);
         }
         if (isset($data['testimonials'])) {
             static::stripAssetIdKeys($data['testimonials']);
@@ -462,11 +466,9 @@ class ProgramResource extends Resource
         return Repeater::make('highlights')
             ->schema([
                 TextInput::make('label')
-                    ->required()
                     ->placeholder('e.g. Duration')
                     ->validationAttribute('highlight label'),
                 TextInput::make('value')
-                    ->required()
                     ->placeholder('e.g. 20–24 Months')
                     ->validationAttribute('highlight value'),
             ])
@@ -483,11 +485,9 @@ class ProgramResource extends Resource
         return Repeater::make('snapshot')
             ->schema([
                 TextInput::make('label')
-                    ->required()
                     ->placeholder('e.g. Degree Award')
                     ->validationAttribute('snapshot label'),
                 TextInput::make('value')
-                    ->required()
                     ->placeholder('e.g. BSc')
                     ->validationAttribute('snapshot value'),
             ])
@@ -515,13 +515,11 @@ class ProgramResource extends Resource
 
                     TextInput::make('icon')
                         ->label('Icon name (Lucide)')
-                        ->required()
                         ->default('sparkles')
                         ->placeholder('e.g. book-open-check')
                         ->helperText('Any Lucide icon name. Overrides the preset when typed manually.'),
                 ]),
                 TextInput::make('title')
-                    ->required()
                     ->placeholder('e.g. Develop Leadership Skills')
                     ->validationAttribute('benefit title')
                     ->columnSpanFull(),
@@ -542,7 +540,6 @@ class ProgramResource extends Resource
             ->schema([
                 TextInput::make('item')
                     ->label('Outcome')
-                    ->required()
                     ->placeholder('e.g. Develop strategic thinking')
                     ->validationAttribute('learning outcome'),
             ])
@@ -559,7 +556,6 @@ class ProgramResource extends Resource
             ->schema([
                 TextInput::make('title')
                     ->label('Career Title')
-                    ->required()
                     ->placeholder('e.g. Business Manager')
                     ->validationAttribute('career title'),
             ])
@@ -576,7 +572,6 @@ class ProgramResource extends Resource
             ->schema([
                 TextInput::make('title')
                     ->label('Year Title')
-                    ->required()
                     ->placeholder('Year 1')
                     ->validationAttribute('year title'),
                 TextInput::make('subtitle')
@@ -587,7 +582,6 @@ class ProgramResource extends Resource
                     ->schema([
                         TextInput::make('title')
                             ->label('Module Name')
-                            ->required()
                             ->validationAttribute('module title'),
                         RichEditor::make('overview')
                             ->label('Overview')
@@ -600,14 +594,13 @@ class ProgramResource extends Resource
                             ->schema([
                                 TextInput::make('point')
                                     ->label('Point')
-                                    ->required()
                                     ->validationAttribute('module point'),
                             ])
-                            ->collapsible()
-                            ->collapsed(true)
-                            ->defaultItems(0)
-                            ->itemLabel(fn (array $state): ?string => $state['point'] ?? 'Point')
-                            ->addActionLabel('Add Point'),
+                    ->collapsible()
+                    ->collapsed(true)
+                    ->defaultItems(0)
+                    ->itemLabel(fn (array $state): ?string => $state['point'] ?? 'Point')
+                    ->addActionLabel('Add Point'),
                     ])
                     ->collapsible()
                     ->collapsed(true)
@@ -622,41 +615,12 @@ class ProgramResource extends Resource
             ->addActionLabel('Add Year');
     }
 
-    protected static function universityRepeater(): Repeater
-    {
-        return Repeater::make('university')
-            ->maxItems(1)
-            ->schema([
-                TextInput::make('name')
-                    ->label('University Name')
-                    ->placeholder('e.g. Girne American University')
-                    ->columnSpanFull(),
-                RichEditor::make('description')
-                    ->label('Description')
-                    ->columnSpanFull(),
-                TextInput::make('establishment')
-                    ->label('Established')
-                    ->placeholder('Established 1985'),
-                TextInput::make('image')
-                    ->label('Campus Image URL')
-                    ->url()
-                    ->helperText('Or choose from the media library below.'),
-                MediaPicker::forField('image', 'programs/university')
-                    ->label('Campus Image'),
-            ])
-            ->collapsible()
-            ->columns(2)
-            ->defaultItems(0)
-            ->addActionLabel('Add University');
-    }
-
     protected static function supportRepeater(): Repeater
     {
         return Repeater::make('support')
             ->schema([
                 TextInput::make('item')
                     ->label('Support Point')
-                    ->required()
                     ->placeholder('e.g. Dedicated Academic Support')
                     ->validationAttribute('support point'),
             ])
@@ -672,7 +636,6 @@ class ProgramResource extends Resource
         return Repeater::make('testimonials')
             ->schema([
                 TextInput::make('name')
-                    ->required()
                     ->validationAttribute('student name'),
                 TextInput::make('role')
                     ->placeholder('e.g. MBA Graduate'),
@@ -681,18 +644,36 @@ class ProgramResource extends Resource
                 TextInput::make('category')
                     ->label('Badge')
                     ->placeholder('e.g. STUDENT'),
-                TextInput::make('thumb')
-                    ->label('Thumbnail URL')
-                    ->url()
-                    ->helperText('Video card thumbnail. Or choose from the media library below.'),
-                MediaPicker::forField('thumb', 'programs/testimonials')
-                    ->label('Thumbnail Image'),
                 TextInput::make('video')
-                    ->label('Video URL')
-                    ->url()
-                    ->placeholder('https://...')
-                    ->helperText('YouTube or hosted video URL for the play button.')
+                    ->label('YouTube Video URL')
+                    ->nullable()
+                    ->placeholder('https://www.youtube.com/watch?v=xxxxx or https://youtu.be/xxxxx')
+                    ->helperText('Paste YouTube link — thumbnail auto-generate ho jayega.')
+                    ->live()
                     ->columnSpanFull(),
+                Placeholder::make('thumb_preview')
+                    ->label('Thumbnail preview')
+                    ->content(function (Get $get): HtmlString {
+                        $src = youtube_thumbnail_url($get('video'), $get('thumb'));
+                        if (! $src) {
+                            return new HtmlString('<p style="color:#6b7280;font-size:13px;margin:0">Paste a YouTube URL to auto-load the thumbnail, or upload a custom image below.</p>');
+                        }
+                        $fallback = youtube_thumbnail_fallback($get('video'));
+                        $onerror = $fallback && $fallback !== $src
+                            ? ' onerror="if(this.dataset.retry){this.src=this.dataset.retry;delete this.dataset.retry;}" data-retry="'.e($fallback).'"'
+                            : '';
+
+                        return new HtmlString('<img src="'.e($src).'" alt="YouTube thumbnail preview" style="max-width:320px;width:100%;border-radius:12px;display:block"'.$onerror.'>');
+                    })
+                    ->columnSpanFull(),
+                TextInput::make('thumb')
+                    ->label('Custom Thumbnail URL (Optional)')
+                    ->nullable()
+                    ->live()
+                    ->helperText('Leave empty to auto-use the YouTube thumbnail.'),
+                MediaPicker::forField('thumb', 'programs/testimonials')
+                    ->label('Custom Thumbnail Image (Optional)')
+                    ->helperText('Optional: upload a custom thumbnail. YouTube thumbnail will be auto-used if empty.'),
             ])
             ->reorderable()
             ->collapsible()
@@ -708,7 +689,6 @@ class ProgramResource extends Resource
             ->schema([
                 TextInput::make('title')
                     ->label('Fee Item')
-                    ->required()
                     ->placeholder('e.g. Tuition Fees')
                     ->validationAttribute('fee item'),
             ])
@@ -724,11 +704,10 @@ class ProgramResource extends Resource
         return Repeater::make('reviews')
             ->schema([
                 TextInput::make('name')
-                    ->required()
                     ->validationAttribute('reviewer name'),
                 TextInput::make('avatar')
                     ->label('Avatar URL')
-                    ->url()
+                    ->nullable()
                     ->helperText('Optional. Or choose from the media library below.'),
                 MediaPicker::forField('avatar', 'programs/reviews')
                     ->label('Avatar Image'),
@@ -741,7 +720,6 @@ class ProgramResource extends Resource
                         5 => '5 stars',
                     ])
                     ->default(5)
-                    ->required()
                     ->validationAttribute('rating'),
                 RichEditor::make('review')
                     ->label('Review Text')
@@ -760,11 +738,10 @@ class ProgramResource extends Resource
         return Repeater::make('recognition')
             ->schema([
                 TextInput::make('name')
-                    ->required()
                     ->validationAttribute('organisation name'),
                 TextInput::make('logo')
                     ->label('Logo URL')
-                    ->url()
+                    ->nullable()
                     ->helperText('Or choose from the media library below.'),
                 MediaPicker::forField('logo', 'programs/recognition')
                     ->label('Logo Image'),
@@ -787,7 +764,6 @@ class ProgramResource extends Resource
             ->schema([
                 TextInput::make('group')
                     ->label('Group Name')
-                    ->required()
                     ->placeholder('e.g. International Accreditation')
                     ->validationAttribute('group name'),
                 Repeater::make('items')
@@ -795,14 +771,13 @@ class ProgramResource extends Resource
                     ->schema([
                         TextInput::make('name')
                             ->label('Name')
-                            ->required()
                             ->validationAttribute('logo name'),
                         TextInput::make('logo')
                             ->label('Logo URL')
-                            ->url()
+                            ->nullable()
                             ->helperText('Or choose from the media library below.'),
                         MediaPicker::forField('logo', 'programs/accreditation')
-                            ->label('Logo Image'),
+                    ->label('Logo Image'),
                     ])
                     ->reorderable()
                     ->collapsible()

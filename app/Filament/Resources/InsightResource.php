@@ -33,14 +33,14 @@ class InsightResource extends Resource
 
     protected static ?string $navigationLabel = 'Blogs & Insights';
     protected static ?string $navigationIcon = 'heroicon-o-newspaper';
-    protected static ?string $navigationGroup = 'Global Content';
+    protected static ?string $navigationGroup = 'Insights';
+    protected static ?int $navigationSort = 1;
 
     public static function form(Form $form): Form
     {
         return $form->schema([
             Section::make('Content')->schema([
                 TextInput::make('title')
-                    ->required()
                     ->live(onBlur: true)
                     ->afterStateUpdated(function ($state, Set $set, Get $get) {
                         if (blank($get('slug'))) {
@@ -49,8 +49,6 @@ class InsightResource extends Resource
                     }),
 
                 TextInput::make('slug')
-                    ->required()
-                    ->unique(ignoreRecord: true)
                     ->maxLength(255),
 
                 Textarea::make('excerpt')
@@ -59,7 +57,6 @@ class InsightResource extends Resource
                     ->helperText('Short summary (max 500 characters).'),
 
                 RichEditor::make('content')
-                    ->required()
                     ->columnSpanFull()
                     ->fileAttachmentsDirectory('insight-content-images'),
             ]),
@@ -80,7 +77,6 @@ class InsightResource extends Resource
                         'blogs' => 'Blogs',
                         'news'  => 'News',
                     ])
-                    ->required()
                     ->columns(2)
                     ->helperText('Select one or both. Selecting both will display this item on both the Blogs and News pages.'),
             ]),
@@ -96,24 +92,24 @@ class InsightResource extends Resource
             Section::make('Author')->schema([
                 TextInput::make('author_name')
                     ->default('Maverick Business Academy')
-                    ->required(),
+                    ,
 
                 TextInput::make('author_avatar_url')
                     ->label('Author Avatar URL')
-                    ->url(),
+                    ->nullable(),
 
-                Textarea::make('author_bio')
+                RichEditor::make('author_bio')
                     ->maxLength(500)
-                    ->rows(2),
+                    ,
             ]),
 
             Section::make('Publishing')->schema([
                 DateTimePicker::make('published_at')
                     ->default(now())
-                    ->required(),
+                    ,
 
                 TextInput::make('reading_time_minutes')
-                    ->numeric()
+                    ->numeric()->nullable()
                     ->minValue(1)
                     ->suffix('minutes')
                     ->helperText('Auto-calculated or override manually.'),

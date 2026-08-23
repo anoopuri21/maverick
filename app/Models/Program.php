@@ -6,17 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use App\Concerns\EnsuresUniqueSlug;
 use App\Concerns\HasMediaAssets;
+use App\Models\UniversityPartner;
 
 class Program extends Model
 {
+    use EnsuresUniqueSlug;
     use HasMediaAssets;
 
     protected $fillable = [
         'program_category_id',
+        'university_partner_id',
         'title',
         'slug',
-        'partner_university',
         'duration',
         'level',
         'short_description',
@@ -35,7 +38,6 @@ class Program extends Model
         'careers',
         'structure',
         'support',
-        'university',
         'accreditation_groups',
         'testimonials',
         'fees',
@@ -54,16 +56,38 @@ class Program extends Model
         'careers' => 'array',
         'structure' => 'array',
         'support' => 'array',
-        'university' => 'array',
         'accreditation_groups' => 'array',
         'testimonials' => 'array',
         'fees' => 'array',
         'reviews' => 'array',
     ];
 
+    protected static function booted(): void
+    {
+        static::saving(function (self $program) {
+            $program->title = (string) ($program->title ?? '');
+
+            if (empty($program->program_category_id)) {
+                $uncategorized = ProgramCategory::query()->firstOrCreate(
+                    ['slug' => 'uncategorized'],
+                    ['name' => 'Uncategorized'],
+                );
+                $program->program_category_id = $uncategorized->id;
+            }
+        });
+    }
+
     public function programCategory(): BelongsTo
     {
         return $this->belongsTo(ProgramCategory::class);
+    }
+
+    /**
+     * The single university offering this program (1 program = 1 university).
+     */
+    public function universityPartner(): BelongsTo
+    {
+        return $this->belongsTo(UniversityPartner::class);
     }
         public function seo(): MorphOne
     {
@@ -108,7 +132,7 @@ class Program extends Model
     public function getLearningListAttribute(): \Illuminate\Support\Collection
     {
         return collect($this->learning ?? [])
-            ->map(fn ($l) => $l['item'] ?? $l)
+            ->map(fn ($l) => is_array($l) ? ($l['item'] ?? $l) : $l)
             ->values();
     }
 
@@ -116,62 +140,68 @@ class Program extends Model
     public function getCareersListAttribute(): \Illuminate\Support\Collection
     {
         return collect($this->careers ?? [])
-            ->map(fn ($c) => $c['title'] ?? $c)
+            ->map(fn ($c) => is_array($c) ? ($c['title'] ?? $c) : $c)
             ->values();
     }
 
     /** Programme structure — [{title, subtitle, modules:[...]}] normalized */
     public function getStructureListAttribute(): \Illuminate\Support\Collection
     {
-        return collect($this->structure ?? [])->map(function ($stage) {
-            return [
-                'title'    => $stage['title'] ?? '',
-                'subtitle' => $stage['subtitle'] ?? '',
-                'modules'  => collect($stage['modules'] ?? [])->map(function ($m) {
-                    return [
-                        'title'    => $m['title'] ?? '',
-                        'overview' => $m['overview'] ?? null,
-                        'desc'     => $m['desc'] ?? null,
-                        'list'     => collect($m['list'] ?? [])
-                            ->map(fn ($li) => $li['point'] ?? $li)
-                            ->values()
-                            ->all(),
-                    ];
-                })->values()->all(),
-            ];
-        })->values();
+        return collect($this->structure ?? [])
+            ->filter(fn ($stage) => is_array($stage))
+            ->map(function ($stage) {
+                return [
+                    'title' => data_get($stage, 'title', ''),
+                    'subtitle' => data_get($stage, 'subtitle', ''),
+                    'modules' => collect(data_get($stage, 'modules') ?? [])
+                        ->filter(fn ($m) => is_array($m))
+                        ->map(function ($m) {
+                            return [
+                                'title' => data_get($m, 'title', ''),
+                                'overview' => data_get($m, 'overview'),
+                                'desc' => data_get($m, 'desc'),
+                                'list' => collect(data_get($m, 'list') ?? [])
+                                    ->map(fn ($li) => is_array($li) ? ($li['point'] ?? $li) : $li)
+                                    ->values()
+                                    ->all(),
+                            ];
+                        })->values()->all(),
+                ];
+            })->values();
     }
 
     /** Maverick Support — [{item}] normalized to a simple list */
     public function getSupportListAttribute(): \Illuminate\Support\Collection
     {
         return collect($this->support ?? [])
-            ->map(fn ($s) => $s['item'] ?? $s)
+            ->map(fn ($s) => is_array($s) ? ($s['item'] ?? $s) : $s)
             ->values();
     }
 
-    /** About the University — first row as an object */
+    /** About the University — derived from the linked UniversityPartner (single source). */
     public function getUniversityObjectAttribute(): object
     {
-        $row = collect($this->university ?? [])->first() ?? [];
+        $partner = $this->universityPartner;
 
         return (object) [
-            'name'          => $row['name'] ?? $this->partner_university,
-            'description'   => $row['description'] ?? null,
-            'establishment' => $row['establishment'] ?? null,
-            'image'         => $row['image'] ?? null,
+            'name'          => $partner?->name,
+            'description'   => $partner?->description,
+            'establishment' => null,
+            'image'         => $partner?->logo_url,
         ];
     }
 
     /** Accreditation groups — [{group, items:[{name,logo}]}] normalized */
     public function getAccreditationGroupsListAttribute(): \Illuminate\Support\Collection
     {
-        return collect($this->accreditation_groups ?? [])->map(function ($g) {
-            return [
-                'group' => $g['group'] ?? '',
-                'items' => collect($g['items'] ?? []),
-            ];
-        })->values();
+        return collect($this->accreditation_groups ?? [])
+            ->filter(fn ($g) => is_array($g))
+            ->map(function ($g) {
+                return [
+                    'group' => data_get($g, 'group', ''),
+                    'items' => collect(data_get($g, 'items') ?? [])->filter(fn ($item) => is_array($item)),
+                ];
+            })->values();
     }
 
     /** Video testimonials — [{name, role, country, category, thumb, video}] */
@@ -184,7 +214,7 @@ class Program extends Model
     public function getFeesListAttribute(): \Illuminate\Support\Collection
     {
         return collect($this->fees ?? [])
-            ->map(fn ($f) => $f['title'] ?? $f)
+            ->map(fn ($f) => is_array($f) ? ($f['title'] ?? $f) : $f)
             ->values();
     }
 
@@ -197,12 +227,17 @@ class Program extends Model
     /** Reviews mapped to the shared Our Story testimonial slider shape */
     public function getReviewTestimonialObjectsAttribute(): \Illuminate\Support\Collection
     {
-        return $this->reviews_list->map(fn ($r) => (object) [
-            'name'        => $r['name'] ?? '',
-            'rating'      => $r['rating'] ?? 5,
-            'testimonial' => $r['review'] ?? '',
-            'photo'       => $r['avatar'] ?? null,
-        ])->values();
+        return $this->reviews_list
+            ->filter(fn ($r) => is_array($r))
+            ->map(fn ($r) => (object) [
+                'name' => data_get($r, 'name', ''),
+                'rating' => data_get($r, 'rating', 5),
+                'testimonial' => data_get($r, 'review', ''),
+                'photo' => data_get($r, 'avatar'),
+                'organisation' => data_get($r, 'organisation'),
+                'position' => data_get($r, 'position'),
+                'country' => data_get($r, 'country'),
+            ])->values();
     }
 
     /**

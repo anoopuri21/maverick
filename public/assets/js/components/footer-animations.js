@@ -24,19 +24,48 @@ export function initFooterAnimations(selector) {
 
   // Newsletter form handling
   const form = footer.querySelector("[data-newsletter-form]");
-  if (form) {
-    form.addEventListener("submit", (e) => {
+  if (form && form.dataset.newsletterBound !== "1") {
+    form.dataset.newsletterBound = "1";
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
       const input = form.querySelector(".footer__newsletter-input");
       const btn = form.querySelector(".footer__newsletter-btn span");
-      if (input && input.value && btn) {
-        const orig = btn.textContent;
-        btn.textContent = "Subscribed";
-        input.value = "";
-        setTimeout(() => {
-          btn.textContent = orig;
-        }, 2500);
+      if (!input || !input.value || !btn) return;
+      const orig = btn.textContent;
+      let resetDelay = 2500;
+      try {
+        const res = await fetch(form.action, {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "X-Requested-With": "XMLHttpRequest",
+          },
+          body: new FormData(form),
+        });
+        let data = {};
+        try {
+          data = await res.json();
+        } catch (_) {
+          /* non-JSON response */
+        }
+
+        if (res.ok && data.ok) {
+          btn.textContent = data.message || "Subscribed";
+          input.value = "";
+          resetDelay = 5000;
+        } else if (res.status === 422) {
+          btn.textContent = data.errors?.email?.[0] || "Invalid email";
+        } else if (res.status === 429) {
+          btn.textContent = "Too many tries. Wait a moment.";
+        } else {
+          btn.textContent = data.message || "Something went wrong";
+        }
+      } catch (_) {
+        btn.textContent = "Network error";
       }
+      setTimeout(() => {
+        btn.textContent = orig;
+      }, resetDelay);
     });
   }
 

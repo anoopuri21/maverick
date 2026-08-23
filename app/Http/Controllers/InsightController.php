@@ -14,9 +14,12 @@ class InsightController extends Controller
                 ->where('id', '!=', $slug->id)
                 ->latest('published_at')
                 ->take(5)
-                ->get();
+                ->get(['id', 'title', 'slug', 'excerpt', 'featured_image_url', 'published_at', 'categories']);
 
-            return view('news.show', ['article' => $slug, 'moreUpdates' => $moreUpdates]);
+            return view('news.show', [
+                'article' => $slug,
+                'moreUpdates' => $moreUpdates ?? collect(),
+            ]);
         }
 
         // Default: blog-style detail view (covers items tagged
@@ -40,9 +43,9 @@ class InsightController extends Controller
 
             // Inject matching IDs into the H2/H3 tags so the table of contents can anchor to them.
             foreach ($headings as $heading) {
-                $tag = 'h' . $heading->level;
-                $pattern = '/<' . $tag . '>(.*?' . preg_quote($heading->text, '/') . '.*?)<\/' . $tag . '>/';
-                $replacement = '<' . $tag . ' id="' . $heading->anchor . '">$1</' . $tag . '>';
+                $tag = 'h'.$heading->level;
+                $pattern = '/<'.$tag.'>(.*?'.preg_quote($heading->text, '/').'.*?)<\/'.$tag.'>/';
+                $replacement = '<'.$tag.' id="'.$heading->anchor.'">$1</'.$tag.'>';
                 $contentWithAnchors = preg_replace($pattern, $replacement, $contentWithAnchors, 1);
             }
         }
@@ -52,8 +55,12 @@ class InsightController extends Controller
             ->where('id', '!=', $slug->id)
             ->latest('published_at')
             ->take(3)
-            ->get();
+            ->get(['id', 'title', 'slug', 'excerpt', 'featured_image_url', 'published_at', 'reading_time_minutes', 'categories', 'tags']);
 
-        return view('blogs.show', ['post' => $slug, 'headings' => $headings, 'relatedPosts' => $relatedPosts]);
+        return view('blogs.show', [
+            'post' => $slug,
+            'headings' => $headings ?? [],
+            'relatedPosts' => $relatedPosts ?? collect(),
+        ]);
     }
 }

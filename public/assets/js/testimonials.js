@@ -54,6 +54,9 @@
     modalPlayer.innerHTML = playerContent;
     modal.classList.add("testimonials__modal--active");
     document.body.classList.add("modal-open");
+    if (window.lenisInstance && typeof window.lenisInstance.stop === "function") {
+      window.lenisInstance.stop();
+    }
   }
 
   // Close modal
@@ -62,6 +65,9 @@
 
     modal.classList.remove("testimonials__modal--active");
     document.body.classList.remove("modal-open");
+    if (window.lenisInstance && typeof window.lenisInstance.start === "function") {
+      window.lenisInstance.start();
+    }
 
     // Clear player content after transition
     setTimeout(() => {
