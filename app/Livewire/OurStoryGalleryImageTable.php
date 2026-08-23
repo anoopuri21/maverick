@@ -8,15 +8,14 @@ use App\Models\OurStoryGalleryImage;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
+use Filament\Tables\Actions\CreateAction;
+use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
 use Livewire\Component;
 
-/**
- * Embedded Gallery CRUD table for the Our Story page.
- * Reuses OurStoryGalleryImageResource::form() and ::table().
- */
 class OurStoryGalleryImageTable extends Component implements HasForms, HasTable
 {
     use InteractsWithForms;
@@ -29,15 +28,15 @@ class OurStoryGalleryImageTable extends Component implements HasForms, HasTable
             $table
                 ->query(OurStoryGalleryImage::query())
                 ->headerActions([
-                    \Filament\Tables\Actions\CreateAction::make()
+                    CreateAction::make()
                         ->form(fn (Form $form) => OurStoryGalleryImageResource::form($form))
                         ->mutateFormDataUsing(fn (array $data) => $this->mutateEmbeddedMedia($data, 'image_url')),
                 ])
                 ->actions([
-                    \Filament\Tables\Actions\EditAction::make()
+                    EditAction::make()
                         ->form(fn (Form $form) => OurStoryGalleryImageResource::form($form))
                         ->mutateFormDataUsing(fn (array $data) => $this->mutateEmbeddedMedia($data, 'image_url', $this->getMountedTableActionRecord())),
-                    \Filament\Tables\Actions\DeleteAction::make(),
+                    DeleteAction::make(),
                 ]),
         );
     }

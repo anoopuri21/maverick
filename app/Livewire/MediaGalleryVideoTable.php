@@ -8,15 +8,14 @@ use App\Models\MediaGalleryVideo;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
+use Filament\Tables\Actions\CreateAction;
+use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
 use Livewire\Component;
 
-/**
- * Embedded Featured Videos CRUD table for the Media Gallery page.
- * Reuses MediaGalleryVideoResource::form() and ::table().
- */
 class MediaGalleryVideoTable extends Component implements HasForms, HasTable
 {
     use InteractsWithForms;
@@ -29,15 +28,15 @@ class MediaGalleryVideoTable extends Component implements HasForms, HasTable
             $table
                 ->query(MediaGalleryVideo::query())
                 ->headerActions([
-                    \Filament\Tables\Actions\CreateAction::make()
+                    CreateAction::make()
                         ->form(fn (Form $form) => MediaGalleryVideoResource::form($form))
                         ->mutateFormDataUsing(fn (array $data) => $this->mutateEmbeddedMedia($data, 'thumbnail_url')),
                 ])
                 ->actions([
-                    \Filament\Tables\Actions\EditAction::make()
+                    EditAction::make()
                         ->form(fn (Form $form) => MediaGalleryVideoResource::form($form))
                         ->mutateFormDataUsing(fn (array $data) => $this->mutateEmbeddedMedia($data, 'thumbnail_url', $this->getMountedTableActionRecord())),
-                    \Filament\Tables\Actions\DeleteAction::make(),
+                    DeleteAction::make(),
                 ]),
         );
     }

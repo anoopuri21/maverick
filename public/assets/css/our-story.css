@@ -1418,11 +1418,24 @@
   font-weight: 600;
   flex-shrink: 0;
 }
+.os-testimonials__author-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
 .os-testimonials__name {
   font-family: var(--font-display);
   font-size: 15px;
   font-weight: var(--fw-semibold, 600);
   color: var(--color-mba-blue);
+}
+.os-testimonials__meta {
+  display: block;
+  margin-top: 2px;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: rgba(0, 0, 0, 0.55);
 }
 
 /* Reduced motion / static: wrap into a readable grid */

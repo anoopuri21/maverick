@@ -172,7 +172,11 @@ class MediaLibraryModal extends Component
         }
 
         if (! $this->showAllFolders && filled($this->folderFilter)) {
-            $query->where('folder', $this->folderFilter);
+            $filter = $this->folderFilter;
+            $query->where(function ($q) use ($filter) {
+                $q->where('folder', $filter)
+                    ->orWhere('folder', 'like', '%/'.$filter);
+            });
         }
 
         return view('livewire.media-library-modal', [

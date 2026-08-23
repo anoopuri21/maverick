@@ -234,6 +234,9 @@ class Program extends Model
                 'rating' => data_get($r, 'rating', 5),
                 'testimonial' => data_get($r, 'review', ''),
                 'photo' => data_get($r, 'avatar'),
+                'organisation' => data_get($r, 'organisation'),
+                'position' => data_get($r, 'position'),
+                'country' => data_get($r, 'country'),
             ])->values();
     }
 

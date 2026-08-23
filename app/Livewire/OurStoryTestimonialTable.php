@@ -8,15 +8,14 @@ use App\Models\OurStoryTestimonial;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
+use Filament\Tables\Actions\CreateAction;
+use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
 use Livewire\Component;
 
-/**
- * Embedded Testimonial CRUD table for the Our Story page.
- * Reuses OurStoryTestimonialResource::form() and ::table().
- */
 class OurStoryTestimonialTable extends Component implements HasForms, HasTable
 {
     use InteractsWithForms;
@@ -28,12 +27,12 @@ class OurStoryTestimonialTable extends Component implements HasForms, HasTable
             $table
                 ->query(OurStoryTestimonial::query())
                 ->headerActions([
-                    \Filament\Tables\Actions\CreateAction::make()
+                    CreateAction::make()
                         ->form(fn (Form $form) => OurStoryTestimonialResource::form($form))
-                        ->mutateFormDataUsing(fn (array $data) => MediaPicker::syncUrlFromAsset($data, 'photo')),
+                        ->mutateFormDataUsing(fn (array $data): array => MediaPicker::syncUrlFromAsset($data, 'photo')),
                 ])
                 ->actions([
-                    \Filament\Tables\Actions\EditAction::make()
+                    EditAction::make()
                         ->form(fn (Form $form) => OurStoryTestimonialResource::form($form))
                         ->mutateFormDataUsing(function (array $data) {
                             $data = MediaPicker::syncUrlFromAsset($data, 'photo');
@@ -44,7 +43,7 @@ class OurStoryTestimonialTable extends Component implements HasForms, HasTable
 
                             return $data;
                         }),
-                    \Filament\Tables\Actions\DeleteAction::make(),
+                    DeleteAction::make(),
                 ]),
         );
     }

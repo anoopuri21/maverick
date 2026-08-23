@@ -4,20 +4,17 @@ namespace App\Livewire;
 
 use App\Filament\Resources\AccreditationAwardResource;
 use App\Livewire\Concerns\MutatesEmbeddedMediaPicker;
-use App\Models\PartnerLogo;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
+use Filament\Tables\Actions\CreateAction;
+use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
 use Livewire\Component;
 
-/**
- * Embedded Awards & Recognition CRUD table for the Accreditation page.
- * Reuses AccreditationAwardResource::form() and ::table() (model scoped to
- * type='award' via the resource's getEloquentQuery).
- */
 class AccreditationAwardTable extends Component implements HasForms, HasTable
 {
     use InteractsWithForms;
@@ -28,17 +25,17 @@ class AccreditationAwardTable extends Component implements HasForms, HasTable
     {
         return AccreditationAwardResource::table(
             $table
-                ->query(\App\Filament\Resources\AccreditationAwardResource::getEloquentQuery())
+                ->query(AccreditationAwardResource::getEloquentQuery())
                 ->headerActions([
-                    \Filament\Tables\Actions\CreateAction::make()
+                    CreateAction::make()
                         ->form(fn (Form $form) => AccreditationAwardResource::form($form))
                         ->mutateFormDataUsing(fn (array $data) => $this->mutateEmbeddedMedia($data, 'logo_url', extra: ['type' => 'award'])),
                 ])
                 ->actions([
-                    \Filament\Tables\Actions\EditAction::make()
+                    EditAction::make()
                         ->form(fn (Form $form) => AccreditationAwardResource::form($form))
                         ->mutateFormDataUsing(fn (array $data) => $this->mutateEmbeddedMedia($data, 'logo_url', $this->getMountedTableActionRecord(), ['type' => 'award'])),
-                    \Filament\Tables\Actions\DeleteAction::make(),
+                    DeleteAction::make(),
                 ]),
         );
     }
