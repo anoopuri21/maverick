@@ -76,26 +76,19 @@ class ProgramController extends Controller
                 ]
             );
 
-            return compact('categories', 'programs');
+            return [
+                'categories' => $categories->toArray(),
+                'programs' => $programs->toArray(),
+            ];
         });
 
         return view('pages.programs.index', [
             'programsListingPage' => safe_settings(ProgramsListingPageSettings::class),
-            'categories' => collect(PublicContentCache::hydrateRows($listing['categories'] ?? [])),
-            'programs' => collect(PublicContentCache::hydrateRows(
-                $listing['programs'] ?? [],
-                function ($row) {
-                    $data = is_array($row) ? $row : (array) $row;
-                    $data['programCategory'] = ! empty($data['programCategory'])
-                        ? (object) $data['programCategory']
-                        : null;
-                    $data['universityPartner'] = ! empty($data['universityPartner'])
-                        ? (object) $data['universityPartner']
-                        : null;
-
-                    return (object) $data;
-                }
-            )),
+            'categories' => PublicContentCache::hydrateRows(ProgramCategory::class, $listing['categories'] ?? []),
+            'programs' => PublicContentCache::hydrateRows(Program::class, $listing['programs'] ?? [], [
+                'program_category' => ProgramCategory::class,
+                'university_partner' => \App\Models\UniversityPartner::class,
+            ]),
             'programsListingSeo' => safe_settings(ProgramsListingSeoSettings::class),
         ]);
     }

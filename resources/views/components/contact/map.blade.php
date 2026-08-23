@@ -1,4 +1,4 @@
-@props(['address'])
+@props(['address', 'title' => 'Our Campus'])
 
 @php
     $escapedAddress = urlencode($address ?? 'Sharjah, United Arab Emirates');
@@ -9,7 +9,7 @@
     <div class="contact-map-container">
         <iframe
             class="contact-map-iframe"
-            title="Office Location Map"
+            title="{{ $title }} map"
             src="{{ $embedUrl }}"
             allowfullscreen=""
             loading="lazy"
@@ -23,7 +23,7 @@
                         <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
                         <circle cx="12" cy="10" r="3"/>
                     </svg>
-                    <span>Our Campus</span>
+                    <span>{{ $title }}</span>
                 </div>
                 <p class="contact-map-overlay-card__address">{{ $address }}</p>
                 <a href="https://www.google.com/maps/search/?api=1&query={{ $escapedAddress }}"

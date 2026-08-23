@@ -13,14 +13,12 @@ class AccreditationController extends Controller
     public function index()
     {
         $cinematicSettings = safe_settings(AccreditationCinematicSettings::class);
-        $logos = PublicContentCache::remember(PublicContentCache::ACCREDITATIONS, function () {
-            $accreditationLogos = PublicContentCache::serializeRows(
-                PartnerLogo::select('id', 'name', 'logo_url', 'type', 'sort_order')
-                    ->whereIn('type', ['accreditation', 'recognition'])
-                    ->where('is_active', true)
-                    ->orderBy('sort_order')
-                    ->get()
-            );
+        $cached = PublicContentCache::remember(PublicContentCache::ACCREDITATIONS, function () {
+            $accreditationLogos = PartnerLogo::select('id', 'name', 'logo_url', 'type', 'sort_order')
+                ->whereIn('type', ['accreditation', 'recognition'])
+                ->where('is_active', true)
+                ->orderBy('sort_order')
+                ->get();
 
             $awardLogos = PublicContentCache::serializeRows(
                 PartnerLogo::select('id', 'name', 'logo_url', 'type', 'description', 'sort_order')
@@ -30,13 +28,16 @@ class AccreditationController extends Controller
                     ->get()
             );
 
-            return compact('accreditationLogos', 'awardLogos');
+            return [
+                'accreditationLogos' => $accreditationLogos->toArray(),
+                'awardLogos' => $awardLogos->toArray(),
+            ];
         });
 
         return view('pages.accreditations', [
             'accreditationsPage' => safe_settings(AccreditationsPageSettings::class),
-            'accreditationLogos' => PublicContentCache::hydrateRows($logos['accreditationLogos'] ?? []),
-            'awardLogos' => PublicContentCache::hydrateRows($logos['awardLogos'] ?? []),
+            'accreditationLogos' => PublicContentCache::hydrateRows(PartnerLogo::class, $cached['accreditationLogos'] ?? []),
+            'awardLogos' => PublicContentCache::hydrateRows(PartnerLogo::class, $cached['awardLogos'] ?? []),
             'cinematicSettings' => $cinematicSettings,
             'accreditationsSeo' => safe_settings(AccreditationsSeoSettings::class),
         ]);
