@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Global Atlas — Selected Territories</title>
+<meta name="description" content="Geometrical world map with pinpointed selected countries." />
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#050b1d;
+    --navy2:#0a1430;
+    --red:#b20202;
+  }
+  html,body{ background:#ffffff; height:100%; overscroll-behavior:none; }
+  body{ font-family:'Poppins',sans-serif; }
+
+  /* dotted navy texture */
+  .dots{
+    background-image:radial-gradient(rgba(5,11,29,.07) 1px, transparent 1.4px);
+    background-size:38px 38px;
+    animation:drift 90s linear infinite;
+  }
+  @keyframes drift{ to{ background-position:380px 190px; } }
+  .vignette{
+    background:radial-gradient(120% 95% at 50% 36%, rgba(255,255,255,0) 58%, rgba(5,11,29,.055) 100%);
+  }
+
+  /* navy blue ocean panel */
+  .panel{ fill:var(--navy); filter:drop-shadow(0 22px 44px rgba(5,11,29,.22)) drop-shadow(0 3px 10px rgba(5,11,29,.12)); }
+
+  svg#map{ cursor:crosshair; touch-action:none; }
+  svg#map.grabbing{ cursor:grabbing; }
+
+  /* geometry */
+  .land{ fill:rgba(255,255,255,.05); stroke:rgba(255,255,255,.13); stroke-width:.5; vector-effect:non-scaling-stroke; }
+  .grat{ fill:none; stroke:rgba(255,255,255,.065); stroke-width:.5; vector-effect:non-scaling-stroke; }
+  .meri{ fill:none; stroke:rgba(255,255,255,.16); stroke-width:.7; stroke-dasharray:1.5 4; vector-effect:non-scaling-stroke; }
+  .hot{ fill:var(--red); stroke:rgba(255,255,255,.55); stroke-width:.6; vector-effect:non-scaling-stroke;
+        cursor:pointer; transition:filter .35s ease, stroke .35s ease; }
+  .hot.on{ stroke:#ffffff; filter:brightness(1.18) saturate(1.1); }
+  .glow{ fill:var(--red); opacity:.6; filter:blur(11px); pointer-events:none; }
+
+  /* pins */
+  .pin{ transition:opacity .3s ease; opacity:0; }
+  svg#map.ready .pin{ opacity:1; transition:opacity .6s ease var(--d,0s); }
+  svg#map.t-settled .pin{ transition-delay:0s; }
+  .halo{ fill:var(--red); opacity:.55; }
+  .dot{ fill:#ffffff; }
+  .ring{ fill:none; stroke:rgba(255,255,255,.9); stroke-width:.8; transform-box:fill-box; transform-origin:center;
+         animation:pulse 3.2s cubic-bezier(.2,.6,.3,1) infinite; }
+  @keyframes pulse{
+    0%{ transform:scale(.45); opacity:.95; }
+    75%{ transform:scale(3.1); opacity:0; }
+    100%{ transform:scale(3.1); opacity:0; }
+  }
+  .lead{ stroke:rgba(255,255,255,.42); stroke-width:.8; vector-effect:non-scaling-stroke; }
+  .sq{ fill:rgba(255,255,255,.8); }
+  .lbl{ fill:rgba(255,255,255,.9); font-family:'Poppins',sans-serif; font-size:10px; font-weight:400;
+        letter-spacing:.1em;
+        paint-order:stroke; stroke:rgba(5,11,29,.92); stroke-width:3.5px; stroke-linejoin:round;
+        transition:fill .25s ease, stroke .25s ease; pointer-events:none; text-transform:uppercase; }
+
+  /* hover badge — red bordered name chip */
+  .chip{ fill:rgba(5,11,29,.78); stroke:#b20202; stroke-width:1.1; rx:5;
+         opacity:0; transition:opacity .22s ease; pointer-events:none; }
+  .pin.on .chip{ opacity:1; }
+  .pin.on .lbl{ fill:#ffffff; stroke:#b20202; stroke-width:3.5px; }
+  .pin.on .lead{ stroke:rgba(178,2,2,.9); }
+  .pin.on .sq{ fill:#b20202; }
+
+  /* controls */
+  .ctl{ width:2.5rem; height:2.5rem; display:flex; align-items:center; justify-content:center;
+        border:1px solid rgba(5,11,29,.22); background:rgba(255,255,255,.9);
+        color:rgba(5,11,29,.8); backdrop-filter:blur(6px);
+        box-shadow:0 4px 14px rgba(5,11,29,.08);
+        transition:all .3s ease; }
+  .ctl:hover{ border-color:rgba(178,2,2,.6); color:#b20202; background:#ffffff; }
+  .ctl:active{ transform:scale(.92); }
+  .ctl svg{ width:15px; height:15px; }
+
+  #loader{ transition:opacity .5s ease; }
+  .loadsq{ width:8px; height:8px; background:var(--red); animation:blip 1.1s ease-in-out infinite; }
+  @keyframes blip{ 0%,100%{ transform:scale(.5); opacity:.4 } 50%{ transform:scale(1.2); opacity:1 } }
+
+  .lucide{ stroke-width:1.5; }
+</style>
+</head>
+<body class="overflow-hidden select-none">
+
+<!-- loader -->
+<div id="loader" class="fixed inset-0 z-50 flex items-center justify-center" style="background:#ffffff">
+  <div class="flex gap-2">
+    <span class="loadsq" style="animation-delay:0s"></span>
+    <span class="loadsq" style="animation-delay:.15s"></span>
+    <span class="loadsq" style="animation-delay:.3s"></span>
+  </div>
+</div>
+
+<!-- app -->
+<div class="relative h-[100svh] w-full overflow-hidden">
+  <div class="dots absolute inset-0"></div>
+  <div class="vignette absolute inset-0 pointer-events-none z-10"></div>
+
+  <!-- corner brackets -->
+  <div class="absolute z-20 pointer-events-none border-l border-t" style="left:18px;top:18px;width:26px;height:26px;border-color:rgba(5,11,29,.3)"></div>
+  <div class="absolute z-20 pointer-events-none border-r border-t" style="right:18px;top:18px;width:26px;height:26px;border-color:rgba(5,11,29,.3)"></div>
+  <div class="absolute z-20 pointer-events-none border-l border-b" style="left:18px;bottom:18px;width:26px;height:26px;border-color:rgba(5,11,29,.3)"></div>
+  <div class="absolute z-20 pointer-events-none border-r border-b" style="right:18px;bottom:18px;width:26px;height:26px;border-color:rgba(5,11,29,.3)"></div>
+  <div class="absolute z-20 pointer-events-none" style="left:18px;top:18px;width:9px;height:9px;background:#b20202;transform:translate(-1px,-1px)"></div>
+
+  <!-- target mark -->
+  <svg class="absolute z-20 pointer-events-none" style="right:26px;top:26px;width:30px;height:30px;opacity:.55" viewBox="0 0 30 30">
+    <g stroke="rgba(5,11,29,.75)" stroke-width="1" fill="none">
+      <circle cx="15" cy="15" r="10"/>
+      <path d="M15 0v8M15 22v8M0 15h8M22 15h8"/>
+    </g>
+    <circle cx="15" cy="15" r="1.6" fill="#b20202" stroke="none"/>
+  </svg>
+
+  <!-- compass -->
+  <div class="absolute z-20 pointer-events-none" style="left:28px;bottom:26px;opacity:.6;color:rgba(5,11,29,.85)">
+    <i data-lucide="compass" style="width:22px;height:22px"></i>
+  </div>
+
+  <!-- map -->
+  <div class="absolute inset-0 flex items-center justify-center p-2 sm:p-4">
+    <svg id="map" class="w-full h-full max-w-[1720px]" viewBox="0 0 1280 680" role="img" aria-label="World map"></svg>
+  </div>
+
+  <!-- controls -->
+  <div class="absolute z-30 flex flex-col gap-2" style="right:26px;bottom:64px">
+    <button class="ctl" id="zin" aria-label="Zoom in"><i data-lucide="plus"></i></button>
+    <button class="ctl" id="zout" aria-label="Zoom out"><i data-lucide="minus"></i></button>
+    <button class="ctl" id="zreset" aria-label="Reset view"><i data-lucide="rotate-ccw"></i></button>
+  </div>
+</div>
+
+<script>
+/* =========================================================
+   DATA — 27 selected territories (ISO numeric id, code, pin)
+   ========================================================= */
+const NODES = [
+  { id:'840', code:'US', name:'UNITED STATES',        lon:-97.2,  lat: 39.5, dx:  15, dy:-14, a:'start' },
+  { id:'152', code:'CL', name:'CHILE',                lon:-70.9,  lat:-30.0, dx:  15, dy: 10, a:'start' },
+  { id:'604', code:'PE', name:'PERU',                 lon:-75.3,  lat: -9.6, dx: -16, dy: -4, a:'end'   },
+  { id:'826', code:'UK', name:'UNITED KINGDOM',       lon: -2.8,  lat: 54.3, dx: -18, dy:-26, a:'end'   },
+  { id:'756', code:'CH', name:'SWITZERLAND',          lon:  8.3,  lat: 46.9, dx:  16, dy: 26, a:'start' },
+  { id:'348', code:'HU', name:'HUNGARY',              lon: 19.3,  lat: 47.3, dx: -18, dy:-24, a:'end'   },
+  { id:'498', code:'MD', name:'MOLDOVA',              lon: 28.7,  lat: 47.2, dx:  13, dy:-22, a:'start' },
+  { id:'642', code:'RO', name:'ROMANIA',              lon: 24.9,  lat: 45.9, dx:  25, dy: 20, a:'start' },
+  { id:'818', code:'EG', name:'EGYPT',                lon: 30.2,  lat: 26.4, dx: -11, dy:-22, a:'end'   },
+  { id:'760', code:'SY', name:'SYRIA',                lon: 38.2,  lat: 34.9, dx:  20, dy:-16, a:'start' },
+  { id:'682', code:'SA', name:'SAUDI ARABIA',         lon: 45.2,  lat: 23.9, dx: -16, dy: 16, a:'end'   },
+  { id:'784', code:'AE', name:'UAE',                  lon: 54.3,  lat: 23.9, dx:  17, dy:-14, a:'start' },
+  { id:'887', code:'YE', name:'YEMEN',                lon: 47.7,  lat: 15.3, dx:  20, dy: 18, a:'start' },
+  { id:'566', code:'NG', name:'NIGERIA',              lon:  8.3,  lat:  9.6, dx:  -6, dy:-24, a:'end'   },
+  { id:'288', code:'GH', name:'GHANA',                lon: -1.3,  lat:  7.7, dx:  -2, dy: 26, a:'middle'},
+  { id:'178', code:'CG', name:'CONGO',                lon: 15.4,  lat: -0.6, dx: -18, dy:  8, a:'end'   },
+  { id:'800', code:'UG', name:'UGANDA',               lon: 32.3,  lat:  1.4, dx:  15, dy: 12, a:'start' },
+  { id:'716', code:'ZW', name:'ZIMBABWE',             lon: 29.8,  lat:-19.0, dx:  13, dy: 22, a:'start' },
+  { id:'356', code:'IN', name:'INDIA',                lon: 78.9,  lat: 22.2, dx: -16, dy: -6, a:'end'   },
+  { id:'144', code:'LK', name:'SRI LANKA',            lon: 80.8,  lat:  7.6, dx:  15, dy: 11, a:'start' },
+  { id:'462', code:'MV', name:'MALDIVES',             lon: 73.2,  lat:  3.1, dx: -14, dy: 18, a:'end'   },
+  { id:'104', code:'MM', name:'MYANMAR',              lon: 96.2,  lat: 21.3, dx: -15, dy:-10, a:'end'   },
+  { id:'156', code:'CN', name:'CHINA',                lon:104.5,  lat: 35.8, dx:  17, dy:-12, a:'start' },
+  { id:'458', code:'MY', name:'MALAYSIA',             lon:102.2,  lat:  3.9, dx:  19, dy:  7, a:'start' },
+  { id:'704', code:'VN', name:'VIETNAM',              lon:108.2,  lat: 14.1, dx:  15, dy:-15, a:'start' },
+  { id:'344', code:'HK', name:'HONG KONG',            lon:114.17, lat: 22.32, dx:  19, dy: -8, a:'start'},
+  { id:'036', code:'AU', name:'AUSTRALIA',            lon:134.2,  lat:-25.4, dx:  16, dy: 15, a:'start' },
+];
+const SELECTED = new Set(NODES.map(n => n.id));
+
+/* =========================================================
+   BOOT
+   ========================================================= */
+const W = 1280, H = 680;
+const svg  = d3.select('#map');
+svg.append('rect').attr('class','panel').attr('width',W).attr('height',H).attr('rx',14); // navy ocean panel
+svg.append('clipPath').attr('id','panelClip')
+   .append('rect').attr('width',W).attr('height',H).attr('rx',14);
+const root = svg.append('g').attr('clip-path','url(#panelClip)');
+
+const projection = d3.geoNaturalEarth1();
+const geoPath    = d3.geoPath(projection);
+
+async function loadWorld(){
+  const urls = [
+    'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json',
+    'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json'
+  ];
+  for (const u of urls){
+    try { const t = await d3.json(u); if (t && t.objects && t.objects.countries) return t; }
+    catch(e){ /* try next */ }
+  }
+  return null;
+}
+
+async function build(){
+  const topo = await loadWorld();
+  if (!topo){ document.getElementById('loader').style.opacity = 0; return; }
+
+  const fid = f => String(f.id).padStart(3,'0');
+
+  let features = topojson.feature(topo, topo.objects.countries).features;
+  features = features.filter(f => fid(f) !== '010'); // drop Antarctica
+
+  const landFC  = { type:'FeatureCollection', features };
+  const hotFts  = features.filter(f => SELECTED.has(fid(f)));
+  const hotFC   = { type:'FeatureCollection', features: hotFts };
+
+  projection.fitExtent([[9,9],[W-9,H-8]], landFC);
+
+  /* ---- layers ---- */
+  // faint world block
+  root.append('path')
+      .datum({type:'Sphere'})
+      .attr('class','land')
+      .style('fill','rgba(255,255,255,.02)')
+      .style('stroke','rgba(255,255,255,.10)')
+      .attr('d', geoPath);
+
+  // graticule
+  root.append('path')
+      .datum(d3.geoGraticule().step([20,20])())
+      .attr('class','grat')
+      .attr('d', geoPath);
+
+  // equator + greenwich accents
+  const equator = { type:'LineString', coordinates: d3.range(-180,181,5).map(l => [l,0]) };
+  const gwmch   = { type:'LineString', coordinates: d3.range(-80,81,5).map(p => [0,p]) };
+  root.selectAll(null).data([equator,gwmch]).join('path')
+      .attr('class','meri').attr('d', geoPath);
+
+  // all land
+  root.append('path')
+      .datum(landFC)
+      .attr('class','land')
+      .attr('d', geoPath)
+      .style('fill','rgba(255,255,255,.05)');
+
+  // red glow beneath selected
+  if (hotFts.length){
+    root.append('path').datum(hotFC).attr('class','glow').attr('d', geoPath);
+  }
+
+  // crisp selected countries
+  root.selectAll('path.hot')
+      .data(hotFts).join('path')
+      .attr('class','hot')
+      .attr('d', geoPath)
+      .attr('data-code', d => (NODES.find(n => n.id === fid(d)) || {}).code)
+      .on('mouseenter', (ev,d) => focus((NODES.find(n => n.id === fid(d)) || {}).code))
+      .on('mouseleave', () => focus(pinned))
+      .on('click', (ev,d) => {
+        ev.stopPropagation();
+        const c = (NODES.find(n => n.id === fid(d)) || {}).code;
+        pinned = (pinned === c) ? null : c;
+        focus(pinned);
+      });
+
+  /* ---- pins ---- */
+  const pins = root.append('g').attr('class','pins')
+      .selectAll('g.pin')
+      .data(NODES).join('g')
+      .attr('class','pin')
+      .attr('data-code', d => d.code)
+      .style('--d', (d,i) => (0.55 + i*0.055) + 's')
+      .on('mouseenter', (ev,d) => focus(d.code))
+      .on('mouseleave', () => focus(pinned))
+      .on('click', (ev,d) => {
+        ev.stopPropagation();
+        pinned = (pinned === d.code) ? null : d.code;
+        focus(pinned);
+      });
+
+  const LBS = [];
+  pins.each(function(d,i){
+    const g = d3.select(this);
+    const p = projection([d.lon, d.lat]);
+    if (!p) return;
+    const [x,y] = p;
+    g.attr('transform', `translate(${x},${y})`);
+
+    // halo + pulse rings + core dot
+    g.append('circle').attr('class','halo').attr('r',5);
+    g.append('circle').attr('class','ring').attr('r',5)
+     .style('animation-delay', (-(i%7)*0.42)+'s');
+    g.append('circle').attr('class','ring').attr('r',5)
+     .style('animation-delay', (-((i%7)*0.42)-1.6)+'s');
+    g.append('circle').attr('class','dot').attr('r',2.4);
+
+    const line = g.append('line').attr('class','lead');
+    const sq   = g.append('rect').attr('class','sq').attr('width',3).attr('height',3);
+    const chip = g.append('rect').attr('class','chip').attr('rx',5); // hover badge behind name
+    const t    = g.append('text').attr('class','lbl').text(d.name)
+                  .attr('text-anchor', d.a === 'end' ? 'end' : (d.a === 'middle' ? 'middle' : 'start'));
+
+    LBS.push({ d, a:d.a, x, y, px:d.dx, py:d.dy, ox:d.dx, oy:d.dy, w:0, el:t, line, sq, chip });
+  });
+
+  /* =========================================================
+     LABEL DE-OVERLAP — measure real text, resolve collisions,
+     keep labels tethered to their pins with leader lines
+     ========================================================= */
+  try { if (document.fonts && document.fonts.ready) await document.fonts.ready; } catch(e){}
+
+  LBS.forEach(l => {
+    l.w = (l.el.node().getComputedTextLength && l.el.node().getComputedTextLength()) || l.d.name.length * 6.2;
+  });
+  const pinPts = LBS.map(l => [l.x, l.y]);
+
+  function boxOf(l){
+    if (l.a === 'start') return { x1:l.x+l.px+8, x2:l.x+l.px+8+l.w, y1:l.y+l.py-6, y2:l.y+l.py+6 };
+    if (l.a === 'end')   return { x1:l.x+l.px-8-l.w, x2:l.x+l.px-8, y1:l.y+l.py-6, y2:l.y+l.py+6 };
+    const cy = l.y + l.py + (l.py >= 0 ? 11 : -11);
+    return { x1:l.x+l.px-l.w/2, x2:l.x+l.px+l.w/2, y1:cy-6, y2:cy+6 };
+  }
+  function moveL(l, dx, dy){
+    l.px += dx; l.py += dy;
+    // stay close to preferred anchor so pin association stays obvious
+    let ddx = l.px - l.ox, ddy = l.py - l.oy;
+    const m = Math.hypot(ddx, ddy), MAX = 36;
+    if (m > MAX){ l.px = l.ox + ddx/m*MAX; l.py = l.oy + ddy/m*MAX; }
+    // keep fully inside panel
+    const b = boxOf(l);
+    if (b.x1 < 6)    l.px += 6 - b.x1;
+    if (b.x2 > W-6)  l.px -= b.x2 - (W-6);
+    if (b.y1 < 8)    l.py += 8 - b.y1;
+    if (b.y2 > H-4)  l.py -= b.y2 - (H-4);
+  }
+
+  const PAD = 5;
+  for (let it = 0; it < 400; it++){
+    let moved = false;
+    for (let i = 0; i < LBS.length; i++){
+      // label ↔ label
+      for (let j = i+1; j < LBS.length; j++){
+        const bi = boxOf(LBS[i]), bj = boxOf(LBS[j]);
+        const ox = Math.min(bi.x2, bj.x2) - Math.max(bi.x1, bj.x1) + PAD;
+        const oy = Math.min(bi.y2, bj.y2) - Math.max(bi.y1, bj.y1) + PAD;
+        if (ox > 0 && oy > 0){
+          moved = true;
+          if (oy <= ox){
+            const s = (bj.y1+bj.y2) >= (bi.y1+bi.y2) ? 1 : -1;
+            moveL(LBS[i], 0, -s*oy/2); moveL(LBS[j], 0, s*oy/2);
+          } else {
+            const s = (bj.x1+bj.x2) >= (bi.x1+bi.x2) ? 1 : -1;
+            moveL(LBS[i], -s*ox/2, 0); moveL(LBS[j], s*ox/2, 0);
+          }
+        }
+      }
+      // label ↔ pin dots (never cover another country's marker)
+      for (let k = 0; k < pinPts.length; k++){
+        if (k === i) continue;
+        const [qx, qy] = pinPts[k];
+        const b = boxOf(LBS[i]);
+        if (qx > b.x1-7 && qx < b.x2+7 && qy > b.y1-7 && qy < b.y2+7){
+          const s = (b.y1+b.y2)/2 - qy >= 0 ? 1 : -1;
+          moveL(LBS[i], 0, s*2.5); moved = true;
+        }
+      }
+    }
+    if (!moved) break;
+  }
+
+  /* render resolved positions (leader line + terminal + text) */
+  LBS.forEach(l => {
+    const px = l.px, py = l.py;
+    if (Math.hypot(px, py) > 10){
+      l.line.attr('x1', px*0.24).attr('y1', py*0.24)
+            .attr('x2', px*0.86).attr('y2', py*0.86);
+    } else {
+      l.line.attr('opacity', 0);
+    }
+    l.sq.attr('x', px-1.5).attr('y', py-1.5);
+    if (l.a === 'start'){ l.el.attr('x', px+8).attr('y', py).attr('dominant-baseline','central'); }
+    else if (l.a === 'end'){ l.el.attr('x', px-8).attr('y', py).attr('dominant-baseline','central'); }
+    else { l.el.attr('x', px).attr('y', py + (py>=0?11:-11)); }
+
+    // hover badge sized to the resolved label box
+    const b = boxOf(l);
+    l.chip.attr('x', b.x1 - l.x - 7.5)
+          .attr('y', b.y1 - l.y - 5)
+          .attr('width',  (b.x2 - b.x1) + 15)
+          .attr('height', (b.y2 - b.y1) + 10);
+  });
+
+  /* ---- focus interaction (names always visible; hover/tap = emphasis) ---- */
+  let pinned = null;
+  function focus(code){
+    svg.selectAll('.on').classed('on', false);
+    if (code){
+      svg.selectAll('[data-code]')
+         .filter(function(){ return d3.select(this).attr('data-code') === code; })
+         .classed('on', true);
+    }
+  }
+
+  /* ---- zoom (buttons only — scroll & double-click zoom disabled) ---- */
+  const zoom = d3.zoom()
+      .scaleExtent([1, 9])
+      .filter(e => (e.type === 'mousedown' && e.button === 0) || e.type === 'touchstart')
+      .translateExtent([[-W*0.4,-H*0.4],[W*1.4,H*1.4]])
+      .on('start', () => svg.classed('grabbing', true))
+      .on('end',   () => svg.classed('grabbing', false))
+      .on('zoom', (e) => root.attr('transform', e.transform));
+  svg.call(zoom).on('dblclick.zoom', null)
+               .on('wheel.zoom', null);
+
+  // tap empty map = unpin (ignores drags)
+  let downPos = null;
+  svg.on('pointerdown', e => { downPos = [e.clientX, e.clientY]; });
+  svg.on('click', e => {
+    if (!downPos) return;
+    if (Math.hypot(e.clientX - downPos[0], e.clientY - downPos[1]) < 6){
+      pinned = null;
+      focus(null);
+    }
+  });
+
+  const zi = () => svg.transition().duration(350).call(zoom.scaleBy, 1.7);
+  const zo = () => svg.transition().duration(350).call(zoom.scaleBy, 1/1.7);
+  const zr = () => svg.transition().duration(650).ease(d3.easeCubicInOut).call(zoom.transform, d3.zoomIdentity);
+  document.getElementById('zin').addEventListener('click', zi);
+  document.getElementById('zout').addEventListener('click', zo);
+  document.getElementById('zreset').addEventListener('click', zr);
+  window.addEventListener('keydown', e => {
+    if (e.key === '+' || e.key === '=') zi();
+    if (e.key === '-') zo();
+    if (e.key === '0') zr();
+  });
+
+  /* ---- intro ---- */
+  requestAnimationFrame(() => {
+    const loader = document.getElementById('loader');
+    loader.style.opacity = 0;
+    setTimeout(() => loader.remove(), 600);
+    svg.classed('ready', true);
+    setTimeout(() => svg.classed('t-settled', true), 2800); // kill stagger delays after reveal
+  });
+
+  lucide.createIcons();
+}
+
+/* apply ready-state transition directly on the svg element */
+const stageStyle = document.createElement('style');
+stageStyle.textContent = `
+  #map{ opacity:0; transform:scale(1.03); transform-origin:50% 45%; transition:opacity 1.5s ease .15s, transform 1.8s cubic-bezier(.16,1,.3,1) .15s; }
+  #map.ready{ opacity:1; transform:scale(1); }
+`;
+document.head.appendChild(stageStyle);
+
+build();
+lucide.createIcons();
+</script>
+</body>
+</html>

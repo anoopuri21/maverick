@@ -43,13 +43,19 @@ class ProgramController extends Controller
                 ->orderBy('title')
                 ->get();
 
-            return compact('categories', 'programs');
+            return [
+                'categories' => $categories->toArray(),
+                'programs' => $programs->toArray(),
+            ];
         });
 
         return view('pages.programs.index', [
             'programsListingPage' => safe_settings(ProgramsListingPageSettings::class),
-            'categories' => $listing['categories'],
-            'programs' => $listing['programs'],
+            'categories' => PublicContentCache::hydrateRows(ProgramCategory::class, $listing['categories'] ?? []),
+            'programs' => PublicContentCache::hydrateRows(Program::class, $listing['programs'] ?? [], [
+                'program_category' => ProgramCategory::class,
+                'university_partner' => \App\Models\UniversityPartner::class,
+            ]),
             'programsListingSeo' => safe_settings(ProgramsListingSeoSettings::class),
         ]);
     }

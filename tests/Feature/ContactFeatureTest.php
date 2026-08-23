@@ -28,6 +28,9 @@ class ContactFeatureTest extends TestCase
         $response->assertStatus(200);
         $response->assertSee("Let's Start a Conversation");
         $response->assertSee("Sharjah");
+        $response->assertSee("UAE Campus");
+        $response->assertSee("UK Campus");
+        $response->assertSee("Ruislip");
     }
 
     /**

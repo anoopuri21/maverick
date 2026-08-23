@@ -2,25 +2,29 @@
 
 namespace App\Support;
 
+use Illuminate\Database\Eloquent\Collection as EloquentCollection;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Str;
 
 class PublicContentCache
 {
     public const TTL = 86400;
 
-    public const HOMEPAGE = 'homepage';
+    public const HOMEPAGE = 'homepage.v2';
 
-    public const OUR_STORY = 'our-story';
+    public const OUR_STORY = 'our-story.v2';
 
-    public const PROGRAMS_LISTING = 'programs.listing';
+    public const PROGRAMS_LISTING = 'programs.listing.v2';
 
-    public const ACCREDITATIONS = 'accreditations';
+    public const ACCREDITATIONS = 'accreditations.v2';
 
-    public const MEDIA_GALLERY = 'media-gallery';
+    public const MEDIA_GALLERY = 'media-gallery.v2';
 
-    public const GLOBAL_PARTNERS = 'global-partners';
+    public const GLOBAL_PARTNERS = 'global-partners.v2';
 
-    public const EVENTS = 'events';
+    public const EVENTS = 'events.v2';
 
     public const NAVMENU_PROGRAMS = 'navmenu.programs';
 
@@ -28,13 +32,15 @@ class PublicContentCache
 
     public const NEWS_TOP_TAGS = 'news.top_tags';
 
-    public const FEATURED_PROGRAMS = 'featured-programs';
+    public const FEATURED_PROGRAMS = 'featured-programs.v2';
 
-    public const FACULTY_INSIGHTS_PREVIEW = 'faculty-insights.preview';
+    public const FACULTY_INSIGHTS_PREVIEW = 'faculty-insights.preview.v2';
 
-    public const UNIVERSITY_PARTNERS = 'university-partners';
+    public const UNIVERSITY_PARTNERS = 'university-partners.v2';
 
-    public const ALUMNI_LOGOS = 'alumni-logos';
+    public const ALUMNI_LOGOS = 'alumni-logos.v2';
+
+    public const FOOTER_PROGRAM_CATEGORIES = 'footer.program_categories.v1';
 
     public const ADMIN_OVERVIEW = 'admin.site_overview_counts';
 
@@ -58,14 +64,100 @@ class PublicContentCache
             self::FACULTY_INSIGHTS_PREVIEW,
             self::UNIVERSITY_PARTNERS,
             self::ALUMNI_LOGOS,
+            self::FOOTER_PROGRAM_CATEGORIES,
             self::ADMIN_OVERVIEW,
+            // Legacy keys (pre array-safe cache)
+            'homepage',
             'homepage_data_v1',
+            'our-story',
+            'programs.listing',
+            'accreditations',
+            'media-gallery',
+            'global-partners',
+            'events',
+            'featured-programs',
+            'faculty-insights.preview',
+            'university-partners',
+            'alumni-logos',
         ];
     }
 
     public static function remember(string $key, callable $callback, ?int $ttl = null): mixed
     {
         return Cache::remember($key, $ttl ?? self::TTL, $callback);
+    }
+
+    /**
+     * Cache Eloquent rows as plain arrays (DB cache corrupts serialized models), then hydrate.
+     *
+     * @param  class-string<Model>  $modelClass
+     * @param  array<string, class-string<Model>>  $relations  snake_case array key => related model class
+     * @return EloquentCollection<int, Model>
+     */
+    public static function rememberHydrated(string $key, string $modelClass, callable $callback, array $relations = [], ?int $ttl = null): EloquentCollection
+    {
+        $rows = self::remember($key, function () use ($callback) {
+            $result = $callback();
+
+            if ($result instanceof Collection) {
+                return $result->toArray();
+            }
+
+            return is_array($result) ? $result : [];
+        }, $ttl);
+
+        return self::hydrateRows($modelClass, is_array($rows) ? $rows : [], $relations);
+    }
+
+    /**
+     * @param  class-string<Model>  $modelClass
+     * @param  array<int, array<string, mixed>>  $rows
+     * @param  array<string, class-string<Model>>  $relations
+     * @return EloquentCollection<int, Model>
+     */
+    public static function hydrateRows(string $modelClass, array $rows, array $relations = []): EloquentCollection
+    {
+        $items = [];
+
+        foreach (array_values($rows) as $row) {
+            if (! is_array($row)) {
+                continue;
+            }
+
+            $loaded = [];
+
+            foreach ($relations as $snakeKey => $relatedClass) {
+                if (! array_key_exists($snakeKey, $row)) {
+                    continue;
+                }
+
+                $related = $row[$snakeKey];
+                unset($row[$snakeKey]);
+
+                $relationName = Str::camel($snakeKey);
+
+                if ($related === null) {
+                    $loaded[$relationName] = null;
+                } elseif (is_array($related) && array_is_list($related)) {
+                    $loaded[$relationName] = self::hydrateRows($relatedClass, $related);
+                } elseif (is_array($related)) {
+                    $loaded[$relationName] = (new $relatedClass)->newFromBuilder($related);
+                } else {
+                    $loaded[$relationName] = null;
+                }
+            }
+
+            /** @var Model $model */
+            $model = (new $modelClass)->newFromBuilder($row);
+
+            foreach ($loaded as $name => $value) {
+                $model->setRelation($name, $value);
+            }
+
+            $items[] = $model;
+        }
+
+        return (new $modelClass)->newCollection($items);
     }
 
     public static function forget(string ...$keys): void

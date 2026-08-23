@@ -13,7 +13,7 @@ class AccreditationController extends Controller
     public function index()
     {
         $cinematicSettings = safe_settings(AccreditationCinematicSettings::class);
-        $logos = PublicContentCache::remember(PublicContentCache::ACCREDITATIONS, function () {
+        $cached = PublicContentCache::remember(PublicContentCache::ACCREDITATIONS, function () {
             $accreditationLogos = PartnerLogo::select('id', 'name', 'logo_url', 'type', 'sort_order')
                 ->whereIn('type', ['accreditation', 'recognition'])
                 ->where('is_active', true)
@@ -26,13 +26,16 @@ class AccreditationController extends Controller
                 ->orderBy('sort_order')
                 ->get();
 
-            return compact('accreditationLogos', 'awardLogos');
+            return [
+                'accreditationLogos' => $accreditationLogos->toArray(),
+                'awardLogos' => $awardLogos->toArray(),
+            ];
         });
 
         return view('pages.accreditations', [
             'accreditationsPage' => safe_settings(AccreditationsPageSettings::class),
-            'accreditationLogos' => $logos['accreditationLogos'],
-            'awardLogos' => $logos['awardLogos'],
+            'accreditationLogos' => PublicContentCache::hydrateRows(PartnerLogo::class, $cached['accreditationLogos'] ?? []),
+            'awardLogos' => PublicContentCache::hydrateRows(PartnerLogo::class, $cached['awardLogos'] ?? []),
             'cinematicSettings' => $cinematicSettings,
             'accreditationsSeo' => safe_settings(AccreditationsSeoSettings::class),
         ]);

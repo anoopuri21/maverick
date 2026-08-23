@@ -7,6 +7,16 @@
     @include('partials.seo-meta', ['seo' => $homeSeo])
 @endpush
 
+@push('styles')
+    <link rel="stylesheet" href="{{ cached_asset('assets/css/global-access-points.css') }}" />
+@endpush
+
+@push('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/d3@7" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/topojson-client@3" defer></script>
+    <script src="{{ cached_asset('assets/js/global-access-points.js') }}" defer></script>
+@endpush
+
 @if(!empty($homeSeo->custom_body_scripts))
 @push('scripts')
     {!! $homeSeo->custom_body_scripts !!}
@@ -25,6 +35,7 @@
     @include('sections.alumni-network')
     @include('sections.featured-programs')
     @include('sections.accreditations')
+    @include('sections.global-access-points')
     @include('sections.why-maverick')
     @include('sections.global-opportunities')
     @include('sections.university-partners')

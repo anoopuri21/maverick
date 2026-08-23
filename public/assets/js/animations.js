@@ -1099,6 +1099,24 @@
       y: 40,
     });
   }
+
+  function initGlobalAccessPointsAnimations() {
+    if (!elementExists("#global-access-points")) return;
+
+    if (AnimationUtils.prefersReducedMotion) {
+      AnimationUtils.setReducedMotion([
+        "#global-access-points .section-label",
+        "#global-access-points .text-reveal-inner",
+      ]);
+      return;
+    }
+
+    AnimationUtils.sectionLabel("#global-access-points");
+    AnimationUtils.textReveal("#global-access-points .text-reveal-inner", {
+      trigger: "#global-access-points",
+    });
+  }
+
   // =========================================================
   // Global Opportunities & Pathways Section Animations
   // =========================================================
@@ -1611,6 +1629,8 @@
     initProgramsAnimations();
 
     initWhyMaverickAnimations();
+
+    initGlobalAccessPointsAnimations();
 
     initOpportunitiesAnimations();
 

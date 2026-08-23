@@ -32,6 +32,14 @@
     <div class="network-slider-wrapper">
       <div class="network-slider-track">
         @forelse($alumniLogos as $logo)
+          {{-- #region agent log --}}
+          @php
+            if (!isset($GLOBALS['__dbg_alumni_logged'])) {
+              $GLOBALS['__dbg_alumni_logged'] = true;
+              file_put_contents(base_path('debug-8d936b.log'), json_encode(['sessionId' => '8d936b', 'runId' => 'post-fix', 'hypothesisId' => 'E', 'location' => 'alumni-network.blade.php:35', 'message' => 'Blade $logo item shape before name access', 'data' => ['logoType' => get_debug_type($logo), 'isArray' => is_array($logo), 'isObject' => is_object($logo), 'class' => is_object($logo) ? get_class($logo) : null, 'name' => is_object($logo) ? ($logo->name ?? null) : (is_array($logo) ? ($logo['name'] ?? null) : null)], 'timestamp' => (int) (microtime(true) * 1000)]).PHP_EOL, FILE_APPEND);
+            }
+          @endphp
+          {{-- #endregion --}}
           <div class="network-card" data-name="{{ $logo->name }}">
             <div class="network-logo-wrapper">
               @if($url = media_url($logo->logo_url ?? null))
