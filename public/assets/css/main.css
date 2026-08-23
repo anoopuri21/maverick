@@ -4614,11 +4614,7 @@ html.js .scale-in {
   font-size: clamp(1.25rem, 1.8vw, 1.5rem);
   color: #0a0a0a;
   line-height: 1.2;
-  margin: 1rem 0 0;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  margin: 0;
   transition: color 0.3s ease;
 }
 
@@ -4626,42 +4622,24 @@ html.js .scale-in {
   color: var(--color-mba-blue);
 }
 
-.insights__card-faculty {
-  display: flex;
-  align-items: center;
-  gap: 0.625rem;
+.insights__card-role {
+  display: block;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 0.85rem;
+  color: #0a0a0a;
+  line-height: 1.4;
   margin-top: 0.75rem;
 }
 
-.insights__card-avatar {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  object-fit: cover;
-  flex-shrink: 0;
-}
-
-.insights__card-faculty-text {
-  display: flex;
-  flex-direction: column;
-  gap: 0.125rem;
-  min-width: 0;
-}
-
-.insights__card-faculty-name {
-  font-family: "Poppins", sans-serif;
-  font-weight: 500;
-  font-size: 0.8rem;
-  color: #0a0a0a;
-  line-height: 1.3;
-}
-
-.insights__card-faculty-role {
+.insights__card-country {
+  display: block;
   font-family: "Poppins", sans-serif;
   font-weight: 300;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   color: rgba(10, 10, 10, 0.55);
-  line-height: 1.3;
+  line-height: 1.4;
+  margin-top: 0.25rem;
 }
 
 .insights__card-excerpt {
@@ -4671,45 +4649,6 @@ html.js .scale-in {
   line-height: 1.65;
   color: rgba(10, 10, 10, 0.7);
   margin: 1rem 0 0;
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  min-height: calc(4 * 1.65em);
-  margin-bottom: auto;
-}
-
-.insights__card-footer {
-  min-height: 2.5rem;
-  display: flex;
-  align-items: flex-end;
-  margin-top: 1rem;
-}
-
-.insights__card-read-more {
-  font-family: "Poppins", sans-serif;
-  font-weight: 500;
-  font-size: 0.85rem;
-  color: var(--color-mba-red);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-.insights__card-read-more:hover {
-  transform: translateX(4px);
-}
-
-.insights__card-read-more[hidden] {
-  visibility: hidden;
-  pointer-events: none;
 }
 
 /* ----- Responsive: Mobile ----- */
@@ -6928,6 +6867,20 @@ body.modal-open {
   height: 1.125rem;
 }
 
+.fv-modal__hero {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.fv-modal__hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 .fv-modal__head {
   display: flex;
   align-items: center;
@@ -7009,6 +6962,14 @@ body.modal-open {
   font-size: 0.95rem;
   line-height: 1.75;
   color: rgba(10, 10, 10, 0.8);
+}
+
+.fv-modal__body img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1rem 0;
+  border-radius: 2px;
 }
 
 .fv-modal__body p {

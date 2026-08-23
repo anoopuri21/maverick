@@ -14,6 +14,8 @@
   const titleEl = modal.querySelector(".fv-modal__title");
   const quoteEl = modal.querySelector(".fv-modal__quote");
   const bodyEl = modal.querySelector(".fv-modal__body");
+  const heroWrap = modal.querySelector(".fv-modal__hero");
+  const heroImg = modal.querySelector(".fv-modal__hero-img");
 
   let lastFocused = null;
   const focusableSelector =
@@ -89,9 +91,25 @@
     const badge = card.dataset.fvBadge || "";
     const facultyName = card.dataset.fvFacultyName || "";
     const facultyRole = card.dataset.fvFacultyRole || "";
-    const avatar = card.dataset.fvAvatar || "";
+    const featured =
+      card.dataset.fvImage ||
+      card.querySelector(".insights__card-image img")?.src ||
+      "";
+    const avatar =
+      card.dataset.fvAvatar ||
+      card.querySelector(".insights__card-avatar img")?.src ||
+      "";
 
     titleEl.textContent = title;
+
+    if (featured && heroWrap && heroImg) {
+      heroImg.src = featured;
+      heroImg.alt = title;
+      heroWrap.hidden = false;
+    } else if (heroWrap && heroImg) {
+      heroWrap.hidden = true;
+      heroImg.removeAttribute("src");
+    }
 
     if (badge) {
       badgeEl.textContent = badge;

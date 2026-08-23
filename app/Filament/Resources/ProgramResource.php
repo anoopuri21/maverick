@@ -20,8 +20,10 @@ use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
 use Filament\Forms\Set;
 use Filament\Resources\Resource;
+use Illuminate\Support\HtmlString;
 use Filament\Tables;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\ImageColumn;
@@ -643,18 +645,36 @@ class ProgramResource extends Resource
                 TextInput::make('category')
                     ->label('Badge')
                     ->placeholder('e.g. STUDENT'),
-                TextInput::make('thumb')
-                    ->label('Thumbnail URL')
-                    ->url()->nullable()
-                    ->helperText('Video card thumbnail. Or choose from the media library below.'),
-                MediaPicker::forField('thumb', 'programs/testimonials')
-                    ->label('Thumbnail Image'),
                 TextInput::make('video')
-                    ->label('Video URL')
+                    ->label('YouTube Video URL')
                     ->url()->nullable()
-                    ->placeholder('https://...')
-                    ->helperText('YouTube or hosted video URL for the play button.')
+                    ->placeholder('https://www.youtube.com/watch?v=xxxxx or https://youtu.be/xxxxx')
+                    ->helperText('Paste YouTube link — thumbnail auto-generate ho jayega.')
+                    ->live()
                     ->columnSpanFull(),
+                Placeholder::make('thumb_preview')
+                    ->label('Thumbnail preview')
+                    ->content(function (Get $get): HtmlString {
+                        $src = youtube_thumbnail_url($get('video'), $get('thumb'));
+                        if (! $src) {
+                            return new HtmlString('<p style="color:#6b7280;font-size:13px;margin:0">Paste a YouTube URL to auto-load the thumbnail, or upload a custom image below.</p>');
+                        }
+                        $fallback = youtube_thumbnail_fallback($get('video'));
+                        $onerror = $fallback && $fallback !== $src
+                            ? ' onerror="if(this.dataset.retry){this.src=this.dataset.retry;delete this.dataset.retry;}" data-retry="'.e($fallback).'"'
+                            : '';
+
+                        return new HtmlString('<img src="'.e($src).'" alt="YouTube thumbnail preview" style="max-width:320px;width:100%;border-radius:12px;display:block"'.$onerror.'>');
+                    })
+                    ->columnSpanFull(),
+                TextInput::make('thumb')
+                    ->label('Custom Thumbnail URL (Optional)')
+                    ->url()->nullable()
+                    ->live()
+                    ->helperText('Leave empty to auto-use the YouTube thumbnail.'),
+                MediaPicker::forField('thumb', 'programs/testimonials')
+                    ->label('Custom Thumbnail Image (Optional)')
+                    ->helperText('Optional: upload a custom thumbnail. YouTube thumbnail will be auto-used if empty.'),
             ])
             ->reorderable()
             ->collapsible()

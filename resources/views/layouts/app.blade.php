@@ -96,9 +96,11 @@
     <script src="{{ cached_asset('assets/js/partners.js') }}" defer></script>
     <script src="{{ cached_asset('assets/js/testimonials.js') }}" defer></script>
     @endif
+    {{-- Modal disabled — re-enable when needed
     @if(request()->routeIs('home', 'masters-pathway'))
     <script src="{{ cached_asset('assets/js/faculty-voice-modal.js') }}" defer></script>
     @endif
+    --}}
     <script src="{{ cached_asset('assets/js/scroll-controls.js') }}" defer></script>
 
     <script>

@@ -6,6 +6,8 @@ use App\Http\Requests\ProgramEnquiryRequest;
 use App\Models\Program;
 use App\Models\ProgramCategory;
 use App\Services\FormMailer;
+use App\Services\ZapierWebhookDispatcher;
+use App\Support\ZapierEvents;
 use App\Settings\ProgramsListingSeoSettings;
 use App\Settings\ProgramsListingPageSettings;
 use App\Settings\ProgramsDetailChromeSettings;
@@ -152,6 +154,10 @@ class ProgramController extends Controller
         ], 'Programme enquiry'.(filled($data['programme'] ?? null) ? ': '.$data['programme'] : ''), [
             'reply_to' => $data['email'] ?? null,
         ]);
+
+        app(ZapierWebhookDispatcher::class)->dispatch(ZapierEvents::PROGRAM_ENQUIRY_SUBMITTED, array_merge($data, [
+            'qualification' => $qualification,
+        ]));
 
         return back()->with('success', 'Thank you! We will get back to you shortly.');
     }

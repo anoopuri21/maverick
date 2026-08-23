@@ -138,7 +138,7 @@ class AppServiceProvider extends ServiceProvider
                 $facultyInsights = PublicContentCache::hydrateRows(
                     PublicContentCache::remember(PublicContentCache::FACULTY_INSIGHTS_PREVIEW, function () {
                         return PublicContentCache::serializeRows(
-                            FacultyInsight::select('id', 'title', 'badge', 'excerpt', 'content', 'pull_quote', 'faculty_name', 'faculty_role', 'faculty_avatar_url', 'faculty_avatar_url_asset_id', 'image_url', 'image_url_asset_id', 'sort_order')
+                            FacultyInsight::select('id', 'title', 'faculty_role', 'country', 'content', 'image_url', 'image_url_asset_id', 'sort_order')
                                 ->where('is_active', true)
                                 ->orderBy('sort_order')
                                 ->limit(9)
@@ -146,14 +146,10 @@ class AppServiceProvider extends ServiceProvider
                             fn (FacultyInsight $insight) => [
                                 'id' => $insight->id,
                                 'title' => $insight->title,
-                                'badge' => $insight->badge,
-                                'image_url' => $insight->image_url ?? $insight->featuredImageUrl(),
-                                'excerpt' => $insight->excerpt,
-                                'content' => $insight->content,
-                                'pull_quote' => $insight->pull_quote,
-                                'faculty_name' => $insight->faculty_name,
                                 'faculty_role' => $insight->faculty_role,
-                                'faculty_avatar_url' => $insight->avatarUrl(),
+                                'country' => $insight->country,
+                                'content' => $insight->content,
+                                'image_url' => $insight->image_url ?? $insight->featuredImageUrl(),
                                 'sort_order' => $insight->sort_order,
                             ]
                         );
