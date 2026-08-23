@@ -1,4 +1,5 @@
 @php
+    $finalCta = $finalCta ?? null;
     $ctaPrimaryHref = edu_href($finalCta->btn_primary_url ?? null);
     $ctaSecondaryHref = edu_href($finalCta->btn_secondary_url ?? null);
     $ctaPhone = $finalCta->phone_number ?? null;

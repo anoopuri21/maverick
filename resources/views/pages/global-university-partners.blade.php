@@ -22,8 +22,13 @@
 <div class="page-gup gup">
 
 @php
-    $whyItems = collect($whyPartnerships->items ?? []);
-    $benefitItems = collect($benefits->items ?? []);
+    $partnerUniversities = collect($partnerUniversities ?? []);
+    $galleryItems = collect($galleryItems ?? []);
+    $galleryCategories = collect($galleryCategories ?? []);
+    $whyPartnerships = $whyPartnerships ?? safe_settings(\App\Settings\GlobalPartnersWhySettings::class);
+    $benefits = $benefits ?? safe_settings(\App\Settings\GlobalPartnersBenefitsSettings::class);
+    $whyItems = collect(settings_array($whyPartnerships->items ?? []));
+    $benefitItems = collect(settings_array($benefits->items ?? []));
 @endphp
 
 {{-- ═══════════════════════════════════════════
@@ -403,5 +408,5 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ cached_asset('js/pages/global-university-partners.js') }}" defer></script>
+    <script src="{{ cached_asset('assets/js/pages/global-university-partners.js') }}" defer></script>
 @endpush

@@ -3,11 +3,24 @@
 @section('title', 'News & Announcements | Maverick Business Academy')
 @section('meta_description', 'Stay updated with the latest institutional news, campus announcements, and academic milestones from Maverick Business Academy.')
 
+@push('head')
+    @include('partials.seo-meta', ['seo' => (object) [
+        'meta_title' => 'News & Announcements | Maverick Business Academy',
+        'meta_description' => 'Stay updated with the latest institutional news, campus announcements, and academic milestones from Maverick Business Academy.',
+        'og_type' => 'website',
+    ]])
+@endpush
+
 @push('styles')
     <link rel="stylesheet" href="{{ cached_asset('css/pages/news.css') }}">
 @endpush
 
 @section('content')
+@php
+    $newsHero = $newsHero ?? safe_settings(\App\Settings\NewsHeroSettings::class);
+    $ticker = collect($ticker ?? []);
+    $topTags = collect($topTags ?? []);
+@endphp
 <div class="news-page news-listing">
 
     {{-- ═══════════════════════════════════════════

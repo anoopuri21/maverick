@@ -103,6 +103,7 @@ class SeoFormFields
                     Textarea::make('schema_json')
                         ->label('Schema.org JSON-LD')
                         ->rows(5)
+                        ->rules(['nullable', 'json'])
                         ->helperText('Paste a valid JSON-LD block (including the <script> tags). Rendered only when non-empty.'),
                     Textarea::make('custom_head_scripts')
                         ->label('Custom Head Scripts')
@@ -260,6 +261,7 @@ class SeoFormFields
                             Textarea::make('seo.schema_json')
                                 ->label('Schema.org JSON-LD')
                                 ->rows(10)
+                                ->rules(['nullable', 'json'])
                                 ->helperText('Structured data for rich search results. Must be valid JSON-LD.')
                                 ->placeholder('{"@context":"https://schema.org","@type":"Organization",...}')
                                 ->columnSpanFull(),

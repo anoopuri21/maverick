@@ -19,6 +19,12 @@
 @endpush
 
 @section('content')
+    @php
+        $awardLogos = collect($awardLogos ?? []);
+        $accreditationLogos = collect($accreditationLogos ?? []);
+        $accreditationsPage = $accreditationsPage ?? safe_settings(\App\Settings\AccreditationsPageSettings::class);
+        $accreditationsSeo = $accreditationsSeo ?? safe_settings(\App\Settings\AccreditationsSeoSettings::class);
+    @endphp
     <div class="page-accreditations accred">
 
         {{-- ═══════════════════════════════════════════
@@ -121,7 +127,7 @@
                                 @if($url = media_url($logo->logo_url ?? null))
                                     <img src="{{ $url }}" alt="{{ $logo->name }}" loading="lazy">
                                 @else
-                                    <span>{{ strtoupper(substr($logo->name, 0, 3)) }}</span>
+                                    <span>{{ strtoupper(substr($logo->name ?? '', 0, 3)) }}</span>
                                 @endif
                             </div>
                             <h4 class="accreditations__card-name">{{ $logo->name }}</h4>
@@ -192,7 +198,7 @@
                             @if($url = media_url($logo->logo_url ?? null))
                                 <img src="{{ $url }}" alt="{{ $logo->name }}" loading="lazy" class="award-card__img">
                             @else
-                                <span class="award-card__placeholder">{{ strtoupper(substr($logo->name, 0, 3)) }}</span>
+                                <span class="award-card__placeholder">{{ strtoupper(substr($logo->name ?? '', 0, 3)) }}</span>
                             @endif
                         </div>
                         <div class="award-card__body">

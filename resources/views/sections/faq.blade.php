@@ -37,7 +37,7 @@
       </div>
 
       <div class="faq__accordion">
-        @forelse($homepageFaqs as $index => $faq)
+        @forelse(($homepageFaqs ?? collect()) as $index => $faq)
           <div class="faq__item {{ $index === 0 ? 'active' : '' }}">
             <button class="faq__question">
               <span>{{ $faq->question }}</span>

@@ -76,7 +76,7 @@ class ManagePathwayPrograms extends SettingsPage
         // Drop the transient manual-URL field so it is not persisted to settings.
         unset($data['background_image_url_input']);
 
-        return $data;
+        return $this->preserveExistingImageFields($data, app(static::$settings));
     }
 
     protected function mutateFormDataBeforeFill(array $data): array

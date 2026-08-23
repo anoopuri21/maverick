@@ -25,7 +25,7 @@ class PartnershipGalleryItemTable extends Component implements HasForms, HasTabl
     public function table(Table $table): Table
     {
         return PartnershipGalleryItemResource::table(
-            $table->query(PartnershipGalleryItem::query())
+            $table->query(PartnershipGalleryItemResource::getEloquentQuery())
         )
             ->headerActions([
                 CreateAction::make()

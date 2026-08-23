@@ -2,9 +2,9 @@
 
 namespace App\Filament\Pages;
 
-use App\Filament\Concerns\EnsuresSettingsRowsExist;
-use App\Filament\Concerns\HandlesCloudinaryImageFields;
+use App\Filament\Concerns\SavesSettingsGroups;
 use App\Filament\Forms\Components\MediaPicker;
+use App\Filament\Support\RepeaterNormalizer;
 use App\Settings\DualMbaEmployersSettings;
 use App\Settings\DualMbaFaqSettings;
 use App\Settings\DualMbaFinalCtaSettings;
@@ -36,8 +36,7 @@ use Throwable;
 
 class ManageDualMba extends Page implements HasForms
 {
-    use HandlesCloudinaryImageFields;
-    use EnsuresSettingsRowsExist;
+    use SavesSettingsGroups;
     use InteractsWithForms;
 
     protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
@@ -376,31 +375,31 @@ class ManageDualMba extends Page implements HasForms
 
             $hero = $this->syncImageIfSelected($data['hero'] ?? [], 'background_image');
             $hero = $this->syncImageIfSelected($hero, 'visual_image');
-            $hero['stats'] = array_values($hero['stats'] ?? []);
-            $hero['ctas'] = array_values($hero['ctas'] ?? []);
+            $hero['stats'] = RepeaterNormalizer::stripEmptyRows($hero['stats'] ?? []);
+            $hero['ctas'] = RepeaterNormalizer::stripEmptyRows($hero['ctas'] ?? [], ['label', 'url']);
 
             $overview = $data['overview'] ?? [];
-            $overview['cards'] = array_values($overview['cards'] ?? []);
+            $overview['cards'] = RepeaterNormalizer::stripEmptyRows($overview['cards'] ?? []);
 
             $twice = $data['twice'] ?? [];
             foreach ($twice['slides'] ?? [] as &$slide) {
                 $slide = $this->syncImageIfSelected($slide, 'image');
             }
             unset($slide);
-            $twice['slides'] = array_values($twice['slides'] ?? []);
+            $twice['slides'] = RepeaterNormalizer::stripEmptyRows($twice['slides'] ?? []);
 
             $why = $data['why'] ?? [];
-            $why['cards'] = array_values($why['cards'] ?? []);
+            $why['cards'] = RepeaterNormalizer::stripEmptyRows($why['cards'] ?? []);
 
             $specs = $data['specs'] ?? [];
-            $specs['cards'] = array_values($specs['cards'] ?? []);
+            $specs['cards'] = RepeaterNormalizer::stripEmptyRows($specs['cards'] ?? []);
 
             $employers = $data['employers'] ?? [];
             foreach ($employers['collage'] ?? [] as &$item) {
                 $item = $this->syncImageIfSelected($item, 'image');
             }
             unset($item);
-            $employers['collage'] = array_values($employers['collage'] ?? []);
+            $employers['collage'] = RepeaterNormalizer::stripEmptyRows($employers['collage'] ?? []);
             $employers['items'] = $this->normalizeStringList($employers['items'] ?? []);
 
             $testimonials = $data['testimonials'] ?? [];
@@ -408,16 +407,16 @@ class ManageDualMba extends Page implements HasForms
                 $item = $this->syncImageIfSelected($item, 'avatar');
             }
             unset($item);
-            $testimonials['items'] = array_values($testimonials['items'] ?? []);
+            $testimonials['items'] = RepeaterNormalizer::stripEmptyRows($testimonials['items'] ?? []);
 
             $process = $data['process'] ?? [];
-            $process['steps'] = array_values($process['steps'] ?? []);
+            $process['steps'] = RepeaterNormalizer::stripEmptyRows($process['steps'] ?? []);
 
             $faq = $data['faq'] ?? [];
-            $faq['items'] = array_values($faq['items'] ?? []);
+            $faq['items'] = RepeaterNormalizer::stripEmptyRows($faq['items'] ?? [], ['question']);
 
             $finalCta = $this->syncImageIfSelected($data['finalCta'] ?? [], 'background_image');
-            $finalCta['ctas'] = array_values($finalCta['ctas'] ?? []);
+            $finalCta['ctas'] = RepeaterNormalizer::stripEmptyRows($finalCta['ctas'] ?? [], ['label', 'url']);
 
             $seo = $data['seo'] ?? [];
             $seo = $this->syncImageIfSelected($seo, 'og_image_url');
@@ -450,17 +449,6 @@ class ManageDualMba extends Page implements HasForms
                 ->danger()
                 ->send();
         }
-    }
-
-    /** @param  class-string  $settingsClass */
-    protected function saveSettingsGroup(string $settingsClass, array $payload): void
-    {
-        $settings = app($settingsClass);
-        $payload = $this->ensureAllSettingsProperties($settings, $payload);
-        $payload = $this->preserveExistingImageFields($payload, $settings);
-        $this->ensureSettingsRowsExist($settings);
-        app()->forgetInstance($settingsClass);
-        app($settingsClass)->fill($payload)->save();
     }
 
     protected function ctaRepeater(string $name): Repeater

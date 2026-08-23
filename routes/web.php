@@ -44,9 +44,6 @@ Route::post('/programs/enquire', [\App\Http\Controllers\ProgramController::class
     ->name('programs.enquire');
 Route::get('/programs/{slug}', [\App\Http\Controllers\ProgramController::class, 'show'])->name('programs.show');
 
-Route::get('/faculty-voice', [\App\Http\Controllers\FacultyVoiceController::class, 'index'])->name('faculty-voice.index');
-Route::get('/faculty-voice/{slug}', [\App\Http\Controllers\FacultyVoiceController::class, 'show'])->name('faculty-voice.show');
-
 // Unified Detail (root-level permalink)
 // Registered LAST so every other named route above is matched first.
 

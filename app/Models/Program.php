@@ -184,10 +184,10 @@ class Program extends Model
         $partner = $this->universityPartner;
 
         return (object) [
-            'name'          => $partner->name ?? null,
-            'description'   => $partner->description ?? null,
+            'name'          => $partner?->name,
+            'description'   => $partner?->description,
             'establishment' => null,
-            'image'         => $partner->logo_url ?? null,
+            'image'         => $partner?->logo_url,
         ];
     }
 

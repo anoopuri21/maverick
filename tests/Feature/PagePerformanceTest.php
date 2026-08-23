@@ -23,7 +23,6 @@ class PagePerformanceTest extends TestCase
             'blogs' => ['/blogs', 25],
             'news' => ['/news', 25],
             'our-story' => ['/our-story', 40],
-            'faculty-voice' => ['/faculty-voice', 20],
             'accreditations' => ['/accreditations', 20],
             'dual-mba' => ['/dual-mba-online', 30],
             'csr' => ['/csr-community-impact', 25],

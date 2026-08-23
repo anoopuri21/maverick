@@ -144,7 +144,7 @@
               <a href="{{ url('/blogs/') }}" class="navbar__dropdown-link">Blogs</a>
             </li>
             <li>
-              <a href="{{ route('faculty-voice.index') }}" class="navbar__dropdown-link">Faculty Voice</a>
+              <a href="{{ route('home') }}#faculty-insights" class="navbar__dropdown-link">Faculty Voice</a>
             </li>
             <li>
               <a href="{{ url('/student-success/') }}" class="navbar__dropdown-link">Student Success</a>
@@ -282,7 +282,7 @@
                 <a href="{{ url('/blogs/') }}" class="navbar__mobile-sublink">Blogs</a>
               </li>
               <li>
-                <a href="{{ route('faculty-voice.index') }}" class="navbar__mobile-sublink">Faculty Voice</a>
+                <a href="{{ route('home') }}#faculty-insights" class="navbar__mobile-sublink">Faculty Voice</a>
               </li>
               <li>
                 <a href="{{ url('/student-success/') }}" class="navbar__mobile-sublink">Student Success</a>

@@ -20,9 +20,9 @@
     <div class="opportunities__split">
       @php
         $opportunities = collect(settings_array(data_get($globalOpportunities ?? null, 'opportunities', [])))
-            ->filter(fn ($item) => is_array($item) && (filled($item['title'] ?? null) || filled($item['desc'] ?? null) || filled($item['url'] ?? null)));
+            ->filter(fn ($item) => is_array($item) && (filled($item['title'] ?? null) || filled($item['desc'] ?? null) || filled($item['slug'] ?? null)));
         $pathways = collect(settings_array(data_get($globalOpportunities ?? null, 'pathways', [])))
-            ->filter(fn ($item) => is_array($item) && (filled($item['title'] ?? null) || filled($item['desc'] ?? null) || filled($item['url'] ?? null)));
+            ->filter(fn ($item) => is_array($item) && (filled($item['title'] ?? null) || filled($item['desc'] ?? null) || filled($item['slug'] ?? null)));
       @endphp
 
       <div class="opportunities__column opportunities__column--right" id="opportunities">
@@ -37,23 +37,33 @@
         @if($opportunities->isNotEmpty())
         <ul class="opportunities__list">
           @foreach($opportunities as $i => $item)
-          @php $itemHref = edu_href($item['url'] ?? null); @endphp
+          @php
+              $isComingSoon = (bool) ($item['coming_soon'] ?? false);
+              $itemHref = $isComingSoon ? null : slug_href($item['slug'] ?? null);
+          @endphp
           <li class="opportunities__item">
             @if($itemHref)
             <a href="{{ $itemHref }}" class="opportunities__link">
             @else
-            <div class="opportunities__link">
+            <div class="opportunities__link{{ $isComingSoon ? ' opportunities__link--soon' : '' }}" @if($isComingSoon) aria-disabled="true" @endif>
             @endif
               <span class="opportunities__item-number">{{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}</span>
               <div class="opportunities__item-content">
                 @if(filled($item['title'] ?? null))
-                <h4 class="opportunities__item-title">{{ $item['title'] }}</h4>
+                <h4 class="opportunities__item-title">
+                  {{ $item['title'] }}
+                  @if($isComingSoon)
+                  <span class="opportunities__item-badge">Coming Soon</span>
+                  @endif
+                </h4>
                 @endif
                 @if(!empty($item['desc']))
                 <p class="opportunities__item-desc">{!! rich_html($item['desc'] ?? null) !!}</p>
                 @endif
               </div>
+              @if(! $isComingSoon)
               <span class="opportunities__item-arrow" aria-hidden="true">→</span>
+              @endif
             @if($itemHref)
             </a>
             @else
@@ -79,23 +89,33 @@
         @if($pathways->isNotEmpty())
         <ul class="opportunities__list">
           @foreach($pathways as $i => $item)
-          @php $itemHref = edu_href($item['url'] ?? null); @endphp
+          @php
+              $isComingSoon = (bool) ($item['coming_soon'] ?? false);
+              $itemHref = $isComingSoon ? null : slug_href($item['slug'] ?? null);
+          @endphp
           <li class="opportunities__item">
             @if($itemHref)
             <a href="{{ $itemHref }}" class="opportunities__link">
             @else
-            <div class="opportunities__link">
+            <div class="opportunities__link{{ $isComingSoon ? ' opportunities__link--soon' : '' }}" @if($isComingSoon) aria-disabled="true" @endif>
             @endif
               <span class="opportunities__item-number">{{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}</span>
               <div class="opportunities__item-content">
                 @if(filled($item['title'] ?? null))
-                <h4 class="opportunities__item-title">{{ $item['title'] }}</h4>
+                <h4 class="opportunities__item-title">
+                  {{ $item['title'] }}
+                  @if($isComingSoon)
+                  <span class="opportunities__item-badge">Coming Soon</span>
+                  @endif
+                </h4>
                 @endif
                 @if(!empty($item['desc']))
                 <p class="opportunities__item-desc">{!! rich_html($item['desc'] ?? null) !!}</p>
                 @endif
               </div>
+              @if(! $isComingSoon)
               <span class="opportunities__item-arrow" aria-hidden="true">→</span>
+              @endif
             @if($itemHref)
             </a>
             @else

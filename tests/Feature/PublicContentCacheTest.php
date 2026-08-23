@@ -53,7 +53,7 @@ class PublicContentCacheTest extends TestCase
 
         $homepage = Cache::get(PublicContentCache::HOMEPAGE);
         $this->assertIsArray($homepage);
-        $this->assertIsArray($homepage['alumniLogos'] ?? null);
+        $this->assertArrayNotHasKey('alumniLogos', $homepage);
 
         $alumni = Cache::get(PublicContentCache::ALUMNI_LOGOS);
         $this->assertTrue(is_array($alumni) || $alumni === null);

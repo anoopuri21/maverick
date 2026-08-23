@@ -79,8 +79,8 @@ class ProgramController extends Controller
 
         return view('pages.programs.index', [
             'programsListingPage' => safe_settings(ProgramsListingPageSettings::class),
-            'categories' => PublicContentCache::hydrateRows($listing['categories'] ?? []),
-            'programs' => PublicContentCache::hydrateRows(
+            'categories' => collect(PublicContentCache::hydrateRows($listing['categories'] ?? [])),
+            'programs' => collect(PublicContentCache::hydrateRows(
                 $listing['programs'] ?? [],
                 function ($row) {
                     $data = is_array($row) ? $row : (array) $row;
@@ -93,7 +93,7 @@ class ProgramController extends Controller
 
                     return (object) $data;
                 }
-            ),
+            )),
             'programsListingSeo' => safe_settings(ProgramsListingSeoSettings::class),
         ]);
     }

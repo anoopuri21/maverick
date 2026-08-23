@@ -25,7 +25,7 @@ class OurStoryTimelineTable extends Component implements HasForms, HasTable
     public function table(Table $table): Table
     {
         return OurStoryTimelineResource::table(
-            $table->query(OurStoryTimeline::query())
+            $table->query(OurStoryTimelineResource::getEloquentQuery())
         )
             ->headerActions([
                 CreateAction::make()

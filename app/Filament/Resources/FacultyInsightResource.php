@@ -8,12 +8,10 @@ use App\Filament\Resources\FacultyInsightResource\Pages;
 use App\Models\FacultyInsight;
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Table;
-use Illuminate\Support\Str;
 
 class FacultyInsightResource extends Resource
 {
@@ -38,15 +36,11 @@ class FacultyInsightResource extends Resource
                         Forms\Components\Tabs\Tab::make('Insight')
                             ->schema([
                                 Forms\Components\TextInput::make('title')
-                                    ->live()
-                                    ->afterStateUpdated(function (Set $set, $state) {
-                                        $set('slug', Str::slug($state));
-                                    }),
-                                Forms\Components\TextInput::make('slug')
-                                    ,
+                                    ->required(),
                                 Forms\Components\TextInput::make('badge')
                                     ->helperText('Topic label, e.g. Leadership, Strategy, Global Careers.'),
                                 Forms\Components\Textarea::make('excerpt')
+                                    ->label('Card Preview (approx. 4 lines shown)')
                                     ->rows(3)
                                     ->maxLength(400)
                                     ->columnSpanFull(),
@@ -54,16 +48,13 @@ class FacultyInsightResource extends Resource
                                     ->helperText('One cinematic line that captures the voice.')
                                     ->columnSpanFull(),
                                 Forms\Components\RichEditor::make('content')
+                                    ->label('Full Insight (shown in popup)')
                                     ->columnSpanFull()
                                     ->fileAttachmentsDirectory('faculty-voice-content'),
-                                MediaPicker::forField('hero_image_url', 'faculty-insights/hero')
-                    ->label('Detail Hero Image')
-                    ->helperText('Background image on the Faculty Voice detail page. Falls back to the featured image if empty.')
-                    ->columnSpanFull(),
                                 MediaPicker::forField('image_url', 'faculty-insights')
-                    ->label('Featured Image')
-                    ->helperText('Card image and the cinematic featured photo on the detail page.')
-                    ->columnSpanFull(),
+                                    ->label('Featured Image')
+                                    ->helperText('Card image shown in the Faculty Voice section.')
+                                    ->columnSpanFull(),
                             ]),
                         Forms\Components\Tabs\Tab::make('Faculty')
                             ->schema([
@@ -75,37 +66,18 @@ class FacultyInsightResource extends Resource
                                     ->label('Short Bio')
                                     ->columnSpanFull(),
                                 MediaPicker::forField('faculty_avatar_url', 'faculty-insights/avatars')
-                    ->label('Portrait')
-                    ->columnSpanFull(),
+                                    ->label('Portrait')
+                                    ->columnSpanFull(),
                             ]),
                         Forms\Components\Tabs\Tab::make('Publishing')
                             ->schema([
                                 Forms\Components\DateTimePicker::make('published_at')
                                     ->default(now()),
-                                Forms\Components\TextInput::make('reading_time_minutes')
-                                    ->numeric()->nullable()
-                                    ->minValue(1)
-                                    ->suffix('minutes')
-                                    ->helperText('Leave empty to auto-calculate from the article body.'),
                                 Forms\Components\TextInput::make('sort_order')
                                     ->numeric()->nullable()
                                     ->default(0),
                                 Forms\Components\Toggle::make('is_active')
                                     ->default(true),
-                                Forms\Components\TextInput::make('link_url')
-                                    ->url()->nullable()
-                                    ->helperText('Optional external override. Used only when this voice has no article body or excerpt.'),
-                            ]),
-                        Forms\Components\Tabs\Tab::make('SEO')
-                            ->schema([
-                                Forms\Components\TextInput::make('meta_title')
-                                    ->maxLength(60),
-                                Forms\Components\Textarea::make('meta_description')
-                                    ->rows(3)
-                                    ->maxLength(160),
-                                MediaPicker::forField('og_image_url', 'faculty-insights/seo')
-                    ->label('OG Image')
-                    ->columnSpanFull(),
                             ]),
                     ])
                     ->columnSpanFull(),

@@ -24,7 +24,7 @@ class OurStoryTestimonialTable extends Component implements HasForms, HasTable
     public function table(Table $table): Table
     {
         return OurStoryTestimonialResource::table(
-            $table->query(OurStoryTestimonial::query())
+            $table->query(OurStoryTestimonialResource::getEloquentQuery())
         )
             ->headerActions([
                 CreateAction::make()

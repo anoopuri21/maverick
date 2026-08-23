@@ -71,6 +71,6 @@ class ManageGlobalOpportunitiesPage extends SettingsPage
         }
         unset($data['background_image_url_input']);
 
-        return $data;
+        return $this->preserveExistingImageFields($data, app(static::$settings));
     }
 }

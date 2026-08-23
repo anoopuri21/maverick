@@ -61,6 +61,8 @@ class PublicContentCache
             self::UNIVERSITY_PARTNERS,
             self::ALUMNI_LOGOS,
             self::ADMIN_OVERVIEW,
+            self::HOMEPAGE.'-accreditation-logos',
+            self::HOMEPAGE.'-faqs',
             'homepage_data_v1',
         ];
     }

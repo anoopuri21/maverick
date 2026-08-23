@@ -37,9 +37,11 @@ class EmptyAdminContentTest extends TestCase
             'blogs' => ['/blogs'],
             'news' => ['/news'],
             'programs' => ['/programs'],
-            'faculty-voice' => ['/faculty-voice'],
             'events' => ['/events'],
             'student-success' => ['/student-success'],
+            'student-success-stories' => ['/student-success/stories'],
+            'student-success-videos' => ['/student-success/videos'],
+            'about-us-redirect' => ['/about-us'],
         ];
     }
 
@@ -47,6 +49,12 @@ class EmptyAdminContentTest extends TestCase
     public function test_public_pages_return_ok_when_admin_settings_are_empty(string $uri): void
     {
         $response = $this->get($uri);
+
+        if ($uri === '/about-us') {
+            $response->assertRedirect(route('our-story'));
+
+            return;
+        }
 
         $response->assertSuccessful();
         $this->assertStringNotContainsString('Whoops', $response->getContent());

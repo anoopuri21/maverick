@@ -94,7 +94,6 @@ class ProfilePagesCommand extends Command
         // Parameterized public pages with known fixture paths (404s still measure stack cost).
         foreach ([
             ['/programs/sample-program', 'programs.show'],
-            ['/faculty-voice/sample-voice', 'faculty-voice.show'],
             ['/sample-insight', 'insights.show'],
         ] as [$uri, $name]) {
             $results[] = $this->hit('public', 'GET', $uri, $name);

@@ -19,6 +19,10 @@
 @endpush
 
 @section('content')
+@php
+    $events = collect($events ?? []);
+    $eventsPage = $eventsPage ?? safe_settings(\App\Settings\EventsPageSettings::class);
+@endphp
 <div class="ep">
 
     {{-- Cinematic Hero (same structure as other pages) --}}

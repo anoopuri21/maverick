@@ -25,7 +25,7 @@ class GupPartnerUniversityTable extends Component implements HasForms, HasTable
     public function table(Table $table): Table
     {
         return GupPartnerUniversityResource::table(
-            $table->query(GupPartnerUniversity::query())
+            $table->query(GupPartnerUniversityResource::getEloquentQuery())
         )
             ->headerActions([
                 CreateAction::make()

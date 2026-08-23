@@ -107,6 +107,15 @@ if (! function_exists('edu_href')) {
     }
 }
 
+if (! function_exists('slug_href')) {
+    function slug_href(?string $slug): ?string
+    {
+        $slug = trim((string) $slug, "/ \t\n\r\0\x0B");
+
+        return $slug === '' ? null : url('/'.$slug);
+    }
+}
+
 if (! function_exists('cloudinary_upload')) {
     function cloudinary_upload(?string $path, string $folder = 'general'): ?string
     {
