@@ -2,6 +2,7 @@
 
 namespace App\Support;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
@@ -215,9 +216,11 @@ class PublicContentCache
     }
 
     /**
+     * Hydrate plain cached arrays into stdClass objects (non-Eloquent).
+     *
      * @param  mixed  $rows
      */
-    public static function hydrateRows(mixed $rows, ?callable $map = null): Collection
+    public static function hydratePlainRows(mixed $rows, ?callable $map = null): Collection
     {
         if (self::containsIncomplete($rows) || is_string($rows) || ! is_iterable($rows)) {
             return collect();
