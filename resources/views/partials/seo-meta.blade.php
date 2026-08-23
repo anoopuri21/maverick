@@ -16,6 +16,7 @@
     $twitterTitle    = $seo->twitter_title ?? $ogTitle;
     $twitterDesc     = $seo->twitter_description ?? $ogDescription;
     $twitterImage    = $seo->twitter_image_url ?? $ogImage;
+    $ogUrl           = $canonical ?: url()->current();
 @endphp
 
 @if($metaTitle)
@@ -30,11 +31,7 @@
     <meta name="keywords" content="{{ $seo->meta_keywords }}">
 @endif
 
-@if($canonical)
-    <link rel="canonical" href="{{ $canonical }}">
-@else
-    <link rel="canonical" href="{{ url()->current() }}">
-@endif
+<link rel="canonical" href="{{ $ogUrl }}">
 
 @if(!empty($seo->robots) && $seo->robots !== 'index, follow')
     <meta name="robots" content="{{ $seo->robots }}">
@@ -51,7 +48,7 @@
     <meta property="og:image" content="{{ media_url($ogImage) }}">
 @endif
 <meta property="og:type" content="{{ $ogType }}">
-<meta property="og:url" content="{{ url()->current() }}">
+<meta property="og:url" content="{{ $ogUrl }}">
 <meta property="og:site_name" content="Maverick Business Academy">
 
 {{-- Twitter --}}

@@ -38,6 +38,10 @@ class PublicContentCache
 
     public const ALUMNI_LOGOS = 'alumni-logos';
 
+    public const MLP_UNIVERSITY_LOGOS = 'mlp-university-logos';
+
+    public const MLP_STORY_TESTIMONIALS = 'mlp-story-testimonials';
+
     public const ADMIN_OVERVIEW = 'admin.site_overview_counts';
 
     /**
@@ -60,6 +64,8 @@ class PublicContentCache
             self::FACULTY_INSIGHTS_PREVIEW,
             self::UNIVERSITY_PARTNERS,
             self::ALUMNI_LOGOS,
+            self::MLP_UNIVERSITY_LOGOS,
+            self::MLP_STORY_TESTIMONIALS,
             self::ADMIN_OVERVIEW,
             self::HOMEPAGE.'-accreditation-logos',
             self::HOMEPAGE.'-faqs',

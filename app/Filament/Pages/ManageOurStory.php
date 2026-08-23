@@ -120,7 +120,7 @@ class ManageOurStory extends Page implements HasForms
                                 Textarea::make('seo.meta_description')->label('Meta Description')->rows(3)->maxLength(160),
                                 Textarea::make('seo.meta_keywords')->label('Meta Keywords')->rows(2),
                                 Grid::make(2)->schema([
-                                    TextInput::make('seo.canonical_url')->label('Canonical URL')->url()->nullable(),
+                                    TextInput::make('seo.canonical_url')->label('Canonical URL')->nullable(),
                                     Select::make('seo.robots')->label('Robots')
                                         ->options([
                                             'index, follow' => 'Index, Follow (Default)',
@@ -131,7 +131,7 @@ class ManageOurStory extends Page implements HasForms
                                 ]),
                                 TextInput::make('seo.og_title')->label('OG Title')->maxLength(60),
                                 Textarea::make('seo.og_description')->label('OG Description')->rows(3)->maxLength(200),
-                                TextInput::make('seo.og_image_url')->label('OG Image URL')->url()->nullable(),
+                                TextInput::make('seo.og_image_url')->label('OG Image URL')->nullable(),
                                 MediaPicker::forField('seo.og_image_url', 'our-story/seo')->label('OG Image'),
                                 Grid::make(2)->schema([
                                     Select::make('seo.og_type')->label('OG Type')
@@ -148,7 +148,7 @@ class ManageOurStory extends Page implements HasForms
                                 ]),
                                 TextInput::make('seo.twitter_title')->label('Twitter Title')->maxLength(70),
                                 Textarea::make('seo.twitter_description')->label('Twitter Description')->rows(3)->maxLength(200),
-                                TextInput::make('seo.twitter_image_url')->label('Twitter Image URL')->url()->nullable(),
+                                TextInput::make('seo.twitter_image_url')->label('Twitter Image URL')->nullable(),
                                 MediaPicker::forField('seo.twitter_image_url', 'our-story/seo')->label('Twitter Image'),
                                 Textarea::make('seo.schema_json')->label('Schema.org JSON-LD')->rows(6)->helperText('Must be valid JSON-LD'),
                                 Textarea::make('seo.custom_head_scripts')->label('Custom Head Scripts')->rows(4),

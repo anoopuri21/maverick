@@ -41,7 +41,6 @@ class StudentSuccessVideoResource extends Resource
                     ->placeholder('https://www.youtube.com/watch?v=xxxxx or https://youtu.be/xxxxx')
                     ->helperText('Paste any YouTube URL. Thumbnail is auto-picked if you do not upload one.')
                     ->live()
-                    ->url()
                     ->nullable()
                     ->columnSpanFull(),
                 Forms\Components\Placeholder::make('youtube_thumb_preview')

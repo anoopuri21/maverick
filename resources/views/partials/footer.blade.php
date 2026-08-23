@@ -22,7 +22,6 @@
 
           <form class="footer__newsletter-form" data-newsletter-form action="{{ route('newsletter.subscribe') }}" method="POST">
             @csrf
-            <input type="text" name="website" value="" tabindex="-1" autocomplete="off" class="footer__newsletter-honeypot" aria-hidden="true">
             <input type="email" name="email" class="footer__newsletter-input" placeholder="Your email address" required
               aria-label="Email for newsletter" />
             <button type="submit" class="footer__newsletter-btn" aria-label="Subscribe">
@@ -147,10 +146,10 @@
 
       <ul class="footer__legal">
         <li>
-          <a href="{{ url('/privacy-policy/') }}" class="footer__legal-link">Privacy Policy</a>
+          <a href="{{ route('privacy-policy') }}" class="footer__legal-link">Privacy Policy</a>
         </li>
         <li>
-          <a href="{{ url('/terms-of-service/') }}" class="footer__legal-link">Terms of Service</a>
+          <a href="{{ route('terms-of-use') }}" class="footer__legal-link">Terms of Use</a>
         </li>
       </ul>
     </div>

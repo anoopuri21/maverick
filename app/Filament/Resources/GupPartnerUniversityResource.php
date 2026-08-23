@@ -41,7 +41,6 @@ class GupPartnerUniversityResource extends Resource
                 Forms\Components\Grid::make(2)->schema([
                     Forms\Components\TextInput::make('name')->maxLength(255),
                     Forms\Components\TextInput::make('slug')
-                        
                         ->helperText('URL-safe identifier for this card.'),
                     Forms\Components\TextInput::make('abbreviation')
                         ->maxLength(12)
@@ -59,7 +58,7 @@ class GupPartnerUniversityResource extends Resource
                     ->columnSpanFull(),
                 Forms\Components\TextInput::make('cta_url')
                     ->label('CTA URL')
-                    ->url()->nullable()
+                    ->nullable()
                     ->helperText('Defaults to /programs when empty.')
                     ->columnSpanFull(),
             ]),

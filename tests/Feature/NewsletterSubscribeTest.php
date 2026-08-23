@@ -118,26 +118,6 @@ class NewsletterSubscribeTest extends TestCase
         Mail::assertSent(GenericFormMail::class);
     }
 
-    public function test_newsletter_honeypot_is_silently_accepted(): void
-    {
-        Mail::fake();
-        Http::fake();
-
-        $response = $this->postJson('/newsletter', [
-            'email' => 'bot@example.com',
-            'website' => 'https://spam.test',
-        ]);
-
-        $response->assertOk();
-        $response->assertJson([
-            'ok' => true,
-            'message' => 'Thank you for subscribing.',
-        ]);
-
-        Mail::assertNothingSent();
-        Http::assertNothingSent();
-    }
-
     public function test_newsletter_dispatches_zapier_webhook_when_configured(): void
     {
         Mail::fake();

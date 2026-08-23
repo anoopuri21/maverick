@@ -2,6 +2,37 @@
 
 use Illuminate\Support\Str;
 
+if (! function_exists('mlp_image_url')) {
+    /**
+     * Optimized image URL for MBA/Master's landing (MLP).
+     * Cloudinary URLs get f_auto,q_auto,w_{n}; others fall through to media_url().
+     *
+     * @param  array{w?: int, width?: int, fallback?: string|null}  $opts
+     */
+    function mlp_image_url(?string $path, array $opts = []): ?string
+    {
+        $fallback = $opts['fallback'] ?? null;
+        $url = media_url($path, $fallback);
+
+        if (empty($url)) {
+            return null;
+        }
+
+        if (! str_contains($url, '/upload/')) {
+            return $url;
+        }
+
+        if (preg_match('#/upload/(?:[^/]+,)?f_auto[,/]#', $url)) {
+            return $url;
+        }
+
+        $width = (int) ($opts['w'] ?? $opts['width'] ?? 1600);
+        $transform = "f_auto,q_auto,w_{$width}";
+
+        return preg_replace('#(/upload/)#', "$1{$transform}/", $url, 1);
+    }
+}
+
 if (! function_exists('media_url')) {
     /**
      * Normalize a media URL for output.

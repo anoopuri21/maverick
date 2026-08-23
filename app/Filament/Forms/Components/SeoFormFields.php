@@ -31,7 +31,7 @@ class SeoFormFields
                             ->helperText('Best under 60 characters.'),
                         TextInput::make('canonical_url')
                             ->label('Canonical URL')
-                            ->url()->nullable()
+                            ->nullable()
                             ->helperText('Leave empty to auto-use the current page URL.'),
                     ]),
                     Textarea::make('meta_description')
@@ -64,7 +64,7 @@ class SeoFormFields
                         MediaPicker::forField('og_image_url', $mediaFolder.'/og')
                     ->label('OG Image (Media Library)')
                     ->helperText('Upload from library (priority) or use the URL field below.'),
-                        TextInput::make('og_image_url_input')->label('Or OG Image URL')->url()->nullable(),
+                        TextInput::make('og_image_url_input')->label('Or OG Image URL')->nullable(),
                     ]),
                     Select::make('og_type')
                         ->label('OG Type')
@@ -94,7 +94,7 @@ class SeoFormFields
                         MediaPicker::forField('twitter_image_url', $mediaFolder.'/twitter')
                     ->label('Twitter Image (Media Library)')
                     ->helperText('Upload from library (priority) or use the URL field below.'),
-                        TextInput::make('twitter_image_url_input')->label('Or Twitter Image URL')->url()->nullable(),
+                        TextInput::make('twitter_image_url_input')->label('Or Twitter Image URL')->nullable(),
                     ]),
                 ]),
 
@@ -169,7 +169,7 @@ class SeoFormFields
                             Grid::make(2)->schema([
                                 TextInput::make('seo.canonical_url')
                                     ->label('Canonical URL')
-                                    ->url()->nullable()
+                                    ->nullable()
                                     ->helperText('Leave blank to use current page URL.'),
 
                                 Select::make('seo.robots')
@@ -203,7 +203,7 @@ class SeoFormFields
 
                             TextInput::make('seo.og_image_url')
                                 ->label('OG Image URL')
-                                ->url()->nullable()
+                                ->nullable()
                                 ->helperText('Recommended: 1200x630px. Used for Facebook, LinkedIn shares. Or choose from the media library below.')
                                 ->columnSpanFull(),
 
@@ -246,7 +246,7 @@ class SeoFormFields
 
                             TextInput::make('seo.twitter_image_url')
                                 ->label('Twitter Image URL')
-                                ->url()->nullable()
+                                ->nullable()
                                 ->helperText('Recommended: 1200x628px. Or choose from the media library below.')
                                 ->columnSpanFull(),
 

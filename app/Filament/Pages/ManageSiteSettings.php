@@ -81,11 +81,11 @@ class ManageSiteSettings extends SettingsPage
             Section::make('Social Links')
                 ->schema([
                     Grid::make(2)->schema([
-                        TextInput::make('facebook_url')->url()->nullable(),
-                        TextInput::make('instagram_url')->url()->nullable(),
-                        TextInput::make('linkedin_url')->url()->nullable(),
-                        TextInput::make('twitter_url')->label('Twitter / X URL')->url()->nullable(),
-                        TextInput::make('youtube_url')->url()->nullable(),
+                        TextInput::make('facebook_url')->nullable(),
+                        TextInput::make('instagram_url')->nullable(),
+                        TextInput::make('linkedin_url')->nullable(),
+                        TextInput::make('twitter_url')->label('Twitter / X URL')->nullable(),
+                        TextInput::make('youtube_url')->nullable(),
                     ]),
                 ]),
         ]);

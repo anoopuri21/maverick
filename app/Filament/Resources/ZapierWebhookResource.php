@@ -48,7 +48,6 @@ class ZapierWebhookResource extends Resource
                             ->helperText('Internal note so you remember what this Zap does.'),
                         Forms\Components\TextInput::make('url')
                             ->label('Webhook URL')
-                            ->url()
                             ->required()
                             ->columnSpanFull()
                             ->helperText('Paste the URL from Zapier’s “Webhooks by Zapier” trigger.'),
