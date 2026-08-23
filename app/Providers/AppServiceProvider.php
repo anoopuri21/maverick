@@ -216,12 +216,6 @@ class AppServiceProvider extends ServiceProvider
         });
 
         View::composer('sections.alumni-network', function ($view) {
-            // #region agent log
-            $existing = $view->offsetExists('alumniLogos') ? $view->offsetGet('alumniLogos') : null;
-            $existingFirst = is_iterable($existing) ? collect($existing)->first() : null;
-            file_put_contents(base_path('debug-8d936b.log'), json_encode(['sessionId' => '8d936b', 'runId' => 'home-request', 'hypothesisId' => 'B', 'location' => 'AppServiceProvider.php:alumni-network-composer', 'message' => 'alumni-network composer entry', 'data' => ['offsetExists' => $view->offsetExists('alumniLogos'), 'existingType' => get_debug_type($existing), 'existingFirstType' => get_debug_type($existingFirst), 'existingFirstIsArray' => is_array($existingFirst), 'willEarlyReturn' => $view->offsetExists('alumniLogos')], 'timestamp' => (int) (microtime(true) * 1000)]).PHP_EOL, FILE_APPEND);
-            // #endregion
-
             if ($view->offsetExists('alumniLogos')) {
                 return;
             }

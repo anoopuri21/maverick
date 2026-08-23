@@ -30,7 +30,8 @@ class AccreditationController extends Controller
 
             return [
                 'accreditationLogos' => $accreditationLogos->toArray(),
-                'awardLogos' => $awardLogos->toArray(),
+                // serializeRows() already returns a plain array.
+                'awardLogos' => $awardLogos,
             ];
         });
 

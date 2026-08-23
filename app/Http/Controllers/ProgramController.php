@@ -77,8 +77,8 @@ class ProgramController extends Controller
             );
 
             return [
-                'categories' => $categories->toArray(),
-                'programs' => $programs->toArray(),
+                'categories' => $categories,
+                'programs' => $programs,
             ];
         });
 

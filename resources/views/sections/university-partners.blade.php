@@ -55,4 +55,9 @@
  <script>
     window.universityPartnersData = @json($universityPartnersJson ?? []);
 </script>
+{{-- #region agent log --}}
+@php
+    file_put_contents(base_path('debug-216c24.log'), json_encode(['sessionId' => '216c24', 'hypothesisId' => 'B', 'location' => 'sections/university-partners.blade.php', 'message' => 'section rendered', 'data' => ['route' => request()->route()?->getName(), 'path' => request()->path(), 'jsonCount' => is_countable($universityPartnersJson ?? null) ? count($universityPartnersJson) : null, 'partnersCount' => is_countable($universityPartners ?? null) ? count($universityPartners) : null, 'partnersJsRouteGate' => request()->routeIs('home', 'our-story', 'masters-pathway', 'global-partners')], 'timestamp' => (int) round(microtime(true) * 1000), 'runId' => 'post-fix']).PHP_EOL, FILE_APPEND);
+@endphp
+{{-- #endregion --}}
 </section>
