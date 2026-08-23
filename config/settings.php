@@ -114,6 +114,7 @@ return [
         \App\Settings\MediaGalleryPageSettings::class,
         \App\Settings\ProgramsDetailChromeSettings::class,
         \App\Settings\ZohoSettings::class,
+        \App\Settings\ZohoCampaignsSettings::class,
     ],
 
     /*

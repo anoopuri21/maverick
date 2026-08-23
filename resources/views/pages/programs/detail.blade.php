@@ -49,33 +49,19 @@
     $heroBgUrl = media_url($program->image_url, 'assets/images/edutainment/hero-cinematic.jpg');
     $uniImgUrl = media_url(data_get($university, 'image'), 'assets/images/edutainment/international-students-university-campus-1.jpg');
     $learnImgUrl = cached_asset('assets/images/edutainment/dubai-uae-skyline-students-studying-camp-1.jpg');
-    // Mirrors Testimonial::getAutoThumbnailAttribute() / getEmbedUrlAttribute() for JSON testimonials
-    $youtubeId = function (?string $url): ?string {
-        $url = trim($url ?? '');
-        if ($url === '') return null;
-        if (preg_match('/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i', $url, $m)) return $m[1];
-        if (preg_match('/^([a-zA-Z0-9_-]{11})$/', $url, $m)) return $m[1];
+    $storyThumb = function (array $t): ?array {
+        if ($url = youtube_thumbnail_url($t['video'] ?? null, $t['thumb'] ?? null)) {
+            $retry = filled($t['thumb'] ?? null) ? null : youtube_thumbnail_fallback($t['video'] ?? null);
+            if ($retry === $url) {
+                $retry = null;
+            }
+
+            return ['src' => $url, 'retry' => $retry];
+        }
+
         return null;
     };
-    $storyThumb = function (array $t) use ($youtubeId): ?array {
-        if ($url = media_url($t['thumb'] ?? null)) {
-            return ['src' => $url, 'retry' => null];
-        }
-        if ($id = $youtubeId($t['video'] ?? null)) {
-            return [
-                'src'   => "https://img.youtube.com/vi/{$id}/maxresdefault.jpg",
-                'retry' => "https://img.youtube.com/vi/{$id}/hqdefault.jpg",
-            ];
-        }
-        return null;
-    };
-    $embedUrl = function (?string $url) use ($youtubeId): ?string {
-        $url = trim($url ?? '');
-        if ($url === '') return null;
-        if ($id = $youtubeId($url)) return "https://www.youtube.com/embed/{$id}?autoplay=1&rel=0";
-        if (preg_match('/vimeo\.com\/(?:.*\/)?(\d+)/i', $url, $m)) return "https://player.vimeo.com/video/{$m[1]}?autoplay=1";
-        return $url;
-    };
+    $embedUrl = fn (?string $url) => youtube_embed_url($url, true);
     $renderLogoChip = function (?string $name, ?string $logo, string $chipClass, string $fallbackClass, int $take = 2) use ($initials) {
         $url = media_url($logo);
         $abbr = e($initials($name, $take));

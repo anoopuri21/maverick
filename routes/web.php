@@ -52,4 +52,7 @@ Route::get('/student-success/stories', [\App\Http\Controllers\PageController::cl
 Route::get('/student-success/videos', [\App\Http\Controllers\PageController::class, 'studentSuccessVideos'])->name('student-success.videos');
 Route::get('/student-success', [\App\Http\Controllers\PageController::class, 'studentSuccess'])->name('student-success');
 
+Route::redirect('/faculty-voice', '/#faculty-insights', 301);
+Route::redirect('/faculty-voice/{slug}', '/#faculty-insights', 301);
+
 Route::get('/{slug}', [\App\Http\Controllers\InsightController::class, 'show'])->name('insights.show');

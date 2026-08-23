@@ -16,10 +16,7 @@ class EditFacultyInsight extends EditRecord
 
     protected function mutateFormDataBeforeSave(array $data): array
     {
-        $data = MediaPicker::syncFieldFromAsset($data, 'hero_image_url');
         $data = MediaPicker::syncFieldFromAsset($data, 'image_url');
-        $data = MediaPicker::syncFieldFromAsset($data, 'faculty_avatar_url');
-        $data = MediaPicker::syncFieldFromAsset($data, 'og_image_url');
 
         return $this->preserveExistingImageFields($data, $this->record);
     }

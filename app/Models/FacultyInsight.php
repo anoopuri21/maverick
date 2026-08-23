@@ -21,6 +21,7 @@ class FacultyInsight extends Model
         'pull_quote',
         'faculty_name',
         'faculty_role',
+        'country',
         'faculty_bio',
         'faculty_avatar_url',
         'faculty_avatar_url_asset_id',
@@ -45,15 +46,6 @@ class FacultyInsight extends Model
         'published_at' => 'datetime',
         'reading_time_minutes' => 'integer',
     ];
-
-    protected static function booted(): void
-    {
-        static::saving(function (self $insight) {
-            if (empty($insight->reading_time_minutes) && filled($insight->content)) {
-                $insight->reading_time_minutes = max(1, (int) ceil(str_word_count(strip_tags($insight->content)) / 200));
-            }
-        });
-    }
 
     public function scopeActive(Builder $query): Builder
     {

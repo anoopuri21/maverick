@@ -32,6 +32,7 @@ export function initFooterAnimations(selector) {
       const btn = form.querySelector(".footer__newsletter-btn span");
       if (!input || !input.value || !btn) return;
       const orig = btn.textContent;
+      let resetDelay = 2500;
       try {
         const res = await fetch(form.action, {
           method: "POST",
@@ -41,16 +42,30 @@ export function initFooterAnimations(selector) {
           },
           body: new FormData(form),
         });
-        if (res.ok) {
-          btn.textContent = "Subscribed";
+        let data = {};
+        try {
+          data = await res.json();
+        } catch (_) {
+          /* non-JSON response */
+        }
+
+        if (res.ok && data.ok) {
+          btn.textContent = data.message || "Subscribed";
           input.value = "";
+          resetDelay = 5000;
+        } else if (res.status === 422) {
+          btn.textContent = data.errors?.email?.[0] || "Invalid email";
+        } else if (res.status === 429) {
+          btn.textContent = "Too many tries. Wait a moment.";
+        } else {
+          btn.textContent = data.message || "Something went wrong";
         }
       } catch (_) {
-        /* keep button usable */
+        btn.textContent = "Network error";
       }
       setTimeout(() => {
         btn.textContent = orig;
-      }, 2500);
+      }, resetDelay);
     });
   }
 

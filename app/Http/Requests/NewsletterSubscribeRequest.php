@@ -18,6 +18,7 @@ class NewsletterSubscribeRequest extends FormRequest
     {
         return [
             'email' => 'required|email|max:150',
+            'website' => 'nullable|string|max:100',
         ];
     }
 }

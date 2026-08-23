@@ -48,13 +48,55 @@ Check: Zoho Mail → Settings → Mail Accounts → your account → SMTP.
 
 | Page / route | What is emailed |
 |---|---|
-| Contact — `POST /contact` (`contact.submit`) | Name, Email, Phone (if filled), Subject, Message. Honeypot `website` is never emailed. Optional Zapier webhook still runs. |
+| Contact — `POST /contact` (`contact.submit`) | Name, Email, Phone (if filled), Subject, Message. Honeypot `website` is never emailed. Optional Zapier webhook via admin **Zapier Webhooks** (see [zapier-instruction.md](zapier-instruction.md)). |
 | Programme enquiry — `POST /programs/enquire` (`programs.enquire`) | Programme, Name, Email, Phone, Country, Study mode, Qualification, Message (empty fields skipped). |
-| Footer newsletter — `POST /newsletter` (`newsletter.subscribe`) | Subscriber Email + Submitted at. **No subscriber table** — admin ko notification email jaati hai. Simple rakhne ke liye list/CRM store nahi kiya (best practice: email notify first; a list table is a later CRM feature). |
+| Footer newsletter — `POST /newsletter` (`newsletter.subscribe`) | Subscriber email is added to the configured **Zoho Campaigns** mailing list (when enabled in admin). Zoho sends the confirmation email (double opt-in) and welcome email from Campaigns. Admin also receives a notification email via Zoho Mail / `FormMailer`. No local subscriber table — Zoho Campaigns is the source of truth. |
 
 Blog/news search forms and Filament admin save forms do **not** send email.
 
-## 3. How to add a NEW form later
+## 3. Zoho Campaigns (footer newsletter)
+
+Footer newsletter uses **Zoho Campaigns API** (not Zoho Mail SMTP) to add contacts to a mailing list. Confirmation and welcome emails are managed inside Zoho Campaigns — not in Laravel code.
+
+Admin: **Admin → Site Settings → Zoho Campaigns** (`/admin/manage-zoho-campaigns-settings`)
+
+### What you need in Zoho
+
+1. **Mailing list** — Zoho Campaigns → Contacts → Manage Lists → open your list → Setup:
+   - Copy the **List Key**
+   - **Enable the sign-up form** on that list (required for double opt-in confirmation emails)
+2. **Confirmation email** — customize in the list Setup / signup form settings inside Zoho Campaigns
+3. **Welcome email** — create an **Autoresponder** in Zoho Campaigns that triggers when a contact joins the list (after they confirm)
+4. **OAuth app** — [api-console.zoho.com](https://api-console.zoho.com):
+   - Create a **Server-based** (or Self Client) application
+   - Scope: `ZohoCampaigns.contact.CREATE`
+   - Authorization URL must include `access_type=offline` to get a **refresh token**
+   - Copy Client ID, Client Secret, and Refresh Token into the admin page
+
+### Admin fields
+
+| Field | Meaning |
+|---|---|
+| **Enable Zoho Campaigns sync** | ON = footer signups call `listsubscribe`. OFF = admin notification email only. |
+| **Zoho data center** | Must match your account region (`com`, `eu`, `in`, `com.au`, `jp`) |
+| **Mailing list key** | From list Setup in Zoho Campaigns |
+| **Contact source label** | e.g. `Website Footer` — shown in Campaigns |
+| **Client ID / secret / refresh token** | From Zoho API Console. Secrets: leave blank on save to keep existing values. |
+
+Use **Test connection** on the admin page to verify the refresh token and region.
+
+### Flow
+
+1. User submits email in footer
+2. Laravel calls Zoho `listsubscribe` API
+3. Zoho sends confirmation email to the user (if sign-up form is enabled on the list)
+4. User clicks confirm link in email
+5. Zoho adds contact to list and can send welcome autoresponder
+6. Admin still gets `New newsletter signup` notification via Zoho Mail (`FormMailer`)
+
+If Campaigns sync fails, the user still sees success and admin notification still sends — check `storage/logs/laravel.log` for `Zoho Campaigns` messages.
+
+## 4. How to add a NEW form later
 
 Form ko Zoho ke baare mein kuch nahi pata hona chahiye.
 
@@ -81,7 +123,7 @@ Empty values email se skip ho jaati hain. Mail fail hone par site 500 nahi karti
 
 Honeypot / `_token` fields automatically skip.
 
-## 4. Enable / disable / change recipient / test
+## 5. Enable / disable / change recipient / test
 
 - **Disable Zoho:** Admin → Zoho Mail → Enable Zoho SMTP OFF. Forms still submit. Email default Laravel mailer (`MAIL_MAILER` in `.env`, usually `log`) pe jaati hai.
 - **Change recipient:** Default recipient field badlo, Save. Contact/newsletter/enquiry sab yahi use karte hain unless a form `to` option pass kare. Empty recipient = Site Settings email, then `admissions@mbalondon.org.uk`.
@@ -91,7 +133,7 @@ Honeypot / `_token` fields automatically skip.
   3. Zoho Sent folder + admin inbox check karo.
   4. Fail ho to `storage/logs/laravel.log` mein `FormMailer failed:` dekho.
 
-## 5. Troubleshooting
+## 6. Troubleshooting
 
 | Symptom | Likely cause | Fix |
 |---|---|---|

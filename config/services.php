@@ -51,7 +51,4 @@ return [
         'secure' => true,
     ],
 
-    'zapier' => [
-        'contact_webhook_url' => env('ZAPIER_CONTACT_WEBHOOK_URL'),
-    ],
 ];

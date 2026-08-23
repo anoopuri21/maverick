@@ -80,6 +80,38 @@ if (! function_exists('rich_html')) {
     }
 }
 
+if (! function_exists('normalize_rich_html_media')) {
+    /**
+     * Resolve relative image URLs inside stored rich HTML for front-end output.
+     */
+    function normalize_rich_html_media(?string $html): string
+    {
+        if (! html_filled($html)) {
+            return '';
+        }
+
+        return preg_replace_callback(
+            '/<img\b([^>]*?)\bsrc=(["\'])([^"\']+)\2/i',
+            static function (array $matches): string {
+                $src = $matches[3];
+
+                if (Str::startsWith($src, ['http://', 'https://', '//', 'data:', 'blob:'])) {
+                    return $matches[0];
+                }
+
+                $resolved = media_url($src);
+
+                if (! $resolved) {
+                    return $matches[0];
+                }
+
+                return '<img'.$matches[1].'src='.$matches[2].$resolved.$matches[2];
+            },
+            $html
+        );
+    }
+}
+
 if (! function_exists('edu_cta_class')) {
     function edu_cta_class(?string $style): string
     {
@@ -188,7 +220,7 @@ if (! function_exists('youtube_embed_url')) {
 }
 
 if (! function_exists('youtube_thumbnail_url')) {
-    function youtube_thumbnail_url(?string $videoUrl, ?string $customThumb = null): ?string
+    function youtube_thumbnail_url(?string $videoUrl, ?string $customThumb = null, bool $preferMaxRes = false): ?string
     {
         if (filled($customThumb)) {
             return media_url($customThumb) ?? $customThumb;
@@ -200,7 +232,9 @@ if (! function_exists('youtube_thumbnail_url')) {
             return null;
         }
 
-        return "https://img.youtube.com/vi/{$id}/maxresdefault.jpg";
+        $quality = $preferMaxRes ? 'maxresdefault' : 'hqdefault';
+
+        return "https://img.youtube.com/vi/{$id}/{$quality}.jpg";
     }
 }
 

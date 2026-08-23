@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ContactFormRequest;
 use App\Services\FormMailer;
+use App\Services\ZapierWebhookDispatcher;
 use App\Settings\ContactPageSettings;
 use App\Settings\ContactSeoSettings;
 use App\Settings\SiteSettings;
+use App\Support\ZapierEvents;
 
 class ContactController extends Controller
 {
@@ -46,14 +48,7 @@ class ContactController extends Controller
             'reply_to' => $validated['email'] ?? null,
         ]);
 
-        // Zapier integration (non-blocking)
-        if ($webhookUrl = config('services.zapier.contact_webhook_url')) {
-            try {
-                \Illuminate\Support\Facades\Http::timeout(5)->post($webhookUrl, $validated);
-            } catch (\Throwable $e) {
-                report($e); // log failure, do not block the user-facing flow
-            }
-        }
+        app(ZapierWebhookDispatcher::class)->dispatch(ZapierEvents::CONTACT_SUBMITTED, $validated);
 
         $contactPage = safe_settings(ContactPageSettings::class);
         $successMessage = $contactPage->success_message ?? 'Thank you! We\'ll get back to you within 24 hours.';

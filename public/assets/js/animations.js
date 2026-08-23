@@ -1343,6 +1343,7 @@
         );
         if (!input || !input.value || !btn) return;
         const originalText = btn.textContent;
+        let resetDelay = 2500;
         try {
           const res = await fetch(newsletterForm.action, {
             method: "POST",
@@ -1352,16 +1353,30 @@
             },
             body: new FormData(newsletterForm),
           });
-          if (res.ok) {
-            btn.textContent = "Subscribed ✓";
+          let data = {};
+          try {
+            data = await res.json();
+          } catch (_) {
+            /* non-JSON response */
+          }
+
+          if (res.ok && data.ok) {
+            btn.textContent = data.message || "Subscribed ✓";
             input.value = "";
+            resetDelay = 5000;
+          } else if (res.status === 422) {
+            btn.textContent = data.errors?.email?.[0] || "Invalid email";
+          } else if (res.status === 429) {
+            btn.textContent = "Too many tries. Wait a moment.";
+          } else {
+            btn.textContent = data.message || "Something went wrong";
           }
         } catch (_) {
-          /* keep button usable */
+          btn.textContent = "Network error";
         }
         setTimeout(() => {
           btn.textContent = originalText;
-        }, 2500);
+        }, resetDelay);
       });
     }
 
