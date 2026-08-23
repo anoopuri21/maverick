@@ -14,7 +14,7 @@
 @endif
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('assets/css/our-story.css') }}">
+    <link rel="stylesheet" href="{{ cached_asset('assets/css/our-story.css') }}">
 @endpush
 
 @section('content')
@@ -55,12 +55,16 @@
       <span class="os-hero__eyebrow-line"></span>
       A Legacy of Global Impact
     </span>
+    @if(html_filled($hero->heading ?? null))
     <h1 class="os-hero__title fade-up" data-testid="hero-title">
       {!! $hero->heading !!}
     </h1>
+    @endif
+    @if(html_filled($hero->description ?? null))
     <div class="os-hero__description fade-up" data-testid="hero-desc">
-      {!! $hero->description !!}
+      {!! rich_html($hero->description ?? null) !!}
     </div>
+    @endif
     <div class="os-hero__scroll-hint fade-up" aria-hidden="true">
       <span class="os-hero__scroll-text">Scroll to explore</span>
       <span class="os-hero__scroll-arrow" data-lucide="chevron-down"></span>
@@ -84,13 +88,19 @@
         <h2 class="os-section-heading fade-up">
           <span class="text-reveal-wrapper"><span class="text-reveal-inner">{{ $beginning->heading ?? '' }}</span></span>
         </h2>
-        <p class="os-body-text fade-up">{{ $beginning->paragraph_1 ?? '' }}</p>
-        <p class="os-body-text fade-up">{{ $beginning->paragraph_2 ?? '' }}</p>
+        @if(html_filled($beginning->paragraph_1 ?? null))
+        <div class="os-body-text fade-up">{!! rich_html($beginning->paragraph_1 ?? null) !!}</div>
+        @endif
+        @if(html_filled($beginning->paragraph_2 ?? null))
+        <div class="os-body-text fade-up">{!! rich_html($beginning->paragraph_2 ?? null) !!}</div>
+        @endif
       </div>
       <div class="os-beginning__image-col">
         <div class="os-beginning__image-wrap fade-up">
           <div class="os-beginning__image-accent" aria-hidden="true"></div>
-          <img src="{{ $beginning->image_url ?? '' }}" alt="Where It All Began" class="os-beginning__image" loading="lazy" />
+          @if($url = media_url($beginning->image_url ?? null))
+          <img src="{{ $url }}" alt="Where It All Began" class="os-beginning__image" loading="lazy" />
+          @endif
         </div>
       </div>
     </div>
@@ -110,7 +120,9 @@
     <div class="os-today__grid">
       <div class="os-today__image-col">
         <div class="os-today__image-wrap fade-up">
-          <img src="{{ $today->image_url ?? '' }}" alt="What We Do Today" class="os-today__image" loading="lazy" />
+          @if($url = media_url($today->image_url ?? null))
+          <img src="{{ $url }}" alt="What We Do Today" class="os-today__image" loading="lazy" />
+          @endif
         </div>
       </div>
       <div class="os-today__text">
@@ -118,7 +130,9 @@
         <h2 class="os-section-heading fade-up">
           <span class="text-reveal-wrapper"><span class="text-reveal-inner">{{ $today->heading ?? '' }}</span></span>
         </h2>
-        <p class="os-body-text fade-up">{{ $today->description ?? '' }}</p>
+        @if(html_filled($today->description ?? null))
+        <div class="os-body-text fade-up">{!! rich_html($today->description ?? null) !!}</div>
+        @endif
       </div>
     </div>
     <!-- <div class="os-today__pills fade-up" aria-label="Programme categories">
@@ -149,7 +163,9 @@
       <h2 class="os-section-heading os-section-heading--light fade-up">
         <span class="text-reveal-wrapper"><span class="text-reveal-inner">{{ $impact->heading ?? '' }}</span></span>
       </h2>
-      <p class="os-body-text os-body-text--light fade-up">{{ $impact->description ?? '' }}</p>
+      @if(html_filled($impact->description ?? null))
+      <div class="os-body-text os-body-text--light fade-up">{!! rich_html($impact->description ?? null) !!}</div>
+      @endif
     </div>
     <div class="os-impact__stats">
       @if($impact->stat_1_value && $impact->stat_1_label)
@@ -202,7 +218,9 @@
         <h2 class="os-section-heading fade-up">
           <span class="text-reveal-wrapper"><span class="text-reveal-inner">{{ $vision->heading ?? 'Looking Ahead' }}</span></span>
         </h2>
-        <p class="os-body-text fade-up">{{ $vision->description ?? '' }}</p>
+        @if(html_filled($vision->description ?? null))
+        <div class="os-body-text fade-up">{!! rich_html($vision->description ?? null) !!}</div>
+        @endif
         @if(($vision->cta_label ?? false) && ($vision->cta_url ?? false))
       <a href="{{ $vision->cta_url }}" class="os-vision__cta btn btn--primary fade-up">{{ $vision->cta_label }}</a>
       @endif
@@ -210,8 +228,8 @@
       <div class="os-beginning__image-col">
         <div class="os-beginning__image-wrap fade-up">
           <div class="os-beginning__image-accent" aria-hidden="true"></div>
-        @if($vision->background_image_url)
-          <img src="{{ $vision->background_image_url }}" alt="Where It All Began" class="os-beginning__image" loading="lazy" />
+        @if($url = media_url($vision->background_image_url ?? null))
+          <img src="{{ $url }}" alt="Where It All Began" class="os-beginning__image" loading="lazy" />
         @endif
         </div>
       </div>
@@ -269,14 +287,14 @@
             </div>
             <h3 class="os-journey__slide-title">{{ $item->title ?? '' }}</h3>
             @if($item->description)
-            <p class="os-journey__slide-desc">{{ $item->description }}</p>
+            <p class="os-journey__slide-desc">{!! rich_html($item->description ?? null) !!}</p>
             @endif
           </div>
           <div class="os-journey__slide-right">
             <span class="os-journey__big-year" aria-hidden="true">{{ $yearStr }}</span>
-            @if($item->icon_url)
+            @if($url = media_url($item->icon_url ?? null))
             <div class="os-journey__slide-image">
-              <img src="{{ $item->icon_url }}" alt="{{ $item->title ?? $yearStr }}" loading="lazy" />
+              <img src="{{ $url }}" alt="{{ $item->title ?? $yearStr }}" loading="lazy" />
             </div>
             @else
             <div class="os-journey__slide-image os-journey__slide-image--fallback">
@@ -307,11 +325,11 @@
         <span class="os-journey__year-badge">{{ $yearStr }}</span>
         <h3 class="os-journey__mobile-card-title">{{ $item->title ?? '' }}</h3>
         @if($item->description)
-        <p class="os-journey__mobile-card-desc">{{ $item->description }}</p>
+        <p class="os-journey__mobile-card-desc">{!! rich_html($item->description ?? null) !!}</p>
         @endif
-        @if($item->icon_url)
+        @if($url = media_url($item->icon_url ?? null))
         <div class="os-journey__mobile-card-image">
-          <img src="{{ $item->icon_url }}" alt="{{ $item->title ?? $yearStr }}" loading="lazy" />
+          <img src="{{ $url }}" alt="{{ $item->title ?? $yearStr }}" loading="lazy" />
         </div>
         @endif
       </div>

@@ -32,7 +32,7 @@
       @endif
 
       @if(html_filled($finalCta->body ?? null))
-      <div class="edu-richtext fade-up">{!! $finalCta->body !!}</div>
+      <div class="edu-richtext fade-up">{!! rich_html($finalCta->body ?? null) !!}</div>
       @endif
 
       @if(filled($finalCta->emphasis))

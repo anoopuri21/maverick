@@ -12,7 +12,6 @@ trait HasStrictValidation
     protected function onValidationError(\Illuminate\Validation\ValidationException $exception): void
     {
         $errors = $exception->validator->errors()->all();
-        
         Notification::make()
             ->title('⚠️ Validation Failed')
             ->body('Please fix the following errors before saving:')

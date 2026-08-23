@@ -12,4 +12,9 @@ class ManageAccreditationsSeo extends ManagesPageSeo
     protected static string $settings = AccreditationsSeoSettings::class;
     protected static string $mediaFolder = 'accreditations-seo';
     protected static string $pageLabel = 'the Accreditations page';
+
+    public static function shouldRegisterNavigation(): bool
+    {
+        return false;
+    }
 }

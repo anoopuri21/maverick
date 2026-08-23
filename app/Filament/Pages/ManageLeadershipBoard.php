@@ -2,6 +2,7 @@
 
 namespace App\Filament\Pages;
 
+use App\Filament\Concerns\EnsuresSettingsRowsExist;
 use App\Filament\Concerns\HandlesCloudinaryImageFields;
 use App\Filament\Forms\Components\MediaPicker;
 use App\Settings\LeadershipHeroSettings;
@@ -13,6 +14,7 @@ use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Tabs\Tab;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
@@ -24,6 +26,7 @@ use Filament\Pages\Page;
 class ManageLeadershipBoard extends Page implements HasForms
 {
     use HandlesCloudinaryImageFields;
+    use EnsuresSettingsRowsExist;
     use InteractsWithForms;
 
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
@@ -59,10 +62,10 @@ class ManageLeadershipBoard extends Page implements HasForms
                                 TextInput::make('hero.tag')->label('Eyebrow Tag'),
                                 TextInput::make('hero.heading_line1')->label('Heading Line 1'),
                                 TextInput::make('hero.heading_italic')->label('Heading (Italic)'),
-                                Textarea::make('hero.description')->rows(4)->columnSpanFull(),
+                                RichEditor::make('hero.description')->columnSpanFull(),
                                 MediaPicker::forField('hero.background_image', 'leadership/hero')
-                                    ->label('Background Image')
-                                    ->columnSpanFull(),
+                    ->label('Background Image')
+                    ->columnSpanFull(),
                             ]),
 
                         Tab::make('Leaders')
@@ -77,17 +80,17 @@ class ManageLeadershipBoard extends Page implements HasForms
                                     ->schema([
                                         TextInput::make('name'),
                                         TextInput::make('designation'),
-                                        Textarea::make('bio')->rows(3),
+                                        RichEditor::make('bio'),
                                         MediaPicker::forField('image_url', 'leadership/leaders')
-                                            ->label('Photo'),
+                    ->label('Photo'),
                                         TextInput::make('linkedin_url')
                                             ->label('LinkedIn URL')
                                             ->default('#'),
                                     ])
-                                    ->reorderable()
-                                    ->collapsible()
-                                    ->itemLabel(fn (array $state): ?string => $state['name'] ?? null)
-                                    ->columnSpanFull(),
+                    ->reorderable()
+                    ->collapsible()
+                    ->itemLabel(fn (array $state): ?string => $state['name'] ?? null)
+                    ->columnSpanFull(),
                             ]),
 
                         Tab::make('SEO')
@@ -129,7 +132,8 @@ class ManageLeadershipBoard extends Page implements HasForms
 
     public function save(): void
     {
-        $data = $this->form->getState();
+        try {
+            $data = $this->form->getState();
 
         // Denormalize MediaPicker asset ids → URLs before persisting (same
         // convention as ProgramResource). Otherwise an uploaded image never
@@ -139,6 +143,9 @@ class ManageLeadershipBoard extends Page implements HasForms
 
         $leaders = $data['leaders'] ?? [];
         foreach ($leaders['items'] ?? [] as &$item) {
+            if (! is_array($item)) {
+                continue;
+            }
             $item = \App\Filament\Forms\Components\MediaPicker::syncFieldFromAsset($item, 'image_url');
         }
         unset($item);
@@ -152,10 +159,20 @@ class ManageLeadershipBoard extends Page implements HasForms
         $this->saveSettingsGroup(LeadershipLeadersSettings::class, $leaders);
         $this->saveSettingsGroup(LeadershipSeoSettings::class, $seo);
 
-        Notification::make()
-            ->title('Leadership Board saved')
-            ->success()
-            ->send();
+            Notification::make()
+                ->title('Leadership Board saved')
+                ->success()
+                ->send();
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            throw $e;
+        } catch (\Throwable $e) {
+            report($e);
+
+            Notification::make()
+                ->title('Could not save Leadership Board page')
+                ->danger()
+                ->send();
+        }
     }
 
     /** @param  class-string  $settingsClass */
@@ -165,62 +182,7 @@ class ManageLeadershipBoard extends Page implements HasForms
         $payload = $this->ensureAllSettingsProperties($settings, $payload);
         $payload = $this->preserveExistingImageFields($payload, $settings);
         $this->ensureSettingsRowsExist($settings);
-        // Reload from DB so Spatie no longer treats freshly-created rows as
-        // "default-loaded" (which would still throw MissingSettings on save).
         app()->forgetInstance($settingsClass);
         app($settingsClass)->fill($payload)->save();
-    }
-
-    /**
-     * Merge any missing settings properties from the current settings instance
-     * so Spatie's save() never throws MissingSettings, regardless of what the
-     * form submitted. Generic — works for any Spatie Settings class and keeps
-     * untouched fields (e.g. nested MediaPicker URLs) intact.
-     *
-     * @param  object  $settings  Spatie Settings instance (already loaded)
-     * @param  array<string, mixed>  $payload
-     * @return array<string, mixed>
-     */
-    protected function ensureAllSettingsProperties(object $settings, array $payload): array
-    {
-        $reflection = new \ReflectionClass($settings);
-
-        foreach ($reflection->getProperties(\ReflectionProperty::IS_PUBLIC) as $property) {
-            if ($property->isStatic()) {
-                continue;
-            }
-
-            $name = $property->getName();
-
-            if (! array_key_exists($name, $payload)) {
-                $payload[$name] = $settings->{$name} ?? $property->getDefaultValue();
-            }
-        }
-
-        return $payload;
-    }
-
-    /**
-     * Ensure every reflected setting property has a DB row so Spatie's save()
-     * never throws MissingSettings. Spatie marks default-loaded (rowless)
-     * properties as missing on save, so we materialise the rows first.
-     * Generic — works for any Spatie Settings class.
-     */
-    protected function ensureSettingsRowsExist(object $settings): void
-    {
-        $mapper = app(\Spatie\LaravelSettings\SettingsMapper::class);
-        $getConfig = new \ReflectionMethod($mapper, 'getConfig');
-        $getConfig->setAccessible(true);
-        $config = $getConfig->invoke($mapper, get_class($settings));
-
-        $repo = $config->getRepository();
-        $group = $config->getGroup();
-        $existing = collect($repo->getPropertiesInGroup($group))->keys();
-
-        foreach ($config->getReflectedProperties()->keys() as $name) {
-            if (! $existing->contains($name)) {
-                $repo->createProperty($group, $name, $settings->{$name} ?? null);
-            }
-        }
     }
 }

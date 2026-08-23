@@ -2,8 +2,8 @@
 
 namespace App\Livewire;
 
-use App\Filament\Forms\Components\MediaPicker;
 use App\Filament\Resources\AccreditationAwardResource;
+use App\Livewire\Concerns\MutatesEmbeddedMediaPicker;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
@@ -19,23 +19,25 @@ class AccreditationAwardTable extends Component implements HasForms, HasTable
 {
     use InteractsWithForms;
     use InteractsWithTable;
+    use MutatesEmbeddedMediaPicker;
 
     public function table(Table $table): Table
     {
         return AccreditationAwardResource::table(
-            $table->query(AccreditationAwardResource::getEloquentQuery())
-        )
-            ->headerActions([
-                CreateAction::make()
-                    ->form(fn (Form $form) => AccreditationAwardResource::form($form))
-                    ->mutateFormDataUsing(fn (array $data): array => MediaPicker::syncFieldFromAsset($data, 'logo_url')),
-            ])
-            ->actions([
-                EditAction::make()
-                    ->form(fn (Form $form) => AccreditationAwardResource::form($form))
-                    ->mutateFormDataUsing(fn (array $data): array => MediaPicker::syncFieldFromAsset($data, 'logo_url')),
-                DeleteAction::make(),
-            ]);
+            $table
+                ->query(AccreditationAwardResource::getEloquentQuery())
+                ->headerActions([
+                    CreateAction::make()
+                        ->form(fn (Form $form) => AccreditationAwardResource::form($form))
+                        ->mutateFormDataUsing(fn (array $data) => $this->mutateEmbeddedMedia($data, 'logo_url', extra: ['type' => 'award'])),
+                ])
+                ->actions([
+                    EditAction::make()
+                        ->form(fn (Form $form) => AccreditationAwardResource::form($form))
+                        ->mutateFormDataUsing(fn (array $data) => $this->mutateEmbeddedMedia($data, 'logo_url', $this->getMountedTableActionRecord(), ['type' => 'award'])),
+                    DeleteAction::make(),
+                ]),
+        );
     }
 
     public function render(): \Illuminate\View\View

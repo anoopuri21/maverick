@@ -14,6 +14,8 @@ use App\Models\PartnerLogo;
 use App\Models\FacultyInsight;
 use App\Models\Event;
 use App\Models\Testimonial;
+use App\Models\StudentSuccessStory;
+use App\Models\StudentSuccessVideo;
 use App\Settings\HowWeDoItSettings;
 use App\Settings\WhyMaverickSettings;
 use App\Settings\GlobalOpportunitiesSettings;
@@ -94,157 +96,165 @@ use App\Settings\GlobalOpportunitiesSeoSettings;
 use App\Settings\MediaGallerySeoSettings;
 use App\Settings\EventsSeoSettings;
 use App\Settings\StudentSuccessSeoSettings;
+use App\Settings\EventsPageSettings;
+use App\Settings\StudentSuccessPageSettings;
+use App\Settings\ContactPageSettings;
+use App\Settings\MediaGalleryPageSettings;
+use App\Support\PublicContentCache;
 
 class PageController extends Controller
 {
     public function home()
     {
-        // NO CACHE - Direct data loading
-        
-        // Settings
         $settings = [
-            'hero' => app(HeroSettings::class),
-            'numbers' => app(NumbersSettings::class),
-            'whoWeAre' => app(WhoWeAreSettings::class),
-            'ceo' => app(CeoSettings::class),
-            'whatIsMaverick' => app(WhatIsMaverickSettings::class),
-            'howWeDoIt' => app(HowWeDoItSettings::class),
-            'whyMaverick' => app(WhyMaverickSettings::class),
-            'globalOpportunities' => app(GlobalOpportunitiesSettings::class),
-            'homeSeo' => app(\App\Settings\HomepageSeoSettings::class),
+            'hero' => safe_settings(HeroSettings::class),
+            'numbers' => safe_settings(NumbersSettings::class),
+            'whoWeAre' => safe_settings(WhoWeAreSettings::class),
+            'ceo' => safe_settings(CeoSettings::class),
+            'whatIsMaverick' => safe_settings(WhatIsMaverickSettings::class),
+            'howWeDoIt' => safe_settings(HowWeDoItSettings::class),
+            'whyMaverick' => safe_settings(WhyMaverickSettings::class),
+            'globalOpportunities' => safe_settings(GlobalOpportunitiesSettings::class),
+            'homeSeo' => safe_settings(\App\Settings\HomepageSeoSettings::class),
         ];
 
-        // Collections
-        // Alumni section: Alumni type only
-        $alumniLogos = PartnerLogo::select('id', 'name', 'logo_url', 'sort_order')
-            ->where('type', 'alumni')
-            ->where('is_active', true)
-            ->orderBy('sort_order')
-            ->get();
+        $collections = PublicContentCache::remember(PublicContentCache::HOMEPAGE, function () {
+            $alumniLogos = PartnerLogo::select('id', 'name', 'logo_url', 'sort_order')
+                ->where('type', 'alumni')
+                ->where('is_active', true)
+                ->orderBy('sort_order')
+                ->get();
 
-        // Accreditations, Partnerships & Recognitions section: accreditation + alumni + recognition types
-        $accreditationLogos = PartnerLogo::select('id', 'name', 'logo_url', 'sort_order')
-            ->whereIn('type', ['accreditation', 'recognition'])
-            ->where('is_active', true)
-            ->orderBy('sort_order')
-            ->get();
+            $accreditationLogos = PartnerLogo::select('id', 'name', 'logo_url', 'sort_order')
+                ->whereIn('type', ['accreditation', 'recognition'])
+                ->where('is_active', true)
+                ->orderBy('sort_order')
+                ->get();
 
-        $facultyInsights = FacultyInsight::select('id', 'title', 'slug', 'badge', 'image_url', 'link_url', 'sort_order')
-            ->where('is_active', true)
-            ->orderBy('sort_order')
-            ->limit(6)
-            ->get();
+            $facultyInsights = FacultyInsight::select('id', 'title', 'slug', 'badge', 'image_url', 'link_url', 'excerpt', 'faculty_name', 'faculty_role', 'sort_order')
+                ->where('is_active', true)
+                ->hasPublicSlug()
+                ->orderBy('sort_order')
+                ->limit(6)
+                ->get();
 
-        $events = Event::select('id', 'title', 'description', 'event_date', 'event_type', 'location', 'link_url')
-            ->where('is_active', true)
-            ->orderBy('event_date', 'desc')
-            ->limit(10)
-            ->get();
+            $events = Event::select('id', 'title', 'description', 'event_date', 'event_type', 'location', 'link_url')
+                ->where('is_active', true)
+                ->orderBy('event_date', 'desc')
+                ->limit(10)
+                ->get();
 
-        $testimonials = Testimonial::select('id', 'name', 'designation', 'company', 'thumbnail_url', 'video_url', 'video_type', 'sort_order')
-            ->where('is_active', true)
-            ->orderBy('sort_order')
-            ->limit(9)
-            ->get();
+            $testimonials = Testimonial::select('id', 'name', 'designation', 'company', 'thumbnail_url', 'video_url', 'video_type', 'sort_order')
+                ->where('is_active', true)
+                ->orderBy('sort_order')
+                ->limit(9)
+                ->get();
 
-        $homepageFaqs = \App\Models\Faq::select('id', 'question', 'answer', 'sort_order')
-            ->where('faqable_type', 'homepage')
-            ->where('faqable_id', 1)
-            ->where('is_active', true)
-            ->orderBy('sort_order')
-            ->get();
+            $homepageFaqs = \App\Models\Faq::select('id', 'question', 'answer', 'sort_order')
+                ->where('faqable_type', 'homepage')
+                ->where('faqable_id', 1)
+                ->where('is_active', true)
+                ->orderBy('sort_order')
+                ->get();
 
-        $testimonialsJson = $testimonials->map(fn($t) => [
-            'category' => strtoupper($t->company ?? 'STUDENT'),
-            'name' => $t->name,
-            'role' => $t->designation ?? '',
-            'thumbnail' => $t->auto_thumbnail,
-            'video' => $t->embed_url,
-        ])->values();
+            $testimonialsJson = $testimonials->map(fn ($t) => [
+                'category' => strtoupper($t->company ?? 'STUDENT'),
+                'name' => $t->name,
+                'role' => $t->designation ?? '',
+                'thumbnail' => $t->auto_thumbnail,
+                'video' => $t->embed_url,
+            ])->values();
 
-        $data = array_merge($settings, [
-            'alumniLogos' => $alumniLogos,
-            'accreditationLogos' => $accreditationLogos,
-            'facultyInsights' => $facultyInsights,
-            'events' => $events,
-            'testimonials' => $testimonials,
-            'testimonialsJson' => $testimonialsJson,
-            'homepageFaqs' => $homepageFaqs,
-        ]);
+            return compact(
+                'alumniLogos',
+                'accreditationLogos',
+                'facultyInsights',
+                'events',
+                'testimonials',
+                'testimonialsJson',
+                'homepageFaqs',
+            );
+        });
 
-        return view('pages.home', $data);
+        return view('pages.home', array_merge($settings, $collections));
     }
 
     public function ourStory()
     {
         // Our Story–specific settings
         $settings = [
-            'hero' => app(\App\Settings\OurStoryHeroSettings::class),
-            'beginning' => app(\App\Settings\OurStoryBeginningSettings::class),
-            'today' => app(\App\Settings\OurStoryTodaySettings::class),
-            'impact' => app(\App\Settings\OurStoryImpactSettings::class),
-            'vision' => app(\App\Settings\OurStoryVisionSettings::class),
+            'hero' => safe_settings(\App\Settings\OurStoryHeroSettings::class),
+            'beginning' => safe_settings(\App\Settings\OurStoryBeginningSettings::class),
+            'today' => safe_settings(\App\Settings\OurStoryTodaySettings::class),
+            'impact' => safe_settings(\App\Settings\OurStoryImpactSettings::class),
+            'vision' => safe_settings(\App\Settings\OurStoryVisionSettings::class),
             // Shared with homepage
-            'ceo' => app(CeoSettings::class),
+            'ceo' => safe_settings(CeoSettings::class),
         ];
 
-        $ourStoryTestimonials = OurStoryTestimonial::query()
-            ->where('is_active', true)
-            ->orderBy('sort_order')
-            ->get();
-        // Our Story–specific collections
-        $timelines = \App\Models\OurStoryTimeline::select('id', 'year', 'title', 'description', 'icon_url', 'sort_order')
-            ->where('is_active', true)
-            ->orderBy('sort_order')
-            ->get();
+        $collections = PublicContentCache::remember(PublicContentCache::OUR_STORY, function () {
+            $ourStoryTestimonials = OurStoryTestimonial::query()
+                ->select('id', 'name', 'rating', 'testimonial', 'photo', 'sort_order')
+                ->where('is_active', true)
+                ->orderBy('sort_order')
+                ->get();
 
-        $awards = \App\Models\OurStoryAward::select('id', 'title', 'image_url', 'sort_order', 'is_active')
-            ->where('is_active', true)
-            ->orderBy('sort_order')
-            ->get();
+            $timelines = \App\Models\OurStoryTimeline::select('id', 'year', 'title', 'description', 'icon_url', 'sort_order')
+                ->where('is_active', true)
+                ->orderBy('sort_order')
+                ->get();
 
-        $galleryImages = \App\Models\OurStoryGalleryImage::select('id', 'image_url', 'caption', 'category', 'sort_order')
-            ->where('is_active', true)
-            ->orderBy('sort_order')
-            ->get();
+            $awards = \App\Models\OurStoryAward::select('id', 'title', 'image_url', 'sort_order', 'is_active')
+                ->where('is_active', true)
+                ->orderBy('sort_order')
+                ->get();
 
-        // Shared collections (same sources as homepage)
-        $accreditationLogos = PartnerLogo::select('id', 'name', 'logo_url', 'sort_order')
-            ->whereIn('type', ['accreditation', 'recognition'])
-            ->where('is_active', true)
-            ->orderBy('sort_order')
-            ->get();
+            $galleryImages = \App\Models\OurStoryGalleryImage::select('id', 'image_url', 'caption', 'category', 'sort_order')
+                ->where('is_active', true)
+                ->orderBy('sort_order')
+                ->get();
 
-        $facultyInsights = FacultyInsight::select('id', 'title', 'slug', 'badge', 'image_url', 'link_url', 'sort_order')
-            ->where('is_active', true)
-            ->orderBy('sort_order')
-            ->limit(6)
-            ->get();
+            $accreditationLogos = PartnerLogo::select('id', 'name', 'logo_url', 'sort_order')
+                ->whereIn('type', ['accreditation', 'recognition'])
+                ->where('is_active', true)
+                ->orderBy('sort_order')
+                ->get();
 
-        $testimonials = Testimonial::select('id', 'name', 'designation', 'company', 'thumbnail_url', 'video_url', 'video_type', 'sort_order')
-            ->where('is_active', true)
-            ->orderBy('sort_order')
-            ->limit(9)
-            ->get();
+            $facultyInsights = FacultyInsight::select('id', 'title', 'slug', 'badge', 'image_url', 'link_url', 'excerpt', 'faculty_name', 'faculty_role', 'sort_order')
+                ->where('is_active', true)
+                ->hasPublicSlug()
+                ->orderBy('sort_order')
+                ->limit(6)
+                ->get();
 
-        $testimonialsJson = $testimonials->map(fn ($t) => [
-            'category' => strtoupper($t->company ?? 'STUDENT'),
-            'name' => $t->name,
-            'role' => $t->designation ?? '',
-            'thumbnail' => $t->auto_thumbnail,
-            'video' => $t->embed_url,
-        ])->values();
+            $testimonials = Testimonial::select('id', 'name', 'designation', 'company', 'thumbnail_url', 'video_url', 'video_type', 'sort_order')
+                ->where('is_active', true)
+                ->orderBy('sort_order')
+                ->limit(9)
+                ->get();
 
-        $data = array_merge($settings, [
-            'timelines' => $timelines,
-            'awards' => $awards,
-            'galleryImages' => $galleryImages,
-            'accreditationLogos' => $accreditationLogos,
-            'facultyInsights' => $facultyInsights,
-            'ourStoryTestimonials' => $ourStoryTestimonials,
-            'testimonials' => $testimonials,
-            'testimonialsJson' => $testimonialsJson,
-            'ourStorySeo' => app(\App\Settings\OurStorySeoSettings::class),
+            $testimonialsJson = $testimonials->map(fn ($t) => [
+                'category' => strtoupper($t->company ?? 'STUDENT'),
+                'name' => $t->name,
+                'role' => $t->designation ?? '',
+                'thumbnail' => $t->auto_thumbnail,
+                'video' => $t->embed_url,
+            ])->values();
+
+            return compact(
+                'ourStoryTestimonials',
+                'timelines',
+                'awards',
+                'galleryImages',
+                'accreditationLogos',
+                'facultyInsights',
+                'testimonials',
+                'testimonialsJson',
+            );
+        });
+
+        $data = array_merge($settings, $collections, [
+            'ourStorySeo' => safe_settings(\App\Settings\OurStorySeoSettings::class),
         ]);
 
         return view('pages.our-story', $data);
@@ -252,37 +262,37 @@ class PageController extends Controller
 
     public function dualMba()
     {
-        $hero = app(DualMbaHeroSettings::class);
-        $hero->stats = array_values($hero->stats ?? []);
-        $hero->ctas = array_values($hero->ctas ?? []);
+        $hero = safe_settings(DualMbaHeroSettings::class);
+        $hero->stats = settings_array($hero->stats ?? []);
+        $hero->ctas = settings_array($hero->ctas ?? []);
 
-        $overview = app(DualMbaOverviewSettings::class);
-        $overview->cards = array_values($overview->cards ?? []);
+        $overview = safe_settings(DualMbaOverviewSettings::class);
+        $overview->cards = settings_array($overview->cards ?? []);
 
-        $twice = app(DualMbaTwiceSettings::class);
-        $twice->slides = array_values($twice->slides ?? []);
+        $twice = safe_settings(DualMbaTwiceSettings::class);
+        $twice->slides = settings_array($twice->slides ?? []);
 
-        $why = app(DualMbaWhySettings::class);
-        $why->cards = array_values($why->cards ?? []);
+        $why = safe_settings(DualMbaWhySettings::class);
+        $why->cards = settings_array($why->cards ?? []);
 
-        $specs = app(DualMbaSpecsSettings::class);
-        $specs->cards = array_values($specs->cards ?? []);
+        $specs = safe_settings(DualMbaSpecsSettings::class);
+        $specs->cards = settings_array($specs->cards ?? []);
 
-        $employers = app(DualMbaEmployersSettings::class);
-        $employers->collage = array_values($employers->collage ?? []);
-        $employers->items = array_values($employers->items ?? []);
+        $employers = safe_settings(DualMbaEmployersSettings::class);
+        $employers->collage = settings_array($employers->collage ?? []);
+        $employers->items = settings_array($employers->items ?? []);
 
-        $testimonials = app(DualMbaTestimonialsSettings::class);
-        $testimonials->items = array_values($testimonials->items ?? []);
+        $testimonials = safe_settings(DualMbaTestimonialsSettings::class);
+        $testimonials->items = settings_array($testimonials->items ?? []);
 
-        $process = app(DualMbaProcessSettings::class);
-        $process->steps = array_values($process->steps ?? []);
+        $process = safe_settings(DualMbaProcessSettings::class);
+        $process->steps = settings_array($process->steps ?? []);
 
-        $faq = app(DualMbaFaqSettings::class);
-        $faq->items = array_values($faq->items ?? []);
+        $faq = safe_settings(DualMbaFaqSettings::class);
+        $faq->items = settings_array($faq->items ?? []);
 
-        $finalCta = app(DualMbaFinalCtaSettings::class);
-        $finalCta->ctas = array_values($finalCta->ctas ?? []);
+        $finalCta = safe_settings(DualMbaFinalCtaSettings::class);
+        $finalCta->ctas = settings_array($finalCta->ctas ?? []);
 
         return view('pages.dual-mba', [
             'hero' => $hero,
@@ -295,58 +305,58 @@ class PageController extends Controller
             'process' => $process,
             'faq' => $faq,
             'finalCta' => $finalCta,
-            'dualMbaSeo' => app(DualMbaSeoSettings::class),
+            'dualMbaSeo' => safe_settings(DualMbaSeoSettings::class),
         ]);
     }
 
     public function globalBachelorsPathway()
     {
-        $snapshot = app(GbpSnapshotSettings::class);
-        $snapshot->cards = array_values($snapshot->cards ?? []);
-        $snapshot->ctas = array_values($snapshot->ctas ?? []);
+        $snapshot = safe_settings(GbpSnapshotSettings::class);
+        $snapshot->cards = settings_array($snapshot->cards ?? []);
+        $snapshot->ctas = settings_array($snapshot->ctas ?? []);
 
-        $intro = app(GbpIntroSettings::class);
-        $intro->paragraphs = array_values($intro->paragraphs ?? []);
-        $intro->highlights = array_values($intro->highlights ?? []);
+        $intro = safe_settings(GbpIntroSettings::class);
+        $intro->paragraphs = settings_array($intro->paragraphs ?? []);
+        $intro->highlights = settings_array($intro->highlights ?? []);
 
-        $overview = app(GbpOverviewSettings::class);
-        $overview->paragraphs = array_values($overview->paragraphs ?? []);
-        $overview->stages = array_values($overview->stages ?? []);
-        $overview->panel_stats = array_values($overview->panel_stats ?? []);
+        $overview = safe_settings(GbpOverviewSettings::class);
+        $overview->paragraphs = settings_array($overview->paragraphs ?? []);
+        $overview->stages = settings_array($overview->stages ?? []);
+        $overview->panel_stats = settings_array($overview->panel_stats ?? []);
 
-        $why = app(GbpWhySettings::class);
-        $why->items = array_values($why->items ?? []);
+        $why = safe_settings(GbpWhySettings::class);
+        $why->items = settings_array($why->items ?? []);
 
-        $explore = app(GbpExploreSettings::class);
-        $explore->cards = array_values($explore->cards ?? []);
+        $explore = safe_settings(GbpExploreSettings::class);
+        $explore->cards = settings_array($explore->cards ?? []);
 
-        $destinations = app(GbpDestinationsSettings::class);
-        $destinations->items = array_values($destinations->items ?? []);
+        $destinations = safe_settings(GbpDestinationsSettings::class);
+        $destinations->items = settings_array($destinations->items ?? []);
 
-        $cost = app(GbpCostSettings::class);
-        $cost->comparisons = array_values($cost->comparisons ?? []);
+        $cost = safe_settings(GbpCostSettings::class);
+        $cost->comparisons = settings_array($cost->comparisons ?? []);
 
-        $comparison = app(GbpComparisonSettings::class);
-        $comparison->cards = array_values($comparison->cards ?? []);
+        $comparison = safe_settings(GbpComparisonSettings::class);
+        $comparison->cards = settings_array($comparison->cards ?? []);
 
-        $areas = app(GbpAreasSettings::class);
-        $areas->cards = array_values($areas->cards ?? []);
+        $areas = safe_settings(GbpAreasSettings::class);
+        $areas->cards = settings_array($areas->cards ?? []);
 
-        $partners = app(GbpPartnersSettings::class);
-        $partners->cards = array_values($partners->cards ?? []);
+        $partners = safe_settings(GbpPartnersSettings::class);
+        $partners->cards = settings_array($partners->cards ?? []);
 
-        $admission = app(GbpAdmissionSettings::class);
-        $admission->eligibility = array_values($admission->eligibility ?? []);
-        $admission->entry_requirements = array_values($admission->entry_requirements ?? []);
+        $admission = safe_settings(GbpAdmissionSettings::class);
+        $admission->eligibility = settings_array($admission->eligibility ?? []);
+        $admission->entry_requirements = settings_array($admission->entry_requirements ?? []);
 
-        $documents = app(GbpDocumentsSettings::class);
-        $documents->groups = array_values($documents->groups ?? []);
+        $documents = safe_settings(GbpDocumentsSettings::class);
+        $documents->groups = settings_array($documents->groups ?? []);
 
-        $finalCta = app(GbpFinalCtaSettings::class);
-        $finalCta->ctas = array_values($finalCta->ctas ?? []);
+        $finalCta = safe_settings(GbpFinalCtaSettings::class);
+        $finalCta->ctas = settings_array($finalCta->ctas ?? []);
 
         return view('pages.global-bachelors-pathway', [
-            'hero' => app(GbpHeroSettings::class),
+            'hero' => safe_settings(GbpHeroSettings::class),
             'snapshot' => $snapshot,
             'intro' => $intro,
             'overview' => $overview,
@@ -360,46 +370,48 @@ class PageController extends Controller
             'admission' => $admission,
             'documents' => $documents,
             'finalCta' => $finalCta,
-            'gbpSeo' => app(GbpSeoSettings::class),
+            'gbpSeo' => safe_settings(GbpSeoSettings::class),
         ]);
     }
 
     public function mastersPathway()
     {
-        $hero = app(MpHeroSettings::class);
-        $hero->paragraphs = array_values($hero->paragraphs ?? []);
-        $hero->ctas = array_values($hero->ctas ?? []);
-        $hero->route_steps = array_values($hero->route_steps ?? []);
+        $hero = safe_settings(MpHeroSettings::class);
+        $hero->paragraphs = settings_array($hero->paragraphs ?? []);
+        $hero->ctas = settings_array($hero->ctas ?? []);
+        $hero->route_steps = settings_array($hero->route_steps ?? []);
 
-        $overview = app(MpOverviewSettings::class);
-        $overview->paragraphs = array_values($overview->paragraphs ?? []);
-        $overview->phases = array_values($overview->phases ?? []);
+        $overview = safe_settings(MpOverviewSettings::class);
+        $overview->paragraphs = settings_array($overview->paragraphs ?? []);
+        $overview->phases = settings_array($overview->phases ?? []);
 
-        $how = app(MpHowSettings::class);
-        $how->phases = array_values(array_map(function ($phase) {
-            $phase['facts'] = array_values($phase['facts'] ?? []);
+        $how = safe_settings(MpHowSettings::class);
+        $how->phases = collect(settings_array($how->phases ?? []))
+            ->filter(fn ($phase) => is_array($phase))
+            ->map(fn ($phase) => array_merge($phase, [
+                'facts' => settings_array(data_get($phase, 'facts')),
+            ]))
+            ->values()
+            ->all();
 
-            return $phase;
-        }, $how->phases ?? []));
+        $destinations = safe_settings(MpDestinationsSettings::class);
+        $destinations->items = settings_array($destinations->items ?? []);
 
-        $destinations = app(MpDestinationsSettings::class);
-        $destinations->items = array_values($destinations->items ?? []);
+        $why = safe_settings(MpWhySettings::class);
+        $why->items = settings_array($why->items ?? []);
 
-        $why = app(MpWhySettings::class);
-        $why->items = array_values($why->items ?? []);
+        $audience = safe_settings(MpAudienceSettings::class);
+        $audience->items = settings_array($audience->items ?? []);
 
-        $audience = app(MpAudienceSettings::class);
-        $audience->items = array_values($audience->items ?? []);
+        $requirements = safe_settings(MpRequirementsSettings::class);
+        $requirements->items = settings_array($requirements->items ?? []);
 
-        $requirements = app(MpRequirementsSettings::class);
-        $requirements->items = array_values($requirements->items ?? []);
+        $process = safe_settings(MpProcessSettings::class);
+        $process->steps = settings_array($process->steps ?? []);
 
-        $process = app(MpProcessSettings::class);
-        $process->steps = array_values($process->steps ?? []);
-
-        $finalCta = app(MpFinalCtaSettings::class);
-        $finalCta->ctas = array_values($finalCta->ctas ?? []);
-        $finalCta->contacts = array_values($finalCta->contacts ?? []);
+        $finalCta = safe_settings(MpFinalCtaSettings::class);
+        $finalCta->ctas = settings_array($finalCta->ctas ?? []);
+        $finalCta->contacts = settings_array($finalCta->contacts ?? []);
 
         return view('pages.masters-pathway', [
             'hero' => $hero,
@@ -410,15 +422,15 @@ class PageController extends Controller
             'audience' => $audience,
             'requirements' => $requirements,
             'process' => $process,
-            'notice' => app(MpNoticeSettings::class),
+            'notice' => safe_settings(MpNoticeSettings::class),
             'finalCta' => $finalCta,
-            'mpSeo' => app(MpSeoSettings::class),
+            'mpSeo' => safe_settings(MpSeoSettings::class),
         ]);
     }
 
     public function aboutUs()
     {
-        return view('pages.about-us');
+        return redirect()->route('our-story', [], 301);
     }
 
     public function founder()
@@ -428,7 +440,11 @@ class PageController extends Controller
 
     public function contact()
     {
-        return view('pages.contact');
+        return view('pages.contact', [
+            'contactPage' => safe_settings(ContactPageSettings::class),
+            'contactSeo' => safe_settings(\App\Settings\ContactSeoSettings::class),
+            'site' => safe_settings(\App\Settings\SiteSettings::class),
+        ]);
     }
 
     public function contactSubmit(Request $request)
@@ -440,134 +456,150 @@ class PageController extends Controller
             'message' => 'required|string|max:2000',
         ]);
 
-        return back()->with('success', 'Thank you! We will contact you shortly.');
+        $contactSettings = safe_settings(ContactPageSettings::class);
+        $successMessage = $contactSettings->success_message ?? 'Thank you! We will contact you shortly.';
+
+        return back()->with('success', $successMessage);
     }
 
     public function csrCommunityImpact()
     {
-        $focus = app(CsrFocusSettings::class);
-        $focus->items = array_values($focus->items ?? []);
+        $focus = safe_settings(CsrFocusSettings::class);
+        $focus->items = settings_array($focus->items ?? []);
 
-        $gallery = app(CsrGallerySettings::class);
-        $gallery->items = array_values($gallery->items ?? []);
+        $gallery = safe_settings(CsrGallerySettings::class);
+        $gallery->items = settings_array($gallery->items ?? []);
 
-        $impact = app(CsrImpactSettings::class);
-        $impact->items = array_values($impact->items ?? []);
+        $impact = safe_settings(CsrImpactSettings::class);
+        $impact->items = settings_array($impact->items ?? []);
 
-        $scholarship = app(CsrScholarshipSettings::class);
-        $scholarship->items = array_values($scholarship->items ?? []);
+        $scholarship = safe_settings(CsrScholarshipSettings::class);
+        $scholarship->items = settings_array($scholarship->items ?? []);
 
         return view('pages.csr-community-impact', [
-            'hero' => app(CsrHeroSettings::class),
-            'commitment' => app(CsrCommitmentSettings::class),
+            'hero' => safe_settings(CsrHeroSettings::class),
+            'commitment' => safe_settings(CsrCommitmentSettings::class),
             'focus' => $focus,
             'gallery' => $gallery,
             'impact' => $impact,
             'scholarship' => $scholarship,
-            'csrSeo' => app(CsrSeoSettings::class),
+            'csrSeo' => safe_settings(CsrSeoSettings::class),
         ]);
     }
 
     public function pathwayPrograms()
     {
-        $settings = app(GlobalOpportunitiesSettings::class);
+        $settings = safe_settings(GlobalOpportunitiesSettings::class);
+        $pathwaySettings = safe_settings(PathwayProgramsSettings::class);
 
         return view('pages.pathway-programs', [
-            'hero' => app(PathwayProgramsSettings::class),
-            'overview' => app(PathwayProgramsSettings::class),
+            'hero' => $pathwaySettings,
+            'overview' => $pathwaySettings,
+            'pathwayPrograms' => $pathwaySettings,
             'globalOpportunities' => $settings,
-            'cards' => array_values($settings->pathways ?? []),
-            'pathwayProgramsSeo' => app(PathwayProgramsSeoSettings::class),
+            'cards' => settings_array($settings->pathways ?? []),
+            'pathwayProgramsSeo' => safe_settings(PathwayProgramsSeoSettings::class),
         ]);
     }
 
     public function gallery()
     {
-        $photos = \App\Models\MediaGalleryPhoto::select(
-            'id',
-            'image_url',
-            'caption',
-            'category',
-            'size',
-            'sort_order',
-            'is_active'
-        )
-            ->where('is_active', true)
-            ->orderBy('sort_order')
-            ->get();
+        $collections = PublicContentCache::remember(PublicContentCache::MEDIA_GALLERY, function () {
+            $photos = \App\Models\MediaGalleryPhoto::select(
+                'id',
+                'image_url',
+                'caption',
+                'category',
+                'size',
+                'sort_order',
+                'is_active'
+            )
+                ->where('is_active', true)
+                ->orderBy('sort_order')
+                ->get();
 
-        $videos = \App\Models\MediaGalleryVideo::select(
-            'id',
-            'title',
-            'video_url',
-            'thumbnail_url',
-            'duration',
-            'category',
-            'sort_order',
-            'is_active'
-        )
-            ->where('is_active', true)
-            ->orderBy('sort_order')
-            ->get();
+            $videos = \App\Models\MediaGalleryVideo::select(
+                'id',
+                'title',
+                'video_url',
+                'thumbnail_url',
+                'duration',
+                'category',
+                'sort_order',
+                'is_active'
+            )
+                ->where('is_active', true)
+                ->orderBy('sort_order')
+                ->get();
 
-        // Events power the shared upcoming-events section (same source as homepage).
-        $events = \App\Models\Event::select('id', 'title', 'description', 'event_date', 'event_type', 'location', 'link_url')
-            ->where('is_active', true)
-            ->orderBy('event_date', 'desc')
-            ->limit(10)
-            ->get();
+            $events = Event::select('id', 'title', 'description', 'event_date', 'event_type', 'location', 'link_url')
+                ->where('is_active', true)
+                ->orderBy('event_date', 'desc')
+                ->limit(10)
+                ->get();
 
-        $data = [
-            'photos' => $photos,
-            'videos' => $videos,
-            'events' => $events,
-            'photoCount' => $photos->count(),
-            'videoCount' => $videos->count(),
-            'mediaGallerySeo' => app(MediaGallerySeoSettings::class),
-        ];
+            return [
+                'photos' => $photos,
+                'videos' => $videos,
+                'events' => $events,
+                'photoCount' => $photos->count(),
+                'videoCount' => $videos->count(),
+            ];
+        });
+
+        $data = array_merge($collections, [
+            'mediaGalleryPage' => safe_settings(MediaGalleryPageSettings::class),
+            'mediaGallerySeo' => safe_settings(MediaGallerySeoSettings::class),
+        ]);
 
         return view('pages.media-gallery', $data);
     }
 
     public function globalUniversityPartners()
     {
-        $galleryItems = PartnershipGalleryItem::query()
-            ->where('is_active', true)
-            ->orderBy('sort_order')
-            ->get();
-
-        $categoryCounts = $galleryItems->countBy('category');
-
-        $galleryCategories = collect([
-            ['slug' => 'all', 'name' => 'All', 'count' => $galleryItems->count()],
-        ]);
-
-        foreach (PartnershipGalleryItem::CATEGORIES as $slug => $name) {
-            $count = (int) ($categoryCounts[$slug] ?? 0);
-            if ($count > 0) {
-                $galleryCategories->push([
-                    'slug' => $slug,
-                    'name' => $name,
-                    'count' => $count,
-                ]);
-            }
-        }
-
-        return view('pages.global-university-partners', [
-            'hero' => app(GlobalPartnersHeroSettings::class),
-            'overview' => app(GlobalPartnersOverviewSettings::class),
-            'cards' => app(GlobalPartnersCardsSettings::class),
-            'whyPartnerships' => app(GlobalPartnersWhySettings::class),
-            'benefits' => app(GlobalPartnersBenefitsSettings::class),
-            'journey' => app(GlobalPartnersJourneySettings::class),
-            'globalPartnersSeo' => app(GlobalPartnersSeoSettings::class),
-            'partnerUniversities' => GupPartnerUniversity::query()
+        $collections = PublicContentCache::remember(PublicContentCache::GLOBAL_PARTNERS, function () {
+            $galleryItems = PartnershipGalleryItem::query()
+                ->select('id', 'image_url', 'category', 'badge', 'event_date', 'title', 'caption', 'size', 'sort_order')
                 ->where('is_active', true)
                 ->orderBy('sort_order')
-                ->get(),
-            'galleryItems' => $galleryItems,
-            'galleryCategories' => $galleryCategories,
-        ]);
+                ->get();
+
+            $categoryCounts = $galleryItems->countBy('category');
+
+            $galleryCategories = collect([
+                ['slug' => 'all', 'name' => 'All', 'count' => $galleryItems->count()],
+            ]);
+
+            foreach (PartnershipGalleryItem::CATEGORIES as $slug => $name) {
+                $count = (int) ($categoryCounts[$slug] ?? 0);
+                if ($count > 0) {
+                    $galleryCategories->push([
+                        'slug' => $slug,
+                        'name' => $name,
+                        'count' => $count,
+                    ]);
+                }
+            }
+
+            $partnerUniversities = GupPartnerUniversity::query()
+                ->select('id', 'slug', 'name', 'abbreviation', 'country', 'flag_emoji', 'recognition', 'logo_url', 'cta_url', 'sort_order')
+                ->where('is_active', true)
+                ->hasPublicSlug()
+                ->orderBy('sort_order')
+                ->get();
+
+            return compact('galleryItems', 'galleryCategories', 'partnerUniversities');
+        });
+
+        return view('pages.global-university-partners', array_merge($collections, [
+            'hero' => safe_settings(GlobalPartnersHeroSettings::class),
+            'overview' => safe_settings(GlobalPartnersOverviewSettings::class),
+            'cards' => safe_settings(GlobalPartnersCardsSettings::class),
+            'whyPartnerships' => safe_settings(GlobalPartnersWhySettings::class),
+            'benefits' => safe_settings(GlobalPartnersBenefitsSettings::class),
+            'journey' => safe_settings(GlobalPartnersJourneySettings::class),
+            'globalPartnersSeo' => safe_settings(GlobalPartnersSeoSettings::class),
+        ]));
     }
 
     /**
@@ -575,72 +607,72 @@ class PageController extends Controller
      */
     public function leadershipBoard()
     {
-        $leaders = app(LeadershipLeadersSettings::class);
-        $leaders->items = array_values($leaders->items ?? []);
+        $leaders = safe_settings(LeadershipLeadersSettings::class);
+        $leaders->items = settings_array($leaders->items ?? []);
 
         return view('pages.leadership', [
-            'hero' => app(LeadershipHeroSettings::class),
+            'hero' => safe_settings(LeadershipHeroSettings::class),
             'leaders' => $leaders,
-            'leadershipSeo' => app(LeadershipSeoSettings::class),
+            'leadershipSeo' => safe_settings(LeadershipSeoSettings::class),
         ]);
     }
     /** /global-opportunities — Global Opportunities landing page */
     public function globalOpportunities()
     {
-        $settings = app(GlobalOpportunitiesSettings::class);
+        $settings = safe_settings(GlobalOpportunitiesSettings::class);
 
         return view('pages.global-opportunities', [
-            'hero' => app(GlobalOpportunitiesPageSettings::class),
-            'pageSettings' => app(GlobalOpportunitiesPageSettings::class),
-            'opportunityItems' => array_values($settings->opportunities ?? []),
-            'globalOpportunitiesSeo' => app(GlobalOpportunitiesSeoSettings::class),
+            'hero' => safe_settings(GlobalOpportunitiesPageSettings::class),
+            'pageSettings' => safe_settings(GlobalOpportunitiesPageSettings::class),
+            'opportunityItems' => settings_array($settings->opportunities ?? []),
+            'globalOpportunitiesSeo' => safe_settings(GlobalOpportunitiesSeoSettings::class),
         ]);
     }
 
     public function edutainment()
     {
-        $intro = app(EdutainmentIntroSettings::class);
-        $intro->ctas = array_values($intro->ctas ?? []);
+        $intro = safe_settings(EdutainmentIntroSettings::class);
+        $intro->ctas = settings_array($intro->ctas ?? []);
 
-        $whatIs = app(EdutainmentWhatIsSettings::class);
-        $whatIs->items = array_values($whatIs->items ?? []);
+        $whatIs = safe_settings(EdutainmentWhatIsSettings::class);
+        $whatIs->items = settings_array($whatIs->items ?? []);
 
-        $learning = app(EdutainmentLearningBeyondSettings::class);
-        $learning->cards = array_values($learning->cards ?? []);
+        $learning = safe_settings(EdutainmentLearningBeyondSettings::class);
+        $learning->cards = settings_array($learning->cards ?? []);
 
-        $whoFor = app(EdutainmentWhoForSettings::class);
-        $whoFor->cards = array_values($whoFor->cards ?? []);
-        $whoFor->ctas = array_values($whoFor->ctas ?? []);
+        $whoFor = safe_settings(EdutainmentWhoForSettings::class);
+        $whoFor->cards = settings_array($whoFor->cards ?? []);
+        $whoFor->ctas = settings_array($whoFor->ctas ?? []);
 
-        $programmes = app(EdutainmentProgrammesSettings::class);
-        $programmes->cards = array_values($programmes->cards ?? []);
-        $programmes->china_items = array_values($programmes->china_items ?? []);
+        $programmes = safe_settings(EdutainmentProgrammesSettings::class);
+        $programmes->cards = settings_array($programmes->cards ?? []);
+        $programmes->china_items = settings_array($programmes->china_items ?? []);
 
-        $themes = app(EdutainmentThemesSettings::class);
-        $themes->cards = array_values($themes->cards ?? []);
+        $themes = safe_settings(EdutainmentThemesSettings::class);
+        $themes->cards = settings_array($themes->cards ?? []);
 
-        $experiences = app(EdutainmentExperiencesSettings::class);
-        $experiences->categories = array_values($experiences->categories ?? []);
+        $experiences = safe_settings(EdutainmentExperiencesSettings::class);
+        $experiences->categories = settings_array($experiences->categories ?? []);
 
-        $whyChoose = app(EdutainmentWhyChooseSettings::class);
-        $whyChoose->cards = array_values($whyChoose->cards ?? []);
+        $whyChoose = safe_settings(EdutainmentWhyChooseSettings::class);
+        $whyChoose->cards = settings_array($whyChoose->cards ?? []);
 
-        $packages = app(EdutainmentPackagesSettings::class);
-        $packages->items = array_values($packages->items ?? []);
-        $packages->ctas = array_values($packages->ctas ?? []);
+        $packages = safe_settings(EdutainmentPackagesSettings::class);
+        $packages->items = settings_array($packages->items ?? []);
+        $packages->ctas = settings_array($packages->ctas ?? []);
 
-        $institutions = app(EdutainmentInstitutionsSettings::class);
-        $institutions->tiles = array_values($institutions->tiles ?? []);
-        $institutions->ctas = array_values($institutions->ctas ?? []);
+        $institutions = safe_settings(EdutainmentInstitutionsSettings::class);
+        $institutions->tiles = settings_array($institutions->tiles ?? []);
+        $institutions->ctas = settings_array($institutions->ctas ?? []);
 
-        $faq = app(EdutainmentFaqSettings::class);
-        $faq->items = array_values($faq->items ?? []);
+        $faq = safe_settings(EdutainmentFaqSettings::class);
+        $faq->items = settings_array($faq->items ?? []);
 
-        $finalCta = app(EdutainmentFinalCtaSettings::class);
-        $finalCta->ctas = array_values($finalCta->ctas ?? []);
+        $finalCta = safe_settings(EdutainmentFinalCtaSettings::class);
+        $finalCta->ctas = settings_array($finalCta->ctas ?? []);
 
         return view('pages.edutainment', [
-            'hero' => app(EdutainmentHeroSettings::class),
+            'hero' => safe_settings(EdutainmentHeroSettings::class),
             'intro' => $intro,
             'whatIs' => $whatIs,
             'learning' => $learning,
@@ -653,23 +685,90 @@ class PageController extends Controller
             'institutions' => $institutions,
             'faq' => $faq,
             'finalCta' => $finalCta,
-            'edutainmentSeo' => app(EdutainmentSeoSettings::class),
+            'edutainmentSeo' => safe_settings(EdutainmentSeoSettings::class),
         ]);
     }
 
     /** /events — editorial events page */
     public function events()
     {
+        $events = PublicContentCache::remember(PublicContentCache::EVENTS, function () {
+            return Event::select('id', 'title', 'description', 'event_date', 'event_type', 'location', 'link_url')
+                ->where('is_active', true)
+                ->orderBy('event_date', 'asc')
+                ->get();
+        });
+
         return view('pages.events', [
-            'eventsSeo' => app(EventsSeoSettings::class),
+            'eventsPage' => safe_settings(EventsPageSettings::class),
+            'events' => $events,
+            'eventsSeo' => safe_settings(EventsSeoSettings::class),
         ]);
     }
 
     /** /student-success — editorial student stories page */
     public function studentSuccess()
     {
+        $batch = 9;
+        $storyQuery = StudentSuccessStory::query()->where('is_active', true)->orderBy('sort_order')->orderBy('id');
+        $storyTotal = (clone $storyQuery)->count();
+        $stories = $storyQuery->limit($batch)->get()->map->cardPayload()->values();
+
+        $videoQuery = StudentSuccessVideo::query()
+            ->where('is_active', true)
+            ->whereNotNull('youtube_url')
+            ->where('youtube_url', '!=', '')
+            ->orderBy('sort_order')
+            ->orderBy('id');
+        $videoTotal = (clone $videoQuery)->count();
+        $videoStories = $videoQuery->limit($batch)->get()->map->cardPayload()->values();
+
         return view('pages.student-success', [
-            'studentSuccessSeo' => app(StudentSuccessSeoSettings::class),
+            'studentSuccessPage' => safe_settings(StudentSuccessPageSettings::class),
+            'studentSuccessSeo' => safe_settings(StudentSuccessSeoSettings::class),
+            'stories' => $stories,
+            'storyTotal' => $storyTotal,
+            'videoStories' => $videoStories,
+            'videoTotal' => $videoTotal,
+        ]);
+    }
+
+    public function studentSuccessStories(Request $request)
+    {
+        return $this->studentSuccessBatch(
+            StudentSuccessStory::query()->where('is_active', true)->orderBy('sort_order')->orderBy('id'),
+            (int) $request->query('offset', 0),
+            'pages.student-success._story-cards',
+            'stories'
+        );
+    }
+
+    public function studentSuccessVideos(Request $request)
+    {
+        return $this->studentSuccessBatch(
+            StudentSuccessVideo::query()
+                ->where('is_active', true)
+                ->whereNotNull('youtube_url')
+                ->where('youtube_url', '!=', '')
+                ->orderBy('sort_order')
+                ->orderBy('id'),
+            (int) $request->query('offset', 0),
+            'pages.student-success._video-cards',
+            'videos'
+        );
+    }
+
+    private function studentSuccessBatch($query, int $offset, string $view, string $assign): \Illuminate\Http\JsonResponse
+    {
+        $batch = 9;
+        $offset = max(0, $offset);
+        $total = (clone $query)->count();
+        $items = $query->offset($offset)->limit($batch)->get()->map->cardPayload()->values();
+
+        return response()->json([
+            'html' => view($view, [$assign => $items])->render(),
+            'has_more' => ($offset + $items->count()) < $total,
+            'next_offset' => $offset + $items->count(),
         ]);
     }
 

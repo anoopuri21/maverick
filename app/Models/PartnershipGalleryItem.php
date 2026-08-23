@@ -53,4 +53,13 @@ class PartnershipGalleryItem extends Model
     {
         return $this->event_date?->format('d M Y');
     }
+
+    protected static function booted(): void
+    {
+        static::saving(function (self $item) {
+            $item->category = filled($item->category) ? $item->category : 'mou-signings';
+            $item->badge = (string) ($item->badge ?? '');
+            $item->size = filled($item->size) ? $item->size : 'medium';
+        });
+    }
 }

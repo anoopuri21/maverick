@@ -4,7 +4,7 @@
 @section('meta_description', $article->meta_description ?? $article->excerpt)
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('css/pages/news.css') }}">
+    <link rel="stylesheet" href="{{ cached_asset('css/pages/news.css') }}">
 @endpush
 
 @section('content')
@@ -71,8 +71,8 @@
 
             <div class="news-editorial-header__byline">
                 <div class="news-editorial-header__author">
-                    @if($article->author_avatar_url)
-                        <img src="{{ $article->author_avatar_url }}"
+                    @if($url = media_url($article->author_avatar_url ?? null))
+                        <img src="{{ $url }}"
                              alt="{{ $article->author_name }}"
                              class="news-editorial-header__author-avatar"
                              width="34" height="34" loading="lazy">
@@ -104,7 +104,7 @@
 
                 @if(!empty($article->author_bio))
                     <span class="news-editorial-header__byline-divider" aria-hidden="true">&bull;</span>
-                    <span class="news-editorial-header__author-bio">{{ $article->author_bio }}</span>
+                    <span class="news-editorial-header__author-bio">{!! rich_html($article->author_bio ?? null) !!}</span>
                 @endif
             </div>
         </div>
@@ -255,7 +255,7 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('assets/js/blog.js') }}" defer></script>
+    <script src="{{ cached_asset('assets/js/blog.js') }}" defer></script>
     <script>
     document.addEventListener('DOMContentLoaded', function () {
         // Copy-to-clipboard for share bar

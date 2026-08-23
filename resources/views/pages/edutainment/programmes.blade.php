@@ -42,7 +42,7 @@
             @endif
             <h3 class="edu-programmes__card-title">{{ $card['title'] }}</h3>
             @if(filled($card['description'] ?? null))
-            <p class="edu-programmes__card-desc">{{ $card['description'] }}</p>
+            <p class="edu-programmes__card-desc">{!! rich_html($card['description'] ?? null) !!}</p>
             @endif
             @if($bullets->isNotEmpty() && ! $isFeatured)
             <ul class="edu-programmes__card-list">

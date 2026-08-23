@@ -28,16 +28,16 @@
       </button>
       <div class="events__scroll" data-scroll-container data-lenis-prevent>
         <div class="events__track">
-          @forelse($events as $event)
+          @forelse(($events ?? collect()) as $event)
             <article class="events__card fade-up">
               <div class="events__card-date">
-                <span class="events__date-day">{{ $event->event_date->format('d') }}</span>
-                <span class="events__date-month">{{ strtoupper($event->event_date->format('M Y')) }}</span>
+                <span class="events__date-day">{{ $event->event_date?->format('d') ?? '' }}</span>
+                <span class="events__date-month">{{ $event->event_date ? strtoupper($event->event_date->format('M Y')) : '' }}</span>
               </div>
               <div style="display:flex; flex-wrap:wrap; height:100%; align-content:space-between;">
                 <h3 class="events__card-title">{{ $event->title }}</h3>
                 @if($event->description)
-                  <p class="events__card-desc">{{ $event->description }}</p>
+                  <p class="events__card-desc">{!! rich_html($event->description ?? null) !!}</p>
                 @endif
               </div>
             </article>

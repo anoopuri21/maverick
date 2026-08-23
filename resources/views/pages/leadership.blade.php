@@ -14,8 +14,8 @@
 @endif
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('css/pages/leadership.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/components/cinematic-hero.css') }}">
+    <link rel="stylesheet" href="{{ cached_asset('css/pages/leadership.css') }}">
+    <link rel="stylesheet" href="{{ cached_asset('assets/css/components/cinematic-hero.css') }}">
 @endpush
 
 @section('content')
@@ -23,9 +23,7 @@
 
 
 @php
-    // Admin-managed via LeadershipHeroSettings / LeadershipLeadersSettings.
-    $hero = app(\App\Settings\LeadershipHeroSettings::class);
-    $executiveTeam = collect($leaders->items ?? []);
+    $executiveTeam = collect(settings_array($leaders->items ?? []));
 @endphp
 
 
@@ -34,8 +32,8 @@
 ═══════════════════════════════════════════ --}}
 <section class="cinematic-hero cinematic-hero--short" aria-label="Leadership Hero">
     <div class="cinematic-hero__bg" aria-hidden="true">
-        @if(filled($hero->background_image))
-        <div class="cinematic-hero__bg-image" style="background-image: url('{{ $hero->background_image }}')"></div>
+        @if($url = media_url($hero->background_image ?? null))
+        <div class="cinematic-hero__bg-image" style="background-image: url('{{ $url }}')"></div>
         @endif
         <div class="cinematic-hero__gradient"></div>
         <div class="cinematic-hero__noise"></div>
@@ -76,7 +74,7 @@
         </h1>
         @endif
         @if(filled($hero->description))
-        <p class="cinematic-hero__description">{{ $hero->description }}</p>
+        <p class="cinematic-hero__description">{!! rich_html($hero->description ?? null) !!}</p>
         @endif
         <div class="cinematic-hero__scroll-hint" aria-hidden="true">
             <span class="cinematic-hero__scroll-text">Scroll to explore</span>
@@ -115,9 +113,9 @@
             @foreach($executiveTeam as $member)
             @if(filled($member['name'] ?? null) || filled($member['designation'] ?? null) || filled($member['bio'] ?? null) || filled($member['image_url'] ?? null))
             <article class="team-card">
-                @if(filled($member['image_url'] ?? null))
+                @if($url = media_url($member['image_url'] ?? null))
                 <div class="team-card__image-wrapper">
-                    <img src="{{ $member['image_url'] }}"
+                    <img src="{{ $url }}"
                          alt="{{ $member['name'] ?? '' }}"
                          class="team-card__image"
                          loading="lazy">
@@ -131,10 +129,10 @@
                     <p class="team-card__designation">{{ strtoupper($member['designation']) }}</p>
                     @endif
                     @if(filled($member['bio'] ?? null))
-                    <p class="team-card__bio">{{ $member['bio'] }}</p>
+                    <p class="team-card__bio">{!! rich_html($member['bio'] ?? null) !!}</p>
                     @endif
                     @if(filled($member['linkedin_url'] ?? null) && $member['linkedin_url'] !== '#')
-                    <a href="{{ $member['linkedin_url'] }}" class="team-card__linkedin" target="_blank" rel="noopener">
+                    <a href="{{ edu_href($member['linkedin_url']) }}" class="team-card__linkedin" target="_blank" rel="noopener">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/>
                         </svg>

@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use App\Concerns\EnsuresUniqueSlug;
 use App\Concerns\HasMediaAssets;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class GupPartnerUniversity extends Model
 {
+    use EnsuresUniqueSlug;
     use HasMediaAssets;
     use SoftDeletes;
 
@@ -30,6 +32,14 @@ class GupPartnerUniversity extends Model
         'sort_order' => 'integer',
     ];
 
+    protected static function booted(): void
+    {
+        static::saving(function (self $uni) {
+            $uni->name = (string) ($uni->name ?? '');
+            $uni->country = (string) ($uni->country ?? '');
+        });
+    }
+
     public function getLogoAttribute(): ?string
     {
         return media_url($this->getMediaUrl('logo_url'));
@@ -41,8 +51,8 @@ class GupPartnerUniversity extends Model
             return $this->abbreviation;
         }
 
-        return collect(explode(' ', $this->name))
-            ->filter()
+        return collect(explode(' ', (string) ($this->name ?? '')))
+            ->filter(fn ($word) => $word !== '')
             ->map(fn (string $word) => mb_strtoupper(mb_substr($word, 0, 1)))
             ->take(4)
             ->implode('');

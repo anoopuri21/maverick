@@ -14,7 +14,7 @@
 @endif
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('assets/css/contact.css') }}" />
+    <link rel="stylesheet" href="{{ cached_asset('assets/css/contact.css') }}" />
 @endpush
 
 @section('content')
@@ -23,10 +23,10 @@
 
         {{-- A) PAGE HERO --}}
         <div class="contact-hero" data-scroll-reveal>
-            <span class="contact-hero__eyebrow">Contact Us</span>
-            <h1 class="contact-hero__title">Let's Start a Conversation</h1>
+            <span class="contact-hero__eyebrow">{{ $contactPage->eyebrow ?: 'Contact Us' }}</span>
+            <h1 class="contact-hero__title">{{ $contactPage->heading ?: "Let's Start a Conversation" }}</h1>
             <p class="contact-hero__desc">
-                Whether you are exploring our executive postgraduate pathways, seeking a corporate partnership, or require technical admissions support, our advisory team is here to assist you.
+                {!! html_filled($contactPage->description ?? null) ? rich_html($contactPage->description ?? null) : 'Whether you are exploring our executive postgraduate pathways, seeking a corporate partnership, or require technical admissions support, our advisory team is here to assist you.' !!}
             </p>
         </div>
 
@@ -40,7 +40,7 @@
                 @if(!empty($site->address))
                     <x-contact.info-card
                         icon="address"
-                        label="Campus Location"
+                        :label="$contactPage->label_address ?? 'Campus Location'"
                         :value="$site->address"
                         :link="'https://www.google.com/maps/search/?api=1&query=' . urlencode($site->address)"
                         linkText="Get Directions"
@@ -51,7 +51,7 @@
                 @if(!empty($site->email))
                     <x-contact.info-card
                         icon="email"
-                        label="Email Inquiry"
+                        :label="$contactPage->label_email ?? 'Email Inquiry'"
                         :value="$site->email"
                         :link="'mailto:' . $site->email"
                     />
@@ -61,7 +61,7 @@
                 @if(!empty($site->phone))
                     <x-contact.info-card
                         icon="phone"
-                        label="Admissions & Hotlines"
+                        :label="$contactPage->label_phone ?? 'Admissions & Hotlines'"
                         :value="$site->phone"
                         :secondary="$site->phone_secondary ?? null"
                         :link="'tel:' . str_replace(' ', '', $site->phone)"
@@ -72,14 +72,14 @@
                 @if(!empty($site->office_hours))
                     <x-contact.info-card
                         icon="office_hours"
-                        label="Office Hours"
+                        :label="$contactPage->label_hours ?? 'Office Hours'"
                         :value="$site->office_hours"
                     />
                 @endif
 
                 {{-- Social Icons --}}
                 <div class="contact-social-section" data-scroll-reveal>
-                    <span class="contact-info-card__label" style="display: block; margin: 0 0 12px 12px;">Follow Our Insights</span>
+                    <span class="contact-info-card__label" style="display: block; margin: 0 0 12px 12px;">{{ $contactPage->label_social ?? 'Follow Our Insights' }}</span>
                     <x-contact.social-icons :site="$site" />
                 </div>
 
@@ -87,8 +87,8 @@
 
             {{-- RIGHT COLUMN — Contact Form --}}
             <div class="contact-card contact-form-container" data-scroll-reveal>
-                <h2 class="contact-form__title">Send Us a Message</h2>
-                <p class="contact-form__subtitle">Fill in the fields below, and our program directors will respond to you within 24 hours.</p>
+                <h2 class="contact-form__title">{{ $contactPage->form_title ?? 'Send Us a Message' }}</h2>
+                <p class="contact-form__subtitle">{{ $contactPage->form_subtitle ?? 'Fill in the fields below, and our program directors will respond to you within 24 hours.' }}</p>
 
                 {{-- Stylish custom alert for success message --}}
                 @if(session('success'))
@@ -98,7 +98,7 @@
                             <path d="m9 12 2 2 4-4"/>
                         </svg>
                         <div class="contact-alert__text">
-                            {{ session('success') }}
+                            {{ session('success') ?: ($contactPage->success_message ?? 'Thank you for your message. Our team will respond within 24 hours.') }}
                         </div>
                     </div>
                 @endif

@@ -7,7 +7,7 @@ use App\Filament\Forms\Components\MediaPicker;
 use App\Settings\GlobalOpportunitiesPageSettings;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Section;
-use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Pages\SettingsPage;
@@ -29,26 +29,25 @@ class ManageGlobalOpportunitiesPage extends SettingsPage
             Section::make('Hero Section')->schema([
                 Grid::make(2)->schema([
                     TextInput::make('tag')->label('Eyebrow Tag')->columnSpanFull(),
-                    TextInput::make('heading')->label('Heading (Line 1)')->required(),
-                    TextInput::make('heading_italic')->label('Heading (Italic)')->required(),
+                    TextInput::make('heading')->label('Heading (Line 1)'),
+                    TextInput::make('heading_italic')->label('Heading (Italic)'),
                 ]),
-                Textarea::make('description')->label('Sub Heading / Description')->rows(3)->columnSpanFull(),
+                RichEditor::make('description')->label('Sub Heading / Description')->columnSpanFull(),
                 Grid::make(2)->schema([
                     MediaPicker::forField('background_image', 'global-opportunities-page')
-                        ->label('Background Image (Media Library)')
-                        ->helperText('Upload from library (priority) or use the URL field below.'),
-                    TextInput::make('background_image_url_input')->label('Or Background Image URL')->url(),
+                    ->label('Background Image (Media Library)')
+                    ->helperText('Upload from library (priority) or use the URL field below.'),
+                    TextInput::make('background_image_url_input')->label('Or Background Image URL')->url()->nullable(),
                 ]),
             ]),
 
             Section::make('Overview Section')->schema([
                 TextInput::make('overview_label')->label('Label / Eyebrow')->columnSpanFull(),
                 Grid::make(2)->schema([
-                    TextInput::make('overview_heading')->label('Heading (Line 1)')->required(),
-                    TextInput::make('overview_heading_italic')->label('Heading (Italic)')->required(),
+                    TextInput::make('overview_heading')->label('Heading (Line 1)'),
+                    TextInput::make('overview_heading_italic')->label('Heading (Italic)'),
                 ]),
-                Textarea::make('overview_body')->label('Body Content')
-                    ->rows(5)
+                RichEditor::make('overview_body')->label('Body Content')
                     ->helperText('Write in a clear, human, SEO-friendly tone. Separate paragraphs with blank lines.')
                     ->columnSpanFull(),
             ]),
@@ -56,8 +55,8 @@ class ManageGlobalOpportunitiesPage extends SettingsPage
             Section::make('Cards Section Header')->schema([
                 Grid::make(2)->schema([
                     TextInput::make('cards_label')->label('Label / Eyebrow'),
-                    TextInput::make('cards_heading')->label('Heading (Line 1)')->required(),
-                    TextInput::make('cards_heading_italic')->label('Heading (Italic)')->required(),
+                    TextInput::make('cards_heading')->label('Heading (Line 1)'),
+                    TextInput::make('cards_heading_italic')->label('Heading (Italic)'),
                 ]),
             ]),
         ]);

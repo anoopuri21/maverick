@@ -14,8 +14,8 @@
 @endif
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('assets/css/components/cinematic-hero.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/pages/faculty-voice.css') }}">
+    <link rel="stylesheet" href="{{ cached_asset('assets/css/components/cinematic-hero.css') }}">
+    <link rel="stylesheet" href="{{ cached_asset('css/pages/faculty-voice.css') }}">
 @endpush
 
 @section('content')
@@ -23,7 +23,7 @@
 
     <section class="cinematic-hero cinematic-hero--short fv-hero" aria-label="Faculty Voice">
         <div class="cinematic-hero__bg" aria-hidden="true">
-            <div class="cinematic-hero__bg-image" @style(['background-image: url(' . asset('assets/images/homepage/mba.jpg') . ')'])></div>
+            <div class="cinematic-hero__bg-image" @style(['background-image: url(' . ($facultyVoicePage->hero_background_image ?? cached_asset('assets/images/homepage/mba.jpg')) . ')'])></div>
             <div class="cinematic-hero__gradient"></div>
             <div class="cinematic-hero__noise"></div>
             <div class="cinematic-hero__scanline"></div>
@@ -38,10 +38,17 @@
         <div class="container cinematic-hero__content">
             <span class="cinematic-hero__eyebrow">
                 <span class="cinematic-hero__eyebrow-line"></span>
-                Faculty Voice
+                {{ $facultyVoicePage->hero_tag ?? 'Faculty Voice' }}
             </span>
-            <h1 class="cinematic-hero__title">Insights from <em>industry experts</em></h1>
-            <p class="cinematic-hero__description">Real-world perspectives from the minds shaping global business education.</p>
+            <h1 class="cinematic-hero__title">
+                {{ $facultyVoicePage->hero_heading ?? 'Insights from' }}
+                @if($facultyVoicePage->hero_heading_italic)
+                    <em>{{ $facultyVoicePage->hero_heading_italic }}</em>
+                @else
+                    <em>industry experts</em>
+                @endif
+            </h1>
+            <p class="cinematic-hero__description">{!! html_filled($facultyVoicePage->hero_description ?? null) ? rich_html($facultyVoicePage->hero_description ?? null) : 'Real-world perspectives from the minds shaping global business education.' !!}</p>
             <div class="fv-hero__meta">
                 <span class="fv-hero__meta-item">{{ $voices->total() }} {{ $voices->total() === 1 ? 'voice' : 'voices' }}</span>
             </div>
@@ -53,7 +60,7 @@
             @forelse($voices as $insight)
                 <x-faculty-voice.card :insight="$insight" />
             @empty
-                <p class="fv-empty">Faculty voices coming soon.</p>
+                <p class="fv-empty">{{ $facultyVoicePage->empty_message ?? 'Faculty voices coming soon.' }}</p>
             @endforelse
         </div>
 
@@ -89,5 +96,5 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('assets/js/pages/faculty-voice.js') }}" defer></script>
+    <script src="{{ cached_asset('assets/js/pages/faculty-voice.js') }}" defer></script>
 @endpush

@@ -26,7 +26,7 @@
         @if(html_filled($faqItem['answer'] ?? null))
         <div class="dmba-faq__answer">
           <div class="dmba-faq__answer-inner dmba-richtext">
-            {!! $faqItem['answer'] !!}
+            {!! rich_html($faqItem['answer'] ?? null) !!}
           </div>
         </div>
         @endif

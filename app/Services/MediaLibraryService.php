@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\MediaAsset;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Log;
@@ -16,7 +17,16 @@ class MediaLibraryService
 
     public function currentDiskEnv(): string
     {
-        return app()->environment();
+        return $this->cloudinary->diskEnv();
+    }
+
+    public function scopeLibrary(Builder $query): Builder
+    {
+        if ($this->cloudinary->usesEnvFolder()) {
+            $query->where('disk_env', $this->currentDiskEnv());
+        }
+
+        return $query;
     }
 
     /**
@@ -30,17 +40,36 @@ class MediaLibraryService
         $path = $this->resolvePath($file);
         $originalName ??= $this->resolveOriginalName($file);
 
-        if (! is_readable($path)) {
-            throw new \RuntimeException('Media file is not readable: '.$path);
+        if ($path === false || $path === '' || ! is_readable($path)) {
+            throw new \RuntimeException('Media file is not readable.');
+        }
+
+        $maxKb = (int) config('media.max_upload_kilobytes', 5120);
+        $sizeBytes = filesize($path) ?: 0;
+        if ($maxKb > 0 && $sizeBytes > ($maxKb * 1024)) {
+            throw new \RuntimeException("Media file exceeds the {$maxKb} KB upload limit.");
+        }
+
+        $mime = mime_content_type($path) ?: '';
+        $allowedPrefixes = config('media.allowed_mime_prefixes', ['image/']);
+        $mimeOk = $mime === '' || collect($allowedPrefixes)->contains(
+            fn (string $prefix) => str_starts_with($mime, $prefix)
+        );
+        if (! $mimeOk) {
+            throw new \RuntimeException('Only image uploads are allowed in the media library.');
         }
 
         $hash = hash_file('sha256', $path);
         $diskEnv = $this->currentDiskEnv();
 
-        $existing = MediaAsset::withoutGlobalScopes([SoftDeletingScope::class])
-            ->where('hash', $hash)
-            ->where('disk_env', $diskEnv)
-            ->first();
+        $existingQuery = MediaAsset::withoutGlobalScopes([SoftDeletingScope::class])
+            ->where('hash', $hash);
+
+        if ($this->cloudinary->usesEnvFolder()) {
+            $existingQuery->where('disk_env', $diskEnv);
+        }
+
+        $existing = $existingQuery->first();
 
         if ($existing) {
             if ($existing->trashed()) {
@@ -66,22 +95,24 @@ class MediaLibraryService
         $asset = MediaAsset::create([
             'hash' => $hash,
             'original_name' => $originalName,
-            'mime_type' => mime_content_type($path) ?: null,
-            'size_bytes' => filesize($path) ?: null,
+            'mime_type' => $mime !== '' ? $mime : null,
+            'size_bytes' => $sizeBytes ?: null,
             'width' => $dimensions[0] ?? null,
             'height' => $dimensions[1] ?? null,
             'cloudinary_public_id' => $publicId,
             'url' => $url,
-            'folder' => $folder,
+            'folder' => $uploaded['folder'] ?? $this->cloudinary->resolveUploadFolder($folder),
             'disk_env' => $diskEnv,
+            'used' => false,
+            'is_duplicate' => false,
         ]);
 
-        Log::info('[media-library] Created new asset', ['id' => $asset->id, 'hash' => $hash, 'folder' => $folder]);
+        Log::info('[media-library] Created new asset', ['id' => $asset->id, 'hash' => $hash, 'folder' => $asset->folder]);
 
         return $asset;
     }
 
-    protected function resolvePath(string|UploadedFile|TemporaryUploadedFile $file): string
+    protected function resolvePath(string|UploadedFile|TemporaryUploadedFile $file): string|false
     {
         if (is_string($file)) {
             return $file;

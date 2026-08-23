@@ -2,8 +2,8 @@
 
 namespace App\Livewire;
 
-use App\Filament\Forms\Components\MediaPicker;
 use App\Filament\Resources\OurStoryTimelineResource;
+use App\Livewire\Concerns\MutatesEmbeddedMediaPicker;
 use App\Models\OurStoryTimeline;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
@@ -20,23 +20,25 @@ class OurStoryTimelineTable extends Component implements HasForms, HasTable
 {
     use InteractsWithForms;
     use InteractsWithTable;
+    use MutatesEmbeddedMediaPicker;
 
     public function table(Table $table): Table
     {
         return OurStoryTimelineResource::table(
-            $table->query(OurStoryTimeline::query())
-        )
-            ->headerActions([
-                CreateAction::make()
-                    ->form(fn (Form $form) => OurStoryTimelineResource::form($form))
-                    ->mutateFormDataUsing(fn (array $data): array => MediaPicker::syncFieldFromAsset($data, 'icon_url')),
-            ])
-            ->actions([
-                EditAction::make()
-                    ->form(fn (Form $form) => OurStoryTimelineResource::form($form))
-                    ->mutateFormDataUsing(fn (array $data): array => MediaPicker::syncFieldFromAsset($data, 'icon_url')),
-                DeleteAction::make(),
-            ]);
+            $table
+                ->query(OurStoryTimeline::query())
+                ->headerActions([
+                    CreateAction::make()
+                        ->form(fn (Form $form) => OurStoryTimelineResource::form($form))
+                        ->mutateFormDataUsing(fn (array $data) => $this->mutateEmbeddedMedia($data, 'icon_url')),
+                ])
+                ->actions([
+                    EditAction::make()
+                        ->form(fn (Form $form) => OurStoryTimelineResource::form($form))
+                        ->mutateFormDataUsing(fn (array $data) => $this->mutateEmbeddedMedia($data, 'icon_url', $this->getMountedTableActionRecord())),
+                    DeleteAction::make(),
+                ]),
+        );
     }
 
     public function render(): \Illuminate\View\View

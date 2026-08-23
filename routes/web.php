@@ -26,6 +26,10 @@ Route::post('/contact', [\App\Http\Controllers\ContactController::class, 'submit
     ->middleware('throttle:5,1')
     ->name('contact.submit');
 
+Route::post('/newsletter', [\App\Http\Controllers\NewsletterController::class, 'subscribe'])
+    ->middleware('throttle:10,1')
+    ->name('newsletter.subscribe');
+
 
 // Blogs
 Route::get('/blogs', [\App\Http\Controllers\BlogController::class, 'index'])->name('blogs.index');
@@ -35,6 +39,9 @@ Route::get('/news', [\App\Http\Controllers\NewsController::class, 'index'])->nam
 
 // Programmes — must be registered before the catch-all slug route below
 Route::get('/programs', [\App\Http\Controllers\ProgramController::class, 'index'])->name('programs.index');
+Route::post('/programs/enquire', [\App\Http\Controllers\ProgramController::class, 'enquire'])
+    ->middleware('throttle:5,1')
+    ->name('programs.enquire');
 Route::get('/programs/{slug}', [\App\Http\Controllers\ProgramController::class, 'show'])->name('programs.show');
 
 Route::get('/faculty-voice', [\App\Http\Controllers\FacultyVoiceController::class, 'index'])->name('faculty-voice.index');
@@ -44,6 +51,8 @@ Route::get('/faculty-voice/{slug}', [\App\Http\Controllers\FacultyVoiceControlle
 // Registered LAST so every other named route above is matched first.
 
 Route::get('/events', [\App\Http\Controllers\PageController::class, 'events'])->name('events');
+Route::get('/student-success/stories', [\App\Http\Controllers\PageController::class, 'studentSuccessStories'])->name('student-success.stories');
+Route::get('/student-success/videos', [\App\Http\Controllers\PageController::class, 'studentSuccessVideos'])->name('student-success.videos');
 Route::get('/student-success', [\App\Http\Controllers\PageController::class, 'studentSuccess'])->name('student-success');
 
 Route::get('/{slug}', [\App\Http\Controllers\InsightController::class, 'show'])->name('insights.show');

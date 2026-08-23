@@ -34,8 +34,8 @@
                  rating, then a clampable quote with read more/less --}}
             <div class="os-rev__head">
               <div class="os-rev__avatar">
-                @if ($item->photo)
-                <img src="{{ $item->photo }}" alt="{{ $item->name }}" class="os-rev__photo" width="52" height="52" loading="lazy" />
+                @if ($url = media_url($item->photo ?? null))
+                <img src="{{ $url }}" alt="{{ $item->name }}" class="os-rev__photo" width="52" height="52" loading="lazy" />
                 @else
                 <span class="os-rev__initials" aria-hidden="true">{{ strtoupper(mb_substr($item->name, 0, 1)) }}</span>
                 @endif
@@ -56,7 +56,7 @@
               </div>
             </div>
             <div class="os-rev__body" data-clamp>
-              <blockquote class="os-rev__quote">{!! $item->testimonial !!}</blockquote>
+              <blockquote class="os-rev__quote">{!! rich_html($item->testimonial ?? null) !!}</blockquote>
             </div>
             @if(!empty(trim(strip_tags($item->testimonial ?? ''))))
             <button type="button" class="os-rev__toggle" data-clamp-toggle aria-expanded="false">Read more</button>
@@ -68,10 +68,10 @@
               <span data-lucide="star" class="os-testimonials__star {{ $i <= $item->rating ? 'os-testimonials__star--filled' : 'os-testimonials__star--empty' }}" aria-hidden="true"></span>
               @endfor
             </div>
-            <blockquote class="os-testimonials__quote">{!! $item->testimonial !!}</blockquote>
+            <blockquote class="os-testimonials__quote">{!! rich_html($item->testimonial ?? null) !!}</blockquote>
             <div class="os-testimonials__author">
-              @if ($item->photo)
-              <img src="{{ $item->photo }}" alt="{{ $item->name }}" class="os-testimonials__photo" width="48" height="48" loading="lazy" />
+              @if ($url = media_url($item->photo ?? null))
+              <img src="{{ $url }}" alt="{{ $item->name }}" class="os-testimonials__photo" width="48" height="48" loading="lazy" />
               @else
               <span class="os-testimonials__initials" aria-hidden="true">{{ strtoupper(mb_substr($item->name, 0, 1)) }}</span>
               @endif

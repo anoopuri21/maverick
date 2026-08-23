@@ -4,7 +4,7 @@
 @section('meta_description', 'Explore cutting-edge business articles, corporate strategies, academic research, and leadership advice from the expert faculty at Maverick Business Academy.')
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('css/pages/blog.css') }}">
+    <link rel="stylesheet" href="{{ cached_asset('css/pages/blog.css') }}">
 @endpush
 
 @section('content')
@@ -56,7 +56,7 @@
                 {{ $blogHero->heading ?? 'Latest Articles & Insights' }}
             </h1>
             <p class="blog-hero__description">
-                {{ $blogHero->description ?? 'Cutting-edge academic research, practical leadership strategy, and student success narratives curated specifically for future global business leaders.' }}
+                {!! html_filled($blogHero->description ?? null) ? rich_html($blogHero->description ?? null) : 'Cutting-edge academic research, practical leadership strategy, and student success narratives curated specifically for future global business leaders.' !!}
             </p>
             <div class="blog-hero__scroll-hint" aria-hidden="true">
                 <span class="blog-hero__scroll-text">Scroll to explore</span>
@@ -104,8 +104,8 @@
                             @endif
                             <div class="blog-featured__meta">
                                 <div class="blog-featured__author">
-                                    @if($featuredPost->author_avatar_url)
-                                        <img src="{{ $featuredPost->author_avatar_url }}"
+                                    @if($url = media_url($featuredPost->author_avatar_url ?? null))
+                                        <img src="{{ $url }}"
                                              alt="{{ $featuredPost->author_name }}"
                                              class="blog-featured__author-avatar"
                                              width="32" height="32" loading="lazy">
@@ -168,8 +168,8 @@
                                     <p class="blog-card__excerpt">{{ $post->excerpt }}</p>
                                 @endif
                                 <div class="blog-card__author">
-                                    @if($post->author_avatar_url)
-                                        <img src="{{ $post->author_avatar_url }}"
+                                    @if($url = media_url($post->author_avatar_url ?? null))
+                                        <img src="{{ $url }}"
                                              alt="{{ $post->author_name }}"
                                              class="blog-card__author-avatar"
                                              width="28" height="28" loading="lazy">
@@ -367,5 +367,5 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('assets/js/blog.js') }}" defer></script>
+    <script src="{{ cached_asset('assets/js/blog.js') }}" defer></script>
 @endpush

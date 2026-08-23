@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+use App\Concerns\EnsuresUniqueSlug;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class ProgramCategory extends Model
 {
+    use EnsuresUniqueSlug;
+
     protected $fillable = [
         'name',
         'slug',

@@ -22,12 +22,16 @@ class MediaAsset extends Model
         'folder',
         'alt',
         'disk_env',
+        'used',
+        'is_duplicate',
     ];
 
     protected $casts = [
         'size_bytes' => 'integer',
         'width' => 'integer',
         'height' => 'integer',
+        'used' => 'boolean',
+        'is_duplicate' => 'boolean',
     ];
 
     public function ourStoryTestimonials(): HasMany

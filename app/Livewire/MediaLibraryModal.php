@@ -78,8 +78,8 @@ class MediaLibraryModal extends Component
 
     public function selectAsset(int $assetId): void
     {
-        $asset = MediaAsset::query()
-            ->where('disk_env', app()->environment())
+        $asset = app(MediaLibraryService::class)
+            ->scopeLibrary(MediaAsset::query())
             ->find($assetId);
 
         if (! $asset) {
@@ -148,8 +148,8 @@ class MediaLibraryModal extends Component
     #[Computed]
     public function folderOptions(): Collection
     {
-        return MediaAsset::query()
-            ->where('disk_env', app()->environment())
+        return app(MediaLibraryService::class)
+            ->scopeLibrary(MediaAsset::query())
             ->whereNotNull('folder')
             ->where('folder', '!=', '')
             ->distinct()
@@ -159,9 +159,8 @@ class MediaLibraryModal extends Component
 
     public function render(): View
     {
-        $env = app()->environment();
-        $query = MediaAsset::query()
-            ->where('disk_env', $env)
+        $query = app(MediaLibraryService::class)
+            ->scopeLibrary(MediaAsset::query())
             ->orderByDesc('id');
 
         if (filled($this->search)) {

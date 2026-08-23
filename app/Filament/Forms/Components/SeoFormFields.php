@@ -31,7 +31,7 @@ class SeoFormFields
                             ->helperText('Best under 60 characters.'),
                         TextInput::make('canonical_url')
                             ->label('Canonical URL')
-                            ->url()
+                            ->url()->nullable()
                             ->helperText('Leave empty to auto-use the current page URL.'),
                     ]),
                     Textarea::make('meta_description')
@@ -51,7 +51,7 @@ class SeoFormFields
                             'index, nofollow' => 'index, nofollow',
                             'noindex, nofollow' => 'noindex, nofollow',
                         ])
-                        ->default('index, follow'),
+                    ->default('index, follow'),
                 ]),
 
             Section::make('Open Graph')->description("Used when {$pageLabel} is shared on Facebook, WhatsApp, LinkedIn etc.")
@@ -62,9 +62,9 @@ class SeoFormFields
                     ]),
                     Grid::make(2)->schema([
                         MediaPicker::forField('og_image_url', $mediaFolder.'/og')
-                            ->label('OG Image (Media Library)')
-                            ->helperText('Upload from library (priority) or use the URL field below.'),
-                        TextInput::make('og_image_url_input')->label('Or OG Image URL')->url(),
+                    ->label('OG Image (Media Library)')
+                    ->helperText('Upload from library (priority) or use the URL field below.'),
+                        TextInput::make('og_image_url_input')->label('Or OG Image URL')->url()->nullable(),
                     ]),
                     Select::make('og_type')
                         ->label('OG Type')
@@ -73,7 +73,7 @@ class SeoFormFields
                             'article' => 'article',
                             'profile' => 'profile',
                         ])
-                        ->default('website'),
+                    ->default('website'),
                 ]),
 
             Section::make('Twitter Card')->description("Used when {$pageLabel} is shared on X (Twitter).")
@@ -85,16 +85,16 @@ class SeoFormFields
                             'summary' => 'summary',
                             'app' => 'app',
                         ])
-                        ->default('summary_large_image'),
+                    ->default('summary_large_image'),
                     Grid::make(2)->schema([
                         TextInput::make('twitter_title')->label('Twitter Title')->maxLength(70),
                         TextInput::make('twitter_description')->label('Twitter Description')->maxLength(200),
                     ]),
                     Grid::make(2)->schema([
                         MediaPicker::forField('twitter_image_url', $mediaFolder.'/twitter')
-                            ->label('Twitter Image (Media Library)')
-                            ->helperText('Upload from library (priority) or use the URL field below.'),
-                        TextInput::make('twitter_image_url_input')->label('Or Twitter Image URL')->url(),
+                    ->label('Twitter Image (Media Library)')
+                    ->helperText('Upload from library (priority) or use the URL field below.'),
+                        TextInput::make('twitter_image_url_input')->label('Or Twitter Image URL')->url()->nullable(),
                     ]),
                 ]),
 
@@ -168,7 +168,7 @@ class SeoFormFields
                             Grid::make(2)->schema([
                                 TextInput::make('seo.canonical_url')
                                     ->label('Canonical URL')
-                                    ->url()
+                                    ->url()->nullable()
                                     ->helperText('Leave blank to use current page URL.'),
 
                                 Select::make('seo.robots')
@@ -179,7 +179,7 @@ class SeoFormFields
                                         'index, nofollow' => 'Index, No Follow',
                                         'noindex, nofollow' => 'No Index, No Follow',
                                     ])
-                                    ->default('index, follow'),
+                    ->default('index, follow'),
                             ]),
                         ]),
 
@@ -202,12 +202,12 @@ class SeoFormFields
 
                             TextInput::make('seo.og_image_url')
                                 ->label('OG Image URL')
-                                ->url()
+                                ->url()->nullable()
                                 ->helperText('Recommended: 1200x630px. Used for Facebook, LinkedIn shares. Or choose from the media library below.')
                                 ->columnSpanFull(),
 
                             MediaPicker::forField('seo.og_image_url', 'seo/og-images')
-                                ->label('OG Image'),
+                    ->label('OG Image'),
 
                             Select::make('seo.og_type')
                                 ->label('OG Type')
@@ -217,7 +217,7 @@ class SeoFormFields
                                     'product' => 'Product',
                                     'profile' => 'Profile',
                                 ])
-                                ->default('website'),
+                    ->default('website'),
                         ]),
 
                     // Twitter Card Tab
@@ -230,7 +230,7 @@ class SeoFormFields
                                     'summary' => 'Summary',
                                     'summary_large_image' => 'Summary Large Image',
                                 ])
-                                ->default('summary_large_image'),
+                    ->default('summary_large_image'),
 
                             TextInput::make('seo.twitter_title')
                                 ->label('Twitter Title')
@@ -245,12 +245,12 @@ class SeoFormFields
 
                             TextInput::make('seo.twitter_image_url')
                                 ->label('Twitter Image URL')
-                                ->url()
+                                ->url()->nullable()
                                 ->helperText('Recommended: 1200x628px. Or choose from the media library below.')
                                 ->columnSpanFull(),
 
                             MediaPicker::forField('seo.twitter_image_url', 'seo/twitter-images')
-                                ->label('Twitter Image'),
+                    ->label('Twitter Image'),
                         ]),
 
                     // Advanced Tab

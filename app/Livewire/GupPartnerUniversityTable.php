@@ -2,8 +2,8 @@
 
 namespace App\Livewire;
 
-use App\Filament\Forms\Components\MediaPicker;
 use App\Filament\Resources\GupPartnerUniversityResource;
+use App\Livewire\Concerns\MutatesEmbeddedMediaPicker;
 use App\Models\GupPartnerUniversity;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
@@ -20,23 +20,25 @@ class GupPartnerUniversityTable extends Component implements HasForms, HasTable
 {
     use InteractsWithForms;
     use InteractsWithTable;
+    use MutatesEmbeddedMediaPicker;
 
     public function table(Table $table): Table
     {
         return GupPartnerUniversityResource::table(
-            $table->query(GupPartnerUniversity::query())
-        )
-            ->headerActions([
-                CreateAction::make()
-                    ->form(fn (Form $form) => GupPartnerUniversityResource::form($form))
-                    ->mutateFormDataUsing(fn (array $data): array => MediaPicker::syncFieldFromAsset($data, 'logo_url')),
-            ])
-            ->actions([
-                EditAction::make()
-                    ->form(fn (Form $form) => GupPartnerUniversityResource::form($form))
-                    ->mutateFormDataUsing(fn (array $data): array => MediaPicker::syncFieldFromAsset($data, 'logo_url')),
-                DeleteAction::make(),
-            ]);
+            $table
+                ->query(GupPartnerUniversity::query())
+                ->headerActions([
+                    CreateAction::make()
+                        ->form(fn (Form $form) => GupPartnerUniversityResource::form($form))
+                        ->mutateFormDataUsing(fn (array $data) => $this->mutateEmbeddedMedia($data, 'logo_url')),
+                ])
+                ->actions([
+                    EditAction::make()
+                        ->form(fn (Form $form) => GupPartnerUniversityResource::form($form))
+                        ->mutateFormDataUsing(fn (array $data) => $this->mutateEmbeddedMedia($data, 'logo_url', $this->getMountedTableActionRecord())),
+                    DeleteAction::make(),
+                ]),
+        );
     }
 
     public function render(): \Illuminate\View\View

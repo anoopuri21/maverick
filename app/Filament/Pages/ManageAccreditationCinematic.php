@@ -41,7 +41,6 @@ class ManageAccreditationCinematic extends SettingsPage
             Section::make('Section Content')
                 ->schema([
                     TextInput::make('heading')
-                        ->required()
                         ->columnSpanFull(),
                     RichEditor::make('text')
                         ->label('Description')
@@ -53,14 +52,14 @@ class ManageAccreditationCinematic extends SettingsPage
                             'redo',
                             'undo',
                         ])
-                        ->columnSpanFull(),
+                    ->columnSpanFull(),
                 ]),
 
             Section::make('Background Media')
                 ->schema([
                     MediaPicker::forField('image_url', 'accreditations/cinematic')
-                        ->label('Background Image')
-                        ->columnSpanFull(),
+                    ->label('Background Image')
+                    ->columnSpanFull(),
                 ]),
         ]);
     }

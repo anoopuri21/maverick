@@ -24,19 +24,28 @@ class OurStoryTestimonialTable extends Component implements HasForms, HasTable
     public function table(Table $table): Table
     {
         return OurStoryTestimonialResource::table(
-            $table->query(OurStoryTestimonial::query())
-        )
-            ->headerActions([
-                CreateAction::make()
-                    ->form(fn (Form $form) => OurStoryTestimonialResource::form($form))
-                    ->mutateFormDataUsing(fn (array $data): array => MediaPicker::syncUrlFromAsset($data, 'photo')),
-            ])
-            ->actions([
-                EditAction::make()
-                    ->form(fn (Form $form) => OurStoryTestimonialResource::form($form))
-                    ->mutateFormDataUsing(fn (array $data): array => MediaPicker::syncUrlFromAsset($data, 'photo')),
-                DeleteAction::make(),
-            ]);
+            $table
+                ->query(OurStoryTestimonial::query())
+                ->headerActions([
+                    CreateAction::make()
+                        ->form(fn (Form $form) => OurStoryTestimonialResource::form($form))
+                        ->mutateFormDataUsing(fn (array $data): array => MediaPicker::syncUrlFromAsset($data, 'photo')),
+                ])
+                ->actions([
+                    EditAction::make()
+                        ->form(fn (Form $form) => OurStoryTestimonialResource::form($form))
+                        ->mutateFormDataUsing(function (array $data) {
+                            $data = MediaPicker::syncUrlFromAsset($data, 'photo');
+                            $record = $this->getMountedTableActionRecord();
+                            if (empty($data['photo']) && $record && filled($record->photo)) {
+                                $data['photo'] = $record->photo;
+                            }
+
+                            return $data;
+                        }),
+                    DeleteAction::make(),
+                ]),
+        );
     }
 
     public function render(): \Illuminate\View\View

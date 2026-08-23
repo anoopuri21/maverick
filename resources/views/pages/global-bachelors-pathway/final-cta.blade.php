@@ -26,7 +26,7 @@
             <div class="gbp-final__sub gbp-richtext">{!! $finalCta->sub !!}</div>
             @endif
             @if(html_filled($finalCta->description ?? null))
-            <div class="gbp-final__description body-text gbp-richtext">{!! $finalCta->description !!}</div>
+            <div class="gbp-final__description body-text gbp-richtext">{!! rich_html($finalCta->description ?? null) !!}</div>
             @endif
             @if($finalCtas->isNotEmpty())
             <div class="gbp-final__ctas">

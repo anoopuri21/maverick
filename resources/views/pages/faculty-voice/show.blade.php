@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('title', ($seo->meta_title ?? $insight->title) . ' | Maverick Business Academy')
-@section('meta_description', $seo->meta_description ?? $insight->excerpt)
+@section('meta_description', $seo->meta_description ?? $insight->excerpt ?? '')
 
 @push('head')
     @include('partials.seo-meta', ['seo' => $seo])
 @endpush
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('css/pages/faculty-voice.css') }}">
+    <link rel="stylesheet" href="{{ cached_asset('css/pages/faculty-voice.css') }}">
 @endpush
 
 @section('content')
@@ -48,7 +48,7 @@
         <div class="container">
             <div class="fv-identity__inner">
                 @if($insight->avatarUrl())
-                    <img src="{{ $insight->avatarUrl() }}" alt="{{ $insight->faculty_name }}" class="fv-identity__avatar" width="56" height="56">
+                    <img src="{{ $insight->avatarUrl() }}" alt="{{ $insight->faculty_name }}" class="fv-identity__avatar" width="56" height="56" loading="lazy" decoding="async">
                 @elseif($insight->faculty_name)
                     <span class="fv-identity__avatar fv-identity__avatar--fallback" aria-hidden="true">{{ strtoupper(mb_substr($insight->faculty_name, 0, 1)) }}</span>
                 @endif
@@ -59,8 +59,8 @@
                     @if($insight->faculty_role)
                         <p class="fv-identity__role">{{ $insight->faculty_role }}</p>
                     @endif
-                    @if($insight->faculty_bio)
-                        <p class="fv-identity__bio">{{ $insight->faculty_bio }}</p>
+                    @if(html_filled($insight->faculty_bio ?? null))
+                        <div class="fv-identity__bio">{!! rich_html($insight->faculty_bio ?? null) !!}</div>
                     @endif
                 </div>
                 <div class="fv-identity__meta">
@@ -81,17 +81,17 @@
             <div class="container">
                 <div class="fv-featured__stage">
                     <figure class="fv-featured__figure" data-fv-scale>
-                        <img src="{{ $insight->featuredImageUrl() }}" alt="{{ $insight->title }}" width="960" height="600">
+                        <img src="{{ $insight->featuredImageUrl() }}" alt="{{ $insight->title }}" width="960" height="600" loading="lazy" decoding="async">
                     </figure>
                 </div>
             </div>
         </div>
     @endif
 
-    @if($insight->pull_quote)
+    @if(html_filled($insight->pull_quote ?? null))
         <blockquote class="fv-quote">
             <div class="container">
-                <p>{{ $insight->pull_quote }}</p>
+                {!! rich_html($insight->pull_quote ?? null) !!}
             </div>
         </blockquote>
     @endif
@@ -100,13 +100,13 @@
         <article class="fv-article">
             <div class="container">
                 <div class="fv-article__body">
-                    {!! $insight->content !!}
+                    {!! rich_html($insight->content ?? null) !!}
                 </div>
             </div>
         </article>
     @endif
 
-    @if($relatedVoices->isNotEmpty())
+    @if(($relatedVoices ?? collect())->isNotEmpty())
         <section class="fv-related" aria-labelledby="related-voices-heading">
             <div class="container">
                 <div class="fv-related__header">
@@ -127,5 +127,5 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('assets/js/pages/faculty-voice.js') }}" defer></script>
+    <script src="{{ cached_asset('assets/js/pages/faculty-voice.js') }}" defer></script>
 @endpush

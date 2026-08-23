@@ -9,9 +9,9 @@
     <a href="{{ route('home') }}" class="navbar__logo" aria-label="Maverick Business Academy Home">
       <div class="navbar__logo-placeholder">
         <img src="{{ media_url($site->logo_white_url, 'assets/images/logo-white.png') }}" alt="Maverick Business Academy Logo"
-          class="navbar__logo-img white-logo" />
+          class="navbar__logo-img white-logo" decoding="async" />
         <img src="{{ media_url($site->logo_url, 'assets/images/logo.png') }}" alt="Maverick Business Academy Logo"
-          class="navbar__logo-img regular-logo" />
+          class="navbar__logo-img regular-logo" decoding="async" />
       </div>
     </a>
 
@@ -62,9 +62,9 @@
                     <div class="mega__panel-scroll">
                       @foreach($navPrograms as $navCat)
                       <div class="mega__panel-list @if($loop->first) is-active @endif" data-panel="{{ $navCat['slug'] }}">
-                        @foreach($navCat['programs'] as $navProg)
-                        <a href="{{ $navProg['url'] }}" class="mega__program-row">
-                          <span class="mega__program-name">{{ $navProg['title'] }}@if($navProg['university'])<span class="mega__program-uni"> · {{ $navProg['university'] }}</span>@endif</span>
+                        @foreach(($navCat['programs'] ?? []) as $navProg)
+                        <a href="{{ $navProg['url'] ?? '#' }}" class="mega__program-row">
+                          <span class="mega__program-name">{{ $navProg['title'] ?? '' }}@if(!empty($navProg['university']))<span class="mega__program-uni"> · {{ $navProg['university'] }}</span>@endif</span>
                           <span class="mega__row-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
                         </a>
                         @endforeach
@@ -190,7 +190,7 @@
   <div class="navbar__mobile" id="mobile-menu" data-lenis-prevent aria-hidden="true">
     <div class="navbar__mobile-inner">
       <img src="{{ media_url($site->logo_white_url, 'assets/images/logo-white.png') }}" alt="Maverick Business Academy Logo" class="navbar__logo-img white-logo"
-        style="position: absolute; top: 10px; left: 24px; width: calc(100vw - 120px); height: auto;" />
+        style="position: absolute; top: 10px; left: 24px; width: calc(100vw - 120px); height: auto;" decoding="async" />
       <nav class="navbar__mobile-nav">
         <ul class="navbar__mobile-menu">
           <li class="navbar__mobile-item">
@@ -209,8 +209,8 @@
         </span>
       </button>
       <ul class="navbar__mobile-category-panel" data-mobile-category-panel="{{ $navCat['slug'] }}">
-        @foreach($navCat['programs'] as $navProg)
-        <li><a href="{{ $navProg['url'] }}" class="navbar__mobile-category-sublink">{{ $navProg['title'] }}@if($navProg['university']) <span class="navbar__mobile-category-uni">· {{ $navProg['university'] }}</span>@endif <span class="navbar__mobile-category-sublink-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span></a></li>
+        @foreach(($navCat['programs'] ?? []) as $navProg)
+        <li><a href="{{ $navProg['url'] ?? '#' }}" class="navbar__mobile-category-sublink">{{ $navProg['title'] ?? '' }}@if(!empty($navProg['university'])) <span class="navbar__mobile-category-uni">· {{ $navProg['university'] }}</span>@endif <span class="navbar__mobile-category-sublink-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span></a></li>
         @endforeach
         @if(empty($navCat['programs']))
         <li class="navbar__mobile-category-empty">No programmes yet.</li>

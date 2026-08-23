@@ -2,6 +2,7 @@
 
 namespace App\Filament\Pages;
 
+use App\Filament\Concerns\EnsuresSettingsRowsExist;
 use App\Filament\Concerns\HandlesCloudinaryImageFields;
 use App\Filament\Forms\Components\MediaPicker;
 use App\Settings\GbpAdmissionSettings;
@@ -40,6 +41,7 @@ use Throwable;
 class ManageGlobalBachelorsPathway extends Page implements HasForms
 {
     use HandlesCloudinaryImageFields;
+    use EnsuresSettingsRowsExist;
     use InteractsWithForms;
 
     protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
@@ -136,8 +138,8 @@ class ManageGlobalBachelorsPathway extends Page implements HasForms
                                 RichEditor::make('hero.sub')->label('Subheading')->columnSpanFull(),
                                 TextInput::make('hero.background_image')->hidden(),
                                 MediaPicker::forField('hero.background_image', 'gbp/hero')
-                                    ->label('Background Image')
-                                    ->columnSpanFull(),
+                    ->label('Background Image')
+                    ->columnSpanFull(),
                             ]),
 
                         Tab::make('Snapshot')
@@ -150,10 +152,10 @@ class ManageGlobalBachelorsPathway extends Page implements HasForms
                                         TextInput::make('title')->label('Title'),
                                         $this->stringListRepeater('items', 'List Items'),
                                     ])
-                                    ->reorderable()
-                                    ->collapsible()
-                                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
-                                    ->columnSpanFull(),
+                    ->reorderable()
+                    ->collapsible()
+                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
+                    ->columnSpanFull(),
                                 Repeater::make('snapshot.ctas')
                                     ->label('Buttons')
                                     ->schema([
@@ -164,12 +166,12 @@ class ManageGlobalBachelorsPathway extends Page implements HasForms
                                                 'primary' => 'Primary',
                                                 'ghost' => 'Ghost',
                                             ])
-                                            ->default('primary'),
+                    ->default('primary'),
                                     ])
-                                    ->reorderable()
-                                    ->collapsible()
-                                    ->itemLabel(fn (array $state): ?string => $state['label'] ?? null)
-                                    ->columnSpanFull(),
+                    ->reorderable()
+                    ->collapsible()
+                    ->itemLabel(fn (array $state): ?string => $state['label'] ?? null)
+                    ->columnSpanFull(),
                             ]),
 
                         Tab::make('Intro')
@@ -184,9 +186,9 @@ class ManageGlobalBachelorsPathway extends Page implements HasForms
                                     ->schema([
                                         RichEditor::make('html')->label('Paragraph')->columnSpanFull(),
                                     ])
-                                    ->reorderable()
-                                    ->collapsible()
-                                    ->columnSpanFull(),
+                    ->reorderable()
+                    ->collapsible()
+                    ->columnSpanFull(),
                                 Repeater::make('intro.highlights')
                                     ->label('Highlight Cards')
                                     ->schema([
@@ -194,10 +196,10 @@ class ManageGlobalBachelorsPathway extends Page implements HasForms
                                         TextInput::make('label')->label('Label'),
                                         TextInput::make('value')->label('Value')->columnSpanFull(),
                                     ])
-                                    ->reorderable()
-                                    ->collapsible()
-                                    ->itemLabel(fn (array $state): ?string => $state['label'] ?? null)
-                                    ->columnSpanFull(),
+                    ->reorderable()
+                    ->collapsible()
+                    ->itemLabel(fn (array $state): ?string => $state['label'] ?? null)
+                    ->columnSpanFull(),
                             ]),
 
                         Tab::make('Overview')
@@ -211,9 +213,9 @@ class ManageGlobalBachelorsPathway extends Page implements HasForms
                                     ->schema([
                                         RichEditor::make('html')->label('Paragraph')->columnSpanFull(),
                                     ])
-                                    ->reorderable()
-                                    ->collapsible()
-                                    ->columnSpanFull(),
+                    ->reorderable()
+                    ->collapsible()
+                    ->columnSpanFull(),
                                 RichEditor::make('overview.quote')->label('Quote')->columnSpanFull(),
                                 Repeater::make('overview.stages')
                                     ->label('Journey Stages')
@@ -223,12 +225,12 @@ class ManageGlobalBachelorsPathway extends Page implements HasForms
                                             TextInput::make('duration')->label('Duration'),
                                         ]),
                                         TextInput::make('title')->label('Title')->columnSpanFull(),
-                                        Textarea::make('description')->rows(3)->columnSpanFull(),
+                                        RichEditor::make('description')->columnSpanFull(),
                                     ])
-                                    ->reorderable()
-                                    ->collapsible()
-                                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
-                                    ->columnSpanFull(),
+                    ->reorderable()
+                    ->collapsible()
+                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
+                    ->columnSpanFull(),
                                 TextInput::make('overview.panel_label')->label('Panel Label'),
                                 TextInput::make('overview.panel_title')->label('Panel Title'),
                                 Repeater::make('overview.panel_stats')
@@ -237,10 +239,10 @@ class ManageGlobalBachelorsPathway extends Page implements HasForms
                                         TextInput::make('number')->label('Number'),
                                         TextInput::make('label')->label('Label'),
                                     ])
-                                    ->reorderable()
-                                    ->collapsible()
-                                    ->itemLabel(fn (array $state): ?string => $state['label'] ?? null)
-                                    ->columnSpanFull(),
+                    ->reorderable()
+                    ->collapsible()
+                    ->itemLabel(fn (array $state): ?string => $state['label'] ?? null)
+                    ->columnSpanFull(),
                             ]),
 
                         Tab::make('Why Choose')
@@ -256,12 +258,12 @@ class ManageGlobalBachelorsPathway extends Page implements HasForms
                                     ->schema([
                                         $this->iconSelect(),
                                         TextInput::make('title')->label('Title'),
-                                        Textarea::make('description')->rows(3)->columnSpanFull(),
+                                        RichEditor::make('description')->columnSpanFull(),
                                     ])
-                                    ->reorderable()
-                                    ->collapsible()
-                                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
-                                    ->columnSpanFull(),
+                    ->reorderable()
+                    ->collapsible()
+                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
+                    ->columnSpanFull(),
                             ]),
 
                         Tab::make('Explore Europe')
@@ -282,10 +284,10 @@ class ManageGlobalBachelorsPathway extends Page implements HasForms
                                         TextInput::make('university')->label('University')->columnSpanFull(),
                                         $this->stringListRepeater('highlights', 'Highlights'),
                                     ])
-                                    ->reorderable()
-                                    ->collapsible()
-                                    ->itemLabel(fn (array $state): ?string => $state['country'] ?? null)
-                                    ->columnSpanFull(),
+                    ->reorderable()
+                    ->collapsible()
+                    ->itemLabel(fn (array $state): ?string => $state['country'] ?? null)
+                    ->columnSpanFull(),
                             ]),
 
                         Tab::make('Destinations')
@@ -309,15 +311,15 @@ class ManageGlobalBachelorsPathway extends Page implements HasForms
                                         RichEditor::make('description')->label('Description')->columnSpanFull(),
                                         TextInput::make('image')->hidden(),
                                         MediaPicker::forField('image', 'gbp/destinations')
-                                            ->label('Image')
-                                            ->columnSpanFull(),
+                    ->label('Image')
+                    ->columnSpanFull(),
                                         $this->stringListRepeater('points', 'Points'),
                                         Textarea::make('best_for')->label('Best For')->rows(2)->columnSpanFull(),
                                     ])
-                                    ->reorderable()
-                                    ->collapsible()
-                                    ->itemLabel(fn (array $state): ?string => $state['name'] ?? null)
-                                    ->columnSpanFull(),
+                    ->reorderable()
+                    ->collapsible()
+                    ->itemLabel(fn (array $state): ?string => $state['name'] ?? null)
+                    ->columnSpanFull(),
                             ]),
 
                         Tab::make('Cost & Time')
@@ -337,10 +339,10 @@ class ManageGlobalBachelorsPathway extends Page implements HasForms
                                             ->options(['muted' => 'Muted', 'accent' => 'Accent'])
                                             ->default('muted'),
                                     ])
-                                    ->reorderable()
-                                    ->collapsible()
-                                    ->itemLabel(fn (array $state): ?string => $state['label'] ?? null)
-                                    ->columnSpanFull(),
+                    ->reorderable()
+                    ->collapsible()
+                    ->itemLabel(fn (array $state): ?string => $state['label'] ?? null)
+                    ->columnSpanFull(),
                             ]),
 
                         Tab::make('Comparison')
@@ -361,7 +363,7 @@ class ManageGlobalBachelorsPathway extends Page implements HasForms
                                                 'single' => 'Single value',
                                                 'rows' => 'Country rows',
                                             ])
-                                            ->default('single'),
+                    ->default('single'),
                                         TextInput::make('price_label')->label('Price Label'),
                                         TextInput::make('price_value')->label('Single Price Value'),
                                         Repeater::make('prices')
@@ -370,15 +372,15 @@ class ManageGlobalBachelorsPathway extends Page implements HasForms
                                                 TextInput::make('country')->label('Country'),
                                                 TextInput::make('amount')->label('Amount'),
                                             ])
-                                            ->reorderable()
-                                            ->collapsible()
-                                            ->itemLabel(fn (array $state): ?string => $state['country'] ?? null)
-                                            ->columnSpanFull(),
+                    ->reorderable()
+                    ->collapsible()
+                    ->itemLabel(fn (array $state): ?string => $state['country'] ?? null)
+                    ->columnSpanFull(),
                                     ])
-                                    ->reorderable()
-                                    ->collapsible()
-                                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
-                                    ->columnSpanFull(),
+                    ->reorderable()
+                    ->collapsible()
+                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
+                    ->columnSpanFull(),
                                 TextInput::make('comparison.callout_label')->label('Callout Label'),
                                 TextInput::make('comparison.callout_value')->label('Callout Value'),
                                 RichEditor::make('comparison.callout_description')->label('Callout Description')->columnSpanFull(),
@@ -396,13 +398,13 @@ class ManageGlobalBachelorsPathway extends Page implements HasForms
                                     ->schema([
                                         $this->iconSelect(),
                                         TextInput::make('title')->label('Title'),
-                                        Textarea::make('description')->rows(3)->columnSpanFull(),
+                                        RichEditor::make('description')->columnSpanFull(),
                                         $this->stringListRepeater('items', 'Programmes'),
                                     ])
-                                    ->reorderable()
-                                    ->collapsible()
-                                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
-                                    ->columnSpanFull(),
+                    ->reorderable()
+                    ->collapsible()
+                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
+                    ->columnSpanFull(),
                             ]),
 
                         Tab::make('Partners')
@@ -417,13 +419,13 @@ class ManageGlobalBachelorsPathway extends Page implements HasForms
                                     ->schema([
                                         TextInput::make('code')->label('Code (HU, RO…)'),
                                         TextInput::make('name')->label('Name')->columnSpanFull(),
-                                        Textarea::make('description')->rows(3)->columnSpanFull(),
+                                        RichEditor::make('description')->columnSpanFull(),
                                         $this->stringListRepeater('best_for', 'Best Suited For'),
                                     ])
-                                    ->reorderable()
-                                    ->collapsible()
-                                    ->itemLabel(fn (array $state): ?string => $state['name'] ?? null)
-                                    ->columnSpanFull(),
+                    ->reorderable()
+                    ->collapsible()
+                    ->itemLabel(fn (array $state): ?string => $state['name'] ?? null)
+                    ->columnSpanFull(),
                             ]),
 
                         Tab::make('Admission')
@@ -452,10 +454,10 @@ class ManageGlobalBachelorsPathway extends Page implements HasForms
                                         TextInput::make('title')->label('Title'),
                                         $this->stringListRepeater('items', 'Items'),
                                     ])
-                                    ->reorderable()
-                                    ->collapsible()
-                                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
-                                    ->columnSpanFull(),
+                    ->reorderable()
+                    ->collapsible()
+                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
+                    ->columnSpanFull(),
                             ]),
 
                         Tab::make('Final CTA')
@@ -477,12 +479,12 @@ class ManageGlobalBachelorsPathway extends Page implements HasForms
                                                 'solid' => 'Solid',
                                                 'outline' => 'Outline',
                                             ])
-                                            ->default('outline'),
+                    ->default('outline'),
                                     ])
-                                    ->reorderable()
-                                    ->collapsible()
-                                    ->itemLabel(fn (array $state): ?string => $state['label'] ?? null)
-                                    ->columnSpanFull(),
+                    ->reorderable()
+                    ->collapsible()
+                    ->itemLabel(fn (array $state): ?string => $state['label'] ?? null)
+                    ->columnSpanFull(),
                             ]),
 
                         Tab::make('SEO')
@@ -624,42 +626,6 @@ class ManageGlobalBachelorsPathway extends Page implements HasForms
         app($settingsClass)->fill($payload)->save();
     }
 
-    protected function ensureAllSettingsProperties(object $settings, array $payload): array
-    {
-        $reflection = new \ReflectionClass($settings);
-
-        foreach ($reflection->getProperties(\ReflectionProperty::IS_PUBLIC) as $property) {
-            if ($property->isStatic()) {
-                continue;
-            }
-
-            $name = $property->getName();
-
-            if (! array_key_exists($name, $payload)) {
-                $payload[$name] = $settings->{$name} ?? $property->getDefaultValue();
-            }
-        }
-
-        return $payload;
-    }
-
-    protected function ensureSettingsRowsExist(object $settings): void
-    {
-        $mapper = app(\Spatie\LaravelSettings\SettingsMapper::class);
-        $getConfig = new \ReflectionMethod($mapper, 'getConfig');
-        $getConfig->setAccessible(true);
-        $config = $getConfig->invoke($mapper, get_class($settings));
-
-        $repo = $config->getRepository();
-        $group = $config->getGroup();
-        $existing = collect($repo->getPropertiesInGroup($group))->keys();
-
-        foreach ($config->getReflectedProperties()->keys() as $name) {
-            if (! $existing->contains($name)) {
-                $repo->createProperty($group, $name, $settings->{$name} ?? null);
-            }
-        }
-    }
 
     protected function stringListRepeater(string $name, string $label): Repeater
     {

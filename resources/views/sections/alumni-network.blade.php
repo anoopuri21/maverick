@@ -34,14 +34,16 @@
         @forelse($alumniLogos as $logo)
           <div class="network-card" data-name="{{ $logo->name }}">
             <div class="network-logo-wrapper">
-              <img src="{{ $logo->logo_url }}" alt="{{ $logo->name }}" />
+              @if($url = media_url($logo->logo_url ?? null))
+              <img src="{{ $url }}" alt="{{ $logo->name }}" loading="lazy" decoding="async" />
+              @endif
             </div>
           </div>
         @empty
           {{-- Fallback static cards if no data --}}
           <div class="network-card" data-name="Goldman Sachs">
             <div class="network-logo-wrapper">
-              <img src="{{ asset('assets/images/alumni/alumn-7.png') }}" alt="Goldman Sachs" />
+              <img src="{{ cached_asset('assets/images/alumni/alumn-7.png') }}" alt="Goldman Sachs" loading="lazy" decoding="async" />
             </div>
           </div>
         @endforelse

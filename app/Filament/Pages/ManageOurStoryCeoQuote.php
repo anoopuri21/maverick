@@ -7,7 +7,7 @@ use App\Services\CloudinaryService;
 use App\Filament\Concerns\HandlesCloudinaryImageFields;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Section;
-use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Pages\SettingsPage;
@@ -43,18 +43,16 @@ class ManageOurStoryCeoQuote extends SettingsPage
                 ->schema([
                     TextInput::make('ceo_name')
                         ->label('CEO Name')
-                        ->required(),
+                        ,
                     TextInput::make('ceo_designation')
                         ->label('Designation')
-                        ->required(),
+                        ,
                 ]),
 
             Section::make('Quote Content')
                 ->schema([
-                    Textarea::make('quote')
+                    RichEditor::make('quote')
                         ->label('Quote')
-                        ->rows(3)
-                        ->required()
                         ->columnSpanFull(),
                 ]),
 
@@ -70,8 +68,7 @@ class ManageOurStoryCeoQuote extends SettingsPage
                         ->nullable()
                         ->getUploadedFileUsing(fn (?string $file): ?array => static::existingCloudinaryImage($file))
                         ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
-                            return app(CloudinaryService::class)
-                                ->uploadImage($file->getRealPath(), 'our-story/ceo');
+                            return cloudinary_upload($file->getRealPath() ?: null, 'our-story/ceo');
                         }),
                 ]),
         ]);

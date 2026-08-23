@@ -12,4 +12,9 @@ class ManageContactSeo extends ManagesPageSeo
     protected static string $settings = ContactSeoSettings::class;
     protected static string $mediaFolder = 'contact-seo';
     protected static string $pageLabel = 'the Contact page';
+
+    public static function shouldRegisterNavigation(): bool
+    {
+        return false;
+    }
 }

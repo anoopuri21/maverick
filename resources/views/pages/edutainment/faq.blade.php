@@ -30,7 +30,7 @@
         @if(html_filled($faqItem['answer'] ?? null))
         <div class="edu-faq__answer">
           <div class="edu-faq__answer-inner edu-richtext">
-            {!! $faqItem['answer'] !!}
+            {!! rich_html($faqItem['answer'] ?? null) !!}
           </div>
         </div>
         @endif

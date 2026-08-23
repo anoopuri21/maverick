@@ -28,6 +28,17 @@ class OurStoryTestimonial extends Model
         'rating' => 'integer',
     ];
 
+    protected static function booted(): void
+    {
+        static::saving(function (self $item) {
+            $item->name = (string) ($item->name ?? '');
+            $item->testimonial = (string) ($item->testimonial ?? '');
+            if ($item->rating === null) {
+                $item->rating = 5;
+            }
+        });
+    }
+
     public function mediaAsset()
     {
         return $this->belongsTo(MediaAsset::class);

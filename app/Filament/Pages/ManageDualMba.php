@@ -2,6 +2,7 @@
 
 namespace App\Filament\Pages;
 
+use App\Filament\Concerns\EnsuresSettingsRowsExist;
 use App\Filament\Concerns\HandlesCloudinaryImageFields;
 use App\Filament\Forms\Components\MediaPicker;
 use App\Settings\DualMbaEmployersSettings;
@@ -36,6 +37,7 @@ use Throwable;
 class ManageDualMba extends Page implements HasForms
 {
     use HandlesCloudinaryImageFields;
+    use EnsuresSettingsRowsExist;
     use InteractsWithForms;
 
     protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
@@ -112,12 +114,12 @@ class ManageDualMba extends Page implements HasForms
                                 RichEditor::make('hero.sub')->label('Subheading')->columnSpanFull(),
                                 TextInput::make('hero.background_image')->hidden(),
                                 MediaPicker::forField('hero.background_image', 'dual-mba/hero')
-                                    ->label('Background Image')
-                                    ->columnSpanFull(),
+                    ->label('Background Image')
+                    ->columnSpanFull(),
                                 TextInput::make('hero.visual_image')->hidden(),
                                 MediaPicker::forField('hero.visual_image', 'dual-mba/hero')
-                                    ->label('Visual Image')
-                                    ->columnSpanFull(),
+                    ->label('Visual Image')
+                    ->columnSpanFull(),
                                 Grid::make(2)->schema([
                                     TextInput::make('hero.badge_title')->label('Badge Title'),
                                     TextInput::make('hero.badge_sub')->label('Badge Subtitle'),
@@ -125,13 +127,13 @@ class ManageDualMba extends Page implements HasForms
                                 Repeater::make('hero.stats')
                                     ->label('Stats')
                                     ->schema([
-                                        TextInput::make('value')->required(),
-                                        TextInput::make('label')->required(),
+                                        TextInput::make('value'),
+                                        TextInput::make('label'),
                                     ])
-                                    ->reorderable()
-                                    ->collapsible()
-                                    ->itemLabel(fn (array $state): ?string => $state['label'] ?? $state['value'] ?? null)
-                                    ->columnSpanFull(),
+                    ->reorderable()
+                    ->collapsible()
+                    ->itemLabel(fn (array $state): ?string => $state['label'] ?? $state['value'] ?? null)
+                    ->columnSpanFull(),
                                 $this->ctaRepeater('hero.ctas'),
                             ]),
 
@@ -152,13 +154,13 @@ class ManageDualMba extends Page implements HasForms
                                             ->label('Icon Tone')
                                             ->options(['blue' => 'Blue', 'red' => 'Red'])
                                             ->default('blue'),
-                                        TextInput::make('title')->required(),
-                                        Textarea::make('text')->rows(3)->columnSpanFull(),
+                                        TextInput::make('title'),
+                                        RichEditor::make('text')->columnSpanFull(),
                                     ])
-                                    ->reorderable()
-                                    ->collapsible()
-                                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
-                                    ->columnSpanFull(),
+                    ->reorderable()
+                    ->collapsible()
+                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
+                    ->columnSpanFull(),
                             ]),
 
                         Tab::make('Twice')
@@ -169,16 +171,16 @@ class ManageDualMba extends Page implements HasForms
                                     ->schema([
                                         TextInput::make('image')->hidden(),
                                         MediaPicker::forField('image', 'dual-mba/twice')
-                                            ->label('Background Image')
-                                            ->columnSpanFull(),
+                    ->label('Background Image')
+                    ->columnSpanFull(),
                                         TextInput::make('label')->label('Eyebrow Label'),
-                                        TextInput::make('title')->required(),
+                                        TextInput::make('title'),
                                         TextInput::make('title_italic')->label('Title (Italic)'),
                                     ])
-                                    ->reorderable()
-                                    ->collapsible()
-                                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
-                                    ->columnSpanFull(),
+                    ->reorderable()
+                    ->collapsible()
+                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
+                    ->columnSpanFull(),
                             ]),
 
                         Tab::make('Why Choose')
@@ -191,13 +193,13 @@ class ManageDualMba extends Page implements HasForms
                                     ->label('Why Cards')
                                     ->schema([
                                         $this->iconSelect(),
-                                        TextInput::make('title')->required(),
-                                        Textarea::make('description')->rows(3)->columnSpanFull(),
+                                        TextInput::make('title'),
+                                        RichEditor::make('description')->columnSpanFull(),
                                     ])
-                                    ->reorderable()
-                                    ->collapsible()
-                                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
-                                    ->columnSpanFull(),
+                    ->reorderable()
+                    ->collapsible()
+                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
+                    ->columnSpanFull(),
                             ]),
 
                         Tab::make('Specialisations')
@@ -212,13 +214,13 @@ class ManageDualMba extends Page implements HasForms
                                     ->label('Specialisation Cards')
                                     ->schema([
                                         $this->iconSelect(),
-                                        TextInput::make('title')->required(),
+                                        TextInput::make('title'),
                                         TextInput::make('tag')->label('Tag'),
                                     ])
-                                    ->reorderable()
-                                    ->collapsible()
-                                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
-                                    ->columnSpanFull(),
+                    ->reorderable()
+                    ->collapsible()
+                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
+                    ->columnSpanFull(),
                             ]),
 
                         Tab::make('Employers')
@@ -229,8 +231,8 @@ class ManageDualMba extends Page implements HasForms
                                     ->schema([
                                         TextInput::make('image')->hidden(),
                                         MediaPicker::forField('image', 'dual-mba/employers')
-                                            ->label('Image')
-                                            ->columnSpanFull(),
+                    ->label('Image')
+                    ->columnSpanFull(),
                                         TextInput::make('alt')->label('Alt Text'),
                                         Select::make('role')
                                             ->options([
@@ -239,10 +241,10 @@ class ManageDualMba extends Page implements HasForms
                                                 'growth' => 'Growth',
                                             ]),
                                     ])
-                                    ->reorderable()
-                                    ->collapsible()
-                                    ->itemLabel(fn (array $state): ?string => $state['role'] ?? $state['alt'] ?? 'Image')
-                                    ->columnSpanFull(),
+                    ->reorderable()
+                    ->collapsible()
+                    ->itemLabel(fn (array $state): ?string => $state['role'] ?? $state['alt'] ?? 'Image')
+                    ->columnSpanFull(),
                                 TextInput::make('employers.counter_label')->label('Counter Label (HTML allowed for line break)')->columnSpanFull(),
                                 TextInput::make('employers.label')->label('Section Label'),
                                 TextInput::make('employers.heading')->label('Heading'),
@@ -260,21 +262,21 @@ class ManageDualMba extends Page implements HasForms
                                 Repeater::make('testimonials.items')
                                     ->label('Testimonials')
                                     ->schema([
-                                        Textarea::make('quote')->rows(4)->columnSpanFull(),
+                                        RichEditor::make('quote')->columnSpanFull(),
                                         Grid::make(2)->schema([
-                                            TextInput::make('name')->required(),
+                                            TextInput::make('name'),
                                             TextInput::make('role')->label('Role / Location'),
                                         ]),
                                         TextInput::make('programme')->label('Programme')->columnSpanFull(),
                                         TextInput::make('avatar')->hidden(),
                                         MediaPicker::forField('avatar', 'dual-mba/testimonials')
-                                            ->label('Avatar')
-                                            ->columnSpanFull(),
+                    ->label('Avatar')
+                    ->columnSpanFull(),
                                     ])
-                                    ->reorderable()
-                                    ->collapsible()
-                                    ->itemLabel(fn (array $state): ?string => $state['name'] ?? null)
-                                    ->columnSpanFull(),
+                    ->reorderable()
+                    ->collapsible()
+                    ->itemLabel(fn (array $state): ?string => $state['name'] ?? null)
+                    ->columnSpanFull(),
                             ]),
 
                         Tab::make('Process')
@@ -285,13 +287,13 @@ class ManageDualMba extends Page implements HasForms
                                 Repeater::make('process.steps')
                                     ->label('Steps')
                                     ->schema([
-                                        TextInput::make('title')->required(),
-                                        Textarea::make('description')->rows(3)->columnSpanFull(),
+                                        TextInput::make('title'),
+                                        RichEditor::make('description')->columnSpanFull(),
                                     ])
-                                    ->reorderable()
-                                    ->collapsible()
-                                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
-                                    ->columnSpanFull(),
+                    ->reorderable()
+                    ->collapsible()
+                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
+                    ->columnSpanFull(),
                             ]),
 
                         Tab::make('FAQ')
@@ -302,13 +304,13 @@ class ManageDualMba extends Page implements HasForms
                                 Repeater::make('faq.items')
                                     ->label('Questions')
                                     ->schema([
-                                        TextInput::make('question')->required()->columnSpanFull(),
+                                        TextInput::make('question')->columnSpanFull(),
                                         RichEditor::make('answer')->columnSpanFull(),
                                     ])
-                                    ->reorderable()
-                                    ->collapsible()
-                                    ->itemLabel(fn (array $state): ?string => $state['question'] ?? null)
-                                    ->columnSpanFull(),
+                    ->reorderable()
+                    ->collapsible()
+                    ->itemLabel(fn (array $state): ?string => $state['question'] ?? null)
+                    ->columnSpanFull(),
                             ]),
 
                         Tab::make('Final CTA')
@@ -319,8 +321,8 @@ class ManageDualMba extends Page implements HasForms
                                 RichEditor::make('finalCta.sub')->label('Subheading')->columnSpanFull(),
                                 TextInput::make('finalCta.background_image')->hidden(),
                                 MediaPicker::forField('finalCta.background_image', 'dual-mba/cta')
-                                    ->label('Background Image')
-                                    ->columnSpanFull(),
+                    ->label('Background Image')
+                    ->columnSpanFull(),
                                 $this->ctaRepeater('finalCta.ctas'),
                                 Grid::make(2)->schema([
                                     TextInput::make('finalCta.brochure_label')->label('Brochure Link Label'),
@@ -461,50 +463,13 @@ class ManageDualMba extends Page implements HasForms
         app($settingsClass)->fill($payload)->save();
     }
 
-    protected function ensureAllSettingsProperties(object $settings, array $payload): array
-    {
-        $reflection = new \ReflectionClass($settings);
-
-        foreach ($reflection->getProperties(\ReflectionProperty::IS_PUBLIC) as $property) {
-            if ($property->isStatic()) {
-                continue;
-            }
-
-            $name = $property->getName();
-
-            if (! array_key_exists($name, $payload)) {
-                $payload[$name] = $settings->{$name} ?? $property->getDefaultValue();
-            }
-        }
-
-        return $payload;
-    }
-
-    protected function ensureSettingsRowsExist(object $settings): void
-    {
-        $mapper = app(\Spatie\LaravelSettings\SettingsMapper::class);
-        $getConfig = new \ReflectionMethod($mapper, 'getConfig');
-        $getConfig->setAccessible(true);
-        $config = $getConfig->invoke($mapper, get_class($settings));
-
-        $repo = $config->getRepository();
-        $group = $config->getGroup();
-        $existing = collect($repo->getPropertiesInGroup($group))->keys();
-
-        foreach ($config->getReflectedProperties()->keys() as $name) {
-            if (! $existing->contains($name)) {
-                $repo->createProperty($group, $name, $settings->{$name} ?? null);
-            }
-        }
-    }
-
     protected function ctaRepeater(string $name): Repeater
     {
         return Repeater::make($name)
             ->label('Buttons')
             ->schema([
-                TextInput::make('label')->required(),
-                TextInput::make('url')->required(),
+                TextInput::make('label'),
+                TextInput::make('url'),
                 Select::make('style')
                     ->options([
                         'primary' => 'Primary',
@@ -523,7 +488,7 @@ class ManageDualMba extends Page implements HasForms
     {
         return Repeater::make($name)
             ->label($label)
-            ->simple(TextInput::make('item')->required())
+            ->simple(TextInput::make('item'))
             ->reorderable()
             ->columnSpanFull();
     }
