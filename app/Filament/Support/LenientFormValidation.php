@@ -27,12 +27,6 @@ class LenientFormValidation
             return;
         }
 
-        if (self::matchesUrlField($name)) {
-            $component->url()->nullable();
-
-            return;
-        }
-
         if (self::matchesEmailField($name)) {
             $component->email()->nullable();
 
@@ -76,15 +70,6 @@ class LenientFormValidation
         $name = (string) $component->getName();
 
         return str_contains($name, '.') ? (string) str($name)->afterLast('.') : $name;
-    }
-
-    protected static function matchesUrlField(string $name): bool
-    {
-        return in_array($name, ['url', 'link', 'canonical_url', 'video_url', 'youtube_url', 'embed_url'], true)
-            || str_ends_with($name, '_url')
-            || str_ends_with($name, '_link')
-            || str_contains($name, 'cta_')
-            || str_contains($name, 'canonical');
     }
 
     protected static function matchesEmailField(string $name): bool

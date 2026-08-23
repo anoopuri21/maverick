@@ -67,7 +67,6 @@ class ProgramResource extends Resource
                                         ->validationAttribute('programme title'),
 
                                     TextInput::make('slug')
-                                        
                                         ->helperText('URL slug for /programs/{slug}'),
 
                                     Select::make('university_partner_id')
@@ -127,7 +126,7 @@ class ProgramResource extends Resource
                     ->schema([
                                         TextInput::make('image_url')
                                             ->label('Hero Image URL')
-                                            ->url()->nullable()
+                                            ->nullable()
                                             ->helperText('Recommended: 800×540px. Or choose from the media library below.')
                                             ->columnSpanFull(),
                                         MediaPicker::forField('image_url', 'programs')
@@ -137,7 +136,7 @@ class ProgramResource extends Resource
 
                                 TextInput::make('brochure_url')
                                     ->label('Brochure URL')
-                                    ->url()->nullable()
+                                    ->nullable()
                                     ->placeholder('https://...')
                                     ->helperText('Optional. When set, a Download Brochure button can show in the hero.')
                                     ->columnSpanFull(),
@@ -647,7 +646,7 @@ class ProgramResource extends Resource
                     ->placeholder('e.g. STUDENT'),
                 TextInput::make('video')
                     ->label('YouTube Video URL')
-                    ->url()->nullable()
+                    ->nullable()
                     ->placeholder('https://www.youtube.com/watch?v=xxxxx or https://youtu.be/xxxxx')
                     ->helperText('Paste YouTube link — thumbnail auto-generate ho jayega.')
                     ->live()
@@ -669,7 +668,7 @@ class ProgramResource extends Resource
                     ->columnSpanFull(),
                 TextInput::make('thumb')
                     ->label('Custom Thumbnail URL (Optional)')
-                    ->url()->nullable()
+                    ->nullable()
                     ->live()
                     ->helperText('Leave empty to auto-use the YouTube thumbnail.'),
                 MediaPicker::forField('thumb', 'programs/testimonials')
@@ -708,7 +707,7 @@ class ProgramResource extends Resource
                     ->validationAttribute('reviewer name'),
                 TextInput::make('avatar')
                     ->label('Avatar URL')
-                    ->url()->nullable()
+                    ->nullable()
                     ->helperText('Optional. Or choose from the media library below.'),
                 MediaPicker::forField('avatar', 'programs/reviews')
                     ->label('Avatar Image'),
@@ -742,7 +741,7 @@ class ProgramResource extends Resource
                     ->validationAttribute('organisation name'),
                 TextInput::make('logo')
                     ->label('Logo URL')
-                    ->url()->nullable()
+                    ->nullable()
                     ->helperText('Or choose from the media library below.'),
                 MediaPicker::forField('logo', 'programs/recognition')
                     ->label('Logo Image'),
@@ -775,7 +774,7 @@ class ProgramResource extends Resource
                             ->validationAttribute('logo name'),
                         TextInput::make('logo')
                             ->label('Logo URL')
-                            ->url()->nullable()
+                            ->nullable()
                             ->helperText('Or choose from the media library below.'),
                         MediaPicker::forField('logo', 'programs/accreditation')
                     ->label('Logo Image'),

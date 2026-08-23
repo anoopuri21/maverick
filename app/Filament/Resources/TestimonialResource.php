@@ -48,7 +48,7 @@ class TestimonialResource extends Resource
                             ->label('YouTube Video URL')
                             ->placeholder('https://youtube.com/watch?v=xxxxx OR https://youtu.be/xxxxx')
                             ->helperText('Paste any YouTube URL format. Example: https://www.youtube.com/watch?v=4p0rsCEljgo')
-                            ->url()->nullable()
+                            ->nullable()
                             ->columnSpanFull(),
                     ]),
 

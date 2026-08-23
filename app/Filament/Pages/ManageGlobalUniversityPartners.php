@@ -171,7 +171,7 @@ class ManageGlobalUniversityPartners extends Page implements HasForms
                                 Textarea::make('seo.meta_description')->label('Meta Description')->rows(3)->maxLength(160),
                                 Textarea::make('seo.meta_keywords')->label('Meta Keywords')->rows(2),
                                 Grid::make(2)->schema([
-                                    TextInput::make('seo.canonical_url')->label('Canonical URL')->url()->nullable(),
+                                    TextInput::make('seo.canonical_url')->label('Canonical URL')->nullable(),
                                     Select::make('seo.robots')->label('Robots')
                                         ->options([
                                             'index, follow' => 'Index, Follow (Default)',

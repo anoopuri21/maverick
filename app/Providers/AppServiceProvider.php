@@ -249,7 +249,7 @@ class AppServiceProvider extends ServiceProvider
             $view->with('finalCta', safe_settings(FinalCtaSettings::class));
         });
 
-        View::composer('sections.alumni-network', function ($view) {
+        View::composer(['sections.alumni-network', 'pages.mba-masters-landing.alumni'], function ($view) {
             if ($view->offsetExists('alumniLogos')) {
                 return;
             }
@@ -272,6 +272,57 @@ class AppServiceProvider extends ServiceProvider
             }
 
             $view->with('alumniLogos', $alumniLogos);
+        });
+
+        View::composer('pages.mba-masters-landing.partners', function ($view) {
+            if ($view->offsetExists('universityPartnerLogos')) {
+                return;
+            }
+
+            try {
+                $universityPartnerLogos = PublicContentCache::hydrateRows(
+                    PublicContentCache::remember(PublicContentCache::MLP_UNIVERSITY_LOGOS, function () {
+                        return PublicContentCache::serializeRows(
+                            UniversityPartner::select('id', 'name', 'logo_url', 'sort_order')
+                                ->where('is_active', true)
+                                ->whereNotNull('logo_url')
+                                ->orderBy('sort_order')
+                                ->limit(12)
+                                ->get()
+                        );
+                    })
+                );
+            } catch (\Throwable $e) {
+                report($e);
+                $universityPartnerLogos = collect();
+            }
+
+            $view->with('universityPartnerLogos', $universityPartnerLogos);
+        });
+
+        View::composer('pages.mba-masters-landing.testimonials', function ($view) {
+            if ($view->offsetExists('storyTestimonials')) {
+                return;
+            }
+
+            try {
+                $storyTestimonials = PublicContentCache::hydrateRows(
+                    PublicContentCache::remember(PublicContentCache::MLP_STORY_TESTIMONIALS, function () {
+                        return PublicContentCache::serializeRows(
+                            OurStoryTestimonial::select('id', 'name', 'organisation', 'position', 'country', 'testimonial', 'photo', 'sort_order')
+                                ->where('is_active', true)
+                                ->orderBy('sort_order')
+                                ->limit(6)
+                                ->get()
+                        );
+                    })
+                );
+            } catch (\Throwable $e) {
+                report($e);
+                $storyTestimonials = collect();
+            }
+
+            $view->with('storyTestimonials', $storyTestimonials);
         });
 
         View::composer('sections.accreditations', function ($view) {

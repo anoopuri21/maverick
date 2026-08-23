@@ -40,6 +40,10 @@ use App\Settings\CsrGallerySettings;
 use App\Settings\CsrImpactSettings;
 use App\Settings\CsrScholarshipSettings;
 use App\Settings\CsrSeoSettings;
+use App\Settings\PrivacyPageSettings;
+use App\Settings\PrivacySeoSettings;
+use App\Settings\TermsPageSettings;
+use App\Settings\TermsSeoSettings;
 use App\Settings\DualMbaEmployersSettings;
 use App\Settings\DualMbaFaqSettings;
 use App\Settings\DualMbaFinalCtaSettings;
@@ -51,6 +55,25 @@ use App\Settings\DualMbaSpecsSettings;
 use App\Settings\DualMbaTestimonialsSettings;
 use App\Settings\DualMbaTwiceSettings;
 use App\Settings\DualMbaWhySettings;
+use App\Settings\MbaMastersAlumniSettings;
+use App\Settings\MbaMastersLearningSettings;
+use App\Settings\MbaMastersPartnersSettings;
+use App\Settings\MbaMastersTestimonialsSettings;
+use App\Settings\MbaMastersCompareSettings;
+use App\Settings\MbaMastersFaqSettings;
+use App\Settings\MbaMastersFinalSettings;
+use App\Settings\MbaMastersCareerSettings;
+use App\Settings\MbaMastersClassSettings;
+use App\Settings\MbaMastersFeesSettings;
+use App\Settings\MbaMastersHeroSettings;
+use App\Settings\MbaMastersJourneySettings;
+use App\Settings\MbaMastersMastersSettings;
+use App\Settings\MbaMastersMbaSettings;
+use App\Settings\MbaMastersOverviewSettings;
+use App\Settings\MbaMastersSeoSettings;
+use App\Settings\MbaMastersTrustSettings;
+use App\Settings\MbaMastersWhySettings;
+use App\Settings\SiteSettings;
 use App\Settings\GbpAdmissionSettings;
 use App\Settings\GbpAreasSettings;
 use App\Settings\GbpComparisonSettings;
@@ -307,6 +330,84 @@ class PageController extends Controller
         ]);
     }
 
+    public function mbaMastersLanding()
+    {
+        $hero = safe_settings(MbaMastersHeroSettings::class);
+        $trust = safe_settings(MbaMastersTrustSettings::class);
+        $trust->stats = settings_array($trust->stats ?? []);
+
+        $overview = safe_settings(MbaMastersOverviewSettings::class);
+        $overview->items = settings_array($overview->items ?? []);
+
+        $why = safe_settings(MbaMastersWhySettings::class);
+        $why->chapters = settings_array($why->chapters ?? []);
+
+        $journey = safe_settings(MbaMastersJourneySettings::class);
+        $journey->steps = settings_array($journey->steps ?? []);
+
+        $mba = safe_settings(MbaMastersMbaSettings::class);
+        $mba->tabs = settings_array($mba->tabs ?? []);
+
+        $masters = safe_settings(MbaMastersMastersSettings::class);
+        $masters->universities = settings_array($masters->universities ?? []);
+
+        $fees = safe_settings(MbaMastersFeesSettings::class);
+        $fees->rows = settings_array($fees->rows ?? []);
+
+        $class = safe_settings(MbaMastersClassSettings::class);
+        $class->metrics = settings_array($class->metrics ?? []);
+        $class->regions = settings_array($class->regions ?? []);
+        $class->industries = settings_array($class->industries ?? []);
+
+        $career = safe_settings(MbaMastersCareerSettings::class);
+        $career->stories = settings_array($career->stories ?? []);
+
+        $alumni = safe_settings(MbaMastersAlumniSettings::class);
+
+        $learning = safe_settings(MbaMastersLearningSettings::class);
+        $learning->points = settings_array($learning->points ?? []);
+
+        $partners = safe_settings(MbaMastersPartnersSettings::class);
+
+        $testimonials = safe_settings(MbaMastersTestimonialsSettings::class);
+        $testimonials->items = settings_array($testimonials->items ?? []);
+
+        $compare = safe_settings(MbaMastersCompareSettings::class);
+        $compare->rows = settings_array($compare->rows ?? []);
+
+        $faq = safe_settings(MbaMastersFaqSettings::class);
+        $faq->items = settings_array($faq->items ?? []);
+
+        $final = safe_settings(MbaMastersFinalSettings::class);
+
+        $seo = safe_settings(MbaMastersSeoSettings::class);
+        if (! filled($seo->canonical_url)) {
+            $seo->canonical_url = route('mba-masters-landing', absolute: true);
+        }
+
+        return view('pages.mba-masters-landing', [
+            'hero' => $hero,
+            'trust' => $trust,
+            'overview' => $overview,
+            'why' => $why,
+            'journey' => $journey,
+            'mba' => $mba,
+            'masters' => $masters,
+            'fees' => $fees,
+            'class' => $class,
+            'career' => $career,
+            'alumni' => $alumni,
+            'learning' => $learning,
+            'partners' => $partners,
+            'testimonials' => $testimonials,
+            'compare' => $compare,
+            'faq' => $faq,
+            'final' => $final,
+            'seo' => $seo,
+            'site' => safe_settings(SiteSettings::class),
+        ]);
+    }
+
     public function globalBachelorsPathway()
     {
         $snapshot = safe_settings(GbpSnapshotSettings::class);
@@ -453,6 +554,22 @@ class PageController extends Controller
             'impact' => $impact,
             'scholarship' => $scholarship,
             'csrSeo' => safe_settings(CsrSeoSettings::class),
+        ]);
+    }
+
+    public function privacyPolicy()
+    {
+        return view('pages.privacy-policy', [
+            'privacyPage' => safe_settings(PrivacyPageSettings::class),
+            'privacySeo' => safe_settings(PrivacySeoSettings::class),
+        ]);
+    }
+
+    public function termsOfUse()
+    {
+        return view('pages.terms-of-use', [
+            'termsPage' => safe_settings(TermsPageSettings::class),
+            'termsSeo' => safe_settings(TermsSeoSettings::class),
         ]);
     }
 

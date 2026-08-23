@@ -15,13 +15,6 @@ class NewsletterController extends Controller
         FormMailer $formMailer,
         ZohoCampaignsService $campaigns,
     ) {
-        if (filled($request->input('website'))) {
-            return response()->json([
-                'ok' => true,
-                'message' => 'Thank you for subscribing.',
-            ]);
-        }
-
         $email = $request->validated('email');
         $synced = $campaigns->subscribe($email);
 

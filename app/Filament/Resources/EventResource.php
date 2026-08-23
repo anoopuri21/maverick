@@ -32,7 +32,7 @@ class EventResource extends Resource
                 Forms\Components\RichEditor::make('description'),
                 Forms\Components\TextInput::make('location'),
                 Forms\Components\TextInput::make('link_url')
-                    ->url()->nullable(),
+                    ->nullable(),
                 Forms\Components\Toggle::make('is_active'),
             ]);
     }
