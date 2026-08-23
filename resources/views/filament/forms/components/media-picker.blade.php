@@ -4,11 +4,19 @@
     $asset = filled($state) ? \App\Models\MediaAsset::query()->find($state) : null;
     $urlField = $getUrlField();
     $urlStatePath = null;
+    $fallbackUrl = null;
 
     if (filled($urlField)) {
         $urlStatePath = str_contains($statePath, '.')
             ? \Illuminate\Support\Str::beforeLast($statePath, '.').'.'.$urlField
             : $urlField;
+
+        if (! $asset) {
+            $fallbackUrl = $get($urlField);
+            if (blank($fallbackUrl) && method_exists($field, 'getRecord')) {
+                $fallbackUrl = data_get($field->getRecord(), $urlField);
+            }
+        }
     }
 
     $clearAction = "\$set('{$statePath}', null)";
@@ -36,20 +44,24 @@
         "
         class="fi-fo-media-picker space-y-3"
     >
-        @if ($asset)
+        @if ($asset || filled($fallbackUrl))
             <div class="flex items-center gap-3 rounded-xl border border-gray-200 bg-white p-3 dark:border-white/10 dark:bg-white/5">
                 <img
-                    src="{{ $asset->url }}"
-                    alt="{{ $asset->original_name ?: 'Selected media' }}"
+                    src="{{ $asset?->url ?: $fallbackUrl }}"
+                    alt="{{ $asset?->original_name ?: 'Selected media' }}"
                     class="h-16 w-16 rounded-lg object-cover ring-1 ring-gray-950/5 dark:ring-white/10"
                 />
                 <div class="min-w-0 flex-1">
                     <p class="truncate text-sm font-medium text-gray-950 dark:text-white">
-                        {{ $asset->original_name ?: 'Asset #'.$asset->id }}
+                        {{ $asset?->original_name ?: 'Current image' }}
                     </p>
-                    @if ($asset->folder)
+                    @if ($asset?->folder)
                         <p class="truncate text-xs text-gray-500 dark:text-gray-400">
                             {{ $asset->folder }}
+                        </p>
+                    @elseif (! $asset && filled($fallbackUrl))
+                        <p class="truncate text-xs text-gray-500 dark:text-gray-400">
+                            Saved URL (no library asset linked)
                         </p>
                     @endif
                 </div>

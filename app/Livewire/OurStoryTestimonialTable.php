@@ -24,28 +24,33 @@ class OurStoryTestimonialTable extends Component implements HasForms, HasTable
     public function table(Table $table): Table
     {
         return OurStoryTestimonialResource::table(
-            $table
-                ->query(OurStoryTestimonial::query())
-                ->headerActions([
-                    CreateAction::make()
-                        ->form(fn (Form $form) => OurStoryTestimonialResource::form($form))
-                        ->mutateFormDataUsing(fn (array $data): array => MediaPicker::syncUrlFromAsset($data, 'photo')),
-                ])
-                ->actions([
-                    EditAction::make()
-                        ->form(fn (Form $form) => OurStoryTestimonialResource::form($form))
-                        ->mutateFormDataUsing(function (array $data) {
-                            $data = MediaPicker::syncUrlFromAsset($data, 'photo');
-                            $record = $this->getMountedTableActionRecord();
-                            if (empty($data['photo']) && $record && filled($record->photo)) {
+            $table->query(OurStoryTestimonial::query())
+        )
+            ->headerActions([
+                CreateAction::make()
+                    ->form(fn (Form $form) => OurStoryTestimonialResource::form($form))
+                    ->mutateFormDataUsing(fn (array $data): array => MediaPicker::syncUrlFromAsset($data, 'photo')),
+            ])
+            ->actions([
+                EditAction::make()
+                    ->form(fn (Form $form) => OurStoryTestimonialResource::form($form))
+                    ->mutateFormDataUsing(function (array $data): array {
+                        $data = MediaPicker::syncUrlFromAsset($data, 'photo');
+                        $record = $this->getMountedTableActionRecord();
+                        if (empty($data['photo']) && $record && filled($record->photo)) {
+                            $userClearedAsset = array_key_exists('media_asset_id', $data)
+                                && empty($data['media_asset_id'])
+                                && filled($record->media_asset_id);
+
+                            if (! $userClearedAsset) {
                                 $data['photo'] = $record->photo;
                             }
+                        }
 
-                            return $data;
-                        }),
-                    DeleteAction::make(),
-                ]),
-        );
+                        return $data;
+                    }),
+                DeleteAction::make(),
+            ]);
     }
 
     public function render(): \Illuminate\View\View

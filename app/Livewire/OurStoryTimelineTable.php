@@ -25,20 +25,19 @@ class OurStoryTimelineTable extends Component implements HasForms, HasTable
     public function table(Table $table): Table
     {
         return OurStoryTimelineResource::table(
-            $table
-                ->query(OurStoryTimeline::query())
-                ->headerActions([
-                    CreateAction::make()
-                        ->form(fn (Form $form) => OurStoryTimelineResource::form($form))
-                        ->mutateFormDataUsing(fn (array $data) => $this->mutateEmbeddedMedia($data, 'icon_url')),
-                ])
-                ->actions([
-                    EditAction::make()
-                        ->form(fn (Form $form) => OurStoryTimelineResource::form($form))
-                        ->mutateFormDataUsing(fn (array $data) => $this->mutateEmbeddedMedia($data, 'icon_url', $this->getMountedTableActionRecord())),
-                    DeleteAction::make(),
-                ]),
-        );
+            $table->query(OurStoryTimeline::query())
+        )
+            ->headerActions([
+                CreateAction::make()
+                    ->form(fn (Form $form) => OurStoryTimelineResource::form($form))
+                    ->mutateFormDataUsing(fn (array $data) => $this->mutateEmbeddedMedia($data, 'icon_url')),
+            ])
+            ->actions([
+                EditAction::make()
+                    ->form(fn (Form $form) => OurStoryTimelineResource::form($form))
+                    ->mutateFormDataUsing(fn (array $data) => $this->mutateEmbeddedMedia($data, 'icon_url', $this->getMountedTableActionRecord())),
+                DeleteAction::make(),
+            ]);
     }
 
     public function render(): \Illuminate\View\View

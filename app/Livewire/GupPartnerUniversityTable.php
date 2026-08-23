@@ -25,20 +25,19 @@ class GupPartnerUniversityTable extends Component implements HasForms, HasTable
     public function table(Table $table): Table
     {
         return GupPartnerUniversityResource::table(
-            $table
-                ->query(GupPartnerUniversity::query())
-                ->headerActions([
-                    CreateAction::make()
-                        ->form(fn (Form $form) => GupPartnerUniversityResource::form($form))
-                        ->mutateFormDataUsing(fn (array $data) => $this->mutateEmbeddedMedia($data, 'logo_url')),
-                ])
-                ->actions([
-                    EditAction::make()
-                        ->form(fn (Form $form) => GupPartnerUniversityResource::form($form))
-                        ->mutateFormDataUsing(fn (array $data) => $this->mutateEmbeddedMedia($data, 'logo_url', $this->getMountedTableActionRecord())),
-                    DeleteAction::make(),
-                ]),
-        );
+            $table->query(GupPartnerUniversity::query())
+        )
+            ->headerActions([
+                CreateAction::make()
+                    ->form(fn (Form $form) => GupPartnerUniversityResource::form($form))
+                    ->mutateFormDataUsing(fn (array $data) => $this->mutateEmbeddedMedia($data, 'logo_url')),
+            ])
+            ->actions([
+                EditAction::make()
+                    ->form(fn (Form $form) => GupPartnerUniversityResource::form($form))
+                    ->mutateFormDataUsing(fn (array $data) => $this->mutateEmbeddedMedia($data, 'logo_url', $this->getMountedTableActionRecord())),
+                DeleteAction::make(),
+            ]);
     }
 
     public function render(): \Illuminate\View\View

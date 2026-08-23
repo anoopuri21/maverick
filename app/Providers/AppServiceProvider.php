@@ -207,13 +207,17 @@ class AppServiceProvider extends ServiceProvider
             }
 
             try {
-                $alumniLogos = PublicContentCache::remember(PublicContentCache::ALUMNI_LOGOS, function () {
-                    return PartnerLogo::select('id', 'name', 'logo_url', 'sort_order')
-                        ->where('type', 'alumni')
-                        ->where('is_active', true)
-                        ->orderBy('sort_order')
-                        ->get();
-                });
+                $alumniLogos = PublicContentCache::hydrateRows(
+                    PublicContentCache::remember(PublicContentCache::ALUMNI_LOGOS, function () {
+                        return PublicContentCache::serializeRows(
+                            PartnerLogo::select('id', 'name', 'logo_url', 'sort_order')
+                                ->where('type', 'alumni')
+                                ->where('is_active', true)
+                                ->orderBy('sort_order')
+                                ->get()
+                        );
+                    })
+                );
             } catch (\Throwable $e) {
                 report($e);
                 $alumniLogos = collect();

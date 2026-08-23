@@ -24,20 +24,19 @@ class AccreditationAwardTable extends Component implements HasForms, HasTable
     public function table(Table $table): Table
     {
         return AccreditationAwardResource::table(
-            $table
-                ->query(AccreditationAwardResource::getEloquentQuery())
-                ->headerActions([
-                    CreateAction::make()
-                        ->form(fn (Form $form) => AccreditationAwardResource::form($form))
-                        ->mutateFormDataUsing(fn (array $data) => $this->mutateEmbeddedMedia($data, 'logo_url', extra: ['type' => 'award'])),
-                ])
-                ->actions([
-                    EditAction::make()
-                        ->form(fn (Form $form) => AccreditationAwardResource::form($form))
-                        ->mutateFormDataUsing(fn (array $data) => $this->mutateEmbeddedMedia($data, 'logo_url', $this->getMountedTableActionRecord(), ['type' => 'award'])),
-                    DeleteAction::make(),
-                ]),
-        );
+            $table->query(AccreditationAwardResource::getEloquentQuery())
+        )
+            ->headerActions([
+                CreateAction::make()
+                    ->form(fn (Form $form) => AccreditationAwardResource::form($form))
+                    ->mutateFormDataUsing(fn (array $data) => $this->mutateEmbeddedMedia($data, 'logo_url', extra: ['type' => 'award'])),
+            ])
+            ->actions([
+                EditAction::make()
+                    ->form(fn (Form $form) => AccreditationAwardResource::form($form))
+                    ->mutateFormDataUsing(fn (array $data) => $this->mutateEmbeddedMedia($data, 'logo_url', $this->getMountedTableActionRecord(), ['type' => 'award'])),
+                DeleteAction::make(),
+            ]);
     }
 
     public function render(): \Illuminate\View\View
