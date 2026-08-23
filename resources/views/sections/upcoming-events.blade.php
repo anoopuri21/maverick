@@ -26,7 +26,7 @@
           <path d="M15 18l-6-6 6-6" />
         </svg>
       </button>
-      <div class="events__scroll" data-scroll-container data-lenis-prevent>
+      <div class="events__scroll" data-scroll-container>
         <div class="events__track">
           @forelse(($events ?? collect()) as $event)
             <article class="events__card fade-up">

@@ -19,12 +19,11 @@
 @endpush
 
 @section('content')
-<div class="page-leadership leadership">
-
-
 @php
+    $leaders = $leaders ?? safe_settings(\App\Settings\LeadershipLeadersSettings::class);
     $executiveTeam = collect(settings_array($leaders->items ?? []));
 @endphp
+<div class="page-leadership leadership">
 
 
 {{-- ═══════════════════════════════════════════

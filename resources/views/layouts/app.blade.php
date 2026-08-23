@@ -92,9 +92,12 @@
     @if(request()->routeIs('programs.index'))
     <script src="{{ cached_asset('assets/js/pages/program-listing.js') }}" defer></script>
     @endif
-    @if(request()->routeIs('home', 'our-story'))
+    @if(request()->routeIs('home', 'our-story', 'masters-pathway'))
     <script src="{{ cached_asset('assets/js/partners.js') }}" defer></script>
     <script src="{{ cached_asset('assets/js/testimonials.js') }}" defer></script>
+    @endif
+    @if(request()->routeIs('home', 'masters-pathway'))
+    <script src="{{ cached_asset('assets/js/faculty-voice-modal.js') }}" defer></script>
     @endif
     <script src="{{ cached_asset('assets/js/scroll-controls.js') }}" defer></script>
 

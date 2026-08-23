@@ -13,7 +13,6 @@ use Filament\Tables;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Forms\Components\MediaPicker;
 
 class TestimonialResource extends Resource
@@ -104,7 +103,9 @@ class TestimonialResource extends Resource
                     ->boolean(),
             ])
             ->defaultSort('sort_order')
-            ->filters([])
+            ->filters([
+                Tables\Filters\TernaryFilter::make('is_active'),
+            ])
             ->actions([
                 \Filament\Tables\Actions\EditAction::make(),
             ])

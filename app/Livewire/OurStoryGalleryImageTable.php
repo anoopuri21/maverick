@@ -25,7 +25,7 @@ class OurStoryGalleryImageTable extends Component implements HasForms, HasTable
     public function table(Table $table): Table
     {
         return OurStoryGalleryImageResource::table(
-            $table->query(OurStoryGalleryImage::query())
+            $table->query(OurStoryGalleryImageResource::getEloquentQuery())
         )
             ->headerActions([
                 CreateAction::make()

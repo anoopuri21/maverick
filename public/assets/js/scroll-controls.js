@@ -14,6 +14,16 @@
 
     if (!container) return;
 
+    container.addEventListener(
+      "wheel",
+      (e) => {
+        if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
+        e.preventDefault();
+        container.scrollLeft += e.deltaX;
+      },
+      { passive: false }
+    );
+
     let isDown = false;
     let hasDragged = false;
     let startX = 0;

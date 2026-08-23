@@ -68,4 +68,9 @@ class ManageCeoMessage extends SettingsPage
                 ]),
         ]);
     }
+
+    protected function mutateFormDataBeforeSave(array $data): array
+    {
+        return $this->preserveExistingImageFields($data, app(static::$settings));
+    }
 }

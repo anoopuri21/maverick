@@ -3865,6 +3865,36 @@ html.js .scale-in {
   align-self: center;
 }
 
+.opportunities__item-badge {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 0.75rem;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-mba-blue);
+  background: rgba(15, 41, 131, 0.08);
+  vertical-align: middle;
+}
+
+.opportunities__link--soon {
+  cursor: default;
+  pointer-events: none;
+}
+
+.opportunities__link--soon:hover {
+  padding-left: 0;
+  background: transparent;
+}
+
+.opportunities__link--soon:hover::before {
+  width: 0;
+}
+
 /* ----- Hover Effects ----- */
 .opportunities__link:hover {
   padding-left: 1.5rem;
@@ -4500,6 +4530,7 @@ html.js .scale-in {
   width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
+  overscroll-behavior-x: contain;
   -webkit-overflow-scrolling: touch;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
@@ -4516,6 +4547,7 @@ html.js .scale-in {
 .insights__track {
   display: flex;
   flex-wrap: nowrap;
+  align-items: stretch;
   gap: 2rem;
   padding: 1rem;
   width: max-content;
@@ -4525,6 +4557,8 @@ html.js .scale-in {
 .insights__card {
   flex: 0 0 420px;
   scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
   background-color: #ffffff;
   border: 1px solid #e5e5e5;
   border-radius: 2px;
@@ -4536,16 +4570,11 @@ html.js .scale-in {
   border-color: var(--color-mba-red);
 }
 
-.insights__card-link {
-  display: block;
-  text-decoration: none;
-  color: inherit;
-}
-
 .insights__card-image {
   width: 100%;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
+  flex-shrink: 0;
 }
 
 .insights__card-image img {
@@ -4560,6 +4589,9 @@ html.js .scale-in {
 }
 
 .insights__card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
   padding: 2rem;
 }
 
@@ -4583,6 +4615,10 @@ html.js .scale-in {
   color: #0a0a0a;
   line-height: 1.2;
   margin: 1rem 0 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
   transition: color 0.3s ease;
 }
 
@@ -4590,19 +4626,64 @@ html.js .scale-in {
   color: var(--color-mba-blue);
 }
 
-.insights__card-meta {
+.insights__card-faculty {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  font-family: "Poppins", sans-serif;
-  font-weight: 300;
-  font-size: 0.85rem;
-  color: rgba(10, 10, 10, 0.5);
+  gap: 0.625rem;
   margin-top: 0.75rem;
 }
 
-.insights__card-separator {
-  color: rgba(10, 10, 10, 0.3);
+.insights__card-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.insights__card-faculty-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  min-width: 0;
+}
+
+.insights__card-faculty-name {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 0.8rem;
+  color: #0a0a0a;
+  line-height: 1.3;
+}
+
+.insights__card-faculty-role {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: 0.75rem;
+  color: rgba(10, 10, 10, 0.55);
+  line-height: 1.3;
+}
+
+.insights__card-excerpt {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: rgba(10, 10, 10, 0.7);
+  margin: 1rem 0 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: calc(4 * 1.65em);
+  margin-bottom: auto;
+}
+
+.insights__card-footer {
+  min-height: 2.5rem;
+  display: flex;
+  align-items: flex-end;
+  margin-top: 1rem;
 }
 
 .insights__card-read-more {
@@ -4612,13 +4693,23 @@ html.js .scale-in {
   color: var(--color-mba-red);
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  display: inline-block;
-  margin-top: 1rem;
-  transition: transform 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-.insights__card:hover .insights__card-read-more {
+.insights__card-read-more:hover {
   transform: translateX(4px);
+}
+
+.insights__card-read-more[hidden] {
+  visibility: hidden;
+  pointer-events: none;
 }
 
 /* ----- Responsive: Mobile ----- */
@@ -4689,6 +4780,7 @@ html.js .scale-in {
   width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
+  overscroll-behavior-x: contain;
   -webkit-overflow-scrolling: touch;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
@@ -4892,6 +4984,7 @@ html.js .scale-in {
   width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
+  overscroll-behavior-x: contain;
   -webkit-overflow-scrolling: touch;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
@@ -6748,5 +6841,255 @@ body.modal-open {
 
   .wim__statement-text {
     font-size: clamp(20px, 4vw, 32px);
+  }
+}
+
+/* ============================================================
+   SECTION 12B — FACULTY VOICE MODAL
+   ============================================================ */
+
+.fv-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  pointer-events: none;
+}
+
+.fv-modal:not([hidden]) {
+  pointer-events: auto;
+}
+
+.fv-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(7, 20, 68, 0.55);
+  opacity: 0;
+  transition: opacity 0.32s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.fv-modal.is-open .fv-modal__backdrop {
+  opacity: 1;
+}
+
+.fv-modal__dialog {
+  position: relative;
+  width: 100%;
+  max-width: 760px;
+  max-height: 86vh;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+  border-top: 3px solid var(--color-mba-red, #b20202);
+  border-radius: 2px;
+  box-shadow: 0 24px 64px rgba(7, 20, 68, 0.18);
+  opacity: 0;
+  transform: translateY(24px) scale(0.98);
+  transition: opacity 0.32s cubic-bezier(0.22, 0.61, 0.36, 1),
+    transform 0.32s cubic-bezier(0.22, 0.61, 0.36, 1);
+  overflow: hidden;
+}
+
+.fv-modal.is-open .fv-modal__dialog {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.fv-modal__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+  border-radius: 2px;
+  color: #0a0a0a;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.fv-modal__close:hover {
+  border-color: var(--color-mba-red, #b20202);
+  color: var(--color-mba-red, #b20202);
+}
+
+.fv-modal__close svg {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.fv-modal__head {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem 2rem 0;
+  padding-right: 3.5rem;
+}
+
+.fv-modal__avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.fv-modal__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.fv-modal__badge {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 0.65rem;
+  color: var(--color-mba-red, #b20202);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border: 1px solid var(--color-mba-red, #b20202);
+  padding: 0.3rem 0.6rem;
+  display: inline-block;
+  align-self: flex-start;
+}
+
+.fv-modal__faculty-name {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: #0a0a0a;
+}
+
+.fv-modal__faculty-role {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: 0.8rem;
+  color: rgba(10, 10, 10, 0.55);
+}
+
+.fv-modal__title {
+  font-family: "PP Neue Montreal", sans-serif;
+  font-weight: 500;
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  color: #0a0a0a;
+  line-height: 1.2;
+  margin: 1.25rem 2rem 0;
+  padding-right: 2rem;
+}
+
+.fv-modal__quote {
+  font-family: "PP Neue Montreal", sans-serif;
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--color-mba-dark-blue, #071444);
+  border-left: 3px solid var(--color-mba-red, #b20202);
+  margin: 1.25rem 2rem 0;
+  padding: 0.5rem 0 0.5rem 1.25rem;
+}
+
+.fv-modal__body {
+  flex: 1;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 1.5rem 2rem 2rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: rgba(10, 10, 10, 0.8);
+}
+
+.fv-modal__body p {
+  margin: 0 0 1rem;
+}
+
+.fv-modal__body p:last-child {
+  margin-bottom: 0;
+}
+
+.fv-modal__body h3,
+.fv-modal__body h4 {
+  font-family: "PP Neue Montreal", sans-serif;
+  font-weight: 500;
+  color: #0a0a0a;
+  margin: 1.5rem 0 0.75rem;
+}
+
+.fv-modal__body ul,
+.fv-modal__body ol {
+  margin: 0 0 1rem;
+  padding-left: 1.25rem;
+}
+
+.fv-modal__body li {
+  margin-bottom: 0.35rem;
+}
+
+.fv-modal__body blockquote,
+.fv-modal__body .fv-modal__quote-source {
+  font-style: italic;
+  border-left: 3px solid var(--color-mba-red, #b20202);
+  margin: 1rem 0;
+  padding: 0.25rem 0 0.25rem 1rem;
+  color: var(--color-mba-dark-blue, #071444);
+}
+
+.fv-modal__body strong {
+  font-weight: 500;
+  color: #0a0a0a;
+}
+
+.fv-modal__body a {
+  color: var(--color-mba-red, #b20202);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+@media (max-width: 768px) {
+  .fv-modal {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .fv-modal__dialog {
+    max-width: 100%;
+    max-height: 92vh;
+    border-radius: 12px 12px 0 0;
+    transform: translateY(100%);
+  }
+
+  .fv-modal.is-open .fv-modal__dialog {
+    transform: translateY(0);
+  }
+
+  .fv-modal__head,
+  .fv-modal__title,
+  .fv-modal__quote,
+  .fv-modal__body {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .fv-modal__title {
+    padding-right: 3rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fv-modal__backdrop,
+  .fv-modal__dialog {
+    transition: none;
   }
 }

@@ -31,7 +31,7 @@
     <!-- Company Logo Slider -->
     <div class="network-slider-wrapper">
       <div class="network-slider-track">
-        @forelse($alumniLogos as $logo)
+        @forelse(($alumniLogos ?? collect()) as $logo)
           <div class="network-card" data-name="{{ $logo->name }}">
             <div class="network-logo-wrapper">
               @if($url = media_url($logo->logo_url ?? null))

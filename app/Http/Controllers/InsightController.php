@@ -16,7 +16,10 @@ class InsightController extends Controller
                 ->take(5)
                 ->get(['id', 'title', 'slug', 'excerpt', 'featured_image_url', 'published_at', 'categories']);
 
-            return view('news.show', ['article' => $slug, 'moreUpdates' => $moreUpdates]);
+            return view('news.show', [
+                'article' => $slug,
+                'moreUpdates' => $moreUpdates ?? collect(),
+            ]);
         }
 
         // Default: blog-style detail view (covers items tagged
@@ -54,6 +57,10 @@ class InsightController extends Controller
             ->take(3)
             ->get(['id', 'title', 'slug', 'excerpt', 'featured_image_url', 'published_at', 'reading_time_minutes', 'categories', 'tags']);
 
-        return view('blogs.show', ['post' => $slug, 'headings' => $headings, 'relatedPosts' => $relatedPosts]);
+        return view('blogs.show', [
+            'post' => $slug,
+            'headings' => $headings ?? [],
+            'relatedPosts' => $relatedPosts ?? collect(),
+        ]);
     }
 }

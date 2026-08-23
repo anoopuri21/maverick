@@ -13,8 +13,8 @@ class GlobalOpportunitiesSettings extends Settings
     public ?string $right_title = null;
 
     // Scalable repeaters (source of truth going forward)
-    public array $opportunities = []; // [{title, desc, url, icon}]
-    public array $pathways = [];      // [{title, desc, url, icon}]
+    public array $opportunities = []; // [{title, desc, slug, image, image_url, coming_soon}]
+    public array $pathways = [];      // [{title, desc, slug, image, image_url, coming_soon}]
 
     // Legacy positional fields (kept for backward-compat; removed after migrate)
     public ?string $opp1_title = null;

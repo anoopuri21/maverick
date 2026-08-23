@@ -19,6 +19,13 @@
 @endpush
 
 @section('content')
+@php
+    $csrSeo = $csrSeo ?? safe_settings(\App\Settings\CsrSeoSettings::class);
+    $focus = $focus ?? safe_settings(\App\Settings\CsrFocusSettings::class);
+    $gallery = $gallery ?? safe_settings(\App\Settings\CsrGallerySettings::class);
+    $impact = $impact ?? safe_settings(\App\Settings\CsrImpactSettings::class);
+    $scholarship = $scholarship ?? safe_settings(\App\Settings\CsrScholarshipSettings::class);
+@endphp
 <div class="csr-page">
 
     {{-- Abstract ambient/decorative ambient SVGs & washes in navy/red tints --}}
@@ -93,7 +100,7 @@
                     @if(filled($commitment->label))
                     <div class="section-label"><span>{{ $commitment->label }}</span></div>
                     @endif
-                    <h2 class="csr-section-heading">{{ $commitment->heading }}<span class="csr-text-accent">{{ $commitment->heading_italic }}</span></h2>
+                    <h2 class="csr-section-heading">{{ $commitment->heading ?? '' }}<span class="csr-text-accent">{{ $commitment->heading_italic ?? '' }}</span></h2>
                     @if(html_filled($commitment->body ?? null))
                     <div class="csr-body-text">{!! rich_html($commitment->body ?? null) !!}</div>
                     @endif
@@ -252,5 +259,5 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ cached_asset('js/pages/csr-community-impact.js') }}" defer></script>
+    <script src="{{ cached_asset('assets/js/pages/csr-community-impact.js') }}" defer></script>
 @endpush

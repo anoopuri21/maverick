@@ -19,6 +19,10 @@
 @endpush
 
 @section('content')
+@php
+    $opportunityItems = $opportunityItems ?? [];
+    $pageSettings = $pageSettings ?? safe_settings(\App\Settings\GlobalOpportunitiesPageSettings::class);
+@endphp
 <div class="go-page">
 
     {{-- ═══════════════════════════════════════════
@@ -120,11 +124,15 @@
                 <div class="go-cards__grid">
                     @foreach($opportunityItems as $i => $item)
                     @if(! is_array($item)) @continue @endif
-                    @php $cardHref = edu_href($item['url'] ?? null); $cardImg = media_url($item['image'] ?? $item['image_url'] ?? null); @endphp
+                    @php
+                        $isComingSoon = (bool) ($item['coming_soon'] ?? false);
+                        $cardHref = $isComingSoon ? null : slug_href($item['slug'] ?? null);
+                        $cardImg = media_url($item['image'] ?? $item['image_url'] ?? null);
+                    @endphp
                     @if($cardHref)
                     <a href="{{ $cardHref }}" class="go-card" data-testid="go-card-{{ $loop->iteration }}">
                     @else
-                    <div class="go-card" data-testid="go-card-{{ $loop->iteration }}">
+                    <div class="go-card{{ $isComingSoon ? ' go-card--soon' : '' }}" data-testid="go-card-{{ $loop->iteration }}" @if($isComingSoon) aria-disabled="true" @endif>
                     @endif
                         <div class="go-card__media">
                             @if($cardImg)
@@ -134,17 +142,27 @@
                                 <span data-lucide="globe" aria-hidden="true"></span>
                             </div>
                             @endif
+                            @if($isComingSoon)
+                            <span class="go-card__badge go-card__badge--soon">Coming Soon</span>
+                            @else
                             <span class="go-card__badge">{{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}</span>
+                            @endif
                         </div>
                         <div class="go-card__body">
                             <h3 class="go-card__title">{{ $item['title'] ?? '' }}</h3>
                             @if(!empty($item['desc']))
                             <p class="go-card__desc">{!! rich_html($item['desc'] ?? null) !!}</p>
                             @endif
+                            @if($isComingSoon)
+                            <span class="go-card__cta go-card__cta--disabled" aria-disabled="true">
+                                <span>Coming Soon</span>
+                            </span>
+                            @else
                             <span class="go-card__cta">
                                 <span>Discover</span>
                                 <span class="go-card__cta-icon" data-lucide="arrow-right" aria-hidden="true"></span>
                             </span>
+                            @endif
                         </div>
                     @if($cardHref)
                     </a>

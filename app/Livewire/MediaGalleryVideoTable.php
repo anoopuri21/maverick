@@ -25,7 +25,7 @@ class MediaGalleryVideoTable extends Component implements HasForms, HasTable
     public function table(Table $table): Table
     {
         return MediaGalleryVideoResource::table(
-            $table->query(MediaGalleryVideo::query())
+            $table->query(MediaGalleryVideoResource::getEloquentQuery())
         )
             ->headerActions([
                 CreateAction::make()

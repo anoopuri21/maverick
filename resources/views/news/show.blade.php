@@ -3,6 +3,15 @@
 @section('title', ($article->meta_title ?? $article->title) . ' | Maverick Business Academy')
 @section('meta_description', $article->meta_description ?? $article->excerpt)
 
+@push('head')
+    @include('partials.seo-meta', ['seo' => (object) [
+        'meta_title' => ($article->meta_title ?? $article->title) . ' | Maverick Business Academy',
+        'meta_description' => $article->meta_description ?? $article->excerpt,
+        'og_image_url' => $article->featured_image_url,
+        'og_type' => 'article',
+    ]])
+@endpush
+
 @push('styles')
     <link rel="stylesheet" href="{{ cached_asset('css/pages/news.css') }}">
 @endpush
@@ -201,7 +210,7 @@
     {{-- ═══════════════════════════════════════════
          MORE UPDATES
     ════════════════════════════════════════════ --}}
-    @if($moreUpdates->isNotEmpty())
+    @if(($moreUpdates ?? collect())->isNotEmpty())
     <section class="news-more-updates" aria-labelledby="more-updates-heading">
         <div class="news-ambient" aria-hidden="true">
             <span class="news-ambient__blob news-ambient__blob--1"></span>

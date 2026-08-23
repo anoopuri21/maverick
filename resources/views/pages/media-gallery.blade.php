@@ -19,14 +19,14 @@
 @endpush
 
 @section('content')
+@php
+    $mediaGalleryPage = $mediaGalleryPage ?? safe_settings(\App\Settings\MediaGalleryPageSettings::class);
+@endphp
 <div class="page-gallery gallery-page">
 
 @php
-    // ═══════════════════════════════════════════
-    // HERO (decorative only — all gallery content
-    // is loaded dynamically from the database)
-    // ═══════════════════════════════════════════
-
+    $photos = collect($photos ?? []);
+    $videos = collect($videos ?? []);
     $photoCount = $photos->count();
     $videoCount = $videos->count();
     $galleryHeroBg = media_url(
@@ -255,5 +255,5 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ cached_asset('js/pages/media-gallery.js') }}" defer></script>
+    <script src="{{ cached_asset('assets/js/pages/media-gallery.js') }}" defer></script>
 @endpush

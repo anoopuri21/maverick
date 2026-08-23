@@ -138,22 +138,22 @@ class AppServiceProvider extends ServiceProvider
                 $facultyInsights = PublicContentCache::hydrateRows(
                     PublicContentCache::remember(PublicContentCache::FACULTY_INSIGHTS_PREVIEW, function () {
                         return PublicContentCache::serializeRows(
-                            FacultyInsight::select('id', 'title', 'slug', 'badge', 'image_url', 'link_url', 'excerpt', 'faculty_name', 'faculty_role', 'sort_order')
+                            FacultyInsight::select('id', 'title', 'badge', 'excerpt', 'content', 'pull_quote', 'faculty_name', 'faculty_role', 'faculty_avatar_url', 'faculty_avatar_url_asset_id', 'image_url', 'image_url_asset_id', 'sort_order')
                                 ->where('is_active', true)
-                                ->hasPublicSlug()
                                 ->orderBy('sort_order')
-                                ->limit(6)
+                                ->limit(9)
                                 ->get(),
                             fn (FacultyInsight $insight) => [
                                 'id' => $insight->id,
                                 'title' => $insight->title,
-                                'slug' => $insight->slug,
                                 'badge' => $insight->badge,
                                 'image_url' => $insight->image_url ?? $insight->featuredImageUrl(),
-                                'permalink' => $insight->permalink(),
                                 'excerpt' => $insight->excerpt,
+                                'content' => $insight->content,
+                                'pull_quote' => $insight->pull_quote,
                                 'faculty_name' => $insight->faculty_name,
                                 'faculty_role' => $insight->faculty_role,
+                                'faculty_avatar_url' => $insight->avatarUrl(),
                                 'sort_order' => $insight->sort_order,
                             ]
                         );
@@ -276,6 +276,57 @@ class AppServiceProvider extends ServiceProvider
             }
 
             $view->with('alumniLogos', $alumniLogos);
+        });
+
+        View::composer('sections.accreditations', function ($view) {
+            if ($view->offsetExists('accreditationLogos')) {
+                return;
+            }
+
+            try {
+                $accreditationLogos = PublicContentCache::hydrateRows(
+                    PublicContentCache::remember(PublicContentCache::HOMEPAGE.'-accreditation-logos', function () {
+                        return PublicContentCache::serializeRows(
+                            PartnerLogo::select('id', 'name', 'logo_url', 'sort_order')
+                                ->whereIn('type', ['accreditation', 'recognition'])
+                                ->where('is_active', true)
+                                ->orderBy('sort_order')
+                                ->get()
+                        );
+                    })
+                );
+            } catch (\Throwable $e) {
+                report($e);
+                $accreditationLogos = collect();
+            }
+
+            $view->with('accreditationLogos', $accreditationLogos);
+        });
+
+        View::composer('sections.faq', function ($view) {
+            if ($view->offsetExists('homepageFaqs')) {
+                return;
+            }
+
+            try {
+                $homepageFaqs = PublicContentCache::hydrateRows(
+                    PublicContentCache::remember(PublicContentCache::HOMEPAGE.'-faqs', function () {
+                        return PublicContentCache::serializeRows(
+                            Faq::select('id', 'question', 'answer', 'sort_order', 'is_active')
+                                ->where('faqable_type', 'homepage')
+                                ->where('faqable_id', 1)
+                                ->where('is_active', true)
+                                ->orderBy('sort_order')
+                                ->get()
+                        );
+                    })
+                );
+            } catch (\Throwable $e) {
+                report($e);
+                $homepageFaqs = collect();
+            }
+
+            $view->with('homepageFaqs', $homepageFaqs);
         });
 
         View::composer([

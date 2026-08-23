@@ -26,7 +26,7 @@
           <path d="M15 18l-6-6 6-6" />
         </svg>
       </button>
-      <div class="testimonials__scroll" data-scroll-container data-lenis-prevent>
+      <div class="testimonials__scroll" data-scroll-container>
         <div class="testimonials__track" id="testimonialsTrack">
             {{-- Dynamically rendered by testimonials.js from window.testimonialsData --}}
         </div>

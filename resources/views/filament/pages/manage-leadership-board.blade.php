@@ -3,9 +3,7 @@
         {{ $this->form }}
 
         <div class="fi-section mt-6 p-4">
-            <x-filament::button type="submit" color="primary">
-                Save Leadership Board
-            </x-filament::button>
+            <x-admin.save-button label="Save Leadership Board" />
         </div>
     </form>
 </x-filament-panels::page>

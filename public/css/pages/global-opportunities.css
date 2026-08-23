@@ -190,6 +190,34 @@
   transform: translateX(5px);
 }
 
+.go-card--soon {
+  cursor: default;
+  pointer-events: none;
+}
+
+.go-card__badge--soon {
+  right: auto;
+  left: 16px;
+  width: auto;
+  min-width: 0;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.go-card__cta--disabled {
+  pointer-events: none;
+  opacity: 0.6;
+  cursor: not-allowed;
+  color: var(--go-muted);
+}
+
+.go-card__cta--disabled::after {
+  display: none;
+}
+
 /* Empty state */
 .go-cards__empty {
   text-align: center;

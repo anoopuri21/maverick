@@ -48,15 +48,4 @@ class NewsController extends Controller
 
         return view('news.index', compact('featured', 'articles', 'ticker', 'newsHero', 'topTags'));
     }
-
-    public function show(Insight $slug)
-    {
-        $moreUpdates = Insight::published()->category('news')
-            ->where('id', '!=', $slug->id)
-            ->latest('published_at')
-            ->take(5)
-            ->get(['id', 'title', 'slug', 'excerpt', 'featured_image_url', 'published_at', 'categories']);
-
-        return view('news.show', ['article' => $slug, 'moreUpdates' => $moreUpdates]);
-    }
 }

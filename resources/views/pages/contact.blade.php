@@ -18,6 +18,10 @@
 @endpush
 
 @section('content')
+@php
+    $contactPage = $contactPage ?? safe_settings(\App\Settings\ContactPageSettings::class);
+    $contactSeo = $contactSeo ?? safe_settings(\App\Settings\ContactSeoSettings::class);
+@endphp
 <section class="contact-section">
     <div class="container">
 
