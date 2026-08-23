@@ -1,4 +1,5 @@
 @php
+    $hero = $hero ?? null;
     $heroPrimaryHref = edu_href($hero->cta_primary_url ?? null);
     $heroSecondaryHref = edu_href($hero->cta_secondary_url ?? null);
 @endphp

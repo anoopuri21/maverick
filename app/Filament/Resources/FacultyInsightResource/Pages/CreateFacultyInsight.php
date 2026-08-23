@@ -12,10 +12,11 @@ class CreateFacultyInsight extends CreateRecord
 
     protected function mutateFormDataBeforeCreate(array $data): array
     {
-        $data = MediaPicker::syncFieldFromAsset($data, 'hero_image_url');
         $data = MediaPicker::syncFieldFromAsset($data, 'image_url');
-        $data = MediaPicker::syncFieldFromAsset($data, 'faculty_avatar_url');
-        $data = MediaPicker::syncFieldFromAsset($data, 'og_image_url');
+
+        $data['is_active'] = $data['is_active'] ?? true;
+        $data['sort_order'] = $data['sort_order'] ?? 0;
+        $data['published_at'] = $data['published_at'] ?? now();
 
         return $data;
     }

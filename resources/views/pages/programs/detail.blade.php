@@ -19,6 +19,7 @@
 
 @section('content')
 @php
+    $chrome = $chrome ?? safe_settings(\App\Settings\ProgramsDetailChromeSettings::class);
     $cat = $program->programCategory;
     $highlights          = collect($program->highlights_list ?? [])->filter(fn ($h) => is_array($h))->values();
     $recognition         = collect($program->recognition_list ?? [])->filter(fn ($r) => is_array($r))->values();
@@ -32,7 +33,7 @@
     $accreditationGroups = collect($program->accreditation_groups_list ?? []);
     $testimonials        = collect($program->testimonials_list ?? [])->filter(fn ($t) => is_array($t))->values();
     $fees                = collect($program->fees_list ?? []);
-    $faqs                = $program->faqs ?? collect();
+    $faqs                = collect($program->faqs ?? []);
     $reviews             = collect($program->reviews_list ?? [])->filter(fn ($r) => is_array($r))->values();
     // Scholarship ribbon only if content mentions scholarships
     $hasScholarship = $highlights->contains(fn($h) => stripos(($h['label'] ?? '').' '.($h['value'] ?? ''), 'scholar') !== false)
@@ -46,35 +47,21 @@
             ->take($take)
             ->implode('');
     $heroBgUrl = media_url($program->image_url, 'assets/images/edutainment/hero-cinematic.jpg');
-    $uniImgUrl = media_url($university->image ?? null, 'assets/images/edutainment/international-students-university-campus-1.jpg');
+    $uniImgUrl = media_url(data_get($university, 'image'), 'assets/images/edutainment/international-students-university-campus-1.jpg');
     $learnImgUrl = cached_asset('assets/images/edutainment/dubai-uae-skyline-students-studying-camp-1.jpg');
-    // Mirrors Testimonial::getAutoThumbnailAttribute() / getEmbedUrlAttribute() for JSON testimonials
-    $youtubeId = function (?string $url): ?string {
-        $url = trim($url ?? '');
-        if ($url === '') return null;
-        if (preg_match('/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i', $url, $m)) return $m[1];
-        if (preg_match('/^([a-zA-Z0-9_-]{11})$/', $url, $m)) return $m[1];
+    $storyThumb = function (array $t): ?array {
+        if ($url = youtube_thumbnail_url($t['video'] ?? null, $t['thumb'] ?? null)) {
+            $retry = filled($t['thumb'] ?? null) ? null : youtube_thumbnail_fallback($t['video'] ?? null);
+            if ($retry === $url) {
+                $retry = null;
+            }
+
+            return ['src' => $url, 'retry' => $retry];
+        }
+
         return null;
     };
-    $storyThumb = function (array $t) use ($youtubeId): ?array {
-        if ($url = media_url($t['thumb'] ?? null)) {
-            return ['src' => $url, 'retry' => null];
-        }
-        if ($id = $youtubeId($t['video'] ?? null)) {
-            return [
-                'src'   => "https://img.youtube.com/vi/{$id}/maxresdefault.jpg",
-                'retry' => "https://img.youtube.com/vi/{$id}/hqdefault.jpg",
-            ];
-        }
-        return null;
-    };
-    $embedUrl = function (?string $url) use ($youtubeId): ?string {
-        $url = trim($url ?? '');
-        if ($url === '') return null;
-        if ($id = $youtubeId($url)) return "https://www.youtube.com/embed/{$id}?autoplay=1&rel=0";
-        if (preg_match('/vimeo\.com\/(?:.*\/)?(\d+)/i', $url, $m)) return "https://player.vimeo.com/video/{$m[1]}?autoplay=1";
-        return $url;
-    };
+    $embedUrl = fn (?string $url) => youtube_embed_url($url, true);
     $renderLogoChip = function (?string $name, ?string $logo, string $chipClass, string $fallbackClass, int $take = 2) use ($initials) {
         $url = media_url($logo);
         $abbr = e($initials($name, $take));
@@ -225,8 +212,8 @@
                         <p>{!! html_filled($b['desc'] ?? null) ? rich_html($b['desc'] ?? null) : '' !!}</p>
                     </div>
                 @endforeach
-                @if($university->name)
-                <div class="w-note rv rv-d2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span>An internationally recognised pathway awarded by {{ $university->name }}.</span></div>
+                @if(filled(data_get($university, 'name')))
+                <div class="w-note rv rv-d2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span>An internationally recognised pathway awarded by {{ data_get($university, 'name') }}.</span></div>
                 @endif
             </div>
         </div>
@@ -302,7 +289,7 @@
     @endif
 
     {{-- ============ 9. ABOUT GAU (Cinematic Dark) ============ --}}
-    @if($university->name)
+    @if(filled(data_get($university, 'name')))
     <section class="gau section" aria-label="About the awarding university">
         <div class="tex-grid"></div>
         <div class="container gau-grid">
@@ -358,7 +345,7 @@
                         @foreach($accItems as $item)
                             <li class="acc-tile @if($prevGroup !== null && $prevGroup === $item['group']) is-same-group @endif">
                                 @if(!empty($item['group']))<span class="acc-eyebrow">{{ $item['group'] }}</span>@endif
-                                <span class="acc-plate">{!! $renderLogoChip($item['name'], $item['logo'], 'acc-plate-in', 3) !!}</span>
+                                <span class="acc-plate">{!! $renderLogoChip($item['name'] ?? '', $item['logo'] ?? null, 'acc-plate-in', 'acc-plate-fallback', 3) !!}</span>
                                 @if(!empty($item['name']))<span class="acc-name">{{ $item['name'] }}</span>@endif
                             </li>
                             @php $prevGroup = $item['group']; @endphp

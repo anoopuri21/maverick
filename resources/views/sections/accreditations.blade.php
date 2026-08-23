@@ -28,7 +28,7 @@
     <!-- Logo Slider -->
     <div class="accred-slider-wrapper">
       <div class="accred-slider-track">
-        @forelse($accreditationLogos as $logo)
+        @forelse(($accreditationLogos ?? collect()) as $logo)
           <div class="accred-card" data-name="{{ $logo->name }}">
             <div class="accred-card__logo-wrapper">
               @if($url = media_url($logo->logo_url ?? null))

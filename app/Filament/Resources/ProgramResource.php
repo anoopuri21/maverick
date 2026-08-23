@@ -20,8 +20,10 @@ use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
 use Filament\Forms\Set;
 use Filament\Resources\Resource;
+use Illuminate\Support\HtmlString;
 use Filament\Tables;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\ImageColumn;
@@ -65,7 +67,6 @@ class ProgramResource extends Resource
                                         ->validationAttribute('programme title'),
 
                                     TextInput::make('slug')
-                                        
                                         ->helperText('URL slug for /programs/{slug}'),
 
                                     Select::make('university_partner_id')
@@ -125,7 +126,7 @@ class ProgramResource extends Resource
                     ->schema([
                                         TextInput::make('image_url')
                                             ->label('Hero Image URL')
-                                            ->url()->nullable()
+                                            ->nullable()
                                             ->helperText('Recommended: 800×540px. Or choose from the media library below.')
                                             ->columnSpanFull(),
                                         MediaPicker::forField('image_url', 'programs')
@@ -135,7 +136,7 @@ class ProgramResource extends Resource
 
                                 TextInput::make('brochure_url')
                                     ->label('Brochure URL')
-                                    ->url()->nullable()
+                                    ->nullable()
                                     ->placeholder('https://...')
                                     ->helperText('Optional. When set, a Download Brochure button can show in the hero.')
                                     ->columnSpanFull(),
@@ -643,18 +644,36 @@ class ProgramResource extends Resource
                 TextInput::make('category')
                     ->label('Badge')
                     ->placeholder('e.g. STUDENT'),
-                TextInput::make('thumb')
-                    ->label('Thumbnail URL')
-                    ->url()->nullable()
-                    ->helperText('Video card thumbnail. Or choose from the media library below.'),
-                MediaPicker::forField('thumb', 'programs/testimonials')
-                    ->label('Thumbnail Image'),
                 TextInput::make('video')
-                    ->label('Video URL')
-                    ->url()->nullable()
-                    ->placeholder('https://...')
-                    ->helperText('YouTube or hosted video URL for the play button.')
+                    ->label('YouTube Video URL')
+                    ->nullable()
+                    ->placeholder('https://www.youtube.com/watch?v=xxxxx or https://youtu.be/xxxxx')
+                    ->helperText('Paste YouTube link — thumbnail auto-generate ho jayega.')
+                    ->live()
                     ->columnSpanFull(),
+                Placeholder::make('thumb_preview')
+                    ->label('Thumbnail preview')
+                    ->content(function (Get $get): HtmlString {
+                        $src = youtube_thumbnail_url($get('video'), $get('thumb'));
+                        if (! $src) {
+                            return new HtmlString('<p style="color:#6b7280;font-size:13px;margin:0">Paste a YouTube URL to auto-load the thumbnail, or upload a custom image below.</p>');
+                        }
+                        $fallback = youtube_thumbnail_fallback($get('video'));
+                        $onerror = $fallback && $fallback !== $src
+                            ? ' onerror="if(this.dataset.retry){this.src=this.dataset.retry;delete this.dataset.retry;}" data-retry="'.e($fallback).'"'
+                            : '';
+
+                        return new HtmlString('<img src="'.e($src).'" alt="YouTube thumbnail preview" style="max-width:320px;width:100%;border-radius:12px;display:block"'.$onerror.'>');
+                    })
+                    ->columnSpanFull(),
+                TextInput::make('thumb')
+                    ->label('Custom Thumbnail URL (Optional)')
+                    ->nullable()
+                    ->live()
+                    ->helperText('Leave empty to auto-use the YouTube thumbnail.'),
+                MediaPicker::forField('thumb', 'programs/testimonials')
+                    ->label('Custom Thumbnail Image (Optional)')
+                    ->helperText('Optional: upload a custom thumbnail. YouTube thumbnail will be auto-used if empty.'),
             ])
             ->reorderable()
             ->collapsible()
@@ -688,7 +707,7 @@ class ProgramResource extends Resource
                     ->validationAttribute('reviewer name'),
                 TextInput::make('avatar')
                     ->label('Avatar URL')
-                    ->url()->nullable()
+                    ->nullable()
                     ->helperText('Optional. Or choose from the media library below.'),
                 MediaPicker::forField('avatar', 'programs/reviews')
                     ->label('Avatar Image'),
@@ -722,7 +741,7 @@ class ProgramResource extends Resource
                     ->validationAttribute('organisation name'),
                 TextInput::make('logo')
                     ->label('Logo URL')
-                    ->url()->nullable()
+                    ->nullable()
                     ->helperText('Or choose from the media library below.'),
                 MediaPicker::forField('logo', 'programs/recognition')
                     ->label('Logo Image'),
@@ -755,7 +774,7 @@ class ProgramResource extends Resource
                             ->validationAttribute('logo name'),
                         TextInput::make('logo')
                             ->label('Logo URL')
-                            ->url()->nullable()
+                            ->nullable()
                             ->helperText('Or choose from the media library below.'),
                         MediaPicker::forField('logo', 'programs/accreditation')
                     ->label('Logo Image'),

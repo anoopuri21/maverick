@@ -31,6 +31,12 @@
         return;
       }
 
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        window.__lenisReady = true;
+        document.dispatchEvent(new CustomEvent('lenisReady'));
+        return;
+      }
+
       // Initialize Lenis
       lenis = new Lenis({
         duration: 1.4,

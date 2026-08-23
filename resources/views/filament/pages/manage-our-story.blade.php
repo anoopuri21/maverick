@@ -34,9 +34,7 @@
             <form wire:submit="save">
                 {{ $this->form }}
                 <div class="fi-section mt-6 p-4">
-                    <x-filament::button type="submit" color="primary">
-                        Save Our Story
-                    </x-filament::button>
+                    <x-admin.save-button label="Save Our Story" />
                 </div>
             </form>
         </div>

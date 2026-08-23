@@ -45,7 +45,7 @@ class MediaGalleryVideoResource extends Resource
                     ->maxLength(255),
                 TextInput::make('video_url')
                     ->label('Video URL')
-                    ->url()->nullable()
+                    ->nullable()
                     ->nullable()
                     ->placeholder('https://www.youtube.com/watch?v=...'),
                 MediaPicker::forField('thumbnail_url', 'media-gallery/videos')

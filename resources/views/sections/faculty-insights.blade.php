@@ -18,9 +18,6 @@
         Real-world perspectives from the minds shaping global business
         education
       </p>
-      <a href="{{ route('faculty-voice.index') }}" class="insights__view-all">
-        View all Faculty Voices <span aria-hidden="true">→</span>
-      </a>
     </div>
 
     <div class="scroll-row scroll-row--light" data-scroll-row>
@@ -29,28 +26,29 @@
           <path d="M15 18l-6-6 6-6" />
         </svg>
       </button>
-      <div class="insights__scroll" data-scroll-container data-lenis-prevent>
+      <div class="insights__scroll" data-scroll-container>
         <div class="insights__track">
           @forelse($facultyInsights as $insight)
             <article class="insights__card fade-up">
-              <a href="{{ $insight->permalink() }}" class="insights__card-link">
-                <div class="insights__card-image">
-                  @if($url = media_url($insight->image_url ?? $insight->featuredImageUrl()))
-                  <img src="{{ $url }}"
-                       alt="{{ $insight->title }}"
-                       loading="lazy" decoding="async" width="320" height="280" />
-                  @endif
-                </div>
-                <div class="insights__card-body">
-                  @if($insight->badge)
-                    <span class="insights__card-badge">{{ $insight->badge }}</span>
-                  @endif
-                  <h3 class="insights__card-title">{{ $insight->title }}</h3>
-                  <span class="insights__card-read-more">
-                    Read More <span class="inline-icon" data-lucide="move-right"></span>
-                  </span>
-                </div>
-              </a>
+              <div class="insights__card-image">
+                @if($url = media_url($insight->image_url ?? null))
+                <img src="{{ $url }}"
+                     alt="{{ $insight->title }}"
+                     loading="lazy" decoding="async" width="320" height="240" />
+                @endif
+              </div>
+              <div class="insights__card-body">
+                <h3 class="insights__card-title">{{ $insight->title }}</h3>
+                @if($insight->faculty_role)
+                  <span class="insights__card-role">{{ $insight->faculty_role }}</span>
+                @endif
+                @if($insight->country)
+                  <span class="insights__card-country">{{ $insight->country }}</span>
+                @endif
+                @if($description = strip_tags($insight->content ?? ''))
+                  <p class="insights__card-excerpt">{{ $description }}</p>
+                @endif
+              </div>
             </article>
           @empty
             <p class="body-text" style="padding: 2rem;">No insights available yet.</p>
@@ -64,4 +62,31 @@
       </button>
     </div>
   </div>
+
+  {{-- Modal disabled — re-enable when needed
+  <div class="fv-modal" id="facultyVoiceModal" role="dialog" aria-modal="true" aria-labelledby="fvModalTitle" hidden>
+    <div class="fv-modal__backdrop" data-fv-close></div>
+    <div class="fv-modal__dialog">
+      <button type="button" class="fv-modal__close" data-fv-close aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M18 6L6 18M6 6l12 12" />
+        </svg>
+      </button>
+      <div class="fv-modal__hero" hidden>
+        <img src="" alt="" class="fv-modal__hero-img" width="760" height="428" />
+      </div>
+      <header class="fv-modal__head">
+        <img src="" alt="" class="fv-modal__avatar" width="48" height="48" hidden />
+        <div class="fv-modal__meta">
+          <span class="fv-modal__badge" hidden></span>
+          <span class="fv-modal__faculty-name"></span>
+          <span class="fv-modal__faculty-role"></span>
+        </div>
+      </header>
+      <h2 id="fvModalTitle" class="fv-modal__title"></h2>
+      <blockquote class="fv-modal__quote" hidden></blockquote>
+      <div class="fv-modal__body" data-lenis-prevent></div>
+    </div>
+  </div>
+  --}}
 </section>

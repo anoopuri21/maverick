@@ -3,6 +3,15 @@
 @section('title', ($post->meta_title ?? $post->title) . ' | Maverick Business Academy')
 @section('meta_description', $post->meta_description ?? $post->excerpt)
 
+@push('head')
+    @include('partials.seo-meta', ['seo' => (object) [
+        'meta_title' => ($post->meta_title ?? $post->title) . ' | Maverick Business Academy',
+        'meta_description' => $post->meta_description ?? $post->excerpt,
+        'og_image_url' => $post->featured_image_url,
+        'og_type' => 'article',
+    ]])
+@endpush
+
 @push('styles')
     <link rel="stylesheet" href="{{ cached_asset('css/pages/blog.css') }}">
 @endpush
@@ -212,7 +221,7 @@
     {{-- ═══════════════════════════════════════════
          RELATED POSTS
     ════════════════════════════════════════════ --}}
-    @if($relatedPosts->isNotEmpty())
+    @if(($relatedPosts ?? collect())->isNotEmpty())
     <section class="blog-related" aria-labelledby="related-posts-heading">
         <div class="container">
             <div class="blog-related__header">

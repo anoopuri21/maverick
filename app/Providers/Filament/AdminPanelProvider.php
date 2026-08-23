@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Support\LenientFormValidation;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -23,6 +24,11 @@ use Illuminate\Support\Facades\Blade;
 
 class AdminPanelProvider extends PanelProvider
 {
+    public function boot(): void
+    {
+        LenientFormValidation::register();
+    }
+
     public function panel(Panel $panel): Panel
     {
         return $panel
@@ -47,6 +53,7 @@ class AdminPanelProvider extends PanelProvider
                 'Insights',
                 'Global Content',
                 'Our Story Page',
+                'Landing Pages',
                 'Site Settings',
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')

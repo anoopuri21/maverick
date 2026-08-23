@@ -4,6 +4,7 @@ namespace App\Filament\Pages;
 
 use App\Filament\Concerns\HandlesCloudinaryImageFields;
 use App\Filament\Forms\Components\MediaPicker;
+use App\Filament\Support\RepeaterNormalizer;
 use App\Settings\GlobalOpportunitiesSettings;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Repeater;
@@ -11,6 +12,8 @@ use Filament\Forms\Components\Section;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
+use Filament\Forms\Get;
 use Filament\Forms\Form;
 use Filament\Pages\SettingsPage;
 
@@ -39,8 +42,25 @@ class ManageGlobalOpportunities extends SettingsPage
                     ->schema([
                         Grid::make(2)->schema([
                             TextInput::make('title'),
-                            TextInput::make('url')->label('URL'),
+                            TextInput::make('slug')
+                                ->label('Slug')
+                                ->prefix(rtrim(url('/'), '/').'/')
+                                ->helperText('Page slug only, e.g. dual-mba-online. Yeh hi page ka actual URL banega.')
+                                ->rule('regex:/^[a-z0-9]+(?:-[a-z0-9]+)*$/')
+                                ->validationMessages([
+                                    'regex' => 'Only lowercase letters, numbers and hyphens. No slashes or spaces.',
+                                ])
+                                ->dehydrateStateUsing(fn (?string $state): ?string => filled($state)
+                                    ? \Illuminate\Support\Str::slug(trim($state, '/'))
+                                    : null)
+                                ->disabled(fn (Get $get): bool => (bool) $get('coming_soon'))
+                                ->dehydrated(),
                         ]),
+                        Toggle::make('coming_soon')
+                            ->label('Coming Soon')
+                            ->helperText('Slug is kept but the card will not link until Coming Soon is turned off.')
+                            ->default(false)
+                            ->live(),
                         RichEditor::make('desc')->label('Description')->columnSpanFull(),
                         MediaPicker::forField('image', 'global-opportunities')
                     ->label('Image')
@@ -51,7 +71,7 @@ class ManageGlobalOpportunities extends SettingsPage
                     ])
                     ->reorderable()
                     ->collapsible()
-                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
+                    ->itemLabel(fn (array $state): ?string => ($state['title'] ?? null) . (! empty($state['coming_soon']) ? ' — Coming Soon' : ''))
                     ->columnSpanFull(),
             ]),
 
@@ -62,8 +82,25 @@ class ManageGlobalOpportunities extends SettingsPage
                     ->schema([
                         Grid::make(2)->schema([
                             TextInput::make('title'),
-                            TextInput::make('url')->label('URL'),
+                            TextInput::make('slug')
+                                ->label('Slug')
+                                ->prefix(rtrim(url('/'), '/').'/')
+                                ->helperText('Page slug only, e.g. dual-mba-online. Yeh hi page ka actual URL banega.')
+                                ->rule('regex:/^[a-z0-9]+(?:-[a-z0-9]+)*$/')
+                                ->validationMessages([
+                                    'regex' => 'Only lowercase letters, numbers and hyphens. No slashes or spaces.',
+                                ])
+                                ->dehydrateStateUsing(fn (?string $state): ?string => filled($state)
+                                    ? \Illuminate\Support\Str::slug(trim($state, '/'))
+                                    : null)
+                                ->disabled(fn (Get $get): bool => (bool) $get('coming_soon'))
+                                ->dehydrated(),
                         ]),
+                        Toggle::make('coming_soon')
+                            ->label('Coming Soon')
+                            ->helperText('Slug is kept but the card will not link until Coming Soon is turned off.')
+                            ->default(false)
+                            ->live(),
                         RichEditor::make('desc')->label('Description')->columnSpanFull(),
                         MediaPicker::forField('image', 'global-pathways')
                     ->label('Image')
@@ -74,7 +111,7 @@ class ManageGlobalOpportunities extends SettingsPage
                     ])
                     ->reorderable()
                     ->collapsible()
-                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
+                    ->itemLabel(fn (array $state): ?string => ($state['title'] ?? null) . (! empty($state['coming_soon']) ? ' — Coming Soon' : ''))
                     ->columnSpanFull(),
             ]),
         ]);
@@ -82,18 +119,37 @@ class ManageGlobalOpportunities extends SettingsPage
 
     protected function mutateFormDataBeforeSave(array $data): array
     {
-        // Sync MediaPicker asset id -> image for each item (image priority).
-        foreach ($data['opportunities'] ?? [] as &$item) {
-            $item = \App\Filament\Forms\Components\MediaPicker::syncFieldFromAsset($item, 'image');
-        }
-        unset($item);
-        foreach ($data['pathways'] ?? [] as &$item) {
-            $item = \App\Filament\Forms\Components\MediaPicker::syncFieldFromAsset($item, 'image');
-        }
-        unset($item);
+        $settings = app(static::$settings);
 
-        $data['opportunities'] = array_values($data['opportunities'] ?? []);
-        $data['pathways'] = array_values($data['pathways'] ?? []);
-        return $data;
+        foreach ($data['opportunities'] ?? [] as $index => $item) {
+            if (! is_array($item)) {
+                continue;
+            }
+
+            $item = MediaPicker::syncFieldFromAsset($item, 'image');
+            if (filled($item['slug'] ?? null)) {
+                $item['slug'] = \Illuminate\Support\Str::slug(trim((string) $item['slug'], '/'));
+            }
+            $existing = $settings->opportunities[$index] ?? [];
+            $data['opportunities'][$index] = $this->preserveExistingImageFields($item, is_array($existing) ? $existing : []);
+        }
+
+        foreach ($data['pathways'] ?? [] as $index => $item) {
+            if (! is_array($item)) {
+                continue;
+            }
+
+            $item = MediaPicker::syncFieldFromAsset($item, 'image');
+            if (filled($item['slug'] ?? null)) {
+                $item['slug'] = \Illuminate\Support\Str::slug(trim((string) $item['slug'], '/'));
+            }
+            $existing = $settings->pathways[$index] ?? [];
+            $data['pathways'][$index] = $this->preserveExistingImageFields($item, is_array($existing) ? $existing : []);
+        }
+
+        $data['opportunities'] = RepeaterNormalizer::stripEmptyRows($data['opportunities'] ?? []);
+        $data['pathways'] = RepeaterNormalizer::stripEmptyRows($data['pathways'] ?? []);
+
+        return $this->preserveExistingImageFields($data, $settings);
     }
 }

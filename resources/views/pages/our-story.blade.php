@@ -18,6 +18,12 @@
 @endpush
 
 @section('content')
+@php
+    $ourStorySeo = $ourStorySeo ?? safe_settings(\App\Settings\OurStorySeoSettings::class);
+    $timelines = collect($timelines ?? []);
+    $galleryImages = collect($galleryImages ?? []);
+    $ourStoryTestimonials = collect($ourStoryTestimonials ?? []);
+@endphp
 <div class="page-our-story our-story">
 
 {{-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

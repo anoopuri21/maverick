@@ -60,7 +60,7 @@ class ProgramCategoryResource extends Resource
                 TextColumn::make('slug'),
                 TextColumn::make('icon'),
                 TextColumn::make('sort_order')
-                    ->numeric()->nullable()
+                    ->numeric()
                     ->sortable()
                     ->label('Order'),
                 IconColumn::make('is_active')

@@ -184,10 +184,10 @@ class Program extends Model
         $partner = $this->universityPartner;
 
         return (object) [
-            'name'          => $partner->name ?? null,
-            'description'   => $partner->description ?? null,
+            'name'          => $partner?->name,
+            'description'   => $partner?->description,
             'establishment' => null,
-            'image'         => $partner->logo_url ?? null,
+            'image'         => $partner?->logo_url,
         ];
     }
 
@@ -234,6 +234,9 @@ class Program extends Model
                 'rating' => data_get($r, 'rating', 5),
                 'testimonial' => data_get($r, 'review', ''),
                 'photo' => data_get($r, 'avatar'),
+                'organisation' => data_get($r, 'organisation'),
+                'position' => data_get($r, 'position'),
+                'country' => data_get($r, 'country'),
             ])->values();
     }
 

@@ -19,6 +19,10 @@
 @endpush
 
 @section('content')
+@php
+    $programs = collect($programs ?? []);
+    $categories = collect($categories ?? []);
+@endphp
 <div class="page-pl">
 
     <section class="cinematic-hero cinematic-hero--short pl-hero" aria-label="Programmes" data-testid="pl-hero">
@@ -97,7 +101,3 @@
 
 </div>
 @endsection
-
-@push('scripts')
-    <script src="{{ cached_asset('assets/js/pages/program-listing.js') }}" defer></script>
-@endpush

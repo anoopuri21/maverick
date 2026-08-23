@@ -66,7 +66,7 @@ class UniversityPartnerResource extends Resource
                         MediaPicker::forField('logo_url', 'university-partners')
                     ->label('Logo')
                     ->columnSpanFull(),
-                        \Filament\Forms\Components\TextInput::make('website_url')->url()->nullable(),
+                        \Filament\Forms\Components\TextInput::make('website_url')->nullable(),
                         \Filament\Forms\Components\RichEditor::make('description')->columnSpanFull(),
                     ]),
 
@@ -75,7 +75,6 @@ class UniversityPartnerResource extends Resource
                         \Filament\Forms\Components\TextInput::make('slug')
                             ->label('Slug / Initials')
                             ->helperText('Unique URL identifier (e.g. gau). Used to disambiguate programs with the same name across universities.')
-                            
                             ->columnSpanFull(),
                         \Filament\Forms\Components\Placeholder::make('programs_link')
                             ->label('Programs Offered')

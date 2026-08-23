@@ -21,6 +21,7 @@ class FacultyInsight extends Model
         'pull_quote',
         'faculty_name',
         'faculty_role',
+        'country',
         'faculty_bio',
         'faculty_avatar_url',
         'faculty_avatar_url_asset_id',
@@ -46,20 +47,6 @@ class FacultyInsight extends Model
         'reading_time_minutes' => 'integer',
     ];
 
-    protected static function booted(): void
-    {
-        static::saving(function (self $insight) {
-            if (empty($insight->reading_time_minutes) && filled($insight->content)) {
-                $insight->reading_time_minutes = max(1, (int) ceil(str_word_count(strip_tags($insight->content)) / 200));
-            }
-        });
-    }
-
-    public function getRouteKeyName(): string
-    {
-        return 'slug';
-    }
-
     public function scopeActive(Builder $query): Builder
     {
         return $query->where('is_active', true);
@@ -69,21 +56,7 @@ class FacultyInsight extends Model
     {
         return $query->active()
             ->whereNotNull('published_at')
-            ->where('published_at', '<=', now())
-            ->hasPublicSlug();
-    }
-
-    public function permalink(): string
-    {
-        if (filled($this->link_url) && ! filled($this->content) && ! filled($this->excerpt)) {
-            return $this->link_url;
-        }
-
-        if (filled($this->slug)) {
-            return route('faculty-voice.show', $this->slug);
-        }
-
-        return url('/faculty-voice');
+            ->where('published_at', '<=', now());
     }
 
     public function featuredImageUrl(): ?string
@@ -91,18 +64,8 @@ class FacultyInsight extends Model
         return $this->getMediaUrl('image_url');
     }
 
-    public function heroImageUrl(): ?string
-    {
-        return $this->getMediaUrl('hero_image_url') ?: $this->featuredImageUrl();
-    }
-
     public function avatarUrl(): ?string
     {
         return $this->getMediaUrl('faculty_avatar_url');
-    }
-
-    public function ogImageUrl(): ?string
-    {
-        return $this->getMediaUrl('og_image_url') ?: $this->featuredImageUrl();
     }
 }

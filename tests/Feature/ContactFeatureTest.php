@@ -3,7 +3,9 @@
 namespace Tests\Feature;
 
 use App\Mail\GenericFormMail;
+use App\Models\ZapierWebhook;
 use App\Settings\SiteSettings;
+use App\Support\ZapierEvents;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Mail;
 use Tests\TestCase;
@@ -108,7 +110,11 @@ class ContactFeatureTest extends TestCase
         Mail::fake();
         \Illuminate\Support\Facades\Http::fake();
 
-        config(['services.zapier.contact_webhook_url' => 'https://hooks.zapier.com/hooks/catch/test']);
+        ZapierWebhook::create([
+            'event_key' => ZapierEvents::CONTACT_SUBMITTED,
+            'url' => 'https://hooks.zapier.com/hooks/catch/test',
+            'is_enabled' => true,
+        ]);
 
         $response = $this->post('/contact', [
             'name' => 'John Zapier',
@@ -139,7 +145,11 @@ class ContactFeatureTest extends TestCase
             '*' => \Illuminate\Support\Facades\Http::response('Error', 500),
         ]);
 
-        config(['services.zapier.contact_webhook_url' => 'https://hooks.zapier.com/hooks/catch/test']);
+        ZapierWebhook::create([
+            'event_key' => ZapierEvents::CONTACT_SUBMITTED,
+            'url' => 'https://hooks.zapier.com/hooks/catch/test',
+            'is_enabled' => true,
+        ]);
 
         $response = $this->post('/contact', [
             'name' => 'John Failure',

@@ -202,10 +202,10 @@
 
       <ul class="footer__legal">
         <li>
-          <a href="{{ url('/privacy-policy/') }}" class="footer__legal-link">Privacy Policy</a>
+          <a href="{{ route('privacy-policy') }}" class="footer__legal-link">Privacy Policy</a>
         </li>
         <li>
-          <a href="{{ url('/terms-of-service/') }}" class="footer__legal-link">Terms of Service</a>
+          <a href="{{ route('terms-of-use') }}" class="footer__legal-link">Terms of Use</a>
         </li>
       </ul>
     </div>

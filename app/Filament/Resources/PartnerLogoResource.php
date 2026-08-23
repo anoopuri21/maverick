@@ -87,7 +87,7 @@ class PartnerLogoResource extends Resource
                     })
                     ->sortable(),
                 Tables\Columns\TextColumn::make('sort_order')
-                    ->numeric()->nullable()
+                    ->numeric()
                     ->sortable()
                     ->label('Order'),
                 Tables\Columns\IconColumn::make('is_active')

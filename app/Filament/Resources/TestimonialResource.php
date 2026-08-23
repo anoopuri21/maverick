@@ -13,7 +13,6 @@ use Filament\Tables;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Forms\Components\MediaPicker;
 
 class TestimonialResource extends Resource
@@ -49,7 +48,7 @@ class TestimonialResource extends Resource
                             ->label('YouTube Video URL')
                             ->placeholder('https://youtube.com/watch?v=xxxxx OR https://youtu.be/xxxxx')
                             ->helperText('Paste any YouTube URL format. Example: https://www.youtube.com/watch?v=4p0rsCEljgo')
-                            ->url()->nullable()
+                            ->nullable()
                             ->columnSpanFull(),
                     ]),
 
@@ -104,7 +103,9 @@ class TestimonialResource extends Resource
                     ->boolean(),
             ])
             ->defaultSort('sort_order')
-            ->filters([])
+            ->filters([
+                Tables\Filters\TernaryFilter::make('is_active'),
+            ])
             ->actions([
                 \Filament\Tables\Actions\EditAction::make(),
             ])

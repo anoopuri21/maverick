@@ -21,15 +21,13 @@ use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
-use App\Filament\Concerns\EnsuresSettingsRowsExist;
-use App\Filament\Concerns\HandlesCloudinaryImageFields;
+use App\Filament\Concerns\SavesSettingsGroups;
 use App\Filament\Forms\Components\MediaPicker;
 
 class ManageOurStory extends Page implements HasForms
 {
     use InteractsWithForms;
-    use HandlesCloudinaryImageFields;
-    use EnsuresSettingsRowsExist;
+    use SavesSettingsGroups;
 
     protected static ?string $navigationIcon = 'heroicon-o-book-open';
     protected static ?string $navigationGroup = 'About Section';
@@ -122,7 +120,7 @@ class ManageOurStory extends Page implements HasForms
                                 Textarea::make('seo.meta_description')->label('Meta Description')->rows(3)->maxLength(160),
                                 Textarea::make('seo.meta_keywords')->label('Meta Keywords')->rows(2),
                                 Grid::make(2)->schema([
-                                    TextInput::make('seo.canonical_url')->label('Canonical URL')->url()->nullable(),
+                                    TextInput::make('seo.canonical_url')->label('Canonical URL')->nullable(),
                                     Select::make('seo.robots')->label('Robots')
                                         ->options([
                                             'index, follow' => 'Index, Follow (Default)',
@@ -133,7 +131,7 @@ class ManageOurStory extends Page implements HasForms
                                 ]),
                                 TextInput::make('seo.og_title')->label('OG Title')->maxLength(60),
                                 Textarea::make('seo.og_description')->label('OG Description')->rows(3)->maxLength(200),
-                                TextInput::make('seo.og_image_url')->label('OG Image URL')->url()->nullable(),
+                                TextInput::make('seo.og_image_url')->label('OG Image URL')->nullable(),
                                 MediaPicker::forField('seo.og_image_url', 'our-story/seo')->label('OG Image'),
                                 Grid::make(2)->schema([
                                     Select::make('seo.og_type')->label('OG Type')
@@ -150,7 +148,7 @@ class ManageOurStory extends Page implements HasForms
                                 ]),
                                 TextInput::make('seo.twitter_title')->label('Twitter Title')->maxLength(70),
                                 Textarea::make('seo.twitter_description')->label('Twitter Description')->rows(3)->maxLength(200),
-                                TextInput::make('seo.twitter_image_url')->label('Twitter Image URL')->url()->nullable(),
+                                TextInput::make('seo.twitter_image_url')->label('Twitter Image URL')->nullable(),
                                 MediaPicker::forField('seo.twitter_image_url', 'our-story/seo')->label('Twitter Image'),
                                 Textarea::make('seo.schema_json')->label('Schema.org JSON-LD')->rows(6)->helperText('Must be valid JSON-LD'),
                                 Textarea::make('seo.custom_head_scripts')->label('Custom Head Scripts')->rows(4),
@@ -196,16 +194,5 @@ class ManageOurStory extends Page implements HasForms
                 ->danger()
                 ->send();
         }
-    }
-
-    /** @param  class-string  $settingsClass */
-    protected function saveSettingsGroup(string $settingsClass, array $payload): void
-    {
-        $settings = app($settingsClass);
-        $payload = $this->ensureAllSettingsProperties($settings, $payload);
-        $payload = $this->preserveExistingImageFields($payload, $settings);
-        $this->ensureSettingsRowsExist($settings);
-        app()->forgetInstance($settingsClass);
-        app($settingsClass)->fill($payload)->save();
     }
 }
