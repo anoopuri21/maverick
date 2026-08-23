@@ -2,21 +2,19 @@
 
 namespace App\Livewire;
 
+use App\Filament\Forms\Components\MediaPicker;
 use App\Filament\Resources\AccreditationAwardResource;
-use App\Models\PartnerLogo;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
+use Filament\Tables\Actions\CreateAction;
+use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
 use Livewire\Component;
 
-/**
- * Embedded Awards & Recognition CRUD table for the Accreditation page.
- * Reuses AccreditationAwardResource::form() and ::table() (model scoped to
- * type='award' via the resource's getEloquentQuery).
- */
 class AccreditationAwardTable extends Component implements HasForms, HasTable
 {
     use InteractsWithForms;
@@ -25,18 +23,19 @@ class AccreditationAwardTable extends Component implements HasForms, HasTable
     public function table(Table $table): Table
     {
         return AccreditationAwardResource::table(
-            $table
-                ->query(\App\Filament\Resources\AccreditationAwardResource::getEloquentQuery())
-                ->headerActions([
-                    \Filament\Tables\Actions\CreateAction::make()
-                        ->form(fn (Form $form) => AccreditationAwardResource::form($form)),
-                ])
-                ->actions([
-                    \Filament\Tables\Actions\EditAction::make()
-                        ->form(fn (Form $form) => AccreditationAwardResource::form($form)),
-                    \Filament\Tables\Actions\DeleteAction::make(),
-                ]),
-        );
+            $table->query(AccreditationAwardResource::getEloquentQuery())
+        )
+            ->headerActions([
+                CreateAction::make()
+                    ->form(fn (Form $form) => AccreditationAwardResource::form($form))
+                    ->mutateFormDataUsing(fn (array $data): array => MediaPicker::syncFieldFromAsset($data, 'logo_url')),
+            ])
+            ->actions([
+                EditAction::make()
+                    ->form(fn (Form $form) => AccreditationAwardResource::form($form))
+                    ->mutateFormDataUsing(fn (array $data): array => MediaPicker::syncFieldFromAsset($data, 'logo_url')),
+                DeleteAction::make(),
+            ]);
     }
 
     public function render(): \Illuminate\View\View

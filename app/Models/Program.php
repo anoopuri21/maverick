@@ -205,10 +205,13 @@ class Program extends Model
     public function getReviewTestimonialObjectsAttribute(): \Illuminate\Support\Collection
     {
         return $this->reviews_list->map(fn ($r) => (object) [
-            'name'        => $r['name'] ?? '',
-            'rating'      => $r['rating'] ?? 5,
-            'testimonial' => $r['review'] ?? '',
-            'photo'       => $r['avatar'] ?? null,
+            'name'         => $r['name'] ?? '',
+            'rating'       => $r['rating'] ?? 5,
+            'testimonial'  => $r['review'] ?? '',
+            'photo'        => $r['avatar'] ?? null,
+            'organisation' => $r['organisation'] ?? null,
+            'position'     => $r['position'] ?? null,
+            'country'      => $r['country'] ?? null,
         ])->values();
     }
 

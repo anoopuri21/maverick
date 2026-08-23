@@ -22,6 +22,12 @@
       <div class="os-testimonials__viewport">
         <div class="os-testimonials__track">
           @foreach ($ourStoryTestimonials as $item)
+          @php
+            $testimonialMeta = collect([$item->position ?? null, $item->organisation ?? null, $item->country ?? null])
+              ->map(fn ($v) => is_string($v) ? trim($v) : '')
+              ->filter()
+              ->values();
+          @endphp
           <article class="os-testimonials__card">
             @if($osTestimonialsVariant === 'google')
             {{-- Google-review card: author top (pic + Google badge), then name,
@@ -39,6 +45,9 @@
               </div>
               <div class="os-rev__meta">
                 <span class="os-rev__name">{{ $item->name }}</span>
+                @if ($testimonialMeta->isNotEmpty())
+                <span class="os-testimonials__meta">{{ $testimonialMeta->implode(' · ') }}</span>
+                @endif
                 <div class="os-testimonials__stars" aria-label="{{ $item->rating }} out of 5 stars">
                   @for ($i = 1; $i <= 5; $i++)
                   <span data-lucide="star" class="os-testimonials__star {{ $i <= $item->rating ? 'os-testimonials__star--filled' : 'os-testimonials__star--empty' }}" aria-hidden="true"></span>
@@ -66,7 +75,12 @@
               @else
               <span class="os-testimonials__initials" aria-hidden="true">{{ strtoupper(mb_substr($item->name, 0, 1)) }}</span>
               @endif
-              <span class="os-testimonials__name">{{ $item->name }}</span>
+              <div class="os-testimonials__author-text">
+                <span class="os-testimonials__name">{{ $item->name }}</span>
+                @if ($testimonialMeta->isNotEmpty())
+                <span class="os-testimonials__meta">{{ $testimonialMeta->implode(' · ') }}</span>
+                @endif
+              </div>
             </div>
             @endif
           </article>

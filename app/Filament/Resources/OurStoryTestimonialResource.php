@@ -44,6 +44,13 @@ class OurStoryTestimonialResource extends Resource
                 TextInput::make('name')
                     ->required()
                     ->maxLength(255),
+                TextInput::make('organisation')
+                    ->maxLength(255),
+                TextInput::make('position')
+                    ->label('Position / Designation')
+                    ->maxLength(255),
+                TextInput::make('country')
+                    ->maxLength(255),
                 Select::make('rating')
                     ->options([
                         1 => '1',
@@ -81,6 +88,13 @@ class OurStoryTestimonialResource extends Resource
                     ->size(48),
                 TextColumn::make('name')
                     ->searchable(),
+                TextColumn::make('position')
+                    ->label('Position')
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('organisation')
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('country')
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('rating')
                     ->formatStateUsing(function ($state): string {
                         $filled = (int) $state;

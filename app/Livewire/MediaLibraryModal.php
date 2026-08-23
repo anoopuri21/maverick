@@ -159,8 +159,9 @@ class MediaLibraryModal extends Component
 
     public function render(): View
     {
+        $env = app()->environment();
         $query = MediaAsset::query()
-            ->where('disk_env', app()->environment())
+            ->where('disk_env', $env)
             ->orderByDesc('id');
 
         if (filled($this->search)) {
@@ -172,7 +173,11 @@ class MediaLibraryModal extends Component
         }
 
         if (! $this->showAllFolders && filled($this->folderFilter)) {
-            $query->where('folder', $this->folderFilter);
+            $filter = $this->folderFilter;
+            $query->where(function ($q) use ($filter) {
+                $q->where('folder', $filter)
+                    ->orWhere('folder', 'like', '%/'.$filter);
+            });
         }
 
         return view('livewire.media-library-modal', [
