@@ -96,6 +96,7 @@ class MediaPicker extends Field
                     'statePath' => $this->getStatePath(),
                     'folder' => $this->getFolder(),
                     'initialTab' => $initialTab,
+                    'selectedAssetId' => filled($this->getState()) ? (int) $this->getState() : null,
                 ],
                 'key' => 'media-library-'.$this->getStatePath().'-'.$initialTab.'-'.uniqid(),
             ]

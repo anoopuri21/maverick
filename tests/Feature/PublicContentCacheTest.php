@@ -44,4 +44,18 @@ class PublicContentCacheTest extends TestCase
 
         $this->assertFalse(Cache::has(PublicContentCache::HOMEPAGE));
     }
+
+    public function test_homepage_and_alumni_cache_store_plain_arrays(): void
+    {
+        Cache::flush();
+
+        $this->get('/')->assertSuccessful();
+
+        $homepage = Cache::get(PublicContentCache::HOMEPAGE);
+        $this->assertIsArray($homepage);
+        $this->assertIsArray($homepage['alumniLogos'] ?? null);
+
+        $alumni = Cache::get(PublicContentCache::ALUMNI_LOGOS);
+        $this->assertTrue(is_array($alumni) || $alumni === null);
+    }
 }

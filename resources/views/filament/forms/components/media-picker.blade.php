@@ -11,11 +11,9 @@
             ? \Illuminate\Support\Str::beforeLast($statePath, '.').'.'.$urlField
             : $urlField;
 
-        if (! $asset) {
-            $fallbackUrl = $get($urlField);
-            if (blank($fallbackUrl) && method_exists($field, 'getRecord')) {
-                $fallbackUrl = data_get($field->getRecord(), $urlField);
-            }
+        // Field views don't have $get (schema closures only) — use record URL.
+        if (! $asset && method_exists($field, 'getRecord')) {
+            $fallbackUrl = data_get($field->getRecord(), $urlField);
         }
     }
 
@@ -35,11 +33,6 @@
         x-on:media-asset-selected.window="
             if ($event.detail.statePath === @js($statePath)) {
                 $wire.set(@js($statePath), $event.detail.assetId);
-                if ($event.detail.modalId) {
-                    $dispatch('close-modal', { id: $event.detail.modalId });
-                } else {
-                    document.querySelector('.fi-modal-close-btn')?.click();
-                }
             }
         "
         class="fi-fo-media-picker space-y-3"

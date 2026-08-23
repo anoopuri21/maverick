@@ -20,36 +20,80 @@ class ProgramController extends Controller
     public function index()
     {
         $listing = PublicContentCache::remember(PublicContentCache::PROGRAMS_LISTING, function () {
-            $categories = ProgramCategory::select('id', 'name', 'slug', 'icon', 'sort_order')
-                ->withCount([
-                    'programs' => fn ($q) => $q->where('is_active', true)->hasPublicSlug(),
-                ])
-                ->where('is_active', true)
-                ->orderBy('sort_order')
-                ->orderBy('name')
-                ->get();
+            $categories = PublicContentCache::serializeRows(
+                ProgramCategory::select('id', 'name', 'slug', 'icon', 'sort_order')
+                    ->withCount([
+                        'programs' => fn ($q) => $q->where('is_active', true)->hasPublicSlug(),
+                    ])
+                    ->where('is_active', true)
+                    ->orderBy('sort_order')
+                    ->orderBy('name')
+                    ->get(),
+                fn (ProgramCategory $category) => [
+                    'id' => $category->id,
+                    'name' => $category->name,
+                    'slug' => $category->slug,
+                    'icon' => $category->icon,
+                    'sort_order' => $category->sort_order,
+                    'programs_count' => $category->programs_count,
+                ]
+            );
 
-            $programs = Program::select([
+            $programs = PublicContentCache::serializeRows(
+                Program::select([
                     'id', 'program_category_id', 'university_partner_id', 'title', 'slug',
                     'duration', 'level', 'short_description', 'image_url', 'sort_order',
                 ])
-                ->with([
-                    'programCategory:id,name,slug',
-                    'universityPartner:id,name,logo_url,country',
-                ])
-                ->where('is_active', true)
-                ->hasPublicSlug()
-                ->orderBy('sort_order')
-                ->orderBy('title')
-                ->get();
+                    ->with([
+                        'programCategory:id,name,slug',
+                        'universityPartner:id,name,logo_url,country',
+                    ])
+                    ->where('is_active', true)
+                    ->hasPublicSlug()
+                    ->orderBy('sort_order')
+                    ->orderBy('title')
+                    ->get(),
+                fn (Program $program) => [
+                    'id' => $program->id,
+                    'title' => $program->title,
+                    'slug' => $program->slug,
+                    'duration' => $program->duration,
+                    'level' => $program->level,
+                    'short_description' => $program->short_description,
+                    'image_url' => $program->image_url,
+                    'sort_order' => $program->sort_order,
+                    'programCategory' => $program->programCategory
+                        ? [
+                            'name' => $program->programCategory->name,
+                            'slug' => $program->programCategory->slug,
+                        ]
+                        : null,
+                    'universityPartner' => $program->universityPartner
+                        ? ['name' => $program->universityPartner->name]
+                        : null,
+                ]
+            );
 
             return compact('categories', 'programs');
         });
 
         return view('pages.programs.index', [
             'programsListingPage' => safe_settings(ProgramsListingPageSettings::class),
-            'categories' => $listing['categories'],
-            'programs' => $listing['programs'],
+            'categories' => PublicContentCache::hydrateRows($listing['categories'] ?? []),
+            'programs' => PublicContentCache::hydrateRows(
+                $listing['programs'] ?? [],
+                function ($row) {
+                    $data = is_array($row) ? $row : (array) $row;
+                    $data['programCategory'] = ! empty($data['programCategory'])
+                        ? (object) $data['programCategory']
+                        : null;
+                    $data['universityPartner'] = ! empty($data['universityPartner'])
+                        ? (object) $data['universityPartner']
+                        : null;
+
+                    return (object) $data;
+                }
+            ),
             'programsListingSeo' => safe_settings(ProgramsListingSeoSettings::class),
         ]);
     }

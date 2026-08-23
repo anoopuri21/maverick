@@ -176,8 +176,18 @@ class PublicContentCache
             return true;
         }
 
-        if (is_array($value)) {
+        if (is_array($value) || $value instanceof \Traversable) {
             foreach ($value as $item) {
+                if (self::containsIncomplete($item)) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        if (is_object($value)) {
+            foreach (get_object_vars($value) as $item) {
                 if (self::containsIncomplete($item)) {
                     return true;
                 }
