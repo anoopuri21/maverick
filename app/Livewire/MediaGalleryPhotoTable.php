@@ -25,20 +25,19 @@ class MediaGalleryPhotoTable extends Component implements HasForms, HasTable
     public function table(Table $table): Table
     {
         return MediaGalleryPhotoResource::table(
-            $table
-                ->query(MediaGalleryPhoto::query())
-                ->headerActions([
-                    CreateAction::make()
-                        ->form(fn (Form $form) => MediaGalleryPhotoResource::form($form))
-                        ->mutateFormDataUsing(fn (array $data) => $this->mutateEmbeddedMedia($data, 'image_url')),
-                ])
-                ->actions([
-                    EditAction::make()
-                        ->form(fn (Form $form) => MediaGalleryPhotoResource::form($form))
-                        ->mutateFormDataUsing(fn (array $data) => $this->mutateEmbeddedMedia($data, 'image_url', $this->getMountedTableActionRecord())),
-                    DeleteAction::make(),
-                ]),
-        );
+            $table->query(MediaGalleryPhoto::query())
+        )
+            ->headerActions([
+                CreateAction::make()
+                    ->form(fn (Form $form) => MediaGalleryPhotoResource::form($form))
+                    ->mutateFormDataUsing(fn (array $data) => $this->mutateEmbeddedMedia($data, 'image_url')),
+            ])
+            ->actions([
+                EditAction::make()
+                    ->form(fn (Form $form) => MediaGalleryPhotoResource::form($form))
+                    ->mutateFormDataUsing(fn (array $data) => $this->mutateEmbeddedMedia($data, 'image_url', $this->getMountedTableActionRecord())),
+                DeleteAction::make(),
+            ]);
     }
 
     public function render(): \Illuminate\View\View

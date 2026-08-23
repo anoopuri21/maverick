@@ -25,20 +25,19 @@ class OurStoryGalleryImageTable extends Component implements HasForms, HasTable
     public function table(Table $table): Table
     {
         return OurStoryGalleryImageResource::table(
-            $table
-                ->query(OurStoryGalleryImage::query())
-                ->headerActions([
-                    CreateAction::make()
-                        ->form(fn (Form $form) => OurStoryGalleryImageResource::form($form))
-                        ->mutateFormDataUsing(fn (array $data) => $this->mutateEmbeddedMedia($data, 'image_url')),
-                ])
-                ->actions([
-                    EditAction::make()
-                        ->form(fn (Form $form) => OurStoryGalleryImageResource::form($form))
-                        ->mutateFormDataUsing(fn (array $data) => $this->mutateEmbeddedMedia($data, 'image_url', $this->getMountedTableActionRecord())),
-                    DeleteAction::make(),
-                ]),
-        );
+            $table->query(OurStoryGalleryImage::query())
+        )
+            ->headerActions([
+                CreateAction::make()
+                    ->form(fn (Form $form) => OurStoryGalleryImageResource::form($form))
+                    ->mutateFormDataUsing(fn (array $data) => $this->mutateEmbeddedMedia($data, 'image_url')),
+            ])
+            ->actions([
+                EditAction::make()
+                    ->form(fn (Form $form) => OurStoryGalleryImageResource::form($form))
+                    ->mutateFormDataUsing(fn (array $data) => $this->mutateEmbeddedMedia($data, 'image_url', $this->getMountedTableActionRecord())),
+                DeleteAction::make(),
+            ]);
     }
 
     public function render(): \Illuminate\View\View

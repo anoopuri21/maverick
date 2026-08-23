@@ -85,7 +85,7 @@ class AccreditationAwardResource extends Resource
                     ->toggleable(),
 
                 Tables\Columns\TextColumn::make('sort_order')
-                    ->numeric()->nullable()
+                    ->numeric()
                     ->sortable()
                     ->label('Order'),
 
