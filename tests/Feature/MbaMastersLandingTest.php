@@ -61,6 +61,8 @@ class MbaMastersLandingTest extends TestCase
         $response->assertSee('Master\'s programs', false);
         $response->assertSee('Master of Laws (LLM)', false);
         $response->assertSee('University of Wolverhampton', false);
+        $response->assertSee('Global MBA', false);
+        $response->assertDontSee('listed under Master', false);
         $response->assertSee('mlp-masters__uni-photo', false);
         $response->assertSee('Online MBA & Master\'s Fees in UAE');
         $response->assertSee('archive-investment', false);
@@ -113,10 +115,9 @@ class MbaMastersLandingTest extends TestCase
         $response->assertSee('archive-partners__wall', false);
         $response->assertSee('archive-partners__logo-item', false);
         $response->assertSee('mba-masters-archive.js', false);
-        $response->assertSee('What working professionals say', false);
-        $response->assertSee('archive-voices', false);
-        $response->assertSee('archive-voices__voice', false);
-        $response->assertSee('Sara Al Maktoum', false);
+        $response->assertDontSee('archive-voices', false);
+        $response->assertDontSee('Sara Al Maktoum', false);
+        $response->assertDontSee('Placeholders', false);
         $response->assertSee('Why working professionals choose online', false);
         $response->assertSee('archive-parallel', false);
         $response->assertSee('archive-parallel__row', false);

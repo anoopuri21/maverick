@@ -849,3 +849,394 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
     grid-template-columns: 1fr;
   }
 }
+
+/* 29-point audit batch — consistency, hierarchy, proximity, and affordance fixes. */
+.mlp-page--polished {
+  --mlp-color-heading: var(--mlp-navy);
+  --mlp-color-body: var(--mlp-ink);
+  --mlp-color-muted: var(--mlp-muted-on-paper);
+  --mlp-color-accent: var(--mlp-red);
+  --mlp-color-inverse: var(--mlp-white);
+  --mlp-color-line: var(--mlp-line-dark);
+}
+
+/* Issues 2–3: shared colour/button roles. */
+.mlp-page--polished :is(
+  .signal-atlas__heading,
+  .blueprint-overview__heading,
+  .mlp-why__heading,
+  .mlp-why__title,
+  .mlp-journey__heading,
+  .mlp-journey__title,
+  .mlp-mba__heading,
+  .mlp-masters__heading,
+  .archive-class__heading,
+  .archive-career__heading,
+  .archive-alumni__heading,
+  .archive-learning__heading,
+  .archive-partners__heading,
+  .archive-investment__heading,
+  .archive-voices__heading,
+  .archive-parallel__heading,
+  .archive-fieldnotes__heading,
+  .archive-closing__heading,
+  .archive-parallel__criterion,
+  .archive-investment__record-topline h3
+) { color: var(--mlp-color-heading); }
+
+.mlp-page--polished :is(
+  .signal-atlas__label,
+  .signal-atlas__note,
+  .blueprint-overview__intro-copy,
+  .mlp-why__intro,
+  .mlp-why__text,
+  .mlp-journey__intro,
+  .mlp-journey__text,
+  .mlp-mba__intro,
+  .mlp-masters__intro,
+  .archive-class__copy,
+  .archive-career__intro-copy,
+  .archive-alumni__intro-copy,
+  .archive-learning__intro-copy,
+  .archive-partners__intro-copy,
+  .archive-investment__intro-copy,
+  .archive-investment__note,
+  .archive-voices__intro-copy,
+  .archive-parallel__intro-copy,
+  .archive-fieldnotes__intro-copy,
+  .archive-closing__intro-copy
+) { color: var(--mlp-color-muted); }
+
+.mlp-page--polished :is(
+  .mlp-btn--primary,
+  .mlp-btn--ghost,
+  .mlp-btn--text,
+  .prospectus-cover__primary,
+  .prospectus-cover__secondary,
+  .archive-investment__primary,
+  .archive-investment__secondary,
+  .archive-parallel__primary,
+  .archive-closing__primary,
+  .archive-closing__secondary,
+  .archive-learning__primary,
+  .archive-learning__secondary
+) { border-radius: 0; }
+
+.mlp-page--polished :is(.archive-investment__primary, .archive-parallel__primary, .archive-closing__primary, .archive-learning__primary) {
+  min-height: 3rem;
+  background: var(--mlp-color-accent);
+  color: var(--mlp-color-inverse);
+}
+
+.mlp-page--polished :is(.archive-investment__secondary, .archive-closing__secondary, .archive-learning__secondary) {
+  color: var(--mlp-color-heading);
+  border-color: var(--mlp-color-heading);
+}
+
+/* Issues 4–8: sentence case and readable supporting labels. */
+.mlp-page--polished .prospectus-cover__academy,
+.mlp-page--polished .prospectus-cover__eyebrow,
+.mlp-page--polished .prospectus-cover__kicker,
+.mlp-page--polished .archive-learning__caption {
+  text-transform: none;
+  letter-spacing: 0.04em;
+}
+
+.mlp-page--polished :is(.archive-alumni__footer p, .archive-partners__logo-item span, .archive-learning__caption) {
+  font-size: var(--mlp-type-caption);
+}
+
+/* Issue 9: make each form field read as its own group. */
+.mlp-page--polished .prospectus-cover__enquiry .mlp-form__fields {
+  row-gap: 1.1rem;
+}
+
+.mlp-page--polished .prospectus-cover__enquiry .mlp-form__row {
+  grid-column: 1 / -1;
+  align-items: start;
+  column-gap: clamp(0.85rem, 2vw, 1.25rem);
+}
+
+.mlp-page--polished .prospectus-cover__enquiry .mlp-field {
+  align-self: start;
+  min-width: 0;
+}
+
+.mlp-page--polished .prospectus-cover__enquiry .mlp-field input,
+.mlp-page--polished .prospectus-cover__enquiry .mlp-field select {
+  min-width: 0;
+  width: 100%;
+}
+
+/* Issue 10: provide a calm heading safe zone above decorative artwork. */
+.mlp-page--polished .archive-voices__heading {
+  position: relative;
+  z-index: 1;
+  display: inline;
+  padding: 0.05em 0.12em;
+  background: var(--mlp-paper-pure);
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+/* Issue 11: remove non-functional erratic Overview numbers. */
+.mlp-page--polished .blueprint-overview__foundation-index { display: none; }
+.mlp-page--polished .blueprint-overview__foundation {
+  z-index: 2;
+  background: var(--mlp-paper);
+  box-shadow: 0 0 0 0.75rem var(--mlp-paper);
+}
+
+/* Issue 12: university image/catalog placement stays consistent. */
+.mlp-page--polished .mlp-mba__showcase--flip .mlp-mba__plate { order: 1; }
+.mlp-page--polished .mlp-mba__showcase--flip .mlp-mba__catalog { order: 2; }
+
+/* Issues 14–15 and 19: bring fee/value relationships together. */
+.mlp-page--polished .archive-investment__record-topline {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 0.55rem 2rem;
+  align-items: baseline;
+}
+
+.mlp-page--polished .archive-investment__record-topline h3 {
+  font-weight: 600;
+}
+
+.mlp-page--polished .archive-investment__fee {
+  display: grid;
+  gap: 0.2rem;
+  justify-items: start;
+}
+
+.mlp-page--polished .archive-investment__fee strong {
+  font-size: var(--mlp-type-title-sm);
+}
+
+.mlp-page--polished .archive-investment__fee small {
+  max-width: 22ch;
+  font-size: var(--mlp-type-caption);
+  line-height: 1.3;
+  color: var(--mlp-color-muted);
+}
+
+.mlp-page--polished .archive-investment__details dt {
+  font-size: var(--mlp-type-caption);
+  letter-spacing: 0.03em;
+  text-transform: none;
+  color: var(--mlp-color-accent);
+}
+
+/* Issues 16, 20, 22, 27 and 28: comparison hierarchy and alignment. */
+.mlp-page--polished .archive-parallel__columns span {
+  min-height: 3.25rem;
+  font-size: var(--mlp-type-body);
+  font-weight: 600;
+}
+
+.mlp-page--polished .archive-parallel__row {
+  align-items: start;
+}
+
+.mlp-page--polished .archive-parallel__side {
+  align-self: start;
+}
+
+.mlp-page--polished .archive-parallel__criterion span {
+  width: 1.35rem;
+  height: 1.35rem;
+  flex-basis: 1.35rem;
+  border: 0;
+  color: var(--mlp-color-muted);
+}
+
+.mlp-page--polished .archive-parallel__primary {
+  min-width: 10rem;
+  justify-content: center;
+}
+
+/* Issue 17 and 26: stronger but restrained Explore affordance. */
+.mlp-page--polished .mlp-why__link {
+  min-height: 3rem;
+  display: inline-flex;
+  align-items: center;
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  color: var(--mlp-white);
+  background: var(--mlp-red);
+  border: 1px solid var(--mlp-red);
+  font-size: var(--mlp-type-caption);
+  text-transform: none;
+  letter-spacing: 0.04em;
+}
+
+.mlp-page--polished .mlp-why__link:hover,
+.mlp-page--polished .mlp-why__link:focus-visible {
+  color: var(--mlp-white);
+  background: var(--mlp-navy);
+  border-color: var(--mlp-navy);
+  opacity: 1;
+}
+
+/* Issues 18 and 21: tighter journey grouping and quiet non-functional numbers. */
+.mlp-page--polished .mlp-journey__layout {
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(1rem, 2.4vw, 2rem);
+}
+
+.mlp-page--polished .mlp-why__chapter {
+  min-height: 0;
+  padding: clamp(2rem, 4vw, 3.25rem) 0;
+}
+
+.mlp-page--polished .mlp-why__chapter-grid {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+}
+
+.mlp-page--polished .mlp-why__num,
+.mlp-page--polished .signal-atlas__record-index { display: none; }
+
+.mlp-page--polished .signal-atlas__record {
+  grid-template-columns: minmax(7rem, 0.48fr) minmax(0, 1fr);
+}
+
+/* Issue 23: keep Hero secondary action vertically centred with the button. */
+.mlp-page--polished .prospectus-cover__actions { align-items: center; }
+.mlp-page--polished .prospectus-cover__secondary {
+  display: inline-flex;
+  align-items: center;
+  min-height: 3rem;
+}
+
+/* Issue 25: secondary Overview action uses the shared outline role. */
+.mlp-page--polished .blueprint-overview__secondary {
+  display: inline-flex;
+  align-items: center;
+  min-height: 3rem;
+  padding: 0.7rem 1rem;
+  border: 1px solid var(--mlp-navy);
+  text-decoration: none;
+}
+
+.mlp-page--polished .blueprint-overview__secondary:hover,
+.mlp-page--polished .blueprint-overview__secondary:focus-visible {
+  color: var(--mlp-white);
+  background: var(--mlp-navy);
+}
+
+/* Issue 28: guarantee unique learning heading styling after the content migration. */
+.mlp-page--polished .archive-learning__heading { max-width: 14ch; }
+
+@media (max-width: 900px) {
+  .mlp-page--polished .mlp-journey__layout { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 560px) {
+  .mlp-page--polished .archive-investment__record-topline { display: grid; gap: 0.45rem; }
+  .mlp-page--polished .archive-investment__fee { justify-items: start; }
+  .mlp-page--polished .signal-atlas__record { grid-template-columns: 1fr; }
+}
+
+/* Issue 1 final pass — collapse component-specific sizes into semantic roles. */
+.mlp-page--polished [class*="__"] {
+  font-size: var(--mlp-type-body);
+}
+
+.mlp-page--polished :is(h1, h2) {
+  font-size: var(--mlp-type-title-lg);
+}
+
+.mlp-page--polished :is(h3) {
+  font-size: var(--mlp-type-title-sm);
+}
+
+.mlp-page--polished :is(p, li, dd) {
+  font-size: var(--mlp-type-body);
+}
+
+.mlp-page--polished :is(a, button, input, select, textarea) {
+  font-size: var(--mlp-type-caption);
+}
+
+.mlp-page--polished :is(small, dt, .mlp-meta) {
+  font-size: var(--mlp-type-caption);
+}
+
+.mlp-page--polished :is(
+  .prospectus-cover__title,
+  .signal-atlas__value,
+  .archive-class__metric dd,
+  .archive-investment__record-topline strong,
+  .archive-investment__fee strong
+) {
+  font-size: var(--mlp-type-stat);
+}
+
+.mlp-page--polished .prospectus-cover__title {
+  font-size: var(--mlp-type-display);
+  line-height: 1.02;
+}
+
+.mlp-page--polished .prospectus-cover__title-line {
+  font-size: inherit;
+}
+
+.mlp-page--polished :is(
+  .prospectus-cover__edition,
+  .prospectus-cover__academy,
+  .prospectus-cover__location,
+  .prospectus-cover__eyebrow,
+  .prospectus-cover__kicker,
+  .prospectus-cover__enquiry-index,
+  .signal-atlas__folio,
+  .signal-atlas__graph-label,
+  .blueprint-overview__folio,
+  .blueprint-overview__system-label,
+  .archive-class__label,
+  .archive-career__label,
+  .archive-alumni__label,
+  .archive-learning__label,
+  .archive-partners__label,
+  .archive-investment__label,
+  .archive-voices__label,
+  .archive-parallel__label,
+  .archive-fieldnotes__label,
+  .archive-closing__label,
+  .archive-investment__details dt,
+  .archive-learning__caption,
+  .archive-alumni__footer p,
+  .archive-partners__logo-item span
+) {
+  font-size: var(--mlp-type-caption);
+}
+
+.mlp-page--polished :is(
+  .signal-atlas__quote p,
+  .mlp-lede,
+  .archive-voices__quote,
+  .archive-career__quote,
+  .archive-learning__point-text
+) {
+  font-size: var(--mlp-type-lede);
+}
+
+.mlp-page--polished :is(
+  .prospectus-cover__enquiry-head h2,
+  .archive-closing__form-title,
+  .archive-investment__record-topline h3
+) {
+  font-size: var(--mlp-type-title-sm);
+}
+
+@media (max-width: 560px) {
+  .mlp-page--polished .prospectus-cover__title {
+    font-size: clamp(2.6rem, 13vw, 5rem);
+  }
+}
+
+/* Issue 27 — keep MBA filters visually connected to their first result. */
+.mlp-page--polished .mlp-mba__tablist {
+  margin-bottom: 1rem;
+}

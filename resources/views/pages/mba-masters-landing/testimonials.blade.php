@@ -21,7 +21,7 @@
   $fallbackPhoto = cached_asset('assets/images/alumni/alumn-1.png');
 @endphp
 
-@if(filled($testimonials->heading) || $items->isNotEmpty())
+@if($items->isNotEmpty())
 <section class="mlp-testimonials archive-voices" id="mlp-testimonials" aria-labelledby="archive-voices-title">
   <div class="archive-voices__background" aria-hidden="true">
     <span class="archive-voices__wash"></span>
