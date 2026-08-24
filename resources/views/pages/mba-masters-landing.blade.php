@@ -38,10 +38,11 @@
 
 @push('styles')
 <link rel="stylesheet" href="{{ cached_asset('assets/css/pages/mba-masters-landing.css') }}" />
+<link rel="stylesheet" href="{{ cached_asset('assets/css/pages/mba-masters-polish.css') }}" />
 @endpush
 
 @section('content')
-<div class="mlp-page" id="mlpPage">
+<div class="mlp-page mlp-page--polished" id="mlpPage">
   @include('pages.mba-masters-landing.hero')
   @include('pages.mba-masters-landing.trust')
   @include('pages.mba-masters-landing.overview')
@@ -78,4 +79,5 @@
 <script src="{{ cached_asset('assets/js/pages/mba-masters-overview.js') }}" defer></script>
 <script src="{{ cached_asset('assets/js/pages/mba-masters-archive.js') }}" defer></script>
 <script src="{{ cached_asset('assets/js/pages/mba-masters-closing.js') }}" defer></script>
+<script src="{{ cached_asset('assets/js/pages/mba-masters-polish.js') }}" defer></script>
 @endpush

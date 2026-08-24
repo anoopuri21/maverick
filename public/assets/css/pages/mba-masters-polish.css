@@ -1,0 +1,363 @@
+/* MBA & Master's landing — page-wide Quietly Cinematic polish layer */
+.mlp-page--polished {
+  --mlp-polish-section-gap: clamp(4.5rem, 9vw, 8rem);
+  --mlp-polish-line: rgba(7, 20, 68, 0.14);
+  --mlp-polish-ink-soft: rgba(18, 18, 18, 0.68);
+  --mlp-polish-red-soft: rgba(178, 2, 2, 0.12);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.mlp-page--polished > section {
+  scroll-margin-top: 5rem;
+}
+
+.mlp-page--polished :where(h1, h2, h3) {
+  text-wrap: balance;
+}
+
+.mlp-page--polished :where(p, li, dd) {
+  text-wrap: pretty;
+}
+
+.mlp-page--polished :where(a, button, input, select, textarea):focus-visible {
+  outline: 2px solid var(--mlp-red);
+  outline-offset: 4px;
+}
+
+.mlp-page--polished :where(img) {
+  backface-visibility: hidden;
+}
+
+/* Shared labels, links, and action rhythm */
+.mlp-page--polished :where(
+  .prospectus-cover__eyebrow,
+  .prospectus-cover__kicker,
+  .signal-atlas__folio,
+  .blueprint-overview__folio,
+  .archive-class__label,
+  .archive-career__label,
+  .archive-alumni__label,
+  .archive-learning__label,
+  .archive-partners__label,
+  .archive-investment__label,
+  .archive-voices__label,
+  .archive-parallel__label,
+  .archive-fieldnotes__label,
+  .archive-closing__label
+) {
+  letter-spacing: 0.15em;
+}
+
+.mlp-page--polished :where(
+  .prospectus-cover__secondary,
+  .signal-atlas__link,
+  .blueprint-overview__secondary,
+  .archive-class__audience,
+  .archive-investment__secondary,
+  .archive-closing__secondary
+) {
+  transition: color 0.3s var(--mlp-ease), border-color 0.3s var(--mlp-ease), transform 0.3s var(--mlp-ease);
+}
+
+/* Locked Living Prospectus identity — polish only */
+.mlp-page--polished .prospectus-cover__title {
+  max-width: 9.5ch;
+  letter-spacing: -0.065em;
+}
+
+.mlp-page--polished .prospectus-cover__intro {
+  max-width: 39ch;
+}
+
+.mlp-page--polished .prospectus-cover__primary {
+  box-shadow: 0 14px 28px -20px rgba(178, 2, 2, 0.9);
+}
+
+.mlp-page--polished .prospectus-cover__primary:hover,
+.mlp-page--polished .prospectus-cover__primary:focus-visible {
+  box-shadow: 0 16px 32px -18px rgba(7, 20, 68, 0.85);
+}
+
+.mlp-page--polished .prospectus-admissions__form {
+  box-shadow: 0 24px 54px -38px rgba(7, 20, 68, 0.62);
+}
+
+.mlp-page--polished .prospectus-admissions__form .mlp-form__fields {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: clamp(0.85rem, 2vw, 1.5rem);
+}
+
+.mlp-page--polished .prospectus-admissions__form .mlp-form__fields > :first-child,
+.mlp-page--polished .prospectus-admissions__form .mlp-form__privacy-note,
+.mlp-page--polished .prospectus-admissions__form .mlp-btn--block {
+  grid-column: 1 / -1;
+}
+
+/* Trust + Overview: give the first decision chapter one confident rhythm */
+.mlp-page--polished .signal-atlas,
+.mlp-page--polished .blueprint-overview {
+  border-top: 1px solid var(--mlp-polish-line);
+}
+
+.mlp-page--polished .signal-atlas__intro,
+.mlp-page--polished .blueprint-overview__intro {
+  max-width: 76rem;
+}
+
+.mlp-page--polished .signal-atlas__quote,
+.mlp-page--polished .blueprint-overview__system {
+  border-color: var(--mlp-polish-line);
+}
+
+.mlp-page--polished .signal-atlas__record,
+.mlp-page--polished .blueprint-overview__foundation {
+  transition: transform 0.45s var(--mlp-ease), border-color 0.35s var(--mlp-ease), background-color 0.35s ease;
+}
+
+.mlp-page--polished .signal-atlas__record:hover {
+  background: rgba(255, 255, 255, 0.42);
+}
+
+.mlp-page--polished .blueprint-overview__foundation:hover,
+.mlp-page--polished .blueprint-overview__foundation:focus-within {
+  background: rgba(255, 255, 255, 0.46);
+}
+
+/* Existing middle sections: harmonise older blocks with the Light Archive */
+.mlp-page--polished .mlp-why,
+.mlp-page--polished .mlp-journey,
+.mlp-page--polished .mlp-mba,
+.mlp-page--polished .mlp-masters {
+  border-top: 1px solid var(--mlp-polish-line);
+}
+
+.mlp-page--polished :where(
+  .mlp-why__heading,
+  .mlp-journey__heading,
+  .mlp-mba__heading,
+  .mlp-masters__heading
+) {
+  letter-spacing: -0.045em;
+}
+
+.mlp-page--polished :where(
+  .mlp-why__chapter,
+  .mlp-journey__step,
+  .mlp-mba__showcase,
+  .mlp-masters__showcase
+) {
+  transition: background-color 0.35s ease, border-color 0.35s ease, transform 0.45s var(--mlp-ease);
+}
+
+.mlp-page--polished :where(.mlp-why__chapter, .mlp-journey__step):hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.mlp-page--polished :where(.mlp-mba__tab, .mlp-masters__program) {
+  transition: color 0.3s var(--mlp-ease), border-color 0.3s var(--mlp-ease), background-color 0.3s ease, padding-left 0.3s var(--mlp-ease);
+}
+
+.mlp-page--polished :where(.mlp-mba__tab:focus-visible, .mlp-masters__program:focus-visible) {
+  outline-offset: -3px;
+}
+
+.mlp-page--polished .mlp-mba__showcase:hover,
+.mlp-page--polished .mlp-masters__showcase:hover {
+  transform: translateY(-0.18rem);
+}
+
+/* Light Archive sections: shared depth without card-grid repetition */
+.mlp-page--polished :where(
+  .archive-class,
+  .archive-career,
+  .archive-alumni,
+  .archive-learning,
+  .archive-partners,
+  .archive-investment,
+  .archive-voices,
+  .archive-parallel,
+  .archive-fieldnotes,
+  .archive-closing
+) {
+  border-top: 1px solid var(--mlp-polish-line);
+}
+
+.mlp-page--polished :where(
+  .archive-class__heading,
+  .archive-career__heading,
+  .archive-alumni__heading,
+  .archive-learning__heading,
+  .archive-partners__heading,
+  .archive-investment__heading,
+  .archive-voices__heading,
+  .archive-parallel__heading,
+  .archive-fieldnotes__heading,
+  .archive-closing__heading
+) {
+  letter-spacing: -0.05em;
+}
+
+.mlp-page--polished :where(
+  .archive-class__metric,
+  .archive-career__dossier,
+  .archive-learning__point,
+  .archive-investment__record,
+  .archive-voices__voice,
+  .archive-parallel__row,
+  .archive-fieldnotes__note
+) {
+  transition: border-color 0.35s ease, background-color 0.35s ease, transform 0.45s var(--mlp-ease);
+}
+
+.mlp-page--polished :where(
+  .archive-class__metric:hover,
+  .archive-career__dossier:hover,
+  .archive-learning__point:hover,
+  .archive-investment__record:hover,
+  .archive-voices__voice:hover,
+  .archive-parallel__row:hover,
+  .archive-fieldnotes__note:hover
+) {
+  border-color: var(--mlp-red);
+}
+
+.mlp-page--polished :where(
+  .archive-class__icon,
+  .archive-class__zone-icon,
+  .archive-class__industry-icon,
+  .archive-career__dossier-icon,
+  .archive-learning__point-icon,
+  .archive-investment__record-mark,
+  .archive-voices__quote-icon,
+  .archive-parallel__criterion span,
+  .archive-fieldnotes__question-icon
+) {
+  transition: color 0.3s var(--mlp-ease), background-color 0.3s ease, border-color 0.3s ease, transform 0.35s var(--mlp-ease);
+}
+
+.mlp-page--polished :where(
+  .archive-class__metric:hover .archive-class__icon,
+  .archive-career__dossier:hover .archive-career__dossier-icon,
+  .archive-learning__point:hover .archive-learning__point-icon,
+  .archive-investment__record:hover .archive-investment__record-mark,
+  .archive-voices__voice:hover .archive-voices__quote-icon,
+  .archive-parallel__row:hover .archive-parallel__criterion span,
+  .archive-fieldnotes__note:hover .archive-fieldnotes__question-icon
+) {
+  transform: translateY(-2px);
+}
+
+/* Fees: keep the practical index compact and make scanning effortless */
+.mlp-page--polished .archive-investment__record-topline strong {
+  font-variant-numeric: tabular-nums;
+}
+
+.mlp-page--polished .archive-investment__details dt {
+  color: var(--mlp-red);
+}
+
+/* Testimonials, comparison, FAQ, final CTA */
+.mlp-page--polished .archive-voices__stage,
+.mlp-page--polished .archive-closing__frame {
+  align-items: start;
+}
+
+.mlp-page--polished .archive-voices__quote,
+.mlp-page--polished .archive-parallel__criterion,
+.mlp-page--polished .archive-fieldnotes__question {
+  letter-spacing: -0.025em;
+}
+
+.mlp-page--polished .archive-parallel__side--online {
+  border-left-color: var(--mlp-red);
+}
+
+.mlp-page--polished .archive-parallel__side--traditional {
+  border-left-color: var(--mlp-polish-line);
+}
+
+.mlp-page--polished .archive-fieldnotes__answer {
+  max-width: 52rem;
+}
+
+.mlp-page--polished .archive-closing__form {
+  box-shadow: 0 24px 58px -40px rgba(7, 20, 68, 0.62);
+}
+
+/* Shared image-stack performance and dramatic but short transitions */
+.mlp-page--polished :where(
+  .archive-class__stack-image,
+  .archive-career__stack-image,
+  .archive-voices__stack-image,
+  .archive-learning__stack-layer,
+  .archive-closing__image-layer
+) {
+  transition: transform 0.9s var(--mlp-ease), opacity 0.7s ease, clip-path 0.9s var(--mlp-ease);
+}
+
+.mlp-page--polished :where(
+  .archive-class__archive:hover .archive-class__stack-image--1,
+  .archive-career__stage:hover .archive-career__stack-image--1,
+  .archive-voices__stage:hover .archive-voices__stack-image--1,
+  .archive-learning__desk:hover .archive-learning__stack-layer--front
+) {
+  transform: translateY(-0.35rem) rotate(-2deg);
+}
+
+@media (max-width: 900px) {
+  .mlp-page--polished .prospectus-admissions__form .mlp-form__fields {
+    grid-template-columns: 1fr;
+  }
+
+  .mlp-page--polished .prospectus-admissions__form .mlp-form__fields > :first-child,
+  .mlp-page--polished .prospectus-admissions__form .mlp-form__privacy-note,
+  .mlp-page--polished .prospectus-admissions__form .mlp-btn--block {
+    grid-column: auto;
+  }
+
+  .mlp-page--polished :where(.archive-class__metric, .archive-class__metric:nth-child(even)) {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .mlp-page--polished .archive-class__metric:first-child { padding-left: 0; }
+  .mlp-page--polished .archive-class__metric:last-child { padding-right: 0; }
+}
+
+@media (max-width: 620px) {
+  .mlp-page--polished :where(
+    .archive-investment__record,
+    .archive-voices__voice,
+    .archive-parallel__row,
+    .archive-fieldnotes__note
+  ) {
+    transform: none;
+  }
+
+  .mlp-page--polished .archive-closing__intro {
+    padding-top: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mlp-page--polished :where(
+    .prospectus-cover__primary,
+    .signal-atlas__record,
+    .blueprint-overview__foundation,
+    .archive-class__metric,
+    .archive-career__dossier,
+    .archive-learning__point,
+    .archive-investment__record,
+    .archive-voices__voice,
+    .archive-parallel__row,
+    .archive-fieldnotes__note,
+    .archive-closing__image-layer,
+    .archive-class__stack-image,
+    .archive-career__stack-image,
+    .archive-voices__stack-image,
+    .archive-learning__stack-layer
+  ) {
+    transition: none;
+  }
+}
