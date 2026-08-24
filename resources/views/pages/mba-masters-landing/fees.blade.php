@@ -1,69 +1,97 @@
-{{-- §8 Fees & payment — elegant matrix + plate --}}
+{{-- §8 Fees + payment — The Fee Blueprint --}}
 @php
-  $rows = collect($fees->rows ?? [])->filter(fn ($r) => filled($r['program'] ?? null))->values();
-  $stage = mlp_image_url($fees->stage_image ?? null, ['w' => 1920, 'fallback' => 'assets/images/programs/enquire-seminar.jpg']);
+  $rows = collect($fees->rows ?? [])
+      ->filter(fn ($row) => filled($row['program'] ?? null))
+      ->values();
+  $stage = mlp_image_url($fees->stage_image ?? null, [
+    'w' => 1200,
+    'fallback' => 'assets/images/programs/enquire-seminar.jpg',
+  ]);
 @endphp
+
 @if($rows->isNotEmpty() || filled($fees->heading))
-<section class="mlp-fees" id="mlp-fees" aria-label="Fees and payment options">
-  <div class="mlp-fees__stage" aria-hidden="true">
-    <img class="mlp-fees__stage-img" src="{{ $stage }}" alt="" width="1920" height="1080" loading="lazy" decoding="async">
-    <div class="mlp-fees__stage-veil"></div>
+<section class="fee-blueprint" id="mlp-fees" aria-labelledby="fee-blueprint-title">
+  <div class="fee-blueprint__background" aria-hidden="true">
+    @if($stage)
+    <img class="fee-blueprint__plate" src="{{ $stage }}" alt="" width="1200" height="800" loading="lazy" decoding="async">
+    @endif
+    <span class="fee-blueprint__wash"></span>
+    <span class="fee-blueprint__rule fee-blueprint__rule--one"></span>
+    <span class="fee-blueprint__rule fee-blueprint__rule--two"></span>
   </div>
 
-  <div class="container mlp-fees__inner">
-    <header class="mlp-fees__head" data-mlp-reveal="fees-head">
-      <div class="mlp-fees__meta">
-        @if(filled($fees->label))
-        <p class="mlp-fees__label mlp-meta">{{ $fees->label }}</p>
+  <div class="fee-blueprint__frame container">
+    <header class="fee-blueprint__intro">
+      <div>
+        <p class="fee-blueprint__folio">
+          @if(filled($fees->index))<span>{{ $fees->index }}</span>@endif
+          @if(filled($fees->label))<span>{{ $fees->label }}</span>@endif
+        </p>
+        @if(filled($fees->heading))
+        <h2 class="fee-blueprint__heading" id="fee-blueprint-title">{{ $fees->heading }}</h2>
         @endif
       </div>
-      @if(filled($fees->heading))
-      <h2 class="mlp-fees__heading mlp-headline">{{ $fees->heading }}</h2>
-      @endif
       @if(filled($fees->intro))
-      <p class="mlp-fees__intro mlp-lede">{{ $fees->intro }}</p>
+      <p class="fee-blueprint__intro-copy">{{ $fees->intro }}</p>
       @endif
     </header>
 
     @if($rows->isNotEmpty())
-    <div class="mlp-fees__matrix" data-mlp-reveal="fees-matrix" role="table" aria-label="Fee overview">
-      <div class="mlp-fees__row mlp-fees__row--head" role="row">
-        <span role="columnheader">Program</span>
-        <span role="columnheader">Duration</span>
-        <span role="columnheader">Study mode</span>
-        <span role="columnheader">Fee / payment</span>
-        <span role="columnheader"><span class="mlp-vh">Advisor</span></span>
+    <div class="fee-blueprint__board" data-fee-blueprint>
+      <div class="fee-blueprint__legend" aria-hidden="true">
+        <span>Programme</span>
+        <span>Duration</span>
+        <span>Mode</span>
+        <span>Fee / payment</span>
+        <span>Next step</span>
       </div>
-      @foreach($rows as $i => $row)
-      <div class="mlp-fees__row" role="row" style="--mlp-i: {{ $i }}">
-        <span class="mlp-fees__cell mlp-fees__cell--program" role="cell" data-label="Program">{{ $row['program'] }}</span>
-        <span class="mlp-fees__cell" role="cell" data-label="Duration">{{ $row['duration'] ?? '—' }}</span>
-        <span class="mlp-fees__cell" role="cell" data-label="Study mode">{{ $row['mode'] ?? '—' }}</span>
-        <span class="mlp-fees__cell mlp-fees__cell--fee" role="cell" data-label="Fee / payment">
-          <strong>{{ $row['fee'] ?? '—' }}</strong>
-          @if(filled($row['payment'] ?? null))
-          <em>{{ $row['payment'] }}</em>
-          @endif
-        </span>
-        <span class="mlp-fees__cell mlp-fees__cell--cta" role="cell">
-          <a href="#mlp-enquire" class="mlp-fees__link">Speak to advisor</a>
-        </span>
-      </div>
-      @endforeach
+
+      <table class="fee-blueprint__table">
+        <caption class="fee-blueprint__caption">Programme fees, duration, study mode and payment options</caption>
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Programme</th>
+            <th scope="col">Duration</th>
+            <th scope="col">Study mode</th>
+            <th scope="col">Fee / payment</th>
+            <th scope="col"><span class="fee-blueprint__visually-hidden">Advisor</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach($rows as $i => $row)
+          <tr data-fee-row style="--fee-index: {{ $i }}">
+            <td class="fee-blueprint__index" data-label="#" aria-hidden="true">{{ str_pad((string) ($i + 1), 2, '0', STR_PAD_LEFT) }}</td>
+            <th class="fee-blueprint__program" scope="row" data-label="Programme">{{ $row['program'] }}</th>
+            <td data-label="Duration">{{ $row['duration'] ?? '—' }}</td>
+            <td data-label="Study mode">{{ $row['mode'] ?? '—' }}</td>
+            <td class="fee-blueprint__fee" data-label="Fee / payment">
+              <strong>{{ $row['fee'] ?? '—' }}</strong>
+              @if(filled($row['payment'] ?? null))
+              <small>{{ $row['payment'] }}</small>
+              @endif
+            </td>
+            <td class="fee-blueprint__action" data-label="Next step">
+              <a href="#mlp-enquire">Speak to advisor <span aria-hidden="true">↗</span></a>
+            </td>
+          </tr>
+          @endforeach
+        </tbody>
+      </table>
     </div>
     @endif
 
     @if(filled($fees->note))
-    <p class="mlp-fees__note" data-mlp-reveal="fees-note">{{ $fees->note }}</p>
+    <p class="fee-blueprint__note">{{ $fees->note }}</p>
     @endif
 
     @if(filled($fees->cta_primary_label) || filled($fees->cta_secondary_label))
-    <div class="mlp-fees__ctas" data-mlp-reveal="fees-ctas">
+    <div class="fee-blueprint__actions">
       @if(filled($fees->cta_primary_label))
-      <a href="{{ edu_href($fees->cta_primary_url) ?? '#mlp-enquire' }}" class="mlp-btn mlp-btn--primary">{{ $fees->cta_primary_label }}</a>
+      <a href="{{ edu_href($fees->cta_primary_url) ?? '#mlp-enquire' }}" class="fee-blueprint__primary">{{ $fees->cta_primary_label }} <span aria-hidden="true">↗</span></a>
       @endif
       @if(filled($fees->cta_secondary_label))
-      <a href="{{ edu_href($fees->cta_secondary_url) ?? '#mlp-enquire' }}" class="mlp-btn mlp-btn--ghost">{{ $fees->cta_secondary_label }}</a>
+      <a href="{{ edu_href($fees->cta_secondary_url) ?? '#mlp-enquire' }}" class="fee-blueprint__secondary">{{ $fees->cta_secondary_label }}</a>
       @endif
     </div>
     @endif
