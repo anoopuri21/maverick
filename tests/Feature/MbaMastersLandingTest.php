@@ -60,10 +60,9 @@ class MbaMastersLandingTest extends TestCase
         $response->assertSee('University of Wolverhampton', false);
         $response->assertSee('mlp-masters__uni-photo', false);
         $response->assertSee('Online MBA & Master\'s Fees in UAE');
-        $response->assertSee('programme-index', false);
-        $response->assertSee('programme-index__list', false);
-        $response->assertSee('programme-index__fee', false);
-        $response->assertDontSee('fee-cartography', false);
+        $response->assertSee('archive-investment', false);
+        $response->assertSee('archive-investment__record', false);
+        $response->assertSee('archive-investment__fee', false);
         $response->assertDontSee('<table', false);
         $response->assertDontSee('Speak to advisor', false);
         $response->assertDontSee('Speak to an advisor', false);
@@ -112,13 +111,16 @@ class MbaMastersLandingTest extends TestCase
         $response->assertSee('archive-partners__logo-item', false);
         $response->assertSee('mba-masters-archive.js', false);
         $response->assertSee('What working professionals say', false);
-        $response->assertSee('mlp-testimonials__rail', false);
+        $response->assertSee('archive-voices', false);
+        $response->assertSee('archive-voices__voice', false);
         $response->assertSee('Sara Al Maktoum', false);
         $response->assertSee('Why working professionals choose online', false);
-        $response->assertSee('mlp-compare__matrix', false);
+        $response->assertSee('archive-parallel', false);
+        $response->assertSee('archive-parallel__row', false);
         $response->assertSee('Career continuity', false);
         $response->assertSee('Questions applicants ask first', false);
-        $response->assertSee('mlp-faq__list', false);
+        $response->assertSee('archive-fieldnotes', false);
+        $response->assertSee('archive-fieldnotes__note', false);
         $response->assertSee('mlp-prose', false);
         $response->assertSee('Are the degrees internationally recognised?', false);
         $response->assertSee('Ready to shape your future?', false);
@@ -130,7 +132,8 @@ class MbaMastersLandingTest extends TestCase
         $response->assertDontSee('mlp-overview__split', false);
         // Shared enquire partial rendered twice (hero + final)
         $this->assertGreaterThanOrEqual(2, substr_count($response->getContent(), 'name="start_timeline"'));
-        $response->assertSee('mlp-final__stage', false);
+        $response->assertSee('archive-closing', false);
+        $response->assertSee('archive-closing__form', false);
         $response->assertSee('Second chance to enquire', false);
     }
 
