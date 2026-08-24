@@ -26,8 +26,8 @@ class MbaMastersLandingTest extends TestCase
         $response->assertSee('name="start_timeline"', false);
         $response->assertSee('id="mlp-enquiry-', false);
         $response->assertSee('name="country"', false);
-        $response->assertSee('name="specialization"', false);
-        $response->assertSee('name="qualification"', false);
+        $response->assertDontSee('name="specialization"', false);
+        $response->assertDontSee('name="qualification"', false);
         $response->assertSee('prospectus-cover', false);
         $response->assertSee('prospectus-cover__statement', false);
         $response->assertSee('data-hero-assembly', false);

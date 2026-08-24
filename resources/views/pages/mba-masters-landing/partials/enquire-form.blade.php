@@ -22,7 +22,7 @@
   @csrf
   <input type="text" name="website" value="" tabindex="-1" autocomplete="off" class="mlp-form__honeypot" aria-hidden="true">
 
-  <label class="mlp-field" for="{{ $formId }}-name">
+  <label class="mlp-field mlp-field--full" for="{{ $formId }}-name">
     <span>Full name</span>
     <input id="{{ $formId }}-name" type="text" name="name" value="{{ old('name') }}" required maxlength="100" autocomplete="name">
   </label>
@@ -45,13 +45,6 @@
       <input id="{{ $formId }}-country" type="text" name="country" value="{{ old('country') }}" maxlength="100" autocomplete="country-name" placeholder="Where are you based?">
     </label>
 
-    <label class="mlp-field" for="{{ $formId }}-specialization">
-      <span>Preferred specialization</span>
-      <input id="{{ $formId }}-specialization" type="text" name="specialization" value="{{ old('specialization') }}" maxlength="120" placeholder="e.g. Finance, Marketing">
-    </label>
-  </div>
-
-  <div class="mlp-form__row">
     <label class="mlp-field" for="{{ $formId }}-program">
       <span>Program</span>
       <select id="{{ $formId }}-program" name="program">
@@ -63,21 +56,9 @@
         <option value="Not sure" @selected(old('program') === 'Not sure')>Not sure yet</option>
       </select>
     </label>
-
-    <label class="mlp-field" for="{{ $formId }}-qualification">
-      <span>Highest qualification</span>
-      <select id="{{ $formId }}-qualification" name="qualification">
-        <option value="">Select</option>
-        <option value="high-school" @selected(old('qualification') === 'high-school')>High school / Secondary</option>
-        <option value="diploma" @selected(old('qualification') === 'diploma')>Diploma</option>
-        <option value="bachelor" @selected(old('qualification') === 'bachelor')>Bachelor's degree</option>
-        <option value="master" @selected(old('qualification') === 'master')>Master's degree</option>
-        <option value="other" @selected(old('qualification') === 'other')>Other</option>
-      </select>
-    </label>
   </div>
 
-  <label class="mlp-field" for="{{ $formId }}-timeline">
+  <label class="mlp-field mlp-field--full" for="{{ $formId }}-timeline">
     <span>How soon you want to start?</span>
     <select id="{{ $formId }}-timeline" name="start_timeline">
       <option value="not-decided" @selected(old('start_timeline', 'not-decided') === 'not-decided')>Not decided</option>
