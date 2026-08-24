@@ -30,13 +30,16 @@ class MbaMastersLandingTest extends TestCase
         $response->assertSee('name="qualification"', false);
         $response->assertSee('prospectus-cover', false);
         $response->assertSee('prospectus-cover__statement', false);
-        $response->assertSee('prospectus-admissions', false);
-        $response->assertSee('prospectus-admissions__form', false);
+        $response->assertSee('data-hero-assembly', false);
+        $response->assertSee('prospectus-cover__enquiry', false);
+        $response->assertSee('prospectus-enquiry-title', false);
+        $response->assertSee('mba-masters-hero-assembly.js', false);
         $response->assertSee('signal-atlas', false);
         $response->assertSee('signal-atlas__record', false);
         $response->assertSee('data-signal-record', false);
         $response->assertSee('mba-masters-trust.js', false);
         $response->assertDontSee('prospectus-insert', false);
+        $response->assertDontSee('prospectus-admissions', false);
         $response->assertDontSee('mlp-hero__form-wrap', false);
         $response->assertDontSee('mlp-trust__fan-svg', false);
         $response->assertSee('4.8', false);

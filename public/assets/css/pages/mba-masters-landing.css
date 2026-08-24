@@ -757,150 +757,54 @@
   justify-self: end;
 }
 
-/* —— The Living Prospectus: open admissions desk —— */
-.prospectus-admissions {
+/* —— Hero right-side enquiry desk —— */
+.prospectus-cover__enquiry {
   position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  color: var(--mlp-ink);
-  background: var(--mlp-paper);
-  border-top: 2px solid var(--mlp-red);
-}
-
-.prospectus-admissions__frame {
-  position: relative;
-  z-index: 1;
-  padding-top: clamp(2.5rem, 6vw, 5rem);
-  padding-bottom: clamp(3.5rem, 8vw, 7rem);
-}
-
-.prospectus-admissions__masthead {
-  display: grid;
-  grid-template-columns: auto minmax(3rem, 1fr) auto;
-  gap: 1rem;
-  align-items: center;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid var(--mlp-line-dark);
-}
-
-.prospectus-admissions__folio,
-.prospectus-admissions__status,
-.prospectus-admissions__eyebrow,
-.prospectus-admissions__form-index {
-  margin: 0;
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  line-height: 1.4;
-  text-transform: uppercase;
-}
-
-.prospectus-admissions__folio,
-.prospectus-admissions__form-index,
-.prospectus-admissions__eyebrow {
-  color: var(--mlp-red);
-}
-
-.prospectus-admissions__status {
-  justify-self: end;
-  color: var(--mlp-muted-on-paper);
-}
-
-.prospectus-admissions__masthead-rule {
+  z-index: 3;
   width: 100%;
-  height: 1px;
-  background: var(--mlp-line-dark);
+  max-width: 25rem;
+  margin-left: auto;
+  padding: 1.25rem 1.25rem 1.4rem;
+  color: var(--mlp-ink);
+  background: rgba(247, 245, 241, 0.97);
+  border-top: 3px solid var(--mlp-red);
+  box-shadow: 0 24px 60px -36px rgba(0, 0, 0, 0.85);
 }
 
-.prospectus-admissions__grid {
-  display: grid;
-  grid-template-columns: minmax(0, 0.76fr) minmax(360px, 1.24fr);
-  gap: clamp(2.5rem, 8vw, 9rem);
-  align-items: start;
-  padding-top: clamp(3rem, 7vw, 6rem);
+.prospectus-cover__enquiry-head {
+  padding-bottom: 0.95rem;
+  border-bottom: 1px solid rgba(7, 20, 68, 0.14);
 }
 
-.prospectus-admissions__intro {
-  max-width: 29rem;
-  padding-top: 0.4rem;
-}
-
-.prospectus-admissions__eyebrow {
-  margin-bottom: 1rem;
-}
-
-.prospectus-admissions__heading {
-  max-width: 10ch;
-  margin: 0 0 1rem;
-  font-family: var(--mlp-font-display);
-  font-size: clamp(2.25rem, 4.8vw, 5rem);
-  font-weight: 500;
-  line-height: 0.94;
-  letter-spacing: -0.055em;
-  color: var(--mlp-navy);
-}
-
-.prospectus-admissions__copy {
-  max-width: 38ch;
-  margin: 0;
-  font-size: 0.98rem;
-  line-height: 1.7;
-  color: var(--mlp-muted-on-paper);
-}
-
-.prospectus-admissions__notes {
-  list-style: none;
-  display: grid;
-  gap: 0.65rem;
-  margin: clamp(2rem, 4vw, 3rem) 0 0;
-  padding: 1rem 0 0;
-  border-top: 1px solid var(--mlp-line-dark);
-}
-
-.prospectus-admissions__notes li {
-  display: grid;
-  grid-template-columns: 2rem 1fr;
-  gap: 0.7rem;
-  align-items: baseline;
-  font-size: 0.78rem;
+.prospectus-cover__enquiry-index {
+  display: block;
+  margin-bottom: 0.55rem;
+  font-size: 0.62rem;
   font-weight: 600;
-  letter-spacing: 0.03em;
-  color: var(--mlp-navy);
-}
-
-.prospectus-admissions__notes li span {
-  font-family: var(--mlp-font-display);
-  font-size: 1.05rem;
-  font-weight: 500;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
   color: var(--mlp-red);
 }
 
-.prospectus-admissions__form {
-  min-width: 0;
-  padding-left: clamp(1rem, 3vw, 3rem);
-  border-left: 1px solid var(--mlp-line-dark);
-}
-
-.prospectus-admissions__form-head {
-  display: flex;
-  align-items: baseline;
-  gap: 1rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid var(--mlp-line-dark);
-}
-
-.prospectus-admissions__form-title {
-  margin: 0;
+.prospectus-cover__enquiry-head h2 {
+  margin: 0 0 0.25rem;
   font-family: var(--mlp-font-display);
-  font-size: clamp(1.5rem, 2.7vw, 2.45rem);
+  font-size: clamp(1.35rem, 2.3vw, 1.8rem);
   font-weight: 500;
   line-height: 1;
   letter-spacing: -0.035em;
   color: var(--mlp-navy);
 }
 
-.prospectus-admissions__form .mlp-form--prospectus {
-  padding: 1.5rem 0 0;
+.prospectus-cover__enquiry-head p {
+  margin: 0;
+  font-size: 0.75rem;
+  line-height: 1.45;
+  color: var(--mlp-muted-on-paper);
+}
+
+.prospectus-cover__enquiry .mlp-form--prospectus {
+  padding: 1rem 0 0;
   color: var(--mlp-ink);
   background: transparent;
   border: 0;
@@ -909,203 +813,51 @@
   -webkit-backdrop-filter: none;
 }
 
-.prospectus-admissions__form .mlp-form__fields {
-  gap: 1rem;
+.prospectus-cover__enquiry .mlp-form__fields {
+  gap: 0.8rem;
 }
 
-.prospectus-admissions__form .mlp-field {
-  color: rgba(7, 20, 68, 0.64);
+.prospectus-cover__enquiry .mlp-field {
+  color: rgba(7, 20, 68, 0.62);
 }
 
-.prospectus-admissions__form .mlp-field input,
-.prospectus-admissions__form .mlp-field select {
+.prospectus-cover__enquiry .mlp-field input,
+.prospectus-cover__enquiry .mlp-field select {
   color: var(--mlp-ink);
-  border-bottom-color: rgba(7, 20, 68, 0.24);
+  border-bottom-color: rgba(7, 20, 68, 0.23);
 }
 
-.prospectus-admissions__form .mlp-field input:focus,
-.prospectus-admissions__form .mlp-field select:focus {
+.prospectus-cover__enquiry .mlp-field input:focus,
+.prospectus-cover__enquiry .mlp-field select:focus {
   border-bottom-color: var(--mlp-red);
   box-shadow: 0 1px 0 0 var(--mlp-red);
 }
 
-.prospectus-admissions__form .mlp-field select option {
-  color: var(--mlp-ink);
-  background: var(--mlp-white);
-}
-
-.mlp-form__privacy-note {
-  margin: 0;
-  font-size: 0.7rem;
-  line-height: 1.45;
-  color: var(--mlp-muted-on-paper);
-}
-
-.mlp-final .mlp-form__privacy-note {
-  color: var(--mlp-muted-on-dark);
-}
-
-.mlp-final .mlp-form--on-void .mlp-form__title {
-  color: var(--mlp-white);
-}
-
-.mlp-final .mlp-form--on-void .mlp-form__hint,
-.mlp-final .mlp-form--on-void .mlp-field {
-  color: var(--mlp-muted-on-dark);
-}
-
-.mlp-final .mlp-form--on-void .mlp-field input,
-.mlp-final .mlp-form--on-void .mlp-field select {
-  color: var(--mlp-white);
-  border-bottom-color: rgba(255, 255, 255, 0.35);
-}
-
-.mlp-final .mlp-form--on-void .mlp-field input::placeholder {
-  color: rgba(255, 255, 255, 0.48);
-}
-
-.mlp-final .mlp-form--on-void .mlp-field input:focus,
-.mlp-final .mlp-form--on-void .mlp-field select:focus {
-  border-bottom-color: var(--mlp-red);
-  box-shadow: 0 1px 0 0 var(--mlp-red);
-}
-
-.mlp-final .mlp-form--on-void .mlp-field select option {
+.prospectus-cover__enquiry .mlp-field select option {
   color: var(--mlp-ink);
   background: var(--mlp-white);
 }
 
 @media (max-width: 900px) {
-  .mlp-hero.prospectus-cover {
-    min-height: auto;
-  }
-
-  .prospectus-cover__frame {
-    min-height: 100svh;
-    padding-top: 5.5rem;
-  }
-
-  .prospectus-cover__masthead {
-    grid-template-columns: auto 1fr auto;
-  }
-
-  .prospectus-cover__academy,
-  .prospectus-cover__location {
-    display: none;
-  }
-
-  .prospectus-cover__body {
-    grid-template-columns: 1fr;
-    gap: 2.75rem;
-    padding: 4rem 0 5rem;
-  }
-
-  .prospectus-cover__title {
-    max-width: 11ch;
-    font-size: clamp(3.2rem, 14vw, 6.5rem);
-  }
-
-  .prospectus-cover__annotation {
-    max-width: 21rem;
-    margin-left: 2rem;
-  }
-
-  .prospectus-cover__folio {
-    grid-template-columns: auto 1fr auto;
-  }
-
-  .prospectus-cover__folio span:nth-of-type(3),
-  .prospectus-cover__folio-rule:nth-of-type(2) {
-    display: none;
-  }
-
-  .prospectus-admissions__grid {
-    grid-template-columns: 1fr;
-    gap: 2.75rem;
-  }
-
-  .prospectus-admissions__intro {
-    max-width: 36rem;
-  }
-
-  .prospectus-admissions__heading {
-    max-width: 13ch;
-  }
-
-  .prospectus-admissions__form {
-    padding-left: 0;
-    padding-top: 2rem;
-    border-left: 0;
-    border-top: 1px solid var(--mlp-line-dark);
+  .prospectus-cover__enquiry {
+    max-width: none;
+    margin-left: 0;
   }
 }
 
 @media (max-width: 560px) {
-  .prospectus-cover__frame {
-    padding-left: 1rem;
-    padding-right: 1rem;
+  .prospectus-cover__enquiry {
+    padding: 1.1rem 1rem 1.2rem;
   }
 
-  .prospectus-cover__statement {
-    padding-left: 0.8rem;
-  }
-
-  .prospectus-cover__actions {
-    align-items: stretch;
-    flex-direction: column;
-  }
-
-  .prospectus-cover__primary,
-  .prospectus-cover__secondary {
-    align-self: flex-start;
-  }
-
-  .prospectus-cover__primary {
-    width: 100%;
-    justify-content: space-between;
-  }
-
-  .prospectus-cover__annotation {
-    margin-left: 0.8rem;
-  }
-
-  .prospectus-cover__folio {
-    font-size: 0.56rem;
-    letter-spacing: 0.12em;
-  }
-
-  .prospectus-admissions__masthead {
-    grid-template-columns: 1fr;
-    gap: 0.5rem;
-  }
-
-  .prospectus-admissions__status {
-    justify-self: start;
-  }
-
-  .prospectus-admissions__masthead-rule {
-    display: none;
-  }
-
-  .prospectus-admissions__form-head {
-    display: grid;
-    gap: 0.45rem;
-  }
-
-  .prospectus-admissions__form .mlp-form__row {
+  .prospectus-cover__enquiry .mlp-form__row {
     grid-template-columns: 1fr;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .prospectus-cover__image,
-  .prospectus-cover__primary,
-  .prospectus-cover__secondary,
-  .prospectus-admissions__form {
-    transition: none;
-  }
+  .prospectus-cover__enquiry { transition: none; }
 }
-
 /* —— The Learning Blueprint: programme architecture —— */
 .blueprint-overview {
   position: relative;

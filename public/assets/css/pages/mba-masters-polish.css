@@ -60,9 +60,52 @@
   transition: color 0.3s var(--mlp-ease), border-color 0.3s var(--mlp-ease), transform 0.3s var(--mlp-ease);
 }
 
+/* Page-load assembly baseline. Non-JS/reduced-motion users see the final state. */
+html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-image] {
+  opacity: 0;
+  filter: saturate(0.35) contrast(1.05) brightness(0.42) blur(4px);
+  transform: scale(1.08);
+}
+
+html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-wash] {
+  opacity: 0;
+}
+
+html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-registration] {
+  opacity: 0;
+  clip-path: inset(0 100% 0 0);
+}
+
+html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-masthead] > *,
+html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-statement] > *,
+html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-folio] > * {
+  opacity: 0;
+}
+
+html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-enquiry] {
+  opacity: 0;
+  clip-path: inset(0 0 0 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-image],
+  html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-wash],
+  html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-registration],
+  html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-masthead] > *,
+  html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-statement] > *,
+  html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-folio] > *,
+  html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-enquiry] {
+    opacity: 1;
+    clip-path: none;
+    filter: none;
+    transform: none;
+  }
+}
+
 /* Locked Living Prospectus identity — polish only */
 .mlp-page--polished .prospectus-cover__title {
   max-width: 9.5ch;
+  font-size: clamp(3rem, 6.2vw, 6.4rem);
   letter-spacing: -0.065em;
 }
 
@@ -79,18 +122,18 @@
   box-shadow: 0 16px 32px -18px rgba(7, 20, 68, 0.85);
 }
 
-.mlp-page--polished .prospectus-admissions__form {
+.mlp-page--polished .prospectus-cover__enquiry {
   box-shadow: 0 24px 54px -38px rgba(7, 20, 68, 0.62);
 }
 
-.mlp-page--polished .prospectus-admissions__form .mlp-form__fields {
+.mlp-page--polished .prospectus-cover__enquiry .mlp-form__fields {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   column-gap: clamp(0.85rem, 2vw, 1.5rem);
 }
 
-.mlp-page--polished .prospectus-admissions__form .mlp-form__fields > :first-child,
-.mlp-page--polished .prospectus-admissions__form .mlp-form__privacy-note,
-.mlp-page--polished .prospectus-admissions__form .mlp-btn--block {
+.mlp-page--polished .prospectus-cover__enquiry .mlp-form__fields > :first-child,
+.mlp-page--polished .prospectus-cover__enquiry .mlp-form__privacy-note,
+.mlp-page--polished .prospectus-cover__enquiry .mlp-btn--block {
   grid-column: 1 / -1;
 }
 
@@ -306,13 +349,13 @@
 }
 
 @media (max-width: 900px) {
-  .mlp-page--polished .prospectus-admissions__form .mlp-form__fields {
+  .mlp-page--polished .prospectus-cover__enquiry .mlp-form__fields {
     grid-template-columns: 1fr;
   }
 
-  .mlp-page--polished .prospectus-admissions__form .mlp-form__fields > :first-child,
-  .mlp-page--polished .prospectus-admissions__form .mlp-form__privacy-note,
-  .mlp-page--polished .prospectus-admissions__form .mlp-btn--block {
+  .mlp-page--polished .prospectus-cover__enquiry .mlp-form__fields > :first-child,
+  .mlp-page--polished .prospectus-cover__enquiry .mlp-form__privacy-note,
+  .mlp-page--polished .prospectus-cover__enquiry .mlp-btn--block {
     grid-column: auto;
   }
 
@@ -323,6 +366,12 @@
 
   .mlp-page--polished .archive-class__metric:first-child { padding-left: 0; }
   .mlp-page--polished .archive-class__metric:last-child { padding-right: 0; }
+}
+
+@media (max-width: 560px) {
+  .mlp-page--polished .prospectus-cover__title {
+    font-size: clamp(2.6rem, 13vw, 5rem);
+  }
 }
 
 @media (max-width: 620px) {
