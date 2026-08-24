@@ -28,6 +28,8 @@
       @foreach($rows as $i => $row)
       @php
         $payment = trim((string) ($row['payment'] ?? ''));
+        $fee = trim((string) ($row['fee'] ?? '—'));
+        $feeIsIndicative = str_contains($fee, 'XX,XXX') || str_contains($fee, 'On request');
         if (str_contains(strtolower($payment), 'advisor')) {
             $payment = 'Details on request';
         }
@@ -37,7 +39,12 @@
         <div class="archive-investment__record-body">
           <div class="archive-investment__record-topline">
             <h3>{{ $row['program'] }}</h3>
-            <strong>{{ $row['fee'] ?? '—' }}</strong>
+            <div class="archive-investment__fee">
+              <strong>{{ $fee }}</strong>
+              @if($feeIsIndicative)
+              <small>Indicative · current range subject to programme</small>
+              @endif
+            </div>
           </div>
           <dl class="archive-investment__details">
             <div><dt>Duration</dt><dd>{{ $row['duration'] ?? '—' }}</dd></div>

@@ -577,3 +577,275 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
     font-size: clamp(2.6rem, 13vw, 5rem);
   }
 }
+
+/* Issue 24 — make gated/indicative fee values feel intentional. */
+.mlp-page--polished .archive-investment__fee {
+  display: grid;
+  gap: 0.2rem;
+  justify-items: end;
+}
+
+.mlp-page--polished .archive-investment__fee small {
+  max-width: 18ch;
+  font-size: var(--mlp-type-caption);
+  font-weight: 500;
+  line-height: 1.3;
+  text-align: right;
+  color: var(--mlp-muted-on-paper);
+}
+
+@media (max-width: 560px) {
+  .mlp-page--polished .archive-investment__fee {
+    justify-items: start;
+  }
+
+  .mlp-page--polished .archive-investment__fee small {
+    text-align: left;
+  }
+}
+
+/* Issue 2 — map page copy to a small semantic colour vocabulary. */
+.mlp-page--polished {
+  --mlp-color-heading: var(--mlp-navy);
+  --mlp-color-body: var(--mlp-ink);
+  --mlp-color-muted: var(--mlp-muted-on-paper);
+  --mlp-color-accent: var(--mlp-red);
+  --mlp-color-inverse: var(--mlp-white);
+  --mlp-color-line: var(--mlp-line-dark);
+}
+
+.mlp-page--polished :is(
+  .signal-atlas__heading,
+  .blueprint-overview__heading,
+  .mlp-why__heading,
+  .mlp-why__title,
+  .mlp-journey__heading,
+  .mlp-journey__title,
+  .mlp-mba__heading,
+  .mlp-masters__heading,
+  .archive-class__heading,
+  .archive-career__heading,
+  .archive-alumni__heading,
+  .archive-learning__heading,
+  .archive-partners__heading,
+  .archive-investment__heading,
+  .archive-voices__heading,
+  .archive-parallel__heading,
+  .archive-fieldnotes__heading,
+  .archive-closing__heading,
+  .archive-parallel__criterion
+) {
+  color: var(--mlp-color-heading);
+}
+
+.mlp-page--polished :is(
+  .signal-atlas__label,
+  .signal-atlas__note,
+  .blueprint-overview__intro-copy,
+  .mlp-why__intro,
+  .mlp-why__text,
+  .mlp-journey__intro,
+  .mlp-journey__text,
+  .mlp-mba__intro,
+  .mlp-masters__intro,
+  .archive-class__copy,
+  .archive-career__intro-copy,
+  .archive-alumni__intro-copy,
+  .archive-learning__intro-copy,
+  .archive-partners__intro-copy,
+  .archive-investment__intro-copy,
+  .archive-investment__note,
+  .archive-voices__intro-copy,
+  .archive-parallel__intro-copy,
+  .archive-fieldnotes__intro-copy,
+  .archive-closing__intro-copy
+) {
+  color: var(--mlp-color-muted);
+}
+
+.mlp-page--polished :is(
+  .signal-atlas__folio,
+  .blueprint-overview__folio,
+  .mlp-why__link,
+  .mlp-mba__label,
+  .mlp-masters__label,
+  .archive-class__label,
+  .archive-career__label,
+  .archive-alumni__label,
+  .archive-learning__label,
+  .archive-partners__label,
+  .archive-investment__label,
+  .archive-voices__label,
+  .archive-parallel__label,
+  .archive-fieldnotes__label,
+  .archive-closing__label
+) {
+  color: var(--mlp-color-accent);
+}
+
+/* Issues 4 and 7 — labels are short metadata; these two sentences stay readable. */
+.mlp-page--polished .prospectus-cover__edition,
+.mlp-page--polished .prospectus-cover__kicker {
+  text-transform: none;
+  letter-spacing: 0.04em;
+}
+
+/* Issues 5–12 — keep supporting text above the minimum readable tier. */
+.mlp-page--polished .prospectus-cover__academy,
+.mlp-page--polished .prospectus-cover__eyebrow,
+.mlp-page--polished .prospectus-cover__enquiry-index,
+.mlp-page--polished .mlp-field,
+.mlp-page--polished .signal-atlas__label,
+.mlp-page--polished .blueprint-overview__core-mark,
+.mlp-page--polished .archive-investment__note,
+.mlp-page--polished .archive-learning__caption {
+  font-size: var(--mlp-type-caption);
+}
+
+/* Issues 3 and 25 — four clear action roles: solid primary, outline secondary,
+   text link, and compact form submit. */
+.mlp-page--polished :is(
+  .mlp-btn--primary,
+  .prospectus-cover__primary,
+  .archive-investment__primary,
+  .archive-parallel__primary,
+  .archive-closing__primary,
+  .archive-learning__primary
+) {
+  min-height: 3rem;
+  border-radius: 0;
+  background: var(--mlp-red);
+  color: var(--mlp-white);
+}
+
+.mlp-page--polished :is(
+  .mlp-btn--ghost,
+  .archive-investment__secondary,
+  .archive-closing__secondary,
+  .archive-learning__secondary
+) {
+  border-radius: 0;
+}
+
+.mlp-page--polished .mlp-form__fields > .mlp-btn--block {
+  background: transparent;
+  color: var(--mlp-navy);
+  border-color: var(--mlp-navy);
+}
+
+.mlp-page--polished .mlp-form__fields > .mlp-btn--block:hover,
+.mlp-page--polished .mlp-form__fields > .mlp-btn--block:focus-visible {
+  background: var(--mlp-red);
+  color: var(--mlp-white);
+  border-color: var(--mlp-red);
+}
+
+/* Issues 14 and 17 — tighten Why Choose chapters without removing their rhythm. */
+.mlp-page--polished .mlp-why__chapter {
+  min-height: 0;
+  padding: clamp(2rem, 4vw, 3.25rem) 0;
+}
+
+.mlp-page--polished .mlp-why__chapter-grid {
+  gap: clamp(1rem, 2.5vw, 2rem);
+}
+
+/* Issues 18, 19 and 21 — remove non-functional sequence numbers. The Admission
+   Journey keeps its numbers because they describe an actual process. */
+.mlp-page--polished .signal-atlas__record-index,
+.mlp-page--polished .mlp-why__num {
+  display: none;
+}
+
+.mlp-page--polished .signal-atlas__record {
+  grid-template-columns: minmax(7rem, 0.48fr) minmax(0, 1fr);
+}
+
+.mlp-page--polished .mlp-why__chapter-grid {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/* Issue 20 — bring the Admission Journey heading and route closer together. */
+.mlp-page--polished .mlp-journey__layout {
+  grid-template-columns: minmax(0, 0.98fr) minmax(0, 1.02fr);
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+}
+
+/* Issues 15 and 16 — each form row occupies the full form width; its own
+   columns can then shrink safely instead of clipping or overlapping. */
+.mlp-page--polished .prospectus-cover__enquiry .mlp-form__row {
+  grid-column: 1 / -1;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  min-width: 0;
+}
+
+.mlp-page--polished .prospectus-cover__enquiry .mlp-field,
+.mlp-page--polished .prospectus-cover__enquiry .mlp-field input,
+.mlp-page--polished .prospectus-cover__enquiry .mlp-field select {
+  min-width: 0;
+  width: 100%;
+}
+
+/* Issue 26 — Explore is a clear compact action, without becoming a large
+   competing primary CTA. */
+.mlp-page--polished .mlp-why__link {
+  min-height: 2.6rem;
+  align-items: center;
+  margin-top: 1rem;
+  padding: 0.55rem 0.85rem;
+  border: 1px solid var(--mlp-red);
+  text-transform: none;
+  letter-spacing: 0.04em;
+}
+
+.mlp-page--polished .mlp-why__link:hover,
+.mlp-page--polished .mlp-why__link:focus-visible {
+  opacity: 1;
+  color: var(--mlp-white);
+  background: var(--mlp-red);
+}
+
+/* Issue 22 — comparison sides start on the same horizontal scan line. */
+.mlp-page--polished .archive-parallel__row {
+  align-items: start;
+}
+
+.mlp-page--polished .archive-parallel__side {
+  align-self: start;
+}
+
+/* Issues 27 and 28 — explicit comparison headers and a strong, consistent CTA. */
+.mlp-page--polished .archive-parallel__columns {
+  min-height: 3.25rem;
+}
+
+.mlp-page--polished .archive-parallel__primary {
+  min-width: 10rem;
+  justify-content: center;
+}
+
+@media (max-width: 900px) {
+  .mlp-page--polished .prospectus-cover__enquiry .mlp-form__row {
+    grid-column: 1 / -1;
+  }
+
+  .mlp-page--polished .mlp-journey__layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .mlp-page--polished .signal-atlas__record {
+    grid-template-columns: 1fr;
+  }
+
+  .mlp-page--polished .signal-atlas__label {
+    grid-column: 1;
+  }
+}
+
+@media (max-width: 560px) {
+  .mlp-page--polished .prospectus-cover__enquiry .mlp-form__row {
+    grid-template-columns: 1fr;
+  }
+}

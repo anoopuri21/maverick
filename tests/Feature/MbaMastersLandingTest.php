@@ -102,7 +102,7 @@ class MbaMastersLandingTest extends TestCase
         $response->assertSee('archive-alumni__ribbon', false);
         $response->assertSee('archive-alumni__logo-frame', false);
         $response->assertSee('Join our growing network', false);
-        $response->assertSee('Built for working professionals', false);
+        $response->assertSee('A flexible learning model', false);
         $response->assertSee('archive-learning', false);
         $response->assertSee('archive-learning__stack', false);
         $response->assertSee('Live + on-demand', false);
@@ -138,6 +138,7 @@ class MbaMastersLandingTest extends TestCase
         $response->assertSee('archive-closing', false);
         $response->assertSee('archive-closing__form', false);
         $response->assertSee('Second chance to enquire', false);
+        $response->assertSee('<h3 class="footer__newsletter-title">Stay Updated</h3>', false);
     }
 
     public function test_enquiry_validation_errors_redirect_with_errors(): void
