@@ -76,5 +76,4 @@
 <script src="{{ cached_asset('assets/js/pages/mba-masters-landing.js') }}" defer></script>
 <script src="{{ cached_asset('assets/js/pages/mba-masters-trust.js') }}" defer></script>
 <script src="{{ cached_asset('assets/js/pages/mba-masters-overview.js') }}" defer></script>
-<script src="{{ cached_asset('assets/js/pages/mba-masters-fees.js') }}" defer></script>
 @endpush
