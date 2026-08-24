@@ -1,8 +1,9 @@
-{{-- §1 Hero + enquiry — Admissions Threshold direction --}}
+{{-- §1 Hero + enquiry — The Living Prospectus / Prospectus Cover --}}
 @php
   $bg = mlp_image_url($hero->background_image, ['w' => 1600, 'fallback' => 'assets/images/edutainment/hero-cinematic.jpg']);
   $headline = $hero->headline ?? 'Affordable Online MBA & Master\'s Programs in UAE';
-  // Keep the kinetic treatment data-driven while allowing a deliberate editorial break.
+
+  // Keep the editorial line break data-driven while avoiding a generic hero block.
   if (str_contains($headline, ' & ')) {
       [$line1, $line2] = explode(' & ', $headline, 2);
       $line2 = '& ' . $line2;
@@ -19,78 +20,92 @@
   <link rel="preload" as="image" href="{{ $bg }}" fetchpriority="high">
   @endif
 @endpush
-<section class="mlp-hero mlp-hero--threshold" id="mlp-hero" aria-label="Online MBA and Master's programmes">
-  <div class="mlp-hero__stage" aria-hidden="true">
-    <img class="mlp-hero__bg" src="{{ $bg }}" alt="" width="1600" height="900" loading="eager" fetchpriority="high" decoding="async">
-    <div class="mlp-hero__veil"></div>
-    <div class="mlp-hero__beam"></div>
-    <div class="mlp-hero__grain"></div>
-    <div class="mlp-threshold__signal"></div>
-    <p class="mlp-hero__mark">Maverick</p>
+<section class="mlp-hero prospectus-cover" id="mlp-hero" data-prospectus aria-label="Online MBA and Master's programmes">
+  <div class="prospectus-cover__stage" aria-hidden="true">
+    <img class="prospectus-cover__image" src="{{ $bg }}" alt="" width="1600" height="900" loading="eager" fetchpriority="high" decoding="async">
+    <span class="prospectus-cover__wash"></span>
+    <span class="prospectus-cover__registration"></span>
+    <span class="prospectus-cover__grain"></span>
   </div>
 
-  <div class="container mlp-hero__grid mlp-threshold__grid">
-    <div class="mlp-hero__copy mlp-threshold__copy" data-mlp-reveal="hero-copy">
-      <p class="mlp-hero__brand">
-        <span class="mlp-hero__brand-name">Maverick Business Academy</span>
-        <span class="mlp-hero__brand-sep" aria-hidden="true"></span>
-        <span class="mlp-hero__brand-loc">London</span>
-      </p>
+  <div class="prospectus-cover__frame container">
+    <header class="prospectus-cover__masthead">
+      <span class="prospectus-cover__edition">Admissions / 2026</span>
+      <span class="prospectus-cover__masthead-line" aria-hidden="true"></span>
+      <span class="prospectus-cover__academy">Maverick Business Academy</span>
+      <span class="prospectus-cover__location">London · UAE · Global</span>
+    </header>
 
-      @if(filled($hero->eyebrow))
-      <p class="mlp-hero__eyebrow">{{ $hero->eyebrow }}</p>
-      @endif
+    <div class="prospectus-cover__body">
+      <div class="prospectus-cover__statement">
+        @if(filled($hero->eyebrow))
+        <p class="prospectus-cover__eyebrow">{{ $hero->eyebrow }}</p>
+        @endif
+        <p class="prospectus-cover__kicker">A prospectus for your next move</p>
 
-      <p class="mlp-threshold__overline">A considered next step for working professionals</p>
-      <h1 class="mlp-hero__title mlp-threshold__title" data-mlp-kinetic>
-        <span class="mlp-hero__line">{{ $line1 }}</span>
-        @if($line2)
-        <span class="mlp-hero__line mlp-hero__line--accent">{{ $line2 }}</span>
-        @endif
-      </h1>
+        <h1 class="prospectus-cover__title">
+          <span class="prospectus-cover__title-line">{{ $line1 }}</span>
+          @if($line2)
+          <span class="prospectus-cover__title-line prospectus-cover__title-line--accent">{{ $line2 }}</span>
+          @endif
+        </h1>
 
-      @if(filled($hero->subheading))
-      <p class="mlp-hero__sub">{{ $hero->subheading }}</p>
-      @endif
+        @if(filled($hero->subheading))
+        <p class="prospectus-cover__intro">{{ $hero->subheading }}</p>
+        @endif
 
-      <div class="mlp-hero__ctas">
-        @if(filled($hero->cta_primary_label))
-        <a href="{{ edu_href($hero->cta_primary_url) ?? '#mlp-enquire' }}" class="mlp-btn mlp-btn--primary">{{ $hero->cta_primary_label }}<span class="mlp-threshold__cta-mark" aria-hidden="true">↗</span></a>
-        @endif
-        @if(filled($hero->cta_secondary_label))
-        <a href="{{ edu_href($hero->cta_secondary_url) ?? '#mlp-enquire' }}" class="mlp-btn mlp-btn--ghost">{{ $hero->cta_secondary_label }}</a>
-        @endif
-        @if(filled($hero->cta_tertiary_label))
-        <a href="{{ edu_href($hero->cta_tertiary_url) ?? '#mlp-enquire' }}" class="mlp-btn mlp-btn--text">{{ $hero->cta_tertiary_label }}</a>
-        @endif
+        <div class="prospectus-cover__actions">
+          @if(filled($hero->cta_primary_label))
+          <a href="#mlp-enquire" class="prospectus-cover__primary" data-prospectus-open>
+            <span>{{ $hero->cta_primary_label }}</span>
+            <span class="prospectus-cover__primary-mark" aria-hidden="true">↗</span>
+          </a>
+          @else
+          <a href="#mlp-enquire" class="prospectus-cover__primary" data-prospectus-open>
+            <span>Start your enquiry</span>
+            <span class="prospectus-cover__primary-mark" aria-hidden="true">↗</span>
+          </a>
+          @endif
+          <a href="#mlp-trust" class="prospectus-cover__secondary">Read the evidence</a>
+        </div>
       </div>
 
-      <p class="mlp-threshold__promise">
-        <span class="mlp-threshold__promise-line" aria-hidden="true"></span>
-        Admissions guidance on eligibility, fees and your start date.
-      </p>
+      <aside class="prospectus-cover__annotation" aria-label="Programme note">
+        <span class="prospectus-cover__annotation-index">01</span>
+        <span class="prospectus-cover__annotation-rule" aria-hidden="true"></span>
+        <p class="prospectus-cover__annotation-label">The next move</p>
+        <p class="prospectus-cover__annotation-copy">An admissions conversation about eligibility, fees and the route that fits your working life.</p>
+        <span class="prospectus-cover__annotation-foot">Open / enquire / begin</span>
+      </aside>
     </div>
 
-    <aside class="mlp-hero__form-wrap mlp-threshold__form-wrap" id="mlp-enquire" data-mlp-reveal="hero-form" aria-label="Enquiry form">
-      <div class="mlp-form mlp-form--panel mlp-form--on-void mlp-form--threshold">
-        <header class="mlp-form__head">
-          <div class="mlp-form__index" aria-hidden="true">01 / NEXT STEP</div>
-          <div>
-            <h2 class="mlp-form__title">{{ $hero->form_title ?? 'Start your enquiry' }}</h2>
-            <p class="mlp-form__hint">Eligibility, fees &amp; payment — admissions will guide you.</p>
-          </div>
-        </header>
+    <footer class="prospectus-cover__folio" aria-hidden="true">
+      <span>Online MBA</span>
+      <span class="prospectus-cover__folio-rule"></span>
+      <span>Master's pathways</span>
+      <span class="prospectus-cover__folio-rule"></span>
+      <span>Vol. 01</span>
+    </footer>
+  </div>
 
-        @include('pages.mba-masters-landing.partials.enquire-form')
+  <details class="prospectus-insert" id="mlp-enquire" data-prospectus-insert>
+    <summary class="prospectus-insert__summary">
+      <span class="prospectus-insert__summary-index">02 / Admissions insert</span>
+      <span class="prospectus-insert__summary-title">Open the conversation</span>
+      <span class="prospectus-insert__summary-action">{{ $hero->form_title ?? 'Start your enquiry' }} <span aria-hidden="true">↗</span></span>
+    </summary>
+    <div class="prospectus-insert__body container">
+      <div class="prospectus-insert__intro">
+        <p class="prospectus-insert__eyebrow">A considered next step</p>
+        <h2 class="prospectus-insert__heading">Tell admissions where you are headed.</h2>
+        <p class="prospectus-insert__copy">Share a little context. The admissions team will help you understand eligibility, fees and the right pathway before you decide.</p>
+        <button type="button" class="prospectus-insert__close" data-prospectus-close>Close insert <span aria-hidden="true">×</span></button>
       </div>
-    </aside>
-  </div>
-
-  <div class="mlp-threshold__footer container" aria-hidden="true">
-    <span>Online MBA</span>
-    <span class="mlp-threshold__footer-rule"></span>
-    <span>Master's pathways</span>
-    <span class="mlp-threshold__footer-rule"></span>
-    <span>UAE · Global</span>
-  </div>
+      <div class="prospectus-insert__form-wrap">
+        <div class="mlp-form mlp-form--prospectus">
+          @include('pages.mba-masters-landing.partials.enquire-form')
+        </div>
+      </div>
+    </div>
+  </details>
 </section>

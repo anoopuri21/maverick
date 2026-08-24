@@ -28,9 +28,15 @@ class MbaMastersLandingTest extends TestCase
         $response->assertSee('name="country"', false);
         $response->assertSee('name="specialization"', false);
         $response->assertSee('name="qualification"', false);
-        $response->assertDontSee('mlp-trust__hub', false);
-        $response->assertSee('mlp-trust__featured', false);
-        $response->assertSee('mlp-trust__score', false);
+        $response->assertSee('prospectus-cover', false);
+        $response->assertSee('prospectus-cover__statement', false);
+        $response->assertSee('prospectus-insert', false);
+        $response->assertSee('prospectus-evidence', false);
+        $response->assertSee('prospectus-evidence__record', false);
+        $response->assertSee('data-prospectus-evidence-record', false);
+        $response->assertSee('mba-masters-prospectus.js', false);
+        $response->assertDontSee('mlp-hero__form-wrap', false);
+        $response->assertDontSee('mlp-trust__fan-svg', false);
         $response->assertSee('4.8', false);
         $response->assertSee('400+ Reviews', false);
         $response->assertSee('Trusted by learners across the UAE', false);
