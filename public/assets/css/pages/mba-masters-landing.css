@@ -757,136 +757,150 @@
   justify-self: end;
 }
 
-/* Native details gives us a no-JS fallback for the admissions insert. */
-.prospectus-insert {
+/* —— The Living Prospectus: open admissions desk —— */
+.prospectus-admissions {
   position: relative;
-  z-index: 3;
-  margin: 0;
+  isolation: isolate;
+  overflow: hidden;
   color: var(--mlp-ink);
   background: var(--mlp-paper);
   border-top: 2px solid var(--mlp-red);
 }
 
-.prospectus-insert__summary {
+.prospectus-admissions__frame {
+  position: relative;
+  z-index: 1;
+  padding-top: clamp(2.5rem, 6vw, 5rem);
+  padding-bottom: clamp(3.5rem, 8vw, 7rem);
+}
+
+.prospectus-admissions__masthead {
   display: grid;
-  grid-template-columns: minmax(9rem, 0.45fr) minmax(0, 1fr) auto;
-  gap: 1rem 2rem;
+  grid-template-columns: auto minmax(3rem, 1fr) auto;
+  gap: 1rem;
   align-items: center;
-  padding: 1.25rem max(var(--container-padding), 1rem);
-  list-style: none;
-  cursor: pointer;
-  user-select: none;
-  transition: background 0.3s ease;
-}
-
-.prospectus-insert__summary::-webkit-details-marker {
-  display: none;
-}
-
-.prospectus-insert__summary:hover {
-  background: var(--mlp-surface-soft);
-}
-
-.prospectus-insert__summary-index {
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--mlp-red);
-}
-
-.prospectus-insert__summary-title {
-  font-family: var(--mlp-font-display);
-  font-size: clamp(1.25rem, 2.4vw, 2rem);
-  font-weight: 500;
-  letter-spacing: -0.03em;
-  color: var(--mlp-navy);
-}
-
-.prospectus-insert__summary-action {
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  color: var(--mlp-navy);
-}
-
-.prospectus-insert__summary-action span {
-  margin-left: 0.45rem;
-  color: var(--mlp-red);
-}
-
-.prospectus-insert[open] .prospectus-insert__summary {
+  padding-bottom: 1rem;
   border-bottom: 1px solid var(--mlp-line-dark);
 }
 
-.prospectus-insert__body {
-  display: grid;
-  grid-template-columns: minmax(0, 0.78fr) minmax(340px, 1.22fr);
-  gap: clamp(2rem, 6vw, 7rem);
-  align-items: start;
-  padding-top: clamp(3rem, 6vw, 5.5rem);
-  padding-bottom: clamp(3rem, 6vw, 5.5rem);
+.prospectus-admissions__folio,
+.prospectus-admissions__status,
+.prospectus-admissions__eyebrow,
+.prospectus-admissions__form-index {
+  margin: 0;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  line-height: 1.4;
+  text-transform: uppercase;
 }
 
-.prospectus-insert__intro {
-  max-width: 30rem;
-  padding-top: 0.4rem;
-}
-
-.prospectus-insert__eyebrow {
-  margin: 0 0 1rem;
+.prospectus-admissions__folio,
+.prospectus-admissions__form-index,
+.prospectus-admissions__eyebrow {
   color: var(--mlp-red);
 }
 
-.prospectus-insert__heading {
-  max-width: 11ch;
+.prospectus-admissions__status {
+  justify-self: end;
+  color: var(--mlp-muted-on-paper);
+}
+
+.prospectus-admissions__masthead-rule {
+  width: 100%;
+  height: 1px;
+  background: var(--mlp-line-dark);
+}
+
+.prospectus-admissions__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.76fr) minmax(360px, 1.24fr);
+  gap: clamp(2.5rem, 8vw, 9rem);
+  align-items: start;
+  padding-top: clamp(3rem, 7vw, 6rem);
+}
+
+.prospectus-admissions__intro {
+  max-width: 29rem;
+  padding-top: 0.4rem;
+}
+
+.prospectus-admissions__eyebrow {
+  margin-bottom: 1rem;
+}
+
+.prospectus-admissions__heading {
+  max-width: 10ch;
   margin: 0 0 1rem;
   font-family: var(--mlp-font-display);
-  font-size: clamp(2rem, 4vw, 4.5rem);
+  font-size: clamp(2.25rem, 4.8vw, 5rem);
   font-weight: 500;
-  line-height: 0.98;
-  letter-spacing: -0.05em;
+  line-height: 0.94;
+  letter-spacing: -0.055em;
   color: var(--mlp-navy);
 }
 
-.prospectus-insert__copy {
+.prospectus-admissions__copy {
   max-width: 38ch;
   margin: 0;
-  font-size: 1rem;
+  font-size: 0.98rem;
   line-height: 1.7;
   color: var(--mlp-muted-on-paper);
 }
 
-.prospectus-insert__close {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-top: 2rem;
-  padding: 0;
-  color: var(--mlp-navy);
-  background: none;
-  border: 0;
-  border-bottom: 1px solid var(--mlp-navy);
-  font-size: 0.76rem;
+.prospectus-admissions__notes {
+  list-style: none;
+  display: grid;
+  gap: 0.65rem;
+  margin: clamp(2rem, 4vw, 3rem) 0 0;
+  padding: 1rem 0 0;
+  border-top: 1px solid var(--mlp-line-dark);
+}
+
+.prospectus-admissions__notes li {
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  gap: 0.7rem;
+  align-items: baseline;
+  font-size: 0.78rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--mlp-navy);
 }
 
-.prospectus-insert__close span {
-  font-size: 1.2rem;
-  font-weight: 400;
-  line-height: 0.8;
+.prospectus-admissions__notes li span {
+  font-family: var(--mlp-font-display);
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--mlp-red);
 }
 
-.prospectus-insert__form-wrap {
+.prospectus-admissions__form {
   min-width: 0;
   padding-left: clamp(1rem, 3vw, 3rem);
   border-left: 1px solid var(--mlp-line-dark);
 }
 
-.prospectus-insert .mlp-form--prospectus {
-  padding: 0;
+.prospectus-admissions__form-head {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--mlp-line-dark);
+}
+
+.prospectus-admissions__form-title {
+  margin: 0;
+  font-family: var(--mlp-font-display);
+  font-size: clamp(1.5rem, 2.7vw, 2.45rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.035em;
+  color: var(--mlp-navy);
+}
+
+.prospectus-admissions__form .mlp-form--prospectus {
+  padding: 1.5rem 0 0;
   color: var(--mlp-ink);
   background: transparent;
   border: 0;
@@ -895,31 +909,27 @@
   -webkit-backdrop-filter: none;
 }
 
-.prospectus-insert .mlp-form__fields {
+.prospectus-admissions__form .mlp-form__fields {
   gap: 1rem;
 }
 
-.prospectus-insert .mlp-form__head {
-  display: none;
-}
-
-.prospectus-insert .mlp-field {
+.prospectus-admissions__form .mlp-field {
   color: rgba(7, 20, 68, 0.64);
 }
 
-.prospectus-insert .mlp-field input,
-.prospectus-insert .mlp-field select {
+.prospectus-admissions__form .mlp-field input,
+.prospectus-admissions__form .mlp-field select {
   color: var(--mlp-ink);
   border-bottom-color: rgba(7, 20, 68, 0.24);
 }
 
-.prospectus-insert .mlp-field input:focus,
-.prospectus-insert .mlp-field select:focus {
+.prospectus-admissions__form .mlp-field input:focus,
+.prospectus-admissions__form .mlp-field select:focus {
   border-bottom-color: var(--mlp-red);
   box-shadow: 0 1px 0 0 var(--mlp-red);
 }
 
-.prospectus-insert .mlp-field select option {
+.prospectus-admissions__form .mlp-field select option {
   color: var(--mlp-ink);
   background: var(--mlp-white);
 }
@@ -1009,39 +1019,24 @@
     display: none;
   }
 
-  .prospectus-insert__summary {
-    grid-template-columns: 1fr auto;
-  }
-
-  .prospectus-insert__summary-title {
-    grid-column: 1 / -1;
-    grid-row: 1;
-  }
-
-  .prospectus-insert__summary-index {
-    grid-column: 1;
-    grid-row: 2;
-  }
-
-  .prospectus-insert__summary-action {
-    grid-column: 2;
-    grid-row: 2;
-  }
-
-  .prospectus-insert__body {
+  .prospectus-admissions__grid {
     grid-template-columns: 1fr;
-    gap: 2.5rem;
+    gap: 2.75rem;
   }
 
-  .prospectus-insert__heading {
-    max-width: none;
+  .prospectus-admissions__intro {
+    max-width: 36rem;
   }
 
-  .prospectus-insert__form-wrap {
+  .prospectus-admissions__heading {
+    max-width: 13ch;
+  }
+
+  .prospectus-admissions__form {
     padding-left: 0;
+    padding-top: 2rem;
     border-left: 0;
     border-top: 1px solid var(--mlp-line-dark);
-    padding-top: 2rem;
   }
 }
 
@@ -1079,14 +1074,26 @@
     letter-spacing: 0.12em;
   }
 
-  .prospectus-insert__summary {
-    padding-left: 1rem;
-    padding-right: 1rem;
+  .prospectus-admissions__masthead {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
   }
 
-  .prospectus-insert__summary-action {
-    max-width: 9rem;
-    text-align: right;
+  .prospectus-admissions__status {
+    justify-self: start;
+  }
+
+  .prospectus-admissions__masthead-rule {
+    display: none;
+  }
+
+  .prospectus-admissions__form-head {
+    display: grid;
+    gap: 0.45rem;
+  }
+
+  .prospectus-admissions__form .mlp-form__row {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -1094,7 +1101,7 @@
   .prospectus-cover__image,
   .prospectus-cover__primary,
   .prospectus-cover__secondary,
-  .prospectus-insert__summary {
+  .prospectus-admissions__form {
     transition: none;
   }
 }

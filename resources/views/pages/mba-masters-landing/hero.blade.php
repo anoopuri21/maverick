@@ -87,25 +87,37 @@
       <span>Vol. 01</span>
     </footer>
   </div>
+</section>
 
-  <details class="prospectus-insert" id="mlp-enquire" data-prospectus-insert>
-    <summary class="prospectus-insert__summary">
-      <span class="prospectus-insert__summary-index">02 / Admissions insert</span>
-      <span class="prospectus-insert__summary-title">Open the conversation</span>
-      <span class="prospectus-insert__summary-action">{{ $hero->form_title ?? 'Start your enquiry' }} <span aria-hidden="true">↗</span></span>
-    </summary>
-    <div class="prospectus-insert__body container">
-      <div class="prospectus-insert__intro">
-        <p class="prospectus-insert__eyebrow">A considered next step</p>
-        <h2 class="prospectus-insert__heading">Tell admissions where you are headed.</h2>
-        <p class="prospectus-insert__copy">Share a little context. The admissions team will help you understand eligibility, fees and the right pathway before you decide.</p>
-        <button type="button" class="prospectus-insert__close" data-prospectus-close>Close insert <span aria-hidden="true">×</span></button>
+<section class="prospectus-admissions" id="mlp-enquire" aria-labelledby="prospectus-admissions-title">
+  <div class="prospectus-admissions__frame container">
+    <header class="prospectus-admissions__masthead">
+      <p class="prospectus-admissions__folio">02 / Open admissions desk</p>
+      <span class="prospectus-admissions__masthead-rule" aria-hidden="true"></span>
+      <p class="prospectus-admissions__status">Always open · No commitment required</p>
+    </header>
+
+    <div class="prospectus-admissions__grid">
+      <div class="prospectus-admissions__intro">
+        <p class="prospectus-admissions__eyebrow">A considered next step</p>
+        <h2 class="prospectus-admissions__heading" id="prospectus-admissions-title">Tell admissions where you are headed.</h2>
+        <p class="prospectus-admissions__copy">Share a little context. The admissions team will help you understand eligibility, fees and the right pathway before you decide.</p>
+        <ul class="prospectus-admissions__notes" aria-label="What admissions can help with">
+          <li><span aria-hidden="true">01</span>Eligibility guidance</li>
+          <li><span aria-hidden="true">02</span>Fees and payment clarity</li>
+          <li><span aria-hidden="true">03</span>Programme and start-date guidance</li>
+        </ul>
       </div>
-      <div class="prospectus-insert__form-wrap">
+
+      <div class="prospectus-admissions__form">
+        <div class="prospectus-admissions__form-head">
+          <span class="prospectus-admissions__form-index">Your enquiry</span>
+          <h3 class="prospectus-admissions__form-title">{{ $hero->form_title ?? 'Start your enquiry' }}</h3>
+        </div>
         <div class="mlp-form mlp-form--prospectus">
           @include('pages.mba-masters-landing.partials.enquire-form')
         </div>
       </div>
     </div>
-  </details>
+  </div>
 </section>
