@@ -5,7 +5,7 @@
 (function () {
   "use strict";
 
-  var board = document.querySelector("[data-cohort-portrait]");
+  var board = document.querySelector("[data-cohort-room]");
   if (!board) return;
 
   var elements = board.querySelectorAll("[data-cohort-element]");
