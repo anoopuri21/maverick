@@ -1,4 +1,4 @@
-{{-- §9 Class profile — The Cohort Room / PDF-refined content --}}
+{{-- §9 Class profile — The Light Archive / Cohort Portrait --}}
 @php
   $metrics = collect($class->metrics ?? [])
       ->filter(fn ($metric) => filled($metric['value'] ?? null) || filled($metric['label'] ?? null))
@@ -20,100 +20,96 @@
 @endphp
 
 @if(filled($class->heading) || $metrics->isNotEmpty() || $regions->isNotEmpty() || $industries->isNotEmpty())
-<section class="mlp-class cohort-room" id="mlp-class" aria-labelledby="cohort-room-title">
-  <div class="cohort-room__background" aria-hidden="true">
-    <span class="cohort-room__wash"></span>
-    <span class="cohort-room__contour cohort-room__contour--one"></span>
-    <span class="cohort-room__contour cohort-room__contour--two"></span>
+<section class="mlp-class archive-class" id="mlp-class" aria-labelledby="archive-class-title">
+  <div class="archive-class__background" aria-hidden="true">
+    <span class="archive-class__wash"></span>
+    <span class="archive-class__rule archive-class__rule--one"></span>
+    <span class="archive-class__rule archive-class__rule--two"></span>
   </div>
 
-  <div class="cohort-room__frame container">
-    <header class="cohort-room__intro">
+  <div class="archive-class__frame container">
+    <header class="archive-class__intro">
       <div>
         @if(filled($class->label))
-        <p class="cohort-room__label">{{ $class->label }}</p>
+        <p class="archive-class__label">{{ $class->label }}</p>
         @endif
         @if(filled($class->heading))
-        <h2 class="cohort-room__heading" id="cohort-room-title">{{ $class->heading }}</h2>
+        <h2 class="archive-class__heading" id="archive-class-title">{{ $class->heading }}</h2>
         @endif
       </div>
-      <div class="cohort-room__intro-copy">
+      <div class="archive-class__copy">
         @if(filled($class->intro))
         <p>{{ $class->intro }}</p>
         @endif
         @if(filled($class->audience))
-        <p class="cohort-room__audience">{{ $class->audience }}</p>
+        <p class="archive-class__audience">{{ $class->audience }}</p>
         @endif
       </div>
     </header>
 
-    <div class="cohort-room__board" data-cohort-room>
-      <div class="cohort-room__board-topline">
-        <span>Inside the learning room</span>
-        <span>People / places / perspectives</span>
+    <div class="archive-class__archive" data-archive-class>
+      <div class="archive-class__stack" aria-hidden="true">
+        @foreach($industries->take(3) as $ii => $industry)
+        <span class="archive-class__stack-image archive-class__stack-image--{{ $ii + 1 }}">
+          <img src="{{ media_url($industry['image'] ?? null, 'assets/images/homepage/business.jpg') }}" alt="" width="640" height="420" loading="lazy" decoding="async">
+        </span>
+        @endforeach
+        <span class="archive-class__stack-caption">The room is bigger than one background.</span>
       </div>
 
       @if($metrics->isNotEmpty())
-      <section class="cohort-room__people" data-cohort-element aria-labelledby="cohort-room-people-title">
-        <div class="cohort-room__zone-head">
-          <span class="cohort-room__zone-icon" aria-hidden="true"><i data-lucide="users"></i></span>
-          <h3 id="cohort-room-people-title">Who is in the room?</h3>
+      <dl class="archive-class__metrics" aria-label="Executive MBA class profile">
+        @foreach($metrics as $mi => $metric)
+        <div class="archive-class__metric" data-archive-element>
+          <dt>
+            <span class="archive-class__icon" aria-hidden="true"><i data-lucide="{{ $metricIcons[$mi] ?? 'users' }}"></i></span>
+            <span>{{ $metric['label'] ?? 'Profile' }}</span>
+          </dt>
+          <dd>{{ $metric['value'] ?? '—' }}</dd>
         </div>
-        <dl class="cohort-room__metrics">
-          @foreach($metrics as $mi => $metric)
-          <div class="cohort-room__metric">
-            <dt>
-              <span class="cohort-room__metric-icon" aria-hidden="true"><i data-lucide="{{ $metricIcons[$mi] ?? 'users' }}"></i></span>
-              <span>{{ $metric['label'] ?? 'Profile' }}</span>
-            </dt>
-            <dd>{{ $metric['value'] ?? '—' }}</dd>
-          </div>
-          @endforeach
-        </dl>
-      </section>
+        @endforeach
+      </dl>
       @endif
 
       @if($regions->isNotEmpty())
-      <section class="cohort-room__places" data-cohort-element aria-labelledby="cohort-room-places-title">
-        <div class="cohort-room__zone-head">
-          <span class="cohort-room__zone-icon" aria-hidden="true"><i data-lucide="globe"></i></span>
-          <h3 id="cohort-room-places-title">Where the room comes from</h3>
+      <div class="archive-class__regions" data-archive-element>
+        <div class="archive-class__zone-head">
+          <span class="archive-class__zone-icon" aria-hidden="true"><i data-lucide="globe"></i></span>
+          <h3>Where the room comes from</h3>
         </div>
-        <ul class="cohort-room__region-list">
+        <ul class="archive-class__region-list" aria-label="Cohort regions">
           @foreach($regions as $region)
-          <li class="cohort-room__region">
-            <span class="cohort-room__region-name">{{ $region['name'] }}</span>
-            @if(filled($region['note'] ?? null))
-            <span class="cohort-room__region-note">{{ $region['note'] }}</span>
-            @endif
+          <li>
+            <span>{{ $region['name'] }}</span>
+            @if(filled($region['note'] ?? null))<small>{{ $region['note'] }}</small>@endif
           </li>
           @endforeach
         </ul>
-      </section>
+      </div>
       @endif
 
       @if($industries->isNotEmpty())
-      <section class="cohort-room__perspectives" data-cohort-element aria-labelledby="cohort-room-perspectives-title">
-        <div class="cohort-room__zone-head">
-          <span class="cohort-room__zone-icon" aria-hidden="true"><i data-lucide="briefcase"></i></span>
-          <h3 id="cohort-room-perspectives-title">What the room brings</h3>
+      <div class="archive-class__industries" data-archive-element>
+        <div class="archive-class__zone-head">
+          <span class="archive-class__zone-icon" aria-hidden="true"><i data-lucide="briefcase"></i></span>
+          <h3>What the room brings</h3>
         </div>
-        <ol class="cohort-room__industry-list">
+        <ol class="archive-class__industry-list" aria-label="Professional backgrounds">
           @foreach($industries as $industry)
           @php
             $share = max(0, min(100, (float) preg_replace('/[^0-9.]/', '', (string) ($industry['share'] ?? '0'))));
             $shareText = rtrim(rtrim(number_format($share, 1, '.', ''), '0'), '.');
             $industryIcon = $industryIcons[$industry['name'] ?? ''] ?? 'briefcase';
           @endphp
-          <li class="cohort-room__industry" style="--cohort-share: {{ $share }}%;">
-            <span class="cohort-room__industry-icon" aria-hidden="true"><i data-lucide="{{ $industryIcon }}"></i></span>
-            <span class="cohort-room__industry-name">{{ $industry['name'] }}</span>
-            <span class="cohort-room__industry-share">{{ $shareText }}%</span>
-            <span class="cohort-room__industry-track" aria-hidden="true"><span></span></span>
+          <li class="archive-class__industry" style="--archive-share: {{ $share }}%;">
+            <span class="archive-class__industry-icon" aria-hidden="true"><i data-lucide="{{ $industryIcon }}"></i></span>
+            <span class="archive-class__industry-name">{{ $industry['name'] }}</span>
+            <span class="archive-class__industry-share">{{ $shareText }}%</span>
+            <span class="archive-class__industry-line" aria-hidden="true"><span></span></span>
           </li>
           @endforeach
         </ol>
-      </section>
+      </div>
       @endif
     </div>
   </div>
