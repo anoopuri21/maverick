@@ -70,10 +70,14 @@ class MbaMastersLandingTest extends TestCase
         $response->assertSee('Request Fee Details', false);
         $response->assertSee('Get Scholarship Eligibility Check', false);
         $response->assertSee('Built for working professionals', false);
-        $response->assertSee('mlp-class__industry-frame', false);
+        $response->assertSee('cohort-portrait', false);
+        $response->assertSee('cohort-portrait__board', false);
+        $response->assertSee('cohort-portrait__metric', false);
+        $response->assertSee('cohort-portrait__industry', false);
+        $response->assertSee('mba-masters-class.js', false);
         $response->assertSee('Marketing', false);
         $response->assertSee('Cyber Security', false);
-        $response->assertSee('mlp-class__industry-photo', false);
+        $response->assertDontSee('mlp-class__industry-frame', false);
         $response->assertSee('Southeast Asia', false);
         $response->assertSee('Career Growth After MBA', false);
         $response->assertSee('mlp-career__frame', false);
