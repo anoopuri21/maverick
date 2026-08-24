@@ -2600,65 +2600,34 @@
   border: 0;
 }
 
-/* —— The Cohort Portrait: class profile field —— */
-.cohort-portrait {
+/* —— The Cohort Room: PDF-grounded class profile —— */
+.cohort-room {
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  padding: clamp(4.75rem, 10vw, 8rem) 0 clamp(4rem, 8vw, 6.5rem);
+  padding: clamp(4.5rem, 9vw, 7.5rem) 0 clamp(4rem, 8vw, 6rem);
   color: var(--mlp-ink);
   background: var(--mlp-paper);
 }
 
-.cohort-portrait__background {
+.cohort-room__background {
   position: absolute;
   inset: 0;
   z-index: -1;
-  overflow: hidden;
   pointer-events: none;
 }
 
-.cohort-portrait__image {
+.cohort-room__wash {
   position: absolute;
-  width: min(42vw, 38rem);
-  height: min(30vw, 25rem);
-  object-fit: cover;
-  filter: grayscale(1) contrast(1.15);
-  mix-blend-mode: multiply;
-  opacity: 0.1;
-}
-
-.cohort-portrait__image--1 {
-  top: -4%;
-  right: -7%;
-  transform: rotate(5deg);
-}
-
-.cohort-portrait__image--2 {
-  top: 18%;
-  right: 8%;
-  opacity: 0.06;
-  transform: rotate(-4deg);
-}
-
-.cohort-portrait__image--3 {
-  right: -15%;
-  bottom: 8%;
-  opacity: 0.06;
-  transform: rotate(8deg);
-}
-
-.cohort-portrait__wash {
-  position: absolute;
-  right: -15%;
-  bottom: -25%;
-  width: min(55vw, 50rem);
-  height: min(55vw, 50rem);
+  right: -18%;
+  bottom: -24%;
+  width: min(52vw, 48rem);
+  height: min(52vw, 48rem);
   border-radius: 50%;
   background: radial-gradient(circle, rgba(15, 41, 131, 0.1), transparent 68%);
 }
 
-.cohort-portrait__contour {
+.cohort-room__contour {
   position: absolute;
   left: -10%;
   right: -10%;
@@ -2667,19 +2636,19 @@
   transform: rotate(-5deg);
 }
 
-.cohort-portrait__contour--one { top: 31%; }
-.cohort-portrait__contour--two {
-  bottom: 15%;
-  opacity: 0.6;
+.cohort-room__contour--one { top: 30%; }
+.cohort-room__contour--two {
+  bottom: 14%;
+  opacity: 0.55;
   transform: rotate(4deg);
 }
 
-.cohort-portrait__frame {
+.cohort-room__frame {
   position: relative;
   z-index: 1;
 }
 
-.cohort-portrait__intro {
+.cohort-room__intro {
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(17rem, 0.9fr);
   gap: clamp(2rem, 7vw, 8rem);
@@ -2687,26 +2656,17 @@
   margin-bottom: clamp(2.5rem, 5vw, 4rem);
 }
 
-.cohort-portrait__folio {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.7rem;
+.cohort-room__label {
   margin: 0 0 1rem;
   font-size: 0.66rem;
   font-weight: 600;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.14em;
   line-height: 1.4;
   text-transform: uppercase;
   color: var(--mlp-red);
 }
 
-.cohort-portrait__folio span + span::before {
-  content: "/";
-  margin-right: 0.7rem;
-  color: var(--mlp-line-dark);
-}
-
-.cohort-portrait__heading {
+.cohort-room__heading {
   max-width: 13ch;
   margin: 0;
   font-family: var(--mlp-font-display);
@@ -2717,7 +2677,7 @@
   color: var(--mlp-navy);
 }
 
-.cohort-portrait__intro-copy {
+.cohort-room__intro-copy {
   max-width: 35ch;
   margin: 0 0 0.2rem auto;
   font-size: 0.94rem;
@@ -2725,9 +2685,9 @@
   color: var(--mlp-muted-on-paper);
 }
 
-.cohort-portrait__intro-copy p { margin: 0; }
+.cohort-room__intro-copy p { margin: 0; }
 
-.cohort-portrait__audience {
+.cohort-room__audience {
   margin-top: 1.15rem !important;
   padding-left: 0.9rem;
   border-left: 2px solid var(--mlp-red);
@@ -2735,15 +2695,14 @@
   font-weight: 500;
 }
 
-.cohort-portrait__board {
-  position: relative;
+.cohort-room__board {
   overflow: hidden;
   color: var(--mlp-white);
   background: var(--mlp-navy);
   box-shadow: 0 24px 60px -38px rgba(7, 20, 68, 0.75);
 }
 
-.cohort-portrait__board-topline {
+.cohort-room__board-topline {
   display: flex;
   justify-content: space-between;
   gap: 1rem;
@@ -2757,250 +2716,216 @@
   color: rgba(255, 255, 255, 0.5);
 }
 
-.cohort-portrait__canvas {
-  display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(16rem, 0.8fr);
-  min-height: 19rem;
+.cohort-room__people {
+  padding: clamp(1.5rem, 3vw, 2.5rem);
   border-bottom: 1px solid rgba(255, 255, 255, 0.18);
 }
 
-.cohort-portrait__canvas-image {
-  position: relative;
+.cohort-room__zone-head {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-width: 0;
-  padding: clamp(1.5rem, 4vw, 3.5rem);
-  overflow: hidden;
-  border-right: 1px solid rgba(255, 255, 255, 0.18);
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 1.25rem;
 }
 
-.cohort-portrait__canvas-image::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(115deg, rgba(7, 20, 68, 0.92), rgba(15, 41, 131, 0.28));
-  pointer-events: none;
-}
-
-.cohort-portrait__word,
-.cohort-portrait__canvas-line,
-.cohort-portrait__canvas-note {
-  position: relative;
-  z-index: 1;
-}
-
-.cohort-portrait__word {
-  margin-left: -0.08em;
-  font-family: var(--mlp-font-display);
-  font-size: clamp(4rem, 11vw, 10rem);
-  font-weight: 500;
-  line-height: 0.78;
-  letter-spacing: -0.08em;
-  color: rgba(255, 255, 255, 0.12);
-}
-
-.cohort-portrait__canvas-line {
-  display: block;
-  width: 4rem;
-  height: 2px;
-  margin: 1.4rem 0 0.8rem;
-  background: var(--mlp-red);
-}
-
-.cohort-portrait__canvas-note {
-  max-width: 25ch;
+.cohort-room__zone-head h3 {
   margin: 0;
   font-family: var(--mlp-font-display);
-  font-size: clamp(1.1rem, 2vw, 1.65rem);
-  line-height: 1.08;
-  letter-spacing: -0.025em;
+  font-size: clamp(1.35rem, 2.5vw, 2rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.03em;
   color: var(--mlp-white);
 }
 
-.cohort-portrait__metrics {
-  display: grid;
-  align-content: center;
-  grid-template-columns: 1fr;
-  margin: 0;
-  padding: 1.5rem clamp(1rem, 3vw, 2rem);
-}
-
-.cohort-portrait__metric {
-  display: flex;
-  flex-direction: column-reverse;
-  gap: 0.3rem;
-  padding: 0.85rem 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
-}
-
-.cohort-portrait__metric:last-child { border-bottom: 0; }
-
-.cohort-portrait__metric dt {
-  font-size: 0.62rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  line-height: 1.35;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.5);
-}
-
-.cohort-portrait__metric dd {
-  margin: 0;
-  font-family: var(--mlp-font-display);
-  font-size: clamp(1.35rem, 2.5vw, 2.2rem);
-  font-weight: 500;
-  line-height: 0.95;
-  letter-spacing: -0.04em;
+.cohort-room__zone-icon,
+.cohort-room__metric-icon,
+.cohort-room__industry-icon {
+  display: inline-grid;
+  place-items: center;
   color: var(--mlp-red);
 }
 
-.cohort-portrait__regions,
-.cohort-portrait__industries {
-  padding: 1.25rem clamp(1rem, 3vw, 2rem);
+.cohort-room__zone-icon {
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid rgba(178, 2, 2, 0.65);
+}
+
+.cohort-room__zone-icon svg,
+.cohort-room__metric-icon svg,
+.cohort-room__industry-icon svg {
+  width: 1.1rem;
+  height: 1.1rem;
+  stroke-width: 1.6;
+}
+
+.cohort-room__metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+  margin: 0;
+}
+
+.cohort-room__metric {
+  display: grid;
+  gap: 0.5rem;
+  min-width: 0;
+  padding: 0.25rem 1.25rem 0.25rem 0;
+  border-right: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.cohort-room__metric + .cohort-room__metric { padding-left: 1.25rem; }
+.cohort-room__metric:last-child { border-right: 0; }
+
+.cohort-room__metric dt {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2rem;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1.35;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.58);
+}
+
+.cohort-room__metric dd {
+  margin: 0;
+  font-family: var(--mlp-font-display);
+  font-size: clamp(1.35rem, 2.5vw, 2.25rem);
+  font-weight: 500;
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+  color: var(--mlp-white);
+}
+
+.cohort-room__places,
+.cohort-room__perspectives {
+  padding: clamp(1.35rem, 3vw, 2rem) clamp(1.5rem, 3vw, 2.5rem);
   border-bottom: 1px solid rgba(255, 255, 255, 0.18);
 }
 
-.cohort-portrait__section-label {
-  display: flex;
-  gap: 0.8rem;
-  align-items: baseline;
-  margin-bottom: 1rem;
-  font-size: 0.62rem;
-  font-weight: 600;
-  letter-spacing: 0.13em;
-  line-height: 1.35;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.5);
-}
+.cohort-room__places .cohort-room__zone-head,
+.cohort-room__perspectives .cohort-room__zone-head { margin-bottom: 1rem; }
 
-.cohort-portrait__section-label span:first-child { color: var(--mlp-red); }
-
-.cohort-portrait__region-list {
+.cohort-room__region-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.45rem 0;
+  gap: 0.4rem 0;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.cohort-portrait__region {
+.cohort-room__region {
   display: inline-flex;
-  flex-wrap: wrap;
-  gap: 0.35rem;
   align-items: baseline;
-  padding: 0.1rem 1.15rem;
+  gap: 0.4rem;
+  padding: 0.1rem 1rem;
   border-left: 1px solid rgba(255, 255, 255, 0.22);
 }
 
-.cohort-portrait__region:first-child { padding-left: 0; border-left: 0; }
-.cohort-portrait__region-name {
+.cohort-room__region:first-child { padding-left: 0; border-left: 0; }
+.cohort-room__region-name {
   font-family: var(--mlp-font-display);
-  font-size: 1.1rem;
+  font-size: clamp(1rem, 1.8vw, 1.35rem);
   letter-spacing: -0.02em;
   color: var(--mlp-white);
 }
-.cohort-portrait__region-note {
-  font-size: 0.68rem;
+.cohort-room__region-note {
+  font-size: 0.66rem;
   color: rgba(255, 255, 255, 0.5);
 }
 
-.cohort-portrait__industry-list {
+.cohort-room__industry-list {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 0.8rem;
-  height: 11rem;
+  gap: 0.75rem;
+  height: 13rem;
   margin: 0;
   padding: 0;
   list-style: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.cohort-portrait__industry {
+.cohort-room__industry {
   display: grid;
-  grid-template-rows: 1fr auto auto;
+  grid-template-rows: auto 1fr auto auto;
   min-width: 0;
   border-left: 1px solid rgba(255, 255, 255, 0.18);
 }
 
-.cohort-portrait__industry:first-child { border-left: 0; }
-.cohort-portrait__industry-index {
-  padding: 0.25rem 0.5rem;
-  font-size: 0.58rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  color: rgba(255, 255, 255, 0.42);
-}
-
-.cohort-portrait__industry-name,
-.cohort-portrait__industry-share {
-  padding: 0 0.5rem;
-}
-
-.cohort-portrait__industry-name {
+.cohort-room__industry:first-child { border-left: 0; }
+.cohort-room__industry-icon { justify-self: start; padding: 0.25rem 0.5rem; }
+.cohort-room__industry-name,
+.cohort-room__industry-share { padding: 0 0.5rem; }
+.cohort-room__industry-name {
+  align-self: end;
   font-family: var(--mlp-font-display);
-  font-size: clamp(0.82rem, 1.5vw, 1.2rem);
-  line-height: 1.05;
+  font-size: clamp(0.82rem, 1.45vw, 1.15rem);
+  line-height: 1.08;
   letter-spacing: -0.02em;
   color: var(--mlp-white);
 }
-
-.cohort-portrait__industry-share {
-  margin-top: 0.25rem;
-  padding-bottom: 0.65rem;
+.cohort-room__industry-share {
+  padding-top: 0.3rem;
+  padding-bottom: 0.55rem;
   font-size: 0.68rem;
   font-weight: 600;
   color: var(--mlp-red);
 }
-
-.cohort-portrait__industry-track {
-  grid-row: 1;
+.cohort-room__industry-track {
+  grid-row: 2;
   align-self: end;
-  display: block;
   height: 100%;
   margin: 0 0.5rem;
   background: rgba(255, 255, 255, 0.08);
 }
-
-.cohort-portrait__industry-track span {
+.cohort-room__industry-track span {
   display: block;
   width: 100%;
   height: var(--cohort-share, 0%);
   background: linear-gradient(180deg, var(--mlp-red), rgba(178, 2, 2, 0.35));
-  transition: height 0.8s var(--mlp-ease);
 }
-
-.cohort-portrait__board.is-inview .cohort-portrait__industry-track span { height: var(--cohort-share, 0%); }
 
 @media (max-width: 900px) {
-  .cohort-portrait__intro,
-  .cohort-portrait__canvas { grid-template-columns: 1fr; }
-  .cohort-portrait__intro-copy { margin-left: 0; }
-  .cohort-portrait__canvas-image { min-height: 15rem; border-right: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.18); }
-  .cohort-portrait__metrics { grid-template-columns: repeat(3, 1fr); gap: 0.8rem; }
-  .cohort-portrait__metric { min-width: 0; border-bottom: 0; border-right: 1px solid rgba(255, 255, 255, 0.14); }
-  .cohort-portrait__metric:last-child { border-right: 0; }
+  .cohort-room__intro { grid-template-columns: 1fr; gap: 1rem; }
+  .cohort-room__intro-copy { margin-left: 0; }
+  .cohort-room__metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cohort-room__metric:nth-child(2) { border-right: 0; }
+  .cohort-room__metric:nth-child(n + 3) { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255, 255, 255, 0.14); }
+  .cohort-room__metric:nth-child(3) { padding-left: 0; }
 }
 
-@media (max-width: 620px) {
-  .cohort-portrait__heading { max-width: none; }
-  .cohort-portrait__intro-copy { font-size: 0.88rem; }
-  .cohort-portrait__board-topline { align-items: flex-start; flex-direction: column; gap: 0.35rem; }
-  .cohort-portrait__metrics { grid-template-columns: 1fr; gap: 0; }
-  .cohort-portrait__metric { border-right: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.14); }
-  .cohort-portrait__metric:last-child { border-bottom: 0; }
-  .cohort-portrait__region { padding-right: 0.8rem; padding-left: 0.8rem; }
-  .cohort-portrait__region:first-child { padding-left: 0; }
-  .cohort-portrait__industry-list { gap: 0.35rem; height: 13rem; }
-  .cohort-portrait__industry-name { font-size: 0.78rem; }
-  .cohort-portrait__industry-name,
-  .cohort-portrait__industry-share,
-  .cohort-portrait__industry-index { padding-left: 0.3rem; padding-right: 0.3rem; }
+@media (max-width: 600px) {
+  .cohort-room__board-topline { align-items: flex-start; flex-direction: column; gap: 0.35rem; }
+  .cohort-room__people,
+  .cohort-room__places,
+  .cohort-room__perspectives { padding-left: 1rem; padding-right: 1rem; }
+  .cohort-room__metrics { grid-template-columns: 1fr; }
+  .cohort-room__metric,
+  .cohort-room__metric + .cohort-room__metric,
+  .cohort-room__metric:nth-child(n + 3) {
+    margin-top: 0;
+    padding: 0.8rem 0;
+    border-right: 0;
+    border-top: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  }
+  .cohort-room__metric:last-child { border-bottom: 0; }
+  .cohort-room__region { padding-left: 0.7rem; padding-right: 0.7rem; }
+  .cohort-room__region:first-child { padding-left: 0; }
+  .cohort-room__industry-list { gap: 0.3rem; height: 14rem; }
+  .cohort-room__industry-name { font-size: 0.75rem; }
+  .cohort-room__industry-name,
+  .cohort-room__industry-share,
+  .cohort-room__industry-icon { padding-left: 0.3rem; padding-right: 0.3rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .cohort-portrait__industry-track span { transition: none; }
+  .cohort-room__industry-track span { transition: none; }
 }
 /* —— Programme Index: simple practical fee records —— */
 .programme-index {

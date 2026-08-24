@@ -1,4 +1,4 @@
-{{-- §9 Class profile — The Cohort Portrait --}}
+{{-- §9 Class profile — The Cohort Room / PDF-refined content --}}
 @php
   $metrics = collect($class->metrics ?? [])
       ->filter(fn ($metric) => filled($metric['value'] ?? null) || filled($metric['label'] ?? null))
@@ -9,114 +9,111 @@
   $industries = collect($class->industries ?? [])
       ->filter(fn ($industry) => filled($industry['name'] ?? null))
       ->values();
-  $fallbackIndustry = 'assets/images/homepage/business.jpg';
+  $metricIcons = ['users', 'briefcase', 'calendar', 'users-round'];
+  $industryIcons = [
+    'IT & related fields' => 'cpu',
+    'Consumer & Retail' => 'shopping-bag',
+    'Engineering & Manufacturing' => 'factory',
+    'Financial Services' => 'landmark',
+    'Others / Misc.' => 'circle-dot',
+  ];
 @endphp
 
 @if(filled($class->heading) || $metrics->isNotEmpty() || $regions->isNotEmpty() || $industries->isNotEmpty())
-<section class="mlp-class cohort-portrait" id="mlp-class" aria-labelledby="cohort-portrait-title">
-  <div class="cohort-portrait__background" aria-hidden="true">
-    @foreach($industries->take(3) as $ii => $industry)
-    <img
-      class="cohort-portrait__image cohort-portrait__image--{{ $ii + 1 }}"
-      src="{{ media_url($industry['image'] ?? null, $fallbackIndustry) }}"
-      alt=""
-      width="720"
-      height="520"
-      loading="lazy"
-      decoding="async"
-    >
-    @endforeach
-    <span class="cohort-portrait__wash"></span>
-    <span class="cohort-portrait__contour cohort-portrait__contour--one"></span>
-    <span class="cohort-portrait__contour cohort-portrait__contour--two"></span>
+<section class="mlp-class cohort-room" id="mlp-class" aria-labelledby="cohort-room-title">
+  <div class="cohort-room__background" aria-hidden="true">
+    <span class="cohort-room__wash"></span>
+    <span class="cohort-room__contour cohort-room__contour--one"></span>
+    <span class="cohort-room__contour cohort-room__contour--two"></span>
   </div>
 
-  <div class="cohort-portrait__frame container">
-    <header class="cohort-portrait__intro">
+  <div class="cohort-room__frame container">
+    <header class="cohort-room__intro">
       <div>
-        <p class="cohort-portrait__folio">
-          @if(filled($class->index))<span>{{ $class->index }}</span>@endif
-          @if(filled($class->label))<span>{{ $class->label }}</span>@endif
-        </p>
+        @if(filled($class->label))
+        <p class="cohort-room__label">{{ $class->label }}</p>
+        @endif
         @if(filled($class->heading))
-        <h2 class="cohort-portrait__heading" id="cohort-portrait-title">{{ $class->heading }}</h2>
+        <h2 class="cohort-room__heading" id="cohort-room-title">{{ $class->heading }}</h2>
         @endif
       </div>
-      <div class="cohort-portrait__intro-copy">
+      <div class="cohort-room__intro-copy">
         @if(filled($class->intro))
         <p>{{ $class->intro }}</p>
         @endif
         @if(filled($class->audience))
-        <p class="cohort-portrait__audience">{{ $class->audience }}</p>
+        <p class="cohort-room__audience">{{ $class->audience }}</p>
         @endif
       </div>
     </header>
 
-    <div class="cohort-portrait__board" data-cohort-portrait>
-      <div class="cohort-portrait__board-topline">
-        <span>Cohort portrait / current record</span>
-        <span>Read the room</span>
+    <div class="cohort-room__board" data-cohort-room>
+      <div class="cohort-room__board-topline">
+        <span>Inside the learning room</span>
+        <span>People / places / perspectives</span>
       </div>
 
-      <div class="cohort-portrait__canvas">
-        <div class="cohort-portrait__canvas-image" aria-hidden="true">
-          <span class="cohort-portrait__word">COHORT</span>
-          <span class="cohort-portrait__canvas-line"></span>
-          <span class="cohort-portrait__canvas-note">A room shaped by work, ambition and different points of view.</span>
+      @if($metrics->isNotEmpty())
+      <section class="cohort-room__people" data-cohort-element aria-labelledby="cohort-room-people-title">
+        <div class="cohort-room__zone-head">
+          <span class="cohort-room__zone-icon" aria-hidden="true"><i data-lucide="users"></i></span>
+          <h3 id="cohort-room-people-title">Who is in the room?</h3>
         </div>
-
-        @if($metrics->isNotEmpty())
-        <dl class="cohort-portrait__metrics" aria-label="Cohort metrics">
-          @foreach($metrics as $metric)
-          <div class="cohort-portrait__metric" data-cohort-element>
-            <dt>{{ $metric['label'] ?? 'Profile' }}</dt>
+        <dl class="cohort-room__metrics">
+          @foreach($metrics as $mi => $metric)
+          <div class="cohort-room__metric">
+            <dt>
+              <span class="cohort-room__metric-icon" aria-hidden="true"><i data-lucide="{{ $metricIcons[$mi] ?? 'users' }}"></i></span>
+              <span>{{ $metric['label'] ?? 'Profile' }}</span>
+            </dt>
             <dd>{{ $metric['value'] ?? '—' }}</dd>
           </div>
           @endforeach
         </dl>
-        @endif
-      </div>
+      </section>
+      @endif
 
       @if($regions->isNotEmpty())
-      <div class="cohort-portrait__regions" data-cohort-element>
-        <div class="cohort-portrait__section-label">
-          <span>01</span>
-          <span>Where the room begins</span>
+      <section class="cohort-room__places" data-cohort-element aria-labelledby="cohort-room-places-title">
+        <div class="cohort-room__zone-head">
+          <span class="cohort-room__zone-icon" aria-hidden="true"><i data-lucide="globe"></i></span>
+          <h3 id="cohort-room-places-title">Where the room comes from</h3>
         </div>
-        <ul class="cohort-portrait__region-list" aria-label="Cohort regions">
+        <ul class="cohort-room__region-list">
           @foreach($regions as $region)
-          <li class="cohort-portrait__region">
-            <span class="cohort-portrait__region-name">{{ $region['name'] }}</span>
+          <li class="cohort-room__region">
+            <span class="cohort-room__region-name">{{ $region['name'] }}</span>
             @if(filled($region['note'] ?? null))
-            <span class="cohort-portrait__region-note">{{ $region['note'] }}</span>
+            <span class="cohort-room__region-note">{{ $region['note'] }}</span>
             @endif
           </li>
           @endforeach
         </ul>
-      </div>
+      </section>
       @endif
 
       @if($industries->isNotEmpty())
-      <div class="cohort-portrait__industries" data-cohort-element>
-        <div class="cohort-portrait__section-label">
-          <span>02</span>
-          <span>What the room brings</span>
+      <section class="cohort-room__perspectives" data-cohort-element aria-labelledby="cohort-room-perspectives-title">
+        <div class="cohort-room__zone-head">
+          <span class="cohort-room__zone-icon" aria-hidden="true"><i data-lucide="briefcase"></i></span>
+          <h3 id="cohort-room-perspectives-title">What the room brings</h3>
         </div>
-        <ol class="cohort-portrait__industry-list" aria-label="Professional backgrounds">
-          @foreach($industries as $ii => $industry)
+        <ol class="cohort-room__industry-list">
+          @foreach($industries as $industry)
           @php
             $share = max(0, min(100, (float) preg_replace('/[^0-9.]/', '', (string) ($industry['share'] ?? '0'))));
             $shareText = rtrim(rtrim(number_format($share, 1, '.', ''), '0'), '.');
+            $industryIcon = $industryIcons[$industry['name'] ?? ''] ?? 'briefcase';
           @endphp
-          <li class="cohort-portrait__industry" style="--cohort-share: {{ $share }}%;" data-cohort-industry>
-            <span class="cohort-portrait__industry-index" aria-hidden="true">{{ str_pad((string) ($ii + 1), 2, '0', STR_PAD_LEFT) }}</span>
-            <span class="cohort-portrait__industry-name">{{ $industry['name'] }}</span>
-            <span class="cohort-portrait__industry-share">{{ $shareText }}%</span>
-            <span class="cohort-portrait__industry-track" aria-hidden="true"><span></span></span>
+          <li class="cohort-room__industry" style="--cohort-share: {{ $share }}%;">
+            <span class="cohort-room__industry-icon" aria-hidden="true"><i data-lucide="{{ $industryIcon }}"></i></span>
+            <span class="cohort-room__industry-name">{{ $industry['name'] }}</span>
+            <span class="cohort-room__industry-share">{{ $shareText }}%</span>
+            <span class="cohort-room__industry-track" aria-hidden="true"><span></span></span>
           </li>
           @endforeach
         </ol>
-      </div>
+      </section>
       @endif
     </div>
   </div>
