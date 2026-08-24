@@ -1,19 +1,23 @@
 /**
- * The Fee Blueprint — compact programme/fee board.
- * Motion is progressive enhancement only; every fee remains in the table HTML.
+ * The Fee Cartography — compact graphical programme routes.
+ * Motion is progressive enhancement only; every fee detail stays in HTML.
  */
 (function () {
   "use strict";
 
-  var board = document.querySelector("[data-fee-blueprint]");
-  if (!board) return;
+  var map = document.querySelector("[data-fee-cartography]");
+  if (!map) return;
 
-  var rows = board.querySelectorAll("[data-fee-row]");
+  var routes = map.querySelectorAll("[data-fee-route]");
+  var paths = map.querySelectorAll("[data-fee-path]");
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   function reveal() {
-    rows.forEach(function (row) {
-      row.classList.add("is-inview");
+    routes.forEach(function (route) {
+      route.classList.add("is-inview");
+    });
+    paths.forEach(function (path) {
+      path.style.strokeDashoffset = "0";
     });
   }
 
@@ -21,6 +25,17 @@
     reveal();
     return;
   }
+
+  paths.forEach(function (path) {
+    var length = 0;
+    try {
+      length = path.getTotalLength();
+    } catch (error) {
+      length = 1200;
+    }
+    path.style.strokeDasharray = length + " " + length;
+    path.style.strokeDashoffset = length;
+  });
 
   var observer = new IntersectionObserver(
     function (entries) {
@@ -33,5 +48,5 @@
     { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
   );
 
-  observer.observe(board);
+  observer.observe(map);
 })();

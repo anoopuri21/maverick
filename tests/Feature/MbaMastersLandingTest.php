@@ -60,11 +60,13 @@ class MbaMastersLandingTest extends TestCase
         $response->assertSee('University of Wolverhampton', false);
         $response->assertSee('mlp-masters__uni-photo', false);
         $response->assertSee('Online MBA & Master\'s Fees in UAE');
-        $response->assertSee('fee-blueprint', false);
-        $response->assertSee('fee-blueprint__table', false);
-        $response->assertSee('fee-blueprint__fee', false);
+        $response->assertSee('fee-cartography', false);
+        $response->assertSee('fee-cartography__map', false);
+        $response->assertSee('fee-cartography__route', false);
         $response->assertSee('mba-masters-fees.js', false);
-        $response->assertDontSee('mlp-fees__matrix', false);
+        $response->assertDontSee('<table', false);
+        $response->assertDontSee('Speak to advisor', false);
+        $response->assertDontSee('Speak to an advisor', false);
         $response->assertSee('Request Fee Details', false);
         $response->assertSee('Get Scholarship Eligibility Check', false);
         $response->assertSee('Built for working professionals', false);
