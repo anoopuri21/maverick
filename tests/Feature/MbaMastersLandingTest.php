@@ -98,9 +98,11 @@ class MbaMastersLandingTest extends TestCase
         $response->assertSee('Are the degrees internationally recognised?', false);
         $response->assertSee('Ready to shape your future?', false);
         $response->assertSee('id="mlp-overview"', false);
-        $response->assertSee('mlp-overview__plate', false);
-        $response->assertSee('mlp-overview__plate-img', false);
-        $response->assertSee('mlp-overview__split', false);
+        $response->assertSee('blueprint-overview', false);
+        $response->assertSee('blueprint-overview__system', false);
+        $response->assertSee('blueprint-overview__foundation', false);
+        $response->assertSee('mba-masters-overview.js', false);
+        $response->assertDontSee('mlp-overview__split', false);
         // Shared enquire partial rendered twice (hero + final)
         $this->assertGreaterThanOrEqual(2, substr_count($response->getContent(), 'name="start_timeline"'));
         $response->assertSee('mlp-final__stage', false);
