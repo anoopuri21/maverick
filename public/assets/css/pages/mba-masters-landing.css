@@ -3693,249 +3693,364 @@
   }
 }
 
-/* —— The Living Prospectus: evidence margin —— */
-.prospectus-evidence {
+/* —— The Signal Atlas: graphical trust record —— */
+.signal-atlas {
   position: relative;
   isolation: isolate;
-  padding: clamp(4.75rem, 11vw, 9rem) 0;
   overflow: hidden;
+  padding: clamp(4.5rem, 10vw, 8rem) 0 clamp(4rem, 9vw, 7rem);
   color: var(--mlp-ink);
   background: var(--mlp-paper);
 }
 
-.prospectus-evidence__background {
+.signal-atlas__background {
   position: absolute;
   inset: 0;
   z-index: -1;
   pointer-events: none;
 }
 
-.prospectus-evidence__wash {
+.signal-atlas__wash {
   position: absolute;
-  width: min(45vw, 42rem);
-  height: min(45vw, 42rem);
-  right: -12%;
-  top: 4%;
+  width: min(54vw, 52rem);
+  height: min(54vw, 52rem);
+  top: -28%;
+  right: -16%;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(15, 41, 131, 0.1), transparent 68%);
+  background: radial-gradient(circle, rgba(15, 41, 131, 0.12), transparent 68%);
 }
 
-.prospectus-evidence__rule {
+.signal-atlas__contour {
   position: absolute;
-  left: -5%;
-  right: -5%;
+  left: -8%;
+  right: -8%;
   height: 1px;
   background: var(--mlp-line-dark);
-  transform: rotate(-7deg);
+  transform: rotate(-6deg);
 }
 
-.prospectus-evidence__rule--one {
-  top: 22%;
+.signal-atlas__contour--one {
+  top: 36%;
 }
 
-.prospectus-evidence__rule--two {
-  bottom: 18%;
+.signal-atlas__contour--two {
+  top: 78%;
   opacity: 0.55;
+  transform: rotate(4deg);
 }
 
-.prospectus-evidence__frame {
+.signal-atlas__frame {
   position: relative;
   z-index: 1;
 }
 
-.prospectus-evidence__masthead {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(12rem, 0.46fr);
-  gap: 2rem;
-  align-items: end;
-  padding-bottom: 1.25rem;
-  border-bottom: 1px solid var(--mlp-line-dark);
+.signal-atlas__intro {
+  max-width: 48rem;
+  margin-bottom: clamp(3rem, 7vw, 5.5rem);
 }
 
-.prospectus-evidence__folio {
-  margin: 0 0 0.85rem;
+.signal-atlas__folio {
+  margin: 0 0 1rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  line-height: 1.4;
+  text-transform: uppercase;
   color: var(--mlp-red);
 }
 
-.prospectus-evidence__title {
-  max-width: 19ch;
+.signal-atlas__heading {
+  max-width: 17ch;
   margin: 0;
   font-family: var(--mlp-font-display);
-  font-size: clamp(2rem, 4.8vw, 5.25rem);
+  font-size: clamp(2rem, 4.8vw, 5rem);
   font-weight: 500;
-  line-height: 0.94;
-  letter-spacing: -0.05em;
+  line-height: 0.95;
+  letter-spacing: -0.055em;
   color: var(--mlp-navy);
 }
 
-.prospectus-evidence__aside {
-  max-width: 23ch;
-  margin: 0 0 0.3rem auto;
-  font-size: 0.9rem;
-  line-height: 1.6;
+.signal-atlas__quote {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.85rem;
+  max-width: 34rem;
+  margin: 1.5rem 0 0;
+  padding: 1rem 0 0;
+  border-top: 1px solid var(--mlp-line-dark);
+}
+
+.signal-atlas__quote-mark {
+  font-family: var(--mlp-font-display);
+  font-size: 3.5rem;
+  line-height: 0.7;
+  color: var(--mlp-red);
+}
+
+.signal-atlas__quote p {
+  margin: 0;
+  font-family: var(--mlp-font-display);
+  font-size: clamp(1.15rem, 2vw, 1.65rem);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  color: var(--mlp-navy);
+}
+
+.signal-atlas__graph {
+  position: relative;
+  min-height: 25rem;
+  padding-top: 2rem;
+}
+
+.signal-atlas__graph-label {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--mlp-line-dark);
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  line-height: 1.4;
+  text-transform: uppercase;
   color: var(--mlp-muted-on-paper);
 }
 
-.prospectus-evidence__body {
+.signal-atlas__svg {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 3.75rem;
+  bottom: 0;
+  z-index: 0;
+  width: 100%;
+  height: calc(100% - 3.75rem);
+  overflow: visible;
+}
+
+.signal-atlas__grid-lines path,
+.signal-atlas__grid-lines line {
+  fill: none;
+  stroke: var(--mlp-blue);
+  stroke-width: 1;
+  opacity: 0.1;
+}
+
+.signal-atlas__signal-line {
+  fill: none;
+  stroke: var(--mlp-red);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.82;
+}
+
+.signal-atlas__signal-line--secondary {
+  stroke: var(--mlp-blue);
+  stroke-width: 1;
+  opacity: 0.36;
+}
+
+.signal-atlas__records {
+  position: relative;
+  z-index: 1;
   display: grid;
-  grid-template-columns: minmax(0, 0.64fr) minmax(0, 1.36fr);
-  gap: clamp(2.5rem, 8vw, 9rem);
-  align-items: start;
-  padding-top: clamp(3rem, 7vw, 6rem);
-}
-
-.prospectus-evidence__statement {
-  position: sticky;
-  top: 7rem;
-  max-width: 24rem;
-  padding-left: 1.25rem;
-  border-left: 2px solid var(--mlp-red);
-}
-
-.prospectus-evidence__eyebrow {
-  margin: 0 0 1rem;
-  color: var(--mlp-red);
-}
-
-.prospectus-evidence__lead {
-  max-width: 15ch;
-  margin: 0;
-  font-family: var(--mlp-font-display);
-  font-size: clamp(1.6rem, 3vw, 3.2rem);
-  font-weight: 500;
-  line-height: 1.02;
-  letter-spacing: -0.04em;
-  color: var(--mlp-navy);
-}
-
-.prospectus-evidence__link {
-  display: inline-flex;
-  gap: 0.45rem;
-  margin-top: 2rem;
-  padding-bottom: 0.25rem;
-  color: var(--mlp-navy);
-  border-bottom: 1px solid var(--mlp-navy);
-  font-size: 0.76rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-}
-
-.prospectus-evidence__link span {
-  color: var(--mlp-red);
-}
-
-.prospectus-evidence__records {
-  list-style: none;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  align-items: end;
+  min-height: 20rem;
   margin: 0;
   padding: 0;
-  border-top: 2px solid var(--mlp-navy);
+  list-style: none;
 }
 
-.prospectus-evidence__record {
-  display: grid;
-  grid-template-columns: 3rem minmax(7rem, 0.48fr) minmax(0, 1fr);
-  gap: 1rem 1.4rem;
-  align-items: baseline;
+.signal-atlas__record {
   position: relative;
-  min-height: 8.1rem;
-  padding: 1.25rem 0 1.35rem;
-  border-bottom: 1px solid var(--mlp-line-dark);
-  transition: padding-left 0.35s var(--mlp-ease), background 0.35s ease;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem;
+  align-self: end;
+  min-height: 8.6rem;
+  padding: 1rem 1rem 1.2rem;
+  border-left: 1px solid rgba(7, 20, 68, 0.22);
+  background: transparent;
+  transition: transform 0.5s var(--mlp-ease), border-color 0.35s ease;
 }
 
-.prospectus-evidence__record:hover {
-  padding-left: 0.55rem;
-  background: rgba(7, 20, 68, 0.035);
+.signal-atlas__record:nth-child(1) {
+  transform: translateY(3.4rem);
 }
 
-.prospectus-evidence__record-index {
+.signal-atlas__record:nth-child(2) {
+  transform: translateY(1.3rem);
+}
+
+.signal-atlas__record:nth-child(3) {
+  transform: translateY(3.8rem);
+}
+
+.signal-atlas__record:nth-child(4) {
+  transform: translateY(0.5rem);
+}
+
+.signal-atlas__record:nth-child(5) {
+  transform: translateY(-1.7rem);
+}
+
+.signal-atlas__record:hover {
+  z-index: 2;
+  border-left-color: var(--mlp-red);
+}
+
+.signal-atlas__record-index {
   align-self: start;
   padding-top: 0.25rem;
-  font-size: 0.65rem;
+  font-size: 0.62rem;
   font-weight: 600;
-  letter-spacing: 0.13em;
+  letter-spacing: 0.12em;
   color: var(--mlp-red);
 }
 
-.prospectus-evidence__value {
+.signal-atlas__node {
+  position: absolute;
+  top: -0.35rem;
+  left: -0.38rem;
+  width: 0.7rem;
+  height: 0.7rem;
+  border: 2px solid var(--mlp-paper);
+  border-radius: 50%;
+  background: var(--mlp-red);
+  box-shadow: 0 0 0 1px var(--mlp-red);
+}
+
+.signal-atlas__value {
+  display: block;
   font-family: var(--mlp-font-display);
-  font-size: clamp(2.35rem, 5vw, 5.5rem);
+  font-size: clamp(2rem, 4vw, 4.25rem);
   font-weight: 500;
   line-height: 0.86;
   letter-spacing: -0.05em;
   color: var(--mlp-navy);
 }
 
-.prospectus-evidence__record--lead .prospectus-evidence__value {
+.signal-atlas__record--lead .signal-atlas__value {
   color: var(--mlp-red);
 }
 
-.prospectus-evidence__label {
-  max-width: 19ch;
-  font-size: 0.82rem;
+.signal-atlas__label {
+  grid-column: 2;
+  max-width: 12ch;
+  margin-top: 0.35rem;
+  font-size: 0.72rem;
   font-weight: 600;
-  line-height: 1.4;
+  line-height: 1.35;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--mlp-muted-on-paper);
 }
 
-.prospectus-evidence__record-line {
-  position: absolute;
-  right: 0;
-  bottom: -1px;
-  width: 0;
-  height: 2px;
-  background: var(--mlp-red);
-  transition: width 0.7s var(--mlp-ease);
-}
-
-.prospectus-evidence__record.is-inview .prospectus-evidence__record-line {
-  width: min(28%, 8rem);
-}
-
 @media (max-width: 900px) {
-  .prospectus-evidence__masthead,
-  .prospectus-evidence__body {
-    grid-template-columns: 1fr;
+  .signal-atlas__heading {
+    max-width: 14ch;
   }
 
-  .prospectus-evidence__aside {
-    margin-left: 0;
+  .signal-atlas__graph {
+    min-height: 29rem;
   }
 
-  .prospectus-evidence__statement {
-    position: relative;
-    top: auto;
-    max-width: 32rem;
+  .signal-atlas__records {
+    min-height: 24rem;
+  }
+
+  .signal-atlas__record:nth-child(1) {
+    transform: translateY(2.5rem);
+  }
+
+  .signal-atlas__record:nth-child(2) {
+    transform: translateY(0.8rem);
+  }
+
+  .signal-atlas__record:nth-child(3) {
+    transform: translateY(2.8rem);
+  }
+
+  .signal-atlas__record:nth-child(4) {
+    transform: translateY(0.2rem);
+  }
+
+  .signal-atlas__record:nth-child(5) {
+    transform: translateY(-1.2rem);
   }
 }
 
-@media (max-width: 600px) {
-  .prospectus-evidence__record {
-    grid-template-columns: 2.1rem minmax(0, 1fr);
-    gap: 0.55rem 0.8rem;
-    min-height: 7rem;
+@media (max-width: 700px) {
+  .signal-atlas__intro {
+    margin-bottom: 2.75rem;
   }
 
-  .prospectus-evidence__value {
-    font-size: clamp(2.4rem, 13vw, 4.5rem);
+  .signal-atlas__heading {
+    max-width: none;
   }
 
-  .prospectus-evidence__label {
-    grid-column: 2;
+  .signal-atlas__graph {
+    min-height: 0;
+    padding-top: 1.25rem;
+  }
+
+  .signal-atlas__graph-label {
+    padding-bottom: 0.65rem;
+  }
+
+  .signal-atlas__svg {
+    display: none;
+  }
+
+  .signal-atlas__records {
+    grid-template-columns: 1fr;
+    min-height: 0;
+    margin-top: 1.25rem;
+    padding-left: 0.75rem;
+  }
+
+  .signal-atlas__records::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 1px;
+    background: linear-gradient(180deg, var(--mlp-red), var(--mlp-blue));
+  }
+
+  .signal-atlas__record,
+  .signal-atlas__record:nth-child(n) {
+    grid-template-columns: 2rem minmax(0, 1fr);
+    min-height: 6.6rem;
+    padding: 1rem 0 1rem 1rem;
+    transform: none;
+    border-left: 0;
+    border-bottom: 1px solid var(--mlp-line-dark);
+    background: transparent;
+  }
+
+  .signal-atlas__record:hover {
+    background: rgba(7, 20, 68, 0.035);
+  }
+
+  .signal-atlas__node {
+    top: 1.4rem;
+    left: -1.07rem;
+  }
+
+  .signal-atlas__label {
     max-width: 24ch;
-    margin-top: -0.25rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .prospectus-evidence__record {
-    transition: none;
-  }
-
-  .prospectus-evidence__record-line {
-    width: min(28%, 8rem);
+  .signal-atlas__record {
     transition: none;
   }
 }
