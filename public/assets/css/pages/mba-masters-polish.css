@@ -410,3 +410,170 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
     transition: none;
   }
 }
+
+/* Issue 1 — semantic page type scale. Keep the page to a small set of intentional roles. */
+.mlp-page--polished {
+  --mlp-type-micro: 0.75rem;
+  --mlp-type-caption: 0.8125rem;
+  --mlp-type-body: 1rem;
+  --mlp-type-lede: 1.125rem;
+  --mlp-type-title-sm: clamp(1.25rem, 2vw, 1.75rem);
+  --mlp-type-title: clamp(1.75rem, 3.5vw, 2.75rem);
+  --mlp-type-title-lg: clamp(2.25rem, 5vw, 4rem);
+  --mlp-type-display: clamp(3rem, 6.2vw, 6.4rem);
+  --mlp-type-stat: clamp(2rem, 4vw, 4.25rem);
+}
+
+.mlp-page--polished :is(
+  .prospectus-cover__edition,
+  .prospectus-cover__academy,
+  .prospectus-cover__location,
+  .prospectus-cover__eyebrow,
+  .prospectus-cover__kicker,
+  .prospectus-cover__enquiry-index,
+  .signal-atlas__folio,
+  .signal-atlas__graph-label,
+  .blueprint-overview__folio,
+  .blueprint-overview__system-label,
+  .archive-class__label,
+  .archive-career__label,
+  .archive-alumni__label,
+  .archive-learning__label,
+  .archive-partners__label,
+  .archive-investment__label,
+  .archive-voices__label,
+  .archive-parallel__label,
+  .archive-fieldnotes__label,
+  .archive-closing__label,
+  .archive-partners__hint,
+  .archive-partners__toggle,
+  .archive-closing__form-head
+) {
+  font-size: var(--mlp-type-micro);
+}
+
+.mlp-page--polished :is(
+  .prospectus-cover__title,
+  .signal-atlas__heading,
+  .blueprint-overview__heading,
+  .mlp-why__heading,
+  .mlp-journey__heading,
+  .mlp-mba__heading,
+  .mlp-masters__heading,
+  .archive-class__heading,
+  .archive-career__heading,
+  .archive-alumni__heading,
+  .archive-learning__heading,
+  .archive-partners__heading,
+  .archive-investment__heading,
+  .archive-voices__heading,
+  .archive-parallel__heading,
+  .archive-fieldnotes__heading,
+  .archive-closing__heading
+) {
+  font-size: var(--mlp-type-title-lg);
+}
+
+.mlp-page--polished .prospectus-cover__title {
+  font-size: var(--mlp-type-display);
+}
+
+.mlp-page--polished :is(
+  .prospectus-cover__intro,
+  .prospectus-cover__annotation-copy,
+  .prospectus-cover__enquiry-head p,
+  .signal-atlas__quote p,
+  .signal-atlas__note,
+  .blueprint-overview__intro-copy,
+  .archive-class__copy,
+  .archive-career__intro-copy,
+  .archive-alumni__intro-copy,
+  .archive-learning__intro-copy,
+  .archive-partners__intro-copy,
+  .archive-investment__intro-copy,
+  .archive-voices__intro-copy,
+  .archive-parallel__intro-copy,
+  .archive-fieldnotes__intro-copy,
+  .archive-closing__intro-copy
+) {
+  font-size: var(--mlp-type-body);
+}
+
+.mlp-page--polished :is(
+  .mlp-lede,
+  .prospectus-insert__copy,
+  .archive-voices__quote,
+  .archive-career__quote,
+  .archive-learning__point-text
+) {
+  font-size: var(--mlp-type-lede);
+}
+
+.mlp-page--polished :is(
+  .mlp-why__title,
+  .mlp-journey__title,
+  .mlp-mba__uni-name,
+  .mlp-masters__uni-name,
+  .archive-class__zone-head h3,
+  .archive-career__dossier h3,
+  .archive-learning__point h3,
+  .archive-investment__record-topline h3,
+  .archive-voices__voice cite,
+  .archive-parallel__criterion,
+  .archive-fieldnotes__question
+) {
+  font-size: var(--mlp-type-title-sm);
+}
+
+.mlp-page--polished :is(
+  .mlp-mba__program-title,
+  .mlp-masters__program-title,
+  .archive-class__metric dt,
+  .archive-class__region-note,
+  .archive-class__industry-share,
+  .archive-career__dossier-head p,
+  .archive-career__move span,
+  .archive-voices__voice small,
+  .archive-parallel__side-label,
+  .archive-fieldnotes__answer,
+  .archive-investment__note,
+  .archive-learning__caption
+) {
+  font-size: var(--mlp-type-caption);
+}
+
+.mlp-page--polished :is(
+  .signal-atlas__value,
+  .blueprint-overview__core strong,
+  .archive-class__metric dd,
+  .archive-investment__record-topline strong,
+  .archive-investment__fee,
+  .archive-closing__form-title
+) {
+  font-size: var(--mlp-type-stat);
+}
+
+.mlp-page--polished :is(
+  .mlp-btn,
+  .prospectus-cover__primary,
+  .prospectus-cover__secondary,
+  .archive-investment__primary,
+  .archive-investment__secondary,
+  .archive-parallel__primary,
+  .archive-closing__primary,
+  .archive-closing__secondary,
+  .archive-learning__primary,
+  .archive-learning__secondary
+) {
+  font-size: var(--mlp-type-caption);
+}
+
+.mlp-page--polished :is(.mlp-field input, .mlp-field select, .mlp-field textarea) {
+  font-size: var(--mlp-type-body);
+}
+
+@media (max-width: 560px) {
+  .mlp-page--polished .prospectus-cover__title {
+    font-size: clamp(2.6rem, 13vw, 5rem);
+  }
+}
