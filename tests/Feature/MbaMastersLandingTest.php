@@ -24,7 +24,10 @@ class MbaMastersLandingTest extends TestCase
         $response->assertSee('Maverick Business Academy', false);
         $response->assertSee('How soon you want to start?', false);
         $response->assertSee('name="start_timeline"', false);
-        $response->assertSee('<select name="start_timeline"', false);
+        $response->assertSee('id="mlp-enquiry-', false);
+        $response->assertSee('name="country"', false);
+        $response->assertSee('name="specialization"', false);
+        $response->assertSee('name="qualification"', false);
         $response->assertDontSee('mlp-trust__hub', false);
         $response->assertSee('mlp-trust__featured', false);
         $response->assertSee('mlp-trust__score', false);
@@ -152,6 +155,9 @@ class MbaMastersLandingTest extends TestCase
 
             return str_contains($mail->emailSubject, 'MBA/Master')
                 && $values->get('Email') === 'alex@example.com'
+                && $values->get('Country') === 'UAE'
+                && $values->get('Preferred specialization') === 'Finance'
+                && $values->get('Highest qualification') === "Bachelor's Degree"
                 && $values->get('How soon you want to start') === '1–3 months';
         });
     }
