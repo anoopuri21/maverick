@@ -25,11 +25,6 @@
     </header>
 
     <div class="signal-atlas__graph" data-signal-atlas>
-      <div class="signal-atlas__graph-label" aria-hidden="true">
-        <span>Community signal</span>
-        <span>01—{{ str_pad((string) $stats->count(), 2, '0', STR_PAD_LEFT) }}</span>
-      </div>
-
       <svg class="signal-atlas__svg" viewBox="0 0 1200 360" preserveAspectRatio="none" aria-hidden="true">
         <g class="signal-atlas__grid-lines">
           <path d="M0 80H1200M0 180H1200M0 280H1200" />

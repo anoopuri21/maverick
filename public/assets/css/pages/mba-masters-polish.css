@@ -432,7 +432,6 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
   .prospectus-cover__kicker,
   .prospectus-cover__enquiry-index,
   .signal-atlas__folio,
-  .signal-atlas__graph-label,
   .blueprint-overview__folio,
   .blueprint-overview__system-label,
   .archive-class__label,
@@ -1186,7 +1185,6 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
   .prospectus-cover__kicker,
   .prospectus-cover__enquiry-index,
   .signal-atlas__folio,
-  .signal-atlas__graph-label,
   .blueprint-overview__folio,
   .blueprint-overview__system-label,
   .archive-class__label,
@@ -2063,4 +2061,93 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
 .mlp-page--polished > section:not(.prospectus-cover) {
   margin-block: 0;
   padding-block: 2rem;
+}
+
+/* Targeted trust atlas refinement — keep values, labels, and graph separate. */
+.mlp-page--polished #mlp-trust .signal-atlas__intro {
+  margin-bottom: 1rem;
+}
+
+.mlp-page--polished #mlp-trust .signal-atlas__graph {
+  padding-top: 0;
+}
+
+.mlp-page--polished #mlp-trust .signal-atlas__svg {
+  top: 0;
+  height: 100%;
+  filter: blur(2px) opacity(0.5);
+}
+
+.mlp-page--polished #mlp-trust .signal-atlas__records {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  min-height: 15rem;
+  align-items: end;
+}
+
+.mlp-page--polished #mlp-trust .signal-atlas__record,
+.mlp-page--polished #mlp-trust .signal-atlas__record:nth-child(n) {
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto;
+  min-width: 0;
+  min-height: 8.6rem;
+  align-content: start;
+  gap: 0.35rem;
+  overflow-wrap: anywhere;
+}
+
+.mlp-page--polished #mlp-trust .signal-atlas__record:nth-child(1) {
+  transform: translateY(3.75rem);
+}
+
+.mlp-page--polished #mlp-trust .signal-atlas__record:nth-child(2) {
+  transform: translateY(-1.75rem);
+}
+
+.mlp-page--polished #mlp-trust .signal-atlas__record:nth-child(3) {
+  transform: translateY(4.25rem);
+}
+
+.mlp-page--polished #mlp-trust .signal-atlas__record:nth-child(4) {
+  transform: translateY(-1.25rem);
+}
+
+.mlp-page--polished #mlp-trust .signal-atlas__record:nth-child(5) {
+  transform: translateY(2.5rem);
+}
+
+.mlp-page--polished #mlp-trust .signal-atlas__value,
+.mlp-page--polished #mlp-trust .signal-atlas__label {
+  grid-column: 1;
+  min-width: 0;
+}
+
+@media (max-width: 700px) {
+  .mlp-page--polished #mlp-trust .signal-atlas__graph {
+    min-height: 0;
+  }
+
+  .mlp-page--polished #mlp-trust .signal-atlas__svg {
+    display: none;
+  }
+
+  .mlp-page--polished #mlp-trust .signal-atlas__records {
+    grid-template-columns: 1fr;
+    min-height: 15rem;
+    margin-top: 0;
+    padding-left: 0.75rem;
+  }
+
+  .mlp-page--polished #mlp-trust .signal-atlas__record,
+  .mlp-page--polished #mlp-trust .signal-atlas__record:nth-child(n) {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    min-height: 6.6rem;
+    padding: 1rem 0 1rem 1rem;
+    transform: none;
+    border-left: 0;
+  }
+
+  .mlp-page--polished #mlp-trust .signal-atlas__label {
+    max-width: 24ch;
+  }
 }

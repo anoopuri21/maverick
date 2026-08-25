@@ -3120,22 +3120,6 @@
   padding-top: 2rem;
 }
 
-.signal-atlas__graph-label {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  padding-bottom: 0.75rem;
-  border-bottom: 1px solid var(--mlp-line-dark);
-  font-size: 0.64rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  line-height: 1.4;
-  text-transform: uppercase;
-  color: var(--mlp-muted-on-paper);
-}
-
 .signal-atlas__svg {
   position: absolute;
   left: 0;
@@ -3314,10 +3298,6 @@
   .signal-atlas__graph {
     min-height: 0;
     padding-top: 1.25rem;
-  }
-
-  .signal-atlas__graph-label {
-    padding-bottom: 0.65rem;
   }
 
   .signal-atlas__svg {
