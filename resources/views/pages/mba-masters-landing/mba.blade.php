@@ -1,8 +1,8 @@
 {{-- §6 MBA specializations — big campus plates + typographic program catalog --}}
 @php
   $tabs = collect($mba->tabs ?? [])->filter(fn ($t) => filled($t['label'] ?? null))->values();
-  $stage = mlp_image_url($mba->stage_image ?? null, ['w' => 1920, 'fallback' => 'assets/images/edutainment/international-students-university-campus-1.jpg']);
-  $fallbackCampus = 'assets/images/edutainment/international-students-university-campus-1.jpg';
+  $stage = mlp_image_url($mba->stage_image ?? null, ['w' => 1920, 'fallback' => 'assets/images/mba-masters-landing/mba/mba-stage.jpg']);
+  $fallbackCampus = 'assets/images/mba-masters-landing/mba/mba-stage.jpg';
 @endphp
 @if($tabs->isNotEmpty() || filled($mba->heading))
 <section class="mlp-mba" id="mlp-mba" aria-label="MBA specializations">

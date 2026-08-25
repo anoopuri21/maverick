@@ -58,6 +58,12 @@ class MbaMastersLandingTest extends TestCase
         $response->assertSee('General MBA', false);
         $response->assertSee('Rushford Business School', false);
         $response->assertSee('mlp-mba__uni-photo', false);
+        $response->assertSee('mba-stage.jpg', false);
+        $response->assertSee('general-mba.jpg', false);
+        $response->assertSee('business-management-mba.jpg', false);
+        $response->assertSee('specialized-mba.jpg', false);
+        $response->assertSee('executive-mba.jpg', false);
+        $response->assertSee('global-mba.jpg', false);
         $response->assertSee('Master\'s programs', false);
         $response->assertSee('Master of Laws (LLM)', false);
         $response->assertSee('University of Wolverhampton', false);
