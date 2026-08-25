@@ -1139,11 +1139,6 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
   .mlp-page--polished .signal-atlas__record { grid-template-columns: 1fr; }
 }
 
-/* Issue 1 final pass — collapse component-specific sizes into semantic roles. */
-.mlp-page--polished [class*="__"] {
-  font-size: var(--mlp-type-body);
-}
-
 .mlp-page--polished :is(h1, h2) {
   font-size: var(--mlp-type-title-lg);
 }
