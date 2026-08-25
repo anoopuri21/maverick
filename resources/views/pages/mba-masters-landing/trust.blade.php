@@ -16,7 +16,7 @@
 
   <div class="signal-atlas__frame container">
     <header class="signal-atlas__intro">
-      <p class="signal-atlas__folio">02 / Trust record</p>
+        <p class="signal-atlas__folio">Trust record</p>
       <h2 class="signal-atlas__heading" id="signal-atlas-title">{{ $heading }}</h2>
       <blockquote class="signal-atlas__quote">
         <span class="signal-atlas__quote-mark" aria-hidden="true">“</span>
@@ -48,7 +48,6 @@
         @endphp
         <li class="signal-atlas__record{{ $i === 0 ? ' signal-atlas__record--lead' : '' }}" data-signal-record style="--signal-index: {{ $i }}">
           <span class="signal-atlas__node" aria-hidden="true"></span>
-          <span class="signal-atlas__record-index" aria-hidden="true">{{ str_pad((string) ($i + 1), 2, '0', STR_PAD_LEFT) }}</span>
           <span
             class="signal-atlas__value"
             @if($numericValue !== '')

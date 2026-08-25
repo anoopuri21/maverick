@@ -1311,3 +1311,8 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
     grid-template-columns: 1fr;
   }
 }
+
+/* Section count cleanup — keep the Hero folio compact after removing Vol. 01. */
+.mlp-page--polished .prospectus-cover__folio {
+  grid-template-columns: auto minmax(3rem, 1fr) auto;
+}

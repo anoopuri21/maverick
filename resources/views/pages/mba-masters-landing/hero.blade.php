@@ -86,8 +86,6 @@
       <span>Online MBA</span>
       <span class="prospectus-cover__folio-rule"></span>
       <span>Master's pathways</span>
-      <span class="prospectus-cover__folio-rule"></span>
-      <span>Vol. 01</span>
     </footer>
   </div>
 </section>

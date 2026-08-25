@@ -115,8 +115,9 @@ class MbaMastersLandingTest extends TestCase
         $response->assertSee('archive-partners__wall', false);
         $response->assertSee('archive-partners__logo-item', false);
         $response->assertSee('mba-masters-archive.js', false);
-        $response->assertDontSee('archive-voices', false);
-        $response->assertDontSee('Sara Al Maktoum', false);
+        $response->assertSee('archive-voices', false);
+        $response->assertSee('archive-voices__voice', false);
+        $response->assertSee('Sara Al Maktoum', false);
         $response->assertDontSee('Placeholders', false);
         $response->assertSee('Why working professionals choose online', false);
         $response->assertSee('archive-parallel', false);

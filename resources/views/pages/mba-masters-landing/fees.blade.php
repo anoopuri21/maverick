@@ -10,10 +10,9 @@
   <div class="archive-investment__frame container">
     <header class="archive-investment__intro">
       <div>
-        <p class="archive-investment__label">
-          @if(filled($fees->index))<span>{{ $fees->index }}</span>@endif
-          @if(filled($fees->label))<span>{{ $fees->label }}</span>@endif
-        </p>
+        @if(filled($fees->label))
+        <p class="archive-investment__label">{{ $fees->label }}</p>
+        @endif
         @if(filled($fees->heading))
         <h2 class="archive-investment__heading" id="archive-investment-title">{{ $fees->heading }}</h2>
         @endif

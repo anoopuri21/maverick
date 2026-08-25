@@ -23,11 +23,8 @@
 
   <div class="blueprint-overview__frame container">
     <header class="blueprint-overview__intro">
-      @if(filled($overview->index) || filled($overview->label))
-      <p class="blueprint-overview__folio">
-        @if(filled($overview->index))<span>{{ $overview->index }}</span>@endif
-        @if(filled($overview->label))<span>{{ $overview->label }}</span>@endif
-      </p>
+      @if(filled($overview->label))
+      <p class="blueprint-overview__folio">{{ $overview->label }}</p>
       @endif
       @if(filled($overview->heading))
       <h2 class="blueprint-overview__heading" id="blueprint-overview-title">{{ $overview->heading }}</h2>
@@ -40,7 +37,6 @@
     <div class="blueprint-overview__system" data-overview-blueprint>
       <div class="blueprint-overview__system-label" aria-hidden="true">
         <span>Programme architecture</span>
-        <span>Field plan / 03</span>
       </div>
 
       <svg class="blueprint-overview__diagram" viewBox="0 0 1200 620" preserveAspectRatio="none" aria-hidden="true">
@@ -77,7 +73,6 @@
         @foreach($items as $i => $item)
         <li class="blueprint-overview__foundation" data-overview-foundation style="--blueprint-index: {{ $i }}">
           <span class="blueprint-overview__foundation-node" aria-hidden="true"></span>
-          <span class="blueprint-overview__foundation-index" aria-hidden="true">{{ str_pad((string) ($i + 1), 2, '0', STR_PAD_LEFT) }}</span>
           <div class="blueprint-overview__foundation-copy">
             <h3 class="blueprint-overview__foundation-title">{{ $item['title'] }}</h3>
             @if(filled($item['text'] ?? null))
