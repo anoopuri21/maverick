@@ -6,6 +6,7 @@ use Spatie\LaravelSettings\Settings;
 
 class OurStoryVisionSettings extends Settings
 {
+    public ?string $badge = null;
     public ?string $heading = null;
     public ?string $description = null;
     public ?string $background_image_url = null;

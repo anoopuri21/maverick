@@ -21,6 +21,8 @@ class SyncOurStoryContent extends Command
         // 1. Hero Statement
         $hero = app(OurStoryHeroSettings::class);
         $hero->heading = 'Our Story';
+        $hero->eyebrow = 'A Legacy of Global Impact';
+        $hero->scroll_hint = 'Scroll to explore';
         $hero->description = '<p>Empowering learners, professionals, and future leaders through globally recognized education and industry-relevant learning experiences. At Maverick Business Academy, we believe that education should be accessible, practical, and transformative. Our journey began with a vision to bridge the gap between academic excellence and professional success by providing internationally recognized qualifications that empower individuals to achieve their personal and career aspirations.</p>';
         $hero->save();
         $this->line('Synced Section 1: Hero Statement.');
@@ -44,6 +46,7 @@ class SyncOurStoryContent extends Command
 
         // 4. Our Impact
         $impact = app(OurStoryImpactSettings::class);
+        $impact->badge = 'Our Impact';
         $impact->heading = 'Transforming Careers Across Borders';
         $impact->description = '<p>Over the years, Maverick has supported learners from multiple countries in achieving academic qualifications, professional certifications, career promotions, and leadership positions. Our commitment extends beyond education—we strive to create meaningful learning experiences that help individuals unlock their potential and make a positive impact within their organizations and communities.</p>';
         // Stats are preserved by not altering stat_1_value, stat_1_label, etc.
@@ -52,10 +55,21 @@ class SyncOurStoryContent extends Command
 
         // 5. Vision for the Future
         $vision = app(OurStoryVisionSettings::class);
+        $vision->badge = 'Vision for the Future';
         $vision->heading = 'Looking Ahead';
         $vision->description = '<p>As we continue to expand our global network of academic and industry partnerships, our focus remains clear: to become a trusted international learning partner that delivers innovative, flexible, and career-focused education for future generations. We are committed to shaping leaders, fostering innovation, and creating opportunities that inspire growth, transformation, and success.</p>';
         $vision->save();
         $this->line('Synced Section 5: Vision for the Future (Looking Ahead).');
+
+        $sections = app(\App\Settings\OurStorySectionsSettings::class);
+        $sections->journey_badge = 'Journey';
+        $sections->journey_heading = 'Our <em>Journey</em>';
+        $sections->gallery_badge = 'Moments';
+        $sections->gallery_heading = 'Moments That <em>Define Us</em>';
+        $sections->testimonials_badge = 'Testimonials';
+        $sections->testimonials_heading = 'What Our Students Say';
+        $sections->save();
+        $this->line('Synced section labels.');
 
         $this->info('Our Story settings text content sync complete!');
         return self::SUCCESS;

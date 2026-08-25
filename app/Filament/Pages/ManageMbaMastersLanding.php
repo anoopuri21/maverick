@@ -166,7 +166,8 @@ class ManageMbaMastersLanding extends Page implements HasForms
                             ])->columns(2),
                         Tab::make('Trust stats')
                             ->schema([
-                                TextInput::make('trust.label')->label('Section label')->columnSpanFull(),
+                                TextInput::make('trust.label')->label('Section heading')->columnSpanFull(),
+                                Textarea::make('trust.quote')->label('Trust quote')->rows(2)->columnSpanFull(),
                                 Repeater::make('trust.stats')
                                     ->schema([
                                         TextInput::make('value')->label('Value')->placeholder('4500+'),

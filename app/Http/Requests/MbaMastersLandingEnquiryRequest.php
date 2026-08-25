@@ -24,7 +24,11 @@ class MbaMastersLandingEnquiryRequest extends FormRequest
             'country' => 'nullable|string|max:100',
             'program' => 'nullable|string|max:120',
             'specialization' => 'nullable|string|max:120',
-            'qualification' => 'nullable|string|max:50',
+            'qualification' => [
+                'nullable',
+                'string',
+                Rule::in(['high-school', 'diploma', 'bachelor', 'master', 'other']),
+            ],
             'start_timeline' => [
                 'nullable',
                 'string',

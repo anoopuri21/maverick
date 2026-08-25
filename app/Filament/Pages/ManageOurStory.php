@@ -5,6 +5,7 @@ namespace App\Filament\Pages;
 use App\Settings\OurStoryBeginningSettings;
 use App\Settings\OurStoryHeroSettings;
 use App\Settings\OurStoryImpactSettings;
+use App\Settings\OurStorySectionsSettings;
 use App\Settings\OurStorySeoSettings;
 use App\Settings\OurStoryTodaySettings;
 use App\Settings\OurStoryVisionSettings;
@@ -45,6 +46,7 @@ class ManageOurStory extends Page implements HasForms
             'today' => safe_settings(OurStoryTodaySettings::class)->toArray(),
             'impact' => safe_settings(OurStoryImpactSettings::class)->toArray(),
             'vision' => safe_settings(OurStoryVisionSettings::class)->toArray(),
+            'sections' => safe_settings(OurStorySectionsSettings::class)->toArray(),
             'seo' => safe_settings(OurStorySeoSettings::class)->toArray(),
         ]);
     }
@@ -59,11 +61,13 @@ class ManageOurStory extends Page implements HasForms
                         Tab::make('Hero')
                             ->icon('heroicon-o-photo')
                             ->schema([
+                                TextInput::make('hero.eyebrow')->label('Eyebrow'),
                                 TextInput::make('hero.heading')->label('Heading'),
                                 TextInput::make('hero.subtitle')->label('Subtitle'),
                                 RichEditor::make('hero.description')->label('Description'),
                                 TextInput::make('hero.cta_label')->label('CTA Label'),
                                 TextInput::make('hero.cta_url')->label('CTA URL'),
+                                TextInput::make('hero.scroll_hint')->label('Scroll Hint'),
                                 MediaPicker::forField('hero.image_url', 'our-story/hero')->label('Hero Image'),
                             ]),
 
@@ -89,6 +93,7 @@ class ManageOurStory extends Page implements HasForms
                         Tab::make('Impact')
                             ->icon('heroicon-o-chart-bar')
                             ->schema([
+                                TextInput::make('impact.badge')->label('Badge'),
                                 TextInput::make('impact.heading')->label('Heading'),
                                 RichEditor::make('impact.description')->label('Description'),
                                 Grid::make(4)->schema([
@@ -106,11 +111,23 @@ class ManageOurStory extends Page implements HasForms
                         Tab::make('Vision')
                             ->icon('heroicon-o-eye')
                             ->schema([
+                                TextInput::make('vision.badge')->label('Badge'),
                                 TextInput::make('vision.heading')->label('Heading'),
                                 RichEditor::make('vision.description')->label('Description'),
                                 MediaPicker::forField('vision.background_image_url', 'our-story/vision')->label('Background Image'),
                                 TextInput::make('vision.cta_label')->label('CTA Label'),
                                 TextInput::make('vision.cta_url')->label('CTA URL'),
+                            ]),
+
+                        Tab::make('Section Labels')
+                            ->icon('heroicon-o-tag')
+                            ->schema([
+                                TextInput::make('sections.journey_badge')->label('Journey Badge'),
+                                TextInput::make('sections.journey_heading')->label('Journey Heading'),
+                                TextInput::make('sections.gallery_badge')->label('Gallery Badge'),
+                                TextInput::make('sections.gallery_heading')->label('Gallery Heading'),
+                                TextInput::make('sections.testimonials_badge')->label('Testimonials Badge'),
+                                TextInput::make('sections.testimonials_heading')->label('Testimonials Heading'),
                             ]),
 
                         Tab::make('SEO')
@@ -168,7 +185,9 @@ class ManageOurStory extends Page implements HasForms
             $beginning = MediaPicker::syncFieldFromAsset($data['beginning'] ?? [], 'image_url');
             $today = MediaPicker::syncFieldFromAsset($data['today'] ?? [], 'image_url');
             $impact = $data['impact'] ?? [];
-            $vision = MediaPicker::syncFieldFromAsset($data['vision'] ?? [], 'image_url');
+            $sections = $data['sections'] ?? [];
+            $vision = MediaPicker::syncFieldFromAsset($data['vision'] ?? [], 'background_image_url');
+            unset($vision['background_image_url_asset_id']);
             $seo = MediaPicker::syncFieldFromAsset($data['seo'] ?? [], 'og_image_url');
             $seo = MediaPicker::syncFieldFromAsset($seo, 'twitter_image_url');
             unset($seo['og_image_url_asset_id'], $seo['twitter_image_url_asset_id']);
@@ -178,6 +197,7 @@ class ManageOurStory extends Page implements HasForms
             $this->saveSettingsGroup(OurStoryTodaySettings::class, $today);
             $this->saveSettingsGroup(OurStoryImpactSettings::class, $impact);
             $this->saveSettingsGroup(OurStoryVisionSettings::class, $vision);
+            $this->saveSettingsGroup(OurStorySectionsSettings::class, $sections);
             $this->saveSettingsGroup(OurStorySeoSettings::class, $seo);
 
             Notification::make()

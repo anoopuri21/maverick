@@ -1,163 +1,109 @@
-{{-- §3 Program overview — editorial plate + numbered benefit rails --}}
-
+{{-- §3 Overview — The Learning Blueprint --}}
 @php
-
-  $items = collect($overview->items ?? [])->filter(fn ($item) => filled($item['title'] ?? null))->values();
-
+  $items = collect($overview->items ?? [])
+      ->filter(fn ($item) => filled($item['title'] ?? null))
+      ->values();
   $plate = mlp_image_url($overview->plate_image ?? null, [
     'w' => 1200,
     'fallback' => 'assets/images/homepage/mba-management.jpg',
   ]);
-
   $hasCtas = filled($overview->cta_primary_label) || filled($overview->cta_secondary_label);
-
-  $showSection = filled($overview->heading) || $items->isNotEmpty() || $hasCtas || filled($plate);
-
+  $overviewHeading = (string) ($overview->heading ?? '');
+  $overviewHeadingAccent = 'Designed for Working Professionals';
+  $hasOverviewHeadingAccent = str_contains($overviewHeading, $overviewHeadingAccent);
 @endphp
 
-@if($showSection)
-
-<section class="mlp-overview mlp-section mlp-section--paper" id="mlp-overview" aria-label="Program overview">
-
-  <div class="mlp-overview__deco" aria-hidden="true">
-
-    <span class="mlp-overview__deco-rule"></span>
-
+@if(filled($overview->heading) || $items->isNotEmpty() || $hasCtas)
+<section class="blueprint-overview" id="mlp-overview" aria-labelledby="blueprint-overview-title">
+  <div class="blueprint-overview__background" aria-hidden="true">
+    @if($plate)
+    <img class="blueprint-overview__plate" src="{{ $plate }}" alt="" width="1200" height="800" loading="lazy" decoding="async">
+    @endif
+    <span class="blueprint-overview__wash"></span>
+    <span class="blueprint-overview__contour blueprint-overview__contour--one"></span>
+    <span class="blueprint-overview__contour blueprint-overview__contour--two"></span>
   </div>
 
-
-
-  <div class="container mlp-overview__inner">
-
-    <div class="mlp-overview__split">
-
-      <figure class="mlp-overview__media" data-mlp-reveal="overview-media">
-
-        <div class="mlp-overview__plate">
-
-          <img
-
-            class="mlp-overview__plate-img"
-
-            src="{{ $plate }}"
-
-            alt="{{ $overview->heading ?? 'MBA and Master\'s programs for working professionals' }}"
-
-            width="640"
-
-            height="800"
-
-            loading="lazy"
-
-            decoding="async"
-
-          >
-
-          <span class="mlp-overview__plate-veil" aria-hidden="true"></span>
-
-          @if(filled($overview->index))
-
-          <span class="mlp-overview__plate-index mlp-meta" aria-hidden="true">{{ $overview->index }}</span>
-
-          @endif
-
-        </div>
-
-      </figure>
-
-
-
-      <div class="mlp-overview__content">
-
-        <header class="mlp-overview__head" data-mlp-reveal="overview-head">
-
-          <div class="mlp-overview__meta">
-
-            @if(filled($overview->label))
-
-            <p class="mlp-overview__label mlp-meta">{{ $overview->label }}</p>
-
-            @endif
-
-          </div>
-
-          <span class="mlp-overview__kicker" aria-hidden="true"></span>
-
-          @if(filled($overview->heading))
-
-          <h2 class="mlp-overview__heading mlp-headline">{{ $overview->heading }}</h2>
-
-          @endif
-
-          @if(filled($overview->intro))
-
-          <p class="mlp-overview__intro mlp-lede">{{ $overview->intro }}</p>
-
-          @endif
-
-        </header>
-
-
-
-        @if($items->isNotEmpty())
-
-        <ol class="mlp-overview__rails" data-mlp-reveal="overview-rails">
-
-          @foreach($items as $i => $item)
-
-          <li class="mlp-overview__rail" style="--mlp-i: {{ $i }}">
-
-            <span class="mlp-overview__num" aria-hidden="true">{{ str_pad((string) ($i + 1), 2, '0', STR_PAD_LEFT) }}</span>
-
-            <div class="mlp-overview__body">
-
-              <h3 class="mlp-overview__title">{{ $item['title'] }}</h3>
-
-              @if(filled($item['text'] ?? null))
-
-              <div class="mlp-prose mlp-overview__text">{!! \App\Support\MlpProse::html($item['text']) !!}</div>
-
-              @endif
-
-            </div>
-
-          </li>
-
-          @endforeach
-
-        </ol>
-
+  <div class="blueprint-overview__frame container">
+    <header class="blueprint-overview__intro">
+      @if(filled($overview->label))
+      <p class="blueprint-overview__folio">{{ $overview->label }}</p>
+      @endif
+      @if(filled($overview->heading))
+      <h2 class="blueprint-overview__heading" id="blueprint-overview-title">
+        @if($hasOverviewHeadingAccent)
+        @php [$overviewHeadingLead, $overviewHeadingTail] = explode($overviewHeadingAccent, $overviewHeading, 2); @endphp
+        {{ $overviewHeadingLead }}<span class="blueprint-overview__heading-accent">{{ $overviewHeadingAccent }}</span>{{ $overviewHeadingTail }}
+        @else
+        {{ $overviewHeading }}
         @endif
+      </h2>
+      @endif
+      @if(filled($overview->intro))
+      <p class="blueprint-overview__intro-copy">{{ $overview->intro }}</p>
+      @endif
+    </header>
 
-
-
-        @if($hasCtas)
-
-        <div class="mlp-overview__ctas" data-mlp-reveal="overview-ctas">
-
-          @if(filled($overview->cta_primary_label))
-
-          <a href="{{ edu_href($overview->cta_primary_url) ?? '#mlp-enquire' }}" class="mlp-btn mlp-btn--primary">{{ $overview->cta_primary_label }}</a>
-
-          @endif
-
-          @if(filled($overview->cta_secondary_label))
-
-          <a href="{{ edu_href($overview->cta_secondary_url) ?? '#mlp-enquire' }}" class="mlp-btn mlp-btn--ghost mlp-btn--on-paper">{{ $overview->cta_secondary_label }}</a>
-
-          @endif
-
-        </div>
-
-        @endif
-
+    <div class="blueprint-overview__system" data-overview-blueprint>
+      <div class="blueprint-overview__system-label" aria-hidden="true">
+        <span>Programme architecture</span>
       </div>
 
+      <svg class="blueprint-overview__diagram" viewBox="0 0 1200 620" preserveAspectRatio="none" aria-hidden="true">
+        <g class="blueprint-overview__grid-lines">
+          <path d="M0 80H1200M0 180H1200M0 280H1200M0 380H1200M0 480H1200M0 580H1200" />
+          <path d="M100 0V620M300 0V620M500 0V620M700 0V620M900 0V620M1100 0V620" />
+        </g>
+        <g class="blueprint-overview__connectors">
+          <path d="M600 310 C475 240 360 160 130 108" />
+          <path d="M600 310 C725 240 840 160 1070 108" />
+          <path d="M600 310 C470 380 350 470 130 520" />
+          <path d="M600 310 C730 380 850 470 1070 520" />
+          <path d="M600 310 C600 390 600 492 600 578" />
+        </g>
+        <circle class="blueprint-overview__diagram-core" cx="600" cy="310" r="78" />
+        <circle class="blueprint-overview__diagram-core-dot" cx="600" cy="310" r="6" />
+        <g class="blueprint-overview__diagram-nodes">
+          <circle cx="130" cy="108" r="7" />
+          <circle cx="1070" cy="108" r="7" />
+          <circle cx="130" cy="520" r="7" />
+          <circle cx="1070" cy="520" r="7" />
+          <circle cx="600" cy="578" r="7" />
+        </g>
+      </svg>
+
+      <div class="blueprint-overview__core" aria-hidden="true">
+        <span class="blueprint-overview__core-kicker">The learner</span>
+        <strong>Working<br>professional</strong>
+      </div>
+
+      @if($items->isNotEmpty())
+      <ol class="blueprint-overview__foundations" aria-label="Programme foundations">
+        @foreach($items as $i => $item)
+        <li class="blueprint-overview__foundation" data-overview-foundation style="--blueprint-index: {{ $i }}">
+          <span class="blueprint-overview__foundation-node" aria-hidden="true"></span>
+          <div class="blueprint-overview__foundation-copy">
+            <h3 class="blueprint-overview__foundation-title">{{ $item['title'] }}</h3>
+            @if(filled($item['text'] ?? null))
+            <div class="blueprint-overview__foundation-text">{!! \App\Support\MlpProse::html($item['text']) !!}</div>
+            @endif
+          </div>
+        </li>
+        @endforeach
+      </ol>
+      @endif
     </div>
 
+    @if($hasCtas)
+    <div class="blueprint-overview__actions">
+      @if(filled($overview->cta_primary_label))
+      <a href="{{ edu_href($overview->cta_primary_url) ?? '#mlp-enquire' }}" class="blueprint-overview__primary">{{ $overview->cta_primary_label }} <span aria-hidden="true">↗</span></a>
+      @endif
+      @if(filled($overview->cta_secondary_label))
+      <a href="{{ edu_href($overview->cta_secondary_url) ?? '#mlp-enquire' }}" class="blueprint-overview__secondary">{{ $overview->cta_secondary_label }}</a>
+      @endif
+    </div>
+    @endif
   </div>
-
 </section>
-
 @endif
-

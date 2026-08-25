@@ -15,7 +15,7 @@
         </p>
 
         <div class="footer__newsletter">
-          <h4 class="footer__newsletter-title">Stay Updated</h4>
+          <h3 class="footer__newsletter-title">Stay Updated</h3>
           <p class="footer__newsletter-desc">
             Get insights on programs, events, and industry trends.
           </p>

@@ -11,6 +11,7 @@ use App\Settings\CeoSettings;
 use App\Settings\WhatIsMaverickSettings;
 use App\Models\OurStoryTestimonial;
 use App\Models\PartnerLogo;
+use App\Models\UniversityPartner;
 use App\Models\FacultyInsight;
 use App\Models\Event;
 use App\Models\Testimonial;
@@ -235,13 +236,14 @@ class PageController extends Controller
             'today' => safe_settings(\App\Settings\OurStoryTodaySettings::class),
             'impact' => safe_settings(\App\Settings\OurStoryImpactSettings::class),
             'vision' => safe_settings(\App\Settings\OurStoryVisionSettings::class),
+            'storySections' => safe_settings(\App\Settings\OurStorySectionsSettings::class),
             // Shared with homepage
             'ceo' => safe_settings(CeoSettings::class),
         ];
 
         $cached = PublicContentCache::remember(PublicContentCache::OUR_STORY, function () {
             $ourStoryTestimonials = OurStoryTestimonial::query()
-                ->select('id', 'name', 'rating', 'testimonial', 'photo', 'sort_order')
+                ->select('id', 'name', 'organisation', 'position', 'country', 'rating', 'testimonial', 'photo', 'sort_order')
                 ->where('is_active', true)
                 ->orderBy('sort_order')
                 ->get();
@@ -427,6 +429,21 @@ class PageController extends Controller
             $seo->canonical_url = route('mba-masters-landing', absolute: true);
         }
 
+        $alumniLogos = PartnerLogo::query()
+            ->select('id', 'name', 'logo_url', 'sort_order')
+            ->where('type', 'alumni')
+            ->where('is_active', true)
+            ->orderBy('sort_order')
+            ->get();
+
+        $universityPartnerLogos = UniversityPartner::query()
+            ->select('id', 'name', 'logo_url', 'sort_order')
+            ->where('is_active', true)
+            ->whereNotNull('logo_url')
+            ->where('logo_url', '!=', '')
+            ->orderBy('sort_order')
+            ->get();
+
         return view('pages.mba-masters-landing', [
             'hero' => $hero,
             'trust' => $trust,
@@ -447,6 +464,8 @@ class PageController extends Controller
             'final' => $final,
             'seo' => $seo,
             'site' => safe_settings(SiteSettings::class),
+            'alumniLogos' => $alumniLogos,
+            'universityPartnerLogos' => $universityPartnerLogos,
         ]);
     }
 

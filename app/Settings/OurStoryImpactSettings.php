@@ -6,6 +6,7 @@ use Spatie\LaravelSettings\Settings;
 
 class OurStoryImpactSettings extends Settings
 {
+    public ?string $badge = null;
     public ?string $heading = null;
     public ?string $description = null;
     public ?string $stat_1_value = null;
