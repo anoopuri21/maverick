@@ -751,8 +751,7 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
 
 /* Issues 18, 19 and 21 — remove non-functional sequence numbers. The Admission
    Journey keeps its numbers because they describe an actual process. */
-.mlp-page--polished .signal-atlas__record-index,
-.mlp-page--polished .mlp-why__num {
+.mlp-page--polished .signal-atlas__record-index {
   display: none;
 }
 
@@ -1094,7 +1093,6 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
   gap: 1rem;
 }
 
-.mlp-page--polished .mlp-why__num,
 .mlp-page--polished .signal-atlas__record-index { display: none; }
 
 .mlp-page--polished .signal-atlas__record {
@@ -2189,5 +2187,64 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
   .mlp-page--polished #mlp-trust .signal-atlas__record {
     animation: none;
     translate: none;
+  }
+}
+
+/* Targeted Why Choose refinement — compact full-width header and title-led icons. */
+.mlp-page--polished #mlp-why .mlp-why__pin {
+  padding: 2rem 0 1rem;
+}
+
+.mlp-page--polished #mlp-why .mlp-why__pin-inner {
+  width: 100%;
+  max-width: none;
+}
+
+.mlp-page--polished #mlp-why .mlp-why__heading,
+.mlp-page--polished #mlp-why .mlp-why__intro {
+  max-width: none;
+}
+
+.mlp-page--polished #mlp-why .mlp-why__chapter-grid {
+  grid-template-columns: 4rem minmax(0, 1fr);
+  gap: 1rem;
+}
+
+.mlp-page--polished #mlp-why .mlp-why__num {
+  display: grid;
+  place-items: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  padding: 0;
+  font-size: 1rem;
+  line-height: 1;
+  color: var(--mlp-red);
+  border: 1px solid rgba(178, 2, 2, 0.48);
+  background: rgba(178, 2, 2, 0.04);
+}
+
+.mlp-page--polished #mlp-why .mlp-why__num svg {
+  width: 1.35rem;
+  height: 1.35rem;
+  stroke-width: 1.7;
+}
+
+@media (max-width: 700px) {
+  .mlp-page--polished #mlp-why .mlp-why__pin {
+    padding: 1.5rem 0 0.75rem;
+  }
+
+  .mlp-page--polished #mlp-why .mlp-why__chapter-grid {
+    grid-template-columns: 3.5rem minmax(0, 1fr);
+  }
+
+  .mlp-page--polished #mlp-why .mlp-why__num {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
+  .mlp-page--polished #mlp-why .mlp-why__num svg {
+    width: 1.15rem;
+    height: 1.15rem;
   }
 }
