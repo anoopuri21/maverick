@@ -1316,3 +1316,22 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
 .mlp-page--polished .prospectus-cover__folio {
   grid-template-columns: auto minmax(3rem, 1fr) auto;
 }
+
+/* Pricing card type roles — keep the Fees-only redesign above the page reset. */
+.mlp-page--polished .pricing-card__program {
+  font-size: var(--mlp-type-title-sm);
+}
+
+.mlp-page--polished .pricing-card__price strong {
+  font-size: var(--mlp-type-stat);
+}
+
+.mlp-page--polished .pricing-card__price > span,
+.mlp-page--polished .pricing-card__price small,
+.mlp-page--polished .pricing-card__details dt {
+  font-size: var(--mlp-type-caption);
+}
+
+.mlp-page--polished .pricing-card__details dd {
+  font-size: var(--mlp-type-body);
+}

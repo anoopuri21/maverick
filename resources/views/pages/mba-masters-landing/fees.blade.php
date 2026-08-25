@@ -1,4 +1,4 @@
-{{-- §8 Fees + payment — The Closing Archive / Investment Index --}}
+{{-- §8 Fees + payment — The Closing Archive / Pricing Cards --}}
 @php
   $rows = collect($fees->rows ?? [])
       ->filter(fn ($row) => filled($row['program'] ?? null))
@@ -6,25 +6,25 @@
 @endphp
 
 @if($rows->isNotEmpty() || filled($fees->heading))
-<section class="mlp-fees archive-investment" id="mlp-fees" aria-labelledby="archive-investment-title">
-  <div class="archive-investment__frame container">
-    <header class="archive-investment__intro">
+<section class="mlp-fees pricing-cards" id="mlp-fees" aria-labelledby="pricing-cards-title">
+  <div class="pricing-cards__frame container">
+    <header class="pricing-cards__intro">
       <div>
         @if(filled($fees->label))
-        <p class="archive-investment__label">{{ $fees->label }}</p>
+        <p class="pricing-cards__label">{{ $fees->label }}</p>
         @endif
         @if(filled($fees->heading))
-        <h2 class="archive-investment__heading" id="archive-investment-title">{{ $fees->heading }}</h2>
+        <h2 class="pricing-cards__heading" id="pricing-cards-title">{{ $fees->heading }}</h2>
         @endif
       </div>
       @if(filled($fees->intro))
-      <p class="archive-investment__intro-copy">{{ $fees->intro }}</p>
+      <p class="pricing-cards__intro-copy">{{ $fees->intro }}</p>
       @endif
     </header>
 
     @if($rows->isNotEmpty())
-    <ol class="archive-investment__records" aria-label="Programme fees and structure">
-      @foreach($rows as $i => $row)
+    <div class="pricing-cards__grid" aria-label="Programme fees and structure">
+      @foreach($rows as $row)
       @php
         $payment = trim((string) ($row['payment'] ?? ''));
         $fee = trim((string) ($row['fee'] ?? '—'));
@@ -33,40 +33,52 @@
             $payment = 'Details on request';
         }
       @endphp
-      <li class="archive-investment__record" data-closing-element>
-        <span class="archive-investment__record-mark" aria-hidden="true"><i data-lucide="receipt-text"></i></span>
-        <div class="archive-investment__record-body">
-          <div class="archive-investment__record-topline">
-            <h3>{{ $row['program'] }}</h3>
-            <div class="archive-investment__fee">
-              <strong>{{ $fee }}</strong>
-              @if($feeIsIndicative)
-              <small>Indicative · current range subject to programme</small>
-              @endif
-            </div>
-          </div>
-          <dl class="archive-investment__details">
-            <div><dt>Duration</dt><dd>{{ $row['duration'] ?? '—' }}</dd></div>
-            <div><dt>Mode</dt><dd>{{ $row['mode'] ?? '—' }}</dd></div>
-            <div><dt>Payment</dt><dd>{{ $payment !== '' ? $payment : '—' }}</dd></div>
-          </dl>
+      <article class="pricing-card" data-closing-element>
+        <header class="pricing-card__head">
+          <span class="pricing-card__icon" aria-hidden="true"><i data-lucide="receipt-text"></i></span>
+          <span class="pricing-card__eyebrow">Programme route</span>
+        </header>
+
+        <h3 class="pricing-card__program">{{ $row['program'] }}</h3>
+
+        <div class="pricing-card__price">
+          <span>Fee</span>
+          <strong>{{ $fee }}</strong>
+          @if($feeIsIndicative)
+          <small>Indicative · current range subject to programme</small>
+          @endif
         </div>
-      </li>
+
+        <dl class="pricing-card__details">
+          <div>
+            <dt><i data-lucide="clock" aria-hidden="true"></i>Duration</dt>
+            <dd>{{ $row['duration'] ?? '—' }}</dd>
+          </div>
+          <div>
+            <dt><i data-lucide="monitor" aria-hidden="true"></i>Mode</dt>
+            <dd>{{ $row['mode'] ?? '—' }}</dd>
+          </div>
+          <div>
+            <dt><i data-lucide="wallet" aria-hidden="true"></i>Payment</dt>
+            <dd>{{ $payment !== '' ? $payment : '—' }}</dd>
+          </div>
+        </dl>
+      </article>
       @endforeach
-    </ol>
+    </div>
     @endif
 
     @if(filled($fees->note))
-    <p class="archive-investment__note">{{ $fees->note }}</p>
+    <p class="pricing-cards__note">{{ $fees->note }}</p>
     @endif
 
     @if(filled($fees->cta_primary_label) || filled($fees->cta_secondary_label))
-    <div class="archive-investment__actions">
+    <div class="pricing-cards__actions">
       @if(filled($fees->cta_primary_label))
-      <a href="{{ edu_href($fees->cta_primary_url) ?? '#mlp-enquire' }}" class="archive-investment__primary">{{ $fees->cta_primary_label }} <span aria-hidden="true">↗</span></a>
+      <a href="{{ edu_href($fees->cta_primary_url) ?? '#mlp-enquire' }}" class="pricing-cards__primary">{{ $fees->cta_primary_label }} <span aria-hidden="true">↗</span></a>
       @endif
       @if(filled($fees->cta_secondary_label))
-      <a href="{{ edu_href($fees->cta_secondary_url) ?? '#mlp-enquire' }}" class="archive-investment__secondary">{{ $fees->cta_secondary_label }}</a>
+      <a href="{{ edu_href($fees->cta_secondary_url) ?? '#mlp-enquire' }}" class="pricing-cards__secondary">{{ $fees->cta_secondary_label }}</a>
       @endif
     </div>
     @endif

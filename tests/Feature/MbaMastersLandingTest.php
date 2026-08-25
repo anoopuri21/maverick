@@ -65,9 +65,10 @@ class MbaMastersLandingTest extends TestCase
         $response->assertDontSee('listed under Master', false);
         $response->assertSee('mlp-masters__uni-photo', false);
         $response->assertSee('Online MBA & Master\'s Fees in UAE');
-        $response->assertSee('archive-investment', false);
-        $response->assertSee('archive-investment__record', false);
-        $response->assertSee('archive-investment__fee', false);
+        $response->assertSee('pricing-cards', false);
+        $response->assertSee('pricing-card', false);
+        $response->assertSee('pricing-card__price', false);
+        $response->assertDontSee('archive-investment__records', false);
         $response->assertDontSee('<table', false);
         $response->assertDontSee('Speak to advisor', false);
         $response->assertDontSee('Speak to an advisor', false);
