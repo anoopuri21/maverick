@@ -2307,3 +2307,22 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
 .mlp-page--polished #mlp-overview .blueprint-overview__foundation:first-child:focus-within {
   background: transparent;
 }
+
+/* Targeted MBA/Master's catalogue boundaries. */
+.mlp-page--polished #mlp-mba .mlp-mba__head,
+.mlp-page--polished #mlp-masters .mlp-masters__head {
+  width: 100%;
+  max-width: 100%;
+}
+
+.mlp-page--polished #mlp-mba .mlp-mba__heading,
+.mlp-page--polished #mlp-mba .mlp-mba__intro,
+.mlp-page--polished #mlp-masters .mlp-masters__heading,
+.mlp-page--polished #mlp-masters .mlp-masters__intro {
+  width: 100%;
+  max-width: 100%;
+}
+
+.mlp-page--polished #mlp-masters .mlp-masters__catalog-layout {
+  grid-template-columns: 1fr;
+}

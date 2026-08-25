@@ -32,7 +32,6 @@
         $logo = media_url($uni['logo'] ?? null, null);
         $photo = mlp_image_url($uni['image'] ?? null, ['w' => 1200, 'fallback' => $fallbackCampus]);
         $programs = collect($uni['programs'] ?? [])->filter(fn ($p) => filled($p['title'] ?? null))->values();
-        $specification = is_array($uni['specification'] ?? null) ? $uni['specification'] : [];
         $initials = collect(preg_split('/\s+/', (string) $uni['name']))
             ->filter()
             ->map(fn ($w) => mb_strtoupper(mb_substr($w, 0, 1)))
@@ -75,26 +74,6 @@
             @endif
           </div>
 
-          <aside class="mlp-masters__specification" aria-label="Specifications for {{ $uni['name'] }}">
-            <p class="mlp-masters__specification-label mlp-meta">Specifications</p>
-            @if($specification !== [])
-            <dl>
-              @foreach([
-                'category' => 'Programme category',
-                'qualification' => 'Qualification',
-                'listing_page' => 'Listing page',
-                'programme_count' => 'Programmes listed',
-              ] as $specKey => $specLabel)
-              @if(filled($specification[$specKey] ?? null))
-              <div>
-                <dt>{{ $specLabel }}</dt>
-                <dd>{{ $specification[$specKey] }}</dd>
-              </div>
-              @endif
-              @endforeach
-            </dl>
-            @endif
-          </aside>
         </div>
       </article>
       @endforeach
