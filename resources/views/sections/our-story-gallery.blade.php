@@ -3,9 +3,9 @@
 <section id="gallery" class="os-gallery" aria-label="Gallery">
   <div class="container">
     <div class="os-gallery__header">
-      <span class="os-section-label fade-up">Moments</span>
+      <span class="os-section-label fade-up">{{ $storySections->gallery_badge ?? 'Moments' }}</span>
       <h2 class="os-section-heading os-section-heading--center fade-up">
-        Moments That <em>Define Us</em>
+        {!! $storySections->gallery_heading ?? 'Moments That <em>Define Us</em>' !!}
       </h2>
     </div>
   </div>
@@ -21,14 +21,14 @@
             @if($url = media_url($img->image_url ?? null))
             <img
               src="{{ $url }}"
-              alt="{{ $img->caption ?? 'Maverick Business Academy' }}"
+              alt="{{ $img->caption ?? $img->category ?? 'Maverick Business Academy' }}"
               class="os-gallery__img"
               loading="{{ $r === 0 ? 'eager' : 'lazy' }}"
               draggable="false"
             />
-            @if($img->caption)
+            @if($img->caption || $img->category)
             <div class="os-gallery__caption">
-              <span class="os-gallery__caption-text">{{ $img->caption }}</span>
+              <span class="os-gallery__caption-text">{{ $img->caption ?: $img->category }}</span>
             </div>
             @endif
             @endif

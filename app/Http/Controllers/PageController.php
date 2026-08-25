@@ -236,13 +236,14 @@ class PageController extends Controller
             'today' => safe_settings(\App\Settings\OurStoryTodaySettings::class),
             'impact' => safe_settings(\App\Settings\OurStoryImpactSettings::class),
             'vision' => safe_settings(\App\Settings\OurStoryVisionSettings::class),
+            'storySections' => safe_settings(\App\Settings\OurStorySectionsSettings::class),
             // Shared with homepage
             'ceo' => safe_settings(CeoSettings::class),
         ];
 
         $cached = PublicContentCache::remember(PublicContentCache::OUR_STORY, function () {
             $ourStoryTestimonials = OurStoryTestimonial::query()
-                ->select('id', 'name', 'rating', 'testimonial', 'photo', 'sort_order')
+                ->select('id', 'name', 'organisation', 'position', 'country', 'rating', 'testimonial', 'photo', 'sort_order')
                 ->where('is_active', true)
                 ->orderBy('sort_order')
                 ->get();

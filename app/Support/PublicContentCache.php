@@ -15,7 +15,7 @@ class PublicContentCache
 
     public const HOMEPAGE = 'homepage.v2';
 
-    public const OUR_STORY = 'our-story.v2';
+    public const OUR_STORY = 'our-story.v3';
 
     public const PROGRAMS_LISTING = 'programs.listing.v2';
 

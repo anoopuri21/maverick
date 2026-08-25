@@ -27,6 +27,7 @@ return [
         \App\Settings\OurStoryCeoQuoteSettings::class,
         \App\Settings\OurStoryVisionSettings::class,
         \App\Settings\OurStorySeoSettings::class,
+        \App\Settings\OurStorySectionsSettings::class,
         \App\Settings\AccreditationCinematicSettings::class,
         \App\Settings\GlobalPartnersHeroSettings::class,
         \App\Settings\GlobalPartnersOverviewSettings::class,
