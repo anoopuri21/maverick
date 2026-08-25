@@ -2295,11 +2295,12 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
 }
 
 .mlp-page--polished #mlp-overview .blueprint-overview__system {
-  margin-top: 1rem;
+  margin-top: 2rem;
+  padding-top: 2rem;
 }
 
 .mlp-page--polished #mlp-overview .blueprint-overview__core {
-  border-color: rgba(7, 20, 68, 0.05);
+  border: 1px solid rgb(7 20 68 / 15%);
 }
 
 .mlp-page--polished #mlp-overview .blueprint-overview__foundation:first-child:hover,
