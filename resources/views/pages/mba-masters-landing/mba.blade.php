@@ -99,7 +99,9 @@
           $generatedPhoto = $generatedImagesByTab[$tabKey][$ui] ?? $fallbackCampus;
           $photo = mlp_image_url($generatedPhoto, ['w' => 1200, 'fallback' => $fallbackCampus]);
           $specializations = collect($uni['specializations'] ?? [])->filter(fn ($specialization) => filled($specialization['title'] ?? null))->values();
-          $specification = is_array($uni['specification'] ?? null) ? $uni['specification'] : [];
+          $specializationColumns = $specializations->count() > 8
+            ? $specializations->chunk((int) ceil($specializations->count() / 2))->values()
+            : collect([$specializations]);
           $initials = collect(preg_split('/\s+/', (string) $uni['name']))
               ->filter()
               ->map(fn ($w) => mb_strtoupper(mb_substr($w, 0, 1)))
@@ -128,36 +130,23 @@
           <div class="mlp-mba__catalog-layout">
             <div class="mlp-mba__catalog">
               <p class="mlp-mba__catalog-label mlp-meta">Specializations</p>
-              <ol class="mlp-mba__programs" aria-label="{{ $uni['name'] }} specializations">
-                @foreach($specializations as $si => $specialization)
+              <ol
+                class="mlp-mba__programs{{ $specializationColumns->count() > 1 ? ' mlp-mba__programs--columns' : '' }}"
+                aria-label="{{ $uni['name'] }} specializations"
+                @if($specializationColumns->count() > 1) style="--mlp-specialization-rows: {{ $specializationColumns->first()->count() }}" @endif
+              >
+                @php $specializationOffset = 0; @endphp
+                @foreach($specializationColumns as $column)
+                @foreach($column as $si => $specialization)
                 <li class="mlp-mba__program">
-                  <span class="mlp-mba__program-index" aria-hidden="true">{{ str_pad((string) ($si + 1), 2, '0', STR_PAD_LEFT) }}</span>
+                  <span class="mlp-mba__program-index" aria-hidden="true">{{ str_pad((string) ($specializationOffset + $si + 1), 2, '0', STR_PAD_LEFT) }}</span>
                   <span class="mlp-mba__program-title">{{ $specialization['title'] }}</span>
                 </li>
                 @endforeach
+                @php $specializationOffset += $column->count(); @endphp
+                @endforeach
               </ol>
             </div>
-
-            <aside class="mlp-mba__specification" aria-label="Specifications for {{ $uni['name'] }}">
-              <p class="mlp-mba__specification-label mlp-meta">Specifications</p>
-              @if($specification !== [])
-              <dl>
-                @foreach([
-                  'category' => 'Programme category',
-                  'qualification' => 'Qualification',
-                  'listing_page' => 'Listing page',
-                  'programme_count' => 'Specializations listed',
-                ] as $specKey => $specLabel)
-                @if(filled($specification[$specKey] ?? null))
-                <div>
-                  <dt>{{ $specLabel }}</dt>
-                  <dd>{{ $specification[$specKey] }}</dd>
-                </div>
-                @endif
-                @endforeach
-              </dl>
-              @endif
-            </aside>
           </div>
         </article>
         @endforeach

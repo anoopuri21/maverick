@@ -2326,3 +2326,28 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
 .mlp-page--polished #mlp-masters .mlp-masters__catalog-layout {
   grid-template-columns: 1fr;
 }
+
+/* MBA specializations — split only lists with more than eight items. */
+.mlp-page--polished #mlp-mba .mlp-mba__catalog-layout {
+  grid-template-columns: 1fr;
+}
+
+.mlp-page--polished #mlp-mba .mlp-mba__programs--columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(var(--mlp-specialization-rows), auto);
+  grid-auto-flow: column;
+  column-gap: clamp(1.25rem, 3vw, 2.5rem);
+}
+
+.mlp-page--polished #mlp-mba .mlp-mba__programs--columns .mlp-mba__program {
+  min-width: 0;
+}
+
+@media (max-width: 700px) {
+  .mlp-page--polished #mlp-mba .mlp-mba__programs--columns {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    grid-auto-flow: row;
+  }
+}
