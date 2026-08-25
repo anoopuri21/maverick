@@ -56,6 +56,7 @@
   @include('pages.mba-masters-landing.alumni')
   @include('pages.mba-masters-landing.learning')
   @include('pages.mba-masters-landing.partners')
+  @include('pages.mba-masters-landing.video-proof')
   @include('pages.mba-masters-landing.testimonials')
   @include('pages.mba-masters-landing.compare')
   @include('pages.mba-masters-landing.faq')
@@ -79,6 +80,7 @@
 <script src="{{ cached_asset('assets/js/pages/mba-masters-trust.js') }}" defer></script>
 <script src="{{ cached_asset('assets/js/pages/mba-masters-overview.js') }}" defer></script>
 <script src="{{ cached_asset('assets/js/pages/mba-masters-archive.js') }}" defer></script>
+<script src="{{ cached_asset('assets/js/pages/mba-masters-video-proof.js') }}" defer></script>
 <script src="{{ cached_asset('assets/js/pages/mba-masters-class-topics.js') }}" defer></script>
 <script src="{{ cached_asset('assets/js/pages/mba-masters-testimonials.js') }}" defer></script>
 <script src="{{ cached_asset('assets/js/pages/mba-masters-closing.js') }}" defer></script>

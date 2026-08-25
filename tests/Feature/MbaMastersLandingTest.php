@@ -115,6 +115,13 @@ class MbaMastersLandingTest extends TestCase
         $response->assertSee('archive-partners', false);
         $response->assertSee('archive-partners__wall', false);
         $response->assertSee('archive-partners__logo-item', false);
+        $response->assertSee('id="mlp-video-proof"', false);
+        $response->assertSee('archive-video-proof__player', false);
+        $response->assertSee('data-inline-youtube', false);
+        $response->assertSee('data-inline-youtube-trigger', false);
+        $response->assertSee('4p0rsCEljgo', false);
+        $response->assertSee('mba-masters-video-proof.js', false);
+        $response->assertDontSee('videoModal', false);
         $response->assertSee('mba-masters-archive.js', false);
         $response->assertSee('archive-voices', false);
         $response->assertSee('archive-voices__voice', false);
