@@ -11,6 +11,7 @@ use App\Settings\MbaMastersMastersSettings;
 use App\Settings\MbaMastersMbaSettings;
 use App\Settings\MbaMastersOverviewSettings;
 use App\Settings\MbaMastersWhySettings;
+use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Textarea;
@@ -177,6 +178,7 @@ class ManagePrograms extends Page implements HasForms
                                         MediaPicker::forField('image', 'mba-masters-landing/mba/campuses')->label('Campus / plate image'),
                                         Repeater::make('programs')
                                             ->schema([
+                                                Hidden::make('specification'),
                                                 TextInput::make('title')->label('Program title')->required(),
                                             ])
                                             ->defaultItems(0)
@@ -220,6 +222,7 @@ class ManagePrograms extends Page implements HasForms
                                 MediaPicker::forField('image', 'mba-masters-landing/masters/campuses')->label('Campus / plate image'),
                                 Repeater::make('programs')
                                     ->schema([
+                                        Hidden::make('specification'),
                                         TextInput::make('title')->label('Program title')->required(),
                                     ])
                                     ->defaultItems(0)
