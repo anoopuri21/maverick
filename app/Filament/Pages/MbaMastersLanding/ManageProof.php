@@ -82,9 +82,9 @@ class ManageProof extends Page implements HasForms
                         TextInput::make('testimonials.label')->label('Section label'),
                         TextInput::make('testimonials.heading')->label('Heading')->columnSpanFull(),
                         Textarea::make('testimonials.intro')->label('Intro')->rows(2)->columnSpanFull()
-                            ->helperText('Active Our Story testimonials preferred when present; items below are landing placeholders.'),
+                            ->helperText('Active Our Story testimonials are preferred when present; items below are published landing quotes.'),
                         Repeater::make('testimonials.items')
-                            ->label('Placeholder quotes')
+                            ->label('Published quotes')
                             ->schema([
                                 TextInput::make('name')->label('Name'),
                                 TextInput::make('role')->label('Role / company'),
@@ -99,7 +99,7 @@ class ManageProof extends Page implements HasForms
                             ->reorderable()
                             ->collapsible()
                             ->itemLabel(fn (array $state): ?string => $state['name'] ?? null)
-                            ->addActionLabel('Add placeholder')
+                            ->addActionLabel('Add quote')
                             ->columnSpanFull(),
                     ])
                     ->columns(2)

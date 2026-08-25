@@ -113,7 +113,7 @@ class ManageAudience extends Page implements HasForms
                         TextInput::make('career.heading')->label('Heading')->columnSpanFull(),
                         Textarea::make('career.intro')->label('Intro')->rows(2)->columnSpanFull(),
                         Repeater::make('career.stories')
-                            ->label('Career stories')
+                            ->label('Career direction cards')
                             ->schema([
                                 TextInput::make('name')->label('Name')->required(),
                                 TextInput::make('country')->label('Country'),

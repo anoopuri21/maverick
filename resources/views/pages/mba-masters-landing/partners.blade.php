@@ -4,14 +4,14 @@
       ->filter(fn ($logo) => filled(media_url($logo->logo_url ?? null)))
       ->values();
   $fallbackLogos = [
-    ['name' => 'Rushford Business School', 'src' => 'assets/images/universities/placeholder-logo.png'],
-    ['name' => 'Girne American University', 'src' => 'assets/images/universities/placeholder-logo.png'],
-    ['name' => 'University for the Creative Arts', 'src' => 'assets/images/universities/placeholder-logo.png'],
-    ['name' => 'University of Wolverhampton', 'src' => 'assets/images/universities/placeholder-logo.png'],
+    ['name' => 'Rushford Business School', 'src' => null],
+    ['name' => 'Girne American University', 'src' => null],
+    ['name' => 'University for the Creative Arts', 'src' => null],
+    ['name' => 'University of Wolverhampton', 'src' => null],
   ];
   $renderLogos = $logos->isNotEmpty()
     ? $logos->map(fn ($logo) => ['name' => $logo->name ?? '', 'src' => media_url($logo->logo_url)])
-    : collect($fallbackLogos)->map(fn ($logo) => ['name' => $logo['name'], 'src' => cached_asset($logo['src'])]);
+    : collect($fallbackLogos);
 @endphp
 
 @if(filled($partners->heading) || $renderLogos->isNotEmpty())
@@ -44,7 +44,9 @@
           <ul class="archive-partners__logo-list" aria-label="Partner universities">
             @foreach($renderLogos as $logo)
             <li class="archive-partners__logo-item">
+              @if(filled($logo['src']))
               <img src="{{ $logo['src'] }}" alt="{{ $logo['name'] }}" width="220" height="88" loading="lazy" decoding="async">
+              @endif
               <span>{{ $logo['name'] }}</span>
             </li>
             @endforeach
@@ -52,7 +54,9 @@
           <ul class="archive-partners__logo-list archive-partners__logo-list--clone" aria-hidden="true">
             @foreach($renderLogos as $logo)
             <li class="archive-partners__logo-item">
+              @if(filled($logo['src']))
               <img src="{{ $logo['src'] }}" alt="" width="220" height="88" loading="lazy" decoding="async">
+              @endif
               <span>{{ $logo['name'] }}</span>
             </li>
             @endforeach

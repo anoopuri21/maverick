@@ -28,7 +28,10 @@
       @php
         $payment = trim((string) ($row['payment'] ?? ''));
         $fee = trim((string) ($row['fee'] ?? '—'));
-        $feeIsIndicative = str_contains($fee, 'XX,XXX') || str_contains($fee, 'On request');
+        $feeIsIndicative = str_contains($fee, 'XX,XXX')
+          || str_contains($fee, 'On request')
+          || str_contains($fee, 'Route-specific')
+          || str_contains($fee, '*');
         if (str_contains(strtolower($payment), 'advisor')) {
             $payment = 'Details on request';
         }
@@ -45,7 +48,7 @@
           <span>Fee</span>
           <strong>{{ $fee }}</strong>
           @if($feeIsIndicative)
-          <small>Indicative · current range subject to programme</small>
+          <small>Indicative · confirm current fee, VAT and payment terms with admissions</small>
           @endif
         </div>
 

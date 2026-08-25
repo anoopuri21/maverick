@@ -1,9 +1,9 @@
-{{-- §10 Career progression — The Light Archive / Transformation Dossiers --}}
+{{-- §10 Career progression — researched career direction dossiers --}}
 @php
   $stories = collect($career->stories ?? [])
       ->filter(fn ($story) => filled($story['name'] ?? null))
       ->values();
-  $fallbackPortrait = 'assets/images/alumni/alumn-1.png';
+  $fallbackPortrait = 'assets/images/homepage/business.jpg';
 @endphp
 
 @if(filled($career->heading) || $stories->isNotEmpty())
@@ -36,7 +36,7 @@
           <img src="{{ media_url($story['portrait'] ?? null, $fallbackPortrait) }}" alt="" width="640" height="800" loading="lazy" decoding="async">
         </span>
         @endforeach
-        <span class="archive-career__stack-caption">Real paths. Different starting points.</span>
+        <span class="archive-career__stack-caption">Skills that travel across industries.</span>
       </div>
 
       <div class="archive-career__dossiers">
@@ -57,13 +57,13 @@
           <div class="archive-career__move">
             @if(filled($story['previous_role'] ?? null))
             <div>
-              <span>Before</span>
+              <span>Build from</span>
               <strong>{{ $story['previous_role'] }}</strong>
             </div>
             @endif
             @if(filled($story['current_role'] ?? null))
             <div>
-              <span>Now</span>
+              <span>Possible direction</span>
               <strong>{{ $story['current_role'] }}</strong>
             </div>
             @endif
