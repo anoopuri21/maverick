@@ -694,9 +694,8 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
 .mlp-page--polished .prospectus-cover__eyebrow,
 .mlp-page--polished .prospectus-cover__enquiry-index,
 .mlp-page--polished .mlp-field,
-.mlp-page--polished .signal-atlas__label,
-.mlp-page--polished .blueprint-overview__core-mark,
-.mlp-page--polished .archive-investment__note,
+  .mlp-page--polished .signal-atlas__label,
+  .mlp-page--polished .archive-investment__note,
 .mlp-page--polished .archive-learning__caption {
   font-size: var(--mlp-type-caption);
 }
@@ -2261,4 +2260,49 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
 
 .mlp-page--polished #mlp-hero .prospectus-cover__title {
   max-width: 100%;
+}
+
+/* Targeted Overview alignment and blueprint cleanup. */
+.mlp-page--polished #mlp-overview .blueprint-overview__intro {
+  grid-template-columns: 1fr;
+  column-gap: 0;
+  row-gap: 0;
+  max-width: 100%;
+  justify-items: start;
+  text-align: left;
+}
+
+.mlp-page--polished #mlp-overview .blueprint-overview__folio {
+  justify-self: start;
+  width: 100%;
+  text-align: left;
+}
+
+.mlp-page--polished #mlp-overview .blueprint-overview__heading {
+  max-width: 100%;
+  text-align: left;
+}
+
+.mlp-page--polished #mlp-overview .blueprint-overview__heading-accent {
+  color: var(--mlp-red);
+}
+
+.mlp-page--polished #mlp-overview .blueprint-overview__intro-copy {
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  text-align: left;
+}
+
+.mlp-page--polished #mlp-overview .blueprint-overview__system {
+  margin-top: 1rem;
+}
+
+.mlp-page--polished #mlp-overview .blueprint-overview__core {
+  border-color: rgba(7, 20, 68, 0.05);
+}
+
+.mlp-page--polished #mlp-overview .blueprint-overview__foundation:first-child:hover,
+.mlp-page--polished #mlp-overview .blueprint-overview__foundation:first-child:focus-within {
+  background: transparent;
 }

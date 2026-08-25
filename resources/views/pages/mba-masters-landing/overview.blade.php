@@ -8,6 +8,9 @@
     'fallback' => 'assets/images/homepage/mba-management.jpg',
   ]);
   $hasCtas = filled($overview->cta_primary_label) || filled($overview->cta_secondary_label);
+  $overviewHeading = (string) ($overview->heading ?? '');
+  $overviewHeadingAccent = 'Designed for Working Professionals';
+  $hasOverviewHeadingAccent = str_contains($overviewHeading, $overviewHeadingAccent);
 @endphp
 
 @if(filled($overview->heading) || $items->isNotEmpty() || $hasCtas)
@@ -27,7 +30,14 @@
       <p class="blueprint-overview__folio">{{ $overview->label }}</p>
       @endif
       @if(filled($overview->heading))
-      <h2 class="blueprint-overview__heading" id="blueprint-overview-title">{{ $overview->heading }}</h2>
+      <h2 class="blueprint-overview__heading" id="blueprint-overview-title">
+        @if($hasOverviewHeadingAccent)
+        @php [$overviewHeadingLead, $overviewHeadingTail] = explode($overviewHeadingAccent, $overviewHeading, 2); @endphp
+        {{ $overviewHeadingLead }}<span class="blueprint-overview__heading-accent">{{ $overviewHeadingAccent }}</span>{{ $overviewHeadingTail }}
+        @else
+        {{ $overviewHeading }}
+        @endif
+      </h2>
       @endif
       @if(filled($overview->intro))
       <p class="blueprint-overview__intro-copy">{{ $overview->intro }}</p>
@@ -65,7 +75,6 @@
       <div class="blueprint-overview__core" aria-hidden="true">
         <span class="blueprint-overview__core-kicker">The learner</span>
         <strong>Working<br>professional</strong>
-        <span class="blueprint-overview__core-mark">// built around real life</span>
       </div>
 
       @if($items->isNotEmpty())

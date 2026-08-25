@@ -1061,8 +1061,7 @@
   transform: translate(-50%, -50%);
 }
 
-.blueprint-overview__core-kicker,
-.blueprint-overview__core-mark {
+.blueprint-overview__core-kicker {
   font-size: 0.58rem;
   font-weight: 600;
   letter-spacing: 0.1em;
@@ -1079,10 +1078,6 @@
   line-height: 0.95;
   letter-spacing: -0.04em;
   color: var(--mlp-navy);
-}
-
-.blueprint-overview__core-mark {
-  color: var(--mlp-muted-on-paper);
 }
 
 .blueprint-overview__foundations {
