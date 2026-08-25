@@ -10,12 +10,12 @@
       ->filter(fn ($industry) => filled($industry['name'] ?? null))
       ->values();
   $metricIcons = ['users', 'briefcase', 'calendar', 'users-round'];
-  $industryIcons = [
-    'IT & related fields' => 'cpu',
-    'Consumer & Retail' => 'shopping-bag',
-    'Engineering & Manufacturing' => 'factory',
-    'Financial Services' => 'landmark',
-    'Others / Misc.' => 'circle-dot',
+  $industryImages = [
+    'Marketing' => 'assets/images/homepage/business.jpg',
+    'Logistics' => 'assets/images/edutainment/dubai-uae-skyline-students-studying-camp-1.jpg',
+    'Cyber Security' => 'assets/images/homepage/dba.jpg',
+    'Finance' => 'assets/images/homepage/swiss-mba.jpg',
+    'IT' => 'assets/images/homepage/mba-management.jpg',
   ];
 @endphp
 
@@ -90,25 +90,29 @@
 
       @if($industries->isNotEmpty())
       <div class="archive-class__industries" data-archive-element>
-        <div class="archive-class__zone-head">
-          <span class="archive-class__zone-icon" aria-hidden="true"><i data-lucide="briefcase"></i></span>
-          <h3>What the room brings</h3>
+        <div class="archive-class__industry-heading">
+          <p>Professional backgrounds</p>
+          <h3>Different industries. One learning room.</h3>
         </div>
-        <ol class="archive-class__industry-list" aria-label="Professional backgrounds">
+        <div class="archive-class__industry-gallery" aria-label="Professional backgrounds">
           @foreach($industries as $industry)
           @php
             $share = max(0, min(100, (float) preg_replace('/[^0-9.]/', '', (string) ($industry['share'] ?? '0'))));
             $shareText = rtrim(rtrim(number_format($share, 1, '.', ''), '0'), '.');
-            $industryIcon = $industryIcons[$industry['name'] ?? ''] ?? 'briefcase';
+            $industryName = (string) ($industry['name'] ?? 'Industry');
+            $industryImage = $industryImages[$industryName] ?? 'assets/images/homepage/business.jpg';
           @endphp
-          <li class="archive-class__industry" style="--archive-share: {{ $share }}%;">
-            <span class="archive-class__industry-icon" aria-hidden="true"><i data-lucide="{{ $industryIcon }}"></i></span>
-            <span class="archive-class__industry-name">{{ $industry['name'] }}</span>
-            <span class="archive-class__industry-share">{{ $shareText }}%</span>
-            <span class="archive-class__industry-line" aria-hidden="true"><span></span></span>
-          </li>
+          <article class="archive-class__industry-card">
+            <div class="archive-class__industry-image">
+              <img src="{{ media_url($industry['image'] ?? null, $industryImage) }}" alt="{{ $industryName }} professional background" width="720" height="480" loading="lazy" decoding="async">
+            </div>
+            <div class="archive-class__industry-copy">
+              <h4>{{ $industryName }}</h4>
+              <p>{{ $shareText }}% of the cohort</p>
+            </div>
+          </article>
           @endforeach
-        </ol>
+        </div>
       </div>
       @endif
     </div>

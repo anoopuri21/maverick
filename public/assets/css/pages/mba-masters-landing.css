@@ -2649,56 +2649,6 @@
 }
 .archive-class__region small { font-size: 0.66rem; color: rgba(255, 255, 255, 0.52); }
 
-.archive-class__industry-list {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 0.7rem;
-  height: 12rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.archive-class__industry {
-  display: grid;
-  grid-template-rows: auto 1fr auto auto;
-  min-width: 0;
-  border-left: 1px solid rgba(255, 255, 255, 0.18);
-}
-.archive-class__industry:first-child { border-left: 0; }
-.archive-class__industry-icon,
-.archive-class__industry-name,
-.archive-class__industry-share { padding-left: 0.45rem; padding-right: 0.45rem; }
-.archive-class__industry-icon { justify-self: start; padding-top: 0.2rem; }
-.archive-class__industry-name {
-  align-self: end;
-  font-family: var(--mlp-font-display);
-  font-size: clamp(0.8rem, 1.4vw, 1.1rem);
-  line-height: 1.05;
-  letter-spacing: -0.02em;
-  color: var(--mlp-white);
-}
-.archive-class__industry-share {
-  padding-top: 0.25rem;
-  padding-bottom: 0.5rem;
-  font-size: 0.68rem;
-  font-weight: 600;
-  color: var(--mlp-red);
-}
-.archive-class__industry-line {
-  grid-row: 2;
-  align-self: end;
-  height: 100%;
-  margin: 0 0.45rem;
-  background: rgba(255, 255, 255, 0.08);
-}
-.archive-class__industry-line span {
-  display: block;
-  width: 100%;
-  height: var(--archive-share, 0%);
-  background: linear-gradient(180deg, var(--mlp-red), rgba(178, 2, 2, 0.32));
-}
-
 /* Career: image stack + readable dossiers, no timeline. */
 .archive-career { background: var(--mlp-paper-pure); }
 .archive-career__stage {
@@ -2829,11 +2779,6 @@
   .archive-class__metric:nth-last-child(-n + 2) { border-bottom: 0; }
   .archive-class__region { padding-left: 0.65rem; padding-right: 0.65rem; }
   .archive-class__region:first-child { padding-left: 0; }
-  .archive-class__industry-list { gap: 0.25rem; height: 14rem; }
-  .archive-class__industry-name { font-size: 0.72rem; }
-  .archive-class__industry-icon,
-  .archive-class__industry-name,
-  .archive-class__industry-share { padding-left: 0.25rem; padding-right: 0.25rem; }
   .archive-career__move { grid-template-columns: 1fr; margin-left: 2.85rem; }
   .archive-career__quote { margin-left: 2.85rem; }
   .archive-learning__stack { min-height: 22rem; }
@@ -2843,7 +2788,6 @@
   .archive-alumni__track,
   .archive-learning__stack-layer,
   .archive-career__dossier,
-  .archive-class__industry-line span { animation: none; transition: none; }
 }
 /* —— Pricing Cards: compact programme fee design —— */
 .pricing-cards {
