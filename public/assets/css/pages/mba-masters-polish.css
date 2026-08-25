@@ -1941,3 +1941,19 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
     transition: none;
   }
 }
+
+/* Issue 2 — use Poppins for all content; keep the display face for headings only. */
+.mlp-page--polished * {
+  font-family: var(--mlp-font-body) !important;
+}
+
+.mlp-page--polished :is(h1, h2, h3, h4, h5, h6),
+.mlp-page--polished :is(h1, h2, h3, h4, h5, h6) * {
+  font-family: var(--mlp-font-display) !important;
+}
+
+/* Issue 3 — compact section boundaries, without changing the hero height. */
+.mlp-page--polished > section:not(.prospectus-cover) {
+  margin-block: 0;
+  padding-block: 2rem;
+}
