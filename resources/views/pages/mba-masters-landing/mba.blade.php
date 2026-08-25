@@ -99,16 +99,51 @@
           </figure>
 
           <div class="mlp-mba__catalog">
-            <p class="mlp-mba__catalog-label mlp-meta">Programs</p>
+            <p class="mlp-mba__catalog-label mlp-meta">Programme specifications</p>
             @if($programs->isNotEmpty())
             <ol class="mlp-mba__programs">
-              @foreach($programs as $pi => $program)
-              <li class="mlp-mba__program">
-                <span class="mlp-mba__program-index" aria-hidden="true">{{ str_pad((string) ($pi + 1), 2, '0', STR_PAD_LEFT) }}</span>
-                <span class="mlp-mba__program-title">{{ $program['title'] }}</span>
-                <span class="mlp-mba__program-mark" aria-hidden="true"></span>
-              </li>
-              @endforeach
+            @foreach($programs as $pi => $program)
+            @php
+              $specification = is_array($program['specification'] ?? null) ? $program['specification'] : [];
+            @endphp
+            <li class="mlp-mba__program" data-program-spec>
+              <details>
+                <summary>
+                  <span class="mlp-mba__program-index" aria-hidden="true">{{ str_pad((string) ($pi + 1), 2, '0', STR_PAD_LEFT) }}</span>
+                  <span class="mlp-mba__program-title">{{ $program['title'] }}</span>
+                  <span class="mlp-mba__program-mark" aria-hidden="true"></span>
+                </summary>
+                @if($specification !== [])
+                <div class="mlp-mba__specification">
+                  <div class="mlp-mba__specification-focus">
+                    <span>Programme focus</span>
+                    <strong>{{ $specification['focus'] ?? $program['title'] }}</strong>
+                  </div>
+                  <dl>
+                    @foreach([
+                      'qualification' => 'Qualification',
+                      'partner' => 'Partner / awarding route',
+                      'duration' => 'Duration',
+                      'delivery' => 'Delivery mode',
+                      'assessment' => 'Assessment',
+                      'entry' => 'Entry route',
+                    ] as $specKey => $specLabel)
+                    @if(filled($specification[$specKey] ?? null))
+                    <div>
+                      <dt>{{ $specLabel }}</dt>
+                      <dd>{{ $specification[$specKey] }}</dd>
+                    </div>
+                    @endif
+                    @endforeach
+                  </dl>
+                  @if(filled($specification['source_status'] ?? null))
+                  <p class="mlp-mba__specification-note">{{ $specification['source_status'] }}</p>
+                  @endif
+                </div>
+                @endif
+              </details>
+            </li>
+            @endforeach
             </ol>
             @else
             <p class="mlp-mba__empty">Programs for this university will appear here.</p>

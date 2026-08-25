@@ -55,6 +55,8 @@ class MbaMastersLandingTest extends TestCase
         $response->assertSee('Admission counselling', false);
         $response->assertSee('Start live session', false);
         $response->assertSee('MBA specializations', false);
+        $response->assertSee('MBA programmes by route and partner', false);
+        $response->assertSee('Programme specifications', false);
         $response->assertSee('General MBA', false);
         $response->assertSee('Rushford Business School', false);
         $response->assertSee('mlp-mba__uni-photo', false);
@@ -65,7 +67,9 @@ class MbaMastersLandingTest extends TestCase
         $response->assertSee('executive-mba.jpg', false);
         $response->assertSee('global-mba.jpg', false);
         $response->assertSee('Master\'s programs', false);
-        $response->assertSee('Master of Laws (LLM)', false);
+        $response->assertSee('Master of Laws', false);
+        $response->assertSee('MSc in Counselling Psychology', false);
+        $response->assertSee('Programme specifications', false);
         $response->assertSee('University of Wolverhampton', false);
         $response->assertSee('Global MBA', false);
         $response->assertDontSee('listed under Master', false);
@@ -87,6 +91,7 @@ class MbaMastersLandingTest extends TestCase
         $response->assertSee('cohort-room__industry', false);
         $response->assertSee('mba-masters-archive.js', false);
         $response->assertSee('Executive MBA · 2025 cohort · Online format', false);
+        $response->assertSee('Executive MBA in Public Health', false);
         $response->assertSee('281', false);
         $response->assertSee('13 years 2 months', false);
         $response->assertSee('20%', false);

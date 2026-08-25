@@ -1777,6 +1777,152 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
   }
 }
 
+/* Programme specification accordions — content-led MBA and Master's catalogue. */
+.mlp-page--polished :where(.mlp-mba__program, .mlp-masters__program) {
+  display: block;
+  padding: 0;
+  background: transparent;
+}
+
+.mlp-page--polished :where(.mlp-mba__program, .mlp-masters__program) > details {
+  border: 0;
+}
+
+.mlp-page--polished :where(.mlp-mba__program, .mlp-masters__program) summary {
+  display: grid;
+  grid-template-columns: 2.4rem minmax(0, 1fr) auto;
+  gap: 0.75rem;
+  align-items: center;
+  min-height: 3.35rem;
+  padding: 0.95rem 0;
+  cursor: pointer;
+  list-style: none;
+  transition: background-color 0.35s ease, padding-left 0.35s var(--mlp-ease);
+}
+
+.mlp-page--polished :where(.mlp-mba__program, .mlp-masters__program) summary::-webkit-details-marker {
+  display: none;
+}
+
+.mlp-page--polished :where(.mlp-mba__program, .mlp-masters__program) summary:hover,
+.mlp-page--polished :where(.mlp-mba__program, .mlp-masters__program) summary:focus-visible {
+  padding-left: 0.35rem;
+  background: rgba(178, 2, 2, 0.04);
+}
+
+.mlp-page--polished :where(.mlp-mba__program, .mlp-masters__program) > details[open] > summary {
+  background: rgba(15, 41, 131, 0.05);
+  box-shadow: inset 3px 0 0 var(--mlp-red);
+}
+
+.mlp-page--polished :where(.mlp-mba__program, .mlp-masters__program) > details[open] .mlp-mba__program-mark,
+.mlp-page--polished :where(.mlp-mba__program, .mlp-masters__program) > details[open] .mlp-masters__program-mark {
+  border-color: var(--mlp-red);
+  transform: rotate(45deg);
+}
+
+.mlp-page--polished :where(.mlp-mba__program, .mlp-masters__program) > details[open] > summary {
+  padding-left: 0.35rem;
+}
+
+.mlp-page--polished :where(.mlp-mba__program, .mlp-masters__program) :where(.mlp-mba__program-title, .mlp-masters__program-title) {
+  min-width: 0;
+}
+
+.mlp-page--polished :where(.mlp-mba__specification, .mlp-masters__specification) {
+  display: grid;
+  gap: 1rem;
+  padding: 0.25rem 0 1.25rem 3.15rem;
+  border-top: 1px solid var(--mlp-line-dark);
+}
+
+.mlp-page--polished :where(.mlp-mba__specification-focus, .mlp-masters__specification-focus) {
+  display: grid;
+  grid-template-columns: 8.5rem minmax(0, 1fr);
+  gap: 0.75rem;
+  align-items: baseline;
+  padding-top: 0.95rem;
+}
+
+.mlp-page--polished :where(.mlp-mba__specification-focus, .mlp-masters__specification-focus) > span {
+  font-size: var(--mlp-type-caption);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1.35;
+  text-transform: uppercase;
+  color: var(--mlp-red);
+}
+
+.mlp-page--polished :where(.mlp-mba__specification-focus, .mlp-masters__specification-focus) > strong {
+  min-width: 0;
+  font-size: var(--mlp-type-body);
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--mlp-navy);
+}
+
+.mlp-page--polished :where(.mlp-mba__specification, .mlp-masters__specification) dl {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem 1.25rem;
+  margin: 0;
+}
+
+.mlp-page--polished :where(.mlp-mba__specification, .mlp-masters__specification) dl > div {
+  display: grid;
+  gap: 0.25rem;
+  min-width: 0;
+  padding-top: 0.65rem;
+  border-top: 1px solid var(--mlp-line-dark);
+}
+
+.mlp-page--polished :where(.mlp-mba__specification, .mlp-masters__specification) dt {
+  font-size: var(--mlp-type-caption);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  line-height: 1.35;
+  text-transform: uppercase;
+  color: var(--mlp-muted-on-paper);
+}
+
+.mlp-page--polished :where(.mlp-mba__specification, .mlp-masters__specification) dd {
+  margin: 0;
+  font-size: var(--mlp-type-body);
+  line-height: 1.55;
+  color: var(--mlp-ink);
+}
+
+.mlp-page--polished :where(.mlp-mba__specification-note, .mlp-masters__specification-note) {
+  margin: 0;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--mlp-line-dark);
+  font-size: var(--mlp-type-caption);
+  line-height: 1.5;
+  color: var(--mlp-muted-on-paper);
+}
+
+@media (max-width: 620px) {
+  .mlp-page--polished :where(.mlp-mba__program, .mlp-masters__program) summary {
+    grid-template-columns: 2rem minmax(0, 1fr) auto;
+    gap: 0.55rem;
+  }
+
+  .mlp-page--polished :where(.mlp-mba__specification, .mlp-masters__specification) {
+    padding-left: 0;
+  }
+
+  .mlp-page--polished :where(.mlp-mba__specification-focus, .mlp-masters__specification-focus),
+  .mlp-page--polished :where(.mlp-mba__specification, .mlp-masters__specification) dl {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mlp-page--polished :where(.mlp-mba__program, .mlp-masters__program) summary {
+    transition: none;
+  }
+}
+
 /* #mlp-testimonials > archive-voices__list — luxury single voice carousel. */
 .mlp-page--polished .luxury-testimonials {
   position: relative;
