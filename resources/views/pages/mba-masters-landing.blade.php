@@ -79,6 +79,8 @@
 <script src="{{ cached_asset('assets/js/pages/mba-masters-trust.js') }}" defer></script>
 <script src="{{ cached_asset('assets/js/pages/mba-masters-overview.js') }}" defer></script>
 <script src="{{ cached_asset('assets/js/pages/mba-masters-archive.js') }}" defer></script>
+<script src="{{ cached_asset('assets/js/pages/mba-masters-class-topics.js') }}" defer></script>
+<script src="{{ cached_asset('assets/js/pages/mba-masters-testimonials.js') }}" defer></script>
 <script src="{{ cached_asset('assets/js/pages/mba-masters-closing.js') }}" defer></script>
 <script src="{{ cached_asset('assets/js/pages/mba-masters-polish.js') }}" defer></script>
 @endpush

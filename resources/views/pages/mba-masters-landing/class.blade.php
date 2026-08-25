@@ -17,6 +17,13 @@
     'Finance' => 'assets/images/homepage/swiss-mba.jpg',
     'IT' => 'assets/images/homepage/mba-management.jpg',
   ];
+  $industryDescriptions = [
+    'Marketing' => 'A perspective shaped by customers, brands and the decisions that move markets.',
+    'Logistics' => 'A perspective shaped by operations, supply chains and the systems behind movement.',
+    'Cyber Security' => 'A perspective shaped by digital risk, resilience and responsible leadership.',
+    'Finance' => 'A perspective shaped by numbers, investment decisions and commercial clarity.',
+    'IT' => 'A perspective shaped by technology, systems and the strategy behind change.',
+  ];
 @endphp
 
 @if(filled($class->heading) || $metrics->isNotEmpty() || $regions->isNotEmpty() || $industries->isNotEmpty())
@@ -90,28 +97,66 @@
 
       @if($industries->isNotEmpty())
       <div class="archive-class__industries" data-archive-element>
-        <div class="archive-class__industry-heading">
-          <p>Professional backgrounds</p>
-          <h3>Different industries. One learning room.</h3>
-        </div>
-        <div class="archive-class__industry-gallery" aria-label="Professional backgrounds">
-          @foreach($industries as $industry)
-          @php
-            $share = max(0, min(100, (float) preg_replace('/[^0-9.]/', '', (string) ($industry['share'] ?? '0'))));
-            $shareText = rtrim(rtrim(number_format($share, 1, '.', ''), '0'), '.');
-            $industryName = (string) ($industry['name'] ?? 'Industry');
-            $industryImage = $industryImages[$industryName] ?? 'assets/images/homepage/business.jpg';
-          @endphp
-          <article class="archive-class__industry-card">
-            <div class="archive-class__industry-image">
-              <img src="{{ media_url($industry['image'] ?? null, $industryImage) }}" alt="{{ $industryName }} professional background" width="720" height="480" loading="lazy" decoding="async">
-            </div>
-            <div class="archive-class__industry-copy">
-              <h4>{{ $industryName }}</h4>
-              <p>{{ $shareText }}% of the cohort</p>
-            </div>
-          </article>
-          @endforeach
+        <div class="topic-desk" data-topic-desk>
+          <div class="topic-desk__topics" role="tablist" aria-label="Professional background topics">
+            @foreach($industries as $ii => $industry)
+            @php
+              $industryName = (string) ($industry['name'] ?? 'Industry');
+              $topicId = 'topic-'.\Illuminate\Support\Str::slug($industryName);
+            @endphp
+            <button
+              type="button"
+              class="topic-desk__topic{{ $ii === 0 ? ' is-active' : '' }}"
+              id="{{ $topicId }}-tab"
+              role="tab"
+              aria-selected="{{ $ii === 0 ? 'true' : 'false' }}"
+              aria-controls="{{ $topicId }}-panel"
+              data-topic-tab="{{ $topicId }}"
+            >{{ $industryName }}</button>
+            @endforeach
+          </div>
+
+          <div class="topic-desk__panels">
+            @foreach($industries as $ii => $industry)
+            @php
+              $industryName = (string) ($industry['name'] ?? 'Industry');
+              $topicId = 'topic-'.\Illuminate\Support\Str::slug($industryName);
+              $share = max(0, min(100, (float) preg_replace('/[^0-9.]/', '', (string) ($industry['share'] ?? '0'))));
+              $shareText = rtrim(rtrim(number_format($share, 1, '.', ''), '0'), '.');
+              $description = $industryDescriptions[$industryName] ?? 'A professional perspective that adds depth to the learning room.';
+              $industryImage = $industryImages[$industryName] ?? 'assets/images/homepage/business.jpg';
+              $stackImages = $industries->reject(fn ($candidate) => ($candidate['name'] ?? '') === $industryName)->take(2);
+            @endphp
+            <article
+              class="topic-desk__panel{{ $ii === 0 ? ' is-active' : '' }}"
+              id="{{ $topicId }}-panel"
+              role="tabpanel"
+              aria-labelledby="{{ $topicId }}-tab"
+              data-topic-panel="{{ $topicId }}"
+              @if($ii !== 0) hidden @endif
+            >
+              <div class="topic-desk__visual" aria-label="{{ $industryName }} visual">
+                @foreach($stackImages as $si => $stackIndustry)
+                @php
+                  $stackName = (string) ($stackIndustry['name'] ?? 'Industry');
+                  $stackImage = $industryImages[$stackName] ?? 'assets/images/homepage/business.jpg';
+                @endphp
+                <span class="topic-desk__stack topic-desk__stack--{{ $si + 1 }}" aria-hidden="true">
+                  <img src="{{ media_url($stackIndustry['image'] ?? null, $stackImage) }}" alt="" width="720" height="480" loading="lazy" decoding="async">
+                </span>
+                @endforeach
+                <figure class="topic-desk__hero-image">
+                  <img src="{{ media_url($industry['image'] ?? null, $industryImage) }}" alt="{{ $industryName }} professional background" width="960" height="640" loading="lazy" decoding="async">
+                </figure>
+              </div>
+              <div class="topic-desk__details">
+                <p class="topic-desk__detail-label">{{ $shareText }}% of the cohort</p>
+                <h3>{{ $industryName }}</h3>
+                <p class="topic-desk__description">{{ $description }}</p>
+              </div>
+            </article>
+            @endforeach
+          </div>
         </div>
       </div>
       @endif
