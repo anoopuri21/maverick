@@ -172,13 +172,13 @@ class ManagePrograms extends Page implements HasForms
                                 Repeater::make('universities')
                                     ->schema([
                                         TextInput::make('name')->label('University')->required()->columnSpanFull(),
+                                        Hidden::make('specification'),
                                         TextInput::make('logo')->hidden(),
                                         MediaPicker::forField('logo', 'mba-masters-landing/mba/logos')->label('Logo'),
                                         TextInput::make('image')->hidden(),
                                         MediaPicker::forField('image', 'mba-masters-landing/mba/campuses')->label('Campus / plate image'),
                                         Repeater::make('programs')
                                             ->schema([
-                                                Hidden::make('specification'),
                                                 TextInput::make('title')->label('Program title')->required(),
                                             ])
                                             ->defaultItems(0)
@@ -216,13 +216,13 @@ class ManagePrograms extends Page implements HasForms
                             ->label('Universities')
                             ->schema([
                                 TextInput::make('name')->label('University')->required()->columnSpanFull(),
+                                Hidden::make('specification'),
                                 TextInput::make('logo')->hidden(),
                                 MediaPicker::forField('logo', 'mba-masters-landing/masters/logos')->label('Logo'),
                                 TextInput::make('image')->hidden(),
                                 MediaPicker::forField('image', 'mba-masters-landing/masters/campuses')->label('Campus / plate image'),
                                 Repeater::make('programs')
                                     ->schema([
-                                        Hidden::make('specification'),
                                         TextInput::make('title')->label('Program title')->required(),
                                     ])
                                     ->defaultItems(0)

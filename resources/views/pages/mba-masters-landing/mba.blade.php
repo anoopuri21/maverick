@@ -1,19 +1,14 @@
-{{-- §6 MBA specializations — big campus plates + typographic program catalog --}}
+{{-- §6 MBA specializations — PDF catalogue with separate programme and specification records --}}
 @php
   $tabs = collect($mba->tabs ?? [])->filter(fn ($t) => filled($t['label'] ?? null))->values();
   $generatedImageBase = 'assets/images/mba-masters-landing/mba/';
   $generatedStage = $generatedImageBase.'mba-stage.jpg';
   $generatedImagesByTab = [
-    'general' => [
-      $generatedImageBase.'general-mba.jpg',
-      $generatedImageBase.'business-management-mba.jpg',
-    ],
-    'specialized' => [$generatedImageBase.'specialized-mba.jpg'],
-    'executive' => [$generatedImageBase.'executive-mba.jpg'],
-    'global' => [$generatedImageBase.'global-mba.jpg'],
+    'rbs-mba' => [$generatedImageBase.'specialized-mba.jpg'],
+    'gau-mba' => [$generatedImageBase.'business-management-mba.jpg'],
+    'gau-emba' => [$generatedImageBase.'executive-mba.jpg'],
+    'uca-global-mba' => [$generatedImageBase.'global-mba.jpg'],
   ];
-  // The MBA section is intentionally locked to its generated visual system.
-  // This prevents stale admin/settings payloads from showing the old stock images.
   $stage = mlp_image_url($generatedStage, ['w' => 1920]);
   $fallbackCampus = $generatedStage;
 @endphp
@@ -40,7 +35,7 @@
 
     @if($tabs->isNotEmpty())
     <div class="mlp-mba__chrome" data-mlp-mba-tabs data-mlp-reveal="mba-chrome">
-      <div class="mlp-mba__tablist" role="tablist" aria-label="MBA categories">
+      <div class="mlp-mba__tablist" role="tablist" aria-label="MBA categories from programme listing">
         @foreach($tabs as $ti => $tab)
         <button
           type="button"
@@ -73,6 +68,7 @@
           $generatedPhoto = $generatedImagesByTab[$tabKey][$ui] ?? $fallbackCampus;
           $photo = mlp_image_url($generatedPhoto, ['w' => 1200, 'fallback' => $fallbackCampus]);
           $programs = collect($uni['programs'] ?? [])->filter(fn ($p) => filled($p['title'] ?? null))->values();
+          $specification = is_array($uni['specification'] ?? null) ? $uni['specification'] : [];
           $initials = collect(preg_split('/\s+/', (string) $uni['name']))
               ->filter()
               ->map(fn ($w) => mb_strtoupper(mb_substr($w, 0, 1)))
@@ -82,7 +78,7 @@
         @endphp
         <article class="mlp-mba__showcase{{ $flip ? ' mlp-mba__showcase--flip' : '' }}" data-mlp-mba-showcase>
           <figure class="mlp-mba__plate">
-            <img class="mlp-mba__uni-photo" src="{{ $photo }}" alt="{{ $uni['name'] }} campus" width="1200" height="800" loading="lazy" decoding="async">
+            <img class="mlp-mba__uni-photo" src="{{ $photo }}" alt="{{ $uni['name'] }}" width="1200" height="800" loading="lazy" decoding="async">
             <figcaption class="mlp-mba__plate-bar">
               <span class="mlp-mba__uni-logo">
                 @if($logo)
@@ -93,65 +89,52 @@
               </span>
               <span class="mlp-mba__plate-copy">
                 <span class="mlp-mba__uni-name">{{ $uni['name'] }}</span>
-                <span class="mlp-mba__uni-count">{{ $programs->count() }} {{ $programs->count() === 1 ? 'program' : 'programs' }}</span>
+                <span class="mlp-mba__uni-count">{{ $programs->count() }} {{ $programs->count() === 1 ? 'programme' : 'programmes' }}</span>
               </span>
             </figcaption>
           </figure>
 
-          <div class="mlp-mba__catalog">
-            <p class="mlp-mba__catalog-label mlp-meta">Programme specifications</p>
-            @if($programs->isNotEmpty())
-            <ol class="mlp-mba__programs">
-            @foreach($programs as $pi => $program)
-            @php
-              $specification = is_array($program['specification'] ?? null) ? $program['specification'] : [];
-            @endphp
-            <li class="mlp-mba__program" data-program-spec>
-              <details>
-                <summary>
+          <div class="mlp-mba__catalog-layout">
+            <div class="mlp-mba__catalog">
+              <p class="mlp-mba__catalog-label mlp-meta">Programmes</p>
+              @if($programs->isNotEmpty())
+              <ol class="mlp-mba__programs" aria-label="{{ $uni['name'] }} programmes">
+                @foreach($programs as $pi => $program)
+                <li class="mlp-mba__program">
                   <span class="mlp-mba__program-index" aria-hidden="true">{{ str_pad((string) ($pi + 1), 2, '0', STR_PAD_LEFT) }}</span>
                   <span class="mlp-mba__program-title">{{ $program['title'] }}</span>
-                  <span class="mlp-mba__program-mark" aria-hidden="true"></span>
-                </summary>
-                @if($specification !== [])
-                <div class="mlp-mba__specification">
-                  <div class="mlp-mba__specification-focus">
-                    <span>Programme focus</span>
-                    <strong>{{ $specification['focus'] ?? $program['title'] }}</strong>
-                  </div>
-                  <dl>
-                    @foreach([
-                      'qualification' => 'Qualification',
-                      'partner' => 'Partner / awarding route',
-                      'duration' => 'Duration',
-                      'delivery' => 'Delivery mode',
-                      'assessment' => 'Assessment',
-                      'entry' => 'Entry route',
-                    ] as $specKey => $specLabel)
-                    @if(filled($specification[$specKey] ?? null))
-                    <div>
-                      <dt>{{ $specLabel }}</dt>
-                      <dd>{{ $specification[$specKey] }}</dd>
-                    </div>
-                    @endif
-                    @endforeach
-                  </dl>
-                  @if(filled($specification['source_status'] ?? null))
-                  <p class="mlp-mba__specification-note">{{ $specification['source_status'] }}</p>
-                  @endif
+                </li>
+                @endforeach
+              </ol>
+              @else
+              <p class="mlp-mba__empty">No programmes listed.</p>
+              @endif
+            </div>
+
+            <aside class="mlp-mba__specification" aria-label="Specifications for {{ $uni['name'] }}">
+              <p class="mlp-mba__specification-label mlp-meta">Specifications</p>
+              @if($specification !== [])
+              <dl>
+                @foreach([
+                  'category' => 'Programme category',
+                  'qualification' => 'Qualification',
+                  'listing_page' => 'Listing page',
+                  'programme_count' => 'Programmes listed',
+                ] as $specKey => $specLabel)
+                @if(filled($specification[$specKey] ?? null))
+                <div>
+                  <dt>{{ $specLabel }}</dt>
+                  <dd>{{ $specification[$specKey] }}</dd>
                 </div>
                 @endif
-              </details>
-            </li>
-            @endforeach
-            </ol>
-            @else
-            <p class="mlp-mba__empty">Programs for this university will appear here.</p>
-            @endif
+                @endforeach
+              </dl>
+              @endif
+            </aside>
           </div>
         </article>
         @empty
-        <p class="mlp-mba__empty">Programs for this category will appear here.</p>
+        <p class="mlp-mba__empty">No university category listed.</p>
         @endforelse
       </div>
       @endforeach
