@@ -68,6 +68,5 @@
     </select>
   </label>
 
-  <p class="mlp-form__privacy-note">Share your details and admissions will guide you on eligibility, fees and next steps.</p>
   <button type="submit" class="mlp-btn mlp-btn--primary mlp-btn--block">Submit enquiry <span aria-hidden="true">↗</span></button>
 </form>

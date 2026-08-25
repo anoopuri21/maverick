@@ -2248,3 +2248,17 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
     height: 1.15rem;
   }
 }
+
+/* Targeted Hero frame and enquiry cleanup. */
+.mlp-page--polished #mlp-hero .prospectus-cover__frame {
+  padding-top: 6rem;
+  padding-bottom: 2rem;
+}
+
+.mlp-page--polished #mlp-hero .prospectus-cover__body {
+  padding: 2rem 15px;
+}
+
+.mlp-page--polished #mlp-hero .prospectus-cover__title {
+  max-width: 100%;
+}

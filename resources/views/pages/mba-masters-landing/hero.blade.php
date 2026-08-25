@@ -72,7 +72,6 @@
 
       <aside class="prospectus-cover__enquiry" id="mlp-enquire" data-hero-enquiry aria-labelledby="prospectus-enquiry-title">
         <div class="prospectus-cover__enquiry-head">
-          <span class="prospectus-cover__enquiry-index">Your enquiry</span>
           <h2 id="prospectus-enquiry-title">{{ $hero->form_title ?? 'Start your enquiry' }}</h2>
           <p>Eligibility, fees &amp; payment — admissions will guide you.</p>
         </div>
