@@ -1,8 +1,21 @@
 {{-- §6 MBA specializations — big campus plates + typographic program catalog --}}
 @php
   $tabs = collect($mba->tabs ?? [])->filter(fn ($t) => filled($t['label'] ?? null))->values();
-  $stage = mlp_image_url($mba->stage_image ?? null, ['w' => 1920, 'fallback' => 'assets/images/mba-masters-landing/mba/mba-stage.jpg']);
-  $fallbackCampus = 'assets/images/mba-masters-landing/mba/mba-stage.jpg';
+  $generatedImageBase = 'assets/images/mba-masters-landing/mba/';
+  $generatedStage = $generatedImageBase.'mba-stage.jpg';
+  $generatedImagesByTab = [
+    'general' => [
+      $generatedImageBase.'general-mba.jpg',
+      $generatedImageBase.'business-management-mba.jpg',
+    ],
+    'specialized' => [$generatedImageBase.'specialized-mba.jpg'],
+    'executive' => [$generatedImageBase.'executive-mba.jpg'],
+    'global' => [$generatedImageBase.'global-mba.jpg'],
+  ];
+  // The MBA section is intentionally locked to its generated visual system.
+  // This prevents stale admin/settings payloads from showing the old stock images.
+  $stage = mlp_image_url($generatedStage, ['w' => 1920]);
+  $fallbackCampus = $generatedStage;
 @endphp
 @if($tabs->isNotEmpty() || filled($mba->heading))
 <section class="mlp-mba" id="mlp-mba" aria-label="MBA specializations">
@@ -56,7 +69,9 @@
         @forelse($unis as $ui => $uni)
         @php
           $logo = media_url($uni['logo'] ?? null, null);
-          $photo = mlp_image_url($uni['image'] ?? null, ['w' => 1200, 'fallback' => $fallbackCampus]);
+          $tabKey = strtolower(trim((string) ($tab['key'] ?? '')));
+          $generatedPhoto = $generatedImagesByTab[$tabKey][$ui] ?? $fallbackCampus;
+          $photo = mlp_image_url($generatedPhoto, ['w' => 1200, 'fallback' => $fallbackCampus]);
           $programs = collect($uni['programs'] ?? [])->filter(fn ($p) => filled($p['title'] ?? null))->values();
           $initials = collect(preg_split('/\s+/', (string) $uni['name']))
               ->filter()

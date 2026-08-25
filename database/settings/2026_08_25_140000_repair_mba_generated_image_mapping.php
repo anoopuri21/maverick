@@ -29,34 +29,37 @@ return new class extends SettingsMigration
                 $base.'general-mba.jpg',
                 $base.'business-management-mba.jpg',
             ],
-            'specialized' => [
-                $base.'specialized-mba.jpg',
-            ],
-            'executive' => [
-                $base.'executive-mba.jpg',
-            ],
-            'global' => [
-                $base.'global-mba.jpg',
-            ],
+            'specialized' => [$base.'specialized-mba.jpg'],
+            'executive' => [$base.'executive-mba.jpg'],
+            'global' => [$base.'global-mba.jpg'],
         ];
 
+        $changed = false;
         foreach ($tabs as &$tab) {
             $tabKey = strtolower(trim((string) ($tab['key'] ?? '')));
             $tabImages = $imagesByTab[$tabKey] ?? [];
 
             foreach ($tab['universities'] ?? [] as $universityIndex => &$university) {
-                if (isset($tabImages[$universityIndex])) {
-                    $university['image'] = $tabImages[$universityIndex];
-                    $university['image_asset_id'] = null;
+                if (! isset($tabImages[$universityIndex])) {
+                    continue;
                 }
+
+                $image = $tabImages[$universityIndex];
+                if (($university['image'] ?? null) !== $image || ($university['image_asset_id'] ?? null) !== null) {
+                    $changed = true;
+                }
+                $university['image'] = $image;
+                $university['image_asset_id'] = null;
             }
             unset($university);
         }
         unset($tab);
 
-        $this->migrator->update(
-            'mba_masters_mba.tabs',
-            fn () => $tabs
-        );
+        if ($changed) {
+            $this->migrator->update(
+                'mba_masters_mba.tabs',
+                fn () => $tabs
+            );
+        }
     }
 };
