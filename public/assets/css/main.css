@@ -5646,10 +5646,15 @@ body.modal-open {
 /* ----- Contact ----- */
 .footer__contact {
   font-style: normal;
-  display: flex;
-  flex-direction: column;
-  gap: 1.75rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 1.75rem 1.5rem;
   margin-bottom: 2rem;
+}
+
+.footer__contact > .footer__contact-item {
+  grid-column: 1 / -1;
 }
 
 .footer__locale {
@@ -5814,6 +5819,14 @@ body.modal-open {
     grid-template-columns: 1fr;
     gap: 3rem;
     padding-bottom: 3rem;
+  }
+
+  .footer__contact {
+    grid-template-columns: 1fr;
+  }
+
+  .footer__contact > .footer__contact-item {
+    grid-column: auto;
   }
 
   .footer__about,
