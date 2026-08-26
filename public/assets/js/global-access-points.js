@@ -84,16 +84,20 @@
     graticule = window.d3.geoGraticule().step([15, 15])();
   }
 
-  function visibleCenter(coords) {
-    if (!window.d3 || !coords) return null;
-    var viewCenter = [-rotation[0], -rotation[1]];
-    return window.d3.geoDistance(coords, viewCenter) < Math.PI / 2;
+  function visibleCenter(coords, margin) {
+    if (!window.d3 || !coords) return false;
+    var viewCenter = projection && projection.invert
+      ? projection.invert([width / 2, height / 2])
+      : [-rotation[0], -rotation[1]];
+    var visibilityMargin = typeof margin === "number" ? margin : 0;
+    return window.d3.geoDistance(coords, viewCenter) <= Math.PI / 2 - visibilityMargin;
   }
 
-  function projectedCenter(center) {
-    if (!visibleCenter(center.coords)) return null;
+  function projectedCenter(center, margin) {
+    if (!visibleCenter(center.coords, margin)) return null;
     var point = projection(center.coords);
     if (!point || !Number.isFinite(point[0]) || !Number.isFinite(point[1])) return null;
+    if (Math.hypot(point[0] - width / 2, point[1] - height / 2) > radius - 2) return null;
     return point;
   }
 
@@ -120,45 +124,86 @@
     context.restore();
   }
 
-  function drawCountryLabel(country, point, active) {
-    var centerX = width / 2;
-    var alignLeft = point[0] >= centerX;
-    var labelX = point[0] + (alignLeft ? 15 : -15);
-    var labelY = point[1] - 13;
+  function createLabelCandidate(point, alignLeft, offsetY) {
     context.font = "500 10px Poppins, sans-serif";
-    context.textBaseline = "middle";
-    context.textAlign = alignLeft ? "left" : "right";
-    var textWidth = context.measureText(country.name).width;
+    var textWidth = context.measureText(point.country.name).width;
     var boxWidth = textWidth + 12;
+    var boxHeight = 18;
+    var labelX = point.point[0] + (alignLeft ? 15 : -15);
+    var labelY = point.point[1] - 13 + offsetY;
     var boxLeft = alignLeft ? labelX - 5 : labelX - boxWidth + 5;
     var boxTop = labelY - 9;
+    var edgePadding = 5;
 
-    if (boxLeft < 5) {
-      boxLeft = 5;
-      labelX = boxLeft + 5;
-      context.textAlign = "left";
-    } else if (boxLeft + boxWidth > width - 5) {
-      boxLeft = width - boxWidth - 5;
-      labelX = boxLeft + boxWidth - 5;
-      context.textAlign = "right";
+    if (
+      boxLeft < edgePadding ||
+      boxLeft + boxWidth > width - edgePadding ||
+      boxTop < edgePadding ||
+      boxTop + boxHeight > height - edgePadding
+    ) {
+      return null;
     }
-    boxTop = Math.max(5, Math.min(height - 23, boxTop));
-    labelY = boxTop + 9;
+
+    return {
+      country: point.country,
+      point: point.point,
+      active: point.active,
+      alignLeft: alignLeft,
+      labelX: labelX,
+      labelY: labelY,
+      boxLeft: boxLeft,
+      boxTop: boxTop,
+      boxWidth: boxWidth,
+      boxHeight: boxHeight,
+    };
+  }
+
+  function labelsOverlap(first, second) {
+    var gap = 3;
+    return first.boxLeft < second.boxLeft + second.boxWidth + gap
+      && first.boxLeft + first.boxWidth + gap > second.boxLeft
+      && first.boxTop < second.boxTop + second.boxHeight + gap
+      && first.boxTop + first.boxHeight + gap > second.boxTop;
+  }
+
+  function placeCountryLabel(point, placedLabels) {
+    var inwardAlignment = point.point[0] < width / 2;
+    var alignments = [inwardAlignment, !inwardAlignment];
+    var offsets = [0, -22, 22, -44, 44, -66, 66];
+
+    for (var alignmentIndex = 0; alignmentIndex < alignments.length; alignmentIndex += 1) {
+      for (var offsetIndex = 0; offsetIndex < offsets.length; offsetIndex += 1) {
+        var candidate = createLabelCandidate(point, alignments[alignmentIndex], offsets[offsetIndex]);
+        if (!candidate) continue;
+        var overlaps = placedLabels.some(function (placedLabel) {
+          return labelsOverlap(candidate, placedLabel);
+        });
+        if (!overlaps) return candidate;
+      }
+    }
+
+    return null;
+  }
+
+  function drawCountryLabel(label) {
+    context.font = "500 10px Poppins, sans-serif";
+    context.textBaseline = "middle";
+    context.textAlign = label.alignLeft ? "left" : "right";
 
     context.beginPath();
-    context.moveTo(point[0], point[1] + 1);
-    context.lineTo(labelX, labelY);
-    context.strokeStyle = active ? "rgba(178, 2, 2, 0.74)" : "rgba(15, 41, 131, 0.36)";
-    context.lineWidth = active ? 1.2 : 0.7;
+    context.moveTo(label.point[0], label.point[1] + 1);
+    context.lineTo(label.labelX, label.labelY);
+    context.strokeStyle = label.active ? "rgba(178, 2, 2, 0.74)" : "rgba(15, 41, 131, 0.36)";
+    context.lineWidth = label.active ? 1.2 : 0.7;
     context.stroke();
 
-    context.fillStyle = active ? "rgba(178, 2, 2, 0.12)" : "rgba(255, 255, 255, 0.8)";
-    context.fillRect(boxLeft, boxTop, boxWidth, 18);
-    context.strokeStyle = active ? "rgba(178, 2, 2, 0.72)" : "rgba(15, 41, 131, 0.22)";
+    context.fillStyle = label.active ? "rgba(178, 2, 2, 0.12)" : "rgba(255, 255, 255, 0.8)";
+    context.fillRect(label.boxLeft, label.boxTop, label.boxWidth, label.boxHeight);
+    context.strokeStyle = label.active ? "rgba(178, 2, 2, 0.72)" : "rgba(15, 41, 131, 0.22)";
     context.lineWidth = 0.8;
-    context.strokeRect(boxLeft, boxTop, boxWidth, 18);
-    context.fillStyle = active ? "#b20202" : "#071444";
-    context.fillText(country.name, labelX, labelY);
+    context.strokeRect(label.boxLeft, label.boxTop, label.boxWidth, label.boxHeight);
+    context.fillStyle = label.active ? "#b20202" : "#071444";
+    context.fillText(label.country.name, label.labelX, label.labelY);
   }
 
   function drawGlobe(now) {
@@ -208,8 +253,9 @@
       context.stroke();
     });
 
+    var visibleLabels = [];
     selectedCenters.forEach(function (country) {
-      var point = projectedCenter(country);
+      var point = projectedCenter(country, 0.035);
       if (!point) return;
 
       var highlighted = activeCountryId === country.id || (hoveredCountry && hoveredCountry.id === country.id);
@@ -222,7 +268,29 @@
       context.lineWidth = highlighted ? 1.2 : 0.7;
       context.stroke();
       drawLocationPin(point, highlighted);
-      drawCountryLabel(country, point, highlighted);
+
+      var labelPoint = projectedCenter(country, 0.12);
+      if (labelPoint) {
+        visibleLabels.push({
+          country: country,
+          point: labelPoint,
+          active: highlighted,
+          distance: Math.hypot(labelPoint[0] - centerX, labelPoint[1] - centerY),
+        });
+      }
+    });
+
+    visibleLabels.sort(function (first, second) {
+      if (first.active !== second.active) return first.active ? -1 : 1;
+      return first.distance - second.distance;
+    });
+
+    var placedLabels = [];
+    visibleLabels.forEach(function (point) {
+      var label = placeCountryLabel(point, placedLabels);
+      if (!label) return;
+      placedLabels.push(label);
+      drawCountryLabel(label);
     });
 
     context.restore();
@@ -237,7 +305,7 @@
     var nearestDistance = Infinity;
 
     selectedCenters.forEach(function (country) {
-      var point = projectedCenter(country);
+      var point = projectedCenter(country, 0.035);
       if (!point) return;
       var distance = Math.hypot(point[0] - x, point[1] - y);
       if (distance < nearestDistance) {
