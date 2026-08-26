@@ -1,0 +1,345 @@
+/* DEI Matrix — dark coordinate system */
+#dei-matrix {
+  --dei-ink: var(--color-mba-dark-blue);
+  --dei-red: var(--color-mba-red);
+  --dei-blue: var(--color-mba-blue);
+  --dei-warm-white: var(--color-warm-white);
+  --dei-rule: rgba(245, 240, 235, 0.2);
+  position: relative;
+  overflow: hidden;
+  background: var(--dei-ink);
+  color: var(--dei-warm-white);
+}
+
+#dei-matrix::before {
+  position: absolute;
+  top: -14rem;
+  left: -12rem;
+  width: min(44vw, 36rem);
+  aspect-ratio: 1;
+  border: 1px solid rgba(245, 240, 235, 0.08);
+  border-radius: 50%;
+  content: "";
+  pointer-events: none;
+}
+
+#dei-matrix .container {
+  position: relative;
+  z-index: 1;
+}
+
+#dei-matrix .section-label {
+  margin-bottom: 1.5rem;
+}
+
+#dei-matrix .section-label::before {
+  background: var(--dei-red);
+}
+
+#dei-matrix .section-label span {
+  color: rgba(245, 240, 235, 0.76);
+}
+
+#dei-matrix .deim__intro {
+  width: min(100%, 48rem);
+  margin-bottom: clamp(2.75rem, 5vw, 5rem);
+}
+
+#dei-matrix .deim__heading {
+  max-width: 39rem;
+  margin: 0;
+  color: var(--dei-warm-white);
+}
+
+#dei-matrix .deim__heading-line {
+  display: block;
+}
+
+#dei-matrix .deim__description {
+  max-width: 42rem;
+  margin: 1.35rem 0 0;
+  color: rgba(245, 240, 235, 0.7);
+}
+
+#dei-matrix .deim__matrix-panel {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid rgba(245, 240, 235, 0.24);
+  background: linear-gradient(135deg, rgba(15, 41, 131, 0.24), rgba(7, 20, 68, 0.92) 48%, rgba(0, 0, 0, 0.2));
+}
+
+#dei-matrix .deim__matrix-grid {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-image:
+    linear-gradient(90deg, rgba(245, 240, 235, 0.09) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(245, 240, 235, 0.09) 1px, transparent 1px);
+  background-size: 25% 100%, 100% 33.333%;
+  pointer-events: none;
+}
+
+#dei-matrix .deim__axis {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 25%;
+  z-index: -1;
+  width: 1px;
+  background: linear-gradient(180deg, transparent 0%, rgba(178, 2, 2, 0.16) 10%, rgba(178, 2, 2, 0.78) 48%, rgba(178, 2, 2, 0.16) 90%, transparent 100%);
+  pointer-events: none;
+}
+
+#dei-matrix .deim__rows {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#dei-matrix .deim__row {
+  border-top: 1px solid var(--dei-rule);
+}
+
+#dei-matrix .deim__row:first-child {
+  border-top: 0;
+}
+
+#dei-matrix .deim__row-inner {
+  display: grid;
+  grid-template-columns: minmax(9rem, 0.28fr) minmax(0, 1fr) minmax(13rem, 0.42fr);
+  gap: clamp(1.5rem, 4vw, 4.5rem);
+  align-items: center;
+  min-height: 10.5rem;
+  padding: 1.65rem clamp(1.35rem, 3.5vw, 3.5rem);
+}
+
+#dei-matrix .deim__row-marker {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+}
+
+#dei-matrix .deim__row-letter {
+  color: transparent;
+  font-family: var(--font-display);
+  font-size: clamp(4.5rem, 8vw, 8rem);
+  font-weight: var(--fw-medium);
+  letter-spacing: -0.08em;
+  line-height: 0.72;
+  -webkit-text-stroke: 1px rgba(245, 240, 235, 0.34);
+}
+
+#dei-matrix .deim__row-main {
+  max-width: 35rem;
+}
+
+#dei-matrix .deim__row-heading {
+  margin: 0;
+  color: var(--dei-warm-white);
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 2.1vw, 2.15rem);
+  font-weight: var(--fw-medium);
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+}
+
+#dei-matrix .deim__row-definition {
+  margin: 0.8rem 0 0;
+  color: rgba(245, 240, 235, 0.72);
+  font-family: var(--font-body);
+  font-size: clamp(0.8rem, 1vw, 0.98rem);
+  line-height: 1.75;
+}
+
+#dei-matrix .deim__row-practice {
+  max-width: 15rem;
+  margin: 0;
+  padding-left: 1.15rem;
+  border-left: 1px solid rgba(178, 2, 2, 0.72);
+  color: var(--dei-warm-white);
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 1.3vw, 1.35rem);
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+
+#dei-matrix .deim__matrix-panel {
+  border-radius: 2px;
+  box-shadow: 0 1.75rem 4rem rgba(0, 0, 0, 0.18);
+}
+
+#dei-matrix .deim__row:nth-child(even) {
+  background: rgba(245, 240, 235, 0.025);
+}
+
+#dei-matrix .deim__row-main,
+#dei-matrix .deim__row-practice {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 1100px) {
+  #dei-matrix .deim__row-inner {
+    grid-template-columns: minmax(7rem, 0.24fr) minmax(0, 1fr) minmax(10rem, 0.35fr);
+    gap: clamp(1.25rem, 3vw, 2.75rem);
+    padding-right: 1.75rem;
+    padding-left: 1.75rem;
+  }
+
+  #dei-matrix .deim__row-definition {
+    line-height: 1.65;
+  }
+}
+
+@media (max-width: 760px) {
+  #dei-matrix::before {
+    top: -8rem;
+    left: -14rem;
+    width: 28rem;
+  }
+
+  #dei-matrix .deim__intro {
+    margin-bottom: 2.75rem;
+  }
+
+  #dei-matrix .deim__description {
+    font-size: 0.92rem;
+  }
+
+  #dei-matrix .deim__matrix-grid {
+    background-size: 50% 100%, 100% 20%;
+  }
+
+  #dei-matrix .deim__axis {
+    left: 1.15rem;
+  }
+
+  #dei-matrix .deim__row-inner {
+    grid-template-columns: 4.25rem minmax(0, 1fr);
+    gap: 1rem;
+    align-items: start;
+    min-height: 0;
+    padding: 1.5rem 1.25rem;
+  }
+
+  #dei-matrix .deim__row-marker {
+    align-items: flex-start;
+    padding-top: 0.2rem;
+  }
+
+  #dei-matrix .deim__row-letter {
+    font-size: clamp(3.25rem, 15vw, 4.75rem);
+  }
+
+  #dei-matrix .deim__row-main {
+    max-width: none;
+  }
+
+  #dei-matrix .deim__row-heading {
+    font-size: 1.45rem;
+  }
+
+  #dei-matrix .deim__row-definition {
+    font-size: 0.82rem;
+    line-height: 1.65;
+  }
+
+  #dei-matrix .deim__row-practice {
+    grid-column: 2;
+    max-width: none;
+    margin-top: 0.85rem;
+    padding-left: 0.9rem;
+    font-size: 1.05rem;
+  }
+}
+
+@media (max-width: 480px) {
+  #dei-matrix .deim__row-inner {
+    grid-template-columns: 3.5rem minmax(0, 1fr);
+    gap: 0.85rem;
+    padding: 1.35rem 1rem;
+  }
+
+  #dei-matrix .deim__axis {
+    left: 0.9rem;
+  }
+
+  #dei-matrix .deim__row-letter {
+    font-size: 3.4rem;
+  }
+
+  #dei-matrix .deim__row-definition {
+    font-size: 0.78rem;
+  }
+
+  #dei-matrix .deim__row-practice {
+    font-size: 0.98rem;
+  }
+}
+
+@keyframes deim-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes deim-axis-in {
+  from {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+#dei-matrix .deim__intro,
+#dei-matrix .deim__matrix-panel,
+#dei-matrix .deim__row {
+  animation: deim-fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+#dei-matrix .deim__intro {
+  animation-delay: 0.04s;
+}
+
+#dei-matrix .deim__matrix-panel {
+  animation-delay: 0.14s;
+}
+
+#dei-matrix .deim__row:nth-child(1) {
+  animation-delay: 0.2s;
+}
+
+#dei-matrix .deim__row:nth-child(2) {
+  animation-delay: 0.29s;
+}
+
+#dei-matrix .deim__row:nth-child(3) {
+  animation-delay: 0.38s;
+}
+
+#dei-matrix .deim__axis {
+  transform-origin: center top;
+  animation: deim-axis-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.22s both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #dei-matrix *,
+  #dei-matrix *::before,
+  #dei-matrix *::after {
+    animation: none !important;
+    scroll-behavior: auto !important;
+    transition: none !important;
+    transform: none !important;
+  }
+}
