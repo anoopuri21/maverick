@@ -73,13 +73,12 @@
   transition: color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease, padding-left 0.3s ease;
 }
 
-.gap-globe__country-list button > span {
-  display: inline-flex;
-  align-items: center;
-  color: inherit;
-  font-size: 1rem;
-  line-height: 1;
-  letter-spacing: 0;
+.gap-globe__country-list .gap-globe__country-flag {
+  display: block;
+  width: 1.25rem;
+  height: 0.9375rem;
+  object-fit: cover;
+  border: 1px solid rgba(7, 20, 68, 0.14);
 }
 
 .gap-globe__country-list button strong {
@@ -105,8 +104,8 @@
   background: rgba(178, 2, 2, 0.08);
 }
 
-.gap-globe__country-list button.is-active > span {
-  color: var(--gap-red);
+.gap-globe__country-list button.is-active .gap-globe__country-flag {
+  border-color: var(--gap-red);
 }
 
 .gap-globe__visual {

@@ -54,15 +54,10 @@
       <aside class="gap-globe__country-panel" aria-label="Maverick Access Point countries">
         <ol class="gap-globe__country-list">
           @foreach($globalAccessPointsCountries as $country)
-          @php
-            $countryCode = strtoupper((string) ($country['code'] ?? ''));
-            $countryFlag = collect(str_split($countryCode))
-              ->map(fn ($letter) => mb_chr(127397 + ord($letter) - 65))
-              ->implode('');
-          @endphp
+          @php $countryCode = strtolower(trim((string) ($country['code'] ?? ''))); @endphp
           <li>
             <button type="button" data-gap-country="{{ $country['id'] }}" aria-pressed="false">
-              <span class="gap-globe__country-flag" aria-hidden="true">{{ $countryFlag }}</span>
+              <img class="gap-globe__country-flag" src="https://flagcdn.com/w20/{{ $countryCode }}.png" alt="" width="20" height="15" loading="lazy" decoding="async">
               <strong>{{ $country['name'] }}</strong>
             </button>
           </li>

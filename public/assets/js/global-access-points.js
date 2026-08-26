@@ -10,6 +10,7 @@
   if (!stage) return;
 
   var canvas = stage.querySelector("#gap-globe");
+  var visual = stage.querySelector(".gap-globe__visual");
   var countryButtons = stage.querySelectorAll("[data-gap-country]");
   var status = stage.querySelector("[data-gap-globe-status]");
 
@@ -61,7 +62,7 @@
   }
 
   function setupCanvas() {
-    var rect = stage.getBoundingClientRect();
+    var rect = (visual || stage).getBoundingClientRect();
     width = Math.max(1, rect.width);
     height = Math.max(1, rect.height);
     devicePixelRatio = Math.min(window.devicePixelRatio || 1, 2);
@@ -71,7 +72,7 @@
     canvas.style.height = height + "px";
     context.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
 
-    radius = Math.min(width, height) * 0.42;
+    radius = Math.min(width, height) * 0.48;
     projection = window.d3
       .geoOrthographic()
       .translate([width / 2, height / 2])
