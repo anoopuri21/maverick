@@ -6,11 +6,7 @@
       </div>
 
       <h2 id="ask-quotient-heading" class="askq__heading section-title">
-        <span class="askq__heading-line">
-          <span class="text-reveal-wrapper">
-            <span class="text-reveal-inner">The ASK Quotient</span>
-          </span>
-        </span>
+        <span class="askq__heading-line">The ASK Quotient</span>
       </h2>
 
       <p class="askq__description body-text">
