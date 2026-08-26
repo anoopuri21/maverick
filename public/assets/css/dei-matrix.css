@@ -178,6 +178,21 @@
   text-transform: uppercase;
 }
 
+#dei-matrix .deim__matrix-panel {
+  border-radius: 2px;
+  box-shadow: 0 1.75rem 4rem rgba(0, 0, 0, 0.18);
+}
+
+#dei-matrix .deim__row:nth-child(even) {
+  background: rgba(245, 240, 235, 0.025);
+}
+
+#dei-matrix .deim__row-main,
+#dei-matrix .deim__row-practice {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
 @media (max-width: 1100px) {
   #dei-matrix .deim__row-inner {
     grid-template-columns: minmax(7rem, 0.24fr) minmax(0, 1fr) minmax(10rem, 0.35fr);
