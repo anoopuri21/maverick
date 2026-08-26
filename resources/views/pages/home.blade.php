@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('title', ($homeSeo->meta_title ?? 'Maverick Business Academy | Transforming Learners into Global Leaders'))
-@section('meta_description', ($homeSeo->meta_description ?? 'Globally recognized qualifications, international pathways, and career-focused learning.'))
+@section('seo_from_partial')
+@endsection
 
 @push('head')
     @include('partials.seo-meta', ['seo' => $homeSeo])

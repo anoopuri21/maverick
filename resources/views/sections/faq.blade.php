@@ -1,3 +1,5 @@
+@php $homepageFaqs = collect($homepageFaqs ?? []); @endphp
+@if($homepageFaqs->isNotEmpty())
 <section id="faq" class="faq section-wrapper section--light" aria-label="Frequently Asked Questions">
 
   <div class="container">
@@ -30,14 +32,14 @@
         </p>
         <div>
           <img
-            src="https://img.magnific.com/free-vector/tiny-business-people-with-giant-faq-letters-gadget-users-searching-instructions-useful-information-flat-vector-illustration-customer-support-solution-concept-banner-landing-web-page_74855-23409.jpg"
+            src="{{ cached_asset('assets/images/homepage/mba-management.jpg') }}"
             class="faq-img" alt="Frequently Asked Questions" loading="lazy" decoding="async" />
         </div>
 
       </div>
 
       <div class="faq__accordion">
-        @forelse(($homepageFaqs ?? collect()) as $index => $faq)
+        @foreach($homepageFaqs as $index => $faq)
           <div class="faq__item {{ $index === 0 ? 'active' : '' }}">
             <button class="faq__question">
               <span>{{ $faq->question }}</span>
@@ -47,18 +49,7 @@
               {!! rich_html($faq->answer ?? null) !!}
             </div>
           </div>
-        @empty
-          {{-- Fallback static FAQs --}}
-          <div class="faq__item active">
-            <button class="faq__question">
-              <span>Are Maverick qualifications internationally recognised?</span>
-              <span class="faq__icon">+</span>
-            </button>
-            <div class="faq__answer">
-              <p>Maverick Business Academy partners with internationally recognised awarding bodies and universities, ensuring qualifications hold global value and credibility.</p>
-            </div>
-          </div>
-        @endforelse
+        @endforeach
       </div>
 
     </div>
@@ -66,3 +57,4 @@
   </div>
 
 </section>
+@endif

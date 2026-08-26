@@ -1,3 +1,5 @@
+@php $accreditationLogos = collect($accreditationLogos ?? []); @endphp
+@if($accreditationLogos->isNotEmpty())
 <section id="accreditations" class="accreditations section-wrapper section--light"
   aria-label="Accreditations, Partnerships & Recognitions">
   <div class="accred-container">
@@ -28,7 +30,7 @@
     <!-- Logo Slider -->
     <div class="accred-slider-wrapper">
       <div class="accred-slider-track">
-        @forelse(($accreditationLogos ?? collect()) as $logo)
+        @foreach($accreditationLogos as $logo)
           <div class="accred-card" data-name="{{ $logo->name }}">
             <div class="accred-card__logo-wrapper">
               @if($url = media_url($logo->logo_url ?? null))
@@ -36,13 +38,7 @@
               @endif
             </div>
           </div>
-        @empty
-          <div class="accred-card" data-name="Accreditation">
-            <div class="accred-card__logo-wrapper">
-              <img src="{{ cached_asset('assets/images/alumni/alumn-1.png') }}" alt="Accreditation" loading="lazy" decoding="async" />
-            </div>
-          </div>
-        @endforelse
+        @endforeach
       </div>
     </div>
 
@@ -54,3 +50,4 @@
     </div>
   </div>
 </section>
+@endif

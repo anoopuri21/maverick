@@ -1,3 +1,5 @@
+@php $facultyInsights = collect($facultyInsights ?? []); @endphp
+@if($facultyInsights->isNotEmpty())
 <section id="faculty-insights" class="insights section-wrapper section--light" aria-label="Faculty Insights">
   <div class="container insights__inner">
     <div class="insights__header">
@@ -28,7 +30,7 @@
       </button>
       <div class="insights__scroll" data-scroll-container>
         <div class="insights__track">
-          @forelse($facultyInsights as $insight)
+          @foreach($facultyInsights as $insight)
             <article class="insights__card fade-up">
               <div class="insights__card-image">
                 @if($url = media_url($insight->image_url ?? null))
@@ -50,9 +52,7 @@
                 @endif
               </div>
             </article>
-          @empty
-            <p class="body-text" style="padding: 2rem;">No insights available yet.</p>
-          @endforelse
+          @endforeach
         </div>
       </div>
       <button class="scroll-row__btn scroll-row__btn--next" aria-label="Scroll right" data-scroll-next>
@@ -90,3 +90,4 @@
   </div>
   --}}
 </section>
+@endif

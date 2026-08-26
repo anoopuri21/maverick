@@ -1,3 +1,5 @@
+@php $events = collect($events ?? []); @endphp
+@if($events->isNotEmpty())
 <section id="upcoming-events" class="events section-wrapper section--dark" aria-label="Upcoming Events">
   <div class="container events__inner">
     <div class="events__header">
@@ -28,7 +30,7 @@
       </button>
       <div class="events__scroll" data-scroll-container>
         <div class="events__track">
-          @forelse(($events ?? collect()) as $event)
+          @foreach($events as $event)
             <article class="events__card fade-up">
               <div class="events__card-date">
                 <span class="events__date-day">{{ $event->event_date?->format('d') ?? '' }}</span>
@@ -41,9 +43,7 @@
                 @endif
               </div>
             </article>
-          @empty
-            <p class="body-text" style="padding: 2rem; color: #fff;">No upcoming events.</p>
-          @endforelse
+          @endforeach
         </div>
       </div>
       <button class="scroll-row__btn scroll-row__btn--next" aria-label="Scroll right" data-scroll-next>
@@ -54,3 +54,4 @@
     </div>
   </div>
 </section>
+@endif

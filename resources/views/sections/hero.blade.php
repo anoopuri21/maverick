@@ -9,11 +9,9 @@
             <video class="hero__video" autoplay muted loop playsinline preload="metadata">
                 <source src="{{ $hero->video_url }}" type="video/webm" />
             </video>
-            <div class="hero__video-fallback img-placeholder"></div>
         @else
             <div class="hero__video-fallback img-placeholder"></div>
         @endif
-        <div class="hero__video-fallback img-placeholder"></div>
     </div>
 
     <div class="hero__overlay" aria-hidden="true"></div>

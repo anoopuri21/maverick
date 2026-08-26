@@ -40,6 +40,6 @@ class Testimonial extends Model
     public function getAutoThumbnailAttribute(): string
     {
         return youtube_thumbnail_url($this->video_url, $this->thumbnail_url)
-            ?: asset('assets/images/placeholder.jpg');
+            ?: asset('assets/images/homepage/mba.jpg');
     }
 }

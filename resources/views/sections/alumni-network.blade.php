@@ -1,3 +1,5 @@
+@php $alumniLogos = collect($alumniLogos ?? []); @endphp
+@if($alumniLogos->isNotEmpty())
 <section id="alumni-network" class="alumni section-wrapper section--light" aria-label="Alumni Network">
   <div class=" container alumni__inner">
     <div class="network__header">
@@ -27,7 +29,7 @@
     <!-- Company Logo Slider -->
     <div class="network-slider-wrapper">
       <div class="network-slider-track">
-        @forelse($alumniLogos as $logo)
+        @foreach($alumniLogos as $logo)
           <div class="network-card" data-name="{{ $logo->name }}">
             <div class="network-logo-wrapper">
               @if($url = media_url($logo->logo_url ?? null))
@@ -35,14 +37,7 @@
               @endif
             </div>
           </div>
-        @empty
-          {{-- Fallback static cards if no data --}}
-          <div class="network-card" data-name="Goldman Sachs">
-            <div class="network-logo-wrapper">
-              <img src="{{ cached_asset('assets/images/alumni/alumn-7.png') }}" alt="Goldman Sachs" loading="lazy" decoding="async" />
-            </div>
-          </div>
-        @endforelse
+        @endforeach
       </div>
     </div>
 
@@ -54,3 +49,4 @@
     </div>
   </div>
 </section>
+@endif
