@@ -10,6 +10,7 @@
 
 @push('styles')
     <link rel="stylesheet" href="{{ cached_asset('assets/css/global-access-points.css') }}" />
+    <link rel="stylesheet" href="{{ cached_asset('assets/css/ask-quotient.css') }}" />
 @endpush
 
 @push('scripts')
