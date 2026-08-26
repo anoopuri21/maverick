@@ -1,17 +1,20 @@
 <section id="university-partners" class="partners section-wrapper section--dark" aria-label="University Partners">
+  @php
+    $partnersMap = $partnersMap ?? safe_settings(\App\Settings\GlobalPartnersMapSettings::class);
+  @endphp
   <div class="container partners__inner">
     <!-- ========== HEADER ========== -->
     <div class="partners__header">
-      <div class="section-label"><span>Global Network</span></div>
+      <div class="section-label"><span>{{ $partnersMap->label ?? 'Global Network' }}</span></div>
       <h2 class="partners__heading section-title">
         <span class="hwdi__heading-line">
           <span class="text-reveal-wrapper">
-            <span class="text-reveal-inner">Our Global</span>
+            <span class="text-reveal-inner">{{ $partnersMap->heading_line1 ?? 'Our Global' }}</span>
           </span>
         </span>
         <span class="hwdi__heading-line">
           <span class="text-reveal-wrapper">
-            <span class="text-reveal-inner">Academic Network</span>
+            <span class="text-reveal-inner">{{ $partnersMap->heading_line2 ?? 'Academic Network' }}</span>
           </span>
         </span>
       </h2>

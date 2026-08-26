@@ -9,12 +9,8 @@
         <h2 class="alumni__heading section-title">
           <span class="hwdi__heading-line">
             <span class="text-reveal-wrapper">
-              <span class="text-reveal-inner">Our Alumni</span>
-            </span>
-          </span>
-          <span class="hwdi__heading-line hwdi__heading-line--red">
-            <span class="text-reveal-wrapper">
-              <span class="text-reveal-inner">Work With</span>
+              <span class="text-reveal-inner">Diverse 
+              <span class="color-red">Alumni</span></span>
             </span>
           </span>
         </h2>

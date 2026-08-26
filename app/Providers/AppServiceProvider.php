@@ -20,6 +20,7 @@ use App\Models\ProgramCategory;
 use App\Models\Testimonial;
 use App\Models\UniversityPartner;
 use App\Settings\FinalCtaSettings;
+use App\Settings\GlobalPartnersMapSettings;
 use App\Settings\WhatWeDoSettings;
 use App\Support\PublicContentCache;
 use Illuminate\Support\Facades\Event as EventFacade;
@@ -138,6 +139,8 @@ class AppServiceProvider extends ServiceProvider
         });
 
         View::composer('sections.university-partners', function ($view) {
+            $view->with('partnersMap', safe_settings(GlobalPartnersMapSettings::class));
+
             if ($view->offsetExists('universityPartners') && $view->offsetExists('universityPartnersJson')) {
                 return;
             }

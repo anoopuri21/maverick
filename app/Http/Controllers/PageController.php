@@ -773,7 +773,7 @@ class PageController extends Controller
 
             $partnerUniversities = PublicContentCache::serializeRows(
                 GupPartnerUniversity::query()
-                    ->select('id', 'slug', 'name', 'abbreviation', 'country', 'flag_emoji', 'recognition', 'logo_url', 'cta_url', 'sort_order')
+                    ->select('id', 'slug', 'name', 'abbreviation', 'country', 'flag_emoji', 'recognition', 'logo_url', 'cta_url', 'cta_label', 'sort_order')
                     ->where('is_active', true)
                     ->hasPublicSlug()
                     ->orderBy('sort_order')
@@ -790,6 +790,7 @@ class PageController extends Controller
                     'logo' => $uni->logo,
                     'display_abbreviation' => $uni->display_abbreviation,
                     'cta_url' => $uni->cta_url,
+                    'cta_label' => $uni->cta_label,
                     'cta_link' => $uni->cta_link,
                     'sort_order' => $uni->sort_order,
                 ]
@@ -808,18 +809,58 @@ class PageController extends Controller
         $benefits = safe_settings(GlobalPartnersBenefitsSettings::class);
         $benefits->items = settings_array($benefits->items ?? []);
 
-        return view('pages.global-university-partners', [
+        $journey = safe_settings(GlobalPartnersJourneySettings::class);
+        $galleryCategories = collect($cached['galleryCategories'] ?? []);
+        $allLabel = $journey->filter_all_label ?? 'All';
+        $galleryCategories = $galleryCategories->map(function ($category) use ($allLabel) {
+            if (($category['slug'] ?? '') === 'all') {
+                $category['name'] = $allLabel;
+            }
+
+            return $category;
+        });
+
+        $viewData = [
             'galleryItems' => PublicContentCache::hydrateRows(PartnershipGalleryItem::class, $cached['galleryItems'] ?? []),
-            'galleryCategories' => collect($cached['galleryCategories'] ?? []),
+            'galleryCategories' => $galleryCategories,
             'partnerUniversities' => PublicContentCache::hydrateRows(GupPartnerUniversity::class, $cached['partnerUniversities'] ?? []),
             'hero' => safe_settings(GlobalPartnersHeroSettings::class),
             'overview' => safe_settings(GlobalPartnersOverviewSettings::class),
             'cards' => safe_settings(GlobalPartnersCardsSettings::class),
             'whyPartnerships' => $whyPartnerships,
             'benefits' => $benefits,
-            'journey' => safe_settings(GlobalPartnersJourneySettings::class),
+            'journey' => $journey,
             'globalPartnersSeo' => safe_settings(GlobalPartnersSeoSettings::class),
-        ]);
+        ];
+
+        // #region agent log
+        $hero = $viewData['hero'] ?? null;
+        $cards = $viewData['cards'] ?? null;
+        $unis = collect($viewData['partnerUniversities'] ?? []);
+        $u0 = $unis->first();
+        file_put_contents(base_path('debug-c9af17.log'), json_encode([
+            'sessionId' => 'c9af17',
+            'runId' => 'post-fix',
+            'hypothesisId' => 'A',
+            'location' => 'PageController.php:globalUniversityPartners',
+            'message' => 'gup payload vs admin/static fields',
+            'timestamp' => (int) (microtime(true) * 1000),
+            'data' => [
+                'hero_keys' => $hero ? array_keys($hero->toArray()) : [],
+                'hero_has_scroll_hint' => $hero ? property_exists($hero, 'scroll_hint') : false,
+                'cards_keys' => $cards ? array_keys($cards->toArray()) : [],
+                'cards_has_cta_label' => $cards ? property_exists($cards, 'cta_label') : false,
+                'cards_has_recognition_label' => $cards ? property_exists($cards, 'recognition_label') : false,
+                'uni0_has_cta_label' => $u0 ? array_key_exists('cta_label', $u0->getAttributes()) : false,
+                'uni_count' => $unis->count(),
+                'gallery_count' => count($viewData['galleryItems'] ?? []),
+                'hero_bg' => filled($hero->background_image ?? null),
+                'overview_image' => filled($viewData['overview']->image ?? null),
+            ],
+        ])."\n", FILE_APPEND);
+        // #endregion
+
+        return view('pages.global-university-partners', $viewData);
     }
 
     /**

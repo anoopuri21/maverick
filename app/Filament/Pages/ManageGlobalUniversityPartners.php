@@ -8,6 +8,7 @@ use App\Settings\GlobalPartnersBenefitsSettings;
 use App\Settings\GlobalPartnersCardsSettings;
 use App\Settings\GlobalPartnersHeroSettings;
 use App\Settings\GlobalPartnersJourneySettings;
+use App\Settings\GlobalPartnersMapSettings;
 use App\Settings\GlobalPartnersOverviewSettings;
 use App\Settings\GlobalPartnersSeoSettings;
 use App\Settings\GlobalPartnersWhySettings;
@@ -58,6 +59,7 @@ class ManageGlobalUniversityPartners extends Page implements HasForms
             'hero' => app(GlobalPartnersHeroSettings::class)->toArray(),
             'overview' => app(GlobalPartnersOverviewSettings::class)->toArray(),
             'cards' => app(GlobalPartnersCardsSettings::class)->toArray(),
+            'map' => app(GlobalPartnersMapSettings::class)->toArray(),
             'why' => $why,
             'benefits' => $benefits,
             'journey' => app(GlobalPartnersJourneySettings::class)->toArray(),
@@ -79,6 +81,7 @@ class ManageGlobalUniversityPartners extends Page implements HasForms
                                 TextInput::make('hero.heading_line1')->label('Heading Line 1'),
                                 TextInput::make('hero.heading_italic')->label('Heading (Italic)'),
                                 RichEditor::make('hero.description')->columnSpanFull(),
+                                TextInput::make('hero.scroll_hint')->label('Scroll Hint'),
                                 MediaPicker::forField('hero.background_image', 'global-partners/hero')
                     ->label('Background Image')
                     ->columnSpanFull(),
@@ -94,6 +97,7 @@ class ManageGlobalUniversityPartners extends Page implements HasForms
                                 MediaPicker::forField('overview.image', 'global-partners/overview')
                     ->label('Image')
                     ->columnSpanFull(),
+                                TextInput::make('overview.image_alt')->label('Image Alt Text'),
                             ]),
 
                         Tab::make('Partner Cards Heading')
@@ -103,6 +107,16 @@ class ManageGlobalUniversityPartners extends Page implements HasForms
                                 TextInput::make('cards.heading')->label('Heading'),
                                 TextInput::make('cards.heading_italic')->label('Heading (Italic)'),
                                 Textarea::make('cards.subheading')->rows(3)->columnSpanFull(),
+                                TextInput::make('cards.cta_label')->label('University Card CTA Label'),
+                                TextInput::make('cards.recognition_label')->label('Recognition Label'),
+                            ]),
+
+                        Tab::make('Map Section')
+                            ->icon('heroicon-o-map')
+                            ->schema([
+                                TextInput::make('map.label')->label('Section Label'),
+                                TextInput::make('map.heading_line1')->label('Heading Line 1'),
+                                TextInput::make('map.heading_line2')->label('Heading Line 2'),
                             ]),
 
                         Tab::make('Why Partnerships')
@@ -136,8 +150,10 @@ class ManageGlobalUniversityPartners extends Page implements HasForms
                                 Grid::make(2)->schema([
                                     MediaPicker::forField('benefits.main_image', 'global-partners/benefits')
                     ->label('Main Image'),
+                                    TextInput::make('benefits.main_image_alt')->label('Main Image Alt'),
                                     MediaPicker::forField('benefits.secondary_image', 'global-partners/benefits')
                     ->label('Secondary Image'),
+                                    TextInput::make('benefits.secondary_image_alt')->label('Secondary Image Alt'),
                                 ]),
                                 Grid::make(2)->schema([
                                     TextInput::make('benefits.stat_number')->label('Floating Stat Number'),
@@ -162,6 +178,7 @@ class ManageGlobalUniversityPartners extends Page implements HasForms
                                 TextInput::make('journey.heading')->label('Heading'),
                                 TextInput::make('journey.heading_italic')->label('Heading (Italic)'),
                                 Textarea::make('journey.subheading')->rows(3)->columnSpanFull(),
+                                TextInput::make('journey.filter_all_label')->label('Gallery Filter: All'),
                             ]),
 
                         Tab::make('SEO')
@@ -213,9 +230,34 @@ class ManageGlobalUniversityPartners extends Page implements HasForms
         try {
             $data = $this->form->getState();
 
+            // #region agent log
+            $heroIn = $data['hero'] ?? [];
+            $overviewIn = $data['overview'] ?? [];
+            $benefitsIn = $data['benefits'] ?? [];
+            file_put_contents(base_path('debug-c9af17.log'), json_encode([
+                'sessionId' => 'c9af17',
+                'runId' => 'post-fix',
+                'hypothesisId' => 'E',
+                'location' => 'ManageGlobalUniversityPartners.php:save',
+                'message' => 'admin save payload keys before persist',
+                'timestamp' => (int) (microtime(true) * 1000),
+                'data' => [
+                    'hero_keys' => array_keys($heroIn),
+                    'hero_has_scroll_hint' => array_key_exists('scroll_hint', $heroIn),
+                    'map_keys' => array_keys($data['map'] ?? []),
+                    'hero_has_asset' => filled($heroIn['background_image_asset_id'] ?? null),
+                    'overview_keys' => array_keys($overviewIn),
+                    'overview_has_image' => filled($overviewIn['image'] ?? null),
+                    'benefits_has_main' => filled($benefitsIn['main_image'] ?? null),
+                    'save_uses_syncFieldFromAsset' => false,
+                ],
+            ])."\n", FILE_APPEND);
+            // #endregion
+
             $this->saveSettingsGroup(GlobalPartnersHeroSettings::class, $data['hero'] ?? []);
             $this->saveSettingsGroup(GlobalPartnersOverviewSettings::class, $data['overview'] ?? []);
             $this->saveSettingsGroup(GlobalPartnersCardsSettings::class, $data['cards'] ?? []);
+            $this->saveSettingsGroup(GlobalPartnersMapSettings::class, $data['map'] ?? []);
 
             $why = $data['why'] ?? [];
             $why['items'] = settings_array($why['items'] ?? []);

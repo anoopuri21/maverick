@@ -23,7 +23,7 @@ class PublicContentCache
 
     public const MEDIA_GALLERY = 'media-gallery.v2';
 
-    public const GLOBAL_PARTNERS = 'global-partners.v2';
+    public const GLOBAL_PARTNERS = 'global-partners.v3';
 
     public const EVENTS = 'events.v2';
 

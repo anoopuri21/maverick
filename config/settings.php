@@ -32,6 +32,7 @@ return [
         \App\Settings\GlobalPartnersHeroSettings::class,
         \App\Settings\GlobalPartnersOverviewSettings::class,
         \App\Settings\GlobalPartnersCardsSettings::class,
+        \App\Settings\GlobalPartnersMapSettings::class,
         \App\Settings\GlobalPartnersWhySettings::class,
         \App\Settings\GlobalPartnersBenefitsSettings::class,
         \App\Settings\GlobalPartnersJourneySettings::class,

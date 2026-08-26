@@ -81,7 +81,12 @@
         <p class="cinematic-hero__description">{!! rich_html($hero->description ?? null) !!}</p>
         @endif
         <div class="cinematic-hero__scroll-hint" aria-hidden="true">
-            <span class="cinematic-hero__scroll-text">Scroll to explore</span>
+            <span class="cinematic-hero__scroll-text">{{ $hero->scroll_hint ?? 'Scroll to explore' }}</span>
+            {{-- #region agent log --}}
+            @php
+                file_put_contents(base_path('debug-c9af17.log'), json_encode(['sessionId'=>'c9af17','runId'=>'post-fix','hypothesisId'=>'B','location'=>'global-university-partners.blade.php:hero','message'=>'hero/map/card strings source','timestamp'=>(int)(microtime(true)*1000),'data'=>['scroll_hint'=>$hero->scroll_hint ?? null,'scroll_hint_prop'=>property_exists($hero,'scroll_hint'),'card_cta'=>$cards->cta_label ?? null,'recognition_label'=>$cards->recognition_label ?? null]])."\n", FILE_APPEND);
+            @endphp
+            {{-- #endregion --}}
             <span class="cinematic-hero__scroll-arrow" data-lucide="chevron-down"></span>
         </div>
     </div>
@@ -111,7 +116,7 @@
                 @if($overviewImg = media_url($overview->image))
                 <div class="gup-overview__image-wrapper">
                     <img src="{{ $overviewImg }}"
-                         alt="Partnership"
+                         alt="{{ $overview->image_alt ?? 'Partnership' }}"
                          class="gup-overview__image"
                          loading="lazy">
                 </div>
@@ -178,13 +183,13 @@
 
                     @if(filled($uni->recognition))
                     <div class="gup-uni-card__recognition">
-                        <span class="gup-uni-card__recognition-label">Recognition</span>
+                        <span class="gup-uni-card__recognition-label">{{ $cards->recognition_label ?? 'Recognition' }}</span>
                         <p class="gup-uni-card__recognition-text">{!! rich_html($uni->recognition ?? null) !!}</p>
                     </div>
                     @endif
 
                     <a href="{{ $uni->cta_link }}" class="gup-uni-card__cta btn btn--primary" data-testid="uni-cta-{{ $uni->slug }}">
-                        Explore Programs
+                        {{ $uni->cta_label ?: ($cards->cta_label ?? 'Explore Programs') }}
                     </a>
                 </div>
             </article>
@@ -301,7 +306,7 @@
                 @if($benefitsMain)
                 <div class="gup-benefits__main-image">
                     <img src="{{ $benefitsMain }}"
-                         alt="Students"
+                         alt="{{ $benefits->main_image_alt ?? 'Students' }}"
                          loading="lazy">
                 </div>
                 @endif
@@ -309,7 +314,7 @@
                 @if($benefitsSecondary)
                 <div class="gup-benefits__secondary-image">
                     <img src="{{ $benefitsSecondary }}"
-                         alt="Students walking"
+                         alt="{{ $benefits->secondary_image_alt ?? 'Students walking' }}"
                          loading="lazy">
                 </div>
                 @endif
