@@ -61,6 +61,11 @@ class GupPartnerUniversityResource extends Resource
                     ->nullable()
                     ->helperText('Defaults to /programs when empty.')
                     ->columnSpanFull(),
+                Forms\Components\TextInput::make('cta_label')
+                    ->label('CTA Label')
+                    ->nullable()
+                    ->helperText('Falls back to the Partner Cards heading CTA label.')
+                    ->columnSpanFull(),
             ]),
             Forms\Components\Section::make('Display')->schema([
                 Forms\Components\Grid::make(2)->schema([

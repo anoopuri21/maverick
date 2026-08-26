@@ -10,8 +10,10 @@ class GlobalPartnersBenefitsSettings extends Settings
     public ?string $heading = null;
     public ?string $heading_italic = null;
     public ?string $main_image = null;
+    public ?string $main_image_alt = null;
     public ?string $main_image_asset_id = null;
     public ?string $secondary_image = null;
+    public ?string $secondary_image_alt = null;
     public ?string $secondary_image_asset_id = null;
     public ?string $stat_number = null;
     public ?string $stat_label = null;

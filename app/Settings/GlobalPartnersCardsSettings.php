@@ -10,6 +10,8 @@ class GlobalPartnersCardsSettings extends Settings
     public ?string $heading = null;
     public ?string $heading_italic = null;
     public ?string $subheading = null;
+    public ?string $cta_label = null;
+    public ?string $recognition_label = null;
 
     public static function group(): string
     {

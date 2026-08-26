@@ -23,6 +23,7 @@ class GupPartnerUniversity extends Model
         'logo_url',
         'logo_url_asset_id',
         'cta_url',
+        'cta_label',
         'sort_order',
         'is_active',
     ];
