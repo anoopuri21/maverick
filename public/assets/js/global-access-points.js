@@ -10,7 +10,7 @@
   if (!stage) return;
 
   var canvas = stage.querySelector("#gap-globe");
-  var resetButton = stage.querySelector("[data-gap-globe-reset]");
+  var countryButtons = stage.querySelectorAll("[data-gap-country]");
   var status = stage.querySelector("[data-gap-globe-status]");
 
   if (!canvas) return;
@@ -38,6 +38,7 @@
   var frameId = null;
   var resizeObserver = null;
   var hoveredCountry = null;
+  var activeCountryId = null;
   var isDragging = false;
   var pointerId = null;
   var dragStart = null;
@@ -132,12 +133,13 @@
     context.stroke();
 
     selectedFeatures.forEach(function (feature) {
+      var active = activeCountryId === countryId(feature);
       context.beginPath();
       path(feature);
-      context.fillStyle = "rgba(178, 2, 2, 0.66)";
+      context.fillStyle = active ? "rgba(178, 2, 2, 0.88)" : "rgba(15, 41, 131, 0.2)";
       context.fill();
-      context.strokeStyle = "rgba(178, 2, 2, 0.9)";
-      context.lineWidth = 0.9;
+      context.strokeStyle = active ? "rgba(178, 2, 2, 0.98)" : "rgba(15, 41, 131, 0.62)";
+      context.lineWidth = active ? 1.35 : 0.7;
       context.stroke();
     });
 
@@ -145,19 +147,22 @@
       var point = projectedCenter(country);
       if (!point) return;
 
+      var active = activeCountryId === country.id;
       var pulse = (Math.sin(now / 720 + country.index * 0.46) + 1) / 2;
       context.beginPath();
-      context.arc(point[0], point[1], 3.4 + pulse * 3.2, 0, Math.PI * 2);
-      context.strokeStyle = "rgba(178, 2, 2, " + (0.16 + pulse * 0.18) + ")";
-      context.lineWidth = 1;
+      context.arc(point[0], point[1], active ? 5 + pulse * 5 : 3.4 + pulse * 2.2, 0, Math.PI * 2);
+      context.strokeStyle = active
+        ? "rgba(178, 2, 2, " + (0.38 + pulse * 0.3) + ")"
+        : "rgba(15, 41, 131, " + (0.16 + pulse * 0.12) + ")";
+      context.lineWidth = active ? 1.4 : 0.8;
       context.stroke();
 
       context.beginPath();
-      context.arc(point[0], point[1], 2.1, 0, Math.PI * 2);
-      context.fillStyle = "#b20202";
+      context.arc(point[0], point[1], active ? 3.3 : 2.1, 0, Math.PI * 2);
+      context.fillStyle = active ? "#b20202" : "rgba(15, 41, 131, 0.86)";
       context.fill();
       context.strokeStyle = "rgba(255, 255, 255, 0.9)";
-      context.lineWidth = 1.2;
+      context.lineWidth = active ? 1.5 : 1.1;
       context.stroke();
     });
 
@@ -224,9 +229,36 @@
     if (projection) projection.rotate(rotation);
   }
 
+  function selectCountry(id) {
+    var normalizedId = String(id).padStart(3, "0");
+    var selected = selectedCenters.find(function (country) {
+      return country.id === normalizedId;
+    });
+
+    activeCountryId = normalizedId;
+    countryButtons.forEach(function (button) {
+      var isActive = String(button.getAttribute("data-gap-country")).padStart(3, "0") === normalizedId;
+      button.setAttribute("aria-pressed", isActive ? "true" : "false");
+      button.classList.toggle("is-active", isActive);
+    });
+
+    velocity = [0, 0];
+    lastInteraction = performance.now();
+    if (selected) {
+      setRotation([-selected.coords[0], -selected.coords[1], 0]);
+      hoveredCountry = selected;
+      updateStatus(selected.name + " selected");
+    }
+  }
+
   function resetGlobe() {
     velocity = [0, 0];
+    activeCountryId = null;
     hoveredCountry = null;
+    countryButtons.forEach(function (button) {
+      button.setAttribute("aria-pressed", "false");
+      button.classList.remove("is-active");
+    });
     lastInteraction = performance.now();
     setRotation([-48, -20, 0]);
     updateStatus("Grab the globe to explore");
@@ -327,7 +359,7 @@
         setRotation([rotation[0] + velocity[0], rotation[1] + velocity[1], 0]);
         velocity[0] *= 0.94;
         velocity[1] *= 0.94;
-      } else if (canAutoRotate && !hoveredCountry) {
+      } else if (canAutoRotate && !hoveredCountry && !activeCountryId) {
         setRotation([rotation[0] + 0.035, rotation[1], 0]);
       }
     }
@@ -362,6 +394,7 @@
               index: index,
             };
           });
+          if (activeCountryId) selectCountry(activeCountryId);
           worldReady = selectedFeatures.length > 0;
           stage.classList.toggle("is-ready", worldReady);
           stage.classList.toggle("is-error", !worldReady);
@@ -406,7 +439,11 @@
     }
   });
   canvas.addEventListener("keydown", onKeyDown);
-  if (resetButton) resetButton.addEventListener("click", resetGlobe);
+  countryButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
+      selectCountry(button.getAttribute("data-gap-country"));
+    });
+  });
 
   if (window.ResizeObserver) {
     resizeObserver = new ResizeObserver(function () {

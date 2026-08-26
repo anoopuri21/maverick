@@ -51,34 +51,46 @@
     </div>
 
     <div class="gap-globe-stage" data-gap-globe data-lenis-prevent>
-      <div class="gap-globe__atmosphere" aria-hidden="true"></div>
-      <div class="gap-globe__halo" aria-hidden="true"></div>
+      <aside class="gap-globe__country-panel" aria-label="Maverick Access Point countries">
+        <p class="gap-globe__country-label">Access points</p>
+        <p class="gap-globe__country-instruction">Select a country to locate it on the globe.</p>
+        <ol class="gap-globe__country-list">
+          @foreach($globalAccessPointsCountries as $country)
+          <li>
+            <button type="button" data-gap-country="{{ $country['id'] }}" aria-pressed="false">
+              <span aria-hidden="true">{{ str_pad((string) ($loop->iteration), 2, '0', STR_PAD_LEFT) }}</span>
+              <strong>{{ $country['name'] }}</strong>
+            </button>
+          </li>
+          @endforeach
+        </ol>
+      </aside>
 
-      <canvas
-        id="gap-globe"
-        class="gap-globe__canvas"
-        role="img"
-        aria-label="Interactive globe showing Maverick Access Points in 27 selected countries"
-        tabindex="0"
-      ></canvas>
+      <div class="gap-globe__visual">
+        <div class="gap-globe__atmosphere" aria-hidden="true"></div>
+        <div class="gap-globe__halo" aria-hidden="true"></div>
 
-      <div class="gap-globe__count" aria-hidden="true">
-        <strong>{{ count($globalAccessPointsCountries) }}</strong>
-        <span>selected countries</span>
+        <canvas
+          id="gap-globe"
+          class="gap-globe__canvas"
+          role="img"
+          aria-label="Interactive globe showing Maverick Access Points in 27 selected countries"
+          tabindex="0"
+        ></canvas>
+
+        <div class="gap-globe__count" aria-hidden="true">
+          <strong>{{ count($globalAccessPointsCountries) }}</strong>
+          <span>selected countries</span>
+        </div>
+
+        <p class="gap-globe__hint" data-gap-globe-status aria-live="polite">Grab the globe to explore</p>
+
+        <ul class="gap-globe__fallback-list" data-gap-globe-fallback aria-label="Maverick Access Point countries">
+          @foreach($globalAccessPointsCountries as $country)
+          <li>{{ $country['name'] }}</li>
+          @endforeach
+        </ul>
       </div>
-
-      <button type="button" class="gap-globe__reset" data-gap-globe-reset aria-label="Reset globe rotation">
-        <i data-lucide="rotate-ccw" aria-hidden="true"></i>
-        <span>Reset view</span>
-      </button>
-
-      <p class="gap-globe__hint" data-gap-globe-status aria-live="polite">Grab the globe to explore</p>
-
-      <ul class="gap-globe__fallback-list" data-gap-globe-fallback aria-label="Maverick Access Point countries">
-        @foreach($globalAccessPointsCountries as $country)
-        <li>{{ $country['name'] }}</li>
-        @endforeach
-      </ul>
     </div>
   </div>
 

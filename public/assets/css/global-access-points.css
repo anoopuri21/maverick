@@ -1,4 +1,4 @@
-/* Global Access Points — transparent interactive globe */
+/* Global Access Points — transparent interactive globe with country selector */
 #global-access-points {
   --gap-navy: #071444;
   --gap-blue: #0f2983;
@@ -20,11 +20,118 @@
 
 .gap-globe-stage {
   position: relative;
+  display: grid;
+  grid-template-columns: minmax(13rem, 0.36fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 4vw, 4.5rem);
+  align-items: center;
   width: 100%;
+  min-height: clamp(32rem, 72vh, 48rem);
+  overflow: visible;
+  isolation: isolate;
+  background: transparent;
+}
+
+.gap-globe__country-panel {
+  position: relative;
+  z-index: 4;
+  min-width: 0;
+  align-self: center;
+}
+
+.gap-globe__country-label {
+  margin: 0 0 0.45rem;
+  color: var(--gap-red);
+  font-family: var(--font-body, "Poppins", sans-serif);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.gap-globe__country-instruction {
+  max-width: 24ch;
+  margin: 0 0 1.15rem;
+  color: var(--gap-ink-soft);
+  font-family: var(--font-body, "Poppins", sans-serif);
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+.gap-globe__country-list {
+  display: grid;
+  gap: 0;
+  max-height: min(66vh, 35rem);
+  margin: 0;
+  padding: 0 0.75rem 0 0;
+  overflow-y: auto;
+  list-style: none;
+  scrollbar-color: rgba(7, 20, 68, 0.32) transparent;
+  scrollbar-width: thin;
+}
+
+.gap-globe__country-list li {
+  min-width: 0;
+  border-bottom: 1px solid rgba(7, 20, 68, 0.1);
+}
+
+.gap-globe__country-list button {
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr);
+  gap: 0.65rem;
+  align-items: center;
+  width: 100%;
+  min-height: 2.55rem;
+  padding: 0.55rem 0.45rem 0.55rem 0;
+  color: var(--gap-ink-soft);
+  background: transparent;
+  border: 0;
+  border-left: 2px solid transparent;
+  cursor: pointer;
+  font-family: var(--font-body, "Poppins", sans-serif);
+  text-align: left;
+  transition: color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease, padding-left 0.3s ease;
+}
+
+.gap-globe__country-list button > span {
+  color: rgba(7, 20, 68, 0.4);
+  font-size: 0.64rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.08em;
+}
+
+.gap-globe__country-list button strong {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  font-size: 0.88rem;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.gap-globe__country-list button:hover,
+.gap-globe__country-list button:focus-visible {
+  padding-left: 0.45rem;
+  color: var(--gap-navy);
+  border-left-color: var(--gap-red);
+  background: rgba(178, 2, 2, 0.045);
+}
+
+.gap-globe__country-list button.is-active {
+  padding-left: 0.45rem;
+  color: var(--gap-red);
+  border-left-color: var(--gap-red);
+  background: rgba(178, 2, 2, 0.08);
+}
+
+.gap-globe__country-list button.is-active > span {
+  color: var(--gap-red);
+}
+
+.gap-globe__visual {
+  position: relative;
+  min-width: 0;
   min-height: clamp(32rem, 72vh, 48rem);
   overflow: hidden;
   isolation: isolate;
-  background: transparent;
 }
 
 .gap-globe__atmosphere,
@@ -83,12 +190,13 @@
 .gap-globe__count {
   position: absolute;
   top: 1.25rem;
-  left: 1.25rem;
+  right: 1.25rem;
   z-index: 2;
   display: grid;
   gap: 0.1rem;
   color: var(--gap-ink-soft);
   pointer-events: none;
+  text-align: right;
 }
 
 .gap-globe__count strong {
@@ -101,8 +209,7 @@
 }
 
 .gap-globe__count span,
-.gap-globe__hint,
-.gap-globe__reset {
+.gap-globe__hint {
   font-family: var(--font-body, "Poppins", sans-serif);
 }
 
@@ -113,46 +220,13 @@
   text-transform: uppercase;
 }
 
-.gap-globe__reset {
-  position: absolute;
-  top: 1.25rem;
-  right: 1.25rem;
-  z-index: 3;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  min-height: 2.6rem;
-  padding: 0.55rem 0.8rem;
-  color: var(--gap-navy);
-  background: rgba(255, 255, 255, 0.5);
-  border: 1px solid rgba(7, 20, 68, 0.18);
-  border-radius: 0;
-  cursor: pointer;
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
-}
-
-.gap-globe__reset svg {
-  width: 0.95rem;
-  height: 0.95rem;
-  stroke-width: 1.7;
-}
-
-.gap-globe__reset:hover,
-.gap-globe__reset:focus-visible {
-  color: #fff;
-  background: var(--gap-navy);
-  border-color: var(--gap-navy);
-}
-
 .gap-globe__hint {
   position: absolute;
   bottom: 1.35rem;
   left: 50%;
   z-index: 2;
+  width: max-content;
+  max-width: calc(100% - 2rem);
   margin: 0;
   padding: 0.5rem 0.75rem;
   color: var(--gap-ink-soft);
@@ -179,8 +253,13 @@
 
 .gap-globe-stage.is-error {
   min-height: 20rem;
-  padding: 5rem 1rem 3rem;
+  padding: 2rem;
   border: 1px solid rgba(7, 20, 68, 0.12);
+}
+
+.gap-globe-stage.is-error .gap-globe__visual {
+  min-height: 0;
+  overflow: visible;
 }
 
 .gap-globe-stage.is-error .gap-globe__fallback-list {
@@ -188,10 +267,10 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
   gap: 0.5rem 1rem;
-  width: min(100%, 56rem);
+  width: 100%;
   height: auto;
   padding: 0;
-  margin: 0 auto;
+  margin: 0;
   overflow: visible;
   clip: auto;
   white-space: normal;
@@ -205,9 +284,52 @@
   font-size: 0.8rem;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .gap-globe-stage {
-    min-height: min(78vh, 38rem);
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    min-height: 0;
+  }
+
+  .gap-globe__country-panel {
+    order: 2;
+  }
+
+  .gap-globe__country-instruction {
+    max-width: none;
+  }
+
+  .gap-globe__country-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0 0.85rem;
+    max-height: none;
+    padding-right: 0;
+    overflow: visible;
+  }
+
+  .gap-globe__visual {
+    order: 1;
+    min-height: min(78vw, 40rem);
+  }
+}
+
+@media (max-width: 600px) {
+  .gap-globe__country-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .gap-globe__country-list button {
+    grid-template-columns: 1.6rem minmax(0, 1fr);
+    gap: 0.4rem;
+    min-height: 2.4rem;
+  }
+
+  .gap-globe__country-list button strong {
+    font-size: 0.78rem;
+  }
+
+  .gap-globe__visual {
+    min-height: min(94vw, 32rem);
   }
 
   .gap-globe__atmosphere {
@@ -219,31 +341,18 @@
   }
 
   .gap-globe__count {
-    top: 0.9rem;
-    left: 0.9rem;
-  }
-
-  .gap-globe__reset {
-    top: 0.9rem;
-    right: 0.9rem;
-    min-height: 2.35rem;
-    padding: 0.45rem 0.6rem;
-  }
-
-  .gap-globe__reset span {
-    display: none;
+    top: 0.65rem;
+    right: 0.65rem;
   }
 
   .gap-globe__hint {
-    bottom: 0.9rem;
-    width: max-content;
-    max-width: calc(100% - 2rem);
-    font-size: 0.62rem;
+    bottom: 0.6rem;
+    font-size: 0.6rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .gap-globe__reset {
+  .gap-globe__country-list button {
     transition: none;
   }
 }
