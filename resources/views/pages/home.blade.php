@@ -39,6 +39,7 @@
     @include('sections.what-is-maverick')
     @include('sections.ask-quotient')
     @include('sections.who-we-are')
+    @include('sections.dei-matrix')
     @include('sections.ceo-message')
     @include('sections.what-we-do')
     @include('sections.how-we-do-it')

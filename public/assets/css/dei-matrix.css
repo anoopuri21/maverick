@@ -1,0 +1,179 @@
+/* DEI Matrix — dark coordinate system */
+#dei-matrix {
+  --dei-ink: var(--color-mba-dark-blue);
+  --dei-red: var(--color-mba-red);
+  --dei-blue: var(--color-mba-blue);
+  --dei-warm-white: var(--color-warm-white);
+  --dei-rule: rgba(245, 240, 235, 0.2);
+  position: relative;
+  overflow: hidden;
+  background: var(--dei-ink);
+  color: var(--dei-warm-white);
+}
+
+#dei-matrix::before {
+  position: absolute;
+  top: -14rem;
+  left: -12rem;
+  width: min(44vw, 36rem);
+  aspect-ratio: 1;
+  border: 1px solid rgba(245, 240, 235, 0.08);
+  border-radius: 50%;
+  content: "";
+  pointer-events: none;
+}
+
+#dei-matrix .container {
+  position: relative;
+  z-index: 1;
+}
+
+#dei-matrix .section-label {
+  margin-bottom: 1.5rem;
+}
+
+#dei-matrix .section-label::before {
+  background: var(--dei-red);
+}
+
+#dei-matrix .section-label span {
+  color: rgba(245, 240, 235, 0.76);
+}
+
+#dei-matrix .deim__intro {
+  width: min(100%, 48rem);
+  margin-bottom: clamp(2.75rem, 5vw, 5rem);
+}
+
+#dei-matrix .deim__heading {
+  max-width: 39rem;
+  margin: 0;
+  color: var(--dei-warm-white);
+}
+
+#dei-matrix .deim__heading-line {
+  display: block;
+}
+
+#dei-matrix .deim__description {
+  max-width: 42rem;
+  margin: 1.35rem 0 0;
+  color: rgba(245, 240, 235, 0.7);
+}
+
+#dei-matrix .deim__matrix-panel {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid rgba(245, 240, 235, 0.24);
+  background: linear-gradient(135deg, rgba(15, 41, 131, 0.24), rgba(7, 20, 68, 0.92) 48%, rgba(0, 0, 0, 0.2));
+}
+
+#dei-matrix .deim__matrix-grid {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-image:
+    linear-gradient(90deg, rgba(245, 240, 235, 0.09) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(245, 240, 235, 0.09) 1px, transparent 1px);
+  background-size: 25% 100%, 100% 33.333%;
+  pointer-events: none;
+}
+
+#dei-matrix .deim__axis {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 25%;
+  z-index: -1;
+  width: 1px;
+  background: linear-gradient(180deg, transparent 0%, rgba(178, 2, 2, 0.16) 10%, rgba(178, 2, 2, 0.78) 48%, rgba(178, 2, 2, 0.16) 90%, transparent 100%);
+  pointer-events: none;
+}
+
+#dei-matrix .deim__rows {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#dei-matrix .deim__row {
+  border-top: 1px solid var(--dei-rule);
+}
+
+#dei-matrix .deim__row:first-child {
+  border-top: 0;
+}
+
+#dei-matrix .deim__row-inner {
+  display: grid;
+  grid-template-columns: minmax(9rem, 0.28fr) minmax(0, 1fr) minmax(13rem, 0.42fr);
+  gap: clamp(1.5rem, 4vw, 4.5rem);
+  align-items: center;
+  min-height: 10.5rem;
+  padding: 1.65rem clamp(1.35rem, 3.5vw, 3.5rem);
+}
+
+#dei-matrix .deim__row-marker {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+}
+
+#dei-matrix .deim__row-letter {
+  color: transparent;
+  font-family: var(--font-display);
+  font-size: clamp(4.5rem, 8vw, 8rem);
+  font-weight: var(--fw-medium);
+  letter-spacing: -0.08em;
+  line-height: 0.72;
+  -webkit-text-stroke: 1px rgba(245, 240, 235, 0.34);
+}
+
+#dei-matrix .deim__row-main {
+  max-width: 35rem;
+}
+
+#dei-matrix .deim__row-heading {
+  margin: 0;
+  color: var(--dei-warm-white);
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 2.1vw, 2.15rem);
+  font-weight: var(--fw-medium);
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+}
+
+#dei-matrix .deim__row-definition {
+  margin: 0.8rem 0 0;
+  color: rgba(245, 240, 235, 0.72);
+  font-family: var(--font-body);
+  font-size: clamp(0.8rem, 1vw, 0.98rem);
+  line-height: 1.75;
+}
+
+#dei-matrix .deim__row-practice {
+  max-width: 15rem;
+  margin: 0;
+  padding-left: 1.15rem;
+  border-left: 1px solid rgba(178, 2, 2, 0.72);
+  color: var(--dei-warm-white);
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 1.3vw, 1.35rem);
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+
+#dei-matrix .deim__row-practice-label {
+  display: block;
+  margin-bottom: 0.55rem;
+  color: var(--dei-red);
+  font-family: var(--font-body);
+  font-size: 0.62rem;
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.16em;
+  line-height: 1;
+  text-transform: uppercase;
+}
