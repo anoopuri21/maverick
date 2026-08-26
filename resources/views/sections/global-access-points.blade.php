@@ -65,6 +65,13 @@
         </ol>
       </aside>
 
+      <div class="gap-globe__story">
+        <p class="gap-globe__story-label">A world in motion</p>
+        <h3>Learning that travels with you.</h3>
+        <p>From the Gulf to the wider world, the Access Points network keeps the learning conversation open across borders.</p>
+        <p>Select a country to bring its point into focus, then drag the globe to explore the wider constellation.</p>
+      </div>
+
       <div class="gap-globe__visual">
         <div class="gap-globe__atmosphere" aria-hidden="true"></div>
         <div class="gap-globe__halo" aria-hidden="true"></div>
