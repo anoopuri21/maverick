@@ -52,8 +52,6 @@
 
     <div class="gap-globe-stage" data-gap-globe data-lenis-prevent>
       <aside class="gap-globe__country-panel" aria-label="Maverick Access Point countries">
-        <p class="gap-globe__country-label">Access points</p>
-        <p class="gap-globe__country-instruction">Select a country to locate it on the globe.</p>
         <ol class="gap-globe__country-list">
           @foreach($globalAccessPointsCountries as $country)
           <li>
@@ -77,11 +75,6 @@
           aria-label="Interactive globe showing Maverick Access Points in 27 selected countries"
           tabindex="0"
         ></canvas>
-
-        <div class="gap-globe__count" aria-hidden="true">
-          <strong>{{ count($globalAccessPointsCountries) }}</strong>
-          <span>selected countries</span>
-        </div>
 
         <p class="gap-globe__hint" data-gap-globe-status aria-live="polite">Grab the globe to explore</p>
 

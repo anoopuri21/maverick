@@ -96,6 +96,70 @@
     return point;
   }
 
+  function drawLocationPin(point, active) {
+    var x = point[0];
+    var y = point[1];
+    context.save();
+    context.beginPath();
+    context.moveTo(x, y - 8);
+    context.bezierCurveTo(x - 5.5, y - 8, x - 8.5, y - 4.2, x - 8.5, y + 0.2);
+    context.bezierCurveTo(x - 8.5, y + 5.4, x - 3.1, y + 10.6, x, y + 14);
+    context.bezierCurveTo(x + 3.1, y + 10.6, x + 8.5, y + 5.4, x + 8.5, y + 0.2);
+    context.bezierCurveTo(x + 8.5, y - 4.2, x + 5.5, y - 8, x, y - 8);
+    context.closePath();
+    context.fillStyle = active ? "#b20202" : "rgba(15, 41, 131, 0.92)";
+    context.fill();
+    context.strokeStyle = "rgba(255, 255, 255, 0.96)";
+    context.lineWidth = active ? 1.35 : 1;
+    context.stroke();
+    context.beginPath();
+    context.arc(x, y - 1, active ? 2.5 : 2.1, 0, Math.PI * 2);
+    context.fillStyle = "#ffffff";
+    context.fill();
+    context.restore();
+  }
+
+  function drawCountryLabel(country, point, active) {
+    var centerX = width / 2;
+    var alignLeft = point[0] >= centerX;
+    var labelX = point[0] + (alignLeft ? 15 : -15);
+    var labelY = point[1] - 13;
+    context.font = "500 10px Poppins, sans-serif";
+    context.textBaseline = "middle";
+    context.textAlign = alignLeft ? "left" : "right";
+    var textWidth = context.measureText(country.name).width;
+    var boxWidth = textWidth + 12;
+    var boxLeft = alignLeft ? labelX - 5 : labelX - boxWidth + 5;
+    var boxTop = labelY - 9;
+
+    if (boxLeft < 5) {
+      boxLeft = 5;
+      labelX = boxLeft + 5;
+      context.textAlign = "left";
+    } else if (boxLeft + boxWidth > width - 5) {
+      boxLeft = width - boxWidth - 5;
+      labelX = boxLeft + boxWidth - 5;
+      context.textAlign = "right";
+    }
+    boxTop = Math.max(5, Math.min(height - 23, boxTop));
+    labelY = boxTop + 9;
+
+    context.beginPath();
+    context.moveTo(point[0], point[1] + 1);
+    context.lineTo(labelX, labelY);
+    context.strokeStyle = active ? "rgba(178, 2, 2, 0.74)" : "rgba(15, 41, 131, 0.36)";
+    context.lineWidth = active ? 1.2 : 0.7;
+    context.stroke();
+
+    context.fillStyle = active ? "rgba(178, 2, 2, 0.12)" : "rgba(255, 255, 255, 0.8)";
+    context.fillRect(boxLeft, boxTop, boxWidth, 18);
+    context.strokeStyle = active ? "rgba(178, 2, 2, 0.72)" : "rgba(15, 41, 131, 0.22)";
+    context.lineWidth = 0.8;
+    context.strokeRect(boxLeft, boxTop, boxWidth, 18);
+    context.fillStyle = active ? "#b20202" : "#071444";
+    context.fillText(country.name, labelX, labelY);
+  }
+
   function drawGlobe(now) {
     if (!projection || !path) return;
 
@@ -147,52 +211,18 @@
       var point = projectedCenter(country);
       if (!point) return;
 
-      var active = activeCountryId === country.id;
+      var highlighted = activeCountryId === country.id || (hoveredCountry && hoveredCountry.id === country.id);
       var pulse = (Math.sin(now / 720 + country.index * 0.46) + 1) / 2;
       context.beginPath();
-      context.arc(point[0], point[1], active ? 5 + pulse * 5 : 3.4 + pulse * 2.2, 0, Math.PI * 2);
-      context.strokeStyle = active
-        ? "rgba(178, 2, 2, " + (0.38 + pulse * 0.3) + ")"
-        : "rgba(15, 41, 131, " + (0.16 + pulse * 0.12) + ")";
-      context.lineWidth = active ? 1.4 : 0.8;
+      context.arc(point[0], point[1], highlighted ? 12 + pulse * 4 : 9 + pulse * 2, 0, Math.PI * 2);
+      context.strokeStyle = highlighted
+        ? "rgba(178, 2, 2, " + (0.28 + pulse * 0.28) + ")"
+        : "rgba(15, 41, 131, " + (0.12 + pulse * 0.1) + ")";
+      context.lineWidth = highlighted ? 1.2 : 0.7;
       context.stroke();
-
-      context.beginPath();
-      context.arc(point[0], point[1], active ? 3.3 : 2.1, 0, Math.PI * 2);
-      context.fillStyle = active ? "#b20202" : "rgba(15, 41, 131, 0.86)";
-      context.fill();
-      context.strokeStyle = "rgba(255, 255, 255, 0.9)";
-      context.lineWidth = active ? 1.5 : 1.1;
-      context.stroke();
+      drawLocationPin(point, highlighted);
+      drawCountryLabel(country, point, highlighted);
     });
-
-    if (hoveredCountry) {
-      var hoveredPoint = projectedCenter(hoveredCountry);
-      if (hoveredPoint) {
-        var labelX = hoveredPoint[0] + (hoveredPoint[0] >= centerX ? 18 : -18);
-        var labelY = hoveredPoint[1] - 18;
-        var align = hoveredPoint[0] >= centerX ? "left" : "right";
-
-        context.beginPath();
-        context.moveTo(hoveredPoint[0], hoveredPoint[1]);
-        context.lineTo(labelX, labelY);
-        context.strokeStyle = "rgba(178, 2, 2, 0.72)";
-        context.lineWidth = 1;
-        context.stroke();
-
-        context.font = "600 11px Poppins, sans-serif";
-        context.textAlign = align;
-        context.textBaseline = "middle";
-        var labelWidth = context.measureText(hoveredCountry.name).width + 18;
-        var boxLeft = align === "left" ? labelX - 8 : labelX - labelWidth + 8;
-        context.fillStyle = "rgba(255, 255, 255, 0.94)";
-        context.fillRect(boxLeft, labelY - 11, labelWidth, 22);
-        context.strokeStyle = "rgba(178, 2, 2, 0.74)";
-        context.strokeRect(boxLeft, labelY - 11, labelWidth, 22);
-        context.fillStyle = "#071444";
-        context.fillText(hoveredCountry.name, labelX, labelY);
-      }
-    }
 
     context.restore();
   }

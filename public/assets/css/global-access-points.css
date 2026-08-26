@@ -38,25 +38,6 @@
   align-self: center;
 }
 
-.gap-globe__country-label {
-  margin: 0 0 0.45rem;
-  color: var(--gap-red);
-  font-family: var(--font-body, "Poppins", sans-serif);
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-}
-
-.gap-globe__country-instruction {
-  max-width: 24ch;
-  margin: 0 0 1.15rem;
-  color: var(--gap-ink-soft);
-  font-family: var(--font-body, "Poppins", sans-serif);
-  font-size: 0.88rem;
-  line-height: 1.55;
-}
-
 .gap-globe__country-list {
   display: grid;
   gap: 0;
@@ -187,41 +168,9 @@
   outline-offset: -0.5rem;
 }
 
-.gap-globe__count {
-  position: absolute;
-  top: 1.25rem;
-  right: 1.25rem;
-  z-index: 2;
-  display: grid;
-  gap: 0.1rem;
-  color: var(--gap-ink-soft);
-  pointer-events: none;
-  text-align: right;
-}
-
-.gap-globe__count strong {
-  font-family: var(--font-display, "PP Neue Montreal", sans-serif);
-  font-size: clamp(2rem, 4vw, 3.2rem);
-  font-weight: 500;
-  line-height: 0.9;
-  letter-spacing: -0.05em;
-  color: var(--gap-red);
-}
-
-.gap-globe__count span,
 .gap-globe__hint {
+  position: absolute;
   font-family: var(--font-body, "Poppins", sans-serif);
-}
-
-.gap-globe__count span {
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.gap-globe__hint {
-  position: absolute;
   bottom: 1.35rem;
   left: 50%;
   z-index: 2;
@@ -295,10 +244,6 @@
     order: 2;
   }
 
-  .gap-globe__country-instruction {
-    max-width: none;
-  }
-
   .gap-globe__country-list {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 0 0.85rem;
@@ -338,11 +283,6 @@
 
   .gap-globe__halo {
     width: min(112vw, 34rem);
-  }
-
-  .gap-globe__count {
-    top: 0.65rem;
-    right: 0.65rem;
   }
 
   .gap-globe__hint {
