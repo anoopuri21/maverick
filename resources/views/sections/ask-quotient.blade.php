@@ -15,16 +15,11 @@
     </div>
 
     <div class="askq__framework">
-      <div class="askq__signature" aria-hidden="true">
-        <span class="askq__signature-mark">ASK</span>
-      </div>
-
       <ol class="askq__cards" aria-label="The three parts of the ASK Quotient">
         <li class="askq__card" data-ask-card="attitude">
           <article class="askq__card-inner" aria-labelledby="ask-attitude-heading">
             <div class="askq__card-meta">
               <span class="askq__card-letter" aria-hidden="true">A</span>
-              <span class="askq__card-index" aria-hidden="true">01</span>
             </div>
             <h3 id="ask-attitude-heading" class="askq__card-heading">Attitude</h3>
             <p class="askq__card-keywords">Curiosity <span aria-hidden="true">·</span> Ownership <span aria-hidden="true">·</span> Courage</p>
@@ -36,7 +31,6 @@
           <article class="askq__card-inner" aria-labelledby="ask-skills-heading">
             <div class="askq__card-meta">
               <span class="askq__card-letter" aria-hidden="true">S</span>
-              <span class="askq__card-index" aria-hidden="true">02</span>
             </div>
             <h3 id="ask-skills-heading" class="askq__card-heading">Skills</h3>
             <p class="askq__card-keywords">Thinking <span aria-hidden="true">·</span> Communication <span aria-hidden="true">·</span> Execution</p>
@@ -48,7 +42,6 @@
           <article class="askq__card-inner" aria-labelledby="ask-knowledge-heading">
             <div class="askq__card-meta">
               <span class="askq__card-letter" aria-hidden="true">K</span>
-              <span class="askq__card-index" aria-hidden="true">03</span>
             </div>
             <h3 id="ask-knowledge-heading" class="askq__card-heading">Knowledge</h3>
             <p class="askq__card-keywords">Context <span aria-hidden="true">·</span> Perspective <span aria-hidden="true">·</span> Judgment</p>

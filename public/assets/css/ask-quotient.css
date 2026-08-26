@@ -50,37 +50,17 @@
 
 #ask-quotient .askq__framework {
   display: grid;
-  grid-template-columns: minmax(9rem, 0.26fr) minmax(0, 1fr);
-  gap: clamp(1.75rem, 4vw, 5.25rem);
+  grid-template-columns: 1fr;
+  gap: clamp(1.5rem, 3vw, 3.5rem);
   align-items: stretch;
 }
 
-#ask-quotient .askq__signature {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  min-height: 100%;
-  padding-top: 1.2rem;
-  border-top: 1px solid var(--ask-rule);
-}
-
-#ask-quotient .askq__signature::before {
+#ask-quotient .askq__framework::before {
   display: block;
-  width: 2.75rem;
+  width: clamp(3rem, 5vw, 4.5rem);
   height: 2px;
   background: var(--ask-red);
   content: "";
-}
-
-#ask-quotient .askq__signature-mark {
-  display: block;
-  margin-top: clamp(1.4rem, 2.5vw, 2.5rem);
-  color: var(--ask-ink);
-  font-family: var(--font-display);
-  font-size: clamp(4.5rem, 8vw, 8.25rem);
-  font-weight: var(--fw-medium);
-  letter-spacing: -0.1em;
-  line-height: 0.76;
 }
 
 #ask-quotient .askq__cards {
@@ -97,7 +77,7 @@
 #ask-quotient .askq__card {
   position: relative;
   min-width: 0;
-  min-height: 20rem;
+  min-height: 19rem;
   background: rgba(255, 255, 255, 0.72);
 }
 
@@ -131,14 +111,14 @@
 #ask-quotient .askq__card-inner {
   display: flex;
   flex-direction: column;
-  min-height: 20rem;
+  min-height: 19rem;
   padding: clamp(1.35rem, 2.5vw, 2.35rem);
 }
 
 #ask-quotient .askq__card-meta {
   display: flex;
   align-items: flex-start;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 1rem;
   padding-bottom: clamp(1.4rem, 2.5vw, 2.4rem);
   border-bottom: 1px solid var(--ask-rule);
@@ -159,20 +139,6 @@
 
 #ask-quotient .askq__card:nth-child(1) .askq__card-letter {
   color: var(--color-white);
-}
-
-#ask-quotient .askq__card-index {
-  padding-top: 0.25rem;
-  color: rgba(7, 20, 68, 0.58);
-  font-family: var(--font-body);
-  font-size: 0.68rem;
-  font-weight: var(--fw-medium);
-  letter-spacing: 0.16em;
-  line-height: 1;
-}
-
-#ask-quotient .askq__card:nth-child(1) .askq__card-index {
-  color: rgba(255, 255, 255, 0.62);
 }
 
 #ask-quotient .askq__card-heading {
@@ -219,11 +185,6 @@
 }
 
 @media (max-width: 1100px) {
-  #ask-quotient .askq__framework {
-    grid-template-columns: minmax(7rem, 0.2fr) minmax(0, 1fr);
-    gap: clamp(1.5rem, 3vw, 3rem);
-  }
-
   #ask-quotient .askq__card-inner {
     padding: 1.35rem;
   }
@@ -241,24 +202,6 @@
 
   #ask-quotient .askq__intro {
     margin-bottom: 2.75rem;
-  }
-
-  #ask-quotient .askq__framework {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  #ask-quotient .askq__signature {
-    flex-direction: row;
-    align-items: flex-end;
-    justify-content: space-between;
-    min-height: 0;
-    padding-top: 1rem;
-  }
-
-  #ask-quotient .askq__signature-mark {
-    margin-top: 1rem;
-    font-size: clamp(4rem, 16vw, 6.5rem);
   }
 
   #ask-quotient .askq__cards {
@@ -327,17 +270,12 @@
 }
 
 #ask-quotient .askq__intro,
-#ask-quotient .askq__signature,
 #ask-quotient .askq__card {
   animation: askq-rise-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 #ask-quotient .askq__intro {
   animation-delay: 0.04s;
-}
-
-#ask-quotient .askq__signature {
-  animation-delay: 0.14s;
 }
 
 #ask-quotient .askq__card:nth-child(1) {
@@ -352,7 +290,7 @@
   animation-delay: 0.36s;
 }
 
-#ask-quotient .askq__signature::before {
+#ask-quotient .askq__framework::before {
   transform-origin: left center;
   animation: askq-rule-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.16s both;
 }
