@@ -1,3 +1,5 @@
+@php $featuredPrograms = collect($featuredPrograms ?? []); @endphp
+@if($featuredPrograms->isNotEmpty())
 <section id="featured-programs" class="programs section-wrapper section--light" aria-label="Featured Programs">
   <div class="container programs__inner">
     <div class="section-label">
@@ -23,7 +25,7 @@
 
   <div class="programs__scroll-wrapper">
     <div class="programs__track">
-      @forelse(($featuredPrograms ?? collect()) as $index => $program)
+      @foreach($featuredPrograms as $index => $program)
         <div class="programs__card">
           @if($url = media_url($program->image_url ?? null, 'assets/images/homepage/mba.jpg'))
           <img class="programs__card-media"
@@ -53,9 +55,8 @@
             @endif
           </div>
         </div>
-      @empty
-        <p class="body-text" style="padding: 2rem;">No featured programs yet.</p>
-      @endforelse
+      @endforeach
     </div>
   </div>
 </section>
+@endif
