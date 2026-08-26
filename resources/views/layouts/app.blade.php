@@ -104,11 +104,6 @@
     <script src="{{ cached_asset('assets/js/partners.js') }}" defer></script>
     <script src="{{ cached_asset('assets/js/testimonials.js') }}" defer></script>
     @endif
-    {{-- #region agent log --}}
-    @php
-        file_put_contents(base_path('debug-216c24.log'), json_encode(['sessionId' => '216c24', 'hypothesisId' => 'A', 'location' => 'layouts/app.blade.php:partners-gate', 'message' => 'layout partners.js gate evaluated', 'data' => ['route' => request()->route()?->getName(), 'path' => request()->path(), 'gateAllowsPartnersJs' => request()->routeIs('home', 'our-story', 'masters-pathway', 'global-partners')], 'timestamp' => (int) round(microtime(true) * 1000), 'runId' => 'post-fix']).PHP_EOL, FILE_APPEND);
-    @endphp
-    {{-- #endregion --}}
     {{-- Modal disabled — re-enable when needed
     @if(request()->routeIs('home', 'masters-pathway'))
     <script src="{{ cached_asset('assets/js/faculty-voice-modal.js') }}" defer></script>
@@ -119,9 +114,6 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             if (window.lucide) window.lucide.createIcons();
-            // #region agent log
-            fetch('http://127.0.0.1:7261/ingest/87dbe68d-1ae0-4854-9384-b22a900033f3',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'216c24'},body:JSON.stringify({sessionId:'216c24',hypothesisId:'A',location:'layouts/app.blade.php:DOMContentLoaded',message:'partners client state',data:{path:location.pathname,partnersScriptPresent:!!document.querySelector('script[src*="assets/js/partners.js"]'),partnersDataLen:Array.isArray(window.universityPartnersData)?window.universityPartnersData.length:null,mapKids:document.getElementById('partnersMapContainer')?.childElementCount??null,mobileKids:document.getElementById('partnersMobileList')?.childElementCount??null,sectionPresent:!!document.getElementById('university-partners')},timestamp:Date.now(),runId:'pre-fix'})}).catch(()=>{});
-            // #endregion
         });
     </script>
 
