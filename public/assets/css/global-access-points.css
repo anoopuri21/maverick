@@ -74,10 +74,12 @@
 }
 
 .gap-globe__country-list button > span {
-  color: rgba(7, 20, 68, 0.4);
-  font-size: 0.64rem;
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 0.08em;
+  display: inline-flex;
+  align-items: center;
+  color: inherit;
+  font-size: 1rem;
+  line-height: 1;
+  letter-spacing: 0;
 }
 
 .gap-globe__country-list button strong {
