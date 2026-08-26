@@ -36,6 +36,7 @@
     @include('sections.hero')
     @include('sections.numbers')
     @include('sections.what-is-maverick')
+    @include('sections.ask-quotient')
     @include('sections.who-we-are')
     @include('sections.ceo-message')
     @include('sections.what-we-do')
