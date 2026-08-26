@@ -11,6 +11,7 @@
 @push('styles')
     <link rel="stylesheet" href="{{ cached_asset('assets/css/global-access-points.css') }}" />
     <link rel="stylesheet" href="{{ cached_asset('assets/css/ask-quotient.css') }}" />
+    <link rel="stylesheet" href="{{ cached_asset('assets/css/dei-matrix.css') }}" />
 @endpush
 
 @push('scripts')
