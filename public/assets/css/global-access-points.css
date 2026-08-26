@@ -448,3 +448,95 @@
     font-size: clamp(2.1rem, 11vw, 3.5rem);
   }
 }
+
+/* Final visual polish — editorial navigation, story plate, and globe focus. */
+#global-access-points .gap__inner {
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+#global-access-points .gap__header {
+  max-width: 64rem;
+  margin-bottom: 0.25rem;
+}
+
+#global-access-points .gap-globe-stage {
+  row-gap: clamp(2rem, 4vw, 3.5rem);
+}
+
+#global-access-points .gap-globe__country-panel {
+  padding-top: 0.85rem;
+  border-top: 1px solid rgba(7, 20, 68, 0.18);
+}
+
+#global-access-points .gap-globe__country-list {
+  justify-content: flex-start;
+  align-content: start;
+}
+
+#global-access-points .gap-globe__country-list button {
+  background: rgba(255, 255, 255, 0.24);
+  border-color: rgba(7, 20, 68, 0.14);
+}
+
+#global-access-points .gap-globe__country-list button:hover,
+#global-access-points .gap-globe__country-list button:focus-visible {
+  background: rgba(255, 255, 255, 0.72);
+}
+
+#global-access-points .gap-globe__country-list button.is-active {
+  background: rgba(178, 2, 2, 0.1);
+  box-shadow: inset 0 -2px 0 var(--gap-red);
+}
+
+#global-access-points .gap-globe__country-list .gap-globe__country-flag {
+  filter: saturate(0.86);
+}
+
+#global-access-points .gap-globe__story {
+  position: relative;
+  padding: clamp(1.5rem, 3vw, 2.75rem) clamp(1rem, 2.5vw, 2rem);
+  border-top: 0;
+  border-right: 1px solid rgba(7, 20, 68, 0.14);
+  border-bottom: 0;
+  border-left: 3px solid var(--gap-red);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(15, 41, 131, 0.035));
+}
+
+#global-access-points .gap-globe__story h3 {
+  max-width: 10ch;
+}
+
+#global-access-points .gap-globe__visual {
+  min-height: clamp(28rem, 50vw, 44rem);
+  background: radial-gradient(circle at 50% 48%, rgba(15, 41, 131, 0.035), transparent 62%);
+}
+
+#global-access-points .gap-globe__canvas {
+  filter: drop-shadow(0 1.25rem 1.75rem rgba(7, 20, 68, 0.12));
+}
+
+@media (max-width: 900px) {
+  #global-access-points .gap-globe__story {
+    border-top: 1px solid rgba(7, 20, 68, 0.14);
+    border-right: 0;
+    border-bottom: 1px solid rgba(7, 20, 68, 0.14);
+  }
+
+  #global-access-points .gap-globe__visual {
+    min-height: min(88vw, 40rem);
+  }
+}
+
+@media (max-width: 600px) {
+  #global-access-points .gap-globe__country-panel {
+    padding-top: 0.65rem;
+  }
+
+  #global-access-points .gap-globe__story {
+    padding: 1.25rem 0.9rem;
+  }
+
+  #global-access-points .gap-globe__visual {
+    min-height: min(98vw, 34rem);
+  }
+}
