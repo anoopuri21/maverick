@@ -166,18 +166,6 @@
   line-height: 1.25;
 }
 
-#dei-matrix .deim__row-practice-label {
-  display: block;
-  margin-bottom: 0.55rem;
-  color: var(--dei-red);
-  font-family: var(--font-body);
-  font-size: 0.62rem;
-  font-weight: var(--fw-medium);
-  letter-spacing: 0.16em;
-  line-height: 1;
-  text-transform: uppercase;
-}
-
 #dei-matrix .deim__matrix-panel {
   border-radius: 2px;
   box-shadow: 0 1.75rem 4rem rgba(0, 0, 0, 0.18);
