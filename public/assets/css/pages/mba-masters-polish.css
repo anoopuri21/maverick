@@ -2544,3 +2544,90 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
   line-height: 1.7 !important;
   letter-spacing: normal !important;
 }
+
+/* Accreditation typography reference — canonical light landing roles. */
+.mlp-page--polished :is(
+  .signal-atlas__heading,
+  .blueprint-overview__heading,
+  .mlp-why__heading,
+  .mlp-journey__heading,
+  .mlp-mba__heading,
+  .mlp-masters__heading,
+  .pricing-cards__heading,
+  .archive-class__heading,
+  .archive-career__heading,
+  .archive-alumni__heading,
+  .archive-learning__heading,
+  .archive-partners__heading,
+  .archive-investment__heading,
+  .archive-voices__heading,
+  .archive-parallel__heading,
+  .archive-fieldnotes__heading,
+  .mlp-class-snapshot__heading
+) {
+  font-family: var(--font-display) !important;
+  font-size: var(--fs-section-title) !important;
+  font-weight: var(--fw-medium) !important;
+  line-height: 1.1 !important;
+  letter-spacing: -0.02em !important;
+  color: var(--color-mba-blue) !important;
+  text-transform: none !important;
+}
+
+.mlp-page--polished :is(
+  .signal-atlas__folio,
+  .blueprint-overview__folio,
+  .mlp-why__label,
+  .mlp-journey__label,
+  .mlp-mba__label,
+  .mlp-masters__label,
+  .pricing-cards__label,
+  .archive-class__label,
+  .archive-career__label,
+  .archive-alumni__label,
+  .archive-learning__label,
+  .archive-partners__label,
+  .archive-investment__label,
+  .archive-voices__label,
+  .archive-parallel__label,
+  .archive-fieldnotes__label,
+  .mlp-class-snapshot__label
+) {
+  font-family: var(--font-body) !important;
+  font-size: 0.875rem !important;
+  font-weight: var(--fw-medium) !important;
+  line-height: 1.6 !important;
+  letter-spacing: 0.15em !important;
+  color: var(--color-mba-blue) !important;
+  text-transform: uppercase !important;
+}
+
+.mlp-page--polished :is(
+  .signal-atlas__quote p,
+  .blueprint-overview__intro-copy,
+  .mlp-why__intro,
+  .mlp-why__text,
+  .mlp-journey__intro,
+  .mlp-journey__text,
+  .mlp-mba__intro,
+  .mlp-masters__intro,
+  .pricing-cards__intro-copy,
+  .pricing-cards__note,
+  .archive-class__copy,
+  .archive-career__intro-copy,
+  .archive-alumni__intro-copy,
+  .archive-learning__intro-copy,
+  .archive-partners__intro-copy,
+  .archive-investment__intro-copy,
+  .archive-voices__intro-copy,
+  .archive-parallel__intro-copy,
+  .archive-fieldnotes__intro-copy,
+  .mlp-class-snapshot__intro-copy
+) {
+  font-family: var(--font-body) !important;
+  font-size: var(--fs-body) !important;
+  font-weight: var(--fw-regular) !important;
+  line-height: 1.7 !important;
+  letter-spacing: normal !important;
+  color: var(--color-black) !important;
+}
