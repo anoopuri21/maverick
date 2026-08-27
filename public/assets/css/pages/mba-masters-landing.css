@@ -3737,6 +3737,13 @@
   overflow: hidden;
 }
 
+/* Desktop only — bottom breathing room so stat labels are not clipped. */
+@media (min-width: 901px) {
+  .blueprint-overview__class-2025 {
+    padding-bottom: 5rem;
+  }
+}
+
 .blueprint-overview__class-2025-heading {
   position: relative;
   z-index: 1;

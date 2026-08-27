@@ -59,7 +59,7 @@
   @include('pages.mba-masters-landing.partners')
   @include('pages.mba-masters-landing.video-proof')
   @include('pages.mba-masters-landing.testimonials')
-  @include('pages.mba-masters-landing.compare')
+  {{-- @include('pages.mba-masters-landing.compare') --}}
   @include('pages.mba-masters-landing.faq')
   @include('pages.mba-masters-landing.final')
 </div>
