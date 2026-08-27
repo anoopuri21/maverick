@@ -4537,123 +4537,162 @@
   .archive-career__dossiers { order: 3; }
 }
 
+
 /* ————————————————————————————————————————————————
-   Master's — The Couture Index (luxury redesign)
-   Deep-void chapter · one framed cinematic plate ·
-   hairline numbered programme registry. No university names.
+   Master's — The Prospectus Ledger
+   Light · clean · professional programme directory.
+   Body typography, hairline ledger grid, one framed banner.
+   No university names, no counts.
    ———————————————————————————————————————————————— */
-.mlp-masters--couture {
-  background: var(--mlp-void);
-  color: var(--mlp-muted-on-dark);
+.mlp-masters--prospectus {
+  background: var(--mlp-paper-pure);
 }
 
-.mlp-masters--couture .mlp-masters__label { color: rgba(255, 255, 255, 0.55); }
-.mlp-masters--couture .mlp-masters__heading { max-width: 22ch; color: var(--mlp-white); }
-.mlp-masters--couture .mlp-masters__intro { max-width: 46ch; color: var(--mlp-muted-on-dark); }
-
-/* Plate + index two-column layout */
-.mlp-masters__couture {
+/* Split editorial header */
+.mlp-masters--prospectus .mlp-masters__head {
   display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-  gap: clamp(2.5rem, 6vw, 6rem);
-  align-items: start;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: end;
+  max-width: none;
+  margin-bottom: clamp(2.25rem, 5vw, 3.5rem);
 }
 
-/* ——— The single fancy framed plate ——— */
-.mlp-masters__plate-lux {
-  position: relative;
-  margin: 0;
-  padding-bottom: 2.4rem;
+.mlp-masters--prospectus .mlp-masters__label {
+  color: var(--mlp-red);
+  font-family: var(--mlp-font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
 }
-.mlp-masters__plate-lux-frame {
+
+.mlp-masters--prospectus .mlp-masters__heading {
+  max-width: 26ch;
+  color: var(--mlp-navy);
+  font-family: var(--mlp-font-body);
+  font-size: clamp(1.9rem, 3.6vw, 2.75rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.mlp-masters--prospectus .mlp-masters__intro {
+  max-width: 44ch;
+  margin: 0 0 0.35rem;
+  color: var(--mlp-muted-on-paper);
+  font-family: var(--mlp-font-body);
+}
+
+/* One framed cinematic banner — light treatment */
+.mlp-masters__banner {
+  position: relative;
+  margin: 0 0 clamp(2.5rem, 6vw, 4.25rem);
+}
+.mlp-masters__banner-frame {
   position: absolute;
-  z-index: 0;
-  inset: 1.75rem -1.75rem -0.6rem 1.75rem;
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  inset: 1.1rem -1.1rem -1.1rem 1.1rem;
+  border: 1px solid rgba(7, 20, 68, 0.16);
   pointer-events: none;
 }
-.mlp-masters__plate-lux-rule {
+.mlp-masters__banner-rule {
   position: absolute;
-  z-index: 2;
-  top: -1.1rem;
-  left: -1.1rem;
-  width: 4.5rem;
-  height: 4.5rem;
+  top: -0.9rem;
+  left: -0.9rem;
+  width: 3.75rem;
+  height: 3.75rem;
   border-top: 2px solid var(--mlp-red);
   border-left: 2px solid var(--mlp-red);
   pointer-events: none;
 }
-.mlp-masters__plate-lux-window {
-  position: relative;
-  z-index: 1;
-  aspect-ratio: 4 / 5;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.28);
-}
-.mlp-masters__plate-lux-window img {
+.mlp-masters__banner img {
+  display: block;
   width: 100%;
-  height: 100%;
+  aspect-ratio: 21 / 9;
   object-fit: cover;
-  filter: grayscale(0.25) contrast(1.05);
-  transform: scale(1.05);
-  transition: transform 1.2s var(--mlp-ease), filter 0.6s ease;
-}
-.mlp-masters__plate-lux:hover .mlp-masters__plate-lux-window img {
-  transform: scale(1);
-  filter: grayscale(0) contrast(1.02);
-}
-.mlp-masters__plate-lux-caption {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0.4rem;
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.72rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.6);
 }
 
-/* ——— Numbered couture registry ——— */
-.mlp-masters__index {
+/* Hairline ledger grid of every programme */
+.mlp-masters__ledger {
   margin: 0;
   padding: 0;
   list-style: none;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
-}
-.mlp-masters__row {
   display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 1.1rem;
-  align-items: center;
-  padding: 1.05rem 0.25rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
-  transition: background-color 0.3s ease, padding-left 0.3s var(--mlp-ease);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--mlp-line-dark);
+  border: 1px solid var(--mlp-line-dark);
 }
-.mlp-masters__row:hover {
-  background: rgba(255, 255, 255, 0.05);
-  padding-left: 0.75rem;
-}
-.mlp-masters__row-title {
-  font-family: var(--mlp-font-display);
-  font-size: clamp(1.15rem, 2.1vw, 1.55rem);
-  font-weight: 500;
-  letter-spacing: -0.015em;
-  line-height: 1.2;
-  color: var(--mlp-white);
-}
-.mlp-masters__row-mark {
-  width: 0.5rem;
-  height: 0.5rem;
-  border: 1px solid var(--mlp-red);
-  transform: rotate(45deg);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-.mlp-masters__row:hover .mlp-masters__row-mark { opacity: 1; }
 
+.mlp-masters__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  padding: 1.3rem 1.5rem 1.4rem;
+  background: var(--mlp-paper-pure);
+  transition: background-color 0.3s ease;
+}
+.mlp-masters__item:hover { background: var(--mlp-surface-soft); }
+
+.mlp-masters__item-mark {
+  flex: 0 0 auto;
+  width: 0.45rem;
+  height: 0.45rem;
+  margin-top: 0.5rem;
+  background: var(--mlp-red);
+  transform: rotate(45deg);
+  transition: transform 0.3s var(--mlp-ease);
+}
+.mlp-masters__item:hover .mlp-masters__item-mark { transform: rotate(45deg) scale(1.25); }
+
+.mlp-masters__item-title {
+  font-family: var(--mlp-font-body);
+  font-size: 1.05rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--mlp-navy);
+}
+
+/* Closing CTA row */
+.mlp-masters__cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  margin-top: clamp(2rem, 4.5vw, 3rem);
+  padding-top: 1.6rem;
+  border-top: 1px solid var(--mlp-line-dark);
+}
+.mlp-masters__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 48px;
+  padding: 0 1.6rem;
+  background: var(--mlp-red);
+  color: var(--mlp-white);
+  font-family: var(--mlp-font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border-radius: 2px;
+  transition: background-color 0.3s ease, transform 0.3s var(--mlp-ease);
+}
+.mlp-masters__cta:hover { background: var(--mlp-navy); transform: translateY(-1px); }
+.mlp-masters__cta-note {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--mlp-muted-on-paper);
+}
+
+@media (max-width: 1000px) {
+  .mlp-masters__ledger { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
 @media (max-width: 900px) {
-  .mlp-masters__couture { grid-template-columns: 1fr; }
-  .mlp-masters__plate-lux-frame { inset: 1.25rem -0.5rem -0.6rem 1.25rem; }
+  .mlp-masters--prospectus .mlp-masters__head { grid-template-columns: 1fr; align-items: start; gap: 0.9rem; }
+  .mlp-masters__banner-frame { inset: 0.9rem -0.5rem -0.9rem 0.9rem; }
+}
+@media (max-width: 640px) {
+  .mlp-masters__ledger { grid-template-columns: 1fr; }
 }

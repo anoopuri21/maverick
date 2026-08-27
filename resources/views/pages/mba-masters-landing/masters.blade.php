@@ -1,6 +1,6 @@
-{{-- §7 Master's programmes — The Couture Index (luxury redesign)
-     All listed programmes as a couture registry on a deep-void chapter.
-     No university names, no counts; a single framed cinematic plate. --}}
+{{-- §7 Master's programmes — The Prospectus Ledger
+     Light, clean, professional directory of every Master's programme
+     (all universities combined). No university names, no counts. --}}
 @php
   $programs = collect($masters->universities ?? [])
       ->flatMap(fn ($uni) => collect($uni['programs'] ?? []))
@@ -9,52 +9,47 @@
       ->unique(fn ($title) => mb_strtolower($title))
       ->values();
   $plate = mlp_image_url($masters->stage_image ?? null, [
-    'w' => 1600,
+    'w' => 1920,
     'fallback' => 'assets/images/edutainment/dubai-uae-skyline-students-studying-camp-1.jpg',
   ]);
+  $heading = filled($masters->heading) ? $masters->heading : "Master's Programs";
+  $label = filled($masters->label) ? $masters->label : 'Programme directory';
 @endphp
 @if($programs->isNotEmpty() || filled($masters->heading))
-<section class="mlp-masters mlp-masters--couture" id="mlp-masters" aria-label="Master's programmes">
+<section class="mlp-masters mlp-masters--prospectus" id="mlp-masters" aria-label="Master's programmes">
   <div class="container mlp-masters__inner">
     <header class="mlp-masters__head" data-mlp-reveal="masters-head">
-      <div class="mlp-masters__meta">
-        @if(filled($masters->label))
-        <p class="mlp-masters__label mlp-meta">{{ $masters->label }}</p>
-        @endif
+      <div>
+        <p class="mlp-masters__label">{{ $label }}</p>
+        <h2 class="mlp-masters__heading">{{ $heading }}</h2>
       </div>
-      @if(filled($masters->heading))
-      <h2 class="mlp-masters__heading mlp-headline">{{ $masters->heading }}</h2>
-      @endif
       @if(filled($masters->intro))
-      <p class="mlp-masters__intro mlp-lede">{{ $masters->intro }}</p>
+      <p class="mlp-masters__intro">{{ $masters->intro }}</p>
       @endif
     </header>
 
-    <div class="mlp-masters__couture" data-mlp-reveal="masters-list">
-      @if($plate)
-      <figure class="mlp-masters__plate-lux" data-mlp-masters-showcase>
-        <span class="mlp-masters__plate-lux-frame" aria-hidden="true"></span>
-        <span class="mlp-masters__plate-lux-rule" aria-hidden="true"></span>
-        <div class="mlp-masters__plate-lux-window">
-          <img src="{{ $plate }}" alt="Master's programmes — a global standard of study" width="1600" height="1000" loading="lazy" decoding="async">
-        </div>
-        <figcaption class="mlp-masters__plate-lux-caption">
-          <span>One standard</span>
-          <span>Global cohort</span>
-        </figcaption>
-      </figure>
-      @endif
+    @if($plate)
+    <figure class="mlp-masters__banner" data-mlp-masters-showcase>
+      <span class="mlp-masters__banner-frame" aria-hidden="true"></span>
+      <span class="mlp-masters__banner-rule" aria-hidden="true"></span>
+      <img src="{{ $plate }}" alt="Master's programmes at a global standard" width="1920" height="823" loading="lazy" decoding="async">
+    </figure>
+    @endif
 
-      @if($programs->isNotEmpty())
-      <ol class="mlp-masters__index" aria-label="Master's programmes index">
-        @foreach($programs as $title)
-        <li class="mlp-masters__row">
-          <span class="mlp-masters__row-title">{{ $title }}</span>
-          <span class="mlp-masters__row-mark" aria-hidden="true"></span>
-        </li>
-        @endforeach
-      </ol>
-      @endif
+    @if($programs->isNotEmpty())
+    <ol class="mlp-masters__ledger" data-mlp-reveal="masters-list" aria-label="All Master's programmes">
+      @foreach($programs as $title)
+      <li class="mlp-masters__item">
+        <span class="mlp-masters__item-mark" aria-hidden="true"></span>
+        <span class="mlp-masters__item-title">{{ $title }}</span>
+      </li>
+      @endforeach
+    </ol>
+    @endif
+
+    <div class="mlp-masters__cta-row">
+      <a href="#mlp-enquire" class="mlp-masters__cta">Check eligibility <span aria-hidden="true">↗</span></a>
+      <p class="mlp-masters__cta-note">Every programme above is open to enquiry — admissions will confirm eligibility and next steps.</p>
     </div>
   </div>
 </section>
