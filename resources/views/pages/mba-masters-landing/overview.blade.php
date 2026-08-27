@@ -113,11 +113,11 @@
       <div class="blueprint-overview__class-2025-stage">
         <svg class="blueprint-overview__class-2025-lines" viewBox="0 0 1000 620" preserveAspectRatio="none" aria-hidden="true">
           <path class="blueprint-overview__class-2025-arc" d="M350 230 A150 150 0 0 0 650 230" />
-          <circle class="blueprint-overview__class-2025-node" cx="380" cy="320" r="4" />
-          <circle class="blueprint-overview__class-2025-node" cx="440" cy="367" r="4" />
+          <circle class="blueprint-overview__class-2025-node" cx="350" cy="230" r="4" />
+          <circle class="blueprint-overview__class-2025-node" cx="393.934" cy="336.066" r="4" />
           <circle class="blueprint-overview__class-2025-node" cx="500" cy="380" r="4" />
-          <circle class="blueprint-overview__class-2025-node" cx="560" cy="367" r="4" />
-          <circle class="blueprint-overview__class-2025-node" cx="620" cy="320" r="4" />
+          <circle class="blueprint-overview__class-2025-node" cx="606.066" cy="336.066" r="4" />
+          <circle class="blueprint-overview__class-2025-node" cx="650" cy="230" r="4" />
           <path class="blueprint-overview__class-2025-connector" d="M210 150 H128" />
           <path class="blueprint-overview__class-2025-connector" d="M790 150 H872" />
           <path class="blueprint-overview__class-2025-connector" d="M220 386 L170 420" />

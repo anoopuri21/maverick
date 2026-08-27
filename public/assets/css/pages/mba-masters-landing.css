@@ -4083,3 +4083,14 @@
     min-height: 8rem;
   }
 }
+
+/* Shared project typography lock for the MBA Class 2025 component. */
+.mlp-page--polished #mlp-overview .blueprint-overview__class-2025-heading,
+.mlp-page--polished #mlp-overview .blueprint-overview__class-2025-center strong,
+.mlp-page--polished #mlp-overview .blueprint-overview__class-2025-value {
+  font-family: var(--font-display) !important;
+}
+
+.mlp-page--polished #mlp-overview .blueprint-overview__class-2025-label {
+  font-family: var(--font-body) !important;
+}
