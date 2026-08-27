@@ -450,6 +450,13 @@ class PageController extends Controller
             ->orderBy('sort_order')
             ->get();
 
+        $accreditationLogos = PartnerLogo::query()
+            ->select('id', 'name', 'logo_url', 'sort_order')
+            ->whereIn('type', ['accreditation', 'recognition'])
+            ->where('is_active', true)
+            ->orderBy('sort_order')
+            ->get();
+
         return view('pages.mba-masters-landing', [
             'hero' => $hero,
             'trust' => $trust,
@@ -472,6 +479,7 @@ class PageController extends Controller
             'site' => safe_settings(SiteSettings::class),
             'alumniLogos' => $alumniLogos,
             'universityPartnerLogos' => $universityPartnerLogos,
+            'accreditationLogos' => $accreditationLogos,
         ]);
     }
 

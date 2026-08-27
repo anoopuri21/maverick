@@ -2306,6 +2306,13 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
   background: transparent;
 }
 
+/* Included homepage accreditation section: keep content visible without the homepage-only animation bundle. */
+.mlp-page--polished #accreditations .text-reveal-inner,
+.mlp-page--polished #accreditations .fade-up {
+  opacity: 1;
+  transform: none;
+}
+
 /* Targeted MBA/Master's catalogue boundaries. */
 .mlp-page--polished #mlp-mba .mlp-mba__head,
 .mlp-page--polished #mlp-masters .mlp-masters__head {
