@@ -53,7 +53,6 @@
   @include('sections.accreditations')
   @include('pages.mba-masters-landing.class-snapshot')
   @include('pages.mba-masters-landing.fees')
-  @include('pages.mba-masters-landing.class')
   @include('pages.mba-masters-landing.career')
   @include('pages.mba-masters-landing.alumni')
   @include('pages.mba-masters-landing.learning')

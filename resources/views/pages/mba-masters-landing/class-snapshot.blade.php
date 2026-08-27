@@ -1,6 +1,7 @@
 @php
   $snapshotMetrics = collect($class->metrics ?? [])
       ->filter(fn ($metric) => filled($metric['value'] ?? null) || filled($metric['label'] ?? null))
+      ->take(4)
       ->values();
   $snapshotCountries = [
     ['name' => 'Moldova', 'iso2' => 'MD'],

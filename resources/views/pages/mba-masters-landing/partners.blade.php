@@ -1,17 +1,39 @@
 {{-- §13 University partners — The Light Archive / Kinetic Partner Wall --}}
 @php
-  $logos = collect($universityPartnerLogos ?? [])
+  $storedLogos = collect($universityPartnerLogos ?? [])
       ->filter(fn ($logo) => filled(media_url($logo->logo_url ?? null)))
       ->values();
-  $fallbackLogos = [
-    ['name' => 'Rushford Business School', 'src' => null],
-    ['name' => 'Girne American University', 'src' => null],
-    ['name' => 'University for the Creative Arts', 'src' => null],
-    ['name' => 'University of Wolverhampton', 'src' => null],
+  $listingUniversities = [
+    [
+      'name' => 'Rushford Business School',
+      'src' => 'https://rushford.ch/wp-content/uploads/2022/12/RUSHFORD-LOGO-COLOR-1.png',
+    ],
+    [
+      'name' => 'Girne American University',
+      'src' => 'https://www.gau.edu.tr/template/gau/assets/img/logo2_en.png',
+    ],
+    [
+      'name' => 'University for the Creative Arts',
+      'src' => 'https://www.uca.ac.uk/media/uca-2020/site-assets/media/logos/uca-logo-black.png',
+    ],
+    [
+      'name' => 'University of Wolverhampton',
+      'src' => 'https://upload.wikimedia.org/wikipedia/en/1/19/University_of_Wolverhampton_logo.jpg',
+    ],
   ];
-  $renderLogos = $logos->isNotEmpty()
-    ? $logos->map(fn ($logo) => ['name' => $logo->name ?? '', 'src' => media_url($logo->logo_url)])
-    : collect($fallbackLogos);
+  $renderLogos = collect($listingUniversities)->map(function (array $university) use ($storedLogos): array {
+    $name = mb_strtolower($university['name']);
+    $stored = $storedLogos->first(function ($logo) use ($name) {
+      $storedName = mb_strtolower(trim((string) ($logo->name ?? '')));
+
+      return $storedName !== '' && (str_contains($storedName, $name) || str_contains($name, $storedName));
+    });
+
+    return [
+      'name' => $university['name'],
+      'src' => $stored ? media_url($stored->logo_url) : $university['src'],
+    ];
+  });
 @endphp
 
 @if(filled($partners->heading) || $renderLogos->isNotEmpty())

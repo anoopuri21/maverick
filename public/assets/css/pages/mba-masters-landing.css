@@ -4356,3 +4356,88 @@
     transform: none;
   }
 }
+
+/* Class Profile Snapshot — full-width overview cards + inline country index */
+#mlp-class-snapshot .mlp-class-snapshot__grid {
+  grid-template-columns: 1fr;
+  gap: clamp(1.15rem, 3vw, 2rem);
+}
+
+#mlp-class-snapshot .mlp-class-snapshot__overview,
+#mlp-class-snapshot .mlp-class-snapshot__global {
+  width: 100%;
+}
+
+#mlp-class-snapshot .mlp-class-snapshot__overview {
+  padding: clamp(1.35rem, 2.5vw, 2.25rem);
+}
+
+#mlp-class-snapshot .mlp-class-snapshot__metrics {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.65rem;
+  margin-top: 1.25rem;
+}
+
+#mlp-class-snapshot .mlp-class-snapshot__metric,
+#mlp-class-snapshot .mlp-class-snapshot__metric:first-child,
+#mlp-class-snapshot .mlp-class-snapshot__metric:last-child {
+  min-width: 0;
+  min-height: 7.5rem;
+  padding: 1.1rem;
+  border: 1px solid var(--mlp-line-dark);
+  background: rgba(245, 240, 235, 0.52);
+}
+
+#mlp-class-snapshot .mlp-class-snapshot__metric-icon {
+  width: 2rem;
+  height: 2rem;
+}
+
+#mlp-class-snapshot .mlp-class-snapshot__metric dd {
+  font-size: clamp(1.35rem, 2vw, 1.9rem);
+}
+
+#mlp-class-snapshot .mlp-class-snapshot__global {
+  min-height: 0;
+  padding: clamp(1.35rem, 2.5vw, 2.25rem) clamp(1.35rem, 3vw, 2.75rem) 8.5rem;
+}
+
+#mlp-class-snapshot .mlp-class-snapshot__countries {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem 1rem;
+  margin-top: 1.25rem;
+}
+
+#mlp-class-snapshot .mlp-class-snapshot__country {
+  flex: 0 0 auto;
+  min-height: 2.15rem;
+  padding: 0.3rem 0.8rem 0.3rem 0;
+  border-bottom: 1px solid var(--mlp-line-dark);
+}
+
+@media (max-width: 900px) {
+  #mlp-class-snapshot .mlp-class-snapshot__metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #mlp-class-snapshot .mlp-class-snapshot__global {
+    padding-bottom: 8rem;
+  }
+}
+
+@media (max-width: 520px) {
+  #mlp-class-snapshot .mlp-class-snapshot__metrics {
+    grid-template-columns: 1fr;
+  }
+
+  #mlp-class-snapshot .mlp-class-snapshot__global {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+
+  #mlp-class-snapshot .mlp-class-snapshot__country {
+    width: 100%;
+  }
+}
