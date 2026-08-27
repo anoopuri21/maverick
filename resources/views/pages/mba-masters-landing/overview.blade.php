@@ -104,6 +104,91 @@
       @endif
     </div>
     @endif
+
+    <div class="blueprint-overview__class-2025" id="mlp-overview-class-2025" role="group" aria-labelledby="mlp-overview-class-2025-title">
+      <h3 class="blueprint-overview__class-2025-heading" id="mlp-overview-class-2025-title">
+        <span>MBA Class of</span> <strong>2025</strong>
+      </h3>
+
+      <div class="blueprint-overview__class-2025-stage">
+        <svg class="blueprint-overview__class-2025-lines" viewBox="0 0 1000 620" preserveAspectRatio="none" aria-hidden="true">
+          <path class="blueprint-overview__class-2025-arc" d="M210 278 A290 290 0 0 1 790 278" />
+          <circle class="blueprint-overview__class-2025-node" cx="282" cy="177" r="5" />
+          <circle class="blueprint-overview__class-2025-node" cx="382" cy="104" r="5" />
+          <circle class="blueprint-overview__class-2025-node" cx="500" cy="79" r="5" />
+          <circle class="blueprint-overview__class-2025-node" cx="618" cy="104" r="5" />
+          <circle class="blueprint-overview__class-2025-node" cx="718" cy="177" r="5" />
+          <path class="blueprint-overview__class-2025-connector" d="M415 250 L245 153" />
+          <path class="blueprint-overview__class-2025-connector" d="M585 250 L755 153" />
+          <path class="blueprint-overview__class-2025-connector" d="M408 350 L248 411" />
+          <path class="blueprint-overview__class-2025-connector" d="M592 350 L752 411" />
+          <path class="blueprint-overview__class-2025-connector" d="M500 400 L500 518" />
+        </svg>
+
+        <div class="blueprint-overview__class-2025-center" role="img" aria-label="MBA - 2025">
+          <span>MBA</span>
+          <strong>- 2025</strong>
+        </div>
+
+        <ol class="blueprint-overview__class-2025-stats" aria-label="MBA Class of 2025 statistics">
+          <li class="blueprint-overview__class-2025-stat blueprint-overview__class-2025-stat--students">
+            <article class="blueprint-overview__class-2025-card">
+              <svg class="blueprint-overview__class-2025-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="9" cy="8" r="3" />
+                <path d="M3 20c.6-3.3 2.5-5 6-5s5.4 1.7 6 5" />
+                <path d="M16 6.5a2.5 2.5 0 1 1 0 5M17 15c2.3.2 3.6 1.8 4 4" />
+              </svg>
+              <strong class="blueprint-overview__class-2025-value">979</strong>
+              <span class="blueprint-overview__class-2025-label">MBA Students</span>
+            </article>
+          </li>
+
+          <li class="blueprint-overview__class-2025-stat blueprint-overview__class-2025-stat--countries">
+            <article class="blueprint-overview__class-2025-card">
+              <svg class="blueprint-overview__class-2025-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="9" />
+                <path d="M3 12h18M12 3c2.3 2.5 3.5 5.5 3.5 9s-1.2 6.5-3.5 9c-2.3-2.5-3.5-5.5-3.5-9S9.7 5.5 12 3Z" />
+              </svg>
+              <strong class="blueprint-overview__class-2025-value">77</strong>
+              <span class="blueprint-overview__class-2025-label">Countries Represented</span>
+            </article>
+          </li>
+
+          <li class="blueprint-overview__class-2025-stat blueprint-overview__class-2025-stat--pass-rate">
+            <article class="blueprint-overview__class-2025-card">
+              <svg class="blueprint-overview__class-2025-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 3 19 6v5c0 4.6-2.8 8-7 10-4.2-2-7-5.4-7-10V6l7-3Z" />
+                <path d="m8.5 12 2.2 2.2 4.8-5" />
+              </svg>
+              <strong class="blueprint-overview__class-2025-value">98.70%</strong>
+              <span class="blueprint-overview__class-2025-label">Pass Rate</span>
+            </article>
+          </li>
+
+          <li class="blueprint-overview__class-2025-stat blueprint-overview__class-2025-stat--age">
+            <article class="blueprint-overview__class-2025-card">
+              <svg class="blueprint-overview__class-2025-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="4" y="5" width="16" height="16" rx="2" />
+                <path d="M8 3v4M16 3v4M4 10h16M8 14h3M13 14h3M8 18h3" />
+              </svg>
+              <strong class="blueprint-overview__class-2025-value">33.7</strong>
+              <span class="blueprint-overview__class-2025-label">Average Age</span>
+            </article>
+          </li>
+
+          <li class="blueprint-overview__class-2025-stat blueprint-overview__class-2025-stat--experience">
+            <article class="blueprint-overview__class-2025-card">
+              <svg class="blueprint-overview__class-2025-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="7" width="18" height="13" rx="2" />
+                <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18M10 12v2h4v-2" />
+              </svg>
+              <strong class="blueprint-overview__class-2025-value">11.2</strong>
+              <span class="blueprint-overview__class-2025-label">Average Years of Professional Experience</span>
+            </article>
+          </li>
+        </ol>
+      </div>
+    </div>
   </div>
 </section>
 @endif
