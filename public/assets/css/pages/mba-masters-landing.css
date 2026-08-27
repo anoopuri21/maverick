@@ -3783,13 +3783,6 @@
   vector-effect: non-scaling-stroke;
 }
 
-.blueprint-overview__class-2025-node {
-  fill: var(--mlp-paper-pure);
-  stroke: var(--mlp-blue);
-  stroke-width: 1.15;
-  vector-effect: non-scaling-stroke;
-}
-
 .blueprint-overview__class-2025-connector {
   fill: none;
   stroke: rgba(7, 20, 68, 0.14);
