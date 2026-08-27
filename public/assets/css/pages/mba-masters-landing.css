@@ -2783,7 +2783,7 @@
 @media (prefers-reduced-motion: reduce) {
   .archive-alumni__track,
   .archive-learning__stack-layer,
-  .archive-career__dossier,
+  .archive-career__dossier{animation: none !important;}
 }
 /* —— Pricing Cards: compact programme fee design —— */
 .pricing-cards {
