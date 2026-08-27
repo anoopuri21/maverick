@@ -433,7 +433,6 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
   .prospectus-cover__enquiry-index,
   .signal-atlas__folio,
   .blueprint-overview__folio,
-  .blueprint-overview__system-label,
   .archive-class__label,
   .archive-career__label,
   .archive-alumni__label,
@@ -1183,7 +1182,6 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
   .prospectus-cover__enquiry-index,
   .signal-atlas__folio,
   .blueprint-overview__folio,
-  .blueprint-overview__system-label,
   .archive-class__label,
   .archive-career__label,
   .archive-alumni__label,
@@ -1919,11 +1917,11 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
 .mlp-page--polished .luxury-testimonial__quote {
   max-width: 40ch;
   margin: 0;
-  font-family: var(--mlp-font-display);
-  font-size: clamp(1.45rem, 2.8vw, 2.35rem);
-  font-weight: 500;
-  line-height: 1.05;
-  letter-spacing: -0.035em;
+  font-family: var(--font-body) !important;
+  font-size: var(--fs-body) !important;
+  font-weight: var(--fw-regular) !important;
+  line-height: 1.7 !important;
+  letter-spacing: normal !important;
   color: var(--mlp-navy);
 }
 
@@ -2455,7 +2453,6 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
   .prospectus-cover__enquiry-index,
   .signal-atlas__folio,
   .blueprint-overview__folio,
-  .blueprint-overview__system-label,
   .archive-class__label,
   .archive-career__label,
   .archive-alumni__label,

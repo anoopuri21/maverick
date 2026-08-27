@@ -47,7 +47,7 @@
   @include('pages.mba-masters-landing.trust')
   @include('pages.mba-masters-landing.overview')
   @include('pages.mba-masters-landing.why')
-  @include('pages.mba-masters-landing.journey')
+  {{-- @include('pages.mba-masters-landing.journey') --}}
   @include('pages.mba-masters-landing.mba')
   @include('pages.mba-masters-landing.masters')
   @include('pages.mba-masters-landing.fees')

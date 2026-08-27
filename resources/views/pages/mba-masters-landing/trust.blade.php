@@ -27,11 +27,24 @@
     <div class="signal-atlas__graph" data-signal-atlas>
       <svg class="signal-atlas__svg" viewBox="0 0 1200 360" preserveAspectRatio="none" aria-hidden="true">
         <g class="signal-atlas__grid-lines">
-          <path d="M0 80H1200M0 180H1200M0 280H1200" />
-          <path d="M120 0V360M360 0V360M600 0V360M840 0V360M1080 0V360" />
+          <path d="M0 72H1200M0 180H1200M0 288H1200" />
+          <path d="M150 0V360M400 0V360M650 0V360M900 0V360M1150 0V360" />
+        </g>
+        <g class="signal-atlas__contour-lines">
+          <path d="M0 318 C168 280 224 110 382 132 S604 294 770 202 S1008 92 1200 152" />
+          <path d="M0 344 C184 306 264 174 414 184 S616 286 792 236 S1028 164 1200 196" />
+          <path d="M0 244 C132 216 224 62 356 88 S566 238 730 152 S1004 40 1200 112" />
         </g>
         <path class="signal-atlas__signal-line" data-signal-path d="M36 282 C148 238 190 92 316 142 S486 308 594 206 S760 62 850 126 S1020 270 1164 72" />
         <path class="signal-atlas__signal-line signal-atlas__signal-line--secondary" d="M36 310 C178 270 246 198 348 214 S520 264 630 238 S780 156 900 188 S1058 228 1164 148" />
+        <g class="signal-atlas__signal-nodes">
+          <circle cx="148" cy="238" r="4" />
+          <circle cx="316" cy="142" r="4" />
+          <circle cx="486" cy="308" r="4" />
+          <circle cx="594" cy="206" r="4" />
+          <circle cx="850" cy="126" r="4" />
+          <circle cx="1020" cy="270" r="4" />
+        </g>
       </svg>
 
       <ol class="signal-atlas__records" aria-label="Trust statistics">
