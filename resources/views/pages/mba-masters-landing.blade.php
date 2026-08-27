@@ -50,6 +50,7 @@
   {{-- @include('pages.mba-masters-landing.journey') --}}
   @include('pages.mba-masters-landing.mba')
   @include('pages.mba-masters-landing.masters')
+  @include('pages.mba-masters-landing.class-2025')
   @include('sections.accreditations')
   @include('pages.mba-masters-landing.class-snapshot')
   @include('pages.mba-masters-landing.fees')

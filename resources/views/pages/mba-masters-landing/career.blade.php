@@ -39,6 +39,20 @@
         <span class="archive-career__stack-caption">Skills that travel across industries.</span>
       </div>
 
+      <div class="mlp-uae-badge" role="note" aria-label="Top-rated online learning experience in UAE">
+        <p class="mlp-uae-badge__title">Top-rated online learning<br>experience in UAE</p>
+        <div class="mlp-uae-badge__row">
+          <div class="mlp-uae-badge__country">
+            <strong>UAE</strong>
+            <span>Top-Rated</span>
+          </div>
+          <span class="mlp-uae-badge__flag" aria-hidden="true">
+            <span class="mlp-uae-badge__flag-red"></span>
+            <span class="mlp-uae-badge__flag-stripes"><span></span><span></span><span></span></span>
+          </span>
+        </div>
+      </div>
+
       <div class="archive-career__dossiers">
         @foreach($stories as $story)
         <article class="archive-career__dossier" data-archive-element>
