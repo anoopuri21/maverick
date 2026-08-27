@@ -3728,24 +3728,15 @@
 /* MBA Class of 2025 — radial statistics component */
 .blueprint-overview__class-2025 {
   position: relative;
-  margin-top: clamp(4rem, 8vw, 7rem);
-  padding: clamp(2.5rem, 5vw, 4.5rem) clamp(1rem, 3vw, 3rem) 0;
-  background: rgba(247, 245, 241, 0.78);
+  margin-top: clamp(3rem, 6vw, 5rem);
+  padding: clamp(2rem, 3.5vw, 3rem) clamp(0.75rem, 2vw, 2rem) 0;
+  background: linear-gradient(180deg, rgba(245, 240, 235, 0.72), rgba(250, 248, 244, 0.86));
   color: var(--mlp-navy);
   overflow: hidden;
 }
 
 .blueprint-overview__class-2025::before {
-  position: absolute;
-  top: -9rem;
-  left: 50%;
-  width: min(56vw, 38rem);
-  aspect-ratio: 1;
-  border: 1px solid rgba(15, 41, 131, 0.06);
-  border-radius: 50%;
-  content: "";
-  pointer-events: none;
-  transform: translateX(-50%);
+  display: none;
 }
 
 .blueprint-overview__class-2025-heading {
@@ -3754,9 +3745,9 @@
   margin: 0;
   color: var(--mlp-blue);
   font-family: var(--mlp-font-display);
-  font-size: clamp(2rem, 4vw, 3.75rem);
+  font-size: clamp(1.8rem, 3vw, 3rem);
   font-weight: 500;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.045em;
   line-height: 1;
   text-align: center;
 }
@@ -3769,10 +3760,10 @@
 .blueprint-overview__class-2025-stage {
   position: relative;
   width: 100%;
-  max-width: 1100px;
-  min-height: 36rem;
+  max-width: 960px;
+  min-height: 30rem;
   margin: 0 auto;
-  aspect-ratio: 1000 / 620;
+  aspect-ratio: 1000 / 560;
 }
 
 .blueprint-overview__class-2025-lines {
@@ -3787,40 +3778,40 @@
 
 .blueprint-overview__class-2025-arc {
   fill: none;
-  stroke: rgba(15, 41, 131, 0.3);
-  stroke-width: 1.4;
+  stroke: rgba(15, 41, 131, 0.22);
+  stroke-width: 1;
   vector-effect: non-scaling-stroke;
 }
 
 .blueprint-overview__class-2025-node {
   fill: var(--mlp-paper-pure);
   stroke: var(--mlp-blue);
-  stroke-width: 1.4;
+  stroke-width: 1.15;
   vector-effect: non-scaling-stroke;
 }
 
 .blueprint-overview__class-2025-connector {
   fill: none;
-  stroke: rgba(7, 20, 68, 0.22);
-  stroke-width: 1;
+  stroke: rgba(7, 20, 68, 0.14);
+  stroke-width: 0.7;
   vector-effect: non-scaling-stroke;
 }
 
 .blueprint-overview__class-2025-center {
   position: absolute;
-  top: 50%;
+  top: 49%;
   left: 50%;
   z-index: 2;
   display: flex;
-  width: clamp(12rem, 19vw, 15rem);
+  width: clamp(9rem, 15vw, 12rem);
   aspect-ratio: 1;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(7, 20, 68, 0.08);
+  border: 1px solid rgba(7, 20, 68, 0.07);
   border-radius: 50%;
   background: var(--mlp-paper-pure);
-  box-shadow: 0 1.5rem 3.5rem rgba(7, 20, 68, 0.14);
+  box-shadow: 0 0.75rem 2rem rgba(7, 20, 68, 0.11);
   color: var(--mlp-navy);
   transform: translate(-50%, -50%);
 }
@@ -3828,17 +3819,17 @@
 .blueprint-overview__class-2025-center span {
   color: var(--mlp-blue);
   font-family: var(--mlp-font-body);
-  font-size: clamp(0.7rem, 1vw, 0.85rem);
+  font-size: clamp(0.64rem, 0.9vw, 0.78rem);
   font-weight: 500;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
   line-height: 1;
   text-transform: uppercase;
 }
 
 .blueprint-overview__class-2025-center strong {
-  margin-top: 0.45rem;
+  margin-top: 0.35rem;
   font-family: var(--mlp-font-display);
-  font-size: clamp(1.4rem, 2.3vw, 2.25rem);
+  font-size: clamp(1.25rem, 2vw, 1.9rem);
   font-weight: 500;
   letter-spacing: -0.04em;
   line-height: 1;
@@ -3855,69 +3846,69 @@
 
 .blueprint-overview__class-2025-stat {
   position: absolute;
-  width: clamp(11.5rem, 17vw, 15rem);
+  width: clamp(10.5rem, 15vw, 13.5rem);
 }
 
 .blueprint-overview__class-2025-stat--students {
-  top: 12%;
-  left: 3%;
-  transform: rotate(-6deg);
+  top: 14%;
+  left: 8%;
+  transform: rotate(-4deg);
 }
 
 .blueprint-overview__class-2025-stat--countries {
-  top: 12%;
-  right: 3%;
-  transform: rotate(6deg);
+  top: 14%;
+  right: 8%;
+  transform: rotate(4deg);
 }
 
 .blueprint-overview__class-2025-stat--pass-rate {
   top: 55%;
-  left: 7%;
-  transform: rotate(5deg);
+  left: 12%;
+  transform: rotate(3deg);
 }
 
 .blueprint-overview__class-2025-stat--age {
   top: 55%;
-  right: 7%;
-  transform: rotate(-5deg);
+  right: 12%;
+  transform: rotate(-3deg);
 }
 
 .blueprint-overview__class-2025-stat--experience {
-  bottom: 0;
+  bottom: 1%;
   left: 50%;
-  transform: translateX(-50%) rotate(-2deg);
+  transform: translateX(-50%) rotate(-1.5deg);
 }
 
 .blueprint-overview__class-2025-card {
   display: flex;
-  min-height: 9.75rem;
+  min-height: 8.75rem;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1.4rem 1.1rem 1.25rem;
-  clip-path: polygon(6% 0, 94% 0, 100% 14%, 93% 100%, 7% 100%, 0 14%);
+  padding: 1.15rem 0.9rem 1rem;
+  clip-path: polygon(5% 0, 95% 0, 100% 12%, 94% 100%, 6% 100%, 0 12%);
   background: var(--mlp-paper-pure);
-  filter: drop-shadow(0 0.9rem 1.75rem rgba(7, 20, 68, 0.13));
+  filter: drop-shadow(0 0.65rem 1.2rem rgba(7, 20, 68, 0.1));
   text-align: center;
 }
 
 .blueprint-overview__class-2025-stat--experience .blueprint-overview__class-2025-card {
-  min-height: 8.5rem;
-  padding-right: 1.5rem;
-  padding-left: 1.5rem;
+  min-height: 8.75rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
 }
 
 .blueprint-overview__class-2025-icon {
-  width: 1.65rem;
-  height: 1.65rem;
+  width: 1.45rem;
+  height: 1.45rem;
   color: var(--mlp-red);
 }
 
 .blueprint-overview__class-2025-value {
-  margin-top: 0.75rem;
+  margin-top: 0.58rem;
   color: var(--mlp-red);
   font-family: var(--mlp-font-display);
-  font-size: clamp(1.65rem, 2.6vw, 2.45rem);
+  font-size: clamp(1.45rem, 2.2vw, 2.1rem);
   font-weight: 500;
   letter-spacing: -0.04em;
   line-height: 1;
@@ -3925,13 +3916,14 @@
 
 .blueprint-overview__class-2025-label {
   max-width: 13rem;
-  margin-top: 0.5rem;
+  margin-top: 0.38rem;
   color: var(--mlp-navy);
   font-family: var(--mlp-font-body);
-  font-size: clamp(0.66rem, 0.85vw, 0.78rem);
+  font-size: clamp(0.62rem, 0.75vw, 0.72rem);
   font-weight: 500;
-  letter-spacing: 0.04em;
-  line-height: 1.35;
+  letter-spacing: 0.045em;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
   text-transform: uppercase;
 }
 
@@ -3958,8 +3950,8 @@
     top: auto;
     left: auto;
     grid-column: 1 / -1;
-    width: min(52vw, 14rem);
-    margin: 0 auto 1rem;
+    width: min(42vw, 11rem);
+    margin: 0 auto 0.75rem;
     transform: none;
   }
 
@@ -3995,7 +3987,7 @@
 
   .blueprint-overview__class-2025-card,
   .blueprint-overview__class-2025-stat--experience .blueprint-overview__class-2025-card {
-    min-height: 10.5rem;
+    min-height: 9rem;
   }
 }
 
@@ -4020,7 +4012,7 @@
   }
 
   .blueprint-overview__class-2025-center {
-    width: min(58vw, 13rem);
+    width: min(54vw, 10.5rem);
   }
 
   .blueprint-overview__class-2025-stat--experience {

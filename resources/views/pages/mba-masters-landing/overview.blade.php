@@ -112,17 +112,17 @@
 
       <div class="blueprint-overview__class-2025-stage">
         <svg class="blueprint-overview__class-2025-lines" viewBox="0 0 1000 620" preserveAspectRatio="none" aria-hidden="true">
-          <path class="blueprint-overview__class-2025-arc" d="M210 278 A290 290 0 0 1 790 278" />
-          <circle class="blueprint-overview__class-2025-node" cx="282" cy="177" r="5" />
-          <circle class="blueprint-overview__class-2025-node" cx="382" cy="104" r="5" />
-          <circle class="blueprint-overview__class-2025-node" cx="500" cy="79" r="5" />
-          <circle class="blueprint-overview__class-2025-node" cx="618" cy="104" r="5" />
-          <circle class="blueprint-overview__class-2025-node" cx="718" cy="177" r="5" />
-          <path class="blueprint-overview__class-2025-connector" d="M415 250 L245 153" />
-          <path class="blueprint-overview__class-2025-connector" d="M585 250 L755 153" />
-          <path class="blueprint-overview__class-2025-connector" d="M408 350 L248 411" />
-          <path class="blueprint-overview__class-2025-connector" d="M592 350 L752 411" />
-          <path class="blueprint-overview__class-2025-connector" d="M500 400 L500 518" />
+          <path class="blueprint-overview__class-2025-arc" d="M270 252 A230 230 0 0 1 730 252" />
+          <circle class="blueprint-overview__class-2025-node" cx="325" cy="162" r="4" />
+          <circle class="blueprint-overview__class-2025-node" cx="405" cy="110" r="4" />
+          <circle class="blueprint-overview__class-2025-node" cx="500" cy="92" r="4" />
+          <circle class="blueprint-overview__class-2025-node" cx="595" cy="110" r="4" />
+          <circle class="blueprint-overview__class-2025-node" cx="675" cy="162" r="4" />
+          <path class="blueprint-overview__class-2025-connector" d="M432 252 L235 164" />
+          <path class="blueprint-overview__class-2025-connector" d="M568 252 L765 164" />
+          <path class="blueprint-overview__class-2025-connector" d="M425 342 L260 395" />
+          <path class="blueprint-overview__class-2025-connector" d="M575 342 L740 395" />
+          <path class="blueprint-overview__class-2025-connector" d="M500 388 L500 500" />
         </svg>
 
         <div class="blueprint-overview__class-2025-center" role="img" aria-label="MBA - 2025">
