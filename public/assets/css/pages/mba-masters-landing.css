@@ -3756,8 +3756,8 @@
 .blueprint-overview__class-2025-stage {
   position: relative;
   width: 100%;
-  max-width: 900px;
-  min-height: 26rem;
+  max-width: 100%;
+  min-height: 100%;
   margin: 0 auto;
   aspect-ratio: 1000 / 460;
 }
@@ -3767,14 +3767,15 @@
   inset: 0;
   z-index: 0;
   width: 100%;
-  height: 100%;
+  height: calc(100% + 100px);
   overflow: visible;
   pointer-events: none;
+  top: -100px;
 }
 
 .blueprint-overview__class-2025-arc {
   fill: none;
-  stroke: rgba(15, 41, 131, 0.24);
+  stroke: rgba(15, 41, 131, 0.1);
   stroke-width: 1;
   vector-effect: non-scaling-stroke;
 }
@@ -3799,7 +3800,7 @@
   left: 50%;
   z-index: 2;
   display: flex;
-  width: clamp(7.5rem, 12vw, 9rem);
+  width: clamp(10rem, 15vw, 12rem);
   aspect-ratio: 1;
   flex-direction: column;
   align-items: center;
@@ -3924,11 +3925,11 @@
 }
 
 .blueprint-overview__class-2025-stat--age .blueprint-overview__class-2025-stat-copy {
-  top: calc(100% + 0.3rem);
-  left: calc(100% + 0.75rem);
-  width: 7rem;
-  align-items: flex-start;
-  text-align: left;
+    top: calc(100% + 0.3rem);
+    left: 0;
+    width: 11rem;
+    align-items: center;
+    text-align: right;
 }
 
 .blueprint-overview__class-2025-stat--pass-rate .blueprint-overview__class-2025-stat-copy {

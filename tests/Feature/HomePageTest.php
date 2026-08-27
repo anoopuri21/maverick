@@ -20,7 +20,9 @@ class HomePageTest extends TestCase
             'hero',
             'numbers',
             'what-is-maverick',
+            'ask-quotient',
             'who-we-are',
+            'dei-matrix',
             'ceo-message',
             'what-we-do',
             'how-we-do-it',
@@ -36,6 +38,8 @@ class HomePageTest extends TestCase
 
         $response->assertSee('window.universityPartnersData', false);
         $response->assertSee('window.testimonialsData', false);
+        $response->assertSee('window.globalAccessPointsCountries', false);
+        $response->assertSee('gap-countries-json', false);
         $response->assertDontSee('debug-216c24', false);
         $response->assertDontSee('127.0.0.1:7261', false);
         $response->assertDontSee('assets/images/placeholder.jpg', false);

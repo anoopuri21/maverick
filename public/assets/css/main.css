@@ -4572,7 +4572,7 @@ html.js .scale-in {
 
 .insights__card-image {
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 3 / 3.3;
   overflow: hidden;
   flex-shrink: 0;
 }
@@ -4582,6 +4582,7 @@ html.js .scale-in {
   height: 100%;
   object-fit: cover;
   transition: transform 0.6s ease;
+  object-position: top;
 }
 
 .insights__card:hover .insights__card-image img {
@@ -5729,7 +5730,6 @@ body.modal-open {
 /* ----- Social Icons ----- */
 .footer__social {
   display: flex;
-  justify-content: end;
   gap: 0.75rem;
   margin-top: 0.5rem;
 }

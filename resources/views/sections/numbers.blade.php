@@ -13,7 +13,7 @@
     <div class="container">
         <div class="numbers__header">
             <div class="numbers__heading-col">
-                <div class="section-label"><span>Maverick</span></div>
+                <div class="section-label"><span>{{ $numbers->label ?? '' }}</span></div>
                 @if(filled($numbers->heading_line1 ?? null) || filled($numbers->heading_line2 ?? null) || filled($numbers->heading_line3 ?? null))
                 <h2 class="numbers__heading section-title">
                     @if(filled($numbers->heading_line1 ?? null))

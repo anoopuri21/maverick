@@ -386,7 +386,8 @@
   line-height: 0.95;
 }
 
-.gap-globe__story p:not(.gap-globe__story-label) {
+.gap-globe__story p:not(.gap-globe__story-label),
+.gap-globe__story-body p {
   max-width: 30ch;
   margin: 0 0 0.85rem;
   color: var(--gap-ink-soft);
@@ -395,7 +396,8 @@
   line-height: 1.7;
 }
 
-.gap-globe__story p:last-child {
+.gap-globe__story p:last-child,
+.gap-globe__story-body p:last-child {
   margin-bottom: 0;
 }
 

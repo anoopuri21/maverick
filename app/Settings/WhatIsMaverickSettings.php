@@ -6,6 +6,8 @@ use Spatie\LaravelSettings\Settings;
 
 class WhatIsMaverickSettings extends Settings
 {
+    public ?string $label = null;
+
     public ?string $heading = null;
     public ?string $statement1 = null;
     public ?string $statement2 = null;

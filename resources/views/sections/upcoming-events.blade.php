@@ -1,24 +1,26 @@
-@php $events = collect($events ?? []); @endphp
+@php
+    $events = collect($events ?? []);
+    $homepageChrome = $homepageChrome ?? null;
+@endphp
 @if($events->isNotEmpty())
 <section id="upcoming-events" class="events section-wrapper section--dark" aria-label="Upcoming Events">
   <div class="container events__inner">
     <div class="events__header">
-      <div class="section-label"><span>Upcoming Events</span></div>
+      <div class="section-label"><span>{{ $homepageChrome->events_label ?? '' }}</span></div>
       <h2 class="events__heading section-title">
         <span class="events__heading-line">
           <span class="text-reveal-wrapper">
-            <span class="text-reveal-inner">Learn Beyond</span>
+            <span class="text-reveal-inner">{{ $homepageChrome->events_heading_line1 ?? '' }}</span>
           </span>
         </span>
         <span class="events__heading-line">
           <span class="text-reveal-wrapper">
-            <span class="text-reveal-inner">The Classroom</span>
+            <span class="text-reveal-inner">{{ $homepageChrome->events_heading_line2 ?? '' }}</span>
           </span>
         </span>
       </h2>
       <p class="events__subtitle body-text">
-        Workshops, masterclasses, and graduation moments — join our global
-        learning community
+        {{ $homepageChrome->events_subtitle ?? '' }}
       </p>
     </div>
 

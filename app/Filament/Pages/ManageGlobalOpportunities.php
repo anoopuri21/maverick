@@ -31,6 +31,8 @@ class ManageGlobalOpportunities extends SettingsPage
     {
         return $form->schema([
             Section::make('Section Heading')->schema([
+                TextInput::make('label')->label('Section Label'),
+                TextInput::make('coming_soon_label')->label('Coming Soon Badge'),
                 TextInput::make('heading')->columnSpanFull(),
                 Textarea::make('subtitle')->rows(2)->columnSpanFull(),
             ]),

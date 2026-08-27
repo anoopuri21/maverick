@@ -23,6 +23,7 @@ class ManageNumbers extends SettingsPage
 
             Section::make('Section Heading')
                 ->schema([
+                    TextInput::make('label')->label('Section Label'),
                     Grid::make(3)->schema([
                         TextInput::make('heading_line1'),
                         TextInput::make('heading_line2'),

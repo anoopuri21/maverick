@@ -126,8 +126,8 @@
         </svg>
 
         <div class="blueprint-overview__class-2025-center" role="img" aria-label="MBA - 2025">
-          <span>MBA</span>
-          <strong>- 2025</strong>
+          
+          <strong>MBA - 2025</strong>
         </div>
 
         <ol class="blueprint-overview__class-2025-stats" aria-label="MBA Class of 2025 statistics">

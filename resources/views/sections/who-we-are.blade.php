@@ -11,7 +11,7 @@
     <div class="wwa__grid grid-2">
       <div class="wwa__content">
         <div class="section-label">
-          <span>Who We Are</span>
+          <span>{{ $whoWeAre->label ?? '' }}</span>
         </div>
 
         @if(filled($whoWeAre->heading_line1 ?? null) || filled($whoWeAre->heading_line2 ?? null))
