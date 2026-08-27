@@ -15,7 +15,7 @@
     'uk' => 'GB',
     'u.k.' => 'GB',
   ];
-  $metricIcons = ['users-round', 'briefcase-business', 'calendar-days', 'users-round'];
+  $metricIcons = ['users-round', 'briefcase', 'calendar', 'users-round'];
 @endphp
 
 @if($snapshotMetrics->isNotEmpty() || $snapshotRegions->isNotEmpty())
@@ -44,7 +44,7 @@
               <span class="mlp-class-snapshot__metric-icon" aria-hidden="true">
                 <i data-lucide="{{ $metricIcons[$index] ?? 'circle-dot' }}"></i>
               </span>
-              <span>{{ $metric['label'] ?? 'Class metric' }}</span>
+              <span class="mlp-class-snapshot__metric-label">{{ $metric['label'] ?? 'Class metric' }}</span>
             </dt>
             <dd>{{ $metric['value'] ?? '—' }}</dd>
           </div>
@@ -74,7 +74,29 @@
           </li>
           @endforeach
         </ul>
-        <div class="mlp-class-snapshot__map" aria-hidden="true"></div>
+        <div class="mlp-class-snapshot__map" aria-hidden="true">
+          <svg viewBox="0 0 800 280" preserveAspectRatio="none" role="presentation">
+            <g class="mlp-class-snapshot__map-grid">
+              <path d="M0 70H800M0 140H800M0 210H800" />
+              <path d="M100 0V280M300 0V280M500 0V280M700 0V280" />
+            </g>
+            <g class="mlp-class-snapshot__map-continents">
+              <path d="M82 56 116 35l51 10 24 30-22 22-27-5-21 22-31-17-26-28Z" />
+              <path d="m215 140 27 18 11 37-18 45-18-22-7-40-16-19 21-19Z" />
+              <path d="m361 76 34-19 36 9 21-11 46 17 35-1 40 22-12 20-44 1-27 20-40-9-24 23-34-20-23-29 32-23Z" />
+              <path d="m432 130 35 10 23 35-13 43-25 28-18-38-19-29 17-49Z" />
+              <path d="m627 199 30-14 39 12 25 25-24 19-46-3-27-18 3-21Z" />
+              <path d="m726 87 18 7 5 15-16 6-14-12 7-16Z" />
+            </g>
+            <g class="mlp-class-snapshot__map-points">
+              <circle cx="152" cy="79" r="3" />
+              <circle cx="420" cy="92" r="3" />
+              <circle cx="464" cy="171" r="3" />
+              <circle cx="655" cy="213" r="3" />
+              <circle cx="739" cy="102" r="3" />
+            </g>
+          </svg>
+        </div>
       </section>
       @endif
     </div>
