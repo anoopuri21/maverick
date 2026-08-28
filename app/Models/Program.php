@@ -38,6 +38,8 @@ class Program extends Model
         'careers',
         'structure',
         'support',
+        'gcc_heading',
+        'gcc_reasons',
         'accreditation_groups',
         'testimonials',
         'fees',
@@ -56,6 +58,7 @@ class Program extends Model
         'careers' => 'array',
         'structure' => 'array',
         'support' => 'array',
+        'gcc_reasons' => 'array',
         'accreditation_groups' => 'array',
         'testimonials' => 'array',
         'fees' => 'array',
@@ -178,6 +181,14 @@ class Program extends Model
             ->values();
     }
 
+    /** GCC professional reasons — [{title, text, icon}] */
+    public function getGccReasonsListAttribute(): \Illuminate\Support\Collection
+    {
+        return collect($this->gcc_reasons ?? [])
+            ->filter(fn ($item) => is_array($item) && filled($item['title'] ?? null))
+            ->values();
+    }
+
     /** About the University — derived from the linked UniversityPartner (single source). */
     public function getUniversityObjectAttribute(): object
     {
@@ -255,6 +266,7 @@ class Program extends Model
             ['id' => 'university',     'label' => 'University',     'render' => ! empty($this->university_object->name)],
             ['id' => 'accreditation',  'label' => 'Accreditation',  'render' => $this->accreditation_groups_list->count() > 0],
             ['id' => 'support',        'label' => 'Support',        'render' => $this->support_list->count() > 0],
+            ['id' => 'gcc-choose',     'label' => 'GCC',            'render' => $this->gcc_reasons_list->count() > 0],
             ['id' => 'testimonials',   'label' => 'Testimonials',   'render' => $this->testimonials_list->count() > 0],
             ['id' => 'fees',           'label' => 'Fees',           'render' => $this->fees_list->count() > 0],
             ['id' => 'faq',            'label' => 'FAQ',            'render' => $this->faqs->count() > 0],

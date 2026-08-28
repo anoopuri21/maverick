@@ -4564,6 +4564,7 @@ html.js .scale-in {
   border-radius: 2px;
   overflow: hidden;
   transition: border-color 0.4s ease;
+  transform: translateY(0px) !important;
 }
 
 .insights__card:hover {

@@ -39,6 +39,12 @@ class LenientFormValidation
             return;
         }
 
+        if (self::matchesCoordinateField($name)) {
+            $component->numeric()->nullable();
+
+            return;
+        }
+
         if (self::matchesNumericField($name)) {
             $component->numeric()->minValue(0)->nullable();
 
@@ -82,6 +88,11 @@ class LenientFormValidation
         return in_array($name, ['phone', 'mobile', 'whatsapp'], true)
             || str_ends_with($name, '_phone')
             || str_ends_with($name, '_mobile');
+    }
+
+    protected static function matchesCoordinateField(string $name): bool
+    {
+        return in_array($name, ['latitude', 'longitude', 'lat', 'lng'], true);
     }
 
     protected static function matchesNumericField(string $name): bool

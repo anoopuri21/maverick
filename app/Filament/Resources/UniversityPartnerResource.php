@@ -47,10 +47,18 @@ class UniversityPartnerResource extends Resource
                     ->schema([
                         \Filament\Forms\Components\Grid::make(3)->schema([
                             \Filament\Forms\Components\TextInput::make('latitude')
-                                ->numeric()->nullable()
+                                ->numeric()
+                                ->nullable()
+                                ->minValue(-90)
+                                ->maxValue(90)
+                                ->step('any')
                                 ->helperText('e.g. 25.2048'),
                             \Filament\Forms\Components\TextInput::make('longitude')
-                                ->numeric()->nullable()
+                                ->numeric()
+                                ->nullable()
+                                ->minValue(-180)
+                                ->maxValue(180)
+                                ->step('any')
                                 ->helperText('e.g. 55.2708'),
                             \Filament\Forms\Components\Toggle::make('is_hub')
                                 ->label('Main Hub')
