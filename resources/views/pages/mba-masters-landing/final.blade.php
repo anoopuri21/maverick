@@ -1,57 +1,53 @@
-{{-- §17 Final CTA — full-bleed plate + optional mini enquiry (shared enquire route) --}}
+{{-- §17 Final CTA — The Closing Archive / Closing Admissions Desk --}}
 @php
-  $plate = mlp_image_url($final->plate_image ?? null, ['w' => 1920, 'fallback' => 'assets/images/edutainment/cta-cinematic.jpg']);
+  $plate = mlp_image_url($final->plate_image ?? null, ['w' => 1600, 'fallback' => 'assets/images/edutainment/cta-cinematic.jpg']);
   $showForm = (bool) ($final->show_form ?? true);
 @endphp
+
 @if(filled($final->heading) || $showForm)
-<section class="mlp-final" id="mlp-final" aria-label="Final call to action">
-  <div class="mlp-final__stage" aria-hidden="true">
-    <img class="mlp-final__bg" src="{{ $plate }}" alt="" width="1920" height="1080" loading="lazy" decoding="async">
-    <span class="mlp-final__veil"></span>
+<section class="mlp-final archive-closing" id="mlp-final" aria-labelledby="archive-closing-title">
+  <div class="archive-closing__background" aria-hidden="true">
+    <span class="archive-closing__wash"></span>
+    @if($plate)
+    <span class="archive-closing__image-layer archive-closing__image-layer--back"><img src="{{ $plate }}" alt="" width="960" height="720" loading="lazy" decoding="async"></span>
+    <span class="archive-closing__image-layer archive-closing__image-layer--front"><img src="{{ $plate }}" alt="" width="960" height="720" loading="lazy" decoding="async"></span>
+    @endif
   </div>
 
-  <div class="container mlp-final__inner">
-    <div class="mlp-final__grid">
-      <div class="mlp-final__copy" data-mlp-reveal="final-copy">
-        <div class="mlp-final__meta">
-          @if(filled($final->label))
-          <p class="mlp-final__label mlp-meta">{{ $final->label }}</p>
-          @endif
-        </div>
-        @if(filled($final->heading))
-        <h2 class="mlp-final__heading mlp-headline">{{ $final->heading }}</h2>
+  <div class="archive-closing__frame container">
+    <header class="archive-closing__intro">
+      @if(filled($final->label))
+      <p class="archive-closing__label">{{ $final->label }}</p>
+      @endif
+      @if(filled($final->heading))
+      <h2 class="archive-closing__heading" id="archive-closing-title">{{ $final->heading }}</h2>
+      @endif
+      @if(filled($final->intro))
+      <div class="archive-closing__intro-copy mlp-prose">{!! \App\Support\MlpProse::html($final->intro) !!}</div>
+      @endif
+      @if(filled($final->cta_primary_label) || filled($final->cta_secondary_label))
+      <div class="archive-closing__actions">
+        @if(filled($final->cta_primary_label))
+        <a href="{{ edu_href($final->cta_primary_url) ?? '#mlp-enquire' }}" class="prospectus-cover__primary">{{ $final->cta_primary_label }} <span aria-hidden="true">↗</span></a>
         @endif
-        @if(filled($final->intro))
-        <div class="mlp-final__intro mlp-lede mlp-prose mlp-prose--on-dark">{!! \App\Support\MlpProse::html($final->intro) !!}</div>
-        @endif
-
-        @if(filled($final->cta_primary_label) || filled($final->cta_secondary_label))
-        <div class="mlp-final__ctas">
-          @if(filled($final->cta_primary_label))
-          <a href="{{ edu_href($final->cta_primary_url) ?? '#mlp-enquire' }}" class="mlp-btn mlp-btn--primary">{{ $final->cta_primary_label }}</a>
-          @endif
-          @if(filled($final->cta_secondary_label))
-          <a href="{{ edu_href($final->cta_secondary_url) ?? '#mlp-enquire' }}" class="mlp-btn mlp-btn--ghost">{{ $final->cta_secondary_label }}</a>
-          @endif
-        </div>
+        @if(filled($final->cta_secondary_label))
+        <a href="{{ edu_href($final->cta_secondary_url) ?? '#mlp-enquire' }}" class="pricing-cards__secondary">{{ $final->cta_secondary_label }}</a>
         @endif
       </div>
-
-      @if($showForm)
-      <aside class="mlp-final__form-wrap" data-mlp-reveal="final-form" aria-label="Final enquiry form">
-        <div class="mlp-form mlp-form--panel mlp-form--on-void">
-          <header class="mlp-form__head">
-            <div>
-              <h3 class="mlp-form__title">{{ $final->form_title ?? 'Start your enquiry' }}</h3>
-              <p class="mlp-form__hint">Same admissions team — eligibility, fees &amp; start dates.</p>
-            </div>
-          </header>
-
-          @include('pages.mba-masters-landing.partials.enquire-form')
-        </div>
-      </aside>
       @endif
-    </div>
+    </header>
+
+    @if($showForm)
+    <aside class="archive-closing__form" aria-label="Final enquiry form">
+      <div class="archive-closing__form-head">
+        <span>{{ $final->form_title ?? 'Start your enquiry' }}</span>
+        <i data-lucide="arrow-up-right" aria-hidden="true"></i>
+      </div>
+      <div class="mlp-form mlp-form--panel mlp-form--on-void">
+        @include('pages.mba-masters-landing.partials.enquire-form')
+      </div>
+    </aside>
+    @endif
   </div>
 </section>
 @endif

@@ -22,6 +22,7 @@ class ManageWhatIsMaverick extends SettingsPage
 
             Section::make('Heading')
                 ->schema([
+                    TextInput::make('label')->label('Section Label'),
                     TextInput::make('heading')
                         ->columnSpanFull(),
                 ]),

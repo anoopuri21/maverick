@@ -1,6 +1,8 @@
-{{-- §11 Alumni / company proof — navy logo rail, fixed frames, shared PartnerLogo data --}}
+{{-- §11 Alumni / company proof — The Light Archive / Moving Employer Ribbon --}}
 @php
-  $logos = collect($alumniLogos ?? [])->filter(fn ($logo) => filled(media_url($logo->logo_url ?? null)))->values();
+  $logos = collect($alumniLogos ?? [])
+      ->filter(fn ($logo) => filled(media_url($logo->logo_url ?? null)))
+      ->values();
   $fallbackLogos = [
     ['name' => 'Goldman Sachs', 'src' => 'assets/images/alumni/alumn-7.png'],
     ['name' => 'Deloitte', 'src' => 'assets/images/alumni/alumn-8.png'],
@@ -13,63 +15,38 @@
     ? $logos->map(fn ($logo) => ['name' => $logo->name ?? '', 'src' => media_url($logo->logo_url)])
     : collect($fallbackLogos)->map(fn ($logo) => ['name' => $logo['name'], 'src' => cached_asset($logo['src'])]);
 @endphp
-@if(filled($alumni->heading) || $renderLogos->isNotEmpty())
-<section class="mlp-alumni" id="mlp-alumni" aria-label="Alumni employers">
-  <div class="mlp-alumni__deco" aria-hidden="true">
-    <span class="mlp-alumni__orb mlp-alumni__orb--a"></span>
-    <span class="mlp-alumni__orb mlp-alumni__orb--b"></span>
-    <span class="mlp-alumni__deco-rule"></span>
-  </div>
 
-  <div class="container mlp-alumni__inner">
-    <header class="mlp-alumni__head" data-mlp-reveal="alumni-head">
-      <div class="mlp-alumni__meta">
+@if(filled($alumni->heading) || $renderLogos->isNotEmpty())
+<section class="mlp-alumni archive-alumni" id="mlp-alumni" aria-labelledby="archive-alumni-title">
+  <div class="archive-alumni__frame container">
+    <header class="archive-alumni__intro">
+      <div>
         @if(filled($alumni->label))
-        <p class="mlp-alumni__label mlp-meta">{{ $alumni->label }}</p>
+        <p class="archive-alumni__label">{{ $alumni->label }}</p>
+        @endif
+        @if(filled($alumni->heading))
+        <h2 class="archive-alumni__heading" id="archive-alumni-title">{{ $alumni->heading }}</h2>
         @endif
       </div>
-      @if(filled($alumni->heading))
-      <h2 class="mlp-alumni__heading mlp-headline">{{ $alumni->heading }}</h2>
-      @endif
       @if(filled($alumni->intro))
-      <p class="mlp-alumni__intro mlp-lede">{{ $alumni->intro }}</p>
+      <p class="archive-alumni__intro-copy">{{ $alumni->intro }}</p>
       @endif
     </header>
   </div>
 
-  <div class="mlp-alumni__rail" data-mlp-alumni-rail aria-label="Employer logos">
-    <div class="mlp-alumni__marquee" data-mlp-alumni-marquee>
-      <ul class="mlp-alumni__track">
+  <div class="archive-alumni__ribbon" aria-label="Employer logos">
+    <div class="archive-alumni__track">
+      <ul class="archive-alumni__logos">
         @foreach($renderLogos as $logo)
-        <li class="mlp-alumni__cell">
-          <span class="mlp-alumni__frame">
-            <img
-              class="mlp-alumni__logo"
-              src="{{ $logo['src'] }}"
-              alt="{{ $logo['name'] }}"
-              width="180"
-              height="72"
-              loading="lazy"
-              decoding="async"
-            >
-          </span>
+        <li class="archive-alumni__logo-frame">
+          <img src="{{ $logo['src'] }}" alt="{{ $logo['name'] }}" width="180" height="72" loading="lazy" decoding="async">
         </li>
         @endforeach
       </ul>
-      <ul class="mlp-alumni__track mlp-alumni__track--clone" aria-hidden="true">
+      <ul class="archive-alumni__logos archive-alumni__logos--clone" aria-hidden="true">
         @foreach($renderLogos as $logo)
-        <li class="mlp-alumni__cell">
-          <span class="mlp-alumni__frame">
-            <img
-              class="mlp-alumni__logo"
-              src="{{ $logo['src'] }}"
-              alt=""
-              width="180"
-              height="72"
-              loading="lazy"
-              decoding="async"
-            >
-          </span>
+        <li class="archive-alumni__logo-frame">
+          <img src="{{ $logo['src'] }}" alt="" width="180" height="72" loading="lazy" decoding="async">
         </li>
         @endforeach
       </ul>
@@ -77,8 +54,8 @@
   </div>
 
   @if(filled($alumni->trust_line))
-  <div class="container">
-    <p class="mlp-alumni__trust" data-mlp-reveal="alumni-trust">{{ $alumni->trust_line }}</p>
+  <div class="archive-alumni__footer container">
+    <p>{{ $alumni->trust_line }}</p>
   </div>
   @endif
 </section>

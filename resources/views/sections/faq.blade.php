@@ -1,3 +1,9 @@
+@php
+    $homepageFaqs = collect($homepageFaqs ?? []);
+    $homepageChrome = $homepageChrome ?? null;
+    $faqImage = media_url($homepageChrome->faq_image_url ?? null, 'assets/images/homepage/mba-management.jpg');
+@endphp
+@if($homepageFaqs->isNotEmpty())
 <section id="faq" class="faq section-wrapper section--light" aria-label="Frequently Asked Questions">
 
   <div class="container">
@@ -7,37 +13,37 @@
       <div class="faq__intro">
 
         <div class="section-label">
-          <span>FAQ</span>
+          <span>{{ $homepageChrome->faq_label ?? '' }}</span>
         </div>
 
         <h2 class="faq__heading section-title">
           <span class="faq__heading-line">
             <span>
-              Your Questions
+              {{ $homepageChrome->faq_heading_line1 ?? '' }}
 
             </span>
           </span>
 
           <span class="faq__heading-line hwdi__heading-line--red">
             <span>
-              Answered
+              {{ $homepageChrome->faq_heading_line2 ?? '' }}
             </span>
           </span>
         </h2>
 
         <p class="faq__subtitle body-text">
-          Everything you need to know before beginning your Maverick journey.
+          {{ $homepageChrome->faq_subtitle ?? '' }}
         </p>
         <div>
           <img
-            src="https://img.magnific.com/free-vector/tiny-business-people-with-giant-faq-letters-gadget-users-searching-instructions-useful-information-flat-vector-illustration-customer-support-solution-concept-banner-landing-web-page_74855-23409.jpg"
-            class="faq-img" alt="Frequently Asked Questions" loading="lazy" decoding="async" />
+            src="{{ $faqImage }}"
+            class="faq-img" alt="{{ $homepageChrome->faq_heading_line1 ?? 'Frequently Asked Questions' }}" loading="lazy" decoding="async" />
         </div>
 
       </div>
 
       <div class="faq__accordion">
-        @forelse(($homepageFaqs ?? collect()) as $index => $faq)
+        @foreach($homepageFaqs as $index => $faq)
           <div class="faq__item {{ $index === 0 ? 'active' : '' }}">
             <button class="faq__question">
               <span>{{ $faq->question }}</span>
@@ -47,18 +53,7 @@
               {!! rich_html($faq->answer ?? null) !!}
             </div>
           </div>
-        @empty
-          {{-- Fallback static FAQs --}}
-          <div class="faq__item active">
-            <button class="faq__question">
-              <span>Are Maverick qualifications internationally recognised?</span>
-              <span class="faq__icon">+</span>
-            </button>
-            <div class="faq__answer">
-              <p>Maverick Business Academy partners with internationally recognised awarding bodies and universities, ensuring qualifications hold global value and credibility.</p>
-            </div>
-          </div>
-        @endforelse
+        @endforeach
       </div>
 
     </div>
@@ -66,3 +61,4 @@
   </div>
 
 </section>
+@endif

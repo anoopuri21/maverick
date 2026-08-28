@@ -1,29 +1,29 @@
+@php
+    $alumniLogos = collect($alumniLogos ?? []);
+    $homepageChrome = $homepageChrome ?? null;
+@endphp
+@if($alumniLogos->isNotEmpty())
 <section id="alumni-network" class="alumni section-wrapper section--light" aria-label="Alumni Network">
   <div class=" container alumni__inner">
     <div class="network__header">
       <div class="network__header-content">
         <div class="section-label">
-          <span>Our Network</span>
+          <span>{{ $homepageChrome->alumni_label ?? '' }}</span>
         </div>
 
         <h2 class="alumni__heading section-title">
           <span class="hwdi__heading-line">
             <span class="text-reveal-wrapper">
-              <span class="text-reveal-inner">Our Alumni</span>
-            </span>
-          </span>
-          <span class="hwdi__heading-line hwdi__heading-line--red">
-            <span class="text-reveal-wrapper">
-              <span class="text-reveal-inner">Work With</span>
+              <span class="text-reveal-inner">{{ $homepageChrome->alumni_heading ?? '' }}
+              <span class="color-red">{{ $homepageChrome->alumni_heading_accent ?? '' }}</span></span>
             </span>
           </span>
         </h2>
         <p class="alumni__subtitle network__subheading body-text fade-up">
-          Join professionals across leading organizations worldwide
+          {{ $homepageChrome->alumni_subtitle ?? '' }}
         </p>
         <p class="network__description body-text fade-up">
-          Graduates placing at world-class organisations across aviation,
-          energy, finance and government
+          {{ $homepageChrome->alumni_description ?? '' }}
         </p>
       </div>
     </div>
@@ -31,7 +31,7 @@
     <!-- Company Logo Slider -->
     <div class="network-slider-wrapper">
       <div class="network-slider-track">
-        @forelse(($alumniLogos ?? collect()) as $logo)
+        @foreach($alumniLogos as $logo)
           <div class="network-card" data-name="{{ $logo->name }}">
             <div class="network-logo-wrapper">
               @if($url = media_url($logo->logo_url ?? null))
@@ -39,22 +39,16 @@
               @endif
             </div>
           </div>
-        @empty
-          {{-- Fallback static cards if no data --}}
-          <div class="network-card" data-name="Goldman Sachs">
-            <div class="network-logo-wrapper">
-              <img src="{{ cached_asset('assets/images/alumni/alumn-7.png') }}" alt="Goldman Sachs" loading="lazy" decoding="async" />
-            </div>
-          </div>
-        @endforelse
+        @endforeach
       </div>
     </div>
 
     <!-- Trust Statement -->
     <div class="network__trust fade-up">
       <p class="network__trust-text">
-        Join our growing global network of industry leaders
+        {{ $homepageChrome->alumni_trust ?? '' }}
       </p>
     </div>
   </div>
 </section>
+@endif

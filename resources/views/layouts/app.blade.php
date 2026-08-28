@@ -100,7 +100,7 @@
     @if(request()->routeIs('programs.index'))
     <script src="{{ cached_asset('assets/js/pages/program-listing.js') }}" defer></script>
     @endif
-    @if(request()->routeIs('home', 'our-story', 'masters-pathway'))
+    @if(request()->routeIs('home', 'our-story', 'masters-pathway', 'global-partners'))
     <script src="{{ cached_asset('assets/js/partners.js') }}" defer></script>
     <script src="{{ cached_asset('assets/js/testimonials.js') }}" defer></script>
     @endif

@@ -1,0 +1,544 @@
+/* Global Access Points — transparent interactive globe with country selector */
+#global-access-points {
+  --gap-navy: #071444;
+  --gap-blue: #0f2983;
+  --gap-red: #b20202;
+  --gap-ink-soft: rgba(7, 20, 68, 0.62);
+  background: transparent;
+}
+
+#global-access-points .gap__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+#global-access-points .gap__header {
+  width: 100%;
+  max-width: 48rem;
+}
+
+.gap-globe-stage {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(13rem, 0.36fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 4vw, 4.5rem);
+  align-items: center;
+  width: 100%;
+  min-height: clamp(32rem, 72vh, 48rem);
+  overflow: visible;
+  isolation: isolate;
+  background: transparent;
+}
+
+.gap-globe__country-panel {
+  position: relative;
+  z-index: 4;
+  min-width: 0;
+  align-self: center;
+}
+
+.gap-globe__country-list {
+  display: grid;
+  gap: 0;
+  max-height: min(66vh, 35rem);
+  margin: 0;
+  padding: 0 0.75rem 0 0;
+  overflow-y: auto;
+  list-style: none;
+  scrollbar-color: rgba(7, 20, 68, 0.32) transparent;
+  scrollbar-width: thin;
+}
+
+.gap-globe__country-list li {
+  min-width: 0;
+  border-bottom: 1px solid rgba(7, 20, 68, 0.1);
+}
+
+.gap-globe__country-list button {
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr);
+  gap: 0.65rem;
+  align-items: center;
+  width: 100%;
+  min-height: 2.55rem;
+  padding: 0.55rem 0.45rem 0.55rem 0;
+  color: var(--gap-ink-soft);
+  background: transparent;
+  border: 0;
+  border-left: 2px solid transparent;
+  cursor: pointer;
+  font-family: var(--font-body, "Poppins", sans-serif);
+  text-align: left;
+  transition: color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease, padding-left 0.3s ease;
+}
+
+.gap-globe__country-list .gap-globe__country-flag {
+  display: block;
+  width: 1.25rem;
+  height: 0.9375rem;
+  object-fit: cover;
+  border: 1px solid rgba(7, 20, 68, 0.14);
+}
+
+.gap-globe__country-list button strong {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  font-size: 0.88rem;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.gap-globe__country-list button:hover,
+.gap-globe__country-list button:focus-visible {
+  padding-left: 0.45rem;
+  color: var(--gap-navy);
+  border-left-color: var(--gap-red);
+  background: rgba(178, 2, 2, 0.045);
+}
+
+.gap-globe__country-list button.is-active {
+  padding-left: 0.45rem;
+  color: var(--gap-red);
+  border-left-color: var(--gap-red);
+  background: rgba(178, 2, 2, 0.08);
+}
+
+.gap-globe__country-list button.is-active .gap-globe__country-flag {
+  border-color: var(--gap-red);
+}
+
+.gap-globe__visual {
+  position: relative;
+  min-width: 0;
+  min-height: clamp(32rem, 72vh, 48rem);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.gap-globe__atmosphere,
+.gap-globe__halo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(86vw, 46rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+
+.gap-globe__atmosphere {
+  z-index: -2;
+  background: radial-gradient(
+    circle at 39% 31%,
+    rgba(15, 41, 131, 0.15) 0%,
+    rgba(15, 41, 131, 0.055) 38%,
+    rgba(178, 2, 2, 0.035) 62%,
+    transparent 72%
+  );
+  filter: blur(10px);
+}
+
+.gap-globe__halo {
+  z-index: -1;
+  width: min(82vw, 43rem);
+  border: 1px solid rgba(15, 41, 131, 0.1);
+  box-shadow: 0 0 0 1rem rgba(15, 41, 131, 0.025), 0 0 5rem rgba(15, 41, 131, 0.07);
+  opacity: 0.75;
+}
+
+.gap-globe__canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+  touch-action: none;
+  outline: none;
+}
+
+.gap-globe-stage.is-grabbing .gap-globe__canvas {
+  cursor: grabbing;
+}
+
+.gap-globe__canvas:focus-visible {
+  outline: 2px solid var(--gap-red);
+  outline-offset: -0.5rem;
+}
+
+.gap-globe__hint {
+  position: absolute;
+  font-family: var(--font-body, "Poppins", sans-serif);
+  bottom: 1.35rem;
+  left: 50%;
+  z-index: 2;
+  width: max-content;
+  max-width: calc(100% - 2rem);
+  margin: 0;
+  padding: 0.5rem 0.75rem;
+  color: var(--gap-ink-soft);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-transform: uppercase;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.gap-globe__fallback-list {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.gap-globe-stage.is-error {
+  min-height: 20rem;
+  padding: 2rem;
+  border: 1px solid rgba(7, 20, 68, 0.12);
+}
+
+.gap-globe-stage.is-error .gap-globe__visual {
+  min-height: 0;
+  overflow: visible;
+}
+
+.gap-globe-stage.is-error .gap-globe__fallback-list {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  gap: 0.5rem 1rem;
+  width: 100%;
+  height: auto;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+  list-style: none;
+}
+
+.gap-globe-stage.is-error .gap-globe__fallback-list li {
+  padding: 0.65rem 0;
+  border-bottom: 1px solid rgba(7, 20, 68, 0.12);
+  color: var(--gap-ink-soft);
+  font-size: 0.8rem;
+}
+
+@media (max-width: 900px) {
+  .gap-globe-stage {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    min-height: 0;
+  }
+
+  .gap-globe__country-panel {
+    order: 2;
+  }
+
+  .gap-globe__country-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0 0.85rem;
+    max-height: none;
+    padding-right: 0;
+    overflow: visible;
+  }
+
+  .gap-globe__visual {
+    order: 1;
+    min-height: min(78vw, 40rem);
+  }
+}
+
+@media (max-width: 600px) {
+  .gap-globe__country-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .gap-globe__country-list button {
+    grid-template-columns: 1.6rem minmax(0, 1fr);
+    gap: 0.4rem;
+    min-height: 2.4rem;
+  }
+
+  .gap-globe__country-list button strong {
+    font-size: 0.78rem;
+  }
+
+  .gap-globe__visual {
+    min-height: min(94vw, 32rem);
+  }
+
+  .gap-globe__atmosphere {
+    width: min(118vw, 36rem);
+  }
+
+  .gap-globe__halo {
+    width: min(112vw, 34rem);
+  }
+
+  .gap-globe__hint {
+    bottom: 0.6rem;
+    font-size: 0.6rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gap-globe__country-list button {
+    transition: none;
+  }
+}
+
+/* Content-led globe layout: list above, story left, globe right. */
+.gap-globe-stage {
+  grid-template-columns: minmax(15rem, 0.72fr) minmax(0, 1.28fr);
+  grid-template-rows: auto minmax(24rem, 1fr);
+  align-items: stretch;
+  row-gap: clamp(1.5rem, 3vw, 2.75rem);
+}
+
+.gap-globe__country-panel {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  width: 100%;
+  align-self: start;
+}
+
+.gap-globe__country-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.3rem 0.5rem;
+  max-height: none;
+  padding: 0;
+  overflow: visible;
+}
+
+.gap-globe__country-list li {
+  border-bottom: 0;
+}
+
+.gap-globe__country-list button {
+  display: inline-flex;
+  width: auto;
+  min-height: 2.25rem;
+  padding: 0.45rem 0.65rem;
+  gap: 0.45rem;
+  align-items: center;
+  border: 1px solid rgba(7, 20, 68, 0.12);
+  border-left: 1px solid rgba(7, 20, 68, 0.12);
+  background: rgba(255, 255, 255, 0.42);
+  white-space: nowrap;
+}
+
+.gap-globe__country-list button > span {
+  flex: 0 0 auto;
+}
+
+.gap-globe__country-list button strong {
+  font-size: 0.8rem;
+}
+
+.gap-globe__country-list button:hover,
+.gap-globe__country-list button:focus-visible,
+.gap-globe__country-list button.is-active {
+  padding-left: 0.65rem;
+  border-left-color: var(--gap-red);
+}
+
+.gap-globe__story {
+  grid-column: 1;
+  grid-row: 2;
+  align-self: center;
+  max-width: 28rem;
+  padding: clamp(1.25rem, 3vw, 2.5rem) 0;
+  border-top: 1px solid rgba(7, 20, 68, 0.16);
+  border-bottom: 1px solid rgba(7, 20, 68, 0.16);
+}
+
+.gap-globe__story-label {
+  margin: 0 0 0.85rem;
+  color: var(--gap-red);
+  font-family: var(--font-body, "Poppins", sans-serif);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.gap-globe__story h3 {
+  max-width: 12ch;
+  margin: 0 0 1rem;
+  color: var(--gap-navy);
+  font-family: var(--font-display, "PP Neue Montreal", sans-serif);
+  font-size: clamp(2rem, 4.2vw, 4rem);
+  font-weight: 500;
+  letter-spacing: -0.055em;
+  line-height: 0.95;
+}
+
+.gap-globe__story p:not(.gap-globe__story-label),
+.gap-globe__story-body p {
+  max-width: 30ch;
+  margin: 0 0 0.85rem;
+  color: var(--gap-ink-soft);
+  font-family: var(--font-body, "Poppins", sans-serif);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.gap-globe__story p:last-child,
+.gap-globe__story-body p:last-child {
+  margin-bottom: 0;
+}
+
+.gap-globe__visual {
+  grid-column: 2;
+  grid-row: 2;
+  min-height: clamp(24rem, 46vw, 40rem);
+}
+
+@media (max-width: 900px) {
+  .gap-globe-stage {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    row-gap: 1.5rem;
+  }
+
+  .gap-globe__country-panel,
+  .gap-globe__story,
+  .gap-globe__visual {
+    grid-column: 1;
+  }
+
+  .gap-globe__country-panel { grid-row: 1; order: 1; }
+  .gap-globe__story { grid-row: 2; order: 2; max-width: none; }
+  .gap-globe__visual { grid-row: 3; order: 3; }
+}
+
+@media (max-width: 600px) {
+  .gap-globe__country-list {
+    gap: 0.25rem 0.35rem;
+  }
+
+  .gap-globe__country-list button {
+    min-height: 2.1rem;
+    padding: 0.4rem 0.5rem;
+  }
+
+  .gap-globe__country-list button:hover,
+  .gap-globe__country-list button:focus-visible,
+  .gap-globe__country-list button.is-active {
+    padding-left: 0.5rem;
+  }
+
+  .gap-globe__story {
+    padding: 1.25rem 0;
+  }
+
+  .gap-globe__story h3 {
+    max-width: none;
+    font-size: clamp(2.1rem, 11vw, 3.5rem);
+  }
+}
+
+/* Final visual polish — editorial navigation, story plate, and globe focus. */
+#global-access-points .gap__inner {
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+#global-access-points .gap__header {
+  max-width: 64rem;
+  margin-bottom: 0.25rem;
+}
+
+#global-access-points .gap-globe-stage {
+  row-gap: clamp(2rem, 4vw, 3.5rem);
+}
+
+#global-access-points .gap-globe__country-panel {
+  padding-top: 0.85rem;
+  border-top: 1px solid rgba(7, 20, 68, 0.18);
+}
+
+#global-access-points .gap-globe__country-list {
+  justify-content: flex-start;
+  align-content: start;
+}
+
+#global-access-points .gap-globe__country-list button {
+  background: rgba(255, 255, 255, 0.24);
+  border-color: rgba(7, 20, 68, 0.14);
+}
+
+#global-access-points .gap-globe__country-list button:hover,
+#global-access-points .gap-globe__country-list button:focus-visible {
+  background: rgba(255, 255, 255, 0.72);
+}
+
+#global-access-points .gap-globe__country-list button.is-active {
+  background: rgba(178, 2, 2, 0.1);
+  box-shadow: inset 0 -2px 0 var(--gap-red);
+}
+
+#global-access-points .gap-globe__country-list .gap-globe__country-flag {
+  filter: saturate(0.86);
+}
+
+#global-access-points .gap-globe__story {
+  position: relative;
+  padding: clamp(1.5rem, 3vw, 2.75rem) clamp(1rem, 2.5vw, 2rem);
+  border-top: 0;
+  border-right: 1px solid rgba(7, 20, 68, 0.14);
+  border-bottom: 0;
+  border-left: 3px solid var(--gap-red);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(15, 41, 131, 0.035));
+}
+
+#global-access-points .gap-globe__story h3 {
+  max-width: 10ch;
+}
+
+#global-access-points .gap-globe__visual {
+  min-height: clamp(28rem, 50vw, 44rem);
+  background: radial-gradient(circle at 50% 48%, rgba(15, 41, 131, 0.035), transparent 62%);
+}
+
+#global-access-points .gap-globe__canvas {
+  filter: drop-shadow(0 1.25rem 1.75rem rgba(7, 20, 68, 0.12));
+}
+
+@media (max-width: 900px) {
+  #global-access-points .gap-globe__story {
+    border-top: 1px solid rgba(7, 20, 68, 0.14);
+    border-right: 0;
+    border-bottom: 1px solid rgba(7, 20, 68, 0.14);
+  }
+
+  #global-access-points .gap-globe__visual {
+    min-height: min(88vw, 40rem);
+  }
+}
+
+@media (max-width: 600px) {
+  #global-access-points .gap-globe__country-panel {
+    padding-top: 0.65rem;
+  }
+
+  #global-access-points .gap-globe__story {
+    padding: 1.25rem 0.9rem;
+  }
+
+  #global-access-points .gap-globe__visual {
+    min-height: min(98vw, 34rem);
+  }
+}

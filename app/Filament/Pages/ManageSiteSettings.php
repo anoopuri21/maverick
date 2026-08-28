@@ -60,22 +60,29 @@ class ManageSiteSettings extends SettingsPage
                     ]),
                 ]),
 
-            Section::make('Contact Info')
+            Section::make('UAE Contact')
                 ->schema([
+                    TextInput::make('address')->label('UAE Address')->columnSpanFull(),
                     Grid::make(2)->schema([
-                        TextInput::make('phone')->label('Primary Phone'),
-                        TextInput::make('phone_secondary')->label('Secondary Phone')->nullable(),
+                        TextInput::make('phone')->label('UAE Phone'),
+                        TextInput::make('phone_secondary')->label('UAE Secondary Phone')->nullable(),
+                        TextInput::make('email')->label('UAE Email')->email()->nullable(),
                         TextInput::make('whatsapp_number')
                             ->label('WhatsApp Number (with country code, no +)')
-                            ->helperText('Example: 971501441670')
-                            ,
-                        TextInput::make('email')->email()->nullable(),
+                            ->helperText('Example: 971501441670'),
                         TextInput::make('office_hours')->label('Office Hours')->nullable(),
                         TextInput::make('apply_now_url')
-                            ->label('Apply Now Button URL')
-                            ,
+                            ->label('Apply Now Button URL'),
                     ]),
-                    TextInput::make('address')->columnSpanFull(),
+                ]),
+
+            Section::make('UK Contact')
+                ->schema([
+                    TextInput::make('uk_address')->label('UK Address')->columnSpanFull(),
+                    Grid::make(2)->schema([
+                        TextInput::make('uk_phone')->label('UK Phone')->nullable(),
+                        TextInput::make('uk_email')->label('UK Email')->email()->nullable(),
+                    ]),
                 ]),
 
             Section::make('Social Links')

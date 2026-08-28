@@ -4,7 +4,7 @@
       <div class="wwd__header-left">
       @if(request()->routeIs('home'))  
         <div class="section-label">
-          <span>What We Do</span>
+          <span>{{ $whatWeDo->label ?? 'What We Do' }}</span>
         </div>
       @endif
         <h2 class="wwd__heading section-title">

@@ -6,6 +6,10 @@ use Spatie\LaravelSettings\Settings;
 
 class GlobalOpportunitiesSettings extends Settings
 {
+    public ?string $label = null;
+
+    public ?string $coming_soon_label = null;
+
     public ?string $heading = null;
     public ?string $subtitle = null;
 

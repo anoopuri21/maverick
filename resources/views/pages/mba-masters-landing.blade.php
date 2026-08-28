@@ -38,25 +38,29 @@
 
 @push('styles')
 <link rel="stylesheet" href="{{ cached_asset('assets/css/pages/mba-masters-landing.css') }}" />
+<link rel="stylesheet" href="{{ cached_asset('assets/css/pages/mba-masters-polish.css') }}" />
 @endpush
 
 @section('content')
-<div class="mlp-page" id="mlpPage">
+<div class="mlp-page mlp-page--polished" id="mlpPage">
   @include('pages.mba-masters-landing.hero')
   @include('pages.mba-masters-landing.trust')
   @include('pages.mba-masters-landing.overview')
   @include('pages.mba-masters-landing.why')
-  @include('pages.mba-masters-landing.journey')
+  {{-- @include('pages.mba-masters-landing.journey') --}}
   @include('pages.mba-masters-landing.mba')
   @include('pages.mba-masters-landing.masters')
+  @include('pages.mba-masters-landing.class-2025')
+  @include('sections.accreditations')
+  @include('pages.mba-masters-landing.class-snapshot')
   @include('pages.mba-masters-landing.fees')
-  @include('pages.mba-masters-landing.class')
   @include('pages.mba-masters-landing.career')
   @include('pages.mba-masters-landing.alumni')
   @include('pages.mba-masters-landing.learning')
   @include('pages.mba-masters-landing.partners')
+  @include('pages.mba-masters-landing.video-proof')
   @include('pages.mba-masters-landing.testimonials')
-  @include('pages.mba-masters-landing.compare')
+  {{-- @include('pages.mba-masters-landing.compare') --}}
   @include('pages.mba-masters-landing.faq')
   @include('pages.mba-masters-landing.final')
 </div>
@@ -74,4 +78,14 @@
 
 @push('scripts')
 <script src="{{ cached_asset('assets/js/pages/mba-masters-landing.js') }}" defer></script>
+<script src="{{ cached_asset('assets/js/pages/mba-masters-accreditations.js') }}" defer></script>
+<script src="{{ cached_asset('assets/js/pages/mba-masters-hero-assembly.js') }}" defer></script>
+<script src="{{ cached_asset('assets/js/pages/mba-masters-trust.js') }}" defer></script>
+<script src="{{ cached_asset('assets/js/pages/mba-masters-overview.js') }}" defer></script>
+<script src="{{ cached_asset('assets/js/pages/mba-masters-archive.js') }}" defer></script>
+<script src="{{ cached_asset('assets/js/pages/mba-masters-video-proof.js') }}" defer></script>
+<script src="{{ cached_asset('assets/js/pages/mba-masters-class-topics.js') }}" defer></script>
+<script src="{{ cached_asset('assets/js/pages/mba-masters-testimonials.js') }}" defer></script>
+<script src="{{ cached_asset('assets/js/pages/mba-masters-closing.js') }}" defer></script>
+<script src="{{ cached_asset('assets/js/pages/mba-masters-polish.js') }}" defer></script>
 @endpush

@@ -6,6 +6,8 @@ use Spatie\LaravelSettings\Settings;
 
 class HowWeDoItSettings extends Settings
 {
+    public ?string $label = null;
+
     public ?string $heading_line1 = null;
     public ?string $heading_line2 = null;
     public ?string $subtitle = null;

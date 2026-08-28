@@ -1,22 +1,26 @@
+@php
+    $facultyInsights = collect($facultyInsights ?? []);
+    $homepageChrome = $homepageChrome ?? null;
+@endphp
+@if($facultyInsights->isNotEmpty())
 <section id="faculty-insights" class="insights section-wrapper section--light" aria-label="Faculty Insights">
   <div class="container insights__inner">
     <div class="insights__header">
-      <div class="section-label"><span>Faculty Voice</span></div>
+      <div class="section-label"><span>{{ $homepageChrome->faculty_label ?? '' }}</span></div>
       <h2 class="insights__heading section-title">
         <span class="insights__heading-line">
           <span class="text-reveal-wrapper">
-            <span class="text-reveal-inner">Insights From</span>
+            <span class="text-reveal-inner">{{ $homepageChrome->faculty_heading_line1 ?? '' }}</span>
           </span>
         </span>
         <span class="insights__heading-line hwdi__heading-line--red">
           <span class="text-reveal-wrapper">
-            <span class="text-reveal-inner">Industry Experts</span>
+            <span class="text-reveal-inner">{{ $homepageChrome->faculty_heading_line2 ?? '' }}</span>
           </span>
         </span>
       </h2>
       <p class="insights__subtitle body-text">
-        Real-world perspectives from the minds shaping global business
-        education
+        {{ $homepageChrome->faculty_subtitle ?? '' }}
       </p>
     </div>
 
@@ -28,7 +32,7 @@
       </button>
       <div class="insights__scroll" data-scroll-container>
         <div class="insights__track">
-          @forelse($facultyInsights as $insight)
+          @foreach($facultyInsights as $insight)
             <article class="insights__card fade-up">
               <div class="insights__card-image">
                 @if($url = media_url($insight->image_url ?? null))
@@ -50,9 +54,7 @@
                 @endif
               </div>
             </article>
-          @empty
-            <p class="body-text" style="padding: 2rem;">No insights available yet.</p>
-          @endforelse
+          @endforeach
         </div>
       </div>
       <button class="scroll-row__btn scroll-row__btn--next" aria-label="Scroll right" data-scroll-next>
@@ -90,3 +92,4 @@
   </div>
   --}}
 </section>
+@endif

@@ -1,0 +1,2633 @@
+/* MBA & Master's landing — page-wide Quietly Cinematic polish layer */
+.mlp-page--polished {
+  --mlp-polish-section-gap: clamp(4.5rem, 9vw, 8rem);
+  --mlp-polish-line: rgba(7, 20, 68, 0.14);
+  --mlp-polish-ink-soft: rgba(18, 18, 18, 0.68);
+  --mlp-polish-red-soft: rgba(178, 2, 2, 0.12);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.mlp-page--polished > section {
+  scroll-margin-top: 5rem;
+}
+
+.mlp-page--polished :where(h1, h2, h3) {
+  text-wrap: balance;
+}
+
+.mlp-page--polished :where(p, li, dd) {
+  text-wrap: pretty;
+}
+
+.mlp-page--polished :where(a, button, input, select, textarea):focus-visible {
+  outline: 2px solid var(--mlp-red);
+  outline-offset: 4px;
+}
+
+.mlp-page--polished :where(img) {
+  backface-visibility: hidden;
+}
+
+/* Shared labels, links, and action rhythm */
+.mlp-page--polished :where(
+  .prospectus-cover__eyebrow,
+  .prospectus-cover__kicker,
+  .signal-atlas__folio,
+  .blueprint-overview__folio,
+  .archive-class__label,
+  .archive-career__label,
+  .archive-alumni__label,
+  .archive-learning__label,
+  .archive-partners__label,
+  .archive-investment__label,
+  .archive-voices__label,
+  .archive-parallel__label,
+  .archive-fieldnotes__label,
+  .archive-closing__label
+) {
+  letter-spacing: 0.15em;
+}
+
+.mlp-page--polished :where(
+  .prospectus-cover__secondary,
+  .signal-atlas__link,
+  .blueprint-overview__secondary,
+  .archive-class__audience,
+  .archive-investment__secondary,
+  .archive-closing__secondary
+) {
+  transition: color 0.3s var(--mlp-ease), border-color 0.3s var(--mlp-ease), transform 0.3s var(--mlp-ease);
+}
+
+/* Page-load assembly baseline. Non-JS/reduced-motion users see the final state. */
+html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-image] {
+  opacity: 0;
+  filter: saturate(0.35) contrast(1.05) brightness(0.42) blur(4px);
+  transform: scale(1.08);
+}
+
+html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-wash] {
+  opacity: 0;
+}
+
+html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-registration] {
+  opacity: 0;
+  clip-path: inset(0 100% 0 0);
+}
+
+html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-masthead] > *,
+html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-statement] > *,
+html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-folio] > * {
+  opacity: 0;
+}
+
+html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-enquiry] {
+  opacity: 0;
+  clip-path: inset(0 0 0 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-image],
+  html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-wash],
+  html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-registration],
+  html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-masthead] > *,
+  html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-statement] > *,
+  html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-folio] > *,
+  html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-enquiry] {
+    opacity: 1;
+    clip-path: none;
+    filter: none;
+    transform: none;
+  }
+}
+
+/* Locked Living Prospectus identity — polish only */
+.mlp-page--polished .prospectus-cover__title {
+  max-width: 9.5ch;
+  font-size: clamp(3rem, 6.2vw, 6.4rem);
+  letter-spacing: -0.065em;
+}
+
+.mlp-page--polished .prospectus-cover__intro {
+  max-width: 39ch;
+}
+
+.mlp-page--polished .prospectus-cover__primary {
+  box-shadow: 0 14px 28px -20px rgba(178, 2, 2, 0.9);
+}
+
+.mlp-page--polished .prospectus-cover__primary:hover,
+.mlp-page--polished .prospectus-cover__primary:focus-visible {
+  box-shadow: 0 16px 32px -18px rgba(7, 20, 68, 0.85);
+}
+
+.mlp-page--polished .prospectus-cover__enquiry {
+  box-shadow: 0 24px 54px -38px rgba(7, 20, 68, 0.62);
+}
+
+.mlp-page--polished .prospectus-cover__enquiry .mlp-form__fields {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: clamp(0.85rem, 2vw, 1.5rem);
+}
+
+.mlp-page--polished .prospectus-cover__enquiry .mlp-form__fields > :first-child,
+.mlp-page--polished .prospectus-cover__enquiry .mlp-form__privacy-note,
+.mlp-page--polished .prospectus-cover__enquiry .mlp-btn--block {
+  grid-column: 1 / -1;
+}
+
+/* Trust + Overview: give the first decision chapter one confident rhythm */
+.mlp-page--polished .signal-atlas,
+.mlp-page--polished .blueprint-overview {
+  border-top: 1px solid var(--mlp-polish-line);
+}
+
+.mlp-page--polished .signal-atlas__intro,
+.mlp-page--polished .blueprint-overview__intro {
+  max-width: 76rem;
+}
+
+.mlp-page--polished .signal-atlas__quote,
+.mlp-page--polished .blueprint-overview__system {
+  border-color: var(--mlp-polish-line);
+}
+
+.mlp-page--polished .signal-atlas__record,
+.mlp-page--polished .blueprint-overview__foundation {
+  transition: transform 0.45s var(--mlp-ease), border-color 0.35s var(--mlp-ease), background-color 0.35s ease;
+}
+
+.mlp-page--polished .signal-atlas__record:hover {
+  background: rgba(255, 255, 255, 0.42);
+}
+
+.mlp-page--polished .blueprint-overview__foundation:hover,
+.mlp-page--polished .blueprint-overview__foundation:focus-within {
+  background: rgba(255, 255, 255, 0.46);
+}
+
+/* Existing middle sections: harmonise older blocks with the Light Archive */
+.mlp-page--polished .mlp-why,
+.mlp-page--polished .mlp-journey,
+.mlp-page--polished .mlp-mba,
+.mlp-page--polished .mlp-masters {
+  border-top: 1px solid var(--mlp-polish-line);
+}
+
+.mlp-page--polished :where(
+  .mlp-why__heading,
+  .mlp-journey__heading,
+  .mlp-mba__heading,
+  .mlp-masters__heading
+) {
+  letter-spacing: -0.045em;
+}
+
+.mlp-page--polished :where(
+  .mlp-why__chapter,
+  .mlp-journey__step,
+  .mlp-mba__showcase,
+  .mlp-masters__showcase
+) {
+  transition: background-color 0.35s ease, border-color 0.35s ease, transform 0.45s var(--mlp-ease);
+}
+
+.mlp-page--polished :where(.mlp-why__chapter, .mlp-journey__step):hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.mlp-page--polished :where(.mlp-mba__tab, .mlp-masters__program) {
+  transition: color 0.3s var(--mlp-ease), border-color 0.3s var(--mlp-ease), background-color 0.3s ease, padding-left 0.3s var(--mlp-ease);
+}
+
+.mlp-page--polished :where(.mlp-mba__tab:focus-visible, .mlp-masters__program:focus-visible) {
+  outline-offset: -3px;
+}
+
+.mlp-page--polished .mlp-mba__showcase:hover,
+.mlp-page--polished .mlp-masters__showcase:hover {
+  transform: translateY(-0.18rem);
+}
+
+/* Light Archive sections: shared depth without card-grid repetition */
+.mlp-page--polished :where(
+  .archive-class,
+  .archive-career,
+  .archive-alumni,
+  .archive-learning,
+  .archive-partners,
+  .archive-investment,
+  .archive-voices,
+  .archive-parallel,
+  .archive-fieldnotes,
+  .archive-closing
+) {
+  border-top: 1px solid var(--mlp-polish-line);
+}
+
+.mlp-page--polished :where(
+  .archive-class__heading,
+  .archive-career__heading,
+  .archive-alumni__heading,
+  .archive-learning__heading,
+  .archive-partners__heading,
+  .archive-investment__heading,
+  .archive-voices__heading,
+  .archive-parallel__heading,
+  .archive-fieldnotes__heading,
+  .archive-closing__heading
+) {
+  letter-spacing: -0.05em;
+}
+
+.mlp-page--polished :where(
+  .archive-class__metric,
+  .archive-career__dossier,
+  .archive-learning__point,
+  .archive-investment__record,
+  .archive-voices__voice,
+  .archive-parallel__row,
+  .archive-fieldnotes__note
+) {
+  transition: border-color 0.35s ease, background-color 0.35s ease, transform 0.45s var(--mlp-ease);
+}
+
+.mlp-page--polished :where(
+  .archive-class__metric:hover,
+  .archive-career__dossier:hover,
+  .archive-learning__point:hover,
+  .archive-investment__record:hover,
+  .archive-voices__voice:hover,
+  .archive-parallel__row:hover,
+  .archive-fieldnotes__note:hover
+) {
+  border-color: var(--mlp-red);
+}
+
+.mlp-page--polished :where(
+  .archive-class__icon,
+  .archive-class__zone-icon,
+  .archive-class__industry-icon,
+  .archive-career__dossier-icon,
+  .archive-learning__point-icon,
+  .archive-investment__record-mark,
+  .archive-voices__quote-icon,
+  .archive-parallel__criterion span,
+  .archive-fieldnotes__question-icon
+) {
+  transition: color 0.3s var(--mlp-ease), background-color 0.3s ease, border-color 0.3s ease, transform 0.35s var(--mlp-ease);
+}
+
+.mlp-page--polished :where(
+  .archive-class__metric:hover .archive-class__icon,
+  .archive-career__dossier:hover .archive-career__dossier-icon,
+  .archive-learning__point:hover .archive-learning__point-icon,
+  .archive-investment__record:hover .archive-investment__record-mark,
+  .archive-voices__voice:hover .archive-voices__quote-icon,
+  .archive-parallel__row:hover .archive-parallel__criterion span,
+  .archive-fieldnotes__note:hover .archive-fieldnotes__question-icon
+) {
+  transform: translateY(-2px);
+}
+
+/* Fees: keep the practical index compact and make scanning effortless */
+.mlp-page--polished .archive-investment__record-topline strong {
+  font-variant-numeric: tabular-nums;
+}
+
+.mlp-page--polished .archive-investment__details dt {
+  color: var(--mlp-red);
+}
+
+/* Testimonials, comparison, FAQ, final CTA */
+.mlp-page--polished .archive-voices__stage,
+.mlp-page--polished .archive-closing__frame {
+  align-items: start;
+}
+
+.mlp-page--polished .archive-voices__quote,
+.mlp-page--polished .archive-parallel__criterion,
+.mlp-page--polished .archive-fieldnotes__question {
+  letter-spacing: -0.025em;
+}
+
+.mlp-page--polished .archive-parallel__side--online {
+  border-left-color: var(--mlp-red);
+}
+
+.mlp-page--polished .archive-parallel__side--traditional {
+  border-left-color: var(--mlp-polish-line);
+}
+
+.mlp-page--polished .archive-fieldnotes__answer {
+  max-width: 52rem;
+}
+
+.mlp-page--polished .archive-closing__form {
+  box-shadow: 0 24px 58px -40px rgba(7, 20, 68, 0.62);
+}
+
+/* Shared image-stack performance and dramatic but short transitions */
+.mlp-page--polished :where(
+  .archive-class__stack-image,
+  .archive-career__stack-image,
+  .archive-voices__stack-image,
+  .archive-learning__stack-layer,
+  .archive-closing__image-layer
+) {
+  transition: transform 0.9s var(--mlp-ease), opacity 0.7s ease, clip-path 0.9s var(--mlp-ease);
+}
+
+.mlp-page--polished :where(
+  .archive-class__archive:hover .archive-class__stack-image--1,
+  .archive-career__stage:hover .archive-career__stack-image--1,
+  .archive-voices__stage:hover .archive-voices__stack-image--1,
+  .archive-learning__desk:hover .archive-learning__stack-layer--front
+) {
+  transform: translateY(-0.35rem) rotate(-2deg);
+}
+
+@media (max-width: 900px) {
+  .mlp-page--polished .prospectus-cover__enquiry .mlp-form__fields {
+    grid-template-columns: 1fr;
+  }
+
+  .mlp-page--polished .prospectus-cover__enquiry .mlp-form__fields > :first-child,
+  .mlp-page--polished .prospectus-cover__enquiry .mlp-form__privacy-note,
+  .mlp-page--polished .prospectus-cover__enquiry .mlp-btn--block {
+    grid-column: auto;
+  }
+
+  .mlp-page--polished :where(.archive-class__metric, .archive-class__metric:nth-child(even)) {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .mlp-page--polished .archive-class__metric:first-child { padding-left: 0; }
+  .mlp-page--polished .archive-class__metric:last-child { padding-right: 0; }
+}
+
+@media (max-width: 560px) {
+  .mlp-page--polished .prospectus-cover__title {
+    font-size: clamp(2.6rem, 13vw, 5rem);
+  }
+}
+
+@media (max-width: 620px) {
+  .mlp-page--polished :where(
+    .archive-investment__record,
+    .archive-voices__voice,
+    .archive-parallel__row,
+    .archive-fieldnotes__note
+  ) {
+    transform: none;
+  }
+
+  .mlp-page--polished .archive-closing__intro {
+    padding-top: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mlp-page--polished :where(
+    .prospectus-cover__primary,
+    .signal-atlas__record,
+    .blueprint-overview__foundation,
+    .archive-class__metric,
+    .archive-career__dossier,
+    .archive-learning__point,
+    .archive-investment__record,
+    .archive-voices__voice,
+    .archive-parallel__row,
+    .archive-fieldnotes__note,
+    .archive-closing__image-layer,
+    .archive-class__stack-image,
+    .archive-career__stack-image,
+    .archive-voices__stack-image,
+    .archive-learning__stack-layer
+  ) {
+    transition: none;
+  }
+}
+
+/* Issue 1 — semantic page type scale. Keep the page to a small set of intentional roles. */
+.mlp-page--polished {
+  --mlp-type-micro: var(--fs-caption);
+  --mlp-type-caption: var(--fs-caption);
+  --mlp-type-body: var(--fs-body);
+  --mlp-type-lede: var(--fs-body);
+  --mlp-type-title-sm: var(--fs-card-title);
+  --mlp-type-title: var(--fs-section-title);
+  --mlp-type-title-lg: var(--fs-section-title);
+  --mlp-type-display: var(--fs-hero);
+  --mlp-type-stat: var(--fs-hero-sub);
+}
+
+.mlp-page--polished :is(
+  .prospectus-cover__edition,
+  .prospectus-cover__academy,
+  .prospectus-cover__location,
+  .prospectus-cover__eyebrow,
+  .prospectus-cover__kicker,
+  .prospectus-cover__enquiry-index,
+  .signal-atlas__folio,
+  .blueprint-overview__folio,
+  .archive-class__label,
+  .archive-career__label,
+  .archive-alumni__label,
+  .archive-learning__label,
+  .archive-partners__label,
+  .archive-investment__label,
+  .archive-voices__label,
+  .archive-parallel__label,
+  .archive-fieldnotes__label,
+  .archive-closing__label,
+  .archive-partners__hint,
+  .archive-partners__toggle,
+  .archive-closing__form-head
+) {
+  font-size: var(--mlp-type-micro);
+}
+
+.mlp-page--polished :is(
+  .prospectus-cover__title,
+  .signal-atlas__heading,
+  .blueprint-overview__heading,
+  .mlp-why__heading,
+  .mlp-journey__heading,
+  .mlp-mba__heading,
+  .mlp-masters__heading,
+  .archive-class__heading,
+  .archive-career__heading,
+  .archive-alumni__heading,
+  .archive-learning__heading,
+  .archive-partners__heading,
+  .archive-investment__heading,
+  .archive-voices__heading,
+  .archive-parallel__heading,
+  .archive-fieldnotes__heading,
+  .archive-closing__heading
+) {
+  font-size: var(--mlp-type-title-lg);
+}
+
+.mlp-page--polished .prospectus-cover__title {
+  font-size: var(--mlp-type-display);
+}
+
+.mlp-page--polished :is(
+  .prospectus-cover__intro,
+  .prospectus-cover__annotation-copy,
+  .prospectus-cover__enquiry-head p,
+  .signal-atlas__quote p,
+  .signal-atlas__note,
+  .blueprint-overview__intro-copy,
+  .archive-class__copy,
+  .archive-career__intro-copy,
+  .archive-alumni__intro-copy,
+  .archive-learning__intro-copy,
+  .archive-partners__intro-copy,
+  .archive-investment__intro-copy,
+  .archive-voices__intro-copy,
+  .archive-parallel__intro-copy,
+  .archive-fieldnotes__intro-copy,
+  .archive-closing__intro-copy
+) {
+  font-size: var(--mlp-type-body);
+}
+
+.mlp-page--polished :is(
+  .mlp-lede,
+  .prospectus-insert__copy,
+  .archive-voices__quote,
+  .archive-career__quote,
+  .archive-learning__point-text
+) {
+  font-size: var(--mlp-type-lede);
+}
+
+.mlp-page--polished :is(
+  .mlp-why__title,
+  .mlp-journey__title,
+  .mlp-mba__uni-name,
+  .mlp-masters__uni-name,
+  .archive-class__zone-head h3,
+  .archive-career__dossier h3,
+  .archive-learning__point h3,
+  .archive-investment__record-topline h3,
+  .archive-voices__voice cite,
+  .archive-parallel__criterion,
+  .archive-fieldnotes__question
+) {
+  font-size: var(--mlp-type-title-sm);
+}
+
+.mlp-page--polished :is(
+  .mlp-mba__program-title,
+  .mlp-masters__program-title,
+  .archive-class__metric dt,
+  .archive-class__region-note,
+  .archive-class__industry-share,
+  .archive-career__dossier-head p,
+  .archive-career__move span,
+  .archive-voices__voice small,
+  .archive-parallel__side-label,
+  .archive-fieldnotes__answer,
+  .archive-investment__note,
+  .archive-learning__caption
+) {
+  font-size: var(--mlp-type-caption);
+}
+
+.mlp-page--polished :is(
+  .signal-atlas__value,
+  .blueprint-overview__core strong,
+  .archive-class__metric dd,
+  .archive-investment__record-topline strong,
+  .archive-investment__fee,
+  .archive-closing__form-title
+) {
+  font-size: var(--mlp-type-stat);
+}
+
+.mlp-page--polished :is(
+  .mlp-btn,
+  .prospectus-cover__primary,
+  .prospectus-cover__secondary,
+  .archive-investment__primary,
+  .archive-investment__secondary,
+  .archive-parallel__primary,
+  .archive-closing__primary,
+  .archive-closing__secondary,
+  .archive-learning__primary,
+  .archive-learning__secondary
+) {
+  font-size: var(--mlp-type-caption);
+}
+
+.mlp-page--polished :is(.mlp-field input, .mlp-field select, .mlp-field textarea) {
+  font-size: var(--mlp-type-body);
+}
+
+@media (max-width: 560px) {
+  .mlp-page--polished .prospectus-cover__title {
+    font-size: clamp(2.6rem, 13vw, 5rem);
+  }
+}
+
+/* Issue 24 — make gated/indicative fee values feel intentional. */
+.mlp-page--polished .archive-investment__fee {
+  display: grid;
+  gap: 0.2rem;
+  justify-items: end;
+}
+
+.mlp-page--polished .archive-investment__fee small {
+  max-width: 18ch;
+  font-size: var(--mlp-type-caption);
+  font-weight: 500;
+  line-height: 1.3;
+  text-align: right;
+  color: var(--mlp-muted-on-paper);
+}
+
+@media (max-width: 560px) {
+  .mlp-page--polished .archive-investment__fee {
+    justify-items: start;
+  }
+
+  .mlp-page--polished .archive-investment__fee small {
+    text-align: left;
+  }
+}
+
+/* Issue 2 — map page copy to a small semantic colour vocabulary. */
+.mlp-page--polished {
+  --mlp-color-heading: var(--mlp-navy);
+  --mlp-color-body: var(--mlp-ink);
+  --mlp-color-muted: var(--mlp-muted-on-paper);
+  --mlp-color-accent: var(--mlp-red);
+  --mlp-color-inverse: var(--mlp-white);
+  --mlp-color-line: var(--mlp-line-dark);
+}
+
+.mlp-page--polished :is(
+  .signal-atlas__heading,
+  .blueprint-overview__heading,
+  .mlp-why__heading,
+  .mlp-why__title,
+  .mlp-journey__heading,
+  .mlp-journey__title,
+  .mlp-mba__heading,
+  .mlp-masters__heading,
+  .archive-class__heading,
+  .archive-career__heading,
+  .archive-alumni__heading,
+  .archive-learning__heading,
+  .archive-partners__heading,
+  .archive-investment__heading,
+  .archive-voices__heading,
+  .archive-parallel__heading,
+  .archive-fieldnotes__heading,
+  .archive-closing__heading,
+  .archive-parallel__criterion
+) {
+  color: var(--mlp-color-heading);
+}
+
+.mlp-page--polished :is(
+  .signal-atlas__label,
+  .signal-atlas__note,
+  .blueprint-overview__intro-copy,
+  .mlp-why__intro,
+  .mlp-why__text,
+  .mlp-journey__intro,
+  .mlp-journey__text,
+  .mlp-mba__intro,
+  .mlp-masters__intro,
+  .archive-class__copy,
+  .archive-career__intro-copy,
+  .archive-alumni__intro-copy,
+  .archive-learning__intro-copy,
+  .archive-partners__intro-copy,
+  .archive-investment__intro-copy,
+  .archive-investment__note,
+  .archive-voices__intro-copy,
+  .archive-parallel__intro-copy,
+  .archive-fieldnotes__intro-copy,
+  .archive-closing__intro-copy
+) {
+  color: var(--mlp-color-muted);
+}
+
+.mlp-page--polished :is(
+  .signal-atlas__folio,
+  .blueprint-overview__folio,
+  .mlp-why__link,
+  .mlp-mba__label,
+  .mlp-masters__label,
+  .archive-class__label,
+  .archive-career__label,
+  .archive-alumni__label,
+  .archive-learning__label,
+  .archive-partners__label,
+  .archive-investment__label,
+  .archive-voices__label,
+  .archive-parallel__label,
+  .archive-fieldnotes__label,
+  .archive-closing__label
+) {
+  color: var(--mlp-color-accent);
+}
+
+/* Issues 4 and 7 — labels are short metadata; these two sentences stay readable. */
+.mlp-page--polished .prospectus-cover__edition,
+.mlp-page--polished .prospectus-cover__kicker {
+  text-transform: none;
+  letter-spacing: 0.04em;
+}
+
+/* Issues 5–12 — keep supporting text above the minimum readable tier. */
+.mlp-page--polished .prospectus-cover__academy,
+.mlp-page--polished .prospectus-cover__eyebrow,
+.mlp-page--polished .prospectus-cover__enquiry-index,
+.mlp-page--polished .mlp-field,
+  .mlp-page--polished .signal-atlas__label,
+  .mlp-page--polished .archive-investment__note,
+.mlp-page--polished .archive-learning__caption {
+  font-size: var(--mlp-type-caption);
+}
+
+/* Issues 3 and 25 — four clear action roles: solid primary, outline secondary,
+   text link, and compact form submit. */
+.mlp-page--polished :is(
+  .mlp-btn--primary,
+  .prospectus-cover__primary,
+  .archive-investment__primary,
+  .archive-parallel__primary,
+  .archive-closing__primary,
+  .archive-learning__primary
+) {
+  min-height: 3rem;
+  border-radius: 0;
+  background: var(--mlp-red);
+  color: var(--mlp-white);
+}
+
+.mlp-page--polished :is(
+  .mlp-btn--ghost,
+  .archive-investment__secondary,
+  .archive-closing__secondary,
+  .archive-learning__secondary
+) {
+  border-radius: 0;
+}
+
+.mlp-page--polished .mlp-form__fields > .mlp-btn--block {
+  background: transparent;
+  color: var(--mlp-navy);
+  border-color: var(--mlp-navy);
+}
+
+.mlp-page--polished .mlp-form__fields > .mlp-btn--block:hover,
+.mlp-page--polished .mlp-form__fields > .mlp-btn--block:focus-visible {
+  background: var(--mlp-red);
+  color: var(--mlp-white);
+  border-color: var(--mlp-red);
+}
+
+/* Issues 14 and 17 — tighten Why Choose chapters without removing their rhythm. */
+.mlp-page--polished .mlp-why__chapter {
+  min-height: 0;
+  padding: clamp(2rem, 4vw, 3.25rem) 0;
+}
+
+.mlp-page--polished .mlp-why__chapter-grid {
+  gap: clamp(1rem, 2.5vw, 2rem);
+}
+
+/* Issues 18, 19 and 21 — remove non-functional sequence numbers. The Admission
+   Journey keeps its numbers because they describe an actual process. */
+.mlp-page--polished .signal-atlas__record-index {
+  display: none;
+}
+
+.mlp-page--polished .signal-atlas__record {
+  grid-template-columns: minmax(7rem, 0.48fr) minmax(0, 1fr);
+}
+
+.mlp-page--polished .mlp-why__chapter-grid {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/* Issue 20 — bring the Admission Journey heading and route closer together. */
+.mlp-page--polished .mlp-journey__layout {
+  grid-template-columns: minmax(0, 0.98fr) minmax(0, 1.02fr);
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+}
+
+/* Issues 15 and 16 — each form row occupies the full form width; its own
+   columns can then shrink safely instead of clipping or overlapping. */
+.mlp-page--polished .prospectus-cover__enquiry .mlp-form__row {
+  grid-column: 1 / -1;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  min-width: 0;
+}
+
+.mlp-page--polished .prospectus-cover__enquiry .mlp-field,
+.mlp-page--polished .prospectus-cover__enquiry .mlp-field input,
+.mlp-page--polished .prospectus-cover__enquiry .mlp-field select {
+  min-width: 0;
+  width: 100%;
+}
+
+/* Issue 26 — Explore is a clear compact action, without becoming a large
+   competing primary CTA. */
+.mlp-page--polished .mlp-why__link {
+  min-height: 2.6rem;
+  align-items: center;
+  margin-top: 1rem;
+  padding: 0.55rem 0.85rem;
+  border: 1px solid var(--mlp-red);
+  text-transform: none;
+  letter-spacing: 0.04em;
+}
+
+.mlp-page--polished .mlp-why__link:hover,
+.mlp-page--polished .mlp-why__link:focus-visible {
+  opacity: 1;
+  color: var(--mlp-white);
+  background: var(--mlp-red);
+}
+
+/* Issue 22 — comparison sides start on the same horizontal scan line. */
+.mlp-page--polished .archive-parallel__row {
+  align-items: start;
+}
+
+.mlp-page--polished .archive-parallel__side {
+  align-self: start;
+}
+
+/* Issues 27 and 28 — explicit comparison headers and a strong, consistent CTA. */
+.mlp-page--polished .archive-parallel__columns {
+  min-height: 3.25rem;
+}
+
+.mlp-page--polished .archive-parallel__primary {
+  min-width: 10rem;
+  justify-content: center;
+}
+
+@media (max-width: 900px) {
+  .mlp-page--polished .prospectus-cover__enquiry .mlp-form__row {
+    grid-column: 1 / -1;
+  }
+
+  .mlp-page--polished .mlp-journey__layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .mlp-page--polished .signal-atlas__record {
+    grid-template-columns: 1fr;
+  }
+
+  .mlp-page--polished .signal-atlas__label {
+    grid-column: 1;
+  }
+}
+
+@media (max-width: 560px) {
+  .mlp-page--polished .prospectus-cover__enquiry .mlp-form__row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 29-point audit batch — consistency, hierarchy, proximity, and affordance fixes. */
+.mlp-page--polished {
+  --mlp-color-heading: var(--mlp-navy);
+  --mlp-color-body: var(--mlp-ink);
+  --mlp-color-muted: var(--mlp-muted-on-paper);
+  --mlp-color-accent: var(--mlp-red);
+  --mlp-color-inverse: var(--mlp-white);
+  --mlp-color-line: var(--mlp-line-dark);
+}
+
+/* Issues 2–3: shared colour/button roles. */
+.mlp-page--polished :is(
+  .signal-atlas__heading,
+  .blueprint-overview__heading,
+  .mlp-why__heading,
+  .mlp-why__title,
+  .mlp-journey__heading,
+  .mlp-journey__title,
+  .mlp-mba__heading,
+  .mlp-masters__heading,
+  .archive-class__heading,
+  .archive-career__heading,
+  .archive-alumni__heading,
+  .archive-learning__heading,
+  .archive-partners__heading,
+  .archive-investment__heading,
+  .archive-voices__heading,
+  .archive-parallel__heading,
+  .archive-fieldnotes__heading,
+  .archive-closing__heading,
+  .archive-parallel__criterion,
+  .archive-investment__record-topline h3
+) { color: var(--mlp-color-heading); }
+
+.mlp-page--polished :is(
+  .signal-atlas__label,
+  .signal-atlas__note,
+  .blueprint-overview__intro-copy,
+  .mlp-why__intro,
+  .mlp-why__text,
+  .mlp-journey__intro,
+  .mlp-journey__text,
+  .mlp-mba__intro,
+  .mlp-masters__intro,
+  .archive-class__copy,
+  .archive-career__intro-copy,
+  .archive-alumni__intro-copy,
+  .archive-learning__intro-copy,
+  .archive-partners__intro-copy,
+  .archive-investment__intro-copy,
+  .archive-investment__note,
+  .archive-voices__intro-copy,
+  .archive-parallel__intro-copy,
+  .archive-fieldnotes__intro-copy,
+  .archive-closing__intro-copy
+) { color: var(--mlp-color-muted); }
+
+.mlp-page--polished :is(
+  .mlp-btn--primary,
+  .mlp-btn--ghost,
+  .mlp-btn--text,
+  .prospectus-cover__primary,
+  .prospectus-cover__secondary,
+  .archive-investment__primary,
+  .archive-investment__secondary,
+  .archive-parallel__primary,
+  .archive-closing__primary,
+  .archive-closing__secondary,
+  .archive-learning__primary,
+  .archive-learning__secondary
+) { border-radius: 0; }
+
+.mlp-page--polished :is(.archive-investment__primary, .archive-parallel__primary, .archive-closing__primary, .archive-learning__primary) {
+  min-height: 3rem;
+  background: var(--mlp-color-accent);
+  color: var(--mlp-color-inverse);
+}
+
+.mlp-page--polished :is(.archive-investment__secondary, .archive-closing__secondary, .archive-learning__secondary) {
+  color: var(--mlp-color-heading);
+  border-color: var(--mlp-color-heading);
+}
+
+/* Issues 4–8: sentence case and readable supporting labels. */
+.mlp-page--polished .prospectus-cover__academy,
+.mlp-page--polished .prospectus-cover__eyebrow,
+.mlp-page--polished .prospectus-cover__kicker,
+.mlp-page--polished .archive-learning__caption {
+  text-transform: none;
+  letter-spacing: 0.04em;
+}
+
+.mlp-page--polished :is(.archive-alumni__footer p, .archive-partners__logo-item span, .archive-learning__caption) {
+  font-size: var(--mlp-type-caption);
+}
+
+/* Issue 9: make each form field read as its own group. */
+.mlp-page--polished .prospectus-cover__enquiry .mlp-form__fields {
+  row-gap: 1.1rem;
+}
+
+.mlp-page--polished .prospectus-cover__enquiry .mlp-form__row {
+  grid-column: 1 / -1;
+  align-items: start;
+  column-gap: clamp(0.85rem, 2vw, 1.25rem);
+}
+
+.mlp-page--polished .prospectus-cover__enquiry .mlp-field {
+  align-self: start;
+  min-width: 0;
+}
+
+.mlp-page--polished .prospectus-cover__enquiry .mlp-field input,
+.mlp-page--polished .prospectus-cover__enquiry .mlp-field select {
+  min-width: 0;
+  width: 100%;
+}
+
+/* Issue 10: provide a calm heading safe zone above decorative artwork. */
+.mlp-page--polished .archive-voices__heading {
+  position: relative;
+  z-index: 1;
+  display: inline;
+  padding: 0.05em 0.12em;
+  background: var(--mlp-paper-pure);
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+/* Issue 11: remove non-functional erratic Overview numbers. */
+.mlp-page--polished .blueprint-overview__foundation-index { display: none; }
+.mlp-page--polished .blueprint-overview__foundation {
+  z-index: 2;
+  background: var(--mlp-paper);
+  box-shadow: 0 0 0 0.75rem var(--mlp-paper);
+}
+
+/* Issue 12: university image/catalog placement stays consistent. */
+.mlp-page--polished .mlp-mba__showcase--flip .mlp-mba__plate { order: 1; }
+.mlp-page--polished .mlp-mba__showcase--flip .mlp-mba__catalog { order: 2; }
+
+/* Issues 14–15 and 19: bring fee/value relationships together. */
+.mlp-page--polished .archive-investment__record-topline {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 0.55rem 2rem;
+  align-items: baseline;
+}
+
+.mlp-page--polished .archive-investment__record-topline h3 {
+  font-weight: 600;
+}
+
+.mlp-page--polished .archive-investment__fee {
+  display: grid;
+  gap: 0.2rem;
+  justify-items: start;
+}
+
+.mlp-page--polished .archive-investment__fee strong {
+  font-size: var(--mlp-type-title-sm);
+}
+
+.mlp-page--polished .archive-investment__fee small {
+  max-width: 22ch;
+  font-size: var(--mlp-type-caption);
+  line-height: 1.3;
+  color: var(--mlp-color-muted);
+}
+
+.mlp-page--polished .archive-investment__details dt {
+  font-size: var(--mlp-type-caption);
+  letter-spacing: 0.03em;
+  text-transform: none;
+  color: var(--mlp-color-accent);
+}
+
+/* Issues 16, 20, 22, 27 and 28: comparison hierarchy and alignment. */
+.mlp-page--polished .archive-parallel__columns span {
+  min-height: 3.25rem;
+  font-size: var(--mlp-type-body);
+  font-weight: 600;
+}
+
+.mlp-page--polished .archive-parallel__row {
+  align-items: start;
+}
+
+.mlp-page--polished .archive-parallel__side {
+  align-self: start;
+}
+
+.mlp-page--polished .archive-parallel__criterion span {
+  width: 1.35rem;
+  height: 1.35rem;
+  flex-basis: 1.35rem;
+  border: 0;
+  color: var(--mlp-color-muted);
+}
+
+.mlp-page--polished .archive-parallel__primary {
+  min-width: 10rem;
+  justify-content: center;
+}
+
+/* Issue 17 and 26: stronger but restrained Explore affordance. */
+.mlp-page--polished .mlp-why__link {
+  min-height: 3rem;
+  display: inline-flex;
+  align-items: center;
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  color: var(--mlp-white);
+  background: var(--mlp-red);
+  border: 1px solid var(--mlp-red);
+  font-size: var(--mlp-type-caption);
+  text-transform: none;
+  letter-spacing: 0.04em;
+}
+
+.mlp-page--polished .mlp-why__link:hover,
+.mlp-page--polished .mlp-why__link:focus-visible {
+  color: var(--mlp-white);
+  background: var(--mlp-navy);
+  border-color: var(--mlp-navy);
+  opacity: 1;
+}
+
+/* Issues 18 and 21: tighter journey grouping and quiet non-functional numbers. */
+.mlp-page--polished .mlp-journey__layout {
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(1rem, 2.4vw, 2rem);
+}
+
+.mlp-page--polished .mlp-why__chapter {
+  min-height: 0;
+  padding: clamp(2rem, 4vw, 3.25rem) 0;
+}
+
+.mlp-page--polished .mlp-why__chapter-grid {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+}
+
+.mlp-page--polished .signal-atlas__record-index { display: none; }
+
+.mlp-page--polished .signal-atlas__record {
+  grid-template-columns: minmax(7rem, 0.48fr) minmax(0, 1fr);
+}
+
+/* Issue 23: keep Hero secondary action vertically centred with the button. */
+.mlp-page--polished .prospectus-cover__actions { align-items: center; }
+.mlp-page--polished .prospectus-cover__secondary {
+  display: inline-flex;
+  align-items: center;
+  min-height: 3rem;
+}
+
+/* Issue 25: secondary Overview action uses the shared outline role. */
+.mlp-page--polished .blueprint-overview__secondary {
+  display: inline-flex;
+  align-items: center;
+  min-height: 3rem;
+  padding: 0.7rem 1rem;
+  border: 1px solid var(--mlp-navy);
+  text-decoration: none;
+}
+
+.mlp-page--polished .blueprint-overview__secondary:hover,
+.mlp-page--polished .blueprint-overview__secondary:focus-visible {
+  color: var(--mlp-white);
+  background: var(--mlp-navy);
+}
+
+/* Issue 28: guarantee unique learning heading styling after the content migration. */
+.mlp-page--polished .archive-learning__heading { max-width: 14ch; }
+
+@media (max-width: 900px) {
+  .mlp-page--polished .mlp-journey__layout { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 560px) {
+  .mlp-page--polished .archive-investment__record-topline { display: grid; gap: 0.45rem; }
+  .mlp-page--polished .archive-investment__fee { justify-items: start; }
+  .mlp-page--polished .signal-atlas__record { grid-template-columns: 1fr; }
+}
+
+.mlp-page--polished :is(h1, h2) {
+  font-size: var(--mlp-type-title-lg);
+}
+
+.mlp-page--polished :is(h3) {
+  font-size: var(--mlp-type-title-sm);
+}
+
+.mlp-page--polished :is(p, li, dd) {
+  font-size: var(--mlp-type-body);
+}
+
+.mlp-page--polished :is(a, button, input, select, textarea) {
+  font-size: var(--mlp-type-caption);
+}
+
+.mlp-page--polished :is(small, dt, .mlp-meta) {
+  font-size: var(--mlp-type-caption);
+}
+
+.mlp-page--polished :is(
+  .prospectus-cover__title,
+  .signal-atlas__value,
+  .archive-class__metric dd,
+  .archive-investment__record-topline strong,
+  .archive-investment__fee strong
+) {
+  font-size: var(--mlp-type-stat);
+}
+
+.mlp-page--polished .prospectus-cover__title {
+  font-size: var(--mlp-type-display);
+  line-height: 1.02;
+}
+
+.mlp-page--polished .prospectus-cover__title-line {
+  font-size: inherit;
+}
+
+.mlp-page--polished :is(
+  .prospectus-cover__edition,
+  .prospectus-cover__academy,
+  .prospectus-cover__location,
+  .prospectus-cover__eyebrow,
+  .prospectus-cover__kicker,
+  .prospectus-cover__enquiry-index,
+  .signal-atlas__folio,
+  .blueprint-overview__folio,
+  .archive-class__label,
+  .archive-career__label,
+  .archive-alumni__label,
+  .archive-learning__label,
+  .archive-partners__label,
+  .archive-investment__label,
+  .archive-voices__label,
+  .archive-parallel__label,
+  .archive-fieldnotes__label,
+  .archive-closing__label,
+  .archive-investment__details dt,
+  .archive-learning__caption,
+  .archive-alumni__footer p,
+  .archive-partners__logo-item span
+) {
+  font-size: var(--mlp-type-caption);
+}
+
+.mlp-page--polished :is(
+  .signal-atlas__quote p,
+  .mlp-lede,
+  .archive-voices__quote,
+  .archive-career__quote,
+  .archive-learning__point-text
+) {
+  font-size: var(--mlp-type-lede);
+}
+
+.mlp-page--polished :is(
+  .prospectus-cover__enquiry-head h2,
+  .archive-closing__form-title,
+  .archive-investment__record-topline h3
+) {
+  font-size: var(--mlp-type-title-sm);
+}
+
+@media (max-width: 560px) {
+  .mlp-page--polished .prospectus-cover__title {
+    font-size: clamp(2.6rem, 13vw, 5rem);
+  }
+}
+
+/* Issue 27 — keep MBA filters visually connected to their first result. */
+.mlp-page--polished .mlp-mba__tablist {
+  margin-bottom: 1rem;
+}
+
+/* Enquiry refinement — equal Hero columns, compact full-width form rows. */
+.mlp-page--polished .prospectus-cover__body {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.25rem, 3vw, 2.75rem);
+  align-items: center;
+}
+
+.mlp-page--polished .prospectus-cover__enquiry {
+  width: 100%;
+  max-width: none;
+  margin-left: 0;
+  padding: 1rem;
+}
+
+.mlp-page--polished .prospectus-cover__enquiry .mlp-form--prospectus {
+  padding-top: 0.75rem;
+}
+
+.mlp-page--polished .prospectus-cover__enquiry .mlp-form__fields {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem 1rem;
+}
+
+.mlp-page--polished .prospectus-cover__enquiry .mlp-form__row,
+.mlp-page--polished .prospectus-cover__enquiry .mlp-field--full,
+.mlp-page--polished .prospectus-cover__enquiry .mlp-form__privacy-note,
+.mlp-page--polished .prospectus-cover__enquiry .mlp-btn--block {
+  grid-column: 1 / -1;
+}
+
+.mlp-page--polished .prospectus-cover__enquiry .mlp-form__row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem 1rem;
+  min-width: 0;
+}
+
+.mlp-page--polished .prospectus-cover__enquiry .mlp-field {
+  align-self: start;
+  min-width: 0;
+  gap: 0.45rem;
+}
+
+.mlp-page--polished .prospectus-cover__enquiry .mlp-field input,
+.mlp-page--polished .prospectus-cover__enquiry .mlp-field select {
+  width: 100%;
+  min-width: 0;
+}
+
+@media (max-width: 900px) {
+  .mlp-page--polished .prospectus-cover__body {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .mlp-page--polished .prospectus-cover__enquiry {
+    max-width: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .mlp-page--polished .prospectus-cover__enquiry {
+    padding: 0.85rem;
+  }
+
+  .mlp-page--polished .prospectus-cover__enquiry .mlp-form__fields,
+  .mlp-page--polished .prospectus-cover__enquiry .mlp-form__row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Section count cleanup — keep the Hero folio compact after removing Vol. 01. */
+.mlp-page--polished .prospectus-cover__folio {
+  grid-template-columns: auto minmax(3rem, 1fr) auto;
+}
+
+/* Pricing card type roles — keep the Fees-only redesign above the page reset. */
+.mlp-page--polished .pricing-card__program {
+  font-size: var(--mlp-type-title-sm);
+}
+
+.mlp-page--polished .pricing-card__price strong {
+  font-size: var(--mlp-type-stat);
+}
+
+.mlp-page--polished .pricing-card__price > span,
+.mlp-page--polished .pricing-card__price small,
+.mlp-page--polished .pricing-card__details dt {
+  font-size: var(--mlp-type-caption);
+}
+
+.mlp-page--polished .pricing-card__details dd {
+  font-size: var(--mlp-type-body);
+}
+/* #mlp-class > archive-class__industries — Topic Desk */
+.mlp-page--polished .archive-class__industries {
+  position: relative;
+  grid-column: 1 / -1;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  color: var(--mlp-navy);
+  background: var(--mlp-surface-soft);
+  border-top: 1px solid var(--mlp-line-dark);
+}
+
+.mlp-page--polished .topic-desk {
+  display: grid;
+  grid-template-columns: minmax(12rem, 1fr) minmax(0, 2fr);
+  gap: clamp(1.25rem, 3vw, 3rem);
+  min-height: 31rem;
+}
+
+.mlp-page--polished .topic-desk__topics {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+  border-right: 1px solid rgba(7, 20, 68, 0.16);
+}
+
+.mlp-page--polished .topic-desk__topic {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  width: 100%;
+  padding: 0.9rem 1rem 0.9rem 0;
+  color: var(--mlp-muted-on-paper);
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid rgba(7, 20, 68, 0.12);
+  text-align: left;
+  cursor: pointer;
+  font: 500 clamp(1rem, 1.6vw, 1.25rem)/1.1 var(--mlp-font-display);
+  letter-spacing: -0.02em;
+  transition: color 0.3s ease, padding-left 0.35s var(--mlp-ease), border-color 0.3s ease;
+}
+
+.mlp-page--polished .topic-desk__topic::before {
+  content: "";
+  width: 0;
+  height: 1.5rem;
+  margin-right: 0;
+  background: var(--mlp-red);
+  transition: width 0.35s var(--mlp-ease), margin-right 0.35s var(--mlp-ease);
+}
+
+.mlp-page--polished .topic-desk__topic:hover,
+.mlp-page--polished .topic-desk__topic:focus-visible,
+.mlp-page--polished .topic-desk__topic.is-active {
+  padding-left: 0.6rem;
+  color: var(--mlp-navy);
+  border-bottom-color: var(--mlp-red);
+}
+
+.mlp-page--polished .topic-desk__topic.is-active::before,
+.mlp-page--polished .topic-desk__topic:focus-visible::before {
+  width: 2px;
+  margin-right: 0.65rem;
+}
+
+.mlp-page--polished .topic-desk__topic:focus-visible {
+  outline: 2px solid var(--mlp-red);
+  outline-offset: -3px;
+}
+
+.mlp-page--polished .topic-desk__panels {
+  position: relative;
+  min-width: 0;
+}
+
+.mlp-page--polished .topic-desk__panel[hidden] { display: none; }
+
+.mlp-page--polished .topic-desk__panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(12rem, 0.85fr);
+  gap: clamp(1rem, 3vw, 2.25rem);
+  align-items: end;
+  min-height: 31rem;
+}
+
+.mlp-page--polished .topic-desk__visual {
+  position: relative;
+  min-height: 26rem;
+  overflow: hidden;
+  background: var(--mlp-navy);
+}
+
+.mlp-page--polished .topic-desk__stack,
+.mlp-page--polished .topic-desk__hero-image {
+  position: absolute;
+  overflow: hidden;
+  margin: 0;
+}
+
+.mlp-page--polished .topic-desk__stack {
+  inset: 8% 12% 12% 8%;
+  background: var(--mlp-blue);
+  opacity: 0.34;
+  transition: transform 0.7s var(--mlp-ease), opacity 0.45s ease;
+}
+
+.mlp-page--polished .topic-desk__stack--1 { transform: rotate(-6deg) translate(-0.5rem, 0.5rem); }
+.mlp-page--polished .topic-desk__stack--2 { inset: 2% 4% 20% 18%; opacity: 0.22; transform: rotate(7deg) translate(0.5rem, -0.5rem); }
+
+.mlp-page--polished .topic-desk__stack img,
+.mlp-page--polished .topic-desk__hero-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(0.28) contrast(1.08);
+}
+
+.mlp-page--polished .topic-desk__hero-image {
+  inset: 5% 10% 13% 10%;
+  z-index: 2;
+  background: var(--mlp-navy);
+  box-shadow: 0 22px 40px -30px rgba(0, 0, 0, 0.8);
+  transition: transform 0.75s var(--mlp-ease), opacity 0.45s ease, clip-path 0.75s var(--mlp-ease);
+}
+
+.mlp-page--polished .topic-desk__panel.is-active .topic-desk__hero-image { clip-path: inset(0 0 0 0); }
+
+.mlp-page--polished .topic-desk__details {
+  min-width: 0;
+  padding-bottom: 0.35rem;
+}
+
+.mlp-page--polished .topic-desk__detail-label {
+  margin: 0 0 0.8rem;
+  font-size: var(--mlp-type-caption);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--mlp-red);
+}
+
+.mlp-page--polished .topic-desk__details h3 {
+  margin: 0 0 0.8rem;
+  font-family: var(--mlp-font-display);
+  font-size: clamp(1.9rem, 3.8vw, 4rem);
+  font-weight: 500;
+  line-height: 0.95;
+  letter-spacing: -0.05em;
+  color: var(--mlp-navy);
+}
+
+.mlp-page--polished .topic-desk__description {
+  max-width: 32ch;
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--mlp-muted-on-paper);
+}
+
+@media (max-width: 900px) {
+  .mlp-page--polished .topic-desk { grid-template-columns: minmax(10rem, 0.8fr) minmax(0, 1.2fr); }
+  .mlp-page--polished .topic-desk__panel { grid-template-columns: 1fr; min-height: 0; }
+  .mlp-page--polished .topic-desk__visual { min-height: 20rem; }
+  .mlp-page--polished .topic-desk__details { padding: 0.5rem 0 1rem; }
+}
+
+@media (max-width: 600px) {
+  .mlp-page--polished .archive-class__industries { padding: 1rem; }
+  .mlp-page--polished .topic-desk { grid-template-columns: 1fr; gap: 1.5rem; min-height: 0; }
+  .mlp-page--polished .topic-desk__topics { border-right: 0; border-bottom: 1px solid rgba(7, 20, 68, 0.16); }
+  .mlp-page--polished .topic-desk__topics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .mlp-page--polished .topic-desk__topic { padding: 0.7rem 0.5rem 0.7rem 0; font-size: 1rem; }
+  .mlp-page--polished .topic-desk__topic:nth-child(even) { padding-left: 0.5rem; }
+  .mlp-page--polished .topic-desk__visual { min-height: 18rem; }
+  .mlp-page--polished .topic-desk__details h3 { font-size: 2.35rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mlp-page--polished .topic-desk__topic,
+  .mlp-page--polished .topic-desk__stack,
+  .mlp-page--polished .topic-desk__hero-image { transition: none; }
+}
+
+/* #mlp-video-proof — full-width inline film plate above testimonials. */
+.mlp-page--polished .archive-video-proof {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: clamp(4.5rem, 9vw, 7.5rem) 0;
+  color: var(--mlp-white);
+  background: var(--mlp-navy);
+}
+
+.mlp-page--polished .archive-video-proof__background {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.mlp-page--polished .archive-video-proof__wash {
+  position: absolute;
+  top: -38%;
+  right: -10%;
+  width: min(58vw, 58rem);
+  height: min(58vw, 58rem);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(15, 41, 131, 0.52), transparent 68%);
+}
+
+.mlp-page--polished .archive-video-proof__line {
+  position: absolute;
+  left: -8%;
+  right: -8%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.mlp-page--polished .archive-video-proof__line--one {
+  top: 25%;
+  transform: rotate(-3deg);
+}
+
+.mlp-page--polished .archive-video-proof__line--two {
+  bottom: 18%;
+  opacity: 0.55;
+  transform: rotate(4deg);
+}
+
+.mlp-page--polished .archive-video-proof__frame {
+  position: relative;
+  z-index: 1;
+}
+
+.mlp-page--polished .archive-video-proof__intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(17rem, 0.9fr);
+  gap: clamp(2rem, 7vw, 8rem);
+  align-items: end;
+  margin-bottom: clamp(2rem, 4vw, 3.5rem);
+}
+
+.mlp-page--polished .archive-video-proof__label {
+  margin: 0 0 0.9rem;
+  font-size: var(--mlp-type-caption);
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  color: #e85a5a;
+}
+
+.mlp-page--polished .archive-video-proof__heading {
+  max-width: 14ch;
+  margin: 0;
+  font-family: var(--mlp-font-display);
+  font-size: var(--mlp-type-title-lg);
+  font-weight: 500;
+  line-height: 0.95;
+  letter-spacing: -0.055em;
+  color: var(--mlp-white);
+}
+
+.mlp-page--polished .archive-video-proof__intro-copy {
+  max-width: 34ch;
+  margin: 0 0 0.2rem auto;
+  font-size: var(--mlp-type-body);
+  line-height: 1.65;
+  color: var(--mlp-muted-on-dark);
+}
+
+.mlp-page--polished .archive-video-proof__player {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #020817;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 1.25rem;
+  box-shadow: 0 30px 70px -38px rgba(0, 0, 0, 0.9);
+}
+
+.mlp-page--polished .archive-video-proof__player::before {
+  position: absolute;
+  inset: 1rem;
+  z-index: 3;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.75rem;
+  content: "";
+  pointer-events: none;
+}
+
+.mlp-page--polished .archive-video-proof__poster {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  overflow: hidden;
+  color: var(--mlp-white);
+  background: #020817;
+  border: 0;
+  border-radius: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+
+.mlp-page--polished .archive-video-proof__poster img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.78) contrast(1.08) brightness(0.72);
+  transform: scale(1.01);
+  transition: transform 0.9s var(--mlp-ease), filter 0.55s ease;
+}
+
+.mlp-page--polished .archive-video-proof__veil {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(7, 20, 68, 0.72), transparent 58%),
+    linear-gradient(0deg, rgba(2, 8, 23, 0.72), transparent 52%);
+}
+
+.mlp-page--polished .archive-video-proof__play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 4;
+  display: grid;
+  place-items: center;
+  width: clamp(4.25rem, 8vw, 6rem);
+  height: clamp(4.25rem, 8vw, 6rem);
+  color: var(--mlp-white);
+  background: var(--mlp-red);
+  border: 1px solid rgba(255, 255, 255, 0.68);
+  border-radius: 50%;
+  box-shadow: 0 0 0 0.6rem rgba(178, 2, 2, 0.2), 0 18px 30px -18px rgba(0, 0, 0, 0.85);
+  transform: translate(-50%, -50%);
+  transition: transform 0.45s var(--mlp-ease), background-color 0.3s ease, box-shadow 0.45s ease;
+}
+
+.mlp-page--polished .archive-video-proof__play svg {
+  width: 1.45rem;
+  height: 1.45rem;
+  margin-left: 0.18rem;
+  stroke-width: 2.2;
+}
+
+.mlp-page--polished .archive-video-proof__play-label {
+  position: absolute;
+  right: 1.6rem;
+  bottom: 1.45rem;
+  z-index: 4;
+  font-size: var(--mlp-type-caption);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.mlp-page--polished .archive-video-proof__poster:hover img,
+.mlp-page--polished .archive-video-proof__poster:focus-visible img {
+  filter: saturate(0.94) contrast(1.08) brightness(0.8);
+  transform: scale(1.045);
+}
+
+.mlp-page--polished .archive-video-proof__poster:hover .archive-video-proof__play,
+.mlp-page--polished .archive-video-proof__poster:focus-visible .archive-video-proof__play {
+  background: #8f0202;
+  box-shadow: 0 0 0 0.85rem rgba(178, 2, 2, 0.18), 0 20px 34px -18px rgba(0, 0, 0, 0.9);
+  transform: translate(-50%, -50%) scale(1.08);
+}
+
+.mlp-page--polished .archive-video-proof__iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #020817;
+}
+
+.mlp-page--polished .archive-video-proof__fallback {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  margin: 0;
+  padding: 2rem;
+  font-size: var(--mlp-type-body);
+  color: var(--mlp-muted-on-dark);
+}
+
+.mlp-page--polished .archive-video-proof__noscript-link {
+  position: absolute;
+  right: 1.5rem;
+  bottom: 1rem;
+  z-index: 5;
+  color: var(--mlp-white);
+  font-size: var(--mlp-type-caption);
+}
+
+@media (max-width: 900px) {
+  .mlp-page--polished .archive-video-proof__intro {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .mlp-page--polished .archive-video-proof__intro-copy {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 620px) {
+  .mlp-page--polished .archive-video-proof__player {
+    border-radius: 0.85rem;
+  }
+
+  .mlp-page--polished .archive-video-proof__player::before {
+    inset: 0.65rem;
+    border-radius: 0.5rem;
+  }
+
+  .mlp-page--polished .archive-video-proof__play-label {
+    right: 1rem;
+    bottom: 0.9rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mlp-page--polished .archive-video-proof__poster img,
+  .mlp-page--polished .archive-video-proof__play {
+    transition: none;
+  }
+
+  .mlp-page--polished .archive-video-proof__poster:hover img,
+  .mlp-page--polished .archive-video-proof__poster:focus-visible img {
+    transform: none;
+  }
+
+  .mlp-page--polished .archive-video-proof__poster:hover .archive-video-proof__play,
+  .mlp-page--polished .archive-video-proof__poster:focus-visible .archive-video-proof__play {
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* Separate programme list + PDF-backed specification record. */
+.mlp-page--polished :where(.mlp-mba__catalog-layout, .mlp-masters__catalog-layout) {
+  display: grid;
+  grid-template-columns: minmax(0, 1.18fr) minmax(13rem, 0.82fr);
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+  align-items: start;
+}
+
+.mlp-page--polished :where(.mlp-mba__catalog, .mlp-masters__catalog) {
+  min-width: 0;
+  padding: 0.25rem 0;
+}
+
+.mlp-page--polished :where(.mlp-mba__catalog-label, .mlp-masters__catalog-label) {
+  margin-bottom: 1rem;
+  color: var(--mlp-red);
+}
+
+.mlp-page--polished :where(.mlp-mba__program, .mlp-masters__program) {
+  display: grid;
+  grid-template-columns: 2.4rem minmax(0, 1fr);
+  gap: 0.75rem;
+  align-items: start;
+  padding: 0.95rem 0;
+  border-bottom: 1px solid var(--mlp-line-dark);
+  transition: background-color 0.35s ease, padding-left 0.35s var(--mlp-ease);
+}
+
+.mlp-page--polished :where(.mlp-mba__program, .mlp-masters__program):hover {
+  padding-left: 0.35rem;
+  background: rgba(178, 2, 2, 0.04);
+}
+
+.mlp-page--polished :where(.mlp-mba__program-index, .mlp-masters__program-index) {
+  padding-top: 0.15rem;
+}
+
+.mlp-page--polished :where(.mlp-mba__program-title, .mlp-masters__program-title) {
+  min-width: 0;
+}
+
+.mlp-page--polished :where(.mlp-mba__specification, .mlp-masters__specification) {
+  min-width: 0;
+  padding: 0.25rem 0 0.25rem clamp(1rem, 2vw, 1.5rem);
+  border-left: 1px solid var(--mlp-navy);
+}
+
+.mlp-page--polished :where(.mlp-mba__specification-label, .mlp-masters__specification-label) {
+  margin: 0 0 1rem;
+  color: var(--mlp-red);
+}
+
+.mlp-page--polished :where(.mlp-mba__specification, .mlp-masters__specification) dl {
+  display: grid;
+  gap: 0.85rem;
+  margin: 0;
+}
+
+.mlp-page--polished :where(.mlp-mba__specification, .mlp-masters__specification) dl > div {
+  display: grid;
+  gap: 0.2rem;
+  padding-top: 0.65rem;
+  border-top: 1px solid var(--mlp-line-dark);
+}
+
+.mlp-page--polished :where(.mlp-mba__specification, .mlp-masters__specification) dt {
+  font-size: var(--mlp-type-caption);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  line-height: 1.35;
+  text-transform: uppercase;
+  color: var(--mlp-muted-on-paper);
+}
+
+.mlp-page--polished :where(.mlp-mba__specification, .mlp-masters__specification) dd {
+  margin: 0;
+  font-size: var(--mlp-type-body);
+  line-height: 1.5;
+  color: var(--mlp-navy);
+}
+
+@media (max-width: 900px) {
+  .mlp-page--polished :where(.mlp-mba__catalog-layout, .mlp-masters__catalog-layout) {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .mlp-page--polished :where(.mlp-mba__specification, .mlp-masters__specification) {
+    padding: 1rem 0 0;
+    border-top: 1px solid var(--mlp-navy);
+    border-left: 0;
+  }
+}
+
+@media (max-width: 620px) {
+  .mlp-page--polished :where(.mlp-mba__program, .mlp-masters__program) {
+    grid-template-columns: 2rem minmax(0, 1fr);
+    gap: 0.55rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mlp-page--polished :where(.mlp-mba__program, .mlp-masters__program) {
+    transition: none;
+  }
+}
+
+/* #mlp-testimonials > archive-voices__list — luxury single voice carousel. */
+.mlp-page--polished .luxury-testimonials {
+  position: relative;
+  min-width: 0;
+  padding: 0 0 1rem;
+  border-top: 1px solid var(--mlp-navy);
+}
+
+.mlp-page--polished .luxury-testimonials__slides {
+  position: relative;
+  min-height: 22rem;
+}
+
+.mlp-page--polished .luxury-testimonial[hidden] {
+  display: none;
+}
+
+.mlp-page--polished .luxury-testimonial {
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr);
+  gap: 1rem;
+  min-height: 22rem;
+  margin: 0;
+  padding: clamp(1.5rem, 3vw, 2.5rem) 0 1.75rem;
+  border-bottom: 1px solid var(--mlp-line-dark);
+}
+
+.mlp-page--polished .luxury-testimonial__quote-icon {
+  color: var(--mlp-red);
+}
+
+.mlp-page--polished .luxury-testimonial__quote-icon svg {
+  width: 1.2rem;
+  height: 1.2rem;
+  stroke-width: 1.4;
+}
+
+.mlp-page--polished .luxury-testimonial__quote {
+  max-width: 40ch;
+  margin: 0;
+  font-family: var(--font-body) !important;
+  font-size: var(--fs-body) !important;
+  font-weight: var(--fw-regular) !important;
+  line-height: 1.7 !important;
+  letter-spacing: normal !important;
+  color: var(--mlp-navy);
+}
+
+.mlp-page--polished .luxury-testimonial__author {
+  grid-column: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  align-self: end;
+  margin-top: 1.5rem;
+}
+
+.mlp-page--polished .luxury-testimonial__author img,
+.mlp-page--polished .luxury-testimonial__initial {
+  display: grid;
+  place-items: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  object-fit: cover;
+  border-radius: 50%;
+  background: var(--mlp-surface-soft);
+}
+
+.mlp-page--polished .luxury-testimonial__initial {
+  font-family: var(--mlp-font-display);
+  font-size: 1.4rem;
+  color: var(--mlp-red);
+}
+
+.mlp-page--polished .luxury-testimonial__author > span:last-child {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.mlp-page--polished .luxury-testimonial__author cite {
+  font-style: normal;
+  font-size: var(--mlp-type-body);
+  font-weight: 600;
+  color: var(--mlp-navy);
+}
+
+.mlp-page--polished .luxury-testimonial__author small {
+  font-size: var(--mlp-type-caption);
+  color: var(--mlp-muted-on-paper);
+}
+
+.mlp-page--polished .luxury-testimonials__controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-top: 1rem;
+}
+
+.mlp-page--polished .luxury-testimonials__control,
+.mlp-page--polished .luxury-testimonials__toggle {
+  display: inline-grid;
+  place-items: center;
+  min-width: 2.7rem;
+  min-height: 2.7rem;
+  padding: 0.5rem;
+  color: var(--mlp-navy);
+  background: transparent;
+  border: 1px solid var(--mlp-line-dark);
+  border-radius: 0;
+  cursor: pointer;
+  font: 600 var(--mlp-type-caption) var(--mlp-font-body);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.mlp-page--polished .luxury-testimonials__control svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.mlp-page--polished .luxury-testimonials__control:hover,
+.mlp-page--polished .luxury-testimonials__control:focus-visible,
+.mlp-page--polished .luxury-testimonials__toggle:hover,
+.mlp-page--polished .luxury-testimonials__toggle:focus-visible {
+  color: var(--mlp-white);
+  background: var(--mlp-navy);
+  border-color: var(--mlp-navy);
+}
+
+.mlp-page--polished .luxury-testimonials__progress {
+  margin: 0 auto 0 0.25rem;
+  font: 600 var(--mlp-type-caption) var(--mlp-font-body);
+  letter-spacing: 0.1em;
+  color: var(--mlp-muted-on-paper);
+}
+
+.mlp-page--polished .luxury-testimonials__progress span:first-child {
+  color: var(--mlp-red);
+}
+
+@media (max-width: 620px) {
+  .mlp-page--polished .luxury-testimonials__slides,
+  .mlp-page--polished .luxury-testimonial {
+    min-height: 25rem;
+  }
+
+  .mlp-page--polished .luxury-testimonials__controls {
+    flex-wrap: wrap;
+  }
+
+  .mlp-page--polished .luxury-testimonials__progress {
+    order: 5;
+    width: 100%;
+    margin: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mlp-page--polished .luxury-testimonial,
+  .mlp-page--polished .luxury-testimonials__control,
+  .mlp-page--polished .luxury-testimonials__toggle {
+    transition: none;
+  }
+}
+
+/* Issue 2 — use Poppins for all content; keep the display face for headings only. */
+.mlp-page--polished * {
+  font-family: var(--mlp-font-body) !important;
+}
+
+.mlp-page--polished :is(h1, h2, h3, h4, h5, h6),
+.mlp-page--polished :is(h1, h2, h3, h4, h5, h6) * {
+  font-family: var(--mlp-font-display) !important;
+}
+
+/* Issue 3 — compact section boundaries, without changing the hero height. */
+.mlp-page--polished > section:not(.prospectus-cover) {
+  margin-block: 0;
+  padding-block: 2rem;
+}
+
+/* Targeted trust atlas refinement — keep values, labels, and graph separate. */
+.mlp-page--polished #mlp-trust .signal-atlas__intro {
+  margin-bottom: 1rem;
+}
+
+.mlp-page--polished #mlp-trust .signal-atlas__graph {
+  padding-top: 0;
+}
+
+.mlp-page--polished #mlp-trust .signal-atlas__svg {
+  top: 0;
+  height: 100%;
+  filter: blur(2px) opacity(0.5);
+}
+
+.mlp-page--polished #mlp-trust .signal-atlas__records {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  min-height: 15rem;
+  align-items: end;
+}
+
+.mlp-page--polished #mlp-trust .signal-atlas__record,
+.mlp-page--polished #mlp-trust .signal-atlas__record:nth-child(n) {
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto;
+  min-width: 0;
+  min-height: 8.6rem;
+  align-content: start;
+  gap: 0.35rem;
+  overflow-wrap: anywhere;
+}
+
+.mlp-page--polished #mlp-trust .signal-atlas__record:nth-child(1) {
+  transform: translateY(3.75rem);
+}
+
+.mlp-page--polished #mlp-trust .signal-atlas__record:nth-child(2) {
+  transform: translateY(-1.75rem);
+}
+
+.mlp-page--polished #mlp-trust .signal-atlas__record:nth-child(3) {
+  transform: translateY(4.25rem);
+}
+
+.mlp-page--polished #mlp-trust .signal-atlas__record:nth-child(4) {
+  transform: translateY(-1.25rem);
+}
+
+.mlp-page--polished #mlp-trust .signal-atlas__record:nth-child(5) {
+  transform: translateY(2.5rem);
+}
+
+.mlp-page--polished #mlp-trust .signal-atlas__value,
+.mlp-page--polished #mlp-trust .signal-atlas__label {
+  grid-column: 1;
+  min-width: 0;
+}
+
+@media (max-width: 700px) {
+  .mlp-page--polished #mlp-trust .signal-atlas__graph {
+    min-height: 0;
+  }
+
+  .mlp-page--polished #mlp-trust .signal-atlas__svg {
+    display: none;
+  }
+
+  .mlp-page--polished #mlp-trust .signal-atlas__records {
+    grid-template-columns: 1fr;
+    min-height: 15rem;
+    margin-top: 0;
+    padding-left: 0.75rem;
+  }
+
+  .mlp-page--polished #mlp-trust .signal-atlas__record,
+  .mlp-page--polished #mlp-trust .signal-atlas__record:nth-child(n) {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    min-height: 6.6rem;
+    padding: 1rem 0 1rem 1rem;
+    transform: none;
+    border-left: 0;
+  }
+
+  .mlp-page--polished #mlp-trust .signal-atlas__label {
+    max-width: 24ch;
+  }
+}
+
+/* Trust metric micro-motion — a soft bounce that preserves the staggered layout. */
+.mlp-page--polished #mlp-trust .signal-atlas__record {
+  animation: mlpTrustRecordBounce 4.8s ease-in-out infinite;
+  animation-delay: calc(var(--signal-index, 0) * 0.16s);
+  translate: 0 0;
+}
+
+@keyframes mlpTrustRecordBounce {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -0.28rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .mlp-page--polished #mlp-trust .signal-atlas__record {
+    animation-duration: 5.2s;
+  }
+
+  @keyframes mlpTrustRecordBounce {
+    0%,
+    100% {
+      translate: 0 0;
+    }
+    50% {
+      translate: 0 -0.12rem;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mlp-page--polished #mlp-trust .signal-atlas__record {
+    animation: none;
+    translate: none;
+  }
+}
+
+/* Targeted Why Choose refinement — compact full-width header and title-led icons. */
+.mlp-page--polished #mlp-why .mlp-why__pin {
+  padding: 2rem 0 1rem;
+}
+
+.mlp-page--polished #mlp-why .mlp-why__pin-inner {
+  width: 100%;
+  max-width: none;
+}
+
+.mlp-page--polished #mlp-why .mlp-why__heading,
+.mlp-page--polished #mlp-why .mlp-why__intro {
+  max-width: none;
+}
+
+.mlp-page--polished #mlp-why .mlp-why__chapter-grid {
+  grid-template-columns: 4rem minmax(0, 1fr);
+  gap: 1rem;
+}
+
+.mlp-page--polished #mlp-why .mlp-why__num {
+  display: grid;
+  place-items: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  padding: 0;
+  font-size: 1rem;
+  line-height: 1;
+  color: var(--mlp-red);
+  border: 1px solid rgba(178, 2, 2, 0.48);
+  background: rgba(178, 2, 2, 0.04);
+}
+
+.mlp-page--polished #mlp-why .mlp-why__num svg {
+  width: 1.35rem;
+  height: 1.35rem;
+  stroke-width: 1.7;
+}
+
+@media (max-width: 700px) {
+  .mlp-page--polished #mlp-why .mlp-why__pin {
+    padding: 1.5rem 0 0.75rem;
+  }
+
+  .mlp-page--polished #mlp-why .mlp-why__chapter-grid {
+    grid-template-columns: 3.5rem minmax(0, 1fr);
+  }
+
+  .mlp-page--polished #mlp-why .mlp-why__num {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
+  .mlp-page--polished #mlp-why .mlp-why__num svg {
+    width: 1.15rem;
+    height: 1.15rem;
+  }
+}
+
+/* Targeted Hero frame and enquiry cleanup. */
+.mlp-page--polished #mlp-hero .prospectus-cover__frame {
+  padding-top: 6rem;
+  padding-bottom: 2rem;
+}
+
+.mlp-page--polished #mlp-hero .prospectus-cover__body {
+  padding: 2rem 15px;
+}
+
+.mlp-page--polished #mlp-hero .prospectus-cover__title {
+  max-width: 100%;
+}
+
+/* Targeted Overview alignment and blueprint cleanup. */
+.mlp-page--polished #mlp-overview .blueprint-overview__intro {
+  grid-template-columns: 1fr;
+  column-gap: 0;
+  row-gap: 0;
+  max-width: 100%;
+  justify-items: start;
+  text-align: left;
+}
+
+.mlp-page--polished #mlp-overview .blueprint-overview__folio {
+  justify-self: start;
+  width: 100%;
+  text-align: left;
+}
+
+.mlp-page--polished #mlp-overview .blueprint-overview__heading {
+  max-width: 100%;
+  text-align: left;
+}
+
+.mlp-page--polished #mlp-overview .blueprint-overview__heading-accent {
+  color: var(--mlp-red);
+}
+
+.mlp-page--polished #mlp-overview .blueprint-overview__intro-copy {
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  text-align: left;
+}
+
+.mlp-page--polished #mlp-overview .blueprint-overview__system {
+  margin-top: 2rem;
+  padding-top: 2rem;
+}
+
+.mlp-page--polished #mlp-overview .blueprint-overview__core {
+  border: 1px solid rgb(7 20 68 / 5%);
+}
+
+.mlp-page--polished #mlp-overview .blueprint-overview__foundation:first-child:hover,
+.mlp-page--polished #mlp-overview .blueprint-overview__foundation:first-child:focus-within {
+  background: transparent;
+}
+
+/* Included homepage accreditation section: keep content visible without the homepage-only animation bundle. */
+.mlp-page--polished #accreditations .text-reveal-inner,
+.mlp-page--polished #accreditations .fade-up {
+  opacity: 1;
+  transform: none;
+}
+
+/* Targeted MBA/Master's catalogue boundaries. */
+.mlp-page--polished #mlp-mba .mlp-mba__head,
+.mlp-page--polished #mlp-masters .mlp-masters__head {
+  width: 100%;
+  max-width: 100%;
+}
+
+.mlp-page--polished #mlp-mba .mlp-mba__heading,
+.mlp-page--polished #mlp-mba .mlp-mba__intro,
+.mlp-page--polished #mlp-masters .mlp-masters__heading,
+.mlp-page--polished #mlp-masters .mlp-masters__intro {
+  width: 100%;
+  max-width: 100%;
+}
+
+.mlp-page--polished #mlp-masters .mlp-masters__catalog-layout {
+  grid-template-columns: 1fr;
+}
+
+/* MBA specializations — split only lists with more than eight items. */
+.mlp-page--polished #mlp-mba .mlp-mba__catalog-layout {
+  grid-template-columns: 1fr;
+}
+
+.mlp-page--polished #mlp-mba .mlp-mba__programs--columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(var(--mlp-specialization-rows), auto);
+  grid-auto-flow: column;
+  column-gap: clamp(1.25rem, 3vw, 2.5rem);
+}
+
+.mlp-page--polished #mlp-mba .mlp-mba__programs--columns .mlp-mba__program {
+  min-width: 0;
+}
+
+@media (max-width: 700px) {
+  .mlp-page--polished #mlp-mba .mlp-mba__programs--columns {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    grid-auto-flow: row;
+  }
+}
+
+/* Canonical project typography lock — landing page role normalization. */
+.mlp-page--polished .prospectus-cover__title {
+  font-family: var(--font-display) !important;
+  font-size: var(--fs-hero-sub) !important;
+  font-weight: var(--fw-bold) !important;
+  line-height: 1 !important;
+  letter-spacing: -0.03em !important;
+}
+
+.mlp-page--polished :is(
+  .signal-atlas__heading,
+  .blueprint-overview__heading,
+  .mlp-why__heading,
+  .mlp-journey__heading,
+  .mlp-mba__heading,
+  .mlp-masters__heading,
+  .pricing-cards__heading,
+  .archive-class__heading,
+  .archive-career__heading,
+  .archive-alumni__heading,
+  .archive-learning__heading,
+  .archive-partners__heading,
+  .archive-investment__heading,
+  .archive-voices__heading,
+  .archive-parallel__heading,
+  .archive-fieldnotes__heading,
+  .archive-closing__heading
+) {
+  font-family: var(--font-display) !important;
+  font-size: var(--fs-section-title) !important;
+  font-weight: var(--fw-medium) !important;
+  line-height: 1.1 !important;
+  letter-spacing: -0.02em !important;
+}
+
+.mlp-page--polished :is(
+  .prospectus-cover__enquiry-head h2,
+  .mlp-form__title,
+  .mlp-why__title,
+  .mlp-journey__title,
+  .mlp-mba__uni-name,
+  .mlp-masters__uni-name,
+  .topic-desk__details h3,
+  .archive-class__zone-head h3,
+  .archive-career__dossier h3,
+  .archive-learning__point h3,
+  .archive-investment__record-topline h3,
+  .archive-voices__voice cite,
+  .archive-parallel__criterion,
+  .archive-fieldnotes__question,
+  .pricing-card__program
+) {
+  font-family: var(--font-display) !important;
+  font-size: var(--fs-card-title) !important;
+  font-weight: var(--fw-semibold) !important;
+  line-height: 1.2 !important;
+  letter-spacing: normal !important;
+}
+
+.mlp-page--polished :is(
+  .prospectus-cover__intro,
+  .prospectus-cover__annotation-copy,
+  .prospectus-cover__enquiry-head p,
+  .signal-atlas__quote p,
+  .signal-atlas__note,
+  .blueprint-overview__intro-copy,
+  .mlp-why__intro,
+  .mlp-why__text,
+  .mlp-journey__intro,
+  .mlp-journey__text,
+  .mlp-mba__intro,
+  .mlp-masters__intro,
+  .archive-class__copy,
+  .archive-career__intro-copy,
+  .archive-alumni__intro-copy,
+  .archive-learning__intro-copy,
+  .archive-partners__intro-copy,
+  .archive-investment__intro-copy,
+  .archive-voices__intro-copy,
+  .archive-parallel__intro-copy,
+  .archive-fieldnotes__intro-copy,
+  .archive-closing__intro-copy,
+  .pricing-cards__intro-copy,
+  .pricing-cards__note,
+  .archive-video-proof__copy,
+  .mlp-prose
+) {
+  font-family: var(--font-body) !important;
+  font-size: var(--fs-body) !important;
+  font-weight: var(--fw-regular) !important;
+  line-height: 1.7 !important;
+  letter-spacing: normal !important;
+}
+
+.mlp-page--polished :is(
+  .prospectus-cover__edition,
+  .prospectus-cover__academy,
+  .prospectus-cover__location,
+  .prospectus-cover__eyebrow,
+  .prospectus-cover__kicker,
+  .prospectus-cover__enquiry-index,
+  .signal-atlas__folio,
+  .blueprint-overview__folio,
+  .archive-class__label,
+  .archive-career__label,
+  .archive-alumni__label,
+  .archive-learning__label,
+  .archive-partners__label,
+  .archive-investment__label,
+  .archive-voices__label,
+  .archive-parallel__label,
+  .archive-fieldnotes__label,
+  .archive-closing__label,
+  .archive-partners__hint,
+  .archive-partners__toggle,
+  .archive-closing__form-head,
+  .mlp-meta,
+  .mlp-field > span
+) {
+  font-family: var(--font-body) !important;
+  font-size: var(--fs-caption) !important;
+  font-weight: var(--fw-medium) !important;
+  line-height: 1.4 !important;
+  letter-spacing: 0.15em !important;
+  text-transform: uppercase;
+}
+
+.mlp-page--polished :is(
+  .signal-atlas__value,
+  .blueprint-overview__core strong,
+  .archive-class__metric dd,
+  .archive-investment__record-topline strong,
+  .archive-investment__fee,
+  .archive-closing__form-title,
+  .blueprint-overview__class-2025-center strong,
+  .blueprint-overview__class-2025-value
+) {
+  font-family: var(--font-display) !important;
+  font-size: var(--fs-card-title) !important;
+  font-weight: var(--fw-medium) !important;
+  line-height: 1 !important;
+  letter-spacing: -0.03em !important;
+}
+
+.mlp-page--polished .blueprint-overview__class-2025-heading {
+  font-family: var(--font-display) !important;
+  font-size: var(--fs-card-title) !important;
+  font-weight: var(--fw-medium) !important;
+  line-height: 1.1 !important;
+  letter-spacing: -0.02em !important;
+}
+
+.mlp-page--polished .blueprint-overview__class-2025-label {
+  font-family: var(--font-body) !important;
+  font-size: var(--fs-caption) !important;
+  font-weight: var(--fw-medium) !important;
+  line-height: 1.4 !important;
+  letter-spacing: 0.15em !important;
+}
+
+.mlp-page--polished :is(
+  .mlp-btn,
+  .prospectus-cover__primary,
+  .prospectus-cover__secondary,
+  .archive-investment__primary,
+  .archive-investment__secondary,
+  .archive-parallel__primary,
+  .archive-closing__primary,
+  .archive-closing__secondary,
+  .archive-learning__primary,
+  .archive-learning__secondary
+) {
+  font-family: var(--font-body) !important;
+  font-size: 14px !important;
+  font-weight: var(--fw-medium) !important;
+  line-height: 1 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase;
+}
+
+.mlp-page--polished :is(.mlp-field input, .mlp-field select, .mlp-field textarea) {
+  font-family: var(--font-body) !important;
+  font-size: var(--fs-body) !important;
+  font-weight: var(--fw-regular) !important;
+  line-height: 1.7 !important;
+  letter-spacing: normal !important;
+}
+
+/* Accreditation typography reference — canonical light landing roles. */
+.mlp-page--polished :is(
+  .signal-atlas__heading,
+  .blueprint-overview__heading,
+  .mlp-why__heading,
+  .mlp-journey__heading,
+  .mlp-mba__heading,
+  .mlp-masters__heading,
+  .pricing-cards__heading,
+  .archive-class__heading,
+  .archive-career__heading,
+  .archive-alumni__heading,
+  .archive-learning__heading,
+  .archive-partners__heading,
+  .archive-investment__heading,
+  .archive-voices__heading,
+  .archive-parallel__heading,
+  .archive-fieldnotes__heading,
+  .mlp-class-snapshot__heading
+) {
+  font-family: var(--font-display) !important;
+  font-size: var(--fs-section-title) !important;
+  font-weight: var(--fw-medium) !important;
+  line-height: 1.1 !important;
+  letter-spacing: -0.02em !important;
+  color: var(--color-mba-blue) !important;
+  text-transform: none !important;
+}
+
+.mlp-page--polished :is(
+  .signal-atlas__folio,
+  .blueprint-overview__folio,
+  .mlp-why__label,
+  .mlp-journey__label,
+  .mlp-mba__label,
+  .mlp-masters__label,
+  .pricing-cards__label,
+  .archive-class__label,
+  .archive-career__label,
+  .archive-alumni__label,
+  .archive-learning__label,
+  .archive-partners__label,
+  .archive-investment__label,
+  .archive-voices__label,
+  .archive-parallel__label,
+  .archive-fieldnotes__label,
+  .mlp-class-snapshot__label
+) {
+  font-family: var(--font-body) !important;
+  font-size: 0.875rem !important;
+  font-weight: var(--fw-medium) !important;
+  line-height: 1.6 !important;
+  letter-spacing: 0.15em !important;
+  color: var(--color-mba-blue) !important;
+  text-transform: uppercase !important;
+}
+
+.mlp-page--polished :is(
+  .signal-atlas__quote p,
+  .blueprint-overview__intro-copy,
+  .mlp-why__intro,
+  .mlp-why__text,
+  .mlp-journey__intro,
+  .mlp-journey__text,
+  .mlp-mba__intro,
+  .mlp-masters__intro,
+  .pricing-cards__intro-copy,
+  .pricing-cards__note,
+  .archive-class__copy,
+  .archive-career__intro-copy,
+  .archive-alumni__intro-copy,
+  .archive-learning__intro-copy,
+  .archive-partners__intro-copy,
+  .archive-investment__intro-copy,
+  .archive-voices__intro-copy,
+  .archive-parallel__intro-copy,
+  .archive-fieldnotes__intro-copy,
+  .mlp-class-snapshot__intro-copy
+) {
+  font-family: var(--font-body) !important;
+  font-size: var(--fs-body) !important;
+  font-weight: var(--fw-regular) !important;
+  line-height: 1.7 !important;
+  letter-spacing: normal !important;
+  color: var(--color-black) !important;
+}

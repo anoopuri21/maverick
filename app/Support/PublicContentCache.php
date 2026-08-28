@@ -2,27 +2,30 @@
 
 namespace App\Support;
 
-use Illuminate\Support\Carbon;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection as EloquentCollection;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Str;
 
 class PublicContentCache
 {
     public const TTL = 86400;
 
-    public const HOMEPAGE = 'homepage';
+    public const HOMEPAGE = 'homepage.v2';
 
-    public const OUR_STORY = 'our-story';
+    public const OUR_STORY = 'our-story.v3';
 
-    public const PROGRAMS_LISTING = 'programs.listing';
+    public const PROGRAMS_LISTING = 'programs.listing.v2';
 
-    public const ACCREDITATIONS = 'accreditations';
+    public const ACCREDITATIONS = 'accreditations.v2';
 
-    public const MEDIA_GALLERY = 'media-gallery';
+    public const MEDIA_GALLERY = 'media-gallery.v2';
 
-    public const GLOBAL_PARTNERS = 'global-partners';
+    public const GLOBAL_PARTNERS = 'global-partners.v3';
 
-    public const EVENTS = 'events';
+    public const EVENTS = 'events.v2';
 
     public const NAVMENU_PROGRAMS = 'navmenu.programs';
 
@@ -30,13 +33,17 @@ class PublicContentCache
 
     public const NEWS_TOP_TAGS = 'news.top_tags';
 
-    public const FEATURED_PROGRAMS = 'featured-programs';
+    public const FEATURED_PROGRAMS = 'featured-programs.v2';
 
-    public const FACULTY_INSIGHTS_PREVIEW = 'faculty-insights.preview';
+    public const FACULTY_INSIGHTS_PREVIEW = 'faculty-insights.preview.v2';
 
-    public const UNIVERSITY_PARTNERS = 'university-partners';
+    public const UNIVERSITY_PARTNERS = 'university-partners.v2';
 
-    public const ALUMNI_LOGOS = 'alumni-logos';
+    public const GLOBAL_ACCESS_POINTS = 'global-access-points.v1';
+
+    public const ALUMNI_LOGOS = 'alumni-logos.v2';
+
+    public const FOOTER_PROGRAM_CATEGORIES = 'footer.program_categories.v1';
 
     public const MLP_UNIVERSITY_LOGOS = 'mlp-university-logos';
 
@@ -63,13 +70,23 @@ class PublicContentCache
             self::FEATURED_PROGRAMS,
             self::FACULTY_INSIGHTS_PREVIEW,
             self::UNIVERSITY_PARTNERS,
+            self::GLOBAL_ACCESS_POINTS,
             self::ALUMNI_LOGOS,
-            self::MLP_UNIVERSITY_LOGOS,
-            self::MLP_STORY_TESTIMONIALS,
+            self::FOOTER_PROGRAM_CATEGORIES,
             self::ADMIN_OVERVIEW,
-            self::HOMEPAGE.'-accreditation-logos',
-            self::HOMEPAGE.'-faqs',
+            // Legacy keys (pre array-safe cache)
+            'homepage',
             'homepage_data_v1',
+            'our-story',
+            'programs.listing',
+            'accreditations',
+            'media-gallery',
+            'global-partners',
+            'events',
+            'featured-programs',
+            'faculty-insights.preview',
+            'university-partners',
+            'alumni-logos',
         ];
     }
 
@@ -89,6 +106,79 @@ class PublicContentCache
         Cache::put($key, $value, $ttl ?? self::TTL);
 
         return $value;
+    }
+
+    /**
+     * Cache Eloquent rows as plain arrays (DB cache corrupts serialized models), then hydrate.
+     *
+     * @param  class-string<Model>  $modelClass
+     * @param  array<string, class-string<Model>>  $relations  snake_case array key => related model class
+     * @return EloquentCollection<int, Model>
+     */
+    public static function rememberHydrated(string $key, string $modelClass, callable $callback, array $relations = [], ?int $ttl = null): EloquentCollection
+    {
+        $rows = self::remember($key, function () use ($callback) {
+            $result = $callback();
+
+            if ($result instanceof Collection) {
+                return $result->toArray();
+            }
+
+            return is_array($result) ? $result : [];
+        }, $ttl);
+
+        return self::hydrateRows($modelClass, is_array($rows) ? $rows : [], $relations);
+    }
+
+    /**
+     * @param  class-string<Model>  $modelClass
+     * @param  array<int, array<string, mixed>>  $rows
+     * @param  array<string, class-string<Model>>  $relations
+     * @return EloquentCollection<int, Model>
+     */
+    public static function hydrateRows(string $modelClass, array $rows, array $relations = []): EloquentCollection
+    {
+        $items = [];
+
+        foreach (array_values($rows) as $row) {
+            if (! is_array($row)) {
+                continue;
+            }
+
+            $loaded = [];
+
+            foreach ($relations as $snakeKey => $relatedClass) {
+                if (! array_key_exists($snakeKey, $row)) {
+                    continue;
+                }
+
+                $related = $row[$snakeKey];
+                unset($row[$snakeKey]);
+
+                $relationName = Str::camel($snakeKey);
+
+                if ($related === null) {
+                    $loaded[$relationName] = null;
+                } elseif (is_array($related) && array_is_list($related)) {
+                    $loaded[$relationName] = self::hydrateRows($relatedClass, $related);
+                } elseif (is_array($related)) {
+                    $loaded[$relationName] = (new $relatedClass)->newFromBuilder($related);
+                } else {
+                    $loaded[$relationName] = null;
+                }
+            }
+
+            /** @var Model $model */
+            $model = (new $modelClass)->newFromBuilder($row);
+
+            foreach ($loaded as $name => $value) {
+                $model->setRelation($name, $value);
+            }
+
+            $items[] = $model;
+        }
+
+        return (new $modelClass)->newCollection($items);
     }
 
     public static function forget(string ...$keys): void
@@ -129,9 +219,11 @@ class PublicContentCache
     }
 
     /**
+     * Hydrate plain cached arrays into stdClass objects (non-Eloquent).
+     *
      * @param  mixed  $rows
      */
-    public static function hydrateRows(mixed $rows, ?callable $map = null): Collection
+    public static function hydratePlainRows(mixed $rows, ?callable $map = null): Collection
     {
         if (self::containsIncomplete($rows) || is_string($rows) || ! is_iterable($rows)) {
             return collect();

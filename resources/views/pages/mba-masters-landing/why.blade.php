@@ -1,6 +1,14 @@
 {{-- §4 Why Choose Maverick — full-bleed scroll chapters --}}
 @php
   $chapters = collect($why->chapters ?? [])->filter(fn ($c) => filled($c['title'] ?? null))->values();
+  $chapterIcons = [
+    'flexible' => 'calendar',
+    'academic' => 'graduation-cap',
+    'specialization' => 'compass',
+    'payment' => 'wallet',
+    'international' => 'globe',
+    'community' => 'users',
+  ];
 @endphp
 @if($chapters->isNotEmpty() || filled($why->heading))
 <section class="mlp-why" id="mlp-why" aria-label="Why choose Maverick">
@@ -24,18 +32,22 @@
     @foreach($chapters as $i => $chapter)
     @php
       $tone = $i % 2 === 0 ? 'void' : 'paper';
-      $href = filled($chapter['anchor'] ?? null) ? edu_href($chapter['anchor']) : null;
+      $titleKey = strtolower(trim((string) ($chapter['title'] ?? '')));
+      $icon = 'compass';
+      foreach ($chapterIcons as $keyword => $iconName) {
+        if (str_contains($titleKey, $keyword)) {
+          $icon = $iconName;
+          break;
+        }
+      }
     @endphp
     <article class="mlp-why__chapter mlp-why__chapter--{{ $tone }}" style="--mlp-i: {{ $i }}">
       <div class="container mlp-why__chapter-grid">
-        <span class="mlp-why__num" aria-hidden="true">{{ str_pad((string) ($i + 1), 2, '0', STR_PAD_LEFT) }}</span>
+        <span class="mlp-why__num" aria-hidden="true"><i data-lucide="{{ $icon }}"></i></span>
         <div class="mlp-why__copy">
           <h3 class="mlp-why__title">{{ $chapter['title'] }}</h3>
           @if(filled($chapter['text'] ?? null))
           <div class="mlp-prose mlp-why__text">{!! \App\Support\MlpProse::html($chapter['text']) !!}</div>
-          @endif
-          @if($href)
-          <a class="mlp-why__link" href="{{ $href }}">Explore</a>
           @endif
         </div>
       </div>

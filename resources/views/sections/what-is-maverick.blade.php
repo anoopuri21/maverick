@@ -7,7 +7,7 @@
   <div class="wim__pin-wrapper">
     <div class="wim__heading-wrapper">
       <div class="section-label wim__label">
-        <span>The Maverick Impact</span>
+        <span>{{ $whatIsMaverick->label ?? '' }}</span>
       </div>
 
       <h2 class="wim__heading display-text">

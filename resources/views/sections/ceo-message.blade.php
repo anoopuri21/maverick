@@ -10,7 +10,7 @@
 
           <!-- Replace with actual image later -->
           <div class="ceo__image">
-            @if($url = media_url($ceo->image_url ?? null, 'assets/images/placeholder.jpg'))
+            @if($url = media_url($ceo->image_url ?? null, 'assets/images/homepage/mba-management.jpg'))
             <img src="{{ $url }}"
               alt="{{ trim(($ceo->name ?? '').', '.($ceo->designation ?? ''), ', ') }}"
               loading="lazy" decoding="async" />
@@ -30,14 +30,14 @@
       <div class="ceo__content">
 
         <div class="section-label fade-up">
-          <span>Leadership Message</span>
+          <span>{{ $ceo->label ?? '' }}</span>
         </div>
 
         <h2 class="ceo__heading section-title">
           <span class="ceo__heading-line">
             <span class="text-reveal-wrapper">
               <span class="text-reveal-inner">
-                A Message from
+                {{ $ceo->heading_line1 ?? '' }}
               </span>
             </span>
           </span>
@@ -45,7 +45,7 @@
           <span class="ceo__heading-line hwdi__heading-line--red">
             <span class="text-reveal-wrapper">
               <span class="text-reveal-inner">
-                Our Founder & CEO
+                {{ $ceo->heading_line2 ?? '' }}
               </span>
             </span>
           </span>
