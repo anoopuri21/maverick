@@ -1,22 +1,23 @@
+@php $homepageChrome = $homepageChrome ?? null; @endphp
 <section id="video-testimonials" class="testimonials section-wrapper section--light"
   aria-label="Video Testimonials">
   <div class="container testimonials__inner">
     <div class="testimonials__header">
-      <div class="section-label"><span>Testimonials</span></div>
+      <div class="section-label"><span>{{ $homepageChrome->testimonials_label ?? '' }}</span></div>
       <h2 class="testimonials__heading section-title">
         <span class="testimonials__heading-line">
           <span class="text-reveal-wrapper">
-            <span class="text-reveal-inner">Stories That</span>
+            <span class="text-reveal-inner">{{ $homepageChrome->testimonials_heading_line1 ?? '' }}</span>
           </span>
         </span>
         <span class="testimonials__heading-line hwdi__heading-line--red">
           <span class="text-reveal-wrapper">
-            <span class="text-reveal-inner">Inspire</span>
+            <span class="text-reveal-inner">{{ $homepageChrome->testimonials_heading_line2 ?? '' }}</span>
           </span>
         </span>
       </h2>
       <p class="testimonials__subtitle body-text">
-        Real voices, real transformations hear from our community
+        {{ $homepageChrome->testimonials_subtitle ?? '' }}
       </p>
     </div>
 

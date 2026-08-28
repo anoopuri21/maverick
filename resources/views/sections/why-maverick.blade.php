@@ -2,7 +2,7 @@
   <div class="container why__inner">
     <div class="why__header">
       <div class="section-label">
-        <span>Why Maverick</span>
+        <span>{{ $whyMaverick->label ?? '' }}</span>
       </div>
       <h2 class="why__heading section-title">
         <span class="hwdi__heading-line">

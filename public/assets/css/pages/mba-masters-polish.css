@@ -413,15 +413,15 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
 
 /* Issue 1 — semantic page type scale. Keep the page to a small set of intentional roles. */
 .mlp-page--polished {
-  --mlp-type-micro: 0.75rem;
-  --mlp-type-caption: 0.8125rem;
-  --mlp-type-body: 1rem;
-  --mlp-type-lede: 1.125rem;
-  --mlp-type-title-sm: clamp(1.25rem, 2vw, 1.75rem);
-  --mlp-type-title: clamp(1.75rem, 3.5vw, 2.75rem);
-  --mlp-type-title-lg: clamp(2.25rem, 5vw, 4rem);
-  --mlp-type-display: clamp(3rem, 6.2vw, 6.4rem);
-  --mlp-type-stat: clamp(2rem, 4vw, 4.25rem);
+  --mlp-type-micro: var(--fs-caption);
+  --mlp-type-caption: var(--fs-caption);
+  --mlp-type-body: var(--fs-body);
+  --mlp-type-lede: var(--fs-body);
+  --mlp-type-title-sm: var(--fs-card-title);
+  --mlp-type-title: var(--fs-section-title);
+  --mlp-type-title-lg: var(--fs-section-title);
+  --mlp-type-display: var(--fs-hero);
+  --mlp-type-stat: var(--fs-hero-sub);
 }
 
 .mlp-page--polished :is(
@@ -433,7 +433,6 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
   .prospectus-cover__enquiry-index,
   .signal-atlas__folio,
   .blueprint-overview__folio,
-  .blueprint-overview__system-label,
   .archive-class__label,
   .archive-career__label,
   .archive-alumni__label,
@@ -1183,7 +1182,6 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
   .prospectus-cover__enquiry-index,
   .signal-atlas__folio,
   .blueprint-overview__folio,
-  .blueprint-overview__system-label,
   .archive-class__label,
   .archive-career__label,
   .archive-alumni__label,
@@ -1919,11 +1917,11 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
 .mlp-page--polished .luxury-testimonial__quote {
   max-width: 40ch;
   margin: 0;
-  font-family: var(--mlp-font-display);
-  font-size: clamp(1.45rem, 2.8vw, 2.35rem);
-  font-weight: 500;
-  line-height: 1.05;
-  letter-spacing: -0.035em;
+  font-family: var(--font-body) !important;
+  font-size: var(--fs-body) !important;
+  font-weight: var(--fw-regular) !important;
+  line-height: 1.7 !important;
+  letter-spacing: normal !important;
   color: var(--mlp-navy);
 }
 
@@ -2300,12 +2298,19 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
 }
 
 .mlp-page--polished #mlp-overview .blueprint-overview__core {
-  border: 1px solid rgb(7 20 68 / 15%);
+  border: 1px solid rgb(7 20 68 / 5%);
 }
 
 .mlp-page--polished #mlp-overview .blueprint-overview__foundation:first-child:hover,
 .mlp-page--polished #mlp-overview .blueprint-overview__foundation:first-child:focus-within {
   background: transparent;
+}
+
+/* Included homepage accreditation section: keep content visible without the homepage-only animation bundle. */
+.mlp-page--polished #accreditations .text-reveal-inner,
+.mlp-page--polished #accreditations .fade-up {
+  opacity: 1;
+  transform: none;
 }
 
 /* Targeted MBA/Master's catalogue boundaries. */
@@ -2350,4 +2355,279 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
     grid-template-rows: none;
     grid-auto-flow: row;
   }
+}
+
+/* Canonical project typography lock — landing page role normalization. */
+.mlp-page--polished .prospectus-cover__title {
+  font-family: var(--font-display) !important;
+  font-size: var(--fs-hero-sub) !important;
+  font-weight: var(--fw-bold) !important;
+  line-height: 1 !important;
+  letter-spacing: -0.03em !important;
+}
+
+.mlp-page--polished :is(
+  .signal-atlas__heading,
+  .blueprint-overview__heading,
+  .mlp-why__heading,
+  .mlp-journey__heading,
+  .mlp-mba__heading,
+  .mlp-masters__heading,
+  .pricing-cards__heading,
+  .archive-class__heading,
+  .archive-career__heading,
+  .archive-alumni__heading,
+  .archive-learning__heading,
+  .archive-partners__heading,
+  .archive-investment__heading,
+  .archive-voices__heading,
+  .archive-parallel__heading,
+  .archive-fieldnotes__heading,
+  .archive-closing__heading
+) {
+  font-family: var(--font-display) !important;
+  font-size: var(--fs-section-title) !important;
+  font-weight: var(--fw-medium) !important;
+  line-height: 1.1 !important;
+  letter-spacing: -0.02em !important;
+}
+
+.mlp-page--polished :is(
+  .prospectus-cover__enquiry-head h2,
+  .mlp-form__title,
+  .mlp-why__title,
+  .mlp-journey__title,
+  .mlp-mba__uni-name,
+  .mlp-masters__uni-name,
+  .topic-desk__details h3,
+  .archive-class__zone-head h3,
+  .archive-career__dossier h3,
+  .archive-learning__point h3,
+  .archive-investment__record-topline h3,
+  .archive-voices__voice cite,
+  .archive-parallel__criterion,
+  .archive-fieldnotes__question,
+  .pricing-card__program
+) {
+  font-family: var(--font-display) !important;
+  font-size: var(--fs-card-title) !important;
+  font-weight: var(--fw-semibold) !important;
+  line-height: 1.2 !important;
+  letter-spacing: normal !important;
+}
+
+.mlp-page--polished :is(
+  .prospectus-cover__intro,
+  .prospectus-cover__annotation-copy,
+  .prospectus-cover__enquiry-head p,
+  .signal-atlas__quote p,
+  .signal-atlas__note,
+  .blueprint-overview__intro-copy,
+  .mlp-why__intro,
+  .mlp-why__text,
+  .mlp-journey__intro,
+  .mlp-journey__text,
+  .mlp-mba__intro,
+  .mlp-masters__intro,
+  .archive-class__copy,
+  .archive-career__intro-copy,
+  .archive-alumni__intro-copy,
+  .archive-learning__intro-copy,
+  .archive-partners__intro-copy,
+  .archive-investment__intro-copy,
+  .archive-voices__intro-copy,
+  .archive-parallel__intro-copy,
+  .archive-fieldnotes__intro-copy,
+  .archive-closing__intro-copy,
+  .pricing-cards__intro-copy,
+  .pricing-cards__note,
+  .archive-video-proof__copy,
+  .mlp-prose
+) {
+  font-family: var(--font-body) !important;
+  font-size: var(--fs-body) !important;
+  font-weight: var(--fw-regular) !important;
+  line-height: 1.7 !important;
+  letter-spacing: normal !important;
+}
+
+.mlp-page--polished :is(
+  .prospectus-cover__edition,
+  .prospectus-cover__academy,
+  .prospectus-cover__location,
+  .prospectus-cover__eyebrow,
+  .prospectus-cover__kicker,
+  .prospectus-cover__enquiry-index,
+  .signal-atlas__folio,
+  .blueprint-overview__folio,
+  .archive-class__label,
+  .archive-career__label,
+  .archive-alumni__label,
+  .archive-learning__label,
+  .archive-partners__label,
+  .archive-investment__label,
+  .archive-voices__label,
+  .archive-parallel__label,
+  .archive-fieldnotes__label,
+  .archive-closing__label,
+  .archive-partners__hint,
+  .archive-partners__toggle,
+  .archive-closing__form-head,
+  .mlp-meta,
+  .mlp-field > span
+) {
+  font-family: var(--font-body) !important;
+  font-size: var(--fs-caption) !important;
+  font-weight: var(--fw-medium) !important;
+  line-height: 1.4 !important;
+  letter-spacing: 0.15em !important;
+  text-transform: uppercase;
+}
+
+.mlp-page--polished :is(
+  .signal-atlas__value,
+  .blueprint-overview__core strong,
+  .archive-class__metric dd,
+  .archive-investment__record-topline strong,
+  .archive-investment__fee,
+  .archive-closing__form-title,
+  .blueprint-overview__class-2025-center strong,
+  .blueprint-overview__class-2025-value
+) {
+  font-family: var(--font-display) !important;
+  font-size: var(--fs-card-title) !important;
+  font-weight: var(--fw-medium) !important;
+  line-height: 1 !important;
+  letter-spacing: -0.03em !important;
+}
+
+.mlp-page--polished .blueprint-overview__class-2025-heading {
+  font-family: var(--font-display) !important;
+  font-size: var(--fs-card-title) !important;
+  font-weight: var(--fw-medium) !important;
+  line-height: 1.1 !important;
+  letter-spacing: -0.02em !important;
+}
+
+.mlp-page--polished .blueprint-overview__class-2025-label {
+  font-family: var(--font-body) !important;
+  font-size: var(--fs-caption) !important;
+  font-weight: var(--fw-medium) !important;
+  line-height: 1.4 !important;
+  letter-spacing: 0.15em !important;
+}
+
+.mlp-page--polished :is(
+  .mlp-btn,
+  .prospectus-cover__primary,
+  .prospectus-cover__secondary,
+  .archive-investment__primary,
+  .archive-investment__secondary,
+  .archive-parallel__primary,
+  .archive-closing__primary,
+  .archive-closing__secondary,
+  .archive-learning__primary,
+  .archive-learning__secondary
+) {
+  font-family: var(--font-body) !important;
+  font-size: 14px !important;
+  font-weight: var(--fw-medium) !important;
+  line-height: 1 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase;
+}
+
+.mlp-page--polished :is(.mlp-field input, .mlp-field select, .mlp-field textarea) {
+  font-family: var(--font-body) !important;
+  font-size: var(--fs-body) !important;
+  font-weight: var(--fw-regular) !important;
+  line-height: 1.7 !important;
+  letter-spacing: normal !important;
+}
+
+/* Accreditation typography reference — canonical light landing roles. */
+.mlp-page--polished :is(
+  .signal-atlas__heading,
+  .blueprint-overview__heading,
+  .mlp-why__heading,
+  .mlp-journey__heading,
+  .mlp-mba__heading,
+  .mlp-masters__heading,
+  .pricing-cards__heading,
+  .archive-class__heading,
+  .archive-career__heading,
+  .archive-alumni__heading,
+  .archive-learning__heading,
+  .archive-partners__heading,
+  .archive-investment__heading,
+  .archive-voices__heading,
+  .archive-parallel__heading,
+  .archive-fieldnotes__heading,
+  .mlp-class-snapshot__heading
+) {
+  font-family: var(--font-display) !important;
+  font-size: var(--fs-section-title) !important;
+  font-weight: var(--fw-medium) !important;
+  line-height: 1.1 !important;
+  letter-spacing: -0.02em !important;
+  color: var(--color-mba-blue) !important;
+  text-transform: none !important;
+}
+
+.mlp-page--polished :is(
+  .signal-atlas__folio,
+  .blueprint-overview__folio,
+  .mlp-why__label,
+  .mlp-journey__label,
+  .mlp-mba__label,
+  .mlp-masters__label,
+  .pricing-cards__label,
+  .archive-class__label,
+  .archive-career__label,
+  .archive-alumni__label,
+  .archive-learning__label,
+  .archive-partners__label,
+  .archive-investment__label,
+  .archive-voices__label,
+  .archive-parallel__label,
+  .archive-fieldnotes__label,
+  .mlp-class-snapshot__label
+) {
+  font-family: var(--font-body) !important;
+  font-size: 0.875rem !important;
+  font-weight: var(--fw-medium) !important;
+  line-height: 1.6 !important;
+  letter-spacing: 0.15em !important;
+  color: var(--color-mba-blue) !important;
+  text-transform: uppercase !important;
+}
+
+.mlp-page--polished :is(
+  .signal-atlas__quote p,
+  .blueprint-overview__intro-copy,
+  .mlp-why__intro,
+  .mlp-why__text,
+  .mlp-journey__intro,
+  .mlp-journey__text,
+  .mlp-mba__intro,
+  .mlp-masters__intro,
+  .pricing-cards__intro-copy,
+  .pricing-cards__note,
+  .archive-class__copy,
+  .archive-career__intro-copy,
+  .archive-alumni__intro-copy,
+  .archive-learning__intro-copy,
+  .archive-partners__intro-copy,
+  .archive-investment__intro-copy,
+  .archive-voices__intro-copy,
+  .archive-parallel__intro-copy,
+  .archive-fieldnotes__intro-copy,
+  .mlp-class-snapshot__intro-copy
+) {
+  font-family: var(--font-body) !important;
+  font-size: var(--fs-body) !important;
+  font-weight: var(--fw-regular) !important;
+  line-height: 1.7 !important;
+  letter-spacing: normal !important;
+  color: var(--color-black) !important;
 }

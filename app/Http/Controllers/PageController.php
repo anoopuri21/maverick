@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Program;
 use App\Settings\HeroSettings;
+use App\Settings\AskQuotientSettings;
+use App\Settings\DeiMatrixSettings;
+use App\Settings\HomepageChromeSettings;
 use App\Settings\NumbersSettings;
 use App\Settings\WhoWeAreSettings;
 use App\Settings\CeoSettings;
@@ -135,6 +138,9 @@ class PageController extends Controller
             'whoWeAre' => safe_settings(WhoWeAreSettings::class),
             'ceo' => safe_settings(CeoSettings::class),
             'whatIsMaverick' => safe_settings(WhatIsMaverickSettings::class),
+            'askQuotient' => safe_settings(AskQuotientSettings::class),
+            'deiMatrix' => safe_settings(DeiMatrixSettings::class),
+            'homepageChrome' => safe_settings(HomepageChromeSettings::class),
             'howWeDoIt' => safe_settings(HowWeDoItSettings::class),
             'whyMaverick' => safe_settings(WhyMaverickSettings::class),
             'globalOpportunities' => safe_settings(GlobalOpportunitiesSettings::class),
@@ -444,6 +450,13 @@ class PageController extends Controller
             ->orderBy('sort_order')
             ->get();
 
+        $accreditationLogos = PartnerLogo::query()
+            ->select('id', 'name', 'logo_url', 'sort_order')
+            ->whereIn('type', ['accreditation', 'recognition'])
+            ->where('is_active', true)
+            ->orderBy('sort_order')
+            ->get();
+
         return view('pages.mba-masters-landing', [
             'hero' => $hero,
             'trust' => $trust,
@@ -466,6 +479,7 @@ class PageController extends Controller
             'site' => safe_settings(SiteSettings::class),
             'alumniLogos' => $alumniLogos,
             'universityPartnerLogos' => $universityPartnerLogos,
+            'accreditationLogos' => $accreditationLogos,
         ]);
     }
 
@@ -832,33 +846,6 @@ class PageController extends Controller
             'journey' => $journey,
             'globalPartnersSeo' => safe_settings(GlobalPartnersSeoSettings::class),
         ];
-
-        // #region agent log
-        $hero = $viewData['hero'] ?? null;
-        $cards = $viewData['cards'] ?? null;
-        $unis = collect($viewData['partnerUniversities'] ?? []);
-        $u0 = $unis->first();
-        file_put_contents(base_path('debug-c9af17.log'), json_encode([
-            'sessionId' => 'c9af17',
-            'runId' => 'post-fix',
-            'hypothesisId' => 'A',
-            'location' => 'PageController.php:globalUniversityPartners',
-            'message' => 'gup payload vs admin/static fields',
-            'timestamp' => (int) (microtime(true) * 1000),
-            'data' => [
-                'hero_keys' => $hero ? array_keys($hero->toArray()) : [],
-                'hero_has_scroll_hint' => $hero ? property_exists($hero, 'scroll_hint') : false,
-                'cards_keys' => $cards ? array_keys($cards->toArray()) : [],
-                'cards_has_cta_label' => $cards ? property_exists($cards, 'cta_label') : false,
-                'cards_has_recognition_label' => $cards ? property_exists($cards, 'recognition_label') : false,
-                'uni0_has_cta_label' => $u0 ? array_key_exists('cta_label', $u0->getAttributes()) : false,
-                'uni_count' => $unis->count(),
-                'gallery_count' => count($viewData['galleryItems'] ?? []),
-                'hero_bg' => filled($hero->background_image ?? null),
-                'overview_image' => filled($viewData['overview']->image ?? null),
-            ],
-        ])."\n", FILE_APPEND);
-        // #endregion
 
         return view('pages.global-university-partners', $viewData);
     }

@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\Event;
 use App\Models\FacultyInsight;
 use App\Models\Faq;
+use App\Models\GlobalAccessPointCountry;
 use App\Models\GupPartnerUniversity;
 use App\Models\Insight;
 use App\Models\MediaGalleryPhoto;
@@ -19,8 +20,12 @@ use App\Models\Program;
 use App\Models\ProgramCategory;
 use App\Models\Testimonial;
 use App\Models\UniversityPartner;
+use App\Settings\AskQuotientSettings;
+use App\Settings\DeiMatrixSettings;
 use App\Settings\FinalCtaSettings;
+use App\Settings\GlobalAccessPointsSettings;
 use App\Settings\GlobalPartnersMapSettings;
+use App\Settings\HomepageChromeSettings;
 use App\Settings\WhatWeDoSettings;
 use App\Support\PublicContentCache;
 use Illuminate\Support\Facades\Event as EventFacade;
@@ -84,6 +89,10 @@ class AppServiceProvider extends ServiceProvider
         EventFacade::listen(SettingsSaved::class, fn () => PublicContentCache::flush());
 
         View::composer('sections.featured-programs', function ($view) {
+            if (! $view->offsetExists('homepageChrome')) {
+                $view->with('homepageChrome', safe_settings(HomepageChromeSettings::class));
+            }
+
             if ($view->offsetExists('featuredPrograms')) {
                 return;
             }
@@ -113,6 +122,10 @@ class AppServiceProvider extends ServiceProvider
         });
 
         View::composer('sections.faculty-insights', function ($view) {
+            if (! $view->offsetExists('homepageChrome')) {
+                $view->with('homepageChrome', safe_settings(HomepageChromeSettings::class));
+            }
+
             if ($view->offsetExists('facultyInsights')) {
                 return;
             }
@@ -210,6 +223,34 @@ class AppServiceProvider extends ServiceProvider
             ]);
         });
 
+        View::composer('sections.global-access-points', function ($view) {
+            $view->with('gapSettings', safe_settings(GlobalAccessPointsSettings::class));
+
+            if ($view->offsetExists('globalAccessPointsCountries')) {
+                return;
+            }
+
+            try {
+                $countries = PublicContentCache::rememberHydrated(
+                    PublicContentCache::GLOBAL_ACCESS_POINTS,
+                    GlobalAccessPointCountry::class,
+                    function () {
+                        return GlobalAccessPointCountry::query()
+                            ->select('id', 'iso_numeric', 'iso2', 'name', 'sort_order')
+                            ->where('is_active', true)
+                            ->orderBy('sort_order')
+                            ->orderBy('name')
+                            ->get();
+                    }
+                );
+            } catch (\Throwable $e) {
+                report($e);
+                $countries = collect();
+            }
+
+            $view->with('globalAccessPointsCountries', $countries);
+        });
+
         View::composer('sections.final-cta', function ($view) {
             if ($view->offsetExists('finalCta')) {
                 return;
@@ -219,6 +260,10 @@ class AppServiceProvider extends ServiceProvider
         });
 
         View::composer('sections.alumni-network', function ($view) {
+            if (! $view->offsetExists('homepageChrome')) {
+                $view->with('homepageChrome', safe_settings(HomepageChromeSettings::class));
+            }
+
             if ($view->offsetExists('alumniLogos')) {
                 return;
             }
@@ -268,6 +313,35 @@ class AppServiceProvider extends ServiceProvider
             $view->with('footerProgramCategories', $footerProgramCategories);
         });
 
+        View::composer('sections.ask-quotient', function ($view) {
+            if ($view->offsetExists('askQuotient')) {
+                return;
+            }
+
+            $view->with('askQuotient', safe_settings(AskQuotientSettings::class));
+        });
+
+        View::composer('sections.dei-matrix', function ($view) {
+            if ($view->offsetExists('deiMatrix')) {
+                return;
+            }
+
+            $view->with('deiMatrix', safe_settings(DeiMatrixSettings::class));
+        });
+
+        View::composer([
+            'sections.accreditations',
+            'sections.upcoming-events',
+            'sections.video-testimonials',
+            'sections.faq',
+        ], function ($view) {
+            if ($view->offsetExists('homepageChrome')) {
+                return;
+            }
+
+            $view->with('homepageChrome', safe_settings(HomepageChromeSettings::class));
+        });
+
         View::composer([
             'sections.what-we-do',
             'pages.csr-community-impact',
@@ -297,6 +371,7 @@ class AppServiceProvider extends ServiceProvider
             OurStoryTestimonial::class,
             GupPartnerUniversity::class,
             PartnershipGalleryItem::class,
+            GlobalAccessPointCountry::class,
         ];
 
         foreach ($collectionModels as $model) {

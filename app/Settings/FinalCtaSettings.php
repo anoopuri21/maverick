@@ -6,6 +6,8 @@ use Spatie\LaravelSettings\Settings;
 
 class FinalCtaSettings extends Settings
 {
+    public ?string $label = null;
+
     public ?string $heading = null;
     public ?string $subtitle = null;
     public ?string $btn_primary_text = null;

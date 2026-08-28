@@ -39,6 +39,8 @@ class PublicContentCache
 
     public const UNIVERSITY_PARTNERS = 'university-partners.v2';
 
+    public const GLOBAL_ACCESS_POINTS = 'global-access-points.v1';
+
     public const ALUMNI_LOGOS = 'alumni-logos.v2';
 
     public const FOOTER_PROGRAM_CATEGORIES = 'footer.program_categories.v1';
@@ -68,6 +70,7 @@ class PublicContentCache
             self::FEATURED_PROGRAMS,
             self::FACULTY_INSIGHTS_PREVIEW,
             self::UNIVERSITY_PARTNERS,
+            self::GLOBAL_ACCESS_POINTS,
             self::ALUMNI_LOGOS,
             self::FOOTER_PROGRAM_CATEGORIES,
             self::ADMIN_OVERVIEW,

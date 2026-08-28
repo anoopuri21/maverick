@@ -230,30 +230,6 @@ class ManageGlobalUniversityPartners extends Page implements HasForms
         try {
             $data = $this->form->getState();
 
-            // #region agent log
-            $heroIn = $data['hero'] ?? [];
-            $overviewIn = $data['overview'] ?? [];
-            $benefitsIn = $data['benefits'] ?? [];
-            file_put_contents(base_path('debug-c9af17.log'), json_encode([
-                'sessionId' => 'c9af17',
-                'runId' => 'post-fix',
-                'hypothesisId' => 'E',
-                'location' => 'ManageGlobalUniversityPartners.php:save',
-                'message' => 'admin save payload keys before persist',
-                'timestamp' => (int) (microtime(true) * 1000),
-                'data' => [
-                    'hero_keys' => array_keys($heroIn),
-                    'hero_has_scroll_hint' => array_key_exists('scroll_hint', $heroIn),
-                    'map_keys' => array_keys($data['map'] ?? []),
-                    'hero_has_asset' => filled($heroIn['background_image_asset_id'] ?? null),
-                    'overview_keys' => array_keys($overviewIn),
-                    'overview_has_image' => filled($overviewIn['image'] ?? null),
-                    'benefits_has_main' => filled($benefitsIn['main_image'] ?? null),
-                    'save_uses_syncFieldFromAsset' => false,
-                ],
-            ])."\n", FILE_APPEND);
-            // #endregion
-
             $this->saveSettingsGroup(GlobalPartnersHeroSettings::class, $data['hero'] ?? []);
             $this->saveSettingsGroup(GlobalPartnersOverviewSettings::class, $data['overview'] ?? []);
             $this->saveSettingsGroup(GlobalPartnersCardsSettings::class, $data['cards'] ?? []);

@@ -68,7 +68,7 @@
 .contact-campus {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 20px;
 }
 
 .contact-campus__title {
@@ -112,7 +112,7 @@
 .contact-info-card {
     display: flex;
     gap: 24px;
-    padding: 32px;
+    padding: 0px 32px;
 }
 
 .contact-info-card__icon-badge {
@@ -246,6 +246,7 @@
 /* Right column - Form Container */
 .contact-form-container {
     padding: 48px;
+    background: var(--color-warm-white);
 }
 
 .contact-form__title {
@@ -272,8 +273,8 @@
 
 .form-group-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    grid-template-columns: 1fr;
+    gap: 30px;
 }
 
 .form-group {

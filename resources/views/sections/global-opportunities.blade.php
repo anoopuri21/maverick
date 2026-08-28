@@ -2,7 +2,7 @@
   aria-label="Global Opportunities and Pathways">
   <div class="container opportunities__inner">
     <div class="opportunities__header">
-      <div class="section-label"><span>Beyond Borders</span></div>
+      <div class="section-label"><span>{{ $globalOpportunities->label ?? '' }}</span></div>
       @if(filled($globalOpportunities->heading ?? null))
       <h2 class="opportunities__heading section-title">
         <span class="text-reveal-wrapper">
@@ -53,7 +53,7 @@
                 <h4 class="opportunities__item-title">
                   {{ $item['title'] }}
                   @if($isComingSoon)
-                  <span class="opportunities__item-badge">Coming Soon</span>
+                  <span class="opportunities__item-badge">{{ $globalOpportunities->coming_soon_label ?? 'Coming Soon' }}</span>
                   @endif
                 </h4>
                 @endif
@@ -105,7 +105,7 @@
                 <h4 class="opportunities__item-title">
                   {{ $item['title'] }}
                   @if($isComingSoon)
-                  <span class="opportunities__item-badge">Coming Soon</span>
+                  <span class="opportunities__item-badge">{{ $globalOpportunities->coming_soon_label ?? 'Coming Soon' }}</span>
                   @endif
                 </h4>
                 @endif

@@ -45,10 +45,6 @@
     </header>
 
     <div class="blueprint-overview__system" data-overview-blueprint>
-      <div class="blueprint-overview__system-label" aria-hidden="true">
-        <span>Programme architecture</span>
-      </div>
-
       <svg class="blueprint-overview__diagram" viewBox="0 0 1200 620" preserveAspectRatio="none" aria-hidden="true">
         <g class="blueprint-overview__grid-lines">
           <path d="M0 80H1200M0 180H1200M0 280H1200M0 380H1200M0 480H1200M0 580H1200" />
@@ -104,6 +100,7 @@
       @endif
     </div>
     @endif
+
   </div>
 </section>
 @endif

@@ -1,25 +1,27 @@
-@php $featuredPrograms = collect($featuredPrograms ?? []); @endphp
+@php
+    $featuredPrograms = collect($featuredPrograms ?? []);
+    $homepageChrome = $homepageChrome ?? null;
+@endphp
 @if($featuredPrograms->isNotEmpty())
 <section id="featured-programs" class="programs section-wrapper section--light" aria-label="Featured Programs">
   <div class="container programs__inner">
     <div class="section-label">
-      <span>Programs</span>
+      <span>{{ $homepageChrome->featured_label ?? '' }}</span>
     </div>
     <h2 class="programs__heading section-title">
       <span class="hwdi__heading-line">
         <span class="text-reveal-wrapper">
-          <span class="text-reveal-inner">Most In-Demand</span>
+          <span class="text-reveal-inner">{{ $homepageChrome->featured_heading_line1 ?? '' }}</span>
         </span>
       </span>
       <span class="hwdi__heading-line hwdi__heading-line--red">
         <span class="text-reveal-wrapper">
-          <span class="text-reveal-inner">Programs</span>
+          <span class="text-reveal-inner">{{ $homepageChrome->featured_heading_line2 ?? '' }}</span>
         </span>
       </span>
     </h2>
     <p class="programs__subtitle body-text fade-up">
-      Industry-aligned qualifications designed to accelerate global
-      careers
+      {{ $homepageChrome->featured_subtitle ?? '' }}
     </p>
   </div>
 
@@ -47,7 +49,7 @@
             <div class="programs__card-line"></div>
             @if(filled($program->slug))
             <a href="{{ route('programs.show', $program->slug) }}" class="programs__card-link">
-              Learn More
+              {{ $homepageChrome->featured_cta_label ?? 'Learn More' }}
               <span class="programs__card-arrow" aria-hidden="true">
                 <span class="inline-icon" data-lucide="move-right"></span>
               </span>

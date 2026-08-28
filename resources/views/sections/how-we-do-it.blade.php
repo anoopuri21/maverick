@@ -2,7 +2,7 @@
   <div class="container">
     <div class="hwdi__header">
       <div class="section-label">
-        <span>How We Do It</span>
+        <span>{{ $howWeDoIt->label ?? '' }}</span>
       </div>
       <h2 class="hwdi__heading section-title">
         <span class="hwdi__heading-line">

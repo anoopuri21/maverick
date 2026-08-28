@@ -25,15 +25,6 @@
     </header>
 
     <div class="signal-atlas__graph" data-signal-atlas>
-      <svg class="signal-atlas__svg" viewBox="0 0 1200 360" preserveAspectRatio="none" aria-hidden="true">
-        <g class="signal-atlas__grid-lines">
-          <path d="M0 80H1200M0 180H1200M0 280H1200" />
-          <path d="M120 0V360M360 0V360M600 0V360M840 0V360M1080 0V360" />
-        </g>
-        <path class="signal-atlas__signal-line" data-signal-path d="M36 282 C148 238 190 92 316 142 S486 308 594 206 S760 62 850 126 S1020 270 1164 72" />
-        <path class="signal-atlas__signal-line signal-atlas__signal-line--secondary" d="M36 310 C178 270 246 198 348 214 S520 264 630 238 S780 156 900 188 S1058 228 1164 148" />
-      </svg>
-
       <ol class="signal-atlas__records" aria-label="Trust statistics">
         @foreach($stats as $i => $stat)
         @php

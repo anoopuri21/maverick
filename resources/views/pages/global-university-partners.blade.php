@@ -82,11 +82,6 @@
         @endif
         <div class="cinematic-hero__scroll-hint" aria-hidden="true">
             <span class="cinematic-hero__scroll-text">{{ $hero->scroll_hint ?? 'Scroll to explore' }}</span>
-            {{-- #region agent log --}}
-            @php
-                file_put_contents(base_path('debug-c9af17.log'), json_encode(['sessionId'=>'c9af17','runId'=>'post-fix','hypothesisId'=>'B','location'=>'global-university-partners.blade.php:hero','message'=>'hero/map/card strings source','timestamp'=>(int)(microtime(true)*1000),'data'=>['scroll_hint'=>$hero->scroll_hint ?? null,'scroll_hint_prop'=>property_exists($hero,'scroll_hint'),'card_cta'=>$cards->cta_label ?? null,'recognition_label'=>$cards->recognition_label ?? null]])."\n", FILE_APPEND);
-            @endphp
-            {{-- #endregion --}}
             <span class="cinematic-hero__scroll-arrow" data-lucide="chevron-down"></span>
         </div>
     </div>

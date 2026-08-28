@@ -1,4 +1,7 @@
-@php $accreditationLogos = collect($accreditationLogos ?? []); @endphp
+@php
+    $accreditationLogos = collect($accreditationLogos ?? []);
+    $homepageChrome = $homepageChrome ?? null;
+@endphp
 @if($accreditationLogos->isNotEmpty())
 <section id="accreditations" class="accreditations section-wrapper section--light"
   aria-label="Accreditations, Partnerships & Recognitions">
@@ -6,22 +9,22 @@
     <div class="accreditations__header">
       <div class="accreditations__header-content">
         <div class="section-label">
-          <span>Trust & Excellence</span>
+          <span>{{ $homepageChrome->accred_label ?? '' }}</span>
         </div>
         <h2 class="programs__heading section-title">
           <span class="hwdi__heading-line">
             <span class="text-reveal-wrapper">
-              <span class="text-reveal-inner">Accreditations & </span>
+              <span class="text-reveal-inner">{{ $homepageChrome->accred_heading_line1 ?? '' }}</span>
             </span>
           </span>
           <span class="hwdi__heading-line hwdi__heading-line--red">
             <span class="text-reveal-wrapper">
-              <span class="text-reveal-inner">Recognitions</span>
+              <span class="text-reveal-inner">{{ $homepageChrome->accred_heading_line2 ?? '' }}</span>
             </span>
           </span>
         </h2>
         <p class="accreditations__subheading body-text fade-up">
-          Globally recognized and strategically partnered with leading institutions worldwide
+          {{ $homepageChrome->accred_subtitle ?? '' }}
         </p>
       </div>
 
@@ -45,7 +48,7 @@
     <!-- Trust Statement -->
     <div class="accreditations__trust fade-up">
       <p class="accreditations__trust-text">
-        Trusted by global organizations and recognized by leading industry bodies
+        {{ $homepageChrome->accred_trust ?? '' }}
       </p>
     </div>
   </div>

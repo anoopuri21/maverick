@@ -26,6 +26,7 @@ class ManageWhyMaverick extends SettingsPage
             Section::make('Section Heading')
                 ->description('These fields are required')
                 ->schema([
+                    TextInput::make('label')->label('Section Label'),
                     Grid::make(2)->schema([
                         TextInput::make('heading_line1')
                             ->label('Heading Line 1')

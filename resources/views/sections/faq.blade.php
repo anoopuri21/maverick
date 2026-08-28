@@ -1,4 +1,8 @@
-@php $homepageFaqs = collect($homepageFaqs ?? []); @endphp
+@php
+    $homepageFaqs = collect($homepageFaqs ?? []);
+    $homepageChrome = $homepageChrome ?? null;
+    $faqImage = media_url($homepageChrome->faq_image_url ?? null, 'assets/images/homepage/mba-management.jpg');
+@endphp
 @if($homepageFaqs->isNotEmpty())
 <section id="faq" class="faq section-wrapper section--light" aria-label="Frequently Asked Questions">
 
@@ -9,31 +13,31 @@
       <div class="faq__intro">
 
         <div class="section-label">
-          <span>FAQ</span>
+          <span>{{ $homepageChrome->faq_label ?? '' }}</span>
         </div>
 
         <h2 class="faq__heading section-title">
           <span class="faq__heading-line">
             <span>
-              Your Questions
+              {{ $homepageChrome->faq_heading_line1 ?? '' }}
 
             </span>
           </span>
 
           <span class="faq__heading-line hwdi__heading-line--red">
             <span>
-              Answered
+              {{ $homepageChrome->faq_heading_line2 ?? '' }}
             </span>
           </span>
         </h2>
 
         <p class="faq__subtitle body-text">
-          Everything you need to know before beginning your Maverick journey.
+          {{ $homepageChrome->faq_subtitle ?? '' }}
         </p>
         <div>
           <img
-            src="{{ cached_asset('assets/images/homepage/mba-management.jpg') }}"
-            class="faq-img" alt="Frequently Asked Questions" loading="lazy" decoding="async" />
+            src="{{ $faqImage }}"
+            class="faq-img" alt="{{ $homepageChrome->faq_heading_line1 ?? 'Frequently Asked Questions' }}" loading="lazy" decoding="async" />
         </div>
 
       </div>

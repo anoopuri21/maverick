@@ -22,6 +22,7 @@ class ManageWhatWeDo extends SettingsPage
     {
         return $form->schema([
             Section::make('Section Heading')->schema([
+                TextInput::make('label')->label('Section Label (homepage only)'),
                 Grid::make(2)->schema([
                     TextInput::make('heading_line1'),
                     TextInput::make('heading_line2')->label('Line 2 (Red/Accent)'),
