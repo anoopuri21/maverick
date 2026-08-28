@@ -30,6 +30,7 @@
 
     @if($stories->isNotEmpty())
     <div class="archive-career__stage" data-archive-career>
+      <div>
       <div class="archive-career__stack" aria-hidden="true">
         @foreach($stories->take(3) as $si => $story)
         <span class="archive-career__stack-image archive-career__stack-image--{{ $si + 1 }}">
@@ -51,6 +52,7 @@
             <span class="mlp-uae-badge__flag-stripes"><span></span><span></span><span></span></span>
           </span>
         </div>
+      </div>
       </div>
 
       <div class="archive-career__dossiers">

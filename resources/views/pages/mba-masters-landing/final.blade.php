@@ -28,10 +28,10 @@
       @if(filled($final->cta_primary_label) || filled($final->cta_secondary_label))
       <div class="archive-closing__actions">
         @if(filled($final->cta_primary_label))
-        <a href="{{ edu_href($final->cta_primary_url) ?? '#mlp-enquire' }}" class="archive-closing__primary">{{ $final->cta_primary_label }} <span aria-hidden="true">↗</span></a>
+        <a href="{{ edu_href($final->cta_primary_url) ?? '#mlp-enquire' }}" class="prospectus-cover__primary">{{ $final->cta_primary_label }} <span aria-hidden="true">↗</span></a>
         @endif
         @if(filled($final->cta_secondary_label))
-        <a href="{{ edu_href($final->cta_secondary_url) ?? '#mlp-enquire' }}" class="archive-closing__secondary">{{ $final->cta_secondary_label }}</a>
+        <a href="{{ edu_href($final->cta_secondary_url) ?? '#mlp-enquire' }}" class="pricing-cards__secondary">{{ $final->cta_secondary_label }}</a>
         @endif
       </div>
       @endif

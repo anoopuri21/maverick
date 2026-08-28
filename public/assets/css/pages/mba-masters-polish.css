@@ -2298,7 +2298,7 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
 }
 
 .mlp-page--polished #mlp-overview .blueprint-overview__core {
-  border: 1px solid rgb(7 20 68 / 15%);
+  border: 1px solid rgb(7 20 68 / 5%);
 }
 
 .mlp-page--polished #mlp-overview .blueprint-overview__foundation:first-child:hover,
@@ -2360,7 +2360,7 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
 /* Canonical project typography lock — landing page role normalization. */
 .mlp-page--polished .prospectus-cover__title {
   font-family: var(--font-display) !important;
-  font-size: var(--fs-hero) !important;
+  font-size: var(--fs-hero-sub) !important;
   font-weight: var(--fw-bold) !important;
   line-height: 1 !important;
   letter-spacing: -0.03em !important;
@@ -2495,7 +2495,7 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
   .blueprint-overview__class-2025-value
 ) {
   font-family: var(--font-display) !important;
-  font-size: var(--fs-hero-sub) !important;
+  font-size: var(--fs-card-title) !important;
   font-weight: var(--fw-medium) !important;
   line-height: 1 !important;
   letter-spacing: -0.03em !important;

@@ -30,9 +30,9 @@
 
     @if($plate)
     <figure class="mlp-masters__banner" data-mlp-masters-showcase>
-      <span class="mlp-masters__banner-frame" aria-hidden="true"></span>
+      <!-- <span class="mlp-masters__banner-frame" aria-hidden="true"></span> -->
       <span class="mlp-masters__banner-rule" aria-hidden="true"></span>
-      <img src="{{ $plate }}" alt="Master's programmes at a global standard" width="1920" height="823" loading="lazy" decoding="async">
+      <!-- <img src="{{ $plate }}" alt="Master's programmes at a global standard" width="1920" height="823" loading="lazy" decoding="async"> -->
     </figure>
     @endif
 
@@ -49,7 +49,7 @@
 
     <div class="mlp-masters__cta-row">
       <a href="#mlp-enquire" class="mlp-masters__cta">Check eligibility <span aria-hidden="true">↗</span></a>
-      <p class="mlp-masters__cta-note">Every programme above is open to enquiry — admissions will confirm eligibility and next steps.</p>
+      <p class="mlp-masters__cta-note">Every programme above is open to enquiry — admissions team will confirm eligibility and next steps.</p>
     </div>
   </div>
 </section>
