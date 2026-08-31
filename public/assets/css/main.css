@@ -522,7 +522,6 @@ html.js .scale-in {
   display: flex;
   align-items: center;
   gap: 16px;
-  margin-bottom: 24px;
 }
 
 .section-label::before {
@@ -2043,7 +2042,6 @@ html.js .scale-in {
 .numbers__heading-col {
   display: flex;
   flex-direction: column;
-  gap: 24px;
 }
 
 .numbers__heading {
@@ -2329,14 +2327,12 @@ html.js .scale-in {
 .wwa__content {
   display: flex;
   flex-direction: column;
-  gap: 32px;
 }
 
 .wwa__heading {
-  margin: 0;
+  margin: 0 0 32px;
   display: flex;
   flex-direction: column;
-  gap: 0;
 }
 
 .wwa__heading-line {
@@ -2349,14 +2345,14 @@ html.js .scale-in {
 }
 
 .wwa__body {
-  margin: 0;
+  margin: 0 0 32px;
   max-width: 480px;
 }
 
 .wwa__stats {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  margin: 0 0 32px;
 }
 
 .wwa__stat {
@@ -2459,7 +2455,6 @@ html.js .scale-in {
 .wwd__header-left {
   display: flex;
   flex-direction: column;
-  gap: 24px;
 }
 
 .wwd__header-right {
@@ -3299,6 +3294,7 @@ html.js .scale-in {
   color: var(--color-white);
   margin-top: 0.5rem;
   display: -webkit-box;
+  line-clamp: 2;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
@@ -3694,7 +3690,6 @@ html.js .scale-in {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 1.5rem;
   max-width: 900px;
 }
 
@@ -4001,7 +3996,6 @@ html.js .scale-in {
 .partners__header {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
 }
 
 .partners__heading {
@@ -4496,14 +4490,13 @@ html.js .scale-in {
 .insights__inner {
   display: flex;
   flex-direction: column;
-  gap: 4rem;
+  gap: 3rem;
 }
 
 /* ----- Header ----- */
 .insights__header {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
 }
 
 .insights__subtitle {
@@ -4699,7 +4692,6 @@ html.js .scale-in {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 1.5rem;
 }
 
 .events__heading {
@@ -4912,7 +4904,6 @@ html.js .scale-in {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 1.5rem;
 }
 
 .testimonials__subtitle {
@@ -5892,7 +5883,6 @@ body.modal-open {
 .accreditations__header-content {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
 }
 
 .accreditations .section-label {
@@ -6099,8 +6089,7 @@ body.modal-open {
 
 /* ----- Trust Statement ----- */
 .accreditations__trust {
-  text-align: center;
-  padding-top: 3rem;
+  padding-top: 0.4rem;
   border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
 
@@ -6240,7 +6229,6 @@ body.modal-open {
 .network__header-content {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
 }
 
 .network .section-label {
