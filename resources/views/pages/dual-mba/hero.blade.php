@@ -18,7 +18,7 @@
     @if(filled($hero->background_image))
     <img
       src="{{ media_url($hero->background_image) }}"
-      alt=""
+      alt="{{ $hero->background_image_alt ?? '' }}"
       class="dmba-hero__bg-image"
       loading="eager"
     />
@@ -48,6 +48,13 @@
             {!! $hero->sub !!}
           </div>
           @endif
+
+          @include('pages.dual-mba.credentials', [
+              'enabled' => $hero->credentials_enabled ?? false,
+              'label' => $hero->credentials_label ?? null,
+              'items' => $hero->credentials ?? [],
+              'variant' => 'hero-strip',
+          ])
 
           @if($heroStats->isNotEmpty())
           <div class="dmba-hero__stats" data-dmba-hero="stats" data-testid="dmba-hero-stats">
@@ -79,7 +86,7 @@
           <div class="dmba-hero__image-frame">
             <img
               src="{{ media_url($hero->visual_image) }}"
-              alt="{{ $hero->tag ?? 'Dual MBA Programme' }}"
+              alt="{{ $hero->visual_image_alt ?? '' }}"
               loading="eager"
             />
           </div>

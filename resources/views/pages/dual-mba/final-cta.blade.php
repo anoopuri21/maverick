@@ -1,7 +1,9 @@
 {{-- ===== S11: FINAL CTA ===== --}}
 @php
     $ctaButtons = collect($finalCta->ctas ?? [])->filter(fn ($cta) => filled($cta['label'] ?? null) && filled($cta['url'] ?? null));
-    $showBrochure = filled($finalCta->brochure_label ?? null) && filled($finalCta->brochure_url ?? null);
+    $showBrochure = filled($finalCta->brochure_label ?? null)
+        && filled($finalCta->brochure_url ?? null)
+        && $finalCta->brochure_url !== '#';
     $showFinalCta = filled($finalCta->heading ?? null)
         || filled($finalCta->heading_line2 ?? null)
         || html_filled($finalCta->sub ?? null)

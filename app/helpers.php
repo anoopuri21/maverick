@@ -62,6 +62,30 @@ if (! function_exists('media_url')) {
     }
 }
 
+if (! function_exists('settings_media_url')) {
+    /**
+     * Resolve a media URL from a settings repeater row (URL column or *_asset_id).
+     *
+     * @param  array<string, mixed>  $item
+     */
+    function settings_media_url(array $item, string $field): ?string
+    {
+        if (filled($item[$field] ?? null)) {
+            return media_url($item[$field]);
+        }
+
+        $assetId = $item["{$field}_asset_id"] ?? null;
+
+        if (blank($assetId)) {
+            return null;
+        }
+
+        $asset = \App\Models\MediaAsset::query()->find($assetId);
+
+        return media_url($asset?->url);
+    }
+}
+
 if (! function_exists('cached_asset')) {
     /**
      * Version a public file by mtime so far-future Cache-Control can stay immutable.

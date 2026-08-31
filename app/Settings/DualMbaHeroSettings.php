@@ -13,10 +13,15 @@ class DualMbaHeroSettings extends Settings
     public ?string $sub = null;
     public ?string $background_image = null;
     public ?string $background_image_asset_id = null;
+    public ?string $background_image_alt = null;
     public ?string $visual_image = null;
     public ?string $visual_image_asset_id = null;
+    public ?string $visual_image_alt = null;
     public ?string $badge_title = null;
     public ?string $badge_sub = null;
+    public bool $credentials_enabled = true;
+    public ?string $credentials_label = null;
+    public array $credentials = [];
     public array $stats = [];
     public array $ctas = [];
 

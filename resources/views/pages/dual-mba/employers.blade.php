@@ -1,27 +1,36 @@
 {{-- ===== S7: WHY EMPLOYERS VALUE ===== --}}
 @php
-    $collageItems = collect($employers->collage ?? [])->filter(fn ($item) => filled($item['image'] ?? null));
+    $collageItems = collect($employers->collage ?? [])->filter(fn ($item) => filled(settings_media_url($item, 'image')));
     $employerItems = collect($employers->items ?? [])->filter(fn ($item) => filled(is_array($item) ? ($item['item'] ?? null) : $item));
+    $counterDisplay = filled($employers->counter_value ?? null)
+        ? $employers->counter_value
+        : ($employerItems->isNotEmpty() ? (string) $employerItems->count() : null);
+    $counterNumeric = filled($counterDisplay) && is_numeric($counterDisplay);
+    $showCounter = filled($counterDisplay);
     $showEmployers = filled($employers->label ?? null)
         || filled($employers->heading ?? null)
         || filled($employers->heading_italic ?? null)
         || html_filled($employers->description ?? null)
         || $collageItems->isNotEmpty()
-        || $employerItems->isNotEmpty();
+        || $employerItems->isNotEmpty()
+        || $showCounter;
 @endphp
 @if($showEmployers)
 <section class="dmba-employers section--light section--warm section-wrapper" aria-label="Why Employers Value a Dual MBA" data-testid="dmba-employers-section">
   <div class="container">
     <div class="dmba-employers__grid">
-      @if($collageItems->isNotEmpty() || $employerItems->isNotEmpty())
+      @if($collageItems->isNotEmpty() || $showCounter)
       <div class="dmba-employers__image-col">
         @if($collageItems->isNotEmpty())
         <div class="dmba-employers__collage" data-testid="dmba-employers-collage">
           @foreach($collageItems as $item)
-            @php $role = in_array($item['role'] ?? '', ['lead', 'team', 'growth'], true) ? $item['role'] : 'lead'; @endphp
+            @php
+              $role = in_array($item['role'] ?? '', ['lead', 'team', 'growth'], true) ? $item['role'] : 'lead';
+              $collageImage = settings_media_url($item, 'image');
+            @endphp
             <figure class="dmba-employers__collage-item dmba-employers__collage-item--{{ $role }}">
               <img
-                src="{{ media_url($item['image']) }}"
+                src="{{ $collageImage }}"
                 alt="{{ $item['alt'] ?? '' }}"
                 loading="lazy"
               />
@@ -29,9 +38,15 @@
           @endforeach
         </div>
         @endif
-        @if($employerItems->isNotEmpty())
+        @if($showCounter)
         <div class="dmba-employers__counter">
-          <span class="dmba-employers__counter-value" data-dmba-counter="{{ $employerItems->count() }}">0</span>
+          <span class="dmba-employers__counter-value"
+            @if($counterNumeric)
+              data-dmba-counter="{{ (int) $counterDisplay }}"
+            @else
+              data-dmba-counter-static="{{ $counterDisplay }}"
+            @endif
+          >0</span>
           @if(filled($employers->counter_label))
           <span class="dmba-employers__counter-label">{!! $employers->counter_label !!}</span>
           @endif

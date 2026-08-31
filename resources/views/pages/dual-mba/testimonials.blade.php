@@ -34,8 +34,9 @@
           @endif
           <div class="dmba-testimonials__card-footer">
             <div class="dmba-testimonials__card-author">
-              @if(filled($item['avatar'] ?? null))
-              <img src="{{ media_url($item['avatar']) }}" alt="{{ $item['name'] ?? '' }}" class="dmba-testimonials__card-avatar" loading="lazy" width="52" height="52" />
+              @php $avatarUrl = settings_media_url($item, 'avatar'); @endphp
+              @if(filled($avatarUrl))
+              <img src="{{ $avatarUrl }}" alt="{{ $item['name'] ?? '' }}" class="dmba-testimonials__card-avatar" loading="lazy" width="52" height="52" />
               @endif
               <div class="dmba-testimonials__card-info">
                 @if(filled($item['name'] ?? null))
