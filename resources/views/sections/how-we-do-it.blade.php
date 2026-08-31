@@ -29,9 +29,9 @@
           <span class="hwdi__step-number">01</span>
           <h3 class="hwdi__step-title">{{ $howWeDoIt->step1_title }}</h3>
           <span class="hwdi__step-subtitle">{{ $howWeDoIt->step1_subtitle }}</span>
-          <p class="hwdi__step-desc">
+          <div class="hwdi__step-desc">
             {!! rich_html($howWeDoIt->step1_desc ?? null) !!}
-          </p>
+          </div>
         </div>
       </div>
 
@@ -47,9 +47,9 @@
           <span class="hwdi__step-number">02</span>
           <h3 class="hwdi__step-title">{{ $howWeDoIt->step2_title }}</h3>
           <span class="hwdi__step-subtitle">{{ $howWeDoIt->step2_subtitle }}</span>
-          <p class="hwdi__step-desc">
+          <div class="hwdi__step-desc">
             {!! rich_html($howWeDoIt->step2_desc ?? null) !!}
-          </p>
+          </div>
         </div>
       </div>
 
@@ -65,9 +65,9 @@
           <span class="hwdi__step-number">03</span>
           <h3 class="hwdi__step-title">{{ $howWeDoIt->step3_title }}</h3>
           <span class="hwdi__step-subtitle">{{ $howWeDoIt->step3_subtitle }}</span>
-          <p class="hwdi__step-desc">
+          <div class="hwdi__step-desc">
             {!! rich_html($howWeDoIt->step3_desc ?? null) !!}
-          </p>
+          </div>
         </div>
       </div>
     </div>

@@ -29,9 +29,9 @@
         <div class="contact-hero" data-scroll-reveal>
             <span class="contact-hero__eyebrow">{{ $contactPage->eyebrow ?: 'Contact Us' }}</span>
             <h1 class="contact-hero__title">{{ $contactPage->heading ?: "Let's Start a Conversation" }}</h1>
-            <p class="contact-hero__desc">
+            <div class="contact-hero__desc">
                 {!! html_filled($contactPage->description ?? null) ? rich_html($contactPage->description ?? null) : 'Whether you are exploring our executive postgraduate pathways, seeking a corporate partnership, or require technical admissions support, our advisory team is here to assist you.' !!}
-            </p>
+            </div>
         </div>
 
         {{-- B) MAIN SPLIT SECTION --}}

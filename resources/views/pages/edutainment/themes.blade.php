@@ -34,7 +34,7 @@
         @endif
         <h3 class="edu-themes__card-title">{{ $card['title'] }}</h3>
         @if(filled($card['description'] ?? null))
-        <p class="edu-themes__card-desc">{!! rich_html($card['description'] ?? null) !!}</p>
+        <div class="edu-themes__card-desc">{!! rich_html($card['description'] ?? null) !!}</div>
         @endif
       </div>
       @endforeach

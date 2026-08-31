@@ -300,7 +300,7 @@
             </div>
             <h3 class="os-journey__slide-title">{{ $item->title ?? '' }}</h3>
             @if($item->description)
-            <p class="os-journey__slide-desc">{!! rich_html($item->description ?? null) !!}</p>
+            <div class="os-journey__slide-desc">{!! rich_html($item->description ?? null) !!}</div>
             @endif
           </div>
           <div class="os-journey__slide-right">
@@ -338,7 +338,7 @@
         <span class="os-journey__year-badge">{{ $yearStr }}</span>
         <h3 class="os-journey__mobile-card-title">{{ $item->title ?? '' }}</h3>
         @if($item->description)
-        <p class="os-journey__mobile-card-desc">{!! rich_html($item->description ?? null) !!}</p>
+        <div class="os-journey__mobile-card-desc">{!! rich_html($item->description ?? null) !!}</div>
         @endif
         @if($url = media_url($item->icon_url ?? null))
         <div class="os-journey__mobile-card-image">

@@ -67,9 +67,9 @@
             <h1 class="blog-hero__heading">
                 {{ $blogHero->heading ?? 'Latest Articles & Insights' }}
             </h1>
-            <p class="blog-hero__description">
+            <div class="blog-hero__description">
                 {!! html_filled($blogHero->description ?? null) ? rich_html($blogHero->description ?? null) : 'Cutting-edge academic research, practical leadership strategy, and student success narratives curated specifically for future global business leaders.' !!}
-            </p>
+            </div>
             <div class="blog-hero__scroll-hint" aria-hidden="true">
                 <span class="blog-hero__scroll-text">Scroll to explore</span>
                 <span class="blog-hero__scroll-arrow" data-lucide="chevron-down"></span>

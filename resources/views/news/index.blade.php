@@ -73,9 +73,9 @@
                     News &amp; <em class="news-masthead__title-em">Announcements</em>
                 @endif
             </h1>
-            <p class="news-masthead__description">
+            <div class="news-masthead__description">
                 {!! html_filled($newsHero->description ?? null) ? rich_html($newsHero->description ?? null) : 'Institutional updates, campus news, and academic milestones from across the Maverick Business Academy network.' !!}
-            </p>
+            </div>
             <div class="news-masthead__scroll-hint" aria-hidden="true">
                 <span class="news-masthead__scroll-text">Scroll to explore</span>
                 <span class="news-masthead__scroll-arrow" data-lucide="chevron-down"></span>

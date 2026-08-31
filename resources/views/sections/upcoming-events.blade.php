@@ -41,7 +41,7 @@
               <div style="display:flex; flex-wrap:wrap; height:100%; align-content:space-between;">
                 <h3 class="events__card-title">{{ $event->title }}</h3>
                 @if($event->description)
-                  <p class="events__card-desc">{!! rich_html($event->description ?? null) !!}</p>
+                  <div class="events__card-desc">{!! rich_html($event->description ?? null) !!}</div>
                 @endif
               </div>
             </article>

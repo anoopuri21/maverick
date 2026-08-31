@@ -30,7 +30,7 @@
         <article class="dmba-testimonials__card" data-testid="dmba-testimonial-{{ $loop->iteration }}">
           <span class="dmba-testimonials__card-icon" aria-hidden="true" data-lucide="quote"></span>
           @if(filled($item['quote'] ?? null))
-          <p class="dmba-testimonials__card-quote">{!! rich_html($item['quote'] ?? null) !!}</p>
+          <div class="dmba-testimonials__card-quote">{!! rich_html($item['quote'] ?? null) !!}</div>
           @endif
           <div class="dmba-testimonials__card-footer">
             <div class="dmba-testimonials__card-author">

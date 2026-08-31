@@ -73,9 +73,9 @@
                         <em>Locally Trusted</em>
                     @endif
                 </h1>
-                <p class="cinematic-hero__description">
+                <div class="cinematic-hero__description">
                     {!! html_filled($accreditationsPage->hero_description ?? null) ? rich_html($accreditationsPage->hero_description ?? null) : 'Our commitment to excellence is validated by the world\'s most respected accreditation bodies, regulatory authorities, and industry partners. Every credential represents our dedication to quality.' !!}
-                </p>
+                </div>
                 <div class="cinematic-hero__scroll-hint" aria-hidden="true">
                     <span class="cinematic-hero__scroll-text">Scroll to explore</span>
                     <span class="cinematic-hero__scroll-arrow" data-lucide="chevron-down"></span>
@@ -205,7 +205,7 @@
                             <span class="award-card__kicker">Award</span>
                             <h4 class="award-card__title">{{ $logo->name }}</h4>
                             @if($logo->description)
-                                <p class="award-card__desc">{!! rich_html($logo->description ?? null) !!}</p>
+                                <div class="award-card__desc">{!! rich_html($logo->description ?? null) !!}</div>
                             @endif
                         </div>
                         <span class="award-card__accent" aria-hidden="true"></span>

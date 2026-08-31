@@ -47,7 +47,7 @@
                         <h3 class="gbp-why-card__title card-title">{{ $item['title'] }}</h3>
                         @endif
                         @if(filled($item['description'] ?? null))
-                        <p class="gbp-why-card__description">{!! rich_html($item['description'] ?? null) !!}</p>
+                        <div class="gbp-why-card__description">{!! rich_html($item['description'] ?? null) !!}</div>
                         @endif
                     </div>
                 </article>

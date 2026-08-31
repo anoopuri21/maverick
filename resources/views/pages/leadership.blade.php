@@ -73,7 +73,7 @@
         </h1>
         @endif
         @if(filled($hero->description))
-        <p class="cinematic-hero__description">{!! rich_html($hero->description ?? null) !!}</p>
+        <div class="cinematic-hero__description">{!! rich_html($hero->description ?? null) !!}</div>
         @endif
         <div class="cinematic-hero__scroll-hint" aria-hidden="true">
             <span class="cinematic-hero__scroll-text">Scroll to explore</span>
@@ -128,7 +128,7 @@
                     <p class="team-card__designation">{{ strtoupper($member['designation']) }}</p>
                     @endif
                     @if(filled($member['bio'] ?? null))
-                    <p class="team-card__bio">{!! rich_html($member['bio'] ?? null) !!}</p>
+                    <div class="team-card__bio">{!! rich_html($member['bio'] ?? null) !!}</div>
                     @endif
                     @if(filled($member['linkedin_url'] ?? null) && $member['linkedin_url'] !== '#')
                     <a href="{{ edu_href($member['linkedin_url']) }}" class="team-card__linkedin" target="_blank" rel="noopener">

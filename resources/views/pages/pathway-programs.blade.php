@@ -72,7 +72,7 @@
                 @if(filled($hero->heading_italic ?? null))<br><em>{{ $hero->heading_italic }}</em>@endif
             </h1>
             @if(filled($hero->description))
-            <p class="cinematic-hero__description">{!! rich_html($hero->description ?? null) !!}</p>
+            <div class="cinematic-hero__description">{!! rich_html($hero->description ?? null) !!}</div>
             @endif
             <div class="cinematic-hero__scroll-hint" aria-hidden="true">
                 <span class="cinematic-hero__scroll-text">Scroll to explore</span>
@@ -146,7 +146,7 @@
                         @endif
                         <h3 class="pp-row__title">{{ $item['title'] ?? '' }}</h3>
                         @if(!empty($item['desc']))
-                        <p class="pp-row__desc">{!! rich_html($item['desc'] ?? null) !!}</p>
+                        <div class="pp-row__desc">{!! rich_html($item['desc'] ?? null) !!}</div>
                         @endif
                         @if($isComingSoon)
                         <span class="pp-row__cta pp-row__cta--disabled" aria-disabled="true" role="link" tabindex="-1">

@@ -38,7 +38,7 @@
                         <h3 class="mp-benefit__title">{{ $benefit['title'] }}</h3>
                         @endif
                         @if(filled($benefit['desc'] ?? null))
-                        <p class="mp-benefit__desc">{!! rich_html($benefit['desc'] ?? null) !!}</p>
+                        <div class="mp-benefit__desc">{!! rich_html($benefit['desc'] ?? null) !!}</div>
                         @endif
                     </div>
                 </div>
