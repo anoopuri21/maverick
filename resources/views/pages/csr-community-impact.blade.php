@@ -104,6 +104,10 @@
                     @if(html_filled($commitment->body ?? null))
                     <div class="csr-body-text">{!! rich_html($commitment->body ?? null) !!}</div>
                     @endif
+                    <p class="csr-commitment__impact-note">
+                        <strong>1%</strong>
+                        <span>of Maverick’s commitment goes towards charity and community initiatives.</span>
+                    </p>
                 </div>
                 <div class="csr-commitment__visual">
                     <div class="csr-commitment__image-container">
