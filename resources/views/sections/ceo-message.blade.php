@@ -2,6 +2,28 @@
   @isset($ceo)
   <div class="container">
 
+    <div class="section-label fade-up">
+      <span>{{ $ceo->label ?? '' }}</span>
+    </div>
+
+    <h2 class="ceo__heading section-title">
+      <span class="ceo__heading-line">
+        <span class="text-reveal-wrapper">
+          <span class="text-reveal-inner">
+            {{ $ceo->heading_line1 ?? '' }}
+          </span>
+        </span>
+      </span>
+
+      <span class="ceo__heading-line hwdi__heading-line--red">
+        <span class="text-reveal-wrapper">
+          <span class="text-reveal-inner">
+            {{ $ceo->heading_line2 ?? '' }}
+          </span>
+        </span>
+      </span>
+    </h2>
+
     <div class="ceo__grid">
 
       <!-- CEO IMAGE -->
@@ -28,28 +50,6 @@
 
       <!-- CONTENT -->
       <div class="ceo__content">
-
-        <div class="section-label fade-up">
-          <span>{{ $ceo->label ?? '' }}</span>
-        </div>
-
-        <h2 class="ceo__heading section-title">
-          <span class="ceo__heading-line">
-            <span class="text-reveal-wrapper">
-              <span class="text-reveal-inner">
-                {{ $ceo->heading_line1 ?? '' }}
-              </span>
-            </span>
-          </span>
-
-          <span class="ceo__heading-line hwdi__heading-line--red">
-            <span class="text-reveal-wrapper">
-              <span class="text-reveal-inner">
-                {{ $ceo->heading_line2 ?? '' }}
-              </span>
-            </span>
-          </span>
-        </h2>
 
         @if(html_filled($ceo->quote ?? null))
         <blockquote class="ceo__quote fade-up">

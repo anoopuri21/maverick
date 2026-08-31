@@ -35,7 +35,6 @@
 #ask-quotient .askq__heading {
   max-width: 35rem;
   margin: 0;
-  color: var(--ask-ink);
 }
 
 #ask-quotient .askq__heading-line {
@@ -45,7 +44,6 @@
 #ask-quotient .askq__description {
   max-width: 37rem;
   margin: 1.35rem 0 0;
-  color: rgba(7, 20, 68, 0.7);
 }
 
 #ask-quotient .askq__framework {
@@ -143,12 +141,6 @@
 
 #ask-quotient .askq__card-heading {
   margin: clamp(1.35rem, 2.25vw, 2.2rem) 0 0;
-  color: var(--ask-ink);
-  font-family: var(--font-display);
-  font-size: clamp(1.25rem, 1.65vw, 1.75rem);
-  font-weight: var(--fw-medium);
-  letter-spacing: -0.02em;
-  line-height: 1.1;
 }
 
 #ask-quotient .askq__card:nth-child(1) .askq__card-heading {
@@ -168,16 +160,6 @@
 
 #ask-quotient .askq__card:nth-child(1) .askq__card-keywords {
   color: rgba(255, 255, 255, 0.7);
-}
-
-#ask-quotient .askq__card-definition {
-  max-width: 18rem;
-  margin: auto 0 0;
-  color: rgba(7, 20, 68, 0.72);
-  font-family: var(--font-body);
-  font-size: clamp(0.78rem, 0.9vw, 0.92rem);
-  font-weight: var(--fw-regular);
-  line-height: 1.75;
 }
 
 #ask-quotient .askq__card:nth-child(1) .askq__card-definition {

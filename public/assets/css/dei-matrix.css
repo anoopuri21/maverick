@@ -28,10 +28,6 @@
   z-index: 1;
 }
 
-#dei-matrix .section-label {
-  margin-bottom: 1.5rem;
-}
-
 #dei-matrix .section-label::before {
   background: var(--dei-red);
 }
@@ -56,9 +52,7 @@
 }
 
 #dei-matrix .deim__description {
-  max-width: 42rem;
   margin: 1.35rem 0 0;
-  color: rgba(245, 240, 235, 0.7);
 }
 
 #dei-matrix .deim__matrix-panel {
@@ -150,7 +144,6 @@
   margin: 0.8rem 0 0;
   color: rgba(245, 240, 235, 0.72);
   font-family: var(--font-body);
-  font-size: clamp(0.8rem, 1vw, 0.98rem);
   line-height: 1.75;
 }
 
@@ -159,11 +152,6 @@
   margin: 0;
   padding-left: 1.15rem;
   border-left: 1px solid rgba(178, 2, 2, 0.72);
-  color: var(--dei-warm-white);
-  font-family: var(--font-display);
-  font-size: clamp(1rem, 1.3vw, 1.35rem);
-  letter-spacing: -0.01em;
-  line-height: 1.25;
 }
 
 #dei-matrix .deim__matrix-panel {
