@@ -30,6 +30,7 @@
 
     @if($stories->isNotEmpty())
     <div class="archive-career__stage" data-archive-career>
+      <div>
       <div class="archive-career__stack" aria-hidden="true">
         @foreach($stories->take(3) as $si => $story)
         <span class="archive-career__stack-image archive-career__stack-image--{{ $si + 1 }}">
@@ -37,6 +38,21 @@
         </span>
         @endforeach
         <span class="archive-career__stack-caption">Skills that travel across industries.</span>
+      </div>
+
+      <div class="mlp-uae-badge" role="note" aria-label="Top-rated online learning experience in UAE">
+        <p class="mlp-uae-badge__title">Top-rated online learning<br>experience in UAE</p>
+        <div class="mlp-uae-badge__row">
+          <div class="mlp-uae-badge__country">
+            <strong>UAE</strong>
+            <span>Top-Rated</span>
+          </div>
+          <span class="mlp-uae-badge__flag" aria-hidden="true">
+            <span class="mlp-uae-badge__flag-red"></span>
+            <span class="mlp-uae-badge__flag-stripes"><span></span><span></span><span></span></span>
+          </span>
+        </div>
+      </div>
       </div>
 
       <div class="archive-career__dossiers">

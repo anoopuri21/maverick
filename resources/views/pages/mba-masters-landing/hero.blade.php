@@ -73,7 +73,7 @@
       <aside class="prospectus-cover__enquiry" id="mlp-enquire" data-hero-enquiry aria-labelledby="prospectus-enquiry-title">
         <div class="prospectus-cover__enquiry-head">
           <h2 id="prospectus-enquiry-title">{{ $hero->form_title ?? 'Start your enquiry' }}</h2>
-          <p>Eligibility, fees &amp; payment — admissions will guide you.</p>
+          <p>Eligibility, fees &amp; payment — admissions team will guide you.</p>
         </div>
         <div class="mlp-form mlp-form--prospectus">
           @include('pages.mba-masters-landing.partials.enquire-form')

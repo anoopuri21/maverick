@@ -1229,7 +1229,10 @@
     });
     AnimationUtils.slideIn("#faculty-insights .insights__card", {
       trigger: "#faculty-insights .insights__scroll",
-      x: 40,
+      x: 0,
+      y: 0,
+      duration: 0.6,
+      stagger: 0.08,
     });
   }
 

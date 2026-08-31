@@ -1037,8 +1037,8 @@
   z-index: 2;
   display: grid;
   place-content: center;
-  width: 10.5rem;
-  height: 10.5rem;
+  width: 12rem;
+  height: 12rem;
   padding: 1.25rem;
   text-align: center;
   border: 1px solid var(--mlp-navy);
@@ -1081,7 +1081,7 @@
 .blueprint-overview__foundation {
   position: relative;
   align-self: start;
-  max-width: 14rem;
+  max-width: 20rem;
   padding: 0.8rem 1rem 0 1.1rem;
   border-left: 1px solid var(--mlp-navy);
   transition: transform 0.6s var(--mlp-ease), border-color 0.35s ease;
@@ -1156,8 +1156,8 @@
 }
 
 .blueprint-overview__foundation-text {
-  max-width: 28ch;
-  font-size: 0.82rem;
+  max-width: 100%;
+  font-size: 1rem;
   line-height: 1.55;
   color: var(--mlp-muted-on-paper);
 }
@@ -1833,7 +1833,7 @@
 
 .mlp-mba__showcase {
   display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
   gap: clamp(1.25rem, 3vw, 2.5rem);
   align-items: stretch;
   margin-bottom: clamp(2.5rem, 6vw, 4rem);
@@ -3737,6 +3737,13 @@
   overflow: hidden;
 }
 
+/* Desktop only — bottom breathing room so stat labels are not clipped. */
+@media (min-width: 901px) {
+  .blueprint-overview__class-2025 {
+    padding-bottom: 5rem;
+  }
+}
+
 .blueprint-overview__class-2025-heading {
   position: relative;
   z-index: 1;
@@ -4294,22 +4301,6 @@
   isolation: isolate;
 }
 
-#mlp-class-snapshot .mlp-class-snapshot__global::after {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 0;
-  height: 11rem;
-  background-image: url('/assets/images/mba-masters-landing/class-profile-world-globe.svg');
-  background-position: center bottom;
-  background-repeat: no-repeat;
-  background-size: 100% auto;
-  content: "";
-  opacity: 0.25;
-  pointer-events: none;
-}
-
 #mlp-class-snapshot .mlp-class-snapshot__global > h3,
 #mlp-class-snapshot .mlp-class-snapshot__countries {
   position: relative;
@@ -4375,7 +4366,7 @@
 #mlp-class-snapshot .mlp-class-snapshot__metrics {
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 0.65rem;
-  margin-top: 1.25rem;
+  margin-top: 2.5rem;
 }
 
 #mlp-class-snapshot .mlp-class-snapshot__metric,
@@ -4399,7 +4390,7 @@
 
 #mlp-class-snapshot .mlp-class-snapshot__global {
   min-height: 0;
-  padding: clamp(1.35rem, 2.5vw, 2.25rem) clamp(1.35rem, 3vw, 2.75rem) 8.5rem;
+  padding: clamp(1.35rem, 2.5vw, 2.25rem) clamp(1.35rem, 3vw, 2.75rem) 2.5rem;
 }
 
 #mlp-class-snapshot .mlp-class-snapshot__countries {
@@ -4440,4 +4431,251 @@
   #mlp-class-snapshot .mlp-class-snapshot__country {
     width: 100%;
   }
+}
+
+/* ————————————————————————————————————————————————
+   MBA Class of 2025 — standalone chapter (moved out of Overview,
+   now rendered as its own section after #mlp-masters)
+   ———————————————————————————————————————————————— */
+.mlp-class-2025 {
+  padding: clamp(4.5rem, 9vw, 7.5rem) 0 clamp(2rem, 4vw, 3.5rem);
+}
+
+.mlp-class-2025 .blueprint-overview__class-2025 {
+  margin-top: 0;
+}
+
+/* ————————————————————————————————————————————————
+   UAE Top-Rated badge — sits under the Career progression image stack
+   ———————————————————————————————————————————————— */
+.mlp-uae-badge {
+  grid-column: 1;
+  grid-row: 2;
+  margin-top: clamp(1.5rem, 3vw, 2.5rem);
+  padding: clamp(1.6rem, 3vw, 2.4rem) clamp(1.6rem, 3.5vw, 2.6rem);
+  background: var(--color-mba-dark-blue);
+  color: var(--mlp-white);
+}
+
+.mlp-uae-badge__title {
+  margin: 0;
+  max-width: 24ch;
+  font-family: var(--mlp-font-body);
+  font-size: clamp(1.15rem, 2vw, 1.5rem);
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.mlp-uae-badge__row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-top: clamp(2.2rem, 5vw, 3.6rem);
+}
+
+.mlp-uae-badge__country strong {
+  display: block;
+  font-family: var(--mlp-font-display);
+  font-size: clamp(2.4rem, 4.5vw, 3.25rem);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.mlp-uae-badge__country span {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+}
+
+.mlp-uae-badge__flag {
+  display: flex;
+  flex: 0 0 auto;
+  width: clamp(6.5rem, 12vw, 9rem);
+  aspect-ratio: 2 / 1;
+  overflow: hidden;
+}
+
+.mlp-uae-badge__flag-red {
+  width: 25%;
+  height: 100%;
+  background: #ce1126;
+}
+
+.mlp-uae-badge__flag-stripes {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.mlp-uae-badge__flag-stripes span { flex: 1; }
+.mlp-uae-badge__flag-stripes span:nth-child(1) { background: #00732f; }
+.mlp-uae-badge__flag-stripes span:nth-child(2) { background: var(--mlp-white); }
+.mlp-uae-badge__flag-stripes span:nth-child(3) { background: #000; }
+
+/* Mobile: keep the badge directly under the image stack, above dossiers. */
+@media (max-width: 900px) {
+  .archive-career__stack { order: 1; }
+  .mlp-uae-badge { order: 2; grid-column: auto; grid-row: auto; }
+  .archive-career__dossiers { order: 3; }
+}
+
+
+/* ————————————————————————————————————————————————
+   Master's — The Prospectus Ledger
+   Light · clean · professional programme directory.
+   Body typography, hairline ledger grid, one framed banner.
+   No university names, no counts.
+   ———————————————————————————————————————————————— */
+.mlp-masters--prospectus {
+  background: var(--mlp-paper-pure);
+}
+
+/* Split editorial header */
+.mlp-masters--prospectus .mlp-masters__head {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: end;
+  max-width: none;
+  margin-bottom: clamp(2.25rem, 5vw, 3.5rem);
+}
+
+.mlp-masters--prospectus .mlp-masters__label {
+  color: var(--mlp-red);
+  font-family: var(--mlp-font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.mlp-masters--prospectus .mlp-masters__heading {
+  max-width: 26ch;
+  color: var(--mlp-navy);
+  font-family: var(--mlp-font-body);
+  font-size: clamp(1.9rem, 3.6vw, 2.75rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.mlp-masters--prospectus .mlp-masters__intro {
+  max-width: 44ch;
+  margin: 0 0 0.35rem;
+  color: var(--mlp-muted-on-paper);
+  font-family: var(--mlp-font-body);
+}
+
+/* One framed cinematic banner — light treatment */
+.mlp-masters__banner {
+  position: relative;
+  margin: 0 0 clamp(2.5rem, 6vw, 4.25rem);
+}
+.mlp-masters__banner-frame {
+  position: absolute;
+  inset: 1.1rem -1.1rem -1.1rem 1.1rem;
+  border: 1px solid rgba(7, 20, 68, 0.16);
+  pointer-events: none;
+}
+.mlp-masters__banner-rule {
+  position: absolute;
+  top: -0.9rem;
+  left: -0.9rem;
+  width: 3.75rem;
+  height: 3.75rem;
+  border-top: 2px solid var(--mlp-red);
+  border-left: 2px solid var(--mlp-red);
+  pointer-events: none;
+}
+.mlp-masters__banner img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 21 / 9;
+  object-fit: cover;
+}
+
+/* Hairline ledger grid of every programme */
+.mlp-masters__ledger {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--mlp-line-dark);
+  border: 1px solid var(--mlp-line-dark);
+}
+
+.mlp-masters__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  padding: 1.3rem 1.5rem 1.4rem;
+  background: var(--mlp-paper-pure);
+  transition: background-color 0.3s ease;
+}
+.mlp-masters__item:hover { background: var(--mlp-surface-soft); }
+
+.mlp-masters__item-mark {
+  flex: 0 0 auto;
+  width: 0.45rem;
+  height: 0.45rem;
+  margin-top: 0.5rem;
+  background: var(--mlp-red);
+  transform: rotate(45deg);
+  transition: transform 0.3s var(--mlp-ease);
+}
+.mlp-masters__item:hover .mlp-masters__item-mark { transform: rotate(45deg) scale(1.25); }
+
+.mlp-masters__item-title {
+  font-family: var(--mlp-font-body);
+  font-size: 1.05rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--mlp-navy);
+}
+
+/* Closing CTA row */
+.mlp-masters__cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  margin-top: clamp(2rem, 4.5vw, 3rem);
+  padding-top: 1.6rem;
+  border-top: 1px solid var(--mlp-line-dark);
+}
+.mlp-masters__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 48px;
+  padding: 0 1.6rem;
+  background: var(--mlp-red);
+  color: var(--mlp-white);
+  font-family: var(--mlp-font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border-radius: 2px;
+  transition: background-color 0.3s ease, transform 0.3s var(--mlp-ease);
+}
+.mlp-masters__cta:hover { background: var(--mlp-navy); transform: translateY(-1px); }
+.mlp-masters__cta-note {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--mlp-muted-on-paper);
+}
+
+@media (max-width: 1000px) {
+  .mlp-masters__ledger { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 900px) {
+  .mlp-masters--prospectus .mlp-masters__head { grid-template-columns: 1fr; align-items: start; gap: 0.9rem; }
+  .mlp-masters__banner-frame { inset: 0.9rem -0.5rem -0.9rem 0.9rem; }
+}
+@media (max-width: 640px) {
+  .mlp-masters__ledger { grid-template-columns: 1fr; }
 }

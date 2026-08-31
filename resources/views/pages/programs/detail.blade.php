@@ -29,6 +29,7 @@
     $careers             = collect($program->careers_list ?? []);
     $structure           = collect($program->structure_list ?? [])->filter(fn ($s) => is_array($s))->values();
     $support             = collect($program->support_list ?? []);
+    $gccReasons          = collect($program->gcc_reasons_list ?? []);
     $university          = $program->university_object;
     $accreditationGroups = collect($program->accreditation_groups_list ?? []);
     $testimonials        = collect($program->testimonials_list ?? [])->filter(fn ($t) => is_array($t))->values();
@@ -88,9 +89,9 @@
     {{-- ============ 1. HERO (Cinematic Dark) ============ --}}
     <section class="hero" id="top" aria-label="{{ $program->title }}">
         <div class="hero-backdrop" style="--hero-bg: url('{{ $heroBgUrl }}')"></div>
-        @if($hasScholarship)<span class="ribbon">{{ $chrome->scholarship_badge ?? 'Scholarship Available' }}</span>@endif
+        @if($hasScholarship)<span class="ribbon">{{ $chrome->scholarship_badge ?? '' }}</span>@endif
         <div class="container">
-            <div class="hero-badge rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>{{ $program->level ?: 'Undergraduate' }} @if($cat) · {{ $cat->name }} @endif</div>
+            <div class="hero-badge rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>{{ $program->level ?: '' }} @if($cat) · {{ $cat->name }} @endif</div>
             <div class="hero-grid">
                 <div class="hero-copy">
                     <h1 class="d rv">{{ $program->title }}</h1>
@@ -102,7 +103,7 @@
                     </div>
                     @if($highlights->count())
                     <div class="hero-hl rv rv-d3">
-                        <div class="hl-lab">{{ $chrome->quick_highlights_label ?? 'Quick Highlights' }}</div>
+                        <div class="hl-lab"><span>{{ $chrome->quick_highlights_label ?? 'Quick Highlights' }}</span></div>
                         <div class="hl-grid">
                             @foreach($highlights as $h)
                                 <div class="hl"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span>{{ $h['value'] ?? $h['label'] }}</div>
@@ -113,7 +114,8 @@
                     <div class="hero-meta rv rv-d4">
                         @if($program->duration)<span class="m"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>{{ $program->duration }}</span><span class="sep"></span>@endif
                         @if($program->level)<span class="m"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>{{ $program->level }}</span><span class="sep"></span>@endif
-                        @if($reviews->count())<span class="m"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>{{ $reviews->count() }} Google reviews</span>@endif
+                        <!-- @if($reviews->count())<span class="m"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>{{ $reviews->count() }} Google reviews</span>
+                        @endif -->
                     </div>
                 </div>
                 @if($snapshot->count())
@@ -122,6 +124,11 @@
                     @foreach($snapshot->take(6) as $s)
                         <div class="hc-row"><span class="l">{{ $s['label'] ?? '' }}</span><span class="v">{{ $s['value'] ?? '' }}</span></div>
                     @endforeach
+                    <div class="hc-note">
+                        <p>
+                        Note: <span>Duration will be based on your experience and it can be advanced bachelors too which differs from prospects to prospects</span>
+                        </p>
+                    </div>
                 </div>
                 @endif
             </div>
@@ -176,7 +183,7 @@
         <div class="container ov-grid">
             <div class="ov-copy rv">
                 <span class="kicker">{{ $chrome->overview_label ?? 'Programme Overview' }}</span>
-                <h2 class="d" style="font-size:clamp(28px,3.4vw,42px);line-height:1.06;letter-spacing:-.03em;margin:14px 0 22px">{{ $chrome->overview_heading ?? 'About this' }} <em>Programme</em></h2>
+                <h2 class="d" style="font-size:clamp(28px,3.4vw,42px);line-height:1.06;letter-spacing:-.03em;margin:14px 0 22px">{{ $chrome->overview_heading ?? 'About this' }} </h2>
                 <div class="ov-rule"></div>
                 <div class="ov-copy"><p>{!! rich_html($program->description ?? null) !!}</p></div>
             </div>
@@ -201,7 +208,7 @@
         <div class="container">
             <div class="sec-head rv">
                 <span class="kicker">{{ $chrome->why_label ?? 'Why Choose' }}</span>
-                <h2>{{ $chrome->why_heading ?? 'Why Choose This' }} <em>Programme?</em></h2>
+                <h2>{{ $chrome->why_heading ?? 'Why Choose This' }}</h2>
             </div>
             <div class="why-grid">
                 @foreach($benefits as $i => $b)
@@ -223,17 +230,20 @@
     {{-- ============ 6. WHAT YOU'LL LEARN (Organic) ============ --}}
     @if($learning->count())
     <section class="learn section tex-mesh" aria-label="Learning outcomes">
-        <div class="container learn-wrap">
-            <div class="learn-sticky rv">
-                <span class="kicker">{{ $chrome->learn_label ?? 'What You\'ll Learn' }}</span>
-                <h2 class="d" style="font-size:clamp(28px,3.4vw,42px);line-height:1.06;letter-spacing:-.03em;margin:14px 0 18px">{{ $chrome->learn_heading ?? 'Learning' }} <em>Outcomes</em></h2>
-                <figure class="learn-photo"><img src="{{ $learnImgUrl }}" alt="Students in a collaborative learning environment" loading="lazy"></figure>
-                <p style="font-size:16px;line-height:1.7;color:var(--muted)">{!! html_filled($chrome->learn_intro ?? null) ? rich_html($chrome->learn_intro ?? null) : 'Students will learn to:' !!}</p>
+        <div class="container">
+            <div class="sec-head rv">
+                <span class="kicker">{{ $chrome->learn_label ?? '' }}</span>
+                <h2>{{ $chrome->learn_heading ?? 'Why Choose This' }}</h2>
             </div>
-            <div class="learn-field">
-                @foreach($learning as $i => $cap)
-                    <div class="learn-item rv rv-d{{ min($i % 4 + 1, 4) }}"><span class="n">{{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}</span><span class="txt">{{ $cap }}</span></div>
-                @endforeach
+            <div class="learn-wrap">
+                <div class="learn-sticky rv">
+                    <figure class="learn-photo"><img src="{{ $learnImgUrl }}" alt="Students in a collaborative learning environment" loading="lazy"></figure>
+                </div>
+                <div class="learn-field">
+                    @foreach($learning as $i => $cap)
+                        <div class="learn-item rv rv-d{{ min($i % 4 + 1, 4) }}"><span class="n">{{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}</span><span class="txt">{{ $cap }}</span></div>
+                    @endforeach
+                </div>
             </div>
         </div>
     </section>
@@ -245,13 +255,13 @@
         <div class="container">
             <div class="sec-head rv">
                 <span class="kicker">{{ $chrome->career_label ?? 'Career Opportunities' }}</span>
-                <h2>{{ $chrome->career_heading ?? 'Where This Degree Can' }} <em>Take You</em></h2>
-                <p>{!! html_filled($chrome->career_intro ?? null) ? rich_html($chrome->career_intro ?? null) : 'Potential careers include:' !!}</p>
+                <h2>{{ $chrome->career_heading ?? 'Where This Degree Can' }} </h2>
+                <p>{!! html_filled($chrome->career_intro ?? null) ? rich_html($chrome->career_intro ?? null) : 'Potential careers' !!}</p>
             </div>
             <div class="career-cloud">
                 @foreach($careers as $i => $career)
                     <div class="career-tile @if($i === 0) career-tile--feat @else c-s @endif rv rv-d{{ min($i % 4 + 1, 4) }}">
-                        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7a2 2 0 0 1 2-2h4l2 3h9a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2z"/></svg></span>
+                        <!-- <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7a2 2 0 0 1 2-2h4l2 3h9a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2z"/></svg></span> -->
                         <span class="nm">{{ $career }}</span>
                     </div>
                 @endforeach
@@ -266,7 +276,7 @@
         <div class="container">
             <div class="sec-head center rv">
                 <span class="kicker">{{ $chrome->structure_label ?? 'Programme Structure' }}</span>
-                <h2>{{ $chrome->structure_heading ?? 'Your Journey,' }} <em>Year by Year</em></h2>
+                <h2>{{ $chrome->structure_heading ?? 'Your Journey,' }} </h2>
                 <p>{!! html_filled($chrome->structure_intro ?? null) ? rich_html($chrome->structure_intro ?? null) : 'A structured curriculum that builds from foundations through to advanced study.' !!}</p>
             </div>
             <div class="struct-list">
@@ -296,12 +306,16 @@
             <div class="gau-photo rv">
                 @if($uniImgUrl)<img class="gau-img" src="{{ $uniImgUrl }}" alt="{{ $university->name }}" loading="lazy">@endif
                 <div class="glow"></div>
-                @if($university->name)<span class="logo">{{ collect(preg_split('/\s+/', $university->name))->map(fn($w) => mb_substr($w, 0, 1))->take(3)->implode('') }}</span>@endif
-                @if($university->establishment)<div class="est"><div class="k">Established</div><div class="v">{{ str_replace('Established ', '', $university->establishment) }}</div></div>@endif
+                @if($university->name)
+                    <span class="logo">{{ collect(preg_split('/\s+/', $university->name))->map(fn($w) => mb_substr($w, 0, 1))->take(3)->implode('') }}</span>
+                @endif
+                @if($university->establishment)
+                    <div class="est"><div class="k">Established</div><div class="v">{{ str_replace('Established ', '', $university->establishment) }}</div></div>
+                @endif
             </div>
             <div class="gau-copy rv rv-d1">
                 <span class="kicker">{{ $chrome->university_label ?? 'The University' }}</span>
-                <h2>{{ $chrome->university_heading ?? 'A Globally Connected' }} <em>University</em></h2>
+                <h2>{{ $university->name ?? '' }} </h2>
                 @if($university->description)<p>{!! rich_html($university->description ?? null) !!}</p>@endif
                 @if($university->establishment)
                 <div class="gau-metrics">
@@ -319,7 +333,7 @@
         <div class="container">
             <div class="sec-head rv">
                 <span class="kicker">{{ $chrome->accreditation_label ?? 'Accreditation' }}</span>
-                <h2>{{ $chrome->accreditation_heading ?? 'Accreditation &amp;' }} <em>Recognition</em></h2>
+                <h2>{{ $chrome->accreditation_heading ?? 'Accreditation &amp;' }} </h2>
             </div>
             @php
                 $accItems = $accreditationGroups->flatMap(function ($g) {
@@ -345,8 +359,9 @@
                         @foreach($accItems as $item)
                             <li class="acc-tile @if($prevGroup !== null && $prevGroup === $item['group']) is-same-group @endif">
                                 @if(!empty($item['group']))<span class="acc-eyebrow">{{ $item['group'] }}</span>@endif
-                                <span class="acc-plate">{!! $renderLogoChip($item['name'] ?? '', $item['logo'] ?? null, 'acc-plate-in', 'acc-plate-fallback', 3) !!}</span>
-                                @if(!empty($item['name']))<span class="acc-name">{{ $item['name'] }}</span>@endif
+                                <span class="acc-plate">{!! $renderLogoChip($item['name'] ?? '', $item['logo'] ?? null, 'acc-plate-in', 'acc-plate-fallback', 0) !!}</span>
+                                @if(!empty($item['name']))<span class="acc-name">{{ $item['name'] }}</span>
+                                @endif
                             </li>
                             @php $prevGroup = $item['group']; @endphp
                         @endforeach
@@ -364,7 +379,7 @@
         <div class="container">
             <div class="sec-head center rv">
                 <span class="kicker">{{ $chrome->partner_label ?? 'Your Learning Partner' }}</span>
-                <h2>{{ $chrome->partner_heading ?? 'Why Study Through' }} <em>Maverick?</em></h2>
+                <h2>{{ $chrome->partner_heading ?? 'Why Study Through' }} </h2>
                 <p>{!! html_filled($chrome->partner_intro ?? null) ? rich_html($chrome->partner_intro ?? null) : 'Students receive:' !!}</p>
             </div>
             <div class="mav-grid">
@@ -380,13 +395,34 @@
     </section>
     @endif
 
+    {{-- ============ 11b. WHY GCC PROFESSIONALS CHOOSE ============ --}}
+    @if($gccReasons->count())
+    <section class="gcc-choose section tex-grid" id="gcc-choose" aria-label="Why GCC professionals choose this course">
+        <div class="container">
+            <div class="sec-head center rv">
+                <h2>{{ filled($program->gcc_heading) ? $program->gcc_heading : 'Why GCC professionals choose this course?' }}</h2>
+            </div>
+            <div class="gcc-grid">
+                @foreach($gccReasons as $i => $item)
+                <article class="gcc-card rv rv-d{{ min($i % 3 + 1, 3) }}">
+                    <span class="gcc-card__index">{{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}</span>
+                    <span class="gcc-card__icon"><i data-lucide="{{ $item['icon'] ?? 'sparkles' }}"></i></span>
+                    <h3 class="gcc-card__title">{{ $item['title'] ?? '' }}</h3>
+                    <p class="gcc-card__text">{{ $item['text'] ?? '' }}</p>
+                </article>
+                @endforeach
+            </div>
+        </div>
+    </section>
+    @endif
+
     {{-- ============ 12. SUCCESS STORIES (slider) ============ --}}
     @if($testimonials->count())
     <section class="stories section" aria-label="Student success stories">
         <div class="container">
             <div class="sec-head rv">
                 <span class="kicker">{{ $chrome->stories_label ?? 'Stories' }}</span>
-                <h2>{{ $chrome->stories_heading ?? 'Student Success' }} <em>Stories</em></h2>
+                <h2>{{ $chrome->stories_heading ?? 'Student Success' }} </h2>
             </div>
             <div class="story-shell" id="storyShell">
                 <div class="story-window" tabindex="0" role="group" aria-label="Student success stories carousel">
@@ -429,6 +465,50 @@
     </section>
     @endif
 
+    @include('sections.alumni-network')
+    
+    {{-- ============ 16. REVIEWS (Google rating) ============ --}}
+    @if($reviews->count())
+    <section class="reviews section tex-grid" aria-label="Student reviews">
+        <div class="container">
+            <div class="sec-head center rv">
+                <span class="kicker">Reviews</span>
+                <h2>Student <em>Reviews</em></h2>
+            </div>
+            @php
+                $avg = round($reviews->avg('rating'), 1);
+                $fullStars = (int) round($avg);
+            @endphp
+            <div class="rev-flow">
+                @foreach($reviews as $r)
+                <div class="rev-card">
+                    <div class="head"><span class="ava">@php $avatarUrl = media_url($r['avatar'] ?? null); @endphp
+                        @if($avatarUrl)
+                            <img class="ava-img" src="{{ $avatarUrl }}" alt="{{ $r['name'] ?? '' }}" loading="lazy" onerror="this.hidden=true;this.nextElementSibling.hidden=false">
+                            <span class="ava-fallback" hidden>{{ $initials($r['name'] ?? '') }}</span>
+                        @else
+                            <span class="ava-fallback">{{ $initials($r['name'] ?? '') }}</span>
+                        @endif
+                    </span><div><div class="nm">{{ $r['name'] ?? '' }}</div><div class="rl" style="font-size:12px;color:var(--muted)">Student</div></div></div>
+                    <div class="stars">@for($i = 1; $i <= ($r['rating'] ?? 5); $i++)<svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 1-5 5 1 7-6-4-6 4 1-7-5-5 7-1z"/></svg>@endfor</div>
+                    @if(!empty($r['review']))
+                    <div class="q-wrap" data-rev-clamp>
+                        <div class="q" id="rev-q-{{ $loop->index }}">{!! $r['review'] !!}</div>
+                        <button type="button" class="rev-more" aria-expanded="false" aria-controls="rev-q-{{ $loop->index }}">
+                            <span class="rev-more-label">Read more</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                        </button>
+                    </div>
+                    @endif
+                </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+    @endif
+    
+    @include('sections.faculty-insights')
+
     {{-- ============ 13. FEES (Cinematic Dark) ============ --}}
     @if($fees->count())
     <section class="fees section" aria-label="Fees and scholarships">
@@ -463,7 +543,7 @@
         <div class="container">
             <div class="sec-head center rv">
                 <span class="kicker">Questions</span>
-                <h2>{{ $chrome->faq_heading ?? 'Frequently Asked' }} <em>Questions</em></h2>
+                <h2>{{ $chrome->faq_heading ?? 'Frequently Asked' }} </h2>
             </div>
             <div class="faq-wrap">
                 @foreach($faqs as $i => $faq)
@@ -479,7 +559,7 @@
         <div class="container enq-grid">
             <div class="enq-copy rv">
                 <span class="kicker">Enquire</span>
-                <h2 class="d" style="font-size:clamp(28px,3.4vw,42px);line-height:1.06;letter-spacing:-.03em;margin:14px 0 18px">{{ $chrome->enquiry_heading ?? 'Enquire About This' }} <em>Programme</em></h2>
+                <h2 class="d" style="font-size:clamp(28px,3.4vw,42px);line-height:1.06;letter-spacing:-.03em;margin:14px 0 18px">{{ $chrome->enquiry_heading ?? 'Enquire About This' }} </h2>
                 <p>{{ $chrome->enquiry_subheading ?? 'Share a few details and our admissions team will reach out to guide you through the next steps.' }}</p>
                 <div class="enq-points">
                     <div class="enq-point"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span>Personal eligibility review</div>
@@ -488,7 +568,7 @@
                 </div>
                 <div class="enq-trust">
                     <span class="trust-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 1-5 5 1 7-6-4-6 4 1-7-5-5 7-1z"/></svg>Flexible study</span>
-                    @if($reviews->count())<span class="trust-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 1-5 5 1 7-6-4-6 4 1-7-5-5 7-1z"/></svg>{{ $reviews->count() }} Google reviews</span>@endif
+                    @if($reviews->count())<span class="trust-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 1-5 5 1 7-6-4-6 4 1-7-5-5 7-1z"/></svg>4.8 star Rating</span>@endif
                 </div>
             </div>
             <form class="enq-form rv rv-d1" action="{{ route('programs.enquire') }}" method="POST">
@@ -516,63 +596,13 @@
         </div>
     </section>
 
-    {{-- ============ 16. REVIEWS (Google rating) ============ --}}
-    @if($reviews->count())
-    <section class="reviews section tex-grid" aria-label="Student reviews">
-        <div class="container">
-            <div class="sec-head center rv">
-                <span class="kicker">Reviews</span>
-                <h2>Student <em>Reviews</em></h2>
-            </div>
-            @php
-                $avg = round($reviews->avg('rating'), 1);
-                $fullStars = (int) round($avg);
-            @endphp
-            <div class="rev-top rv">
-                <div class="rating-badge">
-                    <div class="glogo">G</div>
-                    <div class="score">{{ $avg }}</div>
-                    <div class="stars">
-                        @for($i = 1; $i <= 5; $i++)<svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 1-5 5 1 7-6-4-6 4 1-7-5-5 7-1z"/></svg>@endfor
-                    </div>
-                    <div class="based">Based on {{ $reviews->count() }} student reviews</div>
-                </div>
-            </div>
-            <div class="rev-flow">
-                @foreach($reviews as $r)
-                <div class="rev-card">
-                    <div class="head"><span class="ava">@php $avatarUrl = media_url($r['avatar'] ?? null); @endphp
-                        @if($avatarUrl)
-                            <img class="ava-img" src="{{ $avatarUrl }}" alt="{{ $r['name'] ?? '' }}" loading="lazy" onerror="this.hidden=true;this.nextElementSibling.hidden=false">
-                            <span class="ava-fallback" hidden>{{ $initials($r['name'] ?? '') }}</span>
-                        @else
-                            <span class="ava-fallback">{{ $initials($r['name'] ?? '') }}</span>
-                        @endif
-                    </span><div><div class="nm">{{ $r['name'] ?? '' }}</div><div class="rl" style="font-size:12px;color:var(--muted)">Student</div></div></div>
-                    <div class="stars">@for($i = 1; $i <= ($r['rating'] ?? 5); $i++)<svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 1-5 5 1 7-6-4-6 4 1-7-5-5 7-1z"/></svg>@endfor</div>
-                    @if(!empty($r['review']))
-                    <div class="q-wrap" data-rev-clamp>
-                        <div class="q" id="rev-q-{{ $loop->index }}">{!! $r['review'] !!}</div>
-                        <button type="button" class="rev-more" aria-expanded="false" aria-controls="rev-q-{{ $loop->index }}">
-                            <span class="rev-more-label">Read more</span>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-                        </button>
-                    </div>
-                    @endif
-                </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
-    @endif
-
     {{-- ============ FINAL CTA ============ --}}
     <section class="final" aria-label="Call to action">
         <div class="container">
             <div class="final-card rv">
                 <div class="glow" aria-hidden="true"></div>
                 <div class="final-inner">
-                    <h2 class="d">{{ $chrome->final_cta_heading ?? 'Ready to Begin Your' }} <em>Journey?</em></h2>
+                    <h2 class="d">{{ $chrome->final_cta_heading ?? 'Ready to Begin Your' }}</h2>
                     <p>{!! html_filled($chrome->final_cta_body ?? null) ? rich_html($chrome->final_cta_body ?? null) : 'Speak to our admissions team today and take the first step toward a globally recognised degree.' !!}</p>
                     <div class="ctas">
                         <a href="#enquire" class="btn btn-white">Apply Now<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>

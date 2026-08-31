@@ -51,10 +51,18 @@
     </header>
 
     <div class="mlp-class-snapshot__grid">
-      @if($snapshotMetrics->isNotEmpty())
-      <section class="mlp-class-snapshot__overview" aria-labelledby="mlp-class-snapshot-overview-title">
-        <h3 id="mlp-class-snapshot-overview-title">Overview</h3>
-        <dl class="mlp-class-snapshot__metrics">
+      <section class="mlp-class-snapshot__global" aria-labelledby="mlp-class-snapshot-global-title">
+        <h3 id="mlp-class-snapshot-global-title">Countries our students represent</h3>
+        <ul class="mlp-class-snapshot__countries">
+          @foreach($snapshotCountries as $country)
+          <li class="mlp-class-snapshot__country">
+            <img src="https://flagcdn.com/w40/{{ strtolower($country['iso2']) }}.png" alt="Flag of {{ $country['name'] }}" width="24" height="18" loading="lazy" decoding="async">
+            <span>{{ $country['name'] }}</span>
+          </li>
+          @endforeach
+        </ul>
+        @if($snapshotMetrics->isNotEmpty())
+        <dl class="mlp-class-snapshot__metrics" aria-labelledby="mlp-class-snapshot-overview-title">
           @foreach($snapshotMetrics as $index => $metric)
           <div class="mlp-class-snapshot__metric">
             <dt>
@@ -67,19 +75,7 @@
           </div>
           @endforeach
         </dl>
-      </section>
-      @endif
-
-      <section class="mlp-class-snapshot__global" aria-labelledby="mlp-class-snapshot-global-title">
-        <h3 id="mlp-class-snapshot-global-title">Countries our students represent</h3>
-        <ul class="mlp-class-snapshot__countries">
-          @foreach($snapshotCountries as $country)
-          <li class="mlp-class-snapshot__country">
-            <img src="https://flagcdn.com/w40/{{ strtolower($country['iso2']) }}.png" alt="Flag of {{ $country['name'] }}" width="24" height="18" loading="lazy" decoding="async">
-            <span>{{ $country['name'] }}</span>
-          </li>
-          @endforeach
-        </ul>
+        @endif
       </section>
     </div>
   </div>

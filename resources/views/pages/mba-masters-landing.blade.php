@@ -50,6 +50,7 @@
   {{-- @include('pages.mba-masters-landing.journey') --}}
   @include('pages.mba-masters-landing.mba')
   @include('pages.mba-masters-landing.masters')
+  @include('pages.mba-masters-landing.class-2025')
   @include('sections.accreditations')
   @include('pages.mba-masters-landing.class-snapshot')
   @include('pages.mba-masters-landing.fees')
@@ -59,7 +60,7 @@
   @include('pages.mba-masters-landing.partners')
   @include('pages.mba-masters-landing.video-proof')
   @include('pages.mba-masters-landing.testimonials')
-  @include('pages.mba-masters-landing.compare')
+  {{-- @include('pages.mba-masters-landing.compare') --}}
   @include('pages.mba-masters-landing.faq')
   @include('pages.mba-masters-landing.final')
 </div>

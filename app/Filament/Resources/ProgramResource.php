@@ -198,6 +198,19 @@ class ProgramResource extends Resource
                     ->collapsed(true)
                     ->schema([static::supportRepeater()]),
 
+                                Section::make('Why GCC Professionals Choose This Course')
+                                    ->description('Reason cards shown below the Maverick support section. Leave heading blank to use the default public title.')
+                    ->collapsible()
+                    ->collapsed(true)
+                    ->schema([
+                        TextInput::make('gcc_heading')
+                            ->label('Section Heading')
+                            ->placeholder('Why GCC professionals choose this course?')
+                            ->helperText('Optional. Leave blank to use the default heading on the public page.')
+                            ->columnSpanFull(),
+                        static::gccReasonsRepeater(),
+                    ]),
+
                                 Section::make('Student Success Stories')
                                     #->description('Video testimonial slider (§12).')
                     ->collapsible()
@@ -458,6 +471,10 @@ class ProgramResource extends Resource
             'heart-handshake' => 'heart-handshake — Support',
             'clock' => 'clock — Duration',
             'map-pin' => 'map-pin — Location',
+            'monitor' => 'monitor — Online learning',
+            'route' => 'route — Pathway / progression',
+            'badge-check' => 'badge-check — Verified qualification',
+            'landmark' => 'landmark — Regional / national vision',
         ];
     }
 
@@ -629,6 +646,45 @@ class ProgramResource extends Resource
             ->defaultItems(0)
             ->itemLabel(fn (array $state): ?string => $state['item'] ?? 'Support point')
             ->addActionLabel('Add Support Point');
+    }
+
+    protected static function gccReasonsRepeater(): Repeater
+    {
+        return Repeater::make('gcc_reasons')
+            ->schema([
+                Grid::make(2)->schema([
+                    Select::make('icon_preset')
+                        ->label('Icon preset')
+                        ->options(static::lucideIconOptions())
+                        ->searchable()
+                        ->dehydrated(false)
+                        ->live()
+                        ->afterStateUpdated(fn ($state, Set $set) => filled($state) ? $set('icon', $state) : null)
+                        ->helperText('Pick a common Lucide icon, or enter a custom name below.'),
+
+                    TextInput::make('icon')
+                        ->label('Icon name (Lucide)')
+                        ->default('sparkles')
+                        ->placeholder('e.g. monitor')
+                        ->helperText('Any Lucide icon name. Overrides the preset when typed manually.'),
+                ]),
+                TextInput::make('title')
+                    ->label('List Heading')
+                    ->placeholder('e.g. 100% Online Learning for GCC Professionals')
+                    ->validationAttribute('reason title')
+                    ->columnSpanFull(),
+                Textarea::make('text')
+                    ->label('List Content')
+                    ->rows(3)
+                    ->placeholder('Short supporting copy for this reason.')
+                    ->validationAttribute('reason text')
+                    ->columnSpanFull(),
+            ])
+            ->reorderable()
+            ->collapsible()
+            ->defaultItems(0)
+            ->itemLabel(fn (array $state): ?string => $state['title'] ?? 'GCC reason')
+            ->addActionLabel('Add GCC Reason');
     }
 
     protected static function testimonialsRepeater(): Repeater

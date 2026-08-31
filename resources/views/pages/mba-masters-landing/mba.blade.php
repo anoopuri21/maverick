@@ -113,15 +113,15 @@
           <figure class="mlp-mba__plate">
             <img class="mlp-mba__uni-photo" src="{{ $photo }}" alt="{{ $uni['name'] }}" width="1200" height="800" loading="lazy" decoding="async">
             <figcaption class="mlp-mba__plate-bar">
-              <span class="mlp-mba__uni-logo">
+              <!-- <span class="mlp-mba__uni-logo">
                 @if($logo)
                 <img src="{{ $logo }}" alt="{{ $uni['name'] }} logo" loading="lazy" decoding="async">
                 @else
                 <span class="mlp-mba__uni-initials" aria-hidden="true">{{ $initials }}</span>
                 @endif
-              </span>
+              </span> -->
               <span class="mlp-mba__plate-copy">
-                <span class="mlp-mba__uni-name">{{ $uni['name'] }}</span>
+                <!-- <span class="mlp-mba__uni-name">{{ $uni['name'] }}</span> -->
                 <span class="mlp-mba__uni-count">{{ $specializations->count() }} {{ $specializations->count() === 1 ? 'specialization' : 'specializations' }}</span>
               </span>
             </figcaption>

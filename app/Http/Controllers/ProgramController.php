@@ -102,7 +102,7 @@ class ProgramController extends Controller
             ->where('is_active', true)
             ->with([
                 'programCategory:id,name,slug',
-                'universityPartner:id,name,logo_url,country',
+                'universityPartner',
                 'faqs' => fn ($q) => $q->where('is_active', true),
                 'seo',
             ])
