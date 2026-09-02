@@ -42,7 +42,7 @@
     <header class="archive-partners__intro">
       <div>
         @if(filled($partners->label))
-        <p class="archive-partners__label">{{ $partners->label }}</p>
+        <p class="archive-partners__label mlp-eyebrow">{{ $partners->label }}</p>
         @endif
         @if(filled($partners->heading))
         <h2 class="archive-partners__heading" id="archive-partners-title">{{ $partners->heading }}</h2>

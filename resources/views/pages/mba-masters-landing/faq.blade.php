@@ -16,7 +16,7 @@
     <header class="archive-fieldnotes__intro">
       <div>
         @if(filled($faq->label))
-        <p class="archive-fieldnotes__label">{{ $faq->label }}</p>
+        <p class="archive-fieldnotes__label mlp-eyebrow">{{ $faq->label }}</p>
         @endif
         @if(filled($faq->heading))
         <h2 class="archive-fieldnotes__heading" id="archive-fieldnotes-title">{{ $faq->heading }}</h2>

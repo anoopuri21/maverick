@@ -11,7 +11,7 @@
     <header class="pricing-cards__intro">
       <div>
         @if(filled($fees->label))
-        <p class="pricing-cards__label">{{ $fees->label }}</p>
+        <p class="pricing-cards__label mlp-eyebrow">{{ $fees->label }}</p>
         @endif
         @if(filled($fees->heading))
         <h2 class="pricing-cards__heading" id="pricing-cards-title">{{ $fees->heading }}</h2>

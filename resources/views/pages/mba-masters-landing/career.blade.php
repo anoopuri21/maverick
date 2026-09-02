@@ -17,7 +17,7 @@
     <header class="archive-career__intro">
       <div>
         @if(filled($career->label))
-        <p class="archive-career__label">{{ $career->label }}</p>
+        <p class="archive-career__label mlp-eyebrow">{{ $career->label }}</p>
         @endif
         @if(filled($career->heading))
         <h2 class="archive-career__heading" id="archive-career-title">{{ $career->heading }}</h2>

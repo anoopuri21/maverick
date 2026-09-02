@@ -53,7 +53,7 @@
     <header class="mlp-mba__head" data-mlp-reveal="mba-head">
       <div class="mlp-mba__meta">
         @if(filled($mba->label))
-        <p class="mlp-mba__label mlp-meta">{{ $mba->label }}</p>
+        <p class="mlp-mba__label mlp-meta mlp-eyebrow">{{ $mba->label }}</p>
         @endif
       </div>
       @if(filled($mba->heading))

@@ -16,7 +16,7 @@
     <div class="container mlp-why__pin-inner" data-mlp-reveal="why-head">
       <div class="mlp-why__meta">
         @if(filled($why->label))
-        <p class="mlp-why__label mlp-meta">{{ $why->label }}</p>
+        <p class="mlp-why__label mlp-meta mlp-eyebrow">{{ $why->label }}</p>
         @endif
       </div>
       @if(filled($why->heading))

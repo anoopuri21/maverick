@@ -69,6 +69,17 @@
   font-weight: 400;
 }
 
+/* Shared section eyebrow (effective typography of the landing label role). */
+.mlp-eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: var(--fw-medium);
+  line-height: 1.6;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-mba-blue);
+}
+
 /* —— Section rhythm —— */
 
 /* —— Buttons —— */
@@ -1112,7 +1123,6 @@
   .mlp-mba__label,
   .mlp-masters__label {
   margin: 0;
-  color: var(--mlp-muted-on-paper);
 }
 
 
@@ -1530,12 +1540,6 @@
   .archive-learning__label,
   .archive-partners__label {
   margin: 0 0 1rem;
-  font-size: 0.66rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  line-height: 1.4;
-  text-transform: uppercase;
-  color: var(--mlp-red);
 }
 
 
@@ -1711,12 +1715,6 @@
 }
 .pricing-cards__label {
   margin: 0 0 0.9rem;
-  font-size: var(--mlp-type-caption, 0.8125rem);
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  line-height: 1.4;
-  text-transform: uppercase;
-  color: var(--mlp-red);
 }
 .pricing-cards__heading {
   max-width: 14ch;
@@ -3189,15 +3187,6 @@
   align-items: end;
   max-width: none;
   margin-bottom: clamp(2.25rem, 5vw, 3.5rem);
-}
-
-.mlp-masters--prospectus .mlp-masters__label {
-  color: var(--mlp-red);
-  font-family: var(--mlp-font-body);
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
 }
 
 .mlp-masters--prospectus .mlp-masters__heading {

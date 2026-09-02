@@ -32,7 +32,7 @@
     <header class="archive-voices__intro">
       <div>
         @if(filled($testimonials->label))
-        <p class="archive-voices__label">{{ $testimonials->label }}</p>
+        <p class="archive-voices__label mlp-eyebrow">{{ $testimonials->label }}</p>
         @endif
         @if(filled($testimonials->heading))
         <h2 class="archive-voices__heading" id="archive-voices-title">{{ $testimonials->heading }}</h2>

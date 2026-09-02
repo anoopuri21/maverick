@@ -22,7 +22,7 @@
     <header class="archive-alumni__intro">
       <div>
         @if(filled($alumni->label))
-        <p class="archive-alumni__label">{{ $alumni->label }}</p>
+        <p class="archive-alumni__label mlp-eyebrow">{{ $alumni->label }}</p>
         @endif
         @if(filled($alumni->heading))
         <h2 class="archive-alumni__heading" id="archive-alumni-title">{{ $alumni->heading }}</h2>
