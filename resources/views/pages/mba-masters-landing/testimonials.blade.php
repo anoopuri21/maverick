@@ -24,7 +24,7 @@
 @if($items->isNotEmpty())
 <section class="mlp-testimonials archive-voices" id="mlp-testimonials" aria-labelledby="archive-voices-title">
   <div class="archive-voices__background" aria-hidden="true">
-    <span class="archive-voices__wash"></span>
+    <span class="archive-voices__wash mlp-wash"></span>
     <span class="archive-voices__rule archive-voices__rule--one"></span>
   </div>
 

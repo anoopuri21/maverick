@@ -7,7 +7,7 @@
 
 <section class="mlp-video-proof archive-video-proof" id="mlp-video-proof" aria-labelledby="mlp-video-proof-title">
   <div class="archive-video-proof__background" aria-hidden="true">
-    <span class="archive-video-proof__wash"></span>
+    <span class="archive-video-proof__wash mlp-wash"></span>
     <span class="archive-video-proof__line archive-video-proof__line--one"></span>
     <span class="archive-video-proof__line archive-video-proof__line--two"></span>
   </div>

@@ -113,6 +113,19 @@
   overflow: hidden;
 }
 
+/* Shared decorative radial wash (size, placement and gradient stay per section). */
+.mlp-wash {
+  position: absolute;
+  border-radius: 50%;
+}
+
+/* Shared 1px contour line (placement and angle stay per section). */
+.mlp-contour {
+  position: absolute;
+  height: 1px;
+  background: var(--mlp-line-dark);
+}
+
 /* —— Section rhythm —— */
 
 /* —— Buttons —— */
@@ -724,21 +737,16 @@
 }
 
 .blueprint-overview__wash {
-  position: absolute;
   width: min(52vw, 46rem);
   height: min(52vw, 46rem);
   right: -18%;
   bottom: -25%;
-  border-radius: 50%;
   background: radial-gradient(circle, rgba(15, 41, 131, 0.1), transparent 68%);
 }
 
 .blueprint-overview__contour {
-  position: absolute;
   left: -12%;
   right: -12%;
-  height: 1px;
-  background: var(--mlp-line-dark);
   transform: rotate(-4deg);
 }
 
@@ -1525,12 +1533,10 @@
 
 .archive-career__wash, 
 .archive-learning__wash {
-  position: absolute;
   right: -15%;
   bottom: -30%;
   width: min(55vw, 52rem);
   height: min(55vw, 52rem);
-  border-radius: 50%;
   background: radial-gradient(circle, rgba(15, 41, 131, 0.1), transparent 68%);
 }
 
@@ -1909,21 +1915,16 @@
 }
 
 .signal-atlas__wash {
-  position: absolute;
   width: min(54vw, 52rem);
   height: min(54vw, 52rem);
   top: -28%;
   right: -16%;
-  border-radius: 50%;
   background: radial-gradient(circle, rgba(15, 41, 131, 0.12), transparent 68%);
 }
 
 .signal-atlas__contour {
-  position: absolute;
   left: -8%;
   right: -8%;
-  height: 1px;
-  background: var(--mlp-line-dark);
   transform: rotate(-6deg);
 }
 
@@ -2297,7 +2298,7 @@
   .mlp-mba__program { transition: none; }
 }
 .archive-voices { position: relative; isolation: isolate; overflow: hidden; padding: clamp(4.5rem, 9vw, 7.5rem) 0; color: var(--mlp-ink); background: var(--mlp-paper-pure); }
-.archive-voices__wash { position: absolute; right: -18%; bottom: -25%; width: min(55vw, 52rem); height: min(55vw, 52rem); border-radius: 50%; background: radial-gradient(circle, rgba(178, 2, 2, 0.08), transparent 68%); }
+.archive-voices__wash { right: -18%; bottom: -25%; width: min(55vw, 52rem); height: min(55vw, 52rem); background: radial-gradient(circle, rgba(178, 2, 2, 0.08), transparent 68%); }
 .archive-voices__rule--one { position: absolute; left: -10%; right: -10%; top: 28%; height: 1px; background: var(--mlp-line-dark); transform: rotate(4deg); }
 .archive-voices__stage { display: grid; grid-template-columns: minmax(16rem, 0.76fr) minmax(0, 1.24fr); gap: clamp(2rem, 6vw, 6rem); align-items: start; }
 .archive-voices__stack-image img,
@@ -2308,7 +2309,7 @@
 .archive-voices__stack::after { content: ""; position: absolute; inset: 0; background: linear-gradient(145deg, rgba(7, 20, 68, 0.9), rgba(7, 20, 68, 0.15)); }
 .archive-voices__stack-caption { position: absolute; right: 1.4rem; bottom: 1.4rem; left: 1.4rem; z-index: 1; max-width: 16ch; font-family: var(--mlp-font-display); font-size: clamp(1.5rem, 3vw, 2.7rem); line-height: 0.98; letter-spacing: -0.04em; color: var(--mlp-white); }
 .archive-fieldnotes { position: relative; isolation: isolate; overflow: hidden; padding: clamp(4.5rem, 9vw, 7rem) 0; color: var(--mlp-ink); background: var(--mlp-paper-pure); }
-.archive-fieldnotes__wash { position: absolute; left: -16%; bottom: -25%; width: min(46vw, 42rem); height: min(46vw, 42rem); border-radius: 50%; background: radial-gradient(circle, rgba(15, 41, 131, 0.08), transparent 68%); }
+.archive-fieldnotes__wash { left: -16%; bottom: -25%; width: min(46vw, 42rem); height: min(46vw, 42rem); background: radial-gradient(circle, rgba(15, 41, 131, 0.08), transparent 68%); }
 .archive-fieldnotes__rule { position: absolute; left: -10%; right: -10%; top: 30%; height: 1px; background: var(--mlp-line-dark); transform: rotate(-4deg); }
 .archive-fieldnotes__intro-copy { max-width: 26ch; }
 .archive-fieldnotes__note { border-bottom: 1px solid var(--mlp-line-dark); }
@@ -2317,7 +2318,7 @@
 .archive-fieldnotes__question-icon { display: inline-grid; place-items: center; width: 1.75rem; height: 1.75rem; color: var(--mlp-red); border: 1px solid rgba(178, 2, 2, 0.55); }
 .archive-fieldnotes__answer { max-width: 48rem; padding: 0 3.1rem 1.35rem; font-size: 0.9rem; line-height: 1.65; color: var(--mlp-muted-on-paper); }
 .archive-closing { position: relative; isolation: isolate; overflow: hidden; padding: clamp(4.5rem, 9vw, 7.5rem) 0; color: var(--mlp-ink); background: var(--mlp-paper); }
-.archive-closing__wash { position: absolute; right: -18%; bottom: -30%; width: min(58vw, 54rem); height: min(58vw, 54rem); border-radius: 50%; background: radial-gradient(circle, rgba(15, 41, 131, 0.1), transparent 68%); }
+.archive-closing__wash { right: -18%; bottom: -30%; width: min(58vw, 54rem); height: min(58vw, 54rem); background: radial-gradient(circle, rgba(15, 41, 131, 0.1), transparent 68%); }
 .archive-closing__image-layer { background: var(--mlp-navy); }
 .archive-closing__image-layer--back { top: 8%; right: -8%; width: min(38vw, 34rem); height: min(32vw, 27rem); opacity: 0.18; transform: rotate(7deg); }
 .archive-closing__image-layer--front { top: 13%; right: 3%; width: min(32vw, 29rem); height: min(38vw, 34rem); opacity: 0.7; mix-blend-mode: multiply; transform: rotate(-4deg); }
@@ -4412,12 +4413,10 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
 }
 
 .mlp-page--polished .archive-video-proof__wash {
-  position: absolute;
   top: -38%;
   right: -10%;
   width: min(58vw, 58rem);
   height: min(58vw, 58rem);
-  border-radius: 50%;
   background: radial-gradient(circle, rgba(15, 41, 131, 0.52), transparent 68%);
 }
 

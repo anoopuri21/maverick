@@ -19,9 +19,9 @@
     @if($plate)
     <img class="blueprint-overview__plate" src="{{ $plate }}" alt="" width="1200" height="800" loading="lazy" decoding="async">
     @endif
-    <span class="blueprint-overview__wash"></span>
-    <span class="blueprint-overview__contour blueprint-overview__contour--one"></span>
-    <span class="blueprint-overview__contour blueprint-overview__contour--two"></span>
+    <span class="blueprint-overview__wash mlp-wash"></span>
+    <span class="blueprint-overview__contour blueprint-overview__contour--one mlp-contour"></span>
+    <span class="blueprint-overview__contour blueprint-overview__contour--two mlp-contour"></span>
   </div>
 
   <div class="blueprint-overview__frame container">

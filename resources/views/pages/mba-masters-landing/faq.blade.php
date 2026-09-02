@@ -8,7 +8,7 @@
 @if(filled($faq->heading) || $items->isNotEmpty())
 <section class="mlp-faq archive-fieldnotes" id="mlp-faq" aria-labelledby="archive-fieldnotes-title">
   <div class="archive-fieldnotes__background" aria-hidden="true">
-    <span class="archive-fieldnotes__wash"></span>
+    <span class="archive-fieldnotes__wash mlp-wash"></span>
     <span class="archive-fieldnotes__rule"></span>
   </div>
 

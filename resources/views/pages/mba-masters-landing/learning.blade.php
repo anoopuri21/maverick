@@ -14,7 +14,7 @@
 @if(filled($learning->heading) || $points->isNotEmpty())
 <section class="mlp-learning archive-learning" id="mlp-learning" aria-labelledby="archive-learning-title">
   <div class="archive-learning__background" aria-hidden="true">
-    <span class="archive-learning__wash"></span>
+    <span class="archive-learning__wash mlp-wash"></span>
     <span class="archive-learning__rule archive-learning__rule--one"></span>
   </div>
 
