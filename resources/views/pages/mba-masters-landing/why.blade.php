@@ -20,7 +20,7 @@
         @endif
       </div>
       @if(filled($why->heading))
-      <h2 class="mlp-why__heading mlp-headline">{{ $why->heading }}</h2>
+      <h2 class="mlp-why__heading mlp-headline mlp-h2">{{ $why->heading }}</h2>
       @endif
       @if(filled($why->intro))
       <p class="mlp-why__intro mlp-lede">{{ $why->intro }}</p>

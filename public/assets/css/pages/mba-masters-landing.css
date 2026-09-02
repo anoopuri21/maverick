@@ -80,6 +80,17 @@
   color: var(--color-mba-blue);
 }
 
+/* Shared section heading (effective typography of the landing heading role). */
+.mlp-h2 {
+  font-family: var(--font-display);
+  font-size: var(--fs-section-title);
+  font-weight: var(--fw-medium);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-transform: none;
+  color: var(--color-mba-blue);
+}
+
 /* —— Section rhythm —— */
 
 /* —— Buttons —— */
@@ -744,12 +755,6 @@
 .blueprint-overview__heading {
   max-width: 13ch;
   margin: 0;
-  font-family: var(--mlp-font-display);
-  font-size: clamp(2.4rem, 6vw, 6.2rem);
-  font-weight: 500;
-  line-height: 0.9;
-  letter-spacing: -0.06em;
-  color: var(--mlp-navy);
 }
 
 .blueprint-overview__intro-copy {
@@ -1130,7 +1135,6 @@
   .mlp-mba__heading {
   margin: 0 0 0.75rem;
   max-width: 16ch;
-  color: var(--mlp-navy);
 }
 
 .mlp-why__intro {
@@ -1475,7 +1479,6 @@
 .mlp-masters__heading {
   margin: 0 0 0.75rem;
   max-width: 14ch;
-  color: var(--mlp-navy);
 }
 
 @media (max-width: 900px) {
@@ -1548,12 +1551,6 @@
 .archive-learning__heading {
   max-width: 14ch;
   margin: 0;
-  font-family: var(--mlp-font-display);
-  font-size: clamp(2.35rem, 5.5vw, 5.6rem);
-  font-weight: 500;
-  line-height: 0.92;
-  letter-spacing: -0.06em;
-  color: var(--mlp-navy);
 }
 
 
@@ -1719,12 +1716,6 @@
 .pricing-cards__heading {
   max-width: 14ch;
   margin: 0;
-  font-family: var(--mlp-font-display);
-  font-size: var(--mlp-type-title-lg, clamp(2.25rem, 5vw, 4rem));
-  font-weight: 500;
-  line-height: 0.95;
-  letter-spacing: -0.05em;
-  color: var(--mlp-navy);
 }
 .pricing-cards__intro-copy {
   max-width: 35ch;
@@ -1956,12 +1947,6 @@
 .signal-atlas__heading {
   max-width: 17ch;
   margin: 0;
-  font-family: var(--mlp-font-display);
-  font-size: clamp(2rem, 4.8vw, 5rem);
-  font-weight: 500;
-  line-height: 0.95;
-  letter-spacing: -0.055em;
-  color: var(--mlp-navy);
 }
 
 .signal-atlas__quote {
@@ -2182,12 +2167,6 @@
 .archive-partners__heading {
   max-width: 14ch;
   margin: 0;
-  font-family: var(--mlp-font-display);
-  font-size: clamp(2.35rem, 5.5vw, 5.4rem);
-  font-weight: 500;
-  line-height: 0.92;
-  letter-spacing: -0.06em;
-  color: var(--mlp-navy);
 }
 
 .archive-partners__wall {
@@ -2817,12 +2796,6 @@
 #mlp-class-snapshot .mlp-class-snapshot__heading {
   max-width: 30ch;
   margin: 0 auto;
-  color: var(--mlp-navy);
-  font-family: var(--mlp-font-display);
-  font-size: clamp(1.85rem, 3.6vw, 3.35rem);
-  font-weight: 500;
-  letter-spacing: -0.045em;
-  line-height: 1.04;
 }
 
 #mlp-class-snapshot .mlp-class-snapshot__intro-copy {
@@ -3191,12 +3164,6 @@
 
 .mlp-masters--prospectus .mlp-masters__heading {
   max-width: 26ch;
-  color: var(--mlp-navy);
-  font-family: var(--mlp-font-body);
-  font-size: clamp(1.9rem, 3.6vw, 2.75rem);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  line-height: 1.15;
 }
 
 .mlp-masters--prospectus .mlp-masters__intro {

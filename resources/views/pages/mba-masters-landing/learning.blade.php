@@ -25,7 +25,7 @@
         <p class="archive-learning__label mlp-eyebrow">{{ $learning->label }}</p>
         @endif
         @if(filled($learning->heading))
-        <h2 class="archive-learning__heading" id="archive-learning-title">{{ $learning->heading }}</h2>
+        <h2 class="archive-learning__heading mlp-h2" id="archive-learning-title">{{ $learning->heading }}</h2>
         @endif
       </div>
       @if(filled($learning->intro))

@@ -43,7 +43,7 @@
       <p class="mlp-class-snapshot__label mlp-meta mlp-eyebrow">{{ $class->label }}</p>
       @endif
       @if(filled($class->heading ?? null))
-      <h2 class="mlp-class-snapshot__heading" id="mlp-class-snapshot-title">{{ $class->heading }}</h2>
+      <h2 class="mlp-class-snapshot__heading mlp-h2" id="mlp-class-snapshot-title">{{ $class->heading }}</h2>
       @endif
       @if(filled($class->intro ?? null))
       <p class="mlp-class-snapshot__intro-copy">{{ $class->intro }}</p>

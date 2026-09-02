@@ -21,7 +21,7 @@
     <header class="mlp-masters__head" data-mlp-reveal="masters-head">
       <div>
         <p class="mlp-masters__label mlp-eyebrow">{{ $label }}</p>
-        <h2 class="mlp-masters__heading">{{ $heading }}</h2>
+        <h2 class="mlp-masters__heading mlp-h2">{{ $heading }}</h2>
       </div>
       @if(filled($masters->intro))
       <p class="mlp-masters__intro">{{ $masters->intro }}</p>

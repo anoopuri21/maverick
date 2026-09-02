@@ -17,7 +17,7 @@
   <div class="signal-atlas__frame container">
     <header class="signal-atlas__intro">
         <p class="signal-atlas__folio">Trust record</p>
-      <h2 class="signal-atlas__heading" id="signal-atlas-title">{{ $heading }}</h2>
+      <h2 class="signal-atlas__heading mlp-h2" id="signal-atlas-title">{{ $heading }}</h2>
       <blockquote class="signal-atlas__quote">
         <span class="signal-atlas__quote-mark" aria-hidden="true">“</span>
         <p>{{ $quote }}</p>

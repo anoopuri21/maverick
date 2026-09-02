@@ -30,7 +30,7 @@
       <p class="blueprint-overview__folio">{{ $overview->label }}</p>
       @endif
       @if(filled($overview->heading))
-      <h2 class="blueprint-overview__heading" id="blueprint-overview-title">
+      <h2 class="blueprint-overview__heading mlp-h2" id="blueprint-overview-title">
         @if($hasOverviewHeadingAccent)
         @php [$overviewHeadingLead, $overviewHeadingTail] = explode($overviewHeadingAccent, $overviewHeading, 2); @endphp
         {{ $overviewHeadingLead }}<span class="blueprint-overview__heading-accent">{{ $overviewHeadingAccent }}</span>{{ $overviewHeadingTail }}

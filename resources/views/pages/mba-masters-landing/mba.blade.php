@@ -57,7 +57,7 @@
         @endif
       </div>
       @if(filled($mba->heading))
-      <h2 class="mlp-mba__heading mlp-headline">{{ $mba->heading }}</h2>
+      <h2 class="mlp-mba__heading mlp-headline mlp-h2">{{ $mba->heading }}</h2>
       @endif
       @if(filled($mba->intro))
       <p class="mlp-mba__intro mlp-lede">{{ $mba->intro }}</p>

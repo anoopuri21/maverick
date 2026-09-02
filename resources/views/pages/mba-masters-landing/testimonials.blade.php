@@ -35,7 +35,7 @@
         <p class="archive-voices__label mlp-eyebrow">{{ $testimonials->label }}</p>
         @endif
         @if(filled($testimonials->heading))
-        <h2 class="archive-voices__heading" id="archive-voices-title">{{ $testimonials->heading }}</h2>
+        <h2 class="archive-voices__heading mlp-h2" id="archive-voices-title">{{ $testimonials->heading }}</h2>
         @endif
       </div>
       @if(filled($testimonials->intro))

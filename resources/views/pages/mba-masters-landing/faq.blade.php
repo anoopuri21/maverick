@@ -19,7 +19,7 @@
         <p class="archive-fieldnotes__label mlp-eyebrow">{{ $faq->label }}</p>
         @endif
         @if(filled($faq->heading))
-        <h2 class="archive-fieldnotes__heading" id="archive-fieldnotes-title">{{ $faq->heading }}</h2>
+        <h2 class="archive-fieldnotes__heading mlp-h2" id="archive-fieldnotes-title">{{ $faq->heading }}</h2>
         @endif
       </div>
       <p class="archive-fieldnotes__intro-copy">A few useful notes before you take the next step.</p>

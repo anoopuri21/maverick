@@ -45,7 +45,7 @@
         <p class="archive-partners__label mlp-eyebrow">{{ $partners->label }}</p>
         @endif
         @if(filled($partners->heading))
-        <h2 class="archive-partners__heading" id="archive-partners-title">{{ $partners->heading }}</h2>
+        <h2 class="archive-partners__heading mlp-h2" id="archive-partners-title">{{ $partners->heading }}</h2>
         @endif
       </div>
       @if(filled($partners->intro))

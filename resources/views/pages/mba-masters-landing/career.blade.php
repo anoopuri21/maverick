@@ -20,7 +20,7 @@
         <p class="archive-career__label mlp-eyebrow">{{ $career->label }}</p>
         @endif
         @if(filled($career->heading))
-        <h2 class="archive-career__heading" id="archive-career-title">{{ $career->heading }}</h2>
+        <h2 class="archive-career__heading mlp-h2" id="archive-career-title">{{ $career->heading }}</h2>
         @endif
       </div>
       @if(filled($career->intro))
