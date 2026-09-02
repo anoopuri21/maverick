@@ -9,8 +9,8 @@
   <div class="archive-closing__background" aria-hidden="true">
     <span class="archive-closing__wash"></span>
     @if($plate)
-    <span class="archive-closing__image-layer archive-closing__image-layer--back"><img src="{{ $plate }}" alt="" width="960" height="720" loading="lazy" decoding="async"></span>
-    <span class="archive-closing__image-layer archive-closing__image-layer--front"><img src="{{ $plate }}" alt="" width="960" height="720" loading="lazy" decoding="async"></span>
+    <span class="archive-closing__image-layer archive-closing__image-layer--back mlp-stack-layer"><img src="{{ $plate }}" alt="" width="960" height="720" loading="lazy" decoding="async"></span>
+    <span class="archive-closing__image-layer archive-closing__image-layer--front mlp-stack-layer"><img src="{{ $plate }}" alt="" width="960" height="720" loading="lazy" decoding="async"></span>
     @endif
   </div>
 

@@ -107,6 +107,12 @@
   color: var(--mlp-red);
 }
 
+/* Shared absolute image layer inside a stack plate (placement/blend stay per section). */
+.mlp-stack-layer {
+  position: absolute;
+  overflow: hidden;
+}
+
 /* —— Section rhythm —— */
 
 /* —— Buttons —— */
@@ -1604,8 +1610,6 @@
 }
 .archive-career__stack-image,
   .archive-voices__stack-image {
-  position: absolute;
-  overflow: hidden;
   opacity: 0.7;
   mix-blend-mode: screen;
 }
@@ -2314,7 +2318,7 @@
 .archive-fieldnotes__answer { max-width: 48rem; padding: 0 3.1rem 1.35rem; font-size: 0.9rem; line-height: 1.65; color: var(--mlp-muted-on-paper); }
 .archive-closing { position: relative; isolation: isolate; overflow: hidden; padding: clamp(4.5rem, 9vw, 7.5rem) 0; color: var(--mlp-ink); background: var(--mlp-paper); }
 .archive-closing__wash { position: absolute; right: -18%; bottom: -30%; width: min(58vw, 54rem); height: min(58vw, 54rem); border-radius: 50%; background: radial-gradient(circle, rgba(15, 41, 131, 0.1), transparent 68%); }
-.archive-closing__image-layer { position: absolute; overflow: hidden; background: var(--mlp-navy); }
+.archive-closing__image-layer { background: var(--mlp-navy); }
 .archive-closing__image-layer--back { top: 8%; right: -8%; width: min(38vw, 34rem); height: min(32vw, 27rem); opacity: 0.18; transform: rotate(7deg); }
 .archive-closing__image-layer--front { top: 13%; right: 3%; width: min(32vw, 29rem); height: min(38vw, 34rem); opacity: 0.7; mix-blend-mode: multiply; transform: rotate(-4deg); }
 .archive-closing__frame { display: grid; grid-template-columns: minmax(0, 1fr) minmax(320px, 0.78fr); gap: clamp(2rem, 7vw, 8rem); align-items: start; }

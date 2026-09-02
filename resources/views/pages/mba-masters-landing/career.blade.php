@@ -33,7 +33,7 @@
       <div>
       <div class="archive-career__stack" aria-hidden="true">
         @foreach($stories->take(3) as $si => $story)
-        <span class="archive-career__stack-image archive-career__stack-image--{{ $si + 1 }}">
+        <span class="archive-career__stack-image archive-career__stack-image--{{ $si + 1 }} mlp-stack-layer">
           <img src="{{ settings_media_url($story, 'portrait') ?: cached_asset($fallbackPortrait) }}" alt="" width="640" height="800" loading="lazy" decoding="async">
         </span>
         @endforeach

@@ -47,7 +47,7 @@
     <div class="archive-voices__stage" data-closing-voices>
       <div class="archive-voices__stack" aria-hidden="true">
         @foreach($items->take(3) as $vi => $item)
-        <span class="archive-voices__stack-image archive-voices__stack-image--{{ $vi + 1 }}">
+        <span class="archive-voices__stack-image archive-voices__stack-image--{{ $vi + 1 }} mlp-stack-layer">
           <img src="{{ $item['photo'] ?: $fallbackPhoto }}" alt="" width="640" height="800" loading="lazy" decoding="async">
         </span>
         @endforeach
