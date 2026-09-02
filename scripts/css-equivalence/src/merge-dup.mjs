@@ -87,8 +87,11 @@ const fixtureDir = path.join(here, '..', 'fixture');
 const doms = ['s1', 's4'].map((st) =>
   new JSDOM(fs.readFileSync(path.join(fixtureDir, `mbm-${st}.html`), 'utf8')).window.document
 );
-const INTERACTIVE = /:(hover|focus|focus-visible|focus-within|active|target|visited)/g;
-const stripInteractive = (sel) => sel.replace(INTERACTIVE, '');
+const stripInteractive = (sel) =>
+  sel.replace(
+    /:(hover|focus-visible|focus-within|focus|active|target|visited)(?![\w-])/g,
+    ''
+  );
 const qcache = new Map();
 function matchesInDoms(sel) {
   let set = qcache.get(sel);
