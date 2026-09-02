@@ -72,7 +72,10 @@ class ManageGlobalBachelorsPathway extends Page implements HasForms
         $explore['cards'] = $this->wrapNestedLists($explore['cards'] ?? [], 'highlights');
 
         $destinations = app(GbpDestinationsSettings::class)->toArray();
-        $destinations['items'] = $this->wrapNestedLists($destinations['items'] ?? [], 'points');
+        $destinations['items'] = $this->hydrateRepeaterMediaFields(
+            $this->wrapNestedLists($destinations['items'] ?? [], 'points'),
+            'image'
+        );
 
         $cost = app(GbpCostSettings::class)->toArray();
         $cost['comparisons'] = array_values($cost['comparisons'] ?? []);
@@ -521,6 +524,8 @@ class ManageGlobalBachelorsPathway extends Page implements HasForms
         try {
             $data = $this->form->getState();
 
+            $existingDestinations = app(GbpDestinationsSettings::class)->toArray();
+
             $hero = $this->syncImageIfSelected($data['hero'] ?? [], 'background_image');
 
             $snapshot = $data['snapshot'] ?? [];
@@ -543,11 +548,16 @@ class ManageGlobalBachelorsPathway extends Page implements HasForms
             $explore['cards'] = $this->normalizeNestedLists($explore['cards'] ?? [], 'highlights');
 
             $destinations = $data['destinations'] ?? [];
+            $destinations['items'] = $this->hydrateRepeaterMediaFields($destinations['items'] ?? [], 'image');
             foreach ($destinations['items'] ?? [] as &$item) {
                 $item = $this->syncImageIfSelected($item, 'image');
             }
             unset($item);
-            $destinations['items'] = $this->normalizeNestedLists($destinations['items'] ?? [], 'points');
+            $destinations['items'] = $this->preserveRepeaterImageFields(
+                $this->normalizeNestedLists($destinations['items'] ?? [], 'points'),
+                $existingDestinations['items'] ?? [],
+                'image'
+            );
 
             $cost = $data['cost'] ?? [];
             $cost['comparisons'] = array_values($cost['comparisons'] ?? []);
@@ -638,7 +648,65 @@ class ManageGlobalBachelorsPathway extends Page implements HasForms
             return MediaPicker::syncFieldFromAsset($payload, $field);
         }
 
+        if (array_key_exists("{$field}_asset_id", $payload) && empty($payload["{$field}_asset_id"])) {
+            return MediaPicker::syncFieldFromAsset($payload, $field);
+        }
+
         return $payload;
+    }
+
+    /**
+     * @param  array<int, array<string, mixed>>  $rows
+     * @return array<int, array<string, mixed>>
+     */
+    protected function hydrateRepeaterMediaFields(array $rows, string $field): array
+    {
+        foreach ($rows as &$row) {
+            if (! is_array($row)) {
+                continue;
+            }
+
+            $assetKey = "{$field}_asset_id";
+
+            if (filled($row[$field] ?? null) || blank($row[$assetKey] ?? null)) {
+                continue;
+            }
+
+            $row = MediaPicker::syncFieldFromAsset($row, $field);
+        }
+
+        unset($row);
+
+        return array_values($rows);
+    }
+
+    /**
+     * @param  array<int, array<string, mixed>>  $rows
+     * @param  array<int, array<string, mixed>>  $existingRows
+     * @return array<int, array<string, mixed>>
+     */
+    protected function preserveRepeaterImageFields(array $rows, array $existingRows, string $field): array
+    {
+        $assetKey = "{$field}_asset_id";
+
+        foreach ($rows as $index => &$row) {
+            $existing = $existingRows[$index] ?? [];
+
+            if (array_key_exists($assetKey, $row)) {
+                if (empty($row[$assetKey]) && empty($row[$field])) {
+                    continue;
+                }
+            }
+
+            if (empty($row[$field]) && empty($row[$assetKey] ?? null)) {
+                $row[$field] = $existing[$field] ?? null;
+                $row[$assetKey] = $existing[$assetKey] ?? null;
+            }
+        }
+
+        unset($row);
+
+        return $rows;
     }
 
     protected function wrapStringList(array $items): array

@@ -11,9 +11,14 @@
             ? \Illuminate\Support\Str::beforeLast($statePath, '.').'.'.$urlField
             : $urlField;
 
-        // Field views don't have $get (schema closures only) — use record URL.
         if (! $asset && method_exists($field, 'getRecord')) {
             $fallbackUrl = data_get($field->getRecord(), $urlField);
+        }
+
+        if (! $asset && blank($fallbackUrl)) {
+            $livewire = $getLivewire();
+            $formData = is_array($livewire->data ?? null) ? $livewire->data : [];
+            $fallbackUrl = data_get($formData, $urlStatePath);
         }
     }
 
