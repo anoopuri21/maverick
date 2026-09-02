@@ -224,14 +224,41 @@ Gate (per group): zero diff. Commit per group.
 - No blade structure changes (class attribute additions only, Phase 5)
 - No changes to `main.css` or any other page's CSS
 
-## 5. Rollout & status
+## 5. Rollout & status — COMPLETE (2026-09-02)
 
-| Phase | What | Gate | Status |
-|---|---|---|---|
-| 0 | Harness + baseline + audit | baseline captured | ⬜ |
-| 1 | Dead CSS: landing | 0 diff | ⬜ |
-| 2 | Dead CSS: polish | 0 diff | ⬜ |
-| 3 | 2 files → 1 file + blade | 0 diff | ⬜ |
-| 4 | CSS-only dedup / selector merges | 0 diff | ⬜ |
-| 5 | Generic utilities (CSS + blade) | 0 diff per group | ⬜ |
-| 6 | Report + housekeeping | full re-run 0 diff | ⬜ |
+| Phase | What | Commit | Gate result | Status |
+|---|---|---|---|---|
+| 0 | Harness + baseline + audit | (in `scripts/css-equivalence/`) | baseline captured | ✅ |
+| 1 | Dead CSS: landing | `72c5826` | 0 diff | ✅ 314 rules / 396 selector parts removed |
+| 2 | Dead CSS: polish | `a0757ab` | 0 diff | ✅ 8 unused custom property tokens removed |
+| 3 | 2 files → 1 file + blade | `0ddb150` | 0 diff | ✅ 110/110 tables identical; 2 links → 1 |
+| 4a | Dedup identical-decl rule groups | `9182fcb` | 0 diff | ✅ 55 groups / 93 redundant rules |
+| 4b | Content-less pseudo rules (no-ops) | `595e350` | 0 diff | ✅ engine models it; −11 lines |
+| 4c | Trim dead `:is()`/`:where()` args | `780a9be` | 0 diff | ✅ 60 args, 0 rules removed |
+| 5a | `.mlp-eyebrow` (11 section labels) | `f54b211` | 0 diff | ✅ |
+| 5b | `.mlp-h2` (14 section headings) | `c15dfee` | 0 diff | ✅ |
+| 5c | `.mlp-intro-grid` (8 section heads) | `54b434c` | 0 diff + definitive | ✅ |
+| 5d | `.mlp-icon-box` (11 icon elements) | `11f4dc4` | 0 diff + definitive | ✅ (+ engine border fix) |
+| 5e | `.mlp-stack-layer` (8 image layers) | `d761d42` | 0 diff + definitive | ✅ |
+| 5f | `.mlp-wash` / `.mlp-contour` (12 elements) | `db91506` | 0 diff + definitive | ✅ |
+| 5g | `.mlp-cta` / `--primary` / `--ghost` (10 CTAs) | `245cda7` | 0 diff + definitive | ✅ |
+| 5h | `.mlp-hairline` (~85 row elements) | `0957a1b` | 0 diff + definitive | ✅ |
+| 6 | Report + housekeeping | this commit | full re-run 0 diff | ✅ |
+
+**Definitive check (Phase 5, post-hoc):** the pre-Phase-5 CSS (`780a9be`) gated against the
+final-state baseline PASSES — all utilities + blade class additions + declaration removals are
+byte-identical to the original cascade across all 110 tables (5 DOM states × 7 viewports ×
+motion contexts).
+
+### Net result
+
+- **7,402 lines (2 files) → 5,461 lines (1 file)** — 1,941 lines (26.2%) removed.
+- 314 dead rules + 396 dead selector parts + 8 dead tokens + 93 deduped rules + 11 no-op
+  pseudo lines + 60 dead `:is()`/`:where()` args + ~120 Phase-5 redundancy declarations.
+- 9 new additive utility rules: `.mlp-eyebrow`, `.mlp-h2`, `.mlp-intro-grid`, `.mlp-icon-box`,
+  `.mlp-stack-layer`, `.mlp-wash`, `.mlp-contour`, `.mlp-cta` (+`--primary`/`--ghost`),
+  `.mlp-hairline`.
+- Zero visual change: every phase gated at 0 cascade diff; the zero-tolerance acceptance
+  criterion ("1% bhi change nahi") is proven per phase and end-to-end.
+- Intentionally kept (no safe anchor): 22 dedup groups with variant values (grid-column
+  tracks, per-section gaps/margins, hero clamp, font locks) — see plan §3 "skipped groups".

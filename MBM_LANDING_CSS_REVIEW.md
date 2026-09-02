@@ -357,3 +357,76 @@ Ordered by safety/impact:
   `topic-desk`).
 - The two files together ship ~7,400 lines where roughly 25–30% is dead; the live page is
   well-engineered underneath the cruft.
+
+---
+
+## 6. Optimization outcomes (post-work report, 2026-09-02)
+
+The issues above were worked off in the approved plan
+(`MBM_LANDING_CSS_OPTIMIZATION_PLAN.md`, full status table in its §5). Summary of the
+final state of `public/assets/css/pages/mba-masters-landing.css`:
+
+### Numbers
+
+| Metric | Before | After |
+|---|---|---|
+| CSS files | 2 (`mba-masters-landing.css` 4,681 L + `mba-masters-polish.css` 2,721 L) | **1** (5,461 L) |
+| Dead rules / selector parts | 314 rules, 396 parts (journey, compare, snapshot first-pass, investment, topic-desk, …) | 0 (verified) |
+| Dead custom property tokens | 8 | 0 |
+| Duplicate rule groups (identical decls, merged) | — | 55 groups / 93 redundant rules merged |
+| Dead `:is()`/`:where()` arguments | 60 | 0 |
+| `<link>` tags in the page blade | 2 | 1 |
+
+Net: **7,402 lines → 5,461 lines (−26.2%)**, zero visual change.
+
+### Shared utilities added (Phase 5 — CSS + class additions in blade partials)
+
+| Utility | Covers | Elements |
+|---|---|---|
+| `.mlp-eyebrow` | section label typography (the values the typography locks enforce) | 11 labels |
+| `.mlp-h2` | section heading typography (display face, `--fs-section-title`, 500, 1.1, −0.02em, mba-blue) | 14 headings |
+| `.mlp-intro-grid` | section head grid core (`display:grid; align-items:end`; columns/gap/margins per section) | 8 heads |
+| `.mlp-icon-box` | 2rem red icon box (border color per section) | 11 icons |
+| `.mlp-stack-layer` | absolute image layer in a stack plate | 8 layers |
+| `.mlp-wash` / `.mlp-contour` | radial wash circle / 1px contour line (placement per section) | 8 + 4 |
+| `.mlp-cta` (+`--primary`/`--ghost`) | CTA core + red/navy roles (typography/gap/borders per section) | 10 buttons |
+| `.mlp-hairline` | `border-bottom: 1px solid var(--mlp-line-dark)` row separator | ~85 rows |
+
+Per-section rules keep everything that genuinely differs (margins, gaps, font sizes,
+border alphas, hover effects). Color/typography variants (red, white, navy CTAs; 48px
+masters CTA; dark-section text) stay in their own rules.
+
+### How "zero change" was proven (gate mechanism)
+
+No browser is available in this environment, so pixel diffs were impossible. The
+acceptance criterion was instead proven at the level that *is* the design: the **cascade
+winner table** — for every element in the page DOM (rendered fixture from the real blades
++ real data), every property's winning declaration (specificity, `!important`, source
+order, media, pseudo-states) must be byte-identical before vs after.
+
+- Harness: `scripts/css-equivalence/` (engine, gate, fixture builder, frozen baseline of
+  110 tables: 5 DOM states × 7 viewports × motion contexts).
+- Every phase ran the gate; any diff → revert. All 15 commits passed at **0 cascade
+  differences**.
+- Phase 5 was additionally verified end-to-end: the pre-Phase-5 CSS (`780a9be`) gated
+  against the final-state baseline passes — utilities + blade classes + removals are
+  cascade-equivalent to the original, not just to each other.
+- Two engine bugs found and fixed during the work (committed with their phases):
+  (1) interactive pseudo-classes (`:hover`/`:focus`/…) not generated in candidate tables
+  → false diffs on every hover/focus rule; (2) the `border` shorthand expanded to
+  aggregate longhands while `border-width/style/color` expanded per-side → two forms of
+  the same rendered border compared as different.
+
+### What was deliberately kept
+
+- **22 dedup groups** with variant values (grid-column track sets, per-section
+  gaps/margins/order, `transform:none` resets, hero `clamp(2.6rem,13vw,5rem)`,
+  `--mlp-type-*` font sizes, `!important` locks) — merging them would require per-section
+  exceptions, i.e. no byte savings and real risk.
+- `@keyframes mlpTrustRecordBounce` redefined inside the 700px media block (1px motion
+  difference if de-duplicated).
+- The palette shift to `#0f2983` headings / `#000` body (review §2, issue 2) — it is the
+  *effective* design and the freeze forbids value changes; documenting/reverting it is a
+  separate design decision.
+- JS-side dead state classes (`is-polished-ready`, …) and the dead `class-topics.js`
+  script — out of scope (CSS-only plan), noted as follow-up.
