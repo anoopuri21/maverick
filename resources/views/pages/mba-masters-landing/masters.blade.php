@@ -18,7 +18,7 @@
 @if($programs->isNotEmpty() || filled($masters->heading))
 <section class="mlp-masters mlp-masters--prospectus" id="mlp-masters" aria-label="Master's programmes">
   <div class="container mlp-masters__inner">
-    <header class="mlp-masters__head" data-mlp-reveal="masters-head">
+    <header class="mlp-masters__head mlp-intro-grid" data-mlp-reveal="masters-head">
       <div>
         <p class="mlp-masters__label mlp-eyebrow">{{ $label }}</p>
         <h2 class="mlp-masters__heading mlp-h2">{{ $heading }}</h2>

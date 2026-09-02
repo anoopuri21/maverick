@@ -25,7 +25,7 @@
   </div>
 
   <div class="blueprint-overview__frame container">
-    <header class="blueprint-overview__intro">
+    <header class="blueprint-overview__intro mlp-intro-grid">
       @if(filled($overview->label))
       <p class="blueprint-overview__folio">{{ $overview->label }}</p>
       @endif

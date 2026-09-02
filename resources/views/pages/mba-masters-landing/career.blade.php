@@ -14,7 +14,7 @@
   </div>
 
   <div class="archive-career__frame container">
-    <header class="archive-career__intro">
+    <header class="archive-career__intro mlp-intro-grid">
       <div>
         @if(filled($career->label))
         <p class="archive-career__label mlp-eyebrow">{{ $career->label }}</p>

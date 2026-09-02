@@ -91,6 +91,12 @@
   color: var(--color-mba-blue);
 }
 
+/* Shared section head grid (columns, gaps and margins stay per section). */
+.mlp-intro-grid {
+  display: grid;
+  align-items: end;
+}
+
 /* —— Section rhythm —— */
 
 /* —— Buttons —— */
@@ -731,10 +737,8 @@
 }
 
 .blueprint-overview__intro {
-  display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(16rem, 0.55fr);
   column-gap: clamp(2rem, 7vw, 8rem);
-  align-items: end;
   max-width: 72rem;
 }
 
@@ -1530,10 +1534,8 @@
 
 .archive-career__intro, 
 .archive-learning__intro {
-  display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(17rem, 0.9fr);
   gap: clamp(2rem, 7vw, 8rem);
-  align-items: end;
   margin-bottom: clamp(2.5rem, 5vw, 4rem);
 }
 
@@ -1644,7 +1646,7 @@
 
 /* Alumni: calm light ribbon, motion only for discovery. */
 .archive-alumni { background: var(--mlp-paper); }
-.archive-alumni__intro { display: grid; grid-template-columns: minmax(0, 1fr) minmax(17rem, 0.8fr); gap: clamp(2rem, 7vw, 8rem); align-items: end; margin-bottom: 2.75rem; }
+.archive-alumni__intro { grid-template-columns: minmax(0, 1fr) minmax(17rem, 0.8fr); gap: clamp(2rem, 7vw, 8rem); margin-bottom: 2.75rem; }
 .archive-alumni__intro-copy { max-width: 35ch; margin: 0 0 0.2rem auto; font-size: 0.94rem; line-height: 1.7; color: var(--mlp-muted-on-paper); }
 .archive-alumni__ribbon { overflow: hidden; border-top: 1px solid var(--mlp-navy); border-bottom: 1px solid var(--mlp-line-dark); }
 .archive-alumni__track { display: flex; width: max-content; animation: archiveAlumniMarquee 32s linear infinite; }
@@ -1704,10 +1706,8 @@
   background: var(--mlp-paper);
 }
 .pricing-cards__intro {
-  display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(17rem, 0.9fr);
   gap: clamp(1.5rem, 5vw, 5rem);
-  align-items: end;
   margin-bottom: clamp(2rem, 4vw, 3rem);
 }
 .pricing-cards__label {
@@ -2158,10 +2158,8 @@
 }
 .archive-partners__intro,
   .mlp-page--polished .archive-video-proof__intro {
-  display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(17rem, 0.9fr);
   gap: clamp(2rem, 7vw, 8rem);
-  align-items: end;
   margin-bottom: clamp(2rem, 4vw, 3.5rem);
 }
 .archive-partners__heading {
@@ -3154,10 +3152,8 @@
 
 /* Split editorial header */
 .mlp-masters--prospectus .mlp-masters__head {
-  display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
   gap: clamp(1.5rem, 4vw, 4rem);
-  align-items: end;
   max-width: none;
   margin-bottom: clamp(2.25rem, 5vw, 3.5rem);
 }

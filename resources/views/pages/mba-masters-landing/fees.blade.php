@@ -8,7 +8,7 @@
 @if($rows->isNotEmpty() || filled($fees->heading))
 <section class="mlp-fees pricing-cards" id="mlp-fees" aria-labelledby="pricing-cards-title">
   <div class="pricing-cards__frame container">
-    <header class="pricing-cards__intro">
+    <header class="pricing-cards__intro mlp-intro-grid">
       <div>
         @if(filled($fees->label))
         <p class="pricing-cards__label mlp-eyebrow">{{ $fees->label }}</p>

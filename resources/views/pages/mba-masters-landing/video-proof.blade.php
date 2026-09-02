@@ -13,7 +13,7 @@
   </div>
 
   <div class="archive-video-proof__frame container">
-    <header class="archive-video-proof__intro">
+    <header class="archive-video-proof__intro mlp-intro-grid">
       <div>
         <p class="archive-video-proof__label">Experience in motion</p>
         <h2 class="archive-video-proof__heading" id="mlp-video-proof-title">See the Maverick journey in motion.</h2>

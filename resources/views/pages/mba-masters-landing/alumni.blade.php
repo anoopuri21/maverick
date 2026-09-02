@@ -19,7 +19,7 @@
 @if(filled($alumni->heading) || $renderLogos->isNotEmpty())
 <section class="mlp-alumni archive-alumni" id="mlp-alumni" aria-labelledby="archive-alumni-title">
   <div class="archive-alumni__frame container">
-    <header class="archive-alumni__intro">
+    <header class="archive-alumni__intro mlp-intro-grid">
       <div>
         @if(filled($alumni->label))
         <p class="archive-alumni__label mlp-eyebrow">{{ $alumni->label }}</p>

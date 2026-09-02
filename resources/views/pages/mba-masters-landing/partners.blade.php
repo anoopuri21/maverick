@@ -39,7 +39,7 @@
 @if(filled($partners->heading) || $renderLogos->isNotEmpty())
 <section class="mlp-partners archive-partners" id="mlp-partners" aria-labelledby="archive-partners-title">
   <div class="archive-partners__frame container">
-    <header class="archive-partners__intro">
+    <header class="archive-partners__intro mlp-intro-grid">
       <div>
         @if(filled($partners->label))
         <p class="archive-partners__label mlp-eyebrow">{{ $partners->label }}</p>

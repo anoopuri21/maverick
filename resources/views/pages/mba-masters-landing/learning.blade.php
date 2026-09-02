@@ -19,7 +19,7 @@
   </div>
 
   <div class="archive-learning__frame container">
-    <header class="archive-learning__intro">
+    <header class="archive-learning__intro mlp-intro-grid">
       <div>
         @if(filled($learning->label))
         <p class="archive-learning__label mlp-eyebrow">{{ $learning->label }}</p>
