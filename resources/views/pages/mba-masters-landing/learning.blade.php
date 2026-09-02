@@ -69,7 +69,7 @@
     @if(filled($learning->cta_primary_label) || filled($learning->cta_secondary_label))
     <div class="archive-learning__actions">
       @if(filled($learning->cta_primary_label))
-      <a href="{{ edu_href($learning->cta_primary_url) ?? '#mlp-enquire' }}" class="archive-learning__primary">{{ $learning->cta_primary_label }} <span aria-hidden="true">↗</span></a>
+      <a href="{{ edu_href($learning->cta_primary_url) ?? '#mlp-enquire' }}" class="archive-learning__primary mlp-cta mlp-cta--primary">{{ $learning->cta_primary_label }} <span aria-hidden="true">↗</span></a>
       @endif
       @if(filled($learning->cta_secondary_label))
       <a href="{{ edu_href($learning->cta_secondary_url) ?? '#mlp-enquire' }}" class="archive-learning__secondary">{{ $learning->cta_secondary_label }}</a>

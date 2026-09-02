@@ -56,17 +56,17 @@
 
         <div class="prospectus-cover__actions">
           @if(filled($hero->cta_primary_label))
-          <a href="#mlp-enquire" class="prospectus-cover__primary" data-prospectus-open>
+          <a href="#mlp-enquire" class="prospectus-cover__primary mlp-cta mlp-cta--primary" data-prospectus-open>
             <span>{{ $hero->cta_primary_label }}</span>
             <span class="prospectus-cover__primary-mark" aria-hidden="true">↗</span>
           </a>
           @else
-          <a href="#mlp-enquire" class="prospectus-cover__primary" data-prospectus-open>
+          <a href="#mlp-enquire" class="prospectus-cover__primary mlp-cta mlp-cta--primary" data-prospectus-open>
             <span>Start your enquiry</span>
             <span class="prospectus-cover__primary-mark" aria-hidden="true">↗</span>
           </a>
           @endif
-          <a href="#mlp-trust" class="prospectus-cover__secondary">Read the evidence</a>
+          <a href="#mlp-trust" class="prospectus-cover__secondary mlp-cta">Read the evidence</a>
         </div>
       </div>
 

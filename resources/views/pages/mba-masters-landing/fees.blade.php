@@ -78,10 +78,10 @@
     @if(filled($fees->cta_primary_label) || filled($fees->cta_secondary_label))
     <div class="pricing-cards__actions">
       @if(filled($fees->cta_primary_label))
-      <a href="{{ edu_href($fees->cta_primary_url) ?? '#mlp-enquire' }}" class="pricing-cards__primary">{{ $fees->cta_primary_label }} <span aria-hidden="true">↗</span></a>
+      <a href="{{ edu_href($fees->cta_primary_url) ?? '#mlp-enquire' }}" class="pricing-cards__primary mlp-cta mlp-cta--primary">{{ $fees->cta_primary_label }} <span aria-hidden="true">↗</span></a>
       @endif
       @if(filled($fees->cta_secondary_label))
-      <a href="{{ edu_href($fees->cta_secondary_url) ?? '#mlp-enquire' }}" class="pricing-cards__secondary">{{ $fees->cta_secondary_label }}</a>
+      <a href="{{ edu_href($fees->cta_secondary_url) ?? '#mlp-enquire' }}" class="pricing-cards__secondary mlp-cta mlp-cta--ghost">{{ $fees->cta_secondary_label }}</a>
       @endif
     </div>
     @endif

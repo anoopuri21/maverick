@@ -126,6 +126,22 @@
   background: var(--mlp-line-dark);
 }
 
+/* Shared CTA button core (typography, padding, gap and effects stay per section). */
+.mlp-cta {
+  display: inline-flex;
+  align-items: center;
+  min-height: 3rem;
+}
+
+.mlp-cta--primary {
+  background: var(--mlp-red);
+  color: var(--mlp-white);
+}
+
+.mlp-cta--ghost {
+  color: var(--mlp-navy);
+}
+
 /* —— Section rhythm —— */
 
 /* —— Buttons —— */
@@ -569,13 +585,8 @@
 }
 
 .prospectus-cover__primary {
-  display: inline-flex;
-  align-items: center;
   gap: 1.1rem;
-  min-height: 3.25rem;
   padding: 0.9rem 1.25rem;
-  color: var(--mlp-white);
-  background: var(--mlp-red);
   border: 1px solid var(--mlp-red);
   font-size: 0.85rem;
   font-weight: 600;
@@ -1002,13 +1013,8 @@
 }
 
 .blueprint-overview__primary {
-  display: inline-flex;
-  align-items: center;
   gap: 0.7rem;
-  min-height: 3rem;
   padding: 0.8rem 1.25rem;
-  color: var(--mlp-white);
-  background: var(--mlp-red);
   font-size: 0.82rem;
   font-weight: 600;
   letter-spacing: 0.04em;
@@ -1023,7 +1029,6 @@
 
 .blueprint-overview__secondary {
   padding-bottom: 0.25rem;
-  color: var(--mlp-navy);
   border-bottom: 1px solid var(--mlp-navy);
   font-size: 0.78rem;
   font-weight: 600;
@@ -1695,7 +1700,7 @@
 .archive-learning__point h3 { margin: 0 0 0.35rem; font-family: var(--mlp-font-display); font-size: clamp(1.25rem, 2.1vw, 1.65rem); font-weight: 500; line-height: 1.05; letter-spacing: -0.025em; color: var(--mlp-navy); }
 .archive-learning__point-text { font-size: 0.86rem; line-height: 1.55; color: var(--mlp-muted-on-paper); }
 .archive-learning__actions { display: flex; flex-wrap: wrap; gap: 1rem 1.4rem; align-items: center; margin-top: 1.75rem; padding-top: 1rem; border-top: 1px solid var(--mlp-line-dark); }
-.archive-learning__primary { display: inline-flex; gap: 0.6rem; align-items: center; min-height: 2.9rem; padding: 0.75rem 1.1rem; color: var(--mlp-white); background: var(--mlp-red); font: 600 0.78rem var(--mlp-font-body); text-decoration: none; }
+.archive-learning__primary { gap: 0.6rem; padding: 0.75rem 1.1rem; font: 600 0.78rem var(--mlp-font-body); text-decoration: none; }
 .archive-learning__secondary { padding-bottom: 0.2rem; color: var(--mlp-navy); border-bottom: 1px solid var(--mlp-navy); font: 600 0.76rem var(--mlp-font-body); text-decoration: none; }
 
 @media (max-width: 900px) {
@@ -1866,22 +1871,13 @@
   margin-top: 1.5rem;
 }
 .pricing-cards__primary {
-  display: inline-flex;
-  align-items: center;
   gap: 0.6rem;
-  min-height: 3rem;
   padding: 0.75rem 1.1rem;
-  color: var(--mlp-white);
-  background: var(--mlp-red);
   font: 600 var(--mlp-type-caption, 0.8125rem) var(--mlp-font-body);
   text-decoration: none;
 }
 .pricing-cards__secondary {
-  min-height: 3rem;
-  display: inline-flex;
-  align-items: center;
   padding: 0.7rem 1rem;
-  color: var(--mlp-navy);
   border: 1px solid var(--mlp-navy);
   font: 600 var(--mlp-type-caption, 0.8125rem) var(--mlp-font-body);
   text-decoration: none;
@@ -3247,13 +3243,9 @@
   border-top: 1px solid var(--mlp-line-dark);
 }
 .mlp-masters__cta {
-  display: inline-flex;
-  align-items: center;
   gap: 0.6rem;
   min-height: 48px;
   padding: 0 1.6rem;
-  background: var(--mlp-red);
-  color: var(--mlp-white);
   font-family: var(--mlp-font-body);
   font-size: 0.95rem;
   font-weight: 600;

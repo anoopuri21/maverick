@@ -48,7 +48,7 @@
     @endif
 
     <div class="mlp-masters__cta-row">
-      <a href="#mlp-enquire" class="mlp-masters__cta">Check eligibility <span aria-hidden="true">↗</span></a>
+      <a href="#mlp-enquire" class="mlp-masters__cta mlp-cta mlp-cta--primary">Check eligibility <span aria-hidden="true">↗</span></a>
       <p class="mlp-masters__cta-note">Every programme above is open to enquiry — admissions team will confirm eligibility and next steps.</p>
     </div>
   </div>

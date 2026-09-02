@@ -93,10 +93,10 @@
     @if($hasCtas)
     <div class="blueprint-overview__actions">
       @if(filled($overview->cta_primary_label))
-      <a href="{{ edu_href($overview->cta_primary_url) ?? '#mlp-enquire' }}" class="blueprint-overview__primary">{{ $overview->cta_primary_label }} <span aria-hidden="true">↗</span></a>
+      <a href="{{ edu_href($overview->cta_primary_url) ?? '#mlp-enquire' }}" class="blueprint-overview__primary mlp-cta mlp-cta--primary">{{ $overview->cta_primary_label }} <span aria-hidden="true">↗</span></a>
       @endif
       @if(filled($overview->cta_secondary_label))
-      <a href="{{ edu_href($overview->cta_secondary_url) ?? '#mlp-enquire' }}" class="blueprint-overview__secondary">{{ $overview->cta_secondary_label }}</a>
+      <a href="{{ edu_href($overview->cta_secondary_url) ?? '#mlp-enquire' }}" class="blueprint-overview__secondary mlp-cta mlp-cta--ghost">{{ $overview->cta_secondary_label }}</a>
       @endif
     </div>
     @endif
