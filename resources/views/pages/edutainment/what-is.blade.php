@@ -71,7 +71,7 @@
       @if(strip_tags($whatIs->quote) !== $whatIs->quote)
         {!! rich_html($whatIs->quote ?? null) !!}
       @else
-        <p>&ldquo;{!! rich_html($whatIs->quote ?? null) !!}&rdquo;</p>
+        <div>&ldquo;{!! rich_html($whatIs->quote ?? null) !!}&rdquo;</div>
       @endif
     </div>
     @endif

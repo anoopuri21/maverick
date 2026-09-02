@@ -13,7 +13,7 @@
             <path d="M7.17 6C4.87 6 3 7.87 3 10.17c0 1.8 1.13 3.33 2.7 3.9-.22 1.66-1.2 3.13-2.7 4.1.9.55 1.96.83 3.05.83 3.31 0 6-2.69 6-6V6H7.17zm11 0C15.87 6 14 7.87 14 10.17c0 1.8 1.13 3.33 2.7 3.9-.22 1.66-1.2 3.13-2.7 4.1.9.55 1.96.83 3.05.83 3.31 0 6-2.69 6-6V6h-4.88z"/>
         </svg>
         @if(filled($s['quote']))
-        <p class="ep-success-card__quote">{!! rich_html($s['quote'] ?? null) !!}</p>
+        <div class="ep-success-card__quote">{!! rich_html($s['quote'] ?? null) !!}</div>
         @endif
         @if(filled($s['name']) || filled($s['role']))
         <p class="ep-success-card__attr">— {{ $s['name'] }}@if(filled($s['name']) && filled($s['role'])), @endif{{ $s['role'] }}</p>

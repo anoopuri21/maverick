@@ -33,7 +33,7 @@
         @endif
         <h3 class="dmba-why__card-title">{{ $card['title'] }}</h3>
         @if(filled($card['description'] ?? null))
-        <p class="dmba-why__card-desc">{!! rich_html($card['description'] ?? null) !!}</p>
+        <div class="dmba-why__card-desc">{!! rich_html($card['description'] ?? null) !!}</div>
         @endif
       </div>
       @endforeach

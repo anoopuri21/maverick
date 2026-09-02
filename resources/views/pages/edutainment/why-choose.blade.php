@@ -30,7 +30,7 @@
         @endif
         <h4 class="edu-why-choose__title">{{ $card['title'] }}</h4>
         @if(filled($card['description'] ?? null))
-        <p class="edu-why-choose__desc">{!! rich_html($card['description'] ?? null) !!}</p>
+        <div class="edu-why-choose__desc">{!! rich_html($card['description'] ?? null) !!}</div>
         @endif
       </div>
       @endforeach

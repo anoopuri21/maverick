@@ -58,7 +58,7 @@
                 </h4>
                 @endif
                 @if(!empty($item['desc']))
-                <p class="opportunities__item-desc">{!! rich_html($item['desc'] ?? null) !!}</p>
+                <div class="opportunities__item-desc">{!! rich_html($item['desc'] ?? null) !!}</div>
                 @endif
               </div>
               @if(! $isComingSoon)
@@ -110,7 +110,7 @@
                 </h4>
                 @endif
                 @if(!empty($item['desc']))
-                <p class="opportunities__item-desc">{!! rich_html($item['desc'] ?? null) !!}</p>
+                <div class="opportunities__item-desc">{!! rich_html($item['desc'] ?? null) !!}</div>
                 @endif
               </div>
               @if(! $isComingSoon)

@@ -185,7 +185,7 @@
                 <span class="kicker">{{ $chrome->overview_label ?? 'Programme Overview' }}</span>
                 <h2 class="d" style="font-size:clamp(28px,3.4vw,42px);line-height:1.06;letter-spacing:-.03em;margin:14px 0 22px">{{ $chrome->overview_heading ?? 'About this' }} </h2>
                 <div class="ov-rule"></div>
-                <div class="ov-copy"><p>{!! rich_html($program->description ?? null) !!}</p></div>
+                <div class="ov-copy"><div>{!! rich_html($program->description ?? null) !!}</div></div>
             </div>
             @if($highlights->count())
             <div class="ov-figure rv rv-d1">
@@ -216,7 +216,7 @@
                         <span class="why-index">{{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}</span>
                         <span class="why-illu"><i data-lucide="{{ $b['icon'] ?? 'sparkles' }}"></i></span>
                         <h4>{{ $b['title'] ?? '' }}</h4>
-                        <p>{!! html_filled($b['desc'] ?? null) ? rich_html($b['desc'] ?? null) : '' !!}</p>
+                        <div>{!! html_filled($b['desc'] ?? null) ? rich_html($b['desc'] ?? null) : '' !!}</div>
                     </div>
                 @endforeach
                 @if(filled(data_get($university, 'name')))
@@ -256,7 +256,7 @@
             <div class="sec-head rv">
                 <span class="kicker">{{ $chrome->career_label ?? 'Career Opportunities' }}</span>
                 <h2>{{ $chrome->career_heading ?? 'Where This Degree Can' }} </h2>
-                <p>{!! html_filled($chrome->career_intro ?? null) ? rich_html($chrome->career_intro ?? null) : 'Potential careers' !!}</p>
+                <div>{!! html_filled($chrome->career_intro ?? null) ? rich_html($chrome->career_intro ?? null) : 'Potential careers' !!}</div>
             </div>
             <div class="career-cloud">
                 @foreach($careers as $i => $career)
@@ -277,7 +277,7 @@
             <div class="sec-head center rv">
                 <span class="kicker">{{ $chrome->structure_label ?? 'Programme Structure' }}</span>
                 <h2>{{ $chrome->structure_heading ?? 'Your Journey,' }} </h2>
-                <p>{!! html_filled($chrome->structure_intro ?? null) ? rich_html($chrome->structure_intro ?? null) : 'A structured curriculum that builds from foundations through to advanced study.' !!}</p>
+                <div>{!! html_filled($chrome->structure_intro ?? null) ? rich_html($chrome->structure_intro ?? null) : 'A structured curriculum that builds from foundations through to advanced study.' !!}</div>
             </div>
             <div class="struct-list">
                 @foreach($structure as $i => $stage)
@@ -316,7 +316,7 @@
             <div class="gau-copy rv rv-d1">
                 <span class="kicker">{{ $chrome->university_label ?? 'The University' }}</span>
                 <h2>{{ $university->name ?? '' }} </h2>
-                @if($university->description)<p>{!! rich_html($university->description ?? null) !!}</p>@endif
+                @if($university->description)<div>{!! rich_html($university->description ?? null) !!}</div>@endif
                 @if($university->establishment)
                 <div class="gau-metrics">
                     <div class="gau-metric"><div class="num">{{ str_replace('Established ', '', $university->establishment) }}<small>+</small></div><div class="lbl">Established</div></div>
@@ -380,7 +380,7 @@
             <div class="sec-head center rv">
                 <span class="kicker">{{ $chrome->partner_label ?? 'Your Learning Partner' }}</span>
                 <h2>{{ $chrome->partner_heading ?? 'Why Study Through' }} </h2>
-                <p>{!! html_filled($chrome->partner_intro ?? null) ? rich_html($chrome->partner_intro ?? null) : 'Students receive:' !!}</p>
+                <div>{!! html_filled($chrome->partner_intro ?? null) ? rich_html($chrome->partner_intro ?? null) : 'Students receive:' !!}</div>
             </div>
             <div class="mav-grid">
                 @foreach($support as $i => $s)
@@ -517,7 +517,7 @@
             <div class="rv">
                 <span class="kicker">Fees &amp; Scholarships</span>
                 <h2 class="d" style="font-family:var(--font-display);font-size:clamp(28px,3.4vw,42px);line-height:1.06;letter-spacing:-.03em;color:#fff;margin:14px 0 14px">Fees &amp; <em style="color:var(--color-mba-red)">Scholarships</em></h2>
-                <p style="font-size:16px;line-height:1.7;color:rgba(255,255,255,.72);max-width:46ch">{!! html_filled($chrome->fees_intro ?? null) ? rich_html($chrome->fees_intro ?? null) : 'Fee structure varies by intake and study mode. Select any option to receive the full details.' !!}</p>
+                <div style="font-size:16px;line-height:1.7;color:rgba(255,255,255,.72);max-width:46ch">{!! html_filled($chrome->fees_intro ?? null) ? rich_html($chrome->fees_intro ?? null) : 'Fee structure varies by intake and study mode. Select any option to receive the full details.' !!}</div>
                 <div class="fee-list">
                     @foreach($fees as $fee)
                         <a href="#enquire" class="fee-chip"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 15h4M7 11h10"/></svg></span><div><span class="nm">{{ $fee }}</span><span class="rm">{{ $chrome->fees_request_label ?? 'View details' }} →</span></div></a>
@@ -603,7 +603,7 @@
                 <div class="glow" aria-hidden="true"></div>
                 <div class="final-inner">
                     <h2 class="d">{{ $chrome->final_cta_heading ?? 'Ready to Begin Your' }}</h2>
-                    <p>{!! html_filled($chrome->final_cta_body ?? null) ? rich_html($chrome->final_cta_body ?? null) : 'Speak to our admissions team today and take the first step toward a globally recognised degree.' !!}</p>
+                    <div>{!! html_filled($chrome->final_cta_body ?? null) ? rich_html($chrome->final_cta_body ?? null) : 'Speak to our admissions team today and take the first step toward a globally recognised degree.' !!}</div>
                     <div class="ctas">
                         <a href="#enquire" class="btn btn-white">Apply Now<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
                         <a href="#enquire" class="btn btn-outline">Enquire Now</a>

@@ -49,7 +49,7 @@
         <div class="container cinematic-hero__content">
             <span class="cinematic-hero__eyebrow"><span class="cinematic-hero__eyebrow-line"></span>{{ $eventsPage->hero_tag ?? 'Upcoming Events' }}</span>
             <h1 class="cinematic-hero__title">{{ $eventsPage->hero_heading ?? 'Discover Our' }} <em>{{ $eventsPage->hero_heading_italic ?? 'Events' }}</em></h1>
-            <p class="cinematic-hero__description">{!! html_filled($eventsPage->hero_description ?? null) ? rich_html($eventsPage->hero_description ?? null) : 'Webinars, workshops and masterclasses designed to keep you learning, connected and ahead.' !!}</p>
+            <div class="cinematic-hero__description">{!! html_filled($eventsPage->hero_description ?? null) ? rich_html($eventsPage->hero_description ?? null) : 'Webinars, workshops and masterclasses designed to keep you learning, connected and ahead.' !!}</div>
             <div class="cinematic-hero__scroll-hint" aria-hidden="true"><span class="cinematic-hero__scroll-text">Scroll to explore</span><span class="cinematic-hero__scroll-arrow" data-lucide="chevron-down"></span></div>
         </div>
     </section>
@@ -74,7 +74,7 @@
                         <h3>{{ $e->title }}</h3>
                         @endif
                         @if(filled($e->description))
-                        <p>{!! rich_html($e->description ?? null) !!}</p>
+                        <div>{!! rich_html($e->description ?? null) !!}</div>
                         @endif
                     </div>
                     @if(filled($e->event_type))

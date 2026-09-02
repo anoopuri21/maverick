@@ -35,7 +35,7 @@
         @endif
         <h3 class="edu-who-for__card-title">{{ $card['title'] }}</h3>
         @if(filled($card['description'] ?? null))
-        <p class="edu-who-for__card-desc">{!! rich_html($card['description'] ?? null) !!}</p>
+        <div class="edu-who-for__card-desc">{!! rich_html($card['description'] ?? null) !!}</div>
         @endif
       </div>
       @endforeach

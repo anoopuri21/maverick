@@ -31,13 +31,14 @@
                 $slug = \Illuminate\Support\Str::slug($dest['slug'] ?? $dest['name'] ?? $loop->iteration);
                 $position = in_array($dest['position'] ?? 'right', ['left', 'right'], true) ? $dest['position'] : 'right';
                 $points = collect($dest['points'] ?? [])->filter(fn ($p) => filled($p));
+                $destImageUrl = settings_media_url($dest, 'image');
             @endphp
             <article class="gbp-dest gbp-dest--{{ $position }} gbp-dest--{{ $slug }}" data-testid="gbp-dest-{{ $slug }}">
-                @if(filled($dest['image'] ?? null))
+                @if(filled($destImageUrl))
                 <div class="gbp-dest__media">
                     <img
                         class="gbp-dest__image"
-                        src="{{ media_url($dest['image']) }}"
+                        src="{{ $destImageUrl }}"
                         alt="{{ filled($dest['name'] ?? null) ? 'Study in '.$dest['name'] : '' }}"
                         loading="lazy"
                         width="760"

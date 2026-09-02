@@ -1,7 +1,11 @@
 @extends('layouts.app')
 
-@section('title', ($dualMbaSeo->meta_title ?? 'Dual MBA Programme | Maverick Business Academy London'))
-@section('meta_description', ($dualMbaSeo->meta_description ?? 'Earn Two MBA Degrees in One Year. General MBA + Specialised MBA through one integrated programme. 100% Online, Weekend Classes. Apply Now.'))
+@if(filled($dualMbaSeo->meta_title ?? null))
+@section('title', $dualMbaSeo->meta_title)
+@endif
+@if(filled($dualMbaSeo->meta_description ?? null))
+@section('meta_description', $dualMbaSeo->meta_description)
+@endif
 
 @push('head')
     @include('partials.seo-meta', ['seo' => $dualMbaSeo])

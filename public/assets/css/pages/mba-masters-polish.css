@@ -2631,3 +2631,91 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
   letter-spacing: normal !important;
   color: var(--color-black) !important;
 }
+
+/* Final accreditation reference lock — complete light landing typography cascade. */
+.mlp-page--polished :is(
+  #accreditations .programs__heading,
+  #mlp-trust .signal-atlas__heading,
+  #mlp-overview .blueprint-overview__heading,
+  #mlp-why .mlp-why__heading,
+  #mlp-journey .mlp-journey__heading,
+  #mlp-mba .mlp-mba__heading,
+  #mlp-masters .mlp-masters__heading,
+  #mlp-fees .pricing-cards__heading,
+  #mlp-class .archive-class__heading,
+  #mlp-class-snapshot .mlp-class-snapshot__heading,
+  #mlp-career .archive-career__heading,
+  #mlp-alumni .archive-alumni__heading,
+  #mlp-learning .archive-learning__heading,
+  #mlp-partners .archive-partners__heading,
+  #mlp-testimonials .archive-voices__heading,
+  #mlp-compare .archive-parallel__heading,
+  #mlp-faq .archive-fieldnotes__heading
+) {
+  font-family: var(--font-display) !important;
+  font-size: var(--fs-section-title) !important;
+  font-weight: var(--fw-medium) !important;
+  line-height: 1.1 !important;
+  letter-spacing: -0.02em !important;
+  color: var(--color-mba-blue) !important;
+  text-transform: none !important;
+}
+
+.mlp-page--polished :is(
+  #accreditations .section-label span,
+  #mlp-trust .signal-atlas__folio,
+  #mlp-overview .blueprint-overview__folio,
+  #mlp-why .mlp-why__label,
+  #mlp-journey .mlp-journey__label,
+  #mlp-mba .mlp-mba__label,
+  #mlp-masters .mlp-masters__label,
+  #mlp-fees .pricing-cards__label,
+  #mlp-class .archive-class__label,
+  #mlp-class-snapshot .mlp-class-snapshot__label,
+  #mlp-career .archive-career__label,
+  #mlp-alumni .archive-alumni__label,
+  #mlp-learning .archive-learning__label,
+  #mlp-partners .archive-partners__label,
+  #mlp-testimonials .archive-voices__label,
+  #mlp-compare .archive-parallel__label,
+  #mlp-faq .archive-fieldnotes__label
+) {
+  font-family: var(--font-body) !important;
+  font-size: 0.875rem !important;
+  font-weight: var(--fw-medium) !important;
+  line-height: 1.6 !important;
+  letter-spacing: 0.15em !important;
+  color: var(--color-mba-blue) !important;
+  text-transform: uppercase !important;
+}
+
+.mlp-page--polished :is(
+  #accreditations .accreditations__subheading,
+  #accreditations .accreditations__trust-text,
+  #mlp-trust .signal-atlas__quote p,
+  #mlp-overview .blueprint-overview__intro-copy,
+  #mlp-why .mlp-why__intro,
+  #mlp-why .mlp-why__text,
+  #mlp-journey .mlp-journey__intro,
+  #mlp-journey .mlp-journey__text,
+  #mlp-mba .mlp-mba__intro,
+  #mlp-masters .mlp-masters__intro,
+  #mlp-fees .pricing-cards__intro-copy,
+  #mlp-fees .pricing-cards__note,
+  #mlp-class .archive-class__copy,
+  #mlp-class-snapshot .mlp-class-snapshot__intro-copy,
+  #mlp-career .archive-career__intro-copy,
+  #mlp-alumni .archive-alumni__intro-copy,
+  #mlp-learning .archive-learning__intro-copy,
+  #mlp-partners .archive-partners__intro-copy,
+  #mlp-testimonials .archive-voices__intro-copy,
+  #mlp-compare .archive-parallel__intro-copy,
+  #mlp-faq .archive-fieldnotes__intro-copy
+) {
+  font-family: var(--font-body) !important;
+  font-size: var(--fs-body) !important;
+  font-weight: var(--fw-regular) !important;
+  line-height: 1.7 !important;
+  letter-spacing: normal !important;
+  color: var(--color-black) !important;
+}
