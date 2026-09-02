@@ -105,11 +105,18 @@ function expandBorderShorthand(side, value) {
     if (!t.color) map[`border-${side}-color`] = INITIAL.borderColor;
     return map;
   }
-  // `border:` shorthand also sets the three aggregate longhands
-  map['border-width'] = t.width ?? INITIAL.borderWidth;
-  map['border-style'] = t.style ?? INITIAL.borderStyle;
-  map['border-color'] = t.color ?? INITIAL.borderColor;
-  return map;
+  // `border:` shorthand → per-side longhands, the same canonical form the
+  // aggregate longhands (border-width/style/color) expand to. This keeps the
+  // winner tables comparable when a rule's form changes between baseline and
+  // candidate (shorthand → longhands) with no rendered difference.
+  const w = t.width ?? INITIAL.borderWidth;
+  const s = t.style ?? INITIAL.borderStyle;
+  const c = t.color ?? INITIAL.borderColor;
+  return {
+    'border-top-width': w, 'border-right-width': w, 'border-bottom-width': w, 'border-left-width': w,
+    'border-top-style': s, 'border-right-style': s, 'border-bottom-style': s, 'border-left-style': s,
+    'border-top-color': c, 'border-right-color': c, 'border-bottom-color': c, 'border-left-color': c,
+  };
 }
 
 function expandTransition(value) {

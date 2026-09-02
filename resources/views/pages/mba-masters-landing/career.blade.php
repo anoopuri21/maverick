@@ -59,7 +59,7 @@
         @foreach($stories as $story)
         <article class="archive-career__dossier" data-archive-element>
           <header class="archive-career__dossier-head">
-            <span class="archive-career__dossier-icon" aria-hidden="true"><i data-lucide="arrow-up-right"></i></span>
+            <span class="archive-career__dossier-icon mlp-icon-box" aria-hidden="true"><i data-lucide="arrow-up-right"></i></span>
             <div>
               <h3>{{ $story['name'] }}</h3>
               <p>

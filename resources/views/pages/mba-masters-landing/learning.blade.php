@@ -53,7 +53,7 @@
       <ol class="archive-learning__points" aria-label="Learning experience points">
         @foreach($points as $pi => $point)
         <li class="archive-learning__point" data-archive-element>
-          <span class="archive-learning__point-icon" aria-hidden="true"><i data-lucide="{{ $pointIcons[$pi] ?? 'sparkles' }}"></i></span>
+          <span class="archive-learning__point-icon mlp-icon-box" aria-hidden="true"><i data-lucide="{{ $pointIcons[$pi] ?? 'sparkles' }}"></i></span>
           <div>
             <h3>{{ $point['title'] }}</h3>
             @if(filled($point['text'] ?? null))

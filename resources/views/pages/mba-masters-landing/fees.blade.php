@@ -38,7 +38,7 @@
       @endphp
       <article class="pricing-card" data-closing-element>
         <header class="pricing-card__head">
-          <span class="pricing-card__icon" aria-hidden="true"><i data-lucide="receipt-text"></i></span>
+          <span class="pricing-card__icon mlp-icon-box" aria-hidden="true"><i data-lucide="receipt-text"></i></span>
           <span class="pricing-card__eyebrow">Programme route</span>
         </header>
 
