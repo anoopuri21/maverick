@@ -4062,29 +4062,6 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
   .archive-investment__record-topline h3
 ) { color: var(--mlp-color-heading); }
 
-.mlp-page--polished :is(
-  .signal-atlas__label,
-  .signal-atlas__note,
-  .blueprint-overview__intro-copy,
-  .mlp-why__intro,
-  .mlp-why__text,
-  .mlp-journey__intro,
-  .mlp-journey__text,
-  .mlp-mba__intro,
-  .mlp-masters__intro,
-  .archive-class__copy,
-  .archive-career__intro-copy,
-  .archive-alumni__intro-copy,
-  .archive-learning__intro-copy,
-  .archive-partners__intro-copy,
-  .archive-investment__intro-copy,
-  .archive-investment__note,
-  .archive-voices__intro-copy,
-  .archive-parallel__intro-copy,
-  .archive-fieldnotes__intro-copy,
-  .archive-closing__intro-copy
-) { color: var(--mlp-color-muted); }
-
 .mlp-page--polished :is(.archive-investment__primary, .archive-parallel__primary, .archive-closing__primary, .archive-learning__primary) {
   min-height: 3rem;
   background: var(--mlp-color-accent);
@@ -4144,18 +4121,9 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
 
 /* Issues 18 and 21: tighter journey grouping and quiet non-functional numbers. */
 
-.mlp-page--polished .mlp-why__chapter {
-  min-height: 0;
-  padding: clamp(2rem, 4vw, 3.25rem) 0;
-}
-
 .mlp-page--polished .mlp-why__chapter-grid {
   grid-template-columns: minmax(0, 1fr);
   gap: 1rem;
-}
-
-.mlp-page--polished .signal-atlas__record {
-  grid-template-columns: minmax(7rem, 0.48fr) minmax(0, 1fr);
 }
 
 /* Issue 23: keep Hero secondary action vertically centred with the button. */
