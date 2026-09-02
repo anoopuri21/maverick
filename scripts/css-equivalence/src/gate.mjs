@@ -127,18 +127,20 @@ for (const name of [...baseNames].sort()) {
         if (firstDiffs.length < 30) firstDiffs.push(`${name} [${i}] ${trunc(pb)}\n   ${p}: ${str(Ab[p])} → ${str(Ac[p])}`);
       }
     }
-    for (const ctx of ['hover', 'focus', 'focus-visible', 'focus-within']) {
-      const cb = B.ctx?.[ctx] ?? {};
-      const cc = C.ctx?.[ctx] ?? {};
-      for (const k of new Set([...Object.keys(cb), ...Object.keys(cc)])) {
-        const eb = cb[k] ?? {}, ec = cc[k] ?? {};
-          for (const p of new Set([...Object.keys(eb), ...Object.keys(ec)])) {
-            if (p.startsWith('--')) continue; // see base-context note
-            if (eb[p] !== ec[p]) {
-              totalDiffs++;
-              if (firstDiffs.length < 30) firstDiffs.push(`${name} [${k}] ${trunc(pc)}\n   ${ctx} ${p}: ${str(eb[p])} → ${str(ec[p])}`);
-            }
-          }
+  }
+  // table-level pseudo-context map (ctx is per table, not per element —
+  // compare it once per table, outside the element loop)
+  for (const ctx of ['hover', 'focus', 'focus-visible', 'focus-within']) {
+    const cb = B.ctx?.[ctx] ?? {};
+    const cc = C.ctx?.[ctx] ?? {};
+    for (const k of new Set([...Object.keys(cb), ...Object.keys(cc)])) {
+      const eb = cb[k] ?? {}, ec = cc[k] ?? {};
+      for (const p of new Set([...Object.keys(eb), ...Object.keys(ec)])) {
+        if (p.startsWith('--')) continue; // see base-context note
+        if (eb[p] !== ec[p]) {
+          totalDiffs++;
+          if (firstDiffs.length < 30) firstDiffs.push(`${name} [ctx] ${ctx} ${k}\n   ${p}: ${str(eb[p])} → ${str(ec[p])}`);
+        }
       }
     }
   }

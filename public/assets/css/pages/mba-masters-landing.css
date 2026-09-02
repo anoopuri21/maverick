@@ -713,6 +713,62 @@
   }
 }
 
+/* Hero enquiry (#mlp-enquire) — frosted glass card + compact floating fields. */
+#mlp-enquire {
+  background: rgba(255, 255, 255, 0.55);
+  -webkit-backdrop-filter: blur(14px) saturate(1.25);
+  backdrop-filter: blur(14px) saturate(1.25);
+}
+
+#mlp-enquire .mlp-form__row {
+  grid-template-columns: 1fr;
+}
+
+#mlp-enquire .mlp-field {
+  display: block;
+  position: relative;
+}
+
+#mlp-enquire .mlp-field > span {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  color: rgba(18, 18, 18, 0.35);
+  pointer-events: none;
+  transition: top 0.2s var(--mlp-ease), transform 0.2s var(--mlp-ease), font-size 0.2s var(--mlp-ease), color 0.2s ease;
+}
+
+#mlp-enquire .mlp-field input,
+#mlp-enquire .mlp-field select {
+  height: 30px;
+  min-height: 0;
+  padding: 0;
+  font-size: 14px;
+}
+
+#mlp-enquire .mlp-field input::placeholder {
+  color: transparent;
+}
+
+#mlp-enquire .mlp-field:has(> input:focus) > span,
+#mlp-enquire .mlp-field:has(> input:not(:placeholder-shown)) > span,
+#mlp-enquire .mlp-field:has(> select) > span {
+  top: 0;
+  transform: none;
+  font-size: 12px;
+  line-height: 1;
+  color: rgba(7, 20, 68, 0.55);
+}
+
+#mlp-enquire .mlp-btn {
+  font-size: 14px;
+}
+
 @media (prefers-reduced-motion: reduce) {
 }
 /* —— The Learning Blueprint: programme architecture —— */
