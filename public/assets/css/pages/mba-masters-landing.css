@@ -1546,11 +1546,20 @@
 }
 
 .mlp-mba__program-index {
-  font-family: var(--mlp-font-display);
-  font-size: 0.85rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   color: var(--mlp-red);
+}
+
+.mlp-mba__program-index svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* The typography lock adds padding-top for the old numeral — keep the icon centred. */
+.mlp-page--polished .mlp-mba__program-index {
+  padding-top: 0;
 }
 
 .mlp-mba__program-title {
@@ -2003,6 +2012,15 @@
   padding: clamp(4.5rem, 10vw, 8rem) 0 clamp(4rem, 9vw, 7rem);
   color: var(--mlp-ink);
   background: var(--mlp-paper);
+}
+
+.signal-atlas__bg-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.55;
 }
 
 .signal-atlas__wash {

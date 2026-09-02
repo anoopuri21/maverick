@@ -55,7 +55,7 @@
   @include('pages.mba-masters-landing.fees')
   @include('pages.mba-masters-landing.career')
   @include('pages.mba-masters-landing.alumni')
-  @include('pages.mba-masters-landing.learning')
+  @include('pages.mba-masters-landing.video-testimonials')
   @include('pages.mba-masters-landing.partners')
   @include('pages.mba-masters-landing.video-proof')
   @include('pages.mba-masters-landing.testimonials')

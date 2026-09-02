@@ -135,15 +135,13 @@
                 aria-label="{{ $uni['name'] }} specializations"
                 @if($specializationColumns->count() > 1) style="--mlp-specialization-rows: {{ $specializationColumns->first()->count() }}" @endif
               >
-                @php $specializationOffset = 0; @endphp
                 @foreach($specializationColumns as $column)
-                @foreach($column as $si => $specialization)
+                @foreach($column as $specialization)
                 <li class="mlp-mba__program mlp-hairline">
-                  <span class="mlp-mba__program-index" aria-hidden="true">{{ str_pad((string) ($specializationOffset + $si + 1), 2, '0', STR_PAD_LEFT) }}</span>
+                  <span class="mlp-mba__program-index" aria-hidden="true"><i data-lucide="graduation-cap"></i></span>
                   <span class="mlp-mba__program-title">{{ $specialization['title'] }}</span>
                 </li>
                 @endforeach
-                @php $specializationOffset += $column->count(); @endphp
                 @endforeach
               </ol>
             </div>

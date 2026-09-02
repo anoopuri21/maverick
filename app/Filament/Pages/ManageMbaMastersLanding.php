@@ -6,9 +6,9 @@ use App\Filament\Concerns\HydratesRepeaterMediaFields;
 use App\Filament\Concerns\SavesSettingsGroups;
 use App\Filament\Forms\Components\MediaPicker;
 use App\Settings\MbaMastersAlumniSettings;
-use App\Settings\MbaMastersLearningSettings;
 use App\Settings\MbaMastersPartnersSettings;
 use App\Settings\MbaMastersTestimonialsSettings;
+use App\Settings\MbaMastersVideoTestimonialsSettings;
 use App\Settings\MbaMastersCompareSettings;
 use App\Settings\MbaMastersFaqSettings;
 use App\Settings\MbaMastersFinalSettings;
@@ -118,11 +118,11 @@ class ManageMbaMastersLanding extends Page implements HasForms
             'class' => $class,
             'career' => $career,
             'alumni' => app(MbaMastersAlumniSettings::class)->toArray(),
-            'learning' => (function () {
-                $learning = app(MbaMastersLearningSettings::class)->toArray();
-                $learning['points'] = array_values($learning['points'] ?? []);
+            'videoTestimonials' => (function () {
+                $videoTestimonials = app(MbaMastersVideoTestimonialsSettings::class)->toArray();
+                $videoTestimonials['videos'] = array_values($videoTestimonials['videos'] ?? []);
 
-                return $learning;
+                return $videoTestimonials;
             })(),
             'partners' => app(MbaMastersPartnersSettings::class)->toArray(),
             'testimonials' => (function () {
@@ -443,34 +443,31 @@ class ManageMbaMastersLanding extends Page implements HasForms
                                 Textarea::make('alumni.trust_line')->label('Trust line')->rows(2)->columnSpanFull()
                                     ->helperText('Employer logos are managed under Partner Logos (type: alumni).'),
                             ])->columns(2),
-                        Tab::make('Learning experience')
+                        Tab::make('Video testimonials')
                             ->schema([
-                                TextInput::make('learning.index')->label('Section index')->placeholder('12'),
-                                TextInput::make('learning.label')->label('Section label'),
-                                TextInput::make('learning.heading')->label('Heading')->columnSpanFull(),
-                                Textarea::make('learning.intro')->label('Intro')->rows(2)->columnSpanFull(),
-                                TextInput::make('learning.plate_image')->hidden(),
-                                MediaPicker::forField('learning.plate_image', 'mba-masters-landing/learning')
-                                    ->label('Diagonal media plate')
-                                    ->columnSpanFull(),
-                                TextInput::make('learning.plate_caption')->label('Plate caption')->columnSpanFull(),
-                                Repeater::make('learning.points')
-                                    ->label('Learning points')
+                                TextInput::make('videoTestimonials.label')->label('Section label'),
+                                TextInput::make('videoTestimonials.heading')->label('Heading')->columnSpanFull(),
+                                Textarea::make('videoTestimonials.intro')->label('Intro')->rows(2)->columnSpanFull(),
+                                Repeater::make('videoTestimonials.videos')
+                                    ->label('Videos (4 recommended)')
                                     ->schema([
-                                        TextInput::make('title')->label('Title')->required(),
-                                        Textarea::make('text')->label('Text')->rows(2)->columnSpanFull(),
+                                        TextInput::make('video_url')
+                                            ->label('YouTube video URL')
+                                            ->required()
+                                            ->columnSpanFull()
+                                            ->helperText('Paste the YouTube watch/share URL. The thumbnail is generated automatically unless you provide one.'),
+                                        TextInput::make('name')->label('Name')->required(),
+                                        TextInput::make('role')->label('Role / designation'),
+                                        TextInput::make('category')->label('Badge / category')->placeholder('Student'),
+                                        TextInput::make('thumbnail')->label('Custom thumbnail URL (optional)')->columnSpanFull(),
                                     ])
-                                    ->columns(1)
+                                    ->columns(2)
                                     ->defaultItems(0)
                                     ->reorderable()
                                     ->collapsible()
-                                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
-                                    ->addActionLabel('Add point')
+                                    ->itemLabel(fn (array $state): ?string => $state['name'] ?? null)
+                                    ->addActionLabel('Add video')
                                     ->columnSpanFull(),
-                                TextInput::make('learning.cta_primary_label')->label('Primary CTA label'),
-                                TextInput::make('learning.cta_primary_url')->label('Primary CTA URL'),
-                                TextInput::make('learning.cta_secondary_label')->label('Secondary CTA label'),
-                                TextInput::make('learning.cta_secondary_url')->label('Secondary CTA URL'),
                             ])->columns(2),
                         Tab::make('University partners')
                             ->schema([
@@ -691,8 +688,8 @@ class ManageMbaMastersLanding extends Page implements HasForms
             'portrait'
         );
 
-        $learning = $this->syncImageIfSelected($data['learning'] ?? [], 'plate_image');
-        $learning['points'] = array_values($learning['points'] ?? []);
+        $videoTestimonials = $data['videoTestimonials'] ?? [];
+        $videoTestimonials['videos'] = array_values($videoTestimonials['videos'] ?? []);
 
         $testimonials = $data['testimonials'] ?? [];
         $testimonials['items'] = $this->hydrateRepeaterMediaFields($testimonials['items'] ?? [], 'photo');
@@ -726,7 +723,7 @@ class ManageMbaMastersLanding extends Page implements HasForms
             && $this->saveSettingsGroup(MbaMastersClassSettings::class, $class)
             && $this->saveSettingsGroup(MbaMastersCareerSettings::class, $career)
             && $this->saveSettingsGroup(MbaMastersAlumniSettings::class, $data['alumni'] ?? [])
-            && $this->saveSettingsGroup(MbaMastersLearningSettings::class, $learning)
+            && $this->saveSettingsGroup(MbaMastersVideoTestimonialsSettings::class, $videoTestimonials)
             && $this->saveSettingsGroup(MbaMastersPartnersSettings::class, $data['partners'] ?? [])
             && $this->saveSettingsGroup(MbaMastersTestimonialsSettings::class, $testimonials)
             && $this->saveSettingsGroup(MbaMastersCompareSettings::class, $compare)

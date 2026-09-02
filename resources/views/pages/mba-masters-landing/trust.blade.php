@@ -9,6 +9,7 @@
 @if($stats->isNotEmpty())
 <section class="mlp-trust signal-atlas" id="mlp-trust" aria-labelledby="signal-atlas-title">
   <div class="signal-atlas__background" aria-hidden="true">
+    <img class="signal-atlas__bg-image" src="{{ cached_asset('assets/images/mba-masters-landing/trust-bg.jpg') }}" alt="" width="1600" height="900" loading="eager" decoding="async">
     <span class="signal-atlas__wash mlp-wash"></span>
     <span class="signal-atlas__contour signal-atlas__contour--one mlp-contour"></span>
     <span class="signal-atlas__contour signal-atlas__contour--two mlp-contour"></span>
