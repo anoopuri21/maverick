@@ -34,7 +34,7 @@
     </header>
   </div>
 
-  <div class="archive-alumni__ribbon" aria-label="Employer logos">
+  <div class="archive-alumni__ribbon mlp-hairline" aria-label="Employer logos">
     <div class="archive-alumni__track">
       <ul class="archive-alumni__logos">
         @foreach($renderLogos as $logo)

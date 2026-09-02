@@ -37,14 +37,14 @@
         }
       @endphp
       <article class="pricing-card" data-closing-element>
-        <header class="pricing-card__head">
+        <header class="pricing-card__head mlp-hairline">
           <span class="pricing-card__icon mlp-icon-box" aria-hidden="true"><i data-lucide="receipt-text"></i></span>
           <span class="pricing-card__eyebrow">Programme route</span>
         </header>
 
         <h3 class="pricing-card__program">{{ $row['program'] }}</h3>
 
-        <div class="pricing-card__price">
+        <div class="pricing-card__price mlp-hairline">
           <span>Fee</span>
           <strong>{{ $fee }}</strong>
           @if($feeIsIndicative)

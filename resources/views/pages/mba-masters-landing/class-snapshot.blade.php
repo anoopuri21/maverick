@@ -55,7 +55,7 @@
         <h3 id="mlp-class-snapshot-global-title">Countries our students represent</h3>
         <ul class="mlp-class-snapshot__countries">
           @foreach($snapshotCountries as $country)
-          <li class="mlp-class-snapshot__country">
+          <li class="mlp-class-snapshot__country mlp-hairline">
             <img src="https://flagcdn.com/w40/{{ strtolower($country['iso2']) }}.png" alt="Flag of {{ $country['name'] }}" width="24" height="18" loading="lazy" decoding="async">
             <span>{{ $country['name'] }}</span>
           </li>
@@ -64,7 +64,7 @@
         @if($snapshotMetrics->isNotEmpty())
         <dl class="mlp-class-snapshot__metrics" aria-labelledby="mlp-class-snapshot-overview-title">
           @foreach($snapshotMetrics as $index => $metric)
-          <div class="mlp-class-snapshot__metric">
+          <div class="mlp-class-snapshot__metric mlp-hairline">
             <dt>
               <span class="mlp-class-snapshot__metric-icon" aria-hidden="true">
                 <i data-lucide="{{ $metricIcons[$index] ?? 'circle-dot' }}"></i>

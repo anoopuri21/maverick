@@ -39,7 +39,7 @@
 
     @if($showForm)
     <aside class="archive-closing__form" aria-label="Final enquiry form">
-      <div class="archive-closing__form-head">
+      <div class="archive-closing__form-head mlp-hairline">
         <span>{{ $final->form_title ?? 'Start your enquiry' }}</span>
         <i data-lucide="arrow-up-right" aria-hidden="true"></i>
       </div>

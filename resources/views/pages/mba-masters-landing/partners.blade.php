@@ -53,7 +53,7 @@
       @endif
     </header>
 
-    <div class="archive-partners__wall" data-partner-wall>
+    <div class="archive-partners__wall mlp-hairline" data-partner-wall>
       <div class="archive-partners__wall-head">
         <span>Academic network</span>
         <div class="archive-partners__controls">

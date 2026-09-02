@@ -12,7 +12,7 @@
 @endphp
 @if($chapters->isNotEmpty() || filled($why->heading))
 <section class="mlp-why" id="mlp-why" aria-label="Why choose Maverick">
-  <div class="mlp-why__pin">
+  <div class="mlp-why__pin mlp-hairline">
     <div class="container mlp-why__pin-inner" data-mlp-reveal="why-head">
       <div class="mlp-why__meta">
         @if(filled($why->label))

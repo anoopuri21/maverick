@@ -29,7 +29,7 @@
     <div class="archive-fieldnotes__list" data-mlp-faq-list>
       @foreach($items as $fi => $item)
       @php $panelId = 'mlp-faq-panel-'.($fi + 1); @endphp
-      <article class="archive-fieldnotes__note" data-mlp-faq-row data-closing-element>
+      <article class="archive-fieldnotes__note mlp-hairline" data-mlp-faq-row data-closing-element>
         <h3>
           <button type="button" class="archive-fieldnotes__question" aria-expanded="false" aria-controls="{{ $panelId }}" data-mlp-faq-toggle>
             <span class="archive-fieldnotes__question-icon" aria-hidden="true"><i data-lucide="plus"></i></span>

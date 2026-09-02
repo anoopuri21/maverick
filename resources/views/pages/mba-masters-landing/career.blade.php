@@ -57,7 +57,7 @@
 
       <div class="archive-career__dossiers">
         @foreach($stories as $story)
-        <article class="archive-career__dossier" data-archive-element>
+        <article class="archive-career__dossier mlp-hairline" data-archive-element>
           <header class="archive-career__dossier-head">
             <span class="archive-career__dossier-icon mlp-icon-box" aria-hidden="true"><i data-lucide="arrow-up-right"></i></span>
             <div>

@@ -58,7 +58,7 @@
         <div class="luxury-testimonials__slides" aria-live="polite">
           @foreach($items as $ti => $item)
           <blockquote
-            class="luxury-testimonial{{ $ti === 0 ? ' is-active' : '' }}"
+            class="luxury-testimonial mlp-hairline{{ $ti === 0 ? ' is-active' : '' }}"
             data-testimonial-slide
             data-closing-element
             @if($ti !== 0) hidden aria-hidden="true" @else aria-hidden="false" @endif
