@@ -13,14 +13,12 @@
 
   /* Surfaces — light theme */
   --mlp-void: #071444;
-  --mlp-void-mid: #0f2983;
   --mlp-paper: #f7f5f1;
   --mlp-paper-pure: #ffffff;
   --mlp-surface: #ffffff;
   --mlp-surface-soft: #f0ebe4;
   --mlp-glass: rgba(255, 255, 255, 0.82);
   --mlp-glass-border: rgba(7, 20, 68, 0.14);
-  --mlp-line-light: rgba(255, 255, 255, 0.35);
   --mlp-line-dark: rgba(7, 20, 68, 0.12);
   --mlp-muted-on-dark: rgba(255, 255, 255, 0.78);
   --mlp-muted-on-paper: rgba(18, 18, 18, 0.62);

@@ -118,6 +118,10 @@ for (const name of [...baseNames].sort()) {
     const [pc, Ac] = C.elements[i];
     if (pb !== pc) { totalDiffs++; firstDiffs.push(`${name} elem${i} path changed`); continue; }
     for (const p of new Set([...Object.keys(Ab), ...Object.keys(Ac)])) {
+      // custom properties are compared indirectly: any var() consumer that
+      // lost its definition resolves differently and shows up on the
+      // CONSUMING property (color/gap/…), which IS compared.
+      if (p.startsWith('--')) continue;
       if (Ab[p] !== Ac[p]) {
         totalDiffs++;
         if (firstDiffs.length < 30) firstDiffs.push(`${name} [${i}] ${trunc(pb)}\n   ${p}: ${str(Ab[p])} → ${str(Ac[p])}`);
@@ -128,12 +132,13 @@ for (const name of [...baseNames].sort()) {
       const cc = C.ctx?.[ctx] ?? {};
       for (const k of new Set([...Object.keys(cb), ...Object.keys(cc)])) {
         const eb = cb[k] ?? {}, ec = cc[k] ?? {};
-        for (const p of new Set([...Object.keys(eb), ...Object.keys(ec)])) {
-          if (eb[p] !== ec[p]) {
-            totalDiffs++;
-            if (firstDiffs.length < 30) firstDiffs.push(`${name} [${k}] ${trunc(pc)}\n   ${ctx} ${p}: ${str(eb[p])} → ${str(ec[p])}`);
+          for (const p of new Set([...Object.keys(eb), ...Object.keys(ec)])) {
+            if (p.startsWith('--')) continue; // see base-context note
+            if (eb[p] !== ec[p]) {
+              totalDiffs++;
+              if (firstDiffs.length < 30) firstDiffs.push(`${name} [${k}] ${trunc(pc)}\n   ${ctx} ${p}: ${str(eb[p])} → ${str(ec[p])}`);
+            }
           }
-        }
       }
     }
   }

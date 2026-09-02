@@ -122,6 +122,10 @@ pricing, testimonial carousel, etc.
 ## Known limitations (documented, consistent both sides)
 
 - `@keyframes` bodies: signature-hash compared, not cascade-diffed.
+- Custom properties (`--*`): skipped in the per-property diff. A removed or
+  changed definition only matters through `var()` consumers; any such change
+  surfaces on the *consuming* real property (color/gap/…), which is compared.
+  An orphaned definition (no consumer) is visually inert by definition.
 - Global CSS edits: diff against the frozen baseline (safe, conservative).
 - Unknown/unsupported pseudo-elements (e.g. `::-moz-selection`): both
   sides log a match-warning and skip them identically.

@@ -1,9 +1,6 @@
 /* MBA & Master's landing — page-wide Quietly Cinematic polish layer */
 .mlp-page--polished {
-  --mlp-polish-section-gap: clamp(4.5rem, 9vw, 8rem);
   --mlp-polish-line: rgba(7, 20, 68, 0.14);
-  --mlp-polish-ink-soft: rgba(18, 18, 18, 0.68);
-  --mlp-polish-red-soft: rgba(178, 2, 2, 0.12);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
@@ -390,7 +387,6 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
   --mlp-type-body: var(--fs-body);
   --mlp-type-lede: var(--fs-body);
   --mlp-type-title-sm: var(--fs-card-title);
-  --mlp-type-title: var(--fs-section-title);
   --mlp-type-title-lg: var(--fs-section-title);
   --mlp-type-display: var(--fs-hero);
   --mlp-type-stat: var(--fs-hero-sub);
@@ -556,11 +552,9 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
 /* Issue 2 — map page copy to a small semantic colour vocabulary. */
 .mlp-page--polished {
   --mlp-color-heading: var(--mlp-navy);
-  --mlp-color-body: var(--mlp-ink);
   --mlp-color-muted: var(--mlp-muted-on-paper);
   --mlp-color-accent: var(--mlp-red);
   --mlp-color-inverse: var(--mlp-white);
-  --mlp-color-line: var(--mlp-line-dark);
 }
 
 .mlp-page--polished :is(
@@ -756,11 +750,9 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
 /* 29-point audit batch — consistency, hierarchy, proximity, and affordance fixes. */
 .mlp-page--polished {
   --mlp-color-heading: var(--mlp-navy);
-  --mlp-color-body: var(--mlp-ink);
   --mlp-color-muted: var(--mlp-muted-on-paper);
   --mlp-color-accent: var(--mlp-red);
   --mlp-color-inverse: var(--mlp-white);
-  --mlp-color-line: var(--mlp-line-dark);
 }
 
 /* Issues 2–3: shared colour/button roles. */
