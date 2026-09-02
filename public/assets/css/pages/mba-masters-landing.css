@@ -715,13 +715,21 @@
 
 /* Hero enquiry (#mlp-enquire) — frosted glass card + compact floating fields. */
 #mlp-enquire {
-  background: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.15);
   -webkit-backdrop-filter: blur(14px) saturate(1.25);
   backdrop-filter: blur(14px) saturate(1.25);
 }
 
 #mlp-enquire .mlp-form__row {
   grid-template-columns: 1fr;
+}
+
+#mlp-enquire .prospectus-cover__enquiry-head h2 {
+  color: #ffffff;
+}
+
+#mlp-enquire .prospectus-cover__enquiry-head p {
+  color: rgba(255, 248, 240, 0.85);
 }
 
 #mlp-enquire .mlp-field {
@@ -732,28 +740,43 @@
 #mlp-enquire .mlp-field > span {
   position: absolute;
   left: 0;
-  top: 12px;
+  top: 16px;
+  font-family: var(--mlp-font-body) !important;
   font-size: 14px;
   line-height: 16px;
-  font-weight: 400;
-  letter-spacing: 0;
-  text-transform: none;
-  color: rgba(18, 18, 18, 0.35);
+  font-weight: 400 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  color: rgba(255, 248, 240, 0.55);
   pointer-events: none;
   transition: top 0.2s var(--mlp-ease), font-size 0.2s var(--mlp-ease), color 0.2s ease;
 }
 
 #mlp-enquire .mlp-field input,
 #mlp-enquire .mlp-field select {
-  height: 30px;
+  height: 38px;
   min-height: 0;
   padding: 11px 0 0;
-  font-size: 14px;
-  line-height: 16px;
+  border-bottom-color: rgba(255, 255, 255, 0.4);
+  font-family: var(--mlp-font-body) !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  line-height: 16px !important;
+  letter-spacing: normal !important;
+  color: #ffffff !important;
 }
 
-#mlp-enquire .mlp-field input::placeholder {
+#mlp-enquire .mlp-field input::placeholder,
+#mlp-enquire .mlp-field select::placeholder {
   color: transparent;
+}
+
+/* Native option popup otherwise renders on a light OS surface, which would
+   make the white text unreadable — give the list a dark surface so every
+   form font stays white/warm-white. */
+#mlp-enquire .mlp-field select option {
+  background: var(--mlp-navy);
+  color: #fff8f0;
 }
 
 #mlp-enquire .mlp-field:has(> input:focus) > span,
@@ -762,11 +785,26 @@
   top: 0;
   font-size: 12px;
   line-height: 12px;
-  color: rgba(7, 20, 68, 0.55);
+  color: #fff8f0;
 }
 
+#mlp-enquire .mlp-form__success {
+  color: #fff8f0;
+}
+
+#mlp-enquire .mlp-form__errors {
+  color: #ffffff;
+}
+
+/* The site-wide typography lock forces !important font properties
+   (inputs: 15-18px/1.7; button: 14px/500/1/0.08em). ID-scoped pins keep
+   the compact form spec authoritative without touching the global lock. */
 #mlp-enquire .mlp-btn {
-  font-size: 14px;
+  font-family: var(--mlp-font-body) !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  line-height: 1 !important;
+  letter-spacing: 0.08em !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
