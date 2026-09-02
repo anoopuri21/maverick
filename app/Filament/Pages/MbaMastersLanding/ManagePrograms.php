@@ -52,6 +52,8 @@ class ManagePrograms extends Page implements HasForms
         $mba['tabs'] = array_values($mba['tabs'] ?? []);
         foreach ($mba['tabs'] as &$tab) {
             $tab['universities'] = array_values($tab['universities'] ?? []);
+            $tab['universities'] = $this->hydrateRepeaterMediaFields($tab['universities'], 'logo');
+            $tab['universities'] = $this->hydrateRepeaterMediaFields($tab['universities'], 'image');
             foreach ($tab['universities'] as &$uni) {
                 $uni['programs'] = array_values($uni['programs'] ?? []);
             }
@@ -61,6 +63,8 @@ class ManagePrograms extends Page implements HasForms
 
         $masters = app(MbaMastersMastersSettings::class)->toArray();
         $masters['universities'] = array_values($masters['universities'] ?? []);
+        $masters['universities'] = $this->hydrateRepeaterMediaFields($masters['universities'], 'logo');
+        $masters['universities'] = $this->hydrateRepeaterMediaFields($masters['universities'], 'image');
         foreach ($masters['universities'] as &$uni) {
             $uni['programs'] = array_values($uni['programs'] ?? []);
         }
@@ -285,6 +289,9 @@ class ManagePrograms extends Page implements HasForms
             return;
         }
 
+        $existingMba = app(MbaMastersMbaSettings::class)->toArray();
+        $existingMasters = app(MbaMastersMastersSettings::class)->toArray();
+
         $overview = $this->syncImageIfSelected($data['overview'] ?? [], 'plate_image');
         $overview['items'] = array_values($overview['items'] ?? []);
 
@@ -295,26 +302,48 @@ class ManagePrograms extends Page implements HasForms
         $journey['steps'] = array_values($journey['steps'] ?? []);
 
         $mba = $this->syncImageIfSelected($data['mba'] ?? [], 'stage_image');
-        foreach ($mba['tabs'] ?? [] as &$tab) {
+        foreach ($mba['tabs'] ?? [] as $ti => &$tab) {
+            $tab['universities'] = $this->hydrateRepeaterMediaFields($tab['universities'] ?? [], 'logo');
+            $tab['universities'] = $this->hydrateRepeaterMediaFields($tab['universities'] ?? [], 'image');
             foreach ($tab['universities'] ?? [] as &$uni) {
                 $uni = $this->syncImageIfSelected($uni, 'logo');
                 $uni = $this->syncImageIfSelected($uni, 'image');
                 $uni['programs'] = array_values($uni['programs'] ?? []);
             }
             unset($uni);
-            $tab['universities'] = array_values($tab['universities'] ?? []);
+            $tab['universities'] = $this->preserveRepeaterImageFields(
+                array_values($tab['universities'] ?? []),
+                $existingMba['tabs'][$ti]['universities'] ?? [],
+                'logo'
+            );
+            $tab['universities'] = $this->preserveRepeaterImageFields(
+                $tab['universities'],
+                $existingMba['tabs'][$ti]['universities'] ?? [],
+                'image'
+            );
         }
         unset($tab);
         $mba['tabs'] = array_values($mba['tabs'] ?? []);
 
         $masters = $this->syncImageIfSelected($data['masters'] ?? [], 'stage_image');
+        $masters['universities'] = $this->hydrateRepeaterMediaFields($masters['universities'] ?? [], 'logo');
+        $masters['universities'] = $this->hydrateRepeaterMediaFields($masters['universities'] ?? [], 'image');
         foreach ($masters['universities'] ?? [] as &$uni) {
             $uni = $this->syncImageIfSelected($uni, 'logo');
             $uni = $this->syncImageIfSelected($uni, 'image');
             $uni['programs'] = array_values($uni['programs'] ?? []);
         }
         unset($uni);
-        $masters['universities'] = array_values($masters['universities'] ?? []);
+        $masters['universities'] = $this->preserveRepeaterImageFields(
+            array_values($masters['universities'] ?? []),
+            $existingMasters['universities'] ?? [],
+            'logo'
+        );
+        $masters['universities'] = $this->preserveRepeaterImageFields(
+            $masters['universities'],
+            $existingMasters['universities'] ?? [],
+            'image'
+        );
 
         $fees = $this->syncImageIfSelected($data['fees'] ?? [], 'stage_image');
         $fees['rows'] = array_values($fees['rows'] ?? []);

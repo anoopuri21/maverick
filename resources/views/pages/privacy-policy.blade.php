@@ -23,8 +23,8 @@
 
     <section class="cinematic-hero cinematic-hero--short" aria-label="Privacy Policy">
         <div class="cinematic-hero__bg" aria-hidden="true">
-            @if(filled($privacyPage->background_image ?? null))
-            <div class="cinematic-hero__bg-image" style="background-image: url('{{ media_url($privacyPage->background_image) }}')"></div>
+            @if(filled(settings_media_url($privacyPage, 'background_image')))
+            <div class="cinematic-hero__bg-image" style="background-image: url('{{ settings_media_url($privacyPage, 'background_image') }}')"></div>
             @endif
             <div class="cinematic-hero__gradient"></div>
             <div class="cinematic-hero__noise"></div>
@@ -60,12 +60,12 @@
         </div>
     </section>
 
-    @if(filled($privacyPage->center_image ?? null))
+    @if(filled(settings_media_url($privacyPage, 'center_image')))
     <section class="legal-center" aria-label="Privacy Policy visual">
         <div class="container">
             <figure class="legal-center__figure">
                 <img
-                    src="{{ media_url($privacyPage->center_image) }}"
+                    src="{{ settings_media_url($privacyPage, 'center_image') }}"
                     alt="{{ $privacyPage->center_image_alt ?: 'Privacy Policy' }}"
                     class="legal-center__img"
                     loading="lazy"

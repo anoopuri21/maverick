@@ -2,7 +2,7 @@
 
 namespace App\Filament\Pages\MbaMastersLanding\Concerns;
 
-use App\Filament\Forms\Components\MediaPicker;
+use App\Filament\Concerns\HydratesRepeaterMediaFields;
 use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\RichEditor;
 use Filament\Notifications\Notification;
@@ -11,6 +11,7 @@ use Throwable;
 
 trait ManagesMbaMastersChunk
 {
+    use HydratesRepeaterMediaFields;
     public ?array $data = [];
 
     protected function richEditorToolbar(): array
@@ -41,15 +42,6 @@ trait ManagesMbaMastersChunk
             ->label('')
             ->content($text)
             ->columnSpanFull();
-    }
-
-    protected function syncImageIfSelected(array $payload, string $field): array
-    {
-        if (! empty($payload["{$field}_asset_id"])) {
-            return MediaPicker::syncFieldFromAsset($payload, $field);
-        }
-
-        return $payload;
     }
 
     protected function getFormStateOrNotify(): ?array

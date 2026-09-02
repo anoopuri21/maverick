@@ -28,11 +28,12 @@
         @php
             $bullets = collect($card['bullets'] ?? [])->filter(fn ($item) => filled(is_array($item) ? ($item['item'] ?? null) : $item));
             $isFeatured = ! empty($card['is_featured']);
+            $cardImageUrl = settings_media_url($card, 'image');
         @endphp
         <div class="edu-programmes__card{{ $isFeatured ? ' edu-programmes__card--featured' : '' }} fade-up">
-          @if(filled($card['image'] ?? null))
+          @if(filled($cardImageUrl))
           <div class="edu-programmes__card-image">
-            <img src="{{ media_url($card['image']) }}" alt="{{ $card['title'] }}" loading="lazy">
+            <img src="{{ $cardImageUrl }}" alt="{{ $card['title'] }}" loading="lazy">
             <div class="edu-programmes__card-overlay"></div>
           </div>
           @endif

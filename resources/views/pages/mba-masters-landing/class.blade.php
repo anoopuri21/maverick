@@ -58,7 +58,7 @@
       <div class="archive-class__stack" aria-hidden="true">
         @foreach($industries->take(3) as $ii => $industry)
         <span class="archive-class__stack-image archive-class__stack-image--{{ $ii + 1 }}">
-          <img src="{{ media_url($industry['image'] ?? null, 'assets/images/homepage/business.jpg') }}" alt="" width="640" height="420" loading="lazy" decoding="async">
+          <img src="{{ settings_media_url($industry, 'image') ?: cached_asset('assets/images/homepage/business.jpg') }}" alt="" width="640" height="420" loading="lazy" decoding="async">
         </span>
         @endforeach
         <span class="archive-class__stack-caption">The room is bigger than one background.</span>
@@ -142,11 +142,11 @@
                   $stackImage = $industryImages[$stackName] ?? 'assets/images/homepage/business.jpg';
                 @endphp
                 <span class="topic-desk__stack topic-desk__stack--{{ $si + 1 }}" aria-hidden="true">
-                  <img src="{{ media_url($stackIndustry['image'] ?? null, $stackImage) }}" alt="" width="720" height="480" loading="lazy" decoding="async">
+                  <img src="{{ settings_media_url($stackIndustry, 'image') ?: cached_asset($stackImage) }}" alt="" width="720" height="480" loading="lazy" decoding="async">
                 </span>
                 @endforeach
                 <figure class="topic-desk__hero-image">
-                  <img src="{{ media_url($industry['image'] ?? null, $industryImage) }}" alt="{{ $industryName }} professional background" width="960" height="640" loading="lazy" decoding="async">
+                  <img src="{{ settings_media_url($industry, 'image') ?: cached_asset($industryImage) }}" alt="{{ $industryName }} professional background" width="960" height="640" loading="lazy" decoding="async">
                 </figure>
               </div>
               <div class="topic-desk__details">

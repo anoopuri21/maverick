@@ -142,7 +142,7 @@
 
 .gap-globe__halo {
   z-index: -1;
-  width: min(82vw, 43rem);
+  width: min(82vw, 37rem);
   border: 1px solid rgba(15, 41, 131, 0.1);
   box-shadow: 0 0 0 1rem rgba(15, 41, 131, 0.025), 0 0 5rem rgba(15, 41, 131, 0.07);
   opacity: 0.75;

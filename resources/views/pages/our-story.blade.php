@@ -111,7 +111,7 @@
       <div class="os-beginning__image-col">
         <div class="os-beginning__image-wrap fade-up">
           <div class="os-beginning__image-accent" aria-hidden="true"></div>
-          @if($url = media_url($beginning->image_url ?? null))
+          @if($url = settings_media_url($beginning, 'image_url'))
           <img src="{{ $url }}" alt="Where It All Began" class="os-beginning__image" loading="lazy" />
           @endif
         </div>
@@ -133,7 +133,7 @@
     <div class="os-today__grid">
       <div class="os-today__image-col">
         <div class="os-today__image-wrap fade-up">
-          @if($url = media_url($today->image_url ?? null))
+          @if($url = settings_media_url($today, 'image_url'))
           <img src="{{ $url }}" alt="What We Do Today" class="os-today__image" loading="lazy" />
           @endif
         </div>
@@ -241,7 +241,7 @@
       <div class="os-beginning__image-col">
         <div class="os-beginning__image-wrap fade-up">
           <div class="os-beginning__image-accent" aria-hidden="true"></div>
-        @if($url = media_url($vision->background_image_url ?? null))
+        @if($url = settings_media_url($vision, 'background_image_url'))
           <img src="{{ $url }}" alt="Where It All Began" class="os-beginning__image" loading="lazy" />
         @endif
         </div>

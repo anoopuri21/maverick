@@ -38,10 +38,10 @@ class ManageAudience extends Page implements HasForms
         $class = app(MbaMastersClassSettings::class)->toArray();
         $class['metrics'] = array_values($class['metrics'] ?? []);
         $class['regions'] = array_values($class['regions'] ?? []);
-        $class['industries'] = array_values($class['industries'] ?? []);
+        $class['industries'] = $this->hydrateRepeaterMediaFields(array_values($class['industries'] ?? []), 'image');
 
         $career = app(MbaMastersCareerSettings::class)->toArray();
-        $career['stories'] = array_values($career['stories'] ?? []);
+        $career['stories'] = $this->hydrateRepeaterMediaFields(array_values($career['stories'] ?? []), 'portrait');
 
         $learning = app(MbaMastersLearningSettings::class)->toArray();
         $learning['points'] = array_values($learning['points'] ?? []);
@@ -179,21 +179,34 @@ class ManageAudience extends Page implements HasForms
             return;
         }
 
+        $existingClass = app(MbaMastersClassSettings::class)->toArray();
+        $existingCareer = app(MbaMastersCareerSettings::class)->toArray();
+
         $class = $data['class'] ?? [];
         $class['metrics'] = array_values($class['metrics'] ?? []);
         $class['regions'] = array_values($class['regions'] ?? []);
+        $class['industries'] = $this->hydrateRepeaterMediaFields($class['industries'] ?? [], 'image');
         foreach ($class['industries'] ?? [] as &$industry) {
             $industry = $this->syncImageIfSelected($industry, 'image');
         }
         unset($industry);
-        $class['industries'] = array_values($class['industries'] ?? []);
+        $class['industries'] = $this->preserveRepeaterImageFields(
+            array_values($class['industries'] ?? []),
+            $existingClass['industries'] ?? [],
+            'image'
+        );
 
         $career = $data['career'] ?? [];
+        $career['stories'] = $this->hydrateRepeaterMediaFields($career['stories'] ?? [], 'portrait');
         foreach ($career['stories'] ?? [] as &$story) {
             $story = $this->syncImageIfSelected($story, 'portrait');
         }
         unset($story);
-        $career['stories'] = array_values($career['stories'] ?? []);
+        $career['stories'] = $this->preserveRepeaterImageFields(
+            array_values($career['stories'] ?? []),
+            $existingCareer['stories'] ?? [],
+            'portrait'
+        );
 
         $learning = $this->syncImageIfSelected($data['learning'] ?? [], 'plate_image');
         $learning['points'] = array_values($learning['points'] ?? []);

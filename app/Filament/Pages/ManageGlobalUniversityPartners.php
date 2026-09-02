@@ -2,6 +2,7 @@
 
 namespace App\Filament\Pages;
 
+use App\Filament\Concerns\HydratesRepeaterMediaFields;
 use App\Filament\Concerns\SavesSettingsGroups;
 use App\Filament\Forms\Components\MediaPicker;
 use App\Settings\GlobalPartnersBenefitsSettings;
@@ -30,6 +31,7 @@ use Filament\Pages\Page;
 
 class ManageGlobalUniversityPartners extends Page implements HasForms
 {
+    use HydratesRepeaterMediaFields;
     use SavesSettingsGroups;
     use InteractsWithForms;
 
@@ -230,8 +232,16 @@ class ManageGlobalUniversityPartners extends Page implements HasForms
         try {
             $data = $this->form->getState();
 
-            $this->saveSettingsGroup(GlobalPartnersHeroSettings::class, $data['hero'] ?? []);
-            $this->saveSettingsGroup(GlobalPartnersOverviewSettings::class, $data['overview'] ?? []);
+            $hero = $this->syncImageIfSelected($data['hero'] ?? [], 'background_image');
+            $overview = $this->syncImageIfSelected($data['overview'] ?? [], 'image');
+
+            $benefits = $data['benefits'] ?? [];
+            $benefits = $this->syncImageIfSelected($benefits, 'main_image');
+            $benefits = $this->syncImageIfSelected($benefits, 'secondary_image');
+            $benefits['items'] = settings_array($benefits['items'] ?? []);
+
+            $this->saveSettingsGroup(GlobalPartnersHeroSettings::class, $hero);
+            $this->saveSettingsGroup(GlobalPartnersOverviewSettings::class, $overview);
             $this->saveSettingsGroup(GlobalPartnersCardsSettings::class, $data['cards'] ?? []);
             $this->saveSettingsGroup(GlobalPartnersMapSettings::class, $data['map'] ?? []);
 
@@ -239,14 +249,13 @@ class ManageGlobalUniversityPartners extends Page implements HasForms
             $why['items'] = settings_array($why['items'] ?? []);
             $this->saveSettingsGroup(GlobalPartnersWhySettings::class, $why);
 
-            $benefits = $data['benefits'] ?? [];
-            $benefits['items'] = settings_array($benefits['items'] ?? []);
             $this->saveSettingsGroup(GlobalPartnersBenefitsSettings::class, $benefits);
 
             $this->saveSettingsGroup(GlobalPartnersJourneySettings::class, $data['journey'] ?? []);
 
             $seo = $data['seo'] ?? [];
-            unset($seo['og_image_url_asset_id'], $seo['twitter_image_url_asset_id']);
+            $seo = $this->syncImageIfSelected($seo, 'og_image_url');
+            $seo = $this->syncImageIfSelected($seo, 'twitter_image_url');
             $this->saveSettingsGroup(GlobalPartnersSeoSettings::class, $seo);
 
             Notification::make()

@@ -28,7 +28,7 @@
     {{-- Cinematic Hero (same structure as other pages) --}}
     <section class="cinematic-hero" aria-label="Events Hero">
         <div class="cinematic-hero__bg" aria-hidden="true">
-            @php $eventsHeroBg = media_url($eventsPage->hero_background_image ?? null, 'https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg?auto=compress&cs=tinysrgb&w=1920'); @endphp
+            @php $eventsHeroBg = settings_media_url($eventsPage, 'hero_background_image') ?: 'https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg?auto=compress&cs=tinysrgb&w=1920'; @endphp
             <div class="cinematic-hero__bg-image" @if($eventsHeroBg) style="background-image: url('{{ $eventsHeroBg }}')" @endif></div>
             <div class="cinematic-hero__gradient"></div>
             <div class="cinematic-hero__noise"></div>

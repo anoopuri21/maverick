@@ -30,8 +30,8 @@
     ═══════════════════════════════════════════ --}}
     <section class="cinematic-hero" aria-label="Global Opportunities Hero" data-testid="go-hero">
         <div class="cinematic-hero__bg" aria-hidden="true">
-            @if(filled($hero->background_image))
-            <div class="cinematic-hero__bg-image" style="background-image: url('{{ $hero->background_image }}')"></div>
+            @if(filled(settings_media_url($hero, 'background_image')))
+            <div class="cinematic-hero__bg-image" style="background-image: url('{{ settings_media_url($hero, 'background_image') }}')"></div>
             @endif
             <div class="cinematic-hero__gradient"></div>
             <div class="cinematic-hero__noise"></div>
@@ -127,7 +127,7 @@
                     @php
                         $isComingSoon = (bool) ($item['coming_soon'] ?? false);
                         $cardHref = $isComingSoon ? null : slug_href($item['slug'] ?? null);
-                        $cardImg = media_url($item['image'] ?? $item['image_url'] ?? null);
+                        $cardImg = settings_media_url($item, 'image') ?: media_url($item['image_url'] ?? null);
                     @endphp
                     @if($cardHref)
                     <a href="{{ $cardHref }}" class="go-card" data-testid="go-card-{{ $loop->iteration }}">

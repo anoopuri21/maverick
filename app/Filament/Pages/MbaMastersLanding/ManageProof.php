@@ -37,7 +37,10 @@ class ManageProof extends Page implements HasForms
     public function mount(): void
     {
         $testimonials = app(MbaMastersTestimonialsSettings::class)->toArray();
-        $testimonials['items'] = array_values($testimonials['items'] ?? []);
+        $testimonials['items'] = $this->hydrateRepeaterMediaFields(
+            array_values($testimonials['items'] ?? []),
+            'photo'
+        );
 
         $compare = app(MbaMastersCompareSettings::class)->toArray();
         $compare['rows'] = array_values($compare['rows'] ?? []);
@@ -143,12 +146,19 @@ class ManageProof extends Page implements HasForms
             return;
         }
 
+        $existingTestimonials = app(MbaMastersTestimonialsSettings::class)->toArray();
+
         $testimonials = $data['testimonials'] ?? [];
+        $testimonials['items'] = $this->hydrateRepeaterMediaFields($testimonials['items'] ?? [], 'photo');
         foreach ($testimonials['items'] ?? [] as &$item) {
             $item = $this->syncImageIfSelected($item, 'photo');
         }
         unset($item);
-        $testimonials['items'] = array_values($testimonials['items'] ?? []);
+        $testimonials['items'] = $this->preserveRepeaterImageFields(
+            array_values($testimonials['items'] ?? []),
+            $existingTestimonials['items'] ?? [],
+            'photo'
+        );
 
         $compare = $data['compare'] ?? [];
         $compare['rows'] = array_values($compare['rows'] ?? []);

@@ -32,7 +32,7 @@
         ═══════════════════════════════════════════ --}}
         <section class="cinematic-hero" aria-label="Accreditations Hero">
             <div class="cinematic-hero__bg" aria-hidden="true">
-                @php $accredHeroBg = media_url($accreditationsPage->hero_background_image ?? null, 'https://images.pexels.com/photos/267885/pexels-photo-267885.jpeg?auto=compress&cs=tinysrgb&w=1920'); @endphp
+                @php $accredHeroBg = settings_media_url($accreditationsPage, 'hero_background_image') ?: 'https://images.pexels.com/photos/267885/pexels-photo-267885.jpeg?auto=compress&cs=tinysrgb&w=1920'; @endphp
                 <div class="cinematic-hero__bg-image" @if($accredHeroBg) style="background-image: url('{{ $accredHeroBg }}')" @endif></div>
                 <div class="cinematic-hero__gradient"></div>
                 <div class="cinematic-hero__noise"></div>
@@ -142,7 +142,7 @@
         {{-- ═══════════════════════════════════════════
             SECTION 2: CINEMATIC PINNED IMAGE
         ═══════════════════════════════════════════ --}}
-        @if($url = media_url($cinematicSettings->image_url ?? null))
+        @if($url = settings_media_url($cinematicSettings, 'image_url'))
         <section class="accred-cinematic" data-cinematic-pin aria-hidden="true">
             <div class="accred-cinematic__inner">
                 <div class="accred-cinematic__bg">

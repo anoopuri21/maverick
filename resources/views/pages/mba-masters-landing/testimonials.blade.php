@@ -15,7 +15,7 @@
       'name' => $testimonial['name'] ?? '',
       'role' => $testimonial['role'] ?? '',
       'quote' => $testimonial['quote'] ?? '',
-      'photo' => media_url($testimonial['photo'] ?? null),
+      'photo' => settings_media_url($testimonial, 'photo'),
     ]);
   $items = $fromSettings->isNotEmpty() ? $fromSettings : $fromDb;
   $fallbackPhoto = cached_asset('assets/images/alumni/alumn-1.png');

@@ -428,17 +428,6 @@
     if (event) event.preventDefault();
   }
 
-  function onWheel(event) {
-    if (!projection) return;
-
-    event.preventDefault();
-    var factor = event.deltaY < 0 ? 1.1 : 0.9;
-    var nextScale = clamp(projection.scale() * factor, radius * 0.78, radius * 1.5);
-    projection.scale(nextScale);
-    velocity = [0, 0];
-    lastInteraction = performance.now();
-  }
-
   function onKeyDown(event) {
     var step = event.shiftKey ? 14 : 7;
     if (event.key === "ArrowLeft") {
@@ -549,7 +538,6 @@
       updateStatus("Grab the globe to explore");
     }
   });
-  canvas.addEventListener("wheel", onWheel, { passive: false });
   canvas.addEventListener("keydown", onKeyDown);
   countryButtons.forEach(function (button) {
     button.addEventListener("click", function () {

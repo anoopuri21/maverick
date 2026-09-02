@@ -3,7 +3,7 @@
   $items = collect($overview->items ?? [])
       ->filter(fn ($item) => filled($item['title'] ?? null))
       ->values();
-  $plate = mlp_image_url($overview->plate_image ?? null, [
+  $plate = mlp_image_url(settings_media_url($overview, 'plate_image'), [
     'w' => 1200,
     'fallback' => 'assets/images/homepage/mba-management.jpg',
   ]);

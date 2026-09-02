@@ -31,7 +31,7 @@
 ═══════════════════════════════════════════ --}}
 <section class="cinematic-hero cinematic-hero--short" aria-label="Leadership Hero">
     <div class="cinematic-hero__bg" aria-hidden="true">
-        @if($url = media_url($hero->background_image ?? null))
+        @if($url = settings_media_url($hero, 'background_image'))
         <div class="cinematic-hero__bg-image" style="background-image: url('{{ $url }}')"></div>
         @endif
         <div class="cinematic-hero__gradient"></div>
@@ -110,9 +110,9 @@
 
         <div class="executive-team__grid">
             @foreach($executiveTeam as $member)
-            @if(filled($member['name'] ?? null) || filled($member['designation'] ?? null) || filled($member['bio'] ?? null) || filled($member['image_url'] ?? null))
+            @if(filled($member['name'] ?? null) || filled($member['designation'] ?? null) || filled($member['bio'] ?? null) || filled(settings_media_url($member, 'image_url')))
             <article class="team-card">
-                @if($url = media_url($member['image_url'] ?? null))
+                @if($url = settings_media_url($member, 'image_url'))
                 <div class="team-card__image-wrapper">
                     <img src="{{ $url }}"
                          alt="{{ $member['name'] ?? '' }}"

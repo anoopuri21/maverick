@@ -2,22 +2,24 @@
 @php
     $heroStats = collect($hero->stats ?? [])->filter(fn ($stat) => filled($stat['value'] ?? null) || filled($stat['label'] ?? null));
     $heroCtas = collect($hero->ctas ?? [])->filter(fn ($cta) => filled($cta['label'] ?? null) && filled($cta['url'] ?? null));
+    $heroBackgroundUrl = settings_media_url($hero, 'background_image');
+    $heroVisualUrl = settings_media_url($hero, 'visual_image');
     $showHero = filled($hero->tag ?? null)
         || filled($hero->headline_line1 ?? null)
         || filled($hero->headline_line2 ?? null)
         || filled($hero->headline_italic ?? null)
         || html_filled($hero->sub ?? null)
-        || filled($hero->background_image ?? null)
-        || filled($hero->visual_image ?? null)
+        || filled($heroBackgroundUrl)
+        || filled($heroVisualUrl)
         || $heroStats->isNotEmpty()
         || $heroCtas->isNotEmpty();
 @endphp
 @if($showHero)
 <section id="dmba-hero" class="dmba-hero" aria-label="Dual MBA Programme Hero" data-testid="dmba-hero-section">
   <div class="dmba-hero__bg" aria-hidden="true">
-    @if(filled($hero->background_image))
+    @if(filled($heroBackgroundUrl))
     <img
-      src="{{ media_url($hero->background_image) }}"
+      src="{{ $heroBackgroundUrl }}"
       alt="{{ $hero->background_image_alt ?? '' }}"
       class="dmba-hero__bg-image"
       loading="eager"
@@ -80,12 +82,12 @@
           @endif
         </div>
 
-        @if(filled($hero->visual_image) || filled($hero->badge_title) || filled($hero->badge_sub))
+        @if(filled($heroVisualUrl) || filled($hero->badge_title) || filled($hero->badge_sub))
         <div class="dmba-hero__visual" data-dmba-hero="visual">
-          @if(filled($hero->visual_image))
+          @if(filled($heroVisualUrl))
           <div class="dmba-hero__image-frame">
             <img
-              src="{{ media_url($hero->visual_image) }}"
+              src="{{ $heroVisualUrl }}"
               alt="{{ $hero->visual_image_alt ?? '' }}"
               loading="eager"
             />

@@ -1,6 +1,6 @@
 {{-- §1 Hero + enquiry — The Living Prospectus / Cinematic Hero Assembly --}}
 @php
-  $bg = mlp_image_url($hero->background_image, ['w' => 1600, 'fallback' => 'assets/images/edutainment/hero-cinematic.jpg']);
+  $bg = mlp_image_url(settings_media_url($hero, 'background_image'), ['w' => 1600, 'fallback' => 'assets/images/edutainment/hero-cinematic.jpg']);
   $headline = $hero->headline ?? 'Affordable Online MBA & Master\'s Programs in UAE';
 
   // Keep the approved editorial line break and left-side content alignment.

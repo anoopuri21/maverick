@@ -1,7 +1,7 @@
 @php
     $homepageFaqs = collect($homepageFaqs ?? []);
     $homepageChrome = $homepageChrome ?? null;
-    $faqImage = media_url($homepageChrome->faq_image_url ?? null, 'assets/images/homepage/mba-management.jpg');
+    $faqImage = settings_media_url($homepageChrome, 'faq_image_url') ?: cached_asset('assets/images/homepage/mba-management.jpg');
 @endphp
 @if($homepageFaqs->isNotEmpty())
 <section id="faq" class="faq section-wrapper section--light" aria-label="Frequently Asked Questions">

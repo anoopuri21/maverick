@@ -38,8 +38,8 @@
          ========================================== --}}
     <section class="cinematic-hero cinematic-hero--short" aria-label="CSR Hero">
         <div class="cinematic-hero__bg" aria-hidden="true">
-            @if(filled($hero->background_image))
-            <div class="cinematic-hero__bg-image" style="background-image: url('{{ $hero->background_image }}')"></div>
+            @if(filled($heroBackgroundUrl = settings_media_url($hero, 'background_image')))
+            <div class="cinematic-hero__bg-image" style="background-image: url('{{ $heroBackgroundUrl }}')"></div>
             @endif
             <div class="cinematic-hero__gradient"></div>
             <div class="cinematic-hero__noise"></div>
@@ -111,8 +111,8 @@
                 </div>
                 <div class="csr-commitment__visual">
                     <div class="csr-commitment__image-container">
-                        @if(filled($commitment->image_url))
-                        <img src="{{ $commitment->image_url }}" alt="Students and educators community engagement" class="csr-commitment__img" loading="lazy">
+                        @if(filled($commitmentImageUrl = settings_media_url($commitment, 'image_url')))
+                        <img src="{{ $commitmentImageUrl }}" alt="Students and educators community engagement" class="csr-commitment__img" loading="lazy">
                         @endif
                         <div class="csr-decorative-pattern"></div>
                     </div>
@@ -179,8 +179,8 @@
                 @endphp
                 <div class="csr-gallery-card {{ $cardClass }}">
                     <div class="csr-gallery-card__image-wrapper">
-                        @if(filled($item['image'] ?? null))
-                        <img src="{{ $item['image'] }}" alt="{{ $item['title'] ?? '' }}" class="csr-gallery-card__image" loading="lazy">
+                        @if(filled($galleryImageUrl = settings_media_url($item, 'image')))
+                        <img src="{{ $galleryImageUrl }}" alt="{{ $item['title'] ?? '' }}" class="csr-gallery-card__image" loading="lazy">
                         @endif
                     </div>
                     <div class="csr-gallery-card__content">

@@ -1,6 +1,6 @@
 {{-- §17 Final CTA — The Closing Archive / Closing Admissions Desk --}}
 @php
-  $plate = mlp_image_url($final->plate_image ?? null, ['w' => 1600, 'fallback' => 'assets/images/edutainment/cta-cinematic.jpg']);
+  $plate = mlp_image_url(settings_media_url($final, 'plate_image'), ['w' => 1600, 'fallback' => 'assets/images/edutainment/cta-cinematic.jpg']);
   $showForm = (bool) ($final->show_form ?? true);
 @endphp
 

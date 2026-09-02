@@ -35,11 +35,12 @@
                 $slug = \Illuminate\Support\Str::slug($dest['slug'] ?? $dest['name'] ?? $loop->iteration);
                 $position = in_array($dest['position'] ?? 'left', ['left', 'right'], true) ? $dest['position'] : 'left';
                 $points = collect($dest['points'] ?? [])->filter(fn ($p) => filled($p));
+                $destImageUrl = settings_media_url($dest, 'image');
             @endphp
             <article class="mp-dest mp-dest--{{ $position }}" data-testid="mp-dest-{{ $slug }}">
-                @if(filled($dest['image'] ?? null))
+                @if(filled($destImageUrl))
                 <div class="mp-dest__media">
-                    <img class="mp-dest__image" src="{{ media_url($dest['image']) }}" alt="{{ filled($dest['name'] ?? null) ? 'Study in '.$dest['name'] : '' }}" loading="lazy" width="760" height="950">
+                    <img class="mp-dest__image" src="{{ $destImageUrl }}" alt="{{ filled($dest['name'] ?? null) ? 'Study in '.$dest['name'] : '' }}" loading="lazy" width="760" height="950">
                     <div class="mp-dest__overlay" aria-hidden="true"></div>
                     @if(filled($dest['name'] ?? null))
                     <span class="mp-dest__country">{{ $dest['name'] }}</span>

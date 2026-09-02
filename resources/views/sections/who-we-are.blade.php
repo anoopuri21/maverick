@@ -1,5 +1,5 @@
 @php
-    $wwaImage = media_url($whoWeAre->image_url ?? null);
+    $wwaImage = settings_media_url($whoWeAre, 'image_url');
     $wwaCtaHref = edu_href($whoWeAre->cta_url ?? null);
     $wwaStats = collect([
         ['value' => $whoWeAre->stat1_value ?? null, 'suffix' => $whoWeAre->stat1_suffix ?? null, 'label' => $whoWeAre->stat1_label ?? null],

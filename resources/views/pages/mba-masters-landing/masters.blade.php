@@ -8,7 +8,7 @@
       ->filter(fn ($title) => $title !== '')
       ->unique(fn ($title) => mb_strtolower($title))
       ->values();
-  $plate = mlp_image_url($masters->stage_image ?? null, [
+  $plate = mlp_image_url(settings_media_url($masters, 'stage_image'), [
     'w' => 1920,
     'fallback' => 'assets/images/edutainment/dubai-uae-skyline-students-studying-camp-1.jpg',
   ]);

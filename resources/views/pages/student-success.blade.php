@@ -24,7 +24,7 @@
     {{-- Cinematic Hero --}}
     <section class="cinematic-hero" aria-label="Student Success Hero">
         <div class="cinematic-hero__bg" aria-hidden="true">
-            @php $ssHeroBg = media_url($studentSuccessPage->hero_background_image ?? null, 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1920'); @endphp
+            @php $ssHeroBg = settings_media_url($studentSuccessPage, 'hero_background_image') ?: 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1920'; @endphp
             <div class="cinematic-hero__bg-image" @if($ssHeroBg) style="background-image: url('{{ $ssHeroBg }}')" @endif></div>
             <div class="cinematic-hero__gradient"></div>
             <div class="cinematic-hero__noise"></div>

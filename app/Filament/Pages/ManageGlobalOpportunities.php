@@ -3,6 +3,7 @@
 namespace App\Filament\Pages;
 
 use App\Filament\Concerns\HandlesCloudinaryImageFields;
+use App\Filament\Concerns\HydratesRepeaterMediaFields;
 use App\Filament\Forms\Components\MediaPicker;
 use App\Filament\Support\RepeaterNormalizer;
 use App\Settings\GlobalOpportunitiesSettings;
@@ -20,6 +21,7 @@ use Filament\Pages\SettingsPage;
 class ManageGlobalOpportunities extends SettingsPage
 {
     use HandlesCloudinaryImageFields;
+    use HydratesRepeaterMediaFields;
 
     protected static ?string $navigationIcon = 'heroicon-o-globe-alt';
     protected static ?string $navigationGroup = 'Global Pathways';
@@ -119,6 +121,14 @@ class ManageGlobalOpportunities extends SettingsPage
         ]);
     }
 
+    protected function mutateFormDataBeforeFill(array $data): array
+    {
+        $data['opportunities'] = $this->hydrateRepeaterMediaFields($data['opportunities'] ?? [], 'image');
+        $data['pathways'] = $this->hydrateRepeaterMediaFields($data['pathways'] ?? [], 'image');
+
+        return $data;
+    }
+
     protected function mutateFormDataBeforeSave(array $data): array
     {
         $settings = app(static::$settings);
@@ -128,12 +138,16 @@ class ManageGlobalOpportunities extends SettingsPage
                 continue;
             }
 
-            $item = MediaPicker::syncFieldFromAsset($item, 'image');
+            $item = $this->syncImageIfSelected($item, 'image');
             if (filled($item['slug'] ?? null)) {
                 $item['slug'] = \Illuminate\Support\Str::slug(trim((string) $item['slug'], '/'));
             }
             $existing = $settings->opportunities[$index] ?? [];
-            $data['opportunities'][$index] = $this->preserveExistingImageFields($item, is_array($existing) ? $existing : []);
+            $data['opportunities'][$index] = $this->preserveRepeaterImageFields(
+                [$item],
+                is_array($existing) ? [$existing] : [],
+                'image'
+            )[0] ?? $item;
         }
 
         foreach ($data['pathways'] ?? [] as $index => $item) {
@@ -141,12 +155,16 @@ class ManageGlobalOpportunities extends SettingsPage
                 continue;
             }
 
-            $item = MediaPicker::syncFieldFromAsset($item, 'image');
+            $item = $this->syncImageIfSelected($item, 'image');
             if (filled($item['slug'] ?? null)) {
                 $item['slug'] = \Illuminate\Support\Str::slug(trim((string) $item['slug'], '/'));
             }
             $existing = $settings->pathways[$index] ?? [];
-            $data['pathways'][$index] = $this->preserveExistingImageFields($item, is_array($existing) ? $existing : []);
+            $data['pathways'][$index] = $this->preserveRepeaterImageFields(
+                [$item],
+                is_array($existing) ? [$existing] : [],
+                'image'
+            )[0] ?? $item;
         }
 
         $data['opportunities'] = RepeaterNormalizer::stripEmptyRows($data['opportunities'] ?? []);

@@ -2,6 +2,7 @@
 
 namespace App\Filament\Pages;
 
+use App\Filament\Concerns\HydratesRepeaterMediaFields;
 use App\Filament\Concerns\SavesSettingsGroups;
 use App\Filament\Forms\Components\MediaPicker;
 use App\Settings\MbaMastersAlumniSettings;
@@ -40,6 +41,7 @@ use Throwable;
 
 class ManageMbaMastersLanding extends Page implements HasForms
 {
+    use HydratesRepeaterMediaFields;
     use SavesSettingsGroups;
     use InteractsWithForms;
 
@@ -75,6 +77,8 @@ class ManageMbaMastersLanding extends Page implements HasForms
         $mba['tabs'] = array_values($mba['tabs'] ?? []);
         foreach ($mba['tabs'] as &$tab) {
             $tab['universities'] = array_values($tab['universities'] ?? []);
+            $tab['universities'] = $this->hydrateRepeaterMediaFields($tab['universities'], 'logo');
+            $tab['universities'] = $this->hydrateRepeaterMediaFields($tab['universities'], 'image');
             foreach ($tab['universities'] as &$uni) {
                 $uni['programs'] = array_values($uni['programs'] ?? []);
             }
@@ -84,6 +88,8 @@ class ManageMbaMastersLanding extends Page implements HasForms
 
         $masters = app(MbaMastersMastersSettings::class)->toArray();
         $masters['universities'] = array_values($masters['universities'] ?? []);
+        $masters['universities'] = $this->hydrateRepeaterMediaFields($masters['universities'], 'logo');
+        $masters['universities'] = $this->hydrateRepeaterMediaFields($masters['universities'], 'image');
         foreach ($masters['universities'] as &$uni) {
             $uni['programs'] = array_values($uni['programs'] ?? []);
         }
@@ -95,10 +101,10 @@ class ManageMbaMastersLanding extends Page implements HasForms
         $class = app(MbaMastersClassSettings::class)->toArray();
         $class['metrics'] = array_values($class['metrics'] ?? []);
         $class['regions'] = array_values($class['regions'] ?? []);
-        $class['industries'] = array_values($class['industries'] ?? []);
+        $class['industries'] = $this->hydrateRepeaterMediaFields(array_values($class['industries'] ?? []), 'image');
 
         $career = app(MbaMastersCareerSettings::class)->toArray();
-        $career['stories'] = array_values($career['stories'] ?? []);
+        $career['stories'] = $this->hydrateRepeaterMediaFields(array_values($career['stories'] ?? []), 'portrait');
 
         $this->form->fill([
             'hero' => app(MbaMastersHeroSettings::class)->toArray(),
@@ -121,7 +127,10 @@ class ManageMbaMastersLanding extends Page implements HasForms
             'partners' => app(MbaMastersPartnersSettings::class)->toArray(),
             'testimonials' => (function () {
                 $testimonials = app(MbaMastersTestimonialsSettings::class)->toArray();
-                $testimonials['items'] = array_values($testimonials['items'] ?? []);
+                $testimonials['items'] = $this->hydrateRepeaterMediaFields(
+                    array_values($testimonials['items'] ?? []),
+                    'photo'
+                );
 
                 return $testimonials;
             })(),
@@ -603,27 +612,55 @@ class ManageMbaMastersLanding extends Page implements HasForms
         $hero = $this->syncImageIfSelected($data['hero'] ?? [], 'background_image');
         $seo = $this->syncImageIfSelected($data['seo'] ?? [], 'og_image_url');
 
+        $existingMba = app(MbaMastersMbaSettings::class)->toArray();
+        $existingMasters = app(MbaMastersMastersSettings::class)->toArray();
+        $existingClass = app(MbaMastersClassSettings::class)->toArray();
+        $existingCareer = app(MbaMastersCareerSettings::class)->toArray();
+        $existingTestimonials = app(MbaMastersTestimonialsSettings::class)->toArray();
+
         $mba = $this->syncImageIfSelected($data['mba'] ?? [], 'stage_image');
-        foreach ($mba['tabs'] ?? [] as &$tab) {
+        foreach ($mba['tabs'] ?? [] as $ti => &$tab) {
+            $tab['universities'] = $this->hydrateRepeaterMediaFields($tab['universities'] ?? [], 'logo');
+            $tab['universities'] = $this->hydrateRepeaterMediaFields($tab['universities'] ?? [], 'image');
             foreach ($tab['universities'] ?? [] as &$uni) {
                 $uni = $this->syncImageIfSelected($uni, 'logo');
                 $uni = $this->syncImageIfSelected($uni, 'image');
                 $uni['programs'] = array_values($uni['programs'] ?? []);
             }
             unset($uni);
-            $tab['universities'] = array_values($tab['universities'] ?? []);
+            $tab['universities'] = $this->preserveRepeaterImageFields(
+                array_values($tab['universities'] ?? []),
+                $existingMba['tabs'][$ti]['universities'] ?? [],
+                'logo'
+            );
+            $tab['universities'] = $this->preserveRepeaterImageFields(
+                $tab['universities'],
+                $existingMba['tabs'][$ti]['universities'] ?? [],
+                'image'
+            );
         }
         unset($tab);
         $mba['tabs'] = array_values($mba['tabs'] ?? []);
 
         $masters = $this->syncImageIfSelected($data['masters'] ?? [], 'stage_image');
+        $masters['universities'] = $this->hydrateRepeaterMediaFields($masters['universities'] ?? [], 'logo');
+        $masters['universities'] = $this->hydrateRepeaterMediaFields($masters['universities'] ?? [], 'image');
         foreach ($masters['universities'] ?? [] as &$uni) {
             $uni = $this->syncImageIfSelected($uni, 'logo');
             $uni = $this->syncImageIfSelected($uni, 'image');
             $uni['programs'] = array_values($uni['programs'] ?? []);
         }
         unset($uni);
-        $masters['universities'] = array_values($masters['universities'] ?? []);
+        $masters['universities'] = $this->preserveRepeaterImageFields(
+            array_values($masters['universities'] ?? []),
+            $existingMasters['universities'] ?? [],
+            'logo'
+        );
+        $masters['universities'] = $this->preserveRepeaterImageFields(
+            $masters['universities'],
+            $existingMasters['universities'] ?? [],
+            'image'
+        );
 
         $fees = $this->syncImageIfSelected($data['fees'] ?? [], 'stage_image');
         $fees['rows'] = array_values($fees['rows'] ?? []);
@@ -631,28 +668,43 @@ class ManageMbaMastersLanding extends Page implements HasForms
         $class = $data['class'] ?? [];
         $class['metrics'] = array_values($class['metrics'] ?? []);
         $class['regions'] = array_values($class['regions'] ?? []);
+        $class['industries'] = $this->hydrateRepeaterMediaFields($class['industries'] ?? [], 'image');
         foreach ($class['industries'] ?? [] as &$industry) {
             $industry = $this->syncImageIfSelected($industry, 'image');
         }
         unset($industry);
-        $class['industries'] = array_values($class['industries'] ?? []);
+        $class['industries'] = $this->preserveRepeaterImageFields(
+            array_values($class['industries'] ?? []),
+            $existingClass['industries'] ?? [],
+            'image'
+        );
 
         $career = $data['career'] ?? [];
+        $career['stories'] = $this->hydrateRepeaterMediaFields($career['stories'] ?? [], 'portrait');
         foreach ($career['stories'] ?? [] as &$story) {
             $story = $this->syncImageIfSelected($story, 'portrait');
         }
         unset($story);
-        $career['stories'] = array_values($career['stories'] ?? []);
+        $career['stories'] = $this->preserveRepeaterImageFields(
+            array_values($career['stories'] ?? []),
+            $existingCareer['stories'] ?? [],
+            'portrait'
+        );
 
         $learning = $this->syncImageIfSelected($data['learning'] ?? [], 'plate_image');
         $learning['points'] = array_values($learning['points'] ?? []);
 
         $testimonials = $data['testimonials'] ?? [];
+        $testimonials['items'] = $this->hydrateRepeaterMediaFields($testimonials['items'] ?? [], 'photo');
         foreach ($testimonials['items'] ?? [] as &$item) {
             $item = $this->syncImageIfSelected($item, 'photo');
         }
         unset($item);
-        $testimonials['items'] = array_values($testimonials['items'] ?? []);
+        $testimonials['items'] = $this->preserveRepeaterImageFields(
+            array_values($testimonials['items'] ?? []),
+            $existingTestimonials['items'] ?? [],
+            'photo'
+        );
 
         $compare = $data['compare'] ?? [];
         $compare['rows'] = array_values($compare['rows'] ?? []);
@@ -685,14 +737,5 @@ class ManageMbaMastersLanding extends Page implements HasForms
         if ($ok) {
             Notification::make()->title('MBA & Master\'s landing saved')->success()->send();
         }
-    }
-
-    protected function syncImageIfSelected(array $payload, string $field): array
-    {
-        if (! empty($payload["{$field}_asset_id"])) {
-            return MediaPicker::syncFieldFromAsset($payload, $field);
-        }
-
-        return $payload;
     }
 }

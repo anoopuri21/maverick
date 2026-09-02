@@ -23,8 +23,8 @@
 
     <section class="cinematic-hero cinematic-hero--short" aria-label="Terms of Use">
         <div class="cinematic-hero__bg" aria-hidden="true">
-            @if(filled($termsPage->background_image ?? null))
-            <div class="cinematic-hero__bg-image" style="background-image: url('{{ media_url($termsPage->background_image) }}')"></div>
+            @if(filled(settings_media_url($termsPage, 'background_image')))
+            <div class="cinematic-hero__bg-image" style="background-image: url('{{ settings_media_url($termsPage, 'background_image') }}')"></div>
             @endif
             <div class="cinematic-hero__gradient"></div>
             <div class="cinematic-hero__noise"></div>
@@ -60,12 +60,12 @@
         </div>
     </section>
 
-    @if(filled($termsPage->center_image ?? null))
+    @if(filled(settings_media_url($termsPage, 'center_image')))
     <section class="legal-center" aria-label="Terms of Use visual">
         <div class="container">
             <figure class="legal-center__figure">
                 <img
-                    src="{{ media_url($termsPage->center_image) }}"
+                    src="{{ settings_media_url($termsPage, 'center_image') }}"
                     alt="{{ $termsPage->center_image_alt ?: 'Terms of Use' }}"
                     class="legal-center__img"
                     loading="lazy"

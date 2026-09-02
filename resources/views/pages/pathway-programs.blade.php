@@ -30,8 +30,8 @@
     ═══════════════════════════════════════════ --}}
     <section class="cinematic-hero" aria-label="Pathway Programs Hero" data-testid="pp-hero">
         <div class="cinematic-hero__bg" aria-hidden="true">
-            @if(filled($hero->background_image))
-            <div class="cinematic-hero__bg-image" style="background-image: url('{{ $hero->background_image }}')"></div>
+            @if($heroBackgroundUrl = settings_media_url($hero, 'background_image'))
+            <div class="cinematic-hero__bg-image" style="background-image: url('{{ $heroBackgroundUrl }}')"></div>
             @endif
             <div class="cinematic-hero__gradient"></div>
             <div class="cinematic-hero__noise"></div>
@@ -129,7 +129,7 @@
                 <article class="pp-row @if($loop->even) pp-row--reverse @endif"
                          data-testid="pp-row-{{ $loop->iteration }}">
                     <div class="pp-row__media">
-                        @if($url = media_url($item['image'] ?? $item['image_url'] ?? null))
+                        @if($url = settings_media_url($item, 'image') ?: media_url($item['image_url'] ?? null))
                         <img class="pp-row__img" src="{{ $url }}" alt="{{ $item['title'] ?? 'Pathway programme' }}" loading="lazy">
                         @else
                         <div class="pp-row__img pp-row__img--placeholder">

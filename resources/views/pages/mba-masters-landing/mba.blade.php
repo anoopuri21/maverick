@@ -94,7 +94,7 @@
       >
         @foreach($unis as $ui => $uni)
         @php
-          $logo = media_url($uni['logo'] ?? null, null);
+          $logo = settings_media_url($uni, 'logo');
           $tabKey = strtolower(trim((string) ($tab['key'] ?? '')));
           $generatedPhoto = $generatedImagesByTab[$tabKey][$ui] ?? $fallbackCampus;
           $photo = mlp_image_url($generatedPhoto, ['w' => 1200, 'fallback' => $fallbackCampus]);

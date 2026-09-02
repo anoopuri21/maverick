@@ -3,7 +3,7 @@
   $points = collect($learning->points ?? [])
       ->filter(fn ($point) => filled($point['title'] ?? null))
       ->values();
-  $plate = media_url($learning->plate_image ?? null, 'assets/images/homepage/mba-management.jpg');
+  $plate = settings_media_url($learning, 'plate_image') ?: cached_asset('assets/images/homepage/mba-management.jpg');
   $supportingImages = [
     'assets/images/edutainment/learning-beyond.png',
     'assets/images/programs/enquire-seminar.jpg',

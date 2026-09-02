@@ -37,7 +37,7 @@
 @if(filled($hero->heading_line1) || filled($hero->heading_italic))
 <section class="cinematic-hero" aria-label="Global University Partners Hero">
     <div class="cinematic-hero__bg" aria-hidden="true">
-        @if($heroBg = media_url($hero->background_image))
+        @if($heroBg = settings_media_url($hero, 'background_image'))
         <div class="cinematic-hero__bg-image" style="background-image: url('{{ $heroBg }}')"></div>
         @endif
         <div class="cinematic-hero__gradient"></div>
@@ -108,7 +108,7 @@
                 <div class="gup-overview__paragraph">{!! rich_html($overview->paragraph ?? null) !!}</div>
                 @endif
 
-                @if($overviewImg = media_url($overview->image))
+                @if($overviewImg = settings_media_url($overview, 'image'))
                 <div class="gup-overview__image-wrapper">
                     <img src="{{ $overviewImg }}"
                          alt="{{ $overview->image_alt ?? 'Partnership' }}"
@@ -291,8 +291,8 @@
             </div>
 
             @php
-                $benefitsMain = media_url($benefits->main_image);
-                $benefitsSecondary = media_url($benefits->secondary_image);
+                $benefitsMain = settings_media_url($benefits, 'main_image');
+                $benefitsSecondary = settings_media_url($benefits, 'secondary_image');
             @endphp
             @if($benefitsMain || $benefitsSecondary || filled($benefits->stat_number) || filled($benefits->stat_label))
             <div class="gup-benefits__visual">

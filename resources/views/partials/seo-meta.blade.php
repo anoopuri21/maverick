@@ -10,12 +10,12 @@
     $canonical       = $seo->canonical_url ?? null;
     $ogTitle         = $seo->og_title ?? $metaTitle;
     $ogDescription   = $seo->og_description ?? $metaDescription;
-    $ogImage         = $seo->og_image_url ?? null;
+    $ogImage         = settings_media_url($seo, 'og_image_url');
     $ogType          = $seo->og_type ?? 'website';
     $twitterCard     = $seo->twitter_card ?? 'summary_large_image';
     $twitterTitle    = $seo->twitter_title ?? $ogTitle;
     $twitterDesc     = $seo->twitter_description ?? $ogDescription;
-    $twitterImage    = $seo->twitter_image_url ?? $ogImage;
+    $twitterImage    = settings_media_url($seo, 'twitter_image_url') ?: $ogImage;
     $ogUrl           = $canonical ?: url()->current();
 @endphp
 
@@ -45,7 +45,7 @@
     <meta property="og:description" content="{{ $ogDescription }}">
 @endif
 @if($ogImage)
-    <meta property="og:image" content="{{ media_url($ogImage) }}">
+    <meta property="og:image" content="{{ $ogImage }}">
 @endif
 <meta property="og:type" content="{{ $ogType }}">
 <meta property="og:url" content="{{ $ogUrl }}">
@@ -60,7 +60,7 @@
     <meta name="twitter:description" content="{{ $twitterDesc }}">
 @endif
 @if($twitterImage)
-    <meta name="twitter:image" content="{{ media_url($twitterImage) }}">
+    <meta name="twitter:image" content="{{ $twitterImage }}">
 @endif
 
 {{-- Schema.org JSON-LD --}}

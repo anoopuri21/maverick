@@ -32,7 +32,7 @@
 
           <!-- Replace with actual image later -->
           <div class="ceo__image">
-            @if($url = media_url($ceo->image_url ?? null, 'assets/images/homepage/mba-management.jpg'))
+            @if($url = settings_media_url($ceo, 'image_url') ?: cached_asset('assets/images/homepage/mba-management.jpg'))
             <img src="{{ $url }}"
               alt="{{ trim(($ceo->name ?? '').', '.($ceo->designation ?? ''), ', ') }}"
               loading="lazy" decoding="async" />

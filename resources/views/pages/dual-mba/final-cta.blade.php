@@ -4,19 +4,20 @@
     $showBrochure = filled($finalCta->brochure_label ?? null)
         && filled($finalCta->brochure_url ?? null)
         && $finalCta->brochure_url !== '#';
+    $finalCtaBackgroundUrl = settings_media_url($finalCta, 'background_image');
     $showFinalCta = filled($finalCta->heading ?? null)
         || filled($finalCta->heading_line2 ?? null)
         || html_filled($finalCta->sub ?? null)
-        || filled($finalCta->background_image ?? null)
+        || filled($finalCtaBackgroundUrl)
         || $ctaButtons->isNotEmpty()
         || $showBrochure;
 @endphp
 @if($showFinalCta)
 <section class="dmba-cta" aria-label="Apply for Dual MBA" data-testid="dmba-cta-section">
   <div class="dmba-cta__bg" aria-hidden="true">
-    @if(filled($finalCta->background_image))
+    @if(filled($finalCtaBackgroundUrl))
     <img
-      src="{{ media_url($finalCta->background_image) }}"
+      src="{{ $finalCtaBackgroundUrl }}"
       alt=""
       class="dmba-cta__bg-image"
       loading="lazy"

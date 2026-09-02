@@ -4,19 +4,20 @@
     $showWhatsapp = ($finalCta->show_whatsapp ?? false)
         && filled($finalCta->whatsapp_label ?? null)
         && filled($site->whatsapp_number ?? null);
+    $finalCtaBackgroundUrl = settings_media_url($finalCta, 'background_image');
     $showFinalCta = filled($finalCta->heading ?? null)
         || filled($finalCta->heading_italic ?? null)
         || html_filled($finalCta->body ?? null)
         || filled($finalCta->emphasis ?? null)
-        || filled($finalCta->background_image ?? null)
+        || filled($finalCtaBackgroundUrl)
         || $ctaButtons->isNotEmpty()
         || $showWhatsapp;
 @endphp
 @if($showFinalCta)
 <section id="edu-cta" class="edu-cta" aria-label="Transform a Student Trip">
   <div class="edu-cta__bg" aria-hidden="true">
-    @if(filled($finalCta->background_image))
-    <div class="edu-cta__bg-image" style="background-image: url('{{ media_url($finalCta->background_image) }}')"></div>
+    @if(filled($finalCtaBackgroundUrl))
+    <div class="edu-cta__bg-image" style="background-image: url('{{ $finalCtaBackgroundUrl }}')"></div>
     @endif
     <div class="edu-cta__overlay"></div>
   </div>
