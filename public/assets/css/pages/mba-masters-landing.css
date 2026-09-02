@@ -732,23 +732,24 @@
 #mlp-enquire .mlp-field > span {
   position: absolute;
   left: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 12px;
   font-size: 14px;
+  line-height: 16px;
   font-weight: 400;
   letter-spacing: 0;
   text-transform: none;
   color: rgba(18, 18, 18, 0.35);
   pointer-events: none;
-  transition: top 0.2s var(--mlp-ease), transform 0.2s var(--mlp-ease), font-size 0.2s var(--mlp-ease), color 0.2s ease;
+  transition: top 0.2s var(--mlp-ease), font-size 0.2s var(--mlp-ease), color 0.2s ease;
 }
 
 #mlp-enquire .mlp-field input,
 #mlp-enquire .mlp-field select {
   height: 30px;
   min-height: 0;
-  padding: 0;
+  padding: 11px 0 0;
   font-size: 14px;
+  line-height: 16px;
 }
 
 #mlp-enquire .mlp-field input::placeholder {
@@ -759,9 +760,8 @@
 #mlp-enquire .mlp-field:has(> input:not(:placeholder-shown)) > span,
 #mlp-enquire .mlp-field:has(> select) > span {
   top: 0;
-  transform: none;
   font-size: 12px;
-  line-height: 1;
+  line-height: 12px;
   color: rgba(7, 20, 68, 0.55);
 }
 
@@ -770,6 +770,9 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  #mlp-enquire .mlp-field > span {
+    transition: none;
+  }
 }
 /* —— The Learning Blueprint: programme architecture —— */
 .blueprint-overview {
