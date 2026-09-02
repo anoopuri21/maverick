@@ -131,8 +131,7 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
   column-gap: clamp(0.85rem, 2vw, 1.5rem);
 }
 
-.mlp-page--polished .prospectus-cover__enquiry .mlp-form__fields > :first-child,
-.mlp-page--polished .prospectus-cover__enquiry .mlp-form__privacy-note,
+.mlp-page--polished .prospectus-cover__enquiry .mlp-form__fields > :first-child, 
 .mlp-page--polished .prospectus-cover__enquiry .mlp-btn--block {
   grid-column: 1 / -1;
 }
@@ -168,9 +167,8 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
 }
 
 /* Existing middle sections: harmonise older blocks with the Light Archive */
-.mlp-page--polished .mlp-why,
-.mlp-page--polished .mlp-journey,
-.mlp-page--polished .mlp-mba,
+.mlp-page--polished .mlp-why, 
+.mlp-page--polished .mlp-mba, 
 .mlp-page--polished .mlp-masters {
   border-top: 1px solid var(--mlp-polish-line);
 }
@@ -205,8 +203,7 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
   outline-offset: -3px;
 }
 
-.mlp-page--polished .mlp-mba__showcase:hover,
-.mlp-page--polished .mlp-masters__showcase:hover {
+.mlp-page--polished .mlp-mba__showcase:hover {
   transform: translateY(-0.18rem);
 }
 
@@ -292,13 +289,6 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
 }
 
 /* Fees: keep the practical index compact and make scanning effortless */
-.mlp-page--polished .archive-investment__record-topline strong {
-  font-variant-numeric: tabular-nums;
-}
-
-.mlp-page--polished .archive-investment__details dt {
-  color: var(--mlp-red);
-}
 
 /* Testimonials, comparison, FAQ, final CTA */
 .mlp-page--polished .archive-voices__stage,
@@ -306,18 +296,9 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
   align-items: start;
 }
 
-.mlp-page--polished .archive-voices__quote,
-.mlp-page--polished .archive-parallel__criterion,
+
 .mlp-page--polished .archive-fieldnotes__question {
   letter-spacing: -0.025em;
-}
-
-.mlp-page--polished .archive-parallel__side--online {
-  border-left-color: var(--mlp-red);
-}
-
-.mlp-page--polished .archive-parallel__side--traditional {
-  border-left-color: var(--mlp-polish-line);
 }
 
 .mlp-page--polished .archive-fieldnotes__answer {
@@ -353,19 +334,10 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
     grid-template-columns: 1fr;
   }
 
-  .mlp-page--polished .prospectus-cover__enquiry .mlp-form__fields > :first-child,
-  .mlp-page--polished .prospectus-cover__enquiry .mlp-form__privacy-note,
+  .mlp-page--polished .prospectus-cover__enquiry .mlp-form__fields > :first-child, 
   .mlp-page--polished .prospectus-cover__enquiry .mlp-btn--block {
     grid-column: auto;
   }
-
-  .mlp-page--polished :where(.archive-class__metric, .archive-class__metric:nth-child(even)) {
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
-  }
-
-  .mlp-page--polished .archive-class__metric:first-child { padding-left: 0; }
-  .mlp-page--polished .archive-class__metric:last-child { padding-right: 0; }
 }
 
 @media (max-width: 560px) {
@@ -577,29 +549,8 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
 }
 
 /* Issue 24 — make gated/indicative fee values feel intentional. */
-.mlp-page--polished .archive-investment__fee {
-  display: grid;
-  gap: 0.2rem;
-  justify-items: end;
-}
-
-.mlp-page--polished .archive-investment__fee small {
-  max-width: 18ch;
-  font-size: var(--mlp-type-caption);
-  font-weight: 500;
-  line-height: 1.3;
-  text-align: right;
-  color: var(--mlp-muted-on-paper);
-}
 
 @media (max-width: 560px) {
-  .mlp-page--polished .archive-investment__fee {
-    justify-items: start;
-  }
-
-  .mlp-page--polished .archive-investment__fee small {
-    text-align: left;
-  }
 }
 
 /* Issue 2 — map page copy to a small semantic colour vocabulary. */
@@ -689,12 +640,10 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
 }
 
 /* Issues 5–12 — keep supporting text above the minimum readable tier. */
-.mlp-page--polished .prospectus-cover__academy,
-.mlp-page--polished .prospectus-cover__eyebrow,
-.mlp-page--polished .prospectus-cover__enquiry-index,
-.mlp-page--polished .mlp-field,
-  .mlp-page--polished .signal-atlas__label,
-  .mlp-page--polished .archive-investment__note,
+.mlp-page--polished .prospectus-cover__academy, 
+.mlp-page--polished .prospectus-cover__eyebrow, 
+.mlp-page--polished .mlp-field, 
+  .mlp-page--polished .signal-atlas__label, 
 .mlp-page--polished .archive-learning__caption {
   font-size: var(--mlp-type-caption);
 }
@@ -749,9 +698,6 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
 
 /* Issues 18, 19 and 21 — remove non-functional sequence numbers. The Admission
    Journey keeps its numbers because they describe an actual process. */
-.mlp-page--polished .signal-atlas__record-index {
-  display: none;
-}
 
 .mlp-page--polished .signal-atlas__record {
   grid-template-columns: minmax(7rem, 0.48fr) minmax(0, 1fr);
@@ -762,10 +708,6 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
 }
 
 /* Issue 20 — bring the Admission Journey heading and route closer together. */
-.mlp-page--polished .mlp-journey__layout {
-  grid-template-columns: minmax(0, 0.98fr) minmax(0, 1.02fr);
-  gap: clamp(1.25rem, 3vw, 2.5rem);
-}
 
 /* Issues 15 and 16 — each form row occupies the full form width; its own
    columns can then shrink safely instead of clipping or overlapping. */
@@ -784,49 +726,14 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
 
 /* Issue 26 — Explore is a clear compact action, without becoming a large
    competing primary CTA. */
-.mlp-page--polished .mlp-why__link {
-  min-height: 2.6rem;
-  align-items: center;
-  margin-top: 1rem;
-  padding: 0.55rem 0.85rem;
-  border: 1px solid var(--mlp-red);
-  text-transform: none;
-  letter-spacing: 0.04em;
-}
-
-.mlp-page--polished .mlp-why__link:hover,
-.mlp-page--polished .mlp-why__link:focus-visible {
-  opacity: 1;
-  color: var(--mlp-white);
-  background: var(--mlp-red);
-}
 
 /* Issue 22 — comparison sides start on the same horizontal scan line. */
-.mlp-page--polished .archive-parallel__row {
-  align-items: start;
-}
-
-.mlp-page--polished .archive-parallel__side {
-  align-self: start;
-}
 
 /* Issues 27 and 28 — explicit comparison headers and a strong, consistent CTA. */
-.mlp-page--polished .archive-parallel__columns {
-  min-height: 3.25rem;
-}
-
-.mlp-page--polished .archive-parallel__primary {
-  min-width: 10rem;
-  justify-content: center;
-}
 
 @media (max-width: 900px) {
   .mlp-page--polished .prospectus-cover__enquiry .mlp-form__row {
     grid-column: 1 / -1;
-  }
-
-  .mlp-page--polished .mlp-journey__layout {
-    grid-template-columns: 1fr;
   }
 }
 
@@ -976,7 +883,6 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
 }
 
 /* Issue 11: remove non-functional erratic Overview numbers. */
-.mlp-page--polished .blueprint-overview__foundation-index { display: none; }
 .mlp-page--polished .blueprint-overview__foundation {
   z-index: 2;
   background: var(--mlp-paper);
@@ -988,98 +894,12 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
 .mlp-page--polished .mlp-mba__showcase--flip .mlp-mba__catalog { order: 2; }
 
 /* Issues 14–15 and 19: bring fee/value relationships together. */
-.mlp-page--polished .archive-investment__record-topline {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  gap: 0.55rem 2rem;
-  align-items: baseline;
-}
-
-.mlp-page--polished .archive-investment__record-topline h3 {
-  font-weight: 600;
-}
-
-.mlp-page--polished .archive-investment__fee {
-  display: grid;
-  gap: 0.2rem;
-  justify-items: start;
-}
-
-.mlp-page--polished .archive-investment__fee strong {
-  font-size: var(--mlp-type-title-sm);
-}
-
-.mlp-page--polished .archive-investment__fee small {
-  max-width: 22ch;
-  font-size: var(--mlp-type-caption);
-  line-height: 1.3;
-  color: var(--mlp-color-muted);
-}
-
-.mlp-page--polished .archive-investment__details dt {
-  font-size: var(--mlp-type-caption);
-  letter-spacing: 0.03em;
-  text-transform: none;
-  color: var(--mlp-color-accent);
-}
 
 /* Issues 16, 20, 22, 27 and 28: comparison hierarchy and alignment. */
-.mlp-page--polished .archive-parallel__columns span {
-  min-height: 3.25rem;
-  font-size: var(--mlp-type-body);
-  font-weight: 600;
-}
-
-.mlp-page--polished .archive-parallel__row {
-  align-items: start;
-}
-
-.mlp-page--polished .archive-parallel__side {
-  align-self: start;
-}
-
-.mlp-page--polished .archive-parallel__criterion span {
-  width: 1.35rem;
-  height: 1.35rem;
-  flex-basis: 1.35rem;
-  border: 0;
-  color: var(--mlp-color-muted);
-}
-
-.mlp-page--polished .archive-parallel__primary {
-  min-width: 10rem;
-  justify-content: center;
-}
 
 /* Issue 17 and 26: stronger but restrained Explore affordance. */
-.mlp-page--polished .mlp-why__link {
-  min-height: 3rem;
-  display: inline-flex;
-  align-items: center;
-  margin-top: 1rem;
-  padding: 0.75rem 1rem;
-  color: var(--mlp-white);
-  background: var(--mlp-red);
-  border: 1px solid var(--mlp-red);
-  font-size: var(--mlp-type-caption);
-  text-transform: none;
-  letter-spacing: 0.04em;
-}
-
-.mlp-page--polished .mlp-why__link:hover,
-.mlp-page--polished .mlp-why__link:focus-visible {
-  color: var(--mlp-white);
-  background: var(--mlp-navy);
-  border-color: var(--mlp-navy);
-  opacity: 1;
-}
 
 /* Issues 18 and 21: tighter journey grouping and quiet non-functional numbers. */
-.mlp-page--polished .mlp-journey__layout {
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-  gap: clamp(1rem, 2.4vw, 2rem);
-}
 
 .mlp-page--polished .mlp-why__chapter {
   min-height: 0;
@@ -1090,8 +910,6 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
   grid-template-columns: minmax(0, 1fr);
   gap: 1rem;
 }
-
-.mlp-page--polished .signal-atlas__record-index { display: none; }
 
 .mlp-page--polished .signal-atlas__record {
   grid-template-columns: minmax(7rem, 0.48fr) minmax(0, 1fr);
@@ -1125,12 +943,9 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
 .mlp-page--polished .archive-learning__heading { max-width: 14ch; }
 
 @media (max-width: 900px) {
-  .mlp-page--polished .mlp-journey__layout { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 560px) {
-  .mlp-page--polished .archive-investment__record-topline { display: grid; gap: 0.45rem; }
-  .mlp-page--polished .archive-investment__fee { justify-items: start; }
   .mlp-page--polished .signal-atlas__record { grid-template-columns: 1fr; }
 }
 
@@ -1252,9 +1067,8 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
   gap: 0.7rem 1rem;
 }
 
-.mlp-page--polished .prospectus-cover__enquiry .mlp-form__row,
-.mlp-page--polished .prospectus-cover__enquiry .mlp-field--full,
-.mlp-page--polished .prospectus-cover__enquiry .mlp-form__privacy-note,
+.mlp-page--polished .prospectus-cover__enquiry .mlp-form__row, 
+.mlp-page--polished .prospectus-cover__enquiry .mlp-field--full, 
 .mlp-page--polished .prospectus-cover__enquiry .mlp-btn--block {
   grid-column: 1 / -1;
 }
@@ -1324,187 +1138,14 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
   font-size: var(--mlp-type-body);
 }
 /* #mlp-class > archive-class__industries — Topic Desk */
-.mlp-page--polished .archive-class__industries {
-  position: relative;
-  grid-column: 1 / -1;
-  padding: clamp(1.5rem, 3vw, 2.5rem);
-  color: var(--mlp-navy);
-  background: var(--mlp-surface-soft);
-  border-top: 1px solid var(--mlp-line-dark);
-}
-
-.mlp-page--polished .topic-desk {
-  display: grid;
-  grid-template-columns: minmax(12rem, 1fr) minmax(0, 2fr);
-  gap: clamp(1.25rem, 3vw, 3rem);
-  min-height: 31rem;
-}
-
-.mlp-page--polished .topic-desk__topics {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-width: 0;
-  border-right: 1px solid rgba(7, 20, 68, 0.16);
-}
-
-.mlp-page--polished .topic-desk__topic {
-  position: relative;
-  display: flex;
-  align-items: baseline;
-  width: 100%;
-  padding: 0.9rem 1rem 0.9rem 0;
-  color: var(--mlp-muted-on-paper);
-  background: transparent;
-  border: 0;
-  border-bottom: 1px solid rgba(7, 20, 68, 0.12);
-  text-align: left;
-  cursor: pointer;
-  font: 500 clamp(1rem, 1.6vw, 1.25rem)/1.1 var(--mlp-font-display);
-  letter-spacing: -0.02em;
-  transition: color 0.3s ease, padding-left 0.35s var(--mlp-ease), border-color 0.3s ease;
-}
-
-.mlp-page--polished .topic-desk__topic::before {
-  content: "";
-  width: 0;
-  height: 1.5rem;
-  margin-right: 0;
-  background: var(--mlp-red);
-  transition: width 0.35s var(--mlp-ease), margin-right 0.35s var(--mlp-ease);
-}
-
-.mlp-page--polished .topic-desk__topic:hover,
-.mlp-page--polished .topic-desk__topic:focus-visible,
-.mlp-page--polished .topic-desk__topic.is-active {
-  padding-left: 0.6rem;
-  color: var(--mlp-navy);
-  border-bottom-color: var(--mlp-red);
-}
-
-.mlp-page--polished .topic-desk__topic.is-active::before,
-.mlp-page--polished .topic-desk__topic:focus-visible::before {
-  width: 2px;
-  margin-right: 0.65rem;
-}
-
-.mlp-page--polished .topic-desk__topic:focus-visible {
-  outline: 2px solid var(--mlp-red);
-  outline-offset: -3px;
-}
-
-.mlp-page--polished .topic-desk__panels {
-  position: relative;
-  min-width: 0;
-}
-
-.mlp-page--polished .topic-desk__panel[hidden] { display: none; }
-
-.mlp-page--polished .topic-desk__panel {
-  display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(12rem, 0.85fr);
-  gap: clamp(1rem, 3vw, 2.25rem);
-  align-items: end;
-  min-height: 31rem;
-}
-
-.mlp-page--polished .topic-desk__visual {
-  position: relative;
-  min-height: 26rem;
-  overflow: hidden;
-  background: var(--mlp-navy);
-}
-
-.mlp-page--polished .topic-desk__stack,
-.mlp-page--polished .topic-desk__hero-image {
-  position: absolute;
-  overflow: hidden;
-  margin: 0;
-}
-
-.mlp-page--polished .topic-desk__stack {
-  inset: 8% 12% 12% 8%;
-  background: var(--mlp-blue);
-  opacity: 0.34;
-  transition: transform 0.7s var(--mlp-ease), opacity 0.45s ease;
-}
-
-.mlp-page--polished .topic-desk__stack--1 { transform: rotate(-6deg) translate(-0.5rem, 0.5rem); }
-.mlp-page--polished .topic-desk__stack--2 { inset: 2% 4% 20% 18%; opacity: 0.22; transform: rotate(7deg) translate(0.5rem, -0.5rem); }
-
-.mlp-page--polished .topic-desk__stack img,
-.mlp-page--polished .topic-desk__hero-image img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: grayscale(0.28) contrast(1.08);
-}
-
-.mlp-page--polished .topic-desk__hero-image {
-  inset: 5% 10% 13% 10%;
-  z-index: 2;
-  background: var(--mlp-navy);
-  box-shadow: 0 22px 40px -30px rgba(0, 0, 0, 0.8);
-  transition: transform 0.75s var(--mlp-ease), opacity 0.45s ease, clip-path 0.75s var(--mlp-ease);
-}
-
-.mlp-page--polished .topic-desk__panel.is-active .topic-desk__hero-image { clip-path: inset(0 0 0 0); }
-
-.mlp-page--polished .topic-desk__details {
-  min-width: 0;
-  padding-bottom: 0.35rem;
-}
-
-.mlp-page--polished .topic-desk__detail-label {
-  margin: 0 0 0.8rem;
-  font-size: var(--mlp-type-caption);
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--mlp-red);
-}
-
-.mlp-page--polished .topic-desk__details h3 {
-  margin: 0 0 0.8rem;
-  font-family: var(--mlp-font-display);
-  font-size: clamp(1.9rem, 3.8vw, 4rem);
-  font-weight: 500;
-  line-height: 0.95;
-  letter-spacing: -0.05em;
-  color: var(--mlp-navy);
-}
-
-.mlp-page--polished .topic-desk__description {
-  max-width: 32ch;
-  margin: 0;
-  font-size: 1rem;
-  line-height: 1.65;
-  color: var(--mlp-muted-on-paper);
-}
 
 @media (max-width: 900px) {
-  .mlp-page--polished .topic-desk { grid-template-columns: minmax(10rem, 0.8fr) minmax(0, 1.2fr); }
-  .mlp-page--polished .topic-desk__panel { grid-template-columns: 1fr; min-height: 0; }
-  .mlp-page--polished .topic-desk__visual { min-height: 20rem; }
-  .mlp-page--polished .topic-desk__details { padding: 0.5rem 0 1rem; }
 }
 
 @media (max-width: 600px) {
-  .mlp-page--polished .archive-class__industries { padding: 1rem; }
-  .mlp-page--polished .topic-desk { grid-template-columns: 1fr; gap: 1.5rem; min-height: 0; }
-  .mlp-page--polished .topic-desk__topics { border-right: 0; border-bottom: 1px solid rgba(7, 20, 68, 0.16); }
-  .mlp-page--polished .topic-desk__topics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .mlp-page--polished .topic-desk__topic { padding: 0.7rem 0.5rem 0.7rem 0; font-size: 1rem; }
-  .mlp-page--polished .topic-desk__topic:nth-child(even) { padding-left: 0.5rem; }
-  .mlp-page--polished .topic-desk__visual { min-height: 18rem; }
-  .mlp-page--polished .topic-desk__details h3 { font-size: 2.35rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .mlp-page--polished .topic-desk__topic,
-  .mlp-page--polished .topic-desk__stack,
-  .mlp-page--polished .topic-desk__hero-image { transition: none; }
 }
 
 /* #mlp-video-proof — full-width inline film plate above testimonials. */
@@ -1667,13 +1308,6 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
   transition: transform 0.45s var(--mlp-ease), background-color 0.3s ease, box-shadow 0.45s ease;
 }
 
-.mlp-page--polished .archive-video-proof__play svg {
-  width: 1.45rem;
-  height: 1.45rem;
-  margin-left: 0.18rem;
-  stroke-width: 2.2;
-}
-
 .mlp-page--polished .archive-video-proof__play-label {
   position: absolute;
   right: 1.6rem;
@@ -1697,24 +1331,6 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
   background: #8f0202;
   box-shadow: 0 0 0 0.85rem rgba(178, 2, 2, 0.18), 0 20px 34px -18px rgba(0, 0, 0, 0.9);
   transform: translate(-50%, -50%) scale(1.08);
-}
-
-.mlp-page--polished .archive-video-proof__iframe {
-  display: block;
-  width: 100%;
-  height: 100%;
-  border: 0;
-  background: #020817;
-}
-
-.mlp-page--polished .archive-video-proof__fallback {
-  display: grid;
-  place-items: center;
-  height: 100%;
-  margin: 0;
-  padding: 2rem;
-  font-size: var(--mlp-type-body);
-  color: var(--mlp-muted-on-dark);
 }
 
 .mlp-page--polished .archive-video-proof__noscript-link {
@@ -1811,56 +1427,10 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
   min-width: 0;
 }
 
-.mlp-page--polished :where(.mlp-mba__specification, .mlp-masters__specification) {
-  min-width: 0;
-  padding: 0.25rem 0 0.25rem clamp(1rem, 2vw, 1.5rem);
-  border-left: 1px solid var(--mlp-navy);
-}
-
-.mlp-page--polished :where(.mlp-mba__specification-label, .mlp-masters__specification-label) {
-  margin: 0 0 1rem;
-  color: var(--mlp-red);
-}
-
-.mlp-page--polished :where(.mlp-mba__specification, .mlp-masters__specification) dl {
-  display: grid;
-  gap: 0.85rem;
-  margin: 0;
-}
-
-.mlp-page--polished :where(.mlp-mba__specification, .mlp-masters__specification) dl > div {
-  display: grid;
-  gap: 0.2rem;
-  padding-top: 0.65rem;
-  border-top: 1px solid var(--mlp-line-dark);
-}
-
-.mlp-page--polished :where(.mlp-mba__specification, .mlp-masters__specification) dt {
-  font-size: var(--mlp-type-caption);
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  line-height: 1.35;
-  text-transform: uppercase;
-  color: var(--mlp-muted-on-paper);
-}
-
-.mlp-page--polished :where(.mlp-mba__specification, .mlp-masters__specification) dd {
-  margin: 0;
-  font-size: var(--mlp-type-body);
-  line-height: 1.5;
-  color: var(--mlp-navy);
-}
-
 @media (max-width: 900px) {
   .mlp-page--polished :where(.mlp-mba__catalog-layout, .mlp-masters__catalog-layout) {
     grid-template-columns: 1fr;
     gap: 1.5rem;
-  }
-
-  .mlp-page--polished :where(.mlp-mba__specification, .mlp-masters__specification) {
-    padding: 1rem 0 0;
-    border-top: 1px solid var(--mlp-navy);
-    border-left: 0;
   }
 }
 
@@ -1906,12 +1476,6 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
 
 .mlp-page--polished .luxury-testimonial__quote-icon {
   color: var(--mlp-red);
-}
-
-.mlp-page--polished .luxury-testimonial__quote-icon svg {
-  width: 1.2rem;
-  height: 1.2rem;
-  stroke-width: 1.4;
 }
 
 .mlp-page--polished .luxury-testimonial__quote {
@@ -1992,11 +1556,6 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
   text-transform: uppercase;
 }
 
-.mlp-page--polished .luxury-testimonials__control svg {
-  width: 1rem;
-  height: 1rem;
-}
-
 .mlp-page--polished .luxury-testimonials__control:hover,
 .mlp-page--polished .luxury-testimonials__control:focus-visible,
 .mlp-page--polished .luxury-testimonials__toggle:hover,
@@ -2067,12 +1626,6 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
   padding-top: 0;
 }
 
-.mlp-page--polished #mlp-trust .signal-atlas__svg {
-  top: 0;
-  height: 100%;
-  filter: blur(2px) opacity(0.5);
-}
-
 .mlp-page--polished #mlp-trust .signal-atlas__records {
   grid-template-columns: repeat(5, minmax(0, 1fr));
   min-height: 15rem;
@@ -2119,10 +1672,6 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
 @media (max-width: 700px) {
   .mlp-page--polished #mlp-trust .signal-atlas__graph {
     min-height: 0;
-  }
-
-  .mlp-page--polished #mlp-trust .signal-atlas__svg {
-    display: none;
   }
 
   .mlp-page--polished #mlp-trust .signal-atlas__records {
@@ -2220,12 +1769,6 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
   background: rgba(178, 2, 2, 0.04);
 }
 
-.mlp-page--polished #mlp-why .mlp-why__num svg {
-  width: 1.35rem;
-  height: 1.35rem;
-  stroke-width: 1.7;
-}
-
 @media (max-width: 700px) {
   .mlp-page--polished #mlp-why .mlp-why__pin {
     padding: 1.5rem 0 0.75rem;
@@ -2238,11 +1781,6 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
   .mlp-page--polished #mlp-why .mlp-why__num {
     width: 2.75rem;
     height: 2.75rem;
-  }
-
-  .mlp-page--polished #mlp-why .mlp-why__num svg {
-    width: 1.15rem;
-    height: 1.15rem;
   }
 }
 
@@ -2326,10 +1864,6 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
 .mlp-page--polished #mlp-masters .mlp-masters__intro {
   width: 100%;
   max-width: 100%;
-}
-
-.mlp-page--polished #mlp-masters .mlp-masters__catalog-layout {
-  grid-template-columns: 1fr;
 }
 
 /* MBA specializations — split only lists with more than eight items. */
