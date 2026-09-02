@@ -2988,20 +2988,6 @@
   z-index: 1;
 }
 
-@media (max-width: 820px) {
-  #mlp-class-snapshot .mlp-class-snapshot__global::after {
-    height: 10rem;
-    background-size: 120% auto;
-  }
-}
-
-@media (max-width: 520px) {
-  #mlp-class-snapshot .mlp-class-snapshot__global::after {
-    height: 8.5rem;
-    background-size: 145% auto;
-  }
-}
-
 /* Landing accreditation slider fallback — the shared homepage script is not loaded here. */
 @keyframes mlpAccreditationLoop {
   from {

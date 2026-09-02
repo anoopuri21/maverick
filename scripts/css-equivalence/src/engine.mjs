@@ -227,6 +227,18 @@ function loadSetup({ repoRoot, cssFiles, fixtureHtml }) {
     }
   }
 
+  // ::before/::after only exist if SOME matching rule sets `content`.
+  // Track, per (element, pseudo), whether any matching rule declares content;
+  // decls from content-less pseudo rules cannot render and are excluded.
+  const GENERATED = ['before', 'after'];
+  const pseudoGenerated = new Set();
+  for (let ri = 0; ri < rules.length; ri++) {
+    const r = rules[ri];
+    if (!r.pseudo || !GENERATED.includes(r.pseudo)) continue;
+    if (!r.decls.some((d) => d.prop.toLowerCase() === 'content')) continue;
+    for (const ei of matchLists[ri]) pseudoGenerated.add(`${ei}:${r.pseudo}`);
+  }
+
   function better(a, b) {
     if (a.important !== b.important) return a.important;
     if (a.inline !== b.inline) return a.inline;
@@ -246,7 +258,9 @@ function loadSetup({ repoRoot, cssFiles, fixtureHtml }) {
       const r = rules[ri];
       if (r.context !== context || !mediaApplies(r.media, vw, motion)) continue;
       const prefix = r.pseudo ? `${r.pseudo}|` : '';
+      const gen = r.pseudo && GENERATED.includes(r.pseudo) ? `${r.pseudo}` : null;
       for (const ei of matchLists[ri]) {
+        if (gen && !pseudoGenerated.has(`${ei}:${gen}`)) continue; // pseudo not generated
         let map = cands[ei];
         if (!map) { map = new Map(); cands[ei] = map; }
         for (const d of r.decls) {
