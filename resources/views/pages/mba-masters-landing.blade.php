@@ -38,7 +38,6 @@
 
 @push('styles')
 <link rel="stylesheet" href="{{ cached_asset('assets/css/pages/mba-masters-landing.css') }}" />
-<link rel="stylesheet" href="{{ cached_asset('assets/css/pages/mba-masters-polish.css') }}" />
 @endpush
 
 @section('content')
