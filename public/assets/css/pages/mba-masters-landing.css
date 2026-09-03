@@ -545,7 +545,7 @@
 .prospectus-cover__kicker,
   #mlp-class-snapshot .mlp-class-snapshot__label {
   margin: 0 0 0.9rem;
-  color: var(--mlp-red);
+  color: var(--mlp-white);
 }
 
 .prospectus-cover__title {
@@ -4074,8 +4074,8 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
 
 .mlp-page--polished .mlp-form__fields > .mlp-btn--block {
   background: transparent;
-  color: var(--mlp-navy);
-  border-color: var(--mlp-navy);
+  color: var(--color-warm-white);
+  border-color: var(--color-light-grey);
 }
 
 .mlp-page--polished .mlp-form__fields > .mlp-btn--block:hover,
@@ -4448,7 +4448,7 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
 /* Pricing card type roles — keep the Fees-only redesign above the page reset. */
 
 .mlp-page--polished .pricing-card__price strong {
-  font-size: var(--mlp-type-stat);
+  font-size: clamp(24px, 3vw, 48px);
 }
 
 .mlp-page--polished .pricing-card__price > span,
@@ -4547,7 +4547,11 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
   border-radius: 1.25rem;
   box-shadow: 0 30px 70px -38px rgba(0, 0, 0, 0.9);
 }
-
+.archive-video-proof__iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
 .mlp-page--polished .archive-video-proof__player::before {
   position: absolute;
   inset: 1rem;

@@ -3,7 +3,7 @@
   $stats = collect($trust->stats ?? [])
       ->filter(fn ($s) => filled($s['value'] ?? null) || filled($s['label'] ?? null))
       ->values();
-  $heading = filled($trust->label) ? $trust->label : 'Trusted by learners across the UAE & beyond';
+  $heading = filled($trust->label) ? $trust->label : 'Trusted by learners across the GCC & beyond';
   $quote = filled($trust->quote) ? $trust->quote : 'Every number is a person who chose to keep moving.';
 @endphp
 @if($stats->isNotEmpty())

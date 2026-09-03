@@ -58,7 +58,7 @@ export const providers = {
     const t = D(ctx).trust;
     const vars = {
       stats: new Collection((t.stats ?? []).filter((s) => s.value || s.label)),
-      heading: t.label || 'Trusted by learners across the UAE & beyond',
+      heading: t.label || 'Trusted by learners across the GCC & beyond',
       quote: t.quote || 'Every number is a person who chose to keep moving.',
     };
     const stat = ctx.scope.stat;
