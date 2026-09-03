@@ -7,7 +7,7 @@ use App\Filament\Forms\Components\MediaPicker;
 use App\Filament\Pages\MbaMastersLanding\Concerns\ManagesMbaMastersChunk;
 use App\Settings\MbaMastersCareerSettings;
 use App\Settings\MbaMastersClassSettings;
-use App\Settings\MbaMastersLearningSettings;
+use App\Settings\MbaMastersVideoTestimonialsSettings;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Textarea;
@@ -43,13 +43,13 @@ class ManageAudience extends Page implements HasForms
         $career = app(MbaMastersCareerSettings::class)->toArray();
         $career['stories'] = $this->hydrateRepeaterMediaFields(array_values($career['stories'] ?? []), 'portrait');
 
-        $learning = app(MbaMastersLearningSettings::class)->toArray();
-        $learning['points'] = array_values($learning['points'] ?? []);
+        $videoTestimonials = app(MbaMastersVideoTestimonialsSettings::class)->toArray();
+        $videoTestimonials['videos'] = array_values($videoTestimonials['videos'] ?? []);
 
         $this->form->fill([
             'class' => $class,
             'career' => $career,
-            'learning' => $learning,
+            'videoTestimonials' => $videoTestimonials,
         ]);
     }
 
@@ -57,7 +57,7 @@ class ManageAudience extends Page implements HasForms
     {
         return $form
             ->schema([
-                $this->chunkHint('Edits class profile, career stories and learning experience only.'),
+                $this->chunkHint('Edits class profile, career stories and video testimonials only.'),
                 Section::make('Class profile')
                     ->schema([
                         TextInput::make('class.label')->label('Section label'),
@@ -137,33 +137,32 @@ class ManageAudience extends Page implements HasForms
                     ->columns(2)
                     ->collapsed()
                     ->collapsible(),
-                Section::make('Learning experience')
+                Section::make('Video testimonials')
+                    ->description('4 YouTube videos that open in a popup — same pattern as the homepage.')
                     ->schema([
-                        TextInput::make('learning.label')->label('Section label'),
-                        TextInput::make('learning.heading')->label('Heading')->columnSpanFull(),
-                        Textarea::make('learning.intro')->label('Intro')->rows(2)->columnSpanFull(),
-                        TextInput::make('learning.plate_image')->hidden(),
-                        MediaPicker::forField('learning.plate_image', 'mba-masters-landing/learning')
-                            ->label('Diagonal media plate')
-                            ->columnSpanFull(),
-                        TextInput::make('learning.plate_caption')->label('Plate caption')->columnSpanFull(),
-                        Repeater::make('learning.points')
-                            ->label('Learning points')
+                        TextInput::make('videoTestimonials.label')->label('Section label'),
+                        TextInput::make('videoTestimonials.heading')->label('Heading')->columnSpanFull(),
+                        Textarea::make('videoTestimonials.intro')->label('Intro')->rows(2)->columnSpanFull(),
+                        Repeater::make('videoTestimonials.videos')
+                            ->label('Videos (4 recommended)')
                             ->schema([
-                                TextInput::make('title')->label('Title')->required(),
-                                $this->richEditor('text', 'Text'),
+                                TextInput::make('video_url')
+                                    ->label('YouTube video URL')
+                                    ->required()
+                                    ->columnSpanFull()
+                                    ->helperText('Paste the YouTube watch/share URL. The thumbnail is generated automatically unless you provide one.'),
+                                TextInput::make('name')->label('Name')->required(),
+                                TextInput::make('role')->label('Role / designation'),
+                                TextInput::make('category')->label('Badge / category')->placeholder('Student'),
+                                TextInput::make('thumbnail')->label('Custom thumbnail URL (optional)')->columnSpanFull(),
                             ])
-                            ->columns(1)
+                            ->columns(2)
                             ->defaultItems(0)
                             ->reorderable()
                             ->collapsible()
-                            ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
-                            ->addActionLabel('Add point')
+                            ->itemLabel(fn (array $state): ?string => $state['name'] ?? null)
+                            ->addActionLabel('Add video')
                             ->columnSpanFull(),
-                        TextInput::make('learning.cta_primary_label')->label('Primary CTA label'),
-                        TextInput::make('learning.cta_primary_url')->label('Primary CTA URL'),
-                        TextInput::make('learning.cta_secondary_label')->label('Secondary CTA label'),
-                        TextInput::make('learning.cta_secondary_url')->label('Secondary CTA URL'),
                     ])
                     ->columns(2)
                     ->collapsed()
@@ -208,12 +207,12 @@ class ManageAudience extends Page implements HasForms
             'portrait'
         );
 
-        $learning = $this->syncImageIfSelected($data['learning'] ?? [], 'plate_image');
-        $learning['points'] = array_values($learning['points'] ?? []);
+        $videoTestimonials = $data['videoTestimonials'] ?? [];
+        $videoTestimonials['videos'] = array_values($videoTestimonials['videos'] ?? []);
 
         $ok = $this->saveSettingsGroup(MbaMastersClassSettings::class, $class)
             && $this->saveSettingsGroup(MbaMastersCareerSettings::class, $career)
-            && $this->saveSettingsGroup(MbaMastersLearningSettings::class, $learning);
+            && $this->saveSettingsGroup(MbaMastersVideoTestimonialsSettings::class, $videoTestimonials);
 
         if ($ok) {
             $this->notifySaved('Audience');
