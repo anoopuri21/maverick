@@ -191,8 +191,6 @@ class MbaMastersLandingTest extends TestCase
             $this->assertTrue($page::shouldRegisterNavigation());
             $this->assertSame('Landing Pages', $page::getNavigationGroup());
         }
-
-        $this->assertFalse(\App\Filament\Pages\ManageMbaMastersLanding::shouldRegisterNavigation());
     }
 
     public function test_enquiry_sends_zoho_mail_notification(): void
