@@ -18,10 +18,10 @@
 @if($programs->isNotEmpty() || filled($masters->heading))
 <section class="mlp-masters mlp-masters--prospectus" id="mlp-masters" aria-label="Master's programmes">
   <div class="container mlp-masters__inner">
-    <header class="mlp-masters__head" data-mlp-reveal="masters-head">
+    <header class="mlp-masters__head mlp-intro-grid" data-mlp-reveal="masters-head">
       <div>
-        <p class="mlp-masters__label">{{ $label }}</p>
-        <h2 class="mlp-masters__heading">{{ $heading }}</h2>
+        <p class="mlp-masters__label mlp-eyebrow">{{ $label }}</p>
+        <h2 class="mlp-masters__heading mlp-h2">{{ $heading }}</h2>
       </div>
       @if(filled($masters->intro))
       <p class="mlp-masters__intro">{{ $masters->intro }}</p>
@@ -48,7 +48,7 @@
     @endif
 
     <div class="mlp-masters__cta-row">
-      <a href="#mlp-enquire" class="mlp-masters__cta">Check eligibility <span aria-hidden="true">↗</span></a>
+      <a href="#mlp-enquire" class="mlp-masters__cta mlp-cta mlp-cta--primary">Check eligibility <span aria-hidden="true">↗</span></a>
       <p class="mlp-masters__cta-note">Every programme above is open to enquiry — admissions team will confirm eligibility and next steps.</p>
     </div>
   </div>

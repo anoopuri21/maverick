@@ -60,7 +60,7 @@ use App\Settings\DualMbaTestimonialsSettings;
 use App\Settings\DualMbaTwiceSettings;
 use App\Settings\DualMbaWhySettings;
 use App\Settings\MbaMastersAlumniSettings;
-use App\Settings\MbaMastersLearningSettings;
+use App\Settings\MbaMastersVideoTestimonialsSettings;
 use App\Settings\MbaMastersPartnersSettings;
 use App\Settings\MbaMastersTestimonialsSettings;
 use App\Settings\MbaMastersCompareSettings;
@@ -414,8 +414,22 @@ class PageController extends Controller
 
         $alumni = safe_settings(MbaMastersAlumniSettings::class);
 
-        $learning = safe_settings(MbaMastersLearningSettings::class);
-        $learning->points = settings_array($learning->points ?? []);
+        $videoTestimonials = safe_settings(MbaMastersVideoTestimonialsSettings::class);
+        $videoTestimonials->videos = settings_array($videoTestimonials->videos ?? []);
+
+        // Same shape as the homepage video testimonials so testimonials.js drives it identically.
+        $testimonialsJson = collect($videoTestimonials->videos)
+            ->filter(fn ($v) => filled($v['video_url'] ?? null))
+            ->map(fn ($v) => [
+                'category' => filled($v['category'] ?? null) ? strtoupper(trim((string) $v['category'])) : 'STUDENT',
+                'name' => $v['name'] ?? '',
+                'role' => $v['role'] ?? '',
+                'thumbnail' => youtube_thumbnail_url($v['video_url'] ?? null, $v['thumbnail'] ?? null)
+                    ?: asset('assets/images/homepage/mba.jpg'),
+                'video' => youtube_embed_url($v['video_url'] ?? null) ?? '',
+            ])
+            ->values()
+            ->all();
 
         $partners = safe_settings(MbaMastersPartnersSettings::class);
 
@@ -469,7 +483,8 @@ class PageController extends Controller
             'class' => $class,
             'career' => $career,
             'alumni' => $alumni,
-            'learning' => $learning,
+            'videoTestimonials' => $videoTestimonials,
+            'testimonialsJson' => $testimonialsJson,
             'partners' => $partners,
             'testimonials' => $testimonials,
             'compare' => $compare,

@@ -33,7 +33,7 @@
       <span class="prospectus-cover__edition">Admissions / 2026</span>
       <span class="prospectus-cover__masthead-line" aria-hidden="true"></span>
       <span class="prospectus-cover__academy">Maverick Business Academy</span>
-      <span class="prospectus-cover__location">London · UAE · Global</span>
+      <span class="prospectus-cover__location">UK · UAE · Global</span>
     </header>
 
     <div class="prospectus-cover__body">
@@ -56,17 +56,17 @@
 
         <div class="prospectus-cover__actions">
           @if(filled($hero->cta_primary_label))
-          <a href="#mlp-enquire" class="prospectus-cover__primary" data-prospectus-open>
+          <a href="#mlp-enquire" class="prospectus-cover__primary mlp-cta mlp-cta--primary" data-prospectus-open>
             <span>{{ $hero->cta_primary_label }}</span>
             <span class="prospectus-cover__primary-mark" aria-hidden="true">↗</span>
           </a>
           @else
-          <a href="#mlp-enquire" class="prospectus-cover__primary" data-prospectus-open>
+          <a href="#mlp-enquire" class="prospectus-cover__primary mlp-cta mlp-cta--primary" data-prospectus-open>
             <span>Start your enquiry</span>
             <span class="prospectus-cover__primary-mark" aria-hidden="true">↗</span>
           </a>
           @endif
-          <a href="#mlp-trust" class="prospectus-cover__secondary">Read the evidence</a>
+          <a href="#mlp-trust" class="prospectus-cover__secondary mlp-cta">Request Fee Plan</a>
         </div>
       </div>
 
@@ -84,7 +84,7 @@
     <footer class="prospectus-cover__folio" data-hero-folio aria-hidden="true">
       <span>Online MBA</span>
       <span class="prospectus-cover__folio-rule"></span>
-      <span>Master's pathways</span>
+      <span>20+ Specialisations</span>
     </footer>
   </div>
 </section>

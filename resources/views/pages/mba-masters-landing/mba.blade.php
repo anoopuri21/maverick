@@ -53,11 +53,11 @@
     <header class="mlp-mba__head" data-mlp-reveal="mba-head">
       <div class="mlp-mba__meta">
         @if(filled($mba->label))
-        <p class="mlp-mba__label mlp-meta">{{ $mba->label }}</p>
+        <p class="mlp-mba__label mlp-meta mlp-eyebrow">{{ $mba->label }}</p>
         @endif
       </div>
       @if(filled($mba->heading))
-      <h2 class="mlp-mba__heading mlp-headline">{{ $mba->heading }}</h2>
+      <h2 class="mlp-mba__heading mlp-headline mlp-h2">{{ $mba->heading }}</h2>
       @endif
       @if(filled($mba->intro))
       <p class="mlp-mba__intro mlp-lede">{{ $mba->intro }}</p>
@@ -66,7 +66,7 @@
 
     @if($tabs->isNotEmpty())
     <div class="mlp-mba__chrome" data-mlp-mba-tabs data-mlp-reveal="mba-chrome">
-      <div class="mlp-mba__tablist" role="tablist" aria-label="MBA specialization categories from programme listing">
+      <div class="mlp-mba__tablist mlp-hairline" role="tablist" aria-label="MBA specialization categories from programme listing">
         @foreach($tabs as $ti => $tab)
         <button
           type="button"
@@ -109,7 +109,7 @@
               ->implode('');
           $flip = $ui % 2 === 1;
         @endphp
-        <article class="mlp-mba__showcase{{ $flip ? ' mlp-mba__showcase--flip' : '' }}" data-mlp-mba-showcase>
+        <article class="mlp-mba__showcase mlp-hairline{{ $flip ? ' mlp-mba__showcase--flip' : '' }}" data-mlp-mba-showcase>
           <figure class="mlp-mba__plate">
             <img class="mlp-mba__uni-photo" src="{{ $photo }}" alt="{{ $uni['name'] }}" width="1200" height="800" loading="lazy" decoding="async">
             <figcaption class="mlp-mba__plate-bar">
@@ -135,15 +135,13 @@
                 aria-label="{{ $uni['name'] }} specializations"
                 @if($specializationColumns->count() > 1) style="--mlp-specialization-rows: {{ $specializationColumns->first()->count() }}" @endif
               >
-                @php $specializationOffset = 0; @endphp
                 @foreach($specializationColumns as $column)
-                @foreach($column as $si => $specialization)
-                <li class="mlp-mba__program">
-                  <span class="mlp-mba__program-index" aria-hidden="true">{{ str_pad((string) ($specializationOffset + $si + 1), 2, '0', STR_PAD_LEFT) }}</span>
+                @foreach($column as $specialization)
+                <li class="mlp-mba__program mlp-hairline">
+                  <span class="mlp-mba__program-index" aria-hidden="true"><i data-lucide="graduation-cap"></i></span>
                   <span class="mlp-mba__program-title">{{ $specialization['title'] }}</span>
                 </li>
                 @endforeach
-                @php $specializationOffset += $column->count(); @endphp
                 @endforeach
               </ol>
             </div>

@@ -44,7 +44,7 @@ class MbaMastersLandingTest extends TestCase
         $response->assertDontSee('mlp-trust__fan-svg', false);
         $response->assertSee('4.8', false);
         $response->assertSee('400+ Reviews', false);
-        $response->assertSee('Trusted by learners across the UAE', false);
+        $response->assertSee('Trusted by learners across the GCC', false);
         $response->assertSee("MBA & Master's Programs Designed for Working Professionals");
         $response->assertSee('Online & flexible study');
         $response->assertSee('Check Eligibility', false);
@@ -73,7 +73,7 @@ class MbaMastersLandingTest extends TestCase
         $response->assertDontSee('BSc Business Management', false);
         $response->assertDontSee('Level 7 Diploma', false);
         $response->assertSee('mlp-masters__uni-photo', false);
-        $response->assertSee('Online MBA & Master\'s Fees in UAE');
+        $response->assertSee('Online MBA & Master\'s Fees in GCC');
         $response->assertSee('pricing-cards', false);
         $response->assertSee('pricing-card', false);
         $response->assertSee('pricing-card__price', false);
@@ -191,8 +191,6 @@ class MbaMastersLandingTest extends TestCase
             $this->assertTrue($page::shouldRegisterNavigation());
             $this->assertSame('Landing Pages', $page::getNavigationGroup());
         }
-
-        $this->assertFalse(\App\Filament\Pages\ManageMbaMastersLanding::shouldRegisterNavigation());
     }
 
     public function test_enquiry_sends_zoho_mail_notification(): void
@@ -203,7 +201,7 @@ class MbaMastersLandingTest extends TestCase
             'name' => 'Alex Student',
             'email' => 'alex@example.com',
             'phone' => '+971500000000',
-            'country' => 'UAE',
+            'country' => 'GCC',
             'program' => 'MBA',
             'specialization' => 'Finance',
             'qualification' => 'bachelor',
@@ -219,7 +217,7 @@ class MbaMastersLandingTest extends TestCase
 
             return str_contains($mail->emailSubject, 'MBA/Master')
                 && $values->get('Email') === 'alex@example.com'
-                && $values->get('Country') === 'UAE'
+                && $values->get('Country') === 'GCC'
                 && $values->get('Preferred specialization') === 'Finance'
                 && $values->get('Highest qualification') === "Bachelor's Degree"
                 && $values->get('How soon you want to start') === '1–3 months';

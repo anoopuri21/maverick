@@ -24,18 +24,18 @@
 
   <label class="mlp-field mlp-field--full" for="{{ $formId }}-name">
     <span>Full name</span>
-    <input id="{{ $formId }}-name" type="text" name="name" value="{{ old('name') }}" required maxlength="100" autocomplete="name">
+    <input id="{{ $formId }}-name" type="text" name="name" value="{{ old('name') }}" required maxlength="100" autocomplete="name" placeholder=" ">
   </label>
 
   <div class="mlp-form__row">
     <label class="mlp-field" for="{{ $formId }}-email">
       <span>Email</span>
-      <input id="{{ $formId }}-email" type="email" name="email" value="{{ old('email') }}" required maxlength="150" autocomplete="email">
+      <input id="{{ $formId }}-email" type="email" name="email" value="{{ old('email') }}" required maxlength="150" autocomplete="email" placeholder=" ">
     </label>
 
     <label class="mlp-field" for="{{ $formId }}-phone">
       <span>Phone / WhatsApp</span>
-      <input id="{{ $formId }}-phone" type="tel" name="phone" value="{{ old('phone') }}" required maxlength="30" autocomplete="tel">
+      <input id="{{ $formId }}-phone" type="tel" name="phone" value="{{ old('phone') }}" required maxlength="30" autocomplete="tel" placeholder=" ">
     </label>
   </div>
 

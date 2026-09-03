@@ -12,15 +12,15 @@
 @endphp
 @if($chapters->isNotEmpty() || filled($why->heading))
 <section class="mlp-why" id="mlp-why" aria-label="Why choose Maverick">
-  <div class="mlp-why__pin">
+  <div class="mlp-why__pin mlp-hairline">
     <div class="container mlp-why__pin-inner" data-mlp-reveal="why-head">
       <div class="mlp-why__meta">
         @if(filled($why->label))
-        <p class="mlp-why__label mlp-meta">{{ $why->label }}</p>
+        <p class="mlp-why__label mlp-meta mlp-eyebrow">{{ $why->label }}</p>
         @endif
       </div>
       @if(filled($why->heading))
-      <h2 class="mlp-why__heading mlp-headline">{{ $why->heading }}</h2>
+      <h2 class="mlp-why__heading mlp-headline mlp-h2">{{ $why->heading }}</h2>
       @endif
       @if(filled($why->intro))
       <p class="mlp-why__intro mlp-lede">{{ $why->intro }}</p>

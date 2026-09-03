@@ -9,18 +9,18 @@
 @if(filled($career->heading) || $stories->isNotEmpty())
 <section class="mlp-career archive-career" id="mlp-career" aria-labelledby="archive-career-title">
   <div class="archive-career__background" aria-hidden="true">
-    <span class="archive-career__wash"></span>
+    <span class="archive-career__wash mlp-wash"></span>
     <span class="archive-career__rule archive-career__rule--one"></span>
   </div>
 
   <div class="archive-career__frame container">
-    <header class="archive-career__intro">
+    <header class="archive-career__intro mlp-intro-grid">
       <div>
         @if(filled($career->label))
-        <p class="archive-career__label">{{ $career->label }}</p>
+        <p class="archive-career__label mlp-eyebrow">{{ $career->label }}</p>
         @endif
         @if(filled($career->heading))
-        <h2 class="archive-career__heading" id="archive-career-title">{{ $career->heading }}</h2>
+        <h2 class="archive-career__heading mlp-h2" id="archive-career-title">{{ $career->heading }}</h2>
         @endif
       </div>
       @if(filled($career->intro))
@@ -33,7 +33,7 @@
       <div>
       <div class="archive-career__stack" aria-hidden="true">
         @foreach($stories->take(3) as $si => $story)
-        <span class="archive-career__stack-image archive-career__stack-image--{{ $si + 1 }}">
+        <span class="archive-career__stack-image archive-career__stack-image--{{ $si + 1 }} mlp-stack-layer">
           <img src="{{ settings_media_url($story, 'portrait') ?: cached_asset($fallbackPortrait) }}" alt="" width="640" height="800" loading="lazy" decoding="async">
         </span>
         @endforeach
@@ -57,9 +57,9 @@
 
       <div class="archive-career__dossiers">
         @foreach($stories as $story)
-        <article class="archive-career__dossier" data-archive-element>
+        <article class="archive-career__dossier mlp-hairline" data-archive-element>
           <header class="archive-career__dossier-head">
-            <span class="archive-career__dossier-icon" aria-hidden="true"><i data-lucide="arrow-up-right"></i></span>
+            <span class="archive-career__dossier-icon mlp-icon-box" aria-hidden="true"><i data-lucide="arrow-up-right"></i></span>
             <div>
               <h3>{{ $story['name'] }}</h3>
               <p>

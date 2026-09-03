@@ -19,18 +19,18 @@
     @if($plate)
     <img class="blueprint-overview__plate" src="{{ $plate }}" alt="" width="1200" height="800" loading="lazy" decoding="async">
     @endif
-    <span class="blueprint-overview__wash"></span>
-    <span class="blueprint-overview__contour blueprint-overview__contour--one"></span>
-    <span class="blueprint-overview__contour blueprint-overview__contour--two"></span>
+    <span class="blueprint-overview__wash mlp-wash"></span>
+    <span class="blueprint-overview__contour blueprint-overview__contour--one mlp-contour"></span>
+    <span class="blueprint-overview__contour blueprint-overview__contour--two mlp-contour"></span>
   </div>
 
   <div class="blueprint-overview__frame container">
-    <header class="blueprint-overview__intro">
+    <header class="blueprint-overview__intro mlp-intro-grid">
       @if(filled($overview->label))
       <p class="blueprint-overview__folio">{{ $overview->label }}</p>
       @endif
       @if(filled($overview->heading))
-      <h2 class="blueprint-overview__heading" id="blueprint-overview-title">
+      <h2 class="blueprint-overview__heading mlp-h2" id="blueprint-overview-title">
         @if($hasOverviewHeadingAccent)
         @php [$overviewHeadingLead, $overviewHeadingTail] = explode($overviewHeadingAccent, $overviewHeading, 2); @endphp
         {{ $overviewHeadingLead }}<span class="blueprint-overview__heading-accent">{{ $overviewHeadingAccent }}</span>{{ $overviewHeadingTail }}
@@ -93,10 +93,10 @@
     @if($hasCtas)
     <div class="blueprint-overview__actions">
       @if(filled($overview->cta_primary_label))
-      <a href="{{ edu_href($overview->cta_primary_url) ?? '#mlp-enquire' }}" class="blueprint-overview__primary">{{ $overview->cta_primary_label }} <span aria-hidden="true">↗</span></a>
+      <a href="{{ edu_href($overview->cta_primary_url) ?? '#mlp-enquire' }}" class="blueprint-overview__primary mlp-cta mlp-cta--primary">{{ $overview->cta_primary_label }} <span aria-hidden="true">↗</span></a>
       @endif
       @if(filled($overview->cta_secondary_label))
-      <a href="{{ edu_href($overview->cta_secondary_url) ?? '#mlp-enquire' }}" class="blueprint-overview__secondary">{{ $overview->cta_secondary_label }}</a>
+      <a href="{{ edu_href($overview->cta_secondary_url) ?? '#mlp-enquire' }}" class="blueprint-overview__secondary mlp-cta mlp-cta--ghost">{{ $overview->cta_secondary_label }}</a>
       @endif
     </div>
     @endif

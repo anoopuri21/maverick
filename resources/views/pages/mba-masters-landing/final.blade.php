@@ -7,10 +7,10 @@
 @if(filled($final->heading) || $showForm)
 <section class="mlp-final archive-closing" id="mlp-final" aria-labelledby="archive-closing-title">
   <div class="archive-closing__background" aria-hidden="true">
-    <span class="archive-closing__wash"></span>
+    <span class="archive-closing__wash mlp-wash"></span>
     @if($plate)
-    <span class="archive-closing__image-layer archive-closing__image-layer--back"><img src="{{ $plate }}" alt="" width="960" height="720" loading="lazy" decoding="async"></span>
-    <span class="archive-closing__image-layer archive-closing__image-layer--front"><img src="{{ $plate }}" alt="" width="960" height="720" loading="lazy" decoding="async"></span>
+    <span class="archive-closing__image-layer archive-closing__image-layer--back mlp-stack-layer"><img src="{{ $plate }}" alt="" width="960" height="720" loading="lazy" decoding="async"></span>
+    <span class="archive-closing__image-layer archive-closing__image-layer--front mlp-stack-layer"><img src="{{ $plate }}" alt="" width="960" height="720" loading="lazy" decoding="async"></span>
     @endif
   </div>
 
@@ -28,10 +28,10 @@
       @if(filled($final->cta_primary_label) || filled($final->cta_secondary_label))
       <div class="archive-closing__actions">
         @if(filled($final->cta_primary_label))
-        <a href="{{ edu_href($final->cta_primary_url) ?? '#mlp-enquire' }}" class="prospectus-cover__primary">{{ $final->cta_primary_label }} <span aria-hidden="true">↗</span></a>
+        <a href="{{ edu_href($final->cta_primary_url) ?? '#mlp-enquire' }}" class="prospectus-cover__primary mlp-cta mlp-cta--primary">{{ $final->cta_primary_label }} <span aria-hidden="true">↗</span></a>
         @endif
         @if(filled($final->cta_secondary_label))
-        <a href="{{ edu_href($final->cta_secondary_url) ?? '#mlp-enquire' }}" class="pricing-cards__secondary">{{ $final->cta_secondary_label }}</a>
+        <a href="{{ edu_href($final->cta_secondary_url) ?? '#mlp-enquire' }}" class="pricing-cards__secondary mlp-cta mlp-cta--ghost">{{ $final->cta_secondary_label }}</a>
         @endif
       </div>
       @endif
@@ -39,7 +39,7 @@
 
     @if($showForm)
     <aside class="archive-closing__form" aria-label="Final enquiry form">
-      <div class="archive-closing__form-head">
+      <div class="archive-closing__form-head mlp-hairline">
         <span>{{ $final->form_title ?? 'Start your enquiry' }}</span>
         <i data-lucide="arrow-up-right" aria-hidden="true"></i>
       </div>

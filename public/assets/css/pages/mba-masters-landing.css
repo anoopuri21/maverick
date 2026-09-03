@@ -1,3 +1,4 @@
+/* ===== BASE LAYER (was mba-masters-landing.css) ===== */
 /* MBA & Master's landing — Phase 0 foundation
    Design system: docs/mlp-design-system.md
    Ban: white form cards, equal stat tiles, pill eyebrows, soft gray-blue “premium” */
@@ -13,14 +14,12 @@
 
   /* Surfaces — light theme */
   --mlp-void: #071444;
-  --mlp-void-mid: #0f2983;
   --mlp-paper: #f7f5f1;
   --mlp-paper-pure: #ffffff;
   --mlp-surface: #ffffff;
   --mlp-surface-soft: #f0ebe4;
   --mlp-glass: rgba(255, 255, 255, 0.82);
   --mlp-glass-border: rgba(7, 20, 68, 0.14);
-  --mlp-line-light: rgba(255, 255, 255, 0.35);
   --mlp-line-dark: rgba(7, 20, 68, 0.12);
   --mlp-muted-on-dark: rgba(255, 255, 255, 0.78);
   --mlp-muted-on-paper: rgba(18, 18, 18, 0.62);
@@ -39,13 +38,6 @@
 }
 
 /* —— Type utilities —— */
-.mlp-display {
-  font-family: var(--mlp-font-display);
-  font-size: clamp(2.75rem, 6.5vw, 5.5rem);
-  font-weight: 500;
-  line-height: 1.05;
-  letter-spacing: -0.03em;
-}
 
 .mlp-headline {
   font-family: var(--mlp-font-display);
@@ -71,50 +63,91 @@
 }
 
 /* Section labels / eyebrows — shared sizing */
-.mlp-page .mlp-meta,
-.mlp-page .mlp-trust__label,
-.mlp-page .mlp-hero__eyebrow,
+.mlp-page .mlp-meta, 
 .mlp-page [class*="mlp-"][class*="__label"] {
   font-size: 1rem;
   font-weight: 400;
 }
 
-.mlp-stat {
-  font-family: var(--mlp-font-display);
-  font-size: clamp(2.5rem, 5vw, 4.5rem);
-  font-weight: 500;
-  line-height: 1;
-  letter-spacing: -0.03em;
+/* Shared section eyebrow (effective typography of the landing label role). */
+.mlp-eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: var(--fw-medium);
+  line-height: 1.6;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-mba-blue);
 }
 
-/* —— Section rhythm —— */
-.mlp-section {
-  position: relative;
-  padding: clamp(4rem, 10vw, 7.5rem) 0;
+/* Shared section heading (effective typography of the landing heading role). */
+.mlp-h2 {
+  font-family: var(--font-display);
+  font-size: var(--fs-section-title);
+  font-weight: var(--fw-medium);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-transform: none;
+  color: var(--color-mba-blue);
 }
 
-.mlp-section--void {
-  background: var(--mlp-void);
-  color: var(--mlp-white);
+/* Shared section head grid (columns, gaps and margins stay per section). */
+.mlp-intro-grid {
+  display: grid;
+  align-items: end;
 }
 
-.mlp-section--paper {
-  background: var(--mlp-paper);
-  color: var(--mlp-ink);
+/* Shared icon box (border color, flex and content sizing stay per section). */
+.mlp-icon-box {
+  display: inline-grid;
+  width: 2rem;
+  height: 2rem;
+  border-width: 1px;
+  border-style: solid;
+  color: var(--mlp-red);
 }
 
+/* Shared absolute image layer inside a stack plate (placement/blend stay per section). */
+.mlp-stack-layer {
+  position: absolute;
+  overflow: hidden;
+}
 
-.mlp-rule {
-  display: block;
-  width: 100%;
+/* Shared decorative radial wash (size, placement and gradient stay per section). */
+.mlp-wash {
+  position: absolute;
+  border-radius: 50%;
+}
+
+/* Shared 1px contour line (placement and angle stay per section). */
+.mlp-contour {
+  position: absolute;
   height: 1px;
-  border: 0;
   background: var(--mlp-line-dark);
 }
 
-.mlp-rule--light {
-  background: var(--mlp-line-light);
+/* Shared CTA button core (typography, padding, gap and effects stay per section). */
+.mlp-cta {
+  display: inline-flex;
+  align-items: center;
+  min-height: 3rem;
 }
+
+.mlp-cta--primary {
+  background: var(--mlp-red);
+  color: var(--mlp-white);
+}
+
+.mlp-cta--ghost {
+  color: var(--mlp-navy);
+}
+
+/* Shared 1px row hairline (bottom border in mlp-line-dark). */
+.mlp-hairline {
+  border-bottom: 1px solid var(--mlp-line-dark);
+}
+
+/* —— Section rhythm —— */
 
 /* —— Buttons —— */
 .mlp-btn {
@@ -149,37 +182,14 @@
   transform: translateY(-2px);
 }
 
-.mlp-btn--ghost {
-  background: transparent;
-  color: var(--mlp-navy);
-  border-color: rgba(7, 20, 68, 0.28);
-}
-
-.mlp-btn--ghost:hover {
-  background: rgba(7, 20, 68, 0.06);
-  border-color: var(--mlp-navy);
-}
-
-.mlp-btn--text {
-  background: transparent;
-  color: rgba(7, 20, 68, 0.7);
-  border: none;
-  min-height: auto;
-  padding: 0.35rem 0;
-  text-decoration: underline;
-  text-underline-offset: 5px;
-  text-decoration-thickness: 1px;
-}
-
-.mlp-btn--text:hover {
-  color: var(--mlp-navy);
-}
-
-.mlp-btn--block {
+.mlp-btn--block,
+  #mlp-class-snapshot .mlp-class-snapshot__global {
   width: 100%;
 }
 
-.mlp-btn:focus-visible {
+.mlp-btn:focus-visible,
+  .archive-partners__toggle:focus-visible,
+  .archive-fieldnotes__question:focus-visible {
   outline: 2px solid var(--mlp-red);
   outline-offset: 3px;
 }
@@ -251,22 +261,6 @@
   box-shadow: none;
 }
 
-.mlp-form__title {
-  margin: 0 0 0.25rem;
-  font-family: var(--mlp-font-display);
-  font-size: clamp(1.25rem, 1.8vw, 1.5rem);
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  color: var(--mlp-navy);
-}
-
-.mlp-form__hint {
-  margin: 0;
-  font-size: 0.8rem;
-  line-height: 1.45;
-  color: var(--mlp-muted-on-paper);
-}
-
 .mlp-form--panel {
   padding: 0;
   overflow: hidden;
@@ -289,15 +283,6 @@
 .mlp-form--panel .mlp-form__errors {
   margin-left: 1.2rem;
   margin-right: 1.2rem;
-}
-
-.mlp-form__head {
-  display: block;
-  gap: 0.85rem;
-  align-items: start;
-  padding: 1.15rem 1.2rem 1rem;
-  border-bottom: 1px solid var(--mlp-line-dark);
-  border-top: 2px solid var(--mlp-red);
 }
 
 
@@ -378,7 +363,9 @@
   cursor: pointer;
 }
 
-.mlp-field select option {
+.mlp-field select option,
+  .prospectus-cover__enquiry .mlp-field select option,
+  .archive-closing__form .mlp-field select option {
   color: var(--mlp-ink);
   background: var(--mlp-white);
 }
@@ -393,69 +380,21 @@
   box-shadow: 0 1px 0 0 var(--mlp-red);
 }
 
-.mlp-field--stack legend {
-  margin-bottom: 0.55rem;
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: rgba(7, 20, 68, 0.55);
-}
-
-.mlp-radio {
-  display: flex;
-  align-items: center;
-  gap: 0.55rem;
-  margin-bottom: 0.45rem;
-  font-size: 0.92rem;
-  font-weight: 400;
-  letter-spacing: 0;
-  text-transform: none;
-  color: var(--mlp-muted-on-paper);
-  cursor: pointer;
-}
-
-.mlp-radio input {
-  width: 1rem;
-  height: 1rem;
-  accent-color: var(--mlp-red);
-}
-
 /* Hero ghost/text on dark photo plate */
-.mlp-hero .mlp-btn--ghost {
-  color: #fff;
-  border-color: rgba(255, 255, 255, 0.45);
-}
-
-.mlp-hero .mlp-btn--ghost:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.75);
-}
-
-.mlp-hero .mlp-btn--text {
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.mlp-hero .mlp-btn--text:hover {
-  color: #fff;
-}
 
 /* Below-fold sections — defer layout/paint until near viewport */
-#mlp-overview,
-#mlp-why,
-#mlp-journey,
-#mlp-mba,
-#mlp-masters,
-#mlp-fees,
-#mlp-class,
-#mlp-career,
-#mlp-alumni,
-#mlp-learning,
-#mlp-partners,
-#mlp-video-proof,
-#mlp-testimonials,
-#mlp-compare,
-#mlp-faq,
+#mlp-overview, 
+#mlp-why, 
+#mlp-mba, 
+#mlp-masters, 
+#mlp-fees, 
+#mlp-career, 
+#mlp-alumni, 
+#mlp-learning, 
+#mlp-partners, 
+#mlp-video-proof, 
+#mlp-testimonials, 
+#mlp-faq, 
 #mlp-final {
   content-visibility: auto;
   contain-intrinsic-size: auto 720px;
@@ -562,7 +501,8 @@
   color: rgba(255, 255, 255, 0.86);
 }
 
-.prospectus-cover__location {
+.prospectus-cover__location,
+  .prospectus-cover__folio span:last-child {
   justify-self: end;
 }
 
@@ -588,13 +528,8 @@
   border-left: 2px solid var(--mlp-red);
 }
 
-.prospectus-cover__eyebrow,
-.prospectus-cover__kicker,
-.prospectus-cover__annotation-label,
-.prospectus-cover__annotation-foot,
-.prospectus-insert__eyebrow,
-.prospectus-evidence__folio,
-.prospectus-evidence__eyebrow {
+.prospectus-cover__eyebrow, 
+.prospectus-cover__kicker {
   font-size: 0.68rem;
   font-weight: 600;
   letter-spacing: 0.16em;
@@ -607,9 +542,10 @@
   color: rgba(255, 255, 255, 0.58);
 }
 
-.prospectus-cover__kicker {
+.prospectus-cover__kicker,
+  #mlp-class-snapshot .mlp-class-snapshot__label {
   margin: 0 0 0.9rem;
-  color: var(--mlp-red);
+  color: var(--mlp-white);
 }
 
 .prospectus-cover__title {
@@ -646,23 +582,16 @@
   margin-top: clamp(1.75rem, 4vw, 3rem);
 }
 
-.prospectus-cover__primary,
-.prospectus-cover__secondary,
-.prospectus-evidence__link,
-.prospectus-insert__close {
+.prospectus-cover__primary, 
+.prospectus-cover__secondary {
   font-family: var(--mlp-font-body);
   text-decoration: none;
   cursor: pointer;
 }
 
 .prospectus-cover__primary {
-  display: inline-flex;
-  align-items: center;
   gap: 1.1rem;
-  min-height: 3.25rem;
   padding: 0.9rem 1.25rem;
-  color: var(--mlp-white);
-  background: var(--mlp-red);
   border: 1px solid var(--mlp-red);
   font-size: 0.85rem;
   font-weight: 600;
@@ -677,11 +606,8 @@
   transform: translateY(-2px);
 }
 
-.prospectus-cover__primary:focus-visible,
-.prospectus-cover__secondary:focus-visible,
-.prospectus-evidence__link:focus-visible,
-.prospectus-insert__close:focus-visible,
-.prospectus-insert__summary:focus-visible {
+.prospectus-cover__primary:focus-visible, 
+.prospectus-cover__secondary:focus-visible {
   outline: 2px solid var(--mlp-warm);
   outline-offset: 4px;
 }
@@ -706,56 +632,8 @@
   border-color: var(--mlp-red);
 }
 
-.prospectus-cover__annotation {
-  align-self: end;
-  max-width: 16rem;
-  margin-bottom: 0.3rem;
-  padding-left: 1rem;
-  border-left: 1px solid rgba(255, 255, 255, 0.38);
-}
-
-.prospectus-cover__annotation-index {
-  display: block;
-  margin-bottom: 1.75rem;
-  font-family: var(--mlp-font-display);
-  font-size: clamp(3rem, 5vw, 5rem);
-  line-height: 0.8;
-  letter-spacing: -0.05em;
-  color: rgba(255, 255, 255, 0.22);
-}
-
-.prospectus-cover__annotation-rule {
-  display: block;
-  width: 2.5rem;
-  height: 2px;
-  margin-bottom: 0.8rem;
-  background: var(--mlp-red);
-}
-
-.prospectus-cover__annotation-label {
-  margin: 0 0 0.7rem;
-  color: rgba(255, 255, 255, 0.56);
-}
-
-.prospectus-cover__annotation-copy {
-  margin: 0;
-  font-size: 0.9rem;
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.prospectus-cover__annotation-foot {
-  display: block;
-  margin-top: 1.25rem;
-  color: var(--mlp-red);
-}
-
 .prospectus-cover__folio {
   grid-template-columns: auto minmax(3rem, 1fr) auto minmax(3rem, 1fr) auto;
-}
-
-.prospectus-cover__folio span:last-child {
-  justify-self: end;
 }
 
 /* —— Hero right-side enquiry desk —— */
@@ -775,16 +653,6 @@
 .prospectus-cover__enquiry-head {
   padding-bottom: 0.95rem;
   border-bottom: 1px solid rgba(7, 20, 68, 0.14);
-}
-
-.prospectus-cover__enquiry-index {
-  display: block;
-  margin-bottom: 0.55rem;
-  font-size: 0.62rem;
-  font-weight: 600;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-  color: var(--mlp-red);
 }
 
 .prospectus-cover__enquiry-head h2 {
@@ -828,17 +696,6 @@
   border-bottom-color: rgba(7, 20, 68, 0.23);
 }
 
-.prospectus-cover__enquiry .mlp-field input:focus,
-.prospectus-cover__enquiry .mlp-field select:focus {
-  border-bottom-color: var(--mlp-red);
-  box-shadow: 0 1px 0 0 var(--mlp-red);
-}
-
-.prospectus-cover__enquiry .mlp-field select option {
-  color: var(--mlp-ink);
-  background: var(--mlp-white);
-}
-
 @media (max-width: 900px) {
   .prospectus-cover__enquiry {
     max-width: none;
@@ -856,8 +713,104 @@
   }
 }
 
+/* Hero enquiry (#mlp-enquire) — frosted glass card + compact floating fields. */
+#mlp-enquire {
+  background: rgba(255, 255, 255, 0.15);
+  -webkit-backdrop-filter: blur(14px) saturate(1.25);
+  backdrop-filter: blur(14px) saturate(1.25);
+}
+
+#mlp-enquire .mlp-form__row {
+  grid-template-columns: 1fr;
+}
+
+#mlp-enquire .prospectus-cover__enquiry-head h2 {
+  color: #ffffff;
+}
+
+#mlp-enquire .prospectus-cover__enquiry-head p {
+  color: rgba(255, 248, 240, 0.85);
+}
+
+#mlp-enquire .mlp-field {
+  display: block;
+  position: relative;
+}
+
+#mlp-enquire .mlp-field > span {
+  position: absolute;
+  left: 0;
+  top: 16px;
+  font-family: var(--mlp-font-body) !important;
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 400 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  color: rgba(255, 248, 240, 0.55);
+  pointer-events: none;
+  transition: top 0.2s var(--mlp-ease), font-size 0.2s var(--mlp-ease), color 0.2s ease;
+}
+
+#mlp-enquire .mlp-field input,
+#mlp-enquire .mlp-field select {
+  height: 38px;
+  min-height: 0;
+  padding: 20px 0 0;
+  border-bottom-color: rgba(255, 255, 255, 0.4);
+  font-family: var(--mlp-font-body) !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  line-height: 16px !important;
+  letter-spacing: normal !important;
+  color: #ffffff !important;
+}
+
+#mlp-enquire .mlp-field input::placeholder,
+#mlp-enquire .mlp-field select::placeholder {
+  color: transparent;
+}
+
+/* Native option popup otherwise renders on a light OS surface, which would
+   make the white text unreadable — give the list a dark surface so every
+   form font stays white/warm-white. */
+#mlp-enquire .mlp-field select option {
+  background: var(--mlp-navy);
+  color: #fff8f0;
+}
+
+#mlp-enquire .mlp-field:has(> input:focus) > span,
+#mlp-enquire .mlp-field:has(> input:not(:placeholder-shown)) > span,
+#mlp-enquire .mlp-field:has(> select) > span {
+  top: -4px;
+  font-size: 12px;
+  line-height: 12px;
+  color: #fff8f0;
+}
+
+#mlp-enquire .mlp-form__success {
+  color: #fff8f0;
+}
+
+#mlp-enquire .mlp-form__errors {
+  color: #ffffff;
+}
+
+/* The site-wide typography lock forces !important font properties
+   (inputs: 15-18px/1.7; button: 14px/500/1/0.08em). ID-scoped pins keep
+   the compact form spec authoritative without touching the global lock. */
+#mlp-enquire .mlp-btn {
+  font-family: var(--mlp-font-body) !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  line-height: 1 !important;
+  letter-spacing: 0.08em !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .prospectus-cover__enquiry { transition: none; }
+  #mlp-enquire .mlp-field > span {
+    transition: none;
+  }
 }
 /* —— The Learning Blueprint: programme architecture —— */
 .blueprint-overview {
@@ -869,7 +822,14 @@
   background: var(--mlp-paper);
 }
 
-.blueprint-overview__background {
+.blueprint-overview__background,
+  .archive-career__background,
+  .archive-learning__background,
+  .signal-atlas__background,
+  .archive-voices__background,
+  .archive-fieldnotes__background,
+  .archive-closing__background,
+  .mlp-page--polished .archive-video-proof__background {
   position: absolute;
   inset: 0;
   z-index: -1;
@@ -890,21 +850,16 @@
 }
 
 .blueprint-overview__wash {
-  position: absolute;
   width: min(52vw, 46rem);
   height: min(52vw, 46rem);
   right: -18%;
   bottom: -25%;
-  border-radius: 50%;
   background: radial-gradient(circle, rgba(15, 41, 131, 0.1), transparent 68%);
 }
 
 .blueprint-overview__contour {
-  position: absolute;
   left: -12%;
   right: -12%;
-  height: 1px;
-  background: var(--mlp-line-dark);
   transform: rotate(-4deg);
 }
 
@@ -918,16 +873,9 @@
   transform: rotate(5deg);
 }
 
-.blueprint-overview__frame {
-  position: relative;
-  z-index: 1;
-}
-
 .blueprint-overview__intro {
-  display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(16rem, 0.55fr);
   column-gap: clamp(2rem, 7vw, 8rem);
-  align-items: end;
   max-width: 72rem;
 }
 
@@ -945,21 +893,9 @@
   color: var(--mlp-red);
 }
 
-.blueprint-overview__folio span + span::before {
-  content: "/";
-  margin-right: 0.75rem;
-  color: var(--mlp-line-dark);
-}
-
 .blueprint-overview__heading {
   max-width: 13ch;
   margin: 0;
-  font-family: var(--mlp-font-display);
-  font-size: clamp(2.4rem, 6vw, 6.2rem);
-  font-weight: 500;
-  line-height: 0.9;
-  letter-spacing: -0.06em;
-  color: var(--mlp-navy);
 }
 
 .blueprint-overview__intro-copy {
@@ -1124,7 +1060,8 @@
   transform: translateY(-0.35rem);
 }
 
-.blueprint-overview__foundation-node {
+.blueprint-overview__foundation-node,
+  .signal-atlas__node {
   position: absolute;
   top: -0.35rem;
   left: -0.38rem;
@@ -1134,15 +1071,6 @@
   border-radius: 50%;
   background: var(--mlp-red);
   box-shadow: 0 0 0 1px var(--mlp-red);
-}
-
-.blueprint-overview__foundation-index {
-  display: block;
-  margin-bottom: 0.8rem;
-  font-size: 0.62rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  color: var(--mlp-red);
 }
 
 .blueprint-overview__foundation-title {
@@ -1162,7 +1090,11 @@
   color: var(--mlp-muted-on-paper);
 }
 
-.blueprint-overview__foundation-text p {
+.blueprint-overview__foundation-text p,
+  .archive-learning__point-text p,
+  .archive-fieldnotes__note h3,
+  .archive-fieldnotes__answer p,
+  .archive-closing__intro-copy p {
   margin: 0;
 }
 
@@ -1183,13 +1115,8 @@
 }
 
 .blueprint-overview__primary {
-  display: inline-flex;
-  align-items: center;
   gap: 0.7rem;
-  min-height: 3rem;
   padding: 0.8rem 1.25rem;
-  color: var(--mlp-white);
-  background: var(--mlp-red);
   font-size: 0.82rem;
   font-weight: 600;
   letter-spacing: 0.04em;
@@ -1204,26 +1131,15 @@
 
 .blueprint-overview__secondary {
   padding-bottom: 0.25rem;
-  color: var(--mlp-navy);
   border-bottom: 1px solid var(--mlp-navy);
   font-size: 0.78rem;
   font-weight: 600;
-}
-
-.blueprint-overview__primary:focus-visible,
-.blueprint-overview__secondary:focus-visible {
-  outline: 2px solid var(--mlp-red);
-  outline-offset: 4px;
 }
 
 @media (max-width: 900px) {
   .blueprint-overview__intro {
     grid-template-columns: 1fr;
     row-gap: 1.25rem;
-  }
-
-  .blueprint-overview__intro-copy {
-    margin-left: 0;
   }
 
   .blueprint-overview__system {
@@ -1247,10 +1163,6 @@
     width: 28rem;
     height: 18rem;
     opacity: 0.08;
-  }
-
-  .blueprint-overview__heading {
-    max-width: none;
   }
 
   .blueprint-overview__system {
@@ -1282,7 +1194,8 @@
     padding: 0 0 0.0rem 0.8rem;
   }
 
-  .blueprint-overview__foundations::before {
+  .blueprint-overview__foundations::before,
+  .signal-atlas__records::before {
     content: "";
     position: absolute;
     top: 0;
@@ -1317,11 +1230,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .blueprint-overview__connectors path,
-  .blueprint-overview__foundation,
-  .blueprint-overview__primary {
-    transition: none;
-  }
 
   .blueprint-overview__connectors path {
     stroke-dashoffset: 0;
@@ -1340,37 +1248,33 @@
   z-index: 2;
   padding: clamp(3.5rem, 8vw, 5.5rem) 0 clamp(1.5rem, 3vw, 2rem);
   background: linear-gradient(180deg, #fff 70%, rgba(255, 255, 255, 0.94) 100%);
-  border-bottom: 1px solid var(--mlp-line-dark);
 }
 
-.mlp-why__meta {
+.mlp-why__meta,
+  .mlp-mba__meta {
   display: flex;
   align-items: center;
   gap: 0.85rem;
   margin-bottom: 1rem;
 }
 
-.mlp-why__label {
+.mlp-why__label,
+  .mlp-mba__label,
+  .mlp-masters__label {
   margin: 0;
-  color: var(--mlp-muted-on-paper);
 }
 
 
-.mlp-why__heading {
+.mlp-why__heading,
+  .mlp-mba__heading {
   margin: 0 0 0.75rem;
   max-width: 16ch;
-  color: var(--mlp-navy);
 }
 
 .mlp-why__intro {
   margin: 0;
   max-width: 40ch;
   color: var(--mlp-muted-on-paper);
-}
-
-.mlp-why__chapters {
-  position: relative;
-  z-index: 1;
 }
 
 .mlp-why__chapter {
@@ -1419,11 +1323,6 @@
   color: var(--mlp-navy);
 }
 
-.mlp-why__chapter--void .mlp-why__title,
-.mlp-why__chapter--paper .mlp-why__title {
-  color: var(--mlp-navy);
-}
-
 .mlp-why__text {
   margin: 0;
   max-width: 38ch;
@@ -1433,27 +1332,9 @@
 }
 
 .mlp-why__chapter--void .mlp-why__text,
-.mlp-why__chapter--paper .mlp-why__text {
+  .mlp-why__chapter--paper .mlp-why__text,
+  .archive-closing__form .mlp-field {
   color: var(--mlp-muted-on-paper);
-}
-
-.mlp-why__link {
-  display: inline-flex;
-  margin-top: 1.35rem;
-  font-family: var(--mlp-font-body);
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  text-decoration: none;
-  border-bottom: 1px solid currentColor;
-  padding-bottom: 0.15rem;
-  color: var(--mlp-red);
-  transition: opacity 0.3s ease;
-}
-
-.mlp-why__link:hover {
-  opacity: 0.75;
 }
 
 @media (max-width: 700px) {
@@ -1469,267 +1350,14 @@
   .mlp-why__chapter-grid {
     grid-template-columns: 3.5rem minmax(0, 1fr);
   }
-
-  .mlp-why__heading,
-  .mlp-why__title {
-    max-width: none;
-  }
 }
 
 /* —— Admission Journey: graphic spine (light) —— */
-.mlp-journey {
-  position: relative;
-  isolation: isolate;
-  padding: clamp(4rem, 10vw, 7rem) 0;
-  background: var(--mlp-surface-soft);
-  color: var(--mlp-ink);
-  overflow: hidden;
-}
-
-.mlp-journey__graphic {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  color: rgba(7, 20, 68, 0.35);
-}
-
-.mlp-journey__orb {
-  position: absolute;
-  border-radius: 50%;
-}
-
-.mlp-journey__orb--a {
-  width: min(55vw, 560px);
-  height: min(55vw, 560px);
-  right: -18%;
-  top: -20%;
-  background: radial-gradient(circle at 40% 40%, rgba(178, 2, 2, 0.14), transparent 65%);
-}
-
-.mlp-journey__orb--b {
-  width: min(48vw, 480px);
-  height: min(48vw, 480px);
-  left: -20%;
-  bottom: -25%;
-  background: radial-gradient(circle at 50% 50%, rgba(15, 41, 131, 0.12), transparent 70%);
-}
-
-.mlp-journey__rings {
-  position: absolute;
-  right: -8%;
-  bottom: 5%;
-  width: min(520px, 70vw);
-  opacity: 0.7;
-}
-
-
-.mlp-journey__layout {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.15fr);
-  gap: clamp(2rem, 5vw, 4rem);
-  align-items: start;
-}
-
-.mlp-journey__head {
-  position: sticky;
-  top: 6.5rem;
-  max-width: 28rem;
-  padding-bottom: 1rem;
-}
-
-.mlp-journey__meta {
-  display: flex;
-  align-items: center;
-  gap: 0.85rem;
-  margin-bottom: 1rem;
-}
-
-.mlp-journey__label {
-  margin: 0;
-  color: var(--mlp-muted-on-paper);
-}
-
-
-.mlp-journey__heading {
-  margin: 0 0 0.85rem;
-  max-width: 12ch;
-  color: var(--mlp-navy);
-}
-
-.mlp-journey__intro {
-  margin: 0;
-  max-width: 34ch;
-  color: var(--mlp-muted-on-paper);
-}
-
-.mlp-journey__cta--head {
-  margin-top: 1.75rem;
-}
-
-.mlp-journey__board {
-  position: relative;
-  padding-left: 0.25rem;
-}
-
-.mlp-journey__spine {
-  position: absolute;
-  left: 1.55rem;
-  top: 1.1rem;
-  bottom: 1.1rem;
-  width: 2px;
-  pointer-events: none;
-}
-
-.mlp-journey__spine-track {
-  position: absolute;
-  inset: 0;
-  background: rgba(7, 20, 68, 0.12);
-}
-
-.mlp-journey__spine-fill {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 0%;
-  background: linear-gradient(180deg, var(--mlp-red), rgba(178, 2, 2, 0.35));
-  transform-origin: top center;
-}
-
-.mlp-journey__steps {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-
-.mlp-journey__step {
-  position: relative;
-  display: grid;
-  grid-template-columns: 3.5rem minmax(0, 1fr);
-  gap: clamp(0.85rem, 2vw, 1.5rem);
-  align-items: start;
-  padding: 1.15rem 0 1.15rem 0;
-  border-bottom: 1px solid var(--mlp-line-dark);
-}
-
-.mlp-journey__step:first-child {
-  padding-top: 0.25rem;
-}
-
-.mlp-journey__step:last-child {
-  border-bottom: 0;
-  padding-bottom: 0.25rem;
-}
-
-.mlp-journey__marker {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  place-items: center;
-  width: 3.25rem;
-  height: 3.25rem;
-}
-
-.mlp-journey__num {
-  position: relative;
-  z-index: 2;
-  font-family: var(--mlp-font-display);
-  font-size: 1.15rem;
-  font-weight: 500;
-  letter-spacing: -0.03em;
-  color: var(--mlp-navy);
-}
-
-.mlp-journey__pulse {
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  background: #fff;
-  border: 1px solid rgba(7, 20, 68, 0.16);
-  box-shadow: 0 0 0 1px rgba(178, 2, 2, 0.2);
-}
-
-.mlp-journey__step:hover .mlp-journey__pulse,
-.mlp-journey__step.is-active .mlp-journey__pulse {
-  border-color: var(--mlp-red);
-  box-shadow: 0 0 0 4px rgba(178, 2, 2, 0.2);
-}
-
-.mlp-journey__panel {
-  padding: 0.35rem 0 0.15rem;
-  min-width: 0;
-}
-
-.mlp-journey__title {
-  margin: 0 0 0.4rem;
-  font-family: var(--mlp-font-display);
-  font-size: clamp(1.25rem, 2.2vw, 1.65rem);
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  color: var(--mlp-navy);
-}
-
-.mlp-journey__text {
-  margin: 0;
-  max-width: 42ch;
-  font-size: 0.92rem;
-  line-height: 1.55;
-  color: var(--mlp-muted-on-paper);
-}
 
 @media (max-width: 900px) {
-  .mlp-journey__layout {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  .mlp-journey__head {
-    position: relative;
-    top: auto;
-    max-width: none;
-  }
-
-  .mlp-journey__heading {
-    max-width: none;
-  }
-
-  .mlp-journey__rings {
-    right: -30%;
-    bottom: auto;
-    top: 8%;
-    opacity: 0.4;
-  }
-
-
-  .mlp-journey__spine {
-    left: 1.35rem;
-  }
-
-  .mlp-journey__step {
-    grid-template-columns: 3rem minmax(0, 1fr);
-    gap: 0.85rem;
-  }
-
-  .mlp-journey__marker {
-    width: 2.85rem;
-    height: 2.85rem;
-  }
-
-  .mlp-journey__text {
-    max-width: none;
-  }
 }
 
 @media (max-width: 420px) {
-  .mlp-journey__cta--head .mlp-btn {
-    width: 100%;
-  }
 }
 
 /* MBA specializations: big campus plates + program catalog (light) */
@@ -1757,36 +1385,14 @@
   filter: grayscale(0.4);
 }
 
-.mlp-mba__inner {
-  position: relative;
-  z-index: 1;
-}
-
-.mlp-mba__head {
+.mlp-mba__head,
+  .mlp-masters__head {
   max-width: 40rem;
   margin-bottom: clamp(1.75rem, 4vw, 2.75rem);
 }
 
-.mlp-mba__meta {
-  display: flex;
-  align-items: center;
-  gap: 0.85rem;
-  margin-bottom: 1rem;
-}
-
-.mlp-mba__label {
-  margin: 0;
-  color: var(--mlp-muted-on-paper);
-}
-
-
-.mlp-mba__heading {
-  margin: 0 0 0.75rem;
-  max-width: 16ch;
-  color: var(--mlp-navy);
-}
-
-.mlp-mba__intro {
+.mlp-mba__intro,
+  .mlp-masters__intro {
   margin: 0;
   max-width: 42ch;
   color: var(--mlp-muted-on-paper);
@@ -1798,7 +1404,6 @@
   gap: 0.35rem;
   margin-bottom: clamp(1.75rem, 4vw, 2.5rem);
   padding-bottom: 0.85rem;
-  border-bottom: 1px solid var(--mlp-line-dark);
 }
 
 .mlp-mba__tab {
@@ -1816,7 +1421,9 @@
   transition: color 0.3s ease, border-color 0.3s ease, background 0.3s ease;
 }
 
-.mlp-mba__tab:hover {
+.mlp-why__chapter--void .mlp-why__title,
+  .mlp-why__chapter--paper .mlp-why__title,
+  .mlp-mba__tab:hover {
   color: var(--mlp-navy);
 }
 
@@ -1827,7 +1434,8 @@
   box-shadow: inset 0 -2px 0 var(--mlp-red);
 }
 
-.mlp-mba__panel[hidden] {
+.mlp-mba__panel[hidden],
+  .archive-fieldnotes__answer[hidden] {
   display: none;
 }
 
@@ -1838,7 +1446,6 @@
   align-items: stretch;
   margin-bottom: clamp(2.5rem, 6vw, 4rem);
   padding-bottom: clamp(2.5rem, 6vw, 4rem);
-  border-bottom: 1px solid var(--mlp-line-dark);
 }
 
 .mlp-mba__showcase:last-child {
@@ -1890,42 +1497,8 @@
   color: var(--mlp-white);
 }
 
-.mlp-mba__uni-logo {
-  flex: 0 0 auto;
-  width: 3rem;
-  height: 3rem;
-  display: grid;
-  place-items: center;
-  background: rgba(255, 255, 255, 0.96);
-  padding: 0.25rem;
-}
-
-.mlp-mba__uni-logo img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-}
-
-.mlp-mba__uni-initials {
-  font-family: var(--mlp-font-display);
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  color: var(--mlp-navy);
-}
-
 .mlp-mba__plate-copy {
   min-width: 0;
-}
-
-.mlp-mba__uni-name {
-  display: block;
-  font-family: var(--mlp-font-display);
-  font-size: clamp(1.15rem, 2vw, 1.45rem);
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
-  color: var(--mlp-white);
 }
 
 .mlp-mba__uni-count {
@@ -1964,7 +1537,6 @@
   gap: 0.75rem;
   align-items: center;
   padding: 0.95rem 0;
-  border-bottom: 1px solid var(--mlp-line-dark);
   transition: background 0.35s ease, padding-left 0.35s var(--mlp-ease);
 }
 
@@ -1974,11 +1546,20 @@
 }
 
 .mlp-mba__program-index {
-  font-family: var(--mlp-font-display);
-  font-size: 0.85rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   color: var(--mlp-red);
+}
+
+.mlp-mba__program-index svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* The typography lock adds padding-top for the old numeral — keep the icon centred. */
+.mlp-page--polished .mlp-mba__program-index {
+  padding-top: 0;
 }
 
 .mlp-mba__program-title {
@@ -1990,31 +1571,7 @@
   color: var(--mlp-navy);
 }
 
-.mlp-mba__program-mark {
-  width: 0.55rem;
-  height: 0.55rem;
-  border-right: 1.5px solid rgba(7, 20, 68, 0.35);
-  border-bottom: 1.5px solid rgba(7, 20, 68, 0.35);
-  transform: rotate(-45deg);
-  transition: border-color 0.3s ease, transform 0.35s var(--mlp-ease);
-}
-
-.mlp-mba__program:hover .mlp-mba__program-mark {
-  border-color: var(--mlp-red);
-  transform: rotate(-45deg) translate(2px, -2px);
-}
-
-.mlp-mba__empty {
-  margin: 0;
-  padding: 1rem 0;
-  color: var(--mlp-muted-on-paper);
-}
-
 @media (max-width: 900px) {
-  .mlp-mba__showcase,
-  .mlp-mba__showcase--flip {
-    grid-template-columns: 1fr;
-  }
 
   .mlp-mba__showcase--flip .mlp-mba__plate,
   .mlp-mba__showcase--flip .mlp-mba__catalog {
@@ -2027,9 +1584,6 @@
 }
 
 @media (max-width: 700px) {
-  .mlp-mba__heading {
-    max-width: none;
-  }
 
   .mlp-mba__tablist {
     overflow-x: auto;
@@ -2061,283 +1615,22 @@
   background: var(--mlp-surface-soft);
 }
 
-.mlp-masters__wash {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  opacity: 0.08;
-  pointer-events: none;
-}
-
-.mlp-masters__wash-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: grayscale(0.35);
-}
-
-.mlp-masters__inner {
-  position: relative;
-  z-index: 1;
-}
-
-.mlp-masters__head {
-  max-width: 40rem;
-  margin-bottom: clamp(1.75rem, 4vw, 2.75rem);
-}
-
-.mlp-masters__meta {
-  display: flex;
-  align-items: center;
-  gap: 0.85rem;
-  margin-bottom: 1rem;
-}
-
-.mlp-masters__label {
-  margin: 0;
-  color: var(--mlp-muted-on-paper);
-}
-
 
 .mlp-masters__heading {
   margin: 0 0 0.75rem;
   max-width: 14ch;
-  color: var(--mlp-navy);
-}
-
-.mlp-masters__intro {
-  margin: 0;
-  max-width: 42ch;
-  color: var(--mlp-muted-on-paper);
-}
-
-.mlp-masters__gallery {
-  display: block;
-}
-
-.mlp-masters__showcase {
-  display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
-  gap: clamp(1.25rem, 3vw, 2.5rem);
-  align-items: stretch;
-  margin-bottom: clamp(2.5rem, 6vw, 4rem);
-  padding-bottom: clamp(2.5rem, 6vw, 4rem);
-  border-bottom: 1px solid var(--mlp-line-dark);
-}
-
-.mlp-masters__showcase:last-child {
-  margin-bottom: 0;
-  padding-bottom: 0;
-  border-bottom: 0;
-}
-
-.mlp-masters__showcase--flip .mlp-masters__plate {
-  order: 2;
-}
-
-.mlp-masters__showcase--flip .mlp-masters__catalog {
-  order: 1;
-}
-
-.mlp-masters__plate {
-  position: relative;
-  margin: 0;
-  min-height: clamp(17rem, 38vw, 26rem);
-  overflow: hidden;
-  background: rgba(7, 20, 68, 0.06);
-}
-
-.mlp-masters__uni-photo {
-  width: 100%;
-  height: 100%;
-  min-height: inherit;
-  object-fit: cover;
-  display: block;
-  transform: scale(1.02);
-  transition: transform 0.9s var(--mlp-ease);
-}
-
-.mlp-masters__showcase:hover .mlp-masters__uni-photo {
-  transform: scale(1.06);
-}
-
-.mlp-masters__plate-bar {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  gap: 0.85rem;
-  padding: 1rem 1.1rem;
-  background: linear-gradient(0deg, rgba(7, 20, 68, 0.82) 0%, rgba(7, 20, 68, 0.35) 70%, transparent 100%);
-  color: var(--mlp-white);
-}
-
-.mlp-masters__uni-logo {
-  flex: 0 0 auto;
-  width: 3rem;
-  height: 3rem;
-  display: grid;
-  place-items: center;
-  background: rgba(255, 255, 255, 0.96);
-  padding: 0.25rem;
-}
-
-.mlp-masters__uni-logo img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-}
-
-.mlp-masters__uni-initials {
-  font-family: var(--mlp-font-display);
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  color: var(--mlp-navy);
-}
-
-.mlp-masters__plate-copy {
-  min-width: 0;
-}
-
-.mlp-masters__uni-name {
-  display: block;
-  font-family: var(--mlp-font-display);
-  font-size: clamp(1.15rem, 2vw, 1.45rem);
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
-  color: var(--mlp-white);
-}
-
-.mlp-masters__uni-count {
-  display: block;
-  margin-top: 0.25rem;
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.mlp-masters__catalog {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-width: 0;
-  padding: 0.25rem 0;
-}
-
-.mlp-masters__catalog-label {
-  margin: 0 0 1rem;
-  color: var(--mlp-red);
-}
-
-.mlp-masters__programs {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  border-top: 1px solid var(--mlp-line-dark);
-}
-
-.mlp-masters__program {
-  display: grid;
-  grid-template-columns: 2.4rem minmax(0, 1fr) auto;
-  gap: 0.75rem;
-  align-items: center;
-  padding: 0.95rem 0;
-  border-bottom: 1px solid var(--mlp-line-dark);
-  transition: background 0.35s ease, padding-left 0.35s var(--mlp-ease);
-}
-
-.mlp-masters__program:hover {
-  background: rgba(178, 2, 2, 0.04);
-  padding-left: 0.35rem;
-}
-
-.mlp-masters__program-index {
-  font-family: var(--mlp-font-display);
-  font-size: 0.85rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  color: var(--mlp-red);
-}
-
-.mlp-masters__program-title {
-  font-family: var(--mlp-font-display);
-  font-size: clamp(1rem, 1.6vw, 1.2rem);
-  font-weight: 500;
-  letter-spacing: -0.015em;
-  line-height: 1.35;
-  color: var(--mlp-navy);
-}
-
-.mlp-masters__program-mark {
-  width: 0.55rem;
-  height: 0.55rem;
-  border-right: 1.5px solid rgba(7, 20, 68, 0.35);
-  border-bottom: 1.5px solid rgba(7, 20, 68, 0.35);
-  transform: rotate(-45deg);
-  transition: border-color 0.3s ease, transform 0.35s var(--mlp-ease);
-}
-
-.mlp-masters__program:hover .mlp-masters__program-mark {
-  border-color: var(--mlp-red);
-  transform: rotate(-45deg) translate(2px, -2px);
-}
-
-.mlp-masters__empty {
-  margin: 0;
-  padding: 1rem 0;
-  color: var(--mlp-muted-on-paper);
 }
 
 @media (max-width: 900px) {
-  .mlp-masters__showcase,
-  .mlp-masters__showcase--flip {
-    grid-template-columns: 1fr;
-  }
-
-  .mlp-masters__showcase--flip .mlp-masters__plate,
-  .mlp-masters__showcase--flip .mlp-masters__catalog {
-    order: initial;
-  }
-
-  .mlp-masters__plate {
-    min-height: clamp(14rem, 55vw, 20rem);
-  }
 }
 
 @media (max-width: 700px) {
-  .mlp-masters__heading {
-    max-width: none;
-  }
-
-  .mlp-masters__program {
-    grid-template-columns: 2rem minmax(0, 1fr) auto;
-    gap: 0.55rem;
-    padding: 0.85rem 0;
-  }
-}
-
-.mlp-vh {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
 }
 
 /* —— The Light Archive: class, career, alumni, learning —— */
-.archive-class,
-.archive-career,
-.archive-alumni,
+
+.archive-career, 
+.archive-alumni, 
 .archive-learning {
   position: relative;
   isolation: isolate;
@@ -2345,35 +1638,22 @@
   color: var(--mlp-ink);
   background: var(--mlp-paper);
 }
-
-.archive-class { padding: clamp(4.5rem, 9vw, 7.5rem) 0 clamp(4rem, 8vw, 6.5rem); }
-.archive-career { padding: clamp(4.5rem, 9vw, 7.5rem) 0; }
+.archive-career,
+  .archive-learning { padding: clamp(4.5rem, 9vw, 7.5rem) 0; }
 .archive-alumni { padding: clamp(4rem, 8vw, 6.5rem) 0 clamp(3rem, 6vw, 4.5rem); }
-.archive-learning { padding: clamp(4.5rem, 9vw, 7.5rem) 0; }
 
-.archive-class__background,
-.archive-career__background,
-.archive-learning__background {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-}
 
-.archive-class__wash,
-.archive-career__wash,
+.archive-career__wash, 
 .archive-learning__wash {
-  position: absolute;
   right: -15%;
   bottom: -30%;
   width: min(55vw, 52rem);
   height: min(55vw, 52rem);
-  border-radius: 50%;
   background: radial-gradient(circle, rgba(15, 41, 131, 0.1), transparent 68%);
 }
 
-.archive-class__rule,
-.archive-career__rule,
+
+.archive-career__rule, 
 .archive-learning__rule {
   position: absolute;
   left: -10%;
@@ -2382,57 +1662,37 @@
   background: var(--mlp-line-dark);
   transform: rotate(-4deg);
 }
-
-.archive-class__rule--one { top: 30%; }
-.archive-class__rule--two { bottom: 15%; opacity: 0.55; transform: rotate(4deg); }
 .archive-career__rule--one { top: 22%; opacity: 0.6; }
 .archive-learning__rule--one { top: 72%; opacity: 0.55; transform: rotate(5deg); }
 
-.archive-class__frame,
-.archive-career__frame,
-.archive-alumni__frame,
-.archive-learning__frame { position: relative; z-index: 1; }
 
-.archive-class__intro,
-.archive-career__intro,
+.archive-career__intro, 
 .archive-learning__intro {
-  display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(17rem, 0.9fr);
   gap: clamp(2rem, 7vw, 8rem);
-  align-items: end;
   margin-bottom: clamp(2.5rem, 5vw, 4rem);
 }
 
-.archive-class__label,
+
 .archive-career__label,
-.archive-alumni__label,
-.archive-learning__label {
+  .archive-alumni__label,
+  .archive-learning__label,
+  .archive-partners__label {
   margin: 0 0 1rem;
-  font-size: 0.66rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  line-height: 1.4;
-  text-transform: uppercase;
-  color: var(--mlp-red);
 }
 
-.archive-class__heading,
-.archive-career__heading,
-.archive-alumni__heading,
+
+.archive-career__heading, 
+.archive-alumni__heading, 
 .archive-learning__heading {
   max-width: 14ch;
   margin: 0;
-  font-family: var(--mlp-font-display);
-  font-size: clamp(2.35rem, 5.5vw, 5.6rem);
-  font-weight: 500;
-  line-height: 0.92;
-  letter-spacing: -0.06em;
-  color: var(--mlp-navy);
 }
 
-.archive-class__copy,
+
 .archive-career__intro-copy,
-.archive-learning__intro-copy {
+  .archive-learning__intro-copy,
+  .archive-partners__intro-copy {
   max-width: 36ch;
   margin: 0 0 0.2rem auto;
   font-size: 0.94rem;
@@ -2440,215 +1700,34 @@
   color: var(--mlp-muted-on-paper);
 }
 
-.archive-class__copy p { margin: 0; }
-.archive-class__audience {
-  margin-top: 1.1rem !important;
-  padding-left: 0.9rem;
-  border-left: 2px solid var(--mlp-red);
-  color: var(--mlp-navy);
-  font-weight: 500;
-}
-
 /* Class: one archive frame, not separate dashboard panels. */
-.archive-class__archive {
-  display: grid;
-  grid-template-columns: minmax(18rem, 0.82fr) minmax(0, 1.18fr);
-  gap: 1px;
-  overflow: hidden;
-  background: var(--mlp-line-dark);
-  border-top: 1px solid var(--mlp-navy);
-  border-bottom: 1px solid var(--mlp-line-dark);
-}
 
-.archive-class__stack {
-  position: relative;
-  min-height: 26rem;
-  overflow: hidden;
-  background: var(--mlp-navy);
-}
 
-.archive-class__stack-image {
-  position: absolute;
-  overflow: hidden;
-  background: var(--mlp-blue);
-  opacity: 0.68;
-  mix-blend-mode: screen;
-}
-
-.archive-class__stack-image img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: grayscale(1) contrast(1.1);
-}
-
-.archive-class__stack-image--1 { inset: 8% 8% 22% 14%; transform: rotate(-5deg); }
-.archive-class__stack-image--2 { inset: 21% 19% 10% 4%; opacity: 0.45; transform: rotate(6deg); }
-.archive-class__stack-image--3 { inset: 0 25% 33% 29%; opacity: 0.3; transform: rotate(1deg); }
-
-.archive-class__stack::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(140deg, rgba(7, 20, 68, 0.9), rgba(7, 20, 68, 0.2) 70%);
-  pointer-events: none;
-}
-
-.archive-class__stack-caption {
-  position: absolute;
-  right: 1.5rem;
-  bottom: 1.5rem;
-  left: 1.5rem;
-  z-index: 2;
-  max-width: 18ch;
-  font-family: var(--mlp-font-display);
-  font-size: clamp(1.4rem, 2.5vw, 2.2rem);
-  line-height: 1;
-  letter-spacing: -0.035em;
-  color: var(--mlp-white);
-}
-
-.archive-class__metrics {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  align-content: center;
-  margin: 0;
-  padding: clamp(1.3rem, 3vw, 2.4rem);
-  background: var(--mlp-paper-pure);
-}
-
-.archive-class__metric {
-  display: grid;
-  gap: 0.45rem;
-  min-height: 7rem;
-  padding: 0.8rem 1rem;
-  border-bottom: 1px solid var(--mlp-line-dark);
-}
-
-.archive-class__metric:nth-child(odd) { padding-left: 0; border-right: 1px solid var(--mlp-line-dark); }
-.archive-class__metric:nth-child(even) { padding-right: 0; }
-.archive-class__metric:nth-last-child(-n + 2) { border-bottom: 0; }
-
-.archive-class__metric dt {
-  display: flex;
-  align-items: center;
-  gap: 0.45rem;
-  font-size: 0.62rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  line-height: 1.35;
-  text-transform: uppercase;
-  color: var(--mlp-muted-on-paper);
-}
-
-.archive-class__metric dd {
-  margin: 0;
-  font-family: var(--mlp-font-display);
-  font-size: clamp(1.25rem, 2.3vw, 2rem);
-  font-weight: 500;
-  line-height: 0.98;
-  letter-spacing: -0.04em;
-  color: var(--mlp-navy);
-}
-
-.archive-class__icon,
-.archive-class__zone-icon,
-.archive-class__industry-icon,
-.archive-career__dossier-icon,
+.archive-career__dossier-icon, 
 .archive-learning__point-icon {
-  display: inline-grid;
   place-items: center;
-  color: var(--mlp-red);
 }
-
-.archive-class__icon svg,
-.archive-class__zone-icon svg,
-.archive-class__industry-icon svg,
-.archive-career__dossier-icon svg,
-.archive-learning__point-icon svg {
-  width: 1.1rem;
-  height: 1.1rem;
-  stroke-width: 1.6;
-}
-
-.archive-class__regions,
-.archive-class__industries {
-  grid-column: 1 / -1;
-  padding: clamp(1.3rem, 3vw, 2rem) clamp(1.3rem, 3vw, 2.4rem);
-  background: var(--mlp-navy);
-  color: var(--mlp-white);
-}
-
-.archive-class__regions { border-top: 1px solid rgba(255, 255, 255, 0.18); }
-.archive-class__industries { border-top: 1px solid rgba(255, 255, 255, 0.18); }
-
-.archive-class__zone-head {
-  display: flex;
-  align-items: center;
-  gap: 0.7rem;
-  margin-bottom: 1rem;
-}
-
-.archive-class__zone-head h3 {
-  margin: 0;
-  font-family: var(--mlp-font-display);
-  font-size: clamp(1.25rem, 2.3vw, 1.85rem);
-  font-weight: 500;
-  line-height: 1;
-  letter-spacing: -0.03em;
-  color: var(--mlp-white);
-}
-
-.archive-class__zone-icon {
-  width: 2rem;
-  height: 2rem;
-  border: 1px solid rgba(178, 2, 2, 0.7);
-}
-
-.archive-class__region-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem 0;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.archive-class__region {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 0.35rem;
-  padding: 0.1rem 1rem;
-  border-left: 1px solid rgba(255, 255, 255, 0.25);
-}
-
-.archive-class__region:first-child { padding-left: 0; border-left: 0; }
-.archive-class__region span {
-  font-family: var(--mlp-font-display);
-  font-size: 1.05rem;
-  color: var(--mlp-white);
-}
-.archive-class__region small { font-size: 0.66rem; color: rgba(255, 255, 255, 0.52); }
 
 /* Career: image stack + readable dossiers, no timeline. */
-.archive-career { background: var(--mlp-paper-pure); }
+.archive-career,
+  .archive-learning,
+  .mlp-masters--prospectus { background: var(--mlp-paper-pure); }
 .archive-career__stage {
   display: grid;
   grid-template-columns: minmax(16rem, 0.75fr) minmax(0, 1.25fr);
   gap: clamp(2rem, 6vw, 6rem);
   align-items: start;
 }
-.archive-career__stack {
+.archive-career__stack,
+  .archive-voices__stack {
   position: sticky;
   top: 7rem;
   min-height: 28rem;
   overflow: hidden;
   background: var(--mlp-navy);
 }
-.archive-career__stack-image {
-  position: absolute;
-  overflow: hidden;
+.archive-career__stack-image,
+  .archive-voices__stack-image {
   opacity: 0.7;
   mix-blend-mode: screen;
 }
@@ -2670,13 +1749,14 @@
   letter-spacing: -0.04em;
   color: var(--mlp-white);
 }
-.archive-career__dossiers { border-top: 1px solid var(--mlp-navy); }
+.archive-career__dossiers,
+  .archive-voices__list,
+  .archive-fieldnotes__list { border-top: 1px solid var(--mlp-navy); }
 .archive-career__dossier {
   padding: 1.2rem 0 1.45rem;
-  border-bottom: 1px solid var(--mlp-line-dark);
 }
 .archive-career__dossier-head { display: flex; gap: 0.85rem; align-items: flex-start; }
-.archive-career__dossier-icon { flex: 0 0 2rem; width: 2rem; height: 2rem; border: 1px solid rgba(178, 2, 2, 0.55); }
+.archive-career__dossier-icon { flex: 0 0 2rem; border-color: rgba(178, 2, 2, 0.55); }
 .archive-career__dossier h3 {
   margin: 0;
   font-family: var(--mlp-font-display);
@@ -2695,12 +1775,15 @@
 
 /* Alumni: calm light ribbon, motion only for discovery. */
 .archive-alumni { background: var(--mlp-paper); }
-.archive-alumni__intro { display: grid; grid-template-columns: minmax(0, 1fr) minmax(17rem, 0.8fr); gap: clamp(2rem, 7vw, 8rem); align-items: end; margin-bottom: 2.75rem; }
+.archive-alumni__intro { grid-template-columns: minmax(0, 1fr) minmax(17rem, 0.8fr); gap: clamp(2rem, 7vw, 8rem); margin-bottom: 2.75rem; }
 .archive-alumni__intro-copy { max-width: 35ch; margin: 0 0 0.2rem auto; font-size: 0.94rem; line-height: 1.7; color: var(--mlp-muted-on-paper); }
-.archive-alumni__ribbon { overflow: hidden; border-top: 1px solid var(--mlp-navy); border-bottom: 1px solid var(--mlp-line-dark); }
+.archive-alumni__ribbon { overflow: hidden; border-top: 1px solid var(--mlp-navy); }
 .archive-alumni__track { display: flex; width: max-content; animation: archiveAlumniMarquee 32s linear infinite; }
 .archive-alumni__ribbon:hover .archive-alumni__track,
-.archive-alumni__ribbon:focus-within .archive-alumni__track { animation-play-state: paused; }
+  .archive-alumni__ribbon:focus-within .archive-alumni__track,
+  .mlp-page .mlp-prose.is-offscreen li::before,
+  .mlp-page--polished #accreditations .accred-slider-wrapper:hover .accred-slider-track.is-landing-slider,
+  .mlp-page--polished #accreditations .accred-slider-wrapper:focus-within .accred-slider-track.is-landing-slider { animation-play-state: paused; }
 .archive-alumni__logos { display: flex; align-items: center; margin: 0; padding: 0; list-style: none; }
 .archive-alumni__logo-frame { display: grid; place-items: center; width: clamp(9.5rem, 15vw, 13.5rem); height: 5rem; padding: 0.35rem 0.55rem; border-right: 1px solid var(--mlp-line-dark); }
 .archive-alumni__logo-frame img { display: block; max-width: 100%; max-height: 3.4rem; object-fit: contain; filter: none; opacity: 1; }
@@ -2709,7 +1792,6 @@
 @keyframes archiveAlumniMarquee { to { transform: translateX(-50%); } }
 
 /* Learning: image-led study desk. */
-.archive-learning { background: var(--mlp-paper-pure); }
 .archive-learning__desk { display: grid; grid-template-columns: minmax(18rem, 0.9fr) minmax(0, 1.1fr); gap: clamp(2rem, 7vw, 8rem); align-items: start; }
 .archive-learning__stack { position: relative; min-height: 31rem; margin: 0; }
 .archive-learning__stack-layer { position: absolute; overflow: hidden; background: var(--mlp-surface-soft); }
@@ -2719,48 +1801,20 @@
 .archive-learning__stack-layer--front { inset: 0 8% 17% 10%; z-index: 1; box-shadow: 0 25px 55px -35px rgba(7, 20, 68, 0.55); }
 .archive-learning__caption { position: absolute; right: 0; bottom: 0; left: 12%; padding-top: 0.7rem; border-top: 1px solid var(--mlp-navy); font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; line-height: 1.4; text-transform: uppercase; color: var(--mlp-muted-on-paper); }
 .archive-learning__points { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--mlp-navy); }
-.archive-learning__point { display: grid; grid-template-columns: 2rem minmax(0, 1fr); gap: 0.85rem; padding: 1.1rem 0; border-bottom: 1px solid var(--mlp-line-dark); }
-.archive-learning__point-icon { width: 2rem; height: 2rem; border: 1px solid rgba(178, 2, 2, 0.55); }
+.archive-learning__point { display: grid; grid-template-columns: 2rem minmax(0, 1fr); gap: 0.85rem; padding: 1.1rem 0; }
+.archive-learning__point-icon { border-color: rgba(178, 2, 2, 0.55); }
 .archive-learning__point h3 { margin: 0 0 0.35rem; font-family: var(--mlp-font-display); font-size: clamp(1.25rem, 2.1vw, 1.65rem); font-weight: 500; line-height: 1.05; letter-spacing: -0.025em; color: var(--mlp-navy); }
 .archive-learning__point-text { font-size: 0.86rem; line-height: 1.55; color: var(--mlp-muted-on-paper); }
-.archive-learning__point-text p { margin: 0; }
 .archive-learning__actions { display: flex; flex-wrap: wrap; gap: 1rem 1.4rem; align-items: center; margin-top: 1.75rem; padding-top: 1rem; border-top: 1px solid var(--mlp-line-dark); }
-.archive-learning__primary { display: inline-flex; gap: 0.6rem; align-items: center; min-height: 2.9rem; padding: 0.75rem 1.1rem; color: var(--mlp-white); background: var(--mlp-red); font: 600 0.78rem var(--mlp-font-body); text-decoration: none; }
+.archive-learning__primary { gap: 0.6rem; padding: 0.75rem 1.1rem; font: 600 0.78rem var(--mlp-font-body); text-decoration: none; }
 .archive-learning__secondary { padding-bottom: 0.2rem; color: var(--mlp-navy); border-bottom: 1px solid var(--mlp-navy); font: 600 0.76rem var(--mlp-font-body); text-decoration: none; }
-.archive-learning__primary:focus-visible,
-.archive-learning__secondary:focus-visible { outline: 2px solid var(--mlp-red); outline-offset: 4px; }
 
 @media (max-width: 900px) {
-  .archive-class__intro,
-  .archive-career__intro,
-  .archive-learning__intro,
-  .archive-alumni__intro { grid-template-columns: 1fr; gap: 1rem; }
-  .archive-class__copy,
-  .archive-career__intro-copy,
-  .archive-learning__intro-copy,
-  .archive-alumni__intro-copy { margin-left: 0; }
-  .archive-class__archive { grid-template-columns: 1fr; }
-  .archive-class__stack { min-height: 20rem; }
-  .archive-class__metrics { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-  .archive-class__metric,
-  .archive-class__metric:nth-child(even) { padding: 0.5rem 0.75rem; border-right: 1px solid var(--mlp-line-dark); border-bottom: 0; }
-  .archive-class__metric:first-child { padding-left: 0; }
-  .archive-class__metric:last-child { padding-right: 0; border-right: 0; }
-  .archive-career__stage,
-  .archive-learning__desk { grid-template-columns: 1fr; gap: 2.5rem; }
   .archive-career__stack { position: relative; top: auto; min-height: 24rem; }
   .archive-learning__stack { min-height: 27rem; max-width: 34rem; }
 }
 
 @media (max-width: 640px) {
-  .archive-class__metrics { grid-template-columns: 1fr 1fr; }
-  .archive-class__metric,
-  .archive-class__metric:nth-child(even) { padding: 0.8rem 0.6rem; border-right: 1px solid var(--mlp-line-dark); border-bottom: 1px solid var(--mlp-line-dark); }
-  .archive-class__metric:nth-child(odd) { padding-left: 0; }
-  .archive-class__metric:nth-child(even) { padding-right: 0; }
-  .archive-class__metric:nth-last-child(-n + 2) { border-bottom: 0; }
-  .archive-class__region { padding-left: 0.65rem; padding-right: 0.65rem; }
-  .archive-class__region:first-child { padding-left: 0; }
   .archive-career__move { grid-template-columns: 1fr; margin-left: 2.85rem; }
   .archive-career__quote { margin-left: 2.85rem; }
   .archive-learning__stack { min-height: 22rem; }
@@ -2780,33 +1834,17 @@
   color: var(--mlp-ink);
   background: var(--mlp-paper);
 }
-
-.pricing-cards__frame { position: relative; z-index: 1; }
 .pricing-cards__intro {
-  display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(17rem, 0.9fr);
   gap: clamp(1.5rem, 5vw, 5rem);
-  align-items: end;
   margin-bottom: clamp(2rem, 4vw, 3rem);
 }
 .pricing-cards__label {
   margin: 0 0 0.9rem;
-  font-size: var(--mlp-type-caption, 0.8125rem);
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  line-height: 1.4;
-  text-transform: uppercase;
-  color: var(--mlp-red);
 }
 .pricing-cards__heading {
   max-width: 14ch;
   margin: 0;
-  font-family: var(--mlp-font-display);
-  font-size: var(--mlp-type-title-lg, clamp(2.25rem, 5vw, 4rem));
-  font-weight: 500;
-  line-height: 0.95;
-  letter-spacing: -0.05em;
-  color: var(--mlp-navy);
 }
 .pricing-cards__intro-copy {
   max-width: 35ch;
@@ -2843,18 +1881,12 @@
   align-items: center;
   gap: 0.65rem;
   padding-bottom: 0.9rem;
-  border-bottom: 1px solid var(--mlp-line-dark);
 }
 .pricing-card__icon {
-  display: inline-grid;
   place-items: center;
   flex: 0 0 2rem;
-  width: 2rem;
-  height: 2rem;
-  color: var(--mlp-red);
-  border: 1px solid rgba(178, 2, 2, 0.45);
+  border-color: rgba(178, 2, 2, 0.45);
 }
-.pricing-card__icon svg { width: 1rem; height: 1rem; stroke-width: 1.6; }
 .pricing-card__eyebrow {
   font-size: var(--mlp-type-caption, 0.8125rem);
   font-weight: 600;
@@ -2878,7 +1910,6 @@
   gap: 0.25rem;
   margin-bottom: 1.15rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid var(--mlp-line-dark);
 }
 .pricing-card__price > span {
   font-size: var(--mlp-type-caption, 0.8125rem);
@@ -2923,7 +1954,6 @@
   letter-spacing: 0.04em;
   color: var(--mlp-red);
 }
-.pricing-card__details dt svg { width: 0.9rem; height: 0.9rem; stroke-width: 1.7; }
 .pricing-card__details dd {
   margin: 0;
   font-size: var(--mlp-type-body, 1rem);
@@ -2945,41 +1975,26 @@
   margin-top: 1.5rem;
 }
 .pricing-cards__primary {
-  display: inline-flex;
-  align-items: center;
   gap: 0.6rem;
-  min-height: 3rem;
   padding: 0.75rem 1.1rem;
-  color: var(--mlp-white);
-  background: var(--mlp-red);
   font: 600 var(--mlp-type-caption, 0.8125rem) var(--mlp-font-body);
   text-decoration: none;
 }
 .pricing-cards__secondary {
-  min-height: 3rem;
-  display: inline-flex;
-  align-items: center;
   padding: 0.7rem 1rem;
-  color: var(--mlp-navy);
   border: 1px solid var(--mlp-navy);
   font: 600 var(--mlp-type-caption, 0.8125rem) var(--mlp-font-body);
   text-decoration: none;
 }
 .pricing-cards__primary:hover,
 .pricing-cards__primary:focus-visible { background: var(--mlp-navy); }
-.pricing-cards__secondary:hover,
-.pricing-cards__secondary:focus-visible { color: var(--mlp-white); background: var(--mlp-navy); }
-.pricing-cards__primary:focus-visible,
-.pricing-cards__secondary:focus-visible { outline: 2px solid var(--mlp-red); outline-offset: 4px; }
 
 @media (max-width: 820px) {
-  .pricing-cards__intro { grid-template-columns: 1fr; gap: 1rem; }
-  .pricing-cards__intro-copy { margin-left: 0; }
 }
 
 @media (max-width: 620px) {
   .pricing-cards__grid { grid-template-columns: 1fr; }
-  .pricing-card { min-height: 0; }
+  .pricing-card,
   .pricing-card__program { min-height: 0; }
   .pricing-card__details div { grid-template-columns: 6.75rem minmax(0, 1fr); }
   .pricing-cards__actions { align-items: stretch; flex-direction: column; }
@@ -2988,8 +2003,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .pricing-card,
-  .pricing-cards__primary { transition: none; }
 }
 /* —— The Signal Atlas: graphical trust record —— */
 .signal-atlas {
@@ -3001,29 +2014,26 @@
   background: var(--mlp-paper);
 }
 
-.signal-atlas__background {
+.signal-atlas__bg-image {
   position: absolute;
   inset: 0;
-  z-index: -1;
-  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.55;
 }
 
 .signal-atlas__wash {
-  position: absolute;
   width: min(54vw, 52rem);
   height: min(54vw, 52rem);
   top: -28%;
   right: -16%;
-  border-radius: 50%;
   background: radial-gradient(circle, rgba(15, 41, 131, 0.12), transparent 68%);
 }
 
 .signal-atlas__contour {
-  position: absolute;
   left: -8%;
   right: -8%;
-  height: 1px;
-  background: var(--mlp-line-dark);
   transform: rotate(-6deg);
 }
 
@@ -3035,11 +2045,6 @@
   top: 78%;
   opacity: 0.55;
   transform: rotate(4deg);
-}
-
-.signal-atlas__frame {
-  position: relative;
-  z-index: 1;
 }
 
 .signal-atlas__intro {
@@ -3060,12 +2065,6 @@
 .signal-atlas__heading {
   max-width: 17ch;
   margin: 0;
-  font-family: var(--mlp-font-display);
-  font-size: clamp(2rem, 4.8vw, 5rem);
-  font-weight: 500;
-  line-height: 0.95;
-  letter-spacing: -0.055em;
-  color: var(--mlp-navy);
 }
 
 .signal-atlas__quote {
@@ -3099,57 +2098,6 @@
   position: relative;
   min-height: 25rem;
   padding-top: 2rem;
-}
-
-.signal-atlas__svg {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 3.75rem;
-  bottom: 0;
-  z-index: 0;
-  width: 100%;
-  height: calc(100% - 3.75rem);
-  overflow: visible;
-}
-
-.signal-atlas__grid-lines path,
-.signal-atlas__grid-lines line {
-  fill: none;
-  stroke: var(--mlp-blue);
-  stroke-width: 1;
-  opacity: 0.1;
-}
-
-.signal-atlas__contour-lines path {
-  fill: none;
-  stroke: var(--mlp-blue);
-  stroke-width: 1;
-  opacity: 0.1;
-  vector-effect: non-scaling-stroke;
-}
-
-.signal-atlas__signal-nodes circle {
-  fill: var(--mlp-paper);
-  stroke: var(--mlp-red);
-  stroke-width: 1.3;
-  opacity: 0.74;
-  vector-effect: non-scaling-stroke;
-}
-
-.signal-atlas__signal-line {
-  fill: none;
-  stroke: var(--mlp-red);
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  opacity: 0.82;
-}
-
-.signal-atlas__signal-line--secondary {
-  stroke: var(--mlp-blue);
-  stroke-width: 1;
-  opacity: 0.36;
 }
 
 .signal-atlas__records {
@@ -3200,27 +2148,6 @@
 .signal-atlas__record:hover {
   z-index: 2;
   border-left-color: var(--mlp-red);
-}
-
-.signal-atlas__record-index {
-  align-self: start;
-  padding-top: 0.25rem;
-  font-size: 0.62rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  color: var(--mlp-red);
-}
-
-.signal-atlas__node {
-  position: absolute;
-  top: -0.35rem;
-  left: -0.38rem;
-  width: 0.7rem;
-  height: 0.7rem;
-  border: 2px solid var(--mlp-paper);
-  border-radius: 50%;
-  background: var(--mlp-red);
-  box-shadow: 0 0 0 1px var(--mlp-red);
 }
 
 .signal-atlas__value {
@@ -3288,6 +2215,11 @@
     margin-bottom: 2.75rem;
   }
 
+  .blueprint-overview__heading,
+  .mlp-why__heading,
+  .mlp-why__title,
+  .mlp-mba__heading,
+  .mlp-masters__heading,
   .signal-atlas__heading {
     max-width: none;
   }
@@ -3297,25 +2229,11 @@
     padding-top: 1.25rem;
   }
 
-  .signal-atlas__svg {
-    display: none;
-  }
-
   .signal-atlas__records {
     grid-template-columns: 1fr;
     min-height: 0;
     margin-top: 1.25rem;
     padding-left: 0.75rem;
-  }
-
-  .signal-atlas__records::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    width: 1px;
-    background: linear-gradient(180deg, var(--mlp-red), var(--mlp-blue));
   }
 
   .signal-atlas__record,
@@ -3338,15 +2256,13 @@
     left: -1.07rem;
   }
 
-  .signal-atlas__label {
+  .signal-atlas__label,
+  .mlp-page--polished #mlp-trust .signal-atlas__label {
     max-width: 24ch;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .signal-atlas__record {
-    transition: none;
-  }
 }
 
 /* —— The Light Archive: kinetic partner wall —— */
@@ -3358,45 +2274,19 @@
   color: var(--mlp-ink);
   background: var(--mlp-paper);
 }
-
-.archive-partners__frame { position: relative; z-index: 1; }
-.archive-partners__intro {
-  display: grid;
+.archive-partners__intro,
+  .mlp-page--polished .archive-video-proof__intro {
   grid-template-columns: minmax(0, 1.1fr) minmax(17rem, 0.9fr);
   gap: clamp(2rem, 7vw, 8rem);
-  align-items: end;
   margin-bottom: clamp(2rem, 4vw, 3.5rem);
-}
-.archive-partners__label {
-  margin: 0 0 1rem;
-  font-size: 0.66rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  line-height: 1.4;
-  text-transform: uppercase;
-  color: var(--mlp-red);
 }
 .archive-partners__heading {
   max-width: 14ch;
   margin: 0;
-  font-family: var(--mlp-font-display);
-  font-size: clamp(2.35rem, 5.5vw, 5.4rem);
-  font-weight: 500;
-  line-height: 0.92;
-  letter-spacing: -0.06em;
-  color: var(--mlp-navy);
-}
-.archive-partners__intro-copy {
-  max-width: 36ch;
-  margin: 0 0 0.2rem auto;
-  font-size: 0.94rem;
-  line-height: 1.7;
-  color: var(--mlp-muted-on-paper);
 }
 
 .archive-partners__wall {
   border-top: 1px solid var(--mlp-navy);
-  border-bottom: 1px solid var(--mlp-line-dark);
 }
 .archive-partners__wall-head {
   display: flex;
@@ -3424,9 +2314,10 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
-.archive-partners__toggle:hover,
-.archive-partners__toggle:focus-visible { color: var(--mlp-white); background: var(--mlp-navy); }
-.archive-partners__toggle:focus-visible { outline: 2px solid var(--mlp-red); outline-offset: 3px; }
+.pricing-cards__secondary:hover,
+  .pricing-cards__secondary:focus-visible,
+  .archive-partners__toggle:hover,
+  .archive-partners__toggle:focus-visible { color: var(--mlp-white); background: var(--mlp-navy); }
 
 .archive-partners__viewport {
   overflow-x: auto;
@@ -3437,7 +2328,6 @@
   overscroll-behavior-x: contain;
   -webkit-overflow-scrolling: touch;
 }
-.archive-partners__viewport.is-dragging { cursor: grabbing; user-select: none; }
 .archive-partners__track { display: flex; width: max-content; }
 .archive-partners__logo-list {
   display: flex;
@@ -3486,7 +2376,9 @@
 }
 
 @media (max-width: 820px) {
+  .pricing-cards__intro,
   .archive-partners__intro { grid-template-columns: 1fr; gap: 1rem; }
+  .pricing-cards__intro-copy,
   .archive-partners__intro-copy { margin-left: 0; }
 }
 
@@ -3497,128 +2389,77 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .archive-partners__logo-item img { transition: none; }
+  .prospectus-cover__enquiry,
+  .blueprint-overview__connectors path,
+  .blueprint-overview__foundation,
+  .blueprint-overview__primary,
+  .pricing-card,
+  .pricing-cards__primary,
+  .signal-atlas__record,
+  .archive-partners__logo-item img,
+  .archive-closing__image-layer,
+  .mlp-btn,
+  .mlp-sticky__btn,
+  .mlp-field input,
+  .mlp-field select,
+  .mlp-mba__uni-photo,
+  .mlp-mba__program { transition: none; }
 }
 .archive-voices { position: relative; isolation: isolate; overflow: hidden; padding: clamp(4.5rem, 9vw, 7.5rem) 0; color: var(--mlp-ink); background: var(--mlp-paper-pure); }
-.archive-voices__background { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
-.archive-voices__wash { position: absolute; right: -18%; bottom: -25%; width: min(55vw, 52rem); height: min(55vw, 52rem); border-radius: 50%; background: radial-gradient(circle, rgba(178, 2, 2, 0.08), transparent 68%); }
+.archive-voices__wash { right: -18%; bottom: -25%; width: min(55vw, 52rem); height: min(55vw, 52rem); background: radial-gradient(circle, rgba(178, 2, 2, 0.08), transparent 68%); }
 .archive-voices__rule--one { position: absolute; left: -10%; right: -10%; top: 28%; height: 1px; background: var(--mlp-line-dark); transform: rotate(4deg); }
 .archive-voices__stage { display: grid; grid-template-columns: minmax(16rem, 0.76fr) minmax(0, 1.24fr); gap: clamp(2rem, 6vw, 6rem); align-items: start; }
-.archive-voices__stack { position: sticky; top: 7rem; min-height: 28rem; overflow: hidden; background: var(--mlp-navy); }
-.archive-voices__stack-image { position: absolute; overflow: hidden; opacity: 0.7; mix-blend-mode: screen; }
-.archive-voices__stack-image img { display: block; width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.1); }
+.archive-voices__stack-image img,
+  .archive-closing__image-layer img { display: block; width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.1); }
 .archive-voices__stack-image--1 { inset: 8% 12% 18% 12%; transform: rotate(-5deg); }
 .archive-voices__stack-image--2 { inset: 18% 5% 10% 22%; opacity: 0.48; transform: rotate(5deg); }
 .archive-voices__stack-image--3 { inset: 1% 25% 29% 4%; opacity: 0.3; transform: rotate(-1deg); }
 .archive-voices__stack::after { content: ""; position: absolute; inset: 0; background: linear-gradient(145deg, rgba(7, 20, 68, 0.9), rgba(7, 20, 68, 0.15)); }
 .archive-voices__stack-caption { position: absolute; right: 1.4rem; bottom: 1.4rem; left: 1.4rem; z-index: 1; max-width: 16ch; font-family: var(--mlp-font-display); font-size: clamp(1.5rem, 3vw, 2.7rem); line-height: 0.98; letter-spacing: -0.04em; color: var(--mlp-white); }
-.archive-voices__list { border-top: 1px solid var(--mlp-navy); }
-.archive-voices__voice { display: grid; grid-template-columns: 2rem minmax(0, 1fr); gap: 0.8rem; margin: 0; padding: 1.25rem 0 1.4rem; border-bottom: 1px solid var(--mlp-line-dark); transition: padding-left 0.35s var(--mlp-ease), border-color 0.3s ease; }
-.archive-voices__voice:hover { padding-left: 0.35rem; border-bottom-color: var(--mlp-red); }
-.archive-voices__quote-icon { color: var(--mlp-red); }
-.archive-voices__quote-icon svg { width: 1.15rem; height: 1.15rem; stroke-width: 1.5; }
-.archive-voices__quote { grid-column: 2; max-width: 44ch; margin: 0; font-family: var(--mlp-font-display); font-size: clamp(1.2rem, 2.2vw, 1.8rem); line-height: 1.1; letter-spacing: -0.025em; color: var(--mlp-navy); }
-.archive-voices__voice footer { grid-column: 2; display: flex; align-items: center; gap: 0.7rem; margin-top: 0.65rem; }
-.archive-voices__voice footer img,
-.archive-voices__initial { width: 2.5rem; height: 2.5rem; object-fit: cover; border-radius: 50%; background: var(--mlp-surface-soft); }
-.archive-voices__initial { display: grid; place-items: center; font-family: var(--mlp-font-display); font-size: 1.2rem; color: var(--mlp-red); }
-.archive-voices__voice footer span:last-child { display: grid; gap: 0.15rem; }
-.archive-voices__voice cite { font-style: normal; font-size: 0.78rem; font-weight: 600; color: var(--mlp-navy); }
-.archive-voices__voice small { font-size: 0.68rem; color: var(--mlp-muted-on-paper); }
-.archive-parallel { position: relative; isolation: isolate; padding: clamp(4.5rem, 9vw, 7.5rem) 0; color: var(--mlp-ink); background: var(--mlp-paper); }
-.archive-parallel__brief { border-top: 1px solid var(--mlp-navy); }
-.archive-parallel__columns { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); margin-left: 31%; border-bottom: 1px solid var(--mlp-line-dark); }
-.archive-parallel__columns span { display: flex; align-items: center; gap: 0.6rem; padding: 0.85rem 1rem; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.11em; line-height: 1.35; text-transform: uppercase; color: var(--mlp-muted-on-paper); }
-.archive-parallel__columns span + span { border-left: 1px solid var(--mlp-line-dark); }
-.archive-parallel__columns svg { width: 1rem; height: 1rem; color: var(--mlp-red); }
-.archive-parallel__row { display: grid; grid-template-columns: 31% minmax(0, 1fr) minmax(0, 1fr); border-bottom: 1px solid var(--mlp-line-dark); }
-.archive-parallel__criterion { display: flex; align-items: center; gap: 0.7rem; margin: 0; padding: 1.2rem 1rem 1.2rem 0; font-family: var(--mlp-font-display); font-size: clamp(1.1rem, 1.8vw, 1.45rem); font-weight: 500; line-height: 1.05; letter-spacing: -0.025em; color: var(--mlp-navy); }
-.archive-parallel__criterion span { display: inline-grid; place-items: center; flex: 0 0 2rem; width: 2rem; height: 2rem; color: var(--mlp-red); border: 1px solid rgba(178, 2, 2, 0.5); }
-.archive-parallel__criterion svg { width: 1rem; height: 1rem; }
-.archive-parallel__side { padding: 1.2rem 1rem; border-left: 1px solid var(--mlp-line-dark); }
-.archive-parallel__side-label { display: none; font-size: 0.62rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mlp-red); }
-.archive-parallel__side--online { background: rgba(15, 41, 131, 0.04); }
-.archive-parallel__side--traditional { background: rgba(7, 20, 68, 0.025); }
-.archive-parallel__prose { font-size: 0.86rem; line-height: 1.55; color: var(--mlp-muted-on-paper); }
-.archive-parallel__prose p { margin: 0; }
 .archive-fieldnotes { position: relative; isolation: isolate; overflow: hidden; padding: clamp(4.5rem, 9vw, 7rem) 0; color: var(--mlp-ink); background: var(--mlp-paper-pure); }
-.archive-fieldnotes__background { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
-.archive-fieldnotes__wash { position: absolute; left: -16%; bottom: -25%; width: min(46vw, 42rem); height: min(46vw, 42rem); border-radius: 50%; background: radial-gradient(circle, rgba(15, 41, 131, 0.08), transparent 68%); }
+.archive-fieldnotes__wash { left: -16%; bottom: -25%; width: min(46vw, 42rem); height: min(46vw, 42rem); background: radial-gradient(circle, rgba(15, 41, 131, 0.08), transparent 68%); }
 .archive-fieldnotes__rule { position: absolute; left: -10%; right: -10%; top: 30%; height: 1px; background: var(--mlp-line-dark); transform: rotate(-4deg); }
 .archive-fieldnotes__intro-copy { max-width: 26ch; }
-.archive-fieldnotes__list { border-top: 1px solid var(--mlp-navy); }
-.archive-fieldnotes__note { border-bottom: 1px solid var(--mlp-line-dark); }
-.archive-fieldnotes__note h3 { margin: 0; }
 .archive-fieldnotes__question { display: grid; grid-template-columns: 2rem minmax(0, 1fr) auto; gap: 0.8rem; align-items: center; width: 100%; padding: 1.15rem 0; color: var(--mlp-navy); background: transparent; border: 0; text-align: left; cursor: pointer; font: 500 clamp(1.15rem, 2vw, 1.55rem)/1.12 var(--mlp-font-display); letter-spacing: -0.025em; }
 .archive-fieldnotes__question:hover { color: var(--mlp-red); }
 .archive-fieldnotes__question-icon { display: inline-grid; place-items: center; width: 1.75rem; height: 1.75rem; color: var(--mlp-red); border: 1px solid rgba(178, 2, 2, 0.55); }
-.archive-fieldnotes__question-icon svg { width: 0.95rem; height: 0.95rem; transition: transform 0.35s var(--mlp-ease); }
-.archive-fieldnotes__note.is-open .archive-fieldnotes__question-icon svg { transform: rotate(45deg); }
 .archive-fieldnotes__answer { max-width: 48rem; padding: 0 3.1rem 1.35rem; font-size: 0.9rem; line-height: 1.65; color: var(--mlp-muted-on-paper); }
-.archive-fieldnotes__answer p { margin: 0; }
-.archive-fieldnotes__answer[hidden] { display: none; }
-.archive-fieldnotes__question:focus-visible { outline: 2px solid var(--mlp-red); outline-offset: 3px; }
 .archive-closing { position: relative; isolation: isolate; overflow: hidden; padding: clamp(4.5rem, 9vw, 7.5rem) 0; color: var(--mlp-ink); background: var(--mlp-paper); }
-.archive-closing__background { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
-.archive-closing__wash { position: absolute; right: -18%; bottom: -30%; width: min(58vw, 54rem); height: min(58vw, 54rem); border-radius: 50%; background: radial-gradient(circle, rgba(15, 41, 131, 0.1), transparent 68%); }
-.archive-closing__image-layer { position: absolute; overflow: hidden; background: var(--mlp-navy); }
-.archive-closing__image-layer img { display: block; width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.1); }
+.archive-closing__wash { right: -18%; bottom: -30%; width: min(58vw, 54rem); height: min(58vw, 54rem); background: radial-gradient(circle, rgba(15, 41, 131, 0.1), transparent 68%); }
+.archive-closing__image-layer { background: var(--mlp-navy); }
 .archive-closing__image-layer--back { top: 8%; right: -8%; width: min(38vw, 34rem); height: min(32vw, 27rem); opacity: 0.18; transform: rotate(7deg); }
 .archive-closing__image-layer--front { top: 13%; right: 3%; width: min(32vw, 29rem); height: min(38vw, 34rem); opacity: 0.7; mix-blend-mode: multiply; transform: rotate(-4deg); }
 .archive-closing__frame { display: grid; grid-template-columns: minmax(0, 1fr) minmax(320px, 0.78fr); gap: clamp(2rem, 7vw, 8rem); align-items: start; }
 .archive-closing__intro { max-width: 31rem; padding-top: 1rem; }
 .archive-closing__heading { max-width: 10ch; }
 .archive-closing__intro-copy { max-width: 37ch; margin-top: 1.2rem; font-size: 0.96rem; line-height: 1.65; color: var(--mlp-muted-on-paper); }
-.archive-closing__intro-copy p { margin: 0; }
 .archive-closing__form { position: relative; z-index: 2; padding: 1.25rem clamp(1rem, 2vw, 1.5rem) 1.5rem; background: rgba(255, 255, 255, 0.8); border-top: 3px solid var(--mlp-red); box-shadow: 0 22px 60px -42px rgba(7, 20, 68, 0.55); }
-.archive-closing__form-head { display: flex; justify-content: space-between; gap: 1rem; align-items: center; padding-bottom: 0.9rem; border-bottom: 1px solid var(--mlp-line-dark); color: var(--mlp-red); font: 600 0.66rem/1.3 var(--mlp-font-body); letter-spacing: 0.13em; text-transform: uppercase; }
-.archive-closing__form-head svg { width: 1.1rem; height: 1.1rem; }
+.archive-closing__form-head { display: flex; justify-content: space-between; gap: 1rem; align-items: center; padding-bottom: 0.9rem; color: var(--mlp-red); font: 600 0.66rem/1.3 var(--mlp-font-body); letter-spacing: 0.13em; text-transform: uppercase; }
 .archive-closing__form .mlp-form--on-void { padding: 1rem 0 0; color: var(--mlp-ink); background: transparent; border: 0; box-shadow: none; backdrop-filter: none; }
-.archive-closing__form .mlp-form__title { color: var(--mlp-navy); }
-.archive-closing__form .mlp-form__hint,
-.archive-closing__form .mlp-field { color: var(--mlp-muted-on-paper); }
 .archive-closing__form .mlp-field input,
 .archive-closing__form .mlp-field select { color: var(--mlp-ink); border-bottom-color: rgba(7, 20, 68, 0.22); }
-.archive-closing__form .mlp-field input:focus,
-.archive-closing__form .mlp-field select:focus { border-bottom-color: var(--mlp-red); box-shadow: 0 1px 0 0 var(--mlp-red); }
-.archive-closing__form .mlp-field select option { color: var(--mlp-ink); background: var(--mlp-white); }
-.archive-closing__form .mlp-form__privacy-note { color: var(--mlp-muted-on-paper); }
+.prospectus-cover__enquiry .mlp-field input:focus,
+  .prospectus-cover__enquiry .mlp-field select:focus,
+  .archive-closing__form .mlp-field input:focus,
+  .archive-closing__form .mlp-field select:focus { border-bottom-color: var(--mlp-red); box-shadow: 0 1px 0 0 var(--mlp-red); }
 
 @media (max-width: 900px) {
+  .archive-career__intro,
+  .archive-learning__intro,
+  .archive-alumni__intro,
   .archive-voices__intro,
-  .archive-parallel__intro,
   .archive-fieldnotes__intro,
   .archive-closing__frame { grid-template-columns: 1fr; gap: 1rem; }
-  .archive-investment__intro,
-  .archive-voices__intro,
-  .archive-parallel__intro,
-  .archive-fieldnotes__intro { grid-template-columns: 1fr; }
-  .archive-investment__intro-copy,
-  .archive-voices__intro-copy,
-  .archive-parallel__intro-copy,
-  .archive-fieldnotes__intro-copy { margin-left: 0; }
+  .archive-career__stage,
+  .archive-learning__desk,
   .archive-voices__stage { grid-template-columns: 1fr; gap: 2.5rem; }
   .archive-voices__stack { position: relative; top: auto; min-height: 23rem; max-width: 30rem; }
-  .archive-parallel__columns { margin-left: 25%; }
-  .archive-parallel__row { grid-template-columns: 25% minmax(0, 1fr) minmax(0, 1fr); }
   .archive-closing__image-layer--back { right: -18%; width: 25rem; height: 19rem; }
   .archive-closing__image-layer--front { right: -5%; width: 20rem; height: 25rem; }
 }
 
 @media (max-width: 620px) {
-  .archive-investment__record-topline { grid-template-columns: 1fr; gap: 0.45rem; }
-  .archive-investment__record-topline strong { font-size: 1.75rem; }
-  .archive-investment__details { display: grid; gap: 0.45rem; }
   .archive-voices__stack { min-height: 20rem; }
-  .archive-voices__voice { grid-template-columns: 1.75rem minmax(0, 1fr); }
-  .archive-voices__quote,
-  .archive-voices__voice footer { grid-column: 2; }
-  .archive-parallel__columns { display: none; }
-  .archive-parallel__row { display: grid; grid-template-columns: 1fr; }
-  .archive-parallel__criterion { padding-right: 0; }
-  .archive-parallel__side { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); gap: 0.6rem; padding: 0.85rem 0; border-left: 0; border-top: 1px solid var(--mlp-line-dark); }
-  .archive-parallel__side-label { display: block; }
-  .archive-parallel__prose { min-width: 0; }
   .archive-fieldnotes__question { grid-template-columns: 1.75rem minmax(0, 1fr); gap: 0.7rem; font-size: 1.15rem; }
   .archive-fieldnotes__answer { padding-left: 2.45rem; }
   .archive-closing__image-layer--back { opacity: 0.1; }
@@ -3627,11 +2468,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .archive-investment__record,
-  .archive-voices__voice,
-  .archive-closing__image-layer,
-  .archive-fieldnotes__question-icon svg,
-  .archive-closing__primary { transition: none; }
   .archive-alumni__track { animation: none; }
 }
 /* RichEditor prose — red disc + pulsing ring (program-detail gau-copy pattern) */
@@ -3639,12 +2475,7 @@
   margin: 0 0 0.85em;
 }
 
-.mlp-page .mlp-prose p:last-child {
-  margin-bottom: 0;
-}
-
-.mlp-page .mlp-prose ul,
-.mlp-page .mlp-prose ol {
+.mlp-page .mlp-prose ul {
   list-style: none;
   margin: 0.5em 0 0;
   padding: 0;
@@ -3657,7 +2488,8 @@
   line-height: 1.65;
 }
 
-.mlp-page .mlp-prose li:last-child {
+.mlp-page .mlp-prose p:last-child,
+  .mlp-page .mlp-prose li:last-child {
   margin-bottom: 0;
 }
 
@@ -3672,16 +2504,6 @@
   background: var(--mlp-red, #b20202);
   box-shadow: 0 0 0 0 rgba(178, 2, 2, 0.55);
   animation: mlpProseRing 1.9s ease-out infinite;
-}
-
-.mlp-page .mlp-prose.is-offscreen li::before {
-  animation-play-state: paused;
-}
-
-.mlp-page .mlp-prose--on-dark li::before {
-  background: #e85a5a;
-  box-shadow: 0 0 0 0 rgba(232, 90, 90, 0.45);
-  animation-name: mlpProseRingOnDark;
 }
 
 @keyframes mlpProseRing {
@@ -3703,21 +2525,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .mlp-btn,
-  .mlp-sticky__btn,
-  .mlp-field input,
-  .mlp-field select,
-  .mlp-mba__uni-photo,
-  .mlp-masters__uni-photo,
-  .mlp-mba__program,
-  .mlp-masters__program,
-  .mlp-mba__program-mark,
-  .mlp-masters__program-mark {
-    transition: none;
-  }
 
-  .mlp-mba__showcase:hover .mlp-mba__uni-photo,
-  .mlp-masters__showcase:hover .mlp-masters__uni-photo {
+  .mlp-mba__showcase:hover .mlp-mba__uni-photo {
     transform: none;
   }
 
@@ -3820,16 +2629,6 @@
   box-shadow: 0 0.65rem 1.65rem rgba(7, 20, 68, 0.1);
   color: var(--mlp-navy);
   transform: translate(-50%, -50%);
-}
-
-.blueprint-overview__class-2025-center span {
-  color: var(--mlp-blue);
-  font-family: var(--mlp-font-body);
-  font-size: clamp(0.62rem, 0.85vw, 0.75rem);
-  font-weight: 500;
-  letter-spacing: 0.15em;
-  line-height: 1;
-  text-transform: uppercase;
 }
 
 .blueprint-overview__class-2025-center strong {
@@ -4067,11 +2866,7 @@
     font-size: clamp(1.8rem, 9vw, 2.6rem);
   }
 
-  .blueprint-overview__class-2025-stage {
-    grid-template-columns: 1fr;
-    gap: 0.85rem;
-  }
-
+  .blueprint-overview__class-2025-stage,
   .blueprint-overview__class-2025-stats {
     grid-template-columns: 1fr;
     gap: 0.85rem;
@@ -4094,15 +2889,6 @@
 }
 
 /* Shared project typography lock for the MBA Class 2025 component. */
-.mlp-page--polished #mlp-overview .blueprint-overview__class-2025-heading,
-.mlp-page--polished #mlp-overview .blueprint-overview__class-2025-center strong,
-.mlp-page--polished #mlp-overview .blueprint-overview__class-2025-value {
-  font-family: var(--font-display) !important;
-}
-
-.mlp-page--polished #mlp-overview .blueprint-overview__class-2025-label {
-  font-family: var(--font-body) !important;
-}
 
 /* Landing class profile snapshot — Cohort Index / Class Profile Atlas */
 #mlp-class-snapshot {
@@ -4115,31 +2901,15 @@
   color: var(--mlp-ink);
 }
 
-#mlp-class-snapshot .mlp-class-snapshot__frame {
-  position: relative;
-  z-index: 1;
-}
-
 #mlp-class-snapshot .mlp-class-snapshot__intro {
   max-width: 56rem;
   margin: 0 auto clamp(2rem, 4vw, 3.5rem);
   text-align: center;
 }
 
-#mlp-class-snapshot .mlp-class-snapshot__label {
-  margin: 0 0 0.9rem;
-  color: var(--mlp-red);
-}
-
 #mlp-class-snapshot .mlp-class-snapshot__heading {
   max-width: 30ch;
   margin: 0 auto;
-  color: var(--mlp-navy);
-  font-family: var(--mlp-font-display);
-  font-size: clamp(1.85rem, 3.6vw, 3.35rem);
-  font-weight: 500;
-  letter-spacing: -0.045em;
-  line-height: 1.04;
 }
 
 #mlp-class-snapshot .mlp-class-snapshot__intro-copy {
@@ -4159,7 +2929,7 @@
   align-items: stretch;
 }
 
-#mlp-class-snapshot .mlp-class-snapshot__overview,
+
 #mlp-class-snapshot .mlp-class-snapshot__global {
   position: relative;
   overflow: hidden;
@@ -4169,11 +2939,7 @@
   box-shadow: 0 1.4rem 3rem rgba(7, 20, 68, 0.08);
 }
 
-#mlp-class-snapshot .mlp-class-snapshot__overview {
-  padding: clamp(1.35rem, 2.5vw, 2.25rem);
-}
 
-#mlp-class-snapshot .mlp-class-snapshot__overview h3,
 #mlp-class-snapshot .mlp-class-snapshot__global h3 {
   position: relative;
   z-index: 2;
@@ -4197,7 +2963,6 @@
   grid-template-rows: auto auto;
   column-gap: 0.9rem;
   padding: 1rem 0;
-  border-bottom: 1px solid var(--mlp-line-dark);
 }
 
 #mlp-class-snapshot .mlp-class-snapshot__metric:first-child {
@@ -4223,12 +2988,6 @@
   height: 2.15rem;
   color: var(--mlp-red);
   border: 1px solid rgba(178, 2, 2, 0.3);
-}
-
-#mlp-class-snapshot .mlp-class-snapshot__metric-icon svg {
-  width: 1.15rem;
-  height: 1.15rem;
-  stroke-width: 1.45;
 }
 
 #mlp-class-snapshot .mlp-class-snapshot__metric-label {
@@ -4282,8 +3041,7 @@
   line-height: 1.35;
 }
 
-#mlp-class-snapshot .mlp-class-snapshot__country img,
-#mlp-class-snapshot .mlp-class-snapshot__country-flag-fallback {
+#mlp-class-snapshot .mlp-class-snapshot__country img {
   display: block;
   flex: 0 0 auto;
   width: 1.4rem;
@@ -4292,33 +3050,26 @@
   border: 1px solid rgba(7, 20, 68, 0.14);
 }
 
-#mlp-class-snapshot .mlp-class-snapshot__country-flag-fallback {
-  background: linear-gradient(135deg, var(--mlp-blue) 0 50%, var(--mlp-red) 50% 100%);
-  opacity: 0.45;
-}
-
 #mlp-class-snapshot .mlp-class-snapshot__global {
   isolation: isolate;
 }
 
-#mlp-class-snapshot .mlp-class-snapshot__global > h3,
-#mlp-class-snapshot .mlp-class-snapshot__countries {
+.blueprint-overview__frame,
+  .mlp-why__chapters,
+  .mlp-mba__inner,
+  .mlp-masters__inner,
+  .archive-career__frame,
+  .archive-alumni__frame,
+  .archive-learning__frame,
+  .pricing-cards__frame,
+  .signal-atlas__frame,
+  .archive-partners__frame,
+  #mlp-class-snapshot .mlp-class-snapshot__frame,
+  #mlp-class-snapshot .mlp-class-snapshot__global > h3,
+  #mlp-class-snapshot .mlp-class-snapshot__countries,
+  .mlp-page--polished .archive-video-proof__frame {
   position: relative;
   z-index: 1;
-}
-
-@media (max-width: 820px) {
-  #mlp-class-snapshot .mlp-class-snapshot__global::after {
-    height: 10rem;
-    background-size: 120% auto;
-  }
-}
-
-@media (max-width: 520px) {
-  #mlp-class-snapshot .mlp-class-snapshot__global::after {
-    height: 8.5rem;
-    background-size: 145% auto;
-  }
 }
 
 /* Landing accreditation slider fallback — the shared homepage script is not loaded here. */
@@ -4336,11 +3087,6 @@
   animation: mlpAccreditationLoop 36s linear infinite;
 }
 
-.mlp-page--polished #accreditations .accred-slider-wrapper:hover .accred-slider-track.is-landing-slider,
-.mlp-page--polished #accreditations .accred-slider-wrapper:focus-within .accred-slider-track.is-landing-slider {
-  animation-play-state: paused;
-}
-
 @media (prefers-reduced-motion: reduce) {
   .mlp-page--polished #accreditations .accred-slider-track.is-landing-slider {
     animation: none;
@@ -4352,15 +3098,6 @@
 #mlp-class-snapshot .mlp-class-snapshot__grid {
   grid-template-columns: 1fr;
   gap: clamp(1.15rem, 3vw, 2rem);
-}
-
-#mlp-class-snapshot .mlp-class-snapshot__overview,
-#mlp-class-snapshot .mlp-class-snapshot__global {
-  width: 100%;
-}
-
-#mlp-class-snapshot .mlp-class-snapshot__overview {
-  padding: clamp(1.35rem, 2.5vw, 2.25rem);
 }
 
 #mlp-class-snapshot .mlp-class-snapshot__metrics {
@@ -4405,7 +3142,6 @@
   flex: 0 0 auto;
   min-height: 2.15rem;
   padding: 0.3rem 0.8rem 0.3rem 0;
-  border-bottom: 1px solid var(--mlp-line-dark);
 }
 
 @media (max-width: 900px) {
@@ -4527,37 +3263,17 @@
    Body typography, hairline ledger grid, one framed banner.
    No university names, no counts.
    ———————————————————————————————————————————————— */
-.mlp-masters--prospectus {
-  background: var(--mlp-paper-pure);
-}
 
 /* Split editorial header */
 .mlp-masters--prospectus .mlp-masters__head {
-  display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
   gap: clamp(1.5rem, 4vw, 4rem);
-  align-items: end;
   max-width: none;
   margin-bottom: clamp(2.25rem, 5vw, 3.5rem);
 }
 
-.mlp-masters--prospectus .mlp-masters__label {
-  color: var(--mlp-red);
-  font-family: var(--mlp-font-body);
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-}
-
 .mlp-masters--prospectus .mlp-masters__heading {
   max-width: 26ch;
-  color: var(--mlp-navy);
-  font-family: var(--mlp-font-body);
-  font-size: clamp(1.9rem, 3.6vw, 2.75rem);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  line-height: 1.15;
 }
 
 .mlp-masters--prospectus .mlp-masters__intro {
@@ -4572,12 +3288,6 @@
   position: relative;
   margin: 0 0 clamp(2.5rem, 6vw, 4.25rem);
 }
-.mlp-masters__banner-frame {
-  position: absolute;
-  inset: 1.1rem -1.1rem -1.1rem 1.1rem;
-  border: 1px solid rgba(7, 20, 68, 0.16);
-  pointer-events: none;
-}
 .mlp-masters__banner-rule {
   position: absolute;
   top: -0.9rem;
@@ -4587,12 +3297,6 @@
   border-top: 2px solid var(--mlp-red);
   border-left: 2px solid var(--mlp-red);
   pointer-events: none;
-}
-.mlp-masters__banner img {
-  display: block;
-  width: 100%;
-  aspect-ratio: 21 / 9;
-  object-fit: cover;
 }
 
 /* Hairline ledger grid of every programme */
@@ -4648,13 +3352,9 @@
   border-top: 1px solid var(--mlp-line-dark);
 }
 .mlp-masters__cta {
-  display: inline-flex;
-  align-items: center;
   gap: 0.6rem;
   min-height: 48px;
   padding: 0 1.6rem;
-  background: var(--mlp-red);
-  color: var(--mlp-white);
   font-family: var(--mlp-font-body);
   font-size: 0.95rem;
   font-weight: 600;
@@ -4674,8 +3374,2186 @@
 }
 @media (max-width: 900px) {
   .mlp-masters--prospectus .mlp-masters__head { grid-template-columns: 1fr; align-items: start; gap: 0.9rem; }
-  .mlp-masters__banner-frame { inset: 0.9rem -0.5rem -0.9rem 0.9rem; }
 }
 @media (max-width: 640px) {
   .mlp-masters__ledger { grid-template-columns: 1fr; }
+}
+
+/* ===== POLISH LAYER (was mba-masters-polish.css) ===== */
+/* MBA & Master's landing — page-wide Quietly Cinematic polish layer */
+.mlp-page--polished {
+  --mlp-polish-line: rgba(7, 20, 68, 0.14);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.mlp-page--polished > section {
+  scroll-margin-top: 5rem;
+}
+
+.mlp-page--polished :where(h1, h2, h3) {
+  text-wrap: balance;
+}
+
+.mlp-page--polished :where(p, li, dd) {
+  text-wrap: pretty;
+}
+
+.mlp-page--polished :where(img) {
+  backface-visibility: hidden;
+}
+
+/* Shared labels, links, and action rhythm */
+.mlp-page--polished :where(
+  .prospectus-cover__eyebrow,
+  .prospectus-cover__kicker,
+  .signal-atlas__folio,
+  .blueprint-overview__folio,
+  .archive-class__label,
+  .archive-career__label,
+  .archive-alumni__label,
+  .archive-learning__label,
+  .archive-partners__label,
+  .archive-investment__label,
+  .archive-voices__label,
+  .archive-parallel__label,
+  .archive-fieldnotes__label,
+  .archive-closing__label
+) {
+  letter-spacing: 0.15em;
+}
+
+.mlp-page--polished :where(
+  .prospectus-cover__secondary,
+  .signal-atlas__link,
+  .blueprint-overview__secondary,
+  .archive-class__audience,
+  .archive-investment__secondary,
+  .archive-closing__secondary
+) {
+  transition: color 0.3s var(--mlp-ease), border-color 0.3s var(--mlp-ease), transform 0.3s var(--mlp-ease);
+}
+
+/* Page-load assembly baseline. Non-JS/reduced-motion users see the final state. */
+html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-image] {
+  opacity: 0;
+  filter: saturate(0.35) contrast(1.05) brightness(0.42) blur(4px);
+  transform: scale(1.08);
+}
+
+html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-wash],
+  html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-masthead] > *,
+  html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-statement] > *,
+  html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-folio] > * {
+  opacity: 0;
+}
+
+html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-registration] {
+  opacity: 0;
+  clip-path: inset(0 100% 0 0);
+}
+
+html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-enquiry] {
+  opacity: 0;
+  clip-path: inset(0 0 0 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-image],
+  html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-wash],
+  html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-registration],
+  html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-masthead] > *,
+  html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-statement] > *,
+  html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-folio] > *,
+  html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-enquiry] {
+    opacity: 1;
+    clip-path: none;
+    filter: none;
+    transform: none;
+  }
+}
+
+/* Locked Living Prospectus identity — polish only */
+.mlp-page--polished .prospectus-cover__title {
+  max-width: 9.5ch;
+  font-size: clamp(3rem, 6.2vw, 6.4rem);
+  letter-spacing: -0.065em;
+}
+
+.mlp-page--polished .prospectus-cover__intro {
+  max-width: 39ch;
+}
+
+.mlp-page--polished .prospectus-cover__primary {
+  box-shadow: 0 14px 28px -20px rgba(178, 2, 2, 0.9);
+}
+
+.mlp-page--polished .prospectus-cover__primary:hover,
+.mlp-page--polished .prospectus-cover__primary:focus-visible {
+  box-shadow: 0 16px 32px -18px rgba(7, 20, 68, 0.85);
+}
+
+.mlp-page--polished .prospectus-cover__enquiry {
+  box-shadow: 0 24px 54px -38px rgba(7, 20, 68, 0.62);
+}
+
+.mlp-page--polished .prospectus-cover__enquiry .mlp-form__fields {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: clamp(0.85rem, 2vw, 1.5rem);
+}
+
+.mlp-page--polished .prospectus-cover__enquiry .mlp-form__fields > :first-child, 
+.mlp-page--polished .prospectus-cover__enquiry .mlp-btn--block {
+  grid-column: 1 / -1;
+}
+
+/* Trust + Overview: give the first decision chapter one confident rhythm */
+.mlp-page--polished .signal-atlas,
+  .mlp-page--polished .blueprint-overview,
+  .mlp-page--polished .mlp-why,
+  .mlp-page--polished .mlp-mba,
+  .mlp-page--polished .mlp-masters,
+  .mlp-page--polished :where( .archive-class,
+  .archive-career,
+  .archive-alumni,
+  .archive-learning,
+  .archive-partners,
+  .archive-investment,
+  .archive-voices,
+  .archive-parallel,
+  .archive-fieldnotes,
+  .archive-closing ) {
+  border-top: 1px solid var(--mlp-polish-line);
+}
+
+.mlp-page--polished .signal-atlas__intro,
+.mlp-page--polished .blueprint-overview__intro {
+  max-width: 76rem;
+}
+
+.mlp-page--polished .signal-atlas__quote,
+.mlp-page--polished .blueprint-overview__system {
+  border-color: var(--mlp-polish-line);
+}
+
+.mlp-page--polished .signal-atlas__record,
+.mlp-page--polished .blueprint-overview__foundation {
+  transition: transform 0.45s var(--mlp-ease), border-color 0.35s var(--mlp-ease), background-color 0.35s ease;
+}
+
+.mlp-page--polished .signal-atlas__record:hover {
+  background: rgba(255, 255, 255, 0.42);
+}
+
+.mlp-page--polished .blueprint-overview__foundation:hover,
+.mlp-page--polished .blueprint-overview__foundation:focus-within {
+  background: rgba(255, 255, 255, 0.46);
+}
+
+/* Existing middle sections: harmonise older blocks with the Light Archive */
+
+.mlp-page--polished :where(
+  .mlp-why__heading,
+  .mlp-journey__heading,
+  .mlp-mba__heading,
+  .mlp-masters__heading
+) {
+  letter-spacing: -0.045em;
+}
+
+.mlp-page--polished :where(
+  .mlp-why__chapter,
+  .mlp-journey__step,
+  .mlp-mba__showcase,
+  .mlp-masters__showcase
+) {
+  transition: background-color 0.35s ease, border-color 0.35s ease, transform 0.45s var(--mlp-ease);
+}
+
+.mlp-page--polished :where(.mlp-why__chapter, .mlp-journey__step):hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.mlp-page--polished :where(.mlp-mba__tab, .mlp-masters__program) {
+  transition: color 0.3s var(--mlp-ease), border-color 0.3s var(--mlp-ease), background-color 0.3s ease, padding-left 0.3s var(--mlp-ease);
+}
+
+.mlp-page--polished :where(.mlp-mba__tab:focus-visible, .mlp-masters__program:focus-visible) {
+  outline-offset: -3px;
+}
+
+.mlp-page--polished .mlp-mba__showcase:hover {
+  transform: translateY(-0.18rem);
+}
+
+/* Light Archive sections: shared depth without card-grid repetition */
+
+.mlp-page--polished :where(
+  .archive-class__heading,
+  .archive-career__heading,
+  .archive-alumni__heading,
+  .archive-learning__heading,
+  .archive-partners__heading,
+  .archive-investment__heading,
+  .archive-voices__heading,
+  .archive-parallel__heading,
+  .archive-fieldnotes__heading,
+  .archive-closing__heading
+) {
+  letter-spacing: -0.05em;
+}
+
+.mlp-page--polished :where(
+  .archive-class__metric,
+  .archive-career__dossier,
+  .archive-learning__point,
+  .archive-investment__record,
+  .archive-voices__voice,
+  .archive-parallel__row,
+  .archive-fieldnotes__note
+) {
+  transition: border-color 0.35s ease, background-color 0.35s ease, transform 0.45s var(--mlp-ease);
+}
+
+.mlp-page--polished :where(
+  .archive-class__metric:hover,
+  .archive-career__dossier:hover,
+  .archive-learning__point:hover,
+  .archive-investment__record:hover,
+  .archive-voices__voice:hover,
+  .archive-parallel__row:hover,
+  .archive-fieldnotes__note:hover
+) {
+  border-color: var(--mlp-red);
+}
+
+.mlp-page--polished :where(
+  .archive-class__icon,
+  .archive-class__zone-icon,
+  .archive-class__industry-icon,
+  .archive-career__dossier-icon,
+  .archive-learning__point-icon,
+  .archive-investment__record-mark,
+  .archive-voices__quote-icon,
+  .archive-parallel__criterion span,
+  .archive-fieldnotes__question-icon
+) {
+  transition: color 0.3s var(--mlp-ease), background-color 0.3s ease, border-color 0.3s ease, transform 0.35s var(--mlp-ease);
+}
+
+.mlp-page--polished :where(
+  .archive-class__metric:hover .archive-class__icon,
+  .archive-career__dossier:hover .archive-career__dossier-icon,
+  .archive-learning__point:hover .archive-learning__point-icon,
+  .archive-investment__record:hover .archive-investment__record-mark,
+  .archive-voices__voice:hover .archive-voices__quote-icon,
+  .archive-parallel__row:hover .archive-parallel__criterion span,
+  .archive-fieldnotes__note:hover .archive-fieldnotes__question-icon
+) {
+  transform: translateY(-2px);
+}
+
+/* Fees: keep the practical index compact and make scanning effortless */
+
+/* Testimonials, comparison, FAQ, final CTA */
+.mlp-page--polished .archive-voices__stage,
+.mlp-page--polished .archive-closing__frame {
+  align-items: start;
+}
+
+
+.mlp-page--polished .archive-fieldnotes__question {
+  letter-spacing: -0.025em;
+}
+
+.mlp-page--polished .archive-fieldnotes__answer {
+  max-width: 52rem;
+}
+
+.mlp-page--polished .archive-closing__form {
+  box-shadow: 0 24px 58px -40px rgba(7, 20, 68, 0.62);
+}
+
+/* Shared image-stack performance and dramatic but short transitions */
+.mlp-page--polished :where(
+  .archive-class__stack-image,
+  .archive-career__stack-image,
+  .archive-voices__stack-image,
+  .archive-learning__stack-layer,
+  .archive-closing__image-layer
+) {
+  transition: transform 0.9s var(--mlp-ease), opacity 0.7s ease, clip-path 0.9s var(--mlp-ease);
+}
+
+.mlp-page--polished :where(
+  .archive-class__archive:hover .archive-class__stack-image--1,
+  .archive-career__stage:hover .archive-career__stack-image--1,
+  .archive-voices__stage:hover .archive-voices__stack-image--1,
+  .archive-learning__desk:hover .archive-learning__stack-layer--front
+) {
+  transform: translateY(-0.35rem) rotate(-2deg);
+}
+
+@media (max-width: 900px) {
+  .mlp-mba__showcase,
+  .mlp-mba__showcase--flip,
+  .archive-voices__intro,
+  .archive-fieldnotes__intro,
+  .mlp-page--polished .prospectus-cover__enquiry .mlp-form__fields {
+    grid-template-columns: 1fr;
+  }
+
+  .mlp-page--polished .prospectus-cover__enquiry .mlp-form__fields > :first-child, 
+  .mlp-page--polished .prospectus-cover__enquiry .mlp-btn--block {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 560px) {
+  .mlp-page--polished .prospectus-cover__title {
+    font-size: clamp(2.6rem, 13vw, 5rem);
+  }
+}
+
+@media (max-width: 620px) {
+  .mlp-page--polished :where(
+    .archive-investment__record,
+    .archive-voices__voice,
+    .archive-parallel__row,
+    .archive-fieldnotes__note
+  ) {
+    transform: none;
+  }
+
+  .mlp-page--polished .archive-closing__intro {
+    padding-top: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mlp-page--polished :where(
+    .prospectus-cover__primary,
+    .signal-atlas__record,
+    .blueprint-overview__foundation,
+    .archive-class__metric,
+    .archive-career__dossier,
+    .archive-learning__point,
+    .archive-investment__record,
+    .archive-voices__voice,
+    .archive-parallel__row,
+    .archive-fieldnotes__note,
+    .archive-closing__image-layer,
+    .archive-class__stack-image,
+    .archive-career__stack-image,
+    .archive-voices__stack-image,
+    .archive-learning__stack-layer
+  ) {
+    transition: none;
+  }
+}
+
+/* Issue 1 — semantic page type scale. Keep the page to a small set of intentional roles. */
+.mlp-page--polished {
+  --mlp-type-micro: var(--fs-caption);
+  --mlp-type-caption: var(--fs-caption);
+  --mlp-type-body: var(--fs-body);
+  --mlp-type-lede: var(--fs-body);
+  --mlp-type-title-sm: var(--fs-card-title);
+  --mlp-type-title-lg: var(--fs-section-title);
+  --mlp-type-display: var(--fs-hero);
+  --mlp-type-stat: var(--fs-hero-sub);
+}
+
+.mlp-page--polished :is(
+  .prospectus-cover__edition,
+  .prospectus-cover__academy,
+  .prospectus-cover__location,
+  .prospectus-cover__eyebrow,
+  .prospectus-cover__kicker,
+  .prospectus-cover__enquiry-index,
+  .signal-atlas__folio,
+  .blueprint-overview__folio,
+  .archive-class__label,
+  .archive-career__label,
+  .archive-alumni__label,
+  .archive-learning__label,
+  .archive-partners__label,
+  .archive-investment__label,
+  .archive-voices__label,
+  .archive-parallel__label,
+  .archive-fieldnotes__label,
+  .archive-closing__label,
+  .archive-partners__hint,
+  .archive-partners__toggle,
+  .archive-closing__form-head
+) {
+  font-size: var(--mlp-type-micro);
+}
+
+.mlp-page--polished :is(
+  .prospectus-cover__title,
+  .signal-atlas__heading,
+  .blueprint-overview__heading,
+  .mlp-why__heading,
+  .mlp-journey__heading,
+  .mlp-mba__heading,
+  .mlp-masters__heading,
+  .archive-class__heading,
+  .archive-career__heading,
+  .archive-alumni__heading,
+  .archive-learning__heading,
+  .archive-partners__heading,
+  .archive-investment__heading,
+  .archive-voices__heading,
+  .archive-parallel__heading,
+  .archive-fieldnotes__heading,
+  .archive-closing__heading
+) {
+  font-size: var(--mlp-type-title-lg);
+}
+
+.mlp-page--polished .prospectus-cover__title {
+  font-size: var(--mlp-type-display);
+}
+
+.mlp-page--polished :is(
+  .prospectus-cover__intro,
+  .prospectus-cover__annotation-copy,
+  .prospectus-cover__enquiry-head p,
+  .signal-atlas__quote p,
+  .signal-atlas__note,
+  .blueprint-overview__intro-copy,
+  .archive-class__copy,
+  .archive-career__intro-copy,
+  .archive-alumni__intro-copy,
+  .archive-learning__intro-copy,
+  .archive-partners__intro-copy,
+  .archive-investment__intro-copy,
+  .archive-voices__intro-copy,
+  .archive-parallel__intro-copy,
+  .archive-fieldnotes__intro-copy,
+  .archive-closing__intro-copy
+) {
+  font-size: var(--mlp-type-body);
+}
+
+.mlp-page--polished :is(
+  .mlp-lede,
+  .prospectus-insert__copy,
+  .archive-voices__quote,
+  .archive-career__quote,
+  .archive-learning__point-text
+) {
+  font-size: var(--mlp-type-lede);
+}
+
+.mlp-page--polished :is(
+  .mlp-why__title,
+  .mlp-journey__title,
+  .mlp-mba__uni-name,
+  .mlp-masters__uni-name,
+  .archive-class__zone-head h3,
+  .archive-career__dossier h3,
+  .archive-learning__point h3,
+  .archive-investment__record-topline h3,
+  .archive-voices__voice cite,
+  .archive-parallel__criterion,
+  .archive-fieldnotes__question
+) {
+  font-size: var(--mlp-type-title-sm);
+}
+
+.mlp-page--polished :is(
+  .mlp-mba__program-title,
+  .mlp-masters__program-title,
+  .archive-class__metric dt,
+  .archive-class__region-note,
+  .archive-class__industry-share,
+  .archive-career__dossier-head p,
+  .archive-career__move span,
+  .archive-voices__voice small,
+  .archive-parallel__side-label,
+  .archive-fieldnotes__answer,
+  .archive-investment__note,
+  .archive-learning__caption
+) {
+  font-size: var(--mlp-type-caption);
+}
+
+.mlp-page--polished :is(
+  .signal-atlas__value,
+  .blueprint-overview__core strong,
+  .archive-class__metric dd,
+  .archive-investment__record-topline strong,
+  .archive-investment__fee,
+  .archive-closing__form-title
+) {
+  font-size: var(--mlp-type-stat);
+}
+
+.mlp-page--polished :is(
+  .mlp-btn,
+  .prospectus-cover__primary,
+  .prospectus-cover__secondary,
+  .archive-investment__primary,
+  .archive-investment__secondary,
+  .archive-parallel__primary,
+  .archive-closing__primary,
+  .archive-closing__secondary,
+  .archive-learning__primary,
+  .archive-learning__secondary
+) {
+  font-size: var(--mlp-type-caption);
+}
+
+.mlp-page--polished :is(.mlp-field input, .mlp-field select, .mlp-field textarea) {
+  font-size: var(--mlp-type-body);
+}
+
+@media (max-width: 560px) {
+  .mlp-page--polished .prospectus-cover__title {
+    font-size: clamp(2.6rem, 13vw, 5rem);
+  }
+}
+
+/* Issue 24 — make gated/indicative fee values feel intentional. */
+
+@media (max-width: 560px) {
+}
+
+/* Issue 2 — map page copy to a small semantic colour vocabulary. */
+.mlp-page--polished,
+  .mlp-page--polished {
+  --mlp-color-heading: var(--mlp-navy);
+  --mlp-color-muted: var(--mlp-muted-on-paper);
+  --mlp-color-accent: var(--mlp-red);
+  --mlp-color-inverse: var(--mlp-white);
+}
+
+.mlp-page--polished :is(
+  .signal-atlas__heading,
+  .blueprint-overview__heading,
+  .mlp-why__heading,
+  .mlp-why__title,
+  .mlp-journey__heading,
+  .mlp-journey__title,
+  .mlp-mba__heading,
+  .mlp-masters__heading,
+  .archive-class__heading,
+  .archive-career__heading,
+  .archive-alumni__heading,
+  .archive-learning__heading,
+  .archive-partners__heading,
+  .archive-investment__heading,
+  .archive-voices__heading,
+  .archive-parallel__heading,
+  .archive-fieldnotes__heading,
+  .archive-closing__heading,
+  .archive-parallel__criterion
+) {
+  color: var(--mlp-color-heading);
+}
+
+.mlp-page--polished :is(
+  .signal-atlas__label,
+  .signal-atlas__note,
+  .blueprint-overview__intro-copy,
+  .mlp-why__intro,
+  .mlp-why__text,
+  .mlp-journey__intro,
+  .mlp-journey__text,
+  .mlp-mba__intro,
+  .mlp-masters__intro,
+  .archive-class__copy,
+  .archive-career__intro-copy,
+  .archive-alumni__intro-copy,
+  .archive-learning__intro-copy,
+  .archive-partners__intro-copy,
+  .archive-investment__intro-copy,
+  .archive-investment__note,
+  .archive-voices__intro-copy,
+  .archive-parallel__intro-copy,
+  .archive-fieldnotes__intro-copy,
+  .archive-closing__intro-copy
+) {
+  color: var(--mlp-color-muted);
+}
+
+.mlp-page--polished :is(
+  .signal-atlas__folio,
+  .blueprint-overview__folio,
+  .mlp-why__link,
+  .mlp-mba__label,
+  .mlp-masters__label,
+  .archive-class__label,
+  .archive-career__label,
+  .archive-alumni__label,
+  .archive-learning__label,
+  .archive-partners__label,
+  .archive-investment__label,
+  .archive-voices__label,
+  .archive-parallel__label,
+  .archive-fieldnotes__label,
+  .archive-closing__label
+) {
+  color: var(--mlp-color-accent);
+}
+
+/* Issues 4 and 7 — labels are short metadata; these two sentences stay readable. */
+.mlp-page--polished .prospectus-cover__edition,
+  .mlp-page--polished .prospectus-cover__kicker,
+  .mlp-page--polished .prospectus-cover__academy,
+  .mlp-page--polished .prospectus-cover__eyebrow,
+  .mlp-page--polished .prospectus-cover__kicker,
+  .mlp-page--polished .archive-learning__caption {
+  text-transform: none;
+  letter-spacing: 0.04em;
+}
+
+/* Issues 5–12 — keep supporting text above the minimum readable tier. */
+.mlp-page--polished .prospectus-cover__academy,
+  .mlp-page--polished .prospectus-cover__eyebrow,
+  .mlp-page--polished .mlp-field,
+  .mlp-page--polished .signal-atlas__label,
+  .mlp-page--polished .archive-learning__caption,
+  .mlp-page--polished :is(.archive-alumni__footer p,
+  .archive-partners__logo-item span,
+  .archive-learning__caption) {
+  font-size: var(--mlp-type-caption);
+}
+
+/* Issues 3 and 25 — four clear action roles: solid primary, outline secondary,
+   text link, and compact form submit. */
+.mlp-page--polished :is(
+  .mlp-btn--primary,
+  .prospectus-cover__primary,
+  .archive-investment__primary,
+  .archive-parallel__primary,
+  .archive-closing__primary,
+  .archive-learning__primary
+) {
+  min-height: 3rem;
+  border-radius: 0;
+  background: var(--mlp-red);
+  color: var(--mlp-white);
+}
+
+.mlp-page--polished :is( .mlp-btn--ghost,
+  .archive-investment__secondary,
+  .archive-closing__secondary,
+  .archive-learning__secondary ),
+  .mlp-page--polished :is( .mlp-btn--primary,
+  .mlp-btn--ghost,
+  .mlp-btn--text,
+  .prospectus-cover__primary,
+  .prospectus-cover__secondary,
+  .archive-investment__primary,
+  .archive-investment__secondary,
+  .archive-parallel__primary,
+  .archive-closing__primary,
+  .archive-closing__secondary,
+  .archive-learning__primary,
+  .archive-learning__secondary ) {
+  border-radius: 0;
+}
+
+.mlp-page--polished .mlp-form__fields > .mlp-btn--block {
+  background: transparent;
+  color: var(--color-warm-white);
+  border-color: var(--color-light-grey);
+}
+
+.mlp-page--polished .mlp-form__fields > .mlp-btn--block:hover,
+.mlp-page--polished .mlp-form__fields > .mlp-btn--block:focus-visible {
+  background: var(--mlp-red);
+  color: var(--mlp-white);
+  border-color: var(--mlp-red);
+}
+
+/* Issues 14 and 17 — tighten Why Choose chapters without removing their rhythm. */
+.mlp-page--polished .mlp-why__chapter {
+  min-height: 0;
+  padding: clamp(2rem, 4vw, 3.25rem) 0;
+}
+
+.mlp-page--polished .mlp-why__chapter-grid {
+  gap: clamp(1rem, 2.5vw, 2rem);
+}
+
+/* Issues 18, 19 and 21 — remove non-functional sequence numbers. The Admission
+   Journey keeps its numbers because they describe an actual process. */
+
+.mlp-page--polished .signal-atlas__record {
+  grid-template-columns: minmax(7rem, 0.48fr) minmax(0, 1fr);
+}
+
+.mlp-page--polished .mlp-why__chapter-grid {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/* Issue 20 — bring the Admission Journey heading and route closer together. */
+
+/* Issues 15 and 16 — each form row occupies the full form width; its own
+   columns can then shrink safely instead of clipping or overlapping. */
+.mlp-page--polished .prospectus-cover__enquiry .mlp-form__row {
+  grid-column: 1 / -1;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  min-width: 0;
+}
+
+.mlp-page--polished .prospectus-cover__enquiry .mlp-field,
+  .mlp-page--polished .prospectus-cover__enquiry .mlp-field input,
+  .mlp-page--polished .prospectus-cover__enquiry .mlp-field select,
+  .mlp-page--polished .prospectus-cover__enquiry .mlp-field input,
+  .mlp-page--polished .prospectus-cover__enquiry .mlp-field select {
+  min-width: 0;
+  width: 100%;
+}
+
+/* Issue 26 — Explore is a clear compact action, without becoming a large
+   competing primary CTA. */
+
+/* Issue 22 — comparison sides start on the same horizontal scan line. */
+
+/* Issues 27 and 28 — explicit comparison headers and a strong, consistent CTA. */
+
+@media (max-width: 900px) {
+  .mlp-page--polished .prospectus-cover__enquiry .mlp-form__row {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 700px) {
+  .mlp-page--polished .signal-atlas__record {
+    grid-template-columns: 1fr;
+  }
+
+  .mlp-page--polished .signal-atlas__label {
+    grid-column: 1;
+  }
+}
+
+@media (max-width: 560px) {
+}
+
+/* 29-point audit batch — consistency, hierarchy, proximity, and affordance fixes. */
+
+/* Issues 2–3: shared colour/button roles. */
+.mlp-page--polished :is(
+  .signal-atlas__heading,
+  .blueprint-overview__heading,
+  .mlp-why__heading,
+  .mlp-why__title,
+  .mlp-journey__heading,
+  .mlp-journey__title,
+  .mlp-mba__heading,
+  .mlp-masters__heading,
+  .archive-class__heading,
+  .archive-career__heading,
+  .archive-alumni__heading,
+  .archive-learning__heading,
+  .archive-partners__heading,
+  .archive-investment__heading,
+  .archive-voices__heading,
+  .archive-parallel__heading,
+  .archive-fieldnotes__heading,
+  .archive-closing__heading,
+  .archive-parallel__criterion,
+  .archive-investment__record-topline h3
+) { color: var(--mlp-color-heading); }
+
+.mlp-page--polished :is(.archive-investment__primary, .archive-parallel__primary, .archive-closing__primary, .archive-learning__primary) {
+  min-height: 3rem;
+  background: var(--mlp-color-accent);
+  color: var(--mlp-color-inverse);
+}
+
+.mlp-page--polished :is(.archive-investment__secondary, .archive-closing__secondary, .archive-learning__secondary) {
+  color: var(--mlp-color-heading);
+  border-color: var(--mlp-color-heading);
+}
+
+/* Issues 4–8: sentence case and readable supporting labels. */
+
+/* Issue 9: make each form field read as its own group. */
+.mlp-page--polished .prospectus-cover__enquiry .mlp-form__fields {
+  row-gap: 1.1rem;
+}
+
+.mlp-page--polished .prospectus-cover__enquiry .mlp-form__row {
+  grid-column: 1 / -1;
+  align-items: start;
+  column-gap: clamp(0.85rem, 2vw, 1.25rem);
+}
+
+.mlp-page--polished .prospectus-cover__enquiry .mlp-field {
+  align-self: start;
+  min-width: 0;
+}
+
+/* Issue 10: provide a calm heading safe zone above decorative artwork. */
+.mlp-page--polished .archive-voices__heading {
+  position: relative;
+  z-index: 1;
+  display: inline;
+  padding: 0.05em 0.12em;
+  background: var(--mlp-paper-pure);
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+/* Issue 11: remove non-functional erratic Overview numbers. */
+.mlp-page--polished .blueprint-overview__foundation {
+  z-index: 2;
+  background: var(--mlp-paper);
+  box-shadow: 0 0 0 0.75rem var(--mlp-paper);
+}
+
+/* Issue 12: university image/catalog placement stays consistent. */
+.mlp-page--polished .mlp-mba__showcase--flip .mlp-mba__plate { order: 1; }
+.mlp-page--polished .mlp-mba__showcase--flip .mlp-mba__catalog { order: 2; }
+
+/* Issues 14–15 and 19: bring fee/value relationships together. */
+
+/* Issues 16, 20, 22, 27 and 28: comparison hierarchy and alignment. */
+
+/* Issue 17 and 26: stronger but restrained Explore affordance. */
+
+/* Issues 18 and 21: tighter journey grouping and quiet non-functional numbers. */
+
+.mlp-page--polished .mlp-why__chapter-grid {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+}
+
+/* Issue 23: keep Hero secondary action vertically centred with the button. */
+.mlp-page--polished .prospectus-cover__actions { align-items: center; }
+.mlp-page--polished .prospectus-cover__secondary {
+  display: inline-flex;
+  align-items: center;
+  min-height: 3rem;
+}
+
+/* Issue 25: secondary Overview action uses the shared outline role. */
+.mlp-page--polished .blueprint-overview__secondary {
+  display: inline-flex;
+  align-items: center;
+  min-height: 3rem;
+  padding: 0.7rem 1rem;
+  border: 1px solid var(--mlp-navy);
+  text-decoration: none;
+}
+
+.mlp-page--polished .blueprint-overview__secondary:hover,
+.mlp-page--polished .blueprint-overview__secondary:focus-visible {
+  color: var(--mlp-white);
+  background: var(--mlp-navy);
+}
+
+/* Issue 28: guarantee unique learning heading styling after the content migration. */
+.mlp-page--polished .archive-learning__heading { max-width: 14ch; }
+
+@media (max-width: 900px) {
+}
+
+@media (max-width: 560px) {
+  .mlp-page--polished .prospectus-cover__enquiry .mlp-form__row,
+  .mlp-page--polished .signal-atlas__record { grid-template-columns: 1fr; }
+}
+
+.mlp-page--polished :is(h1, h2) {
+  font-size: var(--mlp-type-title-lg);
+}
+
+.mlp-page--polished :is(h3) {
+  font-size: var(--mlp-type-title-sm);
+}
+
+.mlp-page--polished :is(p, li, dd) {
+  font-size: var(--mlp-type-body);
+}
+
+.mlp-page--polished :is(a, button, input, select, textarea) {
+  font-size: var(--mlp-type-caption);
+}
+
+.mlp-page--polished :is(small, dt, .mlp-meta) {
+  font-size: var(--mlp-type-caption);
+}
+
+.mlp-page--polished :is(
+  .prospectus-cover__title,
+  .signal-atlas__value,
+  .archive-class__metric dd,
+  .archive-investment__record-topline strong,
+  .archive-investment__fee strong
+) {
+  font-size: var(--mlp-type-stat);
+}
+
+.mlp-page--polished .prospectus-cover__title {
+  font-size: var(--mlp-type-display);
+  line-height: 1.02;
+}
+
+.mlp-page--polished .prospectus-cover__title-line {
+  font-size: inherit;
+}
+
+.mlp-page--polished :is(
+  .prospectus-cover__edition,
+  .prospectus-cover__academy,
+  .prospectus-cover__location,
+  .prospectus-cover__eyebrow,
+  .prospectus-cover__kicker,
+  .prospectus-cover__enquiry-index,
+  .signal-atlas__folio,
+  .blueprint-overview__folio,
+  .archive-class__label,
+  .archive-career__label,
+  .archive-alumni__label,
+  .archive-learning__label,
+  .archive-partners__label,
+  .archive-investment__label,
+  .archive-voices__label,
+  .archive-parallel__label,
+  .archive-fieldnotes__label,
+  .archive-closing__label,
+  .archive-investment__details dt,
+  .archive-learning__caption,
+  .archive-alumni__footer p,
+  .archive-partners__logo-item span
+) {
+  font-size: var(--mlp-type-caption);
+}
+
+.mlp-page--polished :is(
+  .signal-atlas__quote p,
+  .mlp-lede,
+  .archive-voices__quote,
+  .archive-career__quote,
+  .archive-learning__point-text
+) {
+  font-size: var(--mlp-type-lede);
+}
+
+.mlp-page--polished :is( .prospectus-cover__enquiry-head h2,
+  .archive-closing__form-title,
+  .archive-investment__record-topline h3 ),
+  .mlp-page--polished .pricing-card__program {
+  font-size: var(--mlp-type-title-sm);
+}
+
+@media (max-width: 560px) {
+  .mlp-page--polished .prospectus-cover__title {
+    font-size: clamp(2.6rem, 13vw, 5rem);
+  }
+}
+
+/* Issue 27 — keep MBA filters visually connected to their first result. */
+.mlp-page--polished .mlp-mba__tablist {
+  margin-bottom: 1rem;
+}
+
+/* Enquiry refinement — equal Hero columns, compact full-width form rows. */
+.mlp-page--polished .prospectus-cover__body {
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: clamp(1.25rem, 3vw, 2.75rem);
+  align-items: center;
+}
+
+.mlp-page--polished .prospectus-cover__enquiry {
+  width: 100%;
+  max-width: none;
+  margin-left: 0;
+  padding: 1rem;
+}
+
+.mlp-page--polished .prospectus-cover__enquiry .mlp-form--prospectus {
+  padding-top: 0.75rem;
+}
+
+.mlp-page--polished .prospectus-cover__enquiry .mlp-form__fields {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem 1rem;
+}
+
+.mlp-page--polished .prospectus-cover__enquiry .mlp-form__row, 
+.mlp-page--polished .prospectus-cover__enquiry .mlp-field--full, 
+.mlp-page--polished .prospectus-cover__enquiry .mlp-btn--block {
+  grid-column: 1 / -1;
+}
+
+.mlp-page--polished .prospectus-cover__enquiry .mlp-form__row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem 1rem;
+  min-width: 0;
+}
+
+.mlp-page--polished .prospectus-cover__enquiry .mlp-field {
+  align-self: start;
+  min-width: 0;
+  gap: 0.45rem;
+}
+
+.mlp-page--polished .prospectus-cover__enquiry .mlp-field input,
+.mlp-page--polished .prospectus-cover__enquiry .mlp-field select {
+  width: 100%;
+  min-width: 0;
+}
+
+@media (max-width: 900px) {
+  .mlp-page--polished .prospectus-cover__body {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .mlp-page--polished .prospectus-cover__enquiry {
+    max-width: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .mlp-page--polished .prospectus-cover__enquiry {
+    padding: 0.85rem;
+  }
+
+  .mlp-page--polished .prospectus-cover__enquiry .mlp-form__fields,
+  .mlp-page--polished .prospectus-cover__enquiry .mlp-form__row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Section count cleanup — keep the Hero folio compact after removing Vol. 01. */
+.mlp-page--polished .prospectus-cover__folio {
+  grid-template-columns: auto minmax(3rem, 1fr) auto;
+}
+
+/* Pricing card type roles — keep the Fees-only redesign above the page reset. */
+
+.mlp-page--polished .pricing-card__price strong {
+  font-size: clamp(24px, 3vw, 48px);
+}
+
+.mlp-page--polished .pricing-card__price > span,
+.mlp-page--polished .pricing-card__price small,
+.mlp-page--polished .pricing-card__details dt {
+  font-size: var(--mlp-type-caption);
+}
+
+.mlp-page--polished .pricing-card__details dd {
+  font-size: var(--mlp-type-body);
+}
+/* #mlp-class > archive-class__industries — Topic Desk */
+
+@media (max-width: 900px) {
+}
+
+@media (max-width: 600px) {
+}
+
+@media (prefers-reduced-motion: reduce) {
+}
+
+/* #mlp-video-proof — full-width inline film plate above testimonials. */
+.mlp-page--polished .archive-video-proof {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: clamp(4.5rem, 9vw, 7.5rem) 0;
+  color: var(--mlp-white);
+  background: var(--mlp-navy);
+}
+
+.mlp-page--polished .archive-video-proof__wash {
+  top: -38%;
+  right: -10%;
+  width: min(58vw, 58rem);
+  height: min(58vw, 58rem);
+  background: radial-gradient(circle, rgba(15, 41, 131, 0.52), transparent 68%);
+}
+
+.mlp-page--polished .archive-video-proof__line {
+  position: absolute;
+  left: -8%;
+  right: -8%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.mlp-page--polished .archive-video-proof__line--one {
+  top: 25%;
+  transform: rotate(-3deg);
+}
+
+.mlp-page--polished .archive-video-proof__line--two {
+  bottom: 18%;
+  opacity: 0.55;
+  transform: rotate(4deg);
+}
+
+.mlp-page--polished .archive-video-proof__label {
+  margin: 0 0 0.9rem;
+  font-size: var(--mlp-type-caption);
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  color: #e85a5a;
+}
+
+.mlp-page--polished .archive-video-proof__heading {
+  max-width: 14ch;
+  margin: 0;
+  font-family: var(--mlp-font-display);
+  font-size: var(--mlp-type-title-lg);
+  font-weight: 500;
+  line-height: 0.95;
+  letter-spacing: -0.055em;
+  color: var(--mlp-white);
+}
+
+.mlp-page--polished .archive-video-proof__intro-copy {
+  max-width: 34ch;
+  margin: 0 0 0.2rem auto;
+  font-size: var(--mlp-type-body);
+  line-height: 1.65;
+  color: var(--mlp-muted-on-dark);
+}
+
+.mlp-page--polished .archive-video-proof__player {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #020817;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 1.25rem;
+  box-shadow: 0 30px 70px -38px rgba(0, 0, 0, 0.9);
+}
+.archive-video-proof__iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.mlp-page--polished .archive-video-proof__player::before {
+  position: absolute;
+  inset: 1rem;
+  z-index: 3;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.75rem;
+  content: "";
+  pointer-events: none;
+}
+
+.mlp-page--polished .archive-video-proof__poster {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  overflow: hidden;
+  color: var(--mlp-white);
+  background: #020817;
+  border: 0;
+  border-radius: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+
+.mlp-page--polished .archive-video-proof__poster img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.78) contrast(1.08) brightness(0.72);
+  transform: scale(1.01);
+  transition: transform 0.9s var(--mlp-ease), filter 0.55s ease;
+}
+
+.mlp-page--polished .archive-video-proof__veil {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(7, 20, 68, 0.72), transparent 58%),
+    linear-gradient(0deg, rgba(2, 8, 23, 0.72), transparent 52%);
+}
+
+.mlp-page--polished .archive-video-proof__play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 4;
+  display: grid;
+  place-items: center;
+  width: clamp(4.25rem, 8vw, 6rem);
+  height: clamp(4.25rem, 8vw, 6rem);
+  color: var(--mlp-white);
+  background: var(--mlp-red);
+  border: 1px solid rgba(255, 255, 255, 0.68);
+  border-radius: 50%;
+  box-shadow: 0 0 0 0.6rem rgba(178, 2, 2, 0.2), 0 18px 30px -18px rgba(0, 0, 0, 0.85);
+  transform: translate(-50%, -50%);
+  transition: transform 0.45s var(--mlp-ease), background-color 0.3s ease, box-shadow 0.45s ease;
+}
+
+.mlp-page--polished .archive-video-proof__play-label {
+  position: absolute;
+  right: 1.6rem;
+  bottom: 1.45rem;
+  z-index: 4;
+  font-size: var(--mlp-type-caption);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.mlp-page--polished .archive-video-proof__poster:hover img,
+.mlp-page--polished .archive-video-proof__poster:focus-visible img {
+  filter: saturate(0.94) contrast(1.08) brightness(0.8);
+  transform: scale(1.045);
+}
+
+.mlp-page--polished .archive-video-proof__poster:hover .archive-video-proof__play,
+.mlp-page--polished .archive-video-proof__poster:focus-visible .archive-video-proof__play {
+  background: #8f0202;
+  box-shadow: 0 0 0 0.85rem rgba(178, 2, 2, 0.18), 0 20px 34px -18px rgba(0, 0, 0, 0.9);
+  transform: translate(-50%, -50%) scale(1.08);
+}
+
+.mlp-page--polished .archive-video-proof__noscript-link {
+  position: absolute;
+  right: 1.5rem;
+  bottom: 1rem;
+  z-index: 5;
+  color: var(--mlp-white);
+  font-size: var(--mlp-type-caption);
+}
+
+@media (max-width: 900px) {
+  .mlp-page--polished .archive-video-proof__intro {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .blueprint-overview__intro-copy,
+  .archive-career__intro-copy,
+  .archive-learning__intro-copy,
+  .archive-alumni__intro-copy,
+  .archive-voices__intro-copy,
+  .archive-fieldnotes__intro-copy,
+  .mlp-page--polished .archive-video-proof__intro-copy {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 620px) {
+  .mlp-page--polished .archive-video-proof__player {
+    border-radius: 0.85rem;
+  }
+
+  .mlp-page--polished .archive-video-proof__player::before {
+    inset: 0.65rem;
+    border-radius: 0.5rem;
+  }
+
+  .mlp-page--polished .archive-video-proof__play-label {
+    right: 1rem;
+    bottom: 0.9rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mlp-page--polished .archive-video-proof__poster img,
+  .mlp-page--polished .archive-video-proof__play {
+    transition: none;
+  }
+
+  .mlp-page--polished .archive-video-proof__poster:hover img,
+  .mlp-page--polished .archive-video-proof__poster:focus-visible img {
+    transform: none;
+  }
+
+  .mlp-page--polished .archive-video-proof__poster:hover .archive-video-proof__play,
+  .mlp-page--polished .archive-video-proof__poster:focus-visible .archive-video-proof__play {
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* Separate programme list + PDF-backed specification record. */
+.mlp-page--polished :where(.mlp-mba__catalog-layout, .mlp-masters__catalog-layout) {
+  display: grid;
+  grid-template-columns: minmax(0, 1.18fr) minmax(13rem, 0.82fr);
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+  align-items: start;
+}
+
+.mlp-page--polished :where(.mlp-mba__catalog, .mlp-masters__catalog) {
+  min-width: 0;
+  padding: 0.25rem 0;
+}
+
+.mlp-page--polished :where(.mlp-mba__catalog-label, .mlp-masters__catalog-label) {
+  margin-bottom: 1rem;
+  color: var(--mlp-red);
+}
+
+.mlp-page--polished :where(.mlp-mba__program, .mlp-masters__program) {
+  display: grid;
+  grid-template-columns: 2.4rem minmax(0, 1fr);
+  gap: 0.75rem;
+  align-items: start;
+  padding: 0.95rem 0;
+  transition: background-color 0.35s ease, padding-left 0.35s var(--mlp-ease);
+}
+
+.mlp-page--polished :where(.mlp-mba__program, .mlp-masters__program):hover {
+  padding-left: 0.35rem;
+  background: rgba(178, 2, 2, 0.04);
+}
+
+.mlp-page--polished :where(.mlp-mba__program-index, .mlp-masters__program-index) {
+  padding-top: 0.15rem;
+}
+
+.mlp-page--polished :where(.mlp-mba__program-title,
+  .mlp-masters__program-title),
+  .mlp-page--polished #mlp-mba .mlp-mba__programs--columns .mlp-mba__program {
+  min-width: 0;
+}
+
+@media (max-width: 900px) {
+  .mlp-page--polished :where(.mlp-mba__catalog-layout, .mlp-masters__catalog-layout) {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 620px) {
+  .mlp-page--polished :where(.mlp-mba__program, .mlp-masters__program) {
+    grid-template-columns: 2rem minmax(0, 1fr);
+    gap: 0.55rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mlp-page--polished :where(.mlp-mba__program, .mlp-masters__program) {
+    transition: none;
+  }
+}
+
+/* #mlp-testimonials > archive-voices__list — luxury single voice carousel. */
+.mlp-page--polished .luxury-testimonials {
+  position: relative;
+  min-width: 0;
+  padding: 0 0 1rem;
+  border-top: 1px solid var(--mlp-navy);
+}
+
+.mlp-page--polished .luxury-testimonials__slides {
+  position: relative;
+  min-height: 22rem;
+}
+
+.mlp-page--polished .luxury-testimonial[hidden] {
+  display: none;
+}
+
+.mlp-page--polished .luxury-testimonial {
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr);
+  gap: 1rem;
+  min-height: 22rem;
+  margin: 0;
+  padding: clamp(1.5rem, 3vw, 2.5rem) 0 1.75rem;
+}
+
+.mlp-page--polished .luxury-testimonial__quote-icon,
+  .mlp-page--polished .luxury-testimonials__progress span:first-child,
+  .mlp-page--polished #mlp-overview .blueprint-overview__heading-accent {
+  color: var(--mlp-red);
+}
+
+.mlp-page--polished .luxury-testimonial__quote {
+  max-width: 40ch;
+  margin: 0;
+  font-family: var(--font-body) !important;
+  font-size: var(--fs-body) !important;
+  font-weight: var(--fw-regular) !important;
+  line-height: 1.7 !important;
+  letter-spacing: normal !important;
+  color: var(--mlp-navy);
+}
+
+.mlp-page--polished .luxury-testimonial__author {
+  grid-column: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  align-self: end;
+  margin-top: 1.5rem;
+}
+
+.mlp-page--polished .luxury-testimonial__author img,
+.mlp-page--polished .luxury-testimonial__initial {
+  display: grid;
+  place-items: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  object-fit: cover;
+  border-radius: 50%;
+  background: var(--mlp-surface-soft);
+}
+
+.mlp-page--polished .luxury-testimonial__initial {
+  font-family: var(--mlp-font-display);
+  font-size: 1.4rem;
+  color: var(--mlp-red);
+}
+
+.mlp-page--polished .luxury-testimonial__author > span:last-child {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.mlp-page--polished .luxury-testimonial__author cite {
+  font-style: normal;
+  font-size: var(--mlp-type-body);
+  font-weight: 600;
+  color: var(--mlp-navy);
+}
+
+.mlp-page--polished .luxury-testimonial__author small {
+  font-size: var(--mlp-type-caption);
+  color: var(--mlp-muted-on-paper);
+}
+
+.mlp-page--polished .luxury-testimonials__controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-top: 1rem;
+}
+
+.mlp-page--polished .luxury-testimonials__control,
+.mlp-page--polished .luxury-testimonials__toggle {
+  display: inline-grid;
+  place-items: center;
+  min-width: 2.7rem;
+  min-height: 2.7rem;
+  padding: 0.5rem;
+  color: var(--mlp-navy);
+  background: transparent;
+  border: 1px solid var(--mlp-line-dark);
+  border-radius: 0;
+  cursor: pointer;
+  font: 600 var(--mlp-type-caption) var(--mlp-font-body);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.mlp-page--polished .luxury-testimonials__control:hover,
+.mlp-page--polished .luxury-testimonials__control:focus-visible,
+.mlp-page--polished .luxury-testimonials__toggle:hover,
+.mlp-page--polished .luxury-testimonials__toggle:focus-visible {
+  color: var(--mlp-white);
+  background: var(--mlp-navy);
+  border-color: var(--mlp-navy);
+}
+
+.mlp-page--polished .luxury-testimonials__progress {
+  margin: 0 auto 0 0.25rem;
+  font: 600 var(--mlp-type-caption) var(--mlp-font-body);
+  letter-spacing: 0.1em;
+  color: var(--mlp-muted-on-paper);
+}
+
+@media (max-width: 620px) {
+  .mlp-page--polished .luxury-testimonials__slides,
+  .mlp-page--polished .luxury-testimonial {
+    min-height: 25rem;
+  }
+
+  .mlp-page--polished .luxury-testimonials__controls {
+    flex-wrap: wrap;
+  }
+
+  .mlp-page--polished .luxury-testimonials__progress {
+    order: 5;
+    width: 100%;
+    margin: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mlp-page--polished .luxury-testimonial,
+  .mlp-page--polished .luxury-testimonials__control,
+  .mlp-page--polished .luxury-testimonials__toggle {
+    transition: none;
+  }
+}
+
+/* Issue 2 — use Poppins for all content; keep the display face for headings only. */
+.mlp-page--polished * {
+  font-family: var(--mlp-font-body) !important;
+}
+.testimonials__card-thumb {
+  aspect-ratio: 9 / 16;
+  border-radius: 2rem;
+}
+.mlp-page--polished :is(h1, h2, h3, h4, h5, h6),
+.mlp-page--polished :is(h1, h2, h3, h4, h5, h6) * {
+  font-family: var(--mlp-font-display) !important;
+}
+
+/* Issue 3 — compact section boundaries, without changing the hero height. */
+.mlp-page--polished > section:not(.prospectus-cover) {
+  margin-block: 0;
+  padding-block: 2rem;
+}
+
+/* Targeted trust atlas refinement — keep values, labels, and graph separate. */
+.mlp-page--polished #mlp-trust .signal-atlas__intro {
+  margin-bottom: 1rem;
+}
+
+.mlp-page--polished #mlp-trust .signal-atlas__graph {
+  padding-top: 0;
+}
+
+.mlp-page--polished #mlp-trust .signal-atlas__records {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  min-height: 15rem;
+  align-items: end;
+}
+
+.mlp-page--polished #mlp-trust .signal-atlas__record,
+.mlp-page--polished #mlp-trust .signal-atlas__record:nth-child(n) {
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto;
+  min-width: 0;
+  min-height: 8.6rem;
+  align-content: start;
+  gap: 0.35rem;
+  overflow-wrap: anywhere;
+}
+
+.mlp-page--polished #mlp-trust .signal-atlas__record:nth-child(1) {
+  transform: translateY(3.75rem);
+}
+
+.mlp-page--polished #mlp-trust .signal-atlas__record:nth-child(2) {
+  transform: translateY(-1.75rem);
+}
+
+.mlp-page--polished #mlp-trust .signal-atlas__record:nth-child(3) {
+  transform: translateY(4.25rem);
+}
+
+.mlp-page--polished #mlp-trust .signal-atlas__record:nth-child(4) {
+  transform: translateY(-1.25rem);
+}
+
+.mlp-page--polished #mlp-trust .signal-atlas__record:nth-child(5) {
+  transform: translateY(2.5rem);
+}
+
+.mlp-page--polished #mlp-trust .signal-atlas__value,
+.mlp-page--polished #mlp-trust .signal-atlas__label {
+  grid-column: 1;
+  min-width: 0;
+}
+
+@media (max-width: 700px) {
+  .mlp-page--polished #mlp-trust .signal-atlas__graph {
+    min-height: 0;
+  }
+
+  .mlp-page--polished #mlp-trust .signal-atlas__records {
+    grid-template-columns: 1fr;
+    min-height: 15rem;
+    margin-top: 0;
+    padding-left: 0.75rem;
+  }
+
+  .mlp-page--polished #mlp-trust .signal-atlas__record,
+  .mlp-page--polished #mlp-trust .signal-atlas__record:nth-child(n) {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    min-height: 6.6rem;
+    padding: 1rem 0 1rem 1rem;
+    transform: none;
+    border-left: 0;
+  }
+}
+
+/* Trust metric micro-motion — a soft bounce that preserves the staggered layout. */
+.mlp-page--polished #mlp-trust .signal-atlas__record {
+  animation: mlpTrustRecordBounce 4.8s ease-in-out infinite;
+  animation-delay: calc(var(--signal-index, 0) * 0.16s);
+  translate: 0 0;
+}
+
+@keyframes mlpTrustRecordBounce {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -0.28rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .mlp-page--polished #mlp-trust .signal-atlas__record {
+    animation-duration: 5.2s;
+  }
+
+  @keyframes mlpTrustRecordBounce {
+    0%,
+    100% {
+      translate: 0 0;
+    }
+    50% {
+      translate: 0 -0.12rem;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mlp-page--polished #mlp-trust .signal-atlas__record {
+    animation: none;
+    translate: none;
+  }
+}
+
+/* Targeted Why Choose refinement — compact full-width header and title-led icons. */
+.mlp-page--polished #mlp-why .mlp-why__pin {
+  padding: 2rem 0 1rem;
+}
+
+.mlp-page--polished #mlp-why .mlp-why__pin-inner {
+  width: 100%;
+  max-width: none;
+}
+
+.mlp-page--polished #mlp-why .mlp-why__heading,
+.mlp-page--polished #mlp-why .mlp-why__intro {
+  max-width: none;
+}
+
+.mlp-page--polished #mlp-why .mlp-why__chapter-grid {
+  grid-template-columns: 4rem minmax(0, 1fr);
+  gap: 1rem;
+}
+
+.mlp-page--polished #mlp-why .mlp-why__num {
+  display: grid;
+  place-items: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  padding: 0;
+  font-size: 1rem;
+  line-height: 1;
+  color: var(--mlp-red);
+  border: 1px solid rgba(178, 2, 2, 0.48);
+  background: rgba(178, 2, 2, 0.04);
+}
+
+@media (max-width: 700px) {
+  .mlp-page--polished #mlp-why .mlp-why__pin {
+    padding: 1.5rem 0 0.75rem;
+  }
+
+  .mlp-page--polished #mlp-why .mlp-why__chapter-grid {
+    grid-template-columns: 3.5rem minmax(0, 1fr);
+  }
+
+  .mlp-page--polished #mlp-why .mlp-why__num {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+}
+
+/* Targeted Hero frame and enquiry cleanup. */
+.mlp-page--polished #mlp-hero .prospectus-cover__frame {
+  padding-top: 6rem;
+  padding-bottom: 2rem;
+}
+
+.mlp-page--polished #mlp-hero .prospectus-cover__body {
+  padding: 2rem 15px;
+}
+
+.mlp-page--polished #mlp-hero .prospectus-cover__title {
+  max-width: 100%;
+}
+
+/* Targeted Overview alignment and blueprint cleanup. */
+.mlp-page--polished #mlp-overview .blueprint-overview__intro {
+  grid-template-columns: 1fr;
+  column-gap: 0;
+  row-gap: 0;
+  max-width: 100%;
+  justify-items: start;
+  text-align: left;
+}
+
+.mlp-page--polished #mlp-overview .blueprint-overview__folio {
+  justify-self: start;
+  width: 100%;
+  text-align: left;
+}
+
+.mlp-page--polished #mlp-overview .blueprint-overview__heading {
+  max-width: 100%;
+  text-align: left;
+}
+
+.mlp-page--polished #mlp-overview .blueprint-overview__intro-copy {
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  text-align: left;
+}
+
+.mlp-page--polished #mlp-overview .blueprint-overview__system {
+  margin-top: 2rem;
+  padding-top: 2rem;
+}
+
+.mlp-page--polished #mlp-overview .blueprint-overview__core {
+  border: 1px solid rgb(7 20 68 / 5%);
+}
+
+.mlp-page--polished #mlp-overview .blueprint-overview__foundation:first-child:hover,
+.mlp-page--polished #mlp-overview .blueprint-overview__foundation:first-child:focus-within {
+  background: transparent;
+}
+
+/* Included homepage accreditation section: keep content visible without the homepage-only animation bundle. */
+.mlp-page--polished #accreditations .text-reveal-inner,
+.mlp-page--polished #accreditations .fade-up {
+  opacity: 1;
+  transform: none;
+}
+
+/* Targeted MBA/Master's catalogue boundaries. */
+.mlp-page--polished #mlp-mba .mlp-mba__head,
+  .mlp-page--polished #mlp-masters .mlp-masters__head,
+  .mlp-page--polished #mlp-mba .mlp-mba__heading,
+  .mlp-page--polished #mlp-mba .mlp-mba__intro,
+  .mlp-page--polished #mlp-masters .mlp-masters__heading,
+  .mlp-page--polished #mlp-masters .mlp-masters__intro {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* MBA specializations — split only lists with more than eight items. */
+.mlp-page--polished #mlp-mba .mlp-mba__catalog-layout {
+  grid-template-columns: 1fr;
+}
+
+.mlp-page--polished #mlp-mba .mlp-mba__programs--columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(var(--mlp-specialization-rows), auto);
+  grid-auto-flow: column;
+  column-gap: clamp(1.25rem, 3vw, 2.5rem);
+}
+
+@media (max-width: 700px) {
+  .mlp-page--polished #mlp-mba .mlp-mba__programs--columns {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    grid-auto-flow: row;
+  }
+}
+
+/* Canonical project typography lock — landing page role normalization. */
+.mlp-page--polished .prospectus-cover__title {
+  font-family: var(--font-display) !important;
+  font-size: var(--fs-hero-sub) !important;
+  font-weight: var(--fw-bold) !important;
+  line-height: 1 !important;
+  letter-spacing: -0.03em !important;
+}
+
+.mlp-page--polished :is(
+  .signal-atlas__heading,
+  .blueprint-overview__heading,
+  .mlp-why__heading,
+  .mlp-journey__heading,
+  .mlp-mba__heading,
+  .mlp-masters__heading,
+  .pricing-cards__heading,
+  .archive-class__heading,
+  .archive-career__heading,
+  .archive-alumni__heading,
+  .archive-learning__heading,
+  .archive-partners__heading,
+  .archive-investment__heading,
+  .archive-voices__heading,
+  .archive-parallel__heading,
+  .archive-fieldnotes__heading,
+  .archive-closing__heading
+) {
+  font-family: var(--font-display) !important;
+  font-size: var(--fs-section-title) !important;
+  font-weight: var(--fw-medium) !important;
+  line-height: 1.1 !important;
+  letter-spacing: -0.02em !important;
+}
+
+.mlp-page--polished :is(
+  .prospectus-cover__enquiry-head h2,
+  .mlp-form__title,
+  .mlp-why__title,
+  .mlp-journey__title,
+  .mlp-mba__uni-name,
+  .mlp-masters__uni-name,
+  .topic-desk__details h3,
+  .archive-class__zone-head h3,
+  .archive-career__dossier h3,
+  .archive-learning__point h3,
+  .archive-investment__record-topline h3,
+  .archive-voices__voice cite,
+  .archive-parallel__criterion,
+  .archive-fieldnotes__question,
+  .pricing-card__program
+) {
+  font-family: var(--font-display) !important;
+  font-size: var(--fs-card-title) !important;
+  font-weight: var(--fw-semibold) !important;
+  line-height: 1.2 !important;
+  letter-spacing: normal !important;
+}
+
+.mlp-page--polished :is(
+  .prospectus-cover__intro,
+  .prospectus-cover__annotation-copy,
+  .prospectus-cover__enquiry-head p,
+  .signal-atlas__quote p,
+  .signal-atlas__note,
+  .blueprint-overview__intro-copy,
+  .mlp-why__intro,
+  .mlp-why__text,
+  .mlp-journey__intro,
+  .mlp-journey__text,
+  .mlp-mba__intro,
+  .mlp-masters__intro,
+  .archive-class__copy,
+  .archive-career__intro-copy,
+  .archive-alumni__intro-copy,
+  .archive-learning__intro-copy,
+  .archive-partners__intro-copy,
+  .archive-investment__intro-copy,
+  .archive-voices__intro-copy,
+  .archive-parallel__intro-copy,
+  .archive-fieldnotes__intro-copy,
+  .archive-closing__intro-copy,
+  .pricing-cards__intro-copy,
+  .pricing-cards__note,
+  .archive-video-proof__copy,
+  .mlp-prose
+) {
+  font-family: var(--font-body) !important;
+  font-size: var(--fs-body) !important;
+  font-weight: var(--fw-regular) !important;
+  line-height: 1.7 !important;
+  letter-spacing: normal !important;
+}
+
+.mlp-page--polished :is(
+  .prospectus-cover__edition,
+  .prospectus-cover__academy,
+  .prospectus-cover__location,
+  .prospectus-cover__eyebrow,
+  .prospectus-cover__kicker,
+  .prospectus-cover__enquiry-index,
+  .signal-atlas__folio,
+  .blueprint-overview__folio,
+  .archive-class__label,
+  .archive-career__label,
+  .archive-alumni__label,
+  .archive-learning__label,
+  .archive-partners__label,
+  .archive-investment__label,
+  .archive-voices__label,
+  .archive-parallel__label,
+  .archive-fieldnotes__label,
+  .archive-closing__label,
+  .archive-partners__hint,
+  .archive-partners__toggle,
+  .archive-closing__form-head,
+  .mlp-meta,
+  .mlp-field > span
+) {
+  font-family: var(--font-body) !important;
+  font-size: var(--fs-caption) !important;
+  font-weight: var(--fw-medium) !important;
+  line-height: 1.4 !important;
+  letter-spacing: 0.15em !important;
+  text-transform: uppercase;
+}
+
+.mlp-page--polished :is(
+  .signal-atlas__value,
+  .blueprint-overview__core strong,
+  .archive-class__metric dd,
+  .archive-investment__record-topline strong,
+  .archive-investment__fee,
+  .archive-closing__form-title,
+  .blueprint-overview__class-2025-center strong,
+  .blueprint-overview__class-2025-value
+) {
+  font-family: var(--font-display) !important;
+  font-size: var(--fs-card-title) !important;
+  font-weight: var(--fw-medium) !important;
+  line-height: 1 !important;
+  letter-spacing: -0.03em !important;
+}
+
+.mlp-page--polished .blueprint-overview__class-2025-heading {
+  font-family: var(--font-display) !important;
+  font-size: var(--fs-card-title) !important;
+  font-weight: var(--fw-medium) !important;
+  line-height: 1.1 !important;
+  letter-spacing: -0.02em !important;
+}
+
+.mlp-page--polished .blueprint-overview__class-2025-label {
+  font-family: var(--font-body) !important;
+  font-size: var(--fs-caption) !important;
+  font-weight: var(--fw-medium) !important;
+  line-height: 1.4 !important;
+  letter-spacing: 0.15em !important;
+}
+
+.mlp-page--polished :is(
+  .mlp-btn,
+  .prospectus-cover__primary,
+  .prospectus-cover__secondary,
+  .archive-investment__primary,
+  .archive-investment__secondary,
+  .archive-parallel__primary,
+  .archive-closing__primary,
+  .archive-closing__secondary,
+  .archive-learning__primary,
+  .archive-learning__secondary
+) {
+  font-family: var(--font-body) !important;
+  font-size: 14px !important;
+  font-weight: var(--fw-medium) !important;
+  line-height: 1 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase;
+}
+
+.mlp-page--polished :is(.mlp-field input, .mlp-field select, .mlp-field textarea) {
+  font-family: var(--font-body) !important;
+  font-size: var(--fs-body) !important;
+  font-weight: var(--fw-regular) !important;
+  line-height: 1.7 !important;
+  letter-spacing: normal !important;
+}
+
+/* Accreditation typography reference — canonical light landing roles. */
+.mlp-page--polished :is(
+  .signal-atlas__heading,
+  .blueprint-overview__heading,
+  .mlp-why__heading,
+  .mlp-journey__heading,
+  .mlp-mba__heading,
+  .mlp-masters__heading,
+  .pricing-cards__heading,
+  .archive-class__heading,
+  .archive-career__heading,
+  .archive-alumni__heading,
+  .archive-learning__heading,
+  .archive-partners__heading,
+  .archive-investment__heading,
+  .archive-voices__heading,
+  .archive-parallel__heading,
+  .archive-fieldnotes__heading,
+  .mlp-class-snapshot__heading
+) {
+  font-family: var(--font-display) !important;
+  font-size: var(--fs-section-title) !important;
+  font-weight: var(--fw-medium) !important;
+  line-height: 1.1 !important;
+  letter-spacing: -0.02em !important;
+  color: var(--color-mba-blue) !important;
+  text-transform: none !important;
+}
+
+.mlp-page--polished :is(
+  .signal-atlas__folio,
+  .blueprint-overview__folio,
+  .mlp-why__label,
+  .mlp-journey__label,
+  .mlp-mba__label,
+  .mlp-masters__label,
+  .pricing-cards__label,
+  .archive-class__label,
+  .archive-career__label,
+  .archive-alumni__label,
+  .archive-learning__label,
+  .archive-partners__label,
+  .archive-investment__label,
+  .archive-voices__label,
+  .archive-parallel__label,
+  .archive-fieldnotes__label,
+  .mlp-class-snapshot__label
+) {
+  font-family: var(--font-body) !important;
+  font-size: 0.875rem !important;
+  font-weight: var(--fw-medium) !important;
+  line-height: 1.6 !important;
+  letter-spacing: 0.15em !important;
+  color: var(--color-mba-blue) !important;
+  text-transform: uppercase !important;
+}
+
+.mlp-page--polished :is(
+  .signal-atlas__quote p,
+  .blueprint-overview__intro-copy,
+  .mlp-why__intro,
+  .mlp-why__text,
+  .mlp-journey__intro,
+  .mlp-journey__text,
+  .mlp-mba__intro,
+  .mlp-masters__intro,
+  .pricing-cards__intro-copy,
+  .pricing-cards__note,
+  .archive-class__copy,
+  .archive-career__intro-copy,
+  .archive-alumni__intro-copy,
+  .archive-learning__intro-copy,
+  .archive-partners__intro-copy,
+  .archive-investment__intro-copy,
+  .archive-voices__intro-copy,
+  .archive-parallel__intro-copy,
+  .archive-fieldnotes__intro-copy,
+  .mlp-class-snapshot__intro-copy
+) {
+  font-family: var(--font-body) !important;
+  font-size: var(--fs-body) !important;
+  font-weight: var(--fw-regular) !important;
+  line-height: 1.7 !important;
+  letter-spacing: normal !important;
+  color: var(--color-black) !important;
+}
+
+/* Final accreditation reference lock — complete light landing typography cascade. */
+.mlp-page--polished :is(
+  #accreditations .programs__heading,
+  #mlp-trust .signal-atlas__heading,
+  #mlp-overview .blueprint-overview__heading,
+  #mlp-why .mlp-why__heading,
+  #mlp-journey .mlp-journey__heading,
+  #mlp-mba .mlp-mba__heading,
+  #mlp-masters .mlp-masters__heading,
+  #mlp-fees .pricing-cards__heading,
+  #mlp-class .archive-class__heading,
+  #mlp-class-snapshot .mlp-class-snapshot__heading,
+  #mlp-career .archive-career__heading,
+  #mlp-alumni .archive-alumni__heading,
+  #mlp-learning .archive-learning__heading,
+  #mlp-partners .archive-partners__heading,
+  #mlp-testimonials .archive-voices__heading,
+  #mlp-compare .archive-parallel__heading,
+  #mlp-faq .archive-fieldnotes__heading
+) {
+  font-family: var(--font-display) !important;
+  font-size: var(--fs-section-title) !important;
+  font-weight: var(--fw-medium) !important;
+  line-height: 1.1 !important;
+  letter-spacing: -0.02em !important;
+  color: var(--color-mba-blue) !important;
+  text-transform: none !important;
+}
+
+.mlp-page--polished :is(
+  #accreditations .section-label span,
+  #mlp-trust .signal-atlas__folio,
+  #mlp-overview .blueprint-overview__folio,
+  #mlp-why .mlp-why__label,
+  #mlp-journey .mlp-journey__label,
+  #mlp-mba .mlp-mba__label,
+  #mlp-masters .mlp-masters__label,
+  #mlp-fees .pricing-cards__label,
+  #mlp-class .archive-class__label,
+  #mlp-class-snapshot .mlp-class-snapshot__label,
+  #mlp-career .archive-career__label,
+  #mlp-alumni .archive-alumni__label,
+  #mlp-learning .archive-learning__label,
+  #mlp-partners .archive-partners__label,
+  #mlp-testimonials .archive-voices__label,
+  #mlp-compare .archive-parallel__label,
+  #mlp-faq .archive-fieldnotes__label
+) {
+  font-family: var(--font-body) !important;
+  font-size: 0.875rem !important;
+  font-weight: var(--fw-medium) !important;
+  line-height: 1.6 !important;
+  letter-spacing: 0.15em !important;
+  color: var(--color-mba-blue) !important;
+  text-transform: uppercase !important;
+}
+
+.mlp-page--polished :is(
+  #accreditations .accreditations__subheading,
+  #accreditations .accreditations__trust-text,
+  #mlp-trust .signal-atlas__quote p,
+  #mlp-overview .blueprint-overview__intro-copy,
+  #mlp-why .mlp-why__intro,
+  #mlp-why .mlp-why__text,
+  #mlp-journey .mlp-journey__intro,
+  #mlp-journey .mlp-journey__text,
+  #mlp-mba .mlp-mba__intro,
+  #mlp-masters .mlp-masters__intro,
+  #mlp-fees .pricing-cards__intro-copy,
+  #mlp-fees .pricing-cards__note,
+  #mlp-class .archive-class__copy,
+  #mlp-class-snapshot .mlp-class-snapshot__intro-copy,
+  #mlp-career .archive-career__intro-copy,
+  #mlp-alumni .archive-alumni__intro-copy,
+  #mlp-learning .archive-learning__intro-copy,
+  #mlp-partners .archive-partners__intro-copy,
+  #mlp-testimonials .archive-voices__intro-copy,
+  #mlp-compare .archive-parallel__intro-copy,
+  #mlp-faq .archive-fieldnotes__intro-copy
+) {
+  font-family: var(--font-body) !important;
+  font-size: var(--fs-body) !important;
+  font-weight: var(--fw-regular) !important;
+  line-height: 1.7 !important;
+  letter-spacing: normal !important;
+  color: var(--color-black) !important;
+}
+
+/* —— Video testimonials (landing): 4 frames in one row on desktop —— */
+@media (min-width: 1024px) {
+  #mlpPage #video-testimonials .testimonials__scroll {
+    overflow: visible;
+  }
+
+  #mlpPage #video-testimonials .testimonials__track {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    width: auto;
+    padding: 2rem 0;
+  }
+
+  #mlpPage #video-testimonials .testimonials__card {
+    width: 100%;
+  }
+
+  /* All frames fit — no scroll controls needed. */
+  #mlpPage #video-testimonials .scroll-row__btn {
+    display: none;
+  }
 }

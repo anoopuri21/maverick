@@ -11,7 +11,7 @@
         <div class="section-label">
           <span>{{ $homepageChrome->accred_label ?? '' }}</span>
         </div>
-        <h2 class="programs__heading section-title">
+        <h2 class="programs__heading section-title mlp-h2">
           <span class="hwdi__heading-line">
             <span class="text-reveal-wrapper">
               <span class="text-reveal-inner">{{ $homepageChrome->accred_heading_line1 ?? '' }}</span>

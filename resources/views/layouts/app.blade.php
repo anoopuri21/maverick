@@ -102,6 +102,8 @@
     @endif
     @if(request()->routeIs('home', 'our-story', 'masters-pathway', 'global-partners'))
     <script src="{{ cached_asset('assets/js/partners.js') }}" defer></script>
+    @endif
+    @if(request()->routeIs('home', 'our-story', 'masters-pathway', 'global-partners', 'mba-masters-landing'))
     <script src="{{ cached_asset('assets/js/testimonials.js') }}" defer></script>
     @endif
     {{-- Modal disabled — re-enable when needed

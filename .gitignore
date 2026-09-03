@@ -52,3 +52,7 @@ MEDIA_LIBRARY.md
 # Python cache
 __pycache__/
 *.py[cod]
+
+# css-equivalence harness (transient artifacts)
+scripts/css-equivalence/node_modules/
+scripts/css-equivalence/cand-tables/

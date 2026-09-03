@@ -3,21 +3,22 @@
   $stats = collect($trust->stats ?? [])
       ->filter(fn ($s) => filled($s['value'] ?? null) || filled($s['label'] ?? null))
       ->values();
-  $heading = filled($trust->label) ? $trust->label : 'Trusted by learners across the UAE & beyond';
+  $heading = filled($trust->label) ? $trust->label : 'Trusted by learners across the GCC & beyond';
   $quote = filled($trust->quote) ? $trust->quote : 'Every number is a person who chose to keep moving.';
 @endphp
 @if($stats->isNotEmpty())
 <section class="mlp-trust signal-atlas" id="mlp-trust" aria-labelledby="signal-atlas-title">
   <div class="signal-atlas__background" aria-hidden="true">
-    <span class="signal-atlas__wash"></span>
-    <span class="signal-atlas__contour signal-atlas__contour--one"></span>
-    <span class="signal-atlas__contour signal-atlas__contour--two"></span>
+    <img class="signal-atlas__bg-image" src="{{ cached_asset('assets/images/mba-masters-landing/trust-bg.jpg') }}" alt="" width="1600" height="900" loading="eager" decoding="async">
+    <span class="signal-atlas__wash mlp-wash"></span>
+    <span class="signal-atlas__contour signal-atlas__contour--one mlp-contour"></span>
+    <span class="signal-atlas__contour signal-atlas__contour--two mlp-contour"></span>
   </div>
 
   <div class="signal-atlas__frame container">
     <header class="signal-atlas__intro">
         <p class="signal-atlas__folio">Trust record</p>
-      <h2 class="signal-atlas__heading" id="signal-atlas-title">{{ $heading }}</h2>
+      <h2 class="signal-atlas__heading mlp-h2" id="signal-atlas-title">{{ $heading }}</h2>
       <blockquote class="signal-atlas__quote">
         <span class="signal-atlas__quote-mark" aria-hidden="true">“</span>
         <p>{{ $quote }}</p>

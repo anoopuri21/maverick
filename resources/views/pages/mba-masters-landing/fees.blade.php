@@ -8,13 +8,13 @@
 @if($rows->isNotEmpty() || filled($fees->heading))
 <section class="mlp-fees pricing-cards" id="mlp-fees" aria-labelledby="pricing-cards-title">
   <div class="pricing-cards__frame container">
-    <header class="pricing-cards__intro">
+    <header class="pricing-cards__intro mlp-intro-grid">
       <div>
         @if(filled($fees->label))
-        <p class="pricing-cards__label">{{ $fees->label }}</p>
+        <p class="pricing-cards__label mlp-eyebrow">{{ $fees->label }}</p>
         @endif
         @if(filled($fees->heading))
-        <h2 class="pricing-cards__heading" id="pricing-cards-title">{{ $fees->heading }}</h2>
+        <h2 class="pricing-cards__heading mlp-h2" id="pricing-cards-title">{{ $fees->heading }}</h2>
         @endif
       </div>
       @if(filled($fees->intro))
@@ -37,14 +37,14 @@
         }
       @endphp
       <article class="pricing-card" data-closing-element>
-        <header class="pricing-card__head">
-          <span class="pricing-card__icon" aria-hidden="true"><i data-lucide="receipt-text"></i></span>
+        <header class="pricing-card__head mlp-hairline">
+          <span class="pricing-card__icon mlp-icon-box" aria-hidden="true"><i data-lucide="receipt-text"></i></span>
           <span class="pricing-card__eyebrow">Programme route</span>
         </header>
 
         <h3 class="pricing-card__program">{{ $row['program'] }}</h3>
 
-        <div class="pricing-card__price">
+        <div class="pricing-card__price mlp-hairline">
           <span>Fee</span>
           <strong>{{ $fee }}</strong>
           @if($feeIsIndicative)
@@ -78,10 +78,10 @@
     @if(filled($fees->cta_primary_label) || filled($fees->cta_secondary_label))
     <div class="pricing-cards__actions">
       @if(filled($fees->cta_primary_label))
-      <a href="{{ edu_href($fees->cta_primary_url) ?? '#mlp-enquire' }}" class="pricing-cards__primary">{{ $fees->cta_primary_label }} <span aria-hidden="true">↗</span></a>
+      <a href="{{ edu_href($fees->cta_primary_url) ?? '#mlp-enquire' }}" class="pricing-cards__primary mlp-cta mlp-cta--primary">{{ $fees->cta_primary_label }} <span aria-hidden="true">↗</span></a>
       @endif
       @if(filled($fees->cta_secondary_label))
-      <a href="{{ edu_href($fees->cta_secondary_url) ?? '#mlp-enquire' }}" class="pricing-cards__secondary">{{ $fees->cta_secondary_label }}</a>
+      <a href="{{ edu_href($fees->cta_secondary_url) ?? '#mlp-enquire' }}" class="pricing-cards__secondary mlp-cta mlp-cta--ghost">{{ $fees->cta_secondary_label }}</a>
       @endif
     </div>
     @endif

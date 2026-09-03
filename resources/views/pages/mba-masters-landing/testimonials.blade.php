@@ -24,7 +24,7 @@
 @if($items->isNotEmpty())
 <section class="mlp-testimonials archive-voices" id="mlp-testimonials" aria-labelledby="archive-voices-title">
   <div class="archive-voices__background" aria-hidden="true">
-    <span class="archive-voices__wash"></span>
+    <span class="archive-voices__wash mlp-wash"></span>
     <span class="archive-voices__rule archive-voices__rule--one"></span>
   </div>
 
@@ -32,10 +32,10 @@
     <header class="archive-voices__intro">
       <div>
         @if(filled($testimonials->label))
-        <p class="archive-voices__label">{{ $testimonials->label }}</p>
+        <p class="archive-voices__label mlp-eyebrow">{{ $testimonials->label }}</p>
         @endif
         @if(filled($testimonials->heading))
-        <h2 class="archive-voices__heading" id="archive-voices-title">{{ $testimonials->heading }}</h2>
+        <h2 class="archive-voices__heading mlp-h2" id="archive-voices-title">{{ $testimonials->heading }}</h2>
         @endif
       </div>
       @if(filled($testimonials->intro))
@@ -47,7 +47,7 @@
     <div class="archive-voices__stage" data-closing-voices>
       <div class="archive-voices__stack" aria-hidden="true">
         @foreach($items->take(3) as $vi => $item)
-        <span class="archive-voices__stack-image archive-voices__stack-image--{{ $vi + 1 }}">
+        <span class="archive-voices__stack-image archive-voices__stack-image--{{ $vi + 1 }} mlp-stack-layer">
           <img src="{{ $item['photo'] ?: $fallbackPhoto }}" alt="" width="640" height="800" loading="lazy" decoding="async">
         </span>
         @endforeach
@@ -58,7 +58,7 @@
         <div class="luxury-testimonials__slides" aria-live="polite">
           @foreach($items as $ti => $item)
           <blockquote
-            class="luxury-testimonial{{ $ti === 0 ? ' is-active' : '' }}"
+            class="luxury-testimonial mlp-hairline{{ $ti === 0 ? ' is-active' : '' }}"
             data-testimonial-slide
             data-closing-element
             @if($ti !== 0) hidden aria-hidden="true" @else aria-hidden="false" @endif
