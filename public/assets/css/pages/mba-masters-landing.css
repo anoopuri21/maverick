@@ -4058,9 +4058,9 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
 }
 
 .mlp-page--polished .mlp-form__fields > .mlp-btn--block {
-  background: transparent;
+  background: var(--color-mba-dark-blue);
   color: var(--color-warm-white);
-  border-color: var(--color-light-grey);
+  border-color: var(--color-mba-dark-blue);
 }
 
 .mlp-page--polished .mlp-form__fields > .mlp-btn--block:hover,

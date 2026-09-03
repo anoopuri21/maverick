@@ -66,7 +66,7 @@
             <span class="prospectus-cover__primary-mark" aria-hidden="true">↗</span>
           </a>
           @endif
-          <a href="#mlp-trust" class="prospectus-cover__secondary mlp-cta">Request Fee Plan</a>
+          <a href="#mlp-fees" class="prospectus-cover__secondary mlp-cta">Request Fee Plan</a>
         </div>
       </div>
 
