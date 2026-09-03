@@ -34,13 +34,12 @@
     ->values();
   $generatedImageBase = 'assets/images/mba-masters-landing/mba/';
   $generatedStage = $generatedImageBase.'mba-stage.jpg';
-  $generatedImagesByTab = [
-    'rbs-mba' => [$generatedImageBase.'specialized-mba.jpg'],
-    'gau-mba' => [$generatedImageBase.'business-management-mba.jpg'],
-    'gau-emba' => [$generatedImageBase.'executive-mba.jpg'],
-    'uca-global-mba' => [$generatedImageBase.'global-mba.jpg'],
-  ];
-  $stage = mlp_image_url($generatedStage, ['w' => 1920]);
+  // Prefer images managed in the admin panel. Generated artwork remains only as
+  // a backwards-compatible fallback for installations that have no image set.
+  $stage = mlp_image_url(settings_media_url($mba, 'stage_image'), [
+    'w' => 1920,
+    'fallback' => $generatedStage,
+  ]);
   $fallbackCampus = $generatedStage;
 @endphp
 @if($tabs->isNotEmpty() || filled($mba->heading))
@@ -95,9 +94,10 @@
         @foreach($unis as $ui => $uni)
         @php
           $logo = settings_media_url($uni, 'logo');
-          $tabKey = strtolower(trim((string) ($tab['key'] ?? '')));
-          $generatedPhoto = $generatedImagesByTab[$tabKey][$ui] ?? $fallbackCampus;
-          $photo = mlp_image_url($generatedPhoto, ['w' => 1200, 'fallback' => $fallbackCampus]);
+          $photo = mlp_image_url(settings_media_url($uni, 'image'), [
+            'w' => 1200,
+            'fallback' => $fallbackCampus,
+          ]);
           $specializations = collect($uni['specializations'] ?? [])->filter(fn ($specialization) => filled($specialization['title'] ?? null))->values();
           $specializationColumns = $specializations->count() > 8
             ? $specializations->chunk((int) ceil($specializations->count() / 2))->values()
