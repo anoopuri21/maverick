@@ -210,9 +210,16 @@ class ManageAudience extends Page implements HasForms
         $videoTestimonials = $data['videoTestimonials'] ?? [];
         $videoTestimonials['videos'] = array_values($videoTestimonials['videos'] ?? []);
 
-        $ok = $this->saveSettingsGroup(MbaMastersClassSettings::class, $class)
-            && $this->saveSettingsGroup(MbaMastersCareerSettings::class, $career)
-            && $this->saveSettingsGroup(MbaMastersVideoTestimonialsSettings::class, $videoTestimonials);
+        // Save each group independently so one failing group never silently
+        // skips the others (each failure already raises its own notification).
+        $ok = true;
+        foreach ([
+            [MbaMastersClassSettings::class, $class],
+            [MbaMastersCareerSettings::class, $career],
+            [MbaMastersVideoTestimonialsSettings::class, $videoTestimonials],
+        ] as [$settingsClass, $payload]) {
+            $ok = $this->saveSettingsGroup($settingsClass, $payload) && $ok;
+        }
 
         if ($ok) {
             $this->notifySaved('Audience');
