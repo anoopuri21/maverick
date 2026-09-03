@@ -756,7 +756,7 @@
 #mlp-enquire .mlp-field select {
   height: 38px;
   min-height: 0;
-  padding: 11px 0 0;
+  padding: 20px 0 0;
   border-bottom-color: rgba(255, 255, 255, 0.4);
   font-family: var(--mlp-font-body) !important;
   font-size: 14px !important;
@@ -782,7 +782,7 @@
 #mlp-enquire .mlp-field:has(> input:focus) > span,
 #mlp-enquire .mlp-field:has(> input:not(:placeholder-shown)) > span,
 #mlp-enquire .mlp-field:has(> select) > span {
-  top: 0;
+  top: -4px;
   font-size: 12px;
   line-height: 12px;
   color: #fff8f0;
@@ -3399,21 +3399,6 @@
   text-wrap: pretty;
 }
 
-.blueprint-overview__primary:focus-visible,
-  .blueprint-overview__secondary:focus-visible,
-  .archive-learning__primary:focus-visible,
-  .archive-learning__secondary:focus-visible,
-  .pricing-cards__primary:focus-visible,
-  .pricing-cards__secondary:focus-visible,
-  .mlp-page--polished :where(a,
-  button,
-  input,
-  select,
-  textarea):focus-visible {
-  outline: 2px solid var(--mlp-red);
-  outline-offset: 4px;
-}
-
 .mlp-page--polished :where(img) {
   backface-visibility: hidden;
 }
@@ -4372,7 +4357,7 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
 
 /* Enquiry refinement — equal Hero columns, compact full-width form rows. */
 .mlp-page--polished .prospectus-cover__body {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: 1.2fr 0.8fr;
   gap: clamp(1.25rem, 3vw, 2.75rem);
   align-items: center;
 }
