@@ -5531,3 +5531,26 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
   letter-spacing: normal !important;
   color: var(--color-black) !important;
 }
+
+/* —— Video testimonials (landing): 4 frames in one row on desktop —— */
+@media (min-width: 1024px) {
+  #mlpPage #video-testimonials .testimonials__scroll {
+    overflow: visible;
+  }
+
+  #mlpPage #video-testimonials .testimonials__track {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    width: auto;
+    padding: 2rem 0;
+  }
+
+  #mlpPage #video-testimonials .testimonials__card {
+    width: 100%;
+  }
+
+  /* All frames fit — no scroll controls needed. */
+  #mlpPage #video-testimonials .scroll-row__btn {
+    display: none;
+  }
+}

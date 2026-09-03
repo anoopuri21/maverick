@@ -151,7 +151,7 @@ class ManageAudience extends Page implements HasForms
                                     ->required()
                                     ->columnSpanFull()
                                     ->helperText('Paste the YouTube watch/share URL. The thumbnail is generated automatically unless you provide one.'),
-                                TextInput::make('name')->label('Name')->required(),
+                                TextInput::make('name')->label('Name'),
                                 TextInput::make('role')->label('Role / designation'),
                                 TextInput::make('category')->label('Badge / category')->placeholder('Student'),
                                 TextInput::make('thumbnail')->label('Custom thumbnail URL (optional)')->columnSpanFull(),

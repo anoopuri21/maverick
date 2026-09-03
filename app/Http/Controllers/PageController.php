@@ -421,7 +421,7 @@ class PageController extends Controller
         $testimonialsJson = collect($videoTestimonials->videos)
             ->filter(fn ($v) => filled($v['video_url'] ?? null))
             ->map(fn ($v) => [
-                'category' => strtoupper($v['category'] ?? 'STUDENT'),
+                'category' => filled($v['category'] ?? null) ? strtoupper(trim((string) $v['category'])) : 'STUDENT',
                 'name' => $v['name'] ?? '',
                 'role' => $v['role'] ?? '',
                 'thumbnail' => youtube_thumbnail_url($v['video_url'] ?? null, $v['thumbnail'] ?? null)

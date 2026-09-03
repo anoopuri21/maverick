@@ -3,23 +3,17 @@
   $videos = collect($videoTestimonials->videos ?? [])
       ->filter(fn ($v) => filled($v['video_url'] ?? null))
       ->values();
+  $vtLabel = filled($videoTestimonials->label) ? $videoTestimonials->label : 'Video testimonials';
+  $vtHeading = filled($videoTestimonials->heading) ? $videoTestimonials->heading : 'Hear it from our students';
 @endphp
 @if($videos->isNotEmpty())
 <section id="video-testimonials" class="testimonials section-wrapper section--light" aria-label="Video Testimonials">
   <div class="container testimonials__inner">
     <div class="testimonials__header">
-      @if(filled($videoTestimonials->label))
-      <div class="section-label"><span>{{ $videoTestimonials->label }}</span></div>
-      @endif
-      @if(filled($videoTestimonials->heading))
+      <div class="section-label"><span>{{ $vtLabel }}</span></div>
       <h2 class="testimonials__heading section-title">
-        <span class="testimonials__heading-line">
-          <span class="text-reveal-wrapper">
-            <span class="text-reveal-inner">{{ $videoTestimonials->heading }}</span>
-          </span>
-        </span>
+        <span class="testimonials__heading-line">{{ $vtHeading }}</span>
       </h2>
-      @endif
       @if(filled($videoTestimonials->intro))
       <p class="testimonials__subtitle body-text">{{ $videoTestimonials->intro }}</p>
       @endif
