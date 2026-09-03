@@ -4899,7 +4899,10 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
 .mlp-page--polished * {
   font-family: var(--mlp-font-body) !important;
 }
-
+.testimonials__card-thumb {
+  aspect-ratio: 9 / 16;
+  border-radius: 2rem;
+}
 .mlp-page--polished :is(h1, h2, h3, h4, h5, h6),
 .mlp-page--polished :is(h1, h2, h3, h4, h5, h6) * {
   font-family: var(--mlp-font-display) !important;

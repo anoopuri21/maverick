@@ -1,9 +1,8 @@
-{{-- §12 Video testimonials — 4 YouTube videos that open in a popup (same pattern as the homepage) --}}
 @php
   $videos = collect($videoTestimonials->videos ?? [])
       ->filter(fn ($v) => filled($v['video_url'] ?? null))
       ->values();
-  $vtLabel = filled($videoTestimonials->label) ? $videoTestimonials->label : 'Video testimonials';
+  $vtLabel = filled($videoTestimonials->label) ? $videoTestimonials->label : 'Maverick Shorts';
   $vtHeading = filled($videoTestimonials->heading) ? $videoTestimonials->heading : 'Hear it from our students';
 @endphp
 @if($videos->isNotEmpty())
