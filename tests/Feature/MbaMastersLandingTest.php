@@ -74,6 +74,15 @@ class MbaMastersLandingTest extends TestCase
         $response->assertDontSee('BSc Business Management', false);
         $response->assertDontSee('Level 7 Diploma', false);
         $response->assertSee('mlp-masters__uni-photo', false);
+        $response->assertSee('mlp-masters__split', false);
+        $response->assertSee('mlp-trending', false);
+        $response->assertSee('Trending', false);
+        $response->assertSee('Specialisations', false);
+        $response->assertSee('BA (Hons) Management', false);
+        $response->assertSee('82%', false);
+        $response->assertSee('MBA in Finance', false);
+        $response->assertSee('70%', false);
+        $response->assertSee('mlp-masters__ledger', false);
         $response->assertSee('Online MBA & Master\'s Fees in GCC');
         $response->assertSee('pricing-cards', false);
         $response->assertSee('pricing-card', false);
