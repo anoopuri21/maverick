@@ -76,8 +76,10 @@ class MbaMastersLandingTest extends TestCase
         $response->assertSee('mlp-masters__uni-photo', false);
         $response->assertSee('Online MBA & Master\'s Fees in GCC');
         $response->assertSee('pricing-cards', false);
-        $response->assertSee('pricing-card', false);
-        $response->assertSee('pricing-card__price', false);
+        $response->assertSee('pricing-cards__base', false);
+        $response->assertSee('pricing-cards__base-price', false);
+        $response->assertSee('AED 16,000–40,000*', false);
+        $response->assertDontSee('pricing-card__price', false);
         $response->assertDontSee('archive-investment__records', false);
         $response->assertDontSee('<table', false);
         $response->assertDontSee('Speak to advisor', false);

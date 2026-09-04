@@ -71,7 +71,6 @@ class ManagePrograms extends Page implements HasForms
         unset($uni);
 
         $fees = app(MbaMastersFeesSettings::class)->toArray();
-        $fees['rows'] = array_values($fees['rows'] ?? []);
 
         $this->form->fill([
             'overview' => $overview,
@@ -255,22 +254,6 @@ class ManagePrograms extends Page implements HasForms
                         MediaPicker::forField('fees.stage_image', 'mba-masters-landing/fees')
                             ->label('Background plate image')
                             ->columnSpanFull(),
-                        Repeater::make('fees.rows')
-                            ->label('Fee rows')
-                            ->schema([
-                                TextInput::make('program')->label('Program')->required()->columnSpanFull(),
-                                TextInput::make('duration')->label('Duration'),
-                                TextInput::make('mode')->label('Study mode'),
-                                TextInput::make('fee')->label('Fee range'),
-                                TextInput::make('payment')->label('Payment option'),
-                            ])
-                            ->columns(2)
-                            ->defaultItems(0)
-                            ->reorderable()
-                            ->collapsible()
-                            ->itemLabel(fn (array $state): ?string => $state['program'] ?? null)
-                            ->addActionLabel('Add row')
-                            ->columnSpanFull(),
                         TextInput::make('fees.cta_primary_label')->label('Primary CTA label'),
                         TextInput::make('fees.cta_primary_url')->label('Primary CTA URL'),
                         TextInput::make('fees.cta_secondary_label')->label('Secondary CTA label'),
@@ -347,7 +330,6 @@ class ManagePrograms extends Page implements HasForms
         );
 
         $fees = $this->syncImageIfSelected($data['fees'] ?? [], 'stage_image');
-        $fees['rows'] = array_values($fees['rows'] ?? []);
 
         $ok = $this->saveSettingsGroup(MbaMastersOverviewSettings::class, $overview)
             && $this->saveSettingsGroup(MbaMastersWhySettings::class, $why)

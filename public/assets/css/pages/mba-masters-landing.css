@@ -5695,3 +5695,64 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
     transition: none;
   }
 }
+
+/* ————————————————————————————————————————————————
+   Fees — warm light background + minimal colour,
+   full-width base fee line and full-width note
+   (fee amount cards removed; structure unchanged)
+   ———————————————————————————————————————————————— */
+.pricing-cards {
+  background:
+    radial-gradient(55% 65% at 92% 5%, rgba(255, 209, 102, 0.12), transparent 62%),
+    radial-gradient(48% 60% at 4% 92%, rgba(178, 2, 2, 0.055), transparent 62%),
+    radial-gradient(42% 55% at 50% 105%, rgba(15, 41, 131, 0.05), transparent 65%),
+    linear-gradient(180deg, var(--mlp-paper) 0%, #f3ede3 55%, var(--mlp-paper) 100%);
+}
+
+.pricing-cards__base {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 0.35rem 1rem;
+  align-items: baseline;
+  margin: 0 0 0.9rem;
+  padding: clamp(1rem, 2vw, 1.35rem) clamp(1.1rem, 2.4vw, 1.6rem);
+  background: linear-gradient(120deg, rgba(15, 41, 131, 0.045), rgba(178, 2, 2, 0.05)), var(--mlp-paper-pure);
+  border: 1px solid rgba(15, 41, 131, 0.12);
+  border-left: 4px solid var(--mlp-blue);
+  box-shadow: inset 4px 0 0 var(--mlp-red), 0 0.55rem 1.4rem -0.9rem rgba(7, 20, 68, 0.28);
+  border-radius: 0.6rem;
+}
+
+.pricing-cards__base-label {
+  font-family: var(--mlp-font-body);
+  font-size: clamp(0.8rem, 1vw, 0.9rem);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--mlp-navy);
+}
+
+.pricing-cards__base-price {
+  font-family: var(--mlp-font-display);
+  font-size: clamp(1.35rem, 2.6vw, 2rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  background: linear-gradient(92deg, var(--mlp-blue) 0%, #14369f 45%, var(--mlp-red) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.pricing-cards__note {
+  max-width: none;
+}
+
+@media (max-width: 560px) {
+  .pricing-cards__base {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+}
