@@ -65,8 +65,8 @@
 /* Section labels / eyebrows — shared sizing */
 .mlp-page .mlp-meta, 
 .mlp-page [class*="mlp-"][class*="__label"] {
-  font-size: 1rem;
-  font-weight: 400;
+  font-size: 1.05rem;
+  font-weight: 500;
 }
 
 /* Shared section eyebrow (effective typography of the landing label role). */
@@ -286,21 +286,11 @@
 }
 
 
-.mlp-form__success {
-  margin: 0 0 1rem;
-  padding: 0.75rem 0;
-  border-top: 1px solid rgba(46, 160, 100, 0.35);
-  border-bottom: 1px solid rgba(46, 160, 100, 0.35);
-  color: #0d5c2e;
-  font-size: 0.9rem;
-}
-
+.mlp-form__success,
 .mlp-form__errors {
-  margin: 0 0 1rem;
-  padding: 0.75rem 0 0.75rem 1.1rem;
+  padding-left: 0.5rem;
   border-left: 2px solid var(--mlp-red);
-  color: #8a1c12;
-  font-size: 0.85rem;
+  margin-bottom: 15px;
 }
 
 .mlp-form__fields {
@@ -754,9 +744,9 @@
 
 #mlp-enquire .mlp-field input,
 #mlp-enquire .mlp-field select {
-  height: 38px;
+  height: 45px;
   min-height: 0;
-  padding: 20px 0 0;
+  padding: 15px 0 0;
   border-bottom-color: rgba(255, 255, 255, 0.4);
   font-family: var(--mlp-font-body) !important;
   font-size: 14px !important;
@@ -785,7 +775,7 @@
   top: -4px;
   font-size: 12px;
   line-height: 12px;
-  color: #fff8f0;
+  color: rgba(255, 248, 240, 0.55);
 }
 
 #mlp-enquire .mlp-form__success {
@@ -1778,7 +1768,7 @@
 .archive-alumni__intro { grid-template-columns: minmax(0, 1fr) minmax(17rem, 0.8fr); gap: clamp(2rem, 7vw, 8rem); margin-bottom: 2.75rem; }
 .archive-alumni__intro-copy { max-width: 35ch; margin: 0 0 0.2rem auto; font-size: 0.94rem; line-height: 1.7; color: var(--mlp-muted-on-paper); }
 .archive-alumni__ribbon { overflow: hidden; border-top: 1px solid var(--mlp-navy); }
-.archive-alumni__track { display: flex; width: max-content; animation: archiveAlumniMarquee 32s linear infinite; }
+.archive-alumni__track { display: flex; width: max-content; background: var(--color-white); animation: archiveAlumniMarquee 32s linear infinite; }
 .archive-alumni__ribbon:hover .archive-alumni__track,
   .archive-alumni__ribbon:focus-within .archive-alumni__track,
   .mlp-page .mlp-prose.is-offscreen li::before,
@@ -2272,7 +2262,7 @@
   overflow: hidden;
   padding: clamp(4rem, 8vw, 6.5rem) 0 clamp(3.5rem, 7vw, 5.5rem);
   color: var(--mlp-ink);
-  background: var(--mlp-paper);
+  background: var(--color-white);
 }
 .archive-partners__intro,
   .mlp-page--polished .archive-video-proof__intro {
@@ -2352,8 +2342,6 @@
   width: min(100%, 11rem);
   height: 4.5rem;
   object-fit: contain;
-  filter: grayscale(1);
-  opacity: 0.72;
   transition: filter 0.35s ease, opacity 0.35s ease, transform 0.35s var(--mlp-ease);
 }
 .archive-partners__logo-item span {
@@ -2694,8 +2682,8 @@
 }
 
 .blueprint-overview__class-2025-icon {
-  width: 1.45rem;
-  height: 1.45rem;
+  width: 2rem;
+  height: 2rem;
   color: var(--mlp-red);
 }
 
@@ -2725,11 +2713,11 @@
 }
 
 .blueprint-overview__class-2025-stat--countries .blueprint-overview__class-2025-stat-copy {
-  top: calc(100% + 0.3rem);
-  left: -1.25rem;
-  width: 7.5rem;
-  align-items: flex-end;
-  text-align: right;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  width: 10.5rem;
+  align-items: center;
+  text-align: center;;
 }
 
 .blueprint-overview__class-2025-stat--age .blueprint-overview__class-2025-stat-copy {
@@ -2833,10 +2821,15 @@
   }
 
   .blueprint-overview__class-2025-card {
-    width: 100%;
+    width: 18rem;
     min-height: 8.5rem;
   }
-
+  
+  .blueprint-overview__class-2025-icon {
+    width: 3rem;
+    height: 3rem;
+  
+  }
   .blueprint-overview__class-2025-stat-copy,
   .blueprint-overview__class-2025-stat--students .blueprint-overview__class-2025-stat-copy,
   .blueprint-overview__class-2025-stat--experience .blueprint-overview__class-2025-stat-copy,
@@ -3148,10 +3141,6 @@
   #mlp-class-snapshot .mlp-class-snapshot__metrics {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-
-  #mlp-class-snapshot .mlp-class-snapshot__global {
-    padding-bottom: 8rem;
-  }
 }
 
 @media (max-width: 520px) {
@@ -3162,10 +3151,6 @@
   #mlp-class-snapshot .mlp-class-snapshot__global {
     padding-right: 1rem;
     padding-left: 1rem;
-  }
-
-  #mlp-class-snapshot .mlp-class-snapshot__country {
-    width: 100%;
   }
 }
 
@@ -5715,7 +5700,7 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
   flex-wrap: wrap;
   gap: 0.35rem 1rem;
   align-items: baseline;
-  margin: 0 0 0.9rem;
+  margin: 0.9rem 0;
   padding: clamp(1rem, 2vw, 1.35rem) clamp(1.1rem, 2.4vw, 1.6rem);
   background: linear-gradient(120deg, rgba(15, 41, 131, 0.045), rgba(178, 2, 2, 0.05)), var(--mlp-paper-pure);
   border: 1px solid rgba(15, 41, 131, 0.12);
@@ -5798,12 +5783,12 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
 }
 
 .mlp-trending__title-gold {
-  color: #f5b301;
+  color: var(--color-mba-red);
 }
 
 .mlp-trending__list {
   display: grid;
-  gap: clamp(0.9rem, 1.8vw, 1.2rem);
+  gap: 1.2rem;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -5811,7 +5796,7 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
 
 .mlp-trending__row {
   display: grid;
-  gap: 0.45rem;
+  gap: 0.15rem;
 }
 
 .mlp-trending__label {
@@ -5827,7 +5812,7 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
   position: relative;
   display: block;
   width: 100%;
-  height: clamp(1.4rem, 2vw, 1.75rem);
+  height: 1rem;
   border-radius: 999px;
   background: rgba(15, 41, 131, 0.08);
   overflow: hidden;
@@ -5842,20 +5827,10 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
   width: var(--trend, 0%);
   min-width: 3.1rem;
   border-radius: 999px;
-  background: linear-gradient(90deg, #0f2983, #14369f);
+  background: linear-gradient(90deg, var(--color-mba-blue), var(--color-mba-red));
   box-shadow: inset 0 -0.3rem 0.8rem rgba(0, 0, 0, 0.08);
   transition: width 0.7s var(--mlp-ease);
 }
-
-/* Row-by-row shade ladder: deep navy → MBA blue → lighter blue */
-.mlp-trending__row:nth-child(1) .mlp-trending__fill { background: linear-gradient(90deg, #071444, #0b1f5c); }
-.mlp-trending__row:nth-child(2) .mlp-trending__fill { background: linear-gradient(90deg, #0f2983, #14369f); }
-.mlp-trending__row:nth-child(3) .mlp-trending__fill { background: linear-gradient(90deg, #14369f, #1d43b4); }
-.mlp-trending__row:nth-child(4) .mlp-trending__fill { background: linear-gradient(90deg, #1d43b4, #244fc4); }
-.mlp-trending__row:nth-child(5) .mlp-trending__fill { background: linear-gradient(90deg, #244fc4, #2f5dd2); }
-.mlp-trending__row:nth-child(6) .mlp-trending__fill { background: linear-gradient(90deg, #2f5dd2, #3a6ade); }
-.mlp-trending__row:nth-child(7) .mlp-trending__fill { background: linear-gradient(90deg, #3a6ade, #4a7ae8); }
-.mlp-trending__row:nth-child(8) .mlp-trending__fill { background: linear-gradient(90deg, #4a7ae8, #5a8af0); }
 
 .mlp-trending__value {
   padding-right: 0.7rem;
