@@ -1455,7 +1455,7 @@
 .mlp-mba__plate {
   position: relative;
   margin: 0;
-  min-height: clamp(17rem, 38vw, 26rem);
+  height: clamp(20rem, 40vw, 28rem);
   overflow: hidden;
   background: var(--mlp-surface-soft);
 }
@@ -1466,7 +1466,6 @@
   min-height: inherit;
   object-fit: cover;
   display: block;
-  transform: scale(1.02);
   transition: transform 0.9s var(--mlp-ease);
 }
 
