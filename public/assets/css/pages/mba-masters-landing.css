@@ -65,7 +65,7 @@
 /* Section labels / eyebrows — shared sizing */
 .mlp-page .mlp-meta, 
 .mlp-page [class*="mlp-"][class*="__label"] {
-  font-size: 1.05rem;
+  font-size: var(--mlp-type-caption);
   font-weight: 500;
 }
 
@@ -2824,7 +2824,7 @@
     width: 18rem;
     min-height: 8.5rem;
   }
-  
+
   .blueprint-overview__class-2025-icon {
     width: 3rem;
     height: 3rem;
@@ -3318,10 +3318,8 @@
 .mlp-masters__item:hover .mlp-masters__item-mark { transform: rotate(45deg) scale(1.25); }
 
 .mlp-masters__item-title {
-  font-family: var(--mlp-font-body);
-  font-size: 1.05rem;
   font-weight: 500;
-  line-height: 1.5;
+  font-size: var(--mlp-type-caption);
   color: var(--mlp-navy);
 }
 
