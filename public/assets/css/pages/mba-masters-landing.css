@@ -65,8 +65,8 @@
 /* Section labels / eyebrows — shared sizing */
 .mlp-page .mlp-meta, 
 .mlp-page [class*="mlp-"][class*="__label"] {
-  font-size: 1rem;
-  font-weight: 400;
+  font-size: var(--mlp-type-caption);
+  font-weight: 500;
 }
 
 /* Shared section eyebrow (effective typography of the landing label role). */
@@ -286,21 +286,11 @@
 }
 
 
-.mlp-form__success {
-  margin: 0 0 1rem;
-  padding: 0.75rem 0;
-  border-top: 1px solid rgba(46, 160, 100, 0.35);
-  border-bottom: 1px solid rgba(46, 160, 100, 0.35);
-  color: #0d5c2e;
-  font-size: 0.9rem;
-}
-
+.mlp-form__success,
 .mlp-form__errors {
-  margin: 0 0 1rem;
-  padding: 0.75rem 0 0.75rem 1.1rem;
+  padding-left: 0.5rem;
   border-left: 2px solid var(--mlp-red);
-  color: #8a1c12;
-  font-size: 0.85rem;
+  margin-bottom: 15px;
 }
 
 .mlp-form__fields {
@@ -754,9 +744,9 @@
 
 #mlp-enquire .mlp-field input,
 #mlp-enquire .mlp-field select {
-  height: 38px;
+  height: 45px;
   min-height: 0;
-  padding: 20px 0 0;
+  padding: 15px 0 0;
   border-bottom-color: rgba(255, 255, 255, 0.4);
   font-family: var(--mlp-font-body) !important;
   font-size: 14px !important;
@@ -785,7 +775,7 @@
   top: -4px;
   font-size: 12px;
   line-height: 12px;
-  color: #fff8f0;
+  color: rgba(255, 248, 240, 0.55);
 }
 
 #mlp-enquire .mlp-form__success {
@@ -1778,7 +1768,7 @@
 .archive-alumni__intro { grid-template-columns: minmax(0, 1fr) minmax(17rem, 0.8fr); gap: clamp(2rem, 7vw, 8rem); margin-bottom: 2.75rem; }
 .archive-alumni__intro-copy { max-width: 35ch; margin: 0 0 0.2rem auto; font-size: 0.94rem; line-height: 1.7; color: var(--mlp-muted-on-paper); }
 .archive-alumni__ribbon { overflow: hidden; border-top: 1px solid var(--mlp-navy); }
-.archive-alumni__track { display: flex; width: max-content; animation: archiveAlumniMarquee 32s linear infinite; }
+.archive-alumni__track { display: flex; width: max-content; background: var(--color-white); animation: archiveAlumniMarquee 32s linear infinite; }
 .archive-alumni__ribbon:hover .archive-alumni__track,
   .archive-alumni__ribbon:focus-within .archive-alumni__track,
   .mlp-page .mlp-prose.is-offscreen li::before,
@@ -2272,7 +2262,7 @@
   overflow: hidden;
   padding: clamp(4rem, 8vw, 6.5rem) 0 clamp(3.5rem, 7vw, 5.5rem);
   color: var(--mlp-ink);
-  background: var(--mlp-paper);
+  background: var(--color-white);
 }
 .archive-partners__intro,
   .mlp-page--polished .archive-video-proof__intro {
@@ -2352,8 +2342,6 @@
   width: min(100%, 11rem);
   height: 4.5rem;
   object-fit: contain;
-  filter: grayscale(1);
-  opacity: 0.72;
   transition: filter 0.35s ease, opacity 0.35s ease, transform 0.35s var(--mlp-ease);
 }
 .archive-partners__logo-item span {
@@ -2694,8 +2682,8 @@
 }
 
 .blueprint-overview__class-2025-icon {
-  width: 1.45rem;
-  height: 1.45rem;
+  width: 2rem;
+  height: 2rem;
   color: var(--mlp-red);
 }
 
@@ -2725,11 +2713,11 @@
 }
 
 .blueprint-overview__class-2025-stat--countries .blueprint-overview__class-2025-stat-copy {
-  top: calc(100% + 0.3rem);
-  left: -1.25rem;
-  width: 7.5rem;
-  align-items: flex-end;
-  text-align: right;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  width: 10.5rem;
+  align-items: center;
+  text-align: center;;
 }
 
 .blueprint-overview__class-2025-stat--age .blueprint-overview__class-2025-stat-copy {
@@ -2833,10 +2821,15 @@
   }
 
   .blueprint-overview__class-2025-card {
-    width: 100%;
+    width: 18rem;
     min-height: 8.5rem;
   }
 
+  .blueprint-overview__class-2025-icon {
+    width: 3rem;
+    height: 3rem;
+  
+  }
   .blueprint-overview__class-2025-stat-copy,
   .blueprint-overview__class-2025-stat--students .blueprint-overview__class-2025-stat-copy,
   .blueprint-overview__class-2025-stat--experience .blueprint-overview__class-2025-stat-copy,
@@ -3148,10 +3141,6 @@
   #mlp-class-snapshot .mlp-class-snapshot__metrics {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-
-  #mlp-class-snapshot .mlp-class-snapshot__global {
-    padding-bottom: 8rem;
-  }
 }
 
 @media (max-width: 520px) {
@@ -3162,10 +3151,6 @@
   #mlp-class-snapshot .mlp-class-snapshot__global {
     padding-right: 1rem;
     padding-left: 1rem;
-  }
-
-  #mlp-class-snapshot .mlp-class-snapshot__country {
-    width: 100%;
   }
 }
 
@@ -3333,10 +3318,8 @@
 .mlp-masters__item:hover .mlp-masters__item-mark { transform: rotate(45deg) scale(1.25); }
 
 .mlp-masters__item-title {
-  font-family: var(--mlp-font-body);
-  font-size: 1.05rem;
   font-weight: 500;
-  line-height: 1.5;
+  font-size: var(--mlp-type-caption);
   color: var(--mlp-navy);
 }
 
@@ -5555,5 +5538,352 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
   /* All frames fit — no scroll controls needed. */
   #mlpPage #video-testimonials .scroll-row__btn {
     display: none;
+  }
+}
+
+/* ————————————————————————————————————————————————
+   MBA Class of 2025 — Colorful treatment
+   (structure unchanged; colors + background only)
+   ———————————————————————————————————————————————— */
+.mlp-class-2025 {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(60% 80% at 12% 0%, rgba(178, 2, 2, 0.32), transparent 60%),
+    radial-gradient(55% 75% at 88% 14%, rgba(255, 209, 102, 0.20), transparent 62%),
+    radial-gradient(70% 90% at 50% 110%, rgba(15, 41, 131, 0.80), transparent 70%),
+    linear-gradient(180deg, rgba(7, 20, 68, 0.90) 0%, rgba(15, 41, 131, 0.78) 55%, rgba(7, 20, 68, 0.94) 100%),
+    url("../../images/mba-masters-landing/mba/mba-stage.jpg") center / cover no-repeat;
+  color: var(--mlp-white);
+}
+
+.mlp-class-2025 .blueprint-overview__class-2025 {
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.03));
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: clamp(1.25rem, 2.5vw, 2rem);
+  box-shadow: 0 1.5rem 3.5rem rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.mlp-class-2025 .blueprint-overview__class-2025-heading {
+  color: var(--mlp-white);
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.45);
+}
+
+.mlp-class-2025 .blueprint-overview__class-2025-heading strong {
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  background: linear-gradient(92deg, #ffd166 0%, #ffb703 45%, #ff6b6b 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.mlp-class-2025 .blueprint-overview__class-2025-arc {
+  stroke: rgba(255, 255, 255, 0.22);
+}
+
+.mlp-class-2025 .blueprint-overview__class-2025-connector {
+  stroke: rgba(255, 255, 255, 0.30);
+}
+
+.mlp-class-2025 .blueprint-overview__class-2025-node {
+  fill: #ffffff;
+  stroke: #ffd166;
+  stroke-width: 1.4;
+  filter: drop-shadow(0 0 6px rgba(255, 209, 102, 0.85));
+}
+
+.mlp-class-2025 .blueprint-overview__class-2025-center {
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: linear-gradient(150deg, #0f2983 0%, #14369f 40%, #b20202 100%);
+  box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.45), inset 0 0 0 1px rgba(255, 255, 255, 0.14), 0 0 0 8px rgba(255, 255, 255, 0.06);
+  color: var(--mlp-white);
+}
+
+.mlp-class-2025 .blueprint-overview__class-2025-center strong {
+  color: var(--mlp-white);
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.45);
+}
+
+.mlp-class-2025 .blueprint-overview__class-2025-card {
+  transition: transform 0.35s var(--mlp-ease), filter 0.35s var(--mlp-ease);
+  filter: drop-shadow(0 0.7rem 1.4rem rgba(0, 0, 0, 0.35));
+}
+
+.mlp-class-2025 .blueprint-overview__class-2025-stat--students .blueprint-overview__class-2025-card {
+  background: linear-gradient(135deg, #3b82f6, #1e40af);
+}
+
+.mlp-class-2025 .blueprint-overview__class-2025-stat--countries .blueprint-overview__class-2025-card {
+  background: linear-gradient(135deg, #14b8a6, #0f766e);
+}
+
+.mlp-class-2025 .blueprint-overview__class-2025-stat--pass-rate .blueprint-overview__class-2025-card {
+  background: linear-gradient(135deg, #ef4444, #b20202);
+}
+
+.mlp-class-2025 .blueprint-overview__class-2025-stat--age .blueprint-overview__class-2025-card {
+  background: linear-gradient(135deg, #a855f7, #6d28d9);
+}
+
+.mlp-class-2025 .blueprint-overview__class-2025-stat--experience .blueprint-overview__class-2025-card {
+  background: linear-gradient(135deg, #f59e0b, #b45309);
+}
+
+.mlp-class-2025 .blueprint-overview__class-2025-stat:hover .blueprint-overview__class-2025-card {
+  transform: translateY(-4px) scale(1.03);
+  filter: drop-shadow(0 1rem 1.8rem rgba(0, 0, 0, 0.45));
+}
+
+.mlp-class-2025 .blueprint-overview__class-2025-icon {
+  color: var(--mlp-white);
+  filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.35));
+}
+
+.mlp-class-2025 .blueprint-overview__class-2025-label {
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.40);
+}
+
+.mlp-class-2025 .blueprint-overview__class-2025-value {
+  color: var(--mlp-white);
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.50);
+}
+
+.mlp-class-2025 .blueprint-overview__class-2025-stat--students .blueprint-overview__class-2025-value {
+  color: #93c5fd;
+}
+
+.mlp-class-2025 .blueprint-overview__class-2025-stat--countries .blueprint-overview__class-2025-value {
+  color: #5eead4;
+}
+
+.mlp-class-2025 .blueprint-overview__class-2025-stat--pass-rate .blueprint-overview__class-2025-value {
+  color: #fca5a5;
+}
+
+.mlp-class-2025 .blueprint-overview__class-2025-stat--age .blueprint-overview__class-2025-value {
+  color: #d8b4fe;
+}
+
+.mlp-class-2025 .blueprint-overview__class-2025-stat--experience .blueprint-overview__class-2025-value {
+  color: #fcd34d;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mlp-class-2025 .blueprint-overview__class-2025-card,
+  .mlp-class-2025 .blueprint-overview__class-2025-stat:hover .blueprint-overview__class-2025-card {
+    transform: none !important;
+    transition: none;
+  }
+}
+
+/* ————————————————————————————————————————————————
+   Fees — warm light background + minimal colour,
+   full-width base fee line and full-width note
+   (fee amount cards removed; structure unchanged)
+   ———————————————————————————————————————————————— */
+.pricing-cards {
+  background:
+    radial-gradient(55% 65% at 92% 5%, rgba(255, 209, 102, 0.12), transparent 62%),
+    radial-gradient(48% 60% at 4% 92%, rgba(178, 2, 2, 0.055), transparent 62%),
+    radial-gradient(42% 55% at 50% 105%, rgba(15, 41, 131, 0.05), transparent 65%),
+    linear-gradient(180deg, var(--mlp-paper) 0%, #f3ede3 55%, var(--mlp-paper) 100%);
+}
+
+.pricing-cards__base {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 0.35rem 1rem;
+  align-items: baseline;
+  margin: 0.9rem 0;
+  padding: clamp(1rem, 2vw, 1.35rem) clamp(1.1rem, 2.4vw, 1.6rem);
+  background: linear-gradient(120deg, rgba(15, 41, 131, 0.045), rgba(178, 2, 2, 0.05)), var(--mlp-paper-pure);
+  border: 1px solid rgba(15, 41, 131, 0.12);
+  border-left: 4px solid var(--mlp-blue);
+  box-shadow: inset 4px 0 0 var(--mlp-red), 0 0.55rem 1.4rem -0.9rem rgba(7, 20, 68, 0.28);
+  border-radius: 0.6rem;
+}
+
+.pricing-cards__base-label {
+  font-family: var(--mlp-font-body);
+  font-size: clamp(0.8rem, 1vw, 0.9rem);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--mlp-navy);
+}
+
+.pricing-cards__base-price {
+  font-family: var(--mlp-font-display);
+  font-size: clamp(1.35rem, 2.6vw, 2rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  background: linear-gradient(92deg, var(--mlp-blue) 0%, #14369f 45%, var(--mlp-red) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.pricing-cards__note {
+  max-width: none;
+}
+
+@media (max-width: 560px) {
+  .pricing-cards__base {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+}
+
+/* ————————————————————————————————————————————————
+   Master's — two-column split: programme ledger (left)
+   + Trending Specialisations bar chart (right)
+   Colors from Maverick system (navy / MBA blue / gold).
+   ———————————————————————————————————————————————— */
+.mlp-masters__split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: clamp(1.75rem, 4vw, 3.5rem);
+  align-items: start;
+}
+
+/* Ledger keeps its design but adapts to the narrower left column */
+.mlp-masters__split .mlp-masters__ledger {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+/* ————— Trending specialisations panel ————— */
+.mlp-trending {
+  min-width: 0;
+}
+
+.mlp-trending__title {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  align-items: baseline;
+  margin: 0 0 clamp(1.25rem, 2.5vw, 1.75rem);
+  font-family: var(--mlp-font-display);
+  font-size: clamp(1.35rem, 2.4vw, 1.9rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.mlp-trending__title-dark {
+  color: var(--mlp-navy);
+}
+
+.mlp-trending__title-gold {
+  color: var(--color-mba-red);
+}
+
+.mlp-trending__list {
+  display: grid;
+  gap: 1.2rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mlp-trending__row {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.mlp-trending__label {
+  font-family: var(--mlp-font-body);
+  font-size: clamp(0.8rem, 0.95vw, 0.9rem);
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+  color: var(--mlp-navy);
+}
+
+.mlp-trending__track {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 1rem;
+  border-radius: 999px;
+  background: rgba(15, 41, 131, 0.08);
+  overflow: hidden;
+}
+
+.mlp-trending__fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: var(--trend, 0%);
+  min-width: 3.1rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--color-mba-blue), var(--color-mba-red));
+  box-shadow: inset 0 -0.3rem 0.8rem rgba(0, 0, 0, 0.08);
+  transition: width 0.7s var(--mlp-ease);
+}
+
+.mlp-trending__value {
+  padding-right: 0.7rem;
+  font-family: var(--mlp-font-body);
+  font-size: clamp(0.7rem, 0.85vw, 0.78rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: var(--mlp-white);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.28);
+}
+
+@media (max-width: 1024px) {
+  .mlp-masters__split {
+    grid-template-columns: 1fr;
+  }
+
+  .mlp-masters__split .mlp-masters__ledger {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1000px) {
+  .mlp-masters__split .mlp-masters__ledger {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .mlp-masters__split .mlp-masters__ledger {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mlp-trending__fill {
+    transition: none;
+  }
+}
+
+/* Empty trending state — ledger takes the full row */
+.mlp-masters__split--full {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.mlp-masters__split--full .mlp-masters__ledger {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+@media (max-width: 1000px) {
+  .mlp-masters__split--full .mlp-masters__ledger {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 640px) {
+  .mlp-masters__split--full .mlp-masters__ledger {
+    grid-template-columns: 1fr;
   }
 }

@@ -8,6 +8,13 @@
       ->filter(fn ($title) => $title !== '')
       ->unique(fn ($title) => mb_strtolower($title))
       ->values();
+  $trendingRows = collect($masters->trending ?? [])
+      ->filter(fn ($row) => filled($row['label'] ?? null))
+      ->values();
+  $trendingTitle = filled($masters->trending_title ?? null)
+      ? (string) $masters->trending_title
+      : 'Trending|Specialisations';
+  $trendingParts = explode('|', $trendingTitle, 2);
   $plate = mlp_image_url(settings_media_url($masters, 'stage_image'), [
     'w' => 1920,
     'fallback' => 'assets/images/edutainment/dubai-uae-skyline-students-studying-camp-1.jpg',
@@ -28,24 +35,44 @@
       @endif
     </header>
 
-    @if($plate)
-    <figure class="mlp-masters__banner" data-mlp-masters-showcase>
-      <!-- <span class="mlp-masters__banner-frame" aria-hidden="true"></span> -->
-      <span class="mlp-masters__banner-rule" aria-hidden="true"></span>
-      <!-- <img src="{{ $plate }}" alt="Master's programmes at a global standard" width="1920" height="823" loading="lazy" decoding="async"> -->
-    </figure>
-    @endif
+    <div class="mlp-masters__split{{ $trendingRows->isNotEmpty() ? '' : ' mlp-masters__split--full' }}" data-mlp-reveal="masters-split">
+      @if($programs->isNotEmpty())
+      <ol class="mlp-masters__ledger" data-mlp-reveal="masters-list" aria-label="All Master's programmes">
+        @foreach($programs as $title)
+        <li class="mlp-masters__item">
+          <span class="mlp-masters__item-mark" aria-hidden="true"></span>
+          <span class="mlp-masters__item-title">{{ $title }}</span>
+        </li>
+        @endforeach
+      </ol>
+      @endif
 
-    @if($programs->isNotEmpty())
-    <ol class="mlp-masters__ledger" data-mlp-reveal="masters-list" aria-label="All Master's programmes">
-      @foreach($programs as $title)
-      <li class="mlp-masters__item">
-        <span class="mlp-masters__item-mark" aria-hidden="true"></span>
-        <span class="mlp-masters__item-title">{{ $title }}</span>
-      </li>
-      @endforeach
-    </ol>
-    @endif
+      @if($trendingRows->isNotEmpty())
+      <aside class="mlp-trending" aria-label="Trending specialisations">
+        <h3 class="mlp-trending__title">
+          @php $trendingDark = trim($trendingParts[0] ?? ''); @endphp
+          <span class="mlp-trending__title-dark">{{ $trendingDark !== '' ? $trendingDark : 'Trending' }}</span>
+          @if(isset($trendingParts[1]) && trim($trendingParts[1]) !== '')
+          <span class="mlp-trending__title-gold">{{ trim($trendingParts[1]) }}</span>
+          @endif
+        </h3>
+        <ul class="mlp-trending__list">
+          @foreach($trendingRows as $row)
+          @php
+            $percent = (int) ($row['percent'] ?? 0);
+            $percent = max(0, min(100, $percent));
+          @endphp
+          <li class="mlp-trending__row" style="--trend: {{ $percent }}%">
+            <span class="mlp-trending__label">{{ $row['label'] }}</span>
+            <span class="mlp-trending__track" aria-hidden="true">
+              <span class="mlp-trending__fill"><span class="mlp-trending__value">{{ $percent }}%</span></span>
+            </span>
+          </li>
+          @endforeach
+        </ul>
+      </aside>
+      @endif
+    </div>
 
     <div class="mlp-masters__cta-row">
       <a href="#mlp-enquire" class="mlp-masters__cta mlp-cta mlp-cta--primary">Check eligibility <span aria-hidden="true">↗</span></a>

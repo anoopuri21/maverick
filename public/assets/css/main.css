@@ -6034,13 +6034,8 @@ body.modal-open {
   content: "";
   position: absolute;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.03);
   opacity: 0;
   transition: opacity 0.3s ease;
-}
-
-.accred-card:hover {
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
 }
 
 .accred-card:hover::before {
@@ -6059,7 +6054,6 @@ body.modal-open {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(0, 0, 0, 0.02);
   border-radius: 12px;
   padding: 1rem;
   position: relative;
@@ -6071,7 +6065,6 @@ body.modal-open {
   max-height: 120px;
   max-width: 200px;
   object-fit: contain;
-  filter: grayscale(30%);
   transition: filter 0.3s ease;
   position: relative;
   z-index: 2;
