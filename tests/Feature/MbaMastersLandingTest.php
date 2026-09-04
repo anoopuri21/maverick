@@ -291,6 +291,19 @@ class MbaMastersLandingTest extends TestCase
         $response->assertSessionMissing('success');
     }
 
+    public function test_masters_settings_class_resolves_with_trending_defaults(): void
+    {
+        // Regression: a @var docblock on the $trending property previously made
+        // Spatie's PropertyReflector parse `array<int, array{...}>`, which fails
+        // during settings resolution (app(MbaMastersMastersSettings::class)).
+        $masters = app(\App\Settings\MbaMastersMastersSettings::class)->toArray();
+
+        $this->assertSame('Trending|Specialisations', $masters['trending_title']);
+        $this->assertCount(8, $masters['trending']);
+        $this->assertSame('MBA (Regular & Top-up)', $masters['trending'][1]['label']);
+        $this->assertSame(82, $masters['trending'][1]['percent']);
+    }
+
     public function test_masters_trending_renders_admin_configured_values(): void
     {
         $settings = app(\App\Settings\MbaMastersMastersSettings::class);

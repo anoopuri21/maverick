@@ -24,7 +24,6 @@ class MbaMastersMastersSettings extends Settings
      *  part before '|' renders dark navy, part after renders gold. */
     public ?string $trending_title = 'Trending|Specialisations';
 
-    /** @var array<int, array{label: string, percent: int}> */
     public array $trending = [
         ['label' => 'BA (Hons) Management', 'percent' => 55],
         ['label' => 'MBA (Regular & Top-up)', 'percent' => 82],
