@@ -72,8 +72,12 @@ class UniversityPartnerResource extends Resource
                             ->helperText('e.g. AACSB Accredited, QAA Reviewed')
                             ->columnSpanFull(),
                         MediaPicker::forField('logo_url', 'university-partners')
-                    ->label('Logo')
-                    ->columnSpanFull(),
+                            ->label('Logo')
+                            ->columnSpanFull(),
+                        MediaPicker::forField('campus_image_url', 'university-partners/campuses')
+                            ->label('Campus image')
+                            ->helperText('Shown in the Program Overview and About the University sections on linked program detail pages.')
+                            ->columnSpanFull(),
                         \Filament\Forms\Components\TextInput::make('website_url')->nullable(),
                         \Filament\Forms\Components\RichEditor::make('description')->columnSpanFull(),
                     ]),
@@ -120,7 +124,12 @@ class UniversityPartnerResource extends Resource
                     ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('country'),
-                ImageColumn::make('logo_url')->size(50),
+                ImageColumn::make('logo_url')
+                    ->label('Logo')
+                    ->size(50),
+                ImageColumn::make('campus_image_url')
+                    ->label('Campus')
+                    ->size(50),
                 Tables\Columns\IconColumn::make('is_active')->boolean(),
             ])
             ->filters([
