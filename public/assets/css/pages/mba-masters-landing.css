@@ -5557,3 +5557,141 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
     display: none;
   }
 }
+
+/* ————————————————————————————————————————————————
+   MBA Class of 2025 — Colorful treatment
+   (structure unchanged; colors + background only)
+   ———————————————————————————————————————————————— */
+.mlp-class-2025 {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(60% 80% at 12% 0%, rgba(178, 2, 2, 0.32), transparent 60%),
+    radial-gradient(55% 75% at 88% 14%, rgba(255, 209, 102, 0.20), transparent 62%),
+    radial-gradient(70% 90% at 50% 110%, rgba(15, 41, 131, 0.80), transparent 70%),
+    linear-gradient(180deg, rgba(7, 20, 68, 0.90) 0%, rgba(15, 41, 131, 0.78) 55%, rgba(7, 20, 68, 0.94) 100%),
+    url("../../images/mba-masters-landing/mba/mba-stage.jpg") center / cover no-repeat;
+  color: var(--mlp-white);
+}
+
+.mlp-class-2025 .blueprint-overview__class-2025 {
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.03));
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: clamp(1.25rem, 2.5vw, 2rem);
+  box-shadow: 0 1.5rem 3.5rem rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.mlp-class-2025 .blueprint-overview__class-2025-heading {
+  color: var(--mlp-white);
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.45);
+}
+
+.mlp-class-2025 .blueprint-overview__class-2025-heading strong {
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  background: linear-gradient(92deg, #ffd166 0%, #ffb703 45%, #ff6b6b 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.mlp-class-2025 .blueprint-overview__class-2025-arc {
+  stroke: rgba(255, 255, 255, 0.22);
+}
+
+.mlp-class-2025 .blueprint-overview__class-2025-connector {
+  stroke: rgba(255, 255, 255, 0.30);
+}
+
+.mlp-class-2025 .blueprint-overview__class-2025-node {
+  fill: #ffffff;
+  stroke: #ffd166;
+  stroke-width: 1.4;
+  filter: drop-shadow(0 0 6px rgba(255, 209, 102, 0.85));
+}
+
+.mlp-class-2025 .blueprint-overview__class-2025-center {
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: linear-gradient(150deg, #0f2983 0%, #14369f 40%, #b20202 100%);
+  box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.45), inset 0 0 0 1px rgba(255, 255, 255, 0.14), 0 0 0 8px rgba(255, 255, 255, 0.06);
+  color: var(--mlp-white);
+}
+
+.mlp-class-2025 .blueprint-overview__class-2025-center strong {
+  color: var(--mlp-white);
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.45);
+}
+
+.mlp-class-2025 .blueprint-overview__class-2025-card {
+  transition: transform 0.35s var(--mlp-ease), filter 0.35s var(--mlp-ease);
+  filter: drop-shadow(0 0.7rem 1.4rem rgba(0, 0, 0, 0.35));
+}
+
+.mlp-class-2025 .blueprint-overview__class-2025-stat--students .blueprint-overview__class-2025-card {
+  background: linear-gradient(135deg, #3b82f6, #1e40af);
+}
+
+.mlp-class-2025 .blueprint-overview__class-2025-stat--countries .blueprint-overview__class-2025-card {
+  background: linear-gradient(135deg, #14b8a6, #0f766e);
+}
+
+.mlp-class-2025 .blueprint-overview__class-2025-stat--pass-rate .blueprint-overview__class-2025-card {
+  background: linear-gradient(135deg, #ef4444, #b20202);
+}
+
+.mlp-class-2025 .blueprint-overview__class-2025-stat--age .blueprint-overview__class-2025-card {
+  background: linear-gradient(135deg, #a855f7, #6d28d9);
+}
+
+.mlp-class-2025 .blueprint-overview__class-2025-stat--experience .blueprint-overview__class-2025-card {
+  background: linear-gradient(135deg, #f59e0b, #b45309);
+}
+
+.mlp-class-2025 .blueprint-overview__class-2025-stat:hover .blueprint-overview__class-2025-card {
+  transform: translateY(-4px) scale(1.03);
+  filter: drop-shadow(0 1rem 1.8rem rgba(0, 0, 0, 0.45));
+}
+
+.mlp-class-2025 .blueprint-overview__class-2025-icon {
+  color: var(--mlp-white);
+  filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.35));
+}
+
+.mlp-class-2025 .blueprint-overview__class-2025-label {
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.40);
+}
+
+.mlp-class-2025 .blueprint-overview__class-2025-value {
+  color: var(--mlp-white);
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.50);
+}
+
+.mlp-class-2025 .blueprint-overview__class-2025-stat--students .blueprint-overview__class-2025-value {
+  color: #93c5fd;
+}
+
+.mlp-class-2025 .blueprint-overview__class-2025-stat--countries .blueprint-overview__class-2025-value {
+  color: #5eead4;
+}
+
+.mlp-class-2025 .blueprint-overview__class-2025-stat--pass-rate .blueprint-overview__class-2025-value {
+  color: #fca5a5;
+}
+
+.mlp-class-2025 .blueprint-overview__class-2025-stat--age .blueprint-overview__class-2025-value {
+  color: #d8b4fe;
+}
+
+.mlp-class-2025 .blueprint-overview__class-2025-stat--experience .blueprint-overview__class-2025-value {
+  color: #fcd34d;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mlp-class-2025 .blueprint-overview__class-2025-card,
+  .mlp-class-2025 .blueprint-overview__class-2025-stat:hover .blueprint-overview__class-2025-card {
+    transform: none !important;
+    transition: none;
+  }
+}
