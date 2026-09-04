@@ -261,7 +261,6 @@ class ManagePrograms extends Page implements HasForms
                                 TextInput::make('program')->label('Program')->required()->columnSpanFull(),
                                 TextInput::make('duration')->label('Duration'),
                                 TextInput::make('mode')->label('Study mode'),
-                                TextInput::make('fee')->label('Fee range'),
                                 TextInput::make('payment')->label('Payment option'),
                             ])
                             ->columns(2)

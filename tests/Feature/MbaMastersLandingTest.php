@@ -77,12 +77,12 @@ class MbaMastersLandingTest extends TestCase
         $response->assertSee('Online MBA & Master\'s Fees in GCC');
         $response->assertSee('pricing-cards', false);
         $response->assertSee('pricing-card', false);
-        $response->assertSee('pricing-card__price', false);
         $response->assertSee('pricing-cards__base', false);
         $response->assertSee('pricing-cards__base-price', false);
         $response->assertSee('AED 16,000–40,000*', false);
-        // 4 cards overall, but the 3rd card's fee block is intentionally hidden
-        $this->assertSame(3, substr_count($response->getContent(), 'pricing-card__price'));
+        // Fee block removed from all cards; cards themselves remain
+        $response->assertDontSee('pricing-card__price', false);
+        $this->assertSame(4, substr_count($response->getContent(), 'class="pricing-card"'));
         $response->assertDontSee('archive-investment__records', false);
         $response->assertDontSee('<table', false);
         $response->assertDontSee('Speak to advisor', false);

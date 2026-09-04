@@ -27,11 +27,6 @@
       @foreach($rows as $row)
       @php
         $payment = trim((string) ($row['payment'] ?? ''));
-        $fee = trim((string) ($row['fee'] ?? '—'));
-        $feeIsIndicative = str_contains($fee, 'XX,XXX')
-          || str_contains($fee, 'On request')
-          || str_contains($fee, 'Route-specific')
-          || str_contains($fee, '*');
         if (str_contains(strtolower($payment), 'advisor')) {
             $payment = 'Details on request';
         }
@@ -44,16 +39,7 @@
 
         <h3 class="pricing-card__program">{{ $row['program'] }}</h3>
 
-        {{-- 3rd card: fee block intentionally hidden (client request) — card design otherwise unchanged --}}
-        @if($loop->index !== 2)
-        <div class="pricing-card__price mlp-hairline">
-          <span>Fee</span>
-          <strong>{{ $fee }}</strong>
-          @if($feeIsIndicative)
-          <small>Indicative · confirm current fee, VAT and payment terms with admissions</small>
-          @endif
-        </div>
-        @endif
+        {{-- Fee block intentionally removed from all cards (client request) --}}
 
         <dl class="pricing-card__details">
           <div>
