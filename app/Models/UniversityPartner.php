@@ -22,12 +22,14 @@ class UniversityPartner extends Model
         'longitude',
         'is_hub',
         'logo_url',
+        'campus_image_url',
         'website_url',
         'description',
         'recognition',
         'sort_order',
         'is_active',
         'logo_url_asset_id',
+        'campus_image_url_asset_id',
     ];
 
     protected $casts = [
@@ -44,6 +46,19 @@ class UniversityPartner extends Model
             $partner->name = (string) ($partner->name ?? '');
             $partner->country = (string) ($partner->country ?? '');
         });
+    }
+
+    /**
+     * Image used by linked program detail pages.
+     *
+     * The media asset is the source of truth when one is selected. The logo
+     * fallback keeps existing program pages stable while campus images are
+     * added gradually in the admin panel.
+     */
+    public function programDetailImageUrl(): ?string
+    {
+        return $this->getMediaUrl('campus_image_url')
+            ?: $this->getMediaUrl('logo_url');
     }
 
     /**

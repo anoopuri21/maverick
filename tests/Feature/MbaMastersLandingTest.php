@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Mail\GenericFormMail;
+use App\Settings\MbaMastersMbaSettings;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Mail;
 use Tests\TestCase;
@@ -161,6 +162,25 @@ class MbaMastersLandingTest extends TestCase
         $response->assertSee('archive-closing__form', false);
         $response->assertSee('Second chance to enquire', false);
         $response->assertSee('<h3 class="footer__newsletter-title">Stay Updated</h3>', false);
+    }
+
+    public function test_mba_section_uses_images_configured_in_admin_settings(): void
+    {
+        $settings = app(MbaMastersMbaSettings::class);
+        $tabs = $settings->tabs;
+        $tabs[0]['universities'][0]['image'] = 'https://cdn.example.com/admin-campus.jpg';
+        $tabs[0]['universities'][0]['image_asset_id'] = null;
+
+        $settings->stage_image = 'https://cdn.example.com/admin-stage.jpg';
+        $settings->stage_image_asset_id = null;
+        $settings->tabs = $tabs;
+        $settings->save();
+
+        $response = $this->get('/online-mba-masters-uae');
+
+        $response->assertOk();
+        $response->assertSee('src="https://cdn.example.com/admin-stage.jpg"', false);
+        $response->assertSee('src="https://cdn.example.com/admin-campus.jpg"', false);
     }
 
     public function test_enquiry_validation_errors_redirect_with_errors(): void

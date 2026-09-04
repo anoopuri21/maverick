@@ -198,7 +198,7 @@ class Program extends Model
             'name'          => $partner?->name,
             'description'   => $partner?->description,
             'establishment' => null,
-            'image'         => $partner?->logo_url,
+            'image'         => $partner?->programDetailImageUrl(),
         ];
     }
 

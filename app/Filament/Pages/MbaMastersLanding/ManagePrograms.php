@@ -180,7 +180,8 @@ class ManagePrograms extends Page implements HasForms
                                         TextInput::make('logo')->hidden(),
                                         MediaPicker::forField('logo', 'mba-masters-landing/mba/logos')->label('Logo'),
                                         TextInput::make('image')->hidden(),
-                                        MediaPicker::forField('image', 'mba-masters-landing/mba/campuses')->label('Campus / plate image'),
+                                        MediaPicker::forField('image', 'mba-masters-landing/mba/campuses')
+                                            ->label('MBA card image (shown on website)'),
                                         Repeater::make('programs')
                                             ->schema([
                                                 TextInput::make('title')->label('Program title')->required(),
