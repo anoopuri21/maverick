@@ -248,6 +248,10 @@ class ManagePrograms extends Page implements HasForms
                     ->collapsible(),
                 Section::make('Trending specialisations')
                     ->schema([
+                        TextInput::make('masters.trending_title')
+                            ->label('Title')
+                            ->helperText('Two-tone: text before | renders dark navy, text after | renders gold. Example: Trending|Specialisations')
+                            ->columnSpanFull(),
                         Repeater::make('masters.trending')
                             ->label('Trending specialisations')
                             ->schema([

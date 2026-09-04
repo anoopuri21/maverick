@@ -11,6 +11,10 @@
   $trendingRows = collect($masters->trending ?? [])
       ->filter(fn ($row) => filled($row['label'] ?? null))
       ->values();
+  $trendingTitle = filled($masters->trending_title ?? null)
+      ? (string) $masters->trending_title
+      : 'Trending|Specialisations';
+  $trendingParts = explode('|', $trendingTitle, 2);
   $plate = mlp_image_url(settings_media_url($masters, 'stage_image'), [
     'w' => 1920,
     'fallback' => 'assets/images/edutainment/dubai-uae-skyline-students-studying-camp-1.jpg',
@@ -46,8 +50,10 @@
       @if($trendingRows->isNotEmpty())
       <aside class="mlp-trending" aria-label="Trending specialisations">
         <h3 class="mlp-trending__title">
-          <span class="mlp-trending__title-dark">Trending</span>
-          <span class="mlp-trending__title-gold">Specialisations</span>
+          <span class="mlp-trending__title-dark">{{ trim($trendingParts[0] ?? 'Trending') }}</span>
+          @if(isset($trendingParts[1]) && trim($trendingParts[1]) !== '')
+          <span class="mlp-trending__title-gold">{{ trim($trendingParts[1]) }}</span>
+          @endif
         </h3>
         <ul class="mlp-trending__list">
           @foreach($trendingRows as $row)

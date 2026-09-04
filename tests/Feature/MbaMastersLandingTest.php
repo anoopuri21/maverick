@@ -298,6 +298,7 @@ class MbaMastersLandingTest extends TestCase
             ['label' => 'MBA in FinTech', 'percent' => 91],
             ['label' => 'MBA in Data Science', 'percent' => 87],
         ];
+        $settings->trending_title = 'Hot|MBA Picks';
         $settings->save();
 
         $response = $this->get('/online-mba-masters-uae');
@@ -307,6 +308,9 @@ class MbaMastersLandingTest extends TestCase
         $response->assertSee('91%', false);
         $response->assertSee('MBA in Data Science', false);
         $response->assertSee('87%', false);
+        $response->assertSee('Hot', false);
+        $response->assertSee('MBA Picks', false);
         $response->assertDontSee('BA (Hons) Management', false);
+        $response->assertDontSee('Trending', false);
     }
 }

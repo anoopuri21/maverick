@@ -20,6 +20,10 @@ class MbaMastersMastersSettings extends Settings
 
     public array $universities = [];
 
+    /** Admin-editable bar chart title. '|' splits the two-tone rendering:
+     *  part before '|' renders dark navy, part after renders gold. */
+    public ?string $trending_title = 'Trending|Specialisations';
+
     /** @var array<int, array{label: string, percent: int}> */
     public array $trending = [
         ['label' => 'BA (Hons) Management', 'percent' => 55],
