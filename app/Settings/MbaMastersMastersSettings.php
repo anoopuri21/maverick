@@ -20,8 +20,10 @@ class MbaMastersMastersSettings extends Settings
 
     public array $universities = [];
 
-    /** Admin-editable bar chart title. '|' splits the two-tone rendering:
-     *  part before '|' renders dark navy, part after renders gold. */
+    // Admin-editable bar chart title. '|' splits the two-tone rendering:
+    // part before '|' renders dark navy, part after renders gold.
+    // NOTE: keep this a plain comment — Spatie's PropertyReflector parses
+    // @var docblocks on settings properties and can crash on complex shapes.
     public ?string $trending_title = 'Trending|Specialisations';
 
     public array $trending = [

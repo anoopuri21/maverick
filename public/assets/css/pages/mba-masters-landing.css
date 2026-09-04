@@ -5897,6 +5897,10 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
 }
 
 /* Empty trending state — ledger takes the full row */
+.mlp-masters__split--full {
+  grid-template-columns: minmax(0, 1fr);
+}
+
 .mlp-masters__split--full .mlp-masters__ledger {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }

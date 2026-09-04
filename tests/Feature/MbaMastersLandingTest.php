@@ -304,6 +304,34 @@ class MbaMastersLandingTest extends TestCase
         $this->assertSame(82, $masters['trending'][1]['percent']);
     }
 
+    public function test_empty_trending_hides_panel_and_ledger_spans_full_width(): void
+    {
+        $settings = app(\App\Settings\MbaMastersMastersSettings::class);
+        $settings->trending = [];
+        $settings->save();
+
+        $response = $this->get('/online-mba-masters-uae');
+
+        $response->assertOk();
+        $response->assertSee('mlp-masters__split mlp-masters__split--full', false);
+        $response->assertSee('mlp-masters__ledger', false);
+        $response->assertDontSee('mlp-trending__row', false);
+        $response->assertDontSee('mlp-trending__track', false);
+    }
+
+    public function test_two_tone_title_falls_back_to_trending_when_first_part_empty(): void
+    {
+        $settings = app(\App\Settings\MbaMastersMastersSettings::class);
+        $settings->trending_title = '|Exam Hot Picks';
+        $settings->save();
+
+        $response = $this->get('/online-mba-masters-uae');
+
+        $response->assertOk();
+        $response->assertSee('mlp-trending__title-dark">Trending</span>', false);
+        $response->assertSee('Exam Hot Picks', false);
+    }
+
     public function test_masters_trending_renders_admin_configured_values(): void
     {
         $settings = app(\App\Settings\MbaMastersMastersSettings::class);

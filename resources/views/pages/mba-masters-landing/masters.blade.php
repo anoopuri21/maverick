@@ -50,7 +50,8 @@
       @if($trendingRows->isNotEmpty())
       <aside class="mlp-trending" aria-label="Trending specialisations">
         <h3 class="mlp-trending__title">
-          <span class="mlp-trending__title-dark">{{ trim($trendingParts[0] ?? 'Trending') }}</span>
+          @php $trendingDark = trim($trendingParts[0] ?? ''); @endphp
+          <span class="mlp-trending__title-dark">{{ $trendingDark !== '' ? $trendingDark : 'Trending' }}</span>
           @if(isset($trendingParts[1]) && trim($trendingParts[1]) !== '')
           <span class="mlp-trending__title-gold">{{ trim($trendingParts[1]) }}</span>
           @endif
