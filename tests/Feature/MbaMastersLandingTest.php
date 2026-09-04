@@ -290,4 +290,23 @@ class MbaMastersLandingTest extends TestCase
         $response->assertSessionHas('error');
         $response->assertSessionMissing('success');
     }
+
+    public function test_masters_trending_renders_admin_configured_values(): void
+    {
+        $settings = app(\App\Settings\MbaMastersMastersSettings::class);
+        $settings->trending = [
+            ['label' => 'MBA in FinTech', 'percent' => 91],
+            ['label' => 'MBA in Data Science', 'percent' => 87],
+        ];
+        $settings->save();
+
+        $response = $this->get('/online-mba-masters-uae');
+
+        $response->assertOk();
+        $response->assertSee('MBA in FinTech', false);
+        $response->assertSee('91%', false);
+        $response->assertSee('MBA in Data Science', false);
+        $response->assertSee('87%', false);
+        $response->assertDontSee('BA (Hons) Management', false);
+    }
 }

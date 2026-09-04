@@ -5895,3 +5895,18 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
     transition: none;
   }
 }
+
+/* Empty trending state — ledger takes the full row */
+.mlp-masters__split--full .mlp-masters__ledger {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+@media (max-width: 1000px) {
+  .mlp-masters__split--full .mlp-masters__ledger {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 640px) {
+  .mlp-masters__split--full .mlp-masters__ledger {
+    grid-template-columns: 1fr;
+  }
+}

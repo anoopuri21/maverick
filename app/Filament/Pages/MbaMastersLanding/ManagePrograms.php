@@ -69,6 +69,7 @@ class ManagePrograms extends Page implements HasForms
             $uni['programs'] = array_values($uni['programs'] ?? []);
         }
         unset($uni);
+        $masters['trending'] = array_values($masters['trending'] ?? []);
 
         $fees = app(MbaMastersFeesSettings::class)->toArray();
         $fees['rows'] = array_values($fees['rows'] ?? []);
@@ -245,6 +246,25 @@ class ManagePrograms extends Page implements HasForms
                     ->columns(2)
                     ->collapsed()
                     ->collapsible(),
+                Section::make('Trending specialisations')
+                    ->schema([
+                        Repeater::make('masters.trending')
+                            ->label('Trending specialisations')
+                            ->schema([
+                                TextInput::make('label')->label('Specialisation')->required()->columnSpanFull(),
+                                TextInput::make('percent')->label('Percent %')->numeric()->required()->minValue(0)->maxValue(100),
+                            ])
+                            ->columns(2)
+                            ->defaultItems(0)
+                            ->reorderable()
+                            ->collapsible()
+                            ->itemLabel(fn (array $state): ?string => $state['label'] ?? null)
+                            ->addActionLabel('Add specialisation')
+                            ->columnSpanFull(),
+                    ])
+                    ->columns(2)
+                    ->collapsed()
+                    ->collapsible(),
                 Section::make('Fees & payment')
                     ->schema([
                         TextInput::make('fees.label')->label('Section label'),
@@ -344,6 +364,7 @@ class ManagePrograms extends Page implements HasForms
             $existingMasters['universities'] ?? [],
             'image'
         );
+        $masters['trending'] = array_values($masters['trending'] ?? []);
 
         $fees = $this->syncImageIfSelected($data['fees'] ?? [], 'stage_image');
         $fees['rows'] = array_values($fees['rows'] ?? []);
