@@ -19,12 +19,16 @@
 @endpush
 
 @section('content')
+@php
+    $events = collect($events ?? []);
+    $eventsPage = $eventsPage ?? safe_settings(\App\Settings\EventsPageSettings::class);
+@endphp
 <div class="ep">
 
     {{-- Cinematic Hero (same structure as other pages) --}}
     <section class="cinematic-hero" aria-label="Events Hero">
         <div class="cinematic-hero__bg" aria-hidden="true">
-            @php $eventsHeroBg = media_url($eventsPage->hero_background_image ?? null, 'https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg?auto=compress&cs=tinysrgb&w=1920'); @endphp
+            @php $eventsHeroBg = settings_media_url($eventsPage, 'hero_background_image') ?: 'https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg?auto=compress&cs=tinysrgb&w=1920'; @endphp
             <div class="cinematic-hero__bg-image" @if($eventsHeroBg) style="background-image: url('{{ $eventsHeroBg }}')" @endif></div>
             <div class="cinematic-hero__gradient"></div>
             <div class="cinematic-hero__noise"></div>
@@ -45,7 +49,7 @@
         <div class="container cinematic-hero__content">
             <span class="cinematic-hero__eyebrow"><span class="cinematic-hero__eyebrow-line"></span>{{ $eventsPage->hero_tag ?? 'Upcoming Events' }}</span>
             <h1 class="cinematic-hero__title">{{ $eventsPage->hero_heading ?? 'Discover Our' }} <em>{{ $eventsPage->hero_heading_italic ?? 'Events' }}</em></h1>
-            <p class="cinematic-hero__description">{!! html_filled($eventsPage->hero_description ?? null) ? rich_html($eventsPage->hero_description ?? null) : 'Webinars, workshops and masterclasses designed to keep you learning, connected and ahead.' !!}</p>
+            <div class="cinematic-hero__description">{!! html_filled($eventsPage->hero_description ?? null) ? rich_html($eventsPage->hero_description ?? null) : 'Webinars, workshops and masterclasses designed to keep you learning, connected and ahead.' !!}</div>
             <div class="cinematic-hero__scroll-hint" aria-hidden="true"><span class="cinematic-hero__scroll-text">Scroll to explore</span><span class="cinematic-hero__scroll-arrow" data-lucide="chevron-down"></span></div>
         </div>
     </section>
@@ -70,7 +74,7 @@
                         <h3>{{ $e->title }}</h3>
                         @endif
                         @if(filled($e->description))
-                        <p>{!! rich_html($e->description ?? null) !!}</p>
+                        <div>{!! rich_html($e->description ?? null) !!}</div>
                         @endif
                     </div>
                     @if(filled($e->event_type))

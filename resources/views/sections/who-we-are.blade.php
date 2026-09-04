@@ -1,5 +1,5 @@
 @php
-    $wwaImage = media_url($whoWeAre->image_url ?? null);
+    $wwaImage = settings_media_url($whoWeAre, 'image_url');
     $wwaCtaHref = edu_href($whoWeAre->cta_url ?? null);
     $wwaStats = collect([
         ['value' => $whoWeAre->stat1_value ?? null, 'suffix' => $whoWeAre->stat1_suffix ?? null, 'label' => $whoWeAre->stat1_label ?? null],
@@ -11,7 +11,7 @@
     <div class="wwa__grid grid-2">
       <div class="wwa__content">
         <div class="section-label">
-          <span>Who We Are</span>
+          <span>{{ $whoWeAre->label ?? '' }}</span>
         </div>
 
         @if(filled($whoWeAre->heading_line1 ?? null) || filled($whoWeAre->heading_line2 ?? null))

@@ -2,20 +2,21 @@
     $heroParagraphs = collect($hero->paragraphs ?? [])->filter(fn ($p) => html_filled(is_string($p) ? $p : null));
     $heroCtas = collect($hero->ctas ?? [])->filter(fn ($c) => filled($c['label'] ?? null) && filled($c['url'] ?? null));
     $routeSteps = collect($hero->route_steps ?? [])->filter(fn ($s) => filled($s['label'] ?? null));
+    $heroBackgroundUrl = settings_media_url($hero, 'background_image');
     $showHero = filled($hero->tag ?? null)
         || filled($hero->heading ?? null)
         || filled($hero->heading_highlight ?? null)
         || html_filled($hero->sub ?? null)
         || $heroParagraphs->isNotEmpty()
-        || filled($hero->background_image ?? null)
+        || filled($heroBackgroundUrl)
         || $heroCtas->isNotEmpty()
         || $routeSteps->isNotEmpty();
 @endphp
 @if($showHero)
 <section class="cinematic-hero mp-hero" aria-label="International Master's Pathway Program" data-testid="mp-hero">
     <div class="cinematic-hero__bg" aria-hidden="true">
-        @if(filled($hero->background_image))
-        <div class="cinematic-hero__bg-image" style="background-image: url('{{ media_url($hero->background_image) }}')"></div>
+        @if(filled($heroBackgroundUrl))
+        <div class="cinematic-hero__bg-image" style="background-image: url('{{ $heroBackgroundUrl }}')"></div>
         @endif
         <div class="cinematic-hero__gradient"></div>
         <div class="cinematic-hero__noise"></div>

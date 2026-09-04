@@ -2,6 +2,28 @@
   @isset($ceo)
   <div class="container">
 
+    <div class="section-label fade-up">
+      <span>{{ $ceo->label ?? '' }}</span>
+    </div>
+
+    <h2 class="ceo__heading section-title">
+      <span class="ceo__heading-line">
+        <span class="text-reveal-wrapper">
+          <span class="text-reveal-inner">
+            {{ $ceo->heading_line1 ?? '' }}
+          </span>
+        </span>
+      </span>
+
+      <span class="ceo__heading-line hwdi__heading-line--red">
+        <span class="text-reveal-wrapper">
+          <span class="text-reveal-inner">
+            {{ $ceo->heading_line2 ?? '' }}
+          </span>
+        </span>
+      </span>
+    </h2>
+
     <div class="ceo__grid">
 
       <!-- CEO IMAGE -->
@@ -10,7 +32,7 @@
 
           <!-- Replace with actual image later -->
           <div class="ceo__image">
-            @if($url = media_url($ceo->image_url ?? null, 'assets/images/placeholder.jpg'))
+            @if($url = settings_media_url($ceo, 'image_url') ?: cached_asset('assets/images/homepage/mba-management.jpg'))
             <img src="{{ $url }}"
               alt="{{ trim(($ceo->name ?? '').', '.($ceo->designation ?? ''), ', ') }}"
               loading="lazy" decoding="async" />
@@ -28,28 +50,6 @@
 
       <!-- CONTENT -->
       <div class="ceo__content">
-
-        <div class="section-label fade-up">
-          <span>Leadership Message</span>
-        </div>
-
-        <h2 class="ceo__heading section-title">
-          <span class="ceo__heading-line">
-            <span class="text-reveal-wrapper">
-              <span class="text-reveal-inner">
-                A Message from
-              </span>
-            </span>
-          </span>
-
-          <span class="ceo__heading-line hwdi__heading-line--red">
-            <span class="text-reveal-wrapper">
-              <span class="text-reveal-inner">
-                Our Founder & CEO
-              </span>
-            </span>
-          </span>
-        </h2>
 
         @if(html_filled($ceo->quote ?? null))
         <blockquote class="ceo__quote fade-up">

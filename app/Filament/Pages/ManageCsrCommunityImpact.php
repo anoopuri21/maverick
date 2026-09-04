@@ -2,8 +2,8 @@
 
 namespace App\Filament\Pages;
 
-use App\Filament\Concerns\EnsuresSettingsRowsExist;
-use App\Filament\Concerns\HandlesCloudinaryImageFields;
+use App\Filament\Concerns\HydratesRepeaterMediaFields;
+use App\Filament\Concerns\SavesSettingsGroups;
 use App\Filament\Forms\Components\MediaPicker;
 use App\Settings\CsrCommitmentSettings;
 use App\Settings\CsrFocusSettings;
@@ -28,8 +28,8 @@ use Filament\Pages\Page;
 
 class ManageCsrCommunityImpact extends Page implements HasForms
 {
-    use HandlesCloudinaryImageFields;
-    use EnsuresSettingsRowsExist;
+    use HydratesRepeaterMediaFields;
+    use SavesSettingsGroups;
     use InteractsWithForms;
 
     protected static ?string $navigationIcon = 'heroicon-o-heart';
@@ -53,7 +53,10 @@ class ManageCsrCommunityImpact extends Page implements HasForms
         unset($focusItem);
 
         $gallery = app(CsrGallerySettings::class)->toArray();
-        $gallery['items'] = array_values($gallery['items'] ?? []);
+        $gallery['items'] = $this->hydrateRepeaterMediaFields(
+            array_values($gallery['items'] ?? []),
+            'image'
+        );
 
         $impact = app(CsrImpactSettings::class)->toArray();
         $impact['items'] = array_values($impact['items'] ?? []);
@@ -228,11 +231,11 @@ class ManageCsrCommunityImpact extends Page implements HasForms
         try {
             $data = $this->form->getState();
 
-        $hero = $data['hero'] ?? [];
-        $hero = MediaPicker::syncFieldFromAsset($hero, 'background_image');
+            $existingGallery = app(CsrGallerySettings::class)->toArray();
 
-        $commitment = $data['commitment'] ?? [];
-        $commitment = MediaPicker::syncFieldFromAsset($commitment, 'image_url');
+            $hero = $this->syncImageIfSelected($data['hero'] ?? [], 'background_image');
+
+            $commitment = $this->syncImageIfSelected($data['commitment'] ?? [], 'image_url');
 
         $focus = $data['focus'] ?? [];
         foreach ($focus['items'] ?? [] as &$item) {
@@ -250,14 +253,19 @@ class ManageCsrCommunityImpact extends Page implements HasForms
         $focus['items'] = array_values($focus['items'] ?? []);
 
         $gallery = $data['gallery'] ?? [];
+        $gallery['items'] = $this->hydrateRepeaterMediaFields($gallery['items'] ?? [], 'image');
         foreach ($gallery['items'] ?? [] as &$item) {
             if (! is_array($item)) {
                 continue;
             }
-            $item = MediaPicker::syncFieldFromAsset($item, 'image');
+            $item = $this->syncImageIfSelected($item, 'image');
         }
         unset($item);
-        $gallery['items'] = array_values($gallery['items'] ?? []);
+        $gallery['items'] = $this->preserveRepeaterImageFields(
+            array_values($gallery['items'] ?? []),
+            $existingGallery['items'] ?? [],
+            'image'
+        );
 
         $impact = $data['impact'] ?? [];
         $impact['items'] = array_values($impact['items'] ?? []);
@@ -271,8 +279,8 @@ class ManageCsrCommunityImpact extends Page implements HasForms
         ));
 
         $seo = $data['seo'] ?? [];
-        $seo = MediaPicker::syncFieldFromAsset($seo, 'og_image_url');
-        $seo = MediaPicker::syncFieldFromAsset($seo, 'twitter_image_url');
+        $seo = $this->syncImageIfSelected($seo, 'og_image_url');
+        $seo = $this->syncImageIfSelected($seo, 'twitter_image_url');
 
         $this->saveSettingsGroup(CsrHeroSettings::class, $hero);
         $this->saveSettingsGroup(CsrCommitmentSettings::class, $commitment);
@@ -296,17 +304,6 @@ class ManageCsrCommunityImpact extends Page implements HasForms
                 ->danger()
                 ->send();
         }
-    }
-
-    /** @param  class-string  $settingsClass */
-    protected function saveSettingsGroup(string $settingsClass, array $payload): void
-    {
-        $settings = app($settingsClass);
-        $payload = $this->ensureAllSettingsProperties($settings, $payload);
-        $payload = $this->preserveExistingImageFields($payload, $settings);
-        $this->ensureSettingsRowsExist($settings);
-        app()->forgetInstance($settingsClass);
-        app($settingsClass)->fill($payload)->save();
     }
 
 }

@@ -501,8 +501,14 @@
   font-size: 12px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.6);
   margin-bottom: 14px;
+}
+.page-pd .hero-hl .hl-lab span {
+  background: var(--color-warm-white);
+  color: var(--color-mba-dark-blue);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-weight: 500;
 }
 .page-pd .hero-hl .hl-grid {
   display: grid;
@@ -559,8 +565,15 @@
   font-size: 13px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255);
   margin-bottom: 14px;
+}
+.page-pd .hc-note p {
+  font-size: 13.5px;
+  margin-top: 1rem;
+}
+.page-pd .hc-note p span {
+    color: rgba(255, 255, 255, 0.6);
 }
 .page-pd .hc-row {
   display: flex;
@@ -1835,7 +1848,7 @@
   filter: grayscale(0%);
 }
 .page-pd .acc-plate-fallback {
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   width: 100%;
@@ -1952,6 +1965,91 @@
 }
 @media (max-width: 640px) {
   .page-pd .mav-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
+   11b. WHY GCC PROFESSIONALS CHOOSE (2-col reason cards)
+   ============================================================ */
+.page-pd .gcc-choose {
+  background: var(--white);
+  overflow: hidden;
+}
+.page-pd .gcc-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+.page-pd .gcc-card {
+  position: relative;
+  border-radius: var(--border-radius-bento);
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--color-mba-red);
+  padding: 28px 28px 26px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  transition:
+    transform 0.32s ease,
+    box-shadow 0.32s ease,
+    border-color 0.32s ease;
+}
+.page-pd .gcc-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+  border-left-color: var(--color-mba-blue);
+  border-color: rgba(15, 41, 131, 0.28);
+}
+.page-pd .gcc-card__index {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 700;
+  color: rgba(15, 41, 131, 0.08);
+  line-height: 1;
+}
+.page-pd .gcc-card__icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: rgba(15, 41, 131, 0.08);
+  color: var(--color-mba-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+  transition:
+    background 0.32s ease,
+    color 0.32s ease;
+}
+.page-pd .gcc-card:hover .gcc-card__icon {
+  background: var(--color-mba-blue);
+  color: #fff;
+}
+.page-pd .gcc-card__icon svg {
+  width: 24px;
+  height: 24px;
+}
+.page-pd .gcc-card__title {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 10px;
+  padding-right: 36px;
+}
+.page-pd .gcc-card__text {
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0;
+}
+@media (max-width: 900px) {
+  .page-pd .gcc-grid {
     grid-template-columns: 1fr;
   }
 }

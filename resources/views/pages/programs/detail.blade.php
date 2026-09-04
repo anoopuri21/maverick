@@ -19,6 +19,7 @@
 
 @section('content')
 @php
+    $chrome = $chrome ?? safe_settings(\App\Settings\ProgramsDetailChromeSettings::class);
     $cat = $program->programCategory;
     $highlights          = collect($program->highlights_list ?? [])->filter(fn ($h) => is_array($h))->values();
     $recognition         = collect($program->recognition_list ?? [])->filter(fn ($r) => is_array($r))->values();
@@ -28,11 +29,12 @@
     $careers             = collect($program->careers_list ?? []);
     $structure           = collect($program->structure_list ?? [])->filter(fn ($s) => is_array($s))->values();
     $support             = collect($program->support_list ?? []);
+    $gccReasons          = collect($program->gcc_reasons_list ?? []);
     $university          = $program->university_object;
     $accreditationGroups = collect($program->accreditation_groups_list ?? []);
     $testimonials        = collect($program->testimonials_list ?? [])->filter(fn ($t) => is_array($t))->values();
     $fees                = collect($program->fees_list ?? []);
-    $faqs                = $program->faqs ?? collect();
+    $faqs                = collect($program->faqs ?? []);
     $reviews             = collect($program->reviews_list ?? [])->filter(fn ($r) => is_array($r))->values();
     // Scholarship ribbon only if content mentions scholarships
     $hasScholarship = $highlights->contains(fn($h) => stripos(($h['label'] ?? '').' '.($h['value'] ?? ''), 'scholar') !== false)
@@ -46,35 +48,21 @@
             ->take($take)
             ->implode('');
     $heroBgUrl = media_url($program->image_url, 'assets/images/edutainment/hero-cinematic.jpg');
-    $uniImgUrl = media_url($university->image ?? null, 'assets/images/edutainment/international-students-university-campus-1.jpg');
+    $uniImgUrl = media_url(data_get($university, 'image'), 'assets/images/edutainment/international-students-university-campus-1.jpg');
     $learnImgUrl = cached_asset('assets/images/edutainment/dubai-uae-skyline-students-studying-camp-1.jpg');
-    // Mirrors Testimonial::getAutoThumbnailAttribute() / getEmbedUrlAttribute() for JSON testimonials
-    $youtubeId = function (?string $url): ?string {
-        $url = trim($url ?? '');
-        if ($url === '') return null;
-        if (preg_match('/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i', $url, $m)) return $m[1];
-        if (preg_match('/^([a-zA-Z0-9_-]{11})$/', $url, $m)) return $m[1];
+    $storyThumb = function (array $t): ?array {
+        if ($url = youtube_thumbnail_url($t['video'] ?? null, $t['thumb'] ?? null)) {
+            $retry = filled($t['thumb'] ?? null) ? null : youtube_thumbnail_fallback($t['video'] ?? null);
+            if ($retry === $url) {
+                $retry = null;
+            }
+
+            return ['src' => $url, 'retry' => $retry];
+        }
+
         return null;
     };
-    $storyThumb = function (array $t) use ($youtubeId): ?array {
-        if ($url = media_url($t['thumb'] ?? null)) {
-            return ['src' => $url, 'retry' => null];
-        }
-        if ($id = $youtubeId($t['video'] ?? null)) {
-            return [
-                'src'   => "https://img.youtube.com/vi/{$id}/maxresdefault.jpg",
-                'retry' => "https://img.youtube.com/vi/{$id}/hqdefault.jpg",
-            ];
-        }
-        return null;
-    };
-    $embedUrl = function (?string $url) use ($youtubeId): ?string {
-        $url = trim($url ?? '');
-        if ($url === '') return null;
-        if ($id = $youtubeId($url)) return "https://www.youtube.com/embed/{$id}?autoplay=1&rel=0";
-        if (preg_match('/vimeo\.com\/(?:.*\/)?(\d+)/i', $url, $m)) return "https://player.vimeo.com/video/{$m[1]}?autoplay=1";
-        return $url;
-    };
+    $embedUrl = fn (?string $url) => youtube_embed_url($url, true);
     $renderLogoChip = function (?string $name, ?string $logo, string $chipClass, string $fallbackClass, int $take = 2) use ($initials) {
         $url = media_url($logo);
         $abbr = e($initials($name, $take));
@@ -101,9 +89,9 @@
     {{-- ============ 1. HERO (Cinematic Dark) ============ --}}
     <section class="hero" id="top" aria-label="{{ $program->title }}">
         <div class="hero-backdrop" style="--hero-bg: url('{{ $heroBgUrl }}')"></div>
-        @if($hasScholarship)<span class="ribbon">{{ $chrome->scholarship_badge ?? 'Scholarship Available' }}</span>@endif
+        @if($hasScholarship)<span class="ribbon">{{ $chrome->scholarship_badge ?? '' }}</span>@endif
         <div class="container">
-            <div class="hero-badge rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>{{ $program->level ?: 'Undergraduate' }} @if($cat) · {{ $cat->name }} @endif</div>
+            <div class="hero-badge rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>{{ $program->level ?: '' }} @if($cat) · {{ $cat->name }} @endif</div>
             <div class="hero-grid">
                 <div class="hero-copy">
                     <h1 class="d rv">{{ $program->title }}</h1>
@@ -115,7 +103,7 @@
                     </div>
                     @if($highlights->count())
                     <div class="hero-hl rv rv-d3">
-                        <div class="hl-lab">{{ $chrome->quick_highlights_label ?? 'Quick Highlights' }}</div>
+                        <div class="hl-lab"><span>{{ $chrome->quick_highlights_label ?? 'Quick Highlights' }}</span></div>
                         <div class="hl-grid">
                             @foreach($highlights as $h)
                                 <div class="hl"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span>{{ $h['value'] ?? $h['label'] }}</div>
@@ -126,7 +114,8 @@
                     <div class="hero-meta rv rv-d4">
                         @if($program->duration)<span class="m"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>{{ $program->duration }}</span><span class="sep"></span>@endif
                         @if($program->level)<span class="m"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>{{ $program->level }}</span><span class="sep"></span>@endif
-                        @if($reviews->count())<span class="m"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>{{ $reviews->count() }} Google reviews</span>@endif
+                        <!-- @if($reviews->count())<span class="m"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>{{ $reviews->count() }} Google reviews</span>
+                        @endif -->
                     </div>
                 </div>
                 @if($snapshot->count())
@@ -135,6 +124,11 @@
                     @foreach($snapshot->take(6) as $s)
                         <div class="hc-row"><span class="l">{{ $s['label'] ?? '' }}</span><span class="v">{{ $s['value'] ?? '' }}</span></div>
                     @endforeach
+                    <div class="hc-note">
+                        <p>
+                        Note: <span>Duration will be based on your experience and it can be advanced bachelors too which differs from prospects to prospects</span>
+                        </p>
+                    </div>
                 </div>
                 @endif
             </div>
@@ -189,9 +183,9 @@
         <div class="container ov-grid">
             <div class="ov-copy rv">
                 <span class="kicker">{{ $chrome->overview_label ?? 'Programme Overview' }}</span>
-                <h2 class="d" style="font-size:clamp(28px,3.4vw,42px);line-height:1.06;letter-spacing:-.03em;margin:14px 0 22px">{{ $chrome->overview_heading ?? 'About this' }} <em>Programme</em></h2>
+                <h2 class="d" style="font-size:clamp(28px,3.4vw,42px);line-height:1.06;letter-spacing:-.03em;margin:14px 0 22px">{{ $chrome->overview_heading ?? 'About this' }} </h2>
                 <div class="ov-rule"></div>
-                <div class="ov-copy"><p>{!! rich_html($program->description ?? null) !!}</p></div>
+                <div class="ov-copy"><div>{!! rich_html($program->description ?? null) !!}</div></div>
             </div>
             @if($highlights->count())
             <div class="ov-figure rv rv-d1">
@@ -214,7 +208,7 @@
         <div class="container">
             <div class="sec-head rv">
                 <span class="kicker">{{ $chrome->why_label ?? 'Why Choose' }}</span>
-                <h2>{{ $chrome->why_heading ?? 'Why Choose This' }} <em>Programme?</em></h2>
+                <h2>{{ $chrome->why_heading ?? 'Why Choose This' }}</h2>
             </div>
             <div class="why-grid">
                 @foreach($benefits as $i => $b)
@@ -222,11 +216,11 @@
                         <span class="why-index">{{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}</span>
                         <span class="why-illu"><i data-lucide="{{ $b['icon'] ?? 'sparkles' }}"></i></span>
                         <h4>{{ $b['title'] ?? '' }}</h4>
-                        <p>{!! html_filled($b['desc'] ?? null) ? rich_html($b['desc'] ?? null) : '' !!}</p>
+                        <div>{!! html_filled($b['desc'] ?? null) ? rich_html($b['desc'] ?? null) : '' !!}</div>
                     </div>
                 @endforeach
-                @if($university->name)
-                <div class="w-note rv rv-d2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span>An internationally recognised pathway awarded by {{ $university->name }}.</span></div>
+                @if(filled(data_get($university, 'name')))
+                <div class="w-note rv rv-d2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span>An internationally recognised pathway awarded by {{ data_get($university, 'name') }}.</span></div>
                 @endif
             </div>
         </div>
@@ -236,17 +230,20 @@
     {{-- ============ 6. WHAT YOU'LL LEARN (Organic) ============ --}}
     @if($learning->count())
     <section class="learn section tex-mesh" aria-label="Learning outcomes">
-        <div class="container learn-wrap">
-            <div class="learn-sticky rv">
-                <span class="kicker">{{ $chrome->learn_label ?? 'What You\'ll Learn' }}</span>
-                <h2 class="d" style="font-size:clamp(28px,3.4vw,42px);line-height:1.06;letter-spacing:-.03em;margin:14px 0 18px">{{ $chrome->learn_heading ?? 'Learning' }} <em>Outcomes</em></h2>
-                <figure class="learn-photo"><img src="{{ $learnImgUrl }}" alt="Students in a collaborative learning environment" loading="lazy"></figure>
-                <p style="font-size:16px;line-height:1.7;color:var(--muted)">{!! html_filled($chrome->learn_intro ?? null) ? rich_html($chrome->learn_intro ?? null) : 'Students will learn to:' !!}</p>
+        <div class="container">
+            <div class="sec-head rv">
+                <span class="kicker">{{ $chrome->learn_label ?? '' }}</span>
+                <h2>{{ $chrome->learn_heading ?? 'Why Choose This' }}</h2>
             </div>
-            <div class="learn-field">
-                @foreach($learning as $i => $cap)
-                    <div class="learn-item rv rv-d{{ min($i % 4 + 1, 4) }}"><span class="n">{{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}</span><span class="txt">{{ $cap }}</span></div>
-                @endforeach
+            <div class="learn-wrap">
+                <div class="learn-sticky rv">
+                    <figure class="learn-photo"><img src="{{ $learnImgUrl }}" alt="Students in a collaborative learning environment" loading="lazy"></figure>
+                </div>
+                <div class="learn-field">
+                    @foreach($learning as $i => $cap)
+                        <div class="learn-item rv rv-d{{ min($i % 4 + 1, 4) }}"><span class="n">{{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}</span><span class="txt">{{ $cap }}</span></div>
+                    @endforeach
+                </div>
             </div>
         </div>
     </section>
@@ -258,13 +255,13 @@
         <div class="container">
             <div class="sec-head rv">
                 <span class="kicker">{{ $chrome->career_label ?? 'Career Opportunities' }}</span>
-                <h2>{{ $chrome->career_heading ?? 'Where This Degree Can' }} <em>Take You</em></h2>
-                <p>{!! html_filled($chrome->career_intro ?? null) ? rich_html($chrome->career_intro ?? null) : 'Potential careers include:' !!}</p>
+                <h2>{{ $chrome->career_heading ?? 'Where This Degree Can' }} </h2>
+                <div>{!! html_filled($chrome->career_intro ?? null) ? rich_html($chrome->career_intro ?? null) : 'Potential careers' !!}</div>
             </div>
             <div class="career-cloud">
                 @foreach($careers as $i => $career)
                     <div class="career-tile @if($i === 0) career-tile--feat @else c-s @endif rv rv-d{{ min($i % 4 + 1, 4) }}">
-                        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7a2 2 0 0 1 2-2h4l2 3h9a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2z"/></svg></span>
+                        <!-- <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7a2 2 0 0 1 2-2h4l2 3h9a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2z"/></svg></span> -->
                         <span class="nm">{{ $career }}</span>
                     </div>
                 @endforeach
@@ -279,8 +276,8 @@
         <div class="container">
             <div class="sec-head center rv">
                 <span class="kicker">{{ $chrome->structure_label ?? 'Programme Structure' }}</span>
-                <h2>{{ $chrome->structure_heading ?? 'Your Journey,' }} <em>Year by Year</em></h2>
-                <p>{!! html_filled($chrome->structure_intro ?? null) ? rich_html($chrome->structure_intro ?? null) : 'A structured curriculum that builds from foundations through to advanced study.' !!}</p>
+                <h2>{{ $chrome->structure_heading ?? 'Your Journey,' }} </h2>
+                <div>{!! html_filled($chrome->structure_intro ?? null) ? rich_html($chrome->structure_intro ?? null) : 'A structured curriculum that builds from foundations through to advanced study.' !!}</div>
             </div>
             <div class="struct-list">
                 @foreach($structure as $i => $stage)
@@ -302,20 +299,24 @@
     @endif
 
     {{-- ============ 9. ABOUT GAU (Cinematic Dark) ============ --}}
-    @if($university->name)
+    @if(filled(data_get($university, 'name')))
     <section class="gau section" aria-label="About the awarding university">
         <div class="tex-grid"></div>
         <div class="container gau-grid">
             <div class="gau-photo rv">
                 @if($uniImgUrl)<img class="gau-img" src="{{ $uniImgUrl }}" alt="{{ $university->name }}" loading="lazy">@endif
                 <div class="glow"></div>
-                @if($university->name)<span class="logo">{{ collect(preg_split('/\s+/', $university->name))->map(fn($w) => mb_substr($w, 0, 1))->take(3)->implode('') }}</span>@endif
-                @if($university->establishment)<div class="est"><div class="k">Established</div><div class="v">{{ str_replace('Established ', '', $university->establishment) }}</div></div>@endif
+                @if($university->name)
+                    <span class="logo">{{ collect(preg_split('/\s+/', $university->name))->map(fn($w) => mb_substr($w, 0, 1))->take(3)->implode('') }}</span>
+                @endif
+                @if($university->establishment)
+                    <div class="est"><div class="k">Established</div><div class="v">{{ str_replace('Established ', '', $university->establishment) }}</div></div>
+                @endif
             </div>
             <div class="gau-copy rv rv-d1">
                 <span class="kicker">{{ $chrome->university_label ?? 'The University' }}</span>
-                <h2>{{ $chrome->university_heading ?? 'A Globally Connected' }} <em>University</em></h2>
-                @if($university->description)<p>{!! rich_html($university->description ?? null) !!}</p>@endif
+                <h2>{{ $university->name ?? '' }} </h2>
+                @if($university->description)<div>{!! rich_html($university->description ?? null) !!}</div>@endif
                 @if($university->establishment)
                 <div class="gau-metrics">
                     <div class="gau-metric"><div class="num">{{ str_replace('Established ', '', $university->establishment) }}<small>+</small></div><div class="lbl">Established</div></div>
@@ -332,7 +333,7 @@
         <div class="container">
             <div class="sec-head rv">
                 <span class="kicker">{{ $chrome->accreditation_label ?? 'Accreditation' }}</span>
-                <h2>{{ $chrome->accreditation_heading ?? 'Accreditation &amp;' }} <em>Recognition</em></h2>
+                <h2>{{ $chrome->accreditation_heading ?? 'Accreditation &amp;' }} </h2>
             </div>
             @php
                 $accItems = $accreditationGroups->flatMap(function ($g) {
@@ -358,8 +359,9 @@
                         @foreach($accItems as $item)
                             <li class="acc-tile @if($prevGroup !== null && $prevGroup === $item['group']) is-same-group @endif">
                                 @if(!empty($item['group']))<span class="acc-eyebrow">{{ $item['group'] }}</span>@endif
-                                <span class="acc-plate">{!! $renderLogoChip($item['name'], $item['logo'], 'acc-plate-in', 3) !!}</span>
-                                @if(!empty($item['name']))<span class="acc-name">{{ $item['name'] }}</span>@endif
+                                <span class="acc-plate">{!! $renderLogoChip($item['name'] ?? '', $item['logo'] ?? null, 'acc-plate-in', 'acc-plate-fallback', 0) !!}</span>
+                                @if(!empty($item['name']))<span class="acc-name">{{ $item['name'] }}</span>
+                                @endif
                             </li>
                             @php $prevGroup = $item['group']; @endphp
                         @endforeach
@@ -377,8 +379,8 @@
         <div class="container">
             <div class="sec-head center rv">
                 <span class="kicker">{{ $chrome->partner_label ?? 'Your Learning Partner' }}</span>
-                <h2>{{ $chrome->partner_heading ?? 'Why Study Through' }} <em>Maverick?</em></h2>
-                <p>{!! html_filled($chrome->partner_intro ?? null) ? rich_html($chrome->partner_intro ?? null) : 'Students receive:' !!}</p>
+                <h2>{{ $chrome->partner_heading ?? 'Why Study Through' }} </h2>
+                <div>{!! html_filled($chrome->partner_intro ?? null) ? rich_html($chrome->partner_intro ?? null) : 'Students receive:' !!}</div>
             </div>
             <div class="mav-grid">
                 @foreach($support as $i => $s)
@@ -393,13 +395,34 @@
     </section>
     @endif
 
+    {{-- ============ 11b. WHY GCC PROFESSIONALS CHOOSE ============ --}}
+    @if($gccReasons->count())
+    <section class="gcc-choose section tex-grid" id="gcc-choose" aria-label="Why GCC professionals choose this course">
+        <div class="container">
+            <div class="sec-head center rv">
+                <h2>{{ filled($program->gcc_heading) ? $program->gcc_heading : 'Why GCC professionals choose this course?' }}</h2>
+            </div>
+            <div class="gcc-grid">
+                @foreach($gccReasons as $i => $item)
+                <article class="gcc-card rv rv-d{{ min($i % 3 + 1, 3) }}">
+                    <span class="gcc-card__index">{{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}</span>
+                    <span class="gcc-card__icon"><i data-lucide="{{ $item['icon'] ?? 'sparkles' }}"></i></span>
+                    <h3 class="gcc-card__title">{{ $item['title'] ?? '' }}</h3>
+                    <p class="gcc-card__text">{{ $item['text'] ?? '' }}</p>
+                </article>
+                @endforeach
+            </div>
+        </div>
+    </section>
+    @endif
+
     {{-- ============ 12. SUCCESS STORIES (slider) ============ --}}
     @if($testimonials->count())
     <section class="stories section" aria-label="Student success stories">
         <div class="container">
             <div class="sec-head rv">
                 <span class="kicker">{{ $chrome->stories_label ?? 'Stories' }}</span>
-                <h2>{{ $chrome->stories_heading ?? 'Student Success' }} <em>Stories</em></h2>
+                <h2>{{ $chrome->stories_heading ?? 'Student Success' }} </h2>
             </div>
             <div class="story-shell" id="storyShell">
                 <div class="story-window" tabindex="0" role="group" aria-label="Student success stories carousel">
@@ -442,93 +465,8 @@
     </section>
     @endif
 
-    {{-- ============ 13. FEES (Cinematic Dark) ============ --}}
-    @if($fees->count())
-    <section class="fees section" aria-label="Fees and scholarships">
-        <div class="tex-grid"></div>
-        <div class="container fees-grid">
-            <div class="rv">
-                <span class="kicker">Fees &amp; Scholarships</span>
-                <h2 class="d" style="font-family:var(--font-display);font-size:clamp(28px,3.4vw,42px);line-height:1.06;letter-spacing:-.03em;color:#fff;margin:14px 0 14px">Fees &amp; <em style="color:var(--color-mba-red)">Scholarships</em></h2>
-                <p style="font-size:16px;line-height:1.7;color:rgba(255,255,255,.72);max-width:46ch">{!! html_filled($chrome->fees_intro ?? null) ? rich_html($chrome->fees_intro ?? null) : 'Fee structure varies by intake and study mode. Select any option to receive the full details.' !!}</p>
-                <div class="fee-list">
-                    @foreach($fees as $fee)
-                        <a href="#enquire" class="fee-chip"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 15h4M7 11h10"/></svg></span><div><span class="nm">{{ $fee }}</span><span class="rm">{{ $chrome->fees_request_label ?? 'View details' }} →</span></div></a>
-                    @endforeach
-                </div>
-            </div>
-            <div class="fees-side rv rv-d1">
-                <div class="k">Admissions</div>
-                <h3>Request the full fee structure</h3>
-                <p>Speak to our admissions team for a personalised breakdown based on your intake and study mode.</p>
-                <a href="{{ route('contact') }}" class="fees-cta">Request Fee Structure <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-                <p class="fee-note">No commitment required. We'll connect you with an advisor.</p>
-            </div>
-        </div>
-    </section>
-    @endif
-
-    {{-- ============ 14. FAQ (accordion + organic dividers) ============ --}}
-    @if($faqs->count())
-    <section class="faq section" aria-label="Frequently asked questions">
-        <div class="faq-divider top"><svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 Q360,80 720,40 T1440,40 V0 H0 Z" fill="#071444" opacity="1"/></svg></div>
-        <div class="faq-divider bot"><svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 Q360,0 720,40 T1440,40 V80 H0 Z" fill="#071444" opacity="1"/></svg></div>
-        <div class="container">
-            <div class="sec-head center rv">
-                <span class="kicker">Questions</span>
-                <h2>{{ $chrome->faq_heading ?? 'Frequently Asked' }} <em>Questions</em></h2>
-            </div>
-            <div class="faq-wrap">
-                @foreach($faqs as $i => $faq)
-                <details class="faq-item rv" @if($i === 0) open @endif><summary>{{ $faq->question }}<span class="plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary><div class="faq-ans">{!! rich_html($faq->answer ?? null) !!}</div></details>
-                @endforeach
-            </div>
-        </div>
-    </section>
-    @endif
-
-    {{-- ============ 15. ENQUIRY FORM ============ --}}
-    <section class="enquiry section" id="enquire" aria-label="Enquire about this programme">
-        <div class="container enq-grid">
-            <div class="enq-copy rv">
-                <span class="kicker">Enquire</span>
-                <h2 class="d" style="font-size:clamp(28px,3.4vw,42px);line-height:1.06;letter-spacing:-.03em;margin:14px 0 18px">{{ $chrome->enquiry_heading ?? 'Enquire About This' }} <em>Programme</em></h2>
-                <p>{{ $chrome->enquiry_subheading ?? 'Share a few details and our admissions team will reach out to guide you through the next steps.' }}</p>
-                <div class="enq-points">
-                    <div class="enq-point"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span>Personal eligibility review</div>
-                    <div class="enq-point"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span>Guidance on fees &amp; instalments</div>
-                    <div class="enq-point"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span>Application &amp; study-mode support</div>
-                </div>
-                <div class="enq-trust">
-                    <span class="trust-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 1-5 5 1 7-6-4-6 4 1-7-5-5 7-1z"/></svg>Flexible study</span>
-                    @if($reviews->count())<span class="trust-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 1-5 5 1 7-6-4-6 4 1-7-5-5 7-1z"/></svg>{{ $reviews->count() }} Google reviews</span>@endif
-                </div>
-            </div>
-            <form class="enq-form rv rv-d1" action="{{ route('programs.enquire') }}" method="POST">
-                @csrf
-                <input type="hidden" name="programme" value="{{ $program->title }}">
-                <h3>Request a call back</h3>
-                <p class="fs">Fields marked * are required.</p>
-                <div class="f-row">
-                    <div class="fld"><label for="pd-name">Full Name *</label><input id="pd-name" name="name" type="text" required></div>
-                    <div class="fld"><label for="pd-email">Email *</label><input id="pd-email" name="email" type="email" required></div>
-                </div>
-                <div class="f-row">
-                    <div class="fld"><label for="pd-phone">Phone *</label><input id="pd-phone" name="phone" type="tel" required></div>
-                    <div class="fld"><label for="pd-country">Country</label><input id="pd-country" name="country" type="text"></div>
-                </div>
-                <div class="fld"><label for="pd-study-mode">Preferred Study Mode</label>
-                    <select id="pd-study-mode" name="study_mode"><option value="">Select study mode</option><option>Online</option><option>Hybrid</option><option>Part-time</option></select>
-                </div>
-                <div class="fld"><label for="pd-qualification">Highest Qualification</label>
-                    <select id="pd-qualification" name="qualification"><option value="">Select qualification</option><option value="high-school">High School / Secondary</option><option value="diploma">Diploma</option><option value="bachelor">Bachelor's Degree</option><option value="master">Master's Degree</option><option value="other">Other</option></select>
-                </div>
-                <div class="fld"><label for="pd-message">Message</label><textarea id="pd-message" name="message" rows="3"></textarea></div>
-                <button type="submit" class="enq-submit">Submit Enquiry</button>
-            </form>
-        </div>
-    </section>
-
+    @include('sections.alumni-network')
+    
     {{-- ============ 16. REVIEWS (Google rating) ============ --}}
     @if($reviews->count())
     <section class="reviews section tex-grid" aria-label="Student reviews">
@@ -541,16 +479,6 @@
                 $avg = round($reviews->avg('rating'), 1);
                 $fullStars = (int) round($avg);
             @endphp
-            <div class="rev-top rv">
-                <div class="rating-badge">
-                    <div class="glogo">G</div>
-                    <div class="score">{{ $avg }}</div>
-                    <div class="stars">
-                        @for($i = 1; $i <= 5; $i++)<svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 1-5 5 1 7-6-4-6 4 1-7-5-5 7-1z"/></svg>@endfor
-                    </div>
-                    <div class="based">Based on {{ $reviews->count() }} student reviews</div>
-                </div>
-            </div>
             <div class="rev-flow">
                 @foreach($reviews as $r)
                 <div class="rev-card">
@@ -578,6 +506,95 @@
         </div>
     </section>
     @endif
+    
+    @include('sections.faculty-insights')
+
+    {{-- ============ 13. FEES (Cinematic Dark) ============ --}}
+    @if($fees->count())
+    <section class="fees section" aria-label="Fees and scholarships">
+        <div class="tex-grid"></div>
+        <div class="container fees-grid">
+            <div class="rv">
+                <span class="kicker">Fees &amp; Scholarships</span>
+                <h2 class="d" style="font-family:var(--font-display);font-size:clamp(28px,3.4vw,42px);line-height:1.06;letter-spacing:-.03em;color:#fff;margin:14px 0 14px">Fees &amp; <em style="color:var(--color-mba-red)">Scholarships</em></h2>
+                <div style="font-size:16px;line-height:1.7;color:rgba(255,255,255,.72);max-width:46ch">{!! html_filled($chrome->fees_intro ?? null) ? rich_html($chrome->fees_intro ?? null) : 'Fee structure varies by intake and study mode. Select any option to receive the full details.' !!}</div>
+                <div class="fee-list">
+                    @foreach($fees as $fee)
+                        <a href="#enquire" class="fee-chip"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 15h4M7 11h10"/></svg></span><div><span class="nm">{{ $fee }}</span><span class="rm">{{ $chrome->fees_request_label ?? 'View details' }} →</span></div></a>
+                    @endforeach
+                </div>
+            </div>
+            <div class="fees-side rv rv-d1">
+                <div class="k">Admissions</div>
+                <h3>Request the full fee structure</h3>
+                <p>Speak to our admissions team for a personalised breakdown based on your intake and study mode.</p>
+                <a href="{{ route('contact') }}" class="fees-cta">Request Fee Structure <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                <p class="fee-note">No commitment required. We'll connect you with an advisor.</p>
+            </div>
+        </div>
+    </section>
+    @endif
+
+    {{-- ============ 14. FAQ (accordion + organic dividers) ============ --}}
+    @if($faqs->count())
+    <section class="faq section" aria-label="Frequently asked questions">
+        <div class="faq-divider top"><svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 Q360,80 720,40 T1440,40 V0 H0 Z" fill="#071444" opacity="1"/></svg></div>
+        <div class="faq-divider bot"><svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 Q360,0 720,40 T1440,40 V80 H0 Z" fill="#071444" opacity="1"/></svg></div>
+        <div class="container">
+            <div class="sec-head center rv">
+                <span class="kicker">Questions</span>
+                <h2>{{ $chrome->faq_heading ?? 'Frequently Asked' }} </h2>
+            </div>
+            <div class="faq-wrap">
+                @foreach($faqs as $i => $faq)
+                <details class="faq-item rv" @if($i === 0) open @endif><summary>{{ $faq->question }}<span class="plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary><div class="faq-ans">{!! rich_html($faq->answer ?? null) !!}</div></details>
+                @endforeach
+            </div>
+        </div>
+    </section>
+    @endif
+
+    {{-- ============ 15. ENQUIRY FORM ============ --}}
+    <section class="enquiry section" id="enquire" aria-label="Enquire about this programme">
+        <div class="container enq-grid">
+            <div class="enq-copy rv">
+                <span class="kicker">Enquire</span>
+                <h2 class="d" style="font-size:clamp(28px,3.4vw,42px);line-height:1.06;letter-spacing:-.03em;margin:14px 0 18px">{{ $chrome->enquiry_heading ?? 'Enquire About This' }} </h2>
+                <p>{{ $chrome->enquiry_subheading ?? 'Share a few details and our admissions team will reach out to guide you through the next steps.' }}</p>
+                <div class="enq-points">
+                    <div class="enq-point"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span>Personal eligibility review</div>
+                    <div class="enq-point"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span>Guidance on fees &amp; instalments</div>
+                    <div class="enq-point"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span>Application &amp; study-mode support</div>
+                </div>
+                <div class="enq-trust">
+                    <span class="trust-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 1-5 5 1 7-6-4-6 4 1-7-5-5 7-1z"/></svg>Flexible study</span>
+                    @if($reviews->count())<span class="trust-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 1-5 5 1 7-6-4-6 4 1-7-5-5 7-1z"/></svg>4.8 star Rating</span>@endif
+                </div>
+            </div>
+            <form class="enq-form rv rv-d1" action="{{ route('programs.enquire') }}" method="POST">
+                @csrf
+                <input type="hidden" name="programme" value="{{ $program->title }}">
+                <h3>Request a call back</h3>
+                <p class="fs">Fields marked * are required.</p>
+                <div class="f-row">
+                    <div class="fld"><label for="pd-name">Full Name *</label><input id="pd-name" name="name" type="text" required></div>
+                    <div class="fld"><label for="pd-email">Email *</label><input id="pd-email" name="email" type="email" required></div>
+                </div>
+                <div class="f-row">
+                    <div class="fld"><label for="pd-phone">Phone *</label><input id="pd-phone" name="phone" type="tel" required></div>
+                    <div class="fld"><label for="pd-country">Country</label><input id="pd-country" name="country" type="text"></div>
+                </div>
+                <div class="fld"><label for="pd-study-mode">Preferred Study Mode</label>
+                    <select id="pd-study-mode" name="study_mode"><option value="">Select study mode</option><option>Online</option><option>Hybrid</option><option>Part-time</option></select>
+                </div>
+                <div class="fld"><label for="pd-qualification">Highest Qualification</label>
+                    <select id="pd-qualification" name="qualification"><option value="">Select qualification</option><option value="high-school">High School / Secondary</option><option value="diploma">Diploma</option><option value="bachelor">Bachelor's Degree</option><option value="master">Master's Degree</option><option value="other">Other</option></select>
+                </div>
+                <div class="fld"><label for="pd-message">Message</label><textarea id="pd-message" name="message" rows="3"></textarea></div>
+                <button type="submit" class="enq-submit">Submit Enquiry</button>
+            </form>
+        </div>
+    </section>
 
     {{-- ============ FINAL CTA ============ --}}
     <section class="final" aria-label="Call to action">
@@ -585,8 +602,8 @@
             <div class="final-card rv">
                 <div class="glow" aria-hidden="true"></div>
                 <div class="final-inner">
-                    <h2 class="d">{{ $chrome->final_cta_heading ?? 'Ready to Begin Your' }} <em>Journey?</em></h2>
-                    <p>{!! html_filled($chrome->final_cta_body ?? null) ? rich_html($chrome->final_cta_body ?? null) : 'Speak to our admissions team today and take the first step toward a globally recognised degree.' !!}</p>
+                    <h2 class="d">{{ $chrome->final_cta_heading ?? 'Ready to Begin Your' }}</h2>
+                    <div>{!! html_filled($chrome->final_cta_body ?? null) ? rich_html($chrome->final_cta_body ?? null) : 'Speak to our admissions team today and take the first step toward a globally recognised degree.' !!}</div>
                     <div class="ctas">
                         <a href="#enquire" class="btn btn-white">Apply Now<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
                         <a href="#enquire" class="btn btn-outline">Enquire Now</a>

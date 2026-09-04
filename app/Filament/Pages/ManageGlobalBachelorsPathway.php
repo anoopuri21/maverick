@@ -2,8 +2,8 @@
 
 namespace App\Filament\Pages;
 
-use App\Filament\Concerns\EnsuresSettingsRowsExist;
-use App\Filament\Concerns\HandlesCloudinaryImageFields;
+use App\Filament\Concerns\HydratesRepeaterMediaFields;
+use App\Filament\Concerns\SavesSettingsGroups;
 use App\Filament\Forms\Components\MediaPicker;
 use App\Settings\GbpAdmissionSettings;
 use App\Settings\GbpAreasSettings;
@@ -40,8 +40,8 @@ use Throwable;
 
 class ManageGlobalBachelorsPathway extends Page implements HasForms
 {
-    use HandlesCloudinaryImageFields;
-    use EnsuresSettingsRowsExist;
+    use HydratesRepeaterMediaFields;
+    use SavesSettingsGroups;
     use InteractsWithForms;
 
     protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
@@ -74,7 +74,10 @@ class ManageGlobalBachelorsPathway extends Page implements HasForms
         $explore['cards'] = $this->wrapNestedLists($explore['cards'] ?? [], 'highlights');
 
         $destinations = app(GbpDestinationsSettings::class)->toArray();
-        $destinations['items'] = $this->wrapNestedLists($destinations['items'] ?? [], 'points');
+        $destinations['items'] = $this->hydrateRepeaterMediaFields(
+            $this->wrapNestedLists($destinations['items'] ?? [], 'points'),
+            'image'
+        );
 
         $cost = app(GbpCostSettings::class)->toArray();
         $cost['comparisons'] = array_values($cost['comparisons'] ?? []);
@@ -523,6 +526,8 @@ class ManageGlobalBachelorsPathway extends Page implements HasForms
         try {
             $data = $this->form->getState();
 
+            $existingDestinations = app(GbpDestinationsSettings::class)->toArray();
+
             $hero = $this->syncImageIfSelected($data['hero'] ?? [], 'background_image');
 
             $snapshot = $data['snapshot'] ?? [];
@@ -545,11 +550,16 @@ class ManageGlobalBachelorsPathway extends Page implements HasForms
             $explore['cards'] = $this->normalizeNestedLists($explore['cards'] ?? [], 'highlights');
 
             $destinations = $data['destinations'] ?? [];
+            $destinations['items'] = $this->hydrateRepeaterMediaFields($destinations['items'] ?? [], 'image');
             foreach ($destinations['items'] ?? [] as &$item) {
                 $item = $this->syncImageIfSelected($item, 'image');
             }
             unset($item);
-            $destinations['items'] = $this->normalizeNestedLists($destinations['items'] ?? [], 'points');
+            $destinations['items'] = $this->preserveRepeaterImageFields(
+                $this->normalizeNestedLists($destinations['items'] ?? [], 'points'),
+                $existingDestinations['items'] ?? [],
+                'image'
+            );
 
             $cost = $data['cost'] ?? [];
             $cost['comparisons'] = array_values($cost['comparisons'] ?? []);
@@ -615,17 +625,6 @@ class ManageGlobalBachelorsPathway extends Page implements HasForms
         }
     }
 
-    /** @param  class-string  $settingsClass */
-    protected function saveSettingsGroup(string $settingsClass, array $payload): void
-    {
-        $settings = app($settingsClass);
-        $payload = $this->ensureAllSettingsProperties($settings, $payload);
-        $payload = $this->preserveExistingImageFields($payload, $settings);
-        $this->ensureSettingsRowsExist($settings);
-        app()->forgetInstance($settingsClass);
-        app($settingsClass)->fill($payload)->save();
-    }
-
 
     protected function stringListRepeater(string $name, string $label): Repeater
     {
@@ -643,15 +642,6 @@ class ManageGlobalBachelorsPathway extends Page implements HasForms
             ->options(GbpIcons::options())
             ->searchable()
             ->nullable();
-    }
-
-    protected function syncImageIfSelected(array $payload, string $field): array
-    {
-        if (! empty($payload["{$field}_asset_id"])) {
-            return MediaPicker::syncFieldFromAsset($payload, $field);
-        }
-
-        return $payload;
     }
 
     protected function wrapStringList(array $items): array

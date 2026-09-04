@@ -19,6 +19,12 @@
 @endpush
 
 @section('content')
+    @php
+        $awardLogos = collect($awardLogos ?? []);
+        $accreditationLogos = collect($accreditationLogos ?? []);
+        $accreditationsPage = $accreditationsPage ?? safe_settings(\App\Settings\AccreditationsPageSettings::class);
+        $accreditationsSeo = $accreditationsSeo ?? safe_settings(\App\Settings\AccreditationsSeoSettings::class);
+    @endphp
     <div class="page-accreditations accred">
 
         {{-- ═══════════════════════════════════════════
@@ -26,7 +32,7 @@
         ═══════════════════════════════════════════ --}}
         <section class="cinematic-hero" aria-label="Accreditations Hero">
             <div class="cinematic-hero__bg" aria-hidden="true">
-                @php $accredHeroBg = media_url($accreditationsPage->hero_background_image ?? null, 'https://images.pexels.com/photos/267885/pexels-photo-267885.jpeg?auto=compress&cs=tinysrgb&w=1920'); @endphp
+                @php $accredHeroBg = settings_media_url($accreditationsPage, 'hero_background_image') ?: 'https://images.pexels.com/photos/267885/pexels-photo-267885.jpeg?auto=compress&cs=tinysrgb&w=1920'; @endphp
                 <div class="cinematic-hero__bg-image" @if($accredHeroBg) style="background-image: url('{{ $accredHeroBg }}')" @endif></div>
                 <div class="cinematic-hero__gradient"></div>
                 <div class="cinematic-hero__noise"></div>
@@ -67,9 +73,9 @@
                         <em>Locally Trusted</em>
                     @endif
                 </h1>
-                <p class="cinematic-hero__description">
+                <div class="cinematic-hero__description">
                     {!! html_filled($accreditationsPage->hero_description ?? null) ? rich_html($accreditationsPage->hero_description ?? null) : 'Our commitment to excellence is validated by the world\'s most respected accreditation bodies, regulatory authorities, and industry partners. Every credential represents our dedication to quality.' !!}
-                </p>
+                </div>
                 <div class="cinematic-hero__scroll-hint" aria-hidden="true">
                     <span class="cinematic-hero__scroll-text">Scroll to explore</span>
                     <span class="cinematic-hero__scroll-arrow" data-lucide="chevron-down"></span>
@@ -121,7 +127,7 @@
                                 @if($url = media_url($logo->logo_url ?? null))
                                     <img src="{{ $url }}" alt="{{ $logo->name }}" loading="lazy">
                                 @else
-                                    <span>{{ strtoupper(substr($logo->name, 0, 3)) }}</span>
+                                    <span>{{ strtoupper(substr($logo->name ?? '', 0, 3)) }}</span>
                                 @endif
                             </div>
                             <h4 class="accreditations__card-name">{{ $logo->name }}</h4>
@@ -136,7 +142,7 @@
         {{-- ═══════════════════════════════════════════
             SECTION 2: CINEMATIC PINNED IMAGE
         ═══════════════════════════════════════════ --}}
-        @if($url = media_url($cinematicSettings->image_url ?? null))
+        @if($url = settings_media_url($cinematicSettings, 'image_url'))
         <section class="accred-cinematic" data-cinematic-pin aria-hidden="true">
             <div class="accred-cinematic__inner">
                 <div class="accred-cinematic__bg">
@@ -192,14 +198,14 @@
                             @if($url = media_url($logo->logo_url ?? null))
                                 <img src="{{ $url }}" alt="{{ $logo->name }}" loading="lazy" class="award-card__img">
                             @else
-                                <span class="award-card__placeholder">{{ strtoupper(substr($logo->name, 0, 3)) }}</span>
+                                <span class="award-card__placeholder">{{ strtoupper(substr($logo->name ?? '', 0, 3)) }}</span>
                             @endif
                         </div>
                         <div class="award-card__body">
                             <span class="award-card__kicker">Award</span>
                             <h4 class="award-card__title">{{ $logo->name }}</h4>
                             @if($logo->description)
-                                <p class="award-card__desc">{!! rich_html($logo->description ?? null) !!}</p>
+                                <div class="award-card__desc">{!! rich_html($logo->description ?? null) !!}</div>
                             @endif
                         </div>
                         <span class="award-card__accent" aria-hidden="true"></span>

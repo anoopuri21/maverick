@@ -19,12 +19,11 @@
 @endpush
 
 @section('content')
-<div class="page-leadership leadership">
-
-
 @php
+    $leaders = $leaders ?? safe_settings(\App\Settings\LeadershipLeadersSettings::class);
     $executiveTeam = collect(settings_array($leaders->items ?? []));
 @endphp
+<div class="page-leadership leadership">
 
 
 {{-- ═══════════════════════════════════════════
@@ -32,7 +31,7 @@
 ═══════════════════════════════════════════ --}}
 <section class="cinematic-hero cinematic-hero--short" aria-label="Leadership Hero">
     <div class="cinematic-hero__bg" aria-hidden="true">
-        @if($url = media_url($hero->background_image ?? null))
+        @if($url = settings_media_url($hero, 'background_image'))
         <div class="cinematic-hero__bg-image" style="background-image: url('{{ $url }}')"></div>
         @endif
         <div class="cinematic-hero__gradient"></div>
@@ -74,7 +73,7 @@
         </h1>
         @endif
         @if(filled($hero->description))
-        <p class="cinematic-hero__description">{!! rich_html($hero->description ?? null) !!}</p>
+        <div class="cinematic-hero__description">{!! rich_html($hero->description ?? null) !!}</div>
         @endif
         <div class="cinematic-hero__scroll-hint" aria-hidden="true">
             <span class="cinematic-hero__scroll-text">Scroll to explore</span>
@@ -111,9 +110,9 @@
 
         <div class="executive-team__grid">
             @foreach($executiveTeam as $member)
-            @if(filled($member['name'] ?? null) || filled($member['designation'] ?? null) || filled($member['bio'] ?? null) || filled($member['image_url'] ?? null))
+            @if(filled($member['name'] ?? null) || filled($member['designation'] ?? null) || filled($member['bio'] ?? null) || filled(settings_media_url($member, 'image_url')))
             <article class="team-card">
-                @if($url = media_url($member['image_url'] ?? null))
+                @if($url = settings_media_url($member, 'image_url'))
                 <div class="team-card__image-wrapper">
                     <img src="{{ $url }}"
                          alt="{{ $member['name'] ?? '' }}"
@@ -129,7 +128,7 @@
                     <p class="team-card__designation">{{ strtoupper($member['designation']) }}</p>
                     @endif
                     @if(filled($member['bio'] ?? null))
-                    <p class="team-card__bio">{!! rich_html($member['bio'] ?? null) !!}</p>
+                    <div class="team-card__bio">{!! rich_html($member['bio'] ?? null) !!}</div>
                     @endif
                     @if(filled($member['linkedin_url'] ?? null) && $member['linkedin_url'] !== '#')
                     <a href="{{ edu_href($member['linkedin_url']) }}" class="team-card__linkedin" target="_blank" rel="noopener">

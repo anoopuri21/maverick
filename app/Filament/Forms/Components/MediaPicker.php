@@ -96,6 +96,7 @@ class MediaPicker extends Field
                     'statePath' => $this->getStatePath(),
                     'folder' => $this->getFolder(),
                     'initialTab' => $initialTab,
+                    'selectedAssetId' => filled($this->getState()) ? (int) $this->getState() : null,
                 ],
                 'key' => 'media-library-'.$this->getStatePath().'-'.$initialTab.'-'.uniqid(),
             ]
@@ -110,10 +111,14 @@ class MediaPicker extends Field
      */
     public static function forField(string $fieldName, ?string $folder = null): static
     {
+        $urlField = str_contains($fieldName, '.')
+            ? str($fieldName)->afterLast('.')->toString()
+            : $fieldName;
+
         return static::make("{$fieldName}_asset_id")
-            ->label(str($fieldName)->replaceLast('_url', '')->headline()->toString())
+            ->label(str($urlField)->replaceLast('_url', '')->headline()->toString())
             ->folder($folder)
-            ->urlField($fieldName);
+            ->urlField($urlField);
     }
 
     /**

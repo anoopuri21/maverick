@@ -18,6 +18,13 @@
 @endpush
 
 @section('content')
+@php
+    $ourStorySeo = $ourStorySeo ?? safe_settings(\App\Settings\OurStorySeoSettings::class);
+    $storySections = $storySections ?? safe_settings(\App\Settings\OurStorySectionsSettings::class);
+    $timelines = collect($timelines ?? []);
+    $galleryImages = collect($galleryImages ?? []);
+    $ourStoryTestimonials = collect($ourStoryTestimonials ?? []);
+@endphp
 <div class="page-our-story our-story">
 
 {{-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -53,20 +60,26 @@
   <div class="container os-hero__content">
     <span class="os-hero__eyebrow fade-up" data-testid="hero-eyebrow">
       <span class="os-hero__eyebrow-line"></span>
-      A Legacy of Global Impact
+      {{ $hero->eyebrow ?? 'A Legacy of Global Impact' }}
     </span>
     @if(html_filled($hero->heading ?? null))
     <h1 class="os-hero__title fade-up" data-testid="hero-title">
       {!! $hero->heading !!}
     </h1>
     @endif
+    @if(filled($hero->subtitle ?? null))
+    <p class="os-hero__subtitle fade-up" data-testid="hero-subtitle">{{ $hero->subtitle }}</p>
+    @endif
     @if(html_filled($hero->description ?? null))
     <div class="os-hero__description fade-up" data-testid="hero-desc">
       {!! rich_html($hero->description ?? null) !!}
     </div>
     @endif
+    @if(filled($hero->cta_label ?? null) && filled($hero->cta_url ?? null))
+    <a href="{{ $hero->cta_url }}" class="os-hero__cta btn btn--primary fade-up">{{ $hero->cta_label }}</a>
+    @endif
     <div class="os-hero__scroll-hint fade-up" aria-hidden="true">
-      <span class="os-hero__scroll-text">Scroll to explore</span>
+      <span class="os-hero__scroll-text">{{ $hero->scroll_hint ?? 'Scroll to explore' }}</span>
       <span class="os-hero__scroll-arrow" data-lucide="chevron-down"></span>
     </div>
   </div>
@@ -98,7 +111,7 @@
       <div class="os-beginning__image-col">
         <div class="os-beginning__image-wrap fade-up">
           <div class="os-beginning__image-accent" aria-hidden="true"></div>
-          @if($url = media_url($beginning->image_url ?? null))
+          @if($url = settings_media_url($beginning, 'image_url'))
           <img src="{{ $url }}" alt="Where It All Began" class="os-beginning__image" loading="lazy" />
           @endif
         </div>
@@ -120,7 +133,7 @@
     <div class="os-today__grid">
       <div class="os-today__image-col">
         <div class="os-today__image-wrap fade-up">
-          @if($url = media_url($today->image_url ?? null))
+          @if($url = settings_media_url($today, 'image_url'))
           <img src="{{ $url }}" alt="What We Do Today" class="os-today__image" loading="lazy" />
           @endif
         </div>
@@ -159,7 +172,7 @@
   </div>
   <div class="container">
     <div class="os-impact__header">
-      <span class="os-section-label os-section-label--light fade-up">Our Impact</span>
+      <span class="os-section-label os-section-label--light fade-up">{{ $impact->badge ?? 'Our Impact' }}</span>
       <h2 class="os-section-heading os-section-heading--light fade-up">
         <span class="text-reveal-wrapper"><span class="text-reveal-inner">{{ $impact->heading ?? '' }}</span></span>
       </h2>
@@ -214,7 +227,7 @@
   <div class="container">
     <div class="os-beginning__grid">
       <div class="os-beginning__text">
-        <span class="os-section-label fade-up">Vision for the Future</span>
+        <span class="os-section-label fade-up">{{ $vision->badge ?? 'Vision for the Future' }}</span>
         <h2 class="os-section-heading fade-up">
           <span class="text-reveal-wrapper"><span class="text-reveal-inner">{{ $vision->heading ?? 'Looking Ahead' }}</span></span>
         </h2>
@@ -228,7 +241,7 @@
       <div class="os-beginning__image-col">
         <div class="os-beginning__image-wrap fade-up">
           <div class="os-beginning__image-accent" aria-hidden="true"></div>
-        @if($url = media_url($vision->background_image_url ?? null))
+        @if($url = settings_media_url($vision, 'background_image_url'))
           <img src="{{ $url }}" alt="Where It All Began" class="os-beginning__image" loading="lazy" />
         @endif
         </div>
@@ -287,7 +300,7 @@
             </div>
             <h3 class="os-journey__slide-title">{{ $item->title ?? '' }}</h3>
             @if($item->description)
-            <p class="os-journey__slide-desc">{!! rich_html($item->description ?? null) !!}</p>
+            <div class="os-journey__slide-desc">{!! rich_html($item->description ?? null) !!}</div>
             @endif
           </div>
           <div class="os-journey__slide-right">
@@ -312,8 +325,8 @@
   <div class="os-journey__mobile" data-journey-mobile>
     <div class="container">
       <div class="os-journey__mobile-header">
-        <span class="os-section-label fade-up">Journey</span>
-        <h2 class="os-section-heading fade-up">Our <em>Journey</em></h2>
+        <span class="os-section-label fade-up">{{ $storySections->journey_badge ?? 'Journey' }}</span>
+        <h2 class="os-section-heading fade-up">{!! $storySections->journey_heading ?? 'Our <em>Journey</em>' !!}</h2>
       </div>
       @foreach($timelines as $index => $item)
       @php
@@ -325,7 +338,7 @@
         <span class="os-journey__year-badge">{{ $yearStr }}</span>
         <h3 class="os-journey__mobile-card-title">{{ $item->title ?? '' }}</h3>
         @if($item->description)
-        <p class="os-journey__mobile-card-desc">{!! rich_html($item->description ?? null) !!}</p>
+        <div class="os-journey__mobile-card-desc">{!! rich_html($item->description ?? null) !!}</div>
         @endif
         @if($url = media_url($item->icon_url ?? null))
         <div class="os-journey__mobile-card-image">
@@ -352,7 +365,10 @@
 {{-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
      SECTION 9: OUR STORY TESTIMONIAL SLIDER
      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --}}
-@include('sections.our-story-testimonials')
+@include('sections.our-story-testimonials', [
+  'osTestimonialsLabel' => $storySections->testimonials_badge ?? 'Testimonials',
+  'osTestimonialsHeading' => $storySections->testimonials_heading ?? 'What Our Students Say',
+])
 
 {{-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
      FINAL CTA

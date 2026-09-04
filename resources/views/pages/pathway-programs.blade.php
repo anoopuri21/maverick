@@ -19,6 +19,10 @@
 @endpush
 
 @section('content')
+@php
+    $cards = $cards ?? [];
+    $pathwayPrograms = $pathwayPrograms ?? safe_settings(\App\Settings\PathwayProgramsSettings::class);
+@endphp
 <div class="pp-page">
 
     {{-- ═══════════════════════════════════════════
@@ -26,8 +30,8 @@
     ═══════════════════════════════════════════ --}}
     <section class="cinematic-hero" aria-label="Pathway Programs Hero" data-testid="pp-hero">
         <div class="cinematic-hero__bg" aria-hidden="true">
-            @if(filled($hero->background_image))
-            <div class="cinematic-hero__bg-image" style="background-image: url('{{ $hero->background_image }}')"></div>
+            @if($heroBackgroundUrl = settings_media_url($hero, 'background_image'))
+            <div class="cinematic-hero__bg-image" style="background-image: url('{{ $heroBackgroundUrl }}')"></div>
             @endif
             <div class="cinematic-hero__gradient"></div>
             <div class="cinematic-hero__noise"></div>
@@ -68,7 +72,7 @@
                 @if(filled($hero->heading_italic ?? null))<br><em>{{ $hero->heading_italic }}</em>@endif
             </h1>
             @if(filled($hero->description))
-            <p class="cinematic-hero__description">{!! rich_html($hero->description ?? null) !!}</p>
+            <div class="cinematic-hero__description">{!! rich_html($hero->description ?? null) !!}</div>
             @endif
             <div class="cinematic-hero__scroll-hint" aria-hidden="true">
                 <span class="cinematic-hero__scroll-text">Scroll to explore</span>
@@ -121,10 +125,11 @@
             @if(count($cards ?? []))
                 @foreach($cards as $i => $item)
                 @if(! is_array($item)) @continue @endif
+                @php $isComingSoon = (bool) ($item['coming_soon'] ?? false); @endphp
                 <article class="pp-row @if($loop->even) pp-row--reverse @endif"
                          data-testid="pp-row-{{ $loop->iteration }}">
                     <div class="pp-row__media">
-                        @if($url = media_url($item['image'] ?? $item['image_url'] ?? null))
+                        @if($url = settings_media_url($item, 'image') ?: media_url($item['image_url'] ?? null))
                         <img class="pp-row__img" src="{{ $url }}" alt="{{ $item['title'] ?? 'Pathway programme' }}" loading="lazy">
                         @else
                         <div class="pp-row__img pp-row__img--placeholder">
@@ -136,11 +141,18 @@
 
                     <div class="pp-row__content">
                         <span class="pp-row__kicker">Pathway {{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}</span>
+                        @if($isComingSoon)
+                        <span class="pp-row__badge">Coming Soon</span>
+                        @endif
                         <h3 class="pp-row__title">{{ $item['title'] ?? '' }}</h3>
                         @if(!empty($item['desc']))
-                        <p class="pp-row__desc">{!! rich_html($item['desc'] ?? null) !!}</p>
+                        <div class="pp-row__desc">{!! rich_html($item['desc'] ?? null) !!}</div>
                         @endif
-                        @if($href = edu_href($item['url'] ?? null))
+                        @if($isComingSoon)
+                        <span class="pp-row__cta pp-row__cta--disabled" aria-disabled="true" role="link" tabindex="-1">
+                            <span>Coming Soon</span>
+                        </span>
+                        @elseif($href = slug_href($item['slug'] ?? null))
                         <a href="{{ $href }}" class="pp-row__cta">
                             <span>{{ $pathwayPrograms->pathways_cta_label ?? 'Explore Programme' }}</span>
                             <span class="pp-row__cta-icon" data-lucide="arrow-right" aria-hidden="true"></span>

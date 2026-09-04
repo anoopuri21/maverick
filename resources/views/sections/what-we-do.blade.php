@@ -4,7 +4,7 @@
       <div class="wwd__header-left">
       @if(request()->routeIs('home'))  
         <div class="section-label">
-          <span>What We Do</span>
+          <span>{{ $whatWeDo->label ?? 'What We Do' }}</span>
         </div>
       @endif
         <h2 class="wwd__heading section-title">
@@ -21,9 +21,9 @@
         </h2>
       </div>
       <div class="wwd__header-right">
-        <p class="wwd__context body-text fade-up">
+        <div class="wwd__context body-text fade-up">
           {!! rich_html($whatWeDo->context_text ?? null) !!}
-        </p>
+        </div>
       </div>
     </div>
 
@@ -33,9 +33,9 @@
         <div class="wwd__card-inner">
           <span class="wwd__card-index accent-text">01</span>
           <h3 class="wwd__card-title">{{ $whatWeDo->pillar1_title }}</h3>
-          <p class="wwd__card-desc">
+          <div class="wwd__card-desc">
             {!! rich_html($whatWeDo->pillar1_desc ?? null) !!}
-          </p>
+          </div>
           <ul class="wwd__card-list">
             <li class="wwd__card-item">{{ $whatWeDo->pillar1_item1 }}</li>
             <li class="wwd__card-item">{{ $whatWeDo->pillar1_item2 }}</li>
@@ -55,9 +55,9 @@
         <div class="wwd__card-inner">
           <span class="wwd__card-index accent-text">02</span>
           <h3 class="wwd__card-title">{{ $whatWeDo->pillar2_title }}</h3>
-          <p class="wwd__card-desc">
+          <div class="wwd__card-desc">
             {!! rich_html($whatWeDo->pillar2_desc ?? null) !!}
-          </p>
+          </div>
           <ul class="wwd__card-list">
             <li class="wwd__card-item">{{ $whatWeDo->pillar2_item1 }}</li>
             <li class="wwd__card-item">{{ $whatWeDo->pillar2_item2 }}</li>
@@ -77,9 +77,9 @@
         <div class="wwd__card-inner">
           <span class="wwd__card-index accent-text">03</span>
           <h3 class="wwd__card-title">{{ $whatWeDo->pillar3_title }}</h3>
-          <p class="wwd__card-desc">
+          <div class="wwd__card-desc">
             {!! rich_html($whatWeDo->pillar3_desc ?? null) !!}
-          </p>
+          </div>
           <ul class="wwd__card-list">
             <li class="wwd__card-item">{{ $whatWeDo->pillar3_item1 }}</li>
             <li class="wwd__card-item">{{ $whatWeDo->pillar3_item2 }}</li>

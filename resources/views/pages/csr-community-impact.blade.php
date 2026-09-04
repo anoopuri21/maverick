@@ -19,6 +19,13 @@
 @endpush
 
 @section('content')
+@php
+    $csrSeo = $csrSeo ?? safe_settings(\App\Settings\CsrSeoSettings::class);
+    $focus = $focus ?? safe_settings(\App\Settings\CsrFocusSettings::class);
+    $gallery = $gallery ?? safe_settings(\App\Settings\CsrGallerySettings::class);
+    $impact = $impact ?? safe_settings(\App\Settings\CsrImpactSettings::class);
+    $scholarship = $scholarship ?? safe_settings(\App\Settings\CsrScholarshipSettings::class);
+@endphp
 <div class="csr-page">
 
     {{-- Abstract ambient/decorative ambient SVGs & washes in navy/red tints --}}
@@ -31,8 +38,8 @@
          ========================================== --}}
     <section class="cinematic-hero cinematic-hero--short" aria-label="CSR Hero">
         <div class="cinematic-hero__bg" aria-hidden="true">
-            @if(filled($hero->background_image))
-            <div class="cinematic-hero__bg-image" style="background-image: url('{{ $hero->background_image }}')"></div>
+            @if(filled($heroBackgroundUrl = settings_media_url($hero, 'background_image')))
+            <div class="cinematic-hero__bg-image" style="background-image: url('{{ $heroBackgroundUrl }}')"></div>
             @endif
             <div class="cinematic-hero__gradient"></div>
             <div class="cinematic-hero__noise"></div>
@@ -74,7 +81,7 @@
             </h1>
             @endif
             @if(html_filled($hero->description ?? null))
-            <p class="cinematic-hero__description">{!! rich_html($hero->description ?? null) !!}</p>
+            <div class="cinematic-hero__description">{!! rich_html($hero->description ?? null) !!}</div>
             @endif
             <div class="cinematic-hero__scroll-hint" aria-hidden="true">
                 <span class="cinematic-hero__scroll-text">Scroll to explore</span>
@@ -93,15 +100,19 @@
                     @if(filled($commitment->label))
                     <div class="section-label"><span>{{ $commitment->label }}</span></div>
                     @endif
-                    <h2 class="csr-section-heading">{{ $commitment->heading }}<span class="csr-text-accent">{{ $commitment->heading_italic }}</span></h2>
+                    <h2 class="csr-section-heading">{{ $commitment->heading ?? '' }}<span class="csr-text-accent">{{ $commitment->heading_italic ?? '' }}</span></h2>
                     @if(html_filled($commitment->body ?? null))
                     <div class="csr-body-text">{!! rich_html($commitment->body ?? null) !!}</div>
                     @endif
+                    <p class="csr-commitment__impact-note">
+                        <strong>1%</strong>
+                        <span>of Maverick’s commitment goes towards charity and community initiatives.</span>
+                    </p>
                 </div>
                 <div class="csr-commitment__visual">
                     <div class="csr-commitment__image-container">
-                        @if(filled($commitment->image_url))
-                        <img src="{{ $commitment->image_url }}" alt="Students and educators community engagement" class="csr-commitment__img" loading="lazy">
+                        @if(filled($commitmentImageUrl = settings_media_url($commitment, 'image_url')))
+                        <img src="{{ $commitmentImageUrl }}" alt="Students and educators community engagement" class="csr-commitment__img" loading="lazy">
                         @endif
                         <div class="csr-decorative-pattern"></div>
                     </div>
@@ -168,8 +179,8 @@
                 @endphp
                 <div class="csr-gallery-card {{ $cardClass }}">
                     <div class="csr-gallery-card__image-wrapper">
-                        @if(filled($item['image'] ?? null))
-                        <img src="{{ $item['image'] }}" alt="{{ $item['title'] ?? '' }}" class="csr-gallery-card__image" loading="lazy">
+                        @if(filled($galleryImageUrl = settings_media_url($item, 'image')))
+                        <img src="{{ $galleryImageUrl }}" alt="{{ $item['title'] ?? '' }}" class="csr-gallery-card__image" loading="lazy">
                         @endif
                     </div>
                     <div class="csr-gallery-card__content">
@@ -252,5 +263,5 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ cached_asset('js/pages/csr-community-impact.js') }}" defer></script>
+    <script src="{{ cached_asset('assets/js/pages/csr-community-impact.js') }}" defer></script>
 @endpush

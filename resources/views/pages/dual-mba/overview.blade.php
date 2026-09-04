@@ -29,6 +29,13 @@
     </div>
     @endif
 
+    @include('pages.dual-mba.credentials', [
+        'enabled' => $hero->credentials_enabled ?? false,
+        'label' => null,
+        'items' => $hero->credentials ?? [],
+        'variant' => 'overview-cards',
+    ])
+
     @if($highlightCards->isNotEmpty() || filled($overview->highlights_heading) || filled($overview->highlights_line))
     <div class="dmba-highlights" data-testid="dmba-highlights-section">
       @if(filled($overview->highlights_heading))

@@ -25,7 +25,6 @@ use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Str;
 use App\Filament\Forms\Components\MediaPicker;
 
@@ -54,7 +53,6 @@ class BlogPostResource extends Resource
                     }),
 
                 TextInput::make('slug')
-                    
                     ->maxLength(255),
 
                 Textarea::make('excerpt')
@@ -107,7 +105,7 @@ class BlogPostResource extends Resource
 
                 TextInput::make('author_avatar_url')
                     ->label('Author Avatar URL')
-                    ->url()->nullable(),
+                    ->nullable(),
 
                 RichEditor::make('author_bio')
                     ->maxLength(500)

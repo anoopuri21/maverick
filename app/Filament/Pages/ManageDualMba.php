@@ -2,9 +2,10 @@
 
 namespace App\Filament\Pages;
 
-use App\Filament\Concerns\EnsuresSettingsRowsExist;
-use App\Filament\Concerns\HandlesCloudinaryImageFields;
+use App\Filament\Concerns\HydratesRepeaterMediaFields;
+use App\Filament\Concerns\SavesSettingsGroups;
 use App\Filament\Forms\Components\MediaPicker;
+use App\Filament\Support\RepeaterNormalizer;
 use App\Settings\DualMbaEmployersSettings;
 use App\Settings\DualMbaFaqSettings;
 use App\Settings\DualMbaFinalCtaSettings;
@@ -36,8 +37,8 @@ use Throwable;
 
 class ManageDualMba extends Page implements HasForms
 {
-    use HandlesCloudinaryImageFields;
-    use EnsuresSettingsRowsExist;
+    use HydratesRepeaterMediaFields;
+    use SavesSettingsGroups;
     use InteractsWithForms;
 
     protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
@@ -53,12 +54,16 @@ class ManageDualMba extends Page implements HasForms
         $hero = app(DualMbaHeroSettings::class)->toArray();
         $hero['stats'] = array_values($hero['stats'] ?? []);
         $hero['ctas'] = array_values($hero['ctas'] ?? []);
+        $hero['credentials'] = array_values($hero['credentials'] ?? []);
 
         $overview = app(DualMbaOverviewSettings::class)->toArray();
         $overview['cards'] = array_values($overview['cards'] ?? []);
 
         $twice = app(DualMbaTwiceSettings::class)->toArray();
-        $twice['slides'] = array_values($twice['slides'] ?? []);
+        $twice['slides'] = $this->hydrateRepeaterMediaFields(
+            array_values($twice['slides'] ?? []),
+            'image'
+        );
 
         $why = app(DualMbaWhySettings::class)->toArray();
         $why['cards'] = array_values($why['cards'] ?? []);
@@ -67,11 +72,17 @@ class ManageDualMba extends Page implements HasForms
         $specs['cards'] = array_values($specs['cards'] ?? []);
 
         $employers = app(DualMbaEmployersSettings::class)->toArray();
-        $employers['collage'] = array_values($employers['collage'] ?? []);
+        $employers['collage'] = $this->hydrateRepeaterMediaFields(
+            array_values($employers['collage'] ?? []),
+            'image'
+        );
         $employers['items'] = $this->wrapStringList($employers['items'] ?? []);
 
         $testimonials = app(DualMbaTestimonialsSettings::class)->toArray();
-        $testimonials['items'] = array_values($testimonials['items'] ?? []);
+        $testimonials['items'] = $this->hydrateRepeaterMediaFields(
+            array_values($testimonials['items'] ?? []),
+            'avatar'
+        );
 
         $process = app(DualMbaProcessSettings::class)->toArray();
         $process['steps'] = array_values($process['steps'] ?? []);
@@ -112,14 +123,41 @@ class ManageDualMba extends Page implements HasForms
                                 TextInput::make('hero.headline_line2')->label('Headline Line 2'),
                                 TextInput::make('hero.headline_italic')->label('Headline (Italic)'),
                                 RichEditor::make('hero.sub')->label('Subheading')->columnSpanFull(),
+                                Toggle::make('hero.credentials_enabled')
+                                    ->label('Show UK / Swiss Credentials')
+                                    ->inline(false),
+                                TextInput::make('hero.credentials_label')
+                                    ->label('Credentials Label (optional)')
+                                    ->placeholder('Your Dual Qualification'),
+                                Repeater::make('hero.credentials')
+                                    ->label('Dual Credentials')
+                                    ->schema([
+                                        Select::make('iso2')
+                                            ->label('Country')
+                                            ->options([
+                                                'gb' => 'United Kingdom',
+                                                'ch' => 'Switzerland',
+                                            ])
+                                            ->required(),
+                                        TextInput::make('title')->label('Credential Title')->required(),
+                                        TextInput::make('subtitle')->label('Subtitle (optional)'),
+                                    ])
+                                    ->addable(false)
+                                    ->deletable(false)
+                                    ->reorderable(false)
+                                    ->collapsible()
+                                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
+                                    ->columnSpanFull(),
                                 TextInput::make('hero.background_image')->hidden(),
                                 MediaPicker::forField('hero.background_image', 'dual-mba/hero')
                     ->label('Background Image')
                     ->columnSpanFull(),
+                                TextInput::make('hero.background_image_alt')->label('Background Image Alt Text'),
                                 TextInput::make('hero.visual_image')->hidden(),
                                 MediaPicker::forField('hero.visual_image', 'dual-mba/hero')
                     ->label('Visual Image')
                     ->columnSpanFull(),
+                                TextInput::make('hero.visual_image_alt')->label('Visual Image Alt Text'),
                                 Grid::make(2)->schema([
                                     TextInput::make('hero.badge_title')->label('Badge Title'),
                                     TextInput::make('hero.badge_sub')->label('Badge Subtitle'),
@@ -216,6 +254,7 @@ class ManageDualMba extends Page implements HasForms
                                         $this->iconSelect(),
                                         TextInput::make('title'),
                                         TextInput::make('tag')->label('Tag'),
+                                        TextInput::make('url')->label('Link URL (optional)'),
                                     ])
                     ->reorderable()
                     ->collapsible()
@@ -245,6 +284,9 @@ class ManageDualMba extends Page implements HasForms
                     ->collapsible()
                     ->itemLabel(fn (array $state): ?string => $state['role'] ?? $state['alt'] ?? 'Image')
                     ->columnSpanFull(),
+                                TextInput::make('employers.counter_value')
+                                    ->label('Counter Value (optional)')
+                                    ->helperText('Leave empty to use competency list count. Use a number for animation (e.g. 8) or text (e.g. 8+).'),
                                 TextInput::make('employers.counter_label')->label('Counter Label (HTML allowed for line break)')->columnSpanFull(),
                                 TextInput::make('employers.label')->label('Section Label'),
                                 TextInput::make('employers.heading')->label('Heading'),
@@ -326,7 +368,9 @@ class ManageDualMba extends Page implements HasForms
                                 $this->ctaRepeater('finalCta.ctas'),
                                 Grid::make(2)->schema([
                                     TextInput::make('finalCta.brochure_label')->label('Brochure Link Label'),
-                                    TextInput::make('finalCta.brochure_url')->label('Brochure Link URL'),
+                                    TextInput::make('finalCta.brochure_url')
+                                        ->label('Brochure Link URL')
+                                        ->helperText('Leave empty or use # to hide the brochure link on the page.'),
                                 ]),
                             ]),
 
@@ -374,66 +418,92 @@ class ManageDualMba extends Page implements HasForms
         try {
             $data = $this->form->getState();
 
+            $existingTwice = app(DualMbaTwiceSettings::class)->toArray();
+            $existingEmployers = app(DualMbaEmployersSettings::class)->toArray();
+            $existingTestimonials = app(DualMbaTestimonialsSettings::class)->toArray();
+
             $hero = $this->syncImageIfSelected($data['hero'] ?? [], 'background_image');
             $hero = $this->syncImageIfSelected($hero, 'visual_image');
-            $hero['stats'] = array_values($hero['stats'] ?? []);
-            $hero['ctas'] = array_values($hero['ctas'] ?? []);
+            $hero['credentials'] = RepeaterNormalizer::stripEmptyRows($hero['credentials'] ?? [], ['title']);
+            $hero['stats'] = RepeaterNormalizer::stripEmptyRows($hero['stats'] ?? []);
+            $hero['ctas'] = RepeaterNormalizer::stripEmptyRows($hero['ctas'] ?? [], ['label', 'url']);
 
             $overview = $data['overview'] ?? [];
-            $overview['cards'] = array_values($overview['cards'] ?? []);
+            $overview['cards'] = RepeaterNormalizer::stripEmptyRows($overview['cards'] ?? []);
 
             $twice = $data['twice'] ?? [];
+            $twice['slides'] = $this->hydrateRepeaterMediaFields($twice['slides'] ?? [], 'image');
             foreach ($twice['slides'] ?? [] as &$slide) {
                 $slide = $this->syncImageIfSelected($slide, 'image');
             }
             unset($slide);
-            $twice['slides'] = array_values($twice['slides'] ?? []);
+            $twice['slides'] = $this->preserveRepeaterImageFields(
+                RepeaterNormalizer::stripEmptyRows($twice['slides'] ?? []),
+                $existingTwice['slides'] ?? [],
+                'image'
+            );
 
             $why = $data['why'] ?? [];
-            $why['cards'] = array_values($why['cards'] ?? []);
+            $why['cards'] = RepeaterNormalizer::stripEmptyRows($why['cards'] ?? []);
 
             $specs = $data['specs'] ?? [];
-            $specs['cards'] = array_values($specs['cards'] ?? []);
+            $specs['cards'] = RepeaterNormalizer::stripEmptyRows($specs['cards'] ?? []);
 
             $employers = $data['employers'] ?? [];
+            $employers['collage'] = $this->hydrateRepeaterMediaFields($employers['collage'] ?? [], 'image');
             foreach ($employers['collage'] ?? [] as &$item) {
                 $item = $this->syncImageIfSelected($item, 'image');
             }
             unset($item);
-            $employers['collage'] = array_values($employers['collage'] ?? []);
+            $employers['collage'] = $this->preserveRepeaterImageFields(
+                RepeaterNormalizer::stripEmptyRows($employers['collage'] ?? []),
+                $existingEmployers['collage'] ?? [],
+                'image'
+            );
             $employers['items'] = $this->normalizeStringList($employers['items'] ?? []);
 
             $testimonials = $data['testimonials'] ?? [];
+            $testimonials['items'] = $this->hydrateRepeaterMediaFields($testimonials['items'] ?? [], 'avatar');
             foreach ($testimonials['items'] ?? [] as &$item) {
                 $item = $this->syncImageIfSelected($item, 'avatar');
             }
             unset($item);
-            $testimonials['items'] = array_values($testimonials['items'] ?? []);
+            $testimonials['items'] = $this->preserveRepeaterImageFields(
+                RepeaterNormalizer::stripEmptyRows($testimonials['items'] ?? []),
+                $existingTestimonials['items'] ?? [],
+                'avatar'
+            );
 
             $process = $data['process'] ?? [];
-            $process['steps'] = array_values($process['steps'] ?? []);
+            $process['steps'] = RepeaterNormalizer::stripEmptyRows($process['steps'] ?? []);
 
             $faq = $data['faq'] ?? [];
-            $faq['items'] = array_values($faq['items'] ?? []);
+            $faq['items'] = RepeaterNormalizer::stripEmptyRows($faq['items'] ?? [], ['question']);
 
             $finalCta = $this->syncImageIfSelected($data['finalCta'] ?? [], 'background_image');
-            $finalCta['ctas'] = array_values($finalCta['ctas'] ?? []);
+            $finalCta['ctas'] = RepeaterNormalizer::stripEmptyRows($finalCta['ctas'] ?? [], ['label', 'url']);
 
             $seo = $data['seo'] ?? [];
             $seo = $this->syncImageIfSelected($seo, 'og_image_url');
             $seo = $this->syncImageIfSelected($seo, 'twitter_image_url');
 
-            $this->saveSettingsGroup(DualMbaHeroSettings::class, $hero);
-            $this->saveSettingsGroup(DualMbaOverviewSettings::class, $overview);
-            $this->saveSettingsGroup(DualMbaTwiceSettings::class, $twice);
-            $this->saveSettingsGroup(DualMbaWhySettings::class, $why);
-            $this->saveSettingsGroup(DualMbaSpecsSettings::class, $specs);
-            $this->saveSettingsGroup(DualMbaEmployersSettings::class, $employers);
-            $this->saveSettingsGroup(DualMbaTestimonialsSettings::class, $testimonials);
-            $this->saveSettingsGroup(DualMbaProcessSettings::class, $process);
-            $this->saveSettingsGroup(DualMbaFaqSettings::class, $faq);
-            $this->saveSettingsGroup(DualMbaFinalCtaSettings::class, $finalCta);
-            $this->saveSettingsGroup(DualMbaSeoSettings::class, $seo);
+            $results = [
+                $this->saveSettingsGroup(DualMbaHeroSettings::class, $hero),
+                $this->saveSettingsGroup(DualMbaOverviewSettings::class, $overview),
+                $this->saveSettingsGroup(DualMbaTwiceSettings::class, $twice),
+                $this->saveSettingsGroup(DualMbaWhySettings::class, $why),
+                $this->saveSettingsGroup(DualMbaSpecsSettings::class, $specs),
+                $this->saveSettingsGroup(DualMbaEmployersSettings::class, $employers),
+                $this->saveSettingsGroup(DualMbaTestimonialsSettings::class, $testimonials),
+                $this->saveSettingsGroup(DualMbaProcessSettings::class, $process),
+                $this->saveSettingsGroup(DualMbaFaqSettings::class, $faq),
+                $this->saveSettingsGroup(DualMbaFinalCtaSettings::class, $finalCta),
+                $this->saveSettingsGroup(DualMbaSeoSettings::class, $seo),
+            ];
+
+            if (in_array(false, $results, true)) {
+                return;
+            }
 
             Notification::make()
                 ->title('Dual MBA page saved')
@@ -450,17 +520,6 @@ class ManageDualMba extends Page implements HasForms
                 ->danger()
                 ->send();
         }
-    }
-
-    /** @param  class-string  $settingsClass */
-    protected function saveSettingsGroup(string $settingsClass, array $payload): void
-    {
-        $settings = app($settingsClass);
-        $payload = $this->ensureAllSettingsProperties($settings, $payload);
-        $payload = $this->preserveExistingImageFields($payload, $settings);
-        $this->ensureSettingsRowsExist($settings);
-        app()->forgetInstance($settingsClass);
-        app($settingsClass)->fill($payload)->save();
     }
 
     protected function ctaRepeater(string $name): Repeater
@@ -500,15 +559,6 @@ class ManageDualMba extends Page implements HasForms
             ->options(DualMbaIcons::options())
             ->searchable()
             ->nullable();
-    }
-
-    protected function syncImageIfSelected(array $payload, string $field): array
-    {
-        if (! empty($payload["{$field}_asset_id"])) {
-            return MediaPicker::syncFieldFromAsset($payload, $field);
-        }
-
-        return $payload;
     }
 
     protected function wrapStringList(array $items): array

@@ -1,16 +1,17 @@
 {{-- ===== HERO — Cinematic World Tour ===== --}}
 @php
+    $heroBackgroundUrl = settings_media_url($hero, 'background_image');
     $showHero = filled($hero->tag ?? null)
         || filled($hero->heading ?? null)
         || filled($hero->heading_italic ?? null)
         || html_filled($hero->description ?? null)
-        || filled($hero->background_image ?? null);
+        || filled($heroBackgroundUrl);
 @endphp
 @if($showHero)
 <section id="edu-hero" class="edu-hero" aria-label="Edutainment Hero">
   <div class="edu-hero__bg" aria-hidden="true">
-    @if(filled($hero->background_image))
-    <div class="edu-hero__bg-image" style="background-image: url('{{ media_url($hero->background_image) }}')"></div>
+    @if(filled($heroBackgroundUrl))
+    <div class="edu-hero__bg-image" style="background-image: url('{{ $heroBackgroundUrl }}')"></div>
     @endif
     <div class="edu-hero__gradient"></div>
     <div class="edu-hero__noise"></div>

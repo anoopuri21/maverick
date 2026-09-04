@@ -22,6 +22,8 @@ class MediaLibraryModal extends Component
 
     public ?string $folder = null;
 
+    public ?int $selectedAssetId = null;
+
     public string $initialTab = 'browse';
 
     public string $tab = 'browse';
@@ -36,10 +38,11 @@ class MediaLibraryModal extends Component
 
     public bool $uploading = false;
 
-    public function mount(string $statePath, ?string $folder = null, string $initialTab = 'browse'): void
+    public function mount(string $statePath, ?string $folder = null, string $initialTab = 'browse', ?int $selectedAssetId = null): void
     {
         $this->statePath = $statePath;
         $this->folder = $folder;
+        $this->selectedAssetId = $selectedAssetId;
         $this->initialTab = in_array($initialTab, ['browse', 'upload'], true) ? $initialTab : 'browse';
         $this->tab = $this->initialTab;
         $this->folderFilter = $folder;
@@ -91,6 +94,7 @@ class MediaLibraryModal extends Component
             return;
         }
 
+        $this->selectedAssetId = $assetId;
         $this->emitSelection($asset->id);
     }
 
@@ -141,8 +145,8 @@ class MediaLibraryModal extends Component
             modalId: null,
         );
 
-        // Close the Filament form-component action modal hosting this component.
-        $this->js('setTimeout(() => document.querySelector(".fi-modal-close-btn")?.click(), 50)');
+        // Close only the topmost (library) modal — not the parent Edit/Create modal underneath.
+        $this->js('setTimeout(() => [...document.querySelectorAll(".fi-modal-close-btn")].at(-1)?.click(), 50)');
     }
 
     #[Computed]
@@ -172,7 +176,11 @@ class MediaLibraryModal extends Component
         }
 
         if (! $this->showAllFolders && filled($this->folderFilter)) {
-            $query->where('folder', $this->folderFilter);
+            $filter = $this->folderFilter;
+            $query->where(function ($q) use ($filter) {
+                $q->where('folder', $filter)
+                    ->orWhere('folder', 'like', '%/'.$filter);
+            });
         }
 
         return view('livewire.media-library-modal', [

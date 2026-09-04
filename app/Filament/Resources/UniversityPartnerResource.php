@@ -47,10 +47,18 @@ class UniversityPartnerResource extends Resource
                     ->schema([
                         \Filament\Forms\Components\Grid::make(3)->schema([
                             \Filament\Forms\Components\TextInput::make('latitude')
-                                ->numeric()->nullable()
+                                ->numeric()
+                                ->nullable()
+                                ->minValue(-90)
+                                ->maxValue(90)
+                                ->step('any')
                                 ->helperText('e.g. 25.2048'),
                             \Filament\Forms\Components\TextInput::make('longitude')
-                                ->numeric()->nullable()
+                                ->numeric()
+                                ->nullable()
+                                ->minValue(-180)
+                                ->maxValue(180)
+                                ->step('any')
                                 ->helperText('e.g. 55.2708'),
                             \Filament\Forms\Components\Toggle::make('is_hub')
                                 ->label('Main Hub')
@@ -64,9 +72,13 @@ class UniversityPartnerResource extends Resource
                             ->helperText('e.g. AACSB Accredited, QAA Reviewed')
                             ->columnSpanFull(),
                         MediaPicker::forField('logo_url', 'university-partners')
-                    ->label('Logo')
-                    ->columnSpanFull(),
-                        \Filament\Forms\Components\TextInput::make('website_url')->url()->nullable(),
+                            ->label('Logo')
+                            ->columnSpanFull(),
+                        MediaPicker::forField('campus_image_url', 'university-partners/campuses')
+                            ->label('Campus image')
+                            ->helperText('Shown in the Program Overview and About the University sections on linked program detail pages.')
+                            ->columnSpanFull(),
+                        \Filament\Forms\Components\TextInput::make('website_url')->nullable(),
                         \Filament\Forms\Components\RichEditor::make('description')->columnSpanFull(),
                     ]),
 
@@ -75,7 +87,6 @@ class UniversityPartnerResource extends Resource
                         \Filament\Forms\Components\TextInput::make('slug')
                             ->label('Slug / Initials')
                             ->helperText('Unique URL identifier (e.g. gau). Used to disambiguate programs with the same name across universities.')
-                            
                             ->columnSpanFull(),
                         \Filament\Forms\Components\Placeholder::make('programs_link')
                             ->label('Programs Offered')
@@ -113,7 +124,12 @@ class UniversityPartnerResource extends Resource
                     ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('country'),
-                ImageColumn::make('logo_url')->size(50),
+                ImageColumn::make('logo_url')
+                    ->label('Logo')
+                    ->size(50),
+                ImageColumn::make('campus_image_url')
+                    ->label('Campus')
+                    ->size(50),
                 Tables\Columns\IconColumn::make('is_active')->boolean(),
             ])
             ->filters([

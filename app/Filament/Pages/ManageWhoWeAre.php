@@ -36,6 +36,7 @@ class ManageWhoWeAre extends SettingsPage
 
             Section::make('Heading')
                 ->schema([
+                    TextInput::make('label')->label('Section Label'),
                     Grid::make(2)->schema([
                         TextInput::make('heading_line1'),
                         TextInput::make('heading_line2')

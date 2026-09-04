@@ -1,11 +1,12 @@
 {{-- ===== S3: LEARNING BEYOND THE CLASSROOM ===== --}}
 @php
     $learningCards = collect($learning->cards ?? [])->filter(fn ($card) => filled($card['title'] ?? null));
+    $learningImageUrl = settings_media_url($learning, 'image');
     $showLearning = filled($learning->label ?? null)
         || filled($learning->title ?? null)
         || filled($learning->title_italic ?? null)
         || html_filled($learning->body ?? null)
-        || filled($learning->image ?? null)
+        || filled($learningImageUrl)
         || $learningCards->isNotEmpty();
 @endphp
 @if($showLearning)
@@ -26,9 +27,9 @@
     </div>
     @endif
 
-    @if(filled($learning->image))
+    @if(filled($learningImageUrl))
     <div class="edu-learning-beyond__media fade-up">
-      <img src="{{ media_url($learning->image) }}" alt="{{ $learning->title ?? 'Learning beyond the classroom' }}" loading="lazy" />
+      <img src="{{ $learningImageUrl }}" alt="{{ $learning->title ?? 'Learning beyond the classroom' }}" loading="lazy" />
     </div>
     @endif
 

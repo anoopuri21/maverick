@@ -8,6 +8,7 @@ class DualMbaEmployersSettings extends Settings
 {
     public array $collage = [];
     public ?string $counter_label = null;
+    public ?string $counter_value = null;
     public ?string $label = null;
     public ?string $heading = null;
     public ?string $heading_italic = null;

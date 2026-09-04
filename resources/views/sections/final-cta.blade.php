@@ -1,4 +1,5 @@
 @php
+    $finalCta = $finalCta ?? null;
     $ctaPrimaryHref = edu_href($finalCta->btn_primary_url ?? null);
     $ctaSecondaryHref = edu_href($finalCta->btn_secondary_url ?? null);
     $ctaPhone = $finalCta->phone_number ?? null;
@@ -6,7 +7,7 @@
 <section id="final-cta" class="final-cta section-wrapper section--dark" aria-label="Final Call to Action">
   @isset($finalCta)
   <div class="container final-cta__inner">
-    <div class="section-label"><span>Take The Next Step</span></div>
+    <div class="section-label"><span>{{ $finalCta->label ?? '' }}</span></div>
     @if(filled($finalCta->heading ?? null))
     <h2 class="final-cta__heading section-title">
       <span class="text-reveal-wrapper">

@@ -18,6 +18,10 @@
 @endpush
 
 @section('content')
+@php
+    $contactPage = $contactPage ?? safe_settings(\App\Settings\ContactPageSettings::class);
+    $contactSeo = $contactSeo ?? safe_settings(\App\Settings\ContactSeoSettings::class);
+@endphp
 <section class="contact-section">
     <div class="container">
 
@@ -25,9 +29,9 @@
         <div class="contact-hero" data-scroll-reveal>
             <span class="contact-hero__eyebrow">{{ $contactPage->eyebrow ?: 'Contact Us' }}</span>
             <h1 class="contact-hero__title">{{ $contactPage->heading ?: "Let's Start a Conversation" }}</h1>
-            <p class="contact-hero__desc">
+            <div class="contact-hero__desc">
                 {!! html_filled($contactPage->description ?? null) ? rich_html($contactPage->description ?? null) : 'Whether you are exploring our executive postgraduate pathways, seeking a corporate partnership, or require technical admissions support, our advisory team is here to assist you.' !!}
-            </p>
+            </div>
         </div>
 
         {{-- B) MAIN SPLIT SECTION --}}
@@ -36,39 +40,81 @@
             {{-- LEFT COLUMN — Contact Information --}}
             <div class="contact-info-col">
 
-                {{-- Address Card --}}
-                @if(!empty($site->address))
-                    <x-contact.info-card
-                        icon="address"
-                        :label="$contactPage->label_address ?? 'Campus Location'"
-                        :value="$site->address"
-                        :link="'https://www.google.com/maps/search/?api=1&query=' . urlencode($site->address)"
-                        linkText="Get Directions"
-                    />
+                @if(!empty($site->address) || !empty($site->phone) || !empty($site->phone_secondary) || !empty($site->email))
+                <div class="contact-campus">
+                    <h2 class="contact-campus__title">
+                        <span class="contact-campus__flag" aria-hidden="true">🇦🇪</span>
+                        <span>UAE Campus</span>
+                    </h2>
+
+                    @if(!empty($site->address))
+                        <x-contact.info-card
+                            icon="address"
+                            :label="$contactPage->label_address ?? 'Campus Location'"
+                            :value="$site->address"
+                            :link="'https://www.google.com/maps/search/?api=1&query=' . urlencode($site->address)"
+                            linkText="Get Directions"
+                        />
+                    @endif
+
+                    @if(!empty($site->phone))
+                        <x-contact.info-card
+                            icon="phone"
+                            :label="$contactPage->label_phone ?? 'Admissions & Hotlines'"
+                            :value="$site->phone"
+                            :secondary="$site->phone_secondary ?? null"
+                            :link="'tel:' . str_replace(' ', '', $site->phone)"
+                        />
+                    @endif
+
+                    @if(!empty($site->email))
+                        <x-contact.info-card
+                            icon="email"
+                            :label="$contactPage->label_email ?? 'Email Inquiry'"
+                            :value="$site->email"
+                            :link="'mailto:' . $site->email"
+                        />
+                    @endif
+                </div>
                 @endif
 
-                {{-- Email Card --}}
-                @if(!empty($site->email))
-                    <x-contact.info-card
-                        icon="email"
-                        :label="$contactPage->label_email ?? 'Email Inquiry'"
-                        :value="$site->email"
-                        :link="'mailto:' . $site->email"
-                    />
+                @if(!empty($site->uk_address) || !empty($site->uk_phone) || !empty($site->uk_email))
+                <div class="contact-campus">
+                    <h2 class="contact-campus__title">
+                        <span class="contact-campus__flag" aria-hidden="true">🇬🇧</span>
+                        <span>UK Campus</span>
+                    </h2>
+
+                    @if(!empty($site->uk_address))
+                        <x-contact.info-card
+                            icon="address"
+                            :label="$contactPage->label_address ?? 'Campus Location'"
+                            :value="$site->uk_address"
+                            :link="'https://www.google.com/maps/search/?api=1&query=' . urlencode($site->uk_address)"
+                            linkText="Get Directions"
+                        />
+                    @endif
+
+                    @if(!empty($site->uk_phone))
+                        <x-contact.info-card
+                            icon="phone"
+                            :label="$contactPage->label_phone ?? 'Admissions & Hotlines'"
+                            :value="$site->uk_phone"
+                            :link="'tel:' . str_replace(' ', '', $site->uk_phone)"
+                        />
+                    @endif
+
+                    @if(!empty($site->uk_email))
+                        <x-contact.info-card
+                            icon="email"
+                            :label="$contactPage->label_email ?? 'Email Inquiry'"
+                            :value="$site->uk_email"
+                            :link="'mailto:' . $site->uk_email"
+                        />
+                    @endif
+                </div>
                 @endif
 
-                {{-- Phone Card --}}
-                @if(!empty($site->phone))
-                    <x-contact.info-card
-                        icon="phone"
-                        :label="$contactPage->label_phone ?? 'Admissions & Hotlines'"
-                        :value="$site->phone"
-                        :secondary="$site->phone_secondary ?? null"
-                        :link="'tel:' . str_replace(' ', '', $site->phone)"
-                    />
-                @endif
-
-                {{-- Office Hours Card --}}
                 @if(!empty($site->office_hours))
                     <x-contact.info-card
                         icon="office_hours"
@@ -77,7 +123,15 @@
                     />
                 @endif
 
-                {{-- Social Icons --}}
+                @if(!empty($site->whatsapp_number))
+                    <x-contact.info-card
+                        icon="whatsapp"
+                        label="WhatsApp"
+                        :value="'+' . ltrim($site->whatsapp_number, '+')"
+                        :link="'https://wa.me/' . $site->whatsapp_number"
+                    />
+                @endif
+
                 <div class="contact-social-section" data-scroll-reveal>
                     <span class="contact-info-card__label" style="display: block; margin: 0 0 12px 12px;">{{ $contactPage->label_social ?? 'Follow Our Insights' }}</span>
                     <x-contact.social-icons :site="$site" />
@@ -214,8 +268,15 @@
         </div>
 
         {{-- C) MAP SECTION --}}
-        @if(!empty($site->address))
-            <x-contact.map :address="$site->address" />
+        @if(!empty($site->address) || !empty($site->uk_address))
+            <div class="contact-maps-grid">
+                @if(!empty($site->address))
+                    <x-contact.map :address="$site->address" title="UAE Campus" />
+                @endif
+                @if(!empty($site->uk_address))
+                    <x-contact.map :address="$site->uk_address" title="UK Campus" />
+                @endif
+            </div>
         @endif
 
     </div>

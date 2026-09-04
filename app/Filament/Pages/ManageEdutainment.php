@@ -2,8 +2,8 @@
 
 namespace App\Filament\Pages;
 
-use App\Filament\Concerns\EnsuresSettingsRowsExist;
-use App\Filament\Concerns\HandlesCloudinaryImageFields;
+use App\Filament\Concerns\HydratesRepeaterMediaFields;
+use App\Filament\Concerns\SavesSettingsGroups;
 use App\Filament\Forms\Components\MediaPicker;
 use App\Settings\EdutainmentExperiencesSettings;
 use App\Settings\EdutainmentFaqSettings;
@@ -38,8 +38,8 @@ use Throwable;
 
 class ManageEdutainment extends Page implements HasForms
 {
-    use HandlesCloudinaryImageFields;
-    use EnsuresSettingsRowsExist;
+    use HydratesRepeaterMediaFields;
+    use SavesSettingsGroups;
     use InteractsWithForms;
 
     protected static ?string $navigationIcon = 'heroicon-o-globe-alt';
@@ -71,6 +71,7 @@ class ManageEdutainment extends Page implements HasForms
 
             return $card;
         }, $programmes['cards'] ?? []));
+        $programmes['cards'] = $this->hydrateRepeaterMediaFields($programmes['cards'], 'image');
         $programmes['china_items'] = array_values($programmes['china_items'] ?? []);
 
         $themes = app(EdutainmentThemesSettings::class)->toArray();
@@ -434,14 +435,21 @@ class ManageEdutainment extends Page implements HasForms
             $whoFor['cards'] = array_values($whoFor['cards'] ?? []);
             $whoFor['ctas'] = array_values($whoFor['ctas'] ?? []);
 
+            $existingProgrammes = app(EdutainmentProgrammesSettings::class)->toArray();
+
             $programmes = $data['programmes'] ?? [];
+            $programmes['cards'] = $this->hydrateRepeaterMediaFields($programmes['cards'] ?? [], 'image');
             foreach ($programmes['cards'] ?? [] as &$card) {
                 $card = $this->syncImageIfSelected($card, 'image');
                 $card['bullets'] = $this->normalizeStringList($card['bullets'] ?? []);
                 $card['is_featured'] = (bool) ($card['is_featured'] ?? false);
             }
             unset($card);
-            $programmes['cards'] = array_values($programmes['cards'] ?? []);
+            $programmes['cards'] = $this->preserveRepeaterImageFields(
+                array_values($programmes['cards'] ?? []),
+                $existingProgrammes['cards'] ?? [],
+                'image'
+            );
             $programmes['china_items'] = array_values($programmes['china_items'] ?? []);
 
             $themes = $data['themes'] ?? [];
@@ -508,17 +516,6 @@ class ManageEdutainment extends Page implements HasForms
         }
     }
 
-    /** @param  class-string  $settingsClass */
-    protected function saveSettingsGroup(string $settingsClass, array $payload): void
-    {
-        $settings = app($settingsClass);
-        $payload = $this->ensureAllSettingsProperties($settings, $payload);
-        $payload = $this->preserveExistingImageFields($payload, $settings);
-        $this->ensureSettingsRowsExist($settings);
-        app()->forgetInstance($settingsClass);
-        app($settingsClass)->fill($payload)->save();
-    }
-
 
     protected function sectionHeaderFields(string $prefix): array
     {
@@ -568,15 +565,6 @@ class ManageEdutainment extends Page implements HasForms
             ->options(EdutainmentIcons::options())
             ->searchable()
             ->nullable();
-    }
-
-    protected function syncImageIfSelected(array $payload, string $field): array
-    {
-        if (! empty($payload["{$field}_asset_id"])) {
-            return MediaPicker::syncFieldFromAsset($payload, $field);
-        }
-
-        return $payload;
     }
 
     protected function wrapStringList(array $items): array

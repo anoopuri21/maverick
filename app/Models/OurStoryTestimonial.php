@@ -11,6 +11,9 @@ class OurStoryTestimonial extends Model
 
     protected $fillable = [
         'name',
+        'organisation',
+        'position',
+        'country',
         'rating',
         'testimonial',
         'photo',

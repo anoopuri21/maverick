@@ -22,8 +22,13 @@
 <div class="page-gup gup">
 
 @php
-    $whyItems = collect($whyPartnerships->items ?? []);
-    $benefitItems = collect($benefits->items ?? []);
+    $partnerUniversities = collect($partnerUniversities ?? []);
+    $galleryItems = collect($galleryItems ?? []);
+    $galleryCategories = collect($galleryCategories ?? []);
+    $whyPartnerships = $whyPartnerships ?? safe_settings(\App\Settings\GlobalPartnersWhySettings::class);
+    $benefits = $benefits ?? safe_settings(\App\Settings\GlobalPartnersBenefitsSettings::class);
+    $whyItems = collect(settings_array($whyPartnerships->items ?? []));
+    $benefitItems = collect(settings_array($benefits->items ?? []));
 @endphp
 
 {{-- ═══════════════════════════════════════════
@@ -32,7 +37,7 @@
 @if(filled($hero->heading_line1) || filled($hero->heading_italic))
 <section class="cinematic-hero" aria-label="Global University Partners Hero">
     <div class="cinematic-hero__bg" aria-hidden="true">
-        @if($heroBg = media_url($hero->background_image))
+        @if($heroBg = settings_media_url($hero, 'background_image'))
         <div class="cinematic-hero__bg-image" style="background-image: url('{{ $heroBg }}')"></div>
         @endif
         <div class="cinematic-hero__gradient"></div>
@@ -73,10 +78,10 @@
             @if(filled($hero->heading_italic))<em>{{ $hero->heading_italic }}</em>@endif
         </h1>
         @if(filled($hero->description))
-        <p class="cinematic-hero__description">{!! rich_html($hero->description ?? null) !!}</p>
+        <div class="cinematic-hero__description">{!! rich_html($hero->description ?? null) !!}</div>
         @endif
         <div class="cinematic-hero__scroll-hint" aria-hidden="true">
-            <span class="cinematic-hero__scroll-text">Scroll to explore</span>
+            <span class="cinematic-hero__scroll-text">{{ $hero->scroll_hint ?? 'Scroll to explore' }}</span>
             <span class="cinematic-hero__scroll-arrow" data-lucide="chevron-down"></span>
         </div>
     </div>
@@ -100,13 +105,13 @@
                     @if(filled($overview->heading_italic))<em>{{ $overview->heading_italic }}</em>@endif
                 </h2>
                 @if(filled($overview->paragraph))
-                <p class="gup-overview__paragraph">{!! rich_html($overview->paragraph ?? null) !!}</p>
+                <div class="gup-overview__paragraph">{!! rich_html($overview->paragraph ?? null) !!}</div>
                 @endif
 
-                @if($overviewImg = media_url($overview->image))
+                @if($overviewImg = settings_media_url($overview, 'image'))
                 <div class="gup-overview__image-wrapper">
                     <img src="{{ $overviewImg }}"
-                         alt="Partnership"
+                         alt="{{ $overview->image_alt ?? 'Partnership' }}"
                          class="gup-overview__image"
                          loading="lazy">
                 </div>
@@ -173,13 +178,13 @@
 
                     @if(filled($uni->recognition))
                     <div class="gup-uni-card__recognition">
-                        <span class="gup-uni-card__recognition-label">Recognition</span>
-                        <p class="gup-uni-card__recognition-text">{!! rich_html($uni->recognition ?? null) !!}</p>
+                        <span class="gup-uni-card__recognition-label">{{ $cards->recognition_label ?? 'Recognition' }}</span>
+                        <div class="gup-uni-card__recognition-text">{!! rich_html($uni->recognition ?? null) !!}</div>
                     </div>
                     @endif
 
                     <a href="{{ $uni->cta_link }}" class="gup-uni-card__cta btn btn--primary" data-testid="uni-cta-{{ $uni->slug }}">
-                        Explore Programs
+                        {{ $uni->cta_label ?: ($cards->cta_label ?? 'Explore Programs') }}
                     </a>
                 </div>
             </article>
@@ -229,7 +234,7 @@
                     <div class="gup-why-card__content">
                         <h3 class="gup-why-card__title">{{ $item['title'] }}</h3>
                         @if(filled($item['description'] ?? null))
-                        <p class="gup-why-card__description">{!! rich_html($item['description'] ?? null) !!}</p>
+                        <div class="gup-why-card__description">{!! rich_html($item['description'] ?? null) !!}</div>
                         @endif
                     </div>
                     <span class="gup-why-card__number">{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</span>
@@ -275,7 +280,7 @@
                         <div class="gup-benefit__content">
                             <h4 class="gup-benefit__title">{{ $item['title'] }}</h4>
                             @if(filled($item['description'] ?? null))
-                            <p class="gup-benefit__description">{!! rich_html($item['description'] ?? null) !!}</p>
+                            <div class="gup-benefit__description">{!! rich_html($item['description'] ?? null) !!}</div>
                             @endif
                         </div>
                     </li>
@@ -286,8 +291,8 @@
             </div>
 
             @php
-                $benefitsMain = media_url($benefits->main_image);
-                $benefitsSecondary = media_url($benefits->secondary_image);
+                $benefitsMain = settings_media_url($benefits, 'main_image');
+                $benefitsSecondary = settings_media_url($benefits, 'secondary_image');
             @endphp
             @if($benefitsMain || $benefitsSecondary || filled($benefits->stat_number) || filled($benefits->stat_label))
             <div class="gup-benefits__visual">
@@ -296,7 +301,7 @@
                 @if($benefitsMain)
                 <div class="gup-benefits__main-image">
                     <img src="{{ $benefitsMain }}"
-                         alt="Students"
+                         alt="{{ $benefits->main_image_alt ?? 'Students' }}"
                          loading="lazy">
                 </div>
                 @endif
@@ -304,7 +309,7 @@
                 @if($benefitsSecondary)
                 <div class="gup-benefits__secondary-image">
                     <img src="{{ $benefitsSecondary }}"
-                         alt="Students walking"
+                         alt="{{ $benefits->secondary_image_alt ?? 'Students walking' }}"
                          loading="lazy">
                 </div>
                 @endif
@@ -403,5 +408,5 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ cached_asset('js/pages/global-university-partners.js') }}" defer></script>
+    <script src="{{ cached_asset('assets/js/pages/global-university-partners.js') }}" defer></script>
 @endpush

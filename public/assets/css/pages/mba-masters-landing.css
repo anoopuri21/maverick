@@ -1,0 +1,5559 @@
+/* ===== BASE LAYER (was mba-masters-landing.css) ===== */
+/* MBA & Master's landing — Phase 0 foundation
+   Design system: docs/mlp-design-system.md
+   Ban: white form cards, equal stat tiles, pill eyebrows, soft gray-blue “premium” */
+
+.mlp-page {
+  /* Brand */
+  --mlp-blue: var(--color-mba-blue, #0f2983);
+  --mlp-navy: var(--color-mba-dark-blue, #071444);
+  --mlp-red: var(--color-mba-red, #b20202);
+  --mlp-warm: var(--color-warm-white, #f5f0eb);
+  --mlp-ink: var(--color-near-black, #121212);
+  --mlp-white: #fff;
+
+  /* Surfaces — light theme */
+  --mlp-void: #071444;
+  --mlp-paper: #f7f5f1;
+  --mlp-paper-pure: #ffffff;
+  --mlp-surface: #ffffff;
+  --mlp-surface-soft: #f0ebe4;
+  --mlp-glass: rgba(255, 255, 255, 0.82);
+  --mlp-glass-border: rgba(7, 20, 68, 0.14);
+  --mlp-line-dark: rgba(7, 20, 68, 0.12);
+  --mlp-muted-on-dark: rgba(255, 255, 255, 0.78);
+  --mlp-muted-on-paper: rgba(18, 18, 18, 0.62);
+
+  /* Type */
+  --mlp-font-display: var(--font-display, "PP Neue Montreal", sans-serif);
+  --mlp-font-body: var(--font-body, "Poppins", sans-serif);
+
+  /* Motion */
+  --mlp-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --mlp-duration: 0.55s;
+
+  color: var(--mlp-ink);
+  background: var(--mlp-paper);
+  font-family: var(--mlp-font-body);
+}
+
+/* —— Type utilities —— */
+
+.mlp-headline {
+  font-family: var(--mlp-font-display);
+  font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+}
+
+.mlp-lede {
+  font-family: var(--mlp-font-body);
+  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+  font-weight: 400;
+  line-height: 1.65;
+}
+
+.mlp-meta {
+  font-family: var(--mlp-font-body);
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* Section labels / eyebrows — shared sizing */
+.mlp-page .mlp-meta, 
+.mlp-page [class*="mlp-"][class*="__label"] {
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+/* Shared section eyebrow (effective typography of the landing label role). */
+.mlp-eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: var(--fw-medium);
+  line-height: 1.6;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-mba-blue);
+}
+
+/* Shared section heading (effective typography of the landing heading role). */
+.mlp-h2 {
+  font-family: var(--font-display);
+  font-size: var(--fs-section-title);
+  font-weight: var(--fw-medium);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-transform: none;
+  color: var(--color-mba-blue);
+}
+
+/* Shared section head grid (columns, gaps and margins stay per section). */
+.mlp-intro-grid {
+  display: grid;
+  align-items: end;
+}
+
+/* Shared icon box (border color, flex and content sizing stay per section). */
+.mlp-icon-box {
+  display: inline-grid;
+  width: 2rem;
+  height: 2rem;
+  border-width: 1px;
+  border-style: solid;
+  color: var(--mlp-red);
+}
+
+/* Shared absolute image layer inside a stack plate (placement/blend stay per section). */
+.mlp-stack-layer {
+  position: absolute;
+  overflow: hidden;
+}
+
+/* Shared decorative radial wash (size, placement and gradient stay per section). */
+.mlp-wash {
+  position: absolute;
+  border-radius: 50%;
+}
+
+/* Shared 1px contour line (placement and angle stay per section). */
+.mlp-contour {
+  position: absolute;
+  height: 1px;
+  background: var(--mlp-line-dark);
+}
+
+/* Shared CTA button core (typography, padding, gap and effects stay per section). */
+.mlp-cta {
+  display: inline-flex;
+  align-items: center;
+  min-height: 3rem;
+}
+
+.mlp-cta--primary {
+  background: var(--mlp-red);
+  color: var(--mlp-white);
+}
+
+.mlp-cta--ghost {
+  color: var(--mlp-navy);
+}
+
+/* Shared 1px row hairline (bottom border in mlp-line-dark). */
+.mlp-hairline {
+  border-bottom: 1px solid var(--mlp-line-dark);
+}
+
+/* —— Section rhythm —— */
+
+/* —— Buttons —— */
+.mlp-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  min-height: 48px;
+  padding: 0.85rem 1.6rem;
+  font-family: var(--mlp-font-body);
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: 0;
+  cursor: pointer;
+  transition:
+    background var(--mlp-duration) var(--mlp-ease),
+    color var(--mlp-duration) var(--mlp-ease),
+    border-color var(--mlp-duration) var(--mlp-ease),
+    transform 0.35s var(--mlp-ease);
+}
+
+.mlp-btn--primary {
+  background: var(--mlp-red);
+  color: var(--mlp-white);
+}
+
+.mlp-btn--primary:hover {
+  background: #8f0202;
+  transform: translateY(-2px);
+}
+
+.mlp-btn--block,
+  #mlp-class-snapshot .mlp-class-snapshot__global {
+  width: 100%;
+}
+
+.mlp-btn:focus-visible,
+  .archive-partners__toggle:focus-visible,
+  .archive-fieldnotes__question:focus-visible {
+  outline: 2px solid var(--mlp-red);
+  outline-offset: 3px;
+}
+
+/* —— Sticky mobile —— */
+.mlp-sticky {
+  display: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 60;
+  gap: 0.5rem;
+  padding: 0.65rem 0.85rem calc(0.65rem + env(safe-area-inset-bottom));
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+  border-top: 1px solid var(--mlp-line-dark);
+}
+
+.mlp-sticky__btn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 0.65rem 1rem;
+  font-family: var(--mlp-font-body);
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 0;
+  cursor: pointer;
+  transition: transform 0.3s var(--mlp-ease), opacity 0.3s ease;
+}
+
+.mlp-sticky__btn--wa {
+  background: #1f9e4b;
+  color: #fff;
+}
+
+.mlp-sticky__btn--apply {
+  background: var(--mlp-red);
+  color: #fff;
+}
+
+.mlp-sticky__btn:hover {
+  transform: translateY(-1px);
+}
+
+@media (max-width: 900px) {
+  .mlp-sticky {
+    display: flex;
+  }
+
+  .mlp-page {
+    padding-bottom: 4.5rem;
+  }
+}
+
+/* —— Form foundation (light panel) —— */
+.mlp-form {
+  position: relative;
+  padding: 1.75rem 1.5rem 1.85rem;
+  color: var(--mlp-ink);
+  background: var(--mlp-glass);
+  border: 1px solid var(--mlp-glass-border);
+  backdrop-filter: blur(18px);
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.mlp-form--panel {
+  padding: 0;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.mlp-form--panel .mlp-form__fields,
+.mlp-form--panel .mlp-form__success,
+.mlp-form--panel .mlp-form__errors {
+  padding-left: 1.2rem;
+  padding-right: 1.2rem;
+}
+
+.mlp-form--panel .mlp-form__fields {
+  padding-top: 1rem;
+  padding-bottom: 1.25rem;
+}
+
+.mlp-form--panel .mlp-form__success,
+.mlp-form--panel .mlp-form__errors {
+  margin-left: 1.2rem;
+  margin-right: 1.2rem;
+}
+
+
+.mlp-form__success {
+  margin: 0 0 1rem;
+  padding: 0.75rem 0;
+  border-top: 1px solid rgba(46, 160, 100, 0.35);
+  border-bottom: 1px solid rgba(46, 160, 100, 0.35);
+  color: #0d5c2e;
+  font-size: 0.9rem;
+}
+
+.mlp-form__errors {
+  margin: 0 0 1rem;
+  padding: 0.75rem 0 0.75rem 1.1rem;
+  border-left: 2px solid var(--mlp-red);
+  color: #8a1c12;
+  font-size: 0.85rem;
+}
+
+.mlp-form__fields {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.mlp-form__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+@media (max-width: 520px) {
+  .mlp-form__row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.mlp-form__honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.mlp-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-family: var(--mlp-font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(7, 20, 68, 0.55);
+}
+
+.mlp-field input,
+.mlp-field select {
+  min-height: 44px;
+  padding: 0.55rem 0;
+  font-family: var(--mlp-font-body);
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--mlp-ink);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(7, 20, 68, 0.2);
+  border-radius: 0;
+  outline: none;
+  transition: border-color 0.3s var(--mlp-ease), box-shadow 0.3s ease;
+}
+
+.mlp-field select {
+  cursor: pointer;
+}
+
+.mlp-field select option,
+  .prospectus-cover__enquiry .mlp-field select option,
+  .archive-closing__form .mlp-field select option {
+  color: var(--mlp-ink);
+  background: var(--mlp-white);
+}
+
+.mlp-field input::placeholder {
+  color: rgba(18, 18, 18, 0.35);
+}
+
+.mlp-field input:focus,
+.mlp-field select:focus {
+  border-bottom-color: var(--mlp-red);
+  box-shadow: 0 1px 0 0 var(--mlp-red);
+}
+
+/* Hero ghost/text on dark photo plate */
+
+/* Below-fold sections — defer layout/paint until near viewport */
+#mlp-overview, 
+#mlp-why, 
+#mlp-mba, 
+#mlp-masters, 
+#mlp-fees, 
+#mlp-career, 
+#mlp-alumni, 
+#mlp-learning, 
+#mlp-partners, 
+#mlp-video-proof, 
+#mlp-testimonials, 
+#mlp-faq, 
+#mlp-final {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 720px;
+}
+
+/* —— The Living Prospectus: cover + admissions insert —— */
+.mlp-hero.prospectus-cover {
+  position: relative;
+  min-height: 100svh;
+  display: block;
+  padding: 0;
+  overflow: clip;
+  isolation: isolate;
+  color: var(--mlp-white);
+  background: var(--mlp-void);
+}
+
+.prospectus-cover__stage {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  overflow: hidden;
+}
+
+.prospectus-cover__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 64% center;
+  filter: saturate(0.68) contrast(1.08) brightness(0.64);
+  transform: scale(1.035);
+}
+
+.prospectus-cover__wash {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(7, 20, 68, 0.98) 0%, rgba(7, 20, 68, 0.86) 33%, rgba(7, 20, 68, 0.32) 72%, rgba(7, 20, 68, 0.78) 100%),
+    linear-gradient(0deg, rgba(7, 20, 68, 0.88) 0%, transparent 36%, rgba(7, 20, 68, 0.35) 100%);
+}
+
+.prospectus-cover__registration {
+  position: absolute;
+  inset: 7% 5% 8%;
+  border: 1px solid rgba(255, 255, 255, 0.17);
+  border-left: 0;
+  pointer-events: none;
+}
+
+.prospectus-cover__registration::before,
+.prospectus-cover__registration::after {
+  content: "";
+  position: absolute;
+  left: 11%;
+  right: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.prospectus-cover__registration::before {
+  top: 38%;
+}
+
+.prospectus-cover__registration::after {
+  top: 72%;
+  opacity: 0.55;
+}
+
+.prospectus-cover__grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.13;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='prospectus-noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23prospectus-noise)'/%3E%3C/svg%3E");
+}
+
+.prospectus-cover__frame {
+  position: relative;
+  z-index: 1;
+  min-height: 100svh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  padding-top: clamp(6rem, 10vw, 8.5rem);
+  padding-bottom: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.prospectus-cover__masthead,
+.prospectus-cover__folio {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  line-height: 1.3;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.58);
+}
+
+.prospectus-cover__academy {
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.prospectus-cover__location,
+  .prospectus-cover__folio span:last-child {
+  justify-self: end;
+}
+
+.prospectus-cover__masthead-line,
+.prospectus-cover__folio-rule {
+  width: 100%;
+  min-width: 2rem;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.26);
+}
+
+.prospectus-cover__body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(12rem, 0.34fr);
+  gap: clamp(2rem, 7vw, 8rem);
+  align-items: center;
+  padding: clamp(3rem, 8vw, 7rem) 0;
+}
+
+.prospectus-cover__statement {
+  max-width: 58rem;
+  padding-left: clamp(1rem, 2vw, 1.75rem);
+  border-left: 2px solid var(--mlp-red);
+}
+
+.prospectus-cover__eyebrow, 
+.prospectus-cover__kicker {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.prospectus-cover__eyebrow {
+  margin: 0 0 1.1rem;
+  color: rgba(255, 255, 255, 0.58);
+}
+
+.prospectus-cover__kicker,
+  #mlp-class-snapshot .mlp-class-snapshot__label {
+  margin: 0 0 0.9rem;
+  color: var(--mlp-white);
+}
+
+.prospectus-cover__title {
+  max-width: 10ch;
+  margin: 0;
+  font-family: var(--mlp-font-display);
+  font-size: clamp(3.4rem, 8.2vw, 8.6rem);
+  font-weight: 500;
+  line-height: 0.9;
+  letter-spacing: -0.06em;
+}
+
+.prospectus-cover__title-line {
+  display: block;
+}
+
+.prospectus-cover__title-line--accent {
+  color: var(--mlp-warm);
+}
+
+.prospectus-cover__intro {
+  max-width: 42ch;
+  margin: clamp(1.4rem, 3vw, 2.2rem) 0 0;
+  font-size: clamp(1rem, 1.4vw, 1.15rem);
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.74);
+}
+
+.prospectus-cover__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.35rem;
+  margin-top: clamp(1.75rem, 4vw, 3rem);
+}
+
+.prospectus-cover__primary, 
+.prospectus-cover__secondary {
+  font-family: var(--mlp-font-body);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.prospectus-cover__primary {
+  gap: 1.1rem;
+  padding: 0.9rem 1.25rem;
+  border: 1px solid var(--mlp-red);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  transition: background 0.35s var(--mlp-ease), border-color 0.35s var(--mlp-ease), transform 0.35s var(--mlp-ease);
+}
+
+.prospectus-cover__primary:hover,
+.prospectus-cover__primary:focus-visible {
+  background: var(--mlp-navy);
+  border-color: var(--mlp-warm);
+  transform: translateY(-2px);
+}
+
+.prospectus-cover__primary:focus-visible, 
+.prospectus-cover__secondary:focus-visible {
+  outline: 2px solid var(--mlp-warm);
+  outline-offset: 4px;
+}
+
+.prospectus-cover__primary-mark {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.prospectus-cover__secondary {
+  padding-bottom: 0.25rem;
+  color: rgba(255, 255, 255, 0.78);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.45);
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.prospectus-cover__secondary:hover,
+.prospectus-cover__secondary:focus-visible {
+  color: var(--mlp-white);
+  border-color: var(--mlp-red);
+}
+
+.prospectus-cover__folio {
+  grid-template-columns: auto minmax(3rem, 1fr) auto minmax(3rem, 1fr) auto;
+}
+
+/* —— Hero right-side enquiry desk —— */
+.prospectus-cover__enquiry {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: 25rem;
+  margin-left: auto;
+  padding: 1.25rem 1.25rem 1.4rem;
+  color: var(--mlp-ink);
+  background: rgba(247, 245, 241, 0.97);
+  border-top: 3px solid var(--mlp-red);
+  box-shadow: 0 24px 60px -36px rgba(0, 0, 0, 0.85);
+}
+
+.prospectus-cover__enquiry-head {
+  padding-bottom: 0.95rem;
+  border-bottom: 1px solid rgba(7, 20, 68, 0.14);
+}
+
+.prospectus-cover__enquiry-head h2 {
+  margin: 0 0 0.25rem;
+  font-family: var(--mlp-font-display);
+  font-size: clamp(1.35rem, 2.3vw, 1.8rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.035em;
+  color: var(--mlp-navy);
+}
+
+.prospectus-cover__enquiry-head p {
+  margin: 0;
+  font-size: 0.75rem;
+  line-height: 1.45;
+  color: var(--mlp-muted-on-paper);
+}
+
+.prospectus-cover__enquiry .mlp-form--prospectus {
+  padding: 1rem 0 0;
+  color: var(--mlp-ink);
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.prospectus-cover__enquiry .mlp-form__fields {
+  gap: 0.8rem;
+}
+
+.prospectus-cover__enquiry .mlp-field {
+  color: rgba(7, 20, 68, 0.62);
+}
+
+.prospectus-cover__enquiry .mlp-field input,
+.prospectus-cover__enquiry .mlp-field select {
+  color: var(--mlp-ink);
+  border-bottom-color: rgba(7, 20, 68, 0.23);
+}
+
+@media (max-width: 900px) {
+  .prospectus-cover__enquiry {
+    max-width: none;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .prospectus-cover__enquiry {
+    padding: 1.1rem 1rem 1.2rem;
+  }
+
+  .prospectus-cover__enquiry .mlp-form__row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Hero enquiry (#mlp-enquire) — frosted glass card + compact floating fields. */
+#mlp-enquire {
+  background: rgba(255, 255, 255, 0.15);
+  -webkit-backdrop-filter: blur(14px) saturate(1.25);
+  backdrop-filter: blur(14px) saturate(1.25);
+}
+
+#mlp-enquire .mlp-form__row {
+  grid-template-columns: 1fr;
+}
+
+#mlp-enquire .prospectus-cover__enquiry-head h2 {
+  color: #ffffff;
+}
+
+#mlp-enquire .prospectus-cover__enquiry-head p {
+  color: rgba(255, 248, 240, 0.85);
+}
+
+#mlp-enquire .mlp-field {
+  display: block;
+  position: relative;
+}
+
+#mlp-enquire .mlp-field > span {
+  position: absolute;
+  left: 0;
+  top: 16px;
+  font-family: var(--mlp-font-body) !important;
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 400 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  color: rgba(255, 248, 240, 0.55);
+  pointer-events: none;
+  transition: top 0.2s var(--mlp-ease), font-size 0.2s var(--mlp-ease), color 0.2s ease;
+}
+
+#mlp-enquire .mlp-field input,
+#mlp-enquire .mlp-field select {
+  height: 38px;
+  min-height: 0;
+  padding: 20px 0 0;
+  border-bottom-color: rgba(255, 255, 255, 0.4);
+  font-family: var(--mlp-font-body) !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  line-height: 16px !important;
+  letter-spacing: normal !important;
+  color: #ffffff !important;
+}
+
+#mlp-enquire .mlp-field input::placeholder,
+#mlp-enquire .mlp-field select::placeholder {
+  color: transparent;
+}
+
+/* Native option popup otherwise renders on a light OS surface, which would
+   make the white text unreadable — give the list a dark surface so every
+   form font stays white/warm-white. */
+#mlp-enquire .mlp-field select option {
+  background: var(--mlp-navy);
+  color: #fff8f0;
+}
+
+#mlp-enquire .mlp-field:has(> input:focus) > span,
+#mlp-enquire .mlp-field:has(> input:not(:placeholder-shown)) > span,
+#mlp-enquire .mlp-field:has(> select) > span {
+  top: -4px;
+  font-size: 12px;
+  line-height: 12px;
+  color: #fff8f0;
+}
+
+#mlp-enquire .mlp-form__success {
+  color: #fff8f0;
+}
+
+#mlp-enquire .mlp-form__errors {
+  color: #ffffff;
+}
+
+/* The site-wide typography lock forces !important font properties
+   (inputs: 15-18px/1.7; button: 14px/500/1/0.08em). ID-scoped pins keep
+   the compact form spec authoritative without touching the global lock. */
+#mlp-enquire .mlp-btn {
+  font-family: var(--mlp-font-body) !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  line-height: 1 !important;
+  letter-spacing: 0.08em !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #mlp-enquire .mlp-field > span {
+    transition: none;
+  }
+}
+/* —— The Learning Blueprint: programme architecture —— */
+.blueprint-overview {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: clamp(5rem, 11vw, 9rem) 0 clamp(4.5rem, 10vw, 8rem);
+  color: var(--mlp-ink);
+  background: var(--mlp-paper);
+}
+
+.blueprint-overview__background,
+  .archive-career__background,
+  .archive-learning__background,
+  .signal-atlas__background,
+  .archive-voices__background,
+  .archive-fieldnotes__background,
+  .archive-closing__background,
+  .mlp-page--polished .archive-video-proof__background {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.blueprint-overview__plate {
+  position: absolute;
+  top: 6%;
+  right: -6%;
+  width: min(48vw, 42rem);
+  height: min(48vw, 30rem);
+  object-fit: cover;
+  opacity: 0.12;
+  filter: grayscale(1) contrast(1.1);
+  mix-blend-mode: multiply;
+  transform: rotate(-7deg);
+}
+
+.blueprint-overview__wash {
+  width: min(52vw, 46rem);
+  height: min(52vw, 46rem);
+  right: -18%;
+  bottom: -25%;
+  background: radial-gradient(circle, rgba(15, 41, 131, 0.1), transparent 68%);
+}
+
+.blueprint-overview__contour {
+  left: -12%;
+  right: -12%;
+  transform: rotate(-4deg);
+}
+
+.blueprint-overview__contour--one {
+  top: 33%;
+}
+
+.blueprint-overview__contour--two {
+  top: 83%;
+  opacity: 0.55;
+  transform: rotate(5deg);
+}
+
+.blueprint-overview__intro {
+  grid-template-columns: minmax(0, 1fr) minmax(16rem, 0.55fr);
+  column-gap: clamp(2rem, 7vw, 8rem);
+  max-width: 72rem;
+}
+
+.blueprint-overview__folio {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0 0 1.2rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  color: var(--mlp-red);
+}
+
+.blueprint-overview__heading {
+  max-width: 13ch;
+  margin: 0;
+}
+
+.blueprint-overview__intro-copy {
+  max-width: 31ch;
+  margin: 0 0 0.35rem auto;
+  font-size: clamp(0.95rem, 1.35vw, 1.15rem);
+  line-height: 1.7;
+  color: var(--mlp-muted-on-paper);
+}
+
+.blueprint-overview__system {
+  position: relative;
+  min-height: 43rem;
+  margin-top: clamp(4rem, 8vw, 7rem);
+  padding-top: 2.25rem;
+  border-top: 1px solid var(--mlp-line-dark);
+}
+
+.blueprint-overview__diagram {
+  position: absolute;
+  inset: 3.7rem 0 0;
+  z-index: 0;
+  width: 100%;
+  height: calc(100% - 3.7rem);
+  overflow: visible;
+}
+
+.blueprint-overview__grid-lines,
+.blueprint-overview__connectors,
+.blueprint-overview__diagram-nodes {
+  fill: none;
+  stroke: var(--mlp-blue);
+  stroke-width: 1;
+}
+
+.blueprint-overview__grid-lines {
+  opacity: 0.1;
+}
+
+.blueprint-overview__connectors {
+  opacity: 0.55;
+}
+
+.blueprint-overview__connectors path {
+  stroke: var(--mlp-red);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 900;
+  stroke-dashoffset: 900;
+  transition: stroke-dashoffset 1.2s var(--mlp-ease);
+}
+
+.blueprint-overview__system.is-inview .blueprint-overview__connectors path {
+  stroke-dashoffset: 0;
+}
+
+.blueprint-overview__diagram-core {
+  fill: var(--mlp-paper);
+  stroke: var(--mlp-navy);
+  stroke-width: 1;
+  stroke-dasharray: 4 5;
+}
+
+.blueprint-overview__diagram-core-dot,
+.blueprint-overview__diagram-nodes circle {
+  fill: var(--mlp-red);
+  stroke: var(--mlp-paper);
+  stroke-width: 3;
+}
+
+.blueprint-overview__core {
+  position: absolute;
+  top: calc(50% + 1.5rem);
+  left: 50%;
+  z-index: 2;
+  display: grid;
+  place-content: center;
+  width: 12rem;
+  height: 12rem;
+  padding: 1.25rem;
+  text-align: center;
+  border: 1px solid var(--mlp-navy);
+  border-radius: 50%;
+  background: rgba(247, 245, 241, 0.88);
+  transform: translate(-50%, -50%);
+}
+
+.blueprint-overview__core-kicker {
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  line-height: 1.35;
+  text-transform: uppercase;
+  color: var(--mlp-red);
+}
+
+.blueprint-overview__core strong {
+  margin: 0.55rem 0;
+  font-family: var(--mlp-font-display);
+  font-size: 1.35rem;
+  font-weight: 500;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  color: var(--mlp-navy);
+}
+
+.blueprint-overview__foundations {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: repeat(3, minmax(8rem, 1fr));
+  min-height: 38rem;
+  margin: 0;
+  padding: 2rem 0 0;
+  list-style: none;
+}
+
+.blueprint-overview__foundation {
+  position: relative;
+  align-self: start;
+  max-width: 20rem;
+  padding: 0.8rem 1rem 0 1.1rem;
+  border-left: 1px solid var(--mlp-navy);
+  transition: transform 0.6s var(--mlp-ease), border-color 0.35s ease;
+}
+
+.blueprint-overview__foundation:nth-child(1) {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.blueprint-overview__foundation:nth-child(2) {
+  grid-column: 3;
+  grid-row: 1;
+  justify-self: end;
+}
+
+.blueprint-overview__foundation:nth-child(3) {
+  grid-column: 1;
+  grid-row: 3;
+  align-self: end;
+}
+
+.blueprint-overview__foundation:nth-child(4) {
+  grid-column: 3;
+  grid-row: 3;
+  align-self: end;
+  justify-self: end;
+}
+
+.blueprint-overview__foundation:nth-child(5) {
+  grid-column: 2;
+  grid-row: 3;
+  align-self: end;
+  justify-self: center;
+}
+
+.blueprint-overview__foundation:hover,
+.blueprint-overview__foundation:focus-within {
+  border-color: var(--mlp-red);
+  transform: translateY(-0.35rem);
+}
+
+.blueprint-overview__foundation-node,
+  .signal-atlas__node {
+  position: absolute;
+  top: -0.35rem;
+  left: -0.38rem;
+  width: 0.7rem;
+  height: 0.7rem;
+  border: 2px solid var(--mlp-paper);
+  border-radius: 50%;
+  background: var(--mlp-red);
+  box-shadow: 0 0 0 1px var(--mlp-red);
+}
+
+.blueprint-overview__foundation-title {
+  margin: 0 0 0.45rem;
+  font-family: var(--mlp-font-display);
+  font-size: clamp(1.25rem, 1.8vw, 1.65rem);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--mlp-navy);
+}
+
+.blueprint-overview__foundation-text {
+  max-width: 100%;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--mlp-muted-on-paper);
+}
+
+.blueprint-overview__foundation-text p,
+  .archive-learning__point-text p,
+  .archive-fieldnotes__note h3,
+  .archive-fieldnotes__answer p,
+  .archive-closing__intro-copy p {
+  margin: 0;
+}
+
+.blueprint-overview__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.5rem;
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--mlp-line-dark);
+}
+
+.blueprint-overview__primary,
+.blueprint-overview__secondary {
+  font-family: var(--mlp-font-body);
+  text-decoration: none;
+}
+
+.blueprint-overview__primary {
+  gap: 0.7rem;
+  padding: 0.8rem 1.25rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  transition: background 0.35s ease, transform 0.35s var(--mlp-ease);
+}
+
+.blueprint-overview__primary:hover,
+.blueprint-overview__primary:focus-visible {
+  background: var(--mlp-navy);
+  transform: translateY(-2px);
+}
+
+.blueprint-overview__secondary {
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid var(--mlp-navy);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+@media (max-width: 900px) {
+  .blueprint-overview__intro {
+    grid-template-columns: 1fr;
+    row-gap: 1.25rem;
+  }
+
+  .blueprint-overview__system {
+    min-height: 48rem;
+  }
+
+  .blueprint-overview__foundations {
+    min-height: 43rem;
+  }
+
+  .blueprint-overview__core {
+    width: 9rem;
+    height: 9rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .blueprint-overview__plate {
+    top: 4%;
+    right: -28%;
+    width: 28rem;
+    height: 18rem;
+    opacity: 0.08;
+  }
+
+  .blueprint-overview__system {
+    min-height: 0;
+    margin-top: 3.25rem;
+    padding-top: 1.5rem;
+  }
+
+  .blueprint-overview__diagram {
+    display: none;
+  }
+
+  .blueprint-overview__core {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 8.75rem;
+    height: 8.75rem;
+    margin: 2rem auto 3rem;
+    transform: none;
+  }
+
+  .blueprint-overview__foundations {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    gap: 0;
+    min-height: 0;
+    padding: 0 0 0.0rem 0.8rem;
+  }
+
+  .blueprint-overview__foundations::before,
+  .signal-atlas__records::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 1px;
+    background: linear-gradient(180deg, var(--mlp-red), var(--mlp-blue));
+  }
+
+  .blueprint-overview__foundation,
+  .blueprint-overview__foundation:nth-child(n) {
+    grid-column: auto;
+    grid-row: auto;
+    align-self: auto;
+    justify-self: auto;
+    max-width: none;
+    min-height: 0;
+    padding: 1.2rem 0 1.4rem 1.1rem;
+    border-left: 0;
+    border-bottom: 1px solid var(--mlp-line-dark);
+    transform: none;
+  }
+
+  .blueprint-overview__foundation-node {
+    top: 1.45rem;
+    left: -1.12rem;
+  }
+
+  .blueprint-overview__foundation-text {
+    max-width: 42ch;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .blueprint-overview__connectors path {
+    stroke-dashoffset: 0;
+  }
+}
+/* —— Why Choose: light scroll chapters —— */
+.mlp-why {
+  position: relative;
+  background: var(--mlp-paper-pure);
+  color: var(--mlp-ink);
+}
+
+.mlp-why__pin {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  padding: clamp(3.5rem, 8vw, 5.5rem) 0 clamp(1.5rem, 3vw, 2rem);
+  background: linear-gradient(180deg, #fff 70%, rgba(255, 255, 255, 0.94) 100%);
+}
+
+.mlp-why__meta,
+  .mlp-mba__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.mlp-why__label,
+  .mlp-mba__label,
+  .mlp-masters__label {
+  margin: 0;
+}
+
+
+.mlp-why__heading,
+  .mlp-mba__heading {
+  margin: 0 0 0.75rem;
+  max-width: 16ch;
+}
+
+.mlp-why__intro {
+  margin: 0;
+  max-width: 40ch;
+  color: var(--mlp-muted-on-paper);
+}
+
+.mlp-why__chapter {
+  position: relative;
+  min-height: min(72vh, 640px);
+  display: flex;
+  align-items: center;
+  padding: clamp(3rem, 8vw, 5.5rem) 0;
+}
+
+.mlp-why__chapter--void {
+  background: var(--mlp-surface-soft);
+  color: var(--mlp-ink);
+}
+
+.mlp-why__chapter--paper {
+  background: var(--mlp-paper-pure);
+  color: var(--mlp-ink);
+}
+
+.mlp-why__chapter-grid {
+  display: grid;
+  grid-template-columns: minmax(5rem, 8rem) minmax(0, 1fr);
+  gap: clamp(1rem, 3vw, 2.5rem);
+  align-items: start;
+  width: 100%;
+}
+
+.mlp-why__num {
+  font-family: var(--mlp-font-display);
+  font-size: clamp(3.5rem, 10vw, 7rem);
+  font-weight: 500;
+  line-height: 0.85;
+  letter-spacing: -0.05em;
+  color: var(--mlp-red);
+}
+
+.mlp-why__title {
+  margin: 0 0 0.85rem;
+  font-family: var(--mlp-font-display);
+  font-size: clamp(1.75rem, 3.5vw, 2.85rem);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  max-width: 14ch;
+  color: var(--mlp-navy);
+}
+
+.mlp-why__text {
+  margin: 0;
+  max-width: 38ch;
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  line-height: 1.65;
+  color: var(--mlp-muted-on-paper);
+}
+
+.mlp-why__chapter--void .mlp-why__text,
+  .mlp-why__chapter--paper .mlp-why__text,
+  .archive-closing__form .mlp-field {
+  color: var(--mlp-muted-on-paper);
+}
+
+@media (max-width: 700px) {
+  .mlp-why__pin {
+    position: relative;
+    top: auto;
+  }
+
+  .mlp-why__chapter {
+    min-height: 0;
+  }
+
+  .mlp-why__chapter-grid {
+    grid-template-columns: 3.5rem minmax(0, 1fr);
+  }
+}
+
+/* —— Admission Journey: graphic spine (light) —— */
+
+@media (max-width: 900px) {
+}
+
+@media (max-width: 420px) {
+}
+
+/* MBA specializations: big campus plates + program catalog (light) */
+.mlp-mba {
+  position: relative;
+  isolation: isolate;
+  padding: clamp(4rem, 10vw, 7rem) 0;
+  color: var(--mlp-ink);
+  overflow: hidden;
+  background: var(--mlp-paper-pure);
+}
+
+.mlp-mba__wash {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.07;
+  pointer-events: none;
+}
+
+.mlp-mba__wash-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(0.4);
+}
+
+.mlp-mba__head,
+  .mlp-masters__head {
+  max-width: 40rem;
+  margin-bottom: clamp(1.75rem, 4vw, 2.75rem);
+}
+
+.mlp-mba__intro,
+  .mlp-masters__intro {
+  margin: 0;
+  max-width: 42ch;
+  color: var(--mlp-muted-on-paper);
+}
+
+.mlp-mba__tablist {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: clamp(1.75rem, 4vw, 2.5rem);
+  padding-bottom: 0.85rem;
+}
+
+.mlp-mba__tab {
+  appearance: none;
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid transparent;
+  color: rgba(7, 20, 68, 0.48);
+  font-family: var(--mlp-font-body);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.7rem 1rem;
+  transition: color 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+}
+
+.mlp-why__chapter--void .mlp-why__title,
+  .mlp-why__chapter--paper .mlp-why__title,
+  .mlp-mba__tab:hover {
+  color: var(--mlp-navy);
+}
+
+.mlp-mba__tab.is-active {
+  color: var(--mlp-navy);
+  border-color: rgba(7, 20, 68, 0.16);
+  background: rgba(7, 20, 68, 0.04);
+  box-shadow: inset 0 -2px 0 var(--mlp-red);
+}
+
+.mlp-mba__panel[hidden],
+  .archive-fieldnotes__answer[hidden] {
+  display: none;
+}
+
+.mlp-mba__showcase {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+  align-items: stretch;
+  margin-bottom: clamp(2.5rem, 6vw, 4rem);
+  padding-bottom: clamp(2.5rem, 6vw, 4rem);
+}
+
+.mlp-mba__showcase:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.mlp-mba__showcase--flip .mlp-mba__plate {
+  order: 2;
+}
+
+.mlp-mba__showcase--flip .mlp-mba__catalog {
+  order: 1;
+}
+
+.mlp-mba__plate {
+  position: relative;
+  margin: 0;
+  min-height: clamp(17rem, 38vw, 26rem);
+  overflow: hidden;
+  background: var(--mlp-surface-soft);
+}
+
+.mlp-mba__uni-photo {
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.02);
+  transition: transform 0.9s var(--mlp-ease);
+}
+
+.mlp-mba__showcase:hover .mlp-mba__uni-photo {
+  transform: scale(1.06);
+}
+
+.mlp-mba__plate-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 1rem 1.1rem;
+  background: linear-gradient(0deg, rgba(7, 20, 68, 0.82) 0%, rgba(7, 20, 68, 0.35) 70%, transparent 100%);
+  color: var(--mlp-white);
+}
+
+.mlp-mba__plate-copy {
+  min-width: 0;
+}
+
+.mlp-mba__uni-count {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.mlp-mba__catalog {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+  padding: 0.25rem 0;
+}
+
+.mlp-mba__catalog-label {
+  margin: 0 0 1rem;
+  color: var(--mlp-red);
+}
+
+.mlp-mba__programs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--mlp-line-dark);
+}
+
+.mlp-mba__program {
+  display: grid;
+  grid-template-columns: 2.4rem minmax(0, 1fr) auto;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.95rem 0;
+  transition: background 0.35s ease, padding-left 0.35s var(--mlp-ease);
+}
+
+.mlp-mba__program:hover {
+  background: rgba(178, 2, 2, 0.04);
+  padding-left: 0.35rem;
+}
+
+.mlp-mba__program-index {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--mlp-red);
+}
+
+.mlp-mba__program-index svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* The typography lock adds padding-top for the old numeral — keep the icon centred. */
+.mlp-page--polished .mlp-mba__program-index {
+  padding-top: 0;
+}
+
+.mlp-mba__program-title {
+  font-family: var(--mlp-font-display);
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  line-height: 1.35;
+  color: var(--mlp-navy);
+}
+
+@media (max-width: 900px) {
+
+  .mlp-mba__showcase--flip .mlp-mba__plate,
+  .mlp-mba__showcase--flip .mlp-mba__catalog {
+    order: initial;
+  }
+
+  .mlp-mba__plate {
+    min-height: clamp(14rem, 55vw, 20rem);
+  }
+}
+
+@media (max-width: 700px) {
+
+  .mlp-mba__tablist {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+
+  .mlp-mba__tab {
+    flex: 0 0 auto;
+    padding: 0.65rem 0.85rem;
+    font-size: 0.75rem;
+  }
+
+  .mlp-mba__program {
+    grid-template-columns: 2rem minmax(0, 1fr) auto;
+    gap: 0.55rem;
+    padding: 0.85rem 0;
+  }
+}
+
+/* Master's programs: big campus plates + program catalog (light) */
+.mlp-masters {
+  position: relative;
+  isolation: isolate;
+  padding: clamp(4rem, 10vw, 7rem) 0;
+  color: var(--mlp-ink);
+  overflow: hidden;
+  background: var(--mlp-surface-soft);
+}
+
+
+.mlp-masters__heading {
+  margin: 0 0 0.75rem;
+  max-width: 14ch;
+}
+
+@media (max-width: 900px) {
+}
+
+@media (max-width: 700px) {
+}
+
+/* —— The Light Archive: class, career, alumni, learning —— */
+
+.archive-career, 
+.archive-alumni, 
+.archive-learning {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  color: var(--mlp-ink);
+  background: var(--mlp-paper);
+}
+.archive-career,
+  .archive-learning { padding: clamp(4.5rem, 9vw, 7.5rem) 0; }
+.archive-alumni { padding: clamp(4rem, 8vw, 6.5rem) 0 clamp(3rem, 6vw, 4.5rem); }
+
+
+.archive-career__wash, 
+.archive-learning__wash {
+  right: -15%;
+  bottom: -30%;
+  width: min(55vw, 52rem);
+  height: min(55vw, 52rem);
+  background: radial-gradient(circle, rgba(15, 41, 131, 0.1), transparent 68%);
+}
+
+
+.archive-career__rule, 
+.archive-learning__rule {
+  position: absolute;
+  left: -10%;
+  right: -10%;
+  height: 1px;
+  background: var(--mlp-line-dark);
+  transform: rotate(-4deg);
+}
+.archive-career__rule--one { top: 22%; opacity: 0.6; }
+.archive-learning__rule--one { top: 72%; opacity: 0.55; transform: rotate(5deg); }
+
+
+.archive-career__intro, 
+.archive-learning__intro {
+  grid-template-columns: minmax(0, 1.1fr) minmax(17rem, 0.9fr);
+  gap: clamp(2rem, 7vw, 8rem);
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+
+.archive-career__label,
+  .archive-alumni__label,
+  .archive-learning__label,
+  .archive-partners__label {
+  margin: 0 0 1rem;
+}
+
+
+.archive-career__heading, 
+.archive-alumni__heading, 
+.archive-learning__heading {
+  max-width: 14ch;
+  margin: 0;
+}
+
+
+.archive-career__intro-copy,
+  .archive-learning__intro-copy,
+  .archive-partners__intro-copy {
+  max-width: 36ch;
+  margin: 0 0 0.2rem auto;
+  font-size: 0.94rem;
+  line-height: 1.7;
+  color: var(--mlp-muted-on-paper);
+}
+
+/* Class: one archive frame, not separate dashboard panels. */
+
+
+.archive-career__dossier-icon, 
+.archive-learning__point-icon {
+  place-items: center;
+}
+
+/* Career: image stack + readable dossiers, no timeline. */
+.archive-career,
+  .archive-learning,
+  .mlp-masters--prospectus { background: var(--mlp-paper-pure); }
+.archive-career__stage {
+  display: grid;
+  grid-template-columns: minmax(16rem, 0.75fr) minmax(0, 1.25fr);
+  gap: clamp(2rem, 6vw, 6rem);
+  align-items: start;
+}
+.archive-career__stack,
+  .archive-voices__stack {
+  position: sticky;
+  top: 7rem;
+  min-height: 28rem;
+  overflow: hidden;
+  background: var(--mlp-navy);
+}
+.archive-career__stack-image,
+  .archive-voices__stack-image {
+  opacity: 0.7;
+  mix-blend-mode: screen;
+}
+.archive-career__stack-image img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.08); }
+.archive-career__stack-image--1 { inset: 10% 12% 18% 12%; transform: rotate(-4deg); }
+.archive-career__stack-image--2 { inset: 18% 6% 11% 23%; opacity: 0.5; transform: rotate(5deg); }
+.archive-career__stack-image--3 { inset: 2% 25% 28% 3%; opacity: 0.35; transform: rotate(-1deg); }
+.archive-career__stack::after { content: ""; position: absolute; inset: 0; background: linear-gradient(145deg, rgba(7, 20, 68, 0.88), rgba(7, 20, 68, 0.18)); }
+.archive-career__stack-caption {
+  position: absolute;
+  right: 1.4rem;
+  bottom: 1.4rem;
+  left: 1.4rem;
+  z-index: 1;
+  max-width: 15ch;
+  font-family: var(--mlp-font-display);
+  font-size: clamp(1.55rem, 3vw, 2.6rem);
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+  color: var(--mlp-white);
+}
+.archive-career__dossiers,
+  .archive-voices__list,
+  .archive-fieldnotes__list { border-top: 1px solid var(--mlp-navy); }
+.archive-career__dossier {
+  padding: 1.2rem 0 1.45rem;
+}
+.archive-career__dossier-head { display: flex; gap: 0.85rem; align-items: flex-start; }
+.archive-career__dossier-icon { flex: 0 0 2rem; border-color: rgba(178, 2, 2, 0.55); }
+.archive-career__dossier h3 {
+  margin: 0;
+  font-family: var(--mlp-font-display);
+  font-size: clamp(1.35rem, 2.2vw, 1.85rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--mlp-navy);
+}
+.archive-career__dossier-head p { margin: 0.35rem 0 0; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mlp-muted-on-paper); }
+.archive-career__move { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin: 1.1rem 0 0 2.85rem; }
+.archive-career__move div { display: grid; gap: 0.3rem; padding-top: 0.6rem; border-top: 1px solid var(--mlp-line-dark); }
+.archive-career__move span { font-size: 0.6rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mlp-red); }
+.archive-career__move strong { font-family: var(--mlp-font-display); font-size: 1.05rem; font-weight: 500; line-height: 1.15; color: var(--mlp-navy); }
+.archive-career__quote { margin: 1rem 0 0 2.85rem; padding-left: 0.8rem; border-left: 2px solid var(--mlp-blue); font-size: 0.88rem; line-height: 1.55; color: var(--mlp-muted-on-paper); }
+
+/* Alumni: calm light ribbon, motion only for discovery. */
+.archive-alumni { background: var(--mlp-paper); }
+.archive-alumni__intro { grid-template-columns: minmax(0, 1fr) minmax(17rem, 0.8fr); gap: clamp(2rem, 7vw, 8rem); margin-bottom: 2.75rem; }
+.archive-alumni__intro-copy { max-width: 35ch; margin: 0 0 0.2rem auto; font-size: 0.94rem; line-height: 1.7; color: var(--mlp-muted-on-paper); }
+.archive-alumni__ribbon { overflow: hidden; border-top: 1px solid var(--mlp-navy); }
+.archive-alumni__track { display: flex; width: max-content; animation: archiveAlumniMarquee 32s linear infinite; }
+.archive-alumni__ribbon:hover .archive-alumni__track,
+  .archive-alumni__ribbon:focus-within .archive-alumni__track,
+  .mlp-page .mlp-prose.is-offscreen li::before,
+  .mlp-page--polished #accreditations .accred-slider-wrapper:hover .accred-slider-track.is-landing-slider,
+  .mlp-page--polished #accreditations .accred-slider-wrapper:focus-within .accred-slider-track.is-landing-slider { animation-play-state: paused; }
+.archive-alumni__logos { display: flex; align-items: center; margin: 0; padding: 0; list-style: none; }
+.archive-alumni__logo-frame { display: grid; place-items: center; width: clamp(9.5rem, 15vw, 13.5rem); height: 5rem; padding: 0.35rem 0.55rem; border-right: 1px solid var(--mlp-line-dark); }
+.archive-alumni__logo-frame img { display: block; max-width: 100%; max-height: 3.4rem; object-fit: contain; filter: none; opacity: 1; }
+.archive-alumni__footer { margin-top: 1.2rem; }
+.archive-alumni__footer p { margin: 0; font-size: 0.74rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mlp-muted-on-paper); }
+@keyframes archiveAlumniMarquee { to { transform: translateX(-50%); } }
+
+/* Learning: image-led study desk. */
+.archive-learning__desk { display: grid; grid-template-columns: minmax(18rem, 0.9fr) minmax(0, 1.1fr); gap: clamp(2rem, 7vw, 8rem); align-items: start; }
+.archive-learning__stack { position: relative; min-height: 31rem; margin: 0; }
+.archive-learning__stack-layer { position: absolute; overflow: hidden; background: var(--mlp-surface-soft); }
+.archive-learning__stack-layer img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.archive-learning__stack-layer--back { inset: 5% 2% 10% 18%; opacity: 0.45; transform: rotate(7deg); }
+.archive-learning__stack-layer--middle { inset: 12% 18% 2% 4%; opacity: 0.7; transform: rotate(-5deg); }
+.archive-learning__stack-layer--front { inset: 0 8% 17% 10%; z-index: 1; box-shadow: 0 25px 55px -35px rgba(7, 20, 68, 0.55); }
+.archive-learning__caption { position: absolute; right: 0; bottom: 0; left: 12%; padding-top: 0.7rem; border-top: 1px solid var(--mlp-navy); font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; line-height: 1.4; text-transform: uppercase; color: var(--mlp-muted-on-paper); }
+.archive-learning__points { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--mlp-navy); }
+.archive-learning__point { display: grid; grid-template-columns: 2rem minmax(0, 1fr); gap: 0.85rem; padding: 1.1rem 0; }
+.archive-learning__point-icon { border-color: rgba(178, 2, 2, 0.55); }
+.archive-learning__point h3 { margin: 0 0 0.35rem; font-family: var(--mlp-font-display); font-size: clamp(1.25rem, 2.1vw, 1.65rem); font-weight: 500; line-height: 1.05; letter-spacing: -0.025em; color: var(--mlp-navy); }
+.archive-learning__point-text { font-size: 0.86rem; line-height: 1.55; color: var(--mlp-muted-on-paper); }
+.archive-learning__actions { display: flex; flex-wrap: wrap; gap: 1rem 1.4rem; align-items: center; margin-top: 1.75rem; padding-top: 1rem; border-top: 1px solid var(--mlp-line-dark); }
+.archive-learning__primary { gap: 0.6rem; padding: 0.75rem 1.1rem; font: 600 0.78rem var(--mlp-font-body); text-decoration: none; }
+.archive-learning__secondary { padding-bottom: 0.2rem; color: var(--mlp-navy); border-bottom: 1px solid var(--mlp-navy); font: 600 0.76rem var(--mlp-font-body); text-decoration: none; }
+
+@media (max-width: 900px) {
+  .archive-career__stack { position: relative; top: auto; min-height: 24rem; }
+  .archive-learning__stack { min-height: 27rem; max-width: 34rem; }
+}
+
+@media (max-width: 640px) {
+  .archive-career__move { grid-template-columns: 1fr; margin-left: 2.85rem; }
+  .archive-career__quote { margin-left: 2.85rem; }
+  .archive-learning__stack { min-height: 22rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .archive-alumni__track,
+  .archive-learning__stack-layer,
+  .archive-career__dossier{animation: none !important;}
+}
+/* —— Pricing Cards: compact programme fee design —— */
+.pricing-cards {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: clamp(3.5rem, 6vw, 5.5rem) 0 clamp(3.25rem, 6vw, 5rem);
+  color: var(--mlp-ink);
+  background: var(--mlp-paper);
+}
+.pricing-cards__intro {
+  grid-template-columns: minmax(0, 1.1fr) minmax(17rem, 0.9fr);
+  gap: clamp(1.5rem, 5vw, 5rem);
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+.pricing-cards__label {
+  margin: 0 0 0.9rem;
+}
+.pricing-cards__heading {
+  max-width: 14ch;
+  margin: 0;
+}
+.pricing-cards__intro-copy {
+  max-width: 35ch;
+  margin: 0 0 0.2rem auto;
+  font-size: var(--mlp-type-body, 1rem);
+  line-height: 1.65;
+  color: var(--mlp-muted-on-paper);
+}
+.pricing-cards__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+.pricing-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 20rem;
+  padding: clamp(1.15rem, 2.2vw, 1.75rem);
+  background: var(--mlp-paper-pure);
+  border: 1px solid var(--mlp-line-dark);
+  border-top: 3px solid var(--mlp-navy);
+  box-shadow: 0 18px 36px -32px rgba(7, 20, 68, 0.5);
+  transition: transform 0.35s var(--mlp-ease), border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.pricing-card:hover,
+.pricing-card:focus-within {
+  border-top-color: var(--mlp-red);
+  box-shadow: 0 22px 42px -30px rgba(7, 20, 68, 0.58);
+  transform: translateY(-0.2rem);
+}
+.pricing-card__head {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding-bottom: 0.9rem;
+}
+.pricing-card__icon {
+  place-items: center;
+  flex: 0 0 2rem;
+  border-color: rgba(178, 2, 2, 0.45);
+}
+.pricing-card__eyebrow {
+  font-size: var(--mlp-type-caption, 0.8125rem);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  line-height: 1.3;
+  text-transform: uppercase;
+  color: var(--mlp-muted-on-paper);
+}
+.pricing-card__program {
+  min-height: 3.15rem;
+  margin: 1rem 0 1.2rem;
+  font-family: var(--mlp-font-display);
+  font-size: var(--mlp-type-title-sm, clamp(1.25rem, 2vw, 1.75rem));
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--mlp-navy);
+}
+.pricing-card__price {
+  display: grid;
+  gap: 0.25rem;
+  margin-bottom: 1.15rem;
+  padding-bottom: 1rem;
+}
+.pricing-card__price > span {
+  font-size: var(--mlp-type-caption, 0.8125rem);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mlp-red);
+}
+.pricing-card__price strong {
+  font-family: var(--mlp-font-display);
+  font-size: var(--mlp-type-stat, clamp(2rem, 4vw, 4.25rem));
+  font-weight: 500;
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+  color: var(--mlp-red);
+}
+.pricing-card__price small {
+  max-width: 28ch;
+  font-size: var(--mlp-type-caption, 0.8125rem);
+  line-height: 1.35;
+  color: var(--mlp-muted-on-paper);
+}
+.pricing-card__details {
+  display: grid;
+  gap: 0.7rem;
+  margin: auto 0 0;
+}
+.pricing-card__details div {
+  display: grid;
+  grid-template-columns: 7.5rem minmax(0, 1fr);
+  gap: 0.6rem;
+  align-items: baseline;
+  padding-top: 0.65rem;
+  border-top: 1px solid var(--mlp-line-dark);
+}
+.pricing-card__details dt {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: var(--mlp-type-caption, 0.8125rem);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--mlp-red);
+}
+.pricing-card__details dd {
+  margin: 0;
+  font-size: var(--mlp-type-body, 1rem);
+  line-height: 1.4;
+  color: var(--mlp-ink);
+}
+.pricing-cards__note {
+  max-width: 76ch;
+  margin: 1.1rem 0 0;
+  font-size: var(--mlp-type-caption, 0.8125rem);
+  line-height: 1.55;
+  color: var(--mlp-muted-on-paper);
+}
+.pricing-cards__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.4rem;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+.pricing-cards__primary {
+  gap: 0.6rem;
+  padding: 0.75rem 1.1rem;
+  font: 600 var(--mlp-type-caption, 0.8125rem) var(--mlp-font-body);
+  text-decoration: none;
+}
+.pricing-cards__secondary {
+  padding: 0.7rem 1rem;
+  border: 1px solid var(--mlp-navy);
+  font: 600 var(--mlp-type-caption, 0.8125rem) var(--mlp-font-body);
+  text-decoration: none;
+}
+.pricing-cards__primary:hover,
+.pricing-cards__primary:focus-visible { background: var(--mlp-navy); }
+
+@media (max-width: 820px) {
+}
+
+@media (max-width: 620px) {
+  .pricing-cards__grid { grid-template-columns: 1fr; }
+  .pricing-card,
+  .pricing-card__program { min-height: 0; }
+  .pricing-card__details div { grid-template-columns: 6.75rem minmax(0, 1fr); }
+  .pricing-cards__actions { align-items: stretch; flex-direction: column; }
+  .pricing-cards__primary,
+  .pricing-cards__secondary { align-self: flex-start; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+}
+/* —— The Signal Atlas: graphical trust record —— */
+.signal-atlas {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: clamp(4.5rem, 10vw, 8rem) 0 clamp(4rem, 9vw, 7rem);
+  color: var(--mlp-ink);
+  background: var(--mlp-paper);
+}
+
+.signal-atlas__bg-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.55;
+}
+
+.signal-atlas__wash {
+  width: min(54vw, 52rem);
+  height: min(54vw, 52rem);
+  top: -28%;
+  right: -16%;
+  background: radial-gradient(circle, rgba(15, 41, 131, 0.12), transparent 68%);
+}
+
+.signal-atlas__contour {
+  left: -8%;
+  right: -8%;
+  transform: rotate(-6deg);
+}
+
+.signal-atlas__contour--one {
+  top: 36%;
+}
+
+.signal-atlas__contour--two {
+  top: 78%;
+  opacity: 0.55;
+  transform: rotate(4deg);
+}
+
+.signal-atlas__intro {
+  max-width: 48rem;
+  margin-bottom: clamp(3rem, 7vw, 5.5rem);
+}
+
+.signal-atlas__folio {
+  margin: 0 0 1rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  color: var(--mlp-red);
+}
+
+.signal-atlas__heading {
+  max-width: 17ch;
+  margin: 0;
+}
+
+.signal-atlas__quote {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.85rem;
+  max-width: 34rem;
+  margin: 1.5rem 0 0;
+  padding: 1rem 0 0;
+  border-top: 1px solid var(--mlp-line-dark);
+}
+
+.signal-atlas__quote-mark {
+  font-family: var(--mlp-font-display);
+  font-size: 3.5rem;
+  line-height: 0.7;
+  color: var(--mlp-red);
+}
+
+.signal-atlas__quote p {
+  margin: 0;
+  font-family: var(--mlp-font-display);
+  font-size: clamp(1.15rem, 2vw, 1.65rem);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  color: var(--mlp-navy);
+}
+
+.signal-atlas__graph {
+  position: relative;
+  min-height: 25rem;
+  padding-top: 2rem;
+}
+
+.signal-atlas__records {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  align-items: end;
+  min-height: 20rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.signal-atlas__record {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem;
+  align-self: end;
+  min-height: 8.6rem;
+  padding: 1rem 1rem 1.2rem;
+  border-left: 1px solid rgba(7, 20, 68, 0.22);
+  background: transparent;
+  transition: transform 0.5s var(--mlp-ease), border-color 0.35s ease;
+}
+
+.signal-atlas__record:nth-child(1) {
+  transform: translateY(3.4rem);
+}
+
+.signal-atlas__record:nth-child(2) {
+  transform: translateY(1.3rem);
+}
+
+.signal-atlas__record:nth-child(3) {
+  transform: translateY(3.8rem);
+}
+
+.signal-atlas__record:nth-child(4) {
+  transform: translateY(0.5rem);
+}
+
+.signal-atlas__record:nth-child(5) {
+  transform: translateY(-1.7rem);
+}
+
+.signal-atlas__record:hover {
+  z-index: 2;
+  border-left-color: var(--mlp-red);
+}
+
+.signal-atlas__value {
+  display: block;
+  font-family: var(--mlp-font-display);
+  font-size: clamp(2rem, 4vw, 4.25rem);
+  font-weight: 500;
+  line-height: 0.86;
+  letter-spacing: -0.05em;
+  color: var(--mlp-navy);
+}
+
+.signal-atlas__record--lead .signal-atlas__value {
+  color: var(--mlp-red);
+}
+
+.signal-atlas__label {
+  grid-column: 2;
+  max-width: 12ch;
+  margin-top: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--mlp-muted-on-paper);
+}
+
+@media (max-width: 900px) {
+  .signal-atlas__heading {
+    max-width: 14ch;
+  }
+
+  .signal-atlas__graph {
+    min-height: 29rem;
+  }
+
+  .signal-atlas__records {
+    min-height: 24rem;
+  }
+
+  .signal-atlas__record:nth-child(1) {
+    transform: translateY(2.5rem);
+  }
+
+  .signal-atlas__record:nth-child(2) {
+    transform: translateY(0.8rem);
+  }
+
+  .signal-atlas__record:nth-child(3) {
+    transform: translateY(2.8rem);
+  }
+
+  .signal-atlas__record:nth-child(4) {
+    transform: translateY(0.2rem);
+  }
+
+  .signal-atlas__record:nth-child(5) {
+    transform: translateY(-1.2rem);
+  }
+}
+
+@media (max-width: 700px) {
+  .signal-atlas__intro {
+    margin-bottom: 2.75rem;
+  }
+
+  .blueprint-overview__heading,
+  .mlp-why__heading,
+  .mlp-why__title,
+  .mlp-mba__heading,
+  .mlp-masters__heading,
+  .signal-atlas__heading {
+    max-width: none;
+  }
+
+  .signal-atlas__graph {
+    min-height: 0;
+    padding-top: 1.25rem;
+  }
+
+  .signal-atlas__records {
+    grid-template-columns: 1fr;
+    min-height: 0;
+    margin-top: 1.25rem;
+    padding-left: 0.75rem;
+  }
+
+  .signal-atlas__record,
+  .signal-atlas__record:nth-child(n) {
+    grid-template-columns: 2rem minmax(0, 1fr);
+    min-height: 6.6rem;
+    padding: 1rem 0 1rem 1rem;
+    transform: none;
+    border-left: 0;
+    border-bottom: 1px solid var(--mlp-line-dark);
+    background: transparent;
+  }
+
+  .signal-atlas__record:hover {
+    background: rgba(7, 20, 68, 0.035);
+  }
+
+  .signal-atlas__node {
+    top: 1.4rem;
+    left: -1.07rem;
+  }
+
+  .signal-atlas__label,
+  .mlp-page--polished #mlp-trust .signal-atlas__label {
+    max-width: 24ch;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+}
+
+/* —— The Light Archive: kinetic partner wall —— */
+.archive-partners {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: clamp(4rem, 8vw, 6.5rem) 0 clamp(3.5rem, 7vw, 5.5rem);
+  color: var(--mlp-ink);
+  background: var(--mlp-paper);
+}
+.archive-partners__intro,
+  .mlp-page--polished .archive-video-proof__intro {
+  grid-template-columns: minmax(0, 1.1fr) minmax(17rem, 0.9fr);
+  gap: clamp(2rem, 7vw, 8rem);
+  margin-bottom: clamp(2rem, 4vw, 3.5rem);
+}
+.archive-partners__heading {
+  max-width: 14ch;
+  margin: 0;
+}
+
+.archive-partners__wall {
+  border-top: 1px solid var(--mlp-navy);
+}
+.archive-partners__wall-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  padding: 0.85rem 0;
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  line-height: 1.3;
+  text-transform: uppercase;
+  color: var(--mlp-muted-on-paper);
+}
+.archive-partners__controls { display: flex; align-items: center; gap: 1rem; }
+.archive-partners__hint { font-size: 0.6rem; font-weight: 500; letter-spacing: 0.08em; }
+.archive-partners__toggle {
+  padding: 0.45rem 0.7rem;
+  color: var(--mlp-navy);
+  background: transparent;
+  border: 1px solid var(--mlp-line-dark);
+  border-radius: 0;
+  cursor: pointer;
+  font: 600 0.6rem var(--mlp-font-body);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.pricing-cards__secondary:hover,
+  .pricing-cards__secondary:focus-visible,
+  .archive-partners__toggle:hover,
+  .archive-partners__toggle:focus-visible { color: var(--mlp-white); background: var(--mlp-navy); }
+
+.archive-partners__viewport {
+  overflow-x: auto;
+  overflow-y: hidden;
+  cursor: grab;
+  scrollbar-color: var(--mlp-red) var(--mlp-surface-soft);
+  scrollbar-width: thin;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+}
+.archive-partners__track { display: flex; width: max-content; }
+.archive-partners__logo-list {
+  display: flex;
+  align-items: stretch;
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.archive-partners__logo-item {
+  display: grid;
+  grid-template-rows: 5rem auto;
+  place-items: center;
+  gap: 0.65rem;
+  width: clamp(11rem, 18vw, 15rem);
+  padding: 1rem 1.25rem 1.15rem;
+  border-right: 1px solid var(--mlp-line-dark);
+  scroll-snap-align: start;
+}
+.archive-partners__logo-item img {
+  display: block;
+  width: min(100%, 11rem);
+  height: 4.5rem;
+  object-fit: contain;
+  filter: grayscale(1);
+  opacity: 0.72;
+  transition: filter 0.35s ease, opacity 0.35s ease, transform 0.35s var(--mlp-ease);
+}
+.archive-partners__logo-item span {
+  max-width: 17ch;
+  text-align: center;
+  font-size: 0.66rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--mlp-navy);
+}
+.archive-partners__logo-item:hover img,
+.archive-partners__logo-item:focus-within img { filter: grayscale(0); opacity: 1; transform: translateY(-0.2rem); }
+.archive-partners__trust {
+  margin: 1.2rem 0 0;
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  line-height: 1.5;
+  text-transform: uppercase;
+  color: var(--mlp-muted-on-paper);
+}
+
+@media (max-width: 820px) {
+  .pricing-cards__intro,
+  .archive-partners__intro { grid-template-columns: 1fr; gap: 1rem; }
+  .pricing-cards__intro-copy,
+  .archive-partners__intro-copy { margin-left: 0; }
+}
+
+@media (max-width: 560px) {
+  .archive-partners__wall-head { align-items: flex-start; flex-direction: column; }
+  .archive-partners__controls { justify-content: space-between; width: 100%; }
+  .archive-partners__logo-item { width: 11rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .prospectus-cover__enquiry,
+  .blueprint-overview__connectors path,
+  .blueprint-overview__foundation,
+  .blueprint-overview__primary,
+  .pricing-card,
+  .pricing-cards__primary,
+  .signal-atlas__record,
+  .archive-partners__logo-item img,
+  .archive-closing__image-layer,
+  .mlp-btn,
+  .mlp-sticky__btn,
+  .mlp-field input,
+  .mlp-field select,
+  .mlp-mba__uni-photo,
+  .mlp-mba__program { transition: none; }
+}
+.archive-voices { position: relative; isolation: isolate; overflow: hidden; padding: clamp(4.5rem, 9vw, 7.5rem) 0; color: var(--mlp-ink); background: var(--mlp-paper-pure); }
+.archive-voices__wash { right: -18%; bottom: -25%; width: min(55vw, 52rem); height: min(55vw, 52rem); background: radial-gradient(circle, rgba(178, 2, 2, 0.08), transparent 68%); }
+.archive-voices__rule--one { position: absolute; left: -10%; right: -10%; top: 28%; height: 1px; background: var(--mlp-line-dark); transform: rotate(4deg); }
+.archive-voices__stage { display: grid; grid-template-columns: minmax(16rem, 0.76fr) minmax(0, 1.24fr); gap: clamp(2rem, 6vw, 6rem); align-items: start; }
+.archive-voices__stack-image img,
+  .archive-closing__image-layer img { display: block; width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.1); }
+.archive-voices__stack-image--1 { inset: 8% 12% 18% 12%; transform: rotate(-5deg); }
+.archive-voices__stack-image--2 { inset: 18% 5% 10% 22%; opacity: 0.48; transform: rotate(5deg); }
+.archive-voices__stack-image--3 { inset: 1% 25% 29% 4%; opacity: 0.3; transform: rotate(-1deg); }
+.archive-voices__stack::after { content: ""; position: absolute; inset: 0; background: linear-gradient(145deg, rgba(7, 20, 68, 0.9), rgba(7, 20, 68, 0.15)); }
+.archive-voices__stack-caption { position: absolute; right: 1.4rem; bottom: 1.4rem; left: 1.4rem; z-index: 1; max-width: 16ch; font-family: var(--mlp-font-display); font-size: clamp(1.5rem, 3vw, 2.7rem); line-height: 0.98; letter-spacing: -0.04em; color: var(--mlp-white); }
+.archive-fieldnotes { position: relative; isolation: isolate; overflow: hidden; padding: clamp(4.5rem, 9vw, 7rem) 0; color: var(--mlp-ink); background: var(--mlp-paper-pure); }
+.archive-fieldnotes__wash { left: -16%; bottom: -25%; width: min(46vw, 42rem); height: min(46vw, 42rem); background: radial-gradient(circle, rgba(15, 41, 131, 0.08), transparent 68%); }
+.archive-fieldnotes__rule { position: absolute; left: -10%; right: -10%; top: 30%; height: 1px; background: var(--mlp-line-dark); transform: rotate(-4deg); }
+.archive-fieldnotes__intro-copy { max-width: 26ch; }
+.archive-fieldnotes__question { display: grid; grid-template-columns: 2rem minmax(0, 1fr) auto; gap: 0.8rem; align-items: center; width: 100%; padding: 1.15rem 0; color: var(--mlp-navy); background: transparent; border: 0; text-align: left; cursor: pointer; font: 500 clamp(1.15rem, 2vw, 1.55rem)/1.12 var(--mlp-font-display); letter-spacing: -0.025em; }
+.archive-fieldnotes__question:hover { color: var(--mlp-red); }
+.archive-fieldnotes__question-icon { display: inline-grid; place-items: center; width: 1.75rem; height: 1.75rem; color: var(--mlp-red); border: 1px solid rgba(178, 2, 2, 0.55); }
+.archive-fieldnotes__answer { max-width: 48rem; padding: 0 3.1rem 1.35rem; font-size: 0.9rem; line-height: 1.65; color: var(--mlp-muted-on-paper); }
+.archive-closing { position: relative; isolation: isolate; overflow: hidden; padding: clamp(4.5rem, 9vw, 7.5rem) 0; color: var(--mlp-ink); background: var(--mlp-paper); }
+.archive-closing__wash { right: -18%; bottom: -30%; width: min(58vw, 54rem); height: min(58vw, 54rem); background: radial-gradient(circle, rgba(15, 41, 131, 0.1), transparent 68%); }
+.archive-closing__image-layer { background: var(--mlp-navy); }
+.archive-closing__image-layer--back { top: 8%; right: -8%; width: min(38vw, 34rem); height: min(32vw, 27rem); opacity: 0.18; transform: rotate(7deg); }
+.archive-closing__image-layer--front { top: 13%; right: 3%; width: min(32vw, 29rem); height: min(38vw, 34rem); opacity: 0.7; mix-blend-mode: multiply; transform: rotate(-4deg); }
+.archive-closing__frame { display: grid; grid-template-columns: minmax(0, 1fr) minmax(320px, 0.78fr); gap: clamp(2rem, 7vw, 8rem); align-items: start; }
+.archive-closing__intro { max-width: 31rem; padding-top: 1rem; }
+.archive-closing__heading { max-width: 10ch; }
+.archive-closing__intro-copy { max-width: 37ch; margin-top: 1.2rem; font-size: 0.96rem; line-height: 1.65; color: var(--mlp-muted-on-paper); }
+.archive-closing__form { position: relative; z-index: 2; padding: 1.25rem clamp(1rem, 2vw, 1.5rem) 1.5rem; background: rgba(255, 255, 255, 0.8); border-top: 3px solid var(--mlp-red); box-shadow: 0 22px 60px -42px rgba(7, 20, 68, 0.55); }
+.archive-closing__form-head { display: flex; justify-content: space-between; gap: 1rem; align-items: center; padding-bottom: 0.9rem; color: var(--mlp-red); font: 600 0.66rem/1.3 var(--mlp-font-body); letter-spacing: 0.13em; text-transform: uppercase; }
+.archive-closing__form .mlp-form--on-void { padding: 1rem 0 0; color: var(--mlp-ink); background: transparent; border: 0; box-shadow: none; backdrop-filter: none; }
+.archive-closing__form .mlp-field input,
+.archive-closing__form .mlp-field select { color: var(--mlp-ink); border-bottom-color: rgba(7, 20, 68, 0.22); }
+.prospectus-cover__enquiry .mlp-field input:focus,
+  .prospectus-cover__enquiry .mlp-field select:focus,
+  .archive-closing__form .mlp-field input:focus,
+  .archive-closing__form .mlp-field select:focus { border-bottom-color: var(--mlp-red); box-shadow: 0 1px 0 0 var(--mlp-red); }
+
+@media (max-width: 900px) {
+  .archive-career__intro,
+  .archive-learning__intro,
+  .archive-alumni__intro,
+  .archive-voices__intro,
+  .archive-fieldnotes__intro,
+  .archive-closing__frame { grid-template-columns: 1fr; gap: 1rem; }
+  .archive-career__stage,
+  .archive-learning__desk,
+  .archive-voices__stage { grid-template-columns: 1fr; gap: 2.5rem; }
+  .archive-voices__stack { position: relative; top: auto; min-height: 23rem; max-width: 30rem; }
+  .archive-closing__image-layer--back { right: -18%; width: 25rem; height: 19rem; }
+  .archive-closing__image-layer--front { right: -5%; width: 20rem; height: 25rem; }
+}
+
+@media (max-width: 620px) {
+  .archive-voices__stack { min-height: 20rem; }
+  .archive-fieldnotes__question { grid-template-columns: 1.75rem minmax(0, 1fr); gap: 0.7rem; font-size: 1.15rem; }
+  .archive-fieldnotes__answer { padding-left: 2.45rem; }
+  .archive-closing__image-layer--back { opacity: 0.1; }
+  .archive-closing__image-layer--front { opacity: 0.16; }
+  .archive-closing__form { margin-top: 1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .archive-alumni__track { animation: none; }
+}
+/* RichEditor prose — red disc + pulsing ring (program-detail gau-copy pattern) */
+.mlp-page .mlp-prose p {
+  margin: 0 0 0.85em;
+}
+
+.mlp-page .mlp-prose ul {
+  list-style: none;
+  margin: 0.5em 0 0;
+  padding: 0;
+}
+
+.mlp-page .mlp-prose li {
+  position: relative;
+  padding-left: 1.75rem;
+  margin-bottom: 0.65em;
+  line-height: 1.65;
+}
+
+.mlp-page .mlp-prose p:last-child,
+  .mlp-page .mlp-prose li:last-child {
+  margin-bottom: 0;
+}
+
+.mlp-page .mlp-prose li::before {
+  content: "";
+  position: absolute;
+  left: 0.125rem;
+  top: 0.55em;
+  width: 0.6875rem;
+  height: 0.6875rem;
+  border-radius: 50%;
+  background: var(--mlp-red, #b20202);
+  box-shadow: 0 0 0 0 rgba(178, 2, 2, 0.55);
+  animation: mlpProseRing 1.9s ease-out infinite;
+}
+
+@keyframes mlpProseRing {
+  0% {
+    box-shadow: 0 0 0 0 rgba(178, 2, 2, 0.55);
+  }
+  100% {
+    box-shadow: 0 0 0 10px rgba(178, 2, 2, 0);
+  }
+}
+
+@keyframes mlpProseRingOnDark {
+  0% {
+    box-shadow: 0 0 0 0 rgba(232, 90, 90, 0.45);
+  }
+  100% {
+    box-shadow: 0 0 0 10px rgba(232, 90, 90, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .mlp-mba__showcase:hover .mlp-mba__uni-photo {
+    transform: none;
+  }
+
+  .mlp-page .mlp-prose li::before {
+    animation: none;
+    box-shadow: none;
+  }
+}
+
+/* MBA Class of 2025 — radial statistics component */
+.blueprint-overview__class-2025 {
+  position: relative;
+  margin-top: clamp(3rem, 6vw, 5rem);
+  padding: clamp(2rem, 3.5vw, 3rem) clamp(0.75rem, 2vw, 2rem) 0;
+  background: linear-gradient(180deg, rgba(245, 240, 235, 0.72), rgba(250, 248, 244, 0.86));
+  color: var(--mlp-navy);
+  overflow: hidden;
+}
+
+/* Desktop only — bottom breathing room so stat labels are not clipped. */
+@media (min-width: 901px) {
+  .blueprint-overview__class-2025 {
+    padding-bottom: 5rem;
+  }
+}
+
+.blueprint-overview__class-2025-heading {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  color: var(--mlp-blue);
+  font-family: var(--mlp-font-display);
+  font-size: clamp(1.8rem, 3vw, 3rem);
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  line-height: 1;
+  text-align: center;
+}
+
+.blueprint-overview__class-2025-heading strong {
+  color: var(--mlp-navy);
+  font-weight: 500;
+}
+
+.blueprint-overview__class-2025-stage {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  min-height: 100%;
+  margin: 0 auto;
+  aspect-ratio: 1000 / 460;
+}
+
+.blueprint-overview__class-2025-lines {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: calc(100% + 100px);
+  overflow: visible;
+  pointer-events: none;
+  top: -100px;
+}
+
+.blueprint-overview__class-2025-arc {
+  fill: none;
+  stroke: rgba(15, 41, 131, 0.1);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.blueprint-overview__class-2025-node {
+  fill: var(--mlp-paper-pure);
+  stroke: var(--mlp-blue);
+  stroke-width: 1.1;
+  vector-effect: non-scaling-stroke;
+}
+
+.blueprint-overview__class-2025-connector {
+  fill: none;
+  stroke: rgba(7, 20, 68, 0.16);
+  stroke-width: 0.7;
+  vector-effect: non-scaling-stroke;
+}
+
+.blueprint-overview__class-2025-center {
+  position: absolute;
+  top: 27%;
+  left: 50%;
+  z-index: 2;
+  display: flex;
+  width: clamp(10rem, 15vw, 12rem);
+  aspect-ratio: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(7, 20, 68, 0.07);
+  border-radius: 50%;
+  background: var(--mlp-paper-pure);
+  box-shadow: 0 0.65rem 1.65rem rgba(7, 20, 68, 0.1);
+  color: var(--mlp-navy);
+  transform: translate(-50%, -50%);
+}
+
+.blueprint-overview__class-2025-center strong {
+  margin-top: 0.3rem;
+  font-family: var(--mlp-font-display);
+  font-size: clamp(1.2rem, 1.9vw, 1.75rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.blueprint-overview__class-2025-stats {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.blueprint-overview__class-2025-stat {
+  position: absolute;
+  width: clamp(8.75rem, 14vw, 10.75rem);
+}
+
+.blueprint-overview__class-2025-stat--students {
+  top: 20%;
+  left: 15%;
+}
+
+.blueprint-overview__class-2025-stat--experience {
+  top: 20%;
+  right: 15%;
+}
+
+.blueprint-overview__class-2025-stat--countries {
+  top: 54%;
+  left: 18%;
+}
+
+.blueprint-overview__class-2025-stat--age {
+  top: 54%;
+  right: 18%;
+}
+
+.blueprint-overview__class-2025-stat--pass-rate {
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.blueprint-overview__class-2025-card {
+  display: flex;
+  min-height: 7.15rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 0.7rem;
+  clip-path: polygon(5% 0, 95% 0, 100% 14%, 93% 100%, 7% 100%, 0 14%);
+  background: var(--mlp-paper-pure);
+  filter: drop-shadow(0 0.55rem 1rem rgba(7, 20, 68, 0.1));
+  text-align: center;
+}
+
+.blueprint-overview__class-2025-icon {
+  width: 1.45rem;
+  height: 1.45rem;
+  color: var(--mlp-red);
+}
+
+.blueprint-overview__class-2025-stat-copy {
+  position: absolute;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+}
+
+.blueprint-overview__class-2025-stat--students .blueprint-overview__class-2025-stat-copy {
+  top: 50%;
+  right: calc(100% + 0.75rem);
+  width: 7rem;
+  align-items: flex-end;
+  text-align: right;
+  transform: translateY(-50%);
+}
+
+.blueprint-overview__class-2025-stat--experience .blueprint-overview__class-2025-stat-copy {
+  top: 50%;
+  left: calc(100% + 0.75rem);
+  width: 8.25rem;
+  align-items: flex-start;
+  text-align: left;
+  transform: translateY(-50%);
+}
+
+.blueprint-overview__class-2025-stat--countries .blueprint-overview__class-2025-stat-copy {
+  top: calc(100% + 0.3rem);
+  left: -1.25rem;
+  width: 7.5rem;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.blueprint-overview__class-2025-stat--age .blueprint-overview__class-2025-stat-copy {
+    top: calc(100% + 0.3rem);
+    left: 0;
+    width: 11rem;
+    align-items: center;
+    text-align: right;
+}
+
+.blueprint-overview__class-2025-stat--pass-rate .blueprint-overview__class-2025-stat-copy {
+  top: calc(100% + 0.3rem);
+  left: 50%;
+  width: 8rem;
+  align-items: center;
+  text-align: center;
+  transform: translateX(-50%);
+}
+
+.blueprint-overview__class-2025-value {
+  order: 2;
+  margin-top: 0.2rem;
+  color: var(--mlp-red);
+  font-family: var(--mlp-font-display);
+  font-size: clamp(1.45rem, 2.2vw, 2.1rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.blueprint-overview__class-2025-label {
+  order: 1;
+  max-width: 100%;
+  margin: 0;
+  color: var(--mlp-navy);
+  font-family: var(--mlp-font-body);
+  font-size: clamp(0.57rem, 0.72vw, 0.68rem);
+  font-weight: 500;
+  letter-spacing: 0.035em;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+  text-transform: uppercase;
+}
+
+@media (max-width: 900px) {
+  .blueprint-overview__class-2025-stage {
+    display: grid;
+    min-height: 0;
+    aspect-ratio: auto;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    padding-top: 1.5rem;
+  }
+
+  .blueprint-overview__class-2025-lines {
+    display: none;
+  }
+
+  .blueprint-overview__class-2025-center {
+    position: relative;
+    top: auto;
+    left: auto;
+    grid-column: 1 / -1;
+    width: min(42vw, 11rem);
+    margin: 0 auto 0.5rem;
+    transform: none;
+  }
+
+  .blueprint-overview__class-2025-stats {
+    position: relative;
+    inset: auto;
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .blueprint-overview__class-2025-stat,
+  .blueprint-overview__class-2025-stat--students,
+  .blueprint-overview__class-2025-stat--countries,
+  .blueprint-overview__class-2025-stat--pass-rate,
+  .blueprint-overview__class-2025-stat--age,
+  .blueprint-overview__class-2025-stat--experience {
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    transform: none;
+  }
+
+  .blueprint-overview__class-2025-stat--experience,
+  .blueprint-overview__class-2025-stat--pass-rate {
+    grid-column: 1 / -1;
+    max-width: 22rem;
+    margin: 0 auto;
+  }
+
+  .blueprint-overview__class-2025-card {
+    width: 100%;
+    min-height: 8.5rem;
+  }
+
+  .blueprint-overview__class-2025-stat-copy,
+  .blueprint-overview__class-2025-stat--students .blueprint-overview__class-2025-stat-copy,
+  .blueprint-overview__class-2025-stat--experience .blueprint-overview__class-2025-stat-copy,
+  .blueprint-overview__class-2025-stat--countries .blueprint-overview__class-2025-stat-copy,
+  .blueprint-overview__class-2025-stat--age .blueprint-overview__class-2025-stat-copy,
+  .blueprint-overview__class-2025-stat--pass-rate .blueprint-overview__class-2025-stat-copy {
+    position: static;
+    width: 100%;
+    align-items: center;
+    margin-top: 0.55rem;
+    text-align: center;
+    transform: none;
+  }
+
+  .blueprint-overview__class-2025-value {
+    font-size: 1.75rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .blueprint-overview__class-2025 {
+    padding-right: 0.75rem;
+    padding-left: 0.75rem;
+  }
+
+  .blueprint-overview__class-2025-heading {
+    font-size: clamp(1.8rem, 9vw, 2.6rem);
+  }
+
+  .blueprint-overview__class-2025-stage,
+  .blueprint-overview__class-2025-stats {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+
+  .blueprint-overview__class-2025-center {
+    width: min(54vw, 10.5rem);
+  }
+
+  .blueprint-overview__class-2025-stat,
+  .blueprint-overview__class-2025-stat--experience,
+  .blueprint-overview__class-2025-stat--pass-rate {
+    grid-column: auto;
+    max-width: none;
+  }
+
+  .blueprint-overview__class-2025-card {
+    min-height: 8rem;
+  }
+}
+
+/* Shared project typography lock for the MBA Class 2025 component. */
+
+/* Landing class profile snapshot — Cohort Index / Class Profile Atlas */
+#mlp-class-snapshot {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  padding: clamp(3.5rem, 7vw, 6rem) 0;
+  border-top: 1px solid var(--mlp-line-dark);
+  background: linear-gradient(180deg, var(--mlp-paper), var(--mlp-surface-soft));
+  color: var(--mlp-ink);
+}
+
+#mlp-class-snapshot .mlp-class-snapshot__intro {
+  max-width: 56rem;
+  margin: 0 auto clamp(2rem, 4vw, 3.5rem);
+  text-align: center;
+}
+
+#mlp-class-snapshot .mlp-class-snapshot__heading {
+  max-width: 30ch;
+  margin: 0 auto;
+}
+
+#mlp-class-snapshot .mlp-class-snapshot__intro-copy {
+  max-width: 44rem;
+  margin: 1rem auto 0;
+  color: var(--mlp-muted-on-paper);
+  font-family: var(--mlp-font-body);
+  font-size: var(--mlp-type-body, 1rem);
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+#mlp-class-snapshot .mlp-class-snapshot__grid {
+  display: grid;
+  grid-template-columns: minmax(17rem, 0.78fr) minmax(0, 1.22fr);
+  gap: clamp(1rem, 2.5vw, 2rem);
+  align-items: stretch;
+}
+
+
+#mlp-class-snapshot .mlp-class-snapshot__global {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--mlp-glass-border);
+  border-radius: 4px;
+  background: var(--mlp-surface);
+  box-shadow: 0 1.4rem 3rem rgba(7, 20, 68, 0.08);
+}
+
+
+#mlp-class-snapshot .mlp-class-snapshot__global h3 {
+  position: relative;
+  z-index: 2;
+  margin: 0;
+  color: var(--mlp-navy);
+  font-family: var(--mlp-font-display);
+  font-size: clamp(1.1rem, 1.5vw, 1.4rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+#mlp-class-snapshot .mlp-class-snapshot__metrics {
+  display: grid;
+  margin: 1.25rem 0 0;
+}
+
+#mlp-class-snapshot .mlp-class-snapshot__metric {
+  display: grid;
+  grid-template-columns: 2.35rem minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  column-gap: 0.9rem;
+  padding: 1rem 0;
+}
+
+#mlp-class-snapshot .mlp-class-snapshot__metric:first-child {
+  padding-top: 0.35rem;
+}
+
+#mlp-class-snapshot .mlp-class-snapshot__metric:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+#mlp-class-snapshot .mlp-class-snapshot__metric dt {
+  display: contents;
+}
+
+#mlp-class-snapshot .mlp-class-snapshot__metric-icon {
+  display: grid;
+  grid-column: 1;
+  grid-row: 1 / 3;
+  place-items: center;
+  align-self: center;
+  width: 2.15rem;
+  height: 2.15rem;
+  color: var(--mlp-red);
+  border: 1px solid rgba(178, 2, 2, 0.3);
+}
+
+#mlp-class-snapshot .mlp-class-snapshot__metric-label {
+  grid-column: 2;
+  grid-row: 2;
+  align-self: start;
+  color: var(--mlp-muted-on-paper);
+  font-family: var(--mlp-font-body);
+  font-size: var(--mlp-type-caption, 0.8125rem);
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+#mlp-class-snapshot .mlp-class-snapshot__metric dd {
+  grid-column: 2;
+  grid-row: 1;
+  margin: 0 0 0.25rem;
+  color: var(--mlp-navy);
+  font-family: var(--mlp-font-display);
+  font-size: clamp(1.45rem, 2.25vw, 2.1rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+#mlp-class-snapshot .mlp-class-snapshot__global {
+  min-height: 21rem;
+  padding: clamp(1.35rem, 2.5vw, 2.25rem) clamp(1.35rem, 3vw, 2.75rem) 10rem;
+}
+
+#mlp-class-snapshot .mlp-class-snapshot__countries {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem 1rem;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+#mlp-class-snapshot .mlp-class-snapshot__country {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 0.55rem;
+  color: var(--mlp-navy);
+  font-family: var(--mlp-font-body);
+  font-size: var(--mlp-type-caption, 0.8125rem);
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+#mlp-class-snapshot .mlp-class-snapshot__country img {
+  display: block;
+  flex: 0 0 auto;
+  width: 1.4rem;
+  height: 1rem;
+  object-fit: cover;
+  border: 1px solid rgba(7, 20, 68, 0.14);
+}
+
+#mlp-class-snapshot .mlp-class-snapshot__global {
+  isolation: isolate;
+}
+
+.blueprint-overview__frame,
+  .mlp-why__chapters,
+  .mlp-mba__inner,
+  .mlp-masters__inner,
+  .archive-career__frame,
+  .archive-alumni__frame,
+  .archive-learning__frame,
+  .pricing-cards__frame,
+  .signal-atlas__frame,
+  .archive-partners__frame,
+  #mlp-class-snapshot .mlp-class-snapshot__frame,
+  #mlp-class-snapshot .mlp-class-snapshot__global > h3,
+  #mlp-class-snapshot .mlp-class-snapshot__countries,
+  .mlp-page--polished .archive-video-proof__frame {
+  position: relative;
+  z-index: 1;
+}
+
+/* Landing accreditation slider fallback — the shared homepage script is not loaded here. */
+@keyframes mlpAccreditationLoop {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.mlp-page--polished #accreditations .accred-slider-track.is-landing-slider {
+  width: max-content;
+  animation: mlpAccreditationLoop 36s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mlp-page--polished #accreditations .accred-slider-track.is-landing-slider {
+    animation: none;
+    transform: none;
+  }
+}
+
+/* Class Profile Snapshot — full-width overview cards + inline country index */
+#mlp-class-snapshot .mlp-class-snapshot__grid {
+  grid-template-columns: 1fr;
+  gap: clamp(1.15rem, 3vw, 2rem);
+}
+
+#mlp-class-snapshot .mlp-class-snapshot__metrics {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.65rem;
+  margin-top: 2.5rem;
+}
+
+#mlp-class-snapshot .mlp-class-snapshot__metric,
+#mlp-class-snapshot .mlp-class-snapshot__metric:first-child,
+#mlp-class-snapshot .mlp-class-snapshot__metric:last-child {
+  min-width: 0;
+  min-height: 7.5rem;
+  padding: 1.1rem;
+  border: 1px solid var(--mlp-line-dark);
+  background: rgba(245, 240, 235, 0.52);
+}
+
+#mlp-class-snapshot .mlp-class-snapshot__metric-icon {
+  width: 2rem;
+  height: 2rem;
+}
+
+#mlp-class-snapshot .mlp-class-snapshot__metric dd {
+  font-size: clamp(1.35rem, 2vw, 1.9rem);
+}
+
+#mlp-class-snapshot .mlp-class-snapshot__global {
+  min-height: 0;
+  padding: clamp(1.35rem, 2.5vw, 2.25rem) clamp(1.35rem, 3vw, 2.75rem) 2.5rem;
+}
+
+#mlp-class-snapshot .mlp-class-snapshot__countries {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem 1rem;
+  margin-top: 1.25rem;
+}
+
+#mlp-class-snapshot .mlp-class-snapshot__country {
+  flex: 0 0 auto;
+  min-height: 2.15rem;
+  padding: 0.3rem 0.8rem 0.3rem 0;
+}
+
+@media (max-width: 900px) {
+  #mlp-class-snapshot .mlp-class-snapshot__metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #mlp-class-snapshot .mlp-class-snapshot__global {
+    padding-bottom: 8rem;
+  }
+}
+
+@media (max-width: 520px) {
+  #mlp-class-snapshot .mlp-class-snapshot__metrics {
+    grid-template-columns: 1fr;
+  }
+
+  #mlp-class-snapshot .mlp-class-snapshot__global {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+
+  #mlp-class-snapshot .mlp-class-snapshot__country {
+    width: 100%;
+  }
+}
+
+/* ————————————————————————————————————————————————
+   MBA Class of 2025 — standalone chapter (moved out of Overview,
+   now rendered as its own section after #mlp-masters)
+   ———————————————————————————————————————————————— */
+.mlp-class-2025 {
+  padding: clamp(4.5rem, 9vw, 7.5rem) 0 clamp(2rem, 4vw, 3.5rem);
+}
+
+.mlp-class-2025 .blueprint-overview__class-2025 {
+  margin-top: 0;
+}
+
+/* ————————————————————————————————————————————————
+   UAE Top-Rated badge — sits under the Career progression image stack
+   ———————————————————————————————————————————————— */
+.mlp-uae-badge {
+  grid-column: 1;
+  grid-row: 2;
+  margin-top: clamp(1.5rem, 3vw, 2.5rem);
+  padding: clamp(1.6rem, 3vw, 2.4rem) clamp(1.6rem, 3.5vw, 2.6rem);
+  background: var(--color-mba-dark-blue);
+  color: var(--mlp-white);
+}
+
+.mlp-uae-badge__title {
+  margin: 0;
+  max-width: 24ch;
+  font-family: var(--mlp-font-body);
+  font-size: clamp(1.15rem, 2vw, 1.5rem);
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.mlp-uae-badge__row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-top: clamp(2.2rem, 5vw, 3.6rem);
+}
+
+.mlp-uae-badge__country strong {
+  display: block;
+  font-family: var(--mlp-font-display);
+  font-size: clamp(2.4rem, 4.5vw, 3.25rem);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.mlp-uae-badge__country span {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+}
+
+.mlp-uae-badge__flag {
+  display: flex;
+  flex: 0 0 auto;
+  width: clamp(6.5rem, 12vw, 9rem);
+  aspect-ratio: 2 / 1;
+  overflow: hidden;
+}
+
+.mlp-uae-badge__flag-red {
+  width: 25%;
+  height: 100%;
+  background: #ce1126;
+}
+
+.mlp-uae-badge__flag-stripes {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.mlp-uae-badge__flag-stripes span { flex: 1; }
+.mlp-uae-badge__flag-stripes span:nth-child(1) { background: #00732f; }
+.mlp-uae-badge__flag-stripes span:nth-child(2) { background: var(--mlp-white); }
+.mlp-uae-badge__flag-stripes span:nth-child(3) { background: #000; }
+
+/* Mobile: keep the badge directly under the image stack, above dossiers. */
+@media (max-width: 900px) {
+  .archive-career__stack { order: 1; }
+  .mlp-uae-badge { order: 2; grid-column: auto; grid-row: auto; }
+  .archive-career__dossiers { order: 3; }
+}
+
+
+/* ————————————————————————————————————————————————
+   Master's — The Prospectus Ledger
+   Light · clean · professional programme directory.
+   Body typography, hairline ledger grid, one framed banner.
+   No university names, no counts.
+   ———————————————————————————————————————————————— */
+
+/* Split editorial header */
+.mlp-masters--prospectus .mlp-masters__head {
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  max-width: none;
+  margin-bottom: clamp(2.25rem, 5vw, 3.5rem);
+}
+
+.mlp-masters--prospectus .mlp-masters__heading {
+  max-width: 26ch;
+}
+
+.mlp-masters--prospectus .mlp-masters__intro {
+  max-width: 44ch;
+  margin: 0 0 0.35rem;
+  color: var(--mlp-muted-on-paper);
+  font-family: var(--mlp-font-body);
+}
+
+/* One framed cinematic banner — light treatment */
+.mlp-masters__banner {
+  position: relative;
+  margin: 0 0 clamp(2.5rem, 6vw, 4.25rem);
+}
+.mlp-masters__banner-rule {
+  position: absolute;
+  top: -0.9rem;
+  left: -0.9rem;
+  width: 3.75rem;
+  height: 3.75rem;
+  border-top: 2px solid var(--mlp-red);
+  border-left: 2px solid var(--mlp-red);
+  pointer-events: none;
+}
+
+/* Hairline ledger grid of every programme */
+.mlp-masters__ledger {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--mlp-line-dark);
+  border: 1px solid var(--mlp-line-dark);
+}
+
+.mlp-masters__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  padding: 1.3rem 1.5rem 1.4rem;
+  background: var(--mlp-paper-pure);
+  transition: background-color 0.3s ease;
+}
+.mlp-masters__item:hover { background: var(--mlp-surface-soft); }
+
+.mlp-masters__item-mark {
+  flex: 0 0 auto;
+  width: 0.45rem;
+  height: 0.45rem;
+  margin-top: 0.5rem;
+  background: var(--mlp-red);
+  transform: rotate(45deg);
+  transition: transform 0.3s var(--mlp-ease);
+}
+.mlp-masters__item:hover .mlp-masters__item-mark { transform: rotate(45deg) scale(1.25); }
+
+.mlp-masters__item-title {
+  font-family: var(--mlp-font-body);
+  font-size: 1.05rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--mlp-navy);
+}
+
+/* Closing CTA row */
+.mlp-masters__cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  margin-top: clamp(2rem, 4.5vw, 3rem);
+  padding-top: 1.6rem;
+  border-top: 1px solid var(--mlp-line-dark);
+}
+.mlp-masters__cta {
+  gap: 0.6rem;
+  min-height: 48px;
+  padding: 0 1.6rem;
+  font-family: var(--mlp-font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border-radius: 2px;
+  transition: background-color 0.3s ease, transform 0.3s var(--mlp-ease);
+}
+.mlp-masters__cta:hover { background: var(--mlp-navy); transform: translateY(-1px); }
+.mlp-masters__cta-note {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--mlp-muted-on-paper);
+}
+
+@media (max-width: 1000px) {
+  .mlp-masters__ledger { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 900px) {
+  .mlp-masters--prospectus .mlp-masters__head { grid-template-columns: 1fr; align-items: start; gap: 0.9rem; }
+}
+@media (max-width: 640px) {
+  .mlp-masters__ledger { grid-template-columns: 1fr; }
+}
+
+/* ===== POLISH LAYER (was mba-masters-polish.css) ===== */
+/* MBA & Master's landing — page-wide Quietly Cinematic polish layer */
+.mlp-page--polished {
+  --mlp-polish-line: rgba(7, 20, 68, 0.14);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.mlp-page--polished > section {
+  scroll-margin-top: 5rem;
+}
+
+.mlp-page--polished :where(h1, h2, h3) {
+  text-wrap: balance;
+}
+
+.mlp-page--polished :where(p, li, dd) {
+  text-wrap: pretty;
+}
+
+.mlp-page--polished :where(img) {
+  backface-visibility: hidden;
+}
+
+/* Shared labels, links, and action rhythm */
+.mlp-page--polished :where(
+  .prospectus-cover__eyebrow,
+  .prospectus-cover__kicker,
+  .signal-atlas__folio,
+  .blueprint-overview__folio,
+  .archive-class__label,
+  .archive-career__label,
+  .archive-alumni__label,
+  .archive-learning__label,
+  .archive-partners__label,
+  .archive-investment__label,
+  .archive-voices__label,
+  .archive-parallel__label,
+  .archive-fieldnotes__label,
+  .archive-closing__label
+) {
+  letter-spacing: 0.15em;
+}
+
+.mlp-page--polished :where(
+  .prospectus-cover__secondary,
+  .signal-atlas__link,
+  .blueprint-overview__secondary,
+  .archive-class__audience,
+  .archive-investment__secondary,
+  .archive-closing__secondary
+) {
+  transition: color 0.3s var(--mlp-ease), border-color 0.3s var(--mlp-ease), transform 0.3s var(--mlp-ease);
+}
+
+/* Page-load assembly baseline. Non-JS/reduced-motion users see the final state. */
+html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-image] {
+  opacity: 0;
+  filter: saturate(0.35) contrast(1.05) brightness(0.42) blur(4px);
+  transform: scale(1.08);
+}
+
+html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-wash],
+  html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-masthead] > *,
+  html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-statement] > *,
+  html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-folio] > * {
+  opacity: 0;
+}
+
+html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-registration] {
+  opacity: 0;
+  clip-path: inset(0 100% 0 0);
+}
+
+html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-enquiry] {
+  opacity: 0;
+  clip-path: inset(0 0 0 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-image],
+  html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-wash],
+  html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-registration],
+  html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-masthead] > *,
+  html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-statement] > *,
+  html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-folio] > *,
+  html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-enquiry] {
+    opacity: 1;
+    clip-path: none;
+    filter: none;
+    transform: none;
+  }
+}
+
+/* Locked Living Prospectus identity — polish only */
+.mlp-page--polished .prospectus-cover__title {
+  max-width: 9.5ch;
+  font-size: clamp(3rem, 6.2vw, 6.4rem);
+  letter-spacing: -0.065em;
+}
+
+.mlp-page--polished .prospectus-cover__intro {
+  max-width: 39ch;
+}
+
+.mlp-page--polished .prospectus-cover__primary {
+  box-shadow: 0 14px 28px -20px rgba(178, 2, 2, 0.9);
+}
+
+.mlp-page--polished .prospectus-cover__primary:hover,
+.mlp-page--polished .prospectus-cover__primary:focus-visible {
+  box-shadow: 0 16px 32px -18px rgba(7, 20, 68, 0.85);
+}
+
+.mlp-page--polished .prospectus-cover__enquiry {
+  box-shadow: 0 24px 54px -38px rgba(7, 20, 68, 0.62);
+}
+
+.mlp-page--polished .prospectus-cover__enquiry .mlp-form__fields {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: clamp(0.85rem, 2vw, 1.5rem);
+}
+
+.mlp-page--polished .prospectus-cover__enquiry .mlp-form__fields > :first-child, 
+.mlp-page--polished .prospectus-cover__enquiry .mlp-btn--block {
+  grid-column: 1 / -1;
+}
+
+/* Trust + Overview: give the first decision chapter one confident rhythm */
+.mlp-page--polished .signal-atlas,
+  .mlp-page--polished .blueprint-overview,
+  .mlp-page--polished .mlp-why,
+  .mlp-page--polished .mlp-mba,
+  .mlp-page--polished .mlp-masters,
+  .mlp-page--polished :where( .archive-class,
+  .archive-career,
+  .archive-alumni,
+  .archive-learning,
+  .archive-partners,
+  .archive-investment,
+  .archive-voices,
+  .archive-parallel,
+  .archive-fieldnotes,
+  .archive-closing ) {
+  border-top: 1px solid var(--mlp-polish-line);
+}
+
+.mlp-page--polished .signal-atlas__intro,
+.mlp-page--polished .blueprint-overview__intro {
+  max-width: 76rem;
+}
+
+.mlp-page--polished .signal-atlas__quote,
+.mlp-page--polished .blueprint-overview__system {
+  border-color: var(--mlp-polish-line);
+}
+
+.mlp-page--polished .signal-atlas__record,
+.mlp-page--polished .blueprint-overview__foundation {
+  transition: transform 0.45s var(--mlp-ease), border-color 0.35s var(--mlp-ease), background-color 0.35s ease;
+}
+
+.mlp-page--polished .signal-atlas__record:hover {
+  background: rgba(255, 255, 255, 0.42);
+}
+
+.mlp-page--polished .blueprint-overview__foundation:hover,
+.mlp-page--polished .blueprint-overview__foundation:focus-within {
+  background: rgba(255, 255, 255, 0.46);
+}
+
+/* Existing middle sections: harmonise older blocks with the Light Archive */
+
+.mlp-page--polished :where(
+  .mlp-why__heading,
+  .mlp-journey__heading,
+  .mlp-mba__heading,
+  .mlp-masters__heading
+) {
+  letter-spacing: -0.045em;
+}
+
+.mlp-page--polished :where(
+  .mlp-why__chapter,
+  .mlp-journey__step,
+  .mlp-mba__showcase,
+  .mlp-masters__showcase
+) {
+  transition: background-color 0.35s ease, border-color 0.35s ease, transform 0.45s var(--mlp-ease);
+}
+
+.mlp-page--polished :where(.mlp-why__chapter, .mlp-journey__step):hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.mlp-page--polished :where(.mlp-mba__tab, .mlp-masters__program) {
+  transition: color 0.3s var(--mlp-ease), border-color 0.3s var(--mlp-ease), background-color 0.3s ease, padding-left 0.3s var(--mlp-ease);
+}
+
+.mlp-page--polished :where(.mlp-mba__tab:focus-visible, .mlp-masters__program:focus-visible) {
+  outline-offset: -3px;
+}
+
+.mlp-page--polished .mlp-mba__showcase:hover {
+  transform: translateY(-0.18rem);
+}
+
+/* Light Archive sections: shared depth without card-grid repetition */
+
+.mlp-page--polished :where(
+  .archive-class__heading,
+  .archive-career__heading,
+  .archive-alumni__heading,
+  .archive-learning__heading,
+  .archive-partners__heading,
+  .archive-investment__heading,
+  .archive-voices__heading,
+  .archive-parallel__heading,
+  .archive-fieldnotes__heading,
+  .archive-closing__heading
+) {
+  letter-spacing: -0.05em;
+}
+
+.mlp-page--polished :where(
+  .archive-class__metric,
+  .archive-career__dossier,
+  .archive-learning__point,
+  .archive-investment__record,
+  .archive-voices__voice,
+  .archive-parallel__row,
+  .archive-fieldnotes__note
+) {
+  transition: border-color 0.35s ease, background-color 0.35s ease, transform 0.45s var(--mlp-ease);
+}
+
+.mlp-page--polished :where(
+  .archive-class__metric:hover,
+  .archive-career__dossier:hover,
+  .archive-learning__point:hover,
+  .archive-investment__record:hover,
+  .archive-voices__voice:hover,
+  .archive-parallel__row:hover,
+  .archive-fieldnotes__note:hover
+) {
+  border-color: var(--mlp-red);
+}
+
+.mlp-page--polished :where(
+  .archive-class__icon,
+  .archive-class__zone-icon,
+  .archive-class__industry-icon,
+  .archive-career__dossier-icon,
+  .archive-learning__point-icon,
+  .archive-investment__record-mark,
+  .archive-voices__quote-icon,
+  .archive-parallel__criterion span,
+  .archive-fieldnotes__question-icon
+) {
+  transition: color 0.3s var(--mlp-ease), background-color 0.3s ease, border-color 0.3s ease, transform 0.35s var(--mlp-ease);
+}
+
+.mlp-page--polished :where(
+  .archive-class__metric:hover .archive-class__icon,
+  .archive-career__dossier:hover .archive-career__dossier-icon,
+  .archive-learning__point:hover .archive-learning__point-icon,
+  .archive-investment__record:hover .archive-investment__record-mark,
+  .archive-voices__voice:hover .archive-voices__quote-icon,
+  .archive-parallel__row:hover .archive-parallel__criterion span,
+  .archive-fieldnotes__note:hover .archive-fieldnotes__question-icon
+) {
+  transform: translateY(-2px);
+}
+
+/* Fees: keep the practical index compact and make scanning effortless */
+
+/* Testimonials, comparison, FAQ, final CTA */
+.mlp-page--polished .archive-voices__stage,
+.mlp-page--polished .archive-closing__frame {
+  align-items: start;
+}
+
+
+.mlp-page--polished .archive-fieldnotes__question {
+  letter-spacing: -0.025em;
+}
+
+.mlp-page--polished .archive-fieldnotes__answer {
+  max-width: 52rem;
+}
+
+.mlp-page--polished .archive-closing__form {
+  box-shadow: 0 24px 58px -40px rgba(7, 20, 68, 0.62);
+}
+
+/* Shared image-stack performance and dramatic but short transitions */
+.mlp-page--polished :where(
+  .archive-class__stack-image,
+  .archive-career__stack-image,
+  .archive-voices__stack-image,
+  .archive-learning__stack-layer,
+  .archive-closing__image-layer
+) {
+  transition: transform 0.9s var(--mlp-ease), opacity 0.7s ease, clip-path 0.9s var(--mlp-ease);
+}
+
+.mlp-page--polished :where(
+  .archive-class__archive:hover .archive-class__stack-image--1,
+  .archive-career__stage:hover .archive-career__stack-image--1,
+  .archive-voices__stage:hover .archive-voices__stack-image--1,
+  .archive-learning__desk:hover .archive-learning__stack-layer--front
+) {
+  transform: translateY(-0.35rem) rotate(-2deg);
+}
+
+@media (max-width: 900px) {
+  .mlp-mba__showcase,
+  .mlp-mba__showcase--flip,
+  .archive-voices__intro,
+  .archive-fieldnotes__intro,
+  .mlp-page--polished .prospectus-cover__enquiry .mlp-form__fields {
+    grid-template-columns: 1fr;
+  }
+
+  .mlp-page--polished .prospectus-cover__enquiry .mlp-form__fields > :first-child, 
+  .mlp-page--polished .prospectus-cover__enquiry .mlp-btn--block {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 560px) {
+  .mlp-page--polished .prospectus-cover__title {
+    font-size: clamp(2.6rem, 13vw, 5rem);
+  }
+}
+
+@media (max-width: 620px) {
+  .mlp-page--polished :where(
+    .archive-investment__record,
+    .archive-voices__voice,
+    .archive-parallel__row,
+    .archive-fieldnotes__note
+  ) {
+    transform: none;
+  }
+
+  .mlp-page--polished .archive-closing__intro {
+    padding-top: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mlp-page--polished :where(
+    .prospectus-cover__primary,
+    .signal-atlas__record,
+    .blueprint-overview__foundation,
+    .archive-class__metric,
+    .archive-career__dossier,
+    .archive-learning__point,
+    .archive-investment__record,
+    .archive-voices__voice,
+    .archive-parallel__row,
+    .archive-fieldnotes__note,
+    .archive-closing__image-layer,
+    .archive-class__stack-image,
+    .archive-career__stack-image,
+    .archive-voices__stack-image,
+    .archive-learning__stack-layer
+  ) {
+    transition: none;
+  }
+}
+
+/* Issue 1 — semantic page type scale. Keep the page to a small set of intentional roles. */
+.mlp-page--polished {
+  --mlp-type-micro: var(--fs-caption);
+  --mlp-type-caption: var(--fs-caption);
+  --mlp-type-body: var(--fs-body);
+  --mlp-type-lede: var(--fs-body);
+  --mlp-type-title-sm: var(--fs-card-title);
+  --mlp-type-title-lg: var(--fs-section-title);
+  --mlp-type-display: var(--fs-hero);
+  --mlp-type-stat: var(--fs-hero-sub);
+}
+
+.mlp-page--polished :is(
+  .prospectus-cover__edition,
+  .prospectus-cover__academy,
+  .prospectus-cover__location,
+  .prospectus-cover__eyebrow,
+  .prospectus-cover__kicker,
+  .prospectus-cover__enquiry-index,
+  .signal-atlas__folio,
+  .blueprint-overview__folio,
+  .archive-class__label,
+  .archive-career__label,
+  .archive-alumni__label,
+  .archive-learning__label,
+  .archive-partners__label,
+  .archive-investment__label,
+  .archive-voices__label,
+  .archive-parallel__label,
+  .archive-fieldnotes__label,
+  .archive-closing__label,
+  .archive-partners__hint,
+  .archive-partners__toggle,
+  .archive-closing__form-head
+) {
+  font-size: var(--mlp-type-micro);
+}
+
+.mlp-page--polished :is(
+  .prospectus-cover__title,
+  .signal-atlas__heading,
+  .blueprint-overview__heading,
+  .mlp-why__heading,
+  .mlp-journey__heading,
+  .mlp-mba__heading,
+  .mlp-masters__heading,
+  .archive-class__heading,
+  .archive-career__heading,
+  .archive-alumni__heading,
+  .archive-learning__heading,
+  .archive-partners__heading,
+  .archive-investment__heading,
+  .archive-voices__heading,
+  .archive-parallel__heading,
+  .archive-fieldnotes__heading,
+  .archive-closing__heading
+) {
+  font-size: var(--mlp-type-title-lg);
+}
+
+.mlp-page--polished .prospectus-cover__title {
+  font-size: var(--mlp-type-display);
+}
+
+.mlp-page--polished :is(
+  .prospectus-cover__intro,
+  .prospectus-cover__annotation-copy,
+  .prospectus-cover__enquiry-head p,
+  .signal-atlas__quote p,
+  .signal-atlas__note,
+  .blueprint-overview__intro-copy,
+  .archive-class__copy,
+  .archive-career__intro-copy,
+  .archive-alumni__intro-copy,
+  .archive-learning__intro-copy,
+  .archive-partners__intro-copy,
+  .archive-investment__intro-copy,
+  .archive-voices__intro-copy,
+  .archive-parallel__intro-copy,
+  .archive-fieldnotes__intro-copy,
+  .archive-closing__intro-copy
+) {
+  font-size: var(--mlp-type-body);
+}
+
+.mlp-page--polished :is(
+  .mlp-lede,
+  .prospectus-insert__copy,
+  .archive-voices__quote,
+  .archive-career__quote,
+  .archive-learning__point-text
+) {
+  font-size: var(--mlp-type-lede);
+}
+
+.mlp-page--polished :is(
+  .mlp-why__title,
+  .mlp-journey__title,
+  .mlp-mba__uni-name,
+  .mlp-masters__uni-name,
+  .archive-class__zone-head h3,
+  .archive-career__dossier h3,
+  .archive-learning__point h3,
+  .archive-investment__record-topline h3,
+  .archive-voices__voice cite,
+  .archive-parallel__criterion,
+  .archive-fieldnotes__question
+) {
+  font-size: var(--mlp-type-title-sm);
+}
+
+.mlp-page--polished :is(
+  .mlp-mba__program-title,
+  .mlp-masters__program-title,
+  .archive-class__metric dt,
+  .archive-class__region-note,
+  .archive-class__industry-share,
+  .archive-career__dossier-head p,
+  .archive-career__move span,
+  .archive-voices__voice small,
+  .archive-parallel__side-label,
+  .archive-fieldnotes__answer,
+  .archive-investment__note,
+  .archive-learning__caption
+) {
+  font-size: var(--mlp-type-caption);
+}
+
+.mlp-page--polished :is(
+  .signal-atlas__value,
+  .blueprint-overview__core strong,
+  .archive-class__metric dd,
+  .archive-investment__record-topline strong,
+  .archive-investment__fee,
+  .archive-closing__form-title
+) {
+  font-size: var(--mlp-type-stat);
+}
+
+.mlp-page--polished :is(
+  .mlp-btn,
+  .prospectus-cover__primary,
+  .prospectus-cover__secondary,
+  .archive-investment__primary,
+  .archive-investment__secondary,
+  .archive-parallel__primary,
+  .archive-closing__primary,
+  .archive-closing__secondary,
+  .archive-learning__primary,
+  .archive-learning__secondary
+) {
+  font-size: var(--mlp-type-caption);
+}
+
+.mlp-page--polished :is(.mlp-field input, .mlp-field select, .mlp-field textarea) {
+  font-size: var(--mlp-type-body);
+}
+
+@media (max-width: 560px) {
+  .mlp-page--polished .prospectus-cover__title {
+    font-size: clamp(2.6rem, 13vw, 5rem);
+  }
+}
+
+/* Issue 24 — make gated/indicative fee values feel intentional. */
+
+@media (max-width: 560px) {
+}
+
+/* Issue 2 — map page copy to a small semantic colour vocabulary. */
+.mlp-page--polished,
+  .mlp-page--polished {
+  --mlp-color-heading: var(--mlp-navy);
+  --mlp-color-muted: var(--mlp-muted-on-paper);
+  --mlp-color-accent: var(--mlp-red);
+  --mlp-color-inverse: var(--mlp-white);
+}
+
+.mlp-page--polished :is(
+  .signal-atlas__heading,
+  .blueprint-overview__heading,
+  .mlp-why__heading,
+  .mlp-why__title,
+  .mlp-journey__heading,
+  .mlp-journey__title,
+  .mlp-mba__heading,
+  .mlp-masters__heading,
+  .archive-class__heading,
+  .archive-career__heading,
+  .archive-alumni__heading,
+  .archive-learning__heading,
+  .archive-partners__heading,
+  .archive-investment__heading,
+  .archive-voices__heading,
+  .archive-parallel__heading,
+  .archive-fieldnotes__heading,
+  .archive-closing__heading,
+  .archive-parallel__criterion
+) {
+  color: var(--mlp-color-heading);
+}
+
+.mlp-page--polished :is(
+  .signal-atlas__label,
+  .signal-atlas__note,
+  .blueprint-overview__intro-copy,
+  .mlp-why__intro,
+  .mlp-why__text,
+  .mlp-journey__intro,
+  .mlp-journey__text,
+  .mlp-mba__intro,
+  .mlp-masters__intro,
+  .archive-class__copy,
+  .archive-career__intro-copy,
+  .archive-alumni__intro-copy,
+  .archive-learning__intro-copy,
+  .archive-partners__intro-copy,
+  .archive-investment__intro-copy,
+  .archive-investment__note,
+  .archive-voices__intro-copy,
+  .archive-parallel__intro-copy,
+  .archive-fieldnotes__intro-copy,
+  .archive-closing__intro-copy
+) {
+  color: var(--mlp-color-muted);
+}
+
+.mlp-page--polished :is(
+  .signal-atlas__folio,
+  .blueprint-overview__folio,
+  .mlp-why__link,
+  .mlp-mba__label,
+  .mlp-masters__label,
+  .archive-class__label,
+  .archive-career__label,
+  .archive-alumni__label,
+  .archive-learning__label,
+  .archive-partners__label,
+  .archive-investment__label,
+  .archive-voices__label,
+  .archive-parallel__label,
+  .archive-fieldnotes__label,
+  .archive-closing__label
+) {
+  color: var(--mlp-color-accent);
+}
+
+/* Issues 4 and 7 — labels are short metadata; these two sentences stay readable. */
+.mlp-page--polished .prospectus-cover__edition,
+  .mlp-page--polished .prospectus-cover__kicker,
+  .mlp-page--polished .prospectus-cover__academy,
+  .mlp-page--polished .prospectus-cover__eyebrow,
+  .mlp-page--polished .prospectus-cover__kicker,
+  .mlp-page--polished .archive-learning__caption {
+  text-transform: none;
+  letter-spacing: 0.04em;
+}
+
+/* Issues 5–12 — keep supporting text above the minimum readable tier. */
+.mlp-page--polished .prospectus-cover__academy,
+  .mlp-page--polished .prospectus-cover__eyebrow,
+  .mlp-page--polished .mlp-field,
+  .mlp-page--polished .signal-atlas__label,
+  .mlp-page--polished .archive-learning__caption,
+  .mlp-page--polished :is(.archive-alumni__footer p,
+  .archive-partners__logo-item span,
+  .archive-learning__caption) {
+  font-size: var(--mlp-type-caption);
+}
+
+/* Issues 3 and 25 — four clear action roles: solid primary, outline secondary,
+   text link, and compact form submit. */
+.mlp-page--polished :is(
+  .mlp-btn--primary,
+  .prospectus-cover__primary,
+  .archive-investment__primary,
+  .archive-parallel__primary,
+  .archive-closing__primary,
+  .archive-learning__primary
+) {
+  min-height: 3rem;
+  border-radius: 0;
+  background: var(--mlp-red);
+  color: var(--mlp-white);
+}
+
+.mlp-page--polished :is( .mlp-btn--ghost,
+  .archive-investment__secondary,
+  .archive-closing__secondary,
+  .archive-learning__secondary ),
+  .mlp-page--polished :is( .mlp-btn--primary,
+  .mlp-btn--ghost,
+  .mlp-btn--text,
+  .prospectus-cover__primary,
+  .prospectus-cover__secondary,
+  .archive-investment__primary,
+  .archive-investment__secondary,
+  .archive-parallel__primary,
+  .archive-closing__primary,
+  .archive-closing__secondary,
+  .archive-learning__primary,
+  .archive-learning__secondary ) {
+  border-radius: 0;
+}
+
+.mlp-page--polished .mlp-form__fields > .mlp-btn--block {
+  background: var(--color-mba-dark-blue);
+  color: var(--color-warm-white);
+  border-color: var(--color-mba-dark-blue);
+}
+
+.mlp-page--polished .mlp-form__fields > .mlp-btn--block:hover,
+.mlp-page--polished .mlp-form__fields > .mlp-btn--block:focus-visible {
+  background: var(--mlp-red);
+  color: var(--mlp-white);
+  border-color: var(--mlp-red);
+}
+
+/* Issues 14 and 17 — tighten Why Choose chapters without removing their rhythm. */
+.mlp-page--polished .mlp-why__chapter {
+  min-height: 0;
+  padding: clamp(2rem, 4vw, 3.25rem) 0;
+}
+
+.mlp-page--polished .mlp-why__chapter-grid {
+  gap: clamp(1rem, 2.5vw, 2rem);
+}
+
+/* Issues 18, 19 and 21 — remove non-functional sequence numbers. The Admission
+   Journey keeps its numbers because they describe an actual process. */
+
+.mlp-page--polished .signal-atlas__record {
+  grid-template-columns: minmax(7rem, 0.48fr) minmax(0, 1fr);
+}
+
+.mlp-page--polished .mlp-why__chapter-grid {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/* Issue 20 — bring the Admission Journey heading and route closer together. */
+
+/* Issues 15 and 16 — each form row occupies the full form width; its own
+   columns can then shrink safely instead of clipping or overlapping. */
+.mlp-page--polished .prospectus-cover__enquiry .mlp-form__row {
+  grid-column: 1 / -1;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  min-width: 0;
+}
+
+.mlp-page--polished .prospectus-cover__enquiry .mlp-field,
+  .mlp-page--polished .prospectus-cover__enquiry .mlp-field input,
+  .mlp-page--polished .prospectus-cover__enquiry .mlp-field select,
+  .mlp-page--polished .prospectus-cover__enquiry .mlp-field input,
+  .mlp-page--polished .prospectus-cover__enquiry .mlp-field select {
+  min-width: 0;
+  width: 100%;
+}
+
+/* Issue 26 — Explore is a clear compact action, without becoming a large
+   competing primary CTA. */
+
+/* Issue 22 — comparison sides start on the same horizontal scan line. */
+
+/* Issues 27 and 28 — explicit comparison headers and a strong, consistent CTA. */
+
+@media (max-width: 900px) {
+  .mlp-page--polished .prospectus-cover__enquiry .mlp-form__row {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 700px) {
+  .mlp-page--polished .signal-atlas__record {
+    grid-template-columns: 1fr;
+  }
+
+  .mlp-page--polished .signal-atlas__label {
+    grid-column: 1;
+  }
+}
+
+@media (max-width: 560px) {
+}
+
+/* 29-point audit batch — consistency, hierarchy, proximity, and affordance fixes. */
+
+/* Issues 2–3: shared colour/button roles. */
+.mlp-page--polished :is(
+  .signal-atlas__heading,
+  .blueprint-overview__heading,
+  .mlp-why__heading,
+  .mlp-why__title,
+  .mlp-journey__heading,
+  .mlp-journey__title,
+  .mlp-mba__heading,
+  .mlp-masters__heading,
+  .archive-class__heading,
+  .archive-career__heading,
+  .archive-alumni__heading,
+  .archive-learning__heading,
+  .archive-partners__heading,
+  .archive-investment__heading,
+  .archive-voices__heading,
+  .archive-parallel__heading,
+  .archive-fieldnotes__heading,
+  .archive-closing__heading,
+  .archive-parallel__criterion,
+  .archive-investment__record-topline h3
+) { color: var(--mlp-color-heading); }
+
+.mlp-page--polished :is(.archive-investment__primary, .archive-parallel__primary, .archive-closing__primary, .archive-learning__primary) {
+  min-height: 3rem;
+  background: var(--mlp-color-accent);
+  color: var(--mlp-color-inverse);
+}
+
+.mlp-page--polished :is(.archive-investment__secondary, .archive-closing__secondary, .archive-learning__secondary) {
+  color: var(--mlp-color-heading);
+  border-color: var(--mlp-color-heading);
+}
+
+/* Issues 4–8: sentence case and readable supporting labels. */
+
+/* Issue 9: make each form field read as its own group. */
+.mlp-page--polished .prospectus-cover__enquiry .mlp-form__fields {
+  row-gap: 1.1rem;
+}
+
+.mlp-page--polished .prospectus-cover__enquiry .mlp-form__row {
+  grid-column: 1 / -1;
+  align-items: start;
+  column-gap: clamp(0.85rem, 2vw, 1.25rem);
+}
+
+.mlp-page--polished .prospectus-cover__enquiry .mlp-field {
+  align-self: start;
+  min-width: 0;
+}
+
+/* Issue 10: provide a calm heading safe zone above decorative artwork. */
+.mlp-page--polished .archive-voices__heading {
+  position: relative;
+  z-index: 1;
+  display: inline;
+  padding: 0.05em 0.12em;
+  background: var(--mlp-paper-pure);
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+/* Issue 11: remove non-functional erratic Overview numbers. */
+.mlp-page--polished .blueprint-overview__foundation {
+  z-index: 2;
+  background: var(--mlp-paper);
+  box-shadow: 0 0 0 0.75rem var(--mlp-paper);
+}
+
+/* Issue 12: university image/catalog placement stays consistent. */
+.mlp-page--polished .mlp-mba__showcase--flip .mlp-mba__plate { order: 1; }
+.mlp-page--polished .mlp-mba__showcase--flip .mlp-mba__catalog { order: 2; }
+
+/* Issues 14–15 and 19: bring fee/value relationships together. */
+
+/* Issues 16, 20, 22, 27 and 28: comparison hierarchy and alignment. */
+
+/* Issue 17 and 26: stronger but restrained Explore affordance. */
+
+/* Issues 18 and 21: tighter journey grouping and quiet non-functional numbers. */
+
+.mlp-page--polished .mlp-why__chapter-grid {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+}
+
+/* Issue 23: keep Hero secondary action vertically centred with the button. */
+.mlp-page--polished .prospectus-cover__actions { align-items: center; }
+.mlp-page--polished .prospectus-cover__secondary {
+  display: inline-flex;
+  align-items: center;
+  min-height: 3rem;
+}
+
+/* Issue 25: secondary Overview action uses the shared outline role. */
+.mlp-page--polished .blueprint-overview__secondary {
+  display: inline-flex;
+  align-items: center;
+  min-height: 3rem;
+  padding: 0.7rem 1rem;
+  border: 1px solid var(--mlp-navy);
+  text-decoration: none;
+}
+
+.mlp-page--polished .blueprint-overview__secondary:hover,
+.mlp-page--polished .blueprint-overview__secondary:focus-visible {
+  color: var(--mlp-white);
+  background: var(--mlp-navy);
+}
+
+/* Issue 28: guarantee unique learning heading styling after the content migration. */
+.mlp-page--polished .archive-learning__heading { max-width: 14ch; }
+
+@media (max-width: 900px) {
+}
+
+@media (max-width: 560px) {
+  .mlp-page--polished .prospectus-cover__enquiry .mlp-form__row,
+  .mlp-page--polished .signal-atlas__record { grid-template-columns: 1fr; }
+}
+
+.mlp-page--polished :is(h1, h2) {
+  font-size: var(--mlp-type-title-lg);
+}
+
+.mlp-page--polished :is(h3) {
+  font-size: var(--mlp-type-title-sm);
+}
+
+.mlp-page--polished :is(p, li, dd) {
+  font-size: var(--mlp-type-body);
+}
+
+.mlp-page--polished :is(a, button, input, select, textarea) {
+  font-size: var(--mlp-type-caption);
+}
+
+.mlp-page--polished :is(small, dt, .mlp-meta) {
+  font-size: var(--mlp-type-caption);
+}
+
+.mlp-page--polished :is(
+  .prospectus-cover__title,
+  .signal-atlas__value,
+  .archive-class__metric dd,
+  .archive-investment__record-topline strong,
+  .archive-investment__fee strong
+) {
+  font-size: var(--mlp-type-stat);
+}
+
+.mlp-page--polished .prospectus-cover__title {
+  font-size: var(--mlp-type-display);
+  line-height: 1.02;
+}
+
+.mlp-page--polished .prospectus-cover__title-line {
+  font-size: inherit;
+}
+
+.mlp-page--polished :is(
+  .prospectus-cover__edition,
+  .prospectus-cover__academy,
+  .prospectus-cover__location,
+  .prospectus-cover__eyebrow,
+  .prospectus-cover__kicker,
+  .prospectus-cover__enquiry-index,
+  .signal-atlas__folio,
+  .blueprint-overview__folio,
+  .archive-class__label,
+  .archive-career__label,
+  .archive-alumni__label,
+  .archive-learning__label,
+  .archive-partners__label,
+  .archive-investment__label,
+  .archive-voices__label,
+  .archive-parallel__label,
+  .archive-fieldnotes__label,
+  .archive-closing__label,
+  .archive-investment__details dt,
+  .archive-learning__caption,
+  .archive-alumni__footer p,
+  .archive-partners__logo-item span
+) {
+  font-size: var(--mlp-type-caption);
+}
+
+.mlp-page--polished :is(
+  .signal-atlas__quote p,
+  .mlp-lede,
+  .archive-voices__quote,
+  .archive-career__quote,
+  .archive-learning__point-text
+) {
+  font-size: var(--mlp-type-lede);
+}
+
+.mlp-page--polished :is( .prospectus-cover__enquiry-head h2,
+  .archive-closing__form-title,
+  .archive-investment__record-topline h3 ),
+  .mlp-page--polished .pricing-card__program {
+  font-size: var(--mlp-type-title-sm);
+}
+
+@media (max-width: 560px) {
+  .mlp-page--polished .prospectus-cover__title {
+    font-size: clamp(2.6rem, 13vw, 5rem);
+  }
+}
+
+/* Issue 27 — keep MBA filters visually connected to their first result. */
+.mlp-page--polished .mlp-mba__tablist {
+  margin-bottom: 1rem;
+}
+
+/* Enquiry refinement — equal Hero columns, compact full-width form rows. */
+.mlp-page--polished .prospectus-cover__body {
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: clamp(1.25rem, 3vw, 2.75rem);
+  align-items: center;
+}
+
+.mlp-page--polished .prospectus-cover__enquiry {
+  width: 100%;
+  max-width: none;
+  margin-left: 0;
+  padding: 1rem;
+}
+
+.mlp-page--polished .prospectus-cover__enquiry .mlp-form--prospectus {
+  padding-top: 0.75rem;
+}
+
+.mlp-page--polished .prospectus-cover__enquiry .mlp-form__fields {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem 1rem;
+}
+
+.mlp-page--polished .prospectus-cover__enquiry .mlp-form__row, 
+.mlp-page--polished .prospectus-cover__enquiry .mlp-field--full, 
+.mlp-page--polished .prospectus-cover__enquiry .mlp-btn--block {
+  grid-column: 1 / -1;
+}
+
+.mlp-page--polished .prospectus-cover__enquiry .mlp-form__row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem 1rem;
+  min-width: 0;
+}
+
+.mlp-page--polished .prospectus-cover__enquiry .mlp-field {
+  align-self: start;
+  min-width: 0;
+  gap: 0.45rem;
+}
+
+.mlp-page--polished .prospectus-cover__enquiry .mlp-field input,
+.mlp-page--polished .prospectus-cover__enquiry .mlp-field select {
+  width: 100%;
+  min-width: 0;
+}
+
+@media (max-width: 900px) {
+  .mlp-page--polished .prospectus-cover__body {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .mlp-page--polished .prospectus-cover__enquiry {
+    max-width: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .mlp-page--polished .prospectus-cover__enquiry {
+    padding: 0.85rem;
+  }
+
+  .mlp-page--polished .prospectus-cover__enquiry .mlp-form__fields,
+  .mlp-page--polished .prospectus-cover__enquiry .mlp-form__row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Section count cleanup — keep the Hero folio compact after removing Vol. 01. */
+.mlp-page--polished .prospectus-cover__folio {
+  grid-template-columns: auto minmax(3rem, 1fr) auto;
+}
+
+/* Pricing card type roles — keep the Fees-only redesign above the page reset. */
+
+.mlp-page--polished .pricing-card__price strong {
+  font-size: clamp(24px, 3vw, 48px);
+}
+
+.mlp-page--polished .pricing-card__price > span,
+.mlp-page--polished .pricing-card__price small,
+.mlp-page--polished .pricing-card__details dt {
+  font-size: var(--mlp-type-caption);
+}
+
+.mlp-page--polished .pricing-card__details dd {
+  font-size: var(--mlp-type-body);
+}
+/* #mlp-class > archive-class__industries — Topic Desk */
+
+@media (max-width: 900px) {
+}
+
+@media (max-width: 600px) {
+}
+
+@media (prefers-reduced-motion: reduce) {
+}
+
+/* #mlp-video-proof — full-width inline film plate above testimonials. */
+.mlp-page--polished .archive-video-proof {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: clamp(4.5rem, 9vw, 7.5rem) 0;
+  color: var(--mlp-white);
+  background: var(--mlp-navy);
+}
+
+.mlp-page--polished .archive-video-proof__wash {
+  top: -38%;
+  right: -10%;
+  width: min(58vw, 58rem);
+  height: min(58vw, 58rem);
+  background: radial-gradient(circle, rgba(15, 41, 131, 0.52), transparent 68%);
+}
+
+.mlp-page--polished .archive-video-proof__line {
+  position: absolute;
+  left: -8%;
+  right: -8%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.mlp-page--polished .archive-video-proof__line--one {
+  top: 25%;
+  transform: rotate(-3deg);
+}
+
+.mlp-page--polished .archive-video-proof__line--two {
+  bottom: 18%;
+  opacity: 0.55;
+  transform: rotate(4deg);
+}
+
+.mlp-page--polished .archive-video-proof__label {
+  margin: 0 0 0.9rem;
+  font-size: var(--mlp-type-caption);
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  color: #e85a5a;
+}
+
+.mlp-page--polished .archive-video-proof__heading {
+  max-width: 14ch;
+  margin: 0;
+  font-family: var(--mlp-font-display);
+  font-size: var(--mlp-type-title-lg);
+  font-weight: 500;
+  line-height: 0.95;
+  letter-spacing: -0.055em;
+  color: var(--mlp-white);
+}
+
+.mlp-page--polished .archive-video-proof__intro-copy {
+  max-width: 34ch;
+  margin: 0 0 0.2rem auto;
+  font-size: var(--mlp-type-body);
+  line-height: 1.65;
+  color: var(--mlp-muted-on-dark);
+}
+
+.mlp-page--polished .archive-video-proof__player {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #020817;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 1.25rem;
+  box-shadow: 0 30px 70px -38px rgba(0, 0, 0, 0.9);
+}
+.archive-video-proof__iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.mlp-page--polished .archive-video-proof__player::before {
+  position: absolute;
+  inset: 1rem;
+  z-index: 3;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.75rem;
+  content: "";
+  pointer-events: none;
+}
+
+.mlp-page--polished .archive-video-proof__poster {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  overflow: hidden;
+  color: var(--mlp-white);
+  background: #020817;
+  border: 0;
+  border-radius: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+
+.mlp-page--polished .archive-video-proof__poster img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.78) contrast(1.08) brightness(0.72);
+  transform: scale(1.01);
+  transition: transform 0.9s var(--mlp-ease), filter 0.55s ease;
+}
+
+.mlp-page--polished .archive-video-proof__veil {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(7, 20, 68, 0.72), transparent 58%),
+    linear-gradient(0deg, rgba(2, 8, 23, 0.72), transparent 52%);
+}
+
+.mlp-page--polished .archive-video-proof__play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 4;
+  display: grid;
+  place-items: center;
+  width: clamp(4.25rem, 8vw, 6rem);
+  height: clamp(4.25rem, 8vw, 6rem);
+  color: var(--mlp-white);
+  background: var(--mlp-red);
+  border: 1px solid rgba(255, 255, 255, 0.68);
+  border-radius: 50%;
+  box-shadow: 0 0 0 0.6rem rgba(178, 2, 2, 0.2), 0 18px 30px -18px rgba(0, 0, 0, 0.85);
+  transform: translate(-50%, -50%);
+  transition: transform 0.45s var(--mlp-ease), background-color 0.3s ease, box-shadow 0.45s ease;
+}
+
+.mlp-page--polished .archive-video-proof__play-label {
+  position: absolute;
+  right: 1.6rem;
+  bottom: 1.45rem;
+  z-index: 4;
+  font-size: var(--mlp-type-caption);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.mlp-page--polished .archive-video-proof__poster:hover img,
+.mlp-page--polished .archive-video-proof__poster:focus-visible img {
+  filter: saturate(0.94) contrast(1.08) brightness(0.8);
+  transform: scale(1.045);
+}
+
+.mlp-page--polished .archive-video-proof__poster:hover .archive-video-proof__play,
+.mlp-page--polished .archive-video-proof__poster:focus-visible .archive-video-proof__play {
+  background: #8f0202;
+  box-shadow: 0 0 0 0.85rem rgba(178, 2, 2, 0.18), 0 20px 34px -18px rgba(0, 0, 0, 0.9);
+  transform: translate(-50%, -50%) scale(1.08);
+}
+
+.mlp-page--polished .archive-video-proof__noscript-link {
+  position: absolute;
+  right: 1.5rem;
+  bottom: 1rem;
+  z-index: 5;
+  color: var(--mlp-white);
+  font-size: var(--mlp-type-caption);
+}
+
+@media (max-width: 900px) {
+  .mlp-page--polished .archive-video-proof__intro {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .blueprint-overview__intro-copy,
+  .archive-career__intro-copy,
+  .archive-learning__intro-copy,
+  .archive-alumni__intro-copy,
+  .archive-voices__intro-copy,
+  .archive-fieldnotes__intro-copy,
+  .mlp-page--polished .archive-video-proof__intro-copy {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 620px) {
+  .mlp-page--polished .archive-video-proof__player {
+    border-radius: 0.85rem;
+  }
+
+  .mlp-page--polished .archive-video-proof__player::before {
+    inset: 0.65rem;
+    border-radius: 0.5rem;
+  }
+
+  .mlp-page--polished .archive-video-proof__play-label {
+    right: 1rem;
+    bottom: 0.9rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mlp-page--polished .archive-video-proof__poster img,
+  .mlp-page--polished .archive-video-proof__play {
+    transition: none;
+  }
+
+  .mlp-page--polished .archive-video-proof__poster:hover img,
+  .mlp-page--polished .archive-video-proof__poster:focus-visible img {
+    transform: none;
+  }
+
+  .mlp-page--polished .archive-video-proof__poster:hover .archive-video-proof__play,
+  .mlp-page--polished .archive-video-proof__poster:focus-visible .archive-video-proof__play {
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* Separate programme list + PDF-backed specification record. */
+.mlp-page--polished :where(.mlp-mba__catalog-layout, .mlp-masters__catalog-layout) {
+  display: grid;
+  grid-template-columns: minmax(0, 1.18fr) minmax(13rem, 0.82fr);
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+  align-items: start;
+}
+
+.mlp-page--polished :where(.mlp-mba__catalog, .mlp-masters__catalog) {
+  min-width: 0;
+  padding: 0.25rem 0;
+}
+
+.mlp-page--polished :where(.mlp-mba__catalog-label, .mlp-masters__catalog-label) {
+  margin-bottom: 1rem;
+  color: var(--mlp-red);
+}
+
+.mlp-page--polished :where(.mlp-mba__program, .mlp-masters__program) {
+  display: grid;
+  grid-template-columns: 2.4rem minmax(0, 1fr);
+  gap: 0.75rem;
+  align-items: start;
+  padding: 0.95rem 0;
+  transition: background-color 0.35s ease, padding-left 0.35s var(--mlp-ease);
+}
+
+.mlp-page--polished :where(.mlp-mba__program, .mlp-masters__program):hover {
+  padding-left: 0.35rem;
+  background: rgba(178, 2, 2, 0.04);
+}
+
+.mlp-page--polished :where(.mlp-mba__program-index, .mlp-masters__program-index) {
+  padding-top: 0.15rem;
+}
+
+.mlp-page--polished :where(.mlp-mba__program-title,
+  .mlp-masters__program-title),
+  .mlp-page--polished #mlp-mba .mlp-mba__programs--columns .mlp-mba__program {
+  min-width: 0;
+}
+
+@media (max-width: 900px) {
+  .mlp-page--polished :where(.mlp-mba__catalog-layout, .mlp-masters__catalog-layout) {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 620px) {
+  .mlp-page--polished :where(.mlp-mba__program, .mlp-masters__program) {
+    grid-template-columns: 2rem minmax(0, 1fr);
+    gap: 0.55rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mlp-page--polished :where(.mlp-mba__program, .mlp-masters__program) {
+    transition: none;
+  }
+}
+
+/* #mlp-testimonials > archive-voices__list — luxury single voice carousel. */
+.mlp-page--polished .luxury-testimonials {
+  position: relative;
+  min-width: 0;
+  padding: 0 0 1rem;
+  border-top: 1px solid var(--mlp-navy);
+}
+
+.mlp-page--polished .luxury-testimonials__slides {
+  position: relative;
+  min-height: 22rem;
+}
+
+.mlp-page--polished .luxury-testimonial[hidden] {
+  display: none;
+}
+
+.mlp-page--polished .luxury-testimonial {
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr);
+  gap: 1rem;
+  min-height: 22rem;
+  margin: 0;
+  padding: clamp(1.5rem, 3vw, 2.5rem) 0 1.75rem;
+}
+
+.mlp-page--polished .luxury-testimonial__quote-icon,
+  .mlp-page--polished .luxury-testimonials__progress span:first-child,
+  .mlp-page--polished #mlp-overview .blueprint-overview__heading-accent {
+  color: var(--mlp-red);
+}
+
+.mlp-page--polished .luxury-testimonial__quote {
+  max-width: 40ch;
+  margin: 0;
+  font-family: var(--font-body) !important;
+  font-size: var(--fs-body) !important;
+  font-weight: var(--fw-regular) !important;
+  line-height: 1.7 !important;
+  letter-spacing: normal !important;
+  color: var(--mlp-navy);
+}
+
+.mlp-page--polished .luxury-testimonial__author {
+  grid-column: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  align-self: end;
+  margin-top: 1.5rem;
+}
+
+.mlp-page--polished .luxury-testimonial__author img,
+.mlp-page--polished .luxury-testimonial__initial {
+  display: grid;
+  place-items: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  object-fit: cover;
+  border-radius: 50%;
+  background: var(--mlp-surface-soft);
+}
+
+.mlp-page--polished .luxury-testimonial__initial {
+  font-family: var(--mlp-font-display);
+  font-size: 1.4rem;
+  color: var(--mlp-red);
+}
+
+.mlp-page--polished .luxury-testimonial__author > span:last-child {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.mlp-page--polished .luxury-testimonial__author cite {
+  font-style: normal;
+  font-size: var(--mlp-type-body);
+  font-weight: 600;
+  color: var(--mlp-navy);
+}
+
+.mlp-page--polished .luxury-testimonial__author small {
+  font-size: var(--mlp-type-caption);
+  color: var(--mlp-muted-on-paper);
+}
+
+.mlp-page--polished .luxury-testimonials__controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-top: 1rem;
+}
+
+.mlp-page--polished .luxury-testimonials__control,
+.mlp-page--polished .luxury-testimonials__toggle {
+  display: inline-grid;
+  place-items: center;
+  min-width: 2.7rem;
+  min-height: 2.7rem;
+  padding: 0.5rem;
+  color: var(--mlp-navy);
+  background: transparent;
+  border: 1px solid var(--mlp-line-dark);
+  border-radius: 0;
+  cursor: pointer;
+  font: 600 var(--mlp-type-caption) var(--mlp-font-body);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.mlp-page--polished .luxury-testimonials__control:hover,
+.mlp-page--polished .luxury-testimonials__control:focus-visible,
+.mlp-page--polished .luxury-testimonials__toggle:hover,
+.mlp-page--polished .luxury-testimonials__toggle:focus-visible {
+  color: var(--mlp-white);
+  background: var(--mlp-navy);
+  border-color: var(--mlp-navy);
+}
+
+.mlp-page--polished .luxury-testimonials__progress {
+  margin: 0 auto 0 0.25rem;
+  font: 600 var(--mlp-type-caption) var(--mlp-font-body);
+  letter-spacing: 0.1em;
+  color: var(--mlp-muted-on-paper);
+}
+
+@media (max-width: 620px) {
+  .mlp-page--polished .luxury-testimonials__slides,
+  .mlp-page--polished .luxury-testimonial {
+    min-height: 25rem;
+  }
+
+  .mlp-page--polished .luxury-testimonials__controls {
+    flex-wrap: wrap;
+  }
+
+  .mlp-page--polished .luxury-testimonials__progress {
+    order: 5;
+    width: 100%;
+    margin: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mlp-page--polished .luxury-testimonial,
+  .mlp-page--polished .luxury-testimonials__control,
+  .mlp-page--polished .luxury-testimonials__toggle {
+    transition: none;
+  }
+}
+
+/* Issue 2 — use Poppins for all content; keep the display face for headings only. */
+.mlp-page--polished * {
+  font-family: var(--mlp-font-body) !important;
+}
+.testimonials__card-thumb {
+  aspect-ratio: 9 / 16;
+  border-radius: 2rem;
+}
+.mlp-page--polished :is(h1, h2, h3, h4, h5, h6),
+.mlp-page--polished :is(h1, h2, h3, h4, h5, h6) * {
+  font-family: var(--mlp-font-display) !important;
+}
+
+/* Issue 3 — compact section boundaries, without changing the hero height. */
+.mlp-page--polished > section:not(.prospectus-cover) {
+  margin-block: 0;
+  padding-block: 2rem;
+}
+
+/* Targeted trust atlas refinement — keep values, labels, and graph separate. */
+.mlp-page--polished #mlp-trust .signal-atlas__intro {
+  margin-bottom: 1rem;
+}
+
+.mlp-page--polished #mlp-trust .signal-atlas__graph {
+  padding-top: 0;
+}
+
+.mlp-page--polished #mlp-trust .signal-atlas__records {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  min-height: 15rem;
+  align-items: end;
+}
+
+.mlp-page--polished #mlp-trust .signal-atlas__record,
+.mlp-page--polished #mlp-trust .signal-atlas__record:nth-child(n) {
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto;
+  min-width: 0;
+  min-height: 8.6rem;
+  align-content: start;
+  gap: 0.35rem;
+  overflow-wrap: anywhere;
+}
+
+.mlp-page--polished #mlp-trust .signal-atlas__record:nth-child(1) {
+  transform: translateY(3.75rem);
+}
+
+.mlp-page--polished #mlp-trust .signal-atlas__record:nth-child(2) {
+  transform: translateY(-1.75rem);
+}
+
+.mlp-page--polished #mlp-trust .signal-atlas__record:nth-child(3) {
+  transform: translateY(4.25rem);
+}
+
+.mlp-page--polished #mlp-trust .signal-atlas__record:nth-child(4) {
+  transform: translateY(-1.25rem);
+}
+
+.mlp-page--polished #mlp-trust .signal-atlas__record:nth-child(5) {
+  transform: translateY(2.5rem);
+}
+
+.mlp-page--polished #mlp-trust .signal-atlas__value,
+.mlp-page--polished #mlp-trust .signal-atlas__label {
+  grid-column: 1;
+  min-width: 0;
+}
+
+@media (max-width: 700px) {
+  .mlp-page--polished #mlp-trust .signal-atlas__graph {
+    min-height: 0;
+  }
+
+  .mlp-page--polished #mlp-trust .signal-atlas__records {
+    grid-template-columns: 1fr;
+    min-height: 15rem;
+    margin-top: 0;
+    padding-left: 0.75rem;
+  }
+
+  .mlp-page--polished #mlp-trust .signal-atlas__record,
+  .mlp-page--polished #mlp-trust .signal-atlas__record:nth-child(n) {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    min-height: 6.6rem;
+    padding: 1rem 0 1rem 1rem;
+    transform: none;
+    border-left: 0;
+  }
+}
+
+/* Trust metric micro-motion — a soft bounce that preserves the staggered layout. */
+.mlp-page--polished #mlp-trust .signal-atlas__record {
+  animation: mlpTrustRecordBounce 4.8s ease-in-out infinite;
+  animation-delay: calc(var(--signal-index, 0) * 0.16s);
+  translate: 0 0;
+}
+
+@keyframes mlpTrustRecordBounce {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -0.28rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .mlp-page--polished #mlp-trust .signal-atlas__record {
+    animation-duration: 5.2s;
+  }
+
+  @keyframes mlpTrustRecordBounce {
+    0%,
+    100% {
+      translate: 0 0;
+    }
+    50% {
+      translate: 0 -0.12rem;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mlp-page--polished #mlp-trust .signal-atlas__record {
+    animation: none;
+    translate: none;
+  }
+}
+
+/* Targeted Why Choose refinement — compact full-width header and title-led icons. */
+.mlp-page--polished #mlp-why .mlp-why__pin {
+  padding: 2rem 0 1rem;
+}
+
+.mlp-page--polished #mlp-why .mlp-why__pin-inner {
+  width: 100%;
+  max-width: none;
+}
+
+.mlp-page--polished #mlp-why .mlp-why__heading,
+.mlp-page--polished #mlp-why .mlp-why__intro {
+  max-width: none;
+}
+
+.mlp-page--polished #mlp-why .mlp-why__chapter-grid {
+  grid-template-columns: 4rem minmax(0, 1fr);
+  gap: 1rem;
+}
+
+.mlp-page--polished #mlp-why .mlp-why__num {
+  display: grid;
+  place-items: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  padding: 0;
+  font-size: 1rem;
+  line-height: 1;
+  color: var(--mlp-red);
+  border: 1px solid rgba(178, 2, 2, 0.48);
+  background: rgba(178, 2, 2, 0.04);
+}
+
+@media (max-width: 700px) {
+  .mlp-page--polished #mlp-why .mlp-why__pin {
+    padding: 1.5rem 0 0.75rem;
+  }
+
+  .mlp-page--polished #mlp-why .mlp-why__chapter-grid {
+    grid-template-columns: 3.5rem minmax(0, 1fr);
+  }
+
+  .mlp-page--polished #mlp-why .mlp-why__num {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+}
+
+/* Targeted Hero frame and enquiry cleanup. */
+.mlp-page--polished #mlp-hero .prospectus-cover__frame {
+  padding-top: 6rem;
+  padding-bottom: 2rem;
+}
+
+.mlp-page--polished #mlp-hero .prospectus-cover__body {
+  padding: 2rem 15px;
+}
+
+.mlp-page--polished #mlp-hero .prospectus-cover__title {
+  max-width: 100%;
+}
+
+/* Targeted Overview alignment and blueprint cleanup. */
+.mlp-page--polished #mlp-overview .blueprint-overview__intro {
+  grid-template-columns: 1fr;
+  column-gap: 0;
+  row-gap: 0;
+  max-width: 100%;
+  justify-items: start;
+  text-align: left;
+}
+
+.mlp-page--polished #mlp-overview .blueprint-overview__folio {
+  justify-self: start;
+  width: 100%;
+  text-align: left;
+}
+
+.mlp-page--polished #mlp-overview .blueprint-overview__heading {
+  max-width: 100%;
+  text-align: left;
+}
+
+.mlp-page--polished #mlp-overview .blueprint-overview__intro-copy {
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  text-align: left;
+}
+
+.mlp-page--polished #mlp-overview .blueprint-overview__system {
+  margin-top: 2rem;
+  padding-top: 2rem;
+}
+
+.mlp-page--polished #mlp-overview .blueprint-overview__core {
+  border: 1px solid rgb(7 20 68 / 5%);
+}
+
+.mlp-page--polished #mlp-overview .blueprint-overview__foundation:first-child:hover,
+.mlp-page--polished #mlp-overview .blueprint-overview__foundation:first-child:focus-within {
+  background: transparent;
+}
+
+/* Included homepage accreditation section: keep content visible without the homepage-only animation bundle. */
+.mlp-page--polished #accreditations .text-reveal-inner,
+.mlp-page--polished #accreditations .fade-up {
+  opacity: 1;
+  transform: none;
+}
+
+/* Targeted MBA/Master's catalogue boundaries. */
+.mlp-page--polished #mlp-mba .mlp-mba__head,
+  .mlp-page--polished #mlp-masters .mlp-masters__head,
+  .mlp-page--polished #mlp-mba .mlp-mba__heading,
+  .mlp-page--polished #mlp-mba .mlp-mba__intro,
+  .mlp-page--polished #mlp-masters .mlp-masters__heading,
+  .mlp-page--polished #mlp-masters .mlp-masters__intro {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* MBA specializations — split only lists with more than eight items. */
+.mlp-page--polished #mlp-mba .mlp-mba__catalog-layout {
+  grid-template-columns: 1fr;
+}
+
+.mlp-page--polished #mlp-mba .mlp-mba__programs--columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(var(--mlp-specialization-rows), auto);
+  grid-auto-flow: column;
+  column-gap: clamp(1.25rem, 3vw, 2.5rem);
+}
+
+@media (max-width: 700px) {
+  .mlp-page--polished #mlp-mba .mlp-mba__programs--columns {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    grid-auto-flow: row;
+  }
+}
+
+/* Canonical project typography lock — landing page role normalization. */
+.mlp-page--polished .prospectus-cover__title {
+  font-family: var(--font-display) !important;
+  font-size: var(--fs-hero-sub) !important;
+  font-weight: var(--fw-bold) !important;
+  line-height: 1 !important;
+  letter-spacing: -0.03em !important;
+}
+
+.mlp-page--polished :is(
+  .signal-atlas__heading,
+  .blueprint-overview__heading,
+  .mlp-why__heading,
+  .mlp-journey__heading,
+  .mlp-mba__heading,
+  .mlp-masters__heading,
+  .pricing-cards__heading,
+  .archive-class__heading,
+  .archive-career__heading,
+  .archive-alumni__heading,
+  .archive-learning__heading,
+  .archive-partners__heading,
+  .archive-investment__heading,
+  .archive-voices__heading,
+  .archive-parallel__heading,
+  .archive-fieldnotes__heading,
+  .archive-closing__heading
+) {
+  font-family: var(--font-display) !important;
+  font-size: var(--fs-section-title) !important;
+  font-weight: var(--fw-medium) !important;
+  line-height: 1.1 !important;
+  letter-spacing: -0.02em !important;
+}
+
+.mlp-page--polished :is(
+  .prospectus-cover__enquiry-head h2,
+  .mlp-form__title,
+  .mlp-why__title,
+  .mlp-journey__title,
+  .mlp-mba__uni-name,
+  .mlp-masters__uni-name,
+  .topic-desk__details h3,
+  .archive-class__zone-head h3,
+  .archive-career__dossier h3,
+  .archive-learning__point h3,
+  .archive-investment__record-topline h3,
+  .archive-voices__voice cite,
+  .archive-parallel__criterion,
+  .archive-fieldnotes__question,
+  .pricing-card__program
+) {
+  font-family: var(--font-display) !important;
+  font-size: var(--fs-card-title) !important;
+  font-weight: var(--fw-semibold) !important;
+  line-height: 1.2 !important;
+  letter-spacing: normal !important;
+}
+
+.mlp-page--polished :is(
+  .prospectus-cover__intro,
+  .prospectus-cover__annotation-copy,
+  .prospectus-cover__enquiry-head p,
+  .signal-atlas__quote p,
+  .signal-atlas__note,
+  .blueprint-overview__intro-copy,
+  .mlp-why__intro,
+  .mlp-why__text,
+  .mlp-journey__intro,
+  .mlp-journey__text,
+  .mlp-mba__intro,
+  .mlp-masters__intro,
+  .archive-class__copy,
+  .archive-career__intro-copy,
+  .archive-alumni__intro-copy,
+  .archive-learning__intro-copy,
+  .archive-partners__intro-copy,
+  .archive-investment__intro-copy,
+  .archive-voices__intro-copy,
+  .archive-parallel__intro-copy,
+  .archive-fieldnotes__intro-copy,
+  .archive-closing__intro-copy,
+  .pricing-cards__intro-copy,
+  .pricing-cards__note,
+  .archive-video-proof__copy,
+  .mlp-prose
+) {
+  font-family: var(--font-body) !important;
+  font-size: var(--fs-body) !important;
+  font-weight: var(--fw-regular) !important;
+  line-height: 1.7 !important;
+  letter-spacing: normal !important;
+}
+
+.mlp-page--polished :is(
+  .prospectus-cover__edition,
+  .prospectus-cover__academy,
+  .prospectus-cover__location,
+  .prospectus-cover__eyebrow,
+  .prospectus-cover__kicker,
+  .prospectus-cover__enquiry-index,
+  .signal-atlas__folio,
+  .blueprint-overview__folio,
+  .archive-class__label,
+  .archive-career__label,
+  .archive-alumni__label,
+  .archive-learning__label,
+  .archive-partners__label,
+  .archive-investment__label,
+  .archive-voices__label,
+  .archive-parallel__label,
+  .archive-fieldnotes__label,
+  .archive-closing__label,
+  .archive-partners__hint,
+  .archive-partners__toggle,
+  .archive-closing__form-head,
+  .mlp-meta,
+  .mlp-field > span
+) {
+  font-family: var(--font-body) !important;
+  font-size: var(--fs-caption) !important;
+  font-weight: var(--fw-medium) !important;
+  line-height: 1.4 !important;
+  letter-spacing: 0.15em !important;
+  text-transform: uppercase;
+}
+
+.mlp-page--polished :is(
+  .signal-atlas__value,
+  .blueprint-overview__core strong,
+  .archive-class__metric dd,
+  .archive-investment__record-topline strong,
+  .archive-investment__fee,
+  .archive-closing__form-title,
+  .blueprint-overview__class-2025-center strong,
+  .blueprint-overview__class-2025-value
+) {
+  font-family: var(--font-display) !important;
+  font-size: var(--fs-card-title) !important;
+  font-weight: var(--fw-medium) !important;
+  line-height: 1 !important;
+  letter-spacing: -0.03em !important;
+}
+
+.mlp-page--polished .blueprint-overview__class-2025-heading {
+  font-family: var(--font-display) !important;
+  font-size: var(--fs-card-title) !important;
+  font-weight: var(--fw-medium) !important;
+  line-height: 1.1 !important;
+  letter-spacing: -0.02em !important;
+}
+
+.mlp-page--polished .blueprint-overview__class-2025-label {
+  font-family: var(--font-body) !important;
+  font-size: var(--fs-caption) !important;
+  font-weight: var(--fw-medium) !important;
+  line-height: 1.4 !important;
+  letter-spacing: 0.15em !important;
+}
+
+.mlp-page--polished :is(
+  .mlp-btn,
+  .prospectus-cover__primary,
+  .prospectus-cover__secondary,
+  .archive-investment__primary,
+  .archive-investment__secondary,
+  .archive-parallel__primary,
+  .archive-closing__primary,
+  .archive-closing__secondary,
+  .archive-learning__primary,
+  .archive-learning__secondary
+) {
+  font-family: var(--font-body) !important;
+  font-size: 14px !important;
+  font-weight: var(--fw-medium) !important;
+  line-height: 1 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase;
+}
+
+.mlp-page--polished :is(.mlp-field input, .mlp-field select, .mlp-field textarea) {
+  font-family: var(--font-body) !important;
+  font-size: var(--fs-body) !important;
+  font-weight: var(--fw-regular) !important;
+  line-height: 1.7 !important;
+  letter-spacing: normal !important;
+}
+
+/* Accreditation typography reference — canonical light landing roles. */
+.mlp-page--polished :is(
+  .signal-atlas__heading,
+  .blueprint-overview__heading,
+  .mlp-why__heading,
+  .mlp-journey__heading,
+  .mlp-mba__heading,
+  .mlp-masters__heading,
+  .pricing-cards__heading,
+  .archive-class__heading,
+  .archive-career__heading,
+  .archive-alumni__heading,
+  .archive-learning__heading,
+  .archive-partners__heading,
+  .archive-investment__heading,
+  .archive-voices__heading,
+  .archive-parallel__heading,
+  .archive-fieldnotes__heading,
+  .mlp-class-snapshot__heading
+) {
+  font-family: var(--font-display) !important;
+  font-size: var(--fs-section-title) !important;
+  font-weight: var(--fw-medium) !important;
+  line-height: 1.1 !important;
+  letter-spacing: -0.02em !important;
+  color: var(--color-mba-blue) !important;
+  text-transform: none !important;
+}
+
+.mlp-page--polished :is(
+  .signal-atlas__folio,
+  .blueprint-overview__folio,
+  .mlp-why__label,
+  .mlp-journey__label,
+  .mlp-mba__label,
+  .mlp-masters__label,
+  .pricing-cards__label,
+  .archive-class__label,
+  .archive-career__label,
+  .archive-alumni__label,
+  .archive-learning__label,
+  .archive-partners__label,
+  .archive-investment__label,
+  .archive-voices__label,
+  .archive-parallel__label,
+  .archive-fieldnotes__label,
+  .mlp-class-snapshot__label
+) {
+  font-family: var(--font-body) !important;
+  font-size: 0.875rem !important;
+  font-weight: var(--fw-medium) !important;
+  line-height: 1.6 !important;
+  letter-spacing: 0.15em !important;
+  color: var(--color-mba-blue) !important;
+  text-transform: uppercase !important;
+}
+
+.mlp-page--polished :is(
+  .signal-atlas__quote p,
+  .blueprint-overview__intro-copy,
+  .mlp-why__intro,
+  .mlp-why__text,
+  .mlp-journey__intro,
+  .mlp-journey__text,
+  .mlp-mba__intro,
+  .mlp-masters__intro,
+  .pricing-cards__intro-copy,
+  .pricing-cards__note,
+  .archive-class__copy,
+  .archive-career__intro-copy,
+  .archive-alumni__intro-copy,
+  .archive-learning__intro-copy,
+  .archive-partners__intro-copy,
+  .archive-investment__intro-copy,
+  .archive-voices__intro-copy,
+  .archive-parallel__intro-copy,
+  .archive-fieldnotes__intro-copy,
+  .mlp-class-snapshot__intro-copy
+) {
+  font-family: var(--font-body) !important;
+  font-size: var(--fs-body) !important;
+  font-weight: var(--fw-regular) !important;
+  line-height: 1.7 !important;
+  letter-spacing: normal !important;
+  color: var(--color-black) !important;
+}
+
+/* Final accreditation reference lock — complete light landing typography cascade. */
+.mlp-page--polished :is(
+  #accreditations .programs__heading,
+  #mlp-trust .signal-atlas__heading,
+  #mlp-overview .blueprint-overview__heading,
+  #mlp-why .mlp-why__heading,
+  #mlp-journey .mlp-journey__heading,
+  #mlp-mba .mlp-mba__heading,
+  #mlp-masters .mlp-masters__heading,
+  #mlp-fees .pricing-cards__heading,
+  #mlp-class .archive-class__heading,
+  #mlp-class-snapshot .mlp-class-snapshot__heading,
+  #mlp-career .archive-career__heading,
+  #mlp-alumni .archive-alumni__heading,
+  #mlp-learning .archive-learning__heading,
+  #mlp-partners .archive-partners__heading,
+  #mlp-testimonials .archive-voices__heading,
+  #mlp-compare .archive-parallel__heading,
+  #mlp-faq .archive-fieldnotes__heading
+) {
+  font-family: var(--font-display) !important;
+  font-size: var(--fs-section-title) !important;
+  font-weight: var(--fw-medium) !important;
+  line-height: 1.1 !important;
+  letter-spacing: -0.02em !important;
+  color: var(--color-mba-blue) !important;
+  text-transform: none !important;
+}
+
+.mlp-page--polished :is(
+  #accreditations .section-label span,
+  #mlp-trust .signal-atlas__folio,
+  #mlp-overview .blueprint-overview__folio,
+  #mlp-why .mlp-why__label,
+  #mlp-journey .mlp-journey__label,
+  #mlp-mba .mlp-mba__label,
+  #mlp-masters .mlp-masters__label,
+  #mlp-fees .pricing-cards__label,
+  #mlp-class .archive-class__label,
+  #mlp-class-snapshot .mlp-class-snapshot__label,
+  #mlp-career .archive-career__label,
+  #mlp-alumni .archive-alumni__label,
+  #mlp-learning .archive-learning__label,
+  #mlp-partners .archive-partners__label,
+  #mlp-testimonials .archive-voices__label,
+  #mlp-compare .archive-parallel__label,
+  #mlp-faq .archive-fieldnotes__label
+) {
+  font-family: var(--font-body) !important;
+  font-size: 0.875rem !important;
+  font-weight: var(--fw-medium) !important;
+  line-height: 1.6 !important;
+  letter-spacing: 0.15em !important;
+  color: var(--color-mba-blue) !important;
+  text-transform: uppercase !important;
+}
+
+.mlp-page--polished :is(
+  #accreditations .accreditations__subheading,
+  #accreditations .accreditations__trust-text,
+  #mlp-trust .signal-atlas__quote p,
+  #mlp-overview .blueprint-overview__intro-copy,
+  #mlp-why .mlp-why__intro,
+  #mlp-why .mlp-why__text,
+  #mlp-journey .mlp-journey__intro,
+  #mlp-journey .mlp-journey__text,
+  #mlp-mba .mlp-mba__intro,
+  #mlp-masters .mlp-masters__intro,
+  #mlp-fees .pricing-cards__intro-copy,
+  #mlp-fees .pricing-cards__note,
+  #mlp-class .archive-class__copy,
+  #mlp-class-snapshot .mlp-class-snapshot__intro-copy,
+  #mlp-career .archive-career__intro-copy,
+  #mlp-alumni .archive-alumni__intro-copy,
+  #mlp-learning .archive-learning__intro-copy,
+  #mlp-partners .archive-partners__intro-copy,
+  #mlp-testimonials .archive-voices__intro-copy,
+  #mlp-compare .archive-parallel__intro-copy,
+  #mlp-faq .archive-fieldnotes__intro-copy
+) {
+  font-family: var(--font-body) !important;
+  font-size: var(--fs-body) !important;
+  font-weight: var(--fw-regular) !important;
+  line-height: 1.7 !important;
+  letter-spacing: normal !important;
+  color: var(--color-black) !important;
+}
+
+/* —— Video testimonials (landing): 4 frames in one row on desktop —— */
+@media (min-width: 1024px) {
+  #mlpPage #video-testimonials .testimonials__scroll {
+    overflow: visible;
+  }
+
+  #mlpPage #video-testimonials .testimonials__track {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    width: auto;
+    padding: 2rem 0;
+  }
+
+  #mlpPage #video-testimonials .testimonials__card {
+    width: 100%;
+  }
+
+  /* All frames fit — no scroll controls needed. */
+  #mlpPage #video-testimonials .scroll-row__btn {
+    display: none;
+  }
+}

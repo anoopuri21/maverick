@@ -63,43 +63,4 @@ class BlogController extends Controller
 
         return view('blogs.index', compact('paginatedPosts', 'featuredPost', 'categories', 'activeCategory', 'searchQuery', 'blogHero', 'topTags'));
     }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Insight $blogPost)
-    {
-        $headings = [];
-        $contentWithAnchors = $blogPost->content ?? '';
-
-        if (is_string($contentWithAnchors) && $contentWithAnchors !== '') {
-            preg_match_all('/<h([2-3])>(.*?)<\/h[2-3]>/', $contentWithAnchors, $matches, PREG_SET_ORDER);
-            foreach ($matches as $match) {
-                $level = (int) $match[1];
-                $text = strip_tags($match[2]);
-                $anchor = strtolower(preg_replace('/[^a-z0-9\-]+/i', '-', $text));
-                $headings[] = (object) [
-                    'level' => $level,
-                    'text' => $text,
-                    'anchor' => $anchor,
-                ];
-            }
-
-            foreach ($headings as $heading) {
-                $tag = 'h'.$heading->level;
-                $pattern = '/<'.$tag.'>(.*?'.preg_quote($heading->text, '/').'.*?)<\/'.$tag.'>/';
-                $replacement = '<'.$tag.' id="'.$heading->anchor.'">$1</'.$tag.'>';
-                $contentWithAnchors = preg_replace($pattern, $replacement, $contentWithAnchors, 1);
-            }
-        }
-        $blogPost->content = $contentWithAnchors;
-
-        $relatedPosts = Insight::published()->category('blogs')
-            ->where('id', '!=', $blogPost->id)
-            ->latest('published_at')
-            ->take(3)
-            ->get(['id', 'title', 'slug', 'excerpt', 'featured_image_url', 'published_at', 'reading_time_minutes', 'categories', 'tags']);
-
-        return view('blogs.show', ['post' => $blogPost, 'headings' => $headings, 'relatedPosts' => $relatedPosts]);
-    }
 }

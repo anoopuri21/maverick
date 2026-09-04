@@ -65,6 +65,30 @@
     gap: 32px;
 }
 
+.contact-campus {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-campus__title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    font-weight: var(--fw-semibold);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-mba-dark-blue);
+}
+
+.contact-campus__flag {
+    font-size: 1.35rem;
+    line-height: 1;
+}
+
 /* Soft-morphism card base */
 .contact-card {
     background: #ffffff;
@@ -88,7 +112,7 @@
 .contact-info-card {
     display: flex;
     gap: 24px;
-    padding: 32px;
+    padding: 0px 32px;
 }
 
 .contact-info-card__icon-badge {
@@ -222,6 +246,7 @@
 /* Right column - Form Container */
 .contact-form-container {
     padding: 48px;
+    background: var(--color-warm-white);
 }
 
 .contact-form__title {
@@ -248,8 +273,8 @@
 
 .form-group-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    grid-template-columns: 1fr;
+    gap: 30px;
 }
 
 .form-group {
@@ -407,6 +432,17 @@
 }
 
 /* Floating map overlay */
+.contact-maps-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--grid-gap-loose, 32px);
+    margin-bottom: 80px;
+}
+
+.contact-maps-grid .contact-map-section {
+    margin-bottom: 0;
+}
+
 .contact-map-section {
     margin-bottom: 80px;
 }
@@ -528,6 +564,11 @@
 
     .contact-map-container {
         height: 350px;
+    }
+
+    .contact-maps-grid {
+        grid-template-columns: 1fr;
+        margin-bottom: 48px;
     }
 
     .contact-map-overlay-card {

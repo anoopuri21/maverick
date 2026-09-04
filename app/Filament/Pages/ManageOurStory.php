@@ -5,6 +5,7 @@ namespace App\Filament\Pages;
 use App\Settings\OurStoryBeginningSettings;
 use App\Settings\OurStoryHeroSettings;
 use App\Settings\OurStoryImpactSettings;
+use App\Settings\OurStorySectionsSettings;
 use App\Settings\OurStorySeoSettings;
 use App\Settings\OurStoryTodaySettings;
 use App\Settings\OurStoryVisionSettings;
@@ -21,15 +22,13 @@ use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
-use App\Filament\Concerns\EnsuresSettingsRowsExist;
-use App\Filament\Concerns\HandlesCloudinaryImageFields;
+use App\Filament\Concerns\SavesSettingsGroups;
 use App\Filament\Forms\Components\MediaPicker;
 
 class ManageOurStory extends Page implements HasForms
 {
     use InteractsWithForms;
-    use HandlesCloudinaryImageFields;
-    use EnsuresSettingsRowsExist;
+    use SavesSettingsGroups;
 
     protected static ?string $navigationIcon = 'heroicon-o-book-open';
     protected static ?string $navigationGroup = 'About Section';
@@ -47,6 +46,7 @@ class ManageOurStory extends Page implements HasForms
             'today' => safe_settings(OurStoryTodaySettings::class)->toArray(),
             'impact' => safe_settings(OurStoryImpactSettings::class)->toArray(),
             'vision' => safe_settings(OurStoryVisionSettings::class)->toArray(),
+            'sections' => safe_settings(OurStorySectionsSettings::class)->toArray(),
             'seo' => safe_settings(OurStorySeoSettings::class)->toArray(),
         ]);
     }
@@ -61,11 +61,13 @@ class ManageOurStory extends Page implements HasForms
                         Tab::make('Hero')
                             ->icon('heroicon-o-photo')
                             ->schema([
+                                TextInput::make('hero.eyebrow')->label('Eyebrow'),
                                 TextInput::make('hero.heading')->label('Heading'),
                                 TextInput::make('hero.subtitle')->label('Subtitle'),
                                 RichEditor::make('hero.description')->label('Description'),
                                 TextInput::make('hero.cta_label')->label('CTA Label'),
                                 TextInput::make('hero.cta_url')->label('CTA URL'),
+                                TextInput::make('hero.scroll_hint')->label('Scroll Hint'),
                                 MediaPicker::forField('hero.image_url', 'our-story/hero')->label('Hero Image'),
                             ]),
 
@@ -91,6 +93,7 @@ class ManageOurStory extends Page implements HasForms
                         Tab::make('Impact')
                             ->icon('heroicon-o-chart-bar')
                             ->schema([
+                                TextInput::make('impact.badge')->label('Badge'),
                                 TextInput::make('impact.heading')->label('Heading'),
                                 RichEditor::make('impact.description')->label('Description'),
                                 Grid::make(4)->schema([
@@ -108,11 +111,23 @@ class ManageOurStory extends Page implements HasForms
                         Tab::make('Vision')
                             ->icon('heroicon-o-eye')
                             ->schema([
+                                TextInput::make('vision.badge')->label('Badge'),
                                 TextInput::make('vision.heading')->label('Heading'),
                                 RichEditor::make('vision.description')->label('Description'),
                                 MediaPicker::forField('vision.background_image_url', 'our-story/vision')->label('Background Image'),
                                 TextInput::make('vision.cta_label')->label('CTA Label'),
                                 TextInput::make('vision.cta_url')->label('CTA URL'),
+                            ]),
+
+                        Tab::make('Section Labels')
+                            ->icon('heroicon-o-tag')
+                            ->schema([
+                                TextInput::make('sections.journey_badge')->label('Journey Badge'),
+                                TextInput::make('sections.journey_heading')->label('Journey Heading'),
+                                TextInput::make('sections.gallery_badge')->label('Gallery Badge'),
+                                TextInput::make('sections.gallery_heading')->label('Gallery Heading'),
+                                TextInput::make('sections.testimonials_badge')->label('Testimonials Badge'),
+                                TextInput::make('sections.testimonials_heading')->label('Testimonials Heading'),
                             ]),
 
                         Tab::make('SEO')
@@ -122,7 +137,7 @@ class ManageOurStory extends Page implements HasForms
                                 Textarea::make('seo.meta_description')->label('Meta Description')->rows(3)->maxLength(160),
                                 Textarea::make('seo.meta_keywords')->label('Meta Keywords')->rows(2),
                                 Grid::make(2)->schema([
-                                    TextInput::make('seo.canonical_url')->label('Canonical URL')->url()->nullable(),
+                                    TextInput::make('seo.canonical_url')->label('Canonical URL')->nullable(),
                                     Select::make('seo.robots')->label('Robots')
                                         ->options([
                                             'index, follow' => 'Index, Follow (Default)',
@@ -133,7 +148,7 @@ class ManageOurStory extends Page implements HasForms
                                 ]),
                                 TextInput::make('seo.og_title')->label('OG Title')->maxLength(60),
                                 Textarea::make('seo.og_description')->label('OG Description')->rows(3)->maxLength(200),
-                                TextInput::make('seo.og_image_url')->label('OG Image URL')->url()->nullable(),
+                                TextInput::make('seo.og_image_url')->label('OG Image URL')->nullable(),
                                 MediaPicker::forField('seo.og_image_url', 'our-story/seo')->label('OG Image'),
                                 Grid::make(2)->schema([
                                     Select::make('seo.og_type')->label('OG Type')
@@ -150,7 +165,7 @@ class ManageOurStory extends Page implements HasForms
                                 ]),
                                 TextInput::make('seo.twitter_title')->label('Twitter Title')->maxLength(70),
                                 Textarea::make('seo.twitter_description')->label('Twitter Description')->rows(3)->maxLength(200),
-                                TextInput::make('seo.twitter_image_url')->label('Twitter Image URL')->url()->nullable(),
+                                TextInput::make('seo.twitter_image_url')->label('Twitter Image URL')->nullable(),
                                 MediaPicker::forField('seo.twitter_image_url', 'our-story/seo')->label('Twitter Image'),
                                 Textarea::make('seo.schema_json')->label('Schema.org JSON-LD')->rows(6)->helperText('Must be valid JSON-LD'),
                                 Textarea::make('seo.custom_head_scripts')->label('Custom Head Scripts')->rows(4),
@@ -170,7 +185,9 @@ class ManageOurStory extends Page implements HasForms
             $beginning = MediaPicker::syncFieldFromAsset($data['beginning'] ?? [], 'image_url');
             $today = MediaPicker::syncFieldFromAsset($data['today'] ?? [], 'image_url');
             $impact = $data['impact'] ?? [];
-            $vision = MediaPicker::syncFieldFromAsset($data['vision'] ?? [], 'image_url');
+            $sections = $data['sections'] ?? [];
+            $vision = MediaPicker::syncFieldFromAsset($data['vision'] ?? [], 'background_image_url');
+            unset($vision['background_image_url_asset_id']);
             $seo = MediaPicker::syncFieldFromAsset($data['seo'] ?? [], 'og_image_url');
             $seo = MediaPicker::syncFieldFromAsset($seo, 'twitter_image_url');
             unset($seo['og_image_url_asset_id'], $seo['twitter_image_url_asset_id']);
@@ -180,6 +197,7 @@ class ManageOurStory extends Page implements HasForms
             $this->saveSettingsGroup(OurStoryTodaySettings::class, $today);
             $this->saveSettingsGroup(OurStoryImpactSettings::class, $impact);
             $this->saveSettingsGroup(OurStoryVisionSettings::class, $vision);
+            $this->saveSettingsGroup(OurStorySectionsSettings::class, $sections);
             $this->saveSettingsGroup(OurStorySeoSettings::class, $seo);
 
             Notification::make()
@@ -196,16 +214,5 @@ class ManageOurStory extends Page implements HasForms
                 ->danger()
                 ->send();
         }
-    }
-
-    /** @param  class-string  $settingsClass */
-    protected function saveSettingsGroup(string $settingsClass, array $payload): void
-    {
-        $settings = app($settingsClass);
-        $payload = $this->ensureAllSettingsProperties($settings, $payload);
-        $payload = $this->preserveExistingImageFields($payload, $settings);
-        $this->ensureSettingsRowsExist($settings);
-        app()->forgetInstance($settingsClass);
-        app($settingsClass)->fill($payload)->save();
     }
 }

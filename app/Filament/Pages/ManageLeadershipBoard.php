@@ -2,8 +2,8 @@
 
 namespace App\Filament\Pages;
 
-use App\Filament\Concerns\EnsuresSettingsRowsExist;
-use App\Filament\Concerns\HandlesCloudinaryImageFields;
+use App\Filament\Concerns\HydratesRepeaterMediaFields;
+use App\Filament\Concerns\SavesSettingsGroups;
 use App\Filament\Forms\Components\MediaPicker;
 use App\Settings\LeadershipHeroSettings;
 use App\Settings\LeadershipLeadersSettings;
@@ -25,8 +25,8 @@ use Filament\Pages\Page;
 
 class ManageLeadershipBoard extends Page implements HasForms
 {
-    use HandlesCloudinaryImageFields;
-    use EnsuresSettingsRowsExist;
+    use HydratesRepeaterMediaFields;
+    use SavesSettingsGroups;
     use InteractsWithForms;
 
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
@@ -40,7 +40,10 @@ class ManageLeadershipBoard extends Page implements HasForms
     public function mount(): void
     {
         $leaders = app(LeadershipLeadersSettings::class)->toArray();
-        $leaders['items'] = array_values($leaders['items'] ?? []);
+        $leaders['items'] = $this->hydrateRepeaterMediaFields(
+            array_values($leaders['items'] ?? []),
+            'image_url'
+        );
 
         $this->form->fill([
             'hero' => app(LeadershipHeroSettings::class)->toArray(),
@@ -135,29 +138,32 @@ class ManageLeadershipBoard extends Page implements HasForms
         try {
             $data = $this->form->getState();
 
-        // Denormalize MediaPicker asset ids → URLs before persisting (same
-        // convention as ProgramResource). Otherwise an uploaded image never
-        // writes its URL and the hero/leaders/seo image won't display.
-        $hero = $data['hero'] ?? [];
-        $hero = \App\Filament\Forms\Components\MediaPicker::syncFieldFromAsset($hero, 'background_image');
+            $existingLeaders = app(LeadershipLeadersSettings::class)->toArray();
 
-        $leaders = $data['leaders'] ?? [];
-        foreach ($leaders['items'] ?? [] as &$item) {
-            if (! is_array($item)) {
-                continue;
+            $hero = $this->syncImageIfSelected($data['hero'] ?? [], 'background_image');
+
+            $leaders = $data['leaders'] ?? [];
+            $leaders['items'] = $this->hydrateRepeaterMediaFields($leaders['items'] ?? [], 'image_url');
+            foreach ($leaders['items'] ?? [] as &$item) {
+                if (! is_array($item)) {
+                    continue;
+                }
+                $item = $this->syncImageIfSelected($item, 'image_url');
             }
-            $item = \App\Filament\Forms\Components\MediaPicker::syncFieldFromAsset($item, 'image_url');
-        }
-        unset($item);
-        $leaders['items'] = array_values($leaders['items'] ?? []);
+            unset($item);
+            $leaders['items'] = $this->preserveRepeaterImageFields(
+                array_values($leaders['items'] ?? []),
+                $existingLeaders['items'] ?? [],
+                'image_url'
+            );
 
-        $seo = $data['seo'] ?? [];
-        $seo = \App\Filament\Forms\Components\MediaPicker::syncFieldFromAsset($seo, 'og_image_url');
-        $seo = \App\Filament\Forms\Components\MediaPicker::syncFieldFromAsset($seo, 'twitter_image_url');
+            $seo = $data['seo'] ?? [];
+            $seo = $this->syncImageIfSelected($seo, 'og_image_url');
+            $seo = $this->syncImageIfSelected($seo, 'twitter_image_url');
 
-        $this->saveSettingsGroup(LeadershipHeroSettings::class, $hero);
-        $this->saveSettingsGroup(LeadershipLeadersSettings::class, $leaders);
-        $this->saveSettingsGroup(LeadershipSeoSettings::class, $seo);
+            $this->saveSettingsGroup(LeadershipHeroSettings::class, $hero);
+            $this->saveSettingsGroup(LeadershipLeadersSettings::class, $leaders);
+            $this->saveSettingsGroup(LeadershipSeoSettings::class, $seo);
 
             Notification::make()
                 ->title('Leadership Board saved')
@@ -173,16 +179,5 @@ class ManageLeadershipBoard extends Page implements HasForms
                 ->danger()
                 ->send();
         }
-    }
-
-    /** @param  class-string  $settingsClass */
-    protected function saveSettingsGroup(string $settingsClass, array $payload): void
-    {
-        $settings = app($settingsClass);
-        $payload = $this->ensureAllSettingsProperties($settings, $payload);
-        $payload = $this->preserveExistingImageFields($payload, $settings);
-        $this->ensureSettingsRowsExist($settings);
-        app()->forgetInstance($settingsClass);
-        app($settingsClass)->fill($payload)->save();
     }
 }

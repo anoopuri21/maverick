@@ -37,7 +37,7 @@ class ManageGlobalOpportunitiesPage extends SettingsPage
                     MediaPicker::forField('background_image', 'global-opportunities-page')
                     ->label('Background Image (Media Library)')
                     ->helperText('Upload from library (priority) or use the URL field below.'),
-                    TextInput::make('background_image_url_input')->label('Or Background Image URL')->url()->nullable(),
+                    TextInput::make('background_image_url_input')->label('Or Background Image URL')->nullable(),
                 ]),
             ]),
 
@@ -71,6 +71,6 @@ class ManageGlobalOpportunitiesPage extends SettingsPage
         }
         unset($data['background_image_url_input']);
 
-        return $data;
+        return $this->preserveExistingImageFields($data, app(static::$settings));
     }
 }

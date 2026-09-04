@@ -3,11 +3,23 @@
 @section('title', 'Latest Articles & Insights | Maverick Business Academy')
 @section('meta_description', 'Explore cutting-edge business articles, corporate strategies, academic research, and leadership advice from the expert faculty at Maverick Business Academy.')
 
+@push('head')
+    @include('partials.seo-meta', ['seo' => (object) [
+        'meta_title' => 'Latest Articles & Insights | Maverick Business Academy',
+        'meta_description' => 'Explore cutting-edge business articles, corporate strategies, academic research, and leadership advice from the expert faculty at Maverick Business Academy.',
+        'og_type' => 'website',
+    ]])
+@endpush
+
 @push('styles')
     <link rel="stylesheet" href="{{ cached_asset('css/pages/blog.css') }}">
 @endpush
 
 @section('content')
+@php
+    $blogHero = $blogHero ?? safe_settings(\App\Settings\BlogHeroSettings::class);
+    $topTags = collect($topTags ?? []);
+@endphp
 <div class="blog-page blog-listing">
 
     {{-- ═══════════════════════════════════════════
@@ -55,9 +67,9 @@
             <h1 class="blog-hero__heading">
                 {{ $blogHero->heading ?? 'Latest Articles & Insights' }}
             </h1>
-            <p class="blog-hero__description">
+            <div class="blog-hero__description">
                 {!! html_filled($blogHero->description ?? null) ? rich_html($blogHero->description ?? null) : 'Cutting-edge academic research, practical leadership strategy, and student success narratives curated specifically for future global business leaders.' !!}
-            </p>
+            </div>
             <div class="blog-hero__scroll-hint" aria-hidden="true">
                 <span class="blog-hero__scroll-text">Scroll to explore</span>
                 <span class="blog-hero__scroll-arrow" data-lucide="chevron-down"></span>

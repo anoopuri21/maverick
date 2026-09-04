@@ -3,7 +3,6 @@
 namespace App\Filament\Pages;
 
 use App\Settings\WhyMaverickSettings;
-use App\Filament\Concerns\HasStrictValidation;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\RichEditor;
@@ -15,8 +14,6 @@ use Filament\Notifications\Notification;
 
 class ManageWhyMaverick extends SettingsPage
 {
-    use HasStrictValidation;
-
     protected static ?string $navigationIcon = 'heroicon-o-sparkles';
     protected static ?string $navigationGroup = 'Homepage';
     protected static ?string $navigationLabel = 'Why Maverick';
@@ -29,6 +26,7 @@ class ManageWhyMaverick extends SettingsPage
             Section::make('Section Heading')
                 ->description('These fields are required')
                 ->schema([
+                    TextInput::make('label')->label('Section Label'),
                     Grid::make(2)->schema([
                         TextInput::make('heading_line1')
                             ->label('Heading Line 1')

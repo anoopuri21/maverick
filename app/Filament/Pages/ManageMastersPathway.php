@@ -2,8 +2,8 @@
 
 namespace App\Filament\Pages;
 
-use App\Filament\Concerns\EnsuresSettingsRowsExist;
-use App\Filament\Concerns\HandlesCloudinaryImageFields;
+use App\Filament\Concerns\HydratesRepeaterMediaFields;
+use App\Filament\Concerns\SavesSettingsGroups;
 use App\Filament\Forms\Components\MediaPicker;
 use App\Settings\MpAudienceSettings;
 use App\Settings\MpDestinationsSettings;
@@ -35,8 +35,8 @@ use Throwable;
 
 class ManageMastersPathway extends Page implements HasForms
 {
-    use HandlesCloudinaryImageFields;
-    use EnsuresSettingsRowsExist;
+    use HydratesRepeaterMediaFields;
+    use SavesSettingsGroups;
     use InteractsWithForms;
 
     protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
@@ -66,7 +66,10 @@ class ManageMastersPathway extends Page implements HasForms
         }, $how['phases'] ?? []));
 
         $destinations = app(MpDestinationsSettings::class)->toArray();
-        $destinations['items'] = $this->wrapNestedLists($destinations['items'] ?? [], 'points');
+        $destinations['items'] = $this->hydrateRepeaterMediaFields(
+            $this->wrapNestedLists($destinations['items'] ?? [], 'points'),
+            'image'
+        );
 
         $why = app(MpWhySettings::class)->toArray();
         $why['items'] = array_values($why['items'] ?? []);
@@ -370,12 +373,19 @@ class ManageMastersPathway extends Page implements HasForms
                 return $phase;
             }, $how['phases'] ?? []));
 
+            $existingDestinations = app(MpDestinationsSettings::class)->toArray();
+
             $destinations = $data['destinations'] ?? [];
+            $destinations['items'] = $this->hydrateRepeaterMediaFields($destinations['items'] ?? [], 'image');
             foreach ($destinations['items'] ?? [] as &$item) {
                 $item = $this->syncImageIfSelected($item, 'image');
             }
             unset($item);
-            $destinations['items'] = $this->normalizeNestedLists($destinations['items'] ?? [], 'points');
+            $destinations['items'] = $this->preserveRepeaterImageFields(
+                $this->normalizeNestedLists($destinations['items'] ?? [], 'points'),
+                $existingDestinations['items'] ?? [],
+                'image'
+            );
 
             $why = $data['why'] ?? [];
             $why['items'] = array_values($why['items'] ?? []);
@@ -424,17 +434,6 @@ class ManageMastersPathway extends Page implements HasForms
         }
     }
 
-    /** @param  class-string  $settingsClass */
-    protected function saveSettingsGroup(string $settingsClass, array $payload): void
-    {
-        $settings = app($settingsClass);
-        $payload = $this->ensureAllSettingsProperties($settings, $payload);
-        $payload = $this->preserveExistingImageFields($payload, $settings);
-        $this->ensureSettingsRowsExist($settings);
-        app()->forgetInstance($settingsClass);
-        app($settingsClass)->fill($payload)->save();
-    }
-
 
     protected function stringListRepeater(string $name, string $label): Repeater
     {
@@ -452,15 +451,6 @@ class ManageMastersPathway extends Page implements HasForms
             ->options(MpIcons::options())
             ->searchable()
             ->nullable();
-    }
-
-    protected function syncImageIfSelected(array $payload, string $field): array
-    {
-        if (! empty($payload["{$field}_asset_id"])) {
-            return MediaPicker::syncFieldFromAsset($payload, $field);
-        }
-
-        return $payload;
     }
 
     protected function wrapStringList(array $items): array

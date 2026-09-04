@@ -53,7 +53,7 @@ class ManageHero extends SettingsPage
                 ->schema([
                     TextInput::make('video_url')
                         ->label('Cloudinary Video URL')
-                        ->url()->nullable()
+                        ->nullable()
                         ->helperText('WebM format recommended.')
                         ->columnSpanFull(),
                 ]),

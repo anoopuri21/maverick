@@ -11,6 +11,8 @@ Route::get('/our-story', [PageController::class, 'ourStory'])->name('our-story')
 Route::get('/leadership-board', [PageController::class, 'leadershipBoard'])->name('leadership');
 Route::get('/accreditations', [\App\Http\Controllers\AccreditationController::class, 'index'])->name('accreditations');
 Route::get('/csr-community-impact', [PageController::class, 'csrCommunityImpact'])->name('csr');
+Route::get('/privacy-policy', [PageController::class, 'privacyPolicy'])->name('privacy-policy');
+Route::get('/terms-of-use', [PageController::class, 'termsOfUse'])->name('terms-of-use');
 Route::get('/media-gallery', [PageController::class, 'gallery'])->name('media-gallery');
 Route::get('/global-university-partners', [PageController::class, 'globalUniversityPartners'])->name('global-partners');
 Route::get('/pathway-programs', [PageController::class, 'pathwayPrograms'])->name('pathway-programs');
@@ -19,6 +21,10 @@ Route::get('/global-bachelors-pathway', [PageController::class, 'globalBachelors
 Route::get('/masters-pathways', [PageController::class, 'mastersPathway'])->name('masters-pathways');
 Route::get('/educational-tours-edutainment', [PageController::class, 'edutainment'])->name('edutainment');
 Route::get('/dual-mba-online', [PageController::class, 'dualMba'])->name('dual-mba');
+Route::get('/online-mba-masters-uae', [PageController::class, 'mbaMastersLanding'])->name('mba-masters-landing');
+Route::post('/online-mba-masters-uae/enquire', [\App\Http\Controllers\MbaMastersLandingController::class, 'enquire'])
+    ->middleware('throttle:5,1')
+    ->name('mba-masters-landing.enquire');
 
 // Contact
 Route::get('/contact', [\App\Http\Controllers\ContactController::class, 'index'])->name('contact');
@@ -44,9 +50,6 @@ Route::post('/programs/enquire', [\App\Http\Controllers\ProgramController::class
     ->name('programs.enquire');
 Route::get('/programs/{slug}', [\App\Http\Controllers\ProgramController::class, 'show'])->name('programs.show');
 
-Route::get('/faculty-voice', [\App\Http\Controllers\FacultyVoiceController::class, 'index'])->name('faculty-voice.index');
-Route::get('/faculty-voice/{slug}', [\App\Http\Controllers\FacultyVoiceController::class, 'show'])->name('faculty-voice.show');
-
 // Unified Detail (root-level permalink)
 // Registered LAST so every other named route above is matched first.
 
@@ -54,5 +57,8 @@ Route::get('/events', [\App\Http\Controllers\PageController::class, 'events'])->
 Route::get('/student-success/stories', [\App\Http\Controllers\PageController::class, 'studentSuccessStories'])->name('student-success.stories');
 Route::get('/student-success/videos', [\App\Http\Controllers\PageController::class, 'studentSuccessVideos'])->name('student-success.videos');
 Route::get('/student-success', [\App\Http\Controllers\PageController::class, 'studentSuccess'])->name('student-success');
+
+Route::redirect('/faculty-voice', '/#faculty-insights', 301);
+Route::redirect('/faculty-voice/{slug}', '/#faculty-insights', 301);
 
 Route::get('/{slug}', [\App\Http\Controllers\InsightController::class, 'show'])->name('insights.show');

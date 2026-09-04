@@ -13,6 +13,9 @@ class SiteSettings extends Settings
     public ?string $whatsapp_number = null;
     public ?string $email = null;
     public ?string $address = null;
+    public ?string $uk_address = null;
+    public ?string $uk_phone = null;
+    public ?string $uk_email = null;
     public ?string $office_hours = null;
     public ?string $facebook_url = null;
     public ?string $instagram_url = null;

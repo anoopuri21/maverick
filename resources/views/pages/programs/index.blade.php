@@ -19,6 +19,10 @@
 @endpush
 
 @section('content')
+@php
+    $programs = collect($programs ?? []);
+    $categories = collect($categories ?? []);
+@endphp
 <div class="page-pl">
 
     <section class="cinematic-hero cinematic-hero--short pl-hero" aria-label="Programmes" data-testid="pl-hero">
@@ -41,7 +45,7 @@
                 {{ $programsListingPage->hero_tag ?? 'MAVERICK PROGRAMMES' }}
             </span>
             <h1 class="cinematic-hero__title">{{ $programsListingPage->hero_heading ?? 'Explore Your' }} <em>{{ $programsListingPage->hero_heading_italic ?? 'Programme' }}</em></h1>
-            <p class="cinematic-hero__description">{!! html_filled($programsListingPage->hero_description ?? null) ? rich_html($programsListingPage->hero_description ?? null) : 'Globally recognised qualifications designed to move your career forward.' !!}</p>
+            <div class="cinematic-hero__description">{!! html_filled($programsListingPage->hero_description ?? null) ? rich_html($programsListingPage->hero_description ?? null) : 'Globally recognised qualifications designed to move your career forward.' !!}</div>
             <div class="pl-hero__meta">
                 <span class="pl-hero__meta-item">{{ $programs->count() }} programmes</span>
                 <span class="pl-hero__meta-rule"></span>
@@ -97,7 +101,3 @@
 
 </div>
 @endsection
-
-@push('scripts')
-    <script src="{{ cached_asset('assets/js/pages/program-listing.js') }}" defer></script>
-@endpush

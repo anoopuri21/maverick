@@ -25,6 +25,13 @@ class ManageCeoMessage extends SettingsPage
     {
         return $form->schema([
 
+            Section::make('Section Heading')
+                ->schema([
+                    TextInput::make('label')->label('Section Label'),
+                    TextInput::make('heading_line1')->label('Heading Line 1'),
+                    TextInput::make('heading_line2')->label('Heading Line 2 (Accent)'),
+                ]),
+
             Section::make('CEO Details')
                 ->schema([
                     TextInput::make('name')
@@ -67,5 +74,10 @@ class ManageCeoMessage extends SettingsPage
                         }),
                 ]),
         ]);
+    }
+
+    protected function mutateFormDataBeforeSave(array $data): array
+    {
+        return $this->preserveExistingImageFields($data, app(static::$settings));
     }
 }

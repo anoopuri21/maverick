@@ -19,14 +19,14 @@
 @endpush
 
 @section('content')
+@php
+    $mediaGalleryPage = $mediaGalleryPage ?? safe_settings(\App\Settings\MediaGalleryPageSettings::class);
+@endphp
 <div class="page-gallery gallery-page">
 
 @php
-    // ═══════════════════════════════════════════
-    // HERO (decorative only — all gallery content
-    // is loaded dynamically from the database)
-    // ═══════════════════════════════════════════
-
+    $photos = collect($photos ?? []);
+    $videos = collect($videos ?? []);
     $photoCount = $photos->count();
     $videoCount = $videos->count();
     $galleryHeroBg = media_url(
@@ -77,7 +77,7 @@
             {{ $mediaGalleryPage->hero_heading_line1 ?? 'Life at Maverick,' }}<br>
             <em>{{ $mediaGalleryPage->hero_heading_italic ?? 'In Pictures' }}</em>
         </h1>
-        <p class="cinematic-hero__description">{!! html_filled($mediaGalleryPage->hero_description ?? null) ? rich_html($mediaGalleryPage->hero_description ?? null) : 'Explore the moments that define our community — from graduation celebrations and campus life to global events and media spotlight. Every image tells a story of ambition, achievement, and the transformative power of education.' !!}</p>
+        <div class="cinematic-hero__description">{!! html_filled($mediaGalleryPage->hero_description ?? null) ? rich_html($mediaGalleryPage->hero_description ?? null) : 'Explore the moments that define our community — from graduation celebrations and campus life to global events and media spotlight. Every image tells a story of ambition, achievement, and the transformative power of education.' !!}</div>
         <div class="cinematic-hero__scroll-hint" aria-hidden="true">
             <span class="cinematic-hero__scroll-text">Scroll to explore</span>
             <span class="cinematic-hero__scroll-arrow" data-lucide="chevron-down"></span>
@@ -255,5 +255,5 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ cached_asset('js/pages/media-gallery.js') }}" defer></script>
+    <script src="{{ cached_asset('assets/js/pages/media-gallery.js') }}" defer></script>
 @endpush

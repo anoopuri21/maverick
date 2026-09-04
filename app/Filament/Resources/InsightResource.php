@@ -49,7 +49,6 @@ class InsightResource extends Resource
                     }),
 
                 TextInput::make('slug')
-                    
                     ->maxLength(255),
 
                 Textarea::make('excerpt')
@@ -97,7 +96,7 @@ class InsightResource extends Resource
 
                 TextInput::make('author_avatar_url')
                     ->label('Author Avatar URL')
-                    ->url()->nullable(),
+                    ->nullable(),
 
                 RichEditor::make('author_bio')
                     ->maxLength(500)

@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\Event;
 use App\Models\FacultyInsight;
 use App\Models\Faq;
+use App\Models\GlobalAccessPointCountry;
 use App\Models\GupPartnerUniversity;
 use App\Models\Insight;
 use App\Models\MediaGalleryPhoto;
@@ -19,7 +20,12 @@ use App\Models\Program;
 use App\Models\ProgramCategory;
 use App\Models\Testimonial;
 use App\Models\UniversityPartner;
+use App\Settings\AskQuotientSettings;
+use App\Settings\DeiMatrixSettings;
 use App\Settings\FinalCtaSettings;
+use App\Settings\GlobalAccessPointsSettings;
+use App\Settings\GlobalPartnersMapSettings;
+use App\Settings\HomepageChromeSettings;
 use App\Settings\WhatWeDoSettings;
 use App\Support\PublicContentCache;
 use Illuminate\Support\Facades\Event as EventFacade;
@@ -83,21 +89,30 @@ class AppServiceProvider extends ServiceProvider
         EventFacade::listen(SettingsSaved::class, fn () => PublicContentCache::flush());
 
         View::composer('sections.featured-programs', function ($view) {
+            if (! $view->offsetExists('homepageChrome')) {
+                $view->with('homepageChrome', safe_settings(HomepageChromeSettings::class));
+            }
+
             if ($view->offsetExists('featuredPrograms')) {
                 return;
             }
 
             try {
-                $featuredPrograms = PublicContentCache::remember(PublicContentCache::FEATURED_PROGRAMS, function () {
-                    return Program::select('id', 'title', 'slug', 'university_partner_id', 'short_description', 'image_url', 'sort_order')
-                        ->with('universityPartner:id,name')
-                        ->where('is_featured', true)
-                        ->where('is_active', true)
-                        ->hasPublicSlug()
-                        ->orderBy('sort_order')
-                        ->limit(10)
-                        ->get();
-                });
+                $featuredPrograms = PublicContentCache::rememberHydrated(
+                    PublicContentCache::FEATURED_PROGRAMS,
+                    Program::class,
+                    function () {
+                        return Program::select('id', 'title', 'slug', 'university_partner_id', 'short_description', 'image_url', 'sort_order')
+                            ->with('universityPartner:id,name')
+                            ->where('is_featured', true)
+                            ->where('is_active', true)
+                            ->hasPublicSlug()
+                            ->orderBy('sort_order')
+                            ->limit(10)
+                            ->get();
+                    },
+                    ['university_partner' => UniversityPartner::class]
+                );
             } catch (\Throwable $e) {
                 report($e);
                 $featuredPrograms = collect();
@@ -107,19 +122,27 @@ class AppServiceProvider extends ServiceProvider
         });
 
         View::composer('sections.faculty-insights', function ($view) {
+            if (! $view->offsetExists('homepageChrome')) {
+                $view->with('homepageChrome', safe_settings(HomepageChromeSettings::class));
+            }
+
             if ($view->offsetExists('facultyInsights')) {
                 return;
             }
 
             try {
-                $facultyInsights = PublicContentCache::remember(PublicContentCache::FACULTY_INSIGHTS_PREVIEW, function () {
-                    return FacultyInsight::select('id', 'title', 'slug', 'badge', 'image_url', 'link_url', 'excerpt', 'faculty_name', 'faculty_role', 'sort_order')
-                        ->where('is_active', true)
-                        ->hasPublicSlug()
-                        ->orderBy('sort_order')
-                        ->limit(6)
-                        ->get();
-                });
+                $facultyInsights = PublicContentCache::rememberHydrated(
+                    PublicContentCache::FACULTY_INSIGHTS_PREVIEW,
+                    FacultyInsight::class,
+                    function () {
+                        return FacultyInsight::select('id', 'title', 'slug', 'badge', 'image_url', 'link_url', 'excerpt', 'faculty_name', 'faculty_role', 'sort_order')
+                            ->where('is_active', true)
+                            ->hasPublicSlug()
+                            ->orderBy('sort_order')
+                            ->limit(6)
+                            ->get();
+                    }
+                );
             } catch (\Throwable $e) {
                 report($e);
                 $facultyInsights = collect();
@@ -129,6 +152,8 @@ class AppServiceProvider extends ServiceProvider
         });
 
         View::composer('sections.university-partners', function ($view) {
+            $view->with('partnersMap', safe_settings(GlobalPartnersMapSettings::class));
+
             if ($view->offsetExists('universityPartners') && $view->offsetExists('universityPartnersJson')) {
                 return;
             }
@@ -168,19 +193,24 @@ class AppServiceProvider extends ServiceProvider
                                                 'url' => route('programs.show', $pr->slug),
                                             ])->values()->all(),
                                     ];
-                                })->values(),
+                                })->values()->all(),
                             ];
                         })
-                        ->values();
+                        ->values()
+                        ->all();
 
                     return [
-                        'universityPartners' => $universityPartners,
+                        'universityPartners' => $universityPartners->toArray(),
                         'universityPartnersJson' => $universityPartnersJson,
                     ];
                 });
 
-                $universityPartners = $cached['universityPartners'];
-                $universityPartnersJson = $cached['universityPartnersJson'];
+                $universityPartners = PublicContentCache::hydrateRows(
+                    UniversityPartner::class,
+                    $cached['universityPartners'] ?? [],
+                    ['programs' => Program::class]
+                );
+                $universityPartnersJson = collect($cached['universityPartnersJson'] ?? []);
             } catch (\Throwable $e) {
                 report($e);
                 $universityPartners = collect();
@@ -193,6 +223,34 @@ class AppServiceProvider extends ServiceProvider
             ]);
         });
 
+        View::composer('sections.global-access-points', function ($view) {
+            $view->with('gapSettings', safe_settings(GlobalAccessPointsSettings::class));
+
+            if ($view->offsetExists('globalAccessPointsCountries')) {
+                return;
+            }
+
+            try {
+                $countries = PublicContentCache::rememberHydrated(
+                    PublicContentCache::GLOBAL_ACCESS_POINTS,
+                    GlobalAccessPointCountry::class,
+                    function () {
+                        return GlobalAccessPointCountry::query()
+                            ->select('id', 'iso_numeric', 'iso2', 'name', 'sort_order')
+                            ->where('is_active', true)
+                            ->orderBy('sort_order')
+                            ->orderBy('name')
+                            ->get();
+                    }
+                );
+            } catch (\Throwable $e) {
+                report($e);
+                $countries = collect();
+            }
+
+            $view->with('globalAccessPointsCountries', $countries);
+        });
+
         View::composer('sections.final-cta', function ($view) {
             if ($view->offsetExists('finalCta')) {
                 return;
@@ -202,24 +260,86 @@ class AppServiceProvider extends ServiceProvider
         });
 
         View::composer('sections.alumni-network', function ($view) {
+            if (! $view->offsetExists('homepageChrome')) {
+                $view->with('homepageChrome', safe_settings(HomepageChromeSettings::class));
+            }
+
             if ($view->offsetExists('alumniLogos')) {
                 return;
             }
 
             try {
-                $alumniLogos = PublicContentCache::remember(PublicContentCache::ALUMNI_LOGOS, function () {
-                    return PartnerLogo::select('id', 'name', 'logo_url', 'sort_order')
-                        ->where('type', 'alumni')
-                        ->where('is_active', true)
-                        ->orderBy('sort_order')
-                        ->get();
-                });
+                $alumniLogos = PublicContentCache::rememberHydrated(
+                    PublicContentCache::ALUMNI_LOGOS,
+                    PartnerLogo::class,
+                    function () {
+                        return PartnerLogo::select('id', 'name', 'logo_url', 'sort_order')
+                            ->where('type', 'alumni')
+                            ->where('is_active', true)
+                            ->orderBy('sort_order')
+                            ->get();
+                    }
+                );
             } catch (\Throwable $e) {
                 report($e);
                 $alumniLogos = collect();
             }
 
             $view->with('alumniLogos', $alumniLogos);
+        });
+
+        View::composer('partials.footer', function ($view) {
+            if ($view->offsetExists('footerProgramCategories')) {
+                return;
+            }
+
+            try {
+                $footerProgramCategories = PublicContentCache::rememberHydrated(
+                    PublicContentCache::FOOTER_PROGRAM_CATEGORIES,
+                    ProgramCategory::class,
+                    function () {
+                        return ProgramCategory::select('id', 'name', 'slug', 'sort_order')
+                            ->where('is_active', true)
+                            ->orderBy('sort_order')
+                            ->orderBy('name')
+                            ->get();
+                    }
+                );
+            } catch (\Throwable $e) {
+                report($e);
+                $footerProgramCategories = collect();
+            }
+
+            $view->with('footerProgramCategories', $footerProgramCategories);
+        });
+
+        View::composer('sections.ask-quotient', function ($view) {
+            if ($view->offsetExists('askQuotient')) {
+                return;
+            }
+
+            $view->with('askQuotient', safe_settings(AskQuotientSettings::class));
+        });
+
+        View::composer('sections.dei-matrix', function ($view) {
+            if ($view->offsetExists('deiMatrix')) {
+                return;
+            }
+
+            $view->with('deiMatrix', safe_settings(DeiMatrixSettings::class));
+        });
+
+        View::composer([
+            'sections.accreditations',
+            'sections.upcoming-events',
+            'sections.video-testimonials',
+            'sections.faq',
+        ], function ($view) {
+            if ($view->offsetExists('homepageChrome')) {
+                return;
+            }
+
+            $view->with('homepageChrome', safe_settings(HomepageChromeSettings::class));
         });
 
         View::composer([
@@ -251,6 +371,7 @@ class AppServiceProvider extends ServiceProvider
             OurStoryTestimonial::class,
             GupPartnerUniversity::class,
             PartnershipGalleryItem::class,
+            GlobalAccessPointCountry::class,
         ];
 
         foreach ($collectionModels as $model) {

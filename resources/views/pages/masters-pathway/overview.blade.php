@@ -51,7 +51,7 @@
                 <p class="mp-pathway__phase-meta">{{ $phase['meta'] }}</p>
                 @endif
                 @if(filled($phase['desc'] ?? null))
-                <p class="mp-pathway__phase-desc">{!! rich_html($phase['desc'] ?? null) !!}</p>
+                <div class="mp-pathway__phase-desc">{!! rich_html($phase['desc'] ?? null) !!}</div>
                 @endif
             </div>
             @if(! $loop->last)

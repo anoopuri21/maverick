@@ -24,14 +24,18 @@
       </h2>
       @endif
       @if(html_filled($specs->intro ?? null))
-      <div class="body-text dmba-richtext" style="margin-top: 16px; color: rgba(0,0,0,0.6);">{!! $specs->intro !!}</div>
+      <div class="body-text dmba-richtext dmba-specs__intro">{!! $specs->intro !!}</div>
       @endif
     </div>
 
     @if($specCards->isNotEmpty())
     <div class="dmba-specs__grid" data-testid="dmba-specs-grid">
       @foreach($specCards as $card)
+      @if(filled($card['url'] ?? null))
+      <a href="{{ edu_href($card['url']) }}" class="dmba-specs__card dmba-specs__card--link">
+      @else
       <div class="dmba-specs__card">
+      @endif
         @if(filled($card['icon_key'] ?? null))
         <div class="dmba-specs__card-icon">
           <x-dmba.icon :name="$card['icon_key']" :size="22" />
@@ -41,7 +45,11 @@
         @if(filled($card['tag'] ?? null))
         <span class="dmba-specs__card-tag">{{ $card['tag'] }}</span>
         @endif
+      @if(filled($card['url'] ?? null))
+      </a>
+      @else
       </div>
+      @endif
       @endforeach
     </div>
     @endif

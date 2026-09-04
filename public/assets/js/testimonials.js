@@ -38,6 +38,24 @@
     track.innerHTML = html;
   }
 
+  // Build a playable embed URL from any YouTube shape (watch, youtu.be,
+  // shorts, live, /embed/, raw id) so the popup always plays, even if a
+  // server-provided URL was not already in /embed/ form.
+  function youtubeEmbedSrc(videoUrl) {
+    const idMatch = videoUrl.match(
+      /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?|shorts|live)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i
+    );
+    const id = idMatch ? idMatch[1] : (/^[a-zA-Z0-9_-]{11}$/.test(videoUrl) ? videoUrl : null);
+
+    if (id) {
+      return "https://www.youtube.com/embed/" + id + "?rel=0&autoplay=1";
+    }
+
+    const separator = videoUrl.includes("?") ? "&" : "?";
+
+    return videoUrl + separator + "autoplay=1";
+  }
+
   // Open modal with video
   function openModal(videoUrl) {
     if (!modal || !modalPlayer) return;
@@ -45,8 +63,7 @@
     // Detect YouTube vs local video
     let playerContent;
     if (videoUrl.includes("youtube.com") || videoUrl.includes("youtu.be")) {
-      const separator = videoUrl.includes("?") ? "&" : "?";
-      playerContent = `<iframe src="${videoUrl}${separator}autoplay=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+      playerContent = `<iframe src="${youtubeEmbedSrc(videoUrl)}" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
     } else {
       playerContent = `<video src="${videoUrl}" controls autoplay></video>`;
     }
@@ -54,6 +71,9 @@
     modalPlayer.innerHTML = playerContent;
     modal.classList.add("testimonials__modal--active");
     document.body.classList.add("modal-open");
+    if (window.lenisInstance && typeof window.lenisInstance.stop === "function") {
+      window.lenisInstance.stop();
+    }
   }
 
   // Close modal
@@ -62,6 +82,9 @@
 
     modal.classList.remove("testimonials__modal--active");
     document.body.classList.remove("modal-open");
+    if (window.lenisInstance && typeof window.lenisInstance.start === "function") {
+      window.lenisInstance.start();
+    }
 
     // Clear player content after transition
     setTimeout(() => {

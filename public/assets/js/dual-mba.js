@@ -110,8 +110,19 @@ document.addEventListener('DOMContentLoaded', () => {
   // EMPLOYERS — Counter + List Reveal
   // =============================================
   // Counter animation
-  const counterEl = document.querySelector('[data-dmba-counter]');
+  const counterEl = document.querySelector('[data-dmba-counter], [data-dmba-counter-static]');
   if (counterEl) {
+    const staticText = counterEl.getAttribute('data-dmba-counter-static');
+    if (staticText) {
+      ScrollTrigger.create({
+        trigger: counterEl,
+        start: 'top 85%',
+        once: true,
+        onEnter: () => {
+          counterEl.textContent = staticText;
+        }
+      });
+    } else {
     const targetVal = parseInt(counterEl.getAttribute('data-dmba-counter'), 10);
     const counterObj = { val: 0 };
     ScrollTrigger.create({
@@ -129,6 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       }
     });
+    }
   }
 
   gsap.from('.dmba-employers__item', {

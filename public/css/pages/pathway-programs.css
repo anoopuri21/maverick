@@ -232,6 +232,34 @@
   transform: translateX(5px);
 }
 
+.pp-row__badge {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  margin-bottom: 0.75rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--pp-blue);
+  background: rgba(15, 41, 131, 0.08);
+}
+
+.pp-row__cta--disabled {
+  pointer-events: none;
+  opacity: 0.6;
+  cursor: not-allowed;
+  color: var(--pp-muted);
+  border-color: rgba(7, 20, 68, 0.15);
+}
+
+.pp-row__cta--disabled::before {
+  display: none;
+}
+
 /* Empty state */
 .pp-pathways__empty {
   text-align: center;

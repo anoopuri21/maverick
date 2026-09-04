@@ -5,12 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Program;
 use App\Settings\HeroSettings;
+use App\Settings\AskQuotientSettings;
+use App\Settings\DeiMatrixSettings;
+use App\Settings\HomepageChromeSettings;
 use App\Settings\NumbersSettings;
 use App\Settings\WhoWeAreSettings;
 use App\Settings\CeoSettings;
 use App\Settings\WhatIsMaverickSettings;
 use App\Models\OurStoryTestimonial;
 use App\Models\PartnerLogo;
+use App\Models\UniversityPartner;
 use App\Models\FacultyInsight;
 use App\Models\Event;
 use App\Models\Testimonial;
@@ -40,6 +44,10 @@ use App\Settings\CsrGallerySettings;
 use App\Settings\CsrImpactSettings;
 use App\Settings\CsrScholarshipSettings;
 use App\Settings\CsrSeoSettings;
+use App\Settings\PrivacyPageSettings;
+use App\Settings\PrivacySeoSettings;
+use App\Settings\TermsPageSettings;
+use App\Settings\TermsSeoSettings;
 use App\Settings\DualMbaEmployersSettings;
 use App\Settings\DualMbaFaqSettings;
 use App\Settings\DualMbaFinalCtaSettings;
@@ -51,6 +59,25 @@ use App\Settings\DualMbaSpecsSettings;
 use App\Settings\DualMbaTestimonialsSettings;
 use App\Settings\DualMbaTwiceSettings;
 use App\Settings\DualMbaWhySettings;
+use App\Settings\MbaMastersAlumniSettings;
+use App\Settings\MbaMastersVideoTestimonialsSettings;
+use App\Settings\MbaMastersPartnersSettings;
+use App\Settings\MbaMastersTestimonialsSettings;
+use App\Settings\MbaMastersCompareSettings;
+use App\Settings\MbaMastersFaqSettings;
+use App\Settings\MbaMastersFinalSettings;
+use App\Settings\MbaMastersCareerSettings;
+use App\Settings\MbaMastersClassSettings;
+use App\Settings\MbaMastersFeesSettings;
+use App\Settings\MbaMastersHeroSettings;
+use App\Settings\MbaMastersJourneySettings;
+use App\Settings\MbaMastersMastersSettings;
+use App\Settings\MbaMastersMbaSettings;
+use App\Settings\MbaMastersOverviewSettings;
+use App\Settings\MbaMastersSeoSettings;
+use App\Settings\MbaMastersTrustSettings;
+use App\Settings\MbaMastersWhySettings;
+use App\Settings\SiteSettings;
 use App\Settings\GbpAdmissionSettings;
 use App\Settings\GbpAreasSettings;
 use App\Settings\GbpComparisonSettings;
@@ -98,7 +125,6 @@ use App\Settings\EventsSeoSettings;
 use App\Settings\StudentSuccessSeoSettings;
 use App\Settings\EventsPageSettings;
 use App\Settings\StudentSuccessPageSettings;
-use App\Settings\ContactPageSettings;
 use App\Settings\MediaGalleryPageSettings;
 use App\Support\PublicContentCache;
 
@@ -112,13 +138,16 @@ class PageController extends Controller
             'whoWeAre' => safe_settings(WhoWeAreSettings::class),
             'ceo' => safe_settings(CeoSettings::class),
             'whatIsMaverick' => safe_settings(WhatIsMaverickSettings::class),
+            'askQuotient' => safe_settings(AskQuotientSettings::class),
+            'deiMatrix' => safe_settings(DeiMatrixSettings::class),
+            'homepageChrome' => safe_settings(HomepageChromeSettings::class),
             'howWeDoIt' => safe_settings(HowWeDoItSettings::class),
             'whyMaverick' => safe_settings(WhyMaverickSettings::class),
             'globalOpportunities' => safe_settings(GlobalOpportunitiesSettings::class),
             'homeSeo' => safe_settings(\App\Settings\HomepageSeoSettings::class),
         ];
 
-        $collections = PublicContentCache::remember(PublicContentCache::HOMEPAGE, function () {
+        $cached = PublicContentCache::remember(PublicContentCache::HOMEPAGE, function () {
             $alumniLogos = PartnerLogo::select('id', 'name', 'logo_url', 'sort_order')
                 ->where('type', 'alumni')
                 ->where('is_active', true)
@@ -131,18 +160,30 @@ class PageController extends Controller
                 ->orderBy('sort_order')
                 ->get();
 
-            $facultyInsights = FacultyInsight::select('id', 'title', 'slug', 'badge', 'image_url', 'link_url', 'excerpt', 'faculty_name', 'faculty_role', 'sort_order')
-                ->where('is_active', true)
-                ->hasPublicSlug()
-                ->orderBy('sort_order')
-                ->limit(6)
-                ->get();
+            $facultyInsights = PublicContentCache::serializeRows(
+                FacultyInsight::select('id', 'title', 'faculty_role', 'country', 'content', 'image_url', 'image_url_asset_id', 'sort_order')
+                    ->where('is_active', true)
+                    ->orderBy('sort_order')
+                    ->limit(9)
+                    ->get(),
+                fn (FacultyInsight $insight) => [
+                    'id' => $insight->id,
+                    'title' => $insight->title,
+                    'faculty_role' => $insight->faculty_role,
+                    'country' => $insight->country,
+                    'content' => $insight->content,
+                    'image_url' => $insight->image_url ?? $insight->featuredImageUrl(),
+                    'sort_order' => $insight->sort_order,
+                ]
+            );
 
-            $events = Event::select('id', 'title', 'description', 'event_date', 'event_type', 'location', 'link_url')
-                ->where('is_active', true)
-                ->orderBy('event_date', 'desc')
-                ->limit(10)
-                ->get();
+            $events = PublicContentCache::serializeRows(
+                Event::select('id', 'title', 'description', 'event_date', 'event_type', 'location', 'link_url')
+                    ->where('is_active', true)
+                    ->orderBy('event_date', 'desc')
+                    ->limit(10)
+                    ->get()
+            );
 
             $testimonials = Testimonial::select('id', 'name', 'designation', 'company', 'thumbnail_url', 'video_url', 'video_type', 'sort_order')
                 ->where('is_active', true)
@@ -150,12 +191,14 @@ class PageController extends Controller
                 ->limit(9)
                 ->get();
 
-            $homepageFaqs = \App\Models\Faq::select('id', 'question', 'answer', 'sort_order')
-                ->where('faqable_type', 'homepage')
-                ->where('faqable_id', 1)
-                ->where('is_active', true)
-                ->orderBy('sort_order')
-                ->get();
+            $homepageFaqs = PublicContentCache::serializeRows(
+                \App\Models\Faq::select('id', 'question', 'answer', 'sort_order')
+                    ->where('faqable_type', 'homepage')
+                    ->where('faqable_id', 1)
+                    ->where('is_active', true)
+                    ->orderBy('sort_order')
+                    ->get()
+            );
 
             $testimonialsJson = $testimonials->map(fn ($t) => [
                 'category' => strtoupper($t->company ?? 'STUDENT'),
@@ -163,18 +206,29 @@ class PageController extends Controller
                 'role' => $t->designation ?? '',
                 'thumbnail' => $t->auto_thumbnail,
                 'video' => $t->embed_url,
-            ])->values();
+            ])->values()->all();
 
-            return compact(
-                'alumniLogos',
-                'accreditationLogos',
-                'facultyInsights',
-                'events',
-                'testimonials',
-                'testimonialsJson',
-                'homepageFaqs',
-            );
+            // Store plain arrays — database cache corrupts serialized Eloquent models (null bytes).
+            return [
+                'alumniLogos' => $alumniLogos->toArray(),
+                'accreditationLogos' => $accreditationLogos->toArray(),
+                'facultyInsights' => $facultyInsights,
+                'events' => $events,
+                'testimonials' => $testimonials->toArray(),
+                'testimonialsJson' => $testimonialsJson,
+                'homepageFaqs' => $homepageFaqs,
+            ];
         });
+
+        $collections = [
+            'alumniLogos' => PublicContentCache::hydrateRows(PartnerLogo::class, $cached['alumniLogos'] ?? []),
+            'accreditationLogos' => PublicContentCache::hydrateRows(PartnerLogo::class, $cached['accreditationLogos'] ?? []),
+            'facultyInsights' => PublicContentCache::hydrateRows(FacultyInsight::class, $cached['facultyInsights'] ?? []),
+            'events' => PublicContentCache::hydrateRows(Event::class, $cached['events'] ?? []),
+            'testimonials' => PublicContentCache::hydrateRows(Testimonial::class, $cached['testimonials'] ?? []),
+            'testimonialsJson' => collect($cached['testimonialsJson'] ?? []),
+            'homepageFaqs' => PublicContentCache::hydrateRows(\App\Models\Faq::class, $cached['homepageFaqs'] ?? []),
+        ];
 
         return view('pages.home', array_merge($settings, $collections));
     }
@@ -188,13 +242,14 @@ class PageController extends Controller
             'today' => safe_settings(\App\Settings\OurStoryTodaySettings::class),
             'impact' => safe_settings(\App\Settings\OurStoryImpactSettings::class),
             'vision' => safe_settings(\App\Settings\OurStoryVisionSettings::class),
+            'storySections' => safe_settings(\App\Settings\OurStorySectionsSettings::class),
             // Shared with homepage
             'ceo' => safe_settings(CeoSettings::class),
         ];
 
-        $collections = PublicContentCache::remember(PublicContentCache::OUR_STORY, function () {
+        $cached = PublicContentCache::remember(PublicContentCache::OUR_STORY, function () {
             $ourStoryTestimonials = OurStoryTestimonial::query()
-                ->select('id', 'name', 'rating', 'testimonial', 'photo', 'sort_order')
+                ->select('id', 'name', 'organisation', 'position', 'country', 'rating', 'testimonial', 'photo', 'sort_order')
                 ->where('is_active', true)
                 ->orderBy('sort_order')
                 ->get();
@@ -239,23 +294,39 @@ class PageController extends Controller
                 'role' => $t->designation ?? '',
                 'thumbnail' => $t->auto_thumbnail,
                 'video' => $t->embed_url,
-            ])->values();
+            ])->values()->all();
 
-            return compact(
-                'ourStoryTestimonials',
-                'timelines',
-                'awards',
-                'galleryImages',
-                'accreditationLogos',
-                'facultyInsights',
-                'testimonials',
-                'testimonialsJson',
-            );
+            // Store plain arrays — database cache corrupts serialized Eloquent models.
+            return [
+                'ourStoryTestimonials' => $ourStoryTestimonials->toArray(),
+                'timelines' => $timelines->toArray(),
+                'awards' => $awards->toArray(),
+                'galleryImages' => $galleryImages->toArray(),
+                'accreditationLogos' => $accreditationLogos->toArray(),
+                'facultyInsights' => $facultyInsights->toArray(),
+                'testimonials' => $testimonials->toArray(),
+                'testimonialsJson' => $testimonialsJson,
+            ];
         });
+
+        $collections = [
+            'ourStoryTestimonials' => PublicContentCache::hydrateRows(OurStoryTestimonial::class, $cached['ourStoryTestimonials'] ?? []),
+            'timelines' => PublicContentCache::hydrateRows(\App\Models\OurStoryTimeline::class, $cached['timelines'] ?? []),
+            'awards' => PublicContentCache::hydrateRows(\App\Models\OurStoryAward::class, $cached['awards'] ?? []),
+            'galleryImages' => PublicContentCache::hydrateRows(\App\Models\OurStoryGalleryImage::class, $cached['galleryImages'] ?? []),
+            'accreditationLogos' => PublicContentCache::hydrateRows(PartnerLogo::class, $cached['accreditationLogos'] ?? []),
+            'facultyInsights' => PublicContentCache::hydrateRows(FacultyInsight::class, $cached['facultyInsights'] ?? []),
+            'testimonials' => PublicContentCache::hydrateRows(Testimonial::class, $cached['testimonials'] ?? []),
+            'testimonialsJson' => collect($cached['testimonialsJson'] ?? []),
+        ];
 
         $data = array_merge($settings, $collections, [
             'ourStorySeo' => safe_settings(\App\Settings\OurStorySeoSettings::class),
         ]);
+
+        $data['timelines'] = collect($data['timelines'] ?? []);
+        $data['galleryImages'] = collect($data['galleryImages'] ?? []);
+        $data['ourStoryTestimonials'] = collect($data['ourStoryTestimonials'] ?? []);
 
         return view('pages.our-story', $data);
     }
@@ -306,6 +377,124 @@ class PageController extends Controller
             'faq' => $faq,
             'finalCta' => $finalCta,
             'dualMbaSeo' => safe_settings(DualMbaSeoSettings::class),
+        ]);
+    }
+
+    public function mbaMastersLanding()
+    {
+        $hero = safe_settings(MbaMastersHeroSettings::class);
+        $trust = safe_settings(MbaMastersTrustSettings::class);
+        $trust->stats = settings_array($trust->stats ?? []);
+
+        $overview = safe_settings(MbaMastersOverviewSettings::class);
+        $overview->items = settings_array($overview->items ?? []);
+
+        $why = safe_settings(MbaMastersWhySettings::class);
+        $why->chapters = settings_array($why->chapters ?? []);
+
+        $journey = safe_settings(MbaMastersJourneySettings::class);
+        $journey->steps = settings_array($journey->steps ?? []);
+
+        $mba = safe_settings(MbaMastersMbaSettings::class);
+        $mba->tabs = settings_array($mba->tabs ?? []);
+
+        $masters = safe_settings(MbaMastersMastersSettings::class);
+        $masters->universities = settings_array($masters->universities ?? []);
+
+        $fees = safe_settings(MbaMastersFeesSettings::class);
+        $fees->rows = settings_array($fees->rows ?? []);
+
+        $class = safe_settings(MbaMastersClassSettings::class);
+        $class->metrics = settings_array($class->metrics ?? []);
+        $class->regions = settings_array($class->regions ?? []);
+        $class->industries = settings_array($class->industries ?? []);
+
+        $career = safe_settings(MbaMastersCareerSettings::class);
+        $career->stories = settings_array($career->stories ?? []);
+
+        $alumni = safe_settings(MbaMastersAlumniSettings::class);
+
+        $videoTestimonials = safe_settings(MbaMastersVideoTestimonialsSettings::class);
+        $videoTestimonials->videos = settings_array($videoTestimonials->videos ?? []);
+
+        // Same shape as the homepage video testimonials so testimonials.js drives it identically.
+        $testimonialsJson = collect($videoTestimonials->videos)
+            ->filter(fn ($v) => filled($v['video_url'] ?? null))
+            ->map(fn ($v) => [
+                'category' => filled($v['category'] ?? null) ? strtoupper(trim((string) $v['category'])) : 'STUDENT',
+                'name' => $v['name'] ?? '',
+                'role' => $v['role'] ?? '',
+                'thumbnail' => youtube_thumbnail_url($v['video_url'] ?? null, $v['thumbnail'] ?? null)
+                    ?: asset('assets/images/homepage/mba.jpg'),
+                'video' => youtube_embed_url($v['video_url'] ?? null) ?? '',
+            ])
+            ->values()
+            ->all();
+
+        $partners = safe_settings(MbaMastersPartnersSettings::class);
+
+        $testimonials = safe_settings(MbaMastersTestimonialsSettings::class);
+        $testimonials->items = settings_array($testimonials->items ?? []);
+
+        $compare = safe_settings(MbaMastersCompareSettings::class);
+        $compare->rows = settings_array($compare->rows ?? []);
+
+        $faq = safe_settings(MbaMastersFaqSettings::class);
+        $faq->items = settings_array($faq->items ?? []);
+
+        $final = safe_settings(MbaMastersFinalSettings::class);
+
+        $seo = safe_settings(MbaMastersSeoSettings::class);
+        if (! filled($seo->canonical_url)) {
+            $seo->canonical_url = route('mba-masters-landing', absolute: true);
+        }
+
+        $alumniLogos = PartnerLogo::query()
+            ->select('id', 'name', 'logo_url', 'sort_order')
+            ->where('type', 'alumni')
+            ->where('is_active', true)
+            ->orderBy('sort_order')
+            ->get();
+
+        $universityPartnerLogos = UniversityPartner::query()
+            ->select('id', 'name', 'logo_url', 'sort_order')
+            ->where('is_active', true)
+            ->whereNotNull('logo_url')
+            ->where('logo_url', '!=', '')
+            ->orderBy('sort_order')
+            ->get();
+
+        $accreditationLogos = PartnerLogo::query()
+            ->select('id', 'name', 'logo_url', 'sort_order')
+            ->whereIn('type', ['accreditation', 'recognition'])
+            ->where('is_active', true)
+            ->orderBy('sort_order')
+            ->get();
+
+        return view('pages.mba-masters-landing', [
+            'hero' => $hero,
+            'trust' => $trust,
+            'overview' => $overview,
+            'why' => $why,
+            'journey' => $journey,
+            'mba' => $mba,
+            'masters' => $masters,
+            'fees' => $fees,
+            'class' => $class,
+            'career' => $career,
+            'alumni' => $alumni,
+            'videoTestimonials' => $videoTestimonials,
+            'testimonialsJson' => $testimonialsJson,
+            'partners' => $partners,
+            'testimonials' => $testimonials,
+            'compare' => $compare,
+            'faq' => $faq,
+            'final' => $final,
+            'seo' => $seo,
+            'site' => safe_settings(SiteSettings::class),
+            'alumniLogos' => $alumniLogos,
+            'universityPartnerLogos' => $universityPartnerLogos,
+            'accreditationLogos' => $accreditationLogos,
         ]);
     }
 
@@ -433,35 +622,6 @@ class PageController extends Controller
         return redirect()->route('our-story', [], 301);
     }
 
-    public function founder()
-    {
-        return view('pages.founder');
-    }
-
-    public function contact()
-    {
-        return view('pages.contact', [
-            'contactPage' => safe_settings(ContactPageSettings::class),
-            'contactSeo' => safe_settings(\App\Settings\ContactSeoSettings::class),
-            'site' => safe_settings(\App\Settings\SiteSettings::class),
-        ]);
-    }
-
-    public function contactSubmit(Request $request)
-    {
-        $validated = $request->validate([
-            'name'    => 'required|string|max:255',
-            'email'   => 'required|email|max:255',
-            'phone'   => 'nullable|string|max:20',
-            'message' => 'required|string|max:2000',
-        ]);
-
-        $contactSettings = safe_settings(ContactPageSettings::class);
-        $successMessage = $contactSettings->success_message ?? 'Thank you! We will contact you shortly.';
-
-        return back()->with('success', $successMessage);
-    }
-
     public function csrCommunityImpact()
     {
         $focus = safe_settings(CsrFocusSettings::class);
@@ -487,6 +647,22 @@ class PageController extends Controller
         ]);
     }
 
+    public function privacyPolicy()
+    {
+        return view('pages.privacy-policy', [
+            'privacyPage' => safe_settings(PrivacyPageSettings::class),
+            'privacySeo' => safe_settings(PrivacySeoSettings::class),
+        ]);
+    }
+
+    public function termsOfUse()
+    {
+        return view('pages.terms-of-use', [
+            'termsPage' => safe_settings(TermsPageSettings::class),
+            'termsSeo' => safe_settings(TermsSeoSettings::class),
+        ]);
+    }
+
     public function pathwayPrograms()
     {
         $settings = safe_settings(GlobalOpportunitiesSettings::class);
@@ -504,7 +680,7 @@ class PageController extends Controller
 
     public function gallery()
     {
-        $collections = PublicContentCache::remember(PublicContentCache::MEDIA_GALLERY, function () {
+        $cached = PublicContentCache::remember(PublicContentCache::MEDIA_GALLERY, function () {
             $photos = \App\Models\MediaGalleryPhoto::select(
                 'id',
                 'image_url',
@@ -518,56 +694,99 @@ class PageController extends Controller
                 ->orderBy('sort_order')
                 ->get();
 
-            $videos = \App\Models\MediaGalleryVideo::select(
-                'id',
-                'title',
-                'video_url',
-                'thumbnail_url',
-                'duration',
-                'category',
-                'sort_order',
-                'is_active'
-            )
-                ->where('is_active', true)
-                ->orderBy('sort_order')
-                ->get();
+            $videos = PublicContentCache::serializeRows(
+                \App\Models\MediaGalleryVideo::select(
+                    'id',
+                    'title',
+                    'video_url',
+                    'thumbnail_url',
+                    'duration',
+                    'category',
+                    'sort_order',
+                    'is_active'
+                )
+                    ->where('is_active', true)
+                    ->orderBy('sort_order')
+                    ->get(),
+                fn (\App\Models\MediaGalleryVideo $video) => [
+                    'id' => $video->id,
+                    'title' => $video->title,
+                    'video_url' => $video->video_url,
+                    'thumbnail_url' => $video->thumbnail_url,
+                    'auto_thumbnail' => $video->auto_thumbnail,
+                    'duration' => $video->duration,
+                    'category' => $video->category,
+                    'sort_order' => $video->sort_order,
+                    'is_active' => $video->is_active,
+                ]
+            );
 
-            $events = Event::select('id', 'title', 'description', 'event_date', 'event_type', 'location', 'link_url')
-                ->where('is_active', true)
-                ->orderBy('event_date', 'desc')
-                ->limit(10)
-                ->get();
+            $events = PublicContentCache::serializeRows(
+                Event::select('id', 'title', 'description', 'event_date', 'event_type', 'location', 'link_url')
+                    ->where('is_active', true)
+                    ->orderBy('event_date', 'desc')
+                    ->limit(10)
+                    ->get()
+            );
 
             return [
-                'photos' => $photos,
+                'photos' => $photos->toArray(),
                 'videos' => $videos,
                 'events' => $events,
                 'photoCount' => $photos->count(),
-                'videoCount' => $videos->count(),
+                'videoCount' => is_countable($videos) ? count($videos) : 0,
             ];
         });
+
+        $collections = [
+            'photos' => PublicContentCache::hydrateRows(\App\Models\MediaGalleryPhoto::class, $cached['photos'] ?? []),
+            'videos' => PublicContentCache::hydrateRows(\App\Models\MediaGalleryVideo::class, $cached['videos'] ?? []),
+            'events' => PublicContentCache::hydrateRows(Event::class, $cached['events'] ?? []),
+            'photoCount' => $cached['photoCount'] ?? 0,
+            'videoCount' => $cached['videoCount'] ?? 0,
+        ];
 
         $data = array_merge($collections, [
             'mediaGalleryPage' => safe_settings(MediaGalleryPageSettings::class),
             'mediaGallerySeo' => safe_settings(MediaGallerySeoSettings::class),
         ]);
 
+        $data['photos'] = collect($data['photos'] ?? []);
+        $data['videos'] = collect($data['videos'] ?? []);
+
         return view('pages.media-gallery', $data);
     }
 
     public function globalUniversityPartners()
     {
-        $collections = PublicContentCache::remember(PublicContentCache::GLOBAL_PARTNERS, function () {
-            $galleryItems = PartnershipGalleryItem::query()
+        $cached = PublicContentCache::remember(PublicContentCache::GLOBAL_PARTNERS, function () {
+            $galleryModels = PartnershipGalleryItem::query()
                 ->select('id', 'image_url', 'category', 'badge', 'event_date', 'title', 'caption', 'size', 'sort_order')
                 ->where('is_active', true)
                 ->orderBy('sort_order')
                 ->get();
 
-            $categoryCounts = $galleryItems->countBy('category');
+            $galleryItems = PublicContentCache::serializeRows(
+                $galleryModels,
+                fn (PartnershipGalleryItem $item) => [
+                    'id' => $item->id,
+                    'image_url' => $item->image_url,
+                    'image' => $item->image,
+                    'category' => $item->category,
+                    'badge' => $item->badge,
+                    'event_date' => $item->event_date,
+                    'formatted_date' => $item->formatted_date,
+                    'title' => $item->title,
+                    'caption' => $item->caption,
+                    'size' => $item->size,
+                    'sort_order' => $item->sort_order,
+                ]
+            );
+
+            $categoryCounts = $galleryModels->countBy('category');
 
             $galleryCategories = collect([
-                ['slug' => 'all', 'name' => 'All', 'count' => $galleryItems->count()],
+                ['slug' => 'all', 'name' => 'All', 'count' => $galleryModels->count()],
             ]);
 
             foreach (PartnershipGalleryItem::CATEGORIES as $slug => $name) {
@@ -581,25 +800,69 @@ class PageController extends Controller
                 }
             }
 
-            $partnerUniversities = GupPartnerUniversity::query()
-                ->select('id', 'slug', 'name', 'abbreviation', 'country', 'flag_emoji', 'recognition', 'logo_url', 'cta_url', 'sort_order')
-                ->where('is_active', true)
-                ->hasPublicSlug()
-                ->orderBy('sort_order')
-                ->get();
+            $partnerUniversities = PublicContentCache::serializeRows(
+                GupPartnerUniversity::query()
+                    ->select('id', 'slug', 'name', 'abbreviation', 'country', 'flag_emoji', 'recognition', 'logo_url', 'cta_url', 'cta_label', 'sort_order')
+                    ->where('is_active', true)
+                    ->hasPublicSlug()
+                    ->orderBy('sort_order')
+                    ->get(),
+                fn (GupPartnerUniversity $uni) => [
+                    'id' => $uni->id,
+                    'slug' => $uni->slug,
+                    'name' => $uni->name,
+                    'abbreviation' => $uni->abbreviation,
+                    'country' => $uni->country,
+                    'flag_emoji' => $uni->flag_emoji,
+                    'recognition' => $uni->recognition,
+                    'logo_url' => $uni->logo_url,
+                    'logo' => $uni->logo,
+                    'display_abbreviation' => $uni->display_abbreviation,
+                    'cta_url' => $uni->cta_url,
+                    'cta_label' => $uni->cta_label,
+                    'cta_link' => $uni->cta_link,
+                    'sort_order' => $uni->sort_order,
+                ]
+            );
 
-            return compact('galleryItems', 'galleryCategories', 'partnerUniversities');
+            return [
+                'galleryItems' => $galleryItems,
+                'galleryCategories' => $galleryCategories->all(),
+                'partnerUniversities' => $partnerUniversities,
+            ];
         });
 
-        return view('pages.global-university-partners', array_merge($collections, [
+        $whyPartnerships = safe_settings(GlobalPartnersWhySettings::class);
+        $whyPartnerships->items = settings_array($whyPartnerships->items ?? []);
+
+        $benefits = safe_settings(GlobalPartnersBenefitsSettings::class);
+        $benefits->items = settings_array($benefits->items ?? []);
+
+        $journey = safe_settings(GlobalPartnersJourneySettings::class);
+        $galleryCategories = collect($cached['galleryCategories'] ?? []);
+        $allLabel = $journey->filter_all_label ?? 'All';
+        $galleryCategories = $galleryCategories->map(function ($category) use ($allLabel) {
+            if (($category['slug'] ?? '') === 'all') {
+                $category['name'] = $allLabel;
+            }
+
+            return $category;
+        });
+
+        $viewData = [
+            'galleryItems' => PublicContentCache::hydrateRows(PartnershipGalleryItem::class, $cached['galleryItems'] ?? []),
+            'galleryCategories' => $galleryCategories,
+            'partnerUniversities' => PublicContentCache::hydrateRows(GupPartnerUniversity::class, $cached['partnerUniversities'] ?? []),
             'hero' => safe_settings(GlobalPartnersHeroSettings::class),
             'overview' => safe_settings(GlobalPartnersOverviewSettings::class),
             'cards' => safe_settings(GlobalPartnersCardsSettings::class),
-            'whyPartnerships' => safe_settings(GlobalPartnersWhySettings::class),
-            'benefits' => safe_settings(GlobalPartnersBenefitsSettings::class),
-            'journey' => safe_settings(GlobalPartnersJourneySettings::class),
+            'whyPartnerships' => $whyPartnerships,
+            'benefits' => $benefits,
+            'journey' => $journey,
             'globalPartnersSeo' => safe_settings(GlobalPartnersSeoSettings::class),
-        ]));
+        ];
+
+        return view('pages.global-university-partners', $viewData);
     }
 
     /**
@@ -692,16 +955,20 @@ class PageController extends Controller
     /** /events — editorial events page */
     public function events()
     {
-        $events = PublicContentCache::remember(PublicContentCache::EVENTS, function () {
-            return Event::select('id', 'title', 'description', 'event_date', 'event_type', 'location', 'link_url')
-                ->where('is_active', true)
-                ->orderBy('event_date', 'asc')
-                ->get();
-        });
+        $events = PublicContentCache::rememberHydrated(
+            PublicContentCache::EVENTS,
+            Event::class,
+            function () {
+                return Event::select('id', 'title', 'description', 'event_date', 'event_type', 'location', 'link_url')
+                    ->where('is_active', true)
+                    ->orderBy('event_date', 'asc')
+                    ->get();
+            }
+        );
 
         return view('pages.events', [
             'eventsPage' => safe_settings(EventsPageSettings::class),
-            'events' => $events,
+            'events' => collect($events ?? []),
             'eventsSeo' => safe_settings(EventsSeoSettings::class),
         ]);
     }
@@ -726,10 +993,10 @@ class PageController extends Controller
         return view('pages.student-success', [
             'studentSuccessPage' => safe_settings(StudentSuccessPageSettings::class),
             'studentSuccessSeo' => safe_settings(StudentSuccessSeoSettings::class),
-            'stories' => $stories,
-            'storyTotal' => $storyTotal,
-            'videoStories' => $videoStories,
-            'videoTotal' => $videoTotal,
+            'stories' => collect($stories ?? []),
+            'storyTotal' => $storyTotal ?? 0,
+            'videoStories' => collect($videoStories ?? []),
+            'videoTotal' => $videoTotal ?? 0,
         ]);
     }
 
