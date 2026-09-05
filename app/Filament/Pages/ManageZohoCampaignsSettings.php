@@ -50,7 +50,7 @@ class ManageZohoCampaignsSettings extends SettingsPage
                             'campaigns' => 'Zoho Campaigns (classic accounts)',
                             'marketing_automation' => 'Marketing Automation (new Campaigns UI / new accounts)',
                         ])
-                        ->helperText('New Zoho accounts use the new Campaigns UI and must select Marketing Automation with a ZohoMarketingAutomation.contact.CREATE token. If subscribe logs return an HTTP 401 HTML page, switch this to Marketing Automation.'),
+                        ->helperText('New Zoho accounts use the new Campaigns UI and must select Marketing Automation with a ZohoMarketingAutomation.lead.ALL token. If subscribe logs return an HTTP 401 HTML page, switch this to Marketing Automation.'),
                     TextInput::make('list_key')
                         ->label('Mailing list key')
                         ->helperText('Zoho Campaigns → Contacts → Manage Lists → open your list → Setup → copy List Key. Enable the sign-up form on that list for double opt-in confirmation emails.'),

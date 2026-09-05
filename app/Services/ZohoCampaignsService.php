@@ -85,7 +85,7 @@ class ZohoCampaignsService
                     return [
                         'ok' => false,
                         'message' => $this->usesMarketingAutomation()
-                            ? 'Token scope is not valid for the Marketing Automation endpoint. Generate a new token with scope ZohoMarketingAutomation.contact.CREATE.'
+                            ? 'Token scope is not valid for the Marketing Automation endpoint. Generate a new token with scope ZohoMarketingAutomation.lead.ALL.'
                             : 'Token scope is not valid for the classic Campaigns endpoint. New Zoho accounts (new Campaigns UI) must switch API endpoint to Marketing Automation and use a ZohoMarketingAutomation scope.',
                     ];
                 }
