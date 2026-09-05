@@ -44,6 +44,21 @@ Check: Zoho Mail → Settings → Mail Accounts → your account → SMTP.
 
 2FA on hone par Zoho usually app password maangta hai. Normal password se SMTP `535` error aata hai.
 
+## 1b. Email template (logo, header, footer — admin managed)
+
+**Admin → Site Settings → Email Template** (`/admin/manage-mail-template-settings`)
+
+Form emails ka design yahan se control hota hai — code me Laravel ka default template istemaal nahi hota:
+
+| Admin field | Kya karta hai | Empty ho to |
+|---|---|---|
+| **Header content** (rich text) | Email me form details ke upar dikhta hai (intro line etc.) | Section email me aata hi nahi |
+| **Footer content** (rich text) | Form details ke neeche — regards/signature. Default: `Regards, Maverick Business Academy` | Footer email me aata hi nahi (koi automatic "Thanks" fallback nahi) |
+
+- **Logo** email ke top par navy band me apne aap aata hai — source: **General Settings → Logo (White)**. Badalna ho to wahan change karo.
+- Har email ka structure: logo band → header rich text → form details table → footer rich text.
+- **Send test email** button se default recipient par preview bhej sakte ho.
+
 ## 2. Forms currently integrated
 
 | Page / route | What is emailed |

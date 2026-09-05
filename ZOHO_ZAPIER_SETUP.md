@@ -2,6 +2,11 @@
 
 > Forms → `FormMailer` (admin notification email). Newsletter → Zoho Campaigns. Zapier → webhooks.
 > Admin: `/admin` → **Site Settings**. Koi code change nahi chahiye.
+> Login ke baad ek-ek karke steps (har value ka source): **[docs/zoho-setup-step-by-step.md](docs/zoho-setup-step-by-step.md)**
+
+## 🎨 Mail Template (logo / header / footer)
+
+**Admin → Site Settings → Email Template** — header + footer rich text (admin managed, empty = section skip), Maverick logo auto. Default footer: `Regards, Maverick Business Academy`. **Send test email** button se preview.
 
 ---
 
