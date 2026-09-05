@@ -41,7 +41,7 @@ class ManageMailTemplateSettings extends SettingsPage
                             'h2',
                             'h3',
                         ])
-                        ->helperText('Tip: logo email ke top par apne aap aata hai — General Settings → Logo (White). Yahan sirf extra text/intro likhein.')
+                        ->helperText('Tip: The logo is automatically shown at the top of the email — it comes from General Settings → Logo (White). Only add extra text/intro here.')
                         ->columnSpanFull(),
                 ]),
 
@@ -83,8 +83,8 @@ class ManageMailTemplateSettings extends SettingsPage
                     Notification::make()
                         ->title($ok ? 'Test email sent' : 'Could not send')
                         ->body($ok
-                            ? 'Default recipient (Zoho Mail settings) ko bhej diya — inbox check karein.'
-                            : 'Email send nahi hui — storage/logs/laravel.log me FormMailer lines dekhein.')
+                            ? 'Sent to the default recipient (Zoho Mail settings) — please check your inbox.'
+                            : 'The email could not be sent — check the FormMailer lines in storage/logs/laravel.log.')
                         ->{$ok ? 'success' : 'danger'}()
                         ->send();
                 }),
