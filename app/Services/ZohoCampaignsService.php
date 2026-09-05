@@ -58,10 +58,71 @@ class ZohoCampaignsService
 
         Cache::put(self::TOKEN_CACHE_KEY, $token, self::TOKEN_CACHE_SECONDS);
 
-        return [
-            'ok' => true,
-            'message' => 'Connected to Zoho Campaigns successfully.',
-        ];
+        // Probe the real API: fetch mailing lists to verify endpoint, scope and list key.
+        try {
+            $settings = safe_settings(ZohoCampaignsSettings::class);
+            $base = $this->apiBaseUrl((string) ($settings->region ?: 'com'));
+            $path = $this->usesMarketingAutomation()
+                ? '/api/v1/getmailinglists'
+                : '/api/v1.1/getmailinglists';
+
+            $response = Http::asForm()
+                ->timeout(8)
+                ->withHeaders(['Authorization' => 'Zoho-oauthtoken '.$token])
+                ->get("{$base}{$path}", [
+                    'resfmt' => 'JSON',
+                    'sort' => 'asc',
+                    'fromindex' => 1,
+                    'range' => 100,
+                ]);
+
+            $body = $response->json();
+
+            if (! is_array($body) || ($body['status'] ?? '') !== 'success') {
+                $code = $body['code'] ?? $body['Code'] ?? null;
+
+                if ($code === 'INVALID_OAUTHSCOPE' || $code === 'INVALID_OAUTH_SCOPE') {
+                    return [
+                        'ok' => false,
+                        'message' => $this->usesMarketingAutomation()
+                            ? 'Token scope is not valid for the Marketing Automation endpoint. Generate a new token with scope ZohoMarketingAutomation.contact.CREATE.'
+                            : 'Token scope is not valid for the classic Campaigns endpoint. New Zoho accounts (new Campaigns UI) must switch API endpoint to Marketing Automation and use a ZohoMarketingAutomation scope.',
+                    ];
+                }
+
+                return [
+                    'ok' => false,
+                    'message' => 'Token obtained, but the API test call failed'
+                        .($code ? ' (code '.$code.')' : '')
+                        .'. Check region and API endpoint.',
+                ];
+            }
+
+            $lists = is_array($body['list_of_details'] ?? null) ? $body['list_of_details'] : [];
+            $count = count($lists);
+            $listKey = (string) ($settings->list_key ?: '');
+
+            foreach ($lists as $list) {
+                if ($listKey !== '' && ($list['listkey'] ?? '') === $listKey) {
+                    $name = $list['listname'] ?? 'saved list';
+
+                    return [
+                        'ok' => true,
+                        'message' => "Connected successfully — mailing list '{$name}' matches the saved list key ({$count} lists visible).",
+                    ];
+                }
+            }
+
+            return [
+                'ok' => true,
+                'message' => "Connected successfully ({$count} mailing lists visible), but the saved list key was not found in this account. Copy the list key again from the list's setup page.",
+            ];
+        } catch (Throwable $e) {
+            return [
+                'ok' => false,
+                'message' => 'Token refreshed, but the API test call failed: '.$e->getMessage(),
+            ];
+        }
     }
 
     public function accessToken(): ?string
@@ -85,12 +146,20 @@ class ZohoCampaignsService
             }
 
             $settings = safe_settings(ZohoCampaignsSettings::class);
-            $campaigns = $this->campaignsBaseUrl((string) ($settings->region ?: 'com'));
+            $base = $this->apiBaseUrl((string) ($settings->region ?: 'com'));
+            $path = $this->usesMarketingAutomation()
+                ? '/api/v1/json/listsubscribe'
+                : '/api/v1.1/json/listsubscribe';
 
             $response = Http::asForm()
                 ->timeout(8)
                 ->withHeaders(['Authorization' => 'Zoho-oauthtoken '.$token])
-                ->post("{$campaigns}/api/v1.1/json/listsubscribe", [
+                ->post("{$base}{$path}", $this->usesMarketingAutomation() ? [
+                    'resfmt' => 'JSON',
+                    'listkey' => $settings->list_key,
+                    'leadinfo' => json_encode(array_merge(['Lead Email' => $email], $extra)),
+                    'sources' => $settings->source ?: 'Website Footer',
+                ] : [
                     'resfmt' => 'JSON',
                     'listkey' => $settings->list_key,
                     'contactinfo' => json_encode(array_merge(['Contact Email' => $email], $extra)),
@@ -105,9 +174,9 @@ class ZohoCampaignsService
 
             $body = $response->json();
 
-            if (($body['status'] ?? '') !== 'success') {
+            if (! is_array($body) || ($body['status'] ?? '') !== 'success') {
                 logger()->warning('Zoho Campaigns listsubscribe failed', [
-                    'code' => $body['code'] ?? null,
+                    'code' => $body['code'] ?? $body['Code'] ?? null,
                     'message' => $body['message'] ?? $response->body(),
                     'email' => $email,
                 ]);
@@ -159,6 +228,13 @@ class ZohoCampaignsService
             && filled($settings->refresh_token);
     }
 
+    private function usesMarketingAutomation(): bool
+    {
+        $settings = safe_settings(ZohoCampaignsSettings::class);
+
+        return ($settings->api_stack ?? 'campaigns') === 'marketing_automation';
+    }
+
     private function regionHost(string $region): string
     {
         return match ($region) {
@@ -175,8 +251,12 @@ class ZohoCampaignsService
         return 'https://accounts.'.$this->regionHost($region);
     }
 
-    private function campaignsBaseUrl(string $region): string
+    private function apiBaseUrl(string $region): string
     {
-        return 'https://campaigns.'.$this->regionHost($region);
+        $host = $this->regionHost($region);
+
+        return $this->usesMarketingAutomation()
+            ? "https://marketingautomation.{$host}"
+            : "https://campaigns.{$host}";
     }
 }

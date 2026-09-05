@@ -94,11 +94,12 @@ Admin: **Admin → Site Settings → Zoho Campaigns** (`/admin/manage-zoho-campa
 |---|---|
 | **Enable Zoho Campaigns sync** | ON = footer signups call `listsubscribe`. OFF = admin notification email only. |
 | **Zoho data center** | Must match your account region (`com`, `eu`, `in`, `com.au`, `jp`) |
+| **API endpoint** | `campaigns` = classic accounts. `marketing_automation` = **new Zoho accounts / new Campaigns UI** (`/newui/` in the URL). New accounts must use Marketing Automation with a `ZohoMarketingAutomation.contact.CREATE` token — the classic endpoint returns an HTTP 401 HTML page for them. |
 | **Mailing list key** | From list Setup in Zoho Campaigns |
 | **Contact source label** | e.g. `Website Footer` — shown in Campaigns |
 | **Client ID / secret / refresh token** | From Zoho API Console. Secrets: leave blank on save to keep existing values. |
 
-Use **Test connection** on the admin page to verify the refresh token and region.
+Use **Test connection** on the admin page — it performs a real `getmailinglists` API call and reports whether the saved list key exists in the account (not just a token refresh).
 
 ### Flow
 
@@ -153,6 +154,8 @@ Honeypot / `_token` fields automatically skip.
 | Symptom | Likely cause | Fix |
 |---|---|---|
 | `535 Authentication Failed` | Normal password used, wrong mailbox, or app password revoked | New **App Password** banao; username full email ho |
+| Newsletter sync log me HTTP 401 **HTML page** | Naya Zoho account (new Campaigns UI) — classic `campaigns.zoho.com` API us org ko pehchanata nahi | Admin → Zoho Campaigns → **API endpoint = Marketing Automation** + scope `ZohoMarketingAutomation.contact.CREATE` se fresh token banao |
+| Test connection: `INVALID_OAUTHSCOPE` | Token ka scope selected endpoint se match nahi karta | Classic: `ZohoCampaigns.contact.CREATE`, Marketing Automation: `ZohoMarketingAutomation.contact.CREATE` |
 | Connection timeout | Wrong host/port, firewall, shared hosting blocking 587 | Try `smtppro.zoho.com` or region host; 587 TLS vs 465 SSL |
 | SSL/TLS error | Encryption ≠ port | 587 + TLS, or 465 + SSL |
 | Email goes to spam | From address not the Zoho mailbox / SPF-DKIM | From = Zoho username; domain DNS SPF/DKIM in Zoho |

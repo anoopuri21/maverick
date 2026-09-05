@@ -222,6 +222,8 @@ Kuch fail ho to `storage/logs/laravel.log` me `Zoho Campaigns` lines dekho.
 
 | Problem | Wajah | Fix |
 |---|---|---|
+| Subscribe log me **HTTP 401 HTML page** | Naya Zoho account (new Campaigns UI — URL me `/newui/`) classic API pe allowed nahi | Admin → Zoho Campaigns → **API endpoint = Marketing Automation** + naya token scope `ZohoMarketingAutomation.contact.CREATE` se |
+| Test connection: `INVALID_OAUTHSCOPE` | Scope endpoint se match nahi | Classic: `ZohoCampaigns.contact.CREATE` / Marketing Automation: `ZohoMarketingAutomation.contact.CREATE` |
 | Test connection fail / token refresh fail | Region mismatch ya galat token | Data center field = login URL ka region; Step 2.5 dobara |
 | `invalid_code` curl pe | Code expire (10 min) / reuse | Naya code generate karke turant exchange karo |
 | Subscribe pe "success" par email nahi aata | Signup form list pe enabled nahi | Step 2.2 karo |
