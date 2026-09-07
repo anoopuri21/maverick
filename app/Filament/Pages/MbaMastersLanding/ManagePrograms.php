@@ -39,16 +39,16 @@ class ManagePrograms extends Page implements HasForms
 
     public function mount(): void
     {
-        $overview = app(MbaMastersOverviewSettings::class)->toArray();
+        $overview = safe_settings(MbaMastersOverviewSettings::class)->toArray();
         $overview['items'] = array_values($overview['items'] ?? []);
 
-        $why = app(MbaMastersWhySettings::class)->toArray();
+        $why = safe_settings(MbaMastersWhySettings::class)->toArray();
         $why['chapters'] = array_values($why['chapters'] ?? []);
 
-        $journey = app(MbaMastersJourneySettings::class)->toArray();
+        $journey = safe_settings(MbaMastersJourneySettings::class)->toArray();
         $journey['steps'] = array_values($journey['steps'] ?? []);
 
-        $mba = app(MbaMastersMbaSettings::class)->toArray();
+        $mba = safe_settings(MbaMastersMbaSettings::class)->toArray();
         $mba['tabs'] = array_values($mba['tabs'] ?? []);
         foreach ($mba['tabs'] as &$tab) {
             $tab['universities'] = array_values($tab['universities'] ?? []);
@@ -61,7 +61,7 @@ class ManagePrograms extends Page implements HasForms
         }
         unset($tab);
 
-        $masters = app(MbaMastersMastersSettings::class)->toArray();
+        $masters = safe_settings(MbaMastersMastersSettings::class)->toArray();
         $masters['universities'] = array_values($masters['universities'] ?? []);
         $masters['universities'] = $this->hydrateRepeaterMediaFields($masters['universities'], 'logo');
         $masters['universities'] = $this->hydrateRepeaterMediaFields($masters['universities'], 'image');
@@ -69,8 +69,9 @@ class ManagePrograms extends Page implements HasForms
             $uni['programs'] = array_values($uni['programs'] ?? []);
         }
         unset($uni);
+        $masters['trending'] = array_values($masters['trending'] ?? []);
 
-        $fees = app(MbaMastersFeesSettings::class)->toArray();
+        $fees = safe_settings(MbaMastersFeesSettings::class)->toArray();
         $fees['rows'] = array_values($fees['rows'] ?? []);
 
         $this->form->fill([
@@ -245,6 +246,29 @@ class ManagePrograms extends Page implements HasForms
                     ->columns(2)
                     ->collapsed()
                     ->collapsible(),
+                Section::make('Trending specialisations')
+                    ->schema([
+                        TextInput::make('masters.trending_title')
+                            ->label('Title')
+                            ->helperText('Two-tone: text before | renders dark navy, text after | renders gold. Example: Trending|Specialisations')
+                            ->columnSpanFull(),
+                        Repeater::make('masters.trending')
+                            ->label('Trending specialisations')
+                            ->schema([
+                                TextInput::make('label')->label('Specialisation')->required()->columnSpanFull(),
+                                TextInput::make('percent')->label('Percent %')->numeric()->required()->minValue(0)->maxValue(100),
+                            ])
+                            ->columns(2)
+                            ->defaultItems(0)
+                            ->reorderable()
+                            ->collapsible()
+                            ->itemLabel(fn (array $state): ?string => $state['label'] ?? null)
+                            ->addActionLabel('Add specialisation')
+                            ->columnSpanFull(),
+                    ])
+                    ->columns(2)
+                    ->collapsed()
+                    ->collapsible(),
                 Section::make('Fees & payment')
                     ->schema([
                         TextInput::make('fees.label')->label('Section label'),
@@ -261,7 +285,6 @@ class ManagePrograms extends Page implements HasForms
                                 TextInput::make('program')->label('Program')->required()->columnSpanFull(),
                                 TextInput::make('duration')->label('Duration'),
                                 TextInput::make('mode')->label('Study mode'),
-                                TextInput::make('fee')->label('Fee range'),
                                 TextInput::make('payment')->label('Payment option'),
                             ])
                             ->columns(2)
@@ -290,8 +313,8 @@ class ManagePrograms extends Page implements HasForms
             return;
         }
 
-        $existingMba = app(MbaMastersMbaSettings::class)->toArray();
-        $existingMasters = app(MbaMastersMastersSettings::class)->toArray();
+        $existingMba = safe_settings(MbaMastersMbaSettings::class)->toArray();
+        $existingMasters = safe_settings(MbaMastersMastersSettings::class)->toArray();
 
         $overview = $this->syncImageIfSelected($data['overview'] ?? [], 'plate_image');
         $overview['items'] = array_values($overview['items'] ?? []);
@@ -345,6 +368,7 @@ class ManagePrograms extends Page implements HasForms
             $existingMasters['universities'] ?? [],
             'image'
         );
+        $masters['trending'] = array_values($masters['trending'] ?? []);
 
         $fees = $this->syncImageIfSelected($data['fees'] ?? [], 'stage_image');
         $fees['rows'] = array_values($fees['rows'] ?? []);

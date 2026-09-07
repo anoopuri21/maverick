@@ -400,6 +400,7 @@ class PageController extends Controller
 
         $masters = safe_settings(MbaMastersMastersSettings::class);
         $masters->universities = settings_array($masters->universities ?? []);
+        $masters->trending = settings_array($masters->trending ?? []);
 
         $fees = safe_settings(MbaMastersFeesSettings::class);
         $fees->rows = settings_array($fees->rows ?? []);

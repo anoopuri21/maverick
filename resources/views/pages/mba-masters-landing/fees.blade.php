@@ -1,4 +1,4 @@
-{{-- §8 Fees + payment — The Closing Archive / Pricing Cards --}}
+{{-- §8 Fees + payment — The Closing Archive / Pricing Cards (3rd card fee block hidden) --}}
 @php
   $rows = collect($fees->rows ?? [])
       ->filter(fn ($row) => filled($row['program'] ?? null))
@@ -27,11 +27,6 @@
       @foreach($rows as $row)
       @php
         $payment = trim((string) ($row['payment'] ?? ''));
-        $fee = trim((string) ($row['fee'] ?? '—'));
-        $feeIsIndicative = str_contains($fee, 'XX,XXX')
-          || str_contains($fee, 'On request')
-          || str_contains($fee, 'Route-specific')
-          || str_contains($fee, '*');
         if (str_contains(strtolower($payment), 'advisor')) {
             $payment = 'Details on request';
         }
@@ -44,13 +39,7 @@
 
         <h3 class="pricing-card__program">{{ $row['program'] }}</h3>
 
-        <div class="pricing-card__price mlp-hairline">
-          <span>Fee</span>
-          <strong>{{ $fee }}</strong>
-          @if($feeIsIndicative)
-          <small>Indicative · confirm current fee, VAT and payment terms with admissions</small>
-          @endif
-        </div>
+        {{-- Fee block intentionally removed from all cards (client request) --}}
 
         <dl class="pricing-card__details">
           <div>
@@ -70,6 +59,11 @@
       @endforeach
     </div>
     @endif
+
+    <p class="pricing-cards__base" data-mlp-reveal="fees-base">
+      <span class="pricing-cards__base-label">Fee structure starts from</span>
+      <strong class="pricing-cards__base-price">AED 16,000–40,000*</strong>
+    </p>
 
     @if(filled($fees->note))
     <p class="pricing-cards__note">{{ $fees->note }}</p>

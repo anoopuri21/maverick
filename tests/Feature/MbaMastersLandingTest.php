@@ -74,10 +74,24 @@ class MbaMastersLandingTest extends TestCase
         $response->assertDontSee('BSc Business Management', false);
         $response->assertDontSee('Level 7 Diploma', false);
         $response->assertSee('mlp-masters__uni-photo', false);
+        $response->assertSee('mlp-masters__split', false);
+        $response->assertSee('mlp-trending', false);
+        $response->assertSee('Trending', false);
+        $response->assertSee('Specialisations', false);
+        $response->assertSee('BA (Hons) Management', false);
+        $response->assertSee('82%', false);
+        $response->assertSee('MBA in Finance', false);
+        $response->assertSee('70%', false);
+        $response->assertSee('mlp-masters__ledger', false);
         $response->assertSee('Online MBA & Master\'s Fees in GCC');
         $response->assertSee('pricing-cards', false);
         $response->assertSee('pricing-card', false);
-        $response->assertSee('pricing-card__price', false);
+        $response->assertSee('pricing-cards__base', false);
+        $response->assertSee('pricing-cards__base-price', false);
+        $response->assertSee('AED 16,000–40,000*', false);
+        // Fee block removed from all cards; cards themselves remain
+        $response->assertDontSee('pricing-card__price', false);
+        $this->assertSame(4, substr_count($response->getContent(), 'class="pricing-card"'));
         $response->assertDontSee('archive-investment__records', false);
         $response->assertDontSee('<table', false);
         $response->assertDontSee('Speak to advisor', false);
@@ -275,5 +289,69 @@ class MbaMastersLandingTest extends TestCase
         $response->assertRedirect('/online-mba-masters-uae');
         $response->assertSessionHas('error');
         $response->assertSessionMissing('success');
+    }
+
+    public function test_masters_settings_class_resolves_with_trending_defaults(): void
+    {
+        // Regression: a @var docblock on the $trending property previously made
+        // Spatie's PropertyReflector parse `array<int, array{...}>`, which fails
+        // during settings resolution (app(MbaMastersMastersSettings::class)).
+        $masters = app(\App\Settings\MbaMastersMastersSettings::class)->toArray();
+
+        $this->assertSame('Trending|Specialisations', $masters['trending_title']);
+        $this->assertCount(8, $masters['trending']);
+        $this->assertSame('MBA (Regular & Top-up)', $masters['trending'][1]['label']);
+        $this->assertSame(82, $masters['trending'][1]['percent']);
+    }
+
+    public function test_empty_trending_hides_panel_and_ledger_spans_full_width(): void
+    {
+        $settings = app(\App\Settings\MbaMastersMastersSettings::class);
+        $settings->trending = [];
+        $settings->save();
+
+        $response = $this->get('/online-mba-masters-uae');
+
+        $response->assertOk();
+        $response->assertSee('mlp-masters__split mlp-masters__split--full', false);
+        $response->assertSee('mlp-masters__ledger', false);
+        $response->assertDontSee('mlp-trending__row', false);
+        $response->assertDontSee('mlp-trending__track', false);
+    }
+
+    public function test_two_tone_title_falls_back_to_trending_when_first_part_empty(): void
+    {
+        $settings = app(\App\Settings\MbaMastersMastersSettings::class);
+        $settings->trending_title = '|Exam Hot Picks';
+        $settings->save();
+
+        $response = $this->get('/online-mba-masters-uae');
+
+        $response->assertOk();
+        $response->assertSee('mlp-trending__title-dark">Trending</span>', false);
+        $response->assertSee('Exam Hot Picks', false);
+    }
+
+    public function test_masters_trending_renders_admin_configured_values(): void
+    {
+        $settings = app(\App\Settings\MbaMastersMastersSettings::class);
+        $settings->trending = [
+            ['label' => 'MBA in FinTech', 'percent' => 91],
+            ['label' => 'MBA in Data Science', 'percent' => 87],
+        ];
+        $settings->trending_title = 'Hot|MBA Picks';
+        $settings->save();
+
+        $response = $this->get('/online-mba-masters-uae');
+
+        $response->assertOk();
+        $response->assertSee('MBA in FinTech', false);
+        $response->assertSee('91%', false);
+        $response->assertSee('MBA in Data Science', false);
+        $response->assertSee('87%', false);
+        $response->assertSee('Hot', false);
+        $response->assertSee('MBA Picks', false);
+        $response->assertDontSee('BA (Hons) Management', false);
+        $response->assertDontSee('Trending', false);
     }
 }
