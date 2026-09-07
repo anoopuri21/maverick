@@ -44,6 +44,21 @@ Check: Zoho Mail → Settings → Mail Accounts → your account → SMTP.
 
 2FA on hone par Zoho usually app password maangta hai. Normal password se SMTP `535` error aata hai.
 
+## 1b. Email template (logo, header, footer — admin managed)
+
+**Admin → Site Settings → Email Template** (`/admin/manage-mail-template-settings`)
+
+Form emails ka design yahan se control hota hai — code me Laravel ka default template istemaal nahi hota:
+
+| Admin field | Kya karta hai | Empty ho to |
+|---|---|---|
+| **Header content** (rich text) | Email me form details ke upar dikhta hai (intro line etc.) | Section email me aata hi nahi |
+| **Footer content** (rich text) | Form details ke neeche — regards/signature. Default: `Regards, Maverick Business Academy` | Footer email me aata hi nahi (koi automatic "Thanks" fallback nahi) |
+
+- **Logo** email ke top par navy band me apne aap aata hai — source: **General Settings → Logo (White)**. Badalna ho to wahan change karo.
+- Har email ka structure: logo band → header rich text → form details table → footer rich text.
+- **Send test email** button se default recipient par preview bhej sakte ho.
+
 ## 2. Forms currently integrated
 
 | Page / route | What is emailed |
@@ -79,11 +94,12 @@ Admin: **Admin → Site Settings → Zoho Campaigns** (`/admin/manage-zoho-campa
 |---|---|
 | **Enable Zoho Campaigns sync** | ON = footer signups call `listsubscribe`. OFF = admin notification email only. |
 | **Zoho data center** | Must match your account region (`com`, `eu`, `in`, `com.au`, `jp`) |
+| **API endpoint** | `campaigns` = classic accounts. `marketing_automation` = **new Zoho accounts / new Campaigns UI** (`/newui/` in the URL). New accounts must use Marketing Automation with a `ZohoMarketingAutomation.lead.ALL` token — the classic endpoint returns an HTTP 401 HTML page for them. |
 | **Mailing list key** | From list Setup in Zoho Campaigns |
 | **Contact source label** | e.g. `Website Footer` — shown in Campaigns |
 | **Client ID / secret / refresh token** | From Zoho API Console. Secrets: leave blank on save to keep existing values. |
 
-Use **Test connection** on the admin page to verify the refresh token and region.
+Use **Test connection** on the admin page — it performs a real `getmailinglists` API call and reports whether the saved list key exists in the account (not just a token refresh).
 
 ### Flow
 
@@ -138,6 +154,8 @@ Honeypot / `_token` fields automatically skip.
 | Symptom | Likely cause | Fix |
 |---|---|---|
 | `535 Authentication Failed` | Normal password used, wrong mailbox, or app password revoked | New **App Password** banao; username full email ho |
+| Newsletter sync log me HTTP 401 **HTML page** | Naya Zoho account (new Campaigns UI) — classic `campaigns.zoho.com` API us org ko pehchanata nahi | Admin → Zoho Campaigns → **API endpoint = Marketing Automation** + scope `ZohoMarketingAutomation.lead.ALL` se fresh token banao |
+| Test connection: `INVALID_OAUTHSCOPE` | Token ka scope selected endpoint se match nahi karta | Classic: `ZohoCampaigns.contact.CREATE`, Marketing Automation: `ZohoMarketingAutomation.lead.ALL` |
 | Connection timeout | Wrong host/port, firewall, shared hosting blocking 587 | Try `smtppro.zoho.com` or region host; 587 TLS vs 465 SSL |
 | SSL/TLS error | Encryption ≠ port | 587 + TLS, or 465 + SSL |
 | Email goes to spam | From address not the Zoho mailbox / SPF-DKIM | From = Zoho username; domain DNS SPF/DKIM in Zoho |

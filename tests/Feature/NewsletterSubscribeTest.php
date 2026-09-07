@@ -144,6 +144,49 @@ class NewsletterSubscribeTest extends TestCase
         });
     }
 
+    public function test_newsletter_syncs_via_marketing_automation_stack_when_selected(): void
+    {
+        Mail::fake();
+        $this->enableZohoCampaigns();
+        $settings = app(ZohoCampaignsSettings::class);
+        $settings->api_stack = 'marketing_automation';
+        $settings->save();
+
+        Http::fake([
+            'accounts.zoho.com/oauth/v2/token' => Http::response([
+                'access_token' => 'mock-access-token',
+                'expires_in' => 3600,
+            ]),
+            'marketingautomation.zoho.com/api/v1/json/listsubscribe' => Http::response([
+                'status' => 'success',
+                'code' => '0',
+                'message' => 'A confirmation email is sent to the user.',
+            ]),
+        ]);
+
+        $response = $this->postJson('/newsletter', [
+            'email' => 'subscriber@example.com',
+        ]);
+
+        $response->assertOk();
+        $response->assertJson([
+            'ok' => true,
+            'message' => 'Almost there — please check your inbox and confirm your subscription.',
+        ]);
+
+        Http::assertSent(function ($request) {
+            if (! str_contains($request->url(), 'marketingautomation.zoho.com/api/v1/json/listsubscribe')) {
+                return false;
+            }
+
+            return $request['listkey'] === 'test-list-key'
+                && str_contains((string) $request['leadinfo'], 'subscriber@example.com')
+                && str_contains((string) $request['leadinfo'], 'Lead Email');
+        });
+
+        Mail::assertSent(GenericFormMail::class);
+    }
+
     private function enableZohoCampaigns(): void
     {
         $settings = app(ZohoCampaignsSettings::class);

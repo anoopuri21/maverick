@@ -1,8 +1,16 @@
-{{ $heading }}
+{{ $siteName }}
 
+{{ $heading }}
+================
+
+@if ($headerText)
+{{ $headerText }}
+
+@endif
 @foreach ($rows as $row)
 {{ $row['label'] }}: {{ $row['value'] }}
 
 @endforeach
-Thanks,
-{{ config('app.name') }}
+@if ($footerText)
+{{ $footerText }}
+@endif

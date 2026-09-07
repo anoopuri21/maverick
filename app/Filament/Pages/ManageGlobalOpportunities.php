@@ -49,7 +49,7 @@ class ManageGlobalOpportunities extends SettingsPage
                             TextInput::make('slug')
                                 ->label('Slug')
                                 ->prefix(rtrim(url('/'), '/').'/')
-                                ->helperText('Page slug only, e.g. dual-mba-online. Yeh hi page ka actual URL banega.')
+                                ->helperText('Page slug only, e.g. dual-mba-online. This becomes the actual URL of the page.')
                                 ->rule('regex:/^[a-z0-9]+(?:-[a-z0-9]+)*$/')
                                 ->validationMessages([
                                     'regex' => 'Only lowercase letters, numbers and hyphens. No slashes or spaces.',
@@ -89,7 +89,7 @@ class ManageGlobalOpportunities extends SettingsPage
                             TextInput::make('slug')
                                 ->label('Slug')
                                 ->prefix(rtrim(url('/'), '/').'/')
-                                ->helperText('Page slug only, e.g. dual-mba-online. Yeh hi page ka actual URL banega.')
+                                ->helperText('Page slug only, e.g. dual-mba-online. This becomes the actual URL of the page.')
                                 ->rule('regex:/^[a-z0-9]+(?:-[a-z0-9]+)*$/')
                                 ->validationMessages([
                                     'regex' => 'Only lowercase letters, numbers and hyphens. No slashes or spaces.',
