@@ -171,6 +171,7 @@ class PageController extends Controller
                     'country' => $insight->country,
                     'content' => $insight->content,
                     'image_url' => $insight->image_url ?? $insight->featuredImageUrl(),
+                    'link_url' => $insight->link_url,
                     'sort_order' => $insight->sort_order,
                 ]
             );

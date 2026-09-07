@@ -67,7 +67,7 @@ class FacultyInsight extends Model
      */
     public function scopeCard(Builder $query): Builder
     {
-        return $query->select('id', 'title', 'faculty_role', 'country', 'content', 'image_url', 'image_url_asset_id', 'sort_order')
+        return $query->select('id', 'title', 'faculty_role', 'country', 'content', 'image_url', 'image_url_asset_id', 'link_url', 'sort_order')
             ->where('is_active', true)
             ->orderBy('sort_order');
     }

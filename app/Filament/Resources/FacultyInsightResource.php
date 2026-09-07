@@ -57,6 +57,10 @@ class FacultyInsightResource extends Resource
                             ->label('Description')
                             ->rows(6)
                             ->columnSpanFull(),
+                        Forms\Components\TextInput::make('link_url')
+                            ->label('LinkedIn URL')
+                            ->url()
+                            ->columnSpanFull(),
                         MediaPicker::forField('image_url', 'faculty-insights')
                             ->label('Featured Image')
                             ->columnSpanFull(),
