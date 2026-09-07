@@ -4548,7 +4548,7 @@ html.js .scale-in {
 
 /* ----- Insight Card ----- */
 .insights__card {
-  flex: 0 0 420px;
+  flex: 0 0 280px;
   scroll-snap-align: start;
   display: flex;
   flex-direction: column;
@@ -4603,14 +4603,8 @@ html.js .scale-in {
 }
 
 .insights__card-title {
-  font-family: "PP Neue Montreal", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 500;
-  font-size: clamp(1.25rem, 1.8vw, 1.5rem);
-  color: #0a0a0a;
   line-height: 1.2;
   margin: 0;
-  transition: color 0.3s ease;
 }
 
 .insights__card:hover .insights__card-title {
@@ -4619,22 +4613,20 @@ html.js .scale-in {
 
 .insights__card-role {
   display: block;
-  font-family: "Poppins", sans-serif;
-  font-weight: 500;
+  font-weight: 300;
   font-size: 0.85rem;
-  color: #0a0a0a;
-  line-height: 1.4;
+  color: var(--color-mba-red);
   margin-top: 0.75rem;
 }
 
 .insights__card-country {
   display: block;
   font-family: "Poppins", sans-serif;
-  font-weight: 300;
+  font-weight: 600;
   font-size: 0.8rem;
-  color: rgba(10, 10, 10, 0.55);
+  color: var(--color-mba-blue);
   line-height: 1.4;
-  margin-top: 0.25rem;
+  margin-top: 0.5rem;
 }
 
 .insights__card-excerpt {
