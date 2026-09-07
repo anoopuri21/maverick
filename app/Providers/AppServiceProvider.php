@@ -135,11 +135,8 @@ class AppServiceProvider extends ServiceProvider
                     PublicContentCache::FACULTY_INSIGHTS_PREVIEW,
                     FacultyInsight::class,
                     function () {
-                        return FacultyInsight::select('id', 'title', 'slug', 'badge', 'image_url', 'link_url', 'excerpt', 'faculty_name', 'faculty_role', 'sort_order')
-                            ->where('is_active', true)
-                            ->hasPublicSlug()
-                            ->orderBy('sort_order')
-                            ->limit(6)
+                        return FacultyInsight::card()
+                            ->limit(FacultyInsight::CARD_LIMIT)
                             ->get();
                     }
                 );

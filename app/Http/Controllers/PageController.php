@@ -161,10 +161,8 @@ class PageController extends Controller
                 ->get();
 
             $facultyInsights = PublicContentCache::serializeRows(
-                FacultyInsight::select('id', 'title', 'faculty_role', 'country', 'content', 'image_url', 'image_url_asset_id', 'sort_order')
-                    ->where('is_active', true)
-                    ->orderBy('sort_order')
-                    ->limit(9)
+                FacultyInsight::card()
+                    ->limit(FacultyInsight::CARD_LIMIT)
                     ->get(),
                 fn (FacultyInsight $insight) => [
                     'id' => $insight->id,
@@ -173,6 +171,7 @@ class PageController extends Controller
                     'country' => $insight->country,
                     'content' => $insight->content,
                     'image_url' => $insight->image_url ?? $insight->featuredImageUrl(),
+                    'link_url' => $insight->link_url,
                     'sort_order' => $insight->sort_order,
                 ]
             );
@@ -275,13 +274,6 @@ class PageController extends Controller
                 ->orderBy('sort_order')
                 ->get();
 
-            $facultyInsights = FacultyInsight::select('id', 'title', 'slug', 'badge', 'image_url', 'link_url', 'excerpt', 'faculty_name', 'faculty_role', 'sort_order')
-                ->where('is_active', true)
-                ->hasPublicSlug()
-                ->orderBy('sort_order')
-                ->limit(6)
-                ->get();
-
             $testimonials = Testimonial::select('id', 'name', 'designation', 'company', 'thumbnail_url', 'video_url', 'video_type', 'sort_order')
                 ->where('is_active', true)
                 ->orderBy('sort_order')
@@ -303,7 +295,6 @@ class PageController extends Controller
                 'awards' => $awards->toArray(),
                 'galleryImages' => $galleryImages->toArray(),
                 'accreditationLogos' => $accreditationLogos->toArray(),
-                'facultyInsights' => $facultyInsights->toArray(),
                 'testimonials' => $testimonials->toArray(),
                 'testimonialsJson' => $testimonialsJson,
             ];
@@ -315,7 +306,6 @@ class PageController extends Controller
             'awards' => PublicContentCache::hydrateRows(\App\Models\OurStoryAward::class, $cached['awards'] ?? []),
             'galleryImages' => PublicContentCache::hydrateRows(\App\Models\OurStoryGalleryImage::class, $cached['galleryImages'] ?? []),
             'accreditationLogos' => PublicContentCache::hydrateRows(PartnerLogo::class, $cached['accreditationLogos'] ?? []),
-            'facultyInsights' => PublicContentCache::hydrateRows(FacultyInsight::class, $cached['facultyInsights'] ?? []),
             'testimonials' => PublicContentCache::hydrateRows(Testimonial::class, $cached['testimonials'] ?? []),
             'testimonialsJson' => collect($cached['testimonialsJson'] ?? []),
         ];

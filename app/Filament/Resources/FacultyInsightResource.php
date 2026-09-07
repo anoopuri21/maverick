@@ -46,9 +46,20 @@ class FacultyInsightResource extends Resource
                             ->label('Designation/Position'),
                         Forms\Components\TextInput::make('country')
                             ->label('Country'),
+                        Forms\Components\TextInput::make('sort_order')
+                            ->label('Sort Order')
+                            ->numeric()
+                            ->default(0),
+                        Forms\Components\Toggle::make('is_active')
+                            ->label('Active')
+                            ->default(true),
                         Forms\Components\Textarea::make('content')
                             ->label('Description')
                             ->rows(6)
+                            ->columnSpanFull(),
+                        Forms\Components\TextInput::make('link_url')
+                            ->label('LinkedIn URL')
+                            ->url()
                             ->columnSpanFull(),
                         MediaPicker::forField('image_url', 'faculty-insights')
                             ->label('Featured Image')
