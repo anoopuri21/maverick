@@ -59,6 +59,19 @@ class FacultyInsight extends Model
             ->where('published_at', '<=', now());
     }
 
+    public const CARD_LIMIT = 12;
+
+    /**
+     * Single source for the shared faculty-insights cards
+     * (home page, masters page, program detail).
+     */
+    public function scopeCard(Builder $query): Builder
+    {
+        return $query->select('id', 'title', 'faculty_role', 'country', 'content', 'image_url', 'image_url_asset_id', 'sort_order')
+            ->where('is_active', true)
+            ->orderBy('sort_order');
+    }
+
     public function featuredImageUrl(): ?string
     {
         return $this->getMediaUrl('image_url');

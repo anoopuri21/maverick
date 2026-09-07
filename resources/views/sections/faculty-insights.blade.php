@@ -33,7 +33,7 @@
       <div class="insights__scroll" data-scroll-container>
         <div class="insights__track">
           @foreach($facultyInsights as $insight)
-            <article class="insights__card fade-up">
+            <article class="insights__card fade-up" data-fi-card>
               <div class="insights__card-image">
                 @if($url = media_url($insight->image_url ?? null))
                 <img src="{{ $url }}"
@@ -50,7 +50,8 @@
                   <span class="insights__card-country">{{ $insight->country }}</span>
                 @endif
                 @if($description = strip_tags($insight->content ?? ''))
-                  <p class="insights__card-excerpt">{{ $description }}</p>
+                  <p class="insights__card-excerpt" id="fi-excerpt-{{ $insight->id }}" data-fi-excerpt>{{ $description }}</p>
+                  <button type="button" class="insights__card-toggle" data-fi-toggle="fi-excerpt-{{ $insight->id }}" aria-expanded="false" hidden>Read more</button>
                 @endif
               </div>
             </article>
@@ -64,32 +65,5 @@
       </button>
     </div>
   </div>
-
-  {{-- Modal disabled — re-enable when needed
-  <div class="fv-modal" id="facultyVoiceModal" role="dialog" aria-modal="true" aria-labelledby="fvModalTitle" hidden>
-    <div class="fv-modal__backdrop" data-fv-close></div>
-    <div class="fv-modal__dialog">
-      <button type="button" class="fv-modal__close" data-fv-close aria-label="Close">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-          <path d="M18 6L6 18M6 6l12 12" />
-        </svg>
-      </button>
-      <div class="fv-modal__hero" hidden>
-        <img src="" alt="" class="fv-modal__hero-img" width="760" height="428" />
-      </div>
-      <header class="fv-modal__head">
-        <img src="" alt="" class="fv-modal__avatar" width="48" height="48" hidden />
-        <div class="fv-modal__meta">
-          <span class="fv-modal__badge" hidden></span>
-          <span class="fv-modal__faculty-name"></span>
-          <span class="fv-modal__faculty-role"></span>
-        </div>
-      </header>
-      <h2 id="fvModalTitle" class="fv-modal__title"></h2>
-      <blockquote class="fv-modal__quote" hidden></blockquote>
-      <div class="fv-modal__body" data-lenis-prevent></div>
-    </div>
-  </div>
-  --}}
 </section>
 @endif

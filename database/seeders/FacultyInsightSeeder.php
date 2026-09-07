@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\FacultyInsight;
+use App\Support\PublicContentCache;
 use Illuminate\Database\Seeder;
 
 /**
@@ -118,6 +119,10 @@ class FacultyInsightSeeder extends Seeder
                 ]
             );
         }
+
+        // Full db:seed runs with WithoutModelEvents, so the saved-hooks
+        // won't flush — clear the public cache explicitly.
+        PublicContentCache::flush();
 
         $this->command?->info('Seeded '.count($insights).' faculty insights (images: manual upload via admin).');
     }
