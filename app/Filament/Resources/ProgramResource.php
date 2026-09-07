@@ -255,10 +255,12 @@ class ProgramResource extends Resource
                                     ->relationship()
                                     ->schema([
                                         TextInput::make('question')
+                                            ->required()
                                             ->validationAttribute('question')
                                             ->columnSpanFull(),
 
                                         RichEditor::make('answer')
+                                            ->required()
                                             ->validationAttribute('answer')
                                             ->columnSpanFull(),
 
@@ -272,6 +274,7 @@ class ProgramResource extends Resource
                                                 ->default(true),
                                         ]),
                                     ])
+                                    ->defaultItems(0)
                                     ->orderColumn('sort_order')
                                     ->collapsible()
                                     ->itemLabel(fn (array $state): ?string => $state['question'] ?? 'New FAQ')
