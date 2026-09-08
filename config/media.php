@@ -34,6 +34,9 @@ return [
         'personal_access_tokens',
         'media_assets',
         'media_recycle_logs',
+        // Migration bookkeeping (old/new urls + asset ids): never live
+        // references — scanners must not count or rewrite these rows.
+        'media_migration_map',
         'telescope_entries',
         'telescope_entries_tags',
         'telescope_monitoring',

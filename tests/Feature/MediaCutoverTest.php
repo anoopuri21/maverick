@@ -176,6 +176,12 @@ class MediaCutoverTest extends TestCase
         $this->assertGreaterThanOrEqual(1, $result['fields']['reasons']['external-preserved'] ?? 0);
         $this->assertGreaterThanOrEqual(1, $result['fields']['reasons']['foreign-preserved'] ?? 0);
         $this->assertGreaterThanOrEqual(1, $result['fields']['reasons']['unmapped-url'] ?? 0);
+
+        // Regression: the mapping table itself is never scanned/rewritten
+        // (its old_url audit trail survives the cutover).
+        $map = MediaMigrationMap::query()->where('old_public_id', 'maverick-academy/lib/n')->first();
+        $this->assertStringContainsString('demo-source', $map->old_url);
+        $this->assertStringContainsString('demo-dest', $map->new_url);
     }
 
     public function test_settings_json_linkage_and_legacy(): void
@@ -306,6 +312,7 @@ class MediaCutoverTest extends TestCase
 
         $this->assertSame(0, $second['assets']['updated']);
         $this->assertSame(3, $second['assets']['current']);
+        $this->assertSame(0, $second['assets']['skipped']);
         $this->assertSame(0, $second['fields']['cells_updated']);
         $this->assertSame(0, $second['residue']['image_total']);
     }

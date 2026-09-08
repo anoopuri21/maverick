@@ -43,6 +43,9 @@ class MediaCutoverService
     /** @var array<string, array{status: string, reason: string|null}> old_pid => any mapping */
     protected array $allMaps = [];
 
+    /** @var array<string, string> new_pid => old_pid (migrated rows, joins already-cut R2 rows) */
+    protected array $newToOld = [];
+
     /** @var array<int, string> asset id => old pid */
     protected array $assetPid = [];
 
@@ -115,6 +118,7 @@ class MediaCutoverService
     {
         $this->goodMaps = [];
         $this->allMaps = [];
+        $this->newToOld = [];
         $this->assetPid = [];
 
         foreach (MediaMigrationMap::query()->get(['old_public_id', 'new_public_id', 'new_url', 'status', 'reason']) as $map) {
@@ -127,6 +131,10 @@ class MediaCutoverService
                     'new_url' => $map->new_url,
                     'status' => $map->status,
                 ];
+
+                if ($map->status === 'migrated') {
+                    $this->newToOld[$map->new_public_id] = $map->old_public_id;
+                }
             }
         }
 
@@ -168,7 +176,10 @@ class MediaCutoverService
                         continue;
                     }
 
-                    $map = $this->goodMaps[$pid] ?? null;
+                    // Already-cut R2 rows carry the NEW pid — join them back to
+                    // their mapping so reruns report current, not unmapped.
+                    $map = $this->goodMaps[$pid]
+                        ?? (isset($this->newToOld[$pid]) ? ($this->goodMaps[$this->newToOld[$pid]] ?? null) : null);
 
                     if ($map === null) {
                         $this->recordSkip('assets', $this->mapReason($pid), 'media_assets#'.$row->id);
