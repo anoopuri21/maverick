@@ -1,8 +1,9 @@
 /**
  * Maverick Business Academy
- * Faculty Insights Slider — Single card per view
+ * Faculty Insights Slider — Single card per view, CLS-safe
  * Professional slider with dots, counter, prev/next
- * Uses same scroll container as scroll-controls for drag support
+ * Uses static dots from Blade to prevent CLS, JS only enhances active state
+ * Core Web Vitals: no layout shift, transform/opacity only
  */
 (function () {
   "use strict";
@@ -26,23 +27,34 @@
     if (!container || !track || !cards.length) return;
 
     const total = cards.length;
-
     if (totalEl) totalEl.textContent = pad(total);
 
-    // Generate dots
+    // CLS-safe: Use existing dots from Blade if present, else generate
     let dots = [];
     if (paginationEl) {
-      paginationEl.innerHTML = "";
-      cards.forEach((_, i) => {
-        const btn = document.createElement("button");
-        btn.type = "button";
-        btn.className = "insights__pagination-dot" + (i === 0 ? " is-active" : "");
-        btn.setAttribute("aria-label", "Go to faculty " + (i + 1));
-        btn.dataset.fiDot = String(i);
-        btn.addEventListener("click", () => scrollToIndex(i));
-        paginationEl.appendChild(btn);
-      });
       dots = Array.from(paginationEl.querySelectorAll("[data-fi-dot]"));
+      if (dots.length === 0) {
+        // Fallback generate if Blade didn't output dots
+        paginationEl.innerHTML = "";
+        cards.forEach(function (_, i) {
+          var btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "insights__pagination-dot" + (i === 0 ? " is-active" : "");
+          btn.setAttribute("aria-label", "Go to faculty " + (i + 1));
+          btn.dataset.fiDot = String(i);
+          paginationEl.appendChild(btn);
+        });
+        dots = Array.from(paginationEl.querySelectorAll("[data-fi-dot]"));
+      }
+      // Bind click to existing dots
+      dots.forEach(function (dot, i) {
+        if (!dot.dataset.fiBound) {
+          dot.dataset.fiBound = "1";
+          dot.addEventListener("click", function () {
+            scrollToIndex(i);
+          });
+        }
+      });
     }
 
     let currentIndex = 0;
@@ -60,7 +72,7 @@
       currentIndex = Math.max(0, Math.min(index, getMaxIndex()));
       if (currentEl) currentEl.textContent = pad(currentIndex + 1);
       if (dots.length) {
-        dots.forEach((d, i) => {
+        dots.forEach(function (d, i) {
           d.classList.toggle("is-active", i === currentIndex);
         });
       }
@@ -69,8 +81,8 @@
     }
 
     function scrollToIndex(index, behavior) {
-      const clamped = Math.max(0, Math.min(index, getMaxIndex()));
-      const target = clamped * getScrollAmount();
+      var clamped = Math.max(0, Math.min(index, getMaxIndex()));
+      var target = clamped * getScrollAmount();
       if (behavior === "auto") {
         container.scrollLeft = target;
       } else {
@@ -79,21 +91,20 @@
       updateUI(clamped);
     }
 
-    // Click handlers
     if (prevBtn) {
-      prevBtn.addEventListener("click", () => {
+      prevBtn.addEventListener("click", function () {
         scrollToIndex(currentIndex - 1);
       });
     }
     if (nextBtn) {
-      nextBtn.addEventListener("click", () => {
+      nextBtn.addEventListener("click", function () {
         scrollToIndex(currentIndex + 1);
       });
     }
 
-    // Keyboard
+    // Keyboard accessibility
     container.setAttribute("tabindex", "0");
-    container.addEventListener("keydown", (e) => {
+    container.addEventListener("keydown", function (e) {
       if (e.key === "ArrowLeft") {
         e.preventDefault();
         scrollToIndex(currentIndex - 1);
@@ -103,16 +114,16 @@
       }
     });
 
-    // Sync on scroll
+    // Sync on scroll - RAF throttled, no CLS
     container.addEventListener(
       "scroll",
-      () => {
+      function () {
         if (ticking) return;
         ticking = true;
-        requestAnimationFrame(() => {
-          const scrollLeft = container.scrollLeft;
-          const amount = getScrollAmount();
-          const idx = Math.round(scrollLeft / amount);
+        requestAnimationFrame(function () {
+          var scrollLeft = container.scrollLeft;
+          var amount = getScrollAmount();
+          var idx = Math.round(scrollLeft / amount);
           updateUI(idx);
           ticking = false;
         });
@@ -120,24 +131,26 @@
       { passive: true }
     );
 
-    // Resize
-    let resizeTimer = null;
-    window.addEventListener("resize", () => {
+    // Resize - recalc without animation to avoid CLS
+    var resizeTimer = null;
+    window.addEventListener("resize", function () {
       clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => {
+      resizeTimer = setTimeout(function () {
         scrollToIndex(currentIndex, "auto");
       }, 150);
     });
 
-    // Initial
+    // Initial UI
     updateUI(0);
 
-    // Expose for external refresh (e.g., after Read more expands)
-    root.__fiUpdate = () => updateUI(currentIndex);
+    // Expose for external refresh if needed (no toggle now, but kept)
+    root.__fiUpdate = function () {
+      updateUI(currentIndex);
+    };
   }
 
   function init() {
-    const sliders = document.querySelectorAll("[data-fi-slider]");
+    var sliders = document.querySelectorAll("[data-fi-slider]");
     sliders.forEach(initSlider);
   }
 

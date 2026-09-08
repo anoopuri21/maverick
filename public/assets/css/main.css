@@ -4537,6 +4537,42 @@ html.js .scale-in {
   display: flex;
   flex-direction: column;
   gap: 28px;
+  /* CLS: reserve min-height for controls */
+  min-height: 0;
+}
+
+/* Fallback visibility - ensure visible if JS disabled, hidden only when JS enabled and GSAP will animate */
+html.js .insights__slider {
+  opacity: 0;
+  transform: translateY(40px);
+  will-change: transform, opacity;
+}
+
+html.js .insights__slider.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+html:not(.js) .insights__slider {
+  opacity: 1;
+  transform: none;
+}
+
+/* Card initial state for JS animation - down to top */
+html.js .insights__card {
+  opacity: 0;
+  transform: translateY(40px);
+  will-change: transform, opacity;
+}
+
+html.js .insights__card.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+html:not(.js) .insights__card {
+  opacity: 1;
+  transform: none;
 }
 
 /* Scroll container - single card viewport */
@@ -4598,7 +4634,6 @@ html.js .scale-in {
     transform 0.45s cubic-bezier(0.23,1,0.32,1),
     box-shadow 0.45s cubic-bezier(0.23,1,0.32,1),
     border-color 0.3s ease;
-  transform: translateY(0) !important;
   isolation: isolate;
 }
 
@@ -4655,6 +4690,9 @@ html.js .scale-in {
   background: var(--color-mba-dark-blue);
   display: flex;
   min-height: 520px;
+  aspect-ratio: 4 / 5;
+  /* CLS: reserve space */
+  width: 100%;
 }
 
 .insights__card-image {
@@ -4865,16 +4903,23 @@ html.js .scale-in {
   overflow: hidden;
 }
 
+.insights__card-excerpt--full {
+  display: block;
+  -webkit-line-clamp: unset;
+  overflow: visible;
+}
+
 /* ----- Footer ----- */
 .insights__card-footer {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 16px;
   margin-top: auto;
   padding-top: 24px;
   border-top: 1px solid rgba(0,0,0,0.06);
   flex-wrap: wrap;
+  min-height: 56px; /* CLS reserve */
 }
 
 .insights__card-footer-left {
@@ -5020,6 +5065,7 @@ html.js .scale-in {
   gap: 20px;
   padding: 4px 8px 0;
   flex-wrap: wrap;
+  min-height: 48px; /* CLS reserve */
 }
 
 .insights__pagination {
@@ -5027,6 +5073,7 @@ html.js .scale-in {
   align-items: center;
   gap: 10px;
   flex-wrap: wrap;
+  min-height: 24px; /* CLS reserve */
 }
 
 .insights__pagination-dot {
@@ -5071,6 +5118,7 @@ html.js .scale-in {
   color: rgba(10,10,10,0.55);
   margin-right: auto;
   margin-left: 8px;
+  min-width: 80px; /* CLS reserve */
 }
 
 .insights__counter-current {
