@@ -14,6 +14,10 @@ return [
 
     'max_upload_kilobytes' => (int) env('MEDIA_MAX_UPLOAD_KB', 5120), // 5 MB
 
+    // Milliseconds to wait between Cloudinary API calls during account
+    // migration (shared-hosting safe default, same as media:sync/clean).
+    'migration_throttle_ms' => (int) env('MEDIA_MIGRATION_THROTTLE_MS', 250),
+
     'allowed_mime_prefixes' => [
         'image/',
     ],
