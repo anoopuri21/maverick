@@ -7,9 +7,19 @@
 
   function setState(btn, excerpt, open) {
     btn.setAttribute("aria-expanded", open ? "true" : "false");
-    btn.textContent = open ? "Read less" : "Read more";
+    var textEl = btn.querySelector(".insights__card-toggle-text");
+    if (textEl) {
+      textEl.textContent = open ? "Read less" : "Read more";
+    } else {
+      btn.textContent = open ? "Read less" : "Read more";
+    }
     btn.hidden = false;
     if (excerpt) excerpt.classList.toggle("insights__card-excerpt--clamp", !open);
+    // Refresh slider UI if exists
+    var slider = btn.closest("[data-fi-slider]");
+    if (slider && slider.__fiUpdate) {
+      setTimeout(function(){ slider.__fiUpdate(); }, 50);
+    }
   }
 
   function evaluate(card) {
