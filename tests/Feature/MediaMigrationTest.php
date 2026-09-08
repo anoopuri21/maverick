@@ -442,6 +442,91 @@ class MediaMigrationTest extends TestCase
         return [$canonical, $dup];
     }
 
+    public function test_retry_skipped_resets_collisions_but_leaves_deterministic_skips(): void
+    {
+        MediaAsset::query()->create($this->assetAttrs([
+            'hash' => str_repeat('7', 64),
+            'cloudinary_public_id' => 'maverick-academy/lib/stray',
+            'url' => 'https://res.cloudinary.com/demo-source/image/upload/v1/maverick-academy/lib/stray.jpg',
+        ]));
+
+        MediaAsset::query()->create($this->assetAttrs([
+            'hash' => str_repeat('8', 64),
+            'cloudinary_public_id' => 'maverick-academy/vids/keeper',
+            'url' => 'https://res.cloudinary.com/demo-source/video/upload/v1/maverick-academy/vids/keeper.mp4',
+            'mime_type' => 'video/mp4',
+        ]));
+
+        $this->fake->resources['maverick-academy/lib/stray'] = [
+            'secure_url' => 'https://res.cloudinary.com/demo-dest/image/upload/v1/maverick-academy/lib/stray.jpg',
+            'bytes' => 999,
+            'public_id' => 'maverick-academy/lib/stray',
+        ];
+
+        app(MediaMigrationService::class)->migrate();
+
+        $this->assertSame('skipped', MediaMigrationMap::query()->where('old_public_id', 'maverick-academy/lib/stray')->first()->status);
+
+        // Dry retry: reports but changes nothing.
+        $dry = app(MediaMigrationService::class)->migrate(dryRun: true, retrySkipped: true);
+
+        $this->assertSame(1, $dry['retried_skipped']);
+        $this->assertSame('skipped', MediaMigrationMap::query()->where('old_public_id', 'maverick-academy/lib/stray')->first()->status);
+
+        // Operator deletes the stray file, then retries.
+        unset($this->fake->resources['maverick-academy/lib/stray']);
+
+        $second = app(MediaMigrationService::class)->migrate(retrySkipped: true);
+
+        $this->assertSame(1, $second['retried_skipped']);
+        $this->assertSame(1, $second['migrated']);
+        $retried = MediaMigrationMap::query()->where('old_public_id', 'maverick-academy/lib/stray')->first();
+        $this->assertSame('migrated', $retried->status);
+        $this->assertSame(1, $retried->attempts);
+
+        // Deterministic skips are never reset.
+        $video = MediaMigrationMap::query()->where('old_public_id', 'maverick-academy/vids/keeper')->first();
+        $this->assertSame('skipped', $video->status);
+        $this->assertSame('video-excluded', $video->reason);
+    }
+
+    public function test_retry_adopts_dest_file_when_bytes_match(): void
+    {
+        // Simulates a call that succeeded server-side but lost its response:
+        // attempt fails with DEST empty, then the file materializes there.
+        MediaAsset::query()->create($this->assetAttrs([
+            'hash' => str_repeat('9', 64),
+            'cloudinary_public_id' => 'maverick-academy/lib/adopt',
+            'url' => 'https://res.cloudinary.com/demo-source/image/upload/v1/maverick-academy/lib/adopt.jpg',
+            'size_bytes' => 1234,
+        ]));
+
+        $this->fake->failPids = ['maverick-academy/lib/adopt'];
+
+        $first = app(MediaMigrationService::class)->migrate();
+
+        $this->assertSame(1, $first['failed']);
+
+        $this->fake->failPids = [];
+        $this->fake->resources['maverick-academy/lib/adopt'] = [
+            'secure_url' => 'https://res.cloudinary.com/demo-dest/image/upload/v9/maverick-academy/lib/adopt.jpg',
+            'bytes' => 1234,
+            'public_id' => 'maverick-academy/lib/adopt',
+        ];
+
+        $second = app(MediaMigrationService::class)->migrate();
+
+        $this->assertSame(0, $second['failed']);
+        $this->assertSame(1, $second['migrated']);
+        $adopted = MediaMigrationMap::query()->where('old_public_id', 'maverick-academy/lib/adopt')->first();
+        $this->assertSame('migrated', $adopted->status);
+        $this->assertSame('adopted-on-retry', $adopted->reason);
+        $this->assertSame('https://res.cloudinary.com/demo-dest/image/upload/v9/maverick-academy/lib/adopt.jpg', $adopted->new_url);
+        $this->assertSame(2, $adopted->attempts);
+        // No second upload call — the DEST file was adopted.
+        $this->assertCount(1, $this->fake->uploads);
+    }
+
     protected function createSetting(string $group, string $name, string $url): void
     {
         DB::table('settings')->insert([

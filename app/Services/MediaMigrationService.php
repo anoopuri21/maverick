@@ -60,13 +60,14 @@ class MediaMigrationService
     protected array $seenSettings = [];
 
     /**
-     * @return array{dry_run: bool, limit: int|null, processed: int, migrated: int, shared: int, skipped: int, failed: int, deferred: int, already: int, remaining: int|null, skip_reasons: array<string, int>, failures: list<array{pid: string, error: string}>, samples: list<array{pid: string, new: string|null, status: string, source: string}>, dest_checks: string}
+     * @return array{dry_run: bool, limit: int|null, processed: int, migrated: int, shared: int, skipped: int, failed: int, deferred: int, already: int, remaining: int|null, skip_reasons: array<string, int>, failures: list<array{pid: string, error: string}>, samples: list<array{pid: string, new: string|null, status: string, source: string}>, dest_checks: string, retried_skipped: int}
      */
-    public function migrate(bool $dryRun = false, ?int $limit = null): array
+    public function migrate(bool $dryRun = false, ?int $limit = null, bool $retrySkipped = false): array
     {
         // Dry-run makes zero DEST calls, so DEST creds are not required for it.
         $this->guard(! $dryRun);
         $this->resetRun($dryRun, $limit);
+        $this->run['retried_skipped'] = $this->resetSkippedCollisions($dryRun, $retrySkipped);
         $this->loadMappingState();
         $this->loadCanonicalState();
 
@@ -880,7 +881,7 @@ class MediaMigrationService
     }
 
     /**
-     * @return array{dry_run: bool, limit: int|null, processed: int, migrated: int, shared: int, skipped: int, failed: int, deferred: int, already: int, remaining: int|null, skip_reasons: array<string, int>, failures: list<array{pid: string, error: string}>, samples: list<array{pid: string, new: string|null, status: string, source: string}>, dest_checks: string}
+     * @return array{dry_run: bool, limit: int|null, processed: int, migrated: int, shared: int, skipped: int, failed: int, deferred: int, already: int, remaining: int|null, skip_reasons: array<string, int>, failures: list<array{pid: string, error: string}>, samples: list<array{pid: string, new: string|null, status: string, source: string}>, dest_checks: string, retried_skipped: int}
      */
     protected function summary(): array
     {
@@ -907,7 +908,37 @@ class MediaMigrationService
             'failures' => $this->run['failures'],
             'samples' => $this->run['samples'],
             'dest_checks' => $this->run['dry'] ? 'skipped-dry-run' : 'live',
+            'retried_skipped' => $this->run['retried_skipped'] ?? 0,
         ];
+    }
+
+    /**
+     * Move collision-family skips back to failed so this run retries them
+     * (adopt if DEST matches, upload if the stray is gone, skip again if
+     * still blocked). Deterministic skips (videos, foreign clouds) are
+     * never touched.
+     */
+    protected function resetSkippedCollisions(bool $dryRun, bool $retrySkipped): int
+    {
+        if (! $retrySkipped) {
+            return 0;
+        }
+
+        $query = MediaMigrationMap::query()
+            ->where('status', 'skipped')
+            ->whereIn('reason', ['collision', 'new-pid-claimed']);
+
+        if ($dryRun) {
+            return $query->count();
+        }
+
+        $count = $query->count();
+
+        if ($count > 0) {
+            $query->update(['status' => 'failed', 'reason' => 'retry-requested']);
+        }
+
+        return $count;
     }
 
     protected function throttle(): void

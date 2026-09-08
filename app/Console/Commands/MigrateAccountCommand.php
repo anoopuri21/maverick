@@ -10,7 +10,8 @@ class MigrateAccountCommand extends Command
     protected $signature = 'media:migrate-account
         {--dry-run : Preview without uploading or writing mapping rows}
         {--limit= : Max rows to process in this run (shared-hosting batches)}
-        {--verify : Compare the mapping against the DEST account listing}';
+        {--verify : Compare the mapping against the DEST account listing}
+        {--retry-skipped : Reset collision-family skips to pending and retry them}';
 
     protected $description = 'Copy media files from the old Cloudinary account to the new one (fetch-upload) and record the mapping (Phase 1).';
 
@@ -26,7 +27,7 @@ class MigrateAccountCommand extends Command
             : null;
 
         try {
-            $result = $service->migrate($dryRun, $limit);
+            $result = $service->migrate($dryRun, $limit, (bool) $this->option('retry-skipped'));
         } catch (\RuntimeException $e) {
             $this->error($e->getMessage());
 
@@ -34,6 +35,10 @@ class MigrateAccountCommand extends Command
         }
 
         $this->info($dryRun ? 'DRY-RUN — no uploads, no mapping writes.' : 'Migration run completed.');
+
+        if (($result['retried_skipped'] ?? 0) > 0) {
+            $this->line(sprintf('Collision-family skips reset for retry: %d.', $result['retried_skipped']));
+        }
         $this->info(sprintf(
             'Processed: %d (migrated %d, shared %d, skipped %d, failed %d, deferred %d, already %d)%s',
             $result['processed'],
