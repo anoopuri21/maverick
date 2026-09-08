@@ -2,6 +2,7 @@
   "use strict";
 
   const SCROLL_AMOUNT_DESKTOP = 420;
+  const SCROLL_AMOUNT_INSIGHTS_GAP = 32;
   const SCROLL_DURATION = 600;
   const DRAG_THRESHOLD = 5;
 
@@ -128,6 +129,14 @@
     );
 
     // ===== ARROW BUTTONS =====
+    function getScrollAmount() {
+      // For Faculty Insights single-card slider, scroll full container width + gap
+      if (container.classList.contains("insights__scroll") || container.closest("#faculty-insights")) {
+        return container.clientWidth + SCROLL_AMOUNT_INSIGHTS_GAP;
+      }
+      return SCROLL_AMOUNT_DESKTOP;
+    }
+
     function smoothScrollBy(amount) {
       const start = container.scrollLeft;
       const target = start + amount;
@@ -146,13 +155,13 @@
 
     if (prevBtn) {
       prevBtn.addEventListener("click", () => {
-        smoothScrollBy(-SCROLL_AMOUNT_DESKTOP);
+        smoothScrollBy(-getScrollAmount());
       });
     }
 
     if (nextBtn) {
       nextBtn.addEventListener("click", () => {
-        smoothScrollBy(SCROLL_AMOUNT_DESKTOP);
+        smoothScrollBy(getScrollAmount());
       });
     }
 

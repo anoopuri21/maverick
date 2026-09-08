@@ -1204,36 +1204,103 @@
   }
 
   // =========================================================
-  // Faculty Insights Section Animations
+  // Faculty Insights Section Animations — FIXED
+  // Visible at 40% (top 60% trigger), down-to-top slide, CLS safe
   // =========================================================
 
   function initInsightsAnimations() {
     if (!elementExists("#faculty-insights")) return;
 
+    var section = document.querySelector("#faculty-insights");
+    var slider = section ? section.querySelector(".insights__slider") : null;
+    var cards = section ? section.querySelectorAll(".insights__card") : [];
+    var subtitle = section ? section.querySelector(".insights__subtitle") : null;
+
     if (AnimationUtils.prefersReducedMotion) {
+      if (slider) gsap.set(slider, { clearProps: "all", opacity: 1, y: 0 });
+      if (cards.length) gsap.set(cards, { clearProps: "all", opacity: 1, y: 0 });
+      if (subtitle) gsap.set(subtitle, { clearProps: "all", opacity: 1, y: 0 });
       AnimationUtils.setReducedMotion([
         "#faculty-insights .text-reveal-inner",
-        "#faculty-insights .fade-up",
+        "#faculty-insights .section-label",
       ]);
+      if (slider) slider.classList.add("is-revealed");
+      cards.forEach(function (c) { c.classList.add("is-revealed"); });
       return;
     }
 
+    // Header at 40% visible (top 60%)
     AnimationUtils.sectionLabel("#faculty-insights");
     AnimationUtils.textReveal(
       "#faculty-insights .insights__heading-line .text-reveal-inner",
-      { trigger: "#faculty-insights" },
+      { trigger: "#faculty-insights", start: "top 60%" }
     );
     AnimationUtils.fadeUp("#faculty-insights .insights__subtitle", {
       trigger: "#faculty-insights",
-      y: 30,
+      start: "top 60%",
+      y: 24,
+      duration: 0.7
     });
-    AnimationUtils.slideIn("#faculty-insights .insights__card", {
-      trigger: "#faculty-insights .insights__scroll",
-      x: 0,
-      y: 0,
-      duration: 0.6,
-      stagger: 0.08,
-    });
+
+    // Slider: down-to-top at 40% visible
+    if (slider) {
+      gsap.set(slider, { opacity: 0, y: 40 });
+      gsap.to(slider, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power3.out",
+        overwrite: "auto",
+        scrollTrigger: {
+          trigger: "#faculty-insights",
+          start: "top 60%",
+          toggleActions: "play none none none",
+          once: true
+        },
+        onComplete: function () {
+          slider.classList.add("is-revealed");
+          gsap.set(slider, { clearProps: "transform" });
+        }
+      });
+    }
+
+    // Cards: down-to-top
+    if (cards.length) {
+      gsap.set(cards, { opacity: 0, y: 40 });
+      gsap.to(cards, {
+        opacity: 1,
+        y: 0,
+        duration: 0.7,
+        stagger: 0.12,
+        ease: "power3.out",
+        overwrite: "auto",
+        scrollTrigger: {
+          trigger: "#faculty-insights .insights__scroll",
+          start: "top 65%",
+          toggleActions: "play none none none",
+          once: true
+        },
+        onComplete: function () {
+          cards.forEach(function (c) { c.classList.add("is-revealed"); });
+          gsap.set(cards, { clearProps: "transform" });
+        }
+      });
+    }
+
+    // Safety fallback after 1.2s
+    setTimeout(function () {
+      if (slider && !slider.classList.contains("is-revealed")) {
+        gsap.to(slider, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out", overwrite: "auto" });
+        slider.classList.add("is-revealed");
+      }
+      if (cards.length) {
+        var anyHidden = Array.from(cards).some(function (c) { return !c.classList.contains("is-revealed"); });
+        if (anyHidden) {
+          gsap.to(cards, { opacity: 1, y: 0, duration: 0.6, stagger: 0.08, ease: "power2.out", overwrite: "auto" });
+          cards.forEach(function (c) { c.classList.add("is-revealed"); });
+        }
+      }
+    }, 1200);
   }
 
   // =========================================================
