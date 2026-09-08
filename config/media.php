@@ -18,6 +18,14 @@ return [
     // migration (shared-hosting safe default, same as media:sync/clean).
     'migration_throttle_ms' => (int) env('MEDIA_MIGRATION_THROTTLE_MS', 250),
 
+    // Milliseconds between URL checks (media:verify-urls), plus hosts to
+    // skip entirely (comma-separated, e.g. bot-hostile externals).
+    'verify_throttle_ms' => (int) env('MEDIA_VERIFY_THROTTLE_MS', 100),
+    'verify_skip_hosts' => array_values(array_filter(array_map(
+        'trim',
+        explode(',', strtolower((string) env('MEDIA_VERIFY_SKIP_HOSTS', '')))
+    ))),
+
     'allowed_mime_prefixes' => [
         'image/',
     ],
