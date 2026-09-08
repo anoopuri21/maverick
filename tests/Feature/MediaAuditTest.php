@@ -43,11 +43,15 @@ class MediaAuditTest extends TestCase
             'size_bytes' => 100,
         ]));
 
+        // NOTE: (hash, disk_env) is UNIQUE, so a same-hash pair can only exist
+        // across different disk_env values — exactly the legacy local+prod
+        // double-upload scenario the migration has to handle.
         $assetB = MediaAsset::query()->create($this->assetAttrs([
             'hash' => str_repeat('a', 64),
             'cloudinary_public_id' => 'maverick-academy/lib/b',
             'url' => 'https://res.cloudinary.com/demo-old/image/upload/v1/maverick-academy/lib/b.jpg',
             'size_bytes' => 100,
+            'disk_env' => 'local',
         ]));
 
         MediaAsset::query()->create($this->assetAttrs([

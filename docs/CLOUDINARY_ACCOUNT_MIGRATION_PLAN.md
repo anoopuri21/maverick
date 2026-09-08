@@ -258,6 +258,7 @@ php artisan media:verify-urls
 
 - `media:sync`/`normalize` ke baad bhi same-hash ki multiple rows ho sakti hain (`is_duplicate=true`).
 - Rule: same `hash` group me **canonical row** (lowest id, shared-folder preferred) ki file ek baar migrate hogi. Baaki same-hash rows ki files dobara upload NAHI hongi.
+- Schema fact (verified 2026-09-08 via test failure): `(hash, disk_env)` UNIQUE hai, isliye duplicate groups **hamesha multiple `disk_env` values span** karte hain. Merge design isi assumption pe banega.
 - Pre-migration merge (cutover se pehle, alag confirm ke saath): duplicate rows ke `*_asset_id` FK + denormalized URLs canonical row pe repoint karke dup rows soft-delete (existing `MediaFolderNormalizer::repointReferences` pattern reuse hoga). Merge ke baad migrate — to duplicate content Cloudinary pe ek hi baar jaata hai.
 - Soft-deleted (trashed) rows: scope=ALL ke hisaab se inki files BHI migrate hongi (withTrashed), taaki future Restore ke baad URL purane (band) account pe na point kare.
 
