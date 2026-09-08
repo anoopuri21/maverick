@@ -1,7 +1,7 @@
 # Cloudinary Account Migration — Safe Plan (old → new account, zero broken images)
 
 > **Goal:** Naya (dusra) Cloudinary account configure karna. Purane account ki saari maverick images naye account pe migrate karni hain. Migration ke dauraan aur baad me **website pe ek bhi image break nahi honi chahiye**.
-> **Status:** IMPLEMENTATION (step 1/6 done — audit; tests need PHP+vendor to run) — decisions locked: scope = ALL assets, videos = EXCLUDED. Execution 1-by-1 phases me hogi.
+> **Status:** IMPLEMENTATION (steps 1-2/6 done — audit + merge; tests need PHP+vendor to run) — decisions locked: scope = ALL assets, videos = EXCLUDED. Execution 1-by-1 phases me hogi.
 > **Date:** 2026-09-08 · Related: `docs/MEDIA_LIBRARY_NOTES.md`, `docs/cloudinary-guide.md`, `docs/SHARED_HOSTING.md`
 
 ---
@@ -177,9 +177,9 @@ php artisan media:migrate-account --verify        # naye account listing vs mapp
 
 ## 9. Kya is repo me banega (implementation checklist, NEXT tasks)
 
-1. `media:audit-cloudinary-urls` — Phase 0 inventory (cloud names, transforms, externals, bytes, **[R1]** shared-mode guard check, **[R2]** legacy-prefix list, **[R3]** same-hash groups).
+1. ✅ `media:audit-cloudinary-urls` — DONE (`app/Services/MediaAuditService.php` + `app/Console/Commands/AuditCloudinaryUrlsCommand.php` + `tests/Feature/MediaAuditTest.php`). Covers: cloud names, transforms, externals, legacy-prefix list, same-hash groups, bytes, shared-mode guard. Bonus: embedded-URL regex scan (rich-text `<img>` inside text/JSON columns) — usage-scan se superset hai.
 2. `media:migrate-account` — Phase 1 file copy (remote-fetch upload, same public_id, mapping store, resumable, verify mode, **[R1]** env-folder guard, **[R2]** legacy→shared normalize, **[R3]** hash-dedupe).
-3. `media:merge-duplicates` (naya, R3) — same-hash rows merge (FK repoint + soft-delete dups, confirm ke saath).
+3. ✅ `media:merge-duplicates` — DONE (`app/Services/MediaMergeService.php` + `app/Console/Commands/MergeDuplicatesCommand.php` + `tests/Feature/MediaMergeTest.php`). Canonical = current disk_env row, else lowest id. Repoints FK cols + JSON `*_asset_id` + exact URLs + transformed variants (rebuilt on canonical pid, version dropped) + rich-text embeds. Dry-run default, per-dup transaction, idempotent. Shared traits: `app/Services/Concerns/ExtractsStoredUrls.php` + `ScansMediaTables.php` (audit refactored onto them, behavior identical).
 4. `media:cutover-account` — Phase 2 DB URL swap (mapping-only, dry-run default, skip-unmapped + report, **[R2]** legacy rows ka public_id+folder update).
 5. `media:verify-urls` — Phase 4 HTTP checker (distinct URLs, non-200 report).
 6. Tests: mapping/cutover/merge logic ke unit/feature tests (Cloudinary API stub karke — real creds sandbox me nahi hain).
@@ -225,7 +225,7 @@ php artisan media:verify-urls
 - **Q1. Scope = ALL assets** ✅ — `media_assets` ki har row (used + unused) + legacy settings images + Cloudinary orphans check. Purana account images se poori tarah khaali ho jaayega.
 - **Q2. Videos = EXCLUDED** ✅ — Cloudinary video URLs (hero video etc.) migrate NAHI honge, purane account/URLs pe hi rahenge.
   - ⚠️ **Implication:** Jab tak videos purane account pe hain, **purana account poori tarah band NAHI ho sakta** (Phase 5 partial hoga — images delete, account alive for videos). Videos ka alag mini-task baad me karna hoga, ya old account videos ke liye chalta rahega. (Revision discussion me confirm karna hai.)
-- **Q3. Next step = REVISE first** — implementation se pehle plan pe discussion/changes pending (neeche §12 dekho).
+- **Q3. Next step = APPROVED → implementation running** ✅ — revision round complete (§12–§13 locked), ab 1-by-1 tooling ban rahi hai (§9 checklist).
 
 ## 12. Revision notes (discussion round — user input pending)
 

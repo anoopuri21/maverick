@@ -172,6 +172,7 @@ class MediaMergeService
 
         $refs = $this->emptyRefs();
         $skip = config('media.schema_skip_tables', []);
+        $debug = []; // TODO(merge-debug): temporary diagnostic, remove after pinpointing.
 
         foreach ($this->tables() as $table) {
             if ($table === 'media_assets' || in_array($table, $skip, true)) {
@@ -232,7 +233,7 @@ class MediaMergeService
             try {
                 DB::table($table)->select($select)->orderBy($chunkColumn)->chunkById(200, function ($rows) use (
                     $table, $chunkColumn, $fkColumns, $urlColumns, $jsonColumns, $textColumns,
-                    $dup, $canonical, $dupUrl, $dupPid, $canUrl, $canPid, $canExt, $apply, &$refs
+                    $dup, $canonical, $dupUrl, $dupPid, $canUrl, $canPid, $canExt, $apply, &$refs, &$debug
                 ) {
                     foreach ($rows as $row) {
                         $data = (array) $row;
@@ -244,6 +245,7 @@ class MediaMergeService
                             }
 
                             $refs['fk']++;
+                            $debug[] = "{$table}.{$column}#{$key} => fk"; // TODO(merge-debug): temporary.
 
                             if ($apply) {
                                 DB::table($table)
@@ -270,6 +272,7 @@ class MediaMergeService
 
                             $refs['urls'] += $exact;
                             $refs['transformed'] += $trans;
+                            $debug[] = "{$table}.{$column}#{$key} => urls+{$exact} trans+{$trans} :: ".substr($value, 0, 100); // TODO(merge-debug): temporary.
 
                             if ($apply) {
                                 DB::table($table)
@@ -292,6 +295,7 @@ class MediaMergeService
                             $refs['json_fk'] += $fkCount;
                             $refs['json_urls'] += $urlCount;
                             $refs['transformed'] += $transCount;
+                            $debug[] = "{$table}.{$column}#{$key} => json_fk+{$fkCount} json_urls+{$urlCount} trans+{$transCount}"; // TODO(merge-debug): temporary.
 
                             if ($apply && $encoded !== null) {
                                 DB::table($table)
@@ -315,6 +319,11 @@ class MediaMergeService
                     throw $e;
                 }
             }
+        }
+
+        // TODO(merge-debug): temporary diagnostic, remove after pinpointing.
+        if ($debug !== []) {
+            fwrite(STDERR, "\n[merge-debug] dup #{$dup->id} (canonical #{$canonical->id}):\n  ".implode("\n  ", $debug)."\n");
         }
 
         return $refs;
