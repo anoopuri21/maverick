@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\MediaAsset;
+use App\Models\MediaRecycleLog;
 use App\Models\PartnerLogo;
 use App\Services\MediaFolderNormalizer;
 use App\Services\MediaUsageService;
@@ -44,6 +45,32 @@ class MediaLibraryMaintenanceTest extends TestCase
         $this->assertFalse($unused->fresh()->used);
         $this->assertContains($used->id, $result['referenced_ids']);
         $this->assertNotContains($unused->id, $result['referenced_ids']);
+    }
+
+    public function test_usage_service_ignores_references_in_skipped_tables(): void
+    {
+        // Regression: schema-qualified table names ("main.*" on SQLite) once
+        // bypassed the skip list, so recycled/queued/cached references falsely
+        // marked assets as used.
+        $asset = MediaAsset::query()->create($this->assetAttrs([
+            'hash' => str_repeat('e', 64),
+            'cloudinary_public_id' => 'maverick-academy/library/recycled-ref',
+            'url' => 'https://res.cloudinary.com/demo/image/upload/v1/maverick-academy/library/recycled-ref.jpg',
+            'original_name' => 'recycled-ref.jpg',
+        ]));
+
+        MediaRecycleLog::query()->create([
+            'media_asset_id' => $asset->id,
+            'cloudinary_public_id' => 'maverick-academy/library/recycled-ref',
+            'url' => $asset->url,
+            'hash' => str_repeat('e', 64),
+            'disk_env' => 'shared',
+        ]);
+
+        $result = app(MediaUsageService::class)->refresh();
+
+        $this->assertFalse($asset->fresh()->used);
+        $this->assertNotContains($asset->id, $result['referenced_ids']);
     }
 
     public function test_normalize_folders_repoints_legacy_local_paths(): void

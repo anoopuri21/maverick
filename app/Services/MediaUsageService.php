@@ -86,7 +86,9 @@ class MediaUsageService
         $referenced = [];
 
         foreach ($this->tables() as $table) {
-            if (in_array($table, config('media.schema_skip_tables', []), true)) {
+            // Compare on the schema-stripped name: drivers may qualify tables
+            // ("main.settings" on SQLite), which would bypass this skip list.
+            if (in_array($this->baseTable($table), config('media.schema_skip_tables', []), true)) {
                 continue;
             }
 
@@ -329,6 +331,18 @@ class MediaUsageService
         }
 
         return $names[0] ?? 'id';
+    }
+
+    /**
+     * Schema drivers may return qualified names (SQLite: "main.settings").
+     * Strip the schema prefix for skip-list comparisons. Queries must keep
+     * using the raw name.
+     */
+    protected function baseTable(string $table): string
+    {
+        $pos = strrpos($table, '.');
+
+        return $pos === false ? $table : substr($table, $pos + 1);
     }
 
     protected function normalizeUrl(string $url): string
