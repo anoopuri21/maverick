@@ -221,6 +221,9 @@ class MediaMergeService
                 continue;
             }
 
+            // TODO(merge-debug): temporary diagnostic, remove after pinpointing.
+            fwrite(STDERR, "\n[merge-debug] table {$table}: fk=[".implode(',', $fkColumns).'] url=['.implode(',', $urlColumns).'] json=['.implode(',', $jsonColumns).'] text=['.implode(',', $textColumns).']');
+
             $chunkColumn = $this->chunkColumn($table, $columns);
             $select = array_values(array_unique(array_merge(
                 [$chunkColumn], $fkColumns, $urlColumns, $jsonColumns, $textColumns
