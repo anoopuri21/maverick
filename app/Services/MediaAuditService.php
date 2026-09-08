@@ -3,10 +3,11 @@
 namespace App\Services;
 
 use App\Models\MediaAsset;
+use App\Services\Concerns\ExtractsStoredUrls;
+use App\Services\Concerns\ScansMediaTables;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Schema;
 
 /**
  * Read-only inventory of every stored image URL.
@@ -17,6 +18,9 @@ use Illuminate\Support\Facades\Schema;
  */
 class MediaAuditService
 {
+    use ExtractsStoredUrls;
+    use ScansMediaTables;
+
     protected const SAMPLE_LIMIT = 50;
 
     /** @var array<string, array{url: string, source: string, via: string}> */
@@ -209,11 +213,9 @@ class MediaAuditService
                     $urlColumns[] = $name;
                 }
 
-                if (in_array($type, ['json', 'jsonb'], true)
-                    || (in_array($type, ['text', 'longtext', 'mediumtext'], true)
-                        && ($name === 'payload' || str_contains($name, 'json')))) {
+                if ($this->isJsonColumn($name, $type)) {
                     $jsonColumns[] = $name;
-                } elseif (in_array($type, ['text', 'longtext', 'mediumtext', 'string', 'varchar', 'char'], true)) {
+                } elseif ($this->isTextColumnType($type)) {
                     $textColumns[] = $name;
                 }
             }
@@ -294,17 +296,7 @@ class MediaAuditService
             return;
         }
 
-        if (preg_match_all('#https?://[^\s"\'<>]+#i', $raw, $matches) === false) {
-            return;
-        }
-
-        foreach ($matches[0] as $found) {
-            $found = rtrim($found, '.,;)]}');
-
-            if ($found === '') {
-                continue;
-            }
-
+        foreach ($this->extractUrlsFromString($raw) as $found) {
             $this->recordUrl($found, $source, $found === $raw ? $via : 'embedded');
         }
     }
@@ -357,93 +349,6 @@ class MediaAuditService
         $this->urls[$url] = ['url' => $url, 'source' => $source, 'via' => $via];
     }
 
-    protected function cloudNameFromUrl(string $url): string
-    {
-        $path = parse_url($url, PHP_URL_PATH) ?? '';
-        $segments = array_values(array_filter(explode('/', $path)));
-
-        return $segments[0] ?? '(unknown)';
-    }
-
-    /**
-     * Conservative check: a comma always means a transformation chain, and a
-     * leading param segment (w_500, f_auto, ...) means a single transform.
-     * A public_id folder that literally looks like a param is a false positive
-     * by design — the audit flags it for human review.
-     */
-    protected function hasTransformation(string $url): bool
-    {
-        $path = (string) parse_url($url, PHP_URL_PATH);
-        $pos = strpos($path, '/upload/');
-
-        if ($pos === false) {
-            return false;
-        }
-
-        foreach (array_filter(explode('/', substr($path, $pos + 8))) as $segment) {
-            if (preg_match('/^v\d+$/', $segment)) {
-                continue;
-            }
-
-            return $this->isTransformSegment($segment);
-        }
-
-        return false;
-    }
-
-    protected function isTransformSegment(string $segment): bool
-    {
-        if ($segment === '' || preg_match('/^v\d+$/', $segment)) {
-            return false;
-        }
-
-        if (str_contains($segment, ',')) {
-            return true;
-        }
-
-        return (bool) preg_match('/^(w|h|c|g|x|y|r|q|f|e|dpr|o|bo|b|a|t|fl|dl|l|u|pg|vs|du|so|eo|vc|ac|af|cs|d|fn|ki)_/i', $segment);
-    }
-
-    /**
-     * Best-effort public_id that also understands stored transformation URLs.
-     * CloudinaryService::extractPublicId() is intentionally left untouched.
-     */
-    protected function extractPublicIdSmart(string $url): ?string
-    {
-        $path = (string) parse_url($url, PHP_URL_PATH);
-        $pos = strpos($path, '/upload/');
-
-        if ($pos === false) {
-            return null;
-        }
-
-        $parts = [];
-
-        foreach (array_filter(explode('/', substr($path, $pos + 8))) as $segment) {
-            if (preg_match('/^v\d+$/', $segment) || $this->isTransformSegment($segment)) {
-                continue;
-            }
-
-            $parts[] = $segment;
-        }
-
-        if ($parts === []) {
-            return null;
-        }
-
-        $last = array_pop($parts);
-        $dot = strrpos($last, '.');
-
-        if ($dot !== false) {
-            $last = substr($last, 0, $dot);
-        }
-
-        $parts[] = $last;
-        $publicId = implode('/', $parts);
-
-        return $publicId !== '' ? $publicId : null;
-    }
-
     /**
      * @return array{total: int, samples: list<array{hash: string, ids: list<int>, count: int}>}
      */
@@ -479,73 +384,5 @@ class MediaAuditService
         usort($groups, static fn (array $a, array $b) => $b['count'] <=> $a['count']);
 
         return ['total' => count($groups), 'samples' => array_slice($groups, 0, self::SAMPLE_LIMIT)];
-    }
-
-    protected function looksLikeMediaUrlColumn(string $name): bool
-    {
-        $name = strtolower($name);
-
-        return str_contains($name, 'image')
-            || str_contains($name, 'logo')
-            || str_contains($name, 'photo')
-            || str_contains($name, 'thumbnail')
-            || str_contains($name, 'banner')
-            || str_contains($name, 'avatar')
-            || str_contains($name, 'favicon')
-            || str_contains($name, 'icon')
-            || str_ends_with($name, '_url');
-    }
-
-    /**
-     * @return list<string>
-     */
-    protected function tables(): array
-    {
-        if (method_exists(Schema::getFacadeRoot(), 'getTableListing')) {
-            $tables = Schema::getTableListing();
-        } else {
-            $tables = Schema::getAllTables();
-        }
-
-        return array_values(array_filter(array_map(function ($table) {
-            if (is_string($table)) {
-                return $table;
-            }
-
-            if (is_object($table)) {
-                return $table->name ?? $table->tablename ?? $table->table_name ?? null;
-            }
-
-            return null;
-        }, $tables)));
-    }
-
-    /**
-     * @return list<array{name: string, type?: string, type_name?: string}>
-     */
-    protected function columns(string $table): array
-    {
-        if (method_exists(Schema::getFacadeRoot(), 'getColumns')) {
-            return Schema::getColumns($table);
-        }
-
-        return array_map(
-            static fn (string $name) => ['name' => $name, 'type_name' => ''],
-            Schema::getColumnListing($table)
-        );
-    }
-
-    /**
-     * @param  list<array{name: string}>  $columns
-     */
-    protected function chunkColumn(string $table, array $columns): string
-    {
-        $names = array_column($columns, 'name');
-
-        if (in_array('id', $names, true)) {
-            return 'id';
-        }
-
-        return $names[0] ?? 'id';
     }
 }

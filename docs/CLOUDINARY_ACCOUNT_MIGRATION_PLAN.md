@@ -201,6 +201,10 @@ php artisan media:migrate-account --limit=200
 php artisan media:migrate-account --verify
 php artisan media:migrate-account --limit=200   # delta pass (window uploads)
 
+# R3 pre-migration merge (fresh DB backup recommended before --confirm)
+php artisan media:merge-duplicates --dry-run
+php artisan media:merge-duplicates --confirm
+
 # Phase 2 (fresh DB backup ke BAAD)
 php artisan media:cutover-account --dry-run
 php artisan media:cutover-account --confirm
