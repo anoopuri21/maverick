@@ -46,8 +46,7 @@ trait ScansMediaTables
      * @return list<string>
      */
     protected function tables(): array
-    {
-        if (method_exists(Schema::getFacadeRoot(), 'getTableListing')) {
+    {        if (method_exists(Schema::getFacadeRoot(), 'getTableListing')) {
             $tables = Schema::getTableListing();
         } else {
             $tables = Schema::getAllTables();
@@ -64,6 +63,18 @@ trait ScansMediaTables
 
             return null;
         }, $tables)));
+    }
+
+    /**
+     * Schema drivers may return qualified names (SQLite: "main.settings").
+     * Strip the schema prefix for skip-list comparisons and source labels.
+     * Queries must keep using the raw name.
+     */
+    protected function baseTable(string $table): string
+    {
+        $pos = strrpos($table, '.');
+
+        return $pos === false ? $table : substr($table, $pos + 1);
     }
 
     /**

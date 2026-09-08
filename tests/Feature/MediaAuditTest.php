@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\MediaAsset;
+use App\Models\MediaRecycleLog;
 use App\Models\PartnerLogo;
 use App\Services\MediaAuditService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -155,6 +156,29 @@ class MediaAuditTest extends TestCase
             [$assetA->id, $assetB->id],
             array_map(static fn (array $group) => $group['ids'], $after['duplicate_groups']['samples'])
         );
+    }
+
+    public function test_skipped_tables_do_not_leak_urls_into_report(): void
+    {
+        // Regression: schema-qualified table names ("main.*" on SQLite) once
+        // bypassed the skip list, so skipped tables (sessions/cache/jobs/
+        // recycle logs) leaked their URLs into the report as live references.
+        $before = app(MediaAuditService::class)->audit();
+
+        MediaRecycleLog::query()->create([
+            'media_asset_id' => null,
+            'cloudinary_public_id' => 'maverick-academy/lib/recycled',
+            'url' => 'https://res.cloudinary.com/recycle-only/image/upload/v1/maverick-academy/lib/recycled.jpg',
+            'hash' => str_repeat('9', 64),
+            'disk_env' => 'shared',
+        ]);
+
+        $after = app(MediaAuditService::class)->audit();
+
+        $this->assertSame($before['scan']['distinct_urls'], $after['scan']['distinct_urls']);
+        $this->assertArrayNotHasKey('recycle-only', $after['cloud_names']);
+        $this->assertContains('media_recycle_logs', $after['scan']['skipped']);
+        $this->assertContains('media_assets', $after['scan']['skipped']);
     }
 
     public function test_audit_command_runs_successfully(): void

@@ -183,8 +183,10 @@ class MediaAuditService
         $skipped = [];
 
         foreach ($this->tables() as $table) {
-            if ($table === 'media_assets' || in_array($table, $skip, true)) {
-                $skipped[] = $table;
+            $base = $this->baseTable($table);
+
+            if ($base === 'media_assets' || in_array($base, $skip, true)) {
+                $skipped[] = $base;
 
                 continue;
             }
@@ -242,11 +244,11 @@ class MediaAuditService
 
             try {
                 DB::table($table)->select($select)->orderBy($chunkColumn)->chunkById(200, function ($rows) use (
-                    $table, $urlColumns, $jsonColumns, $textColumns, $labelColumns
+                    $table, $base, $urlColumns, $jsonColumns, $textColumns, $labelColumns
                 ) {
                     foreach ($rows as $row) {
                         $data = (array) $row;
-                        $source = $table;
+                        $source = $base;
 
                         if ($labelColumns !== []) {
                             $source .= ':'.($data['group'] ?? '').'.'.($data['name'] ?? '');

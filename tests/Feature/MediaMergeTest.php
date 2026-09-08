@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\MediaAsset;
+use App\Models\MediaRecycleLog;
 use App\Models\PartnerLogo;
 use App\Services\MediaMergeService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -71,6 +72,40 @@ class MediaMergeTest extends TestCase
         $this->assertSame(2, $refs['transformed']);
         $this->assertGreaterThanOrEqual(1, $refs['json_fk']);
         $this->assertSame(1, $refs['json_urls']);
+    }
+
+    public function test_skipped_tables_and_media_assets_self_rows_are_never_touched(): void
+    {
+        // Regression: schema-qualified table names ("main.settings" on SQLite)
+        // once bypassed the skip list, so media_assets scanned itself (+1 urls)
+        // and skipped tables like media_recycle_logs got rewritten.
+        [$canonical, $dup] = $this->createPairWithReferences();
+        $dupUrl = $dup->url;
+
+        $log = MediaRecycleLog::query()->create([
+            'media_asset_id' => $dup->id,
+            'cloudinary_public_id' => 'maverick-academy/lib/recycled',
+            'url' => $dupUrl,
+            'hash' => str_repeat('9', 64),
+            'disk_env' => 'shared',
+        ]);
+
+        $result = app(MediaMergeService::class)->merge(dryRun: false);
+
+        $this->assertSame(1, $result['merged']);
+        $this->assertSame([], $result['errors']);
+
+        // Skipped table untouched (neither its FK nor its URL rewritten).
+        $this->assertSame($dupUrl, $log->fresh()->url);
+        $this->assertSame($dup->id, $log->fresh()->media_asset_id);
+
+        // The dup's own media_assets row keeps its URL when soft-deleted.
+        $this->assertTrue($dup->fresh()->trashed());
+        $this->assertSame($dupUrl, $dup->fresh()->url);
+        $this->assertFalse($canonical->fresh()->trashed());
+
+        // URL counts stay exact (no self-scan, no skipped-table leakage).
+        $this->assertSame(2, $result['details'][0]['refs']['urls']);
     }
 
     public function test_canonical_prefers_shared_disk_env_over_lower_id(): void
