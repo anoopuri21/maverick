@@ -36,6 +36,11 @@ class MediaAuditTest extends TestCase
 
     public function test_audit_collects_urls_and_flags_transformed_legacy_and_duplicates(): void
     {
+        // NOTE: Spatie settings migrations (database/settings/) seed ~26 URLs
+        // on migrate, so this test asserts DELTAS, not absolute counts. Test
+        // URLs use unique hosts/paths that can never collide with seeds.
+        $before = app(MediaAuditService::class)->audit();
+
         $assetA = MediaAsset::query()->create($this->assetAttrs([
             'hash' => str_repeat('a', 64),
             'cloudinary_public_id' => 'maverick-academy/lib/a',
@@ -82,60 +87,73 @@ class MediaAuditTest extends TestCase
         PartnerLogo::query()->create([
             'name' => 'External partner',
             'type' => 'alumni',
-            'logo_url' => 'https://images.pexels.com/photos/1/pexels-photo-1.jpg',
+            'logo_url' => 'https://images.pexels.com/photos/99999999/audit-test-photo.jpg',
             'description' => '<p><img src="https://res.cloudinary.com/demo-old/image/upload/v9/maverick-academy/lib/emb.jpg"></p>',
             'is_active' => true,
             'sort_order' => 2,
         ]);
+
+        $transformedUrl = 'https://res.cloudinary.com/demo-old/image/upload/w_500/v3/maverick-academy/lib/t.jpg';
 
         DB::table('settings')->insert([
             'group' => 'audit-test',
             'name' => 'hero',
             'locked' => false,
             'payload' => json_encode([
-                'image' => 'https://res.cloudinary.com/demo-old/image/upload/w_500/v3/maverick-academy/lib/t.jpg',
+                'image' => $transformedUrl,
                 'image_asset_id' => null,
             ]),
             'created_at' => now(),
             'updated_at' => now(),
         ]);
 
-        $report = app(MediaAuditService::class)->audit();
+        $after = app(MediaAuditService::class)->audit();
 
-        // Library volume (trashed rows included — scope is ALL).
-        $this->assertSame(4, $report['assets']['total']);
-        $this->assertSame(1, $report['assets']['trashed']);
-        $this->assertSame(0, $report['assets']['missing_url']);
-        $this->assertSame(0, $report['assets']['missing_public_id']);
-        $this->assertSame(300, $report['assets']['total_bytes']);
-        $this->assertSame(1, $report['assets']['unknown_bytes']);
+        // Library volume deltas (trashed rows included — scope is ALL).
+        $this->assertSame($before['assets']['total'] + 4, $after['assets']['total']);
+        $this->assertSame($before['assets']['trashed'] + 1, $after['assets']['trashed']);
+        $this->assertSame($before['assets']['missing_url'], $after['assets']['missing_url']);
+        $this->assertSame($before['assets']['missing_public_id'], $after['assets']['missing_public_id']);
+        $this->assertSame($before['assets']['total_bytes'] + 300, $after['assets']['total_bytes']);
+        $this->assertSame($before['assets']['unknown_bytes'] + 1, $after['assets']['unknown_bytes']);
 
-        // Distinct URLs: 4 asset URLs + pexels + embedded + transformed.
-        // Logo1 reuses asset A's URL, so it is not double-counted.
-        $this->assertSame(7, $report['scan']['distinct_urls']);
-        $this->assertSame(6, $report['cloud_names']['demo-old'] ?? 0);
-        $this->assertSame(1, $report['external_hosts']['images.pexels.com'] ?? 0);
-        $this->assertSame(0, $report['unparsed_urls']);
+        // Distinct URLs delta: 4 asset URLs + pexels + embedded + transformed.
+        // Logo1 reuses asset A's URL, so it adds nothing.
+        $this->assertSame($before['scan']['distinct_urls'] + 7, $after['scan']['distinct_urls']);
+        $this->assertSame(
+            ($before['cloud_names']['demo-old'] ?? 0) + 6,
+            $after['cloud_names']['demo-old'] ?? 0
+        );
+        $this->assertSame(
+            ($before['external_hosts']['images.pexels.com'] ?? 0) + 1,
+            $after['external_hosts']['images.pexels.com'] ?? 0
+        );
+        $this->assertSame($before['unparsed_urls'], $after['unparsed_urls']);
 
         // Stored transformation URL flagged with its settings source.
-        $this->assertSame(1, $report['transformed']['total']);
-        $this->assertStringContainsString(
-            'settings:audit-test.hero',
-            $report['transformed']['samples'][0]['source']
-        );
+        $this->assertSame($before['transformed']['total'] + 1, $after['transformed']['total']);
 
-        // Legacy env-prefixed public_id flagged once (URL + row agree).
-        $this->assertSame(1, $report['legacy_public_ids']['total']);
-        $this->assertSame(
+        $foundSource = null;
+        foreach ($after['transformed']['samples'] as $sample) {
+            if ($sample['url'] === $transformedUrl) {
+                $foundSource = $sample['source'];
+            }
+        }
+        $this->assertNotNull($foundSource);
+        $this->assertStringContainsString('settings:audit-test.hero', $foundSource);
+
+        // Legacy env-prefixed public_id flagged (URL + row agree on one entry).
+        $this->assertSame($before['legacy_public_ids']['total'] + 1, $after['legacy_public_ids']['total']);
+        $this->assertContains(
             'maverick-academy-local/lib/c',
-            $report['legacy_public_ids']['samples'][0]['public_id']
+            array_column($after['legacy_public_ids']['samples'], 'public_id')
         );
 
         // Same-hash pair reported as one merge candidate group.
-        $this->assertSame(1, $report['duplicate_groups']['total']);
-        $this->assertSame(
+        $this->assertSame($before['duplicate_groups']['total'] + 1, $after['duplicate_groups']['total']);
+        $this->assertContains(
             [$assetA->id, $assetB->id],
-            $report['duplicate_groups']['samples'][0]['ids']
+            array_map(static fn (array $group) => $group['ids'], $after['duplicate_groups']['samples'])
         );
     }
 
