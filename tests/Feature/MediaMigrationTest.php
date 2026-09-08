@@ -217,24 +217,28 @@ class MediaMigrationTest extends TestCase
         $this->assertNotContains('maverick-academy/lib/clash', $pids);
     }
 
-    public function test_same_old_pid_maps_once(): void
+    public function test_asset_and_settings_sharing_one_pid_map_once(): void
     {
+        // NOTE: cloudinary_public_id is UNIQUE + NOT NULL, so two asset rows
+        // can never share an old pid. The reachable same-pid case is
+        // cross-source: an asset row + a settings URL pointing at one file.
+        $url = 'https://res.cloudinary.com/demo-source/image/upload/v1/maverick-academy/lib/reused.jpg';
+
         MediaAsset::query()->create($this->assetAttrs([
             'hash' => str_repeat('f', 64),
             'cloudinary_public_id' => 'maverick-academy/lib/reused',
-            'url' => 'https://res.cloudinary.com/demo-source/image/upload/v1/maverick-academy/lib/reused.jpg',
+            'url' => $url,
         ]));
 
-        MediaAsset::query()->create($this->assetAttrs([
-            'hash' => str_repeat('0', 64),
-            'cloudinary_public_id' => 'maverick-academy/lib/reused',
-            'url' => 'https://res.cloudinary.com/demo-source/image/upload/v1/maverick-academy/lib/reused.jpg',
-        ]));
+        $this->createSetting('migrate-test', 'reused', $url);
 
         app(MediaMigrationService::class)->migrate();
 
         $this->assertCount(1, $this->fake->uploads);
+        $map = MediaMigrationMap::query()->where('old_public_id', 'maverick-academy/lib/reused')->first();
         $this->assertSame(1, MediaMigrationMap::query()->where('old_public_id', 'maverick-academy/lib/reused')->count());
+        $this->assertSame('migrated', $map->status);
+        $this->assertSame('asset', $map->source);
     }
 
     public function test_settings_url_without_asset_row_gets_settings_mapping(): void

@@ -41,7 +41,7 @@ class MediaMigrationService
     /** @var array<string, int> old_public_id => attempts (failed rows) */
     protected array $failedAttempts = [];
 
-    /** @var array<string, true> new_public_id already taken (DB + this run) */
+    /** @var array<string, string> new_public_id => claiming old_public_id (DB + this run) */
     protected array $claimedNew = [];
 
     /** @var array<string, int> hash => canonical asset id */
@@ -292,11 +292,10 @@ class MediaMigrationService
             ->pluck('attempts', 'old_public_id')
             ->all();
 
-        $this->claimedNew = [];
-
-        foreach (MediaMigrationMap::query()->whereNotNull('new_public_id')->pluck('new_public_id')->all() as $pid) {
-            $this->claimedNew[$pid] = true;
-        }
+        $this->claimedNew = MediaMigrationMap::query()
+            ->whereNotNull('new_public_id')
+            ->pluck('old_public_id', 'new_public_id')
+            ->all();
     }
 
     protected function loadCanonicalState(): void
@@ -557,7 +556,9 @@ class MediaMigrationService
         // [R2] Legacy env-suffixed public_ids land on the shared path.
         $target = $this->normalizeNewPublicId($pid);
 
-        if (isset($this->claimedNew[$target])) {
+        // A failed row reserves its own target — that self-claim must not
+        // block its retry; only another pid's claim blocks.
+        if (isset($this->claimedNew[$target]) && $this->claimedNew[$target] !== $pid) {
             $this->storeMapping([
                 'old_public_id' => $pid,
                 'new_public_id' => $target,
@@ -625,6 +626,8 @@ class MediaMigrationService
         }
 
         if ($this->run['dry']) {
+            // Track in-run claims so dry-run previews same-target conflicts.
+            $this->claimedNew[$target] = $pid;
             $this->countOutcome('migrated', $pid, $target, $source);
 
             return;
@@ -830,7 +833,7 @@ class MediaMigrationService
         $this->mapped[$attrs['old_public_id']] = $attrs['status'];
 
         if (! empty($attrs['new_public_id'])) {
-            $this->claimedNew[$attrs['new_public_id']] = true;
+            $this->claimedNew[$attrs['new_public_id']] = $attrs['old_public_id'];
         }
 
         if (in_array($attrs['old_public_id'], $this->canonicalPid, true)) {
