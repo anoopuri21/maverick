@@ -22,6 +22,10 @@
 @php
     $programs = collect($programs ?? []);
     $categories = collect($categories ?? []);
+    $requestedCategory = request()->query('category');
+    $activeCategory = ($requestedCategory && $categories->contains(fn ($cat) => ($cat->slug ?? null) === $requestedCategory))
+        ? $requestedCategory
+        : 'all';
 @endphp
 <div class="page-pl">
 
@@ -60,17 +64,20 @@
     <section id="programmes" class="pl-list" aria-label="Programme list">
         @if($categories->count())
             <div class="pl-filter" role="group" aria-label="Filter programmes" data-pl-filter>
-                <button type="button" class="pl-filter__btn is-active" data-filter="all" aria-pressed="true">All ({{ $programs->count() }})</button>
+                <button type="button" class="pl-filter__btn {{ $activeCategory === 'all' ? 'is-active' : '' }}" data-filter="all" aria-pressed="{{ $activeCategory === 'all' ? 'true' : 'false' }}">All ({{ $programs->count() }})</button>
                 @foreach($categories as $cat)
-                    <button type="button" class="pl-filter__btn" data-filter="{{ $cat->slug }}" aria-pressed="false">{{ $cat->name }} ({{ $cat->programs_count }})</button>
+                    <button type="button" class="pl-filter__btn {{ $activeCategory === $cat->slug ? 'is-active' : '' }}" data-filter="{{ $cat->slug }}" aria-pressed="{{ $activeCategory === $cat->slug ? 'true' : 'false' }}">{{ $cat->name }} ({{ $cat->programs_count }})</button>
                 @endforeach
             </div>
         @endif
 
         <div class="pl-grid" data-pl-grid>
             @forelse($programs as $program)
-                @php $catSlug = $program->programCategory?->slug ?? 'all'; @endphp
-                <a href="{{ filled($program->slug) ? route('programs.show', $program->slug) : '#' }}" class="pl-card" data-category="{{ $catSlug }}" @if(! filled($program->slug)) role="group" @endif>
+                @php
+                    $catSlug = $program->programCategory?->slug ?? 'all';
+                    $cardHidden = $activeCategory !== 'all' && $catSlug !== $activeCategory;
+                @endphp
+                <a href="{{ filled($program->slug) ? route('programs.show', $program->slug) : '#' }}" class="pl-card{{ $cardHidden ? ' is-hidden' : '' }}" data-category="{{ $catSlug }}" @if($cardHidden) hidden @endif @if(! filled($program->slug)) role="group" @endif>
                     @if($url = media_url($program->image_url ?? null))
                         <div class="pl-card__media">
                             <img src="{{ $url }}" alt="{{ $program->title }}" loading="lazy" width="800" height="540">

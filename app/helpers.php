@@ -66,10 +66,14 @@ if (! function_exists('settings_media_url')) {
     /**
      * Resolve a media URL from a settings row (URL column or *_asset_id).
      *
-     * @param  array<string, mixed>|object  $item
+     * @param  array<string, mixed>|object|null  $item
      */
-    function settings_media_url(array|object $item, string $field): ?string
+    function settings_media_url(array|object|null $item, string $field): ?string
     {
+        if ($item === null) {
+            return null;
+        }
+
         if (is_object($item) && method_exists($item, 'toArray')) {
             $item = $item->toArray();
         } elseif (is_object($item)) {

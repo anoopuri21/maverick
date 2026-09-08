@@ -5,6 +5,7 @@
      only when values exist (falls back to sensible defaults).
      ============================================================ --}}
 @php
+    $seo             = $seo ?? null;
     $metaTitle       = $seo->meta_title ?? null;
     $metaDescription = $seo->meta_description ?? null;
     $canonical       = $seo->canonical_url ?? null;

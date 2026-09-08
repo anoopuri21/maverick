@@ -212,6 +212,12 @@
         @if(empty($navCat['programs']))
         <li class="navbar__mobile-category-empty">No programmes yet.</li>
         @endif
+        <li>
+          <a href="{{ $navCat['viewAll'] ?? route('programs.index', ['category' => $navCat['slug']]) }}" class="navbar__mobile-category-sublink navbar__mobile-category-viewall">
+            View All {{ $navCat['name'] }}
+            <span class="navbar__mobile-category-sublink-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+          </a>
+        </li>
       </ul>
     </li>
     @endforeach

@@ -11,14 +11,18 @@
             ? \Illuminate\Support\Str::beforeLast($statePath, '.').'.'.$urlField
             : $urlField;
 
-        if (! $asset && method_exists($field, 'getRecord')) {
+        // Prefer sibling form state (typed URL) over record / livewire path guessing.
+        $fallbackUrl = data_get($field->getContainer()->getRawState(), $urlField);
+
+        if (! $asset && blank($fallbackUrl) && method_exists($field, 'getRecord')) {
             $fallbackUrl = data_get($field->getRecord(), $urlField);
         }
 
         if (! $asset && blank($fallbackUrl)) {
             $livewire = $getLivewire();
             $formData = is_array($livewire->data ?? null) ? $livewire->data : [];
-            $fallbackUrl = data_get($formData, $urlStatePath);
+            $fallbackUrl = data_get($formData, $urlField)
+                ?? data_get($formData, $urlStatePath);
         }
     }
 
@@ -33,7 +37,7 @@
     :field="$field"
 >
     <div
-        wire:key="media-picker-{{ $statePath }}-{{ $state ?? 'empty' }}"
+        wire:key="media-picker-{{ $statePath }}-{{ $state ?? 'empty' }}-{{ filled($fallbackUrl) ? md5((string) $fallbackUrl) : 'nourl' }}"
         x-data
         x-on:media-asset-selected.window="
             if ($event.detail.statePath === @js($statePath)) {

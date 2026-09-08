@@ -15,7 +15,7 @@ use App\Support\PublicContentCache;
  *
  * Structure:
  * [
- *   ['name' => 'Diplomas', 'slug' => 'diplomas', 'viewAll' => '/programs',
+ *   ['name' => 'Diplomas', 'slug' => 'diplomas', 'viewAll' => '/programs?category=diplomas',
  *    'programs' => [
  *       ['title' => '...', 'url' => '/programs/x', 'university' => '...'],
  *    ]],
@@ -44,7 +44,7 @@ class NavMenu
                     'name'     => $category->name,
                     'slug'     => $category->slug,
                     'icon'     => $category->icon,
-                    'viewAll'  => route('programs.index'),
+                    'viewAll'  => route('programs.index', ['category' => $category->slug]),
                     'programs' => $category->programs->map(function ($p) {
                         return [
                             'title'      => $p->title,

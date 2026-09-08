@@ -41,7 +41,7 @@
         <ul class="footer__links">
           @forelse(($footerProgramCategories ?? collect()) as $category)
           <li>
-            <a href="{{ route('programs.index') }}" class="footer__link">{{ $category->name }}</a>
+            <a href="{{ route('programs.index', ['category' => $category->slug]) }}" class="footer__link">{{ $category->name }}</a>
           </li>
           @empty
           <li>

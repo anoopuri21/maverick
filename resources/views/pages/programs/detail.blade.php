@@ -91,7 +91,7 @@
         <div class="hero-backdrop" style="--hero-bg: url('{{ $heroBgUrl }}')"></div>
         @if($hasScholarship)<span class="ribbon">{{ $chrome->scholarship_badge ?? '' }}</span>@endif
         <div class="container">
-            <div class="hero-badge rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>{{ $program->level ?: '' }} @if($cat) · {{ $cat->name }} @endif</div>
+            <div class="hero-badge rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>{{ $program->level ?: '' }} @if(is_object($cat) && filled($cat->name ?? null)) · {{ $cat->name }} @endif</div>
             <div class="hero-grid">
                 <div class="hero-copy">
                     <h1 class="d rv">{{ $program->title }}</h1>

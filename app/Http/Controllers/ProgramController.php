@@ -64,13 +64,13 @@ class ProgramController extends Controller
                     'short_description' => $program->short_description,
                     'image_url' => $program->image_url,
                     'sort_order' => $program->sort_order,
-                    'programCategory' => $program->programCategory
+                    'program_category' => $program->programCategory
                         ? [
                             'name' => $program->programCategory->name,
                             'slug' => $program->programCategory->slug,
                         ]
                         : null,
-                    'universityPartner' => $program->universityPartner
+                    'university_partner' => $program->universityPartner
                         ? ['name' => $program->universityPartner->name]
                         : null,
                 ]

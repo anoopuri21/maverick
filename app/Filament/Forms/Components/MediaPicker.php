@@ -27,13 +27,10 @@ class MediaPicker extends Field
         $this->afterStateUpdated(function (MediaPicker $component, $state, Set $set): void {
             $urlField = $component->getUrlField();
 
-            if (! $urlField) {
-                return;
-            }
-
-            if (! $state) {
-                $set($urlField, null);
-
+            // Only sync URL when an asset is selected. Clearing the picker is
+            // handled by the Clear button (sets both asset id + URL). Leaving
+            // the asset empty must not wipe a manually typed URL.
+            if (! $urlField || ! $state) {
                 return;
             }
 
@@ -145,7 +142,10 @@ class MediaPicker extends Field
         }
 
         $data[$assetKey] = null;
-        $data[$fieldName] = null;
+
+        if (empty($data[$fieldName])) {
+            $data[$fieldName] = null;
+        }
 
         return $data;
     }

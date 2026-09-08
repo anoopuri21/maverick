@@ -127,6 +127,7 @@ class ProgramResource extends Resource
                                         TextInput::make('image_url')
                                             ->label('Hero Image URL')
                                             ->nullable()
+                                            ->live(onBlur: true)
                                             ->helperText('Recommended: 800×540px. Or choose from the media library below.')
                                             ->columnSpanFull(),
                                         MediaPicker::forField('image_url', 'programs')

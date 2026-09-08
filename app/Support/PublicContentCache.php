@@ -27,7 +27,7 @@ class PublicContentCache
 
     public const EVENTS = 'events.v2';
 
-    public const NAVMENU_PROGRAMS = 'navmenu.programs';
+    public const NAVMENU_PROGRAMS = 'navmenu.programs.v2';
 
     public const BLOGS_TOP_TAGS = 'blogs.top_tags';
 
@@ -87,6 +87,7 @@ class PublicContentCache
             'faculty-insights.preview',
             'university-partners',
             'alumni-logos',
+            'navmenu.programs',
         ];
     }
 
@@ -112,7 +113,7 @@ class PublicContentCache
      * Cache Eloquent rows as plain arrays (DB cache corrupts serialized models), then hydrate.
      *
      * @param  class-string<Model>  $modelClass
-     * @param  array<string, class-string<Model>>  $relations  snake_case array key => related model class
+     * @param  array<string, class-string<Model>>  $relations  relation array key (snake or camel) => related model class
      * @return EloquentCollection<int, Model>
      */
     public static function rememberHydrated(string $key, string $modelClass, callable $callback, array $relations = [], ?int $ttl = null): EloquentCollection
@@ -147,15 +148,24 @@ class PublicContentCache
 
             $loaded = [];
 
-            foreach ($relations as $snakeKey => $relatedClass) {
-                if (! array_key_exists($snakeKey, $row)) {
+            foreach ($relations as $relationKey => $relatedClass) {
+                $snakeKey = Str::snake($relationKey);
+                $camelKey = Str::camel($relationKey);
+                $resolvedKey = match (true) {
+                    array_key_exists($relationKey, $row) => $relationKey,
+                    array_key_exists($snakeKey, $row) => $snakeKey,
+                    array_key_exists($camelKey, $row) => $camelKey,
+                    default => null,
+                };
+
+                if ($resolvedKey === null) {
                     continue;
                 }
 
-                $related = $row[$snakeKey];
-                unset($row[$snakeKey]);
+                $related = $row[$resolvedKey];
+                unset($row[$relationKey], $row[$snakeKey], $row[$camelKey]);
 
-                $relationName = Str::camel($snakeKey);
+                $relationName = $camelKey;
 
                 if ($related === null) {
                     $loaded[$relationName] = null;
