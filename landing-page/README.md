@@ -30,6 +30,7 @@ Documentation → Review → Compilation. QA status: **approved for design hando
 |---|---|
 | `gulf-masters/01-keyword-research-gcc-uae.md` | 6 high-demand keywords (online MBA in Dubai · MBA in UAE for working professionals · UK online MBA · online MSc Dubai · MBA in Sharjah · no-visa/relocation) + meta + schema + price anchors |
 | `gulf-masters/02-masters-landing-content-gcc-uae.md` | **Full design-ready page content** built on those 6 keywords (AED-first, WhatsApp-first, 16-block spine) |
+| `gulf-masters/content-audit-report.pdf` | **QA audit of the writer's draft** (`uploads/master-landing-page-content.pdf`) — 10-page report: structure, GCC-basis, SEO/keywords, word quality, copyright, compliance, CRO + P0/P1/P2 improvement plan. Verdict: revise before build (5.0/10) |
 
 ## Prototype
 
