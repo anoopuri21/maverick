@@ -1,0 +1,1078 @@
+{
+  "description": "Editorial priority inputs, not measured search demand. The four components are Demand, Answer-format opportunity, Conversion intent and Feasibility.",
+  "weights": [
+    "0.35",
+    "0.25",
+    "0.25",
+    "0.15"
+  ],
+  "providers": {
+    "rushford-business-school": {
+      "1": {
+        "components": [
+          2,
+          3,
+          5,
+          5
+        ],
+        "tier": 4
+      },
+      "2": {
+        "components": [
+          2,
+          3,
+          4,
+          5
+        ],
+        "tier": 4
+      },
+      "3": {
+        "components": [
+          4,
+          4,
+          5,
+          4
+        ],
+        "tier": 2
+      },
+      "4": {
+        "components": [
+          4,
+          4,
+          5,
+          3
+        ],
+        "tier": 2
+      },
+      "5": {
+        "components": [
+          5,
+          4,
+          5,
+          3
+        ],
+        "tier": 1
+      },
+      "6": {
+        "components": [
+          4,
+          3,
+          5,
+          3
+        ],
+        "tier": 2
+      },
+      "7": {
+        "components": [
+          5,
+          5,
+          4,
+          3
+        ],
+        "tier": 1
+      },
+      "8": {
+        "components": [
+          4,
+          4,
+          4,
+          3
+        ],
+        "tier": 2
+      },
+      "9": {
+        "components": [
+          2,
+          3,
+          5,
+          5
+        ],
+        "tier": 4
+      },
+      "10": {
+        "components": [
+          5,
+          4,
+          5,
+          3
+        ],
+        "tier": 1
+      },
+      "11": {
+        "components": [
+          4,
+          5,
+          4,
+          3
+        ],
+        "tier": 2
+      },
+      "12": {
+        "components": [
+          4,
+          4,
+          5,
+          3
+        ],
+        "tier": 2
+      },
+      "13": {
+        "components": [
+          5,
+          5,
+          5,
+          4
+        ],
+        "tier": 1
+      },
+      "14": {
+        "components": [
+          4,
+          3,
+          5,
+          3
+        ],
+        "tier": 2
+      },
+      "15": {
+        "components": [
+          5,
+          4,
+          4,
+          3
+        ],
+        "tier": 1
+      },
+      "16": {
+        "components": [
+          3,
+          3,
+          4,
+          4
+        ],
+        "tier": 3
+      },
+      "17": {
+        "components": [
+          2,
+          3,
+          5,
+          5
+        ],
+        "tier": 4
+      },
+      "18": {
+        "components": [
+          5,
+          5,
+          4,
+          3
+        ],
+        "tier": 1
+      },
+      "19": {
+        "components": [
+          3,
+          5,
+          4,
+          3
+        ],
+        "tier": 3
+      },
+      "20": {
+        "components": [
+          4,
+          4,
+          5,
+          3
+        ],
+        "tier": 2
+      },
+      "21": {
+        "components": [
+          4,
+          3,
+          5,
+          3
+        ],
+        "tier": 2
+      },
+      "22": {
+        "components": [
+          4,
+          4,
+          4,
+          3
+        ],
+        "tier": 2
+      },
+      "23": {
+        "components": [
+          2,
+          3,
+          5,
+          5
+        ],
+        "tier": 4
+      },
+      "24": {
+        "components": [
+          5,
+          5,
+          4,
+          4
+        ],
+        "tier": 1
+      },
+      "25": {
+        "components": [
+          4,
+          5,
+          4,
+          3
+        ],
+        "tier": 2
+      },
+      "26": {
+        "components": [
+          5,
+          4,
+          5,
+          3
+        ],
+        "tier": 1
+      },
+      "27": {
+        "components": [
+          4,
+          4,
+          5,
+          4
+        ],
+        "tier": 2
+      },
+      "28": {
+        "components": [
+          3,
+          4,
+          4,
+          4
+        ],
+        "tier": 3
+      },
+      "29": {
+        "components": [
+          3,
+          3,
+          5,
+          3
+        ],
+        "tier": 3
+      },
+      "30": {
+        "components": [
+          4,
+          4,
+          4,
+          3
+        ],
+        "tier": 2
+      }
+    },
+    "girne-american-university": {
+      "1": {
+        "components": [
+          2,
+          3,
+          5,
+          5
+        ],
+        "tier": 4
+      },
+      "2": {
+        "components": [
+          4,
+          4,
+          5,
+          4
+        ],
+        "tier": 2
+      },
+      "3": {
+        "components": [
+          5,
+          4,
+          5,
+          3
+        ],
+        "tier": 1
+      },
+      "4": {
+        "components": [
+          3,
+          4,
+          3,
+          4
+        ],
+        "tier": 3
+      },
+      "5": {
+        "components": [
+          4,
+          4,
+          5,
+          3
+        ],
+        "tier": 2
+      },
+      "6": {
+        "components": [
+          5,
+          4,
+          5,
+          3
+        ],
+        "tier": 1
+      },
+      "7": {
+        "components": [
+          4,
+          3,
+          5,
+          3
+        ],
+        "tier": 2
+      },
+      "8": {
+        "components": [
+          4,
+          4,
+          4,
+          3
+        ],
+        "tier": 2
+      },
+      "9": {
+        "components": [
+          2,
+          3,
+          5,
+          5
+        ],
+        "tier": 4
+      },
+      "10": {
+        "components": [
+          4,
+          5,
+          4,
+          3
+        ],
+        "tier": 2
+      },
+      "11": {
+        "components": [
+          5,
+          4,
+          5,
+          3
+        ],
+        "tier": 1
+      },
+      "12": {
+        "components": [
+          4,
+          4,
+          5,
+          3
+        ],
+        "tier": 2
+      },
+      "13": {
+        "components": [
+          4,
+          3,
+          5,
+          3
+        ],
+        "tier": 2
+      },
+      "14": {
+        "components": [
+          5,
+          4,
+          4,
+          3
+        ],
+        "tier": 2
+      },
+      "15": {
+        "components": [
+          2,
+          3,
+          5,
+          5
+        ],
+        "tier": 4
+      },
+      "16": {
+        "components": [
+          5,
+          5,
+          4,
+          4
+        ],
+        "tier": 1
+      },
+      "17": {
+        "components": [
+          4,
+          4,
+          5,
+          3
+        ],
+        "tier": 2
+      },
+      "18": {
+        "components": [
+          4,
+          4,
+          5,
+          4
+        ],
+        "tier": 2
+      },
+      "19": {
+        "components": [
+          3,
+          3,
+          5,
+          3
+        ],
+        "tier": 3
+      },
+      "20": {
+        "components": [
+          4,
+          4,
+          4,
+          3
+        ],
+        "tier": 2
+      },
+      "21": {
+        "components": [
+          2,
+          3,
+          5,
+          5
+        ],
+        "tier": 4
+      },
+      "22": {
+        "components": [
+          4,
+          5,
+          3,
+          4
+        ],
+        "tier": 2
+      },
+      "23": {
+        "components": [
+          3,
+          4,
+          4,
+          4
+        ],
+        "tier": 3
+      },
+      "24": {
+        "components": [
+          4,
+          4,
+          5,
+          3
+        ],
+        "tier": 2
+      },
+      "25": {
+        "components": [
+          3,
+          3,
+          5,
+          3
+        ],
+        "tier": 3
+      },
+      "26": {
+        "components": [
+          3,
+          4,
+          4,
+          4
+        ],
+        "tier": 3
+      },
+      "27": {
+        "components": [
+          2,
+          3,
+          5,
+          5
+        ],
+        "tier": 4
+      },
+      "28": {
+        "components": [
+          4,
+          4,
+          4,
+          3
+        ],
+        "tier": 2
+      },
+      "29": {
+        "components": [
+          4,
+          5,
+          4,
+          3
+        ],
+        "tier": 2
+      },
+      "30": {
+        "components": [
+          4,
+          4,
+          5,
+          4
+        ],
+        "tier": 2
+      },
+      "31": {
+        "components": [
+          3,
+          3,
+          5,
+          3
+        ],
+        "tier": 3
+      },
+      "32": {
+        "components": [
+          4,
+          4,
+          4,
+          3
+        ],
+        "tier": 2
+      }
+    },
+    "university-west-scotland": {
+      "1": {
+        "components": [
+          2,
+          3,
+          5,
+          5
+        ],
+        "tier": 4
+      },
+      "2": {
+        "components": [
+          5,
+          5,
+          4,
+          4
+        ],
+        "tier": 1
+      },
+      "3": {
+        "components": [
+          4,
+          5,
+          4,
+          3
+        ],
+        "tier": 2
+      },
+      "4": {
+        "components": [
+          5,
+          4,
+          5,
+          3
+        ],
+        "tier": 1
+      },
+      "5": {
+        "components": [
+          4,
+          4,
+          5,
+          4
+        ],
+        "tier": 2
+      },
+      "6": {
+        "components": [
+          4,
+          4,
+          5,
+          3
+        ],
+        "tier": 2
+      },
+      "7": {
+        "components": [
+          3,
+          3,
+          5,
+          3
+        ],
+        "tier": 3
+      },
+      "8": {
+        "components": [
+          4,
+          4,
+          4,
+          3
+        ],
+        "tier": 2
+      },
+      "9": {
+        "components": [
+          4,
+          4,
+          4,
+          4
+        ],
+        "tier": 2
+      }
+    },
+    "university-creative-arts": {
+      "1": {
+        "components": [
+          2,
+          4,
+          5,
+          5
+        ],
+        "tier": 4
+      },
+      "2": {
+        "components": [
+          5,
+          5,
+          5,
+          4
+        ],
+        "tier": 1
+      },
+      "3": {
+        "components": [
+          4,
+          5,
+          4,
+          3
+        ],
+        "tier": 2
+      },
+      "4": {
+        "components": [
+          4,
+          4,
+          5,
+          3
+        ],
+        "tier": 2
+      },
+      "5": {
+        "components": [
+          3,
+          4,
+          4,
+          4
+        ],
+        "tier": 3
+      },
+      "6": {
+        "components": [
+          4,
+          4,
+          5,
+          3
+        ],
+        "tier": 2
+      },
+      "7": {
+        "components": [
+          4,
+          4,
+          5,
+          3
+        ],
+        "tier": 2
+      },
+      "8": {
+        "components": [
+          4,
+          4,
+          4,
+          3
+        ],
+        "tier": 2
+      },
+      "9": {
+        "components": [
+          3,
+          3,
+          4,
+          4
+        ],
+        "tier": 3
+      }
+    },
+    "university-wolverhampton": {
+      "1": {
+        "components": [
+          2,
+          3,
+          5,
+          5
+        ],
+        "tier": 4
+      },
+      "2": {
+        "components": [
+          4,
+          5,
+          5,
+          4
+        ],
+        "tier": 2
+      },
+      "3": {
+        "components": [
+          5,
+          5,
+          5,
+          3
+        ],
+        "tier": 1
+      },
+      "4": {
+        "components": [
+          4,
+          4,
+          5,
+          3
+        ],
+        "tier": 2
+      },
+      "5": {
+        "components": [
+          4,
+          4,
+          5,
+          4
+        ],
+        "tier": 2
+      },
+      "6": {
+        "components": [
+          4,
+          4,
+          5,
+          3
+        ],
+        "tier": 2
+      },
+      "7": {
+        "components": [
+          3,
+          3,
+          5,
+          3
+        ],
+        "tier": 3
+      },
+      "8": {
+        "components": [
+          4,
+          4,
+          4,
+          3
+        ],
+        "tier": 2
+      },
+      "9": {
+        "components": [
+          3,
+          3,
+          4,
+          4
+        ],
+        "tier": 3
+      }
+    },
+    "gatehouse-diplomas": {
+      "1": {
+        "components": [
+          2,
+          3,
+          5,
+          5
+        ],
+        "tier": 4
+      },
+      "2": {
+        "components": [
+          5,
+          5,
+          4,
+          4
+        ],
+        "tier": 1
+      },
+      "3": {
+        "components": [
+          5,
+          5,
+          4,
+          4
+        ],
+        "tier": 1
+      },
+      "4": {
+        "components": [
+          4,
+          5,
+          4,
+          3
+        ],
+        "tier": 2
+      },
+      "5": {
+        "components": [
+          4,
+          4,
+          5,
+          3
+        ],
+        "tier": 2
+      },
+      "6": {
+        "components": [
+          4,
+          4,
+          5,
+          3
+        ],
+        "tier": 2
+      },
+      "7": {
+        "components": [
+          3,
+          3,
+          5,
+          3
+        ],
+        "tier": 3
+      },
+      "8": {
+        "components": [
+          4,
+          4,
+          5,
+          4
+        ],
+        "tier": 2
+      },
+      "9": {
+        "components": [
+          4,
+          4,
+          4,
+          3
+        ],
+        "tier": 2
+      }
+    },
+    "qualifi-diplomas": {
+      "1": {
+        "components": [
+          2,
+          3,
+          5,
+          5
+        ],
+        "tier": 4
+      },
+      "2": {
+        "components": [
+          4,
+          4,
+          5,
+          4
+        ],
+        "tier": 2
+      },
+      "3": {
+        "components": [
+          4,
+          5,
+          4,
+          4
+        ],
+        "tier": 2
+      },
+      "4": {
+        "components": [
+          3,
+          4,
+          5,
+          4
+        ],
+        "tier": 3
+      },
+      "5": {
+        "components": [
+          3,
+          3,
+          5,
+          3
+        ],
+        "tier": 3
+      },
+      "6": {
+        "components": [
+          4,
+          4,
+          4,
+          4
+        ],
+        "tier": 2
+      },
+      "7": {
+        "components": [
+          2,
+          3,
+          5,
+          5
+        ],
+        "tier": 4
+      },
+      "8": {
+        "components": [
+          4,
+          5,
+          4,
+          4
+        ],
+        "tier": 2
+      },
+      "9": {
+        "components": [
+          5,
+          5,
+          5,
+          4
+        ],
+        "tier": 1
+      },
+      "10": {
+        "components": [
+          4,
+          4,
+          5,
+          3
+        ],
+        "tier": 2
+      },
+      "11": {
+        "components": [
+          3,
+          3,
+          5,
+          3
+        ],
+        "tier": 3
+      },
+      "12": {
+        "components": [
+          5,
+          5,
+          5,
+          3
+        ],
+        "tier": 1
+      },
+      "13": {
+        "components": [
+          2,
+          3,
+          5,
+          5
+        ],
+        "tier": 4
+      },
+      "14": {
+        "components": [
+          4,
+          4,
+          4,
+          4
+        ],
+        "tier": 2
+      },
+      "15": {
+        "components": [
+          4,
+          4,
+          5,
+          4
+        ],
+        "tier": 2
+      },
+      "16": {
+        "components": [
+          3,
+          4,
+          4,
+          3
+        ],
+        "tier": 3
+      },
+      "17": {
+        "components": [
+          3,
+          3,
+          5,
+          3
+        ],
+        "tier": 3
+      },
+      "18": {
+        "components": [
+          4,
+          4,
+          5,
+          4
+        ],
+        "tier": 2
+      },
+      "19": {
+        "components": [
+          4,
+          4,
+          4,
+          3
+        ],
+        "tier": 2
+      }
+    }
+  }
+}

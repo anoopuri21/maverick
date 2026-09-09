@@ -1,94 +1,61 @@
-# FAQ Selection & Global Ranking Report — Qualifi Diplomas (L3 / L5 Extended / L7)
+# FAQ Selection & Priority Report — Qualifi Diplomas
 
-**Report date:** 2026-08-19 · **Status of FAQ set:** ✅ Approved 2026-08-19 (Cycle #7)
-**FAQ file:** `approved/qualifi-diplomas.md` · **Questions analysed:** 19
+**Updated:** 9 September 2026
+**Questions:** 22 · **Programme categories:** 3 · **Programme-list entries:** 45
 
----
+## 1. Purpose and coverage
 
-## 1. Executive Summary
+The questions support programme selection, admissions, costs, study commitments and further-study or career planning. Category-level information applies to the listed programmes without assuming identical entry, delivery or commercial terms. Programme-list coverage does not independently confirm the availability or recognition of every award.
 
-- **File strategy: "THE LADDER."** Gatehouse file ne L7-definitional queries own kar liye
-  the, isliye Qualifi file ne **ladder/journey angle** own kiya hai — "which level should
-  I start at", "Extended meaning", "L5 → degree top-up", "L7 → master's/LLM routes".
-  **Zero duplicate query targets vs Gatehouse** — planned cannibalisation control executed.
-- **Star assets:** Q9 (which level to start — decision-guidance query, har prospect ka
-  first confusion), Q14 (L5 → bachelor's top-up — funnel to portfolio degree routes),
-  Q19 (L7 → master's/LLM progression — portfolio ka ladder-completion story).
-- **3 categories, 19 FAQs** (L3: 6 · L5: 6 · L7: 7 — sab 5–10 range me), 45 programmes covered.
-- Repeated themes (fees/entry) har level par **level-specific angle** se likhe gaye
-  (L3 = accessible entry, L5 = experience route, L7 = degree-or-experience) — intra-file
-  cannibalisation bhi controlled.
+**Coverage:** Level 3 | Level 5 Extended | Level 7.
 
-## 2. Methodology
+## 2. Priority methodology
 
-Same model: **D** 35% · **S** 25% · **C** 25% · **F** 15% → Score (max 5.00). Tiers 🔴🟠🟡⚪.
-Qualitative estimates — GSC validation recommended; no invented volumes.
+Priorities are editorial estimates, not measured search rankings, search volumes or traffic forecasts. Recorded component scores use Demand (35%), Answer-format opportunity (25%), Conversion intent (25%) and Feasibility (15%), each on a 1–5 scale. Where components were not recorded, only the existing editorial total is retained. Missing components are not inferred.
 
-## 3. Question-by-Question Analysis
+Informational immigration questions have no assigned tier, score or rank. Similar themes may occur for different providers; unique wording does not prove separate search intent.
 
-### Category 1 — Level 3 Diplomas
+| Estimated tier | Questions |
+|---|---:|
+| Tier 1 - Very High | 2 |
+| Tier 2 - High | 10 |
+| Tier 3 - Medium | 7 |
+| Tier 4 - Branded | 3 |
+| Informational — not scored | 0 |
 
-| # | Question (short) | Bucket | Selection Reason | Query Family | Tier | D | S | C | F | Score |
-|---|---|---|---|---|---|---|---|---|---|---|
-| Q1 | L3 diplomas list | General | Category hub — 8 tracks | Branded | ⚪ | 2 | 3 | 5 | 5 | 3.45 |
-| Q2 | Is Qualifi recognised? | General | Provider trust anchor — poore file ka credibility base | "is qualifi recognised" | 🟠 | 4 | 4 | 5 | 4 | 4.25 |
-| Q3 | What is L3 + who is it for? | General | Entry-level definitional; school-leaver/career-changer capture | "what is level 3 diploma" | 🟠 | 4 | 5 | 4 | 4 | 4.25 |
-| Q4 | L3 entry requirements | Eligibility | Accessibility message — barrier-free entry | "level 3 diploma requirements" | 🟡 | 3 | 4 | 5 | 4 | 3.90 |
-| Q5 | L3 fees | Financials | Decision-stage | "level 3 diploma fees" | 🟡 | 3 | 3 | 5 | 3 | 3.50 |
-| Q6 | After L3 — progression | Careers | Ladder-entry story; L5 internal funnel | "after level 3 diploma" | 🟠 | 4 | 4 | 4 | 4 | 4.00 |
+## 3. Question register and rationale
 
-### Category 2 — Level 5 Extended Diplomas
+| ID | Question | Reader need | Estimated tier | D/S/C/F | Score |
+|---|---|---|---|---|---:|
+| Q1 | Which Qualifi Level 3 Diplomas are available? | Programme orientation and informed course selection | Tier 4 - Branded | 2/3/5/5 | 3.45 |
+| Q2 | Is Qualifi a recognised awarding organisation? | Distinguishes awarding status, qualification scope and intended use | Tier 2 - High | 4/4/5/4 | 4.25 |
+| Q3 | What is a Level 3 Diploma, and who is it for? | Programme orientation and informed course selection | Tier 2 - High | 4/5/4/4 | 4.25 |
+| Q4 | What do I need to enrol in a Level 3 Diploma? | Clarifies route-specific eligibility and application evidence | Tier 3 - Medium | 3/4/5/4 | 3.90 |
+| Q5 | How much does a Level 3 Diploma cost to study? | Cost, payment and funding clarity before accepting an offer | Tier 3 - Medium | 3/3/5/3 | 3.50 |
+| Q6 | What can I progress to after a Level 3 Diploma? | Helps assess career or further-study fit without outcome promises | Tier 2 - High | 4/4/4/4 | 4.00 |
+| Q7 | Which Level 5 Extended Diplomas can I choose from? | Programme orientation and informed course selection | Tier 4 - Branded | 2/3/5/5 | 3.45 |
+| Q8 | What does "Extended Diploma" mean at Level 5? | Explains qualification terminology and helps compare suitable routes | Tier 2 - High | 4/5/4/4 | 4.25 |
+| Q9 | Which level should I start at — Level 3 or Level 5? | Programme orientation and informed course selection | Tier 1 - Very High | 5/5/5/4 | 4.85 |
+| Q10 | What are the entry requirements for a Level 5 Extended Diploma? | Clarifies route-specific eligibility and application evidence | Tier 2 - High | 4/4/5/3 | 4.10 |
+| Q11 | What is the fee structure for a Level 5 Extended Diploma? | Cost, payment and funding clarity before accepting an offer | Tier 3 - Medium | 3/3/5/3 | 3.50 |
+| Q12 | Can a Level 5 Extended Diploma lead to a bachelor's degree? | Helps assess career or further-study fit without outcome promises | Tier 1 - Very High | 5/5/5/3 | 4.70 |
+| Q13 | Which specialisations do the Qualifi Level 7 Diplomas cover? | Programme orientation and informed course selection | Tier 4 - Branded | 2/3/5/5 | 3.45 |
+| Q14 | Who are the Qualifi Level 7 Diplomas designed for? | Programme orientation and informed course selection | Tier 2 - High | 4/4/4/4 | 4.00 |
+| Q15 | Do I need a degree to enrol in a Qualifi Level 7 Diploma? | Clarifies route-specific eligibility and application evidence | Tier 2 - High | 4/4/5/4 | 4.25 |
+| Q16 | How long do the Level 7 Diplomas take, and how are they assessed? | Clarifies route-specific eligibility and application evidence | Tier 3 - Medium | 3/4/4/3 | 3.50 |
+| Q17 | How are Level 7 Diploma fees structured? | Cost, payment and funding clarity before accepting an offer | Tier 3 - Medium | 3/3/5/3 | 3.50 |
+| Q18 | What can I progress to after a Qualifi Level 7 Diploma? | Helps assess career or further-study fit without outcome promises | Tier 2 - High | 4/4/5/4 | 4.25 |
+| Q19 | What career impact can a Qualifi Level 7 Diploma have? | Helps assess career or further-study fit without outcome promises | Tier 2 - High | 4/4/4/3 | 3.85 |
+| Q20 | Can I stack Qualifi diplomas over time — Level 3, then 5, then 7? | Practical pre-enrolment planning and responsibilities | Tier 2 - High | Not recorded | 4.15 |
+| Q21 | Do Qualifi diplomas expire or need renewing? | Practical pre-enrolment planning and responsibilities | Tier 3 - Medium | Not recorded | 3.70 |
+| Q22 | Will my certificate show the official accreditation number? | Practical pre-enrolment planning and responsibilities | Tier 3 - Medium | Not recorded | 3.65 |
 
-| # | Question (short) | Bucket | Selection Reason | Query Family | Tier | D | S | C | F | Score |
-|---|---|---|---|---|---|---|---|---|---|---|
-| Q7 | L5 Extended list | General | Category hub — 14 tracks, tech-cluster width | Branded | ⚪ | 2 | 3 | 5 | 5 | 3.45 |
-| Q8 | "Extended Diploma" meaning | General | Definitional — unique term, snippet-friendly | "what is extended diploma" | 🟠 | 4 | 5 | 4 | 4 | 4.25 |
-| Q9 | Which level should I start at? | General | **Decision-guidance star** — har prospect ka pehla confusion; dono categories me route karta hai | "which diploma level should I start" | 🔴 | 5 | 5 | 5 | 4 | 4.85 |
-| Q10 | L5 entry requirements | Eligibility | L3-or-experience route clarity | "level 5 diploma entry" | 🟠 | 4 | 4 | 5 | 3 | 4.10 |
-| Q11 | L5 fees | Financials | Decision-stage | "level 5 diploma fees" | 🟡 | 3 | 3 | 5 | 3 | 3.50 |
-| Q12 | L5 → bachelor's top-up | Careers | **Funnel star** — degree top-up route portfolio se jodta hai | "level 5 diploma to degree" | 🔴 | 5 | 5 | 5 | 3 | 4.70 |
+## Information references and limitations
 
-### Category 3 — Level 7 Diplomas
+Programme-specific award titles, eligibility, fees, delivery and support should be checked against the current written offer. Qualification acceptance is determined for the intended purpose by the relevant receiving institution, employer, evaluator or authority. The Programme Information & Source Verification report explains these distinctions.
 
-| # | Question (short) | Bucket | Selection Reason | Query Family | Tier | D | S | C | F | Score |
-|---|---|---|---|---|---|---|---|---|---|---|
-| Q13 | L7 diplomas list (23) | General | Category hub — widest-range positioning | Branded | ⚪ | 2 | 3 | 5 | 5 | 3.45 |
-| Q14 | Who are L7 diplomas for? | General | Audience angle (Gatehouse-duplicate avoided by design) | "level 7 diploma for professionals" | 🟠 | 4 | 4 | 4 | 4 | 4.00 |
-| Q15 | Degree needed for L7? | Eligibility | Experience-route hope-widener | "level 7 diploma without degree" | 🟠 | 4 | 4 | 5 | 4 | 4.25 |
-| Q16 | Duration + assessment | Eligibility | Practicality filter | "level 7 diploma how long" | 🟡 | 3 | 4 | 4 | 3 | 3.55 |
-| Q17 | L7 fees | Financials | Decision-stage | "qualifi level 7 fees" | 🟡 | 3 | 3 | 5 | 3 | 3.50 |
-| Q18 | Progression after L7 (MBA/LLM routes) | Careers | **Ladder-completion star** — UOW LLM + master's feeders; portfolio ka strongest cross-link | "level 7 diploma progression masters" | 🟠 | 4 | 4 | 5 | 4 | 4.25 |
-| Q19 | L7 career impact | Careers | Sector-authority ROI across 23 tracks | "level 7 diploma worth it" | 🟠 | 4 | 4 | 4 | 3 | 3.85 |
+- [1](https://qualifi.net/qualifi-level-5-extended-diploma-in-business-management/)
+- [2](https://qualifi.net/qualifi-level-5-extended-diploma-in-hospitality-and-tourism-management/)
+- [3](https://qualifi.net/qualifications/)
 
-## 4. Global Ranking — Top 10
-
-| Rank | Q# | Question (short) | Category | Tier | Score |
-|---|---|---|---|---|---|
-| 🥇 1 | Q9 | Which level should I start at? | L5 | 🔴 | 4.85 |
-| 🥈 2 | Q12 | L5 → bachelor's top-up | L5 | 🔴 | 4.70 |
-| 🥉 3 | Q2 | Is Qualifi recognised? | L3 | 🟠 | 4.25 |
-| 3= | Q3 | What is L3 + who for? | L3 | 🟠 | 4.25 |
-| 3= | Q8 | "Extended Diploma" meaning | L5 | 🟠 | 4.25 |
-| 3= | Q15 | Degree needed for L7? | L7 | 🟠 | 4.25 |
-| 3= | Q18 | Progression after L7 | L7 | 🟠 | 4.25 |
-| 8 | Q10 | L5 entry requirements | L5 | 🟠 | 4.10 |
-| 9 | Q6 | After L3 progression | L3 | 🟠 | 4.00 |
-| 9= | Q14 | Who are L7 for? | L7 | 🟠 | 4.00 |
-
-**Tier distribution:** 🔴 2 · 🟠 9 · 🟡 5 · ⚪ 3 (total 19)
-
-## 5. Recommendations
-
-1. **Q9 (which level) ko landing-flow ka center banayein** — ye query undecided prospects
-   ko capture karti hai aur teeno categories me distribute karti hai.
-2. **Verify #5 sabse valuable hai** — Qualifi L7 Law → UOW LLM feeder confirm hote hi
-   dono pages par bidirectional links + UOW file me feeder mention. Ye portfolio ki
-   **"diploma → degree → master's" ladder story** complete karta hai.
-3. **Verify #1 publish-blocker** — Qualifi regulation wording.
-4. Cross-file cannibalisation audit final publish se pehle ek baar aur (Gatehouse vs
-   Qualifi pages ka PAA overlap zero engineered hai — validate post-launch via GSC).
-5. GSC validation loop: 30–60 din.
-
----
-
-*Methodology note: qualitative expert estimates; no numeric search volumes invented.*
+Clear answers and relevant internal links can support reader understanding, but neither question order nor structured data guarantees ranking, traffic or AI inclusion. Google documents the end of FAQ rich results from 7 May 2026. [1](https://developers.google.com/search/updates#deprecating-the-faq-rich-result-feature)

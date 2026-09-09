@@ -3,6 +3,9 @@
 > Normalized from `listing.pdf` (pasted by owner in chat). This file defines the FAQ queue.
 > NOTE: Country names below are for internal reference ONLY — final FAQ content is
 > country-neutral (global audience rule).
+> Review note (2026-09-07): this is the supplied coverage list, not evidence of current
+> programme availability. Award-title discrepancies are recorded in
+> `reports/verification-update-2026-09-07.md`; original entries below are preserved.
 
 ## 1. Rushford Business School (RBS)
 
@@ -125,7 +128,7 @@
 ### Category 5.1 — Master of Laws — 1 programme
 1. Master of Laws (LLM)
 
-## 6. Diploma Programmes (listed after UOW in PDF — awarding-body attribution TBC by owner)
+## 6. Diploma Programmes (listed after UOW in PDF — Gatehouse and Qualifi confirmed as separate providers)
 
 ### Category 6.1 — Gatehouse Level 7 Diplomas — 4 programmes
 1. Level 7 Diploma in Strategic Leadership & Management

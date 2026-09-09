@@ -1,7 +1,8 @@
 # FAQ Project — University Tracker
 
 > Single source of truth for the queue (order = programme list PDF, `inputs/listing.md`).
-> The agent may only work on the **topmost non-approved** university. Statuses:
+> Original drafting used provider-by-provider approval. Routine maintenance and the
+> 2026-09-07 all-file audit were delegated by the owner; website publication is still gated. Statuses:
 > `⬜ Pending` → `🟡 Drafted` → `🔵 In Review` → `🟠 Changes Requested` → `✅ Approved`.
 >
 > **Owner mandates (2026-08-19):** (1) FAQs are generic per programme CATEGORY — one set
@@ -10,15 +11,21 @@
 
 | # | University / Provider | Categories (FAQ sets) | Programmes covered | Status | Draft File | Approved On |
 |---|----------------------|----------------------|--------------------|--------|-----------|-------------|
-| 1 | Rushford Business School (RBS) | 4 — BBA · MBA · MSc · Doctoral (PhD/DBA/EPD) | 41 | ✅ Approved | `approved/rushford-business-school.md` + `reports/rushford-faq-selection-report.md` | 2026-08-19 |
-| 2 | Girne American University (GAU) | 5 — BSc · MBA · EMBA · MSc (Thesis) · PhD | 43 | ✅ Approved | `approved/girne-american-university.md` + `reports/girne-american-university-faq-selection-report.md` | 2026-08-19 |
-| 3 | University of the West of Scotland (UWS) | 1 — Undergraduate (BA Hons Global Business) | 1 | ✅ Approved | `approved/university-west-scotland.md` + `reports/university-west-scotland-faq-selection-report.md` | 2026-08-19 |
-| 4 | University for the Creative Arts (UCA) | 1 — Global MBA (dual with RBS) | 1 | ✅ Approved | `approved/university-creative-arts.md` + `reports/university-creative-arts-faq-selection-report.md` | 2026-08-19 |
-| 5 | University of Wolverhampton (UOW) | 1 — Master of Laws (LLM) | 1 | ✅ Approved | `approved/university-wolverhampton.md` + `reports/university-wolverhampton-faq-selection-report.md` | 2026-08-19 |
-| 6 | Gatehouse Diplomas (separate provider — confirmed) | 1 — Level 7 Diplomas | 4 | ✅ Approved | `approved/gatehouse-diplomas.md` + `reports/gatehouse-diplomas-faq-selection-report.md` | 2026-08-19 |
-| 7 | Qualifi Diplomas (separate provider — confirmed) | 3 — Level 3 · Level 5 Extended · Level 7 | 45 | ✅ Approved | `approved/qualifi-diplomas.md` + `reports/qualifi-diplomas-faq-selection-report.md` | 2026-08-19 |
+| 1 | Rushford Business School (RBS) | 4 — BBA · MBA · MSc · Doctoral (PhD/DBA/EPD) | 41 | Historical approval; Sep review | `approved/rushford-business-school.md` + `reports/rushford-faq-selection-report.md` | 2026-08-19 |
+| 2 | Girne American University (GAU) | 5 — BSc · MBA · EMBA · Thesis-based master's · PhD | 43 | Historical approval; Sep review | `approved/girne-american-university.md` + `reports/girne-american-university-faq-selection-report.md` | 2026-08-19 |
+| 3 | University of the West of Scotland (UWS) | 1 — Global Business (award title pending) | 1 | Historical approval; Sep review | `approved/university-west-scotland.md` + `reports/university-west-scotland-faq-selection-report.md` | 2026-08-19 |
+| 4 | University for the Creative Arts (UCA) | 1 — Global MBA (dual with RBS) | 1 | Historical approval; Sep review | `approved/university-creative-arts.md` + `reports/university-creative-arts-faq-selection-report.md` | 2026-08-19 |
+| 5 | University of Wolverhampton (UOW) | 1 — Master of Laws (LLM) | 1 | Historical approval; Sep review | `approved/university-wolverhampton.md` + `reports/university-wolverhampton-faq-selection-report.md` | 2026-08-19 |
+| 6 | Gatehouse Diplomas (separate provider — confirmed) | 1 — Level 7 Diplomas | 4 | Historical approval; Sep review | `approved/gatehouse-diplomas.md` + `reports/gatehouse-diplomas-faq-selection-report.md` | 2026-08-19 |
+| 7 | Qualifi Diplomas (separate provider — confirmed) | 3 — Level 3 · Level 5 Extended · Level 7 | 45 | Historical approval; Sep review | `approved/qualifi-diplomas.md` + `reports/qualifi-diplomas-faq-selection-report.md` | 2026-08-19 |
 
-**Totals: 7 providers · 16 category FAQ sets · 136 programmes covered · 117 FAQs — ALL APPROVED ✅ (project complete 2026-08-19)**
+**Current totals (2026-09-09): 7 providers · 16 category FAQ sets + 7 practical guides + 2 immigration clarifications · 136 supplied programme entries · 144 provider FAQs + 18 site-page FAQs = 162.**
+
+Provider approvals in the table are historical. The September corrections are a client-review
+revision, not website approval. There are 41 grouped partner/operational confirmations
+still open; exact UWS and UOW routes, GAU title reconciliation and Gatehouse delivery
+authorisation require particular attention. Baseline report: `reports/verification-update-2026-09-07.md`. New approved topic:
+`reports/gau-rbs-immigration-report-2026-09-09.md`.
 
 ## Resolved decisions (owner)
 
@@ -121,9 +128,58 @@
 | Cycle | Page | FAQs | Status | Draft |
 |---|---|---|---|---|
 | 3.1 | Homepage (brand-level; destination: Filament → Manage Homepage FAQs) | 8 | 🔵 In Review | `drafts/site-homepage.md` |
-| 3.2 | Edutainment / Educational Tours (upgrade of 15 hardcoded on-page FAQs → 10) | 10 | 🔵 In Review | `drafts/edutainment.md` |
+| 3.2 | Edutainment / Educational Tours (proposed set for current CMS settings) | 10 | 🔵 In Review | `drafts/edutainment.md` |
 
 - **2026-08-20** — Cycle 3 drafted: homepage set (8 brand-level Qs — model, awards, global
   access, support) + Edutainment upgraded set (10 Qs — safety/supervision NEW, parent-trust
   first, destination-neutral phrasing pending owner decision on naming). QA: 160 total
   questions project-wide, 0 duplicates, both drafts country-neutral. Awaiting owner review.
+
+
+## Cycle 4 — Existing FAQ Verification (2026-09-07)
+
+| Task | Result |
+|---|---|
+| Safe same-branch pull | Fast-forward to `f37fa7e`; previous artefacts backed up/stashed |
+| Review-set coverage | 160 questions; all 136 supplied entries mapped; no topics added |
+| Factual correction | Route-aware wording; unsupported promises removed; 41 grouped evidence items remain open |
+| Exact title reconciliation | UWS Global Business and GAU thesis-master's wording made neutral; original listing preserved |
+| Current CMS source review | Programme seeder, homepage DB query and three page-settings surfaces inspected; no DB import |
+| Export fixes | Literal HTML in PDFs fixed; shared parser and source-aligned local schema |
+| Reports | Counts/current question registers reconciled; old closure/SEO/originality conclusions superseded |
+| Publication | PDF-review refresh only; website content/settings unchanged |
+| Next topics | Await owner's next message; no programme immigration rule amendment executed |
+
+Reproducible checks and open-source limitations are in the current verification report
+and `internal/latest-verification.json`. A technical PASS is not evidence closure.
+
+
+## Cycle 4.1 — Approved US/UK Immigration Clarifications (2026-09-09)
+
+| Task | Result |
+|---|---|
+| Owner exception | `IMM-US-UK-2026-09-09`: exact RBS/GAU immigration FAQs only; all other visible FAQs stay country-neutral |
+| RBS | +1 provider-level FAQ; 36 total; existing 35 answers preserved |
+| GAU | +1 provider-level FAQ; 38 total; existing 37 answers preserved |
+| Applicability | Common process clarification across 9 supplied categories / 84 entries; not universal immigration acceptance |
+| Evidence | Ten sources rechecked and dated: GOV.UK, USCIS, provider/context and eduQua scheme-owner pages |
+| Reports | Separate sections in both provider selection reports and aggregate reports; dedicated client PDF and source register |
+| Ranking | Two new questions are client-requested and unscored; no invented demand tier or search-volume evidence |
+| Safeguards | Mandatory disclaimer, exact question/provider/section allowlist, negative-scope regression tests |
+| Counts | 144 provider + 18 site FAQs = 162; 136 supplied programme entries unchanged |
+| Publication | Client-review PDFs only; website, CMS, database, schema deployment and GitHub push not authorised |
+
+This approval supersedes the pending immigration-amendment status recorded in earlier
+logs for these two additions only. It does not close the existing 41 grouped partner
+confirmation items or establish an individual student's eligibility.
+
+
+## Document presentation cleanup — 2026-09-09
+
+- Removed client-approval/review-only context from all six PDFs, all presentation reports
+  and the download index. Kept source dates, substantive limitations and disclaimers.
+- Rebuilt provider reports as clean English registers. Preserved all 117 component
+  assessments, 25 editorial totals and two unscored immigration entries.
+- Separated internal QA output from presentation reports. Added automated context checks.
+- No change to the 162 FAQ answers, programme list or website/CMS content.
+- Owner explicitly authorised commit and push on `arena/01a019ff-maverick`.

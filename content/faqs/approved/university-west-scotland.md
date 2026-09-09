@@ -1,161 +1,172 @@
 # University of the West of Scotland (UWS) — Frequently Asked Questions
 
-<!-- STATUS: APPROVED 2026-08-19 (Cycle #3) | Selection & Ranking Report: reports/university-west-scotland-faq-selection-report.md -->
-<!-- SOURCES: inputs/listing.md (programme list); partner-institution programme description of
+<!-- AUDIT: 2026-09-07 — existing questions reviewed and corrected; no new topics.
+     Historical approval retained; this revision is for client review, NOT website publication.
+     Current evidence and open issues: reports/verification-update-2026-09-07.md. -->
+
+<!-- STATUS: HISTORICAL APPROVAL 2026-08-19 (Cycle #3) | Selection & Ranking Report: reports/university-west-scotland-faq-selection-report.md -->
+<!-- HISTORICAL SOURCES (2026-08-19; current per-answer sources and audit supersede these): inputs/listing.md (programme list); partner-institution programme description of
      the UWS BA Global Business (Top-Up) — third-party, all specifics carry VERIFY tags.
      Compiled 2026-08-19. -->
 <!-- RULES APPLIED: strict country-neutral (no country/city/region names in content — the
      university's own proper name is the only permitted geographic string); single-programme
      category, so the FAQ set doubles as the programme FAQ. -->
 
-> **About:** The University of the West of Scotland (UWS) is a long-established public
-> university whose degrees are recognised internationally. The **BA (Hons) in Global
-> Business** is its flexible route into an honours-level business qualification for
-> globally minded students and working professionals.
+> **About:** The University of the West of Scotland (UWS) lists a **BA Global Business**
+> partner-delivered route. Confirm the precise award title, any honours designation and
+> delivery arrangements for the programme in your offer.
 
 ---
 
-## Category 1 — BA (Hons) in Global Business
-*Single-programme category.*
+## Category 1 — Global Business Degree
+<!-- Single-programme category; supplied title is reconciled in the audit report. -->
 
 ### General Information
 
-<!-- Target keyword: "uws ba hons global business what is it" | Source: inputs/listing.md + partner description -->
-**Q. What is the BA (Hons) in Global Business from UWS?**
+<!-- Target keyword: "uws ba hons global business what is it" | Source: https://www.uws.ac.uk/international/partner-with-us/; https://icbsgroup.lk/programmes/ba-global-business-top-up/; reviewed 2026-09-07. -->
+**Q. What is the Global Business degree from UWS?**
 
-The BA (Hons) in Global Business is an **honours-level bachelor's degree awarded by the
-University of the West of Scotland (UWS)**. It develops your understanding of international
-markets, business strategy and cross-cultural management — preparing you to work with
-organisations and teams anywhere in the world.
+**Global Business is an undergraduate business degree route associated with UWS.**
+The university's published partner list identifies **BA Global Business**; the exact
+award title and any honours designation must be checked for the offer you receive.
+Study focuses on international business, strategy and related analytical skills rather
+than an automatic professional licence.
+<!-- [VERIFY: UWS-01 — supplied listing says BA (Hons); official partner list says BA Global Business, Level 9.] -->
 
-<!-- Target keyword: "what is a top-up degree how does it work" | Source: partner description — top-up route; definitional -->
+<!-- Target keyword: "what is a top-up degree how does it work" | Source: https://www.uws.ac.uk/international/partner-with-us/; https://icbsgroup.lk/programmes/ba-global-business-top-up/; reviewed 2026-09-07. -->
 **Q. Is this a top-up degree, and what does that mean?**
 
-Yes — the programme follows a **top-up route**. A top-up degree lets you build on your
-**previous studies or professional qualifications** and complete only the final stage of
-the bachelor's degree, instead of starting from year one. It is one of the fastest
-recognised ways to convert prior learning into a full degree award.
-<!-- Corroborated 2026-08-19 across multiple independent partner institutions delivering
-this UWS award: consistently described as a top-up degree, ~12 months, online. -->
+A published UWS partner route offers **BA Global Business as a top-up degree**. A top-up
+builds on prior learning that the university accepts, with further study required to
+complete the award. Confirm that this is the route in your offer and check the exact
+award title, entry credits and remaining modules before enrolling.
+<!-- [VERIFY: UWS-01 — Maverick route and award title; UWS-02 — accepted prior learning.] -->
 
-<!-- Target keyword: "ba global business top up duration one year" | Source: partner description — ~1 year (third-party) -->
-**Q. How long does the BA (Hons) Global Business take to complete?**
+<!-- Target keyword: "ba global business top up duration one year" | Source: https://www.uws.ac.uk/international/partner-with-us/; https://icbsgroup.lk/programmes/ba-global-business-top-up/; reviewed 2026-09-07. -->
+**Q. How long does the Global Business degree take to complete?**
 
-Because it is a top-up programme, it is designed to be completed in **around 12 months
-(one year)** of study. <!-- Corroborated across multiple independent partner sources
-(2026-08-19): consistently 12 months / 1 year. --> The exact timeline depends on your
-intake and study pace, which the admissions team will confirm with you.
+A published UWS partner's Global Business top-up is described as **12 months of study**.
+That timetable should not be assumed to apply to every route or to an honours award.
+Ask admissions to confirm the exact degree title, accepted prior learning, remaining
+study and completion schedule in Maverick's current offer.
+<!-- [VERIFY: UWS-01 — exact award and current delivery route; UWS-03 — duration.] -->
 
-<!-- Target keyword: "study ba global business online while working" | Source: partner description — online, designed for working professionals -->
+<!-- Target keyword: "study ba global business online while working" | Source: https://www.uws.ac.uk/international/partner-with-us/; https://icbsgroup.lk/programmes/ba-global-business-top-up/; reviewed 2026-09-07. -->
 **Q. Can I study the programme online while working?**
 
-Yes — the BA (Hons) Global Business is designed for **working professionals**, with
-**online classes you can join from anywhere in the world**. This means you can upgrade your qualifications to an
-honours degree without pausing your career or relocating.
-<!-- [VERIFY: delivery mode (fully online vs hybrid) in the current offer.] -->
+**Online study is advertised for a published UWS Global Business partner route.**
+Whether it fits your job depends on the actual teaching schedule, attendance rules and
+assessment workload. Confirm that Maverick's offer uses that delivery arrangement, and
+check session times and examination requirements before committing to a work-and-study
+plan.
+<!-- [VERIFY: UWS-03 — current mode, timetable and attendance requirements.] -->
 
-<!-- Target keyword: "is uws degree recognised" | Source: UWS = long-established public university; wording to confirm -->
+<!-- Target keyword: "is uws degree recognised" | Source: https://www.uws.ac.uk/international/partner-with-us/; reviewed 2026-09-07. -->
 **Q. Is a degree from the University of the West of Scotland recognised?**
 
-Yes. UWS is a **long-established public university**, and its degrees are recognised
-internationally by employers and academic institutions. <!-- [VERIFY: approved public
-wording for UWS heritage/recognition claims under the country-neutral rule (e.g. roots
-dating to 1897) — confirm what can be stated.] --> For recognition guidance specific to
-your goals, the admissions team can advise you individually.
+UWS is an **established university that awards degrees**, including programmes delivered
+through listed academic partners. Acceptance for employment, professional purposes or
+further study depends on the exact qualification and the receiving organisation's rules.
+Check the approved partner, degree title and any purpose-specific requirements rather
+than assuming universal recognition.
 
 ### Eligibility & Admission
 
-<!-- Target keyword: "top up degree entry requirements hnd level 5" | Source: top-up entry pattern — prior credits/diploma (VERIFY) -->
-**Q. What are the entry requirements for the BA (Hons) Global Business?**
+<!-- Target keyword: "top up degree entry requirements hnd level 5" | Source: https://www.uws.ac.uk/international/partner-with-us/; https://icbsgroup.lk/programmes/ba-global-business-top-up/; reviewed 2026-09-07. -->
+**Q. What are the entry requirements for the Global Business degree?**
 
-Entry to this top-up programme is based on your **prior learning**. You typically need a
-completed **higher diploma-level qualification (such as an HND or recognised equivalent)**
-in a business-related area. **Relevant professional experience** is also considered as an
-alternative route, subject to approval. <!-- Corroborated 2026-08-19: partner sources
-consistently list "completed HND, equivalent qualification, or relevant work experience
-(subject to approval)". --> Your eligibility is confirmed individually through a review by
-the admissions team, along with English proficiency evidence where applicable.
+**Top-up entry depends on the prior learning accepted for the specific programme.**
+Relevant diplomas, professional qualifications and documented experience may be assessed,
+but experience alone should not be treated as guaranteed final-stage entry. Submit your
+transcripts and qualification details so admissions can confirm eligibility, any credit
+recognition and the remaining study required.
+<!-- [VERIFY: UWS-02 — accepted qualifications, experience, English and credit-entry rules for Maverick's route.] -->
 
 ### Fees, Scholarships & Payments
 
-<!-- Target keyword: "ba global business top up fees" | Source: none for amounts — standard structure -->
+<!-- Target keyword: "ba global business top up fees" | Source: current partner offer sheet required; no verified portfolio-wide commercial policy; reviewed 2026-09-07. -->
 **Q. How are the fees structured for this programme?**
 
-Tuition follows an **instalment-friendly structure**, keeping payments manageable across
-your study period. Exact amounts, currency and any current scholarship or fee-support
-offers are confirmed by the admissions team during your eligibility review.
-<!-- [VERIFY: fee amounts, currency and instalment structure.] -->
+**Request a written quotation for the confirmed Global Business route and intake.**
+Check tuition, registration and any assessment charges, the billing currency and whether
+instalments are available. If credit recognition changes the study required, ask how that
+affects fees. Any scholarship or fee reduction must be confirmed in the offer.
+<!-- [VERIFY: UWS-04 — current fees and payment/funding terms.] -->
 
 ### Careers & Outcomes
 
-<!-- Target keyword: "career after ba hons global business" | Source: generic, programme-aligned -->
-**Q. What can I do after completing the BA (Hons) Global Business?**
+<!-- Target keyword: "career after ba hons global business" | Source: general study/career guidance, not an outcome or admissions guarantee; reviewed 2026-09-07. -->
+**Q. What can I do after completing the Global Business degree?**
 
-Graduates move into **globally oriented business roles** — international operations,
-business development, marketing, supply chain and management positions with organisations
-that work across borders. For professionals already in work, the honours degree strengthens
-promotion cases and formalises experience with a recognised qualification.
+Global business study can build skills relevant to **business development, international
+operations, marketing and management-related work**. Your opportunities depend on
+experience, demonstrated skills and employer requirements, not the degree title alone.
+For progression or promotion, check whether the intended organisation requires a
+particular award level or honours designation before choosing your route.
 
-<!-- Target keyword: "masters mba after top up degree" | Source: standard progression, subject to criteria -->
+<!-- Target keyword: "masters mba after top up degree" | Source: https://www.uws.ac.uk/international/partner-with-us/; https://icbsgroup.lk/programmes/ba-global-business-top-up/; general receiving-institution admissions guidance; reviewed 2026-09-07. -->
 **Q. Can I progress to a master's or MBA after this degree?**
 
-Yes. The BA (Hons) is a **full honours bachelor's qualification**, which is the standard
-entry credential for master's-level study — including MBA and specialised master's
-programmes — subject to the admission criteria of your chosen programme. Many top-up
-graduates continue directly into postgraduate study to compound their momentum.
+**Postgraduate progression depends on the completed award and the receiving programme's
+entry rules.** Some master's or MBA routes require an honours degree, particular results
+or work experience. Because the exact Global Business award must be confirmed, check its
+acceptance with your intended postgraduate institution rather than assuming automatic
+eligibility from the top-up label.
+<!-- [VERIFY: UWS-01 — award/honours status; UWS-02 — intended postgraduate entry requirements.] -->
 
 ---
 
 ## Applying & Practical Information
-*Provider-level questions. (Phase 2 addition.)*
+*Practical information to check before applying.*
 
-<!-- Target keyword: "turn work experience into a degree" | Source: corroborated top-up entry (experience route) -->
+<!-- Target keyword: "turn work experience into a degree" | Source: https://www.uws.ac.uk/international/partner-with-us/; https://icbsgroup.lk/programmes/ba-global-business-top-up/; reviewed 2026-09-07. -->
 **Q. Can I turn my work experience into a degree?**
 
-Yes — that is precisely what this top-up route is designed for. If you hold a completed
-**HND or equivalent qualification**, or bring **relevant professional experience (subject
-to approval)**, you can enter directly at the final stage and convert years of real-world
-work into a full **BA (Hons) awarded by UWS** in around 12 months. Your experience stops
-being "just experience" and becomes a recognised academic credential.
+**Relevant experience may support an assessment of prior learning, but it is not itself
+a degree.** A university must approve any credit or entry recognition, and you must still
+complete the remaining academic and assessment requirements. Ask for a written decision
+on how your qualifications and experience fit the specific Global Business route.
+<!-- [VERIFY: UWS-02 — recognition-of-prior-learning policy and permitted entry stage.] -->
 
-<!-- Target keyword: "does a top-up degree certificate say top up" | Source: standard top-up award practice (VERIFY certificate policy) -->
+<!-- Target keyword: "does a top-up degree certificate say top up" | Source: https://www.uws.ac.uk/international/partner-with-us/; https://icbsgroup.lk/programmes/ba-global-business-top-up/; reviewed 2026-09-07. -->
 **Q. What will my final certificate say?**
 
-Your award is the **BA (Hons) in Global Business from the University of the West of
-Scotland** — the degree itself, not a special variant. A top-up is an entry route, and
-the qualification you graduate with is the honours degree conferred by the university.
-<!-- [VERIFY: confirm certificate wording policy with the awarding university before
-publishing this answer.] -->
+**The certificate must carry the exact award conferred by the university.** Ask for
+confirmation of the degree title, honours status and any partner or delivery wording
+before enrolling. A top-up describes how you enter a programme; it does not, on its own,
+establish what will be printed on the final certificate.
+<!-- [VERIFY: UWS-01 — awarding-university confirmation of final title and certificate wording.] -->
 
 <!-- Target keyword: "study hours per week online degree" | Source: none for hours — honest framing (VERIFY) -->
 **Q. How many hours a week will I need to study?**
 
-Plan for **consistent weekly study alongside your job** — most successful top-up students
-protect fixed study slots rather than cramming. The exact guided-hours expectation for
+Plan for **consistent weekly study alongside your job** — setting aside regular study
+slots can help you manage reading, assignments and revision. The exact guided-hours expectation for
 your intake is confirmed by the admissions team, so you can agree a realistic routine
-before you start. <!-- [VERIFY: official weekly study-hours guidance for this programme.] -->
+before you start. <!-- [VERIFY: UWS-03 — official weekly study-hours guidance for this programme.] -->
 
 ---
 
-## Facts to Verify (updated 2026-08-19 after deep research — see Resolved section)
+## Facts to Verify (reviewed 2026-09-07)
 
-### Still open
+| ID | Open item | Evidence or action required |
+|---|---|---|
+| UWS-01 | **Award title/honours status — publication blocker** | Owner listing says BA (Hons) Global Business; UWS's official partner list says BA Global Business (Level 9), separately from BA (Hons) International Business & Finance. Obtain the exact Maverick agreement, course specification and certificate title |
+| UWS-02 | Entry, credit recognition and progression | Accepted HND/diploma/professional qualifications, experience rules, English evidence and receiving postgraduate requirements; experience alone is not automatic entry |
+| UWS-03 | Duration, delivery and workload | 12 months/online is confirmed on a named partner page, not for every UWS route or an unconfirmed honours award; confirm weekly hours and attendance |
+| UWS-04 | Commercial terms | Fees, currency, payment options and scholarships for the confirmed route |
 
-| # | Item | What the draft currently says | What needs confirming |
-|---|------|-------------------------------|----------------------|
-| 1 | Delivery mode | "Online classes from anywhere" | Fully online vs hybrid in current offer (partner sources say 100% online) |
-| 2 | UWS heritage/recognition wording | "Long-established public university" | Decision taken: keep neutral phrasing (no dates) — revisit only if owner wants heritage claims |
-| 3 | All fee data | Components only, no figures | Amounts, currency, instalment structure, scholarship availability |
+### Current evidence and corrections
 
-### ✅ Resolved (2026-08-19 deep research — corroborated across 3 independent partner institutions)
+Official UWS partner information and the named partner support a **BA Global Business
+route**, but do not close the mismatch with the supplied **BA (Hons)** label. Existing
+questions have been retained by intent and made title-neutral pending clarification;
+no programme was removed from the owner's listing. Automatic experience-to-degree,
+fastest-route and universal recognition claims have been removed.
 
-| Item | Resolution |
-|------|-----------|
-| Top-up structure | **Confirmed top-up route** — consistently described as a top-up degree by every partner delivering this UWS award |
-| Duration | **~12 months (1 year)** — consistent across all sources |
-| Entry requirements | **Completed HND/equivalent qualification, or relevant work experience (subject to approval)** — consistent partner criteria; individual review retained |
+Sources: `reports/verification-update-2026-09-07.md`.
 
 ---
 
-*Fee amounts, scholarships and entry requirements are confirmed individually during the
-admissions eligibility review and may change without notice.*
+*Programme availability, fees and entry requirements are confirmed for the selected
+route and intake before enrolment and may change.*

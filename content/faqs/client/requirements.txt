@@ -1,0 +1,4 @@
+# Versions used for the 2026-09-07 review build.
+reportlab==5.0.1
+pypdf==6.17.0
+pycountry==26.2.16

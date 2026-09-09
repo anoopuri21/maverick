@@ -1,70 +1,50 @@
-# FAQ Selection & Global Ranking Report — University of Wolverhampton (UOW)
+# FAQ Selection & Priority Report — University of Wolverhampton (UOW)
 
-**Report date:** 2026-08-19 · **Status of FAQ set:** ✅ Approved 2026-08-19 (Cycle #5)
-**FAQ file:** `approved/university-wolverhampton.md` · **Questions analysed:** 9
+**Updated:** 9 September 2026
+**Questions:** 12 · **Programme categories:** 1 · **Programme-list entries:** 1
 
----
+## 1. Purpose and coverage
 
-## 1. Executive Summary
+The questions support programme selection, admissions, costs, study commitments and further-study or career planning. Category-level information applies to the listed programmes without assuming identical entry, delivery or commercial terms. Programme-list coverage does not independently confirm the availability or recognition of every award.
 
-- **Star asset: "LLM without a law degree?" (Q3)** — globally strong PAA family; law-adjacent
-  professionals (compliance, HR, business) ka biggest doubt yehi hai.
-- **Strategic SME finding:** partner sources UOW LLM ko **6-month top-up route** describe
-  karte hain jo **Level 7 law diploma** ke upar build hota hai — matlab hamare **Qualifi L7
-  Law / International Business Law diplomas → LLM** ek powerful internal funnel ban sakta
-  hai (Verify #2). Confirm hone par ye cross-provider linking ka sabse valuable path hoga.
-- **Compliance actions (Editor):** (1) "WES Approved" claim source me tha — EXCLUDED.
-  (2) Explicit disclaimer add kiya ki LLM academic qualification hai, practise rights nahi
-  deta — legal niche me ye claim-risk sabse zyada hota hai.
-- Top-up angle UWS ke generic "what is a top-up degree" se alag keyword family me hai
-  ("LLM top up" vs "top-up degree") — cannibalisation avoided.
+**Coverage:** Master of Laws (route subject to confirmation).
 
-## 2. Methodology
+## 2. Priority methodology
 
-Same model: **D** 35% · **S** 25% · **C** 25% · **F** 15% → Score (max 5.00). Tiers 🔴🟠🟡⚪.
-Qualitative estimates — GSC se validate karein; no invented volumes.
+Priorities are editorial estimates, not measured search rankings, search volumes or traffic forecasts. Recorded component scores use Demand (35%), Answer-format opportunity (25%), Conversion intent (25%) and Feasibility (15%), each on a 1–5 scale. Where components were not recorded, only the existing editorial total is retained. Missing components are not inferred.
 
-## 3. Question-by-Question Analysis
+Informational immigration questions have no assigned tier, score or rank. Similar themes may occur for different providers; unique wording does not prove separate search intent.
 
-| # | Question (short) | Bucket | Selection Reason | Query Family | Tier | D | S | C | F | Score |
-|---|---|---|---|---|---|---|---|---|---|---|
-| Q1 | What is the UOW LLM? | General | Hub/anchor — degree + delivery + audience ek saath | Branded | ⚪ | 2 | 3 | 5 | 5 | 3.45 |
-| Q2 | LLM top-up route (6 months via L7) | General | **USP + funnel question** — fastest-route hook; Qualifi L7 feeder linkage | "LLM top up online" | 🟠 | 4 | 5 | 5 | 4 | 4.50 |
-| Q3 | LLM without law degree? | General | **Top PAA family** — law-adjacent professionals ka entry-hope question | "LLM without law degree" | 🔴 | 5 | 5 | 5 | 3 | 4.70 |
-| Q4 | LLM while working | General | Working-professional filter; legal-schedule empathy framing | "online LLM working professionals" | 🟠 | 4 | 4 | 5 | 3 | 4.10 |
-| Q5 | Is UOW recognised? | General | Trust objection | "is Wolverhampton recognised" | 🟠 | 4 | 4 | 5 | 4 | 4.25 |
-| Q6 | Entry requirements (3 routes) | Eligibility | Route-clarity list = list-snippet opportunity; self-disqualification rokta hai | "LLM entry requirements" | 🟠 | 4 | 4 | 5 | 3 | 4.10 |
-| Q7 | Fee structure | Financials | Decision-stage | "LLM fees" | 🟡 | 3 | 3 | 5 | 3 | 3.50 |
-| Q8 | LLM career opportunities | Careers | ROI + compliance-safe practice-rights disclaimer | "what can I do with LLM" | 🟠 | 4 | 4 | 4 | 3 | 3.85 |
-| Q9 | Doctoral study after LLM | Careers | Pathway cross-sell (GAU PhD in Law available in portfolio!) | "PhD in law after LLM" | 🟡 | 3 | 3 | 4 | 4 | 3.40 |
+| Estimated tier | Questions |
+|---|---:|
+| Tier 1 - Very High | 1 |
+| Tier 2 - High | 6 |
+| Tier 3 - Medium | 4 |
+| Tier 4 - Branded | 1 |
+| Informational — not scored | 0 |
 
-## 4. Global Ranking
+## 3. Question register and rationale
 
-| Rank | Q# | Question (short) | Tier | Score |
-|---|---|---|---|---|
-| 🥇 1 | Q3 | LLM without law degree? | 🔴 | 4.70 |
-| 🥈 2 | Q2 | LLM top-up route | 🟠 | 4.50 |
-| 🥉 3 | Q5 | Is UOW recognised? | 🟠 | 4.25 |
-| 4 | Q4 | LLM while working | 🟠 | 4.10 |
-| 4= | Q6 | Entry requirements | 🟠 | 4.10 |
-| 6 | Q8 | Career opportunities | 🟠 | 3.85 |
-| 7 | Q7 | Fee structure | 🟡 | 3.50 |
-| 8 | Q1 | Programme hub | ⚪ | 3.45 |
-| 9 | Q9 | Doctoral after LLM | 🟡 | 3.40 |
+| ID | Question | Reader need | Estimated tier | D/S/C/F | Score |
+|---|---|---|---|---|---:|
+| Q1 | What is the Master of Laws (LLM) from the University of Wolverhampton? | Programme orientation and informed course selection | Tier 4 - Branded | 2/3/5/5 | 3.45 |
+| Q2 | How does the LLM top-up route work? | Programme orientation and informed course selection | Tier 2 - High | 4/5/5/4 | 4.50 |
+| Q3 | Can I do the LLM without a traditional law degree? | Programme orientation and informed course selection | Tier 1 - Very High | 5/5/5/3 | 4.70 |
+| Q4 | Can I complete the LLM while working? | Checks delivery, attendance and work-study compatibility | Tier 2 - High | 4/4/5/3 | 4.10 |
+| Q5 | Is a degree from the University of Wolverhampton recognised? | Distinguishes awarding status, qualification scope and intended use | Tier 2 - High | 4/4/5/4 | 4.25 |
+| Q6 | What are the entry requirements for the LLM? | Clarifies route-specific eligibility and application evidence | Tier 2 - High | 4/4/5/3 | 4.10 |
+| Q7 | How are the LLM fees structured? | Cost, payment and funding clarity before accepting an offer | Tier 3 - Medium | 3/3/5/3 | 3.50 |
+| Q8 | What career opportunities can the LLM support? | Helps assess career or further-study fit without outcome promises | Tier 2 - High | 4/4/4/3 | 3.85 |
+| Q9 | Can I progress to doctoral study after the LLM? | Helps assess career or further-study fit without outcome promises | Tier 3 - Medium | 3/3/4/4 | 3.40 |
+| Q10 | Which professionals benefit most from an LLM? | Practical pre-enrolment planning and responsibilities | Tier 2 - High | Not recorded | 3.80 |
+| Q11 | What is the independent legal research project like? | Practical pre-enrolment planning and responsibilities | Tier 3 - Medium | Not recorded | 3.60 |
+| Q12 | Should I take the LLM straight after my degree, or work first? | Practical pre-enrolment planning and responsibilities | Tier 3 - Medium | Not recorded | 3.65 |
 
-**Tier distribution:** 🔴 1 · 🟠 5 · 🟡 2 · ⚪ 1
+## Information references and limitations
 
-## 5. Recommendations
+Programme-specific award titles, eligibility, fees, delivery and support should be checked against the current written offer. Qualification acceptance is determined for the intended purpose by the relevant receiving institution, employer, evaluator or authority. The Programme Information & Source Verification report explains these distinctions.
 
-1. **Verify #2 sabse pehle** — agar Qualifi L7 Law diplomas LLM ke feeder hain, to Qualifi
-   file (Cycle #7) me is funnel ka question add hoga aur dono pages cross-link honge.
-   Ye pura **"diploma → LLM" ladder** portfolio ka strongest conversion story ban sakta hai.
-2. Q3 (without law degree) page-top + schema priority.
-3. Practice-rights disclaimer ko har LLM-related page par retain karein — legal niche me
-   compliance risk highest hai.
-4. Q9 se GAU PhD in Law par internal link.
-5. GSC validation loop: 30–60 din.
+- [1](https://www.wlv.ac.uk/courses/llm-law/)
+- [2](https://www.wlv.ac.uk/courses/llm-professional-practice-top-up/)
 
----
-
-*Methodology note: qualitative expert estimates; no numeric search volumes invented.*
+Clear answers and relevant internal links can support reader understanding, but neither question order nor structured data guarantees ranking, traffic or AI inclusion. Google documents the end of FAQ rich results from 7 May 2026. [1](https://developers.google.com/search/updates#deprecating-the-faq-rich-result-feature)

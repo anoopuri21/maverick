@@ -1,7 +1,11 @@
 # Qualifi Diplomas — Frequently Asked Questions
 
-<!-- STATUS: APPROVED 2026-08-19 (Cycle #7) | Selection & Ranking Report: reports/qualifi-diplomas-faq-selection-report.md -->
-<!-- SOURCES: inputs/listing.md (programme list); generic RQF level-framework facts.
+<!-- AUDIT: 2026-09-07 — existing questions reviewed and corrected; no new topics.
+     Historical approval retained; this revision is for client review, NOT website publication.
+     Current evidence and open issues: reports/verification-update-2026-09-07.md. -->
+
+<!-- STATUS: HISTORICAL APPROVAL 2026-08-19 (Cycle #7) | Selection & Ranking Report: reports/qualifi-diplomas-faq-selection-report.md -->
+<!-- HISTORICAL SOURCES (2026-08-19; current per-answer sources and audit supersede these): inputs/listing.md (programme list); generic RQF level-framework facts.
      Qualifi-specific details (regulation status, credits, durations, assessment, progression
      agreements) carry VERIFY tags. Compiled 2026-08-19. -->
 <!-- RULES APPLIED: strict country-neutral; category-generic per level (L3 / L5 Extended / L7).
@@ -9,9 +13,9 @@
      master's" duplicates here — this file owns the LADDER angle (levels explained, which
      level to start at, Extended meaning, progression routes). -->
 
-> **About:** Qualifi diplomas span **three levels — Level 3, Level 5 Extended and Level 7 —**
-> forming a complete study ladder: start at the level that matches your background, and
-> progress step by step towards degree-level and postgraduate-level qualifications.
+> **About:** The supplied Qualifi portfolio covers **Level 3, Level 5 Extended and Level 7
+> diplomas**. Each qualification has its own entry and progression requirements; a level
+> sequence is a study-planning guide, not automatic admission to the next award.
 
 ---
 
@@ -30,16 +34,14 @@ health and social care, hospitality and tourism, accounting and finance, and inf
 technology — giving you a foundation-level entry point into whichever career direction you
 choose.
 
-<!-- Target keyword: "is qualifi recognised awarding body" | Source: provider trust anchor — status to confirm -->
+<!-- Target keyword: "is qualifi recognised awarding body" | Source: https://qualifi.net/qualifications/; reviewed 2026-09-07. -->
 **Q. Is Qualifi a recognised awarding organisation?**
 
-Yes. **Qualifi is an awarding organisation approved and regulated by Ofqual** (the Office
-of Qualifications and Examinations Regulation), and its diplomas are accredited to the
-**Regulated Qualifications Framework (RQF)**, each carrying its own unique qualification
-accreditation number that appears on your final certificate.
-<!-- Resolved 2026-08-19: Qualifi's Ofqual approval confirmed (regulator reference RN5160);
-qualifications carry QANs on the RQF (e.g. L5 Extended Business Management QAN 610/1675/5). -->
-Recognition guidance for your goals is available from the admissions team.
+**Qualifi is an Ofqual-recognised awarding organisation.** Its regulated qualifications
+have individual records and qualification numbers, so check the exact diploma title and
+current regulatory status rather than relying on the organisation's name alone.
+Regulation establishes qualification standards; it does not guarantee acceptance by
+every employer, professional body or receiving university.
 
 <!-- Target keyword: "what is a level 3 diploma who is it for" | Source: RQF framework positioning (generic) -->
 **Q. What is a Level 3 Diploma, and who is it for?**
@@ -51,35 +53,37 @@ without committing to a full degree straight away.
 
 ### Eligibility & Admission
 
-<!-- Target keyword: "level 3 diploma entry requirements" | Source: typical open-entry pattern (VERIFY) -->
+<!-- Target keyword: "level 3 diploma entry requirements" | Source: https://qualifi.net/qualifications/; reviewed 2026-09-07. -->
 **Q. What do I need to enrol in a Level 3 Diploma?**
 
-Entry is designed to be **accessible**: typically a completed school-level education, with
-your profile reviewed individually by the admissions team. No prior professional
-qualification is expected at this level. <!-- [VERIFY: official entry criteria and any
-minimum age policy.] -->
+**Level 3 entry requirements depend on the subject and qualification specification.**
+The centre assesses whether your educational background and English-language ability
+prepare you for the course, along with any minimum age or other conditions. Ask for the
+current entry checklist rather than assuming that every foundation-level diploma has
+open entry.
+<!-- [VERIFY: QUAL-01 — current Level 3 age, academic and language requirements per track.] -->
 
 ### Fees, Scholarships & Payments
 
-<!-- Target keyword: "level 3 diploma fees" | Source: none for amounts -->
+<!-- Target keyword: "level 3 diploma fees" | Source: current partner offer sheet required; no verified portfolio-wide commercial policy; reviewed 2026-09-07. -->
 **Q. How much does a Level 3 Diploma cost to study?**
 
-Level 3 fees are kept **accessible and instalment-friendly**, reflecting the diploma's role
-as an entry point to the qualification ladder. Exact amounts, currency and any current
-offers are confirmed by the admissions team during your eligibility review, so you know
-the full picture before you commit.
-<!-- [VERIFY: fee amounts, currency and instalment structure.] -->
+**Ask for the full cost of the Level 3 diploma you choose.** The quotation should state
+the currency, tuition and any registration, assessment or certification charges. If a
+payment plan or fee reduction is offered, check its conditions and total cost. Entry-level
+study does not mean that all subjects have the same fee or funding arrangements.
+<!-- [VERIFY: QUAL-04 — current Level 3 quotation and payment terms.] -->
 
 ### Careers & Outcomes
 
-<!-- Target keyword: "what after level 3 diploma progression" | Source: standard ladder progression (VERIFY) -->
+<!-- Target keyword: "what after level 3 diploma progression" | Source: https://qualifi.net/qualifications/; general admissions guidance; reviewed 2026-09-07. -->
 **Q. What can I progress to after a Level 3 Diploma?**
 
-Two clear routes open up: **step into entry-level roles** in your chosen field, or
-**continue up the ladder** — including progression towards Level 5 study and, over time,
-degree-level and postgraduate qualifications. <!-- [VERIFY: confirmed internal progression
-route L3 → L5 within our portfolio.] --> Many learners use Level 3 as the first rung of a
-planned journey to higher qualifications.
+A Level 3 diploma may support **entry-level work or progression to higher study** in a
+related field. The next qualification depends on subject fit and its entry criteria;
+Level 4 study may form part of an Extended Level 5 route. Ask for an agreed pathway
+rather than assuming that every Level 3 award gives automatic admission to Level 5.
+<!-- [VERIFY: QUAL-03 — confirmed receiving programmes and internal progression requirements.] -->
 
 ---
 
@@ -91,73 +95,69 @@ Security · Occupational Health and Safety · Education and Training Management.
 
 ### General Information
 
-<!-- Target keyword: "qualifi level 5 extended diploma list" | Source: inputs/listing.md -->
+<!-- Target keyword: "qualifi level 5 extended diploma list" | Source: inputs/listing.md (portfolio coverage only; not evidence of current intake availability); https://qualifi.net/qualifications/; reviewed 2026-09-07. -->
 **Q. Which Level 5 Extended Diplomas can I choose from?**
 
-Fourteen **Level 5 Extended Diplomas** are offered — from business, law, psychology and
-accounting to a deep technology cluster (IT, networking, web design, e-commerce, cyber
-security) plus health and social care, occupational health and safety, and education and
-training management. It is the widest level of the Qualifi ladder for specialising early.
+The supplied portfolio lists **fourteen Level 5 Extended Diplomas**, covering business,
+health and social care, psychology, hospitality and tourism, accounting, law, information
+technology and its specialist tracks, cyber security, occupational health and safety, and
+education and training management. Match your intended subject to the current
+qualification title and specification before applying.
 
-<!-- Target keyword: "what does extended diploma mean level 5" | Source: definitional (framework); specifics VERIFY -->
+<!-- Target keyword: "what does extended diploma mean level 5" | Source: https://qualifi.net/qualifi-level-5-extended-diploma-in-business-management/; https://qualifi.net/qualifi-level-5-extended-diploma-in-hospitality-and-tourism-management/; reviewed 2026-09-07. -->
 **Q. What does "Extended Diploma" mean at Level 5?**
 
-An **Extended Diploma carries a larger credit volume** than a standard diploma at the same
-level — the Qualifi Level 5 Extended Diplomas carry **240 credits, combining Level 4 and
-Level 5 study (120 credits at each level)**. That makes them academically comparable to
-the **first two years of a bachelor's degree**, representing substantial higher-education
-learning in your field.
-<!-- Resolved 2026-08-19: 240-credit structure (120 L4 + 120 L5) confirmed across multiple
-delivery-centre specifications of Qualifi L5 Extended Diplomas (e.g. Business Management
-QAN 610/1675/5: 12 units, TQT 2400). -->
+An **Extended Diploma combines a larger body of study than a standard diploma at the
+same level**, commonly bringing together Level 4 and Level 5 learning. Published Qualifi
+specifications include **240-credit routes**. Check the exact diploma's credit structure;
+study volume alone does not establish automatic equivalence to two university years or
+guarantee credit transfer.
+<!-- [VERIFY: QUAL-02 — exact credit and unit structure for every offered Extended diploma.] -->
 
-<!-- Target keyword: "which level diploma should i start" | Source: ladder guidance (generic) -->
+<!-- Target keyword: "which level diploma should i start" | Source: https://qualifi.net/qualifi-level-5-extended-diploma-in-business-management/; https://qualifi.net/qualifi-level-5-extended-diploma-in-hospitality-and-tourism-management/; general level-selection guidance; reviewed 2026-09-07. -->
 **Q. Which level should I start at — Level 3 or Level 5?**
 
-It depends on where you are today. Start at **Level 3** if you're building from school-level
-education or changing fields; start at **Level 5** if you already have foundation-level
-qualifications or relevant work experience and want to move faster towards degree-level
-recognition. The admissions team will review your background and recommend the level that
-fits — you never need to guess.
+**Choose the level that matches your existing qualifications and subject preparation.**
+Level 3 can provide a foundation for further study, while an Extended Level 5 route
+normally includes higher-level learning across Levels 4 and 5. Ask admissions to assess
+your background against the chosen qualification's criteria; experience does not replace
+formal prerequisites unless that route permits it.
+<!-- [VERIFY: QUAL-01 — subject-specific entry and experience policy.] -->
 
 ### Eligibility & Admission
 
-<!-- Target keyword: "level 5 diploma entry requirements experience" | Source: typical L5 entry pattern (VERIFY) -->
+<!-- Target keyword: "level 5 diploma entry requirements experience" | Source: https://qualifi.net/qualifi-level-5-extended-diploma-in-business-management/; https://qualifi.net/qualifi-level-5-extended-diploma-in-hospitality-and-tourism-management/; reviewed 2026-09-07. -->
 **Q. What are the entry requirements for a Level 5 Extended Diploma?**
 
-Entry to a Level 5 Extended Diploma typically requires a **Level 3 qualification or
-equivalent** — with **relevant work experience** also considered as an alternative route,
-reviewed individually. This flexibility exists because Level 5 study is designed for both
-ladder-climbers coming up from Level 3 and working adults formalising what they already do
-professionally.
-<!-- [VERIFY: official per-programme criteria, esp. technical prerequisites for the IT and
-cyber security tracks.] --> English proficiency evidence may be requested where applicable.
+**Entry is assessed against the chosen diploma's published requirements.** These may
+include prior Level 3 or Level 4 qualifications, relevant experience, subject preparation
+and English-language evidence. An Extended route may contain both levels of study, so
+confirm where you enter and what you must complete; technical subjects can have different
+prerequisites from business routes.
+<!-- [VERIFY: QUAL-01 — current academic, experience and language requirements by subject.] -->
 
 ### Fees, Scholarships & Payments
 
-<!-- Target keyword: "level 5 extended diploma fees" | Source: none for amounts -->
+<!-- Target keyword: "level 5 extended diploma fees" | Source: current partner offer sheet required; no verified portfolio-wide commercial policy; reviewed 2026-09-07. -->
 **Q. What is the fee structure for a Level 5 Extended Diploma?**
 
-Because the Extended Diploma spans **240 credits across two levels of study**, fees are
-payable through **manageable instalments** spread across the programme. Exact amounts,
-currency and any current offers are confirmed by the admissions team for your chosen
-track and intake — including how the payment plan maps to your study stages.
-<!-- [VERIFY: fee amounts, currency and instalment structure.] -->
+**Request a quotation covering the entire Extended Diploma route**, not just one stage.
+Check which units or levels are included, the currency, registration and assessment fees,
+and any available instalment schedule. The credit structure and commercial terms should
+both be confirmed before you compare this route with a diploma or degree elsewhere.
+<!-- [VERIFY: QUAL-04 — current Level 5 fees and payment terms; QUAL-02 — route structure.] -->
 
 ### Careers & Outcomes
 
-<!-- Target keyword: "level 5 diploma to degree final year top up" | Source: standard L5 progression (VERIFY pathways) -->
+<!-- Target keyword: "level 5 diploma to degree final year top up" | Source: https://qualifi.net/qualifi-level-5-extended-diploma-in-business-management/; https://qualifi.net/qualifi-level-5-extended-diploma-in-hospitality-and-tourism-management/; reviewed 2026-09-07. -->
 **Q. Can a Level 5 Extended Diploma lead to a bachelor's degree?**
 
-Yes — this is the level's biggest advantage. Because the Extended Diploma covers **240
-credits across Levels 4 and 5** (comparable to the first two years of a bachelor's
-degree), it is designed to support **direct entry into the final year of a bachelor's
-degree (a degree top-up route)**, subject to the receiving institution's criteria.
-<!-- Resolved 2026-08-19: final-year top-up progression confirmed as the standard,
-published purpose of Qualifi L5 Extended Diplomas across delivery-centre specifications.
-[VERIFY: confirmed receiving top-up programmes within OUR portfolio.] --> Alternatively,
-you can step into supervisory and specialist roles in your field with a recognised
-higher-level credential.
+A Level 5 Extended Diploma **may support entry to a bachelor's top-up**, and Qualifi
+publishes degree-progression opportunities for several routes. The receiving university
+must accept the exact subject, credits and learning outcomes. Confirm the named degree,
+entry stage and remaining study in writing; holding 240 credits does not automatically
+guarantee final-year admission everywhere.
+<!-- [VERIFY: QUAL-03 — actual receiving degrees and credit-recognition agreements in our portfolio.] -->
 
 ---
 
@@ -172,14 +172,14 @@ and Supply Chain Crisis Management · Educational Management and Leadership.*
 
 ### General Information
 
-<!-- Target keyword: "qualifi level 7 diploma specialisations 23 tracks" | Source: inputs/listing.md -->
+<!-- Target keyword: "qualifi level 7 diploma specialisations 23 tracks" | Source: inputs/listing.md (portfolio coverage only; not evidence of current intake availability); https://qualifi.net/qualifications/; reviewed 2026-09-07. -->
 **Q. Which specialisations do the Qualifi Level 7 Diplomas cover?**
 
-**Twenty-three Level 7 Diplomas** — the widest postgraduate-level diploma range in our
-portfolio — covering strategy, leadership, project and risk management, marketing, HR,
-accounting and finance, law, health and safety, hospitality, IT, data science, cyber
-security, supply chain and education management. If your profession has a leadership
-track, there is almost certainly a Level 7 route for it here.
+The supplied portfolio includes **twenty-three Level 7 diploma subjects** across
+strategy, leadership, projects, risk, marketing, human resources, finance, law, psychology,
+health and safety, hospitality, technology, data science, cyber security, supply chain and
+education management. Compare the exact qualification specifications and entry criteria;
+sharing a level does not make the subjects or progression routes interchangeable.
 
 <!-- Target keyword: "who are level 7 diplomas for graduates professionals" | Source: audience angle (ladder file owns this; no Gatehouse duplicate) -->
 **Q. Who are the Qualifi Level 7 Diplomas designed for?**
@@ -191,112 +191,116 @@ bridge towards a full master's qualification.
 
 ### Eligibility & Admission
 
-<!-- Target keyword: "level 7 diploma without degree experience route" | Source: typical L7 entry pattern (VERIFY) -->
+<!-- Target keyword: "level 7 diploma without degree experience route" | Source: https://qualifi.net/qualifications/; reviewed 2026-09-07. -->
 **Q. Do I need a degree to enrol in a Qualifi Level 7 Diploma?**
 
-Not necessarily. Typical entry is a **bachelor's degree or equivalent**, but applicants
-with **substantial relevant professional experience** may be considered through an
-individual review — at this level, workplace seniority genuinely counts.
-<!-- [VERIFY: official entry criteria per track (esp. Law, Psychology, Data Science —
-subject background needed?).] -->
+**A degree is not the only possible entry route for every diploma**, but alternatives
+must be permitted by the specific qualification. Some routes consider relevant
+professional experience or other prior study; others require particular academic or
+subject preparation. Ask admissions to assess the exact diploma criteria rather than
+assuming a portfolio-wide experience exemption.
+<!-- [VERIFY: QUAL-01 — current academic and experience entry rules per Level 7 track.] -->
 
-<!-- Target keyword: "level 7 diploma assignments duration flexible" | Source: typical delivery pattern (VERIFY) -->
+<!-- Target keyword: "level 7 diploma assignments duration flexible" | Source: https://qualifi.net/qualifications/; reviewed 2026-09-07. -->
 **Q. How long do the Level 7 Diplomas take, and how are they assessed?**
 
-The diplomas follow a **flexible, self-paced model** with **assignment-based assessment**,
-designed to complete within months rather than years — the exact timeline depends on your
-track and pace. <!-- [VERIFY: official duration range and assessment method for Qualifi L7
-diplomas.] --> The admissions team will map a realistic plan with you.
+**Study duration and assessment depend on the diploma and approved delivery plan.**
+Ask for the expected timetable, guided and independent study hours, assessment methods
+and submission deadlines. Assignment-based study may be available, but it should not be
+assumed that every Level 7 track is self-paced, examination-free or completed within a
+single short timetable.
+<!-- [VERIFY: QUAL-02 — current duration, assessment and delivery requirements per track.] -->
 
 ### Fees, Scholarships & Payments
 
-<!-- Target keyword: "qualifi level 7 diploma fees" | Source: none for amounts -->
+<!-- Target keyword: "qualifi level 7 diploma fees" | Source: current partner offer sheet required; no verified portfolio-wide commercial policy; reviewed 2026-09-07. -->
 **Q. How are Level 7 Diploma fees structured?**
 
-With **23 tracks at the same level**, Qualifi Level 7 tuition follows a consistent
-**instalment-based structure** across your study period — so choosing your specialisation
-is an academic decision, not a financial calculation. Exact amounts, currency and current
-offers are confirmed by the admissions team for your chosen track and intake. <!-- [VERIFY: fee amounts, currency and instalment structure.] -->
+**Level 7 fees can differ by subject, route and intake.** Ask for the tuition total,
+billing currency and any awarding, assessment or additional study charges. If instalments
+or fee support are offered, compare the total payable and conditions. Programmes at the
+same qualification level need not have identical prices or payment arrangements.
+<!-- [VERIFY: QUAL-04 — current Level 7 quotation and payment/funding terms.] -->
 
 ### Careers & Outcomes
 
-<!-- Target keyword: "progression after level 7 diploma masters llm mba" | Source: portfolio ladder (VERIFY pathways) -->
+<!-- Target keyword: "progression after level 7 diploma masters llm mba" | Source: https://qualifi.net/qualifications/; general credit-recognition guidance; reviewed 2026-09-07. -->
 **Q. What can I progress to after a Qualifi Level 7 Diploma?**
 
-Progression routes follow your subject area, subject to admission criteria:
+A Level 7 diploma may support **further professional development or a master's
+application**, depending on the subject and receiving institution. Management and law
+diplomas can have different progression arrangements, and the remaining study is not
+always limited to a dissertation. Confirm the exact receiving award and accepted credits
+before planning an MBA, LLM or other master's top-up.
+<!-- [VERIFY: QUAL-03 — confirmed master's feeders, especially any Qualifi-to-UOW LLM route.] -->
 
-- **Management and strategy tracks** → master's-level top-up routes, including MBA pathways
-- **Law tracks** → progression towards a **Master of Laws (LLM)** top-up route
-- **All tracks** → senior professional roles carrying postgraduate-level certification
-
-<!-- [VERIFY: confirmed feeder agreements in OUR portfolio — esp. Qualifi L7 Law /
-International Business Law → UOW LLM top-up (flagged in UOW report), and management
-tracks → master's routes.] --> This ladder design means your diploma is never a dead end —
-it is a stage in a longer qualification journey.
-
-<!-- Target keyword: "level 7 diploma career impact sectors" | Source: generic, valid across all 23 -->
+<!-- Target keyword: "level 7 diploma career impact sectors" | Source: general study/career guidance, not an outcome or admissions guarantee; reviewed 2026-09-07. -->
 **Q. What career impact can a Qualifi Level 7 Diploma have?**
 
-Postgraduate-level certification in your **exact professional lane** — from cyber security
-leadership and supply chain crisis management to educational leadership and international
-business law. Because the 23 tracks are sector-specific, the diploma signals both
-seniority and domain authority, strengthening promotion cases and senior-role applications
-worldwide.
+A Qualifi Level 7 diploma can develop **advanced subject knowledge and applied skills**
+relevant to your professional field. It may strengthen evidence for a development or
+promotion discussion, but employers also assess experience and performance. A diploma
+does not automatically confer seniority, professional registration or a guaranteed
+career outcome.
 
 ---
 
 ## Applying & Practical Information
-*Provider-level questions. (Phase 2 addition.)*
+*Practical information to check before applying.*
 
-<!-- Target keyword: "can i stack diplomas level 3 5 7 over time" | Source: ladder design (levels framework) -->
+<!-- Target keyword: "can i stack diplomas level 3 5 7 over time" | Source: https://qualifi.net/qualifications/; general progression guidance; reviewed 2026-09-07. -->
 **Q. Can I stack Qualifi diplomas over time — Level 3, then 5, then 7?**
 
-Yes — stacking is exactly how the ladder is designed to be used. Each level is a
-**complete qualification in its own right**, so you can step off after any rung, work,
-and return when ready: Level 3 for your foundation, Level 5 Extended for
-higher-education standing, Level 7 for postgraduate-level certification. Your career
-never has to pause for your education, or vice versa.
+**You can plan further qualifications over time, but progression is not automatic.**
+Each completed diploma is an award in its own right. Entry to the next level depends on
+its subject and requirements; additional Level 4, degree-level study or experience may
+be needed. Map the complete route before enrolling rather than assuming a direct
+Level 3-to-5-to-7 ladder.
+<!-- [VERIFY: QUAL-03 — entry and credit-recognition requirements between actual portfolio routes.] -->
 
-<!-- Target keyword: "do diplomas expire need renewal" | Source: standard for regulated qualifications -->
+<!-- Target keyword: "do diplomas expire need renewal" | Source: general academic-award distinction; award-specific certification policy requires confirmation; reviewed 2026-09-07. -->
 **Q. Do Qualifi diplomas expire or need renewing?**
 
-No. A regulated qualification is **awarded for life** — once achieved, your diploma does
-not lapse, require renewal fees, or need re-examination. Unlike memberships or licences,
-it is a permanent academic credential; anything you add later (a higher level, a degree
-top-up) builds on it rather than replacing it.
+An academic diploma **normally remains a record of completed study**, rather than a
+membership that requires annual renewal. A qualification being withdrawn from new
+registrations does not, by itself, erase an achieved award. Receiving institutions or
+professional bodies may nevertheless require recent knowledge or continuing development;
+check any such rules for your intended use.
+<!-- [VERIFY: QUAL-05 — qualification-specific certification or recency conditions, if applicable.] -->
 
-<!-- Target keyword: "qualification accreditation number on certificate" | Source: delivery-centre spec — QAN appears on final certificate (verified) -->
+<!-- Target keyword: "qualification accreditation number on certificate" | Source: https://qualifi.net/qualifications/; reviewed 2026-09-07. -->
 **Q. Will my certificate show the official accreditation number?**
 
-Yes — each Qualifi qualification carries a unique **Qualification Accreditation Number
-(QAN)**, and this number **appears on your final certification document**. That single
-line matters: it lets any employer or institution match your certificate directly to the
-regulated qualifications register, making verification quick and dispute-proof.
+Regulated Qualifi diplomas have an **official qualification number** that identifies
+the award in the qualifications register. Ask how it appears on your certificate or
+supporting documents. The number identifies the qualification, not whether an individual
+certificate is genuine; employers or institutions should use the awarding body's
+authorised verification process when checking a personal award.
+<!-- [VERIFY: QUAL-05 — current certificate format and award-verification process.] -->
 
 ---
 
-## Facts to Verify (updated 2026-08-19 after deep research — see Resolved section)
+## Facts to Verify (reviewed 2026-09-07)
 
-### Still open
+| ID | Open item | Evidence or action required |
+|---|---|---|
+| QUAL-01 | Entry by subject and level | Current age, academic, technical, experience and English requirements; no blanket open-entry or experience exemption |
+| QUAL-02 | Credits, duration, mode and assessment | Exact specification for each offered qualification; sampled official Level 5 Extended routes confirm 240 credits, not a universal timetable or university-equivalence decision |
+| QUAL-03 | Progression agreements | Named receiving programmes for L3 onward, L5 degree top-ups and L7 master's routes, especially any Qualifi Law-to-UOW arrangement. No automatic L5-to-L7 jump |
+| QUAL-04 | All commercial terms | Current fees, currency, awarding/assessment charges, payment plans and scholarships by route |
+| QUAL-05 | Certificate and verification policy | Current certificate layout, official qualification number presentation, verification channel and any purpose-specific recency requirements |
 
-| # | Item | What the draft currently says | What needs confirming |
-|---|------|-------------------------------|----------------------|
-| 1 | Internal ladder L3→L5 | "Progression towards Level 5" | Confirmed internal route in our offer |
-| 2 | L5 → degree top-up pathways | Final-year entry (standard published purpose) | Confirmed receiving programmes in OUR portfolio (e.g. business degree top-up) |
-| 3 | L7 → master's/LLM feeders ⚠️ | Subject-based routes listed | Confirm Qualifi L7 Law → UOW LLM feeder + management → MBA routes (links both ways once confirmed) |
-| 4 | Entry criteria per level/track | Typical patterns | Official criteria (esp. IT/cyber prerequisites at L5; Law/Psychology/Data Science at L7; L5 sources indicate 18+ and L3/equivalent) |
-| 5 | Durations & assessment | "Months, assignment-based" (soft) | Official figures per level (L5 sources indicate 12–24 months, online self-paced) |
-| 6 | All fee data | Components only | Amounts, currency, instalments per level |
+### Current evidence and corrections
 
-### ✅ Resolved (2026-08-19 deep research)
+Qualifi's official regulated-qualification catalogue supports the supplied diploma families
+and individual qualification numbers. Sampled Level 5 Extended specifications confirm
+240-credit awards and possible degree progression, but receiving universities make the
+credit/admission decision. Removed “dispute-proof”, universal expiry/renewal assurances,
+all-track instalment claims and automatic progression wording.
 
-| Item | Resolution |
-|------|-----------|
-| Qualifi regulation/recognition | **Approved and regulated by Ofqual (regulator reference RN5160)**; qualifications accredited to the RQF with unique QANs — content updated |
-| L5 Extended credit value | **240 credits (120 at Level 4 + 120 at Level 5)**, TQT 2400 — comparable to the first two years of a bachelor's degree; content updated |
-| L5 top-up purpose | **Final-year degree top-up entry is the standard published progression purpose** of the L5 Extended Diplomas — content firmed (receiving-programme specifics still open, #2) |
+Sources: `reports/verification-update-2026-09-07.md`.
 
 ---
 
-*Fee amounts, scholarships and entry requirements are confirmed individually during the
-admissions eligibility review and may change without notice.*
+*Programme availability, fees and entry requirements are confirmed for the selected
+route and intake before enrolment and may change.*

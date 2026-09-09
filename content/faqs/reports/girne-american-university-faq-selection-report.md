@@ -1,162 +1,99 @@
-# FAQ Selection & Global Ranking Report — Girne American University (GAU)
+# FAQ Selection & Priority Report — Girne American University (GAU)
 
-**Report date:** 2026-08-19 · **Status of FAQ set:** ✅ Approved 2026-08-19 (Cycle #2)
-**FAQ file:** `approved/girne-american-university.md` · **Questions analysed:** 32
+**Updated:** 9 September 2026
+**Questions:** 38 · **Programme categories:** 5 · **Programme-list entries:** 43
 
----
+## 1. Purpose and coverage
 
-## 1. Executive Summary
+The questions support programme selection, admissions, costs, study commitments and further-study or career planning. Category-level information applies to the listed programmes without assuming identical entry, delivery or commercial terms. Programme-list coverage does not independently confirm the availability or recognition of every award.
 
-- **4 questions Tier 1 (Very High)** global demand families me hain — *MBA vs EMBA*,
-  *study without IELTS/TOEFL*, *flexible study while working* (×2 variants). Ye PAA/snippet
-  ke strongest candidates hain.
-- **17 questions Tier 2 (High)** — evergreen course-level queries (entry requirements,
-  durations, fees, outcomes, recognition).
-- GAU ka **USP-driven selection**: (a) *"university's own English assessment"* option —
-  "without IELTS" query family me differentiator, (b) **16-track EMBA portfolio** — hub
-  question ko sector-authority angle diya, (c) **MSc with Thesis** — "what does thesis
-  mean" definitional query pura category-cluster ka education-stage entry point hai.
-- **Duplicate-prevention (project-wide rule):** RBS file me "PhD vs DBA" aur "MBA without
-  GMAT/GRE" already cover ho chuke hain, isliye GAU me ye repeat NAHI kiye — GAU ke MBA
-  entry answer me no-GMAT fact fold kar diya gaya, aur doctoral comparison ki jagah
-  "PhD while working" angle liya gaya. Isse dono pages Google me ek-dusre se compete
-  nahi karenge (keyword cannibalisation avoided).
+**Coverage:** BSc | MBA | EMBA | Thesis-based master's | PhD.
 
----
+## 2. Priority methodology
 
-## 2. Methodology
+Priorities are editorial estimates, not measured search rankings, search volumes or traffic forecasts. Recorded component scores use Demand (35%), Answer-format opportunity (25%), Conversion intent (25%) and Feasibility (15%), each on a 1–5 scale. Where components were not recorded, only the existing editorial total is retained. Missing components are not inferred.
 
-RBS report jaisa hi scoring model (details wahan): **D** Demand 35% · **S** Snippet/PAA 25% ·
-**C** Conversion 25% · **F** Feasibility 15% → Priority Score (max 5.00).
-Tiers: 🔴 Very High · 🟠 High · 🟡 Medium · ⚪ Branded/Navigational.
+Informational immigration questions have no assigned tier, score or rank. Similar themes may occur for different providers; unique wording does not prove separate search intent.
 
-> ⚠️ Tiers qualitative expert estimates hain (koi invented volumes nahi) — publish ke
-> 30–60 din baad Google Search Console se validate karein.
+| Estimated tier | Questions |
+|---|---:|
+| Tier 1 - Very High | 4 |
+| Tier 2 - High | 21 |
+| Tier 3 - Medium | 7 |
+| Tier 4 - Branded | 5 |
+| Informational — not scored | 1 |
 
----
+## 3. Question register and rationale
 
-## 3. Question-by-Question Analysis
+| ID | Question | Reader need | Estimated tier | D/S/C/F | Score |
+|---|---|---|---|---|---:|
+| Q1 | Which BSc programmes are available at Girne American University? | Programme orientation and informed course selection | Tier 4 - Branded | 2/3/5/5 | 3.45 |
+| Q2 | Is a BSc degree from Girne American University recognised? | Distinguishes awarding status, qualification scope and intended use | Tier 2 - High | 4/4/5/4 | 4.25 |
+| Q3 | Can I study a GAU BSc flexibly while working? | Checks delivery, attendance and work-study compatibility | Tier 1 - Very High | 5/4/5/3 | 4.45 |
+| Q4 | How are students assessed on the BSc programmes? | Programme orientation and informed course selection | Tier 3 - Medium | 3/4/3/4 | 3.40 |
+| Q5 | What are the entry requirements for the BSc programmes? | Clarifies route-specific eligibility and application evidence | Tier 2 - High | 4/4/5/3 | 4.10 |
+| Q6 | Do I need IELTS or TOEFL to join a BSc programme? | Clarifies route-specific eligibility and application evidence | Tier 1 - Very High | 5/4/5/3 | 4.45 |
+| Q7 | How do BSc fees and scholarships work? | Cost, payment and funding clarity before accepting an offer | Tier 2 - High | 4/3/5/3 | 3.85 |
+| Q8 | What can I do after completing a GAU BSc? | Helps assess career or further-study fit without outcome promises | Tier 2 - High | 4/4/4/3 | 3.85 |
+| Q9 | Which MBA specialisations does Girne American University offer? | Programme orientation and informed course selection | Tier 4 - Branded | 2/3/5/5 | 3.45 |
+| Q10 | How long does the GAU MBA take to complete? | Study-time and route planning; exact terms need confirmation | Tier 2 - High | 4/5/4/3 | 4.10 |
+| Q11 | Can I do the GAU MBA without pausing my career? | Checks delivery, attendance and work-study compatibility | Tier 1 - Very High | 5/4/5/3 | 4.45 |
+| Q12 | What are the entry requirements for the GAU MBA? | Clarifies route-specific eligibility and application evidence | Tier 2 - High | 4/4/5/3 | 4.10 |
+| Q13 | What is the fee structure for the MBA? | Cost, payment and funding clarity before accepting an offer | Tier 2 - High | 4/3/5/3 | 3.85 |
+| Q14 | What career outcomes can the GAU MBA support? | Helps assess career or further-study fit without outcome promises | Tier 2 - High | 5/4/4/3 | 4.20 |
+| Q15 | Which Executive MBA specialisations does GAU offer? | Programme orientation and informed course selection | Tier 4 - Branded | 2/3/5/5 | 3.45 |
+| Q16 | What is the difference between an MBA and an Executive MBA? | Explains qualification terminology and helps compare suitable routes | Tier 1 - Very High | 5/5/4/4 | 4.60 |
+| Q17 | Can I complete the EMBA while working full-time? | Checks delivery, attendance and work-study compatibility | Tier 2 - High | 4/4/5/3 | 4.10 |
+| Q18 | What are the entry requirements for the EMBA? | Clarifies route-specific eligibility and application evidence | Tier 2 - High | 4/4/5/4 | 4.25 |
+| Q19 | How are EMBA fees structured? | Cost, payment and funding clarity before accepting an offer | Tier 3 - Medium | 3/3/5/3 | 3.50 |
+| Q20 | What impact can the EMBA have on my career? | Helps assess career or further-study fit without outcome promises | Tier 2 - High | 4/4/4/3 | 3.85 |
+| Q21 | Which thesis-based master's programmes are listed for GAU? | Programme orientation and informed course selection | Tier 4 - Branded | 2/3/5/5 | 3.45 |
+| Q22 | What does "MSc with Thesis" actually mean? | Explains qualification terminology and helps compare suitable routes | Tier 2 - High | 4/5/3/4 | 4.00 |
+| Q23 | Who should choose the thesis-based MSc route? | Programme orientation and informed course selection | Tier 3 - Medium | 3/4/4/4 | 3.65 |
+| Q24 | What do I need to be eligible for a thesis-based MSc? | Clarifies route-specific eligibility and application evidence | Tier 2 - High | 4/4/5/3 | 4.10 |
+| Q25 | What do the thesis-based MSc programmes cost, and is scholarship support available? | Cost, payment and funding clarity before accepting an offer | Tier 3 - Medium | 3/3/5/3 | 3.50 |
+| Q26 | Does a thesis-based MSc help me get into a PhD? | Helps assess career or further-study fit without outcome promises | Tier 3 - Medium | 3/4/4/4 | 3.65 |
+| Q27 | Which PhD programmes does Girne American University offer? | Programme orientation and informed course selection | Tier 4 - Branded | 2/3/5/5 | 3.45 |
+| Q28 | Can I pursue a GAU PhD while continuing to work? | Checks delivery, attendance and work-study compatibility | Tier 2 - High | 4/4/4/3 | 3.85 |
+| Q29 | How long does a PhD at GAU take? | Study-time and route planning; exact terms need confirmation | Tier 2 - High | 4/5/4/3 | 4.10 |
+| Q30 | What are the entry requirements for the PhD programmes? | Clarifies route-specific eligibility and application evidence | Tier 2 - High | 4/4/5/4 | 4.25 |
+| Q31 | How are PhD fees structured? | Cost, payment and funding clarity before accepting an offer | Tier 3 - Medium | 3/3/5/3 | 3.50 |
+| Q32 | What can a PhD from GAU lead to? | Helps assess career or further-study fit without outcome promises | Tier 2 - High | 4/4/4/3 | 3.85 |
+| Q33 | How does the GAU eligibility review work? | Practical pre-enrolment planning and responsibilities | Tier 2 - High | Not recorded | 3.90 |
+| Q34 | Do my documents need to be translated or attested? | Practical pre-enrolment planning and responsibilities | Tier 2 - High | Not recorded | 4.00 |
+| Q35 | How can an employer or institution verify my GAU degree? | Practical pre-enrolment planning and responsibilities | Tier 2 - High | Not recorded | 3.75 |
+| Q36 | How do GAU scholarships actually work? | Practical pre-enrolment planning and responsibilities | Tier 2 - High | Not recorded | 4.20 |
+| Q37 | What support will I get as a distance learner at GAU? | Practical pre-enrolment planning and responsibilities | Tier 3 - Medium | Not recorded | 3.65 |
+| Q38 | Does completing a Girne American University programme make me eligible to migrate to the US or UK? | US/UK eligibility clarification; no migration entitlement is implied | Not assigned | Not recorded | Not scored |
 
-### Category 1 — BSc Programmes
+## 4. US/UK immigration guidance
 
-| # | Question (short) | Bucket | Selection Reason | Query Family | Tier | D | S | C | F | Score |
-|---|---|---|---|---|---|---|---|---|---|---|
-| Q1 | BSc programmes list | General | Category hub — 10 programmes ka index; internal-linking anchor | Branded | ⚪ | 2 | 3 | 5 | 5 | 3.45 |
-| Q2 | Is GAU BSc recognised? | General | #1 trust objection; est-1985 + IACBE credibility framing | "is X recognised" | 🟠 | 4 | 4 | 5 | 4 | 4.25 |
-| Q3 | Study BSc flexibly while working | General | Working-learner audience ka core filter question | "study while working" | 🔴 | 5 | 4 | 5 | 3 | 4.45 |
-| Q4 | How are students assessed? | General | Exam-anxiety reducer; "no surprise" transparency builds trust | "how are online students assessed" | 🟡 | 3 | 4 | 3 | 4 | 3.40 |
-| Q5 | BSc entry requirements | Eligibility | Self-disqualification rokta hai; eligibility-review funnel entry | "BSc entry requirements" | 🟠 | 4 | 4 | 5 | 3 | 4.10 |
-| Q6 | IELTS/TOEFL needed? | Eligibility | **GAU USP**: university's own assessment option — "without IELTS" family globally massive | "admission without IELTS" | 🔴 | 5 | 4 | 5 | 3 | 4.45 |
-| Q7 | Fees & scholarships | Financials | Decision-stage; instalment + intake-linked scholarship urgency | "BSc fees scholarships" | 🟠 | 4 | 3 | 5 | 3 | 3.85 |
-| Q8 | What after BSc? | Careers | ROI + internal cross-sell to MBA/EMBA/MSc | "career after BSc" | 🟠 | 4 | 4 | 4 | 3 | 3.85 |
+Completing a programme does not, on its own, establish visa or permanent-residence eligibility. An individual may qualify through an applicable route if all its requirements are met. Academic evidence, post-study work and independently qualifying work/residence routes must be assessed separately.
 
-### Category 2 — MBA Programmes
+The HPI list finding concerns qualifications awarded from 1 November 2025 to 31 October 2026 only. Neither GAU nor RBS appears on that list. Other award periods and partner-issued qualifications require their own checks. Historical academic transfer or provider certification is not immigration permission.
 
-| # | Question (short) | Bucket | Selection Reason | Query Family | Tier | D | S | C | F | Score |
-|---|---|---|---|---|---|---|---|---|---|---|
-| Q9 | MBA specialisations list | General | Category hub — data-analytics track modern differentiator | Branded | ⚪ | 2 | 3 | 5 | 5 | 3.45 |
-| Q10 | MBA duration | General | "How long" = strongest snippet pattern | "MBA duration" | 🟠 | 4 | 5 | 4 | 3 | 4.10 |
-| Q11 | MBA without pausing career | General | Working-professional core doubt | "MBA while working" | 🔴 | 5 | 4 | 5 | 3 | 4.45 |
-| Q12 | MBA entry (incl. no-GMAT fact) | Eligibility | Entry query + no-GMAT differentiator folded in (RBS duplicate avoid) | "MBA entry requirements" | 🟠 | 4 | 4 | 5 | 3 | 4.10 |
-| Q13 | MBA fees | Financials | Decision-stage affordability | "MBA fees" | 🟠 | 4 | 3 | 5 | 3 | 3.85 |
-| Q14 | MBA career outcomes | Careers | ROI justification — MBA ka purchase driver | "after MBA career" | 🟠 | 5 | 4 | 4 | 3 | 4.20 |
+The immigration question is an informational clarification and is not assigned a search-demand score.
 
-### Category 3 — Executive MBA (EMBA)
+**Sources checked 9 September 2026:**
+- Graduate visa: the course you studied — checked 2026-09-09: [1](https://www.gov.uk/graduate-visa/course-you-studied)
+- Skilled Worker visa: overview — checked 2026-09-09: [2](https://www.gov.uk/skilled-worker-visa)
+- High Potential Individual visa: eligibility — checked 2026-09-09: [3](https://www.gov.uk/high-potential-individual-visa/eligibility)
+- HPI global universities list 2025 — checked 2026-09-09: [4](https://www.gov.uk/government/publications/high-potential-individual-visa-global-universities-list/high-potential-individual-visa-global-universities-list-2025)
+- H-1B specialty occupations — checked 2026-09-09: [5](https://www.uscis.gov/working-in-the-united-states/h-1b-specialty-occupations)
+- Policy Manual, Volume 2, Part F, Chapter 5 — Practical Training — checked 2026-09-09: [6](https://www.uscis.gov/policy-manual/volume-2-part-f-chapter-5)
+- Employment-Based Immigration: Second Preference EB-2 — checked 2026-09-09: [7](https://www.uscis.gov/working-in-the-united-states/permanent-workers/employment-based-immigration-second-preference-eb-2)
 
-| # | Question (short) | Bucket | Selection Reason | Query Family | Tier | D | S | C | F | Score |
-|---|---|---|---|---|---|---|---|---|---|---|
-| Q15 | EMBA specialisations list | General | Hub — 16 tracks = portfolio-width USP showcase | Branded | ⚪ | 2 | 3 | 5 | 5 | 3.45 |
-| Q16 | MBA vs EMBA difference | General | **Top comparison query** — PAA magnet; dono categories me route karta hai (double conversion path) | "MBA vs EMBA" | 🔴 | 5 | 5 | 4 | 4 | 4.60 |
-| Q17 | EMBA while working full-time | General | Target audience (executives) ka delivery-fit confirm | "EMBA while working" | 🟠 | 4 | 4 | 5 | 3 | 4.10 |
-| Q18 | EMBA entry + work experience | Eligibility | Experience-anxiety handle; senior-profile funnel filter | "EMBA requirements experience" | 🟠 | 4 | 4 | 5 | 4 | 4.25 |
-| Q19 | EMBA fees | Financials | Big-ticket investment framing via instalments | "EMBA fees" | 🟡 | 3 | 3 | 5 | 3 | 3.50 |
-| Q20 | EMBA career impact | Careers | "Is EMBA worth it" ROI family; sector-authority positioning | "is EMBA worth it" | 🟠 | 4 | 4 | 4 | 3 | 3.85 |
+## Information references and limitations
 
-### Category 4 — MSc (with Thesis)
+Programme-specific award titles, eligibility, fees, delivery and support should be checked against the current written offer. Qualification acceptance is determined for the intended purpose by the relevant receiving institution, employer, evaluator or authority. The Programme Information & Source Verification report explains these distinctions.
 
-| # | Question (short) | Bucket | Selection Reason | Query Family | Tier | D | S | C | F | Score |
-|---|---|---|---|---|---|---|---|---|---|---|
-| Q21 | Thesis MSc list | General | Category hub — 4 programmes | Branded | ⚪ | 2 | 3 | 5 | 5 | 3.45 |
-| Q22 | What does "with Thesis" mean? | General | **Educational entry-point** — definitional snippet; term samjhe bina category convert nahi hoti | "thesis vs non-thesis masters" | 🟠 | 4 | 5 | 3 | 4 | 4.00 |
-| Q23 | Who should choose thesis route? | General | Decision-guidance; PhD-aspirant segment capture | "should I do thesis masters" | 🟡 | 3 | 4 | 4 | 4 | 3.65 |
-| Q24 | MSc eligibility | Eligibility | Core eligibility + per-programme prerequisite doubt | "MSc eligibility" | 🟠 | 4 | 4 | 5 | 3 | 4.10 |
-| Q25 | MSc fees & scholarships | Financials | Decision-stage | "MSc fees" | 🟡 | 3 | 3 | 5 | 3 | 3.50 |
-| Q26 | PhD after thesis MSc? | Careers | Pathway cross-sell to GAU PhD portfolio | "PhD after masters thesis" | 🟡 | 3 | 4 | 4 | 4 | 3.65 |
+- [1](https://www.gau.edu.tr/en/graduate-school)
+- [2](https://www.gau.edu.tr/en/institutional/recognitions)
+- [3](https://www.gau.edu.tr/en/school-of-tourism-hospitality/accreditations.html)
+- [4](https://www.gov.uk/graduate-visa/course-you-studied)
+- [5](https://www.gov.uk/skilled-worker-visa)
+- [6](https://www.uscis.gov/policy-manual/volume-2-part-f-chapter-5)
+- [7](https://www.uscis.gov/working-in-the-united-states/h-1b-specialty-occupations)
+- [8](https://www.uscis.gov/working-in-the-united-states/permanent-workers/employment-based-immigration-second-preference-eb-2)
 
-### Category 5 — PhD Programmes
-
-| # | Question (short) | Bucket | Selection Reason | Query Family | Tier | D | S | C | F | Score |
-|---|---|---|---|---|---|---|---|---|---|---|
-| Q27 | PhD programmes list | General | Category hub — 7 disciplines (Law, Psychology beyond business = width signal) | Branded | ⚪ | 2 | 3 | 5 | 5 | 3.45 |
-| Q28 | PhD while working | General | RBS "PhD vs DBA" duplicate avoid — working-researcher angle liya | "part time PhD working" | 🟠 | 4 | 4 | 4 | 3 | 3.85 |
-| Q29 | PhD duration | General | "How long" snippet pattern; honest individual-timeline framing | "how long PhD take" | 🟠 | 4 | 5 | 4 | 3 | 4.10 |
-| Q30 | PhD entry requirements | Eligibility | Research-proposal checklist format = list-snippet opportunity | "PhD admission requirements" | 🟠 | 4 | 4 | 5 | 4 | 4.25 |
-| Q31 | PhD fees | Financials | Decision-stage | "PhD fees" | 🟡 | 3 | 3 | 5 | 3 | 3.50 |
-| Q32 | PhD career outcomes | Careers | Highest-qualification ROI validation | "what can I do with PhD" | 🟠 | 4 | 4 | 4 | 3 | 3.85 |
-
----
-
-## 4. Global Ranking — All 32 Questions
-
-| Global Rank | Q# | Question (short) | Category | Tier | Score |
-|---|---|---|---|---|---|
-| 🥇 1 | Q16 | MBA vs EMBA difference | EMBA | 🔴 | 4.60 |
-| 🥈 2 | Q3 | BSc flexibly while working | BSc | 🔴 | 4.45 |
-| 2= | Q6 | IELTS/TOEFL needed? (own-test option) | BSc | 🔴 | 4.45 |
-| 2= | Q11 | MBA without pausing career | MBA | 🔴 | 4.45 |
-| 5 | Q2 | Is GAU BSc recognised? | BSc | 🟠 | 4.25 |
-| 5= | Q18 | EMBA entry + work experience | EMBA | 🟠 | 4.25 |
-| 5= | Q30 | PhD entry requirements | PhD | 🟠 | 4.25 |
-| 8 | Q14 | MBA career outcomes | MBA | 🟠 | 4.20 |
-| 9 | Q5 | BSc entry requirements | BSc | 🟠 | 4.10 |
-| 9= | Q10 | MBA duration | MBA | 🟠 | 4.10 |
-| 9= | Q12 | MBA entry (no-GMAT) | MBA | 🟠 | 4.10 |
-| 9= | Q17 | EMBA while working | EMBA | 🟠 | 4.10 |
-| 9= | Q24 | MSc eligibility | MSc | 🟠 | 4.10 |
-| 9= | Q29 | PhD duration | PhD | 🟠 | 4.10 |
-| 15 | Q22 | "With Thesis" meaning | MSc | 🟠 | 4.00 |
-| 16 | Q7 | BSc fees & scholarships | BSc | 🟠 | 3.85 |
-| 16= | Q8 | What after BSc? | BSc | 🟠 | 3.85 |
-| 16= | Q13 | MBA fees | MBA | 🟠 | 3.85 |
-| 16= | Q20 | EMBA career impact | EMBA | 🟠 | 3.85 |
-| 16= | Q28 | PhD while working | PhD | 🟠 | 3.85 |
-| 16= | Q32 | PhD career outcomes | PhD | 🟠 | 3.85 |
-| 22 | Q23 | Who should choose thesis route | MSc | 🟡 | 3.65 |
-| 22= | Q26 | PhD after thesis MSc | MSc | 🟡 | 3.65 |
-| 24 | Q19 | EMBA fees | EMBA | 🟡 | 3.50 |
-| 24= | Q25 | MSc fees | MSc | 🟡 | 3.50 |
-| 24= | Q31 | PhD fees | PhD | 🟡 | 3.50 |
-| 27 | Q1 | BSc list | BSc | ⚪ | 3.45 |
-| 27= | Q9 | MBA list | MBA | ⚪ | 3.45 |
-| 27= | Q15 | EMBA list | EMBA | ⚪ | 3.45 |
-| 27= | Q21 | MSc list | MSc | ⚪ | 3.45 |
-| 27= | Q27 | PhD list | PhD | ⚪ | 3.45 |
-| 32 | Q4 | Assessment method | BSc | 🟡 | 3.40 |
-
-### Tier distribution
-
-| Tier | Count | Role |
-|---|---|---|
-| 🔴 Very High | 4 | Traffic engines — page-top placement + schema priority |
-| 🟠 High | 17 | Evergreen workhorses |
-| 🟡 Medium | 6 | Long-tail completeness |
-| ⚪ Branded | 5 | Conversion anchors / hub questions |
-
----
-
-## 5. Recommendations
-
-1. **Q16 (MBA vs EMBA)** ko MBA aur EMBA dono pages se internally link karein — ye GAU ka
-   sabse bada PAA asset hai.
-2. **Verify #1 pehle resolve karein** (YÖK/YÖDAK naming under strict country-neutral rule) —
-   recognition answer (Q2, Rank #5) trust-critical hai, wording final hone tak publish na karein.
-3. **Verify #2 (delivery mode)** — Q3/Q11/Q17 tino top-10 me hain aur "flexible learning"
-   claim par khade hain; agar kisi category ka mode alag hai to wahi phrasing adjust hogi.
-4. RBS + GAU dono publish hone par **cross-file cannibalisation audit** dobara chalayein
-   (abhi zero overlap engineered hai — Section 1 note).
-5. GSC validation loop: 30–60 din, tiers → actuals.
-
----
-
-*Methodology note: Demand tiers and scores are qualitative expert estimates based on global
-query-pattern analysis. No numeric search volumes have been invented.*
+Clear answers and relevant internal links can support reader understanding, but neither question order nor structured data guarantees ranking, traffic or AI inclusion. Google documents the end of FAQ rich results from 7 May 2026. [1](https://developers.google.com/search/updates#deprecating-the-faq-rich-result-feature)

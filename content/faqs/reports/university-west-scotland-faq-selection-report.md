@@ -1,67 +1,50 @@
-# FAQ Selection & Global Ranking Report — University of the West of Scotland (UWS)
+# FAQ Selection & Priority Report — University of the West of Scotland (UWS)
 
-**Report date:** 2026-08-19 · **Status of FAQ set:** ✅ Approved 2026-08-19 (Cycle #3)
-**FAQ file:** `approved/university-west-scotland.md` · **Questions analysed:** 9
+**Updated:** 9 September 2026
+**Questions:** 12 · **Programme categories:** 1 · **Programme-list entries:** 1
 
----
+## 1. Purpose and coverage
 
-## 1. Executive Summary
+The questions support programme selection, admissions, costs, study commitments and further-study or career planning. Category-level information applies to the listed programmes without assuming identical entry, delivery or commercial terms. Programme-list coverage does not independently confirm the availability or recognition of every award.
 
-- Single-programme provider (BA Hons Global Business), isliye **9 focused FAQs** — quantity
-  ki jagah is programme ke decision-journey ke har stage ko cover kiya.
-- **Star asset: "What is a top-up degree?" (Q2)** — definitional query jiska global demand
-  strong hai aur jo is programme ka core USP bhi hai (prior learning → 1-year honours
-  degree). Ye question project me pehli baar aaya hai — RBS/GAU se zero overlap.
-- **Working-professional angle** (Q4) ko GAU/RBS ke "while working" questions se alag
-  phrasing di gayi hai (online + career-upgrade framing) taaki cannibalisation na ho.
-- 6 Facts-to-Verify — sabse critical: top-up structure ka official confirmation, kyunki
-  3 answers (Q2, Q3, Q6) usi par khade hain.
+**Coverage:** Global Business (exact award subject to confirmation).
 
-## 2. Methodology
+## 2. Priority methodology
 
-RBS/GAU reports jaisa hi model: **D** Demand 35% · **S** Snippet/PAA 25% · **C** Conversion
-25% · **F** Feasibility 15% → Priority Score (max 5.00). Tiers 🔴🟠🟡⚪ = Very High → Branded.
-Tiers qualitative estimates hain — GSC se validate karein (no invented volumes).
+Priorities are editorial estimates, not measured search rankings, search volumes or traffic forecasts. Recorded component scores use Demand (35%), Answer-format opportunity (25%), Conversion intent (25%) and Feasibility (15%), each on a 1–5 scale. Where components were not recorded, only the existing editorial total is retained. Missing components are not inferred.
 
-## 3. Question-by-Question Analysis
+Informational immigration questions have no assigned tier, score or rank. Similar themes may occur for different providers; unique wording does not prove separate search intent.
 
-| # | Question (short) | Bucket | Selection Reason | Query Family | Tier | D | S | C | F | Score |
-|---|---|---|---|---|---|---|---|---|---|---|
-| Q1 | What is the BA (Hons) Global Business? | General | Programme hub/anchor — brand + degree-type definition ek saath | Branded | ⚪ | 2 | 3 | 5 | 5 | 3.45 |
-| Q2 | Top-up degree meaning | General | **USP + definitional snippet magnet**; prior-learning audience ka entry point — unique across project | "what is a top-up degree" | 🔴 | 5 | 5 | 4 | 4 | 4.60 |
-| Q3 | Duration (~1 year) | General | "How long" snippet pattern; 1-year completion = strongest hook | "top up degree duration" | 🟠 | 4 | 5 | 4 | 3 | 4.10 |
-| Q4 | Online while working | General | Working-professional core filter; career-upgrade framing | "online degree while working" | 🔴 | 5 | 4 | 5 | 3 | 4.45 |
-| Q5 | Is UWS recognised? | General | #1 trust objection — public-university credential framing | "is UWS recognised" | 🟠 | 4 | 4 | 5 | 4 | 4.25 |
-| Q6 | Entry requirements (prior learning) | Eligibility | Self-disqualification rokta hai; experience-based entry hope deta hai | "top up entry requirements" | 🟠 | 4 | 4 | 5 | 3 | 4.10 |
-| Q7 | Fee structure | Financials | Decision-stage; instalment framing | "top up degree fees" | 🟡 | 3 | 3 | 5 | 3 | 3.50 |
-| Q8 | Careers after | Careers | ROI + promotion-case framing for professionals | "career after global business degree" | 🟠 | 4 | 4 | 4 | 3 | 3.85 |
-| Q9 | Master's/MBA after | Careers | Pathway cross-sell (RBS/GAU postgraduate portfolios) | "masters after top up degree" | 🟠 | 4 | 4 | 4 | 4 | 4.00 |
+| Estimated tier | Questions |
+|---|---:|
+| Tier 1 - Very High | 2 |
+| Tier 2 - High | 7 |
+| Tier 3 - Medium | 2 |
+| Tier 4 - Branded | 1 |
+| Informational — not scored | 0 |
 
-## 4. Global Ranking
+## 3. Question register and rationale
 
-| Rank | Q# | Question (short) | Tier | Score |
-|---|---|---|---|---|
-| 🥇 1 | Q2 | Top-up degree meaning | 🔴 | 4.60 |
-| 🥈 2 | Q4 | Online while working | 🔴 | 4.45 |
-| 🥉 3 | Q5 | Is UWS recognised? | 🟠 | 4.25 |
-| 4 | Q3 | Duration | 🟠 | 4.10 |
-| 4= | Q6 | Entry requirements | 🟠 | 4.10 |
-| 6 | Q9 | Master's/MBA after | 🟠 | 4.00 |
-| 7 | Q8 | Careers after | 🟠 | 3.85 |
-| 8 | Q7 | Fee structure | 🟡 | 3.50 |
-| 9 | Q1 | Programme hub | ⚪ | 3.45 |
+| ID | Question | Reader need | Estimated tier | D/S/C/F | Score |
+|---|---|---|---|---|---:|
+| Q1 | What is the Global Business degree from UWS? | Programme orientation and informed course selection | Tier 4 - Branded | 2/3/5/5 | 3.45 |
+| Q2 | Is this a top-up degree, and what does that mean? | Explains qualification terminology and helps compare suitable routes | Tier 1 - Very High | 5/5/4/4 | 4.60 |
+| Q3 | How long does the Global Business degree take to complete? | Study-time and route planning; exact terms need confirmation | Tier 2 - High | 4/5/4/3 | 4.10 |
+| Q4 | Can I study the programme online while working? | Checks delivery, attendance and work-study compatibility | Tier 1 - Very High | 5/4/5/3 | 4.45 |
+| Q5 | Is a degree from the University of the West of Scotland recognised? | Distinguishes awarding status, qualification scope and intended use | Tier 2 - High | 4/4/5/4 | 4.25 |
+| Q6 | What are the entry requirements for the Global Business degree? | Clarifies route-specific eligibility and application evidence | Tier 2 - High | 4/4/5/3 | 4.10 |
+| Q7 | How are the fees structured for this programme? | Cost, payment and funding clarity before accepting an offer | Tier 3 - Medium | 3/3/5/3 | 3.50 |
+| Q8 | What can I do after completing the Global Business degree? | Helps assess career or further-study fit without outcome promises | Tier 2 - High | 4/4/4/3 | 3.85 |
+| Q9 | Can I progress to a master's or MBA after this degree? | Helps assess career or further-study fit without outcome promises | Tier 2 - High | 4/4/4/4 | 4.00 |
+| Q10 | Can I turn my work experience into a degree? | Practical pre-enrolment planning and responsibilities | Tier 2 - High | Not recorded | 4.30 |
+| Q11 | What will my final certificate say? | Practical pre-enrolment planning and responsibilities | Tier 2 - High | Not recorded | 4.10 |
+| Q12 | How many hours a week will I need to study? | Practical pre-enrolment planning and responsibilities | Tier 3 - Medium | Not recorded | 3.70 |
 
-**Tier distribution:** 🔴 2 · 🟠 5 · 🟡 1 · ⚪ 1
+## Information references and limitations
 
-## 5. Recommendations
+Programme-specific award titles, eligibility, fees, delivery and support should be checked against the current written offer. Qualification acceptance is determined for the intended purpose by the relevant receiving institution, employer, evaluator or authority. The Programme Information & Source Verification report explains these distinctions.
 
-1. **Q2 (top-up meaning)** ko page-top rakhein aur schema me priority dein — ye is provider
-   ka single biggest PAA asset hai.
-2. **Verify #1 (top-up confirmation)** approval se pehle resolve karna sabse zaroori hai —
-   Q2/Q3/Q6 teeno isi par depend hain.
-3. Q9 se RBS MBA aur GAU MBA/EMBA pages par internal links — cross-provider funnel.
-4. GSC validation loop: 30–60 din.
+- [1](https://icbsgroup.lk/programmes/ba-global-business-top-up/)
+- [2](https://www.uws.ac.uk/international/partner-with-us/)
 
----
-
-*Methodology note: qualitative expert estimates; no numeric search volumes invented.*
+Clear answers and relevant internal links can support reader understanding, but neither question order nor structured data guarantees ranking, traffic or AI inclusion. Google documents the end of FAQ rich results from 7 May 2026. [1](https://developers.google.com/search/updates#deprecating-the-faq-rich-result-feature)

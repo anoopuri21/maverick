@@ -1,18 +1,25 @@
 # Girne American University (GAU) — Frequently Asked Questions
 
-<!-- STATUS: APPROVED 2026-08-19 (Cycle #2) | Selection & Ranking Report: reports/girne-american-university-faq-selection-report.md -->
-<!-- SOURCES: inputs/listing.md (programme list); database/seeders/ProgramSeeder.php (repo data —
+<!-- UPDATE 2026-09-09: owner authorised the scoped US/UK immigration clarification.
+     Only the new Immigration & Visa Eligibility FAQ is exempt from geographic neutrality.
+     Earlier questions and unresolved programme confirmations are unchanged. -->
+
+<!-- AUDIT: 2026-09-07 — existing questions reviewed and corrected; no new topics.
+     Historical approval retained; this revision is for client review, NOT website publication.
+     Current evidence and open issues: reports/verification-update-2026-09-07.md. -->
+
+<!-- STATUS: HISTORICAL APPROVAL 2026-08-19 (Cycle #2) | Selection & Ranking Report: reports/girne-american-university-faq-selection-report.md -->
+<!-- HISTORICAL SOURCES (2026-08-19; current per-answer sources and audit supersede these): inputs/listing.md (programme list); database/seeders/ProgramSeeder.php (repo data —
      note: seeder facts are for BSc Business Management only, generalisations carry VERIFY tags);
      whed.net (IAU World Higher Education Database); universityfairs.com; third-party directory
      listings (all third-party figures carry VERIFY tags). Compiled 2026-08-19. -->
 <!-- RULES APPLIED: category-generic (each set valid for ALL programmes in the category);
-     strict country-neutral (no country/city/region names anywhere in content — accreditation
+     country-neutral outside the one authorised US/UK immigration FAQ (accreditation
      bodies referenced by acronym only, full names withheld pending owner decision, see Verify #1). -->
 
-> **About:** Girne American University (GAU), established in **1985**, is an internationally
-> focused university teaching in **English**, with programmes designed to prepare graduates
-> for the global workplace. Its business programmes additionally hold **IACBE** international
-> accreditation.
+> **About:** Girne American University offers undergraduate, postgraduate and research
+> study across several disciplines. Its public accreditation information identifies
+> **specific accredited business programmes**; coverage must be checked for the chosen award.
 
 ---
 
@@ -23,57 +30,55 @@ Human Resources Management · Accounting · Economics · Management Information 
 
 ### General Information
 
-<!-- Target keyword: "girne american university bsc programmes list" | Source: inputs/listing.md -->
+<!-- Target keyword: "girne american university bsc programmes list" | Source: inputs/listing.md (portfolio coverage only; not evidence of current intake availability); reviewed 2026-09-07. -->
 **Q. Which BSc programmes are available at Girne American University?**
 
-GAU offers **ten BSc programmes** spanning business, social science and technology fields:
-Business Management, International Business Management, Marketing, Accounting, Accounting
-and Finance Management, Economics, Human Resources Management, Management Information
-Systems, Tourism and Hospitality Management, and Psychology. All are taught in English to
-an internationally focused curriculum.
+The supplied GAU undergraduate portfolio lists **ten BSc subject options**: Business
+Management, International Business Management, Marketing, Accounting, Accounting and
+Finance Management, Economics, Human Resources Management, Management Information Systems,
+Tourism and Hospitality Management, and Psychology. Confirm the current award title,
+availability, teaching language and route for the subject you choose.
+<!-- [VERIFY: GAU-01 — programme titles and current delivery arrangements for all supplied undergraduate options.] -->
 
-<!-- Target keyword: "is girne american university degree recognised" | Source: seeder (est 1985, IACBE); acronyms only per country-neutral rule -->
+<!-- Target keyword: "is girne american university degree recognised" | Source: https://www.gau.edu.tr/en/institutional/recognitions; https://www.gau.edu.tr/en/school-of-tourism-hospitality/accreditations.html; reviewed 2026-09-07. -->
 **Q. Is a BSc degree from Girne American University recognised?**
 
-Yes. GAU is a recognised university, **established in 1985**, approved by the
-higher-education authorities **YÖDAK and YÖK**, and its business programmes additionally
-hold international accreditation from **IACBE** (International Accreditation Council for
-Business Education). <!-- Sources: repo seeder (Maverick primary data) — YÖDAK/YÖK/IACBE;
-country-neutral fix applied 2026-08-19: authorities referenced by acronym only, no country
-descriptors. --> For recognition guidance specific to your goals, the admissions team can
-advise you individually.
+GAU publishes institutional recognition information and **IACBE accreditation for named
+business programmes**. That programme-level scope should not be extended to every BSc
+subject or partner-delivered route. Check the exact award, current accreditation scope
+and any requirements of your intended employer, professional body or receiving university
+before relying on recognition for a particular purpose.
+<!-- [VERIFY: GAU-02 — current accreditation scope for the exact award and delivery arrangement.] -->
 
-<!-- Target keyword: "study bsc online flexible while working" | Source: seeder — online/hybrid for BSc Business Mgmt; generalisation flagged -->
+<!-- Target keyword: "study bsc online flexible while working" | Source: database/seeders/ProgramSeeder.php (BSc Business Management only); reviewed 2026-09-07. -->
 **Q. Can I study a GAU BSc flexibly while working?**
 
-Yes — GAU's BSc programmes follow a **flexible learning model** designed to support both
-full-time students and working professionals, so you can progress your degree alongside
-your other commitments. Throughout your studies you are backed by **dedicated academic
-support, assignment guidance and a student success team**, which is what makes studying
-while working genuinely manageable rather than just possible. <!-- [VERIFY: online/hybrid delivery confirmed in source data for
-BSc Business Management only — confirm the same mode applies to all 10 BSc programmes,
-especially Psychology.] -->
+**This depends on the delivery route and attendance requirements of your chosen BSc.**
+Ask whether the offer is online, blended or campus-based, how live sessions are scheduled,
+and when assessments take place. Flexible-study information for one business programme
+should not be assumed to apply to every undergraduate subject.
+<!-- [VERIFY: GAU-01 — per-programme mode, attendance, workload and support.] -->
 
-<!-- Target keyword: "how are bsc students assessed" | Source: seeder — assignments & examinations (BSc Business Mgmt) -->
+<!-- Target keyword: "how are bsc students assessed" | Source: database/seeders/ProgramSeeder.php (BSc Business Management only); reviewed 2026-09-07. -->
 **Q. How are students assessed on the BSc programmes?**
 
-GAU's BSc programmes are assessed through **assignments and examinations** across the
-programme stages, building both applied and academic skills. Assignments let you
-demonstrate understanding through practical business scenarios, while examinations
-consolidate your core knowledge — so your final award reflects both capability and
-depth. <!-- [VERIFY: assessment pattern
-confirmed for BSc Business Management — confirm consistency across all 10 programmes.] -->
-Dedicated academic support and assignment guidance are available throughout your studies.
+**Assessment methods depend on the subject and programme specification.** They may
+include assignments, examinations, projects or other assessed work. Obtain the assessment
+breakdown, submission calendar and any supervised-attendance requirements for your route;
+this is more useful for planning than assuming that every BSc follows one business
+programme's assessment pattern.
+<!-- [VERIFY: GAU-01 — current assessment specification for each BSc option.] -->
 
 ### Eligibility & Admission
 
 <!-- Target keyword: "gau bsc entry requirements high school" | Source: whed.net + universityfairs.com (third-party) -->
 **Q. What are the entry requirements for the BSc programmes?**
 
-You need a **completed high-school (upper-secondary) qualification** or a recognised
-equivalent. Your eligibility is confirmed individually through a review by the admissions
-team, which considers your overall academic profile.
-<!-- [VERIFY: minimum grade threshold — one third-party source lists ~70% GPA; confirm official criteria.] -->
+BSc entry normally requires a **completed upper-secondary qualification or an accepted
+equivalent**. Subject preparation, minimum grades and English-language requirements may
+also apply. Submit your certificates and transcripts so the admissions team can assess
+your academic profile against the current criteria for your chosen programme.
+<!-- [VERIFY: GAU-04 — minimum grade threshold — one third-party source lists ~70% GPA; confirm official criteria.] -->
 
 <!-- Target keyword: "bsc admission without ielts english test" | Source: whed.net/universityfairs — TOEFL/IELTS or university's own test (third-party) -->
 **Q. Do I need IELTS or TOEFL to join a BSc programme?**
@@ -81,31 +86,31 @@ team, which considers your overall academic profile.
 Programmes are taught in English, so evidence of English proficiency is required — but a
 formal test certificate is **not the only route**. Recognised scores are accepted, and an
 **alternative English assessment arranged through the university** may be available if you
-don't hold one. <!-- [VERIFY: exact accepted tests/scores (third-party lists IELTS ~6.0 /
+don't hold one. <!-- [VERIFY: GAU-04 — exact accepted tests/scores (third-party lists IELTS ~6.0 /
 TOEFL iBT ~75) and availability of the university's own assessment for this intake.] -->
 The admissions team will confirm the simplest route for your profile.
 
 ### Fees, Scholarships & Payments
 
-<!-- Target keyword: "gau bsc fees instalments scholarships" | Source: seeder — fee components + scholarships (BSc Business Mgmt) -->
+<!-- Target keyword: "gau bsc fees instalments scholarships" | Source: current partner offer sheet required; no verified portfolio-wide commercial policy; reviewed 2026-09-07. -->
 **Q. How do BSc fees and scholarships work?**
 
-Fees follow an **instalment-friendly structure** — a registration fee, an initial payment,
-and **monthly instalments** across your studies — with **scholarships available**, confirmed
-during your eligibility review. Scholarship offers are typically intake-linked with a
-defined validity period, so completing your review early helps secure the available benefit.
-<!-- [VERIFY: fee amounts and currency; confirm identical fee structure applies across all 10 BSc programmes.] -->
+**BSc fees and any scholarship are confirmed for the selected programme and intake.**
+Ask for the billing currency, total cost, any registration or assessment charges and the
+terms of available payment plans. Scholarship eligibility, amount and deadlines need
+written confirmation; an enquiry or early application does not secure a funding award.
+<!-- [VERIFY: GAU-03 — current BSc commercial terms and scholarship conditions.] -->
 
 ### Careers & Outcomes
 
-<!-- Target keyword: "career after bsc business psychology economics" | Source: generic, valid across all 10 -->
+<!-- Target keyword: "career after bsc business psychology economics" | Source: general study/career guidance, not an outcome or admissions guarantee; reviewed 2026-09-07. -->
 **Q. What can I do after completing a GAU BSc?**
 
-Your career direction follows your specialisation — from business, marketing, finance and
-HR roles to hospitality management, economic analysis, information systems and
-psychology-related pathways. Graduates also hold a recognised undergraduate qualification
-for **progression to postgraduate study**, including GAU's own MBA, EMBA and MSc programmes,
-subject to admission criteria.
+A GAU BSc can support **early-career and further-study opportunities** aligned with your
+subject, including business, finance, hospitality, information systems or psychology-related
+work. Postgraduate admission depends on the receiving programme's criteria. Regulated
+professional roles may require separate licensing or training; the undergraduate degree
+alone should not be presented as permission to practise.
 
 ---
 
@@ -115,54 +120,56 @@ Business Management · Management Information Systems · Marketing · Data Scien
 
 ### General Information
 
-<!-- Target keyword: "gau mba specialisations list" | Source: inputs/listing.md -->
+<!-- Target keyword: "gau mba specialisations list" | Source: inputs/listing.md (portfolio coverage only; not evidence of current intake availability); https://www.gau.edu.tr/en/graduate-school; current Maverick offer required for partner-specific details; reviewed 2026-09-07. -->
 **Q. Which MBA specialisations does Girne American University offer?**
 
-GAU offers the MBA with **six specialisations**: Business Management, Financial Management,
-International Business Management, Marketing, Management Information Systems, and Data
-Science/Analytics Management — combining classic management depth with contemporary,
-data-driven options, all taught in English.
+The supplied GAU portfolio lists **six MBA options**: Business Management, Financial
+Management, International Business Management, Marketing, Management Information Systems,
+and Data Science/Analytics Management. Confirm which options are open for your intake,
+together with their exact award titles, delivery arrangements and entry requirements.
+<!-- [VERIFY: GAU-01 — current route availability, including Data Science/Analytics Management.] -->
 
-<!-- Target keyword: "gau mba duration how long" | Source: third-party directory — 1.5–2 years (VERIFY) -->
+<!-- Target keyword: "gau mba duration how long" | Source: https://www.gau.edu.tr/en/graduate-school; current Maverick offer required for partner-specific details; reviewed 2026-09-07. -->
 **Q. How long does the GAU MBA take to complete?**
 
-The MBA is typically completed in **around 1.5 to 2 years (up to four semesters)**, with
-the exact timeline depending on your study pace and route. <!-- Corroborated across
-multiple independent sources (2026-08-19): master's programmes at GAU run ~2 years / 4
-semesters, with shorter completion possible depending on route. --> The admissions team
-can help you plan a realistic schedule around your professional commitments.
+**The GAU MBA timeline depends on the route, study load and assessment requirements.**
+Ask for the scheduled duration and maximum registration period for the specific offer,
+including whether it contains a thesis or project. A duration advertised by another
+partner is not sufficient evidence that the same timetable applies to Maverick's route.
+<!-- [VERIFY: GAU-04 — current route-specific duration; the old 1.5–2-year range is not independently confirmed for all six options.] -->
 
-<!-- Target keyword: "mba flexible study working professionals" | Source: seeder flexible-learning model (generalised, flagged) -->
+<!-- Target keyword: "mba flexible study working professionals" | Source: https://www.gau.edu.tr/en/graduate-school; current Maverick offer required for partner-specific details; reviewed 2026-09-07. -->
 **Q. Can I do the GAU MBA without pausing my career?**
 
-Yes — the GAU MBA follows a **flexible learning structure** designed specifically for
-working professionals. You can schedule study around your job, apply new frameworks
-directly in your workplace from the first modules, and progress at a pace that fits your
-role — many candidates treat the programme itself as an extended, real-world business
-project.
-<!-- [VERIFY: delivery mode (online/hybrid/on-campus options) for the MBA category in the current offer.] -->
+**It may be possible if the programme's timetable fits your professional commitments.**
+Before enrolling, check the delivery mode, compulsory attendance, assessment dates and
+weekly study expectations for the MBA route. Ask how much schedule flexibility is
+actually available rather than assuming that every MBA can be completed around a
+full-time role.
+<!-- [VERIFY: GAU-01 — MBA mode, timetable and attendance requirements.] -->
 
 ### Eligibility & Admission
 
-<!-- Target keyword: "gau mba entry requirements" | Source: whed.net — bachelor's degree + English evidence (third-party) -->
+<!-- Target keyword: "gau mba entry requirements" | Source: https://www.gau.edu.tr/en/graduate-school; current Maverick offer required for partner-specific details; reviewed 2026-09-07. -->
 **Q. What are the entry requirements for the GAU MBA?**
 
-You need a **recognised bachelor's degree** in any discipline, plus evidence of English
-proficiency (recognised test scores, or an alternative assessment where available). **No
-entrance examination such as GMAT or GRE is listed** among the requirements — admission is
-based on your academic and professional profile. <!-- [VERIFY: minimum GPA (a third-party
-source suggests ~2.5/4.0) and official confirmation that no admission test is required.] -->
-Final eligibility is confirmed through an individual admissions review.
+MBA entry normally involves a **bachelor's degree or accepted equivalent**, with
+English-language evidence and any subject or professional requirements assessed for the
+selected route. Minimum grades, test requirements and alternative entry are not
+necessarily identical across programmes. Submit your academic documents for an individual
+review against the current admission criteria.
+<!-- [VERIFY: GAU-04 — GPA, subject prerequisites, English evidence and any admission tests.] -->
 
 ### Fees, Scholarships & Payments
 
-<!-- Target keyword: "gau mba fees scholarships instalments" | Source: fee-component pattern (VERIFY for MBA) -->
+<!-- Target keyword: "gau mba fees scholarships instalments" | Source: current partner offer sheet required; no verified portfolio-wide commercial policy; reviewed 2026-09-07. -->
 **Q. What is the fee structure for the MBA?**
 
-MBA tuition follows an **instalment-based structure** to keep payments manageable while you
-study, with scholarship availability confirmed during your eligibility review. Exact
-amounts, currency and current offers are confirmed by the admissions team for your intake.
-<!-- [VERIFY: MBA fee amounts, currency and instalment structure.] -->
+**Request the current MBA fee schedule before accepting an offer.** It should show the
+total tuition, currency and any separate registration or assessment charges. If
+instalments or scholarships are offered, check the eligibility conditions, payment dates
+and total payable. A payment model from another programme should not be assumed to apply.
+<!-- [VERIFY: GAU-03 — current MBA quotation and payment/funding terms.] -->
 
 ### Careers & Outcomes
 
@@ -185,13 +192,15 @@ Management · Public Administration · Public Health · Digital Marketing · Spo
 
 ### General Information
 
-<!-- Target keyword: "gau executive mba specialisations" | Source: inputs/listing.md -->
+<!-- Target keyword: "gau executive mba specialisations" | Source: inputs/listing.md (portfolio coverage only; not evidence of current intake availability); https://www.gau.edu.tr/en/graduate-school; current Maverick offer required for partner-specific details; reviewed 2026-09-07. -->
 **Q. Which Executive MBA specialisations does GAU offer?**
 
-GAU offers one of the **widest EMBA portfolios available — 16 specialisations** — spanning
-banking and finance, healthcare, public administration, engineering, supply chain, digital
-marketing, sustainability, media, sport management and more. Whatever sector you lead in,
-there is an EMBA track aligned to it.
+The supplied portfolio lists **sixteen Executive MBA specialisations**, spanning
+education, media, banking, health and safety, sustainability, tourism, entrepreneurship,
+projects, human resources, supply chain, healthcare, engineering, public administration,
+public health, digital marketing and sport. Confirm the exact award title and current
+availability of your preferred track before applying.
+<!-- [VERIFY: GAU-01 — all sixteen partner-offered EMBA tracks and award titles.] -->
 
 <!-- Target keyword: "mba vs executive mba difference" | Source: generic definitional -->
 **Q. What is the difference between an MBA and an Executive MBA?**
@@ -208,13 +217,14 @@ experience level and career stage, and the admissions team can help you decide.
 | Focus | Broad management capability | Strategic, sector-specific leadership |
 | Assumes | Building experience | Workplace seniority |
 
-<!-- Target keyword: "executive mba while working full time" | Source: EMBA design purpose (generic) -->
+<!-- Target keyword: "executive mba while working full time" | Source: general study/career guidance, not an outcome or admissions guarantee; https://www.gau.edu.tr/en/graduate-school; current Maverick offer required for partner-specific details; reviewed 2026-09-07. -->
 **Q. Can I complete the EMBA while working full-time?**
 
-Yes — that is exactly who the GAU Executive MBA is built for. The **flexible structure** is designed
-around the schedules of working executives and managers, so you can lead your organisation
-and study in parallel, applying strategic insights to your role immediately.
-<!-- [VERIFY: delivery mode (online/hybrid) for the EMBA category in the current offer.] -->
+An Executive MBA is generally aimed at **experienced working professionals**, but the
+actual timetable determines whether full-time work is practical. Check the selected
+route's teaching mode, attendance requirements, assessment workload and session times.
+Do not assume that an executive title means self-paced study or no compulsory attendance.
+<!-- [VERIFY: GAU-01 — EMBA delivery arrangements and required attendance.] -->
 
 ### Eligibility & Admission
 
@@ -223,55 +233,59 @@ and study in parallel, applying strategic insights to your role immediately.
 
 You need a **recognised bachelor's degree**, and your **professional experience** forms a
 key part of your application — the EMBA is aimed at candidates with meaningful workplace
-responsibility. <!-- [VERIFY: minimum years of work experience required for EMBA entry —
+responsibility. <!-- [VERIFY: GAU-04 — minimum years of work experience required for EMBA entry —
 not stated in source data.] --> Eligibility is confirmed individually through an admissions
 review of your academic and professional profile, along with English proficiency evidence
 or an applicable alternative assessment.
 
 ### Fees, Scholarships & Payments
 
-<!-- Target keyword: "executive mba fees instalment plan" | Source: fee-component pattern (VERIFY for EMBA) -->
+<!-- Target keyword: "executive mba fees instalment plan" | Source: current partner offer sheet required; no verified portfolio-wide commercial policy; reviewed 2026-09-07. -->
 **Q. How are EMBA fees structured?**
 
-EMBA tuition is payable through **structured instalments**, keeping the investment
-manageable alongside your professional income. Exact fees, currency and any current
-scholarship or fee-support offers are confirmed by the admissions team for your chosen
-specialisation and intake. <!-- [VERIFY: EMBA fee amounts, currency and instalment structure.] -->
+**EMBA fees are specific to the track and intake in your offer.** Obtain a full written
+breakdown, including the currency and any additional academic charges. Ask whether
+instalments or fee support are available and check their terms before planning a budget
+around them. The same payment structure is not confirmed across all tracks.
+<!-- [VERIFY: GAU-03 — EMBA fee schedule, payment options and funding conditions.] -->
 
 ### Careers & Outcomes
 
-<!-- Target keyword: "is executive mba worth it career impact" | Source: generic, valid across all 16 -->
+<!-- Target keyword: "is executive mba worth it career impact" | Source: general study/career guidance, not an outcome or admissions guarantee; reviewed 2026-09-07. -->
 **Q. What impact can the EMBA have on my career?**
 
-The EMBA is built to accelerate movement into **senior leadership** — directorships,
-executive management and strategic roles — within your sector. Because the 16 tracks map to
-specific industries (healthcare, banking, public administration, energy, sport and more),
-your qualification signals both **leadership capability and sector authority**, wherever in
-the world you work.
+An EMBA can help experienced professionals develop **strategic judgement, management
+knowledge and leadership skills** relevant to their sector. It may support a promotion
+case or a move into broader responsibilities, but outcomes also depend on experience,
+performance and employer requirements. The qualification does not automatically confer
+seniority or professional authority.
 
 ---
 
-## Category 4 — MSc Programmes (with Thesis)
-*Applies to all 4 MSc programmes: Business Management · Economics · Healthcare Management ·
+## Category 4 — Thesis-based Master's Programmes
+*Covers the 4 supplied thesis-based master's subjects: Business Management · Economics · Healthcare Management ·
 Counselling Psychology.*
 
 ### General Information
 
-<!-- Target keyword: "gau msc with thesis programmes" | Source: inputs/listing.md -->
-**Q. Which thesis-based MSc programmes does GAU offer?**
+<!-- Target keyword: "gau msc with thesis programmes" | Source: inputs/listing.md (portfolio coverage only; not evidence of current intake availability); https://www.gau.edu.tr/en/graduate-school; current Maverick offer required for partner-specific details; reviewed 2026-09-07. -->
+**Q. Which thesis-based master's programmes are listed for GAU?**
 
-GAU offers **four MSc programmes with thesis**: Business Management, Economics, Healthcare
-Management, and Counselling Psychology. Each combines taught study with a **supervised
-research thesis**, taught and written in English.
+The supplied portfolio groups **four thesis-based master's subjects**: Business
+Management, Economics, Healthcare Management and Counselling Psychology. Confirm the exact
+award title and thesis route for each intake. GAU's public catalogue uses different
+master's titles across subjects, so these options should not all be assumed to lead to
+an identically titled MSc.
+<!-- [VERIFY: GAU-05 — Counselling Psychology appears as an MA in the official catalogue; reconcile the supplied MSc label and all four thesis routes.] -->
 
-<!-- Target keyword: "what does msc with thesis mean" | Source: generic definitional -->
+<!-- Target keyword: "what does msc with thesis mean" | Source: general study/career guidance, not an outcome or admissions guarantee; reviewed 2026-09-07. -->
 **Q. What does "MSc with Thesis" actually mean?**
 
-An MSc "with thesis" is a **research-oriented master's degree**: alongside taught modules,
-you plan and complete an original, supervised **research project (thesis)** in your field.
-It develops deeper analytical and research skills than a purely taught master's — which is
-why it is the preferred route for students considering doctoral study or research-based
-careers.
+An **MSc with a thesis includes a supervised research project alongside taught study**.
+Students normally develop a research question, choose appropriate methods and present a
+critical written investigation. It can provide useful preparation for research-focused
+work or doctoral applications, but the amount and form of research depend on the
+programme; it is not automatically better than every taught master's.
 
 <!-- Target keyword: "who should choose thesis masters" | Source: generic guidance -->
 **Q. Who should choose the thesis-based MSc route?**
@@ -289,31 +303,32 @@ healthcare management, economics and counselling psychology.
 A **recognised bachelor's degree** is required, plus evidence of English proficiency
 (recognised scores or an alternative assessment where available). Some programmes may
 consider your academic background relative to the chosen field.
-<!-- [VERIFY: per-programme prerequisites — e.g. psychology background for Counselling
+<!-- [VERIFY: GAU-05 — per-programme prerequisites — e.g. psychology background for Counselling
 Psychology — and minimum GPA.] --> Final eligibility is confirmed through an individual
 admissions review.
 
 ### Fees, Scholarships & Payments
 
-<!-- Target keyword: "msc fees scholarships" | Source: fee-component pattern (VERIFY for MSc) -->
+<!-- Target keyword: "msc fees scholarships" | Source: current partner offer sheet required; no verified portfolio-wide commercial policy; reviewed 2026-09-07. -->
 **Q. What do the thesis-based MSc programmes cost, and is scholarship support available?**
 
-Tuition for GAU's thesis-based MSc programmes follows an **instalment-based structure**,
-so payments are spread across both the taught and research stages of your degree.
-**Scholarship support is reviewed as part of your application**, with any offer linked to
-your intake. Exact amounts, currency and current offers are confirmed by the admissions
-team during your eligibility review.
-<!-- [VERIFY: MSc fee amounts, currency and instalment structure.] -->
+**Ask for the fee schedule covering both taught study and the research stage.** Check
+whether supervision, assessment and extended registration create separate charges, and
+confirm the billing currency. Any scholarship or instalment plan needs offer-specific
+terms; research students should not assume that fees or funding follow the same
+arrangements as another master's route.
+<!-- [VERIFY: GAU-03 — fees and funding; GAU-05 — confirmed thesis route.] -->
 
 ### Careers & Outcomes
 
-<!-- Target keyword: "phd after msc with thesis" | Source: standard progression, subject to criteria -->
+<!-- Target keyword: "phd after msc with thesis" | Source: general study/career guidance, not an outcome or admissions guarantee; reviewed 2026-09-07. -->
 **Q. Does a thesis-based MSc help me get into a PhD?**
 
-Yes — significantly. A completed, supervised thesis is **direct evidence of research
-capability**, which doctoral admissions value highly. Graduates progress to **PhD study**
-(including GAU's own PhD portfolio) subject to admission criteria, or into
-specialist and research-informed roles in their field.
+A completed master's thesis can **demonstrate research preparation** and support a PhD
+application. Admission still depends on academic results, the proposed project,
+supervisory fit and the receiving university's requirements. A thesis does not guarantee
+admission, but it can give you experience of the research planning and critical writing
+expected at doctoral level.
 
 ---
 
@@ -323,31 +338,34 @@ Systems · Psychology · Educational Administration · Law · Tourism & Hospital
 
 ### General Information
 
-<!-- Target keyword: "gau phd programmes list" | Source: inputs/listing.md -->
+<!-- Target keyword: "gau phd programmes list" | Source: inputs/listing.md (portfolio coverage only; not evidence of current intake availability); https://www.gau.edu.tr/en/graduate-school; current Maverick offer required for partner-specific details; reviewed 2026-09-07. -->
 **Q. Which PhD programmes does Girne American University offer?**
 
-GAU offers **seven PhD programmes**: Business Management, Marketing, Management Information
-Systems, Psychology, Educational Administration, Law, and Tourism & Hospitality. Each is a
-research doctorate completed under academic supervision, in English.
+The supplied GAU portfolio lists **seven PhD subjects**: Business Management, Marketing,
+Management Information Systems, Psychology, Educational Administration, Law, and Tourism
+and Hospitality. Confirm the current programme title, language, supervisor availability
+and entry requirements for your intended research area before applying.
+<!-- [VERIFY: GAU-01 — current PhD titles, teaching language and route availability.] -->
 
-<!-- Target keyword: "can i do phd while working" | Source: flexible-model pattern (VERIFY) -->
+<!-- Target keyword: "can i do phd while working" | Source: https://www.gau.edu.tr/en/graduate-school; current Maverick offer required for partner-specific details; reviewed 2026-09-07. -->
 **Q. Can I pursue a GAU PhD while continuing to work?**
 
-Doctoral research is structured around **your own research schedule**, which many candidates
-run alongside professional roles — especially where the research connects to their field of
-work. <!-- [VERIFY: formal part-time/flexible PhD arrangements and any residency or
-attendance requirements.] --> The admissions team can advise on planning a sustainable
-research timeline.
+**Working alongside a PhD depends on the approved registration and attendance model.**
+Discuss your work schedule, research plan and any residence or in-person requirements
+before accepting a place. Part-time or flexible arrangements must be confirmed for the
+specific programme; a research-led timetable is not automatically free of attendance
+commitments.
+<!-- [VERIFY: GAU-06 — part-time registration, attendance and supervision rules.] -->
 
-<!-- Target keyword: "how long does phd take" | Source: no verified figure — honest framing -->
+<!-- Target keyword: "how long does phd take" | Source: https://www.gau.edu.tr/en/graduate-school; current Maverick offer required for partner-specific details; reviewed 2026-09-07. -->
 **Q. How long does a PhD at GAU take?**
 
-PhD duration at GAU is **individual** — it depends on your research topic, pathway and
-pace. The journey typically moves through **proposal development, supervised research and
-thesis completion**, and your realistic timeline is mapped with the admissions team when
-you discuss your research proposal, so you start with a plan rather than an open-ended
-commitment. <!-- [VERIFY: official minimum/typical PhD duration — no figure in
-source data; add once confirmed.] -->
+**PhD duration is governed by the programme's registration rules as well as research
+progress.** Ask for the minimum, expected and maximum periods, including coursework,
+research, thesis examination and any corrections. Your supervisor and admissions team
+can help establish a realistic plan once the available route and research proposal are
+clear.
+<!-- [VERIFY: GAU-06 — official duration and registration limits per PhD route.] -->
 
 ### Eligibility & Admission
 
@@ -361,110 +379,148 @@ Doctoral applicants typically need:
 - A **CV** and academic **reference letters**
 - Evidence of **English proficiency** at doctoral level
 
-<!-- [VERIFY: exact score thresholds (third-party suggests higher-than-master's levels) and
+<!-- [VERIFY: GAU-06 — exact score thresholds (third-party suggests higher-than-master's levels) and
 number of references required.] --> Final eligibility is confirmed through an individual
 admissions review, which may include a discussion of your research plans.
 
 ### Fees, Scholarships & Payments
 
-<!-- Target keyword: "phd fees instalments" | Source: fee-component pattern (VERIFY for PhD) -->
+<!-- Target keyword: "phd fees instalments" | Source: current partner offer sheet required; no verified portfolio-wide commercial policy; reviewed 2026-09-07. -->
 **Q. How are PhD fees structured?**
 
-PhD tuition is payable through **structured instalments** across the research period. Exact
-amounts, currency and any current fee-support offers are confirmed by the admissions team
-for your programme and intake. <!-- [VERIFY: PhD fee amounts, currency and instalment structure.] -->
+**Request a doctoral fee schedule covering the full expected registration period.**
+Confirm the currency, supervision and assessment costs, available payment arrangements,
+and what happens financially if research takes longer. Any fee-support offer should be
+recorded with its eligibility and continuation conditions; a nominal duration is not a
+guarantee of a fixed total research cost.
+<!-- [VERIFY: GAU-03 — PhD fees; GAU-06 — extension and registration terms.] -->
 
 ### Careers & Outcomes
 
-<!-- Target keyword: "what can i do with a phd" | Source: generic, valid across all 7 -->
+<!-- Target keyword: "what can i do with a phd" | Source: general study/career guidance, not an outcome or admissions guarantee; reviewed 2026-09-07. -->
 **Q. What can a PhD from GAU lead to?**
 
-A PhD establishes you as a **researcher and authority** in your field — opening academic
-careers (lecturing, research, supervision), senior specialist and policy roles, and
-leadership positions where doctoral-level expertise carries weight. Across all seven
-disciplines, it is the highest academic qualification you can earn.
+A PhD can develop **advanced research and subject expertise** relevant to academic,
+policy, consulting or specialist professional work. Access to particular roles depends on
+your research record, experience and the employer's requirements. In regulated fields,
+professional licensing may be separate; a research doctorate should not be described as
+automatic permission to practise.
 
 ---
 
 ## Applying & Practical Information
-*Provider-level questions — apply to all GAU programmes. (Phase 2 addition.)*
+*Practical information to check before applying.*
 
-<!-- Target keyword: "university eligibility review how it works" | Source: consultative admissions model (seeder pattern); distinct from RBS "how to apply" -->
+<!-- Target keyword: "university eligibility review how it works" | Source: Maverick review workflow requires confirmation; reviewed 2026-09-07. -->
 **Q. How does the GAU eligibility review work?**
 
-The eligibility review is a **free, no-obligation assessment** of your academic background,
-work experience and goals — done before you formally commit to anything. The admissions
-team maps you to the right programme and level, confirms any scholarship you qualify for,
-and only then moves you to enrolment. It replaces guesswork with a clear, personal answer
-to "am I eligible?". <!-- [VERIFY: confirm review is free/no-obligation in our offer.] -->
+An eligibility review compares **your academic qualifications, professional background
+and goals with the programme's entry criteria**. Ask what documents are needed, whether
+there is a review fee and who makes the final admission decision. The review can clarify
+suitable routes, but does not itself guarantee admission, a scholarship or an offer.
+<!-- [VERIFY: GAU-07 — Maverick review process, charges and decision authority.] -->
 
-<!-- Target keyword: "documents translation attestation university admission" | Source: universityfairs.com — translations required if not in English (third-party) -->
+<!-- Target keyword: "documents translation attestation university admission" | Source: https://www.gau.edu.tr/en/graduate-school; current Maverick offer required for partner-specific details; reviewed 2026-09-07. -->
 **Q. Do my documents need to be translated or attested?**
 
-If your academic documents are not in English, **official translations are required
-alongside the originals**. The admissions team tells you exactly which documents need
-translation and what counts as an acceptable format for your region — before you spend
-money on unnecessary attestations. <!-- [VERIFY: attestation/apostille requirements per
-document type in our offer.] -->
+**Documents not issued in the accepted application language may need official
+translations.** Certification, attestation or other authentication requirements depend on
+the university's instructions and the document type. Ask for the current checklist and
+accepted translator or certification format before paying for services; not every
+application needs the same authentication process.
+<!-- [VERIFY: GAU-07 — translation and authentication requirements for this route.] -->
 
-<!-- Target keyword: "how to verify university degree employer" | Source: standard verification practice (VERIFY GAU process) -->
+<!-- Target keyword: "how to verify university degree employer" | Source: official graduate-record verification process requires confirmation; reviewed 2026-09-07. -->
 **Q. How can an employer or institution verify my GAU degree?**
 
-Degree verification is a standard process: employers or institutions can confirm your
-award **directly with the university's records office**, and your final documents
-(degree certificate and transcripts) carry the university's official seals and security
-features. Graduates can also request **additional official copies or verification
-letters** when applying for jobs or further study.
-<!-- [VERIFY: GAU's exact verification channel/process for graduate records.] -->
+Ask GAU for its **current official award-verification process** and provide the employer
+or receiving institution with the required details. They may need your consent to check
+your academic record. A certificate and transcript identify the award, but their
+appearance alone is not verification; use the university's authorised channel.
+<!-- [VERIFY: GAU-07 — graduate verification channel, consent requirements and any charges.] -->
 
-<!-- Target keyword: "how do university scholarships work online students" | Source: repo seeder — scholarships available, intake-linked, offer validity -->
+<!-- Target keyword: "how do university scholarships work online students" | Source: current partner offer sheet required; no verified portfolio-wide commercial policy; reviewed 2026-09-07. -->
 **Q. How do GAU scholarships actually work?**
 
-GAU scholarships are **confirmed during your eligibility review** and applied directly to
-your fee plan — you don't apply for them separately after admission. Two things matter:
-offers are **intake-linked**, and they carry a **defined validity period**. Practically,
-that means completing your eligibility review early is the single best way to secure the
-strongest available benefit for your start date.
+**Scholarships depend on the programme, intake and the eligibility terms of the award.**
+Ask whether a separate application is required, what evidence is assessed, when a
+decision is made and how any reduction affects your fee schedule. Do not assume that
+starting an eligibility review secures funding or that all programmes use one scholarship
+process.
+<!-- [VERIFY: GAU-03 — scholarship application, eligibility, validity and payment terms.] -->
 
-<!-- Target keyword: "online student support services distance learning" | Source: repo seeder — support list (verified Maverick data) -->
+<!-- Target keyword: "online student support services distance learning" | Source: database/seeders/ProgramSeeder.php (BSc Business Management only); reviewed 2026-09-07. -->
 **Q. What support will I get as a distance learner at GAU?**
 
-You are never studying alone. Support includes:
-
-- **Dedicated academic support** and **experienced faculty**
-- A **student success team** tracking your progress
-- **Assignment support** when you need guidance
-- **Career guidance** during your studies
-- **Graduation support** at the finish line
-
-This support layer is what converts flexible learning from a brochure promise into
-completed degrees.
+**Confirm the support included in your particular distance-learning offer.** Useful
+items to check are access to tutors and learning materials, assessment guidance, progress
+support, technical help and any careers or graduation services. Ask who provides each
+service and how to contact them; support described for one programme should not be
+promised across the entire portfolio.
+<!-- [VERIFY: GAU-01 — programme-specific support commitments and service contacts.] -->
 
 ---
 
-## Facts to Verify (updated 2026-08-19 after deep research — see Resolved section)
+## Immigration & Visa Eligibility
+<!-- OWNER EXCEPTION: IMM-US-UK-2026-09-09 — one process-clarification FAQ for this provider.
+     Applies across this provider's supplied categories without certifying any award for immigration.
+     Country names are permitted only inside this designated FAQ; website publication remains gated. -->
 
-### Still open
+<!-- Target keyword: "girne american university programme US UK immigration eligibility" | Source: https://www.gov.uk/graduate-visa/course-you-studied;
+     https://www.gov.uk/skilled-worker-visa; https://www.uscis.gov/working-in-the-united-states/h-1b-specialty-occupations;
+     https://www.uscis.gov/policy-manual/volume-2-part-f-chapter-5;
+     https://www.uscis.gov/working-in-the-united-states/permanent-workers/employment-based-immigration-second-preference-eb-2;
+     reviewed 2026-09-09; claim mapping: reports/gau-rbs-immigration-report-2026-09-09.md;
+     Exception: IMM-US-UK-2026-09-09. No provider-specific equivalence or applicant approval is asserted. -->
+**Q. Does completing a Girne American University programme make me eligible to migrate to the US or UK?**
 
-| # | Item | What the draft currently says | What needs confirming |
-|---|------|-------------------------------|----------------------|
-| 1 | Delivery mode per category | "Flexible learning" (soft phrasing) | Source data confirms online/hybrid for BSc Business Mgmt only — confirm mode for all 5 categories (esp. Psychology, EMBA, PhD) |
-| 2 | BSc entry threshold | "Completed high school" (no %) | Third-party lists ~70% GPA — confirm official |
-| 3 | English tests/scores | Generic + "university's own assessment" option | Third-party: IELTS ~6.0 / TOEFL iBT ~75; confirm scores per level + own-test availability |
-| 4 | MBA GPA + no-GMAT | "~2.5/4.0" flagged, "no test listed" | Confirm officially |
-| 5 | EMBA work experience | "Meaningful workplace responsibility" (soft) | Minimum years of experience required? |
-| 6 | MSc per-programme prerequisites | Generic bachelor's | e.g. psychology background for Counselling Psychology? |
-| 7 | PhD duration | Not stated (individual) | Official minimum/typical duration |
-| 8 | All fee data | Components only (registration/initial/monthly per seeder BSc pattern) | Amounts, currency, and whether the same structure applies to MBA/EMBA/MSc/PhD |
+**Completing a GAU programme does not, by itself, establish US or UK immigration
+eligibility.** A graduate may qualify for a visa or permanent residence through an
+applicable route, but must meet that route's conditions. Any required assessment must
+relate to the exact qualification; academic recognition or a study-transfer arrangement
+is not immigration permission.
 
-### ✅ Resolved (2026-08-19 deep research)
+For the **UK**, sponsored work and the Graduate route have different requirements;
+the latter requires eligible study, the relevant Student permission and compliance with
+UK-study requirements. For the **US**, work and residence routes require their own
+evidence, while **Optional Practical Training (OPT)** is linked to F-1 status and
+qualifying study. An overseas or online programme alone does not establish these
+post-study work entitlements.
 
-| Item | Resolution |
-|------|-----------|
-| Accreditation naming under country-neutral rule | **Fixed:** YÖDAK/YÖK referenced as "higher-education authorities" by acronym only — no country descriptors; IACBE full form retained (country-free). Sources: Maverick repo seeder (primary) |
-| MBA duration | **~1.5–2 years (up to 4 semesters)** — corroborated across multiple independent sources; inline VERIFY removed |
+Before relying on a programme for migration plans, have the current route requirements,
+award details and your individual circumstances reviewed by an appropriately qualified
+immigration adviser.
+
+*Immigration and residency decisions rest solely with the relevant authorities. This information is general guidance, not immigration advice.*
 
 ---
 
-*Fee amounts, scholarships and entry requirements are confirmed individually during the
-admissions eligibility review and may change without notice.*
+## Facts to Verify (reviewed 2026-09-07)
+
+The source listing defines coverage, not confirmation that every partner route is
+currently offered or identically delivered.
+
+| ID | Open item | Evidence or action required |
+|---|---|---|
+| GAU-01 | All supplied titles, availability, language, delivery, assessment and support | Current partner-approved offer per category; the BSc Business Management seeder is not evidence for all 43 entries |
+| GAU-02 | Recognition and accreditation scope | Exact programme, delivery location/partner and current accreditation period; IACBE listing is programme-specific |
+| GAU-03 | All fees, scholarships and payment terms | Written fee schedules and scholarship policies; no universal instalments or early-application funding promise |
+| GAU-04 | BSc/MBA/EMBA entry, English, tests, experience and MBA duration | Official current programme criteria; old third-party grades and 1.5–2-year range remain unconfirmed for our routes |
+| GAU-05 | Master's title/thesis mismatch | Official catalogue lists Counselling Psychology as MA, not the supplied MSc; confirm all four awards and thesis routes before website use |
+| GAU-06 | PhD entry, English, references, supervision, attendance and registration period | Current research regulations for each subject |
+| GAU-07 | Review, documents and award verification | Confirm charges, translation/authentication instructions and official verification channel |
+
+### Current evidence and corrections
+
+- University recognition information and its list of IACBE-accredited programmes are
+  available, but neither is universal employer, licensing or further-study acceptance.
+- Working-learner claims now depend on actual delivery and attendance rules.
+- Scholarship, support and free-review claims drawn from one route are no longer promised
+  across every programme.
+- Sources and the master's-title discrepancy are recorded in
+  `reports/verification-update-2026-09-07.md`.
+
+---
+
+*Programme availability, fees and entry requirements are confirmed for the selected
+route and intake before enrolment and may change.*

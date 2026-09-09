@@ -1,94 +1,104 @@
-# 🏁 Education FAQ Project — Final Summary
+# Education FAQ Project — Current Summary
 
-**Completed:** 2026-08-19 · **Status:** All 7 providers approved by owner
-**Agent:** `.claude/agents/education-faq-specialist.md` (SME + SEO + Writer + Editor/QA persona)
+**Updated:** 9 September 2026
+**Historical provider approvals:** 19 August 2026; Phase 2 additions completed 20 August 2026
+**Current state:** two owner-approved US/UK immigration clarifications added; website publication on hold
 
----
+## Coverage
 
-## 1. Delivered
+| Provider | Category sets | Practical FAQs | Total FAQs | Supplied programme entries |
+|---|---:|---:|---:|---:|
+| Rushford Business School | 4 | 5 | 36 | 41 |
+| Girne American University | 5 | 5 | 38 | 43 |
+| University of the West of Scotland | 1 | 3 | 12 | 1 |
+| University for the Creative Arts | 1 | 3 | 12 | 1 |
+| University of Wolverhampton | 1 | 3 | 12 | 1 |
+| Gatehouse Diplomas | 1 | 3 | 12 | 4 |
+| Qualifi Diplomas | 3 | 3 | 22 | 45 |
+| **Provider total** | **16** | **25** | **144** | **136** |
 
-| # | Provider | Category Sets | FAQs | Programmes | Approved File |
-|---|---------|---------------|------|-----------|---------------|
-| 1 | Rushford Business School (RBS) | 4 (BBA · MBA · MSc · Doctoral) | 30 | 41 | `approved/rushford-business-school.md` |
-| 2 | Girne American University (GAU) | 5 (BSc · MBA · EMBA · MSc Thesis · PhD) | 32 | 43 | `approved/girne-american-university.md` |
-| 3 | University of the West of Scotland (UWS) | 1 (BA Hons Global Business) | 9 | 1 | `approved/university-west-scotland.md` |
-| 4 | University for the Creative Arts (UCA) | 1 (Global MBA, dual with RBS) | 9 | 1 | `approved/university-creative-arts.md` |
-| 5 | University of Wolverhampton (UOW) | 1 (Master of Laws — LLM) | 9 | 1 | `approved/university-wolverhampton.md` |
-| 6 | Gatehouse Diplomas | 1 (Level 7 Diplomas) | 9 | 4 | `approved/gatehouse-diplomas.md` |
-| 7 | Qualifi Diplomas | 3 (L3 · L5 Extended · L7) | 19 | 45 | `approved/qualifi-diplomas.md` |
-| | **TOTAL** | **16 + 7 practical guides** | **142** | **136** | + 7 selection/ranking reports in `reports/` |
+Homepage adds **8** proposed FAQs and Edutainment **10**, for **162 review questions**. The two immigration FAQs are additional provider-level
+clarifications, not new programme categories.
+All supplied entries are mapped; this is not confirmation that all award titles,
+partner routes or intake availability are verified.
 
-*(FAQ count = visible published questions; every question carries an HTML-comment layer with
-target keyword + source reference, invisible after upload.)*
+## Baseline audit — 7 September 2026
 
-## 2. Rules enforced across all files
+- Same branch safely pulled to `f37fa7e`; original local artefacts preserved.
+- Existing questions reviewed without adding new programme topics.
+- Category-wide assumptions corrected: durations/credits, recognition, diploma extras,
+  entry and English rules, payment plans, support, assessment and progression.
+- UWS questions made award-title-neutral pending BA versus BA (Hons) clarification.
+- GAU thesis-master's wording no longer assumes the supplied Counselling Psychology MSc
+  title is confirmed; the official catalogue lists MA.
+- Old fixed UCA fees and undefined credit equivalence removed; exact current offer needed.
+- UOW's standard and professional top-up LLM routes are no longer conflated.
+- Gatehouse single-qualification evidence no longer applied to every track; delivery
+  authorisation and remaining qualification numbers are open.
+- Homepage and Edutainment remain drafts; operational safety and service claims are not
+  promised without supporting evidence.
 
-1. **Category-generic** — one FAQ set valid for every programme in its category; no
-   single-programme fact generalised without a VERIFY flag.
-2. **Strict country-neutral** — zero country/city/region names in content (verified by grep
-   QA each cycle); institutions and regulators referenced by proper name/acronym only
-   (IACBE, Ofqual, RQF, ECTS, CHF).
-3. **Data integrity** — no invented fees, durations, rankings or volumes; every unverified
-   item carries an inline `[VERIFY]` tag plus a row in that file's Facts-to-Verify table.
-4. **Compliance blacklist** — "WES approved" claims excluded twice (UCA, UOW sources);
-   "equivalent to a master's degree" over-claim avoided (Gatehouse/Qualifi); LLM
-   practice-rights disclaimer added (UOW); no job/placement guarantees anywhere.
-5. **Cannibalisation control** — unique query targets across all 7 files (e.g. "PhD vs DBA"
-   only in RBS; "MBA vs EMBA" only in GAU; L7-definitional only in Gatehouse; ladder angle
-   only in Qualifi).
+**41 grouped confirmation items remain open.** The previous “all four publish blockers
+resolved” status is superseded, not silently carried forward.
 
-## 3. ⚠️ Verification backlog — UPDATED after deep research (2026-08-19)
+See [`reports/verification-update-2026-09-07.md`](reports/verification-update-2026-09-07.md)
+for exact findings, sources, CMS boundaries and hand-off. The evidence ledger feeding the
+client verification report is `reports/verification-evidence.json`.
 
-### ✅ Top 4 publish-blockers — RESOLVED & FIXED IN CONTENT
+## Artefacts and checks
 
-| # | Blocker | Resolution (source) | Fixed in |
-|---|---------|--------------------|----------|
-| 1 | **Durations** | RBS MBA = **16 months / 90 ECTS**; RBS MSc = **60/90/120 ECTS → ~12/18/24-month routes**; RBS BBA = **180 ECTS / 6 semesters / ~36 months** (all official rushford.ch); GAU MBA = **~1.5–2 years / up to 4 semesters** (corroborated multi-source). *(Old GAU BSc 20–24-month figure exists only in the repo seeder, not in FAQ content — seeder fix is a separate dev task.)* | RBS + GAU files |
-| 2 | **Accreditation wording** | Gatehouse Awards = **Ofqual-recognised AO** (confirmed; Edu Leadership QAN 610/7539/5); Qualifi = **Ofqual-approved & regulated, ref RN5160**, QANs on RQF; GAU YÖDAK/YÖK = phrased country-neutrally as "higher-education authorities" (acronyms only); UWS/UOW/UCA heritage = decision to keep neutral phrasing, no dates | Gatehouse, Qualifi, GAU, UWS, UOW, UCA files |
-| 3 | **UWS top-up structure** | **Confirmed top-up route, ~12 months, online** — consistent across 3 independent partner institutions; entry = completed HND/equivalent or relevant work experience (subject to approval) | UWS file |
-| 4 | **UCA entry-criteria conflict** | **Resolved by source hierarchy:** our offer is the Rushford-delivered route → official apply.rushford.ch criteria apply (**bachelor's, any discipline**); the stricter criteria belong to a different delivery partner's route | UCA file |
+- Seven corrected provider markdown files; two corrected site-page drafts.
+- All six client PDFs built/refreshed, including the dedicated immigration report; literal HTML tags no longer print around questions.
+- Shared parser and seven local JSON-LD exports with exact answer parity.
+- Local coverage/compliance/metadata/PDF checks and regression tests in `tools/`.
+- Current exact-question registers appended to seven selection reports; report text is
+  presented in clean English without approval or delivery-status context.
+- Summary counts and tier totals now derive from the source content and recorded data.
 
-**Bonus finding:** RBS MBA specialisations also carry an **Ofqual-regulated Level 7
-Diploma award by default** (official portal) — added to content as a value point (WES
-wording remained excluded).
+The 117 original priorities have recorded component scores; 25 practical additions and
+18 site questions have editorial totals without recorded components. The two new
+immigration FAQs have no assigned demand tier or priority score. No components,
+search-volume figures, rankings, AI visibility or plagiarism percentage are invented.
+Local duplicate checks are not a tool-based originality certificate.
 
-### Still open (non-blocking — need partner offer sheets, not public research)
+Google ended FAQ rich results from 7 May 2026. Local FAQPage files are review exports,
+not a promise of a search feature or a deployment plan. Official update:
+[1](https://developers.google.com/search/updates#deprecating-the-faq-rich-result-feature).
 
-1. **All fee amounts + currencies** (only UCA has portal-published figures: CHF 9,900 /
-   1,800 + 6×1,400 — reconfirm for our intake).
-2. **English test thresholds** per provider/level (official levels vs third-party figures).
-3. **Qualifi L7 Law → UOW LLM feeder** + L5 → degree top-up receiving programmes in OUR
-   portfolio (funnel unlockers).
-4. **Delivery mode per GAU category** (esp. Psychology/EMBA/PhD) + entry thresholds
-   (GAU ~70% BSc, RBS ~55%, EMBA experience years, EPD full form).
-5. Gatehouse QANs for the 3 remaining tracks.
+## Publication and preview
 
-> Har file ke andar ab "Still open" vs "✅ Resolved" ka split table hai — jo bacha hai wo
-> sab partner offer-sheet level ka data hai, public research se aage clear nahi ho sakta.
+Only the six review PDFs are shared in the existing `public/downloads/faqs/` preview.
+The markdown, source reports, tools and JSON-LD remain outside the web root. **No FAQ
+seeder, application route, Blade content, database row or settings value was changed.**
 
-## 4. Recommended next steps
+The latest branch now uses CMS settings for Edutainment, Dual MBA and the MBA/Master's
+landing page. Their source defaults were inspected separately; actual production CMS
+content was not available. The preview on port 8080 is the PDF review index, not Laravel.
 
-1. **Resolve the verification backlog** with each partner's official offer sheet; the agent
-   will patch answers and remove VERIFY tags file by file.
-2. **FAQPage JSON-LD schema** generation per file at publish time (all questions; Tier 1
-   first). The agent can generate these on request.
-3. **Wire into the site** — the repo already has a polymorphic `Faq` model
-   (`app/Models/Faq.php`) + `ProgramCategory`; a seeder/Filament import can be generated
-   from the approved markdown whenever you want DB-backed rendering.
-4. **Internal-linking pass** once programme page URLs are final (hub questions → programme
-   pages; comparison questions → both categories; ladder questions → cross-provider).
-5. **GSC validation loop** — 30–60 days post-publish, update each report's estimated tiers
-   with actual impression/query data.
+## Next work
 
-## 5. Pipeline artefacts
+1. Review the dedicated GAU/RBS US/UK immigration report and dated source register.
+2. Preserve the scoped exception in future revisions; do not imply degree-specific acceptance.
+3. Resolve exact award/route and operational blockers before any website approval.
+4. Obtain explicit publication instructions before importing content or deploying schema.
 
-```
-content/faqs/
-├── README.md                 # pipeline docs
-├── TRACKER.md                # status board (all ✅)
-├── PROJECT-SUMMARY.md        # this file
-├── inputs/listing.md         # normalized programme list (source of truth)
-├── _templates/               # output template
-├── approved/                 # 7 upload-ready FAQ files
-└── reports/                  # 7 selection & global-ranking reports
-```
+## Approved extension — 9 September 2026
+
+- Exactly one US/UK immigration clarification added to RBS and one to GAU under
+  `IMM-US-UK-2026-09-09`; the old 160 questions are unchanged.
+- New section: **Immigration & Visa Eligibility**. The shared principle applies across
+  their nine supplied categories (84 entries), without certifying immigration acceptance.
+- Separate topic sections added to both provider reports, the strategy PDF and the
+  cumulative verification report.
+- Dedicated client report: `client/Maverick-GAU-RBS-Immigration-FAQ-Report.pdf`, backed by
+  `reports/immigration-evidence-2026-09-09.json` (ten dated sources).
+- Rules and local tests limit the exception to the exact two FAQs and require the disclaimer.
+- The prior 41 grouped confirmations remain open. Source-backed general guidance is
+  not an individual immigration assessment. No website/CMS import or GitHub push.
+
+## Presentation update — 9 September 2026
+
+All six PDFs and the presentation reports are directly shareable without approval/review
+labels. Legal and programme-specific caveats are retained. The technical QA result is
+kept separately at `internal/latest-verification.json`. Commit/push was explicitly
+authorised for this document work; website FAQ publication remains a separate action.

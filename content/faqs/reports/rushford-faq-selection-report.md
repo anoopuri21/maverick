@@ -1,175 +1,103 @@
-# FAQ Selection & Global Ranking Report — Rushford Business School (RBS)
+# FAQ Selection & Priority Report — Rushford Business School (RBS)
 
-**Report date:** 2026-08-19 · **Status of FAQ set:** ✅ Approved (Cycle #1)
-**FAQ file:** `approved/rushford-business-school.md` · **Questions analysed:** 30
+**Updated:** 9 September 2026
+**Questions:** 36 · **Programme categories:** 4 · **Programme-list entries:** 41
 
----
+## 1. Purpose and coverage
 
-## 1. Executive Summary
+The questions support programme selection, admissions, costs, study commitments and further-study or career planning. Category-level information applies to the listed programmes without assuming identical entry, delivery or commercial terms. Programme-list coverage does not independently confirm the availability or recognition of every award.
 
-Har question ko 3 filters se select kiya gaya tha: **(a) Student Psychology** — enrolment
-se pehle students actually kya sochte/poochte hain, **(b) Global SEO Demand** — question
-kis globally-searched query family se belong karta hai (People Also Ask / voice search
-patterns), **(c) Conversion Role** — kya answer student ko enquiry/application ke aur
-paas laata hai.
+**Coverage:** BBA | MBA | MSc | Doctoral.
 
-**Key findings:**
+## 2. Priority methodology
 
-- 30 me se **8 questions "Tier 1 — Very High" global demand** families me aate hain
-  (e.g. *MBA without GMAT*, *PhD vs DBA*, *MBA vs MSc*) — ye PAA/Featured Snippet ke
-  strongest candidates hain.
-- **12 questions "High" tier** me hain — course-level evergreen queries (duration, entry
-  requirements, careers, fees).
-- **10 questions branded/navigational** hain (e.g. "What BBA specialisations does Rushford
-  offer?") — inka global volume kam hai, par **conversion value sabse zyada** hai aur
-  branded searches par inka ranking almost guaranteed hai.
-- Har category me kam se kam **1 comparison-type question** rakha gaya hai (MBA vs MSc,
-  PhD vs DBA) kyunki comparison queries PAA boxes me sabse zyada surface hoti hain.
+Priorities are editorial estimates, not measured search rankings, search volumes or traffic forecasts. Recorded component scores use Demand (35%), Answer-format opportunity (25%), Conversion intent (25%) and Feasibility (15%), each on a 1–5 scale. Where components were not recorded, only the existing editorial total is retained. Missing components are not inferred.
 
----
+Informational immigration questions have no assigned tier, score or rank. Similar themes may occur for different providers; unique wording does not prove separate search intent.
 
-## 2. Methodology (kaise score kiya)
+| Estimated tier | Questions |
+|---|---:|
+| Tier 1 - Very High | 9 |
+| Tier 2 - High | 17 |
+| Tier 3 - Medium | 4 |
+| Tier 4 - Branded | 5 |
+| Informational — not scored | 1 |
 
-Har question ko 4 dimensions par **1–5** score diya gaya:
+## 3. Question register and rationale
 
-| Dimension | Weight | Kya measure karta hai |
-|---|---|---|
-| **D — Global Search Demand** | 35% | Question ki query family globally kitni search hoti hai (generic > branded) |
-| **S — Snippet/PAA Opportunity** | 25% | Featured Snippet / People Also Ask box me aane ki likelihood (definition, comparison, "how long", "requirements" patterns strongest) |
-| **C — Conversion Intent** | 25% | Answer padhne ke baad student enquiry ke kitna paas aata hai |
-| **F — Ranking Feasibility** | 15% | Is domain ke liye realistically rank karna kitna aasaan hai (branded = easiest, broad generic = hardest) |
+| ID | Question | Reader need | Estimated tier | D/S/C/F | Score |
+|---|---|---|---|---|---:|
+| Q1 | What BBA specialisations does Rushford Business School offer? | Programme orientation and informed course selection | Tier 4 - Branded | 2/3/5/5 | 3.45 |
+| Q2 | Are Rushford BBA programmes taught fully online? | Checks delivery, attendance and work-study compatibility | Tier 4 - Branded | 2/3/4/5 | 3.20 |
+| Q3 | Is Rushford Business School a recognised institution? | Distinguishes awarding status, qualification scope and intended use | Tier 2 - High | 4/4/5/4 | 4.25 |
+| Q4 | What are the entry requirements for Rushford BBA programmes? | Clarifies route-specific eligibility and application evidence | Tier 2 - High | 4/4/5/3 | 4.10 |
+| Q5 | Do I need an English proficiency test to join a BBA programme? | Clarifies route-specific eligibility and application evidence | Tier 1 - Very High | 5/4/5/3 | 4.45 |
+| Q6 | How does the fee structure work for the BBA programmes? | Cost, payment and funding clarity before accepting an offer | Tier 2 - High | 4/3/5/3 | 3.85 |
+| Q7 | What career opportunities can a BBA from Rushford lead to? | Helps assess career or further-study fit without outcome promises | Tier 1 - Very High | 5/5/4/3 | 4.45 |
+| Q8 | Can I progress to a master's degree after completing the BBA? | Helps assess career or further-study fit without outcome promises | Tier 2 - High | 4/4/4/3 | 3.85 |
+| Q9 | Which MBA specialisations are available at Rushford Business School? | Programme orientation and informed course selection | Tier 4 - Branded | 2/3/5/5 | 3.45 |
+| Q10 | Can I complete the Rushford MBA while working full-time? | Checks delivery, attendance and work-study compatibility | Tier 1 - Very High | 5/4/5/3 | 4.45 |
+| Q11 | How long does the Rushford MBA take to complete? | Study-time and route planning; exact terms need confirmation | Tier 2 - High | 4/5/4/3 | 4.10 |
+| Q12 | What are the entry requirements for the Rushford MBA? | Clarifies route-specific eligibility and application evidence | Tier 2 - High | 4/4/5/3 | 4.10 |
+| Q13 | Do I need GMAT or GRE scores to apply for the MBA? | Clarifies route-specific eligibility and application evidence | Tier 1 - Very High | 5/5/5/4 | 4.85 |
+| Q14 | What is the fee structure for the MBA programmes? | Cost, payment and funding clarity before accepting an offer | Tier 2 - High | 4/3/5/3 | 3.85 |
+| Q15 | What career outcomes can I expect after the Rushford MBA? | Helps assess career or further-study fit without outcome promises | Tier 1 - Very High | 5/4/4/3 | 4.20 |
+| Q16 | Can the MBA lead to doctoral study later? | Helps assess career or further-study fit without outcome promises | Tier 3 - Medium | 3/3/4/4 | 3.40 |
+| Q17 | Which MSc programmes does Rushford Business School offer? | Programme orientation and informed course selection | Tier 4 - Branded | 2/3/5/5 | 3.45 |
+| Q18 | What is the difference between an MBA and an MSc at Rushford? | Explains qualification terminology and helps compare suitable routes | Tier 1 - Very High | 5/5/4/3 | 4.45 |
+| Q19 | How long does a Rushford MSc take to complete? | Study-time and route planning; exact terms need confirmation | Tier 3 - Medium | 3/5/4/3 | 3.75 |
+| Q20 | What do I need to be eligible for an MSc programme? | Clarifies route-specific eligibility and application evidence | Tier 2 - High | 4/4/5/3 | 4.10 |
+| Q21 | How are MSc fees structured, and are scholarships available? | Cost, payment and funding clarity before accepting an offer | Tier 2 - High | 4/3/5/3 | 3.85 |
+| Q22 | What career paths does an MSc from Rushford support? | Helps assess career or further-study fit without outcome promises | Tier 2 - High | 4/4/4/3 | 3.85 |
+| Q23 | What doctoral options does Rushford Business School offer? | Programme orientation and informed course selection | Tier 4 - Branded | 2/3/5/5 | 3.45 |
+| Q24 | What is the difference between a PhD and a DBA? | Explains qualification terminology and helps compare suitable routes | Tier 1 - Very High | 5/5/4/4 | 4.60 |
+| Q25 | How long does a Rushford doctoral programme take? | Study-time and route planning; exact terms need confirmation | Tier 2 - High | 4/5/4/3 | 4.10 |
+| Q26 | Are the doctoral programmes fully online? | Checks delivery, attendance and work-study compatibility | Tier 1 - Very High | 5/4/5/3 | 4.45 |
+| Q27 | What are the entry requirements for the doctoral programmes? | Clarifies route-specific eligibility and application evidence | Tier 2 - High | 4/4/5/4 | 4.25 |
+| Q28 | What English proficiency evidence do doctoral applicants need? | Clarifies route-specific eligibility and application evidence | Tier 3 - Medium | 3/4/4/4 | 3.65 |
+| Q29 | How are doctoral programme fees structured? | Cost, payment and funding clarity before accepting an offer | Tier 3 - Medium | 3/3/5/3 | 3.50 |
+| Q30 | What can I do with a doctorate from Rushford Business School? | Helps assess career or further-study fit without outcome promises | Tier 2 - High | 4/4/4/3 | 3.85 |
+| Q31 | How do I apply for a Rushford Business School programme? | Practical pre-enrolment planning and responsibilities | Tier 2 - High | Not recorded | 4.25 |
+| Q32 | What documents do I need to apply? | Practical pre-enrolment planning and responsibilities | Tier 2 - High | Not recorded | 3.90 |
+| Q33 | Are online degrees taken seriously by employers? | Practical pre-enrolment planning and responsibilities | Tier 1 - Very High | Not recorded | 4.70 |
+| Q34 | When can I start my programme? | Practical pre-enrolment planning and responsibilities | Tier 2 - High | Not recorded | 3.85 |
+| Q35 | What happens if I need more time to finish? | Practical pre-enrolment planning and responsibilities | Tier 2 - High | Not recorded | 3.75 |
+| Q36 | Does completing a Rushford Business School programme make me eligible to migrate to the US or UK? | US/UK eligibility clarification; no migration entitlement is implied | Not assigned | Not recorded | Not scored |
 
-**Priority Score = D×0.35 + S×0.25 + C×0.25 + F×0.15** (max 5.00). Global Rank isi score
-se nikla hai.
+## 4. US/UK immigration guidance
 
-**Demand tiers:** 🔴 Tier 1 = Very High (global evergreen query family) · 🟠 Tier 2 = High ·
-🟡 Tier 3 = Medium · ⚪ Tier 4 = Branded/Navigational (low volume, high intent)
+Completing a programme does not, on its own, establish visa or permanent-residence eligibility. An individual may qualify through an applicable route if all its requirements are met. Academic evidence, post-study work and independently qualifying work/residence routes must be assessed separately.
 
-> ⚠️ **Data integrity note (SME):** Ye demand tiers query-pattern analysis par based
-> qualitative expert estimates hain — exact search volumes kisi paid tool ke bina verify
-> nahi ho sakte, isliye koi invented numbers report me NAHI hain. Publish ke baad
-> **Google Search Console (30–60 din)** se in tiers ko validate karke report update karni
-> chahiye. (Recommendation section 5 me.)
+The HPI list finding concerns qualifications awarded from 1 November 2025 to 31 October 2026 only. Neither GAU nor RBS appears on that list. Other award periods and partner-issued qualifications require their own checks. Historical academic transfer or provider certification is not immigration permission.
 
----
+The immigration question is an informational clarification and is not assigned a search-demand score.
 
-## 3. Question-by-Question Analysis
+**Sources checked 9 September 2026:**
+- Graduate visa: the course you studied — checked 2026-09-09: [1](https://www.gov.uk/graduate-visa/course-you-studied)
+- Skilled Worker visa: overview — checked 2026-09-09: [2](https://www.gov.uk/skilled-worker-visa)
+- High Potential Individual visa: eligibility — checked 2026-09-09: [3](https://www.gov.uk/high-potential-individual-visa/eligibility)
+- HPI global universities list 2025 — checked 2026-09-09: [4](https://www.gov.uk/government/publications/high-potential-individual-visa-global-universities-list/high-potential-individual-visa-global-universities-list-2025)
+- H-1B specialty occupations — checked 2026-09-09: [5](https://www.uscis.gov/working-in-the-united-states/h-1b-specialty-occupations)
+- Policy Manual, Volume 2, Part F, Chapter 5 — Practical Training — checked 2026-09-09: [6](https://www.uscis.gov/policy-manual/volume-2-part-f-chapter-5)
+- Employment-Based Immigration: Second Preference EB-2 — checked 2026-09-09: [7](https://www.uscis.gov/working-in-the-united-states/permanent-workers/employment-based-immigration-second-preference-eb-2)
 
-### Category 1 — BBA (Undergraduate)
+## Information references and limitations
 
-| # | Question | Bucket | Selection Reason | Query Family | Tier | D | S | C | F | Score |
-|---|---|---|---|---|---|---|---|---|---|---|
-| Q1 | What BBA specialisations does RBS offer? | General | Hub/anchor question — category ka index; internal linking base for all 7 programme pages | Branded-navigational | ⚪ | 2 | 3 | 5 | 5 | 3.45 |
-| Q2 | Are Rushford BBA programmes taught fully online? | General | "Online ya nahi" pehla filter hai jo distance learners apply karte hain; delivery-mode doubt clear na ho to student aage badhta hi nahi | "is X online" (branded) | ⚪ | 2 | 3 | 4 | 5 | 3.20 |
-| Q3 | Is Rushford Business School a recognised institution? | General | **#1 trust objection** — "degree valid hogi?" har student ka core fear; iske bina baaki 29 answers bekaar | "is X accredited/recognised" | 🟠 | 4 | 4 | 5 | 4 | 4.25 |
-| Q4 | What are the entry requirements for BBA? | Eligibility | Qualification-anxiety query; self-disqualification rokta hai ("mere marks kam hain, apply kar sakta hoon?") | "BBA entry requirements" | 🟠 | 4 | 4 | 5 | 3 | 4.10 |
-| Q5 | Do I need an English test for BBA? | Eligibility | Globally massive "without IELTS" query family; waiver ka mention application barrier girata hai | "study BBA without IELTS/English test" | 🔴 | 5 | 4 | 5 | 3 | 4.45 |
-| Q6 | How does the BBA fee structure work? | Financials | Fees = decision-stage query; instalment framing affordability objection handle karti hai | "BBA fees/cost" | 🟠 | 4 | 3 | 5 | 3 | 3.85 |
-| Q7 | What career opportunities can a BBA lead to? | Careers | ROI question — parents/students dono ke liye; evergreen global demand | "career options after BBA" | 🔴 | 5 | 5 | 4 | 3 | 4.45 |
-| Q8 | Can I progress to a master's after BBA? | Careers | Pathway-planners ke liye; RBS ke apne MBA/MSc me internal-link karke cross-sell karta hai | "masters after BBA" | 🟠 | 4 | 4 | 4 | 3 | 3.85 |
+Programme-specific award titles, eligibility, fees, delivery and support should be checked against the current written offer. Qualification acceptance is determined for the intended purpose by the relevant receiving institution, employer, evaluator or authority. The Programme Information & Source Verification report explains these distinctions.
 
-### Category 2 — MBA (Postgraduate)
+- [1](https://alice.ch/en/eduqua/)
+- [2](https://apply.rushford.ch/)
+- [3](https://rushford.ch/)
+- [4](https://rushford.ch/course/master-of-business-administration-mba-strategic-management-16-months-online/)
+- [5](https://rushford.ch/online/dba-programs/)
+- [6](https://rushford.ch/online/mba-programs/)
+- [7](https://rushford.ch/online/msc-programs/)
+- [8](https://rushford.ch/programs/dba-in-supply-chain-management/)
+- [9](https://rushford.ch/programs/msc-in-business-management/)
+- [10](https://www.gov.uk/graduate-visa/course-you-studied)
+- [11](https://www.gov.uk/skilled-worker-visa)
+- [12](https://www.uscis.gov/policy-manual/volume-2-part-f-chapter-5)
+- [13](https://www.uscis.gov/working-in-the-united-states/h-1b-specialty-occupations)
+- [14](https://www.uscis.gov/working-in-the-united-states/permanent-workers/employment-based-immigration-second-preference-eb-2)
 
-| # | Question | Bucket | Selection Reason | Query Family | Tier | D | S | C | F | Score |
-|---|---|---|---|---|---|---|---|---|---|---|
-| Q9 | Which MBA specialisations are available? | General | Category hub; 12 tracks ka index — sitelink + internal linking anchor | Branded-navigational | ⚪ | 2 | 3 | 5 | 5 | 3.45 |
-| Q10 | Can I complete the MBA while working full-time? | General | Target audience hi working professionals hai — unka #1 practical doubt | "MBA while working" | 🔴 | 5 | 4 | 5 | 3 | 4.45 |
-| Q11 | How long does the MBA take? | General | "How long" pattern = strongest snippet format; timeline planning query | "online MBA duration" | 🟠 | 4 | 5 | 4 | 3 | 4.10 |
-| Q12 | What are the MBA entry requirements? | Eligibility | Core eligibility query; conversion-critical | "MBA entry requirements" | 🟠 | 4 | 4 | 5 | 3 | 4.10 |
-| Q13 | Do I need GMAT or GRE for the MBA? | Eligibility | **Globally sabse badi MBA objection-query** — "MBA without GMAT" evergreen high-volume family; differentiator bhi hai | "MBA without GMAT/GRE" | 🔴 | 5 | 5 | 5 | 4 | 4.85 |
-| Q14 | What is the MBA fee structure? | Financials | Decision-stage; affordability positioning | "online MBA fees" | 🟠 | 4 | 3 | 5 | 3 | 3.85 |
-| Q15 | What career outcomes after the MBA? | Careers | ROI justification — MBA ka core purchase driver | "what can I do after MBA" | 🔴 | 5 | 4 | 4 | 3 | 4.20 |
-| Q16 | Can the MBA lead to doctoral study? | Careers | Pathway cross-sell to RBS doctoral portfolio; lifetime-value question | "DBA after MBA" | 🟡 | 3 | 3 | 4 | 4 | 3.40 |
-
-### Category 3 — MSc (Postgraduate)
-
-| # | Question | Bucket | Selection Reason | Query Family | Tier | D | S | C | F | Score |
-|---|---|---|---|---|---|---|---|---|---|---|
-| Q17 | Which MSc programmes does RBS offer? | General | Category hub — 9 programmes ka index | Branded-navigational | ⚪ | 2 | 3 | 5 | 5 | 3.45 |
-| Q18 | What is the difference between MBA and MSc? | General | **Comparison queries PAA me sabse zyada aati hain**; confused students ko dono categories me route karta hai (double conversion path) | "MBA vs MSc" | 🔴 | 5 | 5 | 4 | 3 | 4.45 |
-| Q19 | How long does an MSc take? | General | Snippet-friendly "how long" pattern | "MSc duration" | 🟡 | 3 | 5 | 4 | 3 | 3.75 |
-| Q20 | What do I need to be eligible for MSc? | Eligibility | Core eligibility; per-programme prerequisite doubt (e.g. Finance) handle karta hai | "MSc eligibility" | 🟠 | 4 | 4 | 5 | 3 | 4.10 |
-| Q21 | How are MSc fees structured, scholarships? | Financials | Fees + scholarship dono ek me — decision-stage double query | "MSc fees scholarships" | 🟠 | 4 | 3 | 5 | 3 | 3.85 |
-| Q22 | What career paths does an MSc support? | Careers | Specialist-career ROI + doctoral progression teaser | "career after MSc" | 🟠 | 4 | 4 | 4 | 3 | 3.85 |
-
-### Category 4 — Doctoral (PhD/DBA/EPD)
-
-| # | Question | Bucket | Selection Reason | Query Family | Tier | D | S | C | F | Score |
-|---|---|---|---|---|---|---|---|---|---|---|
-| Q23 | What doctoral options does RBS offer? | General | Category hub — 3 pathways × 13 specialisations ka index | Branded-navigational | ⚪ | 2 | 3 | 5 | 5 | 3.45 |
-| Q24 | What is the difference between PhD and DBA? | General | **Globally top doctoral comparison query**; senior professionals ki pehli confusion — PAA magnet | "PhD vs DBA" | 🔴 | 5 | 5 | 4 | 4 | 4.60 |
-| Q25 | How long does a doctoral programme take? | General | "How long" snippet pattern; 3-year positioning competitive advantage hai | "how long does DBA take" | 🟠 | 4 | 5 | 4 | 3 | 4.10 |
-| Q26 | Are the doctoral programmes fully online? | General | "Online DBA/PhD" high-growth query family; working executives ka delivery-mode filter | "online DBA" | 🔴 | 5 | 4 | 5 | 3 | 4.45 |
-| Q27 | What are the doctoral entry requirements? | Eligibility | **"DBA without masters" niche-but-gold query** — RPE route USP hai, competitors se differentiate karta hai | "DBA without masters degree" | 🟠 | 4 | 4 | 5 | 4 | 4.25 |
-| Q28 | What English proficiency for doctoral? | Eligibility | Concrete scores + waivers — application barrier remover | "DBA IELTS requirement" | 🟡 | 3 | 4 | 4 | 4 | 3.65 |
-| Q29 | How are doctoral fees structured? | Financials | Decision-stage; instalment framing for a big-ticket qualification | "DBA fees online" | 🟡 | 3 | 3 | 5 | 3 | 3.50 |
-| Q30 | What can I do with a doctorate from RBS? | Careers | ROI at the highest level — board/consulting/academia aspirations validate karta hai | "is DBA worth it" | 🟠 | 4 | 4 | 4 | 3 | 3.85 |
-
----
-
-## 4. Global Ranking — All 30 Questions (Priority Order)
-
-| Global Rank | Q# | Question (short) | Category | Tier | Score |
-|---|---|---|---|---|---|
-| 🥇 1 | Q13 | MBA without GMAT/GRE | MBA | 🔴 | 4.85 |
-| 🥈 2 | Q24 | PhD vs DBA difference | Doctoral | 🔴 | 4.60 |
-| 🥉 3 | Q5 | BBA without English test | BBA | 🔴 | 4.45 |
-| 3= | Q7 | Careers after BBA | BBA | 🔴 | 4.45 |
-| 3= | Q10 | MBA while working full-time | MBA | 🔴 | 4.45 |
-| 3= | Q18 | MBA vs MSc difference | MSc | 🔴 | 4.45 |
-| 3= | Q26 | Fully online doctorate | Doctoral | 🔴 | 4.45 |
-| 8 | Q3 | Is RBS recognised? | BBA | 🟠 | 4.25 |
-| 8= | Q27 | Doctoral entry (no masters route) | Doctoral | 🟠 | 4.25 |
-| 10 | Q15 | Careers after MBA | MBA | 🔴 | 4.20 |
-| 11 | Q4 | BBA entry requirements | BBA | 🟠 | 4.10 |
-| 11= | Q11 | MBA duration | MBA | 🟠 | 4.10 |
-| 11= | Q12 | MBA entry requirements | MBA | 🟠 | 4.10 |
-| 11= | Q20 | MSc eligibility | MSc | 🟠 | 4.10 |
-| 11= | Q25 | Doctoral duration | Doctoral | 🟠 | 4.10 |
-| 16 | Q6 | BBA fees | BBA | 🟠 | 3.85 |
-| 16= | Q8 | Masters after BBA | BBA | 🟠 | 3.85 |
-| 16= | Q14 | MBA fees | MBA | 🟠 | 3.85 |
-| 16= | Q21 | MSc fees & scholarships | MSc | 🟠 | 3.85 |
-| 16= | Q22 | Careers after MSc | MSc | 🟠 | 3.85 |
-| 16= | Q30 | Doctorate career outcomes | Doctoral | 🟠 | 3.85 |
-| 22 | Q19 | MSc duration | MSc | 🟡 | 3.75 |
-| 23 | Q28 | Doctoral English requirements | Doctoral | 🟡 | 3.65 |
-| 24 | Q29 | Doctoral fees | Doctoral | 🟡 | 3.50 |
-| 25 | Q1 | BBA specialisations list | BBA | ⚪ | 3.45 |
-| 25= | Q9 | MBA specialisations list | MBA | ⚪ | 3.45 |
-| 25= | Q17 | MSc programmes list | MSc | ⚪ | 3.45 |
-| 25= | Q23 | Doctoral options list | Doctoral | ⚪ | 3.45 |
-| 29 | Q16 | Doctoral after MBA | MBA | 🟡 | 3.40 |
-| 30 | Q2 | BBA fully online? | BBA | ⚪ | 3.20 |
-
-### Tier distribution
-
-| Tier | Count | Role in strategy |
-|---|---|---|
-| 🔴 Tier 1 — Very High | 8 | Traffic engines — PAA/snippet targets, page ke top par rakhen |
-| 🟠 Tier 2 — High | 12 | Evergreen workhorses — steady organic demand |
-| 🟡 Tier 3 — Medium | 5 | Support queries — completeness + long-tail capture |
-| ⚪ Tier 4 — Branded | 5 | Conversion anchors — low volume, highest intent, easiest ranking |
-
----
-
-## 5. Recommendations (SEO Specialist)
-
-1. **On-page order:** Har category section me Tier 1 questions ko pehle rakhein (page par
-   order hi crawl priority signal hai). Current file me order student-journey ke hisaab se
-   hai — approval par SEO-order variant bhi ban sakta hai.
-2. **FAQPage Schema:** Publish ke waqt saare 30 Q&A `FAQPage` JSON-LD me jaayen — Tier 1
-   questions ke bina schema PAA opportunity waste hogi.
-3. **Validation loop:** 30–60 din baad **Google Search Console** ke impression/query data
-   se in estimated tiers ko validate karein aur ye report update ho (estimates → actuals).
-4. **Internal linking:** Har hub question (Q1, Q9, Q17, Q23) se us category ke programme
-   pages par links; comparison questions (Q18, Q24) se dono categories par links.
-5. **Verify items pehle:** Facts-to-Verify table ke 9 items (durations, fees, EPD naam)
-   publish se pehle resolve hon — galat duration snippet me aa gayi to correction ke baad
-   bhi cache me hafton tak dikh sakti hai.
-
----
-
-*Methodology note: Demand tiers and scores are qualitative expert estimates based on global
-query-pattern analysis (no keyword-tool volumes were available). No numeric search volumes
-have been invented. Validate with Google Search Console post-publication.*
+Clear answers and relevant internal links can support reader understanding, but neither question order nor structured data guarantees ranking, traffic or AI inclusion. Google documents the end of FAQ rich results from 7 May 2026. [1](https://developers.google.com/search/updates#deprecating-the-faq-rich-result-feature)

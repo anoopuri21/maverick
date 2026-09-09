@@ -7,6 +7,9 @@
 *.php diff=php
 *.sh text eol=lf
 
+# PDF byte offsets must not be changed by text line-ending normalisation.
+*.pdf binary
+
 /.github export-ignore
 CHANGELOG.md export-ignore
 .styleci.yml export-ignore

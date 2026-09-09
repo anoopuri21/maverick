@@ -1,15 +1,23 @@
 # Rushford Business School (RBS) — Frequently Asked Questions
 
-<!-- STATUS: APPROVED 2026-08-19 (Cycle #1) | Selection & Ranking Report: reports/rushford-faq-selection-report.md -->
-<!-- SOURCES: inputs/listing.md (programme list); apply.rushford.ch (official admissions portal);
+<!-- UPDATE 2026-09-09: owner authorised the scoped US/UK immigration clarification.
+     Only the new Immigration & Visa Eligibility FAQ is exempt from geographic neutrality.
+     Earlier questions and unresolved programme confirmations are unchanged. -->
+
+<!-- AUDIT: 2026-09-07 — existing questions reviewed and corrected; no new topics.
+     Historical approval retained; this revision is for client review, NOT website publication.
+     Current evidence and open issues: reports/verification-update-2026-09-07.md. -->
+
+<!-- STATUS: HISTORICAL APPROVAL 2026-08-19 (Cycle #1) | Selection & Ranking Report: reports/rushford-faq-selection-report.md -->
+<!-- HISTORICAL SOURCES (2026-08-19; current per-answer sources and audit supersede these): inputs/listing.md (programme list); apply.rushford.ch (official admissions portal);
      educations.com institutional profile; shiksha.com admissions listing (third-party — all
      third-party figures carry VERIFY tags). Compiled 2026-08-19. -->
 <!-- RULES APPLIED: category-generic (each set valid for ALL programmes in the category);
-     strict country-neutral (no country/city/region names anywhere in content). -->
+     country-neutral except the one authorised US/UK immigration FAQ. -->
 
-> **About:** Rushford Business School (RBS) is an **EduQua-certified** business school
-> offering **100% online** undergraduate, postgraduate and doctoral programmes in business
-> and management, taught in English to students worldwide.
+> **About:** Rushford Business School offers business and management study through its
+> online learning division, which the school describes as **eduQua-certified**. Programme
+> availability, entry conditions and award arrangements depend on the selected route.
 
 ---
 
@@ -19,11 +27,10 @@ Management, Management Information Systems, Hospitality & Tourism Management, Pr
 
 ### General Information
 
-<!-- Target keyword: "rushford business school bba specialisations online" | Source: inputs/listing.md -->
+<!-- Target keyword: "rushford business school bba specialisations online" | Source: inputs/listing.md (portfolio coverage only; not evidence of current intake availability); reviewed 2026-09-07. -->
 **Q. What BBA specialisations does Rushford Business School offer?**
 
-Rushford Business School offers the **Bachelor of Business Administration (BBA)** with a
-choice of **seven specialisations**, all delivered fully online:
+Maverick's supplied Rushford BBA portfolio lists **seven subject options**:
 
 - Business Administration
 - Marketing
@@ -33,58 +40,60 @@ choice of **seven specialisations**, all delivered fully online:
 - Hospitality & Tourism Management
 - Project Management
 
-Every specialisation builds the same core business foundation, so you can align your degree
-with your career goals without compromising on fundamentals. The BBA carries **180 ECTS
-credits**, structured across **six semesters (typically around 36 months)**, with flexible
-online pacing. <!-- Source: rushford.ch official BBA page — 180 ECTS / 6 semesters / 36
-months (verified 2026-08-19); pacing on the online route confirmed as flexible. -->
+Confirm current availability, delivery mode, awarding arrangements, credit value and
+duration for your chosen programme before enrolling. The subject list does not mean that
+every route has the same timetable or entry conditions.
+<!-- [VERIFY: RBS-01 — current BBA offer and specifications for all seven options.] -->
 
-<!-- Target keyword: "is rushford bba fully online" | Source: educations.com profile — 100% online -->
+<!-- Target keyword: "is rushford bba fully online" | Source: inputs/listing.md (portfolio coverage only; not evidence of current intake availability); reviewed 2026-09-07. -->
 **Q. Are Rushford BBA programmes taught fully online?**
 
-Yes. All Rushford BBA programmes are delivered **100% online** in **English**, so you can
-study from anywhere in the world. The flexible format is designed to suit both full-time
-students and those balancing study with work or other commitments.
+**The current delivery format needs to be confirmed for your chosen BBA programme.**
+Before enrolling, ask whether teaching is online or blended, whether live attendance is
+required, and how assessments are completed. This helps you check that the actual study
+arrangements fit your working hours and other commitments.
+<!-- [VERIFY: RBS-01 — online delivery is not independently confirmed for all seven BBA options.] -->
 
-<!-- Target keyword: "is rushford business school accredited recognised" | Source: educations.com — EduQua-certified -->
+<!-- Target keyword: "is rushford business school accredited recognised" | Source: https://rushford.ch/; https://alice.ch/en/eduqua/; reviewed 2026-09-07. -->
 **Q. Is Rushford Business School a recognised institution?**
 
-Yes. Rushford Business School is an **EduQua-certified** business school offering
-internationally focused higher education in business and management.
-<!-- [VERIFY: confirm current accreditation/recognition wording approved for public use;
-add any additional bodies (e.g. programmatic accreditations) once confirmed.] -->
-Recognition guidance for your specific goals is available from the admissions team.
+Rushford describes its **online learning division as eduQua-certified**. eduQua is a
+quality label for continuing education providers; it does **not accredit individual
+degrees**. Acceptance for employment or further study depends on the exact award and the
+receiving organisation's requirements. Check those requirements before choosing a
+programme for a specific professional or academic purpose.
 
 ### Eligibility & Admission
 
-<!-- Target keyword: "rushford bba entry requirements" | Source: shiksha.com — upper-secondary ~55% (third-party) -->
+<!-- Target keyword: "rushford bba entry requirements" | Source: inputs/listing.md (portfolio coverage only; not evidence of current intake availability); reviewed 2026-09-07. -->
 **Q. What are the entry requirements for Rushford BBA programmes?**
 
-Applicants need to have successfully completed **upper-secondary (high-school level)
-education**. Recognised school-leaving qualifications, completed diplomas and equivalent
-preparation studies can also be considered. <!-- [VERIFY: minimum score (~55% overall per
-third-party listing) and accepted qualification list — confirm against official offer.] -->
-Your eligibility is confirmed individually through a review by the admissions team.
+BBA entry normally starts with **completed upper-secondary education or an accepted
+equivalent**. The qualification, grades, subject preparation and English evidence required
+must be checked against the current programme specification. Share your certificates and
+transcripts with admissions for an individual eligibility review before making a study
+commitment.
+<!-- [VERIFY: RBS-01 — current entry criteria and accepted qualifications per BBA route.] -->
 
-<!-- Target keyword: "english requirements online bba" | Source: shiksha.com (third-party) -->
+<!-- Target keyword: "english requirements online bba" | Source: inputs/listing.md (portfolio coverage only; not evidence of current intake availability); reviewed 2026-09-07. -->
 **Q. Do I need an English proficiency test to join a BBA programme?**
 
-Programmes are taught in English, so evidence of English proficiency is required. Recognised
-tests are accepted, and **waivers are available** — for example, if you completed your
-schooling in English. <!-- [VERIFY: exact accepted tests/score thresholds for UG level and
-waiver conditions — third-party lists IELTS 5.5 / TOEFL 58 / PTE 50 / Duolingo 90.] -->
-The admissions team will confirm the simplest route for your profile.
+**English-language entry requirements depend on the BBA route.** Ask admissions which
+tests and minimum scores are accepted, and whether previous English-medium education can
+be considered instead. Do not assume a waiver is automatic or book a test before checking
+the current requirements for your intended intake.
+<!-- [VERIFY: RBS-01 — current BBA English thresholds and waiver policy.] -->
 
 ### Fees, Scholarships & Payments
 
-<!-- Target keyword: "rushford bba fees instalments" | Source: none for amounts — components pattern per Maverick standard -->
+<!-- Target keyword: "rushford bba fees instalments" | Source: current partner offer sheet required; no verified portfolio-wide commercial policy; reviewed 2026-09-07. -->
 **Q. How does the fee structure work for the BBA programmes?**
 
-Tuition is structured to stay affordable, with **instalment-based payment plans** available
-so you can spread the cost across your studies. Exact amounts, applicable currency and any
-current fee support or scholarship offers are confirmed by the admissions team during your
-eligibility review. <!-- [VERIFY: fee amounts, billing currency, instalment structure and
-scholarship availability for BBA — no verified figures in source data.] -->
+**Request a written fee quotation for your chosen BBA programme and intake.** It should
+identify the billing currency, tuition and any registration, assessment or other charges.
+Ask whether instalments or scholarships are available and, if so, what conditions apply.
+Compare the total payable under each option before accepting an offer.
+<!-- [VERIFY: RBS-04 — BBA pricing, payment options and scholarship terms.] -->
 
 ### Careers & Outcomes
 
@@ -96,12 +105,14 @@ functions — administration, marketing, finance, people management, information
 hospitality and project delivery — depending on your chosen specialisation. You graduate
 with a practical business skill set that applies across industries worldwide.
 
-<!-- Target keyword: "can i do mba after bba" | Source: standard progression, subject to criteria -->
+<!-- Target keyword: "can i do mba after bba" | Source: general study/career guidance, not an outcome or admissions guarantee; reviewed 2026-09-07. -->
 **Q. Can I progress to a master's degree after completing the BBA?**
 
-Yes. The BBA provides a recognised undergraduate foundation for progression to postgraduate
-study, including **MBA and MSc programmes**, subject to the admission criteria of your chosen
-programme. Many students continue directly into Rushford's own postgraduate portfolio.
+A completed BBA can support an application to **MBA, MSc or other postgraduate study**,
+but progression is not automatic. The receiving institution assesses the awarding body,
+qualification level, academic results and any subject or experience requirements. If
+further study is your goal, check the intended master's entry criteria before choosing
+your undergraduate route.
 
 ---
 
@@ -113,80 +124,86 @@ Economics · Entrepreneurship and Innovation · Finance · Master of Business Ad
 
 ### General Information
 
-<!-- Target keyword: "rushford mba specialisations list" | Source: inputs/listing.md -->
+<!-- Target keyword: "rushford mba specialisations list" | Source: inputs/listing.md (portfolio coverage only; not evidence of current intake availability); https://rushford.ch/online/mba-programs/; reviewed 2026-09-07. -->
 **Q. Which MBA specialisations are available at Rushford Business School?**
 
-Rushford Business School offers **twelve MBA options: a general-management MBA plus 11
-specialised tracks**. Specialisations include Strategic Management, Finance, Marketing,
-Human Resource Management, Logistics & Supply Chain, Healthcare Leadership, Entrepreneurship
-and Innovation, Sustainability, Real Estate, Hospitality & Tourism, and Health Economics —
-all delivered fully online in English. MBA specialisations also lead to an additional
-**Ofqual-regulated Level 7 Diploma award** by default, published on the official admissions
-portal — two credentials from one programme.
-<!-- Source: apply.rushford.ch official MBA specialisation pages (verified 2026-08-19);
-     the portal's "WES approved" wording remains EXCLUDED per compliance blacklist. -->
+The supplied portfolio contains **twelve MBA options: a general MBA and eleven
+specialised tracks**. These cover strategy, finance, marketing, human resources, logistics
+and supply chain, healthcare leadership, entrepreneurship and innovation, sustainability,
+real estate, hospitality and tourism, and health economics.
 
-<!-- Target keyword: "online mba for working professionals" | Source: educations.com — 100% online, flexible -->
+Rushford publishes online MBA routes, but **duration, credits and any additional awards
+vary by route**. Confirm the current specification for your chosen programme; an extra
+Level 7 diploma should not be assumed to accompany every MBA.
+<!-- [VERIFY: RBS-03 — additional diploma inclusion, awarding body and qualification number for our offer.] -->
+
+<!-- Target keyword: "online mba for working professionals" | Source: https://rushford.ch/online/mba-programs/; reviewed 2026-09-07. -->
 **Q. Can I complete the Rushford MBA while working full-time?**
 
-Yes. The MBA is delivered **100% online** with a flexible structure specifically designed
-for **working professionals**. You can study around your job and apply what you learn
-directly in your workplace — without pausing your career or relocating.
+**Rushford's online MBA delivery can support study alongside a full-time job.** Flexible
+access to learning materials does not remove assessment deadlines or the need for regular
+study. Check the expected weekly workload, any live sessions and the assessment calendar
+for your chosen route before planning how to combine work and study.
 
-<!-- Target keyword: "rushford mba duration how long" | Source: shiksha.com — 12–24 months (third-party) -->
+<!-- Target keyword: "rushford mba duration how long" | Source: https://rushford.ch/online/mba-programs/; reviewed 2026-09-07. -->
 **Q. How long does the Rushford MBA take to complete?**
 
-The MBA has a **nominal duration of 16 months**, carrying **90 ECTS credits**, with flexible
-pacing built in so working professionals can align the timeline with their commitments.
-The admissions team can help you plan a realistic schedule around your other commitments.
-<!-- Source: apply.rushford.ch official course pages — "Nominal duration: 16 months (90 ECTS)"
-     confirmed across MBA specialisations (verified 2026-08-19). -->
+**Rushford MBA duration and credits vary by route.** The current online catalogue lists
+the general MBA at **12 months and 60 ECTS**, while the listed specialised MBA routes are
+**16 months and 90 ECTS**. Confirm the route in your offer and its completion requirements;
+one duration should not be applied to every MBA option.
 
 ### Eligibility & Admission
 
-<!-- Target keyword: "rushford mba entry requirements" | Source: shiksha.com — recognised bachelor's ~55% / 2.0 GPA (third-party) -->
+<!-- Target keyword: "rushford mba entry requirements" | Source: https://rushford.ch/course/master-of-business-administration-mba-strategic-management-16-months-online/; reviewed 2026-09-07. -->
 **Q. What are the entry requirements for the Rushford MBA?**
 
-You need a **recognised bachelor's degree** (or an equivalent academic title). In some
-cases, relevant work experience strengthens your application and can be evidenced through
-your CV or personal statement. <!-- [VERIFY: minimum score (~55% / 2.0 GPA per third-party)
-and work-experience policy per specialisation.] --> Final eligibility is confirmed through
-an individual admissions review.
+MBA applicants are normally assessed on a **bachelor's degree or accepted equivalent**,
+together with any relevant professional background and English-language evidence.
+Alternative experience-based entry may be available on particular routes, but is not an
+automatic waiver. Ask for the current programme-specific requirements and an individual
+assessment of your qualifications.
+<!-- [VERIFY: RBS-03 — current academic, experience and English criteria for the selected MBA offer.] -->
 
-<!-- Target keyword: "mba without gmat gre" | Source: apply.rushford.ch entry criteria (no test listed) -->
+<!-- Target keyword: "mba without gmat gre" | Source: current programme-specific admissions confirmation required; absence of a test listing is not proof of exemption; reviewed 2026-09-07. -->
 **Q. Do I need GMAT or GRE scores to apply for the MBA?**
 
-No entrance examination such as GMAT or GRE is listed among the entry requirements —
-admission is based on your **academic background and professional profile**.
-<!-- [VERIFY: confirm officially that no admission test is required for all 12 MBA tracks.] -->
-English proficiency evidence is required, with waivers available for eligible applicants.
+**Check the admission-test policy for your selected MBA route before booking GMAT or
+GRE.** A test not appearing in a general programme description is not, by itself, a
+confirmed exemption across all MBA tracks. Admissions should confirm the current academic,
+professional and English-language evidence required for your application.
+<!-- [VERIFY: RBS-03 — explicit current GMAT/GRE policy for all listed MBA routes.] -->
 
 ### Fees, Scholarships & Payments
 
-<!-- Target keyword: "rushford mba fees payment plan" | Source: none for amounts -->
+<!-- Target keyword: "rushford mba fees payment plan" | Source: current partner offer sheet required; no verified portfolio-wide commercial policy; reviewed 2026-09-07. -->
 **Q. What is the fee structure for the MBA programmes?**
 
-MBA tuition is positioned as an **affordable, high-quality** option, with instalment-based
-payment plans available. Exact fees, currency and any current scholarship or fee-support
-offers are confirmed by the admissions team for your intake.
-<!-- [VERIFY: fee amounts, billing currency, instalment structure and scholarship availability.] -->
+**MBA fees depend on the programme and intake in your offer.** Ask for the tuition total,
+billing currency and any additional charges, plus the full cost of any available
+instalment plan. Scholarship or fee-support offers need separate eligibility and terms;
+neither a reduction nor a payment plan should be assumed before confirmation.
+<!-- [VERIFY: RBS-04 — current MBA quotation, instalment totals and scholarship conditions.] -->
 
 ### Careers & Outcomes
 
-<!-- Target keyword: "what can i do after mba" | Source: generic, valid across all tracks -->
+<!-- Target keyword: "what can i do after mba" | Source: general study/career guidance, not an outcome or admissions guarantee; reviewed 2026-09-07. -->
 **Q. What career outcomes can I expect after the Rushford MBA?**
 
-The MBA prepares you for **senior management and leadership roles** aligned with your
-specialisation — from strategy, finance and marketing leadership to supply chain, healthcare
-and sustainability management. It is equally valuable for professionals targeting promotion,
-career-changers entering new industries, and entrepreneurs building their own ventures.
+A Rushford MBA can help you develop **management, analytical and leadership skills**
+relevant to your specialisation. These may support applications in strategy, finance,
+marketing, operations, healthcare or other business functions, as well as entrepreneurial
+work. A qualification alone does not secure a senior role: experience, demonstrated
+capability and each employer's criteria also matter.
 
-<!-- Target keyword: "dba after mba doctoral progression" | Source: DBA entry criteria — master's accepted -->
+<!-- Target keyword: "dba after mba doctoral progression" | Source: https://rushford.ch/online/dba-programs/; https://rushford.ch/programs/dba-in-supply-chain-management/; reviewed 2026-09-07. -->
 **Q. Can the MBA lead to doctoral study later?**
 
-Yes. A completed MBA satisfies the master's-level entry route for **doctoral programmes such
-as the DBA**, subject to admission criteria. Rushford's own doctoral portfolio makes this a
-natural progression path within the same institution.
+An MBA can support an application to **doctoral study, including a DBA**, subject to the
+receiving programme's academic and research requirements. Admission may also depend on
+professional experience, research fit and the status of the completed award. Check the
+specific doctoral route rather than assuming that every MBA automatically meets its
+entry criteria.
 
 ---
 
@@ -205,51 +222,50 @@ Management, Strategic Management, International Business Management, Marketing, 
 Investment, Economics, Operations and Supply Chain Management, Entrepreneurship & Innovation,
 and Sustainability and Environmental Management.
 
-<!-- Target keyword: "mba vs msc which is better" | Source: generic definitional -->
+<!-- Target keyword: "mba vs msc which is better" | Source: https://rushford.ch/online/mba-programs/; https://rushford.ch/online/msc-programs/; https://rushford.ch/programs/msc-in-business-management/; reviewed 2026-09-07. -->
 **Q. What is the difference between an MBA and an MSc at Rushford?**
 
-The **MBA** is a broad leadership degree built around general management, ideal if you want
-to move into senior, cross-functional roles. An **MSc** goes deeper into one subject area —
-such as finance, marketing or supply chain — making it ideal for building specialist
-expertise. Both are delivered online and internationally focused; the right choice depends
-on your career direction, and the admissions team can help you decide.
+An **MBA generally emphasises management and leadership across business functions**,
+while an **MSc develops more focused subject expertise**. Some MBA tracks also specialise,
+so compare the actual curriculum rather than the degree title alone. The best fit depends
+on the skills you want to develop and the entry requirements you meet.
 
-| | MBA | MSc |
+| Feature | MBA | MSc |
 |---|---|---|
-| Focus | Broad management & leadership | Deep specialism in one field |
-| Best for | Cross-functional and senior roles | Specialist and analyst careers |
-| Credits | 90 ECTS | 60, 90 or 120 ECTS by route |
+| Typical emphasis | Broad management with possible specialisation | Focused academic or professional subject study |
+| Potential applications | Cross-functional management and leadership | Specialist, analytical or research-informed work |
+| Published core routes | 60 or 90 ECTS, depending on route | Commonly 60 ECTS; confirm any enhanced route separately |
 
-<!-- Target keyword: "rushford msc duration" | Source: shiksha.com — 18–24 months (third-party) -->
+<!-- Target keyword: "rushford msc duration" | Source: https://rushford.ch/online/msc-programs/; https://rushford.ch/programs/msc-in-business-management/; reviewed 2026-09-07. -->
 **Q. How long does a Rushford MSc take to complete?**
 
-The MSc offers **three credit routes with matching durations**: a **60 ECTS route
-(around 12 months)**, a **90 ECTS route (around 18 months)** including a master's thesis,
-and a **120 ECTS route (around 24 months)** including a capstone consulting project. You
-can choose the depth that fits your goals — the admissions team will help you select the
-right route. <!-- Source: rushford.ch official MSc pages — 60/90/120 ECTS route structure
-     (verified 2026-08-19). -->
+Rushford's current online MSc catalogue lists **12-month, 60 ECTS programmes**. Any
+longer route, additional credits, thesis or capstone requirement must be confirmed for
+your chosen specialisation and intake. Do not assume the same set of extended study
+options is available across all MSc programmes.
+<!-- [VERIFY: RBS-05 — availability and duration of any 90/120 ECTS enhanced routes in our offer.] -->
 
 ### Eligibility & Admission
 
-<!-- Target keyword: "msc entry requirements online" | Source: shiksha.com — recognised bachelor's (third-party) -->
+<!-- Target keyword: "msc entry requirements online" | Source: https://rushford.ch/online/msc-programs/; https://rushford.ch/programs/msc-in-business-management/; reviewed 2026-09-07. -->
 **Q. What do I need to be eligible for an MSc programme?**
 
-A **recognised bachelor's degree** (or equivalent academic title) is required. Relevant work
-or research experience can support your application where applicable.
-<!-- [VERIFY: minimum score threshold and per-programme prerequisites (e.g. quantitative
-background for Finance/Economics).] --> Eligibility is confirmed individually by the
-admissions team, along with English proficiency evidence or an applicable waiver.
+A **bachelor's degree or accepted equivalent** is the usual starting point for MSc entry.
+Required grades, subject preparation and English-language evidence vary by programme;
+relevant work or research experience may be considered during an individual review. Ask
+admissions to assess your documents against the current criteria for your chosen subject.
+<!-- [VERIFY: RBS-05 — confirm subject-specific entry criteria and any alternative entry route.] -->
 
 ### Fees, Scholarships & Payments
 
-<!-- Target keyword: "rushford msc fees scholarships" | Source: none for amounts -->
+<!-- Target keyword: "rushford msc fees scholarships" | Source: current partner offer sheet required; no verified portfolio-wide commercial policy; reviewed 2026-09-07. -->
 **Q. How are MSc fees structured, and are scholarships available?**
 
-Tuition is payable through **flexible instalment plans**, keeping the programme accessible
-while you study. Exact fees, currency and current scholarship or fee-support availability
-are confirmed by the admissions team during your eligibility review.
-<!-- [VERIFY: fee amounts, billing currency and scholarship availability.] -->
+**Obtain the fee quotation for the exact MSc route you intend to take.** Credit volume,
+research components and payment arrangements can affect the total. Ask whether instalments
+or scholarships are offered for your intake, how eligibility is assessed, and which fees
+are included. Only the written offer should be used for budgeting.
+<!-- [VERIFY: RBS-04 — MSc fees and funding terms; RBS-05 — selected credit route.] -->
 
 ### Careers & Outcomes
 
@@ -272,15 +288,15 @@ Leadership & Strategy.*
 
 ### General Information
 
-<!-- Target keyword: "rushford dba phd specialisations online" | Source: inputs/listing.md; apply.rushford.ch -->
+<!-- Target keyword: "rushford dba phd specialisations online" | Source: inputs/listing.md (portfolio coverage only; not evidence of current intake availability); https://rushford.ch/online/dba-programs/; https://rushford.ch/programs/dba-in-supply-chain-management/; reviewed 2026-09-07. -->
 **Q. What doctoral options does Rushford Business School offer?**
 
-Rushford offers doctoral study through the **PhD, DBA and EPD** pathways, with a choice of
-**13 research specialisations** — from Supply Chain, Financial Management and Data Analytics
-to Healthcare Management, Educational Leadership and Global Strategy. All pathways are
-delivered online with flexible, self-paced research schedules.
-<!-- [VERIFY: EPD full form and positioning (Executive Professional Doctorate?) — confirm
-official terminology before publishing.] -->
+Rushford publishes **DBA programmes and route-dependent PhD award options**. The supplied
+portfolio groups **thirteen research themes** under PhD, DBA and EPD labels, but those
+labels are not interchangeable. Confirm the available research area, exact award title,
+awarding arrangements and your eligibility before applying; EPD availability and
+terminology still require programme-specific confirmation.
+<!-- [VERIFY: RBS-02 — all thirteen themes, EPD terminology and award-route eligibility.] -->
 
 <!-- Target keyword: "dba vs phd difference" | Source: generic definitional, consistent with rushford.ecampusapp.com comparison -->
 **Q. What is the difference between a PhD and a DBA?**
@@ -297,151 +313,191 @@ in orientation, not in level.
 | Ideal for | Academic and research careers | Senior professionals and leaders |
 | Outcome focus | Contribution to theory | Real-world business solutions |
 
-<!-- Target keyword: "how long does online dba take" | Source: apply.rushford.ch — 3 years average; educations.com — 2–3 years, pathway-based -->
+<!-- Target keyword: "how long does online dba take" | Source: https://rushford.ch/online/dba-programs/; https://rushford.ch/programs/dba-in-supply-chain-management/; reviewed 2026-09-07. -->
 **Q. How long does a Rushford doctoral programme take?**
 
-Most candidates complete their doctorate in **around three years**, though the timeline
-varies with your chosen pathway and research pace. A **coursework-based** route and a
-**research-based** route are available, and the research pathway can lead to completion in
-under three years for well-prepared candidates.
+Rushford's published DBA catalogue uses **36 months as a nominal duration**. Actual
+completion depends on the approved pathway, research progress and assessment requirements.
+This is a planning duration, not evidence that every candidate finishes within three
+years. Confirm the minimum and maximum registration periods for the specific doctoral
+award you intend to pursue.
+<!-- [VERIFY: RBS-02 — duration and registration rules for all listed doctoral award routes.] -->
 
-<!-- Target keyword: "can i do dba fully online" | Source: apply.rushford.ch — online, e-learning -->
+<!-- Target keyword: "can i do dba fully online" | Source: https://rushford.ch/online/dba-programs/; https://rushford.ch/programs/dba-in-supply-chain-management/; reviewed 2026-09-07. -->
 **Q. Are the doctoral programmes fully online?**
 
-Yes. Doctoral programmes are delivered through **online, flexible e-learning**, allowing you
-to progress your research from anywhere in the world while continuing your professional
-career. Supervision and academic support are provided throughout the research journey.
+**Rushford publishes fully online DBA routes**, allowing research study to be combined
+with professional commitments. Delivery, supervision, attendance and assessment rules
+must still be checked for your selected award. The availability of an online DBA does
+not establish that every PhD or EPD route uses identical arrangements.
+<!-- [VERIFY: RBS-02 — delivery and supervision arrangements across the doctoral portfolio.] -->
 
 ### Eligibility & Admission
 
-<!-- Target keyword: "dba entry requirements without masters" | Source: apply.rushford.ch + educations.com (official criteria) -->
+<!-- Target keyword: "dba entry requirements without masters" | Source: https://rushford.ch/online/dba-programs/; https://rushford.ch/programs/dba-in-supply-chain-management/; reviewed 2026-09-07. -->
 **Q. What are the entry requirements for the doctoral programmes?**
 
-There are three recognised entry routes:
+Doctoral entry depends on the **award route, academic background and research readiness**.
+A relevant master's degree is a common entry route. Some DBA programmes also consider a
+bachelor's degree with substantial professional experience through recognition of prior
+experience. Such admission does not automatically establish eligibility for a PhD award.
+Confirm the required qualifications and experience for the chosen route.
+<!-- [VERIFY: RBS-02 — per-route entry rules; current DBA page uses over five years for a non-business master's, not the old three-year claim.] -->
 
-- A **master's degree in business/management**, or
-- A **master's in any other discipline** plus over **3 years** of managerial or business
-  experience, or
-- A **bachelor's degree** in any discipline plus over **8 years** of managerial or business
-  experience (through Recognition of Prior Experience)
-
-This means a formal master's degree is not always mandatory — your professional experience
-counts. Final eligibility is confirmed through an individual admissions review.
-
-<!-- Target keyword: "english requirements dba ielts" | Source: educations.com — IELTS 6+/TOEFL 79+, waiver conditions -->
+<!-- Target keyword: "english requirements dba ielts" | Source: https://rushford.ch/online/dba-programs/; https://rushford.ch/programs/dba-in-supply-chain-management/; reviewed 2026-09-07. -->
 **Q. What English proficiency evidence do doctoral applicants need?**
 
-Accepted evidence includes **IELTS 6+, TOEFL 79+ (iBT), PTE 50+** or an equivalent
-recognised test taken within the last two years. **Waivers** are available if you are a
-native English speaker, completed your schooling or degree in English, or have two or more
-years of work experience in an English-speaking workplace.
+**Use the English-language requirements for your selected doctoral route.** Evidence
+may include an accepted language test or, where permitted, confirmation of previous
+English-medium study. Minimum scores, accepted documents and waiver conditions can change;
+ask admissions to confirm the current checklist instead of relying on a single score
+quoted for the whole doctoral portfolio.
+<!-- [VERIFY: RBS-02 — current thresholds and waiver conditions per award route.] -->
 
 ### Fees, Scholarships & Payments
 
-<!-- Target keyword: "rushford dba fees instalments" | Source: none for amounts -->
+<!-- Target keyword: "rushford dba fees instalments" | Source: https://rushford.ch/online/dba-programs/; https://rushford.ch/programs/dba-in-supply-chain-management/; current partner offer sheet required; no verified portfolio-wide commercial policy; reviewed 2026-09-07. -->
 **Q. How are doctoral programme fees structured?**
 
-Doctoral tuition is payable through structured **instalment plans**, keeping fees manageable
-across the research period. Exact amounts, currency and any current fee-support offers are
-confirmed by the admissions team for your chosen pathway and specialisation.
-<!-- [VERIFY: fee amounts, billing currency and instalment structure per pathway (PhD/DBA/EPD).] -->
+**Doctoral fees and payment arrangements are specific to your offer.** Request a breakdown
+of tuition, supervision or assessment charges where applicable, the payment schedule, and
+any costs associated with extended registration. Ask separately about available funding.
+This is particularly important when research takes longer than the nominal programme
+duration.
+<!-- [VERIFY: RBS-04 — doctoral fees, payment schedule and extension charges.] -->
 
 ### Careers & Outcomes
 
-<!-- Target keyword: "is dba worth it career benefits" | Source: generic, valid across all specialisations -->
+<!-- Target keyword: "is dba worth it career benefits" | Source: general study/career guidance, not an outcome or admissions guarantee; reviewed 2026-09-07. -->
 **Q. What can I do with a doctorate from Rushford Business School?**
 
-A doctorate positions you for the **highest levels of professional and academic life** —
-executive leadership and board-level roles, senior consulting, policy and research positions,
-and teaching or supervisory roles in higher education. It also establishes you as a published
-authority in your specialisation, strengthening your credibility worldwide.
+Doctoral study can develop **advanced research, analysis and evidence-based decision-making
+skills** relevant to consulting, leadership, policy or academic work. Opportunities depend
+on your research, experience, publications and the requirements of the receiving
+organisation. Completing a doctorate does not itself guarantee publication, a teaching
+position or professional standing in every setting.
 
 ---
 
 ## Applying & Practical Information
-*Provider-level questions — apply to all Rushford programmes. (Phase 2 addition.)*
+*Practical information to check before applying.*
 
-<!-- Target keyword: "how to apply rushford business school online" | Source: standard admissions flow (VERIFY steps) -->
+<!-- Target keyword: "how to apply rushford business school online" | Source: https://apply.rushford.ch/; reviewed 2026-09-07. -->
 **Q. How do I apply for a Rushford Business School programme?**
 
-Applying is designed to be simple and consultative:
+**Begin with an eligibility and programme-fit review**, then follow the current application
+instructions for the route you choose:
 
-1. **Eligibility review** — share your academic background and goals with the admissions team
-2. **Documents** — submit your supporting documents for verification
-3. **Offer** — receive your admission decision and offer details
-4. **Enrolment** — confirm your intake, complete registration and begin your studies
+1. Prepare your qualifications and supporting documents.
+2. Complete the application and submit the required evidence.
+3. Wait for the admissions decision and review any conditions.
+4. If offered a place, confirm the award, intake and fees before accepting.
 
-There is no barrier to finding out where you stand — the eligibility review is the natural
-first step. <!-- [VERIFY: exact application steps, application fee (if any) and typical
-decision turnaround for our offer.] -->
+Applying does not guarantee admission. Maverick can clarify the application route that
+applies to its offer.
+<!-- [VERIFY: RBS-06 — Maverick-specific application handling and any application fee.] -->
 
-<!-- Target keyword: "documents required for online university admission" | Source: standard requirements (VERIFY exact list) -->
+<!-- Target keyword: "documents required for online university admission" | Source: https://apply.rushford.ch/; reviewed 2026-09-07. -->
 **Q. What documents do I need to apply?**
 
-Typically you will need:
+Rushford's current admissions checklist includes **identity evidence, a passport-size
+photograph, qualification certificates and academic transcripts**. A CV, personal
+statement, English-language evidence or work-experience documents may also be relevant,
+depending on the route and your profile. Check the final programme-specific checklist and
+submit clear, complete copies through the authorised application channel.
+<!-- [VERIFY: RBS-06 — any additional documents for the Maverick route or specific award.] -->
 
-- **Academic transcripts and certificates** for your highest completed qualification
-- A **valid identity document** (passport or national ID)
-- An up-to-date **CV** (for postgraduate and doctoral applications)
-- **English proficiency evidence** — or details supporting a waiver
-
-The admissions team confirms the exact checklist for your programme and level during your
-eligibility review, so nothing is left to guesswork.
-<!-- [VERIFY: official per-level document checklist for our offer.] -->
-
-<!-- Target keyword: "are online degrees respected by employers" | Source: verified programme facts (ECTS, EduQua, Ofqual L7) -->
+<!-- Target keyword: "are online degrees respected by employers" | Source: https://alice.ch/en/eduqua/; general employer-selection guidance; reviewed 2026-09-07. -->
 **Q. Are online degrees taken seriously by employers?**
 
-Yes — when they carry the same academic weight as their on-campus equivalents, and
-Rushford's do. The programmes carry **standard ECTS credits** (90 ECTS for the MBA, 180
-for the BBA), the school is **EduQua-certified**, and MBA specialisations additionally
-carry an **Ofqual-regulated Level 7 Diploma**. What employers evaluate is the credential
-and the capability behind it — not the room you studied in. Employer attitudes worldwide
-have shifted decisively as leading institutions moved core programmes online.
+**Employer acceptance depends on the exact qualification and the employer's requirements,
+not on delivery mode alone.** Check the awarding institution, course content and any
+professional requirements relevant to your goal. Credits describe study volume; they do
+not establish automatic equivalence or employer acceptance. Rushford's provider-level
+quality certification should not be presented as accreditation of every degree.
 
-<!-- Target keyword: "rushford intake dates when can i start" | Source: semester-based intakes observed on portal (VERIFY calendar) -->
+<!-- Target keyword: "rushford intake dates when can i start" | Source: https://apply.rushford.ch/; https://rushford.ch/online/mba-programs/; reviewed 2026-09-07. -->
 **Q. When can I start my programme?**
 
-Rushford runs **multiple intake windows across the year**, so you are never far from a
-start date. Once your eligibility review is complete, the admissions team confirms the
-next available intake for your programme and helps you plan backwards from it — documents,
-enrolment and preparation. <!-- [VERIFY: current intake calendar per category.] -->
+Rushford's current admissions site lists **multiple intake windows**, but the start date
+and application deadline must be confirmed for the programme in your offer. Ask how long
+document checks and registration may take, and plan around the confirmed dates. Do not
+assume every listed subject or award opens at each intake.
+<!-- [VERIFY: RBS-07 — programme-specific intake availability and deadline; school pages show differing cut-off dates.] -->
 
-<!-- Target keyword: "what if i need more time online degree extension" | Source: rushford.ch — extended duration up to 3 years without additional fee (MSc page) -->
+<!-- Target keyword: "what if i need more time online degree extension" | Source: https://rushford.ch/online/dba-programs/; https://rushford.ch/programs/dba-in-supply-chain-management/; current offer-specific extension policy required; reviewed 2026-09-07. -->
 **Q. What happens if I need more time to finish?**
 
-Life happens — and the online programmes are built for it. Rushford's online study model
-allows you to complete your degree over an **extended duration of up to three years
-without paying an additional fee**, published on the official programme pages. That
-safety net means enrolling is a commitment to finishing, not a bet against your calendar.
-<!-- [VERIFY: confirmed on official MSc page — confirm the same extension policy applies
-across BBA/MBA/Doctoral categories in our offer.] -->
+**Contact the academic team before your registration or assessment deadline** to ask
+about an extension or interruption of study. Approval, maximum study periods and any
+additional fees depend on the programme and your offer. There is no confirmed
+provider-wide three-year, fee-free extension policy, so obtain the applicable terms in
+writing before relying on extra time.
+<!-- [VERIFY: RBS-04 — extension and interruption policy, including any fees, per category.] -->
 
 ---
 
-## Facts to Verify (updated 2026-08-19 after deep research — see Resolved section)
+## Immigration & Visa Eligibility
+<!-- OWNER EXCEPTION: IMM-US-UK-2026-09-09 — one process-clarification FAQ for this provider.
+     Applies across this provider's supplied categories without certifying any award for immigration.
+     Country names are permitted only inside this designated FAQ; website publication remains gated. -->
 
-### Still open
+<!-- Target keyword: "rushford business school programme US UK immigration eligibility" | Source: https://www.gov.uk/graduate-visa/course-you-studied;
+     https://www.gov.uk/skilled-worker-visa; https://www.uscis.gov/working-in-the-united-states/h-1b-specialty-occupations;
+     https://www.uscis.gov/policy-manual/volume-2-part-f-chapter-5;
+     https://www.uscis.gov/working-in-the-united-states/permanent-workers/employment-based-immigration-second-preference-eb-2;
+     reviewed 2026-09-09; claim mapping: reports/gau-rbs-immigration-report-2026-09-09.md;
+     Exception: IMM-US-UK-2026-09-09. No provider-specific equivalence or applicant approval is asserted. -->
+**Q. Does completing a Rushford Business School programme make me eligible to migrate to the US or UK?**
 
-| # | Item | What the draft currently says | What needs confirming |
-|---|------|-------------------------------|----------------------|
-| 1 | Accreditation wording | "EduQua-certified" | Approved public wording + any additional recognitions to add or remove |
-| 2 | BBA entry score | "Upper-secondary completed" (no % shown) | Third-party lists ~55% minimum — confirm official criteria |
-| 3 | English test thresholds (UG/PG) | Generic "recognised tests + waivers" | Third-party lists IELTS 5.5 / TOEFL 58 / PTE 50 / Duolingo 90 — confirm official levels |
-| 4 | EPD terminology | "EPD pathway" (full form not stated) | Confirm full form and public positioning |
-| 5 | Fee data (BBA/MBA/MSc/Doctoral) | Components only, no figures | Amounts, billing currency, instalment plans, scholarship availability per category |
+**No, not from programme completion alone.** A Rushford qualification does not itself
+establish eligibility for a US or UK visa or permanent residence. Graduates may qualify
+through a separate route if they meet all its requirements. Where academic evidence is
+required, acceptance of the exact award must be established; provider certification or a
+partner award is not immigration approval.
 
-### ✅ Resolved (2026-08-19 deep research — official rushford.ch / apply.rushford.ch)
+The **UK Graduate route** requires eligible study, the relevant Student permission and
+compliance with UK-study requirements. **US Optional Practical Training (OPT)** is linked
+to F-1 status and qualifying study. An overseas or online programme alone does not
+establish entitlement to either post-study work option. Work and permanent-residence
+routes have separate requirements, which may include qualifying employment, accepted
+qualifications or other prescribed evidence.
 
-| Item | Resolution |
-|------|-----------|
-| MBA duration | **16 months (90 ECTS)** — official nominal duration across specialisation pages (was: third-party 12–24 mo) |
-| MSc duration | **60/90/120 ECTS routes → ~12/18/24 months** — official route structure (was: third-party 18–24 mo) |
-| BBA duration | **180 ECTS, 6 semesters, ~36 months** — official BBA page (was: not stated) |
-| GMAT/GRE not required | Official course pages list no admission test among entry requirements — wording retained |
-| MBA bonus award | MBA specialisations also carry an **Ofqual-regulated Level 7 Diploma** by default (official portal); WES wording excluded per blacklist |
+If migration is your goal, seek appropriately qualified immigration advice on your
+individual circumstances and the current rules before choosing a programme.
+
+*Immigration and residency decisions rest solely with the relevant authorities. This information is general guidance, not immigration advice.*
 
 ---
 
-*Fee amounts, scholarships and entry requirements are confirmed individually during the
-admissions eligibility review and may change without notice.*
+## Facts to Verify (reviewed 2026-09-07)
+
+Approval history is retained, but the current revision is for client review only. Removing
+an internal flag from a PDF is not verification of the underlying claim.
+
+| ID | Open item | Evidence or action required |
+|---|---|---|
+| RBS-01 | BBA availability, mode, credits, duration, entry and English requirements | Current offer and specifications for all seven supplied options; the old 180 ECTS/36-month statement is not treated as portfolio-wide evidence |
+| RBS-02 | Doctoral titles and all thirteen themes, EPD, entry, English, duration and delivery | Award-specific specifications; published DBA rules are not automatically PhD/EPD rules. Current sampled DBA page uses over five years for a non-business master's and limits RPE entrants to the DBA title |
+| RBS-03 | MBA admission-test policy and any additional diploma | Current route checklist; confirm diploma awarding body, qualification number and inclusion. Do not infer no-GMAT from an absent listing |
+| RBS-04 | Fees, scholarships, payment plans and study extensions | Current written terms per route, including total instalment cost and extension fees |
+| RBS-05 | MSc enhanced routes and subject-specific entry | Catalogue confirms core 12-month/60 ECTS routes; obtain current approval for any 90/120 ECTS thesis/capstone route |
+| RBS-06 | Maverick application handling | Confirm authorised application channel, any fee and route-specific documents |
+| RBS-07 | Intake availability and deadlines | Confirm the actual offer; current portal/catalogue deadlines differ |
+
+### Current evidence and corrections
+
+- MBA catalogue: **general MBA 12 months/60 ECTS; listed specialisations 16 months/90 ECTS**.
+- MSc catalogue: **core 12-month/60 ECTS routes**; older enhanced-route claims are not a universal offer.
+- eduQua concerns continuing-education provider quality, **not degree accreditation**.
+- Current admissions portal says the old DreamApply portal is retired; old course prices
+  and admissions snapshots must not be treated as current offers.
+- Blanket online/on-campus equivalence, automatic extra diplomas, published-author status
+  and the provider-wide fee-free extension promise have been removed.
+
+Sources and route limitations: `reports/verification-update-2026-09-07.md`.
+
+---
+
+*Programme availability, fees and entry requirements are confirmed for the selected
+route and intake before enrolment and may change.*

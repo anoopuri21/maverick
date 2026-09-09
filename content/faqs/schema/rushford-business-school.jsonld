@@ -1,286 +1,294 @@
 {
- "@context": "https://schema.org",
- "@type": "FAQPage",
- "mainEntity": [
-  {
-   "@type": "Question",
-   "name": "What BBA specialisations does Rushford Business School offer?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Rushford Business School offers the Bachelor of Business Administration (BBA) with a choice of seven specialisations, all delivered fully online: Business Administration Marketing Finance Human Resource Management Management Information Systems Hospitality & Tourism Management Project Management Every specialisation builds the same core business foundation, so you can align your degree with your career goals without compromising on fundamentals. The BBA carries *180 ECTS credits, structured across six semesters (typically around 36 months)*, with flexible online pacing."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "Are Rushford BBA programmes taught fully online?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Yes. All Rushford BBA programmes are delivered 100% online in English, so you can study from anywhere in the world. The flexible format is designed to suit both full-time students and those balancing study with work or other commitments."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "Is Rushford Business School a recognised institution?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Yes. Rushford Business School is an EduQua-certified business school offering internationally focused higher education in business and management. Recognition guidance for your specific goals is available from the admissions team."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "What are the entry requirements for Rushford BBA programmes?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Applicants need to have successfully completed *upper-secondary (high-school level) education*. Recognised school-leaving qualifications, completed diplomas and equivalent preparation studies can also be considered. Your eligibility is confirmed individually through a review by the admissions team."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "Do I need an English proficiency test to join a BBA programme?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Programmes are taught in English, so evidence of English proficiency is required. Recognised tests are accepted, and waivers are available — for example, if you completed your schooling in English. The admissions team will confirm the simplest route for your profile."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "How does the fee structure work for the BBA programmes?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Tuition is structured to stay affordable, with instalment-based payment plans available so you can spread the cost across your studies. Exact amounts, applicable currency and any current fee support or scholarship offers are confirmed by the admissions team during your eligibility review."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "What career opportunities can a BBA from Rushford lead to?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "The BBA prepares you for entry-level and early-management roles across core business functions — administration, marketing, finance, people management, information systems, hospitality and project delivery — depending on your chosen specialisation. You graduate with a practical business skill set that applies across industries worldwide."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "Can I progress to a master's degree after completing the BBA?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Yes. The BBA provides a recognised undergraduate foundation for progression to postgraduate study, including MBA and MSc programmes, subject to the admission criteria of your chosen programme. Many students continue directly into Rushford's own postgraduate portfolio."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "Which MBA specialisations are available at Rushford Business School?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Rushford Business School offers *twelve MBA options: a general-management MBA plus 11 specialised tracks*. Specialisations include Strategic Management, Finance, Marketing, Human Resource Management, Logistics & Supply Chain, Healthcare Leadership, Entrepreneurship and Innovation, Sustainability, Real Estate, Hospitality & Tourism, and Health Economics — all delivered fully online in English. MBA specialisations also lead to an additional Ofqual-regulated Level 7 Diploma award by default, published on the official admissions portal — two credentials from one programme."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "Can I complete the Rushford MBA while working full-time?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Yes. The MBA is delivered 100% online with a flexible structure specifically designed for working professionals. You can study around your job and apply what you learn directly in your workplace — without pausing your career or relocating."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "How long does the Rushford MBA take to complete?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "The MBA has a nominal duration of 16 months, carrying 90 ECTS credits, with flexible pacing built in so working professionals can align the timeline with their commitments. The admissions team can help you plan a realistic schedule around your other commitments."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "What are the entry requirements for the Rushford MBA?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "You need a recognised bachelor's degree (or an equivalent academic title). In some cases, relevant work experience strengthens your application and can be evidenced through your CV or personal statement. Final eligibility is confirmed through an individual admissions review."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "Do I need GMAT or GRE scores to apply for the MBA?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "No entrance examination such as GMAT or GRE is listed among the entry requirements — admission is based on your academic background and professional profile. English proficiency evidence is required, with waivers available for eligible applicants."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "What is the fee structure for the MBA programmes?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "MBA tuition is positioned as an affordable, high-quality option, with instalment-based payment plans available. Exact fees, currency and any current scholarship or fee-support offers are confirmed by the admissions team for your intake."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "What career outcomes can I expect after the Rushford MBA?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "The MBA prepares you for senior management and leadership roles aligned with your specialisation — from strategy, finance and marketing leadership to supply chain, healthcare and sustainability management. It is equally valuable for professionals targeting promotion, career-changers entering new industries, and entrepreneurs building their own ventures."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "Can the MBA lead to doctoral study later?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Yes. A completed MBA satisfies the master's-level entry route for *doctoral programmes such as the DBA*, subject to admission criteria. Rushford's own doctoral portfolio makes this a natural progression path within the same institution."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "Which MSc programmes does Rushford Business School offer?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Rushford offers nine MSc programmes, delivered fully online in English: Business Management, Strategic Management, International Business Management, Marketing, Finance and Investment, Economics, Operations and Supply Chain Management, Entrepreneurship & Innovation, and Sustainability and Environmental Management."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "What is the difference between an MBA and an MSc at Rushford?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "The MBA is a broad leadership degree built around general management, ideal if you want to move into senior, cross-functional roles. An MSc goes deeper into one subject area — such as finance, marketing or supply chain — making it ideal for building specialist expertise. Both are delivered online and internationally focused; the right choice depends on your career direction, and the admissions team can help you decide."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "How long does a Rushford MSc take to complete?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "The MSc offers three credit routes with matching durations: a *60 ECTS route (around 12 months), a 90 ECTS route (around 18 months)* including a master's thesis, and a 120 ECTS route (around 24 months) including a capstone consulting project. You can choose the depth that fits your goals — the admissions team will help you select the right route."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "What do I need to be eligible for an MSc programme?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "A recognised bachelor's degree (or equivalent academic title) is required. Relevant work or research experience can support your application where applicable. Eligibility is confirmed individually by the admissions team, along with English proficiency evidence or an applicable waiver."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "How are MSc fees structured, and are scholarships available?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Tuition is payable through flexible instalment plans, keeping the programme accessible while you study. Exact fees, currency and current scholarship or fee-support availability are confirmed by the admissions team during your eligibility review."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "What career paths does an MSc from Rushford support?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "An MSc positions you as a specialist in your field — supporting roles such as analyst, manager and consultant in areas like finance, marketing, operations, sustainability and international business. It also provides a strong academic foundation for progression to doctoral study (PhD/DBA), subject to admission criteria."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "What doctoral options does Rushford Business School offer?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Rushford offers doctoral study through the PhD, DBA and EPD pathways, with a choice of 13 research specialisations — from Supply Chain, Financial Management and Data Analytics to Healthcare Management, Educational Leadership and Global Strategy. All pathways are delivered online with flexible, self-paced research schedules."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "What is the difference between a PhD and a DBA?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "A PhD focuses on original academic research and suits those targeting scholarly or research careers. A DBA applies doctoral-level research to real business problems, making it ideal for senior professionals and business leaders who want to research within their own industry context. Both are rigorous doctoral qualifications — they differ in orientation, not in level."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "How long does a Rushford doctoral programme take?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Most candidates complete their doctorate in around three years, though the timeline varies with your chosen pathway and research pace. A coursework-based route and a research-based route are available, and the research pathway can lead to completion in under three years for well-prepared candidates."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "Are the doctoral programmes fully online?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Yes. Doctoral programmes are delivered through online, flexible e-learning, allowing you to progress your research from anywhere in the world while continuing your professional career. Supervision and academic support are provided throughout the research journey."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "What are the entry requirements for the doctoral programmes?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "There are three recognised entry routes: A master's degree in business/management, or A master's in any other discipline plus over 3 years of managerial or business experience, or A bachelor's degree in any discipline plus over 8 years of managerial or business experience (through Recognition of Prior Experience) This means a formal master's degree is not always mandatory — your professional experience counts. Final eligibility is confirmed through an individual admissions review."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "What English proficiency evidence do doctoral applicants need?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Accepted evidence includes IELTS 6+, TOEFL 79+ (iBT), PTE 50+ or an equivalent recognised test taken within the last two years. Waivers are available if you are a native English speaker, completed your schooling or degree in English, or have two or more years of work experience in an English-speaking workplace."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "How are doctoral programme fees structured?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Doctoral tuition is payable through structured instalment plans, keeping fees manageable across the research period. Exact amounts, currency and any current fee-support offers are confirmed by the admissions team for your chosen pathway and specialisation."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "What can I do with a doctorate from Rushford Business School?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "A doctorate positions you for the highest levels of professional and academic life — executive leadership and board-level roles, senior consulting, policy and research positions, and teaching or supervisory roles in higher education. It also establishes you as a published authority in your specialisation, strengthening your credibility worldwide."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "How do I apply for a Rushford Business School programme?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Applying is designed to be simple and consultative: Eligibility review — share your academic background and goals with the admissions team Documents — submit your supporting documents for verification Offer — receive your admission decision and offer details Enrolment — confirm your intake, complete registration and begin your studies There is no barrier to finding out where you stand — the eligibility review is the natural first step."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "What documents do I need to apply?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Typically you will need: Academic transcripts and certificates for your highest completed qualification A valid identity document (passport or national ID) An up-to-date CV (for postgraduate and doctoral applications) English proficiency evidence — or details supporting a waiver The admissions team confirms the exact checklist for your programme and level during your eligibility review, so nothing is left to guesswork."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "Are online degrees taken seriously by employers?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Yes — when they carry the same academic weight as their on-campus equivalents, and Rushford's do. The programmes carry standard ECTS credits (90 ECTS for the MBA, 180 for the BBA), the school is EduQua-certified, and MBA specialisations additionally carry an Ofqual-regulated Level 7 Diploma. What employers evaluate is the credential and the capability behind it — not the room you studied in. Employer attitudes worldwide have shifted decisively as leading institutions moved core programmes online."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "When can I start my programme?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Rushford runs multiple intake windows across the year, so you are never far from a start date. Once your eligibility review is complete, the admissions team confirms the next available intake for your programme and helps you plan backwards from it — documents, enrolment and preparation."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "What happens if I need more time to finish?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Life happens — and the online programmes are built for it. Rushford's online study model allows you to complete your degree over an *extended duration of up to three years without paying an additional fee*, published on the official programme pages. That safety net means enrolling is a commitment to finishing, not a bet against your calendar."
-   }
-  }
- ]
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What BBA specialisations does Rushford Business School offer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Maverick's supplied Rushford BBA portfolio lists seven subject options: Business Administration; Marketing; Finance; Human Resource Management; Management Information Systems; Hospitality & Tourism Management; Project Management; Confirm current availability, delivery mode, awarding arrangements, credit value and duration for your chosen programme before enrolling. The subject list does not mean that every route has the same timetable or entry conditions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are Rushford BBA programmes taught fully online?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The current delivery format needs to be confirmed for your chosen BBA programme. Before enrolling, ask whether teaching is online or blended, whether live attendance is required, and how assessments are completed. This helps you check that the actual study arrangements fit your working hours and other commitments."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Rushford Business School a recognised institution?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Rushford describes its online learning division as eduQua-certified. eduQua is a quality label for continuing education providers; it does not accredit individual degrees. Acceptance for employment or further study depends on the exact award and the receiving organisation's requirements. Check those requirements before choosing a programme for a specific professional or academic purpose."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the entry requirements for Rushford BBA programmes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "BBA entry normally starts with completed upper-secondary education or an accepted equivalent. The qualification, grades, subject preparation and English evidence required must be checked against the current programme specification. Share your certificates and transcripts with admissions for an individual eligibility review before making a study commitment."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need an English proficiency test to join a BBA programme?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "English-language entry requirements depend on the BBA route. Ask admissions which tests and minimum scores are accepted, and whether previous English-medium education can be considered instead. Do not assume a waiver is automatic or book a test before checking the current requirements for your intended intake."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does the fee structure work for the BBA programmes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Request a written fee quotation for your chosen BBA programme and intake. It should identify the billing currency, tuition and any registration, assessment or other charges. Ask whether instalments or scholarships are available and, if so, what conditions apply. Compare the total payable under each option before accepting an offer."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What career opportunities can a BBA from Rushford lead to?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The BBA prepares you for entry-level and early-management roles across core business functions — administration, marketing, finance, people management, information systems, hospitality and project delivery — depending on your chosen specialisation. You graduate with a practical business skill set that applies across industries worldwide."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I progress to a master's degree after completing the BBA?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A completed BBA can support an application to MBA, MSc or other postgraduate study, but progression is not automatic. The receiving institution assesses the awarding body, qualification level, academic results and any subject or experience requirements. If further study is your goal, check the intended master's entry criteria before choosing your undergraduate route."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which MBA specialisations are available at Rushford Business School?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The supplied portfolio contains twelve MBA options: a general MBA and eleven specialised tracks. These cover strategy, finance, marketing, human resources, logistics and supply chain, healthcare leadership, entrepreneurship and innovation, sustainability, real estate, hospitality and tourism, and health economics. Rushford publishes online MBA routes, but duration, credits and any additional awards vary by route. Confirm the current specification for your chosen programme; an extra Level 7 diploma should not be assumed to accompany every MBA."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I complete the Rushford MBA while working full-time?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Rushford's online MBA delivery can support study alongside a full-time job. Flexible access to learning materials does not remove assessment deadlines or the need for regular study. Check the expected weekly workload, any live sessions and the assessment calendar for your chosen route before planning how to combine work and study."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does the Rushford MBA take to complete?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Rushford MBA duration and credits vary by route. The current online catalogue lists the general MBA at 12 months and 60 ECTS, while the listed specialised MBA routes are 16 months and 90 ECTS. Confirm the route in your offer and its completion requirements; one duration should not be applied to every MBA option."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the entry requirements for the Rushford MBA?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MBA applicants are normally assessed on a bachelor's degree or accepted equivalent, together with any relevant professional background and English-language evidence. Alternative experience-based entry may be available on particular routes, but is not an automatic waiver. Ask for the current programme-specific requirements and an individual assessment of your qualifications."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need GMAT or GRE scores to apply for the MBA?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Check the admission-test policy for your selected MBA route before booking GMAT or GRE. A test not appearing in a general programme description is not, by itself, a confirmed exemption across all MBA tracks. Admissions should confirm the current academic, professional and English-language evidence required for your application."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the fee structure for the MBA programmes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MBA fees depend on the programme and intake in your offer. Ask for the tuition total, billing currency and any additional charges, plus the full cost of any available instalment plan. Scholarship or fee-support offers need separate eligibility and terms; neither a reduction nor a payment plan should be assumed before confirmation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What career outcomes can I expect after the Rushford MBA?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A Rushford MBA can help you develop management, analytical and leadership skills relevant to your specialisation. These may support applications in strategy, finance, marketing, operations, healthcare or other business functions, as well as entrepreneurial work. A qualification alone does not secure a senior role: experience, demonstrated capability and each employer's criteria also matter."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can the MBA lead to doctoral study later?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An MBA can support an application to doctoral study, including a DBA, subject to the receiving programme's academic and research requirements. Admission may also depend on professional experience, research fit and the status of the completed award. Check the specific doctoral route rather than assuming that every MBA automatically meets its entry criteria."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which MSc programmes does Rushford Business School offer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Rushford offers nine MSc programmes, delivered fully online in English: Business Management, Strategic Management, International Business Management, Marketing, Finance and Investment, Economics, Operations and Supply Chain Management, Entrepreneurship & Innovation, and Sustainability and Environmental Management."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between an MBA and an MSc at Rushford?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An MBA generally emphasises management and leadership across business functions, while an MSc develops more focused subject expertise. Some MBA tracks also specialise, so compare the actual curriculum rather than the degree title alone. The best fit depends on the skills you want to develop and the entry requirements you meet. Typical emphasis — MBA: Broad management with possible specialisation; MSc: Focused academic or professional subject study. Potential applications — MBA: Cross-functional management and leadership; MSc: Specialist, analytical or research-informed work. Published core routes — MBA: 60 or 90 ECTS, depending on route; MSc: Commonly 60 ECTS; confirm any enhanced route separately."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does a Rushford MSc take to complete?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Rushford's current online MSc catalogue lists 12-month, 60 ECTS programmes. Any longer route, additional credits, thesis or capstone requirement must be confirmed for your chosen specialisation and intake. Do not assume the same set of extended study options is available across all MSc programmes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What do I need to be eligible for an MSc programme?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A bachelor's degree or accepted equivalent is the usual starting point for MSc entry. Required grades, subject preparation and English-language evidence vary by programme; relevant work or research experience may be considered during an individual review. Ask admissions to assess your documents against the current criteria for your chosen subject."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How are MSc fees structured, and are scholarships available?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Obtain the fee quotation for the exact MSc route you intend to take. Credit volume, research components and payment arrangements can affect the total. Ask whether instalments or scholarships are offered for your intake, how eligibility is assessed, and which fees are included. Only the written offer should be used for budgeting."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What career paths does an MSc from Rushford support?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An MSc positions you as a specialist in your field — supporting roles such as analyst, manager and consultant in areas like finance, marketing, operations, sustainability and international business. It also provides a strong academic foundation for progression to doctoral study (PhD/DBA), subject to admission criteria."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What doctoral options does Rushford Business School offer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Rushford publishes DBA programmes and route-dependent PhD award options. The supplied portfolio groups thirteen research themes under PhD, DBA and EPD labels, but those labels are not interchangeable. Confirm the available research area, exact award title, awarding arrangements and your eligibility before applying; EPD availability and terminology still require programme-specific confirmation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between a PhD and a DBA?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A PhD focuses on original academic research and suits those targeting scholarly or research careers. A DBA applies doctoral-level research to real business problems, making it ideal for senior professionals and business leaders who want to research within their own industry context. Both are rigorous doctoral qualifications — they differ in orientation, not in level. Orientation — PhD: Original academic research; DBA: Applied business research. Ideal for — PhD: Academic and research careers; DBA: Senior professionals and leaders. Outcome focus — PhD: Contribution to theory; DBA: Real-world business solutions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does a Rushford doctoral programme take?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Rushford's published DBA catalogue uses 36 months as a nominal duration. Actual completion depends on the approved pathway, research progress and assessment requirements. This is a planning duration, not evidence that every candidate finishes within three years. Confirm the minimum and maximum registration periods for the specific doctoral award you intend to pursue."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are the doctoral programmes fully online?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Rushford publishes fully online DBA routes, allowing research study to be combined with professional commitments. Delivery, supervision, attendance and assessment rules must still be checked for your selected award. The availability of an online DBA does not establish that every PhD or EPD route uses identical arrangements."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the entry requirements for the doctoral programmes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Doctoral entry depends on the award route, academic background and research readiness. A relevant master's degree is a common entry route. Some DBA programmes also consider a bachelor's degree with substantial professional experience through recognition of prior experience. Such admission does not automatically establish eligibility for a PhD award. Confirm the required qualifications and experience for the chosen route."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What English proficiency evidence do doctoral applicants need?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use the English-language requirements for your selected doctoral route. Evidence may include an accepted language test or, where permitted, confirmation of previous English-medium study. Minimum scores, accepted documents and waiver conditions can change; ask admissions to confirm the current checklist instead of relying on a single score quoted for the whole doctoral portfolio."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How are doctoral programme fees structured?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Doctoral fees and payment arrangements are specific to your offer. Request a breakdown of tuition, supervision or assessment charges where applicable, the payment schedule, and any costs associated with extended registration. Ask separately about available funding. This is particularly important when research takes longer than the nominal programme duration."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What can I do with a doctorate from Rushford Business School?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Doctoral study can develop advanced research, analysis and evidence-based decision-making skills relevant to consulting, leadership, policy or academic work. Opportunities depend on your research, experience, publications and the requirements of the receiving organisation. Completing a doctorate does not itself guarantee publication, a teaching position or professional standing in every setting."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I apply for a Rushford Business School programme?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Begin with an eligibility and programme-fit review, then follow the current application instructions for the route you choose: Prepare your qualifications and supporting documents.; Complete the application and submit the required evidence.; Wait for the admissions decision and review any conditions.; If offered a place, confirm the award, intake and fees before accepting.; Applying does not guarantee admission. Maverick can clarify the application route that applies to its offer."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What documents do I need to apply?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Rushford's current admissions checklist includes identity evidence, a passport-size photograph, qualification certificates and academic transcripts. A CV, personal statement, English-language evidence or work-experience documents may also be relevant, depending on the route and your profile. Check the final programme-specific checklist and submit clear, complete copies through the authorised application channel."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are online degrees taken seriously by employers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Employer acceptance depends on the exact qualification and the employer's requirements, not on delivery mode alone. Check the awarding institution, course content and any professional requirements relevant to your goal. Credits describe study volume; they do not establish automatic equivalence or employer acceptance. Rushford's provider-level quality certification should not be presented as accreditation of every degree."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When can I start my programme?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Rushford's current admissions site lists multiple intake windows, but the start date and application deadline must be confirmed for the programme in your offer. Ask how long document checks and registration may take, and plan around the confirmed dates. Do not assume every listed subject or award opens at each intake."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if I need more time to finish?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Contact the academic team before your registration or assessment deadline to ask about an extension or interruption of study. Approval, maximum study periods and any additional fees depend on the programme and your offer. There is no confirmed provider-wide three-year, fee-free extension policy, so obtain the applicable terms in writing before relying on extra time."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does completing a Rushford Business School programme make me eligible to migrate to the US or UK?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No, not from programme completion alone. A Rushford qualification does not itself establish eligibility for a US or UK visa or permanent residence. Graduates may qualify through a separate route if they meet all its requirements. Where academic evidence is required, acceptance of the exact award must be established; provider certification or a partner award is not immigration approval. The UK Graduate route requires eligible study, the relevant Student permission and compliance with UK-study requirements. US Optional Practical Training (OPT) is linked to F-1 status and qualifying study. An overseas or online programme alone does not establish entitlement to either post-study work option. Work and permanent-residence routes have separate requirements, which may include qualifying employment, accepted qualifications or other prescribed evidence. If migration is your goal, seek appropriately qualified immigration advice on your individual circumstances and the current rules before choosing a programme. Immigration and residency decisions rest solely with the relevant authorities. This information is general guidance, not immigration advice."
+      }
+    }
+  ]
 }

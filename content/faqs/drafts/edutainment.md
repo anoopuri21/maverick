@@ -1,24 +1,23 @@
 # Maverick Edutainment — Educational Tours FAQs
 
-<!-- STATUS: DRAFT — PENDING APPROVAL (Cycle 3.2) -->
-<!-- SOURCES: repo — resources/views/pages/edutainment/* (hero, experiences, packages,
-     themes, who-for, existing on-page FAQ ×15). This set is a proposed UPGRADE/replacement
-     for the hardcoded on-page FAQ list. Compiled 2026-08-20. -->
-<!-- RULES NOTE (owner attention): the live Edutainment page names specific locations
-     (home-market and international destinations) because destinations ARE the product.
-     This draft uses DESTINATION-NEUTRAL phrasing ("local and international destinations")
-     so the strict country-neutral rule holds even here. If the owner prefers named
-     destinations on this page (matching current on-page copy), flag Verify #1 and we will
-     re-insert them on instruction. -->
+<!-- AUDIT: 2026-09-07 — existing questions reviewed and corrected; no new topics.
+     Historical approval retained; this revision is for client review, NOT website publication.
+     Current evidence and open issues: reports/verification-update-2026-09-07.md. -->
 
-> **Purpose:** Upgraded FAQ set for the Educational Tours (Edutainment) page — replaces the
-> 15 basic hardcoded Q&As with a tighter, SEO-structured, parent-trust-first set of 10.
+<!-- STATUS: DRAFT — PENDING APPROVAL (Cycle 3.2) -->
+<!-- SOURCES: Current Edutainment settings, original settings migration and Blade rendering.
+     Latest branch is CMS-managed via EdutainmentFaqSettings, not a hardcoded FAQ list.
+     Compiled 2026-08-20; metadata and answers rechecked 2026-09-07. -->
+<!-- RULES: Country-neutral visible content remains mandatory. Existing application
+     source defaults name destinations; no naming exception or CMS import is authorised. -->
+
+<!-- PURPOSE: Proposed 10-question Edutainment set; not imported into the existing CMS settings. -->
 
 ---
 
 ## Edutainment FAQ Set (10 questions)
 
-<!-- Target keyword: "what is edutainment educational tours" | Hub/definitional -->
+<!-- Target keyword: "what is edutainment educational tours" | Hub/definitional | Source: database/settings/2026_08_21_113500_create_edutainment_page_settings.php; reviewed 2026-09-07. -->
 **Q. What is Maverick Edutainment?**
 
 Maverick Edutainment designs **educational travel programmes** that combine learning with
@@ -26,24 +25,26 @@ experience — academic visits, industry exposure, cultural immersion and recrea
 around **defined learning objectives**. It turns a school or university trip into a
 structured learning experience students actually remember.
 
-<!-- Target keyword: "educational tour vs school trip difference" | Comparison/PAA -->
+<!-- Target keyword: "educational tour vs school trip difference" | Source: database/settings/2026_08_21_113500_create_edutainment_page_settings.php (source defaults, not production DB); resources/views/pages/edutainment/faq.blade.php; reviewed 2026-09-07. -->
 **Q. How is an Edutainment programme different from a normal school tour?**
 
-A normal tour is planned around sightseeing; an Edutainment programme is **planned around
-learning outcomes** — with the destination, visits and activities selected to serve them.
-Students still explore and enjoy, but every day connects back to a purpose: academic
-exposure, professional insight, cultural understanding or personal development.
+**Edutainment puts agreed learning objectives at the centre of the itinerary.**
+Sightseeing and recreation may still be included, but visits and activities are selected
+to support academic exposure, professional insight or cultural understanding. School
+tours can also be educational; the useful comparison is the structure, activities and
+documented objectives of the actual proposal.
 
-<!-- Target keyword: "who can join educational tours schools universities" | Eligibility -->
+<!-- Target keyword: "who can join educational tours schools universities" | Source: database/settings/2026_08_21_113500_create_edutainment_page_settings.php (source defaults, not production DB); resources/views/pages/edutainment/faq.blade.php; reviewed 2026-09-07. -->
 **Q. Who can take part in an Edutainment programme?**
 
-Programmes are designed for **schools, universities and educational institutions** —
-student groups accompanied by their educators. Itineraries are age-appropriate by design,
-matched to the group's academic level and objectives.
-<!-- [VERIFY: minimum age / grade levels accepted, and whether corporate or private groups
-are also served.] -->
+Edutainment proposals can be designed for **school, college and university groups, as
+well as professionals and educational institutions**. Suitability depends on participants'
+age, the activities and the institution's requirements. Confirm age limits, accessibility
+needs and accompanying-adult arrangements before selecting an itinerary; not every
+programme is suitable for every group.
+<!-- [VERIFY: EDU-01 — age limits, participant scope and accompaniment arrangements.] -->
 
-<!-- Target keyword: "what do students experience on educational trip" | Content/value -->
+<!-- Target keyword: "what do students experience on educational trip" | Content/value | Source: database/settings/2026_08_21_113500_create_edutainment_page_settings.php; reviewed 2026-09-07. -->
 **Q. What kinds of experiences are included?**
 
 Depending on the destination and package, a journey can include four experience layers:
@@ -53,16 +54,17 @@ Depending on the destination and package, a journey can include four experience 
 - **Cultural** — heritage, local life and cross-cultural understanding
 - **Recreational** — enjoyment and bonding that make the learning stick
 
-<!-- Target keyword: "school trip safety supervision chaperones" | Parents' #1 question — NEW -->
+<!-- Target keyword: "school trip safety supervision chaperones" | Source: safety planning checklist; actual operational safeguards not yet evidenced; reviewed 2026-09-07. -->
 **Q. How are safety and supervision handled?**
 
-Safety is planned before anything else: **vetted itineraries, structured supervision
-alongside accompanying teachers, and defined emergency procedures** for every programme.
-Parents and institutions receive the full plan before departure, so nothing about the
-trip is a mystery. <!-- [VERIFY: supervision ratios, insurance cover, and emergency
-protocol details — parents will ask; exact facts needed before publish.] -->
+**Safety and supervision arrangements should be agreed in writing before booking.**
+Ask for the activity risk assessment, adult supervision arrangements, emergency contacts,
+medical procedures and insurance responsibilities. Institutions and families should
+understand who is responsible at each stage. The exact arrangements must match the
+participants and itinerary; specific ratios or safety procedures should not be assumed.
+<!-- [VERIFY: EDU-02 — documented safeguarding, risk, supervision, emergency and insurance arrangements.] -->
 
-<!-- Target keyword: "customised school tour curriculum linked" | Customisation -->
+<!-- Target keyword: "customised school tour curriculum linked" | Customisation | Source: database/settings/2026_08_21_113500_create_edutainment_page_settings.php; reviewed 2026-09-07. -->
 **Q. Can the programme be customised to our curriculum or a specific subject?**
 
 Yes — customisation is the point. Institutions can request itineraries **built around a
@@ -70,52 +72,59 @@ subject, department or learning goal** (business, science, culture, language and
 and the programme is planned backwards from those objectives, including pre-trip briefings
 where useful.
 
-<!-- Target keyword: "what is included educational tour package flights" | Inclusions -->
+<!-- Target keyword: "what is included educational tour package flights" | Source: database/settings/2026_08_21_113500_create_edutainment_page_settings.php (source defaults, not production DB); resources/views/pages/edutainment/faq.blade.php; reviewed 2026-09-07. -->
 **Q. What is included in the package — and are flights included?**
 
-Each proposal clearly lists inclusions — typically **programme activities, entries,
-in-destination transport, accommodation and meals as specified** — with flights handled
-according to the selected package. Every quotation states exactly what is and isn't
-included, so there are no surprise costs. <!-- [VERIFY: standard inclusion list and
-flights policy per package tier.] -->
+**Inclusions depend on the selected package and must be stated in the written proposal.**
+They may include activities, entrance tickets, local transport, accommodation and meals.
+Flights may be included or excluded. Check the exclusions, optional activities and any
+additional charges before approving the budget rather than assuming that every package
+covers the same services.
+<!-- [VERIFY: EDU-03 — package-specific inclusions, exclusions and flights policy.] -->
 
-<!-- Target keyword: "educational tour certificate learning outcomes" | Outcomes -->
+<!-- Target keyword: "educational tour certificate learning outcomes" | Source: database/settings/2026_08_21_113500_create_edutainment_page_settings.php (source defaults, not production DB); resources/views/pages/edutainment/faq.blade.php; reviewed 2026-09-07. -->
 **Q. Do students receive certificates or documented learning outcomes?**
 
-Yes — participation is recognised, and programmes can conclude with **certificates and
-documented learning outcomes** aligned to the trip's objectives, giving students tangible
-evidence for portfolios and applications. <!-- [VERIFY: certificate format and issuing
-entity.] -->
+**Certificates may be included for selected programmes**, subject to confirmation in
+the proposal. Ask who issues the certificate, what it records and whether learning
+objectives or activity outcomes will also be documented. Participation evidence should
+not be described as academic credit or a formal qualification unless a separately
+verified awarding arrangement provides that.
+<!-- [VERIFY: EDU-03 — certificate availability, issuer, wording and outcome documentation.] -->
 
-<!-- Target keyword: "how early to book school educational tour proposal" | Booking/funnel -->
+<!-- Target keyword: "how early to book school educational tour proposal" | Source: database/settings/2026_08_21_113500_create_edutainment_page_settings.php (source defaults, not production DB); resources/views/pages/edutainment/faq.blade.php; reviewed 2026-09-07. -->
 **Q. How far in advance should we plan, and how do we get a proposal?**
 
-Earlier is better — advance planning secures the best availability for institutions,
-travel and seasonal programmes. Share your group size, objectives and preferred window,
-and the team returns a **structured proposal with itinerary and transparent pricing**.
-<!-- [VERIFY: recommended lead time (existing page suggests contacting well in advance)
-and proposal turnaround.] -->
+**Contact the team early enough for institutional approval and travel planning.** Share
+your group size, participant ages, learning objectives, preferred travel window and
+budget so a suitable proposal can be prepared. Ask for the recommended lead time and
+proposal schedule for your itinerary; availability and costs are confirmed through the
+written proposal, not guaranteed by an initial enquiry.
+<!-- [VERIFY: EDU-04 — planning lead time and proposal turnaround.] -->
 
-<!-- Target keyword: "visa travel documentation help school groups" | Logistics -->
+<!-- Target keyword: "visa travel documentation help school groups" | Source: database/settings/2026_08_21_113500_create_edutainment_page_settings.php (source defaults, not production DB); resources/views/pages/edutainment/faq.blade.php; reviewed 2026-09-07. -->
 **Q. Is help available with visas and travel documentation?**
 
-Yes — for international programmes, the team provides **guidance on visa and travel
-documentation requirements** for the destination, coordinated with the institution so
-group paperwork moves together rather than family-by-family.
-<!-- [VERIFY: scope of visa assistance (guidance vs full processing).] -->
+**Travel-document guidance or coordination may be available**, depending on the selected
+package and destination. Ask what help is included and what each traveller must arrange.
+Visa approval is decided solely by the relevant authority; guidance from the programme
+team does not guarantee a visa or entry permission.
+<!-- [VERIFY: EDU-04 — assistance scope, charges and responsibility for individual applications.] -->
 
 ---
 
-## Facts to Verify (owner action before approval)
+## Facts to Verify (reviewed 2026-09-07)
 
-| # | Item | What the draft says | What needs confirming |
-|---|------|--------------------|----------------------|
-| 1 | Destination naming policy ⚠️ | Destination-neutral ("local and international destinations") | Owner decision: keep neutral, or name destinations like current live page copy? |
-| 2 | Participants scope | Schools/universities/institutions | Age limits; corporate/private groups? |
-| 3 | Safety specifics | Structured supervision + emergency procedures (soft) | Ratios, insurance, protocols — needed before publish |
-| 4 | Package inclusions & flights | "As specified per proposal" | Standard inclusions per tier |
-| 5 | Certificates | "Can conclude with certificates" | Format + issuing entity |
-| 6 | Lead time & visa scope | "Earlier is better"; "guidance" | Recommended weeks/months; guidance vs processing |
+| ID | Open item | Evidence or action required |
+|---|---|---|
+| EDU-01 | Participants | Age limits, accessibility and accompanying-adult arrangements by itinerary |
+| EDU-02 | **Safety and safeguarding — publication blocker** | Actual risk assessments, supervision, emergency/medical procedures and insurance responsibilities; no operational promises without evidence |
+| EDU-03 | Package and certificates | Current inclusions/exclusions, flights policy, certificate issuer and documented learning outcomes |
+| EDU-04 | Logistics and assistance | Booking lead times, proposal turnaround, travel-document assistance scope and any charges |
+
+Destination-neutral content remains the owner's rule; no new location exception has been
+approved. The latest branch stores Edutainment FAQs in settings, not a hardcoded Blade
+list. This proposed set has not been imported into the CMS.
 
 ---
 

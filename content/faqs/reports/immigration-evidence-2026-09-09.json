@@ -1,0 +1,241 @@
+{
+  "review_date": "2026-09-09",
+  "providers": [
+    "rushford-business-school",
+    "girne-american-university"
+  ],
+  "title": "US / UK Immigration FAQ Report — GAU & RBS",
+  "scope": "This report explains general US and UK requirements relevant to qualifications from Girne American University and Rushford Business School. It covers the exact award, study arrangements and individual evidence required by the chosen route, without certifying any qualification or applicant as eligible.",
+  "sections": [
+    {
+      "id": "UK-GRADUATE",
+      "title": "UK: Graduate route is not an automatic benefit of an overseas award",
+      "finding": "The official guidance requires an eligible course studied with the relevant Student or Tier 4 permission, a qualifying licensed education provider and compliance with the UK-study requirement. Applying also requires being in the UK. A UK partner's name on a qualification or an online programme completed overseas does not, by itself, establish this eligibility.",
+      "application": "An overseas or online award alone does not establish Graduate-route eligibility. Historical distance-learning concessions and any qualifying study arrangements must be assessed under the applicable rules; this is not a bar on every online graduate applying through a different visa route.",
+      "source_ids": [
+        1
+      ]
+    },
+    {
+      "id": "UK-WORK",
+      "title": "UK: Skilled Worker eligibility depends on a sponsored job and other conditions",
+      "finding": "The Skilled Worker route requires an approved employer, a certificate of sponsorship, an eligible occupation, the applicable salary and other requirements, including English-language evidence where required. A degree or institution name alone is not enough.",
+      "application": "The sponsored job and the applicable immigration conditions determine eligibility. Holding a degree, choosing a university or completing a particular programme does not replace those requirements.",
+      "source_ids": [
+        2
+      ]
+    },
+    {
+      "id": "UK-HPI",
+      "title": "UK: the HPI university list is specific to the qualification award period",
+      "finding": "Neither Girne American University nor Rushford Business School appears on the official list for qualifications awarded from 1 November 2025 to 31 October 2026. HPI requires the correct awarding institution on the list for the month and year of the award, an eligible qualification and other conditions. Ecctis assesses qualification validity and level; it does not check university-list eligibility.",
+      "application": "The list finding applies only to the stated qualification award period, not to every visa route or every past/future award. A partner-issued qualification requires its own awarding-institution check. The applicable list must match the month and year of the qualification award.",
+      "source_ids": [
+        3,
+        4
+      ]
+    },
+    {
+      "id": "US-H1B",
+      "title": "US: H-1B specialty employment and academic evidence are separate tests",
+      "finding": "For H-1B specialty occupations, the position must meet the specialty-occupation criteria and the individual must meet the qualification requirements. A relevant foreign degree equivalent to the required US degree can be one route; the rules also recognise specified alternative evidence. Employer or agent petitioning and other immigration requirements apply.",
+      "application": "The position, the exact qualification or permitted alternative evidence, relevance to the role and any professional authorisation must be assessed individually. A credential evaluation is evidence, not a visa decision.",
+      "source_ids": [
+        5
+      ]
+    },
+    {
+      "id": "US-OPT",
+      "title": "US: OPT is linked to F-1 status and qualifying study",
+      "finding": "USCIS describes OPT as practical training for eligible F-1 students with qualifying study at an SEVP-certified institution, subject to the applicable study, recommendation and employment-authorisation requirements. Authorised study-abroad periods can count in specified circumstances; an overseas or online qualification alone does not create OPT entitlement.",
+      "application": "OPT depends on F-1 status and qualifying study, including the applicable treatment of authorised study-abroad periods. It is not permanent residence and is not an automatic benefit of an overseas degree.",
+      "source_ids": [
+        6
+      ]
+    },
+    {
+      "id": "US-EB2",
+      "title": "US: an advanced degree alone does not establish a Green Card entitlement",
+      "finding": "EB-2 has advanced-degree and exceptional-ability eligibility provisions. Under the advanced-degree branch, the relevant US degree or foreign equivalent, or a qualifying bachelor's degree plus at least five years of progressive post-bachelor's specialty experience, is only part of the assessment. Job-offer and labour-certification requirements generally apply, subject to exceptions. A national interest waiver has additional requirements and is not granted merely for holding an MBA or doctorate.",
+      "application": "An advanced degree does not satisfy every EB-2 or national-interest-waiver condition. NIW may permit self-petitioning without an employer sponsor, but its separate eligibility and waiver requirements still apply.",
+      "source_ids": [
+        7
+      ]
+    },
+    {
+      "id": "PROVIDER-CONTEXT",
+      "title": "Provider-specific evidence: academic transfer and certification are not immigration approval",
+      "finding": "GAU's cited transfer announcement concerns the 2014–2015 academic year and a 2014 application deadline; it does not prove a current Maverick US/UK pathway. Rushford lists eduQua certification for its online division. eduQua explicitly states that it certifies continuing-education institutions, not individual courses, degrees or persons.",
+      "application": "Academic transfer, institutional certification, memberships, credit totals and partner names do not establish immigration eligibility. Acceptance of an individual GAU or RBS award must be assessed for its intended use; neither universal acceptance nor universal rejection is established here.",
+      "source_ids": [
+        8,
+        9,
+        10
+      ]
+    }
+  ],
+  "claim_map": [
+    {
+      "claim": "Programme completion alone does not establish immigration eligibility; an individual must qualify under an applicable route.",
+      "source_ids": [
+        1,
+        2,
+        3,
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "claim": "Where academic evidence is required, the exact award and route-specific qualification requirements matter.",
+      "source_ids": [
+        3,
+        5,
+        7
+      ]
+    },
+    {
+      "claim": "An overseas or online programme alone does not create UK Graduate-route or US OPT entitlement.",
+      "source_ids": [
+        1,
+        6
+      ]
+    },
+    {
+      "claim": "Academic recognition, a transfer arrangement, certification or a partner award is not itself immigration permission.",
+      "source_ids": [
+        1,
+        2,
+        3,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "claim": "Work and permanent-residence routes have separate conditions; neither graduate eligibility nor degree equivalence is certified by this report.",
+      "source_ids": [
+        2,
+        5,
+        7
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": 1,
+      "title": "Graduate visa: the course you studied",
+      "publisher": "GOV.UK — UK Visas and Immigration",
+      "url": "https://www.gov.uk/graduate-visa/course-you-studied",
+      "checked_on": "2026-09-09",
+      "type": "Government eligibility guidance",
+      "scope": "Eligible course and provider, Student permission, UK-study requirement, application location and historical distance-learning concessions. Not an approval of any GAU/RBS award."
+    },
+    {
+      "id": 2,
+      "title": "Skilled Worker visa: overview",
+      "publisher": "GOV.UK — UK Visas and Immigration",
+      "url": "https://www.gov.uk/skilled-worker-visa",
+      "checked_on": "2026-09-09",
+      "type": "Government eligibility guidance",
+      "scope": "Sponsorship, job, salary, language and other conditions. No finding on a specific applicant's job or qualifications."
+    },
+    {
+      "id": 3,
+      "title": "High Potential Individual visa: eligibility",
+      "publisher": "GOV.UK — UK Visas and Immigration",
+      "url": "https://www.gov.uk/high-potential-individual-visa/eligibility",
+      "checked_on": "2026-09-09",
+      "type": "Government eligibility guidance",
+      "scope": "Award-period university list, qualification level/recency, Ecctis assessment and other requirements. Ecctis does not check whether the university is on the list."
+    },
+    {
+      "id": 4,
+      "title": "HPI global universities list 2025",
+      "publisher": "GOV.UK — UK Visas and Immigration",
+      "url": "https://www.gov.uk/government/publications/high-potential-individual-visa-global-universities-list/high-potential-individual-visa-global-universities-list-2025",
+      "checked_on": "2026-09-09",
+      "type": "Government award-period list",
+      "scope": "Qualifications awarded 1 November 2025–31 October 2026 only. Full displayed list reviewed; neither GAU nor RBS appears. No conclusion about all other periods or a separately awarded partner qualification."
+    },
+    {
+      "id": 5,
+      "title": "H-1B specialty occupations",
+      "publisher": "US Citizenship and Immigration Services (USCIS)",
+      "url": "https://www.uscis.gov/working-in-the-united-states/h-1b-specialty-occupations",
+      "checked_on": "2026-09-09",
+      "type": "Government eligibility guidance",
+      "scope": "Specialty occupation, relevant degree/equivalent or permitted alternatives, petition process and professional licensing. No fee, cap availability or individual equivalence claim is made in the FAQ."
+    },
+    {
+      "id": 6,
+      "title": "Policy Manual, Volume 2, Part F, Chapter 5 — Practical Training",
+      "publisher": "US Citizenship and Immigration Services (USCIS)",
+      "url": "https://www.uscis.gov/policy-manual/volume-2-part-f-chapter-5",
+      "checked_on": "2026-09-09",
+      "type": "Government policy manual",
+      "scope": "F-1 practical training and qualifying study, SEVP institutions, OPT recommendation/authorisation and defined study-abroad treatment. Not a general work visa for holders of foreign degrees."
+    },
+    {
+      "id": 7,
+      "title": "Employment-Based Immigration: Second Preference EB-2",
+      "publisher": "US Citizenship and Immigration Services (USCIS)",
+      "url": "https://www.uscis.gov/working-in-the-united-states/permanent-workers/employment-based-immigration-second-preference-eb-2",
+      "checked_on": "2026-09-09",
+      "type": "Government eligibility guidance",
+      "scope": "Advanced-degree/exceptional-ability provisions, job-offer and labour-certification rules, and NIW conditions/self-petitioning. A degree alone does not satisfy the full requirements."
+    },
+    {
+      "id": 8,
+      "title": "Undergraduate transfer quotas for inter-continental higher education",
+      "publisher": "Girne American University",
+      "url": "https://www.gau.edu.tr/en/haber/892/gau_announced_the_undergraduate_transfer_quotas_for_inter-continental_higher_education",
+      "checked_on": "2026-09-09",
+      "type": "Historical provider announcement — 2014–2015",
+      "scope": "Academic transfer context only. The text specifies a 29 August 2014 deadline. It is not proof of current campus, sponsor, partnership, visa or migration availability."
+    },
+    {
+      "id": 9,
+      "title": "Accreditations and Collaborations",
+      "publisher": "Rushford Business School",
+      "url": "https://rushford.ch/accreditations/",
+      "checked_on": "2026-09-09",
+      "type": "Provider description",
+      "scope": "Rushford's description of online-division certification, memberships and collaborations. Not a government immigration or credential-equivalence decision."
+    },
+    {
+      "id": 10,
+      "title": "eduQua — the quality label for continuing education and training",
+      "publisher": "Swiss Federation for Adult Learning (SVEB), eduQua scheme owner",
+      "url": "https://alice.ch/en/eduqua/",
+      "checked_on": "2026-09-09",
+      "type": "Certification-scheme owner guidance",
+      "scope": "Explicitly states that certification concerns institutions, not individual courses, degrees or persons, and does not accredit or verify qualifications."
+    }
+  ],
+  "programme_application": [
+    {
+      "provider": "Rushford Business School",
+      "categories": "BBA, MBA, MSc and doctoral research",
+      "application": "The general clarification applies across these four programme categories. Each award, study route and intended immigration use requires its own assessment; qualification labels are not interchangeable."
+    },
+    {
+      "provider": "Girne American University",
+      "categories": "BSc, MBA, EMBA, thesis-based master's and PhD",
+      "application": "The general clarification applies across these five programme categories. Exact award titles, study arrangements and recognition requirements must be checked for the selected programme."
+    }
+  ],
+  "editorial_rationale": "These questions address the difference between academic achievement and immigration eligibility. They are informational clarifications, not evidence of measured search demand, visa success rates or conversion performance.",
+  "exclusions": [
+    "The information does not establish a university-provided migration entitlement, universal degree equivalence, or a guaranteed visa, job, permanent residence or citizenship outcome.",
+    "Graduates are not automatically excluded from every immigration route. Eligibility depends on the route and individual evidence.",
+    "No individual credential-equivalence assessment or immigration application has been determined by this report.",
+    "The historical GAU announcement does not establish a current sponsored transfer pathway. Obtain current programme and sponsor evidence for any proposed transfer.",
+    "Visa fees, salary thresholds, processing times and other requirements can change. Consult the current official guidance for the intended application.",
+    "This is general information, not a complete visa checklist or individual immigration advice. Seek appropriately qualified advice before relying on a programme for a migration plan."
+  ],
+  "summary": "Completing a programme does not, on its own, establish US or UK immigration eligibility. A graduate may qualify through an applicable route if all of its requirements are met. Academic recognition, a visa, post-study work permission and permanent residence are separate matters."
+}

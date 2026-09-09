@@ -1,102 +1,102 @@
 {
- "@context": "https://schema.org",
- "@type": "FAQPage",
- "mainEntity": [
-  {
-   "@type": "Question",
-   "name": "What is the Master of Laws (LLM) from the University of Wolverhampton?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "The Master of Laws (LLM) is a *postgraduate law degree awarded by the University of Wolverhampton (UOW), delivered through flexible online learning*. It deepens your command of legal analysis, research and argument — a recognised master's-level credential for legal and compliance careers worldwide."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "How does the LLM top-up route work?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "The top-up route lets you convert a Level 7 postgraduate diploma in a law-related field into a full LLM by completing the final master's stage — centred on an *independent legal research project — in as little as around six months*. It is designed for professionals who have already completed diploma-level legal study and want the full master's award."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "Can I do the LLM without a traditional law degree?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Possibly, yes. Standard entry is via a law or joint-law honours degree, but applicants with significant professional experience in relevant legal or regulatory areas may be considered through a non-standard entry review — sometimes including an interview. The admissions team will assess your profile individually."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "Can I complete the LLM while working?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Yes — the UOW Master of Laws is delivered through online and distance learning, built for working legal and compliance professionals — you can study around court schedules, client work or office hours, from anywhere in the world."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "Is a degree from the University of Wolverhampton recognised?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Yes. UOW is a long-established public university whose degrees are recognised internationally by employers and academic institutions. For recognition guidance specific to your goals, the admissions team can advise you individually."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "What are the entry requirements for the LLM?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Entry depends on your route: Top-up route: a completed Level 7 postgraduate diploma in law or a closely related field Standard route: an honours degree in law or a joint-law subject Non-standard route: significant relevant professional experience, assessed individually English proficiency evidence is required, with exemptions available where your prior education was completed in English."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "How are the LLM fees structured?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Tuition follows an instalment-friendly structure, keeping payments manageable across your studies. Exact amounts, currency and any current scholarship or fee-support offers are confirmed by the admissions team during your eligibility review."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "What career opportunities can the LLM support?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "The LLM strengthens careers across *legal practice support, corporate counsel teams, compliance, regulatory affairs, contracts, arbitration support, policy and academia*. For practising professionals, it signals master's-level expertise; for career-changers, it opens law-adjacent roles where advanced legal knowledge is valued. Please note: the LLM is an academic qualification. Rights to practise law are governed by the professional regulatory body in each jurisdiction and are not conferred by the degree itself."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "Can I progress to doctoral study after the LLM?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Yes. The LLM is a full master's-level qualification and satisfies the standard entry route for doctoral study in law and related fields — including PhD programmes — subject to admission criteria. The independent research component of the LLM is strong preparation for doctoral-level work."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "Which professionals benefit most from an LLM?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "The LLM pays off fastest for professionals whose work touches law daily without requiring a practising licence: *compliance and regulatory officers, contract and procurement managers, HR leaders, company secretaries, risk managers, paralegals* stepping up, and practising lawyers formalising specialist depth. If interpreting rules, drafting terms or managing legal exposure is part of your role, the LLM converts that experience into a recognised master's-level credential."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "What is the independent legal research project like?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "It is the centrepiece of the LLM: you choose a legal issue relevant to your field, analyse it critically under supervision, and propose defensible solutions — the same skill set senior legal and compliance work demands. Graduates typically pick topics from their own industry, so the project doubles as evidence of expertise in their day job."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "Should I take the LLM straight after my degree, or work first?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Both routes work — they simply produce different advantages. Coming straight from study, you carry momentum and research sharpness into the LLM. Coming from practice, your professional context makes every module and the research project immediately applicable. The admissions review considers your profile either way, so the honest answer is: start when the qualification serves your next career move."
-   }
-  }
- ]
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the Master of Laws (LLM) from the University of Wolverhampton?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Master of Laws (LLM) is a postgraduate law qualification awarded by the University of Wolverhampton. It develops legal analysis, research and critical argument. The university offers different LLM routes; confirm the exact title, entry conditions and delivery mode of Maverick's offer rather than assuming all routes use the same online or top-up structure."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does the LLM top-up route work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An LLM top-up recognises approved prior legal study and requires completion of the remaining master's work. Admission is based on qualifications accepted for that particular route, not simply any diploma labelled Level 7. Confirm the named feeder qualifications, credit recognition, remaining assessments and duration before treating a diploma as a route to this LLM."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I do the LLM without a traditional law degree?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Some LLM routes consider non-standard applicants with significant relevant experience. The university's standard LLM Law page allows an individual review of such applicants, but this does not mean the same entry policy applies to every top-up or partner route. Submit your qualifications and professional background for a route-specific assessment before assuming eligibility."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I complete the LLM while working?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This depends on the LLM route and its attendance and workload requirements. The university advertises different full-time, part-time and distance-learning arrangements across its law portfolio. Confirm which applies to your offer, including session times, research deadlines and any in-person requirements, before planning study around legal or compliance work."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is a degree from the University of Wolverhampton recognised?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The University of Wolverhampton is an established university awarding postgraduate law degrees. Acceptance of a particular qualification depends on the receiving employer, institution or professional regulator. Confirm the exact programme and partner arrangement, and check requirements for your intended purpose. An academic LLM is not, by itself, a licence to practise law."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the entry requirements for the LLM?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Entry requirements depend on the exact LLM programme. A standard academic route may require a law or joint-law degree, while a professional top-up may require specified professional legal qualifications. Non-standard admission and English-language exemptions are assessed under the relevant route's rules. Obtain the current checklist; a generic Level 7 diploma is not automatically sufficient."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How are the LLM fees structured?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use the written fee quotation for the specific LLM route and intake. Check the billing currency, tuition, research or assessment charges where applicable, and available payment arrangements. If prior study is accepted for a top-up, confirm the fee for the remaining stage. Scholarships or instalments should not be assumed without an offer."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What career opportunities can the LLM support?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The LLM strengthens careers across legal practice support, corporate counsel teams, compliance, regulatory affairs, contracts, arbitration support, policy and academia. For practising professionals, it signals master's-level expertise; for career-changers, it opens law-adjacent roles where advanced legal knowledge is valued. Please note: the LLM is an academic qualification. Rights to practise law are governed by the professional regulatory body in each jurisdiction and are not conferred by the degree itself."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I progress to doctoral study after the LLM?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An LLM can support an application to doctoral research in law or a related field. Admission depends on the receiving university's criteria, academic results, research proposal and supervisory fit. A research component may provide useful preparation, but completion of the master's degree does not automatically secure a PhD place or satisfy every doctoral entry route."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which professionals benefit most from an LLM?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An LLM may be useful for legal practitioners and professionals in compliance, contracts, regulation, risk or policy whose work benefits from advanced legal analysis. Its relevance depends on the curriculum and your career goals. Check entry criteria and any separate professional requirements; an academic qualification does not automatically convert experience into a practising entitlement or a senior role."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the independent legal research project like?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A legal research project normally involves a focused legal question, critical analysis of relevant sources and a reasoned written argument. The university's LLM Law includes a research project, but scope, supervision and assessment depend on the route. Ask for the current handbook, topic-approval process and any ethics requirements for the offer you intend to take."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I take the LLM straight after my degree, or work first?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Both routes work — they simply produce different advantages. Coming straight from study, you carry momentum and research sharpness into the LLM. Coming from practice, your professional context makes every module and the research project immediately applicable. The admissions review considers your profile either way, so the honest answer is: start when the qualification serves your next career move."
+      }
+    }
+  ]
 }

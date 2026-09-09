@@ -1,11 +1,23 @@
 #!/usr/bin/env python3
-"""Build client-ready PDFs for the Education FAQ project.
+"""Build branded FAQ and information PDFs for the Education FAQ project.
 Outputs (content/faqs/client/):
   1. Maverick-Education-FAQ-Content-Pack.pdf      — all approved FAQs, cleaned
   2. Maverick-FAQ-Strategy-Ranking-Report.pdf     — selection & ranking report (English)
   3. Maverick-Blocker-Resolution-Report.pdf       — publish-blocker resolutions
 """
-import re, os, glob
+import re, os, sys
+from collections import Counter
+from datetime import date, datetime, timezone
+from decimal import Decimal
+from pathlib import Path
+from xml.sax.saxutils import escape
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
+from faq_content import (ROOT, REVIEW_DATE, PROVIDERS, read_faqs, public_markdown,
+                         IMMIGRATION_QUESTIONS, is_immigration_faq)
+from reportlab import rl_config
+rl_config.invariant = 1
+os.environ.setdefault('SOURCE_DATE_EPOCH', str(int(datetime.fromisoformat(REVIEW_DATE).replace(tzinfo=timezone.utc).timestamp())))
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import mm
 from reportlab.lib import colors
@@ -33,10 +45,10 @@ st_cover_title = S('ct', fontName='Helvetica-Bold', fontSize=27, leading=33, tex
 st_cover_sub   = S('cs', fontSize=13, leading=19, textColor=GREY, alignment=TA_CENTER)
 st_cover_meta  = S('cm', fontSize=10, leading=15, textColor=GREY, alignment=TA_CENTER)
 st_provider    = S('pv', fontName='Helvetica-Bold', fontSize=19, leading=24, textColor=NAVY)
-st_h2          = S('h2', fontName='Helvetica-Bold', fontSize=14, leading=18, textColor=NAVY, spaceBefore=14, spaceAfter=4)
-st_h3          = S('h3', fontName='Helvetica-Bold', fontSize=12, leading=16, textColor=GOLD, spaceBefore=10, spaceAfter=3)
-st_h4          = S('h4', fontName='Helvetica-Bold', fontSize=10.5, leading=14, textColor=GREY, spaceBefore=8, spaceAfter=2)
-st_q           = S('q',  fontName='Helvetica-Bold', fontSize=10.5, leading=15, textColor=NAVY, spaceBefore=9, spaceAfter=2)
+st_h2          = S('h2', keepWithNext=True, fontName='Helvetica-Bold', fontSize=14, leading=18, textColor=NAVY, spaceBefore=14, spaceAfter=4)
+st_h3          = S('h3', keepWithNext=True, fontName='Helvetica-Bold', fontSize=12, leading=16, textColor=GOLD, spaceBefore=10, spaceAfter=3)
+st_h4          = S('h4', keepWithNext=True, fontName='Helvetica-Bold', fontSize=10.5, leading=14, textColor=GREY, spaceBefore=8, spaceAfter=2)
+st_q           = S('q', keepWithNext=True,  fontName='Helvetica-Bold', fontSize=10.5, leading=15, textColor=NAVY, spaceBefore=9, spaceAfter=2)
 st_body        = S('b',  spaceAfter=5)
 st_bullet      = S('bl', leftIndent=14, bulletIndent=4, spaceAfter=2.5)
 st_note        = S('nt', fontName='Helvetica-Oblique', fontSize=9, leading=13, textColor=GREY, spaceAfter=6)
@@ -65,20 +77,20 @@ DISCLAIMER = ('Fee amounts, scholarships and entry requirements are confirmed in
               'during the admissions eligibility review and may change without notice.')
 
 PROVIDER_ORDER = [
-    ('rushford-business-school.md', 'Rushford Business School (RBS)', '4 categories + practical guide - BBA | MBA | MSc | Doctoral', 35, 41),
-    ('girne-american-university.md', 'Girne American University (GAU)', '5 categories + practical guide - BSc | MBA | EMBA | MSc (Thesis) | PhD', 37, 43),
-    ('university-west-scotland.md', 'University of the West of Scotland (UWS)', '1 category + practical guide - BA (Hons) Global Business', 12, 1),
-    ('university-creative-arts.md', 'University for the Creative Arts (UCA)', '1 category + practical guide - Global MBA (dual award with RBS)', 12, 1),
-    ('university-wolverhampton.md', 'University of Wolverhampton (UOW)', '1 category + practical guide - Master of Laws (LLM)', 12, 1),
-    ('gatehouse-diplomas.md', 'Gatehouse Level 7 Diplomas', '1 category + practical guide - Level 7 Diplomas (4 tracks)', 12, 4),
-    ('qualifi-diplomas.md', 'Qualifi Diplomas', '3 categories + practical guide - Level 3 | Level 5 Extended | Level 7', 22, 45),
+    (p.path.name, p.name,
+     f'{len(p.listing_categories)} category sets + practical guide'
+     + (' + immigration clarification' if p.slug in IMMIGRATION_QUESTIONS else '') + f' - {p.coverage}',
+     len(read_faqs(p.path)), p.programme_count)
+    for p in PROVIDERS
 ]
+TOTAL_FAQS = sum(row[3] for row in PROVIDER_ORDER)
+TOTAL_PROGRAMMES = sum(row[4] for row in PROVIDER_ORDER)
+TOTAL_CATEGORIES = sum(len(p.listing_categories) for p in PROVIDERS)
 
-def parse_faq_md(path):
+def parse_faq_md(path=None, *, text=None):
     """Return flowables for one cleaned provider file (no comments, no verify tables)."""
-    s = open(path, encoding='utf-8').read()
-    s = re.sub(r'<!--.*?-->', '', s, flags=re.S)
-    s = s.split('\n## Facts to Verify')[0]
+    s = Path(path).read_text(encoding='utf-8') if text is None else text
+    s = public_markdown(s)
     flows = []
     lines = s.split('\n')
     i, para, bullets, quote = 0, [], [], []
@@ -164,7 +176,7 @@ def parse_faq_md(path):
         elif stripped.startswith('**Q.'):
             flush_para(); flush_bullets(); flush_quote()
             q = re.sub(r'^\*\*(.+?)\*\*$', r'\1', stripped)
-            flows.append(Paragraph(inline('<b>' + q + '</b>').replace('<b><b>', '<b>').replace('</b></b>', '</b>'), st_q))
+            flows.append(Paragraph(inline(q), st_q))
         elif stripped.startswith('- '):
             flush_para(); flush_quote(); bullets.append(stripped[2:])
         elif stripped == '' or stripped == '---':
@@ -176,10 +188,10 @@ def parse_faq_md(path):
     return flows
 
 def make_doc(path, footer_label):
-    doc = BaseDocTemplate(path, pagesize=A4,
+    doc = BaseDocTemplate(str(path), pagesize=A4,
                           leftMargin=21*mm, rightMargin=21*mm, topMargin=20*mm, bottomMargin=18*mm,
                           title=footer_label, author='Maverick Business Academy')
-    frame = Frame(doc.leftMargin, doc.bottomMargin, doc.width, doc.height, id='f')
+    frame = Frame(doc.leftMargin, doc.bottomMargin, doc.width, doc.height, id='f', leftPadding=0, rightPadding=0)
 
     def on_page(canv, d):
         canv.saveState()
@@ -191,7 +203,7 @@ def make_doc(path, footer_label):
             canv.drawRightString(189*mm, 287*mm, footer_label)
             canv.setFont('Helvetica', 7.5)
             canv.drawCentredString(105*mm, 11*mm, f'Page {d.page}')
-            canv.drawRightString(189*mm, 11*mm, 'Confidential - for client review')
+            canv.drawRightString(189*mm, 11*mm, 'Maverick Business Academy')
         canv.restoreState()
 
     doc.addPageTemplates([PageTemplate(id='p', frames=[frame], onPage=on_page)])
@@ -218,18 +230,17 @@ def cover(flows, title, subtitle, stats_rows):
                                ('BOTTOMPADDING', (0,0), (-1,-1), 5)]))
         flows.append(t)
     flows.append(Spacer(1, 26))
-    flows.append(Paragraph('Prepared for client review - 19 August 2026', st_cover_meta))
-    flows.append(Paragraph('Confidential. Not for publication until approved.', st_cover_meta))
+    flows.append(Paragraph('Updated ' + date.fromisoformat(REVIEW_DATE).strftime('%d %B %Y').lstrip('0'), st_cover_meta))
     flows.append(PageBreak())
 
 # ---------------------------------------------------------------- PDF 1: FAQ pack
 def build_faq_pack():
     flows = []
     cover(flows, 'Education FAQ Content Pack',
-          'Website FAQ content for university partner programmes<br/>7 providers | 16 category FAQ sets + practical guides | 142 FAQs | 136 programmes covered',
-          [['Providers', '7'], ['FAQ sets (categories)', '16'], ['Total FAQs', '142'],
-           ['Programmes covered', '136'], ['Content language', 'English'],
-           ['Audience', 'Global (country-neutral)']])
+          f'Programme frequently asked questions<br/>{len(PROVIDERS)} providers | {TOTAL_CATEGORIES} category sets + practical guides | {TOTAL_FAQS} FAQs | {TOTAL_PROGRAMMES} supplied programme entries',
+          [['Providers', str(len(PROVIDERS))], ['FAQ sets (categories)', str(TOTAL_CATEGORIES)], ['Total FAQs', str(TOTAL_FAQS)],
+           ['Supplied programme entries', str(TOTAL_PROGRAMMES)], ['Content language', 'English (UK)'],
+           ['Audience', 'Global']])
     # contents
     flows.append(Paragraph('Contents', st_provider)); flows.append(Spacer(1, 6))
     rows = [[Paragraph('<b>Provider</b>', st_tbl_b), Paragraph('<b>Coverage</b>', st_tbl_b),
@@ -245,9 +256,11 @@ def build_faq_pack():
                            ('TOPPADDING', (0,0), (-1,-1), 4), ('BOTTOMPADDING', (0,0), (-1,-1), 4)]))
     flows.append(t)
     flows.append(Spacer(1, 10))
-    flows.append(Paragraph('All content is written for a global audience with no country-specific references, '
-                           'in student-friendly English, and formatted for direct upload. Each category FAQ set '
-                           'applies to every programme within that category.', st_note))
+    flows.append(Paragraph('This collection covers seven programme providers, with questions grouped by '
+                           'programme category and practical information. Each set addresses its listed programmes '
+                           'without assuming identical entry, delivery or commercial terms. The GAU and RBS sections '
+                           'also explain general US/UK immigration requirements. Exact award acceptance and individual '
+                           'eligibility must be assessed for the intended purpose.', st_note))
     flows.append(PageBreak())
 
     for fname, name, cov, nq, nprog in PROVIDER_ORDER:
@@ -417,189 +430,193 @@ RANK_DATA = [
   ('P2','QAN on the certificate','Verified verification-detail (official)',3,3.65)]),
 ]
 
+RANK_QUESTION_ORDER = (
+    (13,24,5,7,10,18,26,3,27,15,4,11,12,20,25,6,8,14,21,22,30,19,28,29,1,9,17,23,16,2,31,32,33,34,35),
+    (16,3,6,11,2,18,30,14,5,10,12,17,24,29,22,7,8,13,20,28,32,23,26,19,25,31,1,9,15,21,27,4,33,34,35,36,37),
+    (2,4,5,3,6,9,8,7,1,10,11,12),
+    (2,3,4,6,7,8,1,5,9,10,11,12),
+    (3,2,5,4,6,8,7,1,9,10,11,12),
+    (2,3,8,4,5,6,9,7,1,10,11,12),
+    (9,12,2,3,8,15,18,10,6,14,4,19,16,5,11,17,1,7,13,20,21,22),
+)
+
+
+def legacy_component_scores(provider):
+    """Original editorial inputs are independent of the presentation reports."""
+    import json
+    data = json.loads((ROOT / 'inputs/priority-components.json').read_text(encoding='utf-8'))
+    weights = tuple(Decimal(weight) for weight in data['weights'])
+    if len(weights) != 4 or sum(weights) != 1:
+        raise ValueError('Priority weights must total 1 across four dimensions')
+    result = {}
+    for number, record in data['providers'][provider.slug].items():
+        components = tuple(record['components'])
+        if len(components) != 4 or any(value not in range(1, 6) for value in components):
+            raise ValueError('Priority components must contain four values from 1 to 5')
+        if record['tier'] not in range(1, 5):
+            raise ValueError('Priority tier must be between 1 and 4')
+        score = sum(Decimal(value) * weight for value, weight in zip(components, weights))
+        result[int(number)] = (components, float(score), record['tier'])
+    return result
+
+
+def current_rank_data():
+    output = []
+    for provider, (_, _, rows), positions in zip(PROVIDERS, RANK_DATA, RANK_QUESTION_ORDER):
+        faqs = read_faqs(provider.path)
+        immigration = {number: faq for number, faq in enumerate(faqs, 1)
+                       if is_immigration_faq(provider.slug, faq)}
+        historical_positions = [number for number in range(1, len(faqs) + 1) if number not in immigration]
+        if len(rows) != len(historical_positions) or sorted(positions) != historical_positions:
+            raise ValueError(f'Update ranking coverage for {provider.slug}; every current FAQ must map exactly once')
+        components = legacy_component_scores(provider)
+        current = []
+        for (_, old_label, reason, tier, score), number in zip(rows, positions):
+            dims = components.get(number)
+            if dims:
+                score = dims[1]
+                tier = dims[2]
+            # Reader intent, not claims about a verified benefit or measured market volume.
+            faq = faqs[number - 1]
+            if faq.bucket == 'Fees, Scholarships & Payments':
+                reason = 'Cost, payment and funding clarity before accepting an offer'
+            elif faq.bucket == 'Eligibility & Admission':
+                reason = 'Clarifies route-specific eligibility and application evidence'
+            elif faq.bucket == 'Careers & Outcomes':
+                reason = 'Helps assess career or further-study fit without outcome promises'
+            elif faq.category == 'Applying & Practical Information':
+                reason = 'Practical pre-enrolment planning and responsibilities'
+            elif 'recognis' in faq.question.lower() or 'accredit' in faq.question.lower():
+                reason = 'Distinguishes awarding status, qualification scope and intended use'
+            elif 'duration' in old_label.lower() or 'how long' in faq.question.lower():
+                reason = 'Study-time and route planning; exact terms need confirmation'
+            elif any(word in old_label.lower() for word in ('online', 'working', 'career')):
+                reason = 'Checks delivery, attendance and work-study compatibility'
+            elif 'difference' in faq.question.lower() or 'mean' in faq.question.lower():
+                reason = 'Explains qualification terminology and helps compare suitable routes'
+            else:
+                reason = 'Programme orientation and informed course selection'
+            current.append({'number': number, 'question': faq.question, 'reason': reason,
+                            'tier': tier, 'score': score,
+                            'components': list(dims[0]) if dims else None,
+                            'basis': 'Historical component scores, recalculated' if dims else 'Historical editorial total; components not recorded'})
+        current.sort(key=lambda row: (-row['score'], row['number']))
+        for row in current:
+            row['rank'] = 1 + sum(other['score'] > row['score'] for other in current)
+        for number, faq in immigration.items():
+            current.append({'number': number, 'question': faq.question,
+                            'reason': 'US/UK eligibility clarification; no migration entitlement is implied',
+                            'tier': None, 'score': None, 'rank': None, 'components': None,
+                            'basis': 'Informational clarification; no demand score or ranking assigned'})
+        output.append((provider.name, f'{len(faqs)} questions | {provider.coverage}', current))
+    return output
+
+
 def build_strategy_report():
     flows = []
+    ranking = current_rank_data()
+    tiers = Counter(row['tier'] for _, _, rows in ranking for row in rows)
+    weighted = sum(row['components'] is not None for _, _, rows in ranking for row in rows)
+    unscored = sum(row['score'] is None for _, _, rows in ranking for row in rows)
     cover(flows, 'FAQ Strategy & Ranking Report',
-          'Question selection rationale and global search-priority ranking<br/>for all 142 FAQs across 7 education providers',
-          [['Questions analysed', '142'], ['Tier 1 (Very High demand)', '19'],
-           ['Tier 2 (High demand)', '72'], ['Tier 3 (Medium)', '31'], ['Tier 4 (Branded/hub)', '20']])
+          f'Editorial question priorities for {TOTAL_FAQS} programme FAQs<br/>Question selection, reader needs and evidence limitations',
+          [['Questions analysed', str(TOTAL_FAQS)],
+           *[[TIER_LABEL[tier], str(tiers[tier])] for tier in range(1,5)],
+           ['Informational; unscored', str(unscored)]])
 
-    flows.append(Paragraph('Methodology', st_provider)); flows.append(Spacer(1, 4))
-    flows.append(Paragraph('Every question was selected using three filters: <b>(a) student psychology</b> - what '
-        'prospective students genuinely ask before enrolling; <b>(b) global SEO demand</b> - whether the question '
-        'belongs to a globally searched query family (People Also Ask / voice-search patterns); and '
-        '<b>(c) conversion role</b> - whether the answer moves the reader closer to an enquiry.', st_body))
-    flows.append(Paragraph('Each question is scored 1-5 on four weighted dimensions and ranked by the resulting '
-        'priority score (maximum 5.00):', st_body))
-    mt = Table([[Paragraph('<b>Dimension</b>', st_tbl_b), Paragraph('<b>Weight</b>', st_tbl_b), Paragraph('<b>What it measures</b>', st_tbl_b)],
-                [Paragraph('Global search demand', st_tbl), Paragraph('35%', st_tbl), Paragraph('Worldwide volume of the query family', st_tbl)],
-                [Paragraph('Snippet / PAA opportunity', st_tbl), Paragraph('25%', st_tbl), Paragraph('Likelihood of featuring in answer boxes', st_tbl)],
-                [Paragraph('Conversion intent', st_tbl), Paragraph('25%', st_tbl), Paragraph('Proximity of the reader to an enquiry', st_tbl)],
-                [Paragraph('Ranking feasibility', st_tbl), Paragraph('15%', st_tbl), Paragraph('Realistic chance of ranking for this domain', st_tbl)]],
-               colWidths=[45*mm, 18*mm, 105*mm])
-    mt.setStyle(TableStyle([('BACKGROUND', (0,0), (-1,0), NAVY), ('GRID', (0,0), (-1,-1), 0.4, RULE),
-                            ('ROWBACKGROUNDS', (0,1), (-1,-1), [colors.white, LIGHT]),
-                            ('VALIGN', (0,0), (-1,-1), 'TOP'),
-                            ('TOPPADDING', (0,0), (-1,-1), 4), ('BOTTOMPADDING', (0,0), (-1,-1), 4)]))
-    flows.append(mt); flows.append(Spacer(1, 8))
-    flows.append(Paragraph('Demand tiers are qualitative expert assessments based on query-pattern analysis; no numeric '
-        'search volumes have been estimated or invented. We recommend validating tiers against Google Search Console '
-        'data 30-60 days after publication.', st_note))
-    flows.append(Paragraph('Duplicate-prevention was enforced project-wide: every high-value query family is targeted by '
-        'exactly one provider page (e.g. "PhD vs DBA" only on the RBS page, "MBA vs EMBA" only on GAU, Level 7 '
-        'definitions only on Gatehouse, the qualification-ladder angle only on Qualifi), eliminating internal keyword '
-        'competition.', st_body))
-    flows.append(Paragraph('Rows marked "P2" are Phase 2 boost-topic additions (practical/application questions), scored on the same model.', st_note))
+    flows.append(Paragraph('Methodology and limits', st_provider))
+    flows.append(Spacer(1, 5))
+    flows.append(Paragraph('This is an <b>editorial prioritisation framework, not a measured search ranking, '
+        'traffic forecast or claim of highest demand</b>. No keyword-tool export, search-volume dataset or '
+        'Search Console data was available for this review. Historical demand tiers remain hypotheses, '
+        'not independently validated market measurements.', st_body))
+    flows.append(Paragraph(f'For {weighted} original questions, recorded component scores are recalculated using '
+        '<b>Demand 35% + answer-format opportunity 25% + conversion intent 25% + feasibility 15%</b>, '
+        'with each component scored from 1 to 5. The 25 historical practical additions retain editorial '
+        'totals because their component scores were not recorded. The two immigration questions '
+        'are informational clarifications and have no demand tier, score or search rank assigned. '
+        'No missing components or new search-volume data have been invented.', st_body))
+    flows.append(Paragraph('Every row now maps to an exact question in the current content. Rankings are sorted '
+        'by score within each provider; tied scores share a rank. Unscored informational questions '
+        'are shown separately at the end of the provider table. Scores are retained for planning continuity, '
+        'not as a forecast of traffic or a guarantee of any educational outcome.', st_body))
+    flows.append(Paragraph('There are no exact duplicate questions in the FAQ collection. Related topics such as '
+        'fees, recognition and working while studying intentionally recur for different providers. Different '
+        'wording does not prove separate search intent or eliminate keyword competition; actual page/query '
+        'data is needed to assess that.', st_body))
+    flows.append(Paragraph('US/UK immigration: GAU and RBS', st_h2))
+    flows.append(Paragraph('The two immigration FAQs distinguish programme completion from visa eligibility, '
+        'qualifying post-study work and permanent residence. They explain a common principle across the relevant '
+        'programme categories without declaring every award suitable for immigration. These are informational '
+        'clarifications; no measured demand or conversion benefit is established. The US/UK Immigration FAQ '
+        'Report provides the detailed route explanations and dated source register.', st_body))
+    flows.append(Paragraph('Sources: '
+        '<link href="https://www.gov.uk/graduate-visa/course-you-studied" color="#122A46">GOV.UK Graduate-route requirements</link>; '
+        '<link href="https://www.uscis.gov/policy-manual/volume-2-part-f-chapter-5" color="#122A46">USCIS practical-training policy</link>; '
+        '<link href="https://www.uscis.gov/working-in-the-united-states/h-1b-specialty-occupations" color="#122A46">USCIS H-1B eligibility</link>. '
+        'Immigration sources checked 9 September 2026.', st_note))
+    flows.append(Paragraph('Search and AI visibility', st_h2))
+    flows.append(Paragraph('Google documents that <b>FAQ rich results stopped appearing from 7 May 2026</b>. '
+        'FAQPage structured data does not promise rich results, higher ranking or inclusion in AI Overviews. '
+        'Useful, accurate answers and clear page '
+        'structure remain the purpose of this content. No special markup or question order guarantees '
+        'search or AI visibility.', st_body))
+    flows.append(Paragraph('Official update: <link href="https://developers.google.com/search/updates#deprecating-the-faq-rich-result-feature" color="#122A46">Google Search documentation changelog</link>.', st_note))
     flows.append(PageBreak())
 
-    # ----- Annex: How was this ranking derived? (client Q&A) -----
-    flows.append(Paragraph('How Was This Ranking Derived?', st_provider))
-    flows.append(Paragraph('Common questions about the basis of this report', st_note))
-    flows.append(HRFlowable(width='100%', thickness=1.1, color=GOLD, spaceAfter=8))
-
-    qa = [
-     ('Is this ranking based on search-volume data from keyword tools?',
-      'No - deliberately. This is a <b>prioritisation framework, not a traffic forecast</b>. Pre-launch '
-      'volume estimates for long-tail, question-format queries are notoriously unreliable: keyword tools '
-      'aggregate and round long-tail data heavily, and most "People Also Ask" questions never appear in '
-      'volume databases at all. Rather than attach numbers we cannot stand behind, we state none. '
-      'Every figure in this report is a <b>relative priority score</b>, not a search-volume estimate.'),
-     ('So what is each score actually based on?',
-      'Each question is scored 1-5 on four weighted dimensions (see Methodology): the global demand of its '
-      '<b>query family</b>, its <b>featured-snippet/PAA opportunity</b>, its <b>conversion intent</b>, and its '
-      '<b>ranking feasibility</b> for this domain. The demand dimension draws on established search-behaviour '
-      'patterns in the education niche - families such as "MBA without GMAT", "PhD vs DBA" and "what is a '
-      'top-up degree" are well-documented, evergreen high-demand patterns that surface repeatedly in '
-      'People Also Ask boxes worldwide. Snippet opportunity follows established format observations: '
-      'comparison ("X vs Y"), definitional ("what is...") and "how long" questions win answer boxes most often.'),
-     ('What sources were used?',
-      'Three source layers: (1) the client\'s own programme data (programme list and repository records); '
-      '(2) official provider sources - admissions portals and awarding-body specifications - for every '
-      'verifiable fact referenced in a question\'s context (durations, credits, entry routes, regulator '
-      'recognition); and (3) publicly established SEO practice for question-format content. No paid '
-      'keyword-tool exports were used, and none are cited.'),
-     ('What decisions is the ranking used for?',
-      'Three practical decisions: the <b>on-page order</b> of questions within each section (higher tiers '
-      'first), the <b>priority of questions in FAQPage structured data</b> at publish time, and the '
-      '<b>internal-linking plan</b> (hub, comparison and progression questions each link differently). '
-      'It is a build-sequence tool - not a promise of traffic.'),
-     ('How will the ranking be validated?',
-      'With real data. Thirty to sixty days after publication, every tier is checked against <b>Google '
-      'Search Console</b> impressions and query reports - actual evidence of what users searched and where '
-      'the pages appeared - and the priorities are revised where reality differs from the assessment. '
-      'Optionally, indicative volume ranges from Google Keyword Planner can be added for Tier 1 questions '
-      'before launch if desired.')]
-    for q, a in qa:
-        flows.append(Paragraph('Q. ' + clean_text(q), st_q))
-        flows.append(Paragraph(clean_text(a), st_body))
-    flows.append(PageBreak())
-
-    for name, sub, rows in RANK_DATA:
+    for name, sub, rows in ranking:
         flows.append(Paragraph(clean_text(name), st_provider))
         flows.append(Paragraph(clean_text(sub), st_note))
         flows.append(HRFlowable(width='100%', thickness=1.1, color=GOLD, spaceAfter=6))
-        data = [[Paragraph('<b>Rank</b>', st_tbl_b), Paragraph('<b>Question</b>', st_tbl_b),
-                 Paragraph('<b>Why it was selected</b>', st_tbl_b), Paragraph('<b>Demand tier</b>', st_tbl_b),
+        data = [[Paragraph('<b>Rank</b>', st_tbl_b), Paragraph('<b>Current question</b>', st_tbl_b),
+                 Paragraph('<b>Reader need</b>', st_tbl_b), Paragraph('<b>Estimated tier</b>', st_tbl_b),
                  Paragraph('<b>Score</b>', st_tbl_b)]]
-        for rk, q, why, tier, score in rows:
-            data.append([Paragraph(str(rk), st_tbl), Paragraph(inline(q), st_tbl),
-                         Paragraph(inline(why), st_tbl), Paragraph(TIER_LABEL[tier], st_tbl),
-                         Paragraph(f'{score:.2f}', st_tbl)])
-        t = Table(data, colWidths=[12*mm, 52*mm, 63*mm, 28*mm, 13*mm], repeatRows=1)
-        t.setStyle(TableStyle([('BACKGROUND', (0,0), (-1,0), NAVY), ('GRID', (0,0), (-1,-1), 0.4, RULE),
-                               ('ROWBACKGROUNDS', (0,1), (-1,-1), [colors.white, LIGHT]),
-                               ('VALIGN', (0,0), (-1,-1), 'TOP'),
-                               ('TOPPADDING', (0,0), (-1,-1), 3.5), ('BOTTOMPADDING', (0,0), (-1,-1), 3.5)]))
+        for row in rows:
+            data.append([Paragraph(str(row['rank']) if row['rank'] is not None else '-', st_tbl), Paragraph(inline(row['question']), st_tbl),
+                         Paragraph(inline(row['reason']), st_tbl), Paragraph(TIER_LABEL[row['tier']] if row['tier'] is not None else 'Not assigned', st_tbl),
+                         Paragraph(f"{row['score']:.2f}" if row['score'] is not None else "Not scored", st_tbl)])
+        t = Table(data, colWidths=[12*mm, 61*mm, 54*mm, 28*mm, 13*mm], repeatRows=1)
+        t.setStyle(TableStyle([('BACKGROUND',(0,0),(-1,0),NAVY),('GRID',(0,0),(-1,-1),0.4,RULE),
+                               ('ROWBACKGROUNDS',(0,1),(-1,-1),[colors.white,LIGHT]),
+                               ('VALIGN',(0,0),(-1,-1),'TOP'),
+                               ('TOPPADDING',(0,0),(-1,-1),3.5),('BOTTOMPADDING',(0,0),(-1,-1),3.5)]))
         flows.append(t)
         flows.append(PageBreak())
-
-    flows.append(Paragraph('Recommendations', st_provider)); flows.append(Spacer(1, 5))
-    for r in ['Place Tier 1 questions at the top of each page section - on-page order is a crawl-priority signal.',
-              'Generate FAQPage structured data (JSON-LD) for all questions at publish time, Tier 1 first.',
-              'Add internal links: hub questions to programme pages; comparison questions to both categories they compare; ladder/progression questions across providers (diploma to degree to master\'s).',
-              'Validate demand tiers against Google Search Console impressions 30-60 days after publication and re-prioritise where actual data differs.',
-              'Complete the outstanding partner confirmations (fees, English thresholds, progression agreements) before adding further specificity to answers.']:
-        flows.append(Paragraph(inline(r), st_bullet, bulletText='\u2022'))
-    doc = make_doc(os.path.join(OUT, 'Maverick-FAQ-Strategy-Ranking-Report.pdf'), 'FAQ Strategy & Ranking Report')
-    doc.build(flows)
+    flows.append(Paragraph('Practical recommendations', st_provider))
+    flows.append(Spacer(1, 5))
+    for item in [
+        'Keep the highest-priority reader questions easy to find. This is a usability choice, not a demonstrated crawl-priority signal.',
+        'Confirm exact award titles, programme routes, commercial terms and any recognition requirements before relying on a particular offer.',
+        'Add only relevant, confirmed internal links using current programme information and evidenced progression routes.',
+        'Use Search Console query/page data and enquiry performance to refine priorities when measured data is available. Do not present an editorial tier as measured demand.',
+        'Exact duplicate checks do not establish an external plagiarism percentage. No numerical originality certificate is provided by this analysis.',
+    ]:
+        flows.append(Paragraph(inline(item), st_bullet, bulletText='\u2022'))
+    make_doc(os.path.join(OUT, 'Maverick-FAQ-Strategy-Ranking-Report.pdf'), 'FAQ Strategy & Ranking Report').build(flows)
 
 # ------------------------------------------------- PDF 3: blocker resolution
-BLOCKERS = [
- ('Blocker 1 - Programme Durations (RBS & GAU)',
-  'Initial drafts relied on third-party directory figures: RBS MBA "12-24 months", RBS MSc "18-24 months", '
-  'GAU MBA "1.5-2 years" (unverified) - and the RBS BBA duration was missing entirely. Publishing an incorrect '
-  'duration risks a wrong featured snippet that persists in caches even after correction.',
-  ['The official Rushford admissions portal publishes a nominal duration of <b>16 months (90 ECTS)</b> consistently across MBA specialisation pages.',
-   'Official Rushford MSc pages publish a three-route structure: <b>60 ECTS (~12 months)</b>, <b>90 ECTS (~18 months, master\'s thesis)</b>, <b>120 ECTS (~24 months, capstone consulting project)</b>.',
-   'The official Rushford BBA page publishes <b>180 ECTS across 6 semesters (~36 months)</b>.',
-   'GAU master\'s programmes are consistently described across independent sources as <b>~2 years (4 semesters)</b>, with shorter completion possible by route - supporting a published "1.5-2 years" range.'],
-  'All duration answers were replaced with the official figures; the BBA duration was added; every obsolete third-party range was removed.',
-  'apply.rushford.ch official course pages (MBA specialisations); rushford.ch official programme pages (MSc Business Management, BBA); corroborating independent directories for GAU.'),
- ('Blocker 2 - Accreditation & Regulation Wording',
-  'It was unconfirmed whether Gatehouse and Qualifi diplomas could be described as regulated qualifications; GAU\'s '
-  'recognising authorities carry country references in their full names, conflicting with the strict globally-neutral '
-  'content policy; and university heritage claims (founding dates) were unverified.',
-  ['<b>Gatehouse Awards</b> is confirmed as an awarding organisation <b>recognised by Ofqual</b> (Office of Qualifications and Examinations Regulation). Its Level 7 Diploma in Education Leadership & Management is verified on the official Gatehouse site as a regulated qualification: <b>QAN 610/7539/5</b>, TQT 1200, assessed by coursework and portfolio of evidence.',
-   '<b>Qualifi</b> is confirmed as <b>approved and regulated by Ofqual (regulator reference RN5160)</b>; its qualifications carry unique accreditation numbers on the Regulated Qualifications Framework (e.g. Level 5 Extended Diploma in Business Management, QAN 610/1675/5, 240 credits).',
-   'For GAU, the recognising authorities can be referenced by acronym alone - fully accurate and free of any country descriptor.'],
-  'Regulator recognition statements were added to the Gatehouse and Qualifi content with exact regulator naming; Gatehouse assessment wording was corrected to "coursework and portfolio of evidence"; GAU\'s authorities are now referenced country-neutrally as "the higher-education authorities YODAK and YOK" alongside IACBE international accreditation; university heritage remains as neutral phrasing ("long-established public university") with no dates - the lowest-risk accurate formulation.',
-  'gatehouseawards.org (official qualification specification); regulated-qualification listings confirming Gatehouse\'s Ofqual recognition; Qualifi delivery-centre specifications citing Ofqual reference RN5160 and QANs; Maverick programme data (primary) for GAU recognitions.'),
- ('Blocker 3 - UWS BA (Hons) Global Business: Top-Up Structure',
-  'Three answers (programme meaning, duration, entry requirements) depended on a top-up-route assumption drawn from a single partner source.',
-  ['Three independent partner institutions delivering this UWS award describe it identically: a <b>top-up degree awarded by the University of the West of Scotland</b>, completed in <b>~12 months</b>, delivered <b>100% online</b>, with entry via a <b>completed HND or equivalent qualification, or relevant work experience (subject to approval)</b>.'],
-  'The top-up structure, 12-month duration and entry criteria were confirmed and firmed in the content; all assumption flags were removed.',
-  'Independent partner-institution programme pages (three separate providers with consistent details).'),
- ('Blocker 4 - UCA Global MBA: Entry-Criteria Conflict',
-  'The official Rushford admissions portal lists entry as a bachelor\'s degree in any discipline, while another listing of the same UCA award required minimum age 21, 3+ years\' management experience and higher English scores.',
-  ['The stricter criteria belong to a <b>different delivery partner\'s route</b> to the same UCA award. The listed offer is explicitly the <b>Rushford-delivered route</b> ("Global MBA + Rushford Business School"), for which the official portal publishes: <b>bachelor\'s degree (or equivalent) in any discipline</b>.'],
-  'Source hierarchy was applied: the official criteria for the correct delivery route were retained and the conflict was closed with a clarification recorded in the content notes.',
-  'apply.rushford.ch official Global MBA (via UCA) course page, compared against the alternate delivery partner\'s listing.'),
-]
-
 def build_blocker_report():
+    import json
+    evidence = json.loads((ROOT / 'reports/verification-evidence.json').read_text(encoding='utf-8'))
     flows = []
-    cover(flows, 'Publish-Blocker Resolution Report',
-          'Deep-research verification and correction of the four publish-blocking issues<br/>identified in the Education FAQ content pack',
-          [['Blockers identified', '4'], ['Blockers resolved', '4'],
-           ['Content files updated', '7'], ['Publication status', 'On hold - awaiting approval']])
-    flows.append(Paragraph('Executive Summary', st_provider)); flows.append(Spacer(1, 4))
-    flows.append(Paragraph('Before publication, four issues were flagged as publish-blockers: unverified programme '
-        'durations, unconfirmed accreditation wording, an unconfirmed programme structure, and conflicting entry '
-        'criteria. Each was investigated against official and corroborated sources, and the approved FAQ content has '
-        'been corrected accordingly. All four blockers are now closed. The remaining open items (fee amounts, exact '
-        'English-test thresholds, and internal progression agreements) require partner offer sheets and cannot be '
-        'resolved through public research; they are listed at the end of this report.', st_body))
-    flows.append(Spacer(1, 6))
-    for title, issue, findings, resolution, sources in BLOCKERS:
-        flows.append(Spacer(1, 4))
-        flows.append(HRFlowable(width='100%', thickness=0.8, color=RULE, spaceAfter=4))
-        flows.append(Paragraph(inline(title), st_h2))
-        flows.append(Paragraph('<b>The issue.</b> ' + inline(issue), st_body))
-        flows.append(Paragraph('<b>Research findings.</b>', st_body))
-        for f in findings:
-            flows.append(Paragraph(clean_text(f), st_bullet, bulletText='\u2022'))
-        flows.append(Spacer(1, 3))
-        flows.append(Paragraph('<b>Resolution applied.</b> ' + inline(resolution), st_body))
-        flows.append(Paragraph('<b>Sources.</b> <i>' + inline(sources) + '</i>', st_body))
-    flows.append(Spacer(1, 6))
-    flows.append(HRFlowable(width='100%', thickness=0.8, color=RULE, spaceAfter=4))
-    flows.append(Paragraph('Bonus Finding', st_h2))
-    flows.append(Paragraph('Official Rushford portal pages confirm that each MBA specialisation also carries an '
-        '<b>Ofqual-regulated Level 7 Diploma award by default</b> - added to the MBA content as a value point. The '
-        'portal\'s accompanying "WES approved" phrasing remains excluded under the project\'s compliance policy '
-        '(equivalency claims require separately verified sources).', st_body))
-    flows.append(Paragraph('Outstanding Items (require partner offer sheets)', st_h2))
-    for o in ['Fee amounts and billing currencies for all providers (UCA figures are portal-published: CHF 9,900 one-time, or CHF 1,800 + 6 x CHF 1,400 - to be reconfirmed per intake).',
-              'Official English-proficiency thresholds per provider and level.',
-              'Portfolio progression agreements (Qualifi L7 Law to UOW LLM feeder; L5 to degree top-up receiving programmes; L3 to L5 internal ladder).',
-              'GAU delivery-mode confirmation per category (esp. Psychology, EMBA, PhD) and exact entry thresholds.',
-              'Accreditation numbers for the remaining three Gatehouse Level 7 diplomas.']:
-        flows.append(Paragraph(clean_text(o), st_bullet, bulletText='\u2022'))
-    flows.append(Spacer(1, 8))
-    flows.append(Paragraph('<b>Status:</b> content is verification-complete to the limit of public sources and is held '
-        'unpublished pending client approval.', st_body))
-    doc = make_doc(os.path.join(OUT, 'Maverick-Blocker-Resolution-Report.pdf'), 'Publish-Blocker Resolution Report')
-    doc.build(flows)
+    cover(flows, 'Programme Information<br/>& Source Verification',
+          'Published specifications, interpretation and programme-specific requirements',
+          [['Information areas', str(len(evidence['areas']))], ['Programme providers', str(len(PROVIDERS))],
+           ['Programme FAQs', str(TOTAL_FAQS)], ['Site-page FAQs', '18']])
+    flows.append(Paragraph('Overview', st_provider))
+    flows.append(Spacer(1, 5))
+    flows.append(Paragraph(inline(evidence['summary']), st_body))
+    for area in evidence['areas']:
+        flows.append(Paragraph(inline(area['title']), st_h2))
+        flows.append(Paragraph('<b>Source-supported information.</b> ' + inline(area['finding']), st_body))
+        flows.append(Paragraph('<b>Interpretation.</b> ' + inline(area['interpretation']), st_body))
+        flows.append(Paragraph('<b>Programme details to confirm.</b> ' + inline(area['details_to_confirm']), st_body))
+        for source in area['sources']:
+            flows.append(Paragraph('<link href="' + escape(source['url'], {'"':'&quot;'}) + '" color="#122A46">' + inline(source['title']) + '</link> — checked ' + source['checked_on'], st_note))
+    flows.append(Paragraph('Scope and limitations', st_h2))
+    for item in evidence['limits']:
+        flows.append(Paragraph(inline(item), st_bullet, bulletText='\u2022'))
+    make_doc(os.path.join(OUT, 'Maverick-Blocker-Resolution-Report.pdf'), 'Programme Information & Source Verification').build(flows)
 
 if __name__ == '__main__':
     os.makedirs(OUT, exist_ok=True)

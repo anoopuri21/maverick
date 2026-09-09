@@ -1,75 +1,50 @@
-# FAQ Selection & Global Ranking Report — Gatehouse Level 7 Diplomas
+# FAQ Selection & Priority Report — Gatehouse Level 7 Diplomas
 
-**Report date:** 2026-08-19 · **Status of FAQ set:** ✅ Approved 2026-08-19 (Cycle #6)
-**FAQ file:** `approved/gatehouse-diplomas.md` · **Questions analysed:** 9
+**Updated:** 9 September 2026
+**Questions:** 12 · **Programme categories:** 1 · **Programme-list entries:** 4
 
----
+## 1. Purpose and coverage
 
-## 1. Executive Summary
+The questions support programme selection, admissions, costs, study commitments and further-study or career planning. Category-level information applies to the listed programmes without assuming identical entry, delivery or commercial terms. Programme-list coverage does not independently confirm the availability or recognition of every award.
 
-- **Star assets: definitional pair (Q2 + Q3)** — "what is a Level 7 diploma" aur "Level 7
-  vs master's degree" globally strong query families hain, aur diploma products ke liye
-  **education-stage content zaroori hai**: jab tak student framework-level samajh na le,
-  diploma ki value pitch nahi hoti.
-- **Compliance-first drafting:** "equivalent to a master's degree" jaisi over-claim
-  wording AVOID ki gayi — sirf framework-level positioning ("same level on the RQF")
-  use hui, wo bhi Verify #2 ke saath. Diploma niche me mis-selling complaints ka sabse
-  bada source yehi equivalence claims hote hain.
-- **Funnel design:** Q8 (top-up progression) is category ko RBS/GAU master's aur UOW LLM
-  pages se jodne ka hook hai — Verify #6 confirm hone par cross-links added.
-- Category-generic discipline: 4 diplomas ke alag-alag fields (management, education,
-  psychology, construction) hone ke bawajood har answer sab par valid hai.
+**Coverage:** Level 7 Diplomas (4 supplied subjects).
 
-## 2. Methodology
+## 2. Priority methodology
 
-Same model: **D** 35% · **S** 25% · **C** 25% · **F** 15% → Score (max 5.00). Tiers 🔴🟠🟡⚪.
-Qualitative estimates — GSC se validate karein; no invented volumes.
+Priorities are editorial estimates, not measured search rankings, search volumes or traffic forecasts. Recorded component scores use Demand (35%), Answer-format opportunity (25%), Conversion intent (25%) and Feasibility (15%), each on a 1–5 scale. Where components were not recorded, only the existing editorial total is retained. Missing components are not inferred.
 
-## 3. Question-by-Question Analysis
+Informational immigration questions have no assigned tier, score or rank. Similar themes may occur for different providers; unique wording does not prove separate search intent.
 
-| # | Question (short) | Bucket | Selection Reason | Query Family | Tier | D | S | C | F | Score |
-|---|---|---|---|---|---|---|---|---|---|---|
-| Q1 | Which Gatehouse L7 diplomas? | General | Category hub — 4 tracks ka index | Branded | ⚪ | 2 | 3 | 5 | 5 | 3.45 |
-| Q2 | What is a Level 7 Diploma — master's level? | General | **Education-stage definitional** — framework-level samjhaye bina product pitch nahi hoti | "what is level 7 diploma" | 🔴 | 5 | 5 | 4 | 4 | 4.60 |
-| Q3 | L7 Diploma vs full master's | General | **Comparison PAA magnet** + top-up upsell setup | "level 7 diploma vs masters" | 🔴 | 5 | 5 | 4 | 4 | 4.60 |
-| Q4 | Duration + assessment (no exams) | General | "6 months + no exams" = fastest-credential hook; snippet-friendly | "level 7 diploma duration" | 🟠 | 4 | 5 | 4 | 3 | 4.10 |
-| Q5 | Online while working | General | Working-professional filter | "online diploma while working" | 🟠 | 4 | 4 | 5 | 3 | 4.10 |
-| Q6 | Entry requirements (degree or experience) | Eligibility | Experience-route hope-widener; senior non-graduates capture | "level 7 diploma entry requirements" | 🟠 | 4 | 4 | 5 | 3 | 4.10 |
-| Q7 | Fee structure | Financials | Decision-stage | "level 7 diploma fees" | 🟡 | 3 | 3 | 5 | 3 | 3.50 |
-| Q8 | L7 → full master's top-up | Careers | **Funnel question** — portfolio cross-sell hook (masters/MBA/LLM routes) | "level 7 diploma top up masters" | 🟠 | 4 | 4 | 5 | 4 | 4.25 |
-| Q9 | Career impact | Careers | ROI — "months not years" positioning | "is level 7 diploma worth it" | 🟠 | 4 | 4 | 4 | 3 | 3.85 |
+| Estimated tier | Questions |
+|---|---:|
+| Tier 1 - Very High | 2 |
+| Tier 2 - High | 6 |
+| Tier 3 - Medium | 3 |
+| Tier 4 - Branded | 1 |
+| Informational — not scored | 0 |
 
-## 4. Global Ranking
+## 3. Question register and rationale
 
-| Rank | Q# | Question (short) | Tier | Score |
-|---|---|---|---|---|
-| 🥇 1 | Q2 | What is a Level 7 Diploma? | 🔴 | 4.60 |
-| 1= | Q3 | L7 Diploma vs master's | 🔴 | 4.60 |
-| 🥉 3 | Q8 | Top-up to full master's | 🟠 | 4.25 |
-| 4 | Q4 | Duration + assessment | 🟠 | 4.10 |
-| 4= | Q5 | Online while working | 🟠 | 4.10 |
-| 4= | Q6 | Entry requirements | 🟠 | 4.10 |
-| 7 | Q9 | Career impact | 🟠 | 3.85 |
-| 8 | Q7 | Fee structure | 🟡 | 3.50 |
-| 9 | Q1 | Category hub | ⚪ | 3.45 |
+| ID | Question | Reader need | Estimated tier | D/S/C/F | Score |
+|---|---|---|---|---|---:|
+| Q1 | Which Gatehouse Level 7 Diplomas are available? | Programme orientation and informed course selection | Tier 4 - Branded | 2/3/5/5 | 3.45 |
+| Q2 | What is a Level 7 Diploma — is it really master's level? | Programme orientation and informed course selection | Tier 1 - Very High | 5/5/4/4 | 4.60 |
+| Q3 | What is the difference between a Level 7 Diploma and a full master's degree? | Explains qualification terminology and helps compare suitable routes | Tier 1 - Very High | 5/5/4/4 | 4.60 |
+| Q4 | How long does a Level 7 Diploma take, and how is it assessed? | Study-time and route planning; exact terms need confirmation | Tier 2 - High | 4/5/4/3 | 4.10 |
+| Q5 | Can I study a Level 7 Diploma online while working full-time? | Checks delivery, attendance and work-study compatibility | Tier 2 - High | 4/4/5/3 | 4.10 |
+| Q6 | What are the entry requirements for a Level 7 Diploma? | Clarifies route-specific eligibility and application evidence | Tier 2 - High | 4/4/5/3 | 4.10 |
+| Q7 | How are the fees structured for the Level 7 Diplomas? | Cost, payment and funding clarity before accepting an offer | Tier 3 - Medium | 3/3/5/3 | 3.50 |
+| Q8 | Can a Level 7 Diploma lead to a full master's degree? | Helps assess career or further-study fit without outcome promises | Tier 2 - High | 4/4/5/4 | 4.25 |
+| Q9 | What career impact can a Level 7 Diploma have? | Helps assess career or further-study fit without outcome promises | Tier 2 - High | 4/4/4/3 | 3.85 |
+| Q10 | How does portfolio-of-evidence assessment actually work? | Practical pre-enrolment planning and responsibilities | Tier 3 - Medium | Not recorded | 3.60 |
+| Q11 | How does a Level 7 Diploma compare with short courses and certificates? | Practical pre-enrolment planning and responsibilities | Tier 2 - High | Not recorded | 4.05 |
+| Q12 | Is there an ideal career stage for Level 7 study? | Practical pre-enrolment planning and responsibilities | Tier 3 - Medium | Not recorded | 3.50 |
 
-**Tier distribution:** 🔴 2 · 🟠 5 · 🟡 1 · ⚪ 1
+## Information references and limitations
 
-## 5. Recommendations
+Programme-specific award titles, eligibility, fees, delivery and support should be checked against the current written offer. Qualification acceptance is determined for the intended purpose by the relevant receiving institution, employer, evaluator or authority. The Programme Information & Source Verification report explains these distinctions.
 
-1. **Q2+Q3 ko page-top pair** ke roop me rakhein — pehle definition, fir comparison; yehi
-   is category ka traffic engine hai.
-2. **Verify #1–#2 publish-blockers hain** — regulation status aur equivalence wording
-   diploma niche me legal-risk area hai.
-3. **Verify #6 (top-up pathways)** confirm hote hi Q8 se specific programme pages par
-   links: management diplomas → RBS/GAU MBA; yahi pattern Qualifi file (Cycle #7) me
-   repeat hoga.
-4. Qualifi L7 file me in questions ke duplicates NAHI banenge — wahan alag angles use
-   honge (e.g. sector-specific tracks, L3→L5→L7 ladder) kyunki dono providers ke L7
-   diplomas ek hi query families target karte hain — cannibalisation ka sabse bada risk
-   isi pair me hai. Cycle #7 me iska explicit handling hoga.
-5. GSC validation loop: 30–60 din.
+- [1](https://gatehouseawards.org/)
+- [2](https://gatehouseawards.org/qualifications/education-and-training/)
 
----
-
-*Methodology note: qualitative expert estimates; no numeric search volumes invented.*
+Clear answers and relevant internal links can support reader understanding, but neither question order nor structured data guarantees ranking, traffic or AI inclusion. Google documents the end of FAQ rich results from 7 May 2026. [1](https://developers.google.com/search/updates#deprecating-the-faq-rich-result-feature)

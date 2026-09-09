@@ -1,7 +1,11 @@
 # University for the Creative Arts (UCA) — Frequently Asked Questions
 
-<!-- STATUS: APPROVED 2026-08-19 (Cycle #4) | Selection & Ranking Report: reports/university-creative-arts-faq-selection-report.md -->
-<!-- SOURCES: inputs/listing.md (programme list); apply.rushford.ch course page (official
+<!-- AUDIT: 2026-09-07 — existing questions reviewed and corrected; no new topics.
+     Historical approval retained; this revision is for client review, NOT website publication.
+     Current evidence and open issues: reports/verification-update-2026-09-07.md. -->
+
+<!-- STATUS: HISTORICAL APPROVAL 2026-08-19 (Cycle #4) | Selection & Ranking Report: reports/university-creative-arts-faq-selection-report.md -->
+<!-- HISTORICAL SOURCES (2026-08-19; current per-answer sources and audit supersede these): inputs/listing.md (programme list); apply.rushford.ch course page (official
      admissions portal — primary source for duration/credits/entry/fees); rushford.ch
      programme page (official — triple certification, staged structure). Conflicting
      third-party entry criteria flagged in Verify #3. Compiled 2026-08-19. -->
@@ -10,47 +14,54 @@
 <!-- COMPLIANCE NOTE: source brochure claims "WES Recognized" — EXCLUDED per compliance
      blacklist (equivalency claims require owner-verified source). -->
 
-> **About:** The University for the Creative Arts (UCA) is an established university with a
-> long creative-education heritage. Through the **Global MBA**, delivered in partnership
-> with Rushford Business School (RBS), students earn a **dual MBA award** in one programme.
+> **About:** The University for the Creative Arts (UCA) is an established university.
+> Rushford's published **Global MBA pathway** describes linked MBA awards from UCA and
+> Rushford, subject to the current programme and awarding requirements.
 
 ---
 
 ## Category 1 — Global MBA (Dual Award with Rushford Business School)
-*Single-programme category.*
+<!-- Single-programme category; supplied title is reconciled in the audit report. -->
 
 ### General Information
 
-<!-- Target keyword: "uca global mba dual degree rushford" | Source: rushford.ch programme page (official) -->
+<!-- Target keyword: "uca global mba dual degree rushford" | Source: https://rushford.ch/programs/global-mba-uca-uk/; reviewed 2026-09-07. -->
 **Q. What is the Global MBA offered through UCA and Rushford Business School?**
 
-The Global MBA is a **triple-certified master's programme**: on completion you receive
-**two MBA awards — one from the University for the Creative Arts (UCA) and one from
-Rushford Business School (RBS)** — plus an **Ofqual-regulated Level 7 Diploma**. It is
-delivered fully online in English, so you can study from anywhere in the world.
+Rushford describes this **online Global MBA as a three-award pathway**: an MBA from the
+University for the Creative Arts, an MBA from Rushford Business School, and an
+Ofqual-regulated Level 7 diploma. Each award depends on completing its requirements.
+Confirm the current delivery and awarding arrangements, including the named diploma,
+before accepting an offer.
+<!-- [VERIFY: UCA-01 — current partnership, diploma title/awarding body and admission to both stages.] -->
 
-<!-- Target keyword: "what is dual degree mba worth it" | Source: definitional + official award structure -->
+<!-- Target keyword: "what is dual degree mba worth it" | Source: https://rushford.ch/programs/global-mba-uca-uk/; general recognition guidance; reviewed 2026-09-07. -->
 **Q. What does a "dual MBA award" actually mean, and why does it matter?**
 
-A dual award means you complete **one programme of study but graduate with two separate
-MBA qualifications** from two different institutions. This widens the recognition of your
-credentials with employers and academic bodies, and gives your CV two institutional
-endorsements for a single investment of time and money.
+A **dual MBA award means two separate qualifications are awarded through a linked
+study pathway**, subject to each institution's requirements. This can offer different
+academic perspectives and two institutional records of achievement. It does not
+automatically double the academic credit or guarantee wider recognition; each employer
+or receiving institution assesses the qualifications for its own purpose.
 
-<!-- Target keyword: "global mba duration credits" | Source: apply.rushford.ch — 12–18 months, 90 ECTS (official) -->
+<!-- Target keyword: "global mba duration credits" | Source: https://rushford.ch/programs/global-mba-uca-uk/; reviewed 2026-09-07. -->
 **Q. How long does the Global MBA take, and how many credits is it worth?**
 
-The Global MBA takes **12 to 18 months** and carries **90 ECTS credits (180 equivalent
-credits)**. The pace is flexible, so working professionals can align the timeline with
-their commitments — the admissions team will help you plan your intake and schedule.
+Rushford's programme page describes a **12–18-month pathway carrying 90 ECTS**. Confirm
+the schedule and credit framework in your current offer, including the taught stage,
+thesis stage and any transfer conditions. These figures describe the published pathway,
+not a guarantee that every student completes both awards within the same period.
+<!-- [VERIFY: UCA-01 — current route schedule and awarding-stage arrangements.] -->
 
-<!-- Target keyword: "global mba online study mode" | Source: apply.rushford.ch — online, e-learning (official) -->
+<!-- Target keyword: "global mba online study mode" | Source: https://rushford.ch/programs/global-mba-uca-uk/; reviewed 2026-09-07. -->
 **Q. Is the Global MBA delivered fully online?**
 
-Yes — the Global MBA is delivered through **fully online e-learning**, with a weekly study
-commitment designed to fit around professional life, so you can complete both MBA awards
-without stepping away from your career.
-<!-- [VERIFY: weekly commitment (source brochure suggests ~12–15 hrs/week) — confirm for current offer.] -->
+Rushford advertises this Global MBA pathway as **fully online**. Check the current
+teaching schedule, live-session expectations, assessment arrangements and weekly workload
+before enrolling. Online delivery can help working professionals organise their study,
+but does not remove academic deadlines or the requirements of the thesis and awarding
+stages.
+<!-- [VERIFY: UCA-02 — current timetable and workload guidance.] -->
 
 <!-- Target keyword: "global mba structure thesis stage" | Source: rushford.ch — staged structure with master's thesis (official) -->
 **Q. How is the Global MBA structured?**
@@ -59,106 +70,111 @@ The programme runs in **two stages**: a taught stage covering strategic manageme
 leadership, planning and decision-making, followed by a **master's thesis stage** completed
 under the awarding university's framework. This structure means you finish with both
 applied coursework and a substantial piece of master's-level research.
-<!-- [VERIFY: exact stage split (source indicates thesis stage ≈ 6 months / 30 ECTS) and
+<!-- [VERIFY: UCA-01 — exact stage split (source indicates thesis stage ≈ 6 months / 30 ECTS) and
 current transfer/registration arrangements between institutions.] -->
 
 ### Eligibility & Admission
 
-<!-- Target keyword: "global mba entry requirements bachelor any discipline" | Source: apply.rushford.ch — bachelor's in any discipline (official) -->
+<!-- Target keyword: "global mba entry requirements bachelor any discipline" | Source: https://rushford.ch/programs/global-mba-uca-uk/; reviewed 2026-09-07. -->
 **Q. What are the entry requirements for the Global MBA?**
 
-The core requirement is a **recognised bachelor's degree (or equivalent academic title) in
-any discipline** — this is the published criterion on the official admissions portal for
-this delivery route. Your professional profile supports your application, and English
-proficiency evidence is required, with waivers available for eligible applicants.
-<!-- CONFLICT RESOLVED 2026-08-19: stricter criteria found earlier (min age 21, 3+ yrs
-management experience, higher English scores) belong to a DIFFERENT delivery partner's
-route of the same award, not the Rushford-delivered route in our listing. Official
-apply.rushford.ch criteria apply. --> Final eligibility is confirmed through an
-individual admissions review.
+Rushford's current programme page lists a **bachelor's degree in any discipline** as an
+entry route. Admissions must confirm the accepted qualification, supporting documents
+and any English-language evidence for your profile. Requirements from a differently
+delivered MBA should not be substituted for this pathway's current terms, and acceptance
+remains an individual decision.
+<!-- [VERIFY: UCA-02 — complete current entry checklist and progression into the thesis stage.] -->
 
 ### Fees, Scholarships & Payments
 
-<!-- Target keyword: "global mba fees instalment plan" | Source: apply.rushford.ch — CHF 9,900; deposit + 6 instalments (official portal) -->
+<!-- Target keyword: "global mba fees instalment plan" | Source: https://rushford.ch/programs/global-mba-uca-uk/; https://apply.rushford.ch/; reviewed 2026-09-07. -->
 **Q. What does the Global MBA cost, and can I pay in instalments?**
 
-Yes — two payment routes are published on the official admissions portal: a **one-time
-payment (CHF 9,900)**, or an **instalment plan** (initial deposit of CHF 1,800 plus six
-monthly instalments of CHF 1,400). <!-- [VERIFY: confirm current pricing and whether these
-published figures apply to this offer/intake, plus any scholarship or fee-support options.] -->
-The admissions team will confirm the exact fee and best payment route for your intake.
+**Request a current written quotation for the complete Global MBA pathway.** Check
+which awards and stages are included, the billing currency, any deposits or additional
+charges, and whether instalments are offered. Compare the total instalment cost with the
+upfront price. Historical portal figures should not be used as a current fee offer.
+<!-- [VERIFY: UCA-03 — current quotation and payment/funding terms; old DreamApply portal retired.] -->
 
 ### Careers & Outcomes
 
-<!-- Target keyword: "dual mba career benefits leadership" | Source: generic, aligned to programme positioning -->
+<!-- Target keyword: "dual mba career benefits leadership" | Source: https://rushford.ch/programs/global-mba-uca-uk/; general study/career guidance, not an outcome or admissions guarantee; reviewed 2026-09-07. -->
 **Q. What career advantage does the Global MBA give?**
 
-You graduate with **two MBA awards and a regulated Level 7 diploma** — a distinctive
-credential set for senior management, strategy and leadership roles with organisations that
-operate internationally. The dual endorsement is particularly valuable when your career
-spans multiple markets or you work with globally distributed teams.
+The Global MBA can develop **strategic management, leadership and research skills**
+relevant to business roles. Its linked awards may be useful when presenting your academic
+background, but employers assess each qualification alongside experience and demonstrated
+capability. A dual award does not itself guarantee promotion, a senior role or acceptance
+in every professional setting.
 
-<!-- Target keyword: "doctorate after global mba" | Source: standard progression; RBS doctoral portfolio cross-link -->
+<!-- Target keyword: "doctorate after global mba" | Source: general study/career guidance, not an outcome or admissions guarantee; reviewed 2026-09-07. -->
 **Q. Can I continue to a doctorate after the Global MBA?**
 
-Yes. The Global MBA is a full master's-level qualification, satisfying the standard entry
-route for **doctoral study — including PhD and DBA programmes** — subject to admission
-criteria. Rushford's own doctoral portfolio makes this a natural next step within the same
-partnership ecosystem.
+A completed MBA can support an application to **PhD or DBA study**, subject to the
+receiving institution's entry criteria. Research preparation, academic results,
+professional experience and the proposed topic may all be assessed. Check that the exact
+award and thesis component meet your intended doctoral route rather than assuming that
+the linked pathway provides automatic entry.
 
 ---
 
 ## Applying & Practical Information
-*Provider-level questions. (Phase 2 addition.)*
+*Practical information to check before applying.*
 
-<!-- Target keyword: "dual degree two certificates separate" | Source: dual-award structure (VERIFY issuance mechanics) -->
+<!-- Target keyword: "dual degree two certificates separate" | Source: https://rushford.ch/programs/global-mba-uca-uk/; reviewed 2026-09-07. -->
 **Q. Do I receive two separate MBA certificates?**
 
-Yes — the dual award means you receive **separate credentials from each institution**:
-an MBA awarded by the University for the Creative Arts and an MBA awarded by Rushford
-Business School, alongside the Ofqual-regulated Level 7 Diploma. Each stands on its own
-for job applications, further study and verification.
-<!-- [VERIFY: certificate issuance mechanics and timing for each award.] -->
+The published pathway describes **separate MBA awards from UCA and Rushford**, alongside
+a Level 7 diploma. Certificate issue depends on completing the relevant assessments and
+meeting each awarding body's conditions. Confirm the precise titles, issuing bodies,
+timing and verification arrangements; separate certificates do not imply automatic
+acceptance for every employment or further-study purpose.
+<!-- [VERIFY: UCA-01 — current certificate issuance mechanics and diploma awarding body.] -->
 
-<!-- Target keyword: "employer sponsorship mba tuition" | Source: standard practice (VERIFY invoicing) -->
+<!-- Target keyword: "employer sponsorship mba tuition" | Source: general study/career guidance, not an outcome or admissions guarantee; current partner offer sheet required; no verified portfolio-wide commercial policy; reviewed 2026-09-07. -->
 **Q. Can my employer sponsor my Global MBA?**
 
-Employer sponsorship is common for executive education, and the programme's **published,
-instalment-friendly fee structure** makes it straightforward to propose internally: a
-defined cost, a defined timeline, and skills applied to the business from the first
-modules. The admissions team can support sponsorship conversations with documentation.
-<!-- [VERIFY: invoicing/sponsorship arrangements available in our offer.] -->
+**Employer sponsorship depends on your employer's policy and the programme's billing
+arrangements.** Ask whether direct invoicing, a sponsorship letter or staged payments can
+be supported. For an internal proposal, use the confirmed fee total, study schedule and
+skills relevant to your role. Do not commit to funding arrangements before both parties
+have agreed them.
+<!-- [VERIFY: UCA-03 — employer invoicing and sponsorship administration.] -->
 
-<!-- Target keyword: "mba thesis supervision support online" | Source: staged structure with thesis stage (VERIFY supervision specifics) -->
+<!-- Target keyword: "mba thesis supervision support online" | Source: https://rushford.ch/programs/global-mba-uca-uk/; reviewed 2026-09-07. -->
 **Q. What support will I get during the master's thesis stage?**
 
-The thesis is completed **under academic supervision within the awarding university's
-framework** — you are guided through topic selection, research design and submission
-rather than left to figure it out alone. It is the stage where the Global MBA turns your
-professional experience into a substantial, examined piece of master's-level work.
-<!-- [VERIFY: supervision model and contact structure at the thesis stage.] -->
+**Ask for the thesis-stage supervision and support arrangements before accepting your
+offer.** These should explain how topics are approved, who supervises the work, what
+feedback is available and how research is assessed. The published pathway includes a
+master's thesis, but the frequency of contact and responsibilities of each institution
+need route-specific confirmation.
+<!-- [VERIFY: UCA-02 — supervision model, feedback arrangements and assessment handbook.] -->
 
 ---
 
-## Facts to Verify (updated 2026-08-19 after deep research — see Resolved section)
+## Facts to Verify (reviewed 2026-09-07)
 
-### Still open
+| ID | Open item | Evidence or action required |
+|---|---|---|
+| UCA-01 | Current awarding and partner arrangements | Confirm both MBA awards, the diploma title/awarding body/qualification number, registration into each stage and certificate issue. Published Rushford route involves a further delivery partner at the thesis stage |
+| UCA-02 | Admission, teaching and thesis support | Current entry/English checklist, stage split, weekly study hours, transfer requirements, supervision and assessment arrangements |
+| UCA-03 | Fees and sponsorship | Written current quotation, total instalment cost, scholarships and employer invoicing. Retired portal figures are not a current offer |
 
-| # | Item | What the draft currently says | What needs confirming |
-|---|------|-------------------------------|----------------------|
-| 1 | Triple certification wording | 2 MBA awards + Ofqual-regulated Level 7 Diploma | Approved public phrasing (diploma awarding body name?) under country-neutral rule |
-| 2 | Structure details | Two stages; thesis ≈ 6 months / 30 ECTS | Current stage split and inter-institution transfer arrangements |
-| 3 | Fees | CHF 9,900 / deposit + 6×CHF 1,400 (official portal, published) | Confirm current pricing for this offer/intake + scholarship options |
-| 4 | Weekly commitment | ~12–15 hrs/week (brochure) | Confirm for current offer |
-| 5 | UCA heritage claim | "Long creative-education heritage" (soft) | Decision taken: keep neutral phrasing (no dates) — revisit only if owner wants heritage claims |
+### Current evidence and corrections
 
-### ✅ Resolved (2026-08-19 deep research)
+- Current Rushford programme page describes **12–18 months, 90 ECTS**, three awards and a
+  bachelor's entry route. It does not establish universal acceptance of the awards.
+- Removed undefined “180 equivalent credits”; different frameworks must not be silently
+  treated as interchangeable.
+- Historical fee arithmetic: CHF 1,800 + 6 × CHF 1,400 = **CHF 10,200**, not CHF 9,900.
+  Neither historical payment option is now presented as a live quotation.
+- Earlier “entry conflict closed” wording is narrowed: current offer and stage-specific
+  requirements still need confirmation, not assumptions about every delivery partner.
 
-| Item | Resolution |
-|------|-----------|
-| Entry-criteria conflict | **Resolved by source hierarchy:** our listing is the Rushford-delivered route ("Global MBA + Rushford Business School") → official apply.rushford.ch criteria apply (**bachelor's in any discipline**). The stricter criteria (age 21 / 3 yrs experience / IELTS 7) belong to a different delivery partner's route of the same award and do NOT apply to our offer |
+Sources: `reports/verification-update-2026-09-07.md`.
 
 ---
 
-*Fee amounts, scholarships and entry requirements are confirmed individually during the
-admissions eligibility review and may change without notice.*
+*Programme availability, fees and entry requirements are confirmed for the selected
+route and intake before enrolment and may change.*

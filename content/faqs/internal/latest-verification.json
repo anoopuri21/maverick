@@ -1,0 +1,1720 @@
+{
+  "review_date": "2026-09-09",
+  "scope": "Repository review files and PDF artefacts, not production database contents or universal accreditation",
+  "publication": "No website/DB import. Schema is an unpublished local review export.",
+  "country_exception": {
+    "approval": "IMM-US-UK-2026-09-09",
+    "providers": [
+      "rushford-business-school",
+      "girne-american-university"
+    ],
+    "scope": "US and UK tokens only inside the two exact authorised immigration FAQs"
+  },
+  "result": "PASS",
+  "totals": {
+    "providers": 7,
+    "programme_categories": 16,
+    "supplied_programme_entries": 136,
+    "provider_faqs": 144,
+    "site_faqs": 18,
+    "all_faqs": 162,
+    "immigration_faqs": 2,
+    "open_verification_items": 41
+  },
+  "limitations": [
+    "Country check uses a scoped two-question US/UK exception, a curated geographic lexicon and manual review.",
+    "Exact-string uniqueness is not proof of no semantic overlap or keyword cannibalisation.",
+    "No third-party plagiarism certificate or numerical similarity percentage was obtained.",
+    "Coverage of an owner-supplied programme entry does not verify current award availability."
+  ],
+  "errors": [],
+  "warnings": [],
+  "coverage": [
+    {
+      "provider": "rushford-business-school",
+      "listing_category": "1.1",
+      "programmes": 7,
+      "missing": [],
+      "title_reconciliation": false
+    },
+    {
+      "provider": "rushford-business-school",
+      "listing_category": "1.2",
+      "programmes": 12,
+      "missing": [],
+      "title_reconciliation": false
+    },
+    {
+      "provider": "rushford-business-school",
+      "listing_category": "1.3",
+      "programmes": 9,
+      "missing": [],
+      "title_reconciliation": false
+    },
+    {
+      "provider": "rushford-business-school",
+      "listing_category": "1.4",
+      "programmes": 13,
+      "missing": [],
+      "title_reconciliation": false
+    },
+    {
+      "provider": "girne-american-university",
+      "listing_category": "2.1",
+      "programmes": 10,
+      "missing": [],
+      "title_reconciliation": false
+    },
+    {
+      "provider": "girne-american-university",
+      "listing_category": "2.2",
+      "programmes": 6,
+      "missing": [],
+      "title_reconciliation": false
+    },
+    {
+      "provider": "girne-american-university",
+      "listing_category": "2.3",
+      "programmes": 16,
+      "missing": [],
+      "title_reconciliation": false
+    },
+    {
+      "provider": "girne-american-university",
+      "listing_category": "2.4",
+      "programmes": 4,
+      "missing": [],
+      "title_reconciliation": false
+    },
+    {
+      "provider": "girne-american-university",
+      "listing_category": "2.5",
+      "programmes": 7,
+      "missing": [],
+      "title_reconciliation": false
+    },
+    {
+      "provider": "university-west-scotland",
+      "listing_category": "3.1",
+      "programmes": 1,
+      "missing": [],
+      "title_reconciliation": true
+    },
+    {
+      "provider": "university-creative-arts",
+      "listing_category": "4.1",
+      "programmes": 1,
+      "missing": [],
+      "title_reconciliation": true
+    },
+    {
+      "provider": "university-wolverhampton",
+      "listing_category": "5.1",
+      "programmes": 1,
+      "missing": [],
+      "title_reconciliation": true
+    },
+    {
+      "provider": "gatehouse-diplomas",
+      "listing_category": "6.1",
+      "programmes": 4,
+      "missing": [],
+      "title_reconciliation": false
+    },
+    {
+      "provider": "qualifi-diplomas",
+      "listing_category": "6.2",
+      "programmes": 8,
+      "missing": [],
+      "title_reconciliation": false
+    },
+    {
+      "provider": "qualifi-diplomas",
+      "listing_category": "6.3",
+      "programmes": 14,
+      "missing": [],
+      "title_reconciliation": false
+    },
+    {
+      "provider": "qualifi-diplomas",
+      "listing_category": "6.4",
+      "programmes": 23,
+      "missing": [],
+      "title_reconciliation": false
+    }
+  ],
+  "pdfs": [
+    {
+      "file": "Maverick-Education-FAQ-Content-Pack.pdf",
+      "pages": 29,
+      "bytes": 81822
+    },
+    {
+      "file": "Maverick-FAQ-Strategy-Ranking-Report.pdf",
+      "pages": 13,
+      "bytes": 35898
+    },
+    {
+      "file": "Maverick-Blocker-Resolution-Report.pdf",
+      "pages": 4,
+      "bytes": 16511
+    },
+    {
+      "file": "Maverick-Site-Pages-FAQ-Pack.pdf",
+      "pages": 6,
+      "bytes": 12628
+    },
+    {
+      "file": "Maverick-Site-Pages-FAQ-Report.pdf",
+      "pages": 3,
+      "bytes": 8470
+    },
+    {
+      "file": "Maverick-GAU-RBS-Immigration-FAQ-Report.pdf",
+      "pages": 7,
+      "bytes": 29539
+    }
+  ],
+  "files": [
+    {
+      "file": "approved/rushford-business-school.md",
+      "faqs": 36,
+      "categories": {
+        "Category 1 — Undergraduate (BBA) Programmes": 8,
+        "Category 2 — Postgraduate MBA Programmes": 8,
+        "Category 3 — Postgraduate MSc Programmes": 6,
+        "Category 4 — Doctoral Research Programmes (PhD / DBA / EPD)": 8,
+        "Applying & Practical Information": 5,
+        "Immigration & Visa Eligibility": 1
+      },
+      "open_verification_items": [
+        "RBS-01",
+        "RBS-02",
+        "RBS-03",
+        "RBS-04",
+        "RBS-05",
+        "RBS-06",
+        "RBS-07"
+      ],
+      "sha256": "b767bb380f23e0955fbbeedec1140402101c64cc7f154bb72de751d94a0d5bbc",
+      "questions": [
+        {
+          "id": "rushford-business-school:Q1",
+          "question": "What BBA specialisations does Rushford Business School offer?",
+          "words": 58,
+          "open_verification_ids": [
+            "RBS-01"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "rushford-business-school:Q2",
+          "question": "Are Rushford BBA programmes taught fully online?",
+          "words": 48,
+          "open_verification_ids": [
+            "RBS-01"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "rushford-business-school:Q3",
+          "question": "Is Rushford Business School a recognised institution?",
+          "words": 53,
+          "open_verification_ids": [],
+          "country_exception": null
+        },
+        {
+          "id": "rushford-business-school:Q4",
+          "question": "What are the entry requirements for Rushford BBA programmes?",
+          "words": 46,
+          "open_verification_ids": [
+            "RBS-01"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "rushford-business-school:Q5",
+          "question": "Do I need an English proficiency test to join a BBA programme?",
+          "words": 46,
+          "open_verification_ids": [
+            "RBS-01"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "rushford-business-school:Q6",
+          "question": "How does the fee structure work for the BBA programmes?",
+          "words": 50,
+          "open_verification_ids": [
+            "RBS-04"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "rushford-business-school:Q7",
+          "question": "What career opportunities can a BBA from Rushford lead to?",
+          "words": 44,
+          "open_verification_ids": [],
+          "country_exception": null
+        },
+        {
+          "id": "rushford-business-school:Q8",
+          "question": "Can I progress to a master's degree after completing the BBA?",
+          "words": 53,
+          "open_verification_ids": [],
+          "country_exception": null
+        },
+        {
+          "id": "rushford-business-school:Q9",
+          "question": "Which MBA specialisations are available at Rushford Business School?",
+          "words": 75,
+          "open_verification_ids": [
+            "RBS-03"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "rushford-business-school:Q10",
+          "question": "Can I complete the Rushford MBA while working full-time?",
+          "words": 51,
+          "open_verification_ids": [],
+          "country_exception": null
+        },
+        {
+          "id": "rushford-business-school:Q11",
+          "question": "How long does the Rushford MBA take to complete?",
+          "words": 54,
+          "open_verification_ids": [],
+          "country_exception": null
+        },
+        {
+          "id": "rushford-business-school:Q12",
+          "question": "What are the entry requirements for the Rushford MBA?",
+          "words": 49,
+          "open_verification_ids": [
+            "RBS-03"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "rushford-business-school:Q13",
+          "question": "Do I need GMAT or GRE scores to apply for the MBA?",
+          "words": 48,
+          "open_verification_ids": [
+            "RBS-03"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "rushford-business-school:Q14",
+          "question": "What is the fee structure for the MBA programmes?",
+          "words": 52,
+          "open_verification_ids": [
+            "RBS-04"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "rushford-business-school:Q15",
+          "question": "What career outcomes can I expect after the Rushford MBA?",
+          "words": 53,
+          "open_verification_ids": [],
+          "country_exception": null
+        },
+        {
+          "id": "rushford-business-school:Q16",
+          "question": "Can the MBA lead to doctoral study later?",
+          "words": 53,
+          "open_verification_ids": [],
+          "country_exception": null
+        },
+        {
+          "id": "rushford-business-school:Q17",
+          "question": "Which MSc programmes does Rushford Business School offer?",
+          "words": 35,
+          "open_verification_ids": [],
+          "country_exception": null
+        },
+        {
+          "id": "rushford-business-school:Q18",
+          "question": "What is the difference between an MBA and an MSc at Rushford?",
+          "words": 102,
+          "open_verification_ids": [],
+          "country_exception": null
+        },
+        {
+          "id": "rushford-business-school:Q19",
+          "question": "How long does a Rushford MSc take to complete?",
+          "words": 44,
+          "open_verification_ids": [
+            "RBS-05"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "rushford-business-school:Q20",
+          "question": "What do I need to be eligible for an MSc programme?",
+          "words": 50,
+          "open_verification_ids": [
+            "RBS-05"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "rushford-business-school:Q21",
+          "question": "How are MSc fees structured, and are scholarships available?",
+          "words": 52,
+          "open_verification_ids": [
+            "RBS-04",
+            "RBS-05"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "rushford-business-school:Q22",
+          "question": "What career paths does an MSc from Rushford support?",
+          "words": 46,
+          "open_verification_ids": [],
+          "country_exception": null
+        },
+        {
+          "id": "rushford-business-school:Q23",
+          "question": "What doctoral options does Rushford Business School offer?",
+          "words": 51,
+          "open_verification_ids": [
+            "RBS-02"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "rushford-business-school:Q24",
+          "question": "What is the difference between a PhD and a DBA?",
+          "words": 89,
+          "open_verification_ids": [],
+          "country_exception": null
+        },
+        {
+          "id": "rushford-business-school:Q25",
+          "question": "How long does a Rushford doctoral programme take?",
+          "words": 53,
+          "open_verification_ids": [
+            "RBS-02"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "rushford-business-school:Q26",
+          "question": "Are the doctoral programmes fully online?",
+          "words": 47,
+          "open_verification_ids": [
+            "RBS-02"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "rushford-business-school:Q27",
+          "question": "What are the entry requirements for the doctoral programmes?",
+          "words": 59,
+          "open_verification_ids": [
+            "RBS-02"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "rushford-business-school:Q28",
+          "question": "What English proficiency evidence do doctoral applicants need?",
+          "words": 53,
+          "open_verification_ids": [
+            "RBS-02"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "rushford-business-school:Q29",
+          "question": "How are doctoral programme fees structured?",
+          "words": 49,
+          "open_verification_ids": [
+            "RBS-04"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "rushford-business-school:Q30",
+          "question": "What can I do with a doctorate from Rushford Business School?",
+          "words": 50,
+          "open_verification_ids": [],
+          "country_exception": null
+        },
+        {
+          "id": "rushford-business-school:Q31",
+          "question": "How do I apply for a Rushford Business School programme?",
+          "words": 69,
+          "open_verification_ids": [
+            "RBS-06"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "rushford-business-school:Q32",
+          "question": "What documents do I need to apply?",
+          "words": 50,
+          "open_verification_ids": [
+            "RBS-06"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "rushford-business-school:Q33",
+          "question": "Are online degrees taken seriously by employers?",
+          "words": 56,
+          "open_verification_ids": [],
+          "country_exception": null
+        },
+        {
+          "id": "rushford-business-school:Q34",
+          "question": "When can I start my programme?",
+          "words": 51,
+          "open_verification_ids": [
+            "RBS-07"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "rushford-business-school:Q35",
+          "question": "What happens if I need more time to finish?",
+          "words": 55,
+          "open_verification_ids": [
+            "RBS-04"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "rushford-business-school:Q36",
+          "question": "Does completing a Rushford Business School programme make me eligible to migrate to the US or UK?",
+          "words": 161,
+          "open_verification_ids": [],
+          "country_exception": "IMM-US-UK-2026-09-09"
+        }
+      ]
+    },
+    {
+      "file": "approved/girne-american-university.md",
+      "faqs": 38,
+      "categories": {
+        "Category 1 — BSc Programmes": 8,
+        "Category 2 — MBA Programmes": 6,
+        "Category 3 — Executive MBA (EMBA) Programmes": 6,
+        "Category 4 — Thesis-based Master's Programmes": 6,
+        "Category 5 — PhD Programmes": 6,
+        "Applying & Practical Information": 5,
+        "Immigration & Visa Eligibility": 1
+      },
+      "open_verification_items": [
+        "GAU-01",
+        "GAU-02",
+        "GAU-03",
+        "GAU-04",
+        "GAU-05",
+        "GAU-06",
+        "GAU-07"
+      ],
+      "sha256": "a57f8fabe672669017176f9de8fdd6ed95ea5f40bfacd7a672fea143644d93e5",
+      "questions": [
+        {
+          "id": "girne-american-university:Q1",
+          "question": "Which BSc programmes are available at Girne American University?",
+          "words": 49,
+          "open_verification_ids": [
+            "GAU-01"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "girne-american-university:Q2",
+          "question": "Is a BSc degree from Girne American University recognised?",
+          "words": 53,
+          "open_verification_ids": [
+            "GAU-02"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "girne-american-university:Q3",
+          "question": "Can I study a GAU BSc flexibly while working?",
+          "words": 48,
+          "open_verification_ids": [
+            "GAU-01"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "girne-american-university:Q4",
+          "question": "How are students assessed on the BSc programmes?",
+          "words": 49,
+          "open_verification_ids": [
+            "GAU-01"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "girne-american-university:Q5",
+          "question": "What are the entry requirements for the BSc programmes?",
+          "words": 44,
+          "open_verification_ids": [
+            "GAU-04"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "girne-american-university:Q6",
+          "question": "Do I need IELTS or TOEFL to join a BSc programme?",
+          "words": 55,
+          "open_verification_ids": [
+            "GAU-04"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "girne-american-university:Q7",
+          "question": "How do BSc fees and scholarships work?",
+          "words": 51,
+          "open_verification_ids": [
+            "GAU-03"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "girne-american-university:Q8",
+          "question": "What can I do after completing a GAU BSc?",
+          "words": 51,
+          "open_verification_ids": [],
+          "country_exception": null
+        },
+        {
+          "id": "girne-american-university:Q9",
+          "question": "Which MBA specialisations does Girne American University offer?",
+          "words": 42,
+          "open_verification_ids": [
+            "GAU-01"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "girne-american-university:Q10",
+          "question": "How long does the GAU MBA take to complete?",
+          "words": 52,
+          "open_verification_ids": [
+            "GAU-04"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "girne-american-university:Q11",
+          "question": "Can I do the GAU MBA without pausing my career?",
+          "words": 51,
+          "open_verification_ids": [
+            "GAU-01"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "girne-american-university:Q12",
+          "question": "What are the entry requirements for the GAU MBA?",
+          "words": 50,
+          "open_verification_ids": [
+            "GAU-04"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "girne-american-university:Q13",
+          "question": "What is the fee structure for the MBA?",
+          "words": 51,
+          "open_verification_ids": [
+            "GAU-03"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "girne-american-university:Q14",
+          "question": "What career outcomes can the GAU MBA support?",
+          "words": 42,
+          "open_verification_ids": [],
+          "country_exception": null
+        },
+        {
+          "id": "girne-american-university:Q15",
+          "question": "Which Executive MBA specialisations does GAU offer?",
+          "words": 47,
+          "open_verification_ids": [
+            "GAU-01"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "girne-american-university:Q16",
+          "question": "What is the difference between an MBA and an Executive MBA?",
+          "words": 92,
+          "open_verification_ids": [],
+          "country_exception": null
+        },
+        {
+          "id": "girne-american-university:Q17",
+          "question": "Can I complete the EMBA while working full-time?",
+          "words": 47,
+          "open_verification_ids": [
+            "GAU-01"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "girne-american-university:Q18",
+          "question": "What are the entry requirements for the EMBA?",
+          "words": 52,
+          "open_verification_ids": [
+            "GAU-04"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "girne-american-university:Q19",
+          "question": "How are EMBA fees structured?",
+          "words": 53,
+          "open_verification_ids": [
+            "GAU-03"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "girne-american-university:Q20",
+          "question": "What impact can the EMBA have on my career?",
+          "words": 50,
+          "open_verification_ids": [],
+          "country_exception": null
+        },
+        {
+          "id": "girne-american-university:Q21",
+          "question": "Which thesis-based master's programmes are listed for GAU?",
+          "words": 51,
+          "open_verification_ids": [
+            "GAU-05"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "girne-american-university:Q22",
+          "question": "What does \"MSc with Thesis\" actually mean?",
+          "words": 59,
+          "open_verification_ids": [],
+          "country_exception": null
+        },
+        {
+          "id": "girne-american-university:Q23",
+          "question": "Who should choose the thesis-based MSc route?",
+          "words": 44,
+          "open_verification_ids": [],
+          "country_exception": null
+        },
+        {
+          "id": "girne-american-university:Q24",
+          "question": "What do I need to be eligible for a thesis-based MSc?",
+          "words": 40,
+          "open_verification_ids": [
+            "GAU-05"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "girne-american-university:Q25",
+          "question": "What do the thesis-based MSc programmes cost, and is scholarship support available?",
+          "words": 53,
+          "open_verification_ids": [
+            "GAU-03",
+            "GAU-05"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "girne-american-university:Q26",
+          "question": "Does a thesis-based MSc help me get into a PhD?",
+          "words": 52,
+          "open_verification_ids": [],
+          "country_exception": null
+        },
+        {
+          "id": "girne-american-university:Q27",
+          "question": "Which PhD programmes does Girne American University offer?",
+          "words": 40,
+          "open_verification_ids": [
+            "GAU-01"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "girne-american-university:Q28",
+          "question": "Can I pursue a GAU PhD while continuing to work?",
+          "words": 49,
+          "open_verification_ids": [
+            "GAU-06"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "girne-american-university:Q29",
+          "question": "How long does a PhD at GAU take?",
+          "words": 50,
+          "open_verification_ids": [
+            "GAU-06"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "girne-american-university:Q30",
+          "question": "What are the entry requirements for the PhD programmes?",
+          "words": 51,
+          "open_verification_ids": [
+            "GAU-06"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "girne-american-university:Q31",
+          "question": "How are PhD fees structured?",
+          "words": 54,
+          "open_verification_ids": [
+            "GAU-03",
+            "GAU-06"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "girne-american-university:Q32",
+          "question": "What can a PhD from GAU lead to?",
+          "words": 52,
+          "open_verification_ids": [],
+          "country_exception": null
+        },
+        {
+          "id": "girne-american-university:Q33",
+          "question": "How does the GAU eligibility review work?",
+          "words": 51,
+          "open_verification_ids": [
+            "GAU-07"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "girne-american-university:Q34",
+          "question": "Do my documents need to be translated or attested?",
+          "words": 50,
+          "open_verification_ids": [
+            "GAU-07"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "girne-american-university:Q35",
+          "question": "How can an employer or institution verify my GAU degree?",
+          "words": 48,
+          "open_verification_ids": [
+            "GAU-07"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "girne-american-university:Q36",
+          "question": "How do GAU scholarships actually work?",
+          "words": 55,
+          "open_verification_ids": [
+            "GAU-03"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "girne-american-university:Q37",
+          "question": "What support will I get as a distance learner at GAU?",
+          "words": 55,
+          "open_verification_ids": [
+            "GAU-01"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "girne-american-university:Q38",
+          "question": "Does completing a Girne American University programme make me eligible to migrate to the US or UK?",
+          "words": 160,
+          "open_verification_ids": [],
+          "country_exception": "IMM-US-UK-2026-09-09"
+        }
+      ]
+    },
+    {
+      "file": "approved/university-west-scotland.md",
+      "faqs": 12,
+      "categories": {
+        "Category 1 — Global Business Degree": 9,
+        "Applying & Practical Information": 3
+      },
+      "open_verification_items": [
+        "UWS-01",
+        "UWS-02",
+        "UWS-03",
+        "UWS-04"
+      ],
+      "sha256": "f5662ae74f175437f46f3c4cf06e46d3f6d33dab924499d26ba5df1cbbcbf650",
+      "questions": [
+        {
+          "id": "university-west-scotland:Q1",
+          "question": "What is the Global Business degree from UWS?",
+          "words": 52,
+          "open_verification_ids": [
+            "UWS-01"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "university-west-scotland:Q2",
+          "question": "Is this a top-up degree, and what does that mean?",
+          "words": 53,
+          "open_verification_ids": [
+            "UWS-01",
+            "UWS-02"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "university-west-scotland:Q3",
+          "question": "How long does the Global Business degree take to complete?",
+          "words": 50,
+          "open_verification_ids": [
+            "UWS-01",
+            "UWS-03"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "university-west-scotland:Q4",
+          "question": "Can I study the programme online while working?",
+          "words": 49,
+          "open_verification_ids": [
+            "UWS-03"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "university-west-scotland:Q5",
+          "question": "Is a degree from the University of the West of Scotland recognised?",
+          "words": 48,
+          "open_verification_ids": [],
+          "country_exception": null
+        },
+        {
+          "id": "university-west-scotland:Q6",
+          "question": "What are the entry requirements for the Global Business degree?",
+          "words": 52,
+          "open_verification_ids": [
+            "UWS-02"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "university-west-scotland:Q7",
+          "question": "How are the fees structured for this programme?",
+          "words": 50,
+          "open_verification_ids": [
+            "UWS-04"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "university-west-scotland:Q8",
+          "question": "What can I do after completing the Global Business degree?",
+          "words": 52,
+          "open_verification_ids": [],
+          "country_exception": null
+        },
+        {
+          "id": "university-west-scotland:Q9",
+          "question": "Can I progress to a master's or MBA after this degree?",
+          "words": 53,
+          "open_verification_ids": [
+            "UWS-01",
+            "UWS-02"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "university-west-scotland:Q10",
+          "question": "Can I turn my work experience into a degree?",
+          "words": 53,
+          "open_verification_ids": [
+            "UWS-02"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "university-west-scotland:Q11",
+          "question": "What will my final certificate say?",
+          "words": 51,
+          "open_verification_ids": [
+            "UWS-01"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "university-west-scotland:Q12",
+          "question": "How many hours a week will I need to study?",
+          "words": 45,
+          "open_verification_ids": [
+            "UWS-03"
+          ],
+          "country_exception": null
+        }
+      ]
+    },
+    {
+      "file": "approved/university-creative-arts.md",
+      "faqs": 12,
+      "categories": {
+        "Category 1 — Global MBA (Dual Award with Rushford Business School)": 9,
+        "Applying & Practical Information": 3
+      },
+      "open_verification_items": [
+        "UCA-01",
+        "UCA-02",
+        "UCA-03"
+      ],
+      "sha256": "68ff64e859ccd13ed10c82a9294a5ca17fcaa8001c253be0ee8097cb17d73797",
+      "questions": [
+        {
+          "id": "university-creative-arts:Q1",
+          "question": "What is the Global MBA offered through UCA and Rushford Business School?",
+          "words": 53,
+          "open_verification_ids": [
+            "UCA-01"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "university-creative-arts:Q2",
+          "question": "What does a \"dual MBA award\" actually mean, and why does it matter?",
+          "words": 56,
+          "open_verification_ids": [],
+          "country_exception": null
+        },
+        {
+          "id": "university-creative-arts:Q3",
+          "question": "How long does the Global MBA take, and how many credits is it worth?",
+          "words": 49,
+          "open_verification_ids": [
+            "UCA-01"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "university-creative-arts:Q4",
+          "question": "Is the Global MBA delivered fully online?",
+          "words": 47,
+          "open_verification_ids": [
+            "UCA-02"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "university-creative-arts:Q5",
+          "question": "How is the Global MBA structured?",
+          "words": 44,
+          "open_verification_ids": [
+            "UCA-01"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "university-creative-arts:Q6",
+          "question": "What are the entry requirements for the Global MBA?",
+          "words": 51,
+          "open_verification_ids": [
+            "UCA-02"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "university-creative-arts:Q7",
+          "question": "What does the Global MBA cost, and can I pay in instalments?",
+          "words": 52,
+          "open_verification_ids": [
+            "UCA-03"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "university-creative-arts:Q8",
+          "question": "What career advantage does the Global MBA give?",
+          "words": 53,
+          "open_verification_ids": [],
+          "country_exception": null
+        },
+        {
+          "id": "university-creative-arts:Q9",
+          "question": "Can I continue to a doctorate after the Global MBA?",
+          "words": 56,
+          "open_verification_ids": [],
+          "country_exception": null
+        },
+        {
+          "id": "university-creative-arts:Q10",
+          "question": "Do I receive two separate MBA certificates?",
+          "words": 53,
+          "open_verification_ids": [
+            "UCA-01"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "university-creative-arts:Q11",
+          "question": "Can my employer sponsor my Global MBA?",
+          "words": 54,
+          "open_verification_ids": [
+            "UCA-03"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "university-creative-arts:Q12",
+          "question": "What support will I get during the master's thesis stage?",
+          "words": 52,
+          "open_verification_ids": [
+            "UCA-02"
+          ],
+          "country_exception": null
+        }
+      ]
+    },
+    {
+      "file": "approved/university-wolverhampton.md",
+      "faqs": 12,
+      "categories": {
+        "Category 1 — Master of Laws (LLM)": 9,
+        "Applying & Practical Information": 3
+      },
+      "open_verification_items": [
+        "UOW-01",
+        "UOW-02",
+        "UOW-03",
+        "UOW-04"
+      ],
+      "sha256": "3bd7f566fa91ec1326b8c6a9db4eeaa3159e4e0f78032d7c402aa7ed01f16695",
+      "questions": [
+        {
+          "id": "university-wolverhampton:Q1",
+          "question": "What is the Master of Laws (LLM) from the University of Wolverhampton?",
+          "words": 54,
+          "open_verification_ids": [
+            "UOW-01"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "university-wolverhampton:Q2",
+          "question": "How does the LLM top-up route work?",
+          "words": 54,
+          "open_verification_ids": [
+            "UOW-01",
+            "UOW-02"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "university-wolverhampton:Q3",
+          "question": "Can I do the LLM without a traditional law degree?",
+          "words": 52,
+          "open_verification_ids": [
+            "UOW-02"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "university-wolverhampton:Q4",
+          "question": "Can I complete the LLM while working?",
+          "words": 48,
+          "open_verification_ids": [
+            "UOW-01",
+            "UOW-03"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "university-wolverhampton:Q5",
+          "question": "Is a degree from the University of Wolverhampton recognised?",
+          "words": 52,
+          "open_verification_ids": [],
+          "country_exception": null
+        },
+        {
+          "id": "university-wolverhampton:Q6",
+          "question": "What are the entry requirements for the LLM?",
+          "words": 54,
+          "open_verification_ids": [
+            "UOW-02"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "university-wolverhampton:Q7",
+          "question": "How are the LLM fees structured?",
+          "words": 52,
+          "open_verification_ids": [
+            "UOW-04"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "university-wolverhampton:Q8",
+          "question": "What career opportunities can the LLM support?",
+          "words": 69,
+          "open_verification_ids": [],
+          "country_exception": null
+        },
+        {
+          "id": "university-wolverhampton:Q9",
+          "question": "Can I progress to doctoral study after the LLM?",
+          "words": 55,
+          "open_verification_ids": [],
+          "country_exception": null
+        },
+        {
+          "id": "university-wolverhampton:Q10",
+          "question": "Which professionals benefit most from an LLM?",
+          "words": 58,
+          "open_verification_ids": [],
+          "country_exception": null
+        },
+        {
+          "id": "university-wolverhampton:Q11",
+          "question": "What is the independent legal research project like?",
+          "words": 55,
+          "open_verification_ids": [
+            "UOW-03"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "university-wolverhampton:Q12",
+          "question": "Should I take the LLM straight after my degree, or work first?",
+          "words": 59,
+          "open_verification_ids": [],
+          "country_exception": null
+        }
+      ]
+    },
+    {
+      "file": "approved/gatehouse-diplomas.md",
+      "faqs": 12,
+      "categories": {
+        "Category 1 — Level 7 Diplomas": 9,
+        "Applying & Practical Information": 3
+      },
+      "open_verification_items": [
+        "GATE-01",
+        "GATE-02",
+        "GATE-03",
+        "GATE-04"
+      ],
+      "sha256": "3fe93c59634cf629235d4f45d51a654cfa0851a34789f0a182c403c439494c3a",
+      "questions": [
+        {
+          "id": "gatehouse-diplomas:Q1",
+          "question": "Which Gatehouse Level 7 Diplomas are available?",
+          "words": 55,
+          "open_verification_ids": [
+            "GATE-01"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "gatehouse-diplomas:Q2",
+          "question": "What is a Level 7 Diploma — is it really master's level?",
+          "words": 70,
+          "open_verification_ids": [
+            "GATE-01"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "gatehouse-diplomas:Q3",
+          "question": "What is the difference between a Level 7 Diploma and a full master's degree?",
+          "words": 138,
+          "open_verification_ids": [
+            "GATE-02"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "gatehouse-diplomas:Q4",
+          "question": "How long does a Level 7 Diploma take, and how is it assessed?",
+          "words": 53,
+          "open_verification_ids": [
+            "GATE-02"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "gatehouse-diplomas:Q5",
+          "question": "Can I study a Level 7 Diploma online while working full-time?",
+          "words": 53,
+          "open_verification_ids": [
+            "GATE-02"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "gatehouse-diplomas:Q6",
+          "question": "What are the entry requirements for a Level 7 Diploma?",
+          "words": 42,
+          "open_verification_ids": [
+            "GATE-02"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "gatehouse-diplomas:Q7",
+          "question": "How are the fees structured for the Level 7 Diplomas?",
+          "words": 50,
+          "open_verification_ids": [
+            "GATE-04"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "gatehouse-diplomas:Q8",
+          "question": "Can a Level 7 Diploma lead to a full master's degree?",
+          "words": 56,
+          "open_verification_ids": [
+            "GATE-03"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "gatehouse-diplomas:Q9",
+          "question": "What career impact can a Level 7 Diploma have?",
+          "words": 53,
+          "open_verification_ids": [],
+          "country_exception": null
+        },
+        {
+          "id": "gatehouse-diplomas:Q10",
+          "question": "How does portfolio-of-evidence assessment actually work?",
+          "words": 52,
+          "open_verification_ids": [
+            "GATE-02"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "gatehouse-diplomas:Q11",
+          "question": "How does a Level 7 Diploma compare with short courses and certificates?",
+          "words": 55,
+          "open_verification_ids": [],
+          "country_exception": null
+        },
+        {
+          "id": "gatehouse-diplomas:Q12",
+          "question": "Is there an ideal career stage for Level 7 study?",
+          "words": 54,
+          "open_verification_ids": [
+            "GATE-02"
+          ],
+          "country_exception": null
+        }
+      ]
+    },
+    {
+      "file": "approved/qualifi-diplomas.md",
+      "faqs": 22,
+      "categories": {
+        "Category 1 — Level 3 Diplomas": 6,
+        "Category 2 — Level 5 Extended Diplomas": 6,
+        "Category 3 — Level 7 Diplomas": 7,
+        "Applying & Practical Information": 3
+      },
+      "open_verification_items": [
+        "QUAL-01",
+        "QUAL-02",
+        "QUAL-03",
+        "QUAL-04",
+        "QUAL-05"
+      ],
+      "sha256": "d5580d0000a02b590c3164d4e8eec5833f51065218a8b963697266724fb53497",
+      "questions": [
+        {
+          "id": "qualifi-diplomas:Q1",
+          "question": "Which Qualifi Level 3 Diplomas are available?",
+          "words": 36,
+          "open_verification_ids": [],
+          "country_exception": null
+        },
+        {
+          "id": "qualifi-diplomas:Q2",
+          "question": "Is Qualifi a recognised awarding organisation?",
+          "words": 50,
+          "open_verification_ids": [],
+          "country_exception": null
+        },
+        {
+          "id": "qualifi-diplomas:Q3",
+          "question": "What is a Level 3 Diploma, and who is it for?",
+          "words": 48,
+          "open_verification_ids": [],
+          "country_exception": null
+        },
+        {
+          "id": "qualifi-diplomas:Q4",
+          "question": "What do I need to enrol in a Level 3 Diploma?",
+          "words": 50,
+          "open_verification_ids": [
+            "QUAL-01"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "qualifi-diplomas:Q5",
+          "question": "How much does a Level 3 Diploma cost to study?",
+          "words": 56,
+          "open_verification_ids": [
+            "QUAL-04"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "qualifi-diplomas:Q6",
+          "question": "What can I progress to after a Level 3 Diploma?",
+          "words": 59,
+          "open_verification_ids": [
+            "QUAL-03"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "qualifi-diplomas:Q7",
+          "question": "Which Level 5 Extended Diplomas can I choose from?",
+          "words": 51,
+          "open_verification_ids": [],
+          "country_exception": null
+        },
+        {
+          "id": "qualifi-diplomas:Q8",
+          "question": "What does \"Extended Diploma\" mean at Level 5?",
+          "words": 54,
+          "open_verification_ids": [
+            "QUAL-02"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "qualifi-diplomas:Q9",
+          "question": "Which level should I start at — Level 3 or Level 5?",
+          "words": 57,
+          "open_verification_ids": [
+            "QUAL-01"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "qualifi-diplomas:Q10",
+          "question": "What are the entry requirements for a Level 5 Extended Diploma?",
+          "words": 54,
+          "open_verification_ids": [
+            "QUAL-01"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "qualifi-diplomas:Q11",
+          "question": "What is the fee structure for a Level 5 Extended Diploma?",
+          "words": 52,
+          "open_verification_ids": [
+            "QUAL-02",
+            "QUAL-04"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "qualifi-diplomas:Q12",
+          "question": "Can a Level 5 Extended Diploma lead to a bachelor's degree?",
+          "words": 53,
+          "open_verification_ids": [
+            "QUAL-03"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "qualifi-diplomas:Q13",
+          "question": "Which specialisations do the Qualifi Level 7 Diplomas cover?",
+          "words": 54,
+          "open_verification_ids": [],
+          "country_exception": null
+        },
+        {
+          "id": "qualifi-diplomas:Q14",
+          "question": "Who are the Qualifi Level 7 Diplomas designed for?",
+          "words": 38,
+          "open_verification_ids": [],
+          "country_exception": null
+        },
+        {
+          "id": "qualifi-diplomas:Q15",
+          "question": "Do I need a degree to enrol in a Qualifi Level 7 Diploma?",
+          "words": 53,
+          "open_verification_ids": [
+            "QUAL-01"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "qualifi-diplomas:Q16",
+          "question": "How long do the Level 7 Diplomas take, and how are they assessed?",
+          "words": 53,
+          "open_verification_ids": [
+            "QUAL-02"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "qualifi-diplomas:Q17",
+          "question": "How are Level 7 Diploma fees structured?",
+          "words": 52,
+          "open_verification_ids": [
+            "QUAL-04"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "qualifi-diplomas:Q18",
+          "question": "What can I progress to after a Qualifi Level 7 Diploma?",
+          "words": 57,
+          "open_verification_ids": [
+            "QUAL-03"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "qualifi-diplomas:Q19",
+          "question": "What career impact can a Qualifi Level 7 Diploma have?",
+          "words": 49,
+          "open_verification_ids": [],
+          "country_exception": null
+        },
+        {
+          "id": "qualifi-diplomas:Q20",
+          "question": "Can I stack Qualifi diplomas over time — Level 3, then 5, then 7?",
+          "words": 57,
+          "open_verification_ids": [
+            "QUAL-03"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "qualifi-diplomas:Q21",
+          "question": "Do Qualifi diplomas expire or need renewing?",
+          "words": 54,
+          "open_verification_ids": [
+            "QUAL-05"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "qualifi-diplomas:Q22",
+          "question": "Will my certificate show the official accreditation number?",
+          "words": 54,
+          "open_verification_ids": [
+            "QUAL-05"
+          ],
+          "country_exception": null
+        }
+      ]
+    },
+    {
+      "file": "drafts/site-homepage.md",
+      "faqs": 8,
+      "categories": {
+        "Homepage FAQ Set (8 questions)": 8
+      },
+      "open_verification_items": [
+        "HOME-01",
+        "HOME-02",
+        "HOME-03"
+      ],
+      "sha256": "bc7ef63ef20ec14144078b68f981e70a108a33423569e96ff5680c02a5c36c4c",
+      "questions": [
+        {
+          "id": "site-homepage:Q1",
+          "question": "What is Maverick Business Academy?",
+          "words": 53,
+          "open_verification_ids": [
+            "HOME-01"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "site-homepage:Q2",
+          "question": "How does Maverick work with its partner universities?",
+          "words": 45,
+          "open_verification_ids": [
+            "HOME-01"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "site-homepage:Q3",
+          "question": "Which types of programmes can I study through Maverick?",
+          "words": 65,
+          "open_verification_ids": [],
+          "country_exception": null
+        },
+        {
+          "id": "site-homepage:Q4",
+          "question": "Can I study with Maverick from anywhere in the world?",
+          "words": 54,
+          "open_verification_ids": [
+            "HOME-02"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "site-homepage:Q5",
+          "question": "Who actually awards the degree or diploma I receive?",
+          "words": 55,
+          "open_verification_ids": [
+            "HOME-01"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "site-homepage:Q6",
+          "question": "How do I choose the right programme for my goals?",
+          "words": 50,
+          "open_verification_ids": [
+            "HOME-03"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "site-homepage:Q7",
+          "question": "Are the programmes accredited and recognised?",
+          "words": 54,
+          "open_verification_ids": [
+            "HOME-01"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "site-homepage:Q8",
+          "question": "What support will I get from enquiry to graduation?",
+          "words": 59,
+          "open_verification_ids": [
+            "HOME-03"
+          ],
+          "country_exception": null
+        }
+      ]
+    },
+    {
+      "file": "drafts/edutainment.md",
+      "faqs": 10,
+      "categories": {
+        "Edutainment FAQ Set (10 questions)": 10
+      },
+      "open_verification_items": [
+        "EDU-01",
+        "EDU-02",
+        "EDU-03",
+        "EDU-04"
+      ],
+      "sha256": "0edf7cc1a1986a80680c7c54deec2f24537b335089a31b1affe1fb5303a93ff5",
+      "questions": [
+        {
+          "id": "edutainment:Q1",
+          "question": "What is Maverick Edutainment?",
+          "words": 40,
+          "open_verification_ids": [],
+          "country_exception": null
+        },
+        {
+          "id": "edutainment:Q2",
+          "question": "How is an Edutainment programme different from a normal school tour?",
+          "words": 53,
+          "open_verification_ids": [],
+          "country_exception": null
+        },
+        {
+          "id": "edutainment:Q3",
+          "question": "Who can take part in an Edutainment programme?",
+          "words": 49,
+          "open_verification_ids": [
+            "EDU-01"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "edutainment:Q4",
+          "question": "What kinds of experiences are included?",
+          "words": 47,
+          "open_verification_ids": [],
+          "country_exception": null
+        },
+        {
+          "id": "edutainment:Q5",
+          "question": "How are safety and supervision handled?",
+          "words": 56,
+          "open_verification_ids": [
+            "EDU-02"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "edutainment:Q6",
+          "question": "Can the programme be customised to our curriculum or a specific subject?",
+          "words": 38,
+          "open_verification_ids": [],
+          "country_exception": null
+        },
+        {
+          "id": "edutainment:Q7",
+          "question": "What is included in the package — and are flights included?",
+          "words": 54,
+          "open_verification_ids": [
+            "EDU-03"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "edutainment:Q8",
+          "question": "Do students receive certificates or documented learning outcomes?",
+          "words": 53,
+          "open_verification_ids": [
+            "EDU-03"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "edutainment:Q9",
+          "question": "How far in advance should we plan, and how do we get a proposal?",
+          "words": 58,
+          "open_verification_ids": [
+            "EDU-04"
+          ],
+          "country_exception": null
+        },
+        {
+          "id": "edutainment:Q10",
+          "question": "Is help available with visas and travel documentation?",
+          "words": 47,
+          "open_verification_ids": [
+            "EDU-04"
+          ],
+          "country_exception": null
+        }
+      ]
+    }
+  ]
+}
