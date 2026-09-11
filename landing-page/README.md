@@ -46,11 +46,11 @@ Approval #1** (send `05-client-approval-pack.pdf`).
 | File | What it is |
 |---|---|
 | `bachelors/00-work-plan.md` | Pipeline map: stages, gates, client-approval stop-points, dependencies, risk register |
-| `bachelors/01-bachelors-lp-sop.pdf` | **Bachelors SOP v2.0 (GCC/UAE edition)** — 11-agent pipeline, 9 phases with gates, filled Phase-0 brief, 16-block blueprint, CRO/visual/build specs, QA gate checklist (carries the Masters-audit lessons as hard rules) |
-| `bachelors/02-keyword-research-bachelors-gcc-uae.md` | **8 top-tier keywords** (K1 bachelor's degree in Dubai · K2 online bachelor's UAE · K3 BBA · K4 top-universities intercept · K5 Sharjah · K6 no-visa · K7 affordable/fees · K8 top-up) + LSI cluster, meta candidates, schema, on-page rules, price anchors |
+| `bachelors/01-bachelors-lp-sop.pdf` | **Bachelors SOP v2.1 (GCC/UAE edition)** — 11-agent pipeline, phases with gates, filled Phase-0 brief, **15-block blueprint** (site’s existing nav + footer reused — content area only), CRO/visual/build specs, **Reach & Distribution section** (local SEO/GBP, directories, content rail, social/paid, measurement), QA gate checklist |
+| `bachelors/02-keyword-research-bachelors-gcc-uae.md` | **Two-tier keyword set** — Tier 1: K1 bachelor's degree in Dubai · K2 online bachelor's UAE · K3 BBA · K4 top-universities intercept · K5 Sharjah · K6 no-visa · K7 affordable/fees · K8 top-up; Tier 2: R1–R8 broader-reach (Abu Dhabi, online BBA/BSc, for-Indians, valid-in-UAE, Ajman/near-me, UK rail, top-up widened) + LSI cluster, meta, schema, on-page rules, price anchors |
 | `bachelors/03-research-bachelors-gcc.md` | Market stats (sourced/dated), regulatory facts pack (MoE 2023 + MoHESR 2025), partner accreditation checks, competitor refresh, intent map, page implications |
 | `bachelors/04-plan-research-verification.md` | **QA re-check of plan + research**: 20-fact check table, 10-point consistency matrix, issues log (2× P1 found & fixed: GAU BSc count 13→10, regulation framing → MoHESR 2025) |
-| `bachelors/05-page-plan-keywords.pdf` | **CLIENT-FACING page plan** (plain language, list style, no tables): the page in one minute (4 routes), audiences, market snapshot, 5 promises, **all 16 page sections top-to-bottom with contents**, and the full keyword list (K1–K8 + supporting phrases). No approval/sign-off/timeline content inside — sign-off handled separately. |
+| `bachelors/05-page-plan-keywords.pdf` | **CLIENT-FACING page plan** (plain language, list style, no tables): the page in one minute (4 routes), audiences, market snapshot, 5 promises, **all 15 page sections top-to-bottom with contents** (site’s existing nav + footer noted as unchanged), **how the page will be found online** (reach & search in plain words), and the **full two-tier keyword list** (K1–K8 + R1–R8 + supporting phrases). No approval/sign-off/timeline content inside — sign-off handled separately. |
 
 ## Prototype
 

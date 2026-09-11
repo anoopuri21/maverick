@@ -20,13 +20,13 @@ flank: top-up candidate.
 | **2 — Research** | Market stats (sourced), 3 personas deep, competitor refresh, search behaviour, regulatory facts | `03-research-bachelors-gcc.md` | Gate 1 (research) | ✅ this turn |
 | **3 — Verify (quality re-check)** | Fact-check every external claim (re-search), cross-check consistency: plan ↔ research ↔ SOP ↔ keywords ↔ listing.pdf; fix issues | `04-plan-research-verification.md` | **Verification PASS required before client pack** | ✅ this turn |
 | **4 — Client Approval #1** | Plain-language page plan + keywords sent to client (no approval mechanics inside the doc); the §3 decision list stays tracked here | `05-page-plan-keywords.pdf` | **HARD STOP — pipeline halts until client signs** | → ready to send |
-| **5 — Content** | Full 16-block copy per SOP §5 + final keyword homes + client inputs (fees/durations/photos/testimonials) | `06-bachelors-landing-content-gcc-uae.md` | Gate 3 (content) + claims whitelist audit | blocked on Approval #1 |
+| **5 — Content** | Full 15-block copy per SOP §5 (both keyword tiers) + final keyword homes + client inputs (fees/durations/photos/testimonials) | `06-bachelors-landing-content-gcc-uae.md` | Gate 3 (content) + claims whitelist audit | blocked on Approval #1 |
 | **6 — Client Approval #2** | Content sign-off (resolves all placeholders: [FEE], [MONTH], [Student Name]) | signed content doc | **HARD STOP** | — |
 | **7 — Design plan** | Visual direction per SOP §8 + content: imagery, recognition strip spec, component map, wireframe visual | `08-visual-direction-bachelors.md` + mockup frames | Gate 5 | — |
 | **8 — Client Approval #3** | Design plan sign-off | signed design doc | **HARD STOP** | — |
-| **9 — Build** | Laravel route + Blade partials (global-bachelors-pathway pattern), Course/FAQPage/Org/Breadcrumb JSON-LD, form wiring (Zapier/Zoho), cross-links | PR with preview URL | Gate 6 (build) | — |
+| **9 — Build** | Laravel route + Blade content partials (existing site nav/footer reused), Course/FAQPage/Org/Breadcrumb JSON-LD, form wiring (Zapier/Zoho), cross-links, guide articles drafted | PR with preview URL | Gate 6 (build) | — |
 | **10 — QA audit** | Gate 8 checklist (structure, GCC basis, mechanical trap-list, copyright, claims, mobile, LHS ≥ 90) — PDF report, same format as masters audit | `09-qa-audit-report.pdf` | Gate 8a–d | — |
-| **11 — Fix + re-audit + ship** | P0 fixes → re-audit → APPROVED FOR BUILD → live + GA4 events | Live URL | Gate 8e sign-off | — |
+| **11 — Fix + re-audit + ship + reach rollout** | P0 fixes → re-audit → APPROVED FOR BUILD → live + GA4/GSC events → reach rollout (Google Business Profile, directory listings, guides live — SOP §10) | Live URL | Gate 8e sign-off | — |
 
 ## 3. Client dependencies (must arrive by Approval #1 or #2)
 | # | Item | Needed by |

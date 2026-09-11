@@ -102,11 +102,11 @@ No credible competitor combines: **named awarding universities on-page + no-stud
 | Rail | Queries (K-refs) | Observed SERP behaviour | Page job |
 |---|---|---|---|
 | Discover | K1, K4, "bachelor in dubai" variants | Agent listicles + directories; "top universities" tables; 2026-dated guide refreshes | Out-trust with entity content (named unis, office, schema) |
-| Verify | K2, K6, "is online bachelor recognized in UAE", "online degree work permit UAE" | Q&A/Reddit + attestation blogs dominate; MoHESR 2025 policy is the fresh citation | Own the recognition facts (R-pack) with sources; FAQ homes |
-| Narrow | K3, K8, "BBA fees Dubai", "top-up bachelor UAE" | Fee tables (coursetakers canonical), dual-qualification listings | Fee transparency block + top-up route card |
+| Verify | K2, K6, "is online bachelor recognized in UAE", "online degree work permit UAE" | Q&A/Reddit + attestation blogs dominate; MoHESR 2025 policy is the fresh citation | Own the recognition facts (R-pack) with sources; §9 + FAQ homes |
+| Narrow | K3, K8, "BBA fees Dubai", "top-up bachelor UAE" | Fee tables (coursetakers canonical), dual-qualification listings | Fee transparency block (§10) + top-up route card |
 | Localise | K5, "bachelors near me Sharjah" | Sharjah agent directories; office-address snippets | People block + footer + K5 meta variant |
 | De-risk | K7, "affordable bachelor uae", "bachelor degree fees" | INR-framed guides for Indian expats; price-band tables | AED primary + dated INR parenthetical |
-| Compare | "online vs campus bachelor uae", "is 1 year BBA valid" | Thin content; PAA themes: valid? employers accept? work permit? duration? | §12 comparison table + 12-month-mill FAQ (category, not names) |
+| Compare | "online vs campus bachelor uae", "is 1 year BBA valid" | Thin content; PAA themes: valid? employers accept? work permit? duration? | §11 comparison table + 12-month-mill FAQ (category, not names) |
 
 **Channel map (personas):** Google (all rails, dominant) → **WhatsApp = conversion channel** (Gulf default) → Facebook/Instagram (P1 student + parent, 18–24) → YouTube (guides/attestation explainers — content-marketing future, not v1) → LinkedIn (P2 working professional).
 
@@ -115,7 +115,7 @@ No credible competitor combines: **named awarding universities on-page + no-stud
 ## 6. Implications for the page (decisions carried into copy)
 
 1. **Message hierarchy (final):** (1) real named universities → (2) no student visa, stay in your city → (3) weekend-tolerant/online flexible → (4) AED + instalments, honest vs campus vs mill → (5) Sharjah office + human counselling + since 2012. *(Matches SOP §4 pillars — verified consistent.)*
-2. **Two-audience tone (locked):** student hears ambition/flexibility; parent hears recognition/safety/cost control. Recognition block (block 4) is written parent-first.
+2. **Two-audience tone (locked):** student hears ambition/flexibility; parent hears recognition/safety/cost control. Recognition block (block 3) is written parent-first.
 3. **Regulation copy = R1–R6 only**, date-stamped, with "confirm your category with an advisor" close. The 2025 MoHESR conditional-recognition policy (R2) is the page's trust spine — no competitor cites it.
 4. **Price framing:** AED everywhere; INR once, parenthetical, dated (M3/M10); competitor anchors verified in SERP only; Maverick fee = [FEE PLACEHOLDER until client confirms].
 5. **The 12-month-mill answer:** category-level, sourced to R2 conditions — "short-timeline bachelors may not meet MoHESR recognition conditions" — never "X college is a scam".
