@@ -72,5 +72,5 @@
 | Gate 1 (research: sourced facts, personas, competitor matrix, search behaviour, implications) | ✅ PASS — 20 external facts PASS (3 excluded), 10/10 consistency checks PASS after V1/V2 fixes |
 | Gate 1b (every keyword mapped to a page location) | ✅ PASS — 02 doc §1 placement column, unchanged by verification |
 
-**Sign-off:** Plan + Research verified and reconciled. **Next action: build and send `05-client-approval-pack.pdf` (Approval #1). Pipeline is at the client-approval stop-point.**
+**Sign-off:** Plan + Research verified and reconciled. **Next action: send `05-page-plan-keywords.pdf` to the client (Approval #1 — the doc itself carries no approval mechanics). Pipeline is at the client-approval stop-point.**
 — QA & Review Agent (Agent 11), 2026-09-11

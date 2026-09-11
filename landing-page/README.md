@@ -50,7 +50,7 @@ Approval #1** (send `05-client-approval-pack.pdf`).
 | `bachelors/02-keyword-research-bachelors-gcc-uae.md` | **8 top-tier keywords** (K1 bachelor's degree in Dubai · K2 online bachelor's UAE · K3 BBA · K4 top-universities intercept · K5 Sharjah · K6 no-visa · K7 affordable/fees · K8 top-up) + LSI cluster, meta candidates, schema, on-page rules, price anchors |
 | `bachelors/03-research-bachelors-gcc.md` | Market stats (sourced/dated), regulatory facts pack (MoE 2023 + MoHESR 2025), partner accreditation checks, competitor refresh, intent map, page implications |
 | `bachelors/04-plan-research-verification.md` | **QA re-check of plan + research**: 20-fact check table, 10-point consistency matrix, issues log (2× P1 found & fixed: GAU BSc count 13→10, regulation framing → MoHESR 2025) |
-| `bachelors/05-client-approval-pack.pdf` | **CLIENT-FACING approval pack #1** — what we're building, process with approval gates, the 8 keywords, 10 client decisions, timeline, sign-off block. Ready to send. |
+| `bachelors/05-page-plan-keywords.pdf` | **CLIENT-FACING page plan** (plain language, list style, no tables): the page in one minute (4 routes), audiences, market snapshot, 5 promises, **all 16 page sections top-to-bottom with contents**, and the full keyword list (K1–K8 + supporting phrases). No approval/sign-off/timeline content inside — sign-off handled separately. |
 
 ## Prototype
 
