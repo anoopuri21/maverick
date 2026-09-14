@@ -51,10 +51,15 @@ Recognition is the trust spine of every page. Use these exact framings, source-d
 
 | Partner | Award | Accreditations we may state |
 |---|---|---|
-| Rushford Business School (Lucerne, CH) | BBA ×7 specialisations; MBA/MSc | **EduQua, IACBE, QS Stars 5-star (teaching & online)**; dual certification with Maverick London (live on RBS's site) |
-| Girne American University (North Cyprus) | BSc ×10 programmes | **YÖDAK (TRNC) + YÖK (Turkey), IACBE, ECBE, ASIIN, UNWTO TedQual, NARIC-UK** |
+| Rushford Business School (Lucerne, CH) | BBA ×7 specialisations; **MBA ×12, MSc ×9, doctoral topics ×13** | **EduQua, IACBE, QS Stars 5-star (teaching & online)**; dual certification with Maverick London (live on RBS's site) |
+| Girne American University (North Cyprus) | BSc ×10 programmes; **MBA ×6, EMBA ×16, MSc (thesis) ×4, PhD ×7** | **YÖDAK (TRNC) + YÖK (Turkey), IACBE, ECBE, ASIIN, UNWTO TedQual, NARIC-UK** |
 | University of the West of Scotland (UK) | BA (Hons) Global Business | UK university (QAA-regulated). **Programme-level details: client to confirm** |
-| QUALIFI / Gatehouse (Ofqual, UK) | Level 3/5/7 diplomas | **Ofqual-regulated.** Diplomas, not degrees. Top-up awarding body (UoG/UCLan): **client to confirm** |
+| QUALIFI / Gatehouse (Ofqual, UK) | **Level 3 ×8, Level 5 ×14, Level 7 ×23** (QUALIFI); Level 7 ×4 (Gatehouse) | **Ofqual-regulated.** Diplomas, not degrees. Top-up awarding body (UoG/UCLan): **client to confirm** |
+
+**Progression ladder (v2.2, catalogue-sourced, may be stated):** after a bachelor's, the ladder
+is real and countable: 12 MBA specialisations and 9 MSc at Rushford; 6 MBAs, 16 EMBAs and 4
+thesis MScs at GAU. QUALIFI Level 5 spans 14 specialisations (including Law, IT, Cyber
+Security), so the top-up rail speaks to non-business diplomas too.
 
 **Excluded claim:** RBS ACBSP/AACSB membership. It appears only on agent pages, not on RBS's own site. Do not use it.
 **Precision rule:** "UK-recognised" must mean, per occurrence, either (i) awarded by a UK university, or (ii) Ofqual-regulated. Diplomas ≠ degrees. Never blur them.

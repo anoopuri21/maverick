@@ -1,6 +1,6 @@
 # Bachelors LP — Work Plan (Pipeline Map)
 **Project:** Maverick Business Academy — Bachelors Landing Page (GCC/UAE)
-**Date:** 2026-09-11 · **Owner:** Project Orchestrator · **Companion:** `01-bachelors-lp-sop.pdf` (process rules), `02-keyword-research-bachelors-gcc-uae.md` (final keywords)
+**Date:** 2026-09-11 (updated 2026-09-14) · **Owner:** Project Orchestrator · **Companion:** `01-bachelors-lp-sop-v2.2.md` (current process rules; supersedes v2.1 pdf), `02-keyword-research-bachelors-gcc-uae.md` (final keywords)
 
 ---
 
