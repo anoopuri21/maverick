@@ -44,6 +44,7 @@ st_h1 = S("h1", fontName="Helvetica-Bold", fontSize=13, leading=17, textColor=NA
 st_h2 = S("h2", fontName="Helvetica-Bold", fontSize=11, leading=15, textColor=NAVY, spaceBefore=10, spaceAfter=4)
 st_body = S("body")
 st_bullet = S("bullet", leftIndent=12, bulletIndent=2, spaceAfter=4)
+st_num = S("num", leftIndent=16, spaceAfter=2)
 st_pre = S("pre", fontName="Courier", fontSize=8, leading=11, textColor=INK, spaceAfter=8)
 
 
@@ -136,6 +137,11 @@ def build(md_path, out_path, doc_title):
             flush_para()
             st.append(Paragraph(f'<bullet><font color="#b20202">\u25aa</font></bullet>'
                                 + inline(s[2:]), st_bullet))
+        elif re.match(r"^\d+\.\s", s):
+            flush_para()
+            num, rest = s.split(". ", 1)
+            st.append(Paragraph(f'<font name="Helvetica-Bold" color="#b20202">{num}.</font>'
+                                f'&nbsp;&nbsp;{inline(rest)}', st_num))
         elif s.strip() == "":
             flush_para()
         else:

@@ -109,7 +109,7 @@ Blocks 2-3 mandatory after the hero. v2.2 additions are marked NEW.
 | 4 | Problem section | Parent fears + student fears, fear-to-answer pairs + demand pie (KHDA) | none |
 | 5 | Who it's for | 3 persona cards routing to real routes | Card CTA |
 | 6 | Programme overview | Family-level: BBA (RBS, 7), BSc (GAU, 10), BA (Hons) (UWS), top-up. NEW: progression line with catalogue counts; top-up card gains the pathway checker (NEW, §9). One duration per family. | none |
-| 7 | Programme grid | Full catalogue names with in-demand flags. NEW: filter chips by field and by delivery (build spec §9). | Enquire |
+| 7 | Programme grid | Full catalogue names with in-demand flags, exactly as listed in Appendix A.2. NEW: filter chips by field and by delivery (build spec §9). | Enquire |
 | 8 | How it works | 4 steps + intake calendar + 1-business-day call promise. NEW: "who can apply" entry-route line per family, client-confirmed table only. | Form |
 | 9 | Recognition & careers | MoHESR/MOHRE/attestation explained honestly; careers per family (roles, not salaries) | none |
 | 10 | Fees & funding | AED + instalments (client figures); comparison table vs campus and vs 12-month mills. NEW: offer rail detail slot, client-confirmed only. | Fee plan |
@@ -239,3 +239,55 @@ checker tested on mobile; nurture events firing in staging; event rail renders f
 Gate 8e sign-off: APPROVED FOR BUILD, then live + GSC/GA4 + reach rollout.
 
 **Sign-off chain:** Orchestrator, client (fees, claims, offers, entry criteria), QA re-audit.
+
+## Appendix A: bachelors catalogue (from uploads/listing.pdf)
+
+The page and every deliverable use these exact names. Counts and spellings come from the
+client's catalogue (class-a claims). If the catalogue changes, update this appendix first,
+then the blocks.
+
+### A.1 University-wise bachelors programmes
+
+**Rushford Business School, Switzerland** (EduQua, IACBE, QS Stars 5-star; dual certification
+with Maverick London): BBA, 7 specialisations:
+1. BBA Business Administration
+2. BBA Marketing
+3. BBA Finance
+4. BBA Human Resource Management
+5. BBA Management Information Systems
+6. BBA Hospitality & Tourism Management
+7. BBA Project Management
+
+**Girne American University, North Cyprus** (YÖDAK + YÖK, IACBE for business): BSc, 10 programmes:
+1. BSc Business Management
+2. BSc Tourism and Hospitality Management
+3. BSc International Business Management
+4. BSc Psychology
+5. BSc Accounting and Finance Management
+6. BSc Marketing
+7. BSc Human Resources Management
+8. BSc Accounting
+9. BSc Economics
+10. BSc Management Information Systems
+
+**University of the West of Scotland, UK** (QAA-regulated; programme details client-confirmed):
+1. BA (Hons) Global Business
+
+**Top-up route (Ofqual/QUALIFI, UK):** Level 5/7 diplomas topped up into a named UK honours
+degree; awarding university client-confirmed (UoG/UCLan). The Level 5 catalogue spans 14
+specialisations (including Law, IT, Cyber Security), so the rail serves non-business diplomas too.
+
+### A.2 All bachelors specialisations (consolidated, 18 named programmes)
+
+BBA (Rushford): Business Administration · Marketing · Finance · Human Resource Management ·
+Management Information Systems · Hospitality & Tourism Management · Project Management
+
+BSc (Girne American): Business Management · Tourism and Hospitality Management · International
+Business Management · Psychology · Accounting and Finance Management · Marketing · Human
+Resources Management · Accounting · Economics · Management Information Systems
+
+BA (Hons) (UWS): Global Business
+
+Most in-demand flags for the grid (block 7) come from the research intent map: Finance,
+Marketing and Business Administration on the BBA rail; Psychology, Accounting & Finance and
+International Business on the BSc rail. Flags are reviewed with the client at Approval #2.
