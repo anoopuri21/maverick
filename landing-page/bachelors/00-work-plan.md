@@ -89,6 +89,11 @@ sign-off. Reasons (from this project's own history):
 | C4 humanize | T9 | Naturalized draft + scorecard ≥ 9/10 |
 | C5 optimize + QA | T4/T5/T10 | Gates 6–7; package held for Approval #2 |
 
+**Track 1 status 2026-09-14:** `06-bachelors-landing-content-gcc-uae.md` drafted complete (C1–C5,
+plus PDF + DOCX renders, all pre-build QA scans green: 0 em-dashes, 0 banned AI words,
+0 placeholders, catalogue 18/18 verbatim, K1–K8 + R1–R8 homes placed, claims map 100% sourced).
+Held for Approval #2; client-facing share only after SOP v2.2 sign-off.
+
 ### Track 2: design pre-work (parallel, content-independent)
 | Item | What is decided now | Waits for content |
 |---|---|---|
