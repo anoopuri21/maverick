@@ -36,6 +36,24 @@ Documentation → Review → Compilation. QA status: **approved for design hando
 | `gulf-masters/02-masters-landing-content-gcc-uae.md` | **Full design-ready page content** built on those 6 keywords (AED-first, WhatsApp-first, 16-block spine) |
 | `gulf-masters/content-audit-report.pdf` | **QA audit of the writer's draft** (`uploads/master-landing-page-content.pdf`) — 10-page report: structure, GCC-basis, SEO/keywords, word quality, copyright, compliance, CRO + P0/P1/P2 improvement plan. Verdict: revise before build (5.0/10) |
 
+## AI Content Team — working environment (NEW 2026-09-14)
+
+`ai-team/` — the complete working environment of the Maverick AI content team: **10 specialist
+roles** (research → copy → humanization → QA), **7 guidelines** (voice & simple English,
+humanization protocol, SEO, AEO, GEO, facts & claims, production readiness), **2 templates**,
+the **niche knowledge base** (mandatory reading, every role) and the stage-gated **content
+pipeline**. Built for: market research → natural humanized content → production-ready delivery,
+optimized at SEO/AEO/GEO level, zero AI traces in any deliverable.
+
+| File | What it is |
+|---|---|
+| `ai-team/README.md` | Environment overview + read order |
+| `ai-team/01-team-blueprint.md` | The 10 roles, pipeline, gates, fold rules |
+| `ai-team/02-niche-knowledge-base.md` | Maverick education niche brief — facts, regulation, partners, personas |
+| `ai-team/03-content-pipeline.md` | Stages S0–S8, gate checklists, handoff contracts |
+| `ai-team/04-summary-report.md` | **Client summary: which resources, why, how** |
+| `ai-team/roles/`, `guidelines/`, `templates/` | Role cards T01–T10 · guidelines G01–G07 · brief + QA templates |
+
 ## Bachelors LP (GCC/UAE) — third page in the package
 
 `bachelors/` — Bachelors landing page (BBA / BSc / BA (Hons) / Top-up) for GCC/UAE
