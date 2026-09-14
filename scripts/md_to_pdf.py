@@ -33,18 +33,18 @@ MT = MB = 20 * mm
 
 
 def S(name, **kw):
-    base = dict(fontName="Helvetica", fontSize=10, leading=14.5, textColor=INK,
-                alignment=TA_LEFT, spaceAfter=6)
+    base = dict(fontName="Helvetica", fontSize=10.5, leading=15.5, textColor=INK,
+                alignment=TA_LEFT, spaceAfter=7)
     base.update(kw)
     return ParagraphStyle(name, **base)
 
 
-st_title = S("title", fontName="Helvetica-Bold", fontSize=19, leading=24, textColor=NAVY, spaceAfter=4)
-st_h1 = S("h1", fontName="Helvetica-Bold", fontSize=13, leading=17, textColor=NAVY, spaceBefore=14, spaceAfter=6)
-st_h2 = S("h2", fontName="Helvetica-Bold", fontSize=11, leading=15, textColor=NAVY, spaceBefore=10, spaceAfter=4)
+st_title = S("title", fontName="Helvetica-Bold", fontSize=20, leading=25, textColor=NAVY, spaceAfter=5)
+st_h1 = S("h1", fontName="Helvetica-Bold", fontSize=14, leading=18, textColor=NAVY, spaceBefore=15, spaceAfter=7)
+st_h2 = S("h2", fontName="Helvetica-Bold", fontSize=12, leading=16, textColor=NAVY, spaceBefore=11, spaceAfter=5)
 st_body = S("body")
-st_bullet = S("bullet", leftIndent=12, bulletIndent=2, spaceAfter=4)
-st_num = S("num", leftIndent=16, spaceAfter=2)
+st_bullet = S("bullet", leftIndent=12, bulletIndent=2, spaceAfter=5)
+st_num = S("num", leftIndent=16, leading=15.5, spaceAfter=5)
 st_pre = S("pre", fontName="Courier", fontSize=8, leading=11, textColor=INK, spaceAfter=8)
 
 
@@ -71,7 +71,7 @@ def table_flowable(rows):
     data = []
     for r in rows:
         cells = r + [""] * (ncols - len(r))
-        data.append([Paragraph(inline(c), S(f"c{len(data)}_{i}", fontSize=8.6, leading=12,
+        data.append([Paragraph(inline(c), S(f"c{len(data)}_{i}", fontSize=9.3, leading=13.2,
                        fontName="Helvetica-Bold" if len(data) == 0 else "Helvetica",
                        textColor=NAVY if len(data) == 0 else INK, spaceAfter=0))
                      for i, c in enumerate(cells)])
@@ -80,10 +80,10 @@ def table_flowable(rows):
         ("LINEBELOW", (0, 0), (-1, 0), 1.2, RED),
         ("LINEBELOW", (0, 1), (-1, -1), 0.5, LINE),
         ("ROWBACKGROUNDS", (0, 1), (-1, -1), [HexColor("#ffffff"), PAPER]),
-        ("TOPPADDING", (0, 0), (-1, -1), 4),
-        ("BOTTOMPADDING", (0, 0), (-1, -1), 4),
-        ("LEFTPADDING", (0, 0), (-1, -1), 5),
-        ("RIGHTPADDING", (0, 0), (-1, -1), 5),
+        ("TOPPADDING", (0, 0), (-1, -1), 6),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 6),
+        ("LEFTPADDING", (0, 0), (-1, -1), 6),
+        ("RIGHTPADDING", (0, 0), (-1, -1), 6),
         ("VALIGN", (0, 0), (-1, -1), "TOP"),
     ]))
     return t

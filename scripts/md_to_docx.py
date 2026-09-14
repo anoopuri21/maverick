@@ -25,11 +25,11 @@ GREY = RGBColor(0x5A, 0x60, 0x70)
 def set_base(doc):
     n = doc.styles["Normal"]
     n.font.name = "Calibri"
-    n.font.size = Pt(10.5)
+    n.font.size = Pt(11)
     n.font.color.rgb = INK
-    n.paragraph_format.space_after = Pt(6)
+    n.paragraph_format.space_after = Pt(7)
     n.paragraph_format.line_spacing = 1.25
-    for name, size, before in (("Heading 1", 14, 14), ("Heading 2", 12, 10), ("Heading 3", 11, 8)):
+    for name, size, before in (("Heading 1", 15, 14), ("Heading 2", 13, 11), ("Heading 3", 11.5, 9)):
         h = doc.styles[name]
         h.font.name = "Calibri"
         h.font.size = Pt(size)
@@ -72,7 +72,7 @@ def add_table(doc, rows):
             p = cell.paragraphs[0]
             p.paragraph_format.space_after = Pt(2)
             add_runs(p, row[j] if j < len(row) else "",
-                     base_size=9, base_color=(NAVY if i == 0 else INK))
+                     base_size=9.5, base_color=(NAVY if i == 0 else INK))
             if i == 0:
                 for r in p.runs:
                     r.font.bold = True
