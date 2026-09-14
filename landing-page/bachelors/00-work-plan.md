@@ -60,5 +60,67 @@ flank: top-up candidate.
 - **QA:** Gate 8 report with P0/P1/P2 grading + sign-off line.
 
 ## 6. Current position
-Stages 0–3 complete this turn. **Next action = send `05-client-approval-pack.pdf` to the client.**
-Pipeline is on the Approval #1 stop-point until sign-off.
+Stages 0–3 complete; SOP v2.2 issued and **with the client for review (2026-09-14)**.
+Page plan + keywords (05) ready to follow the SOP approval. Pipeline holds at the
+Approval #1 stop-point for client-facing sign-off, but internal pre-work runs in parallel
+per §7 (nothing client-facing ships until approvals).
+
+## 7. Next-steps plan (decided 2026-09-14, during client review)
+
+**Decision: content first, design pre-work in parallel.** Design-final waits for content
+sign-off. Reasons (from this project's own history):
+
+1. The Masters LP audit showed content failures force rework; if design had gone first, the
+   rework would have doubled. Content is the variable; the design system is already fixed
+   (`docs/mlp-design-system.md`), so design is application, not invention.
+2. Design inputs that depend on client confirmations (fee bars, testimonial portraits, intake
+   dates, logo permissions) only land with content approval. Designing first means designing
+   with fake data and redoing it.
+3. AEO/GEO architecture (answer capsules after H2, FAQ 1:1 schema, comparison tables) decides
+   which components the page needs. Content architecture must exist before component mapping
+   is final.
+
+### Track 1: content (starts now, internal drafts)
+| Step | Role | Deliverable |
+|---|---|---|
+| C1 messaging detail | T7 | Section-level tone notes + CTA ladder, two-audience pass per block |
+| C2 answer plan | T5 | Question → home → 30–60 word capsule list; schema request |
+| C3 draft | T8 | `06-bachelors-landing-content-gcc-uae.md` (15 blocks, claim IDs, keyword homes) |
+| C4 humanize | T9 | Naturalized draft + scorecard ≥ 9/10 |
+| C5 optimize + QA | T4/T5/T10 | Gates 6–7; package held for Approval #2 |
+
+### Track 2: design pre-work (parallel, content-independent)
+| Item | What is decided now | Waits for content |
+|---|---|---|
+| Block-to-component map (below) | Component choice per block from the mlp motif map | Final copy lengths |
+| Chart components | Pie (KHDA, catalogue mix) + fee bar, brand colours, source-line style | Client-confirmed fee bar |
+| New components | Filter chips, offer rail, event rail, pathway checker (v2.2 specs) | Real offer/event data |
+| Imagery tracker | Permission checklist per asset (logos, office, portraits) | Client files |
+| Wireframe skeleton | 15-block order + chrome rule (existing nav/footer) | Final headings |
+
+### Block-to-component map (pre-work, per docs/mlp-design-system.md)
+| Block | Component / motif |
+|---|---|
+| 1 Announcement (+ offer rail) | mlp-meta strip on navy; offer line red-on-paper |
+| 2 Hero | Reused cinematic-hero; 4 trust points as typographic strip with hairline dividers (no pill chips) |
+| 3 Recognition strip | Typographic strip, text-only names until logo permission |
+| 4 Problem | Numbered horizontal rails (fear → answer) + pie chart |
+| 5 Who it's for | Three split rails (not an equal card grid) |
+| 6 Programme overview | Family split chapters + catalogue-mix pie |
+| 7 Programme grid | Hairline table/grid + filter chips (field, delivery) |
+| 8 How it works | Drawn spine with pulsing nodes + intake calendar strip |
+| 9 Recognition & careers | Editorial quote rail + numbered attestation steps |
+| 10 Fees | Bar chart + instalment rows (AED) |
+| 11 Comparison | Three-column hairline table |
+| 12 Proof | Cinematic chapter, fixed 112x140 portraits, Previous → Now cascade |
+| 13 People & office | Split with map pin + event rail card |
+| 14 FAQ | Full-bleed dark accordion rows |
+| 15 Final CTA | Glass enquiry panel on veil + WhatsApp deep-link |
+
+### Sequence after client responses
+- Client changes to SOP: apply, re-issue, re-verify (same-day turnaround).
+- SOP approved: content pack (Approval #1: page plan + keywords) goes out with the draft
+  timeline; Track 1 output moves to Approval #2.
+- Content approved: final design plan (visual direction doc + mockup frames) for Approval #3,
+  then build per SOP §9.
+
