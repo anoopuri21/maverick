@@ -1,6 +1,6 @@
-# 01 — Team Blueprint
+# 01 · Team Blueprint
 **Maverick AI Content Team · 10 specialist roles · education niche · GCC/UAE**
-**Date:** 2026-09-14 · **Owner:** Project Orchestrator (T1)
+**Date:** 2026-09-14 (generalized 2026-09-15) · **Owner:** Project Orchestrator (T1)
 
 ---
 
@@ -14,10 +14,10 @@ Three sources shaped the team:
    keyword stuffing, unverified claims, outdated regulation framing, mechanical typos.
 2. **2026 team research.** The pattern that wins now is the *editorial mesh*: several
    specialist roles with typed handoff contracts and per-role scorecards, not one model doing
-   everything. Researcher, writer, editor, SEO, QA — each with its own evaluation rubric and a
+   everything. Researcher, writer, editor, SEO, QA. Each has its own evaluation rubric and a
    supervisor approving every piece before it ships. Teams scale in the order of trust:
    strategist first, editor second, specialists third.
-   (Sources: [Agentic Content Operations — Editorial Mesh](https://www.digitalapplied.com/blog/agentic-content-operations-ai-editorial-team-2026),
+   (Sources: [Agentic Content Operations: Editorial Mesh](https://www.digitalapplied.com/blog/agentic-content-operations-ai-editorial-team-2026),
    [Content Team Roles 2026](https://www.relato.com/blog/content-team-roles/),
    [Building a Content Team](https://www.clustermagic.ai/blog/building-a-content-team),
    [AI Content Workflow 2026](https://promptbuilder.cc/blog/ai-content-creation-workflow),
@@ -29,12 +29,17 @@ Three sources shaped the team:
 
 **Result: 10 roles.** Lean enough to run fast, complete enough to cover every gate.
 
+The team is **page-agnostic**. The roster, gates and standards do not change with the page.
+What changes per task is only the brief: which page, which market, which keywords. The same
+ten roles run a Masters landing page, a bachelors page, a programme page, or a guide, and
+they research each one fresh instead of recycling another page's work.
+
 ## 2. The roster
 
 | ID | Role | Stage | One-line mandate |
 |---|---|---|---|
 | **T1** | Project Orchestrator | all | Own the brief, the gates, the client stop-points, the final package |
-| **T2** | Market & Audience Research Analyst | research | Sourced market facts, personas, search behaviour — every number dated |
+| **T2** | Market & Audience Research Analyst | research | Sourced market facts, personas, search behaviour, every number dated |
 | **T3** | Competitor Intelligence Analyst | research | Four-tier competitor matrix, verified price anchors, the gap we own |
 | **T4** | SEO Strategist | research + optimize | Keyword map (both tiers), meta, on-page rules, internal links, local SEO |
 | **T5** | AEO/GEO Specialist | strategy + optimize | Answer architecture, schema plan, extractability, AI-engine citations |
@@ -68,6 +73,8 @@ Full stage definitions, gates and handoff contracts: `03-content-pipeline.md`.
 | Client requirement | Where it is enforced |
 |---|---|
 | Elite, professional, experienced team | Role cards with hard rules, scorecards, and handoff contracts (`roles/`); gate system refuses weak work |
+| Generic team: any page, not one | Page-agnostic pipeline (`03`); brief names the page + market; fresh research per page (Gate 1); keyword research on demand (`03` §8) |
+| Keyword research when client gives none | T4 location-based map (`03` §8, Gate 1b); client-supplied keywords validated, not assumed |
 | Market research → humanized content → production-ready | Pipeline stages S1 → S5 → S7 (`03`), each with a named owner and a gate |
 | SEO optimized | T4 + `guidelines/G03` |
 | AEO optimized (answer engines) | T5 + `guidelines/G04` |
@@ -79,7 +86,7 @@ Full stage definitions, gates and handoff contracts: `03-content-pipeline.md`.
 
 ## 5. Fold rules (lean mode)
 
-Some tasks are small. Roles may fold — gates may not.
+Some tasks are small. Roles may fold, but gates may not.
 
 | Allowed folds | Never fold |
 |---|---|
@@ -88,7 +95,7 @@ Some tasks are small. Roles may fold — gates may not.
 | T7 into T1 for tiny assets (meta lines, ads) | T6 out of the loop entirely (niche check is mandatory) |
 
 Any folded pass still produces the same named artifacts, and every gate still gets a signed
-checklist. Small task, small file — not small standards.
+checklist. Small task, small file. Not small standards.
 
 ## 6. Scorecard principle
 

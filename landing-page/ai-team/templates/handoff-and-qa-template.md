@@ -1,4 +1,4 @@
-# Handoff / QA Report — [TASK NAME]
+# Handoff / QA Report · [TASK NAME]
 **Stage:** [S2 verification / S5 humanization / S7 QA] · **By:** [role] · **Date:** YYYY-MM-DD
 **Companion files:** [list] · **Verdict:** [PASS / APPROVED / REVISE (n×P0, n×P1)]
 
@@ -24,13 +24,17 @@ Notes: single-source facts kept/dropped, with reason.
 | Sweep | Command / method | Hits | Action |
 |---|---|---|---|
 | Placeholder grep | G02 §4 | 0 required | |
+| Instruction-residue grep | G02 §4 | 0 required | |
 | Banned-pattern grep | G02 §4 | 0 required | |
-| Em-dash density | G02 §4 | ≤ 5 / 1,000 words | |
+| Em dash (—) count | G02 §4 | 0 required | |
+| En dash (–) count | G02 §4 | 0 required | |
+| Exclamation / emoji count | G02 §2d | 0 required | |
 | Verbatim repeats | G02 §4 | 0 required | |
 | Trap list (mechanical) | G07 §2 | 0 required | |
 | Meta lengths | title ≤ 60 / desc ≤ 155 | pass | |
 | Schema spec | G04 §6 | valid, mirrors visible content | |
 | Internal links | routes/web.php check | resolve | |
+| Rendered PDF/DOCX re-scan | G07 §7 | 0 placeholders/instructions/tells | |
 
 ## 4. Humanization attestation (S5 → attached at S7)
 - Scorecard: __ / 10 (items listed in G02 §5)
@@ -47,6 +51,6 @@ Notes: single-source facts kept/dropped, with reason.
 |---|---|
 | [gate id] | ✅ PASS / ❌ blocked by [issue #] |
 
-**Verdict line (fixed vocabulary):** APPROVED · or · REVISE — n×P0, n×P1, n×P2.
+**Verdict line (fixed vocabulary):** APPROVED · or · REVISE (n×P0, n×P1, n×P2).
 
 **Sign-off:** [role], date

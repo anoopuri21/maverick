@@ -1,4 +1,4 @@
-# T2 — Market & Audience Research Analyst
+# T2 · Market & Audience Research Analyst
 **Stage:** S1 · **Guides:** G06 · **Scorecard focus:** sourced facts, mapped personas
 
 ## Mission

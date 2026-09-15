@@ -1,4 +1,4 @@
-# G06 — Facts & Claims Policy
+# G06 · Facts & Claims Policy
 **Owner:** T6 · **Enforced at:** Gate 4 (claims map), Gate 7 (final audit)
 **One rule:** if a claim cannot be traced to an allowed source, it does not ship.
 
@@ -8,7 +8,7 @@
 
 | Class | Allowed source | Example |
 |---|---|---|
-| **a** | Client's own catalogue + client-confirmed inputs (`uploads/listing.pdf`, fees, durations, testimonials, office facts) | "BBA — 7 specialisations from Rushford Business School" |
+| **a** | Client's own catalogue + client-confirmed inputs (`uploads/listing.pdf`, fees, durations, testimonials, office facts) | "BBA with 7 specialisations from Rushford Business School" |
 | **b** | Public facts with a named source and a date | "UAE HE admitted 57,035 new students in 2024–25, +13% (MoHESR via The National, Nov 2025)" |
 | **c** | Client-verified statistics with a source | anything the client confirms in writing |
 
@@ -19,7 +19,7 @@ figures: all out, or downgraded to a tracked `[VERIFY]` note.
 
 Recognition statements use the R-pack (`02-niche-knowledge-base.md` §3) word-for-word where
 locked. The private-sector-safe sentence is the default close:
-*"Recognised for private-sector use; MoHESR recognition route available — confirm your
+*"Recognised for private-sector use; MoHESR recognition route available. Confirm your
 category with an advisor."*
 
 **Automatic P0:** "visa guaranteed" · "recognised for all purposes" · "government job
@@ -70,4 +70,4 @@ Strict sourcing is not bureaucracy; it is the product.
 
 (E-E-A-T/YMYL basis: [Google E-E-A-T Guide 2026](https://linkbuilder.com/blog/google-eeat-guide) ·
 [YMYL Guidelines 2026](https://koanthic.com/en/ymyl-content-guidelines-complete-guide-for-2026/) ·
-[E-E-A-T Chapter — Nabil Thange](https://nabil-thange.vercel.app/blog/eeat-google))
+[E-E-A-T Chapter · Nabil Thange](https://nabil-thange.vercel.app/blog/eeat-google))

@@ -1,4 +1,4 @@
-# T3 — Competitor Intelligence Analyst
+# T3 · Competitor Intelligence Analyst
 **Stage:** S1 · **Guides:** G06 · **Scorecard focus:** verified anchors, exploitable gaps
 
 ## Mission

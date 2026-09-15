@@ -1,4 +1,4 @@
-# 05 — Internal Strategy: Bachelors Scope Upgrade (CONFIDENTIAL)
+# 05 · Internal Strategy: Bachelors Scope Upgrade (CONFIDENTIAL)
 **Classification: INTERNAL. Never quote in client packs, client calls, or the SOP.**
 **Date:** 2026-09-14 · **Owner:** T1 · **Inputs:** `uploads/listing.pdf` (client catalogue), live competitor observation (2026-09), industry conversion research
 **Output of this doc:** the SOP v2.2 deltas (applied in `../bachelors/01-bachelors-lp-sop-v2.2.md`, phrased neutrally)
@@ -58,7 +58,7 @@ What is visibly working for each tier, and what we take from it:
 | Soft CTAs beat "Apply Now"; sticky CTA bars lift programme-page CVR | industry practice | same | Our CTA system already soft-first; sticky CTA already specced. Add CTA-copy A/B seed |
 
 [1] Higher-education conversion research: segmented funnels +20–40% relevance lift; soft CTA
-variants outperform; sticky CTA bar recommended; nurture is the highest-leverage channel
+variants outperform; sticky CTA bar recommended; nurture is the highest-impact channel
 ([Acceleroi 2026 benchmarks](https://www.acceleroi.com/blog/higher-education-conversion-rates),
 [Foundry CRO 2026](https://foundrycro.com/blog/higher-education-marketing-benchmarks-2026/)).
 These numbers stay in this doc only.

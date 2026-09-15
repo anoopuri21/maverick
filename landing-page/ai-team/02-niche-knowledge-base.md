@@ -1,6 +1,11 @@
-# 02 — Maverick Niche Knowledge Base
+# 02 · Maverick Niche Knowledge Base
 **Mandatory reading for every role before every task. No exceptions.**
-**Updated:** 2026-09-14 · **Guardian:** T6 (Education Niche SME) · **Full sources:** `../bachelors/03-research-bachelors-gcc.md`, `../bachelors/04-plan-research-verification.md`
+**Updated:** 2026-09-15 · **Guardian:** T6 (Education Niche SME) · **Full sources:** `../bachelors/03-research-bachelors-gcc.md`, `../bachelors/04-plan-research-verification.md`, `../gulf-masters/01-keyword-research-gcc-uae.md`
+
+This brief is page-agnostic. It covers the whole Maverick offer, undergraduate and
+postgraduate, so the same team can serve a bachelors page, a masters page, or any single
+programme page. Page-specific market numbers and competitor anchors are researched fresh per
+task (see §10); the facts below are the durable spine.
 
 This brief makes every team member a working expert in the Maverick niche:
 UK and partner-university degrees sold to students living in the Gulf, delivered
@@ -41,7 +46,7 @@ Recognition is the trust spine of every page. Use these exact framings, source-d
 | R1 | UAE MoE began recognising online degrees in **2023** (Engineering, Medicine, Law excluded) | Background only; lead with R2 |
 | R2 | **10 Mar 2025, MoHESR policy:** conditional recognition of distance/online/open/correspondence degrees; ministerial committee; fees Dh100 (bachelor); verification via Dataflow or QuadraBay; ~30 working days; 3-month appeal | **The primary recognition fact on every page.** Always sourced, always dated |
 | R3 | 2025 (H2): MoHESR eased the earlier online-credit caps | Phrase as "under the current 2025 MoHESR framework". **No credit-cap numbers** |
-| R4 | Private sector: accredited university + verification is generally enough. The Certificate of Recognition (equivalency) is for government roles, regulated professions, some visa categories | Use: *"Recognised for private-sector use; MoHESR recognition route available — confirm your category with an advisor."* (quoted phrasing, verbatim) |
+| R4 | Private sector: accredited university + verification is generally enough. The Certificate of Recognition (equivalency) is for government roles, regulated professions, some visa categories | Use: *"Recognised for private-sector use; MoHESR recognition route available. Confirm your category with an advisor."* (locked phrasing, verbatim; no em dash) |
 | R5 | MOHRE accepts accredited online/distance degrees for work permits; a bachelor's is expected for most AED 4,000–8,000/month professional bands | Career framing only; no salary promises |
 | R6 | UK degree attestation route: FCDO apostille → UAE Embassy/MOFA; Dataflow/QuadraBay first | Offer "we guide the full route". A counselling hook, never legal advice |
 
@@ -64,23 +69,30 @@ Security), so the top-up rail speaks to non-business diplomas too.
 **Excluded claim:** RBS ACBSP/AACSB membership. It appears only on agent pages, not on RBS's own site. Do not use it.
 **Precision rule:** "UK-recognised" must mean, per occurrence, either (i) awarded by a UK university, or (ii) Ofqual-regulated. Diplomas ≠ degrees. Never blur them.
 
-## 5. The three personas
+## 5. The personas
 
-| Persona | Who | Core fear | Channels | Decision driver |
-|---|---|---|---|---|
-| **P1: New graduate + family** | 18–22, just finished 12th; parent co-decides and pays | Is it real, recognised, worth it? What will employers say? | WhatsApp, Facebook, school networks | Recognition + cost + safety |
-| **P2: Working professional** | 22–32, earning in the Gulf | Losing salary/time to a campus grind | LinkedIn, Google | Fits around the job; no visa |
-| **P3: Top-up candidate** | Holds diploma/HND/credits | Will credits count? How long? | Google exact-match | Fastest legitimate route to a named degree |
+| Persona | Who | Core fear | Channels | Decision driver | Level fit |
+|---|---|---|---|---|---|
+| **P1: New graduate + family** | 18–22, just finished 12th; parent co-decides and pays | Is it real, recognised, worth it? What will employers say? | WhatsApp, Facebook, school networks | Recognition + cost + safety | Undergraduate |
+| **P2: Working professional** | 22–32, earning in the Gulf | Losing salary/time to a campus grind | LinkedIn, Google | Fits around the job; no visa | Undergraduate + Masters/MBA |
+| **P3: Top-up candidate** | Holds diploma/HND/credits | Will credits count? How long? | Google exact-match | Fastest legitimate route to a named degree | Top-up |
+| **P4: Executive / senior professional** | 32+, managing people, aiming for the next band | Will an online MBA be respected by my board/peers? | LinkedIn, referral, Google | Prestige of the awarding university + EMBA fit | MBA / EMBA |
+
+On a masters or MBA page, P2 is the primary reader and P4 the secondary; the two-audience
+rule still applies, but the second voice is the sceptical senior colleague, not a parent.
 
 **Two-audience tone rule:** every major section must pass both ears. The student hears ambition and flexibility. The parent hears recognition, safety and cost control.
 
-## 6. The competitive landscape (2026-09)
+## 6. The competitive landscape (2026-09, undergraduate view)
 
 - **Campus premium.** S P Jain (BBA online AED 100k/4yr), Middlesex Dubai, UOWD. AED 35k–65k/yr, plus visa, relocation, 3–4 years.
 - **Online agents.** Global Learners (11 online bachelors, Sharjah), Westford (LJMU-awarded), LUBM, King's Business School (12-month BBA). Awarding bodies buried; no physical academy behind them.
 - **Fast-track mills.** Ascencia (1-yr BBA), Study Wink (AED 7,999), Sama (AED 3,500), Tamkeen (AED 22,500/12mo). The recognition risk is the story. We criticise the *category*, sourced to R2, never by name.
 - **Agent content farms.** Fateh, AECC, bradfordia (running the exact K2/K5 phrases as a cluster), directories (educations.com, coursetakers.ae, bachelorsportal). They own the SERP, not the student.
 - **The gap Maverick owns.** Nobody credible combines named awarding universities + no student visa + weekend-tolerant delivery + AED instalments + a physical Gulf office + parent-safe recognition content. That is every page's spine.
+
+Postgraduate pages face a parallel set of tiers (premium campus MBAs, online-MBA agents,
+fast-track MBA mills). Those anchors are dated and listed in §10; refresh them per task.
 
 ## 7. Glossary (the team's shared vocabulary)
 
@@ -109,6 +121,38 @@ Everything else stays out. No "best", "top", "#1", "guaranteed", "100%". No sala
 ## 9. House style facts (used across all deliverables)
 
 - UK spellings: *programme(s)*, *recognised*, *instalment*.
-- "bachelor's degree" (apostrophe, noun) vs "bachelors" (no apostrophe, attributive: bachelors programmes, bachelors landing page).
+- "bachelor's degree" (apostrophe, noun) vs "bachelors" (no apostrophe, attributive: bachelors programmes, bachelors landing page). Same rule for "master's degree" (noun) vs "masters" (attributive: masters landing page, masters programmes).
 - Brand colours if design-adjacent: navy `#071444`, red `#b20202`, warm paper `#f5f0eb`.
 - Cities named exactly: Dubai · Sharjah · Abu Dhabi. "GCC" appears at least twice per page-level asset.
+- No em dash anywhere in deliverables (G02 §2d). This knowledge base is written to that rule.
+
+## 10. Postgraduate dimension (masters / MBA / MSc / EMBA)
+
+The same team serves postgraduate pages. This section gives the durable spine; the numbers
+are the dated anchors already gathered for the Gulf Masters task, to be re-verified per task.
+
+**The offer (class-a, catalogue-sourced, may be stated):**
+- Rushford Business School: MBA ×12 specialisations, MSc ×9, doctoral topics ×13.
+- Girne American University: MBA ×6, EMBA ×16, thesis MSc ×4, PhD ×7.
+- Delivery: online / hybrid, no student visa, weekend-tolerant, rotational intakes, AED plans.
+
+**The buyer:** primary P2 working professional, secondary P4 executive (see §5). The core
+objection shifts from "is it real" to "will my employer and peers respect it". Recognition
+content (R-pack) still anchors trust, and the attestation route (R6) still applies.
+
+**Postgraduate competitor tiers (dated anchors, `../gulf-masters/01-keyword-research-gcc-uae.md`, 2026-09):**
+
+| Tier | Example anchors observed | Our counter |
+|---|---|---|
+| Premium campus MBA | Birmingham Dubai AED 87,255/yr; Manchester Global MBA £42,064 | Same credibility, no relocation, a fraction of the cost |
+| Online-MBA agents | Masterei "UK MBA" AED 22,000; LUBM, Exeed, Eaton | Named awarding university up front, a real academy behind it |
+| Fast-track MBA mills | 12-month "pass guaranteed" MBAs | Recognition risk is the price; we sell the legitimate route |
+
+Market-band reference (Maverick's own Jan-2026 guide): online MBA AED 30k–60k, part-time
+AED 45k–90k, executive AED 70k–120k. Treat every figure above as a dated anchor: re-check it
+live before quoting, exactly as with the undergraduate numbers.
+
+**Masters keyword model:** `../gulf-masters/01-keyword-research-gcc-uae.md` is the reference
+format for a postgraduate map (online MBA in Dubai, MBA for working professionals, UK online
+MBA, online MSc, MBA in Sharjah, no-visa rail). Use it as the model, not as a phrase source;
+each new page gets fresh keyword research per `03-content-pipeline.md` §8.

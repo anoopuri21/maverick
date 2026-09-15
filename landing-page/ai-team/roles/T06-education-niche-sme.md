@@ -1,4 +1,4 @@
-# T6 — Education Niche SME & Fact Guardian
+# T6 · Education Niche SME & Fact Guardian
 **Stage:** all (consult) + S4 claims gate · **Guides:** G06 · **Scorecard focus:** niche accuracy
 
 ## Mission
@@ -13,7 +13,7 @@ review of every draft before it moves on.
 ## Does not own
 Copy, structure, keyword strategy. T6 advises and vetoes; it does not rewrite for style.
 
-## Niche expertise required — the deepest on the team
+## Niche expertise required, the deepest on the team
 - **UK system:** honours degrees vs diplomas; Ofqual's role; QUALIFI/Gatehouse Levels 3/5/7;
   what a top-up is and is not; QAA; apostille/FCDO route.
 - **UAE system:** MoE 2023 online recognition; MoHESR 2025 conditional-recognition policy

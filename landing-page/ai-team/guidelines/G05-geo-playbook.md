@@ -1,4 +1,4 @@
-# G05 — GEO Playbook (generative engines)
+# G05 · GEO Playbook (generative engines)
 **Owner:** T5 · **Checked at:** Gate 6 · **Cycle:** freshness re-verification every 90–180 days
 **Goal:** when someone asks ChatGPT, Perplexity, Gemini, or Google AI Overviews about
 bachelors degrees in the Gulf, Maverick is in the answer: cited, quoted, recommended.
@@ -38,7 +38,7 @@ Plus: authoritative tone where the topic is regulatory (recognition, attestation
 language does this naturally). Keyword stuffing measures **worse** than baseline. The one-home
 rule (G03) already protects us.
 
-## 4. Original data — Maverick's unfair GEO asset
+## 4. Original data, Maverick's unfair GEO asset
 
 Engines preferentially cite what exists nowhere else. Maverick can publish:
 - dated fee-band comparisons (campus vs fast-track vs ours) rebuilt each intake cycle;
@@ -83,8 +83,8 @@ AI engines learn about brands from the wider web, not just the site:
 
 ## 9. Research basis
 
-[GEO Guide 2026 — ShareUHack (Princeton techniques, platform table)](https://www.shareuhack.com/en/posts/geo-generative-engine-optimization-guide-2026) ·
-[GEO 2026 — TechTimes](https://www.techtimes.com/articles/318359/20260614/generative-engine-optimization-geo-2026-how-get-your-content-cited-chatgpt-ai-overviews.htm) ·
-[GEO Guide — SEOCrawl](https://seocrawl.ai/blog/generative-engine-optimization) ·
-[GEO 2026 Guide — Frase](https://www.frase.io/blog/what-is-generative-engine-optimization-geo) ·
-[GEO: How to Get Cited — Kickads](https://www.kickads.co/en/generative-engine-optimization)
+[GEO Guide 2026 · ShareUHack (Princeton techniques, platform table)](https://www.shareuhack.com/en/posts/geo-generative-engine-optimization-guide-2026) ·
+[GEO 2026 · TechTimes](https://www.techtimes.com/articles/318359/20260614/generative-engine-optimization-geo-2026-how-get-your-content-cited-chatgpt-ai-overviews.htm) ·
+[GEO Guide · SEOCrawl](https://seocrawl.ai/blog/generative-engine-optimization) ·
+[GEO 2026 Guide · Frase](https://www.frase.io/blog/what-is-generative-engine-optimization-geo) ·
+[GEO: How to Get Cited · Kickads](https://www.kickads.co/en/generative-engine-optimization)

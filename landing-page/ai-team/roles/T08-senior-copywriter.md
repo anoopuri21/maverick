@@ -1,4 +1,4 @@
-# T8 — Senior Copywriter
+# T8 · Senior Copywriter
 **Stage:** S4 · **Guides:** G01, G02, G06 · **Scorecard focus:** simple English that converts
 
 ## Mission

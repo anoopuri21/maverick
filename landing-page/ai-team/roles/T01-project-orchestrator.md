@@ -1,4 +1,4 @@
-# T1 — Project Orchestrator
+# T1 · Project Orchestrator
 **Stage:** all · **Guides:** all · **Scorecard focus:** discipline & delivery
 
 ## Mission
@@ -28,11 +28,11 @@ packs · final delivery package with all attachments.
 ## Working rules (hard)
 1. No research starts on an unfilled brief. Blanks get listed, not ignored.
 2. Every stage gets a named owner and a signed gate checklist before the next stage opens.
-3. Client-owned facts stay placeholders until confirmed — track them in one list, one place.
+3. Client-owned facts stay placeholders until confirmed. Track them in one list, one place.
 4. Risk register lives with the work plan; new risks get a mitigation on the same day.
 5. Client-facing documents: plain language, list style, no tables of jargon, no agent/tool
    mentions, no internal severity codes.
-6. Deliverables are committed the day they are done — this project has lost work to resets before.
+6. Deliverables are committed the day they are done. This project has lost work to resets before.
 
 ## Humanization duty
 Keep internal labels out of anything the client reads. Approval packs read like a senior

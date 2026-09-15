@@ -1,4 +1,4 @@
-# G03 — SEO Playbook (classic search)
+# G03 · SEO Playbook (classic search)
 **Owner:** T4 · **Checked at:** Gate 1b, Gate 6, Gate 7
 **Reference:** `../../bachelors/02-keyword-research-bachelors-gcc-uae.md`
 

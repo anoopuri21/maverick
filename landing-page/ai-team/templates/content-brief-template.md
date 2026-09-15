@@ -1,11 +1,18 @@
-# Content Brief — [TASK NAME]
+# Content Brief · [TASK NAME]
 **Project:** Maverick Business Academy · **Opened by:** T1 · **Date:** YYYY-MM-DD
 **Status:** Gate 0 checklist, [ ] passed
 
-> Fill every field before research starts. Any blank must be listed in §3 as client-owned.
+> Internal working document. Fill every field before research starts. Any blank must be
+> listed in §3 as client-owned. This brief and its fill-in fields never reach the client;
+> the final deliverable ships with zero placeholders and zero instructions (G07 §7).
+>
+> The pipeline is page-agnostic. Name the page and the market below; the same stages run
+> for any page (bachelors, masters, a single programme, a guide, a WhatsApp sequence).
 
 ## 1. Purpose & conversion
+- Page / asset name:
 - Asset type: [landing page / guide / programme page / email / WhatsApp script / client pack]
+- Study level this asset serves: [undergraduate / postgraduate / diploma-top-up / mixed]
 - Page purpose (one sentence, conversion-specific):
 - Primary conversion + channel: [form → counsellor call / WhatsApp / download]
 - Secondary: · Tertiary:
@@ -27,6 +34,9 @@
 
 ## 4. Search objectives
 - Market/geo target:
+- Keyword source: [client-supplied (attached) / T4 to research, location-based]
+- If client-supplied: list attached or pasted here:
+- If T4 researches: location(s) to target, so the map is geo-specific:
 - Head keyword (proposed K1):
 - Known objections to answer (from `02` §3/§5):
 - Answer-engine questions this asset must own (first pass; T5 finalises):

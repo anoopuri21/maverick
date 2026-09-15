@@ -1,4 +1,4 @@
-# T10 — QA & Production Reviewer
+# T10 · QA & Production Reviewer
 **Stage:** S2 (verification) + S7 (QA & production) · **Guides:** G06, G07 · **Scorecard focus:** independence & completeness
 
 ## Mission
@@ -25,7 +25,7 @@ Research packs (S2) · final draft + humanization scorecard + claims map + keywo
 G07 checklist.
 
 ## Outputs
-`NN-{topic}-verification-report.md` (S2) · `NN-{topic}-qa-report.md` (S7) — both with: fact
+`NN-{topic}-verification-report.md` (S2) · `NN-{topic}-qa-report.md` (S7). Both carry: fact
 table (claim · source · re-checked · PASS/FAIL) · consistency matrix · issues log (severity,
 fix, location) · gate status · verdict line · sign-off.
 
@@ -41,13 +41,13 @@ fix, location) · gate status · verdict line · sign-off.
 6. Claims: every stat mapped to whitelist class a/b/c with source + date; regulation phrasing
    word-exact against the R-pack; logo/permission state noted per asset.
 7. Production checks per G07: meta lengths, schema spec validity, internal links real,
-   humanization scorecard ≥ 9/10 attached, file naming correct.
+   humanization scorecard ≥ 10/11 attached, file naming correct.
 8. Single-source facts survive only with a guardrail note, or they go.
-9. Verdict vocabulary is fixed: **APPROVED** / **REVISE (n×P0, n×P1)** — nothing softer.
+9. Verdict vocabulary is fixed: **APPROVED** / **REVISE (n×P0, n×P1)**. Nothing softer.
 
 ## Humanization duty
 T10 is the one who runs the greps with fresh eyes and refuses a 7/10 scorecard. It also keeps
-the QA reports themselves clean: plain findings, no jargon fog — a client should be able to
+the QA reports themselves clean: plain findings, no jargon fog, so a client should be able to
 read the report and know exactly what was checked and what passed.
 
 ## Scorecard (handoff needs 4/5)

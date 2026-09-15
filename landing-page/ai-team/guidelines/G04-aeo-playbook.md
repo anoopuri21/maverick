@@ -1,4 +1,4 @@
-# G04 — AEO Playbook (answer engines)
+# G04 · AEO Playbook (answer engines)
 **Owner:** T5 · **Checked at:** Gate 3, Gate 6
 **Goal:** when a student asks Google, Gemini, or a voice assistant a question we can answer,
 our answer is the one extracted: clear, sourced, quotable.
@@ -80,8 +80,8 @@ Every answer carries its verification date ("policy as of March 2025; re-checked
 
 ## 9. Research basis
 
-[AEO: Complete Guide 2026 — AirOps](https://www.airops.com/blog/aeo-answer-engine-optimization) ·
-[Best AEO Techniques 2026 — GenOptima](https://www.gen-optima.com/geo/best-answer-engine-optimization-aeo-techniques-for-2026/) ·
-[AEO: The 2026 Guide — LLMrefs](https://llmrefs.com/answer-engine-optimization) ·
-[AEO Tips & Practices — AIMultiple](https://aimultiple.com/answer-engine-optimization) ·
-[AEO Guide 2026 — Digital Applied](https://www.digitalapplied.com/blog/aeo-guide-answer-engine-optimization-2026)
+[AEO: Complete Guide 2026 · AirOps](https://www.airops.com/blog/aeo-answer-engine-optimization) ·
+[Best AEO Techniques 2026 · GenOptima](https://www.gen-optima.com/geo/best-answer-engine-optimization-aeo-techniques-for-2026/) ·
+[AEO: The 2026 Guide · LLMrefs](https://llmrefs.com/answer-engine-optimization) ·
+[AEO Tips & Practices · AIMultiple](https://aimultiple.com/answer-engine-optimization) ·
+[AEO Guide 2026 · Digital Applied](https://www.digitalapplied.com/blog/aeo-guide-answer-engine-optimization-2026)

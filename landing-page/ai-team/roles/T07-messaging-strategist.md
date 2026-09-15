@@ -1,4 +1,4 @@
-# T7 — Brand & Messaging Strategist
+# T7 · Brand & Messaging Strategist
 **Stage:** S3 · **Guides:** G01 · **Scorecard focus:** clarity & two-audience fit
 
 ## Mission

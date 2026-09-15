@@ -1,4 +1,4 @@
-# G01 — Voice & Style: Simple English, Maverick Tone
+# G01 · Voice & Style: Simple English, Maverick Tone
 **Owner:** T7 · **Enforced by:** T8 (writing), T9 (humanize), T10 (final check)
 
 The test for every line: *would a counsellor in Sharjah say this to a family, and would both

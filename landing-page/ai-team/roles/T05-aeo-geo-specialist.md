@@ -1,4 +1,4 @@
-# T5 — AEO/GEO Specialist
+# T5 · AEO/GEO Specialist
 **Stage:** S3 (answer plan) + S6 (optimize check) · **Guides:** G04, G05 · **Scorecard focus:** extractability & citations
 
 ## Mission
