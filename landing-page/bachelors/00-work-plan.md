@@ -94,6 +94,13 @@ plus PDF + DOCX renders, all pre-build QA scans green: 0 em-dashes, 0 banned AI 
 0 placeholders, catalogue 18/18 verbatim, K1–K8 + R1–R8 homes placed, claims map 100% sourced).
 Held for Approval #2; client-facing share only after SOP v2.2 sign-off.
 
+**Content v2 (2026-09-15, client review applied):** source of truth moved to
+`06-bachelors-landing-content-gcc-uae.html` (semantic HTML). Changes: practical section order
+(trust after hero; family questions after the catalogue), new benefits section with sourced
+GCC ROI facts (MoHRE graduate salary guidance Jan 2026, Nafis top-ups, KSA Vision 2030 private
+sector), highlighted keywords (`<strong class="kw">`), GCC countries blended at hero, trust,
+benefits, office, FAQ. Prototype `07-lp-prototype.html` mirrors the same order and copy.
+
 ### Track 2: design pre-work (parallel, content-independent)
 | Item | What is decided now | Waits for content |
 |---|---|---|
