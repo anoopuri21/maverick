@@ -23,18 +23,28 @@ Documentation → Review → Compilation. QA status: **approved for design hando
 | 10 | `08-visual-direction-guide.md` | Mood, tokens, per-section imagery, motion, components |
 | 11 | `10-qa-review-report.md` | Consistency matrix, compliance controls, launch blockers |
 
-## Gulf Masters LP (GCC/UAE) — second page in the package — **ON HOLD**
+## Gulf Masters LP (GCC/UAE) · page `/online-mba-masters-uae` · **CONTENT APPROVED, AT CLIENT SIGN-OFF**
 
-> **Status (2026-09-11):** build on hold — the client's content writer is finalising the
-> draft against the audit's P0 list (`content-audit-report.pdf`). Resume at Gate 3a
-> (re-audit) once the revision lands.
+> **Status (2026-09-15):** the AI content team ran the full pipeline on this page (brief,
+> fresh GCC/UAE research, verification, plan, content, QA). The client's 15 keywords are
+> validated and placed one-home each. QA verdict: APPROVED, 0 P0. Eight client
+> confirmations tracked in `09` §7 (durations, fee range, stats, testimonials, intake
+> calendar). Content fits the existing settings-driven design; the only additions are the
+> two already-built `journey` and `compare` partials re-enabled.
 
-`gulf-masters/` — Master's landing page for GCC/UAE prospects, keyword-driven:
+`gulf-masters/` · Master's landing page for GCC/UAE prospects:
 | File | What it is |
 |---|---|
-| `gulf-masters/01-keyword-research-gcc-uae.md` | 6 high-demand keywords (online MBA in Dubai · MBA in UAE for working professionals · UK online MBA · online MSc Dubai · MBA in Sharjah · no-visa/relocation) + meta + schema + price anchors |
-| `gulf-masters/02-masters-landing-content-gcc-uae.md` | **Full design-ready page content** built on those 6 keywords (AED-first, WhatsApp-first, 16-block spine) |
-| `gulf-masters/content-audit-report.pdf` | **QA audit of the writer's draft** (`uploads/master-landing-page-content.pdf`) — 10-page report: structure, GCC-basis, SEO/keywords, word quality, copyright, compliance, CRO + P0/P1/P2 improvement plan. Verdict: revise before build (5.0/10) |
+| `gulf-masters/01-keyword-research-gcc-uae.md` | *2026-09 model:* 6 high-demand keywords + meta + schema + price anchors |
+| `gulf-masters/02-masters-landing-content-gcc-uae.md` | *Superseded by `08`:* earlier 16-block draft kept for history |
+| `gulf-masters/03-masters-brief-research-plan-gcc-uae.md` | Brief + research plan & strategy for the page task |
+| `gulf-masters/04-masters-market-competitor-research-gcc-uae.md` | **Fresh GCC/UAE research:** market facts (sourced + dated), MoHESR recognition pack, competitor matrix with 2026 price anchors, persona notes |
+| `gulf-masters/05-masters-keyword-map-gcc-uae.md` | **Client's 15 keywords** validated, one home each, meta, slug, schema request, anti-stuffing contract |
+| `gulf-masters/06-masters-research-verification-gcc-uae.md` | T10 verification: 24-fact table, consistency matrix, issues log |
+| `gulf-masters/07-masters-page-plan-strategy-gcc-uae.md` | Section blueprint mapped to the live settings classes, tone notes, CTA ladder, 10 answer capsules |
+| `gulf-masters/08-masters-landing-content-gcc-uae.md` | **THE PAGE CONTENT** in the client sample's format: 18 sections, 12 FAQ AEO answers, zero placeholders, zero em dashes, all 15 keywords placed |
+| `gulf-masters/09-masters-content-qa-report-gcc-uae.md` | **QA report:** sweeps (all 0), claims map 100%, humanization 11/11, client-confirmation list, verdict APPROVED |
+| `gulf-masters/content-audit-report.pdf` | Historical QA audit of the writer's draft (`uploads/master-landing-page-content.pdf`), verdict 5.0/10; its P0 list is fully resolved in `08` |
 
 ## AI Content Team — working environment (NEW 2026-09-14)
 
