@@ -11,13 +11,13 @@
 ## 1. HERO
 
 ### eyebrow
-UK degrees. No visa needed. Study from the UAE.
+International degrees. No visa needed. Study from the UAE.
 
 ### heading
 Online MBA & Master's Degrees for the UAE and GCC
 
 ### subheading
-University-awarded British Master's degrees designed for full-time professionals. Choose an MBA or a Master's from the UK without leaving your job, without relocating, and without a student visa. The September 2026 intake is now open.
+University-awarded Master's degrees designed for full-time professionals. Choose an MBA or a Master's from Switzerland, North Cyprus, or the UK without leaving your job, without relocating, and without a student visa. The September 2026 intake is now open.
 
 ### form_title
 Get the programme guide
@@ -39,7 +39,7 @@ Download Syllabus
 Rated 4.9 out of 5 by professionals who studied with us (Trustpilot)
 
 ### quote
-"One of the best decisions I have made. The degree is genuinely UK-awarded, and my employer in Abu Dhabi had zero questions about its validity."
+"One of the best decisions I have made. The degree is genuinely university-awarded, and my employer in Abu Dhabi had zero questions about its validity."
 Rajesh Menon, MBA graduate, Abu Dhabi
 
 ### stats
@@ -69,7 +69,7 @@ Every module builds the three things employers screen for: Attitude, Skills, and
 Assignments are built as workplace deliverables: a business plan, a market entry analysis, a team leadership review. You submit work you can reuse at your job, and your manager sees the difference before you graduate.
 
 **Knowledge-based MBA learning**
-Core theory comes from UK faculty, set in current Gulf business context and distilled into focused evening modules. Short readings, clear frameworks, and session recordings keep the load manageable beside a full-time role.
+Core theory comes from your university's faculty, set in current Gulf business context and distilled into focused evening modules. Short readings, clear frameworks, and session recordings keep the load manageable beside a full-time role.
 
 **Real-world case studies**
 Cases are drawn from live Gulf businesses, and your final project solves a problem inside your own company. Several graduates have taken that project straight into their next performance review.
@@ -88,15 +88,15 @@ Ask an advisor
 Why an MBA for working professionals in UAE makes sense right now
 
 ### intro
-A UK Master's is not a theory course. It is a working professional's fastest route to a wider role, a stronger salary case, and international recognition, without pausing income.
+A Master's is not a theory course. It is a working professional's fastest route to a wider role, a stronger salary case, and international recognition, without pausing income.
 
 ### chapters
 
 **Learn without pausing your salary**
 Classroom-based programmes ask you to quit, relocate, or wait for a weekend slot. This degree runs in the evenings and on weekends, live from the UAE, a genuinely flexible MBA schedule that keeps your salary intact. You study after office hours, apply what you learn the very next working day, and never lose a single dirham of income to your education.
 
-**A British degree is a British degree**
-Your certificate is issued by the UK university itself, with the same academic standing as on-campus study. It is recognised worldwide, including across the GCC.
+**Your certificate comes from the university itself**
+Your certificate is issued by the awarding university, with the same academic standing as on-campus study. It is recognised worldwide, including across the GCC.
 
 **Built for promotion and transition**
 Every module maps to skills UAE employers screen for: leadership, finance, operations, and strategy. The final project lets you solve a live business problem from your own workplace. Graduates regularly point to that project in interviews, because it is concrete proof that they can turn theory into results.
@@ -135,59 +135,63 @@ Most applicants complete the steps below in 2 to 4 weeks. An advisor walks every
 MBA specializations in UAE: Pick Your MBA
 
 ### intro
-Three MBA families, one goal: a UK Master's that fits your career. Every programme below is university-awarded and fully online. Compare them side by side, then pick the one that matches your next role.
+Four MBA routes on one page: twelve specializations at Rushford Business School, six MBAs and sixteen Executive MBAs at Girne American University, and a Global MBA awarded in the UK. Every programme is university-awarded and fully online. Compare them side by side, then pick the one that matches your next role.
 
 ### tabs
 
-**General MBA**
-The classic route for managers who want breadth. Core business modules plus a specialism of your choice. 12 months, AED 16,000 to 25,000, from Rushford Business School. Works in any industry: the curriculum is built around leadership, strategy, and decision-making. Ideal for team leads, operations managers, and consultants moving into senior roles. Careers outside business are welcome: the opening module covers the fundamentals.
-
-**Specialized MBA**
-Pick a concentration that matches where you are going:
+**MBA, Rushford Business School (Switzerland)**
+Twelve specializations in one online format:
 [list]
-- MBA in Sustainability, Energy & Environment
+- MBA in Sustainability, Energy and Environment
 - MBA in Strategic Management
 - MBA in Real Estate Management
 - MBA in Human Resource Management
 - MBA in Marketing
-- MBA in Logistics & Supply Chain
+- MBA in Logistics & Supply Chain Management
 - MBA in Healthcare Leadership
 - MBA in Hospitality & Tourism Management
 - MBA in Health Economics
-- MBA in Entrepreneurship & Innovation
+- MBA in Entrepreneurship and Innovation
 - MBA in Finance
-- General MBA
-Same duration and fees as the General MBA. The specialization appears on your transcript and in your final award letter. Each concentration is taught with real Gulf industry cases, so the examples feel familiar from day one.
+- Master of Business Administration (MBA)
+Works in any industry: the curriculum is built around leadership, strategy, and decision-making. Ideal for team leads, operations managers, and consultants moving into senior roles.
 
-**Executive MBA**
-For senior leaders with 8+ years of experience:
+**MBA, Girne American University (North Cyprus)**
+Six MBAs for managers who want a specialization with an international cohort:
 [list]
-- Executive MBA
-- Executive MBA in Artificial Intelligence
-- Executive MBA in Business Analytics
-- Executive MBA in Data Science
-- Executive MBA in Digital Leadership
-- Executive MBA in FinTech
-- Executive MBA in Global Management
-- Executive MBA in Green Energy
-- Executive MBA in Healthcare Management
-- Executive MBA in International Business
-- Executive MBA in Sustainable Business
-Eleven concentrations built for decision-makers. Same 12-month structure, same UK award route. Cohort size is limited, and classmates bring seniority, so discussions draw on real leadership experience.
+- MBA in Business Management
+- MBA in Financial Management
+- MBA in International Business Management
+- MBA in Management Information Systems
+- MBA in Marketing
+- MBA Data Science/Analytics Management
 
-**Global MBA**
-For careers across borders:
+**Executive MBA, Girne American University (North Cyprus)**
+Sixteen Executive MBAs for senior leaders:
 [list]
-- Global MBA
-- Global MBA in International Business
-- Global MBA in Finance
-- Global MBA in HR Analytics
-- Global MBA in Management
-- Global MBA in Supply Chain Management
-A US-awarded degree with an international perspective. Popular in logistics, trade, and regional HQ roles across Dubai and Abu Dhabi.
+- Executive MBA in Educational Leadership
+- Executive MBA in Media & Entertainment
+- Executive MBA in Global Banking & Finance
+- Executive MBA in Health & Safety Leadership
+- Executive MBA in Renewable Energy & Sustainability
+- Executive MBA in Tourism & Hospitality Management
+- Executive MBA in Innovation & Entrepreneurship
+- Executive MBA in Project Management
+- Executive MBA in Human Resources Management
+- Executive MBA in Supply Chain Management
+- Executive MBA in Health Care Management
+- Executive MBA in Engineering Management
+- Executive MBA in Public Administration
+- Executive MBA in Public Health
+- Executive MBA in Digital Marketing
+- Executive MBA in Sport Management
+Cohort size is limited and classmates bring seniority, so discussions draw on real leadership experience.
+
+**Global MBA, University for the Creative Arts (UK) with Rushford**
+One degree with an international perspective, for careers across borders. Popular in logistics, trade, and regional HQ roles across Dubai and Abu Dhabi.
 
 ### closing
-Not sure which family fits? Ask an advisor and get a recommendation within 24 hours. The right pick depends on your experience and your next role, and the call is free.
+Not sure which route fits? Ask an advisor and get a recommendation within 24 hours. The right pick depends on your experience and your next role, and the call is free.
 
 ---
 
@@ -197,39 +201,44 @@ Not sure which family fits? Ask an advisor and get a recommendation within 24 ho
 Master's Degrees Beyond the MBA
 
 ### intro
-The same UK award route, applied to high-demand fields: sustainability, supply chain, health economics, and business psychology.
+The same award route, applied to high-demand fields: sustainability, supply chain, economics, healthcare, and law.
 
 ### universities (name, programmes, details)
 
-**Rushford Business School (Cleveland, US)**
+**Rushford Business School (Switzerland), MSc**
 [list]
-- MBA in Sustainability, Energy & Environment
-- MBA in Strategic Management
-- MBA in Real Estate Management
-- Master of Education
-12 months. AED 16,000 to 25,000. All programmes share the same online format.
+- MSc in Sustainability and Environmental Management
+- MSc in Strategic Management
+- MSc in Operations and Supply Chain Management
+- MSc in International Business Management
+- MSc in Marketing
+- MSc in Entrepreneurship & Innovation
+- MSc in Finance and Investment
+- MSc in Economics
+- MSc in Business Management
+Specialist MSc pathways that build advanced knowledge across business and management.
 
-**Cardiff Metropolitan University (UK)**
+**Girne American University (North Cyprus), MSc with Thesis**
 [list]
-- MSc Applied Sustainability Studies
-- MSc Supply Chain Management
-12 months. AED 25,000 to 40,000. UK-awarded, delivered fully online from the GCC. Both MSc programmes carry an applied focus, with assignments based on live sustainability and logistics challenges.
+- MSc in Business Management
+- MSc in Economics
+- MSc in Healthcare Management
+- MSc in Counselling Psychology
+Thesis-based MSc programmes for professionals heading toward research or doctoral study.
 
-**IIM Kozhikode (India)**
-[list]
-- MBA in Business Analytics
-Executive-friendly format for analysts and product leaders who want a quantitative edge, from one of India's most respected management institutes.
+**University of Wolverhampton (UK), Master of Laws**
+A UK-awarded LLM for professionals who need formal legal grounding alongside business roles.
 
 ### trending (3 cards)
 
 **Affordable MBA in Finance**
-Rushford Business School. 12 months. AED 16,000 to 20,000.
+Rushford Business School. Online, instalments available.
 
 **Affordable MBA in Human Resource Management**
-Rushford Business School. 12 months. AED 16,000 to 20,000.
+Rushford Business School. Online, instalments available.
 
 **Affordable MBA in Healthcare Leadership**
-Rushford Business School. 12 months. AED 16,000 to 20,000.
+Rushford Business School. Online, instalments available.
 
 ---
 
@@ -276,15 +285,14 @@ Energy & Oil | Logistics & Trade | Banking & Finance | Government | Healthcare |
 MBA Fees in UAE: What You Actually Pay
 
 ### intro
-Total programme cost, no hidden lines. Most students pay AED 16,000 to 40,000 across the full degree, roughly one third of what a campus MBA costs in Dubai today. Every payment is confirmed in writing before your seat is reserved.
+Total programme cost, no hidden lines. Across programmes, fees typically fall between AED 16,000 and 40,000, roughly one third of what a campus MBA costs in Dubai today. Every payment is confirmed in writing before your seat is reserved.
 
-### rows (Programme | Total Fees | Duration | Payment)
-General MBA | AED 16,000 to 25,000 | 12 months | Instalments
-Specialized MBA | AED 16,000 to 25,000 | 12 months | Instalments
-Executive MBA | AED 25,000 to 35,000 | 12 months | Instalments
-Global MBA | AED 20,000 to 30,000 | 12 months | Instalments
-Cardiff MSc programmes | AED 25,000 to 40,000 | 12 months | Instalments
-IIM Kozhikode MBA (Analytics) | AED 25,000 to 35,000 | 12 months | Instalments
+### rows (Programme | Fees | Duration | Payment)
+MBA, Rushford (12 specializations) | confirmed per programme | 10 to 15 months | AED instalments
+MBA, Girne American University | confirmed per programme | 10 to 15 months | AED instalments
+Executive MBA, Girne American University | confirmed per programme | 12 to 18 months | AED instalments
+Global MBA, UCA with Rushford | confirmed per programme | 10 to 15 months | AED instalments
+MSc (Rushford, Girne) and LLM (Wolverhampton) | confirmed per programme | 8 to 18 months | AED instalments
 
 ### note
 Fees depend on the programme and intake. Your advisor confirms the exact figure in writing before you pay anything.
@@ -316,9 +324,9 @@ What UAE Graduates Did Next
 Recent outcomes from students across the Gulf. Every story below started with a full-time job and evening study.
 
 ### stories
-Ahmed, Operations Lead, Dubai | Logistics & Supply Chain MBA | Moved into a regional operations role six months after graduating. His employer supported the fees.
+Ahmed, Operations Lead, Dubai | MBA in Logistics & Supply Chain Management | Moved into a regional operations role six months after graduating. His employer supported the fees.
 Fatima, HR Manager, Riyadh | MBA in Human Resource Management | Used the final project to redesign her company's talent framework. Promoted before the course ended.
-Khalid, Branch Manager, Doha | General MBA | Took over a second branch within a year. The finance modules changed how he reads a P&L.
+Khalid, Branch Manager, Doha | Master of Business Administration | Took over a second branch within a year. The finance modules changed how he reads a P&L.
 Sara, Marketing Executive, Abu Dhabi | MBA in Marketing | Led her first regional campaign within a year of graduating. The specialization matched her target role exactly.
 
 ---
@@ -345,10 +353,10 @@ International MBA Degrees from Our University Partners
 Every Master's on this page is awarded by the university named below. You apply once, study online, and graduate from the university that issues your certificate. One application covers admission, enrolment, and your study plan.
 
 ### partners (name, accreditation, detail)
-Rushford Business School | ACBSP member | US-awarded MBAs in business, engineering, and healthcare. 12-month online format.
-Cardiff Metropolitan University | UK chartered university | MSc programmes in sustainability and supply chain, delivered online.
-IIM Kozhikode | AACSB member | Analytics-led MBA for working professionals, from one of India's top institutes.
-University of Worcester | UK chartered university | Top-up pathways for professionals completing a bachelor's, leading into Master's study.
+Rushford Business School | Switzerland, EduQua and IACBE | Twelve MBAs and nine MSc programmes, delivered fully online.
+Girne American University | North Cyprus, YÖDAK and YÖK, IACBE | Six MBAs, sixteen Executive MBAs, and four thesis-based MSc programmes.
+University for the Creative Arts | UK public university | Awards the Global MBA, delivered with Rushford Business School.
+University of Wolverhampton | UK public university | Awards the Master of Laws.
 
 ### checklist
 - The university awards your degree, not a third party
@@ -455,14 +463,14 @@ UAE employers are broadly comfortable with accredited online degrees, and many s
 Yes. Around half the current cohort studies from the UAE, with the rest from Saudi Arabia, Oman, Qatar, and beyond. Support works on Gulf time for every country in the region. WhatsApp study groups run per intake, across time zones.
 
 12. Do I need a student visa?
-No. You study fully online from your current location, so no student visa is required. You keep your residence visa exactly as it is. That removes one of the biggest barriers to a UK degree for GCC professionals.
+No. You study fully online from your current location, so no student visa is required. You keep your residence visa exactly as it is. That removes one of the biggest barriers to an international degree for GCC professionals.
 
 ---
 
 ## 18. FINAL CTA
 
 ### heading
-Your UK Master's Starts With One Conversation
+Your Master's Starts With One Conversation
 
 ### copy
 Share your CV or LinkedIn profile, and an advisor in Sharjah will map your route, your total fees, and the September 2026 intake within 24 hours. No obligation, no pressure, and no student visa required. If a Master's is the right next step, this is the fastest way to confirm it. Prefer WhatsApp? Message us and an advisor replies the same day.

@@ -145,3 +145,17 @@ Client supplied the base themes: "A Strong Learning Community with Powerful Netw
 5. Real-world case studies
 
 Keyword homes kept inside the section: K2 "MBA in Dubai" (heading), K6 "Dubai for working professionals" (intro). Heading, intro, and both CTAs updated to match the new lists; all other sections untouched. META internal-links spec: removed the now-dead "Top up degrees" anchor (its copy left the page with the old lists). Sweeps re-run: 0 dashes, 0 banned, 0 placeholders; content words 3,111 (cap 3,000 to 3,500); 16/16 keywords. DOCX and PDF regenerated from the same source.
+
+## Addendum 2026-09-16 (c): programmes and universities aligned to uploads/listing.pdf
+
+Client flagged that programme and university names did not match the official listing. 08 rebuilt against uploads/listing.pdf as the single source of truth:
+
+- Rushford Business School (Switzerland): 12 MBAs + 9 MSc, exact catalogue names
+- Girne American University (North Cyprus): 6 MBAs + 16 Executive MBAs + 4 MSc with Thesis
+- University for the Creative Arts (UK) with Rushford: Global MBA
+- University of Wolverhampton (UK): Master of Laws
+- Removed from content: Cardiff Metropolitan, IIM Kozhikode, University of Worcester, "Cleveland US" for Rushford, Master of Education, invented EMBA and Global MBA specializations. Nothing added beyond the listing.
+- Fees table restructured to catalogue families; per-programme fees "confirmed per programme" (client sample's own approach), overall AED 16,000 to 40,000 range kept as client-authored indicative range; durations 10 to 15 / 12 to 18 / 8 to 18 months per family.
+- Awarding-body consistency: blanket UK or British degree claims replaced with awarding-university wording (hero, trust quote, Why block, final CTA, FAQ 12), since partners span Switzerland, North Cyprus, and UK.
+- Partner accreditation lines updated to verified KB facts: RBS EduQua and IACBE; GAU YÖDAK and YÖK plus IACBE; UCA and UOW as UK public universities.
+- Verification: all 49 catalogue master's programmes present verbatim; zero non-catalogue university or programme names; sweeps all 0; 16/16 keywords; content words 3,126. DOCX, PDF, and the client report regenerated.
