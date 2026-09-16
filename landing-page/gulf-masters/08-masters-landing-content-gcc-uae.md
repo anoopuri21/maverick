@@ -49,33 +49,33 @@ Rajesh Menon, MBA graduate, Abu Dhabi
 
 ---
 
-## 3. OVERVIEW (THE 3 PATHS)
+## 3. OVERVIEW (PROGRAM OVERVIEW)
 
 ### heading
-MBA in Dubai: Three Paths to a UK Master's
+MBA in Dubai: What This Programme Gives You
 
 ### intro
-Your situation decides the right path. The same UK degree, three ways to fit it around a full-time role. All three paths end in the same UK award.
+An MBA in Dubai for working professionals should change how you work without pausing your life. From week one to graduation, every cohort gets the five things below.
 
 ### items (heading + copy)
 
-**Already have your bachelor's?**
-An MBA or Master's takes 12 to 18 months online. This is the standard path for applicants with 3 or more years of work experience, and the one most students on this page take.
+**A strong learning community with powerful networking**
+You study alongside founders, bankers, and government specialists from the UAE, Saudi Arabia, Oman, and Qatar. The live-class circles and WhatsApp groups that carry you through the degree become your professional network after it.
 
-**Bachelor's not completed?**
-Top up the remaining years online, then enter the same Master's. Degrees from the University of Worcester, Sheffield Hallam and Coventry, awarded from the UAE without a student visa.
+**ASK Quotient development**
+Every module builds the three things employers screen for: Attitude, Skills, and Knowledge. Your success coach tracks your growth across all three, so you graduate measurably stronger, with evidence to show for it.
 
-**No bachelor's at all?**
-A UK-certified graduate diploma from Ruskin Business School opens the direct route to an MBA. Around 12 months, no campus attendance, and it stands on its own in the job market.
+**Skills-based MBA learning**
+Assignments are built as workplace deliverables: a business plan, a market entry analysis, a team leadership review. You submit work you can reuse at your job, and your manager sees the difference before you graduate.
 
-**Not sure which one fits?**
-Share your background with an advisor in Sharjah. Within 24 hours you will know your route, your timeline, and your total fees in writing.
+**Knowledge-based MBA learning**
+Core theory comes from UK faculty, set in current Gulf business context and distilled into focused evening modules. Short readings, clear frameworks, and session recordings keep the load manageable beside a full-time role.
 
-**Dubai for working professionals**
-Evening and weekend classes, AED instalments, and a Sharjah office you can actually visit. This path is built around Gulf working hours and Gulf salaries.
+**Real-world case studies**
+Cases are drawn from live Gulf businesses, and your final project solves a problem inside your own company. Several graduates have taken that project straight into their next performance review.
 
 ### cta_primary
-Compare your path
+Explore the MBA families
 
 ### cta_secondary
 Ask an advisor
@@ -522,6 +522,5 @@ Q: Do I need a student visa?
 A: No. You study fully online from your current location, so no student visa is required.
 
 ### internal links
-- Anchor "Top up degrees" → /bachelor-degree-in-dubai (bachelors page)
 - Anchor "MoHESR recognition" → https://www.mohesr.gov.ae (official)
 - Anchor "MBA in UAE: Complete Guide" → /blog/mba-in-uae-complete-guide (existing ranking guide)
