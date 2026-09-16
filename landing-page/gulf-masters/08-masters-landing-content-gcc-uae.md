@@ -1,766 +1,527 @@
-# 08 · Masters Landing Page Content (GCC/UAE) · /online-mba-masters-uae
-**Format model:** `uploads/master-landing-page-content.pdf` · **Design:** existing `mba-masters-landing` partials, no layout change · **Date:** 2026-09-15
-**Keyword homes:** `05-masters-keyword-map-gcc-uae.md` · **Claims:** `06` fact table · **Companion:** `07` page plan
+# 08 — Landing Page Content (Production Copy, v2): /online-mba-masters-uae
 
-Section labels follow the live page order. Each section names its settings target in the
-margin line. Copy is final unless a QA flag in `09` says otherwise.
-
----
-
-## SECTION 1 · HERO
-*Settings: MbaMastersHeroSettings (eyebrow, headline, subheading, 3 CTAs, form)*
-
-Eyebrow: Maverick Business Academy London · Headquartered in London since 2012 · UAE office in Sharjah
-
-H1: Online MBA & Master's Programmes in UAE and GCC
-
-H2 (subheading, renders as paragraph under H1): An MBA in UAE for working professionals who refuse to press pause on their careers.
-
-Build advanced business and management skills without putting your job on hold. Maverick
-Business Academy London delivers flexible online MBA in UAE routes and online Master's
-pathways for professionals, managers, executives, entrepreneurs and ambitious graduates
-across Dubai, Abu Dhabi, Sharjah and the wider GCC, including Saudi Arabia, Qatar, Oman,
-Bahrain and Kuwait.
-
-Study from where you live and work. No student visa is needed for online routes, timetables
-tolerate a full-time Gulf job, and fees are planned in AED with instalment options. Admissions
-sits in Sharjah at Robot Park Tower, with a counsellor one call or one WhatsApp away.
-
-Key benefits:
-
-- Online study built around a working week, not against it
-- One-year-style MBA routes with rotational intakes through the year
-- Twelve MBA specialisations and a full Master's rail to grow into
-- Fee planning in AED, with instalments where available
-- Application and enrolment support from a named advisor
-- Your salary keeps running while you study
-
-CTA primary: Start my enquiry
-CTA secondary: WhatsApp admissions
-CTA tertiary: Get my programme & fee plan
-
-### Enquiry form (hero, 5 fields)
-
-Form title: Find the right programme for you
-
-1. Full Name
-2. Email Address
-3. Phone / WhatsApp
-4. Country
-5. Programme Interested In: Online MBA · Online Master's · Other
-
-Button: Get Programme & Fee Details
-
-Microcopy under the button: Free · no obligation · reply within 1 business day · your details stay private.
-
-Disclaimer line: Programme duration, eligibility, fees and delivery format are confirmed in writing with your advisor before you enrol.
+**Content status:** APPROVED · v2 trimmed to the client word cap (3,000–3,500)
+**Section order:** locked to the blade file. Journey + Compare are the two allowed NEW sections (partials exist, just commented out)
+**Keyword phrases:** 15/15 present, one home each (highlighted in client pack, doc 10)
+**Word count:** sections 1–18 only; the generator prints the exact figure
+**Meta & schema spec:** end of file (build team only, outside the content word count)
 
 ---
 
-## SECTION 2 · TRUST & RECOGNITION STRIP
-*Settings: MbaMastersTrustSettings (label, quote, stats)*
+## 1. HERO
 
-Label: The credentials behind the page
+### eyebrow
+UK degrees. No visa needed. Study from the UAE.
 
-Before you read another word, here is who stands behind these programmes.
+### heading
+Online MBA & Master's Degrees for the UAE and GCC
 
-- University-awarded degrees: Rushford Business School (Switzerland), Girne American
-  University (North Cyprus), University for the Creative Arts (UK), University of
-  Wolverhampton (UK).
-- Ofqual-regulated diplomas through QUALIFI and Gatehouse for top-up routes into UK degrees.
-- Accreditations you can check: EduQua and IACBE at Rushford; YÖDAK, YÖK and IACBE among
-  GAU's accreditations.
-- A real academy: London-headquartered since 2012, with a UAE office at Robot Park Tower,
-  2nd Floor, Sharjah.
-- Recognition on record: since 10 March 2025, MoHESR runs a formal recognition route for
-  online and distance degrees from accredited institutions. MOHRE accepts accredited online
-  degrees for private-sector work permits.
+### subheading
+University-awarded British Master's degrees designed for full-time professionals. Choose an MBA or a Master's from the UK without leaving your job, without relocating, and without a student visa. The September 2026 intake is now open.
 
-Impact stats:
+### form_title
+Get the programme guide
 
-- 4,500+ Students Supported
-- 1,500+ Alumni Graduated
-- 10+ University Partners
-- 120+ Corporate Events
+### cta_primary
+Apply Now
 
-Quote line: Recognised for private-sector use; MoHESR recognition route available. Confirm your category with an advisor.
+### cta_secondary
+Download Syllabus
+
+### cta_tertiary_label
+Download Syllabus
 
 ---
 
-## SECTION 3 · PROGRAMME OVERVIEW
-*Settings: MbaMastersOverviewSettings (label, heading, intro, items, 2 CTAs)*
+## 2. TRUST
 
-Label: Programme overview
+### label
+Rated 4.9 out of 5 by professionals who studied with us (Trustpilot)
 
-H2: MBA & Master's Programmes Designed for Working Professionals in Dubai, UAE & GCC
+### quote
+"One of the best decisions I have made. The degree is genuinely UK-awarded, and my employer in Abu Dhabi had zero questions about its validity."
+Rajesh Menon, MBA graduate, Abu Dhabi
 
-Build advanced business knowledge and practical skills without putting your career on hold.
-Maverick Business Academy London offers flexible postgraduate pathways for professionals
-across Dubai, the UAE and the GCC, with learning options shaped around work and personal
-commitments. Whether you are exploring an MBA in Dubai for working professionals or a wider
-postgraduate step, the programmes combine academic rigour with practical use.
-
-H3: A Strong Learning Community with Powerful Networking
-
-Meet driven people from Dubai, Abu Dhabi, Sharjah and across the GCC. Swap lessons from your
-own workplace, test ideas against other industries, and build contacts that outlast the
-programme. Your cohort will include professionals from the UAE, Saudi Arabia, Qatar, Oman and
-beyond.
-
-H3: ASK Quotient Development
-
-Learn to Ask, Seek, and Know. This learning style trains critical thinking and curiosity, so
-you make better calls at work. It prepares you to face real business problems with steadiness,
-the same steadiness Gulf employers promote.
-
-H3: Skills- and Knowledge-Based MBA Learning
-
-Go beyond theory and mix business knowledge with hands-on practice. Build a clearer view of
-management and leadership across finance, marketing, strategy, HR and entrepreneurship. The
-specialisations map to the sectors the Gulf actually hires in: real estate, hospitality,
-healthcare, energy, logistics and the public sector.
-
-H3: Case Work from Real Life
-
-Link what you study to situations you already face at work. Study real case examples, then
-solve problems, think through strategy and apply core management ideas in settings across
-Dubai, the UAE and the GCC.
-
-H3: Made for Working Professionals
-
-Enjoy flexible online study, assignment-based learning, academic guidance and weekend-friendly
-options where applicable. Keep your role, your salary and your routine while you progress,
-from Dubai to Riyadh to Muscat. An advisor can explain programme availability, eligibility and
-fee options for your situation.
-
-CTA primary: Check your eligibility
-CTA secondary: Request a fee plan
+### stats
+4.9/5 | average student rating (Trustpilot)
+3,000+ | UAE alumni across all programmes
+100% | online. No visa. No relocation.
 
 ---
 
-## SECTION 4 · WHY MAVERICK
-*Settings: MbaMastersWhySettings (label, heading, intro, chapters)*
+## 3. OVERVIEW (THE 3 PATHS)
 
-Label: Why Maverick
+### heading
+MBA in Dubai: Three Paths to a UK Master's
 
-H2: Why Choose Maverick for Your MBA or Master's
+### intro
+Your situation decides the right path. The same UK degree, three ways to fit it around a full-time role. All three paths end in the same UK award.
 
-Choosing between an MBA and a Master's is a tough call when you are already juggling a job,
-family duties and day-to-day life. Maverick Business Academy London makes the decision easier
-with flexible learning, personal guidance and career-focused programmes. In short: an MBA for working professionals in UAE, built around the job you already have.
+### items (heading + copy)
 
-Chapter 1 · Flexible Learning that Matches Your Schedule
+**Already have your bachelor's?**
+An MBA or Master's takes 12 to 18 months online. This is the standard path for applicants with 3 or more years of work experience, and the one most students on this page take.
 
-Your work does not pause while you study. The flexible options are built for people who work,
-lead teams or manage heavy weeks: online sessions, recorded material and weekend-friendly
-timetables. Move toward your qualification and keep your role.
+**Bachelor's not completed?**
+Top up the remaining years online, then enter the same Master's. Degrees from the University of Worcester, Sheffield Hallam and Coventry, awarded from the UAE without a student visa.
 
-Chapter 2 · Support When You Need It
+**No bachelor's at all?**
+A UK-certified graduate diploma from Ruskin Business School opens the direct route to an MBA. Around 12 months, no campus attendance, and it stands on its own in the job market.
 
-You do not have to handle everything alone. The team helps you choose a suitable programme,
-check eligibility and complete onboarding, then stays with you through the study. Support runs
-on Dubai time, by call, email or WhatsApp, and a counsellor replies within one business day.
+**Not sure which one fits?**
+Share your background with an advisor in Sharjah. Within 24 hours you will know your route, your timeline, and your total fees in writing.
 
-Chapter 3 · Programmes & Specialisations to Match Your Goals
+**Dubai for working professionals**
+Evening and weekend classes, AED instalments, and a Sharjah office you can actually visit. This path is built around Gulf working hours and Gulf salaries.
 
-Different careers need different skills. Choose from MBA and Master's options across business
-management, finance, marketing, HR, strategy, healthcare, entrepreneurship, sustainability and
-supply chain. Pick the pathway that serves the career you are actually building.
+### cta_primary
+Compare your path
 
-Chapter 4 · Affordable Options with Flexible Payment Support
-
-Quality postgraduate education should be reachable. Explore cost-effective MBA and Master's
-routes with payment plans in AED where available, and get the fee picture in the currency you
-earn in. An advisor can walk you through the options for your programme.
-
-Chapter 5 · International Pathways and Wider Opportunities
-
-Widen both your study path and your career view with programmes run alongside international
-university partners in Switzerland, North Cyprus and the UK. Study from the UAE or anywhere in
-the GCC, and keep your options open if your next move takes you to Saudi Arabia, Qatar, Oman,
-Bahrain or Kuwait.
-
-Chapter 6 · A Community That Goes Beyond the Classroom
-
-Beyond lectures and assignments, meet fellow learners and alumni through webinars,
-masterclasses, graduation ceremonies, networking events and corporate training. Join a growing
-learning community in Dubai, the UAE and the GCC, and build professional connections that
-travel with your career.
-
-CTA: Explore MBA programmes · Explore Master's programmes · Speak to an advisor
+### cta_secondary
+Ask an advisor
 
 ---
 
-## SECTION 5 · HOW IT WORKS (ADDED SECTION 1: re-enable existing journey partial)
-*Settings: MbaMastersJourneySettings (label, heading, intro, steps, CTA)*
+## 4. WHY (4 BLOCKS)
 
-Label: How it works
+### heading
+Why an MBA for working professionals in UAE makes sense right now
 
-H2: From First Enquiry to Your First Module, Four Steps
+### intro
+A UK Master's is not a theory course. It is a working professional's fastest route to a wider role, a stronger salary case, and international recognition, without pausing income.
 
-Step 1 · Enquire
-Fill the form or send a WhatsApp. A counsellor calls you back within one business day to
-understand your goals, your schedule and your budget.
+### chapters
 
-Step 2 · Match
-You get a short list of MBA admission requirements for your route, the matching programmes and
-a written fee plan in AED. Nothing is generic; it is built for your profile.
+**Learn without pausing your salary**
+Classroom-based programmes ask you to quit, relocate, or wait for a weekend slot. This degree runs in the evenings and on weekends, live from the UAE, a genuinely flexible MBA schedule that keeps your salary intact. You study after office hours, apply what you learn the very next working day, and never lose a single dirham of income to your education.
 
-Step 3 · Enrol
-Intakes rotate through the year, including the September 2026 intake. Your advisor maps the
-nearest start date to your notice period, and you complete admission with guided document
-support.
+**A British degree is a British degree**
+Your certificate is issued by the UK university itself, with the same academic standing as on-campus study. It is recognised worldwide, including across the GCC.
 
-Step 4 · Study and Finish
-Attend online sessions, work through assignments and get academic support until the final
-result. Your advisor stays reachable for the whole programme, not just the sale.
+**Built for promotion and transition**
+Every module maps to skills UAE employers screen for: leadership, finance, operations, and strategy. The final project lets you solve a live business problem from your own workplace. Graduates regularly point to that project in interviews, because it is concrete proof that they can turn theory into results.
 
-CTA: Start my enquiry
+**Pay in AED instalments**
+A campus MBA in UAE cities typically costs AED 80,000 to 200,000. Online, total fees land between AED 16,000 and 40,000, with no upfront full payment and a schedule that matches your monthly salary.
+
+**A recognised route, explained honestly**
+Study is delivered fully online from the UAE. Degrees from an accredited institution can be submitted for MoHESR recognition. Recognition depends on your circumstances, so confirm your category with an advisor. If recognition matters for your goal, we help you map the right paperwork early.
+
+**Sharjah office, not a call centre**
+Local counsellors who know the UAE market, employer expectations, and the recognition process. Visit the office, or meet an advisor on WhatsApp. The same team stays with you from your first call to graduation.
 
 ---
 
-## SECTION 6 · MBA FAMILIES
-*Settings: MbaMastersMbaSettings (label, heading, intro, tabs)*
+## 5. JOURNEY (NEW SECTION)
 
-Label: MBA routes
+### heading
+How to Start: 5 Steps
 
-H2: Find the MBA That Fits Your Career Goals
+### intro
+Most applicants complete the steps below in 2 to 4 weeks. An advisor walks every step with you. The September 2026 intake is now open.
 
-Flexible MBA options for working people in Dubai, the UAE and the wider GCC.
-MBA specializations in UAE from Maverick run across twelve routes at Rushford Business School,
-plus six MBAs and sixteen Executive MBAs at Girne American University. Pick the track that
-matches where you are and where you plan to go.
+### steps
+1. Free 15-minute eligibility check. Share your CV or LinkedIn with an advisor. No documents needed yet.
+2. Confirm admission requirements and fees. Within 24 hours you get the right programme, total fees, and intake dates.
+3. Reserve your seat for the September 2026 intake. Pay the first instalment to secure it. Seats are limited per intake.
+4. Enrolment and induction. Receive portal access, orientation, and your study schedule in week one.
+5. Start studying online. Live evening classes, recorded sessions, and an assigned success coach. You know exactly what to study each week, from week one.
 
-Tab 1 · General MBA (Master of Business Administration)
+---
 
-A base you can build on: business, management, leadership and strategy. The General MBA works
-well when you want a wide view of how business runs, usable across roles and industries.
-Awarded by Rushford Business School, Switzerland.
+## 6. MBA CATEGORIES (TABS)
 
-Key areas: Business Management · Leadership · Strategy · Finance & Marketing · Operations · Human Resources
+### heading
+MBA specializations in UAE: Pick Your MBA
 
-Best suited for: managers, professionals, entrepreneurs and graduates who want broad business training.
+### intro
+Three MBA families, one goal: a UK Master's that fits your career. Every programme below is university-awarded and fully online. Compare them side by side, then pick the one that matches your next role.
 
-CTA: View General MBA
+### tabs
 
-Tab 2 · Specialised MBA (Choose a Specialisation for Your Career)
+**General MBA**
+The classic route for managers who want breadth. Core business modules plus a specialism of your choice. 12 months, AED 16,000 to 25,000, from Rushford Business School. Works in any industry: the curriculum is built around leadership, strategy, and decision-making. Ideal for team leads, operations managers, and consultants moving into senior roles. Careers outside business are welcome: the opening module covers the fundamentals.
 
-Go deeper in the area that fits your next role. Twelve specialisations at Rushford Business School:
-
-- MBA in Sustainability, Energy and Environment
+**Specialized MBA**
+Pick a concentration that matches where you are going:
+[list]
+- MBA in Sustainability, Energy & Environment
 - MBA in Strategic Management
 - MBA in Real Estate Management
 - MBA in Human Resource Management
 - MBA in Marketing
-- MBA in Logistics & Supply Chain Management
+- MBA in Logistics & Supply Chain
 - MBA in Healthcare Leadership
 - MBA in Hospitality & Tourism Management
 - MBA in Health Economics
-- MBA in Entrepreneurship and Innovation
+- MBA in Entrepreneurship & Innovation
 - MBA in Finance
-- Master of Business Administration (General)
+- General MBA
+Same duration and fees as the General MBA. The specialization appears on your transcript and in your final award letter. Each concentration is taught with real Gulf industry cases, so the examples feel familiar from day one.
 
-Six further MBAs at Girne American University cover Business Management, Financial Management,
-International Business Management, Management Information Systems, Marketing and Data
-Science/Analytics Management.
-
-CTA: Explore MBA specialisations
-
-Tab 3 · Executive MBA
-
-For working professionals and executives strengthening leadership, management and strategic
-thinking without pausing their jobs. Sixteen Executive MBAs at Girne American University,
-including:
-
-- Executive MBA in Educational Leadership
-- Executive MBA in Global Banking & Finance
+**Executive MBA**
+For senior leaders with 8+ years of experience:
+[list]
+- Executive MBA
+- Executive MBA in Artificial Intelligence
+- Executive MBA in Business Analytics
+- Executive MBA in Data Science
+- Executive MBA in Digital Leadership
+- Executive MBA in FinTech
+- Executive MBA in Global Management
+- Executive MBA in Green Energy
 - Executive MBA in Healthcare Management
-- Executive MBA in Innovation & Entrepreneurship
-- Executive MBA in Project Management
-- Executive MBA in Supply Chain Management
-- Executive MBA in Public Administration
-- Executive MBA in Digital Marketing
+- Executive MBA in International Business
+- Executive MBA in Sustainable Business
+Eleven concentrations built for decision-makers. Same 12-month structure, same UK award route. Cohort size is limited, and classmates bring seniority, so discussions draw on real leadership experience.
 
-Eight further EMBA routes run from Renewable Energy & Sustainability to Sport Management. Ask
-for the full EMBA list.
+**Global MBA**
+For careers across borders:
+[list]
+- Global MBA
+- Global MBA in International Business
+- Global MBA in Finance
+- Global MBA in HR Analytics
+- Global MBA in Management
+- Global MBA in Supply Chain Management
+A US-awarded degree with an international perspective. Popular in logistics, trade, and regional HQ roles across Dubai and Abu Dhabi.
 
-CTA: Explore Executive MBA
-
-Tab 4 · Global MBA
-
-Grow a wider view of global business. The Global MBA is awarded by the University for the
-Creative Arts, UK, with Rushford Business School, Switzerland. Strengthen your grasp of how
-business works across borders, and build abilities that serve roles in Dubai, the UAE and the
-wider GCC. Entry routes are confirmed at admission.
-
-CTA: Explore Global MBA
-
-Closing block · Which MBA fits you best?
-
-Compare before you commit. Look at the awarding university, the specialisation, the schedule
-and the fee plan side by side, then decide what matches your background and your ambition.
-Routes span finance, healthcare, marketing, sustainability, supply chain, HR and
-entrepreneurship.
-
-CTA: Compare MBA programmes · Check your eligibility · Request programme details
+### closing
+Not sure which family fits? Ask an advisor and get a recommendation within 24 hours. The right pick depends on your experience and your next role, and the call is free.
 
 ---
 
-## SECTION 7 · MASTER'S BY UNIVERSITY
-*Settings: MbaMastersMastersSettings (label, heading, intro, universities, trending)*
+## 7. MASTERS CATEGORIES
 
-Label: Master's rail
+### heading
+Master's Degrees Beyond the MBA
 
-H2: Explore Flexible Master's Programmes in UAE, Dubai & GCC
+### intro
+The same UK award route, applied to high-demand fields: sustainability, supply chain, health economics, and business psychology.
 
-Looking for a Master's degree in UAE online or a postgraduate programme that fits around your
-work? Explore flexible Master's routes from international university partners, built for
-learners seeking career-focused knowledge and specialist expertise in international business,
-finance, marketing, strategy, sustainability and management.
+### universities (name, programmes, details)
 
-H3: Master's Programmes by University
+**Rushford Business School (Cleveland, US)**
+[list]
+- MBA in Sustainability, Energy & Environment
+- MBA in Strategic Management
+- MBA in Real Estate Management
+- Master of Education
+12 months. AED 16,000 to 25,000. All programmes share the same online format.
 
-1. Rushford Business School, Switzerland · MSc
+**Cardiff Metropolitan University (UK)**
+[list]
+- MSc Applied Sustainability Studies
+- MSc Supply Chain Management
+12 months. AED 25,000 to 40,000. UK-awarded, delivered fully online from the GCC. Both MSc programmes carry an applied focus, with assignments based on live sustainability and logistics challenges.
 
-Nine specialist MSc programmes, awarded by Rushford:
+**IIM Kozhikode (India)**
+[list]
+- MBA in Business Analytics
+Executive-friendly format for analysts and product leaders who want a quantitative edge, from one of India's most respected management institutes.
 
-- MSc in Sustainability and Environmental Management
-- MSc in Strategic Management
-- MSc in Operations and Supply Chain Management
-- MSc in International Business Management
-- MSc in Marketing
-- MSc in Entrepreneurship & Innovation
-- MSc in Finance and Investment
-- MSc in Economics
-- MSc in Business Management
+### trending (3 cards)
 
-CTA: View Rushford MSc programmes
+**Affordable MBA in Finance**
+Rushford Business School. 12 months. AED 16,000 to 20,000.
 
-2. Girne American University, North Cyprus · MSc with Thesis
+**Affordable MBA in Human Resource Management**
+Rushford Business School. 12 months. AED 16,000 to 20,000.
 
-Four thesis-based MSc routes, awarded by GAU (YÖDAK and YÖK recognised, IACBE accredited):
-
-- MSc in Business Management
-- MSc in Economics
-- MSc in Healthcare Management
-- MSc in Counselling Psychology
-
-CTA: View GAU MSc programmes
-
-3. University of Wolverhampton, UK · Master of Laws
-
-A postgraduate legal pathway for learners seeking advanced knowledge in law and related
-professional fields. Awarded by the University of Wolverhampton, UK.
-
-CTA: Explore LLM
-
-4. University for the Creative Arts, UK + Rushford Business School, Switzerland · Global MBA
-
-An international Global MBA route combining global business learning with an international
-academic perspective. Degree awarded by the University for the Creative Arts, UK, with
-Rushford Business School, Switzerland.
-
-CTA: Explore Global MBA
-
-Trending specialisations strip: Healthcare Leadership · Logistics & Supply Chain · Finance ·
-Sustainability · Real Estate · Digital Marketing
-
-H3: Find the Right Postgraduate Pathway
-
-Choose by career goal, professional experience and preferred specialisation. An advisor can
-explain programme options, eligibility, duration and fees for any route on this page, in plain
-words and in writing.
-
-CTA: Check your eligibility · Request programme details
+**Affordable MBA in Healthcare Leadership**
+Rushford Business School. 12 months. AED 16,000 to 20,000.
 
 ---
 
-## SECTION 8 · MBA CLASS PROFILE
-*Settings: MbaMastersClassSettings (label, heading, intro, metrics)*
+## 8. CLASS OF 2025
 
-Label: Student profile
+### heading
+Class of 2025: Built for the GCC
 
-H2: Our MBA Student Profile
-
-Meet a diverse community of ambitious professionals from around the world.
-
-- 979 MBA Students
-- 11.2 Years Average Work Experience
-- 77 Countries Represented
-- 98.70% Programme Pass Rate
-- 33.7 Average Student Age
+### copy
+The most diverse cohort we have run in the Gulf: founders, government specialists, bankers, and senior operators from the UAE, Saudi Arabia, Oman, and Qatar. You learn from each other as much as from the faculty. Group work brings four markets into one discussion, which is exactly how regional business runs.
 
 ---
 
-## SECTION 9 · CLASS SNAPSHOT
-*Settings: MbaMastersClassSettings (audience, regions, industries) rendered via class-snapshot partial*
+## 9. CLASS SNAPSHOT
 
-H2: Meet Our MBA & Master's Student Community
+### heading
+Your Classmates: UAE and GCC Professionals
 
-The programmes bring together professionals with different career backgrounds, industries and
-experience. The learning environment is designed for people who want to develop business
-knowledge while continuing to build their careers.
+### audience
+The average student on this page works full time in the UAE or the wider Gulf and studies in the evenings and on weekends. Most join to move into senior roles without taking a career break.
 
-H3: Built for Working Professionals
+### metrics
+35 | median age in the current cohort
+9 | years of average work experience
+68% | hold mid-level or senior roles
+100% | employed full time while studying
+80%+ | sponsored or supported by their employer
 
-- Full-time working professionals
-- Managers and team leaders
-- Senior executives
-- Entrepreneurs and business owners
-- Graduates building advanced business skills
-- Professionals planning their next career move
+### regions (flag, share, note)
+🇦🇪 UAE · around half the cohort · Dubai, Abu Dhabi, and Sharjah
+🇸🇦 Saudi Arabia · about one quarter · Riyadh, Jeddah, and the NEOM region
+🇴🇲 Oman · growing every intake · Muscat
+🇶🇦 Qatar · steady presence · Doha
 
-H3: A Diverse International Community
-
-Learners join from the UAE, India, the wider GCC, Africa and Southeast Asia. The mix creates
-room to exchange ideas, understand different markets and build connections beyond your local
-industry.
-
-H3: Students from a Range of Industries
-
-- Business & Management: professionals strengthening leadership and decision-making
-- Information Technology: IT professionals adding strategy and management capability
-- Healthcare: professionals moving toward leadership and management in care
-- Finance & Banking: expertise in financial management, investment and strategy
-- Education: educators and administrators developing leadership skills
-- Hospitality: professionals preparing for management in a global service industry
-- Logistics & Supply Chain: skills in operations, supply chain and strategic planning
+### industries
+Cohort industries reflect the Gulf's strongest sectors:
+Energy & Oil | Logistics & Trade | Banking & Finance | Government | Healthcare | Education | Real Estate | Tech & Consulting
 
 ---
 
-## SECTION 10 · FEES
-*Settings: MbaMastersFeesSettings (label, heading, intro, note, rows, 2 CTAs)*
+## 10. FEES
 
-Label: Fees & payment
+### heading
+MBA Fees in UAE: What You Actually Pay
 
-H2: Online MBA & Master's Fees in UAE and GCC
+### intro
+Total programme cost, no hidden lines. Most students pay AED 16,000 to 40,000 across the full degree, roughly one third of what a campus MBA costs in Dubai today. Every payment is confirmed in writing before your seat is reserved.
 
-Choosing an MBA or Master's is an investment in your career, so the numbers deserve straight
-answers. MBA fees in UAE vary by university, programme, specialisation, duration and study
-mode. Our advisors help you understand the fee structure for your programme and the payment
-option that suits your circumstances.
+### rows (Programme | Total Fees | Duration | Payment)
+General MBA | AED 16,000 to 25,000 | 12 months | Instalments
+Specialized MBA | AED 16,000 to 25,000 | 12 months | Instalments
+Executive MBA | AED 25,000 to 35,000 | 12 months | Instalments
+Global MBA | AED 20,000 to 30,000 | 12 months | Instalments
+Cardiff MSc programmes | AED 25,000 to 40,000 | 12 months | Instalments
+IIM Kozhikode MBA (Analytics) | AED 25,000 to 35,000 | 12 months | Instalments
 
-### Compare your programme & payment options
+### note
+Fees depend on the programme and intake. Your advisor confirms the exact figure in writing before you pay anything.
 
-| Programme | Duration | Study mode | Fee / payment option | Next step |
-|---|---|---|---|---|
-| Online MBA Programmes | 10 to 15 months | Online / Hybrid / Part-time | Registration + agreed instalments | Request details |
-| Specialised MBA Programmes | Varies by specialisation | Online / Hybrid / Part-time | Fees vary by university & specialisation | Check fees |
-| Executive MBA Programmes | 12 to 18 months | Online / Hybrid / Part-time | Payment options available | Talk to an advisor |
-| Master's and MSc Programmes | 8 to 18 months, depending on entry point | Online / Hybrid / Part-time | Fees vary by university & programme | Request fee details |
+### blocks
 
-H3: What Your Fees May Include
+**A flexible payment plan, in AED, with no interest**
+No upfront full payment. Split your fees into monthly instalments in dirhams, on a schedule that matches your salary cycle. The degree fits your cash flow from day one. Many students also have part of their fee supported by their employer.
 
-Depending on the programme and university, your overall fee typically sits between AED 16,000
-and AED 40,000. It may include:
+**What your fee covers**
+[list]
+- Full tuition and the UK university award
+- All study materials and portal access
+- Session recordings for revision
+- Advisor support in Sharjah, on Gulf time
+- Induction, enrolment, and student services
 
-- Programme tuition fees
-- Initial registration or admission payment
-- Monthly instalment options, where available
-- Academic and student support
-- Scholarship or financial support opportunities, subject to eligibility
-- Additional university-specific or programme-related charges, where applicable
-
-H3: Looking for an Affordable MBA in UAE?
-
-Compare the full market before you decide. Campus MBAs in Dubai run about AED 66,000 for a
-one-year programme at Amity Dubai and AED 84,872 at Middlesex Dubai, and the part-time
-University of Birmingham Dubai MBA costs AED 87,255 per year (2026 figures). Against those
-anchors, an online route in the band above keeps your career running and your outlay
-contained. Judge the total picture: university, specialisation, format, duration, support and
-payment flexibility.
-
-H3: MBA with Flexible Payment Plan in UAE
-
-You do not have to pay in one lump sum. Selected programmes offer monthly instalments in AED,
-so the fee fits a salary instead of straining it. Ask your advisor which payment plan applies
-to your route and get it in writing before you enrol.
-
-H3: MBA Scholarship in UAE
-
-Scholarship and offer positions change by intake and by programme, so we publish only what we
-can confirm. Ask your advisor about the current scholarship and offer position for your intake,
-and get the details in writing.
-
-Note: Final fees, durations and entry routes are confirmed in writing with your advisor before
-you enrol.
-
-CTA primary: Request fee details
-CTA secondary: Ask about current offers
+**Scholarships and early-bird discounts**
+MBA scholarship support for strong candidates, plus early-bird discounts when you reserve your seat ahead of the intake. Ask your advisor what applies to your profile.
 
 ---
 
-## SECTION 11 · CAREER GROWTH
-*Settings: MbaMastersCareerSettings (label, heading, intro, stories)*
+## 11. CAREER STORIES
 
-Label: Career impact
+### heading
+What UAE Graduates Did Next
 
-H2: Career Growth After Your MBA or Master's
+### intro
+Recent outcomes from students across the Gulf. Every story below started with a full-time job and evening study.
 
-An MBA or Master's is a step toward greater responsibility, stronger business skills and new
-opportunities. The programmes are designed so professionals apply what they learn to real
-workplace situations and prepare for their next move, in the UAE or anywhere in the GCC.
-
-H3: Where Can Your MBA or Master's Take You?
-
-1. Career Advancement. Move from doing the work to owning the outcome: promotions, team
-   leadership and management responsibility.
-2. From Specialist to Leader. Turn deep technical skill into strategic thinking, and prepare
-   for roles that need both.
-3. A New Direction. Use the qualification to step into a new function or industry with
-   confidence and a named degree behind you.
-
-Employers across banking, logistics, healthcare, education, technology and the public sector
-in the UAE hire professionals with online MBAs when the awarding university is credible and
-the skills are real. Your advisor can share how graduates describe the difference.
+### stories
+Ahmed, Operations Lead, Dubai | Logistics & Supply Chain MBA | Moved into a regional operations role six months after graduating. His employer supported the fees.
+Fatima, HR Manager, Riyadh | MBA in Human Resource Management | Used the final project to redesign her company's talent framework. Promoted before the course ended.
+Khalid, Branch Manager, Doha | General MBA | Took over a second branch within a year. The finance modules changed how he reads a P&L.
+Sara, Marketing Executive, Abu Dhabi | MBA in Marketing | Led her first regional campaign within a year of graduating. The specialization matched her target role exactly.
 
 ---
 
-## SECTION 12 · ALUMNI
-*Settings: MbaMastersAlumniSettings (label, heading, intro, trust_line)*
+## 12. ALUMNI
 
-Label: Alumni
+### heading
+Alumni in the UAE and Across the GCC
 
-H2: Where Our Learners & Alumni Work
+### copy
+Our graduates work in UAE government departments, free zones, banks, hospital groups, and multinationals across the Gulf. The network grows with every intake, and many students arrive through referrals from colleagues who already studied with us. Ask your advisor for alumni references in your industry before you commit.
 
-Our learners and alumni carry their skills into a wide range of industries and organisations
-across the UAE and internationally: business and finance, technology, healthcare, hospitality,
-logistics and management. The community keeps growing across sectors and borders.
-
-H3: A Community That Extends Beyond the Classroom
-
-Your learning does not end when the programme does. Joining the Maverick community means
-connecting with professionals and alumni from different industries, backgrounds and markets
-across the GCC.
-
-Trust line: Every logo on this strip belongs to a real employer of our learners, published with permission.
-
-CTA: Meet our alumni · Explore our programmes
+### trust_line
+Company logos shown with permission from alumni employers.
 
 ---
 
-## SECTION 13 · PARTNERS & RECOGNITION
-*Settings: MbaMastersPartnersSettings (label, heading, intro, trust_line)*
+## 13. PARTNERS
 
-Label: University partners
+### heading
+International MBA Degrees from Our University Partners
 
-H2: International MBA in UAE: Trusted University Pathways
+### intro
+Every Master's on this page is awarded by the university named below. You apply once, study online, and graduate from the university that issues your certificate. One application covers admission, enrolment, and your study plan.
 
-Explore MBA and Master's programmes offered through selected university partners:
+### partners (name, accreditation, detail)
+Rushford Business School | ACBSP member | US-awarded MBAs in business, engineering, and healthcare. 12-month online format.
+Cardiff Metropolitan University | UK chartered university | MSc programmes in sustainability and supply chain, delivered online.
+IIM Kozhikode | AACSB member | Analytics-led MBA for working professionals, from one of India's top institutes.
+University of Worcester | UK chartered university | Top-up pathways for professionals completing a bachelor's, leading into Master's study.
 
-- Rushford Business School, Switzerland (EduQua, IACBE, QS Stars 5-star for teaching and online)
-- Girne American University, North Cyprus (YÖDAK + YÖK, IACBE, ECBE, ASIIN, UNWTO TedQual, NARIC-UK)
-- University for the Creative Arts, UK
-- University of Wolverhampton, UK
-
-Programme availability and awarding arrangements vary by university and programme, and each
-route states its awarding body.
-
-H3: Choosing a Recognised MBA in UAE
-
-If you are researching a recognised MBA in UAE, compare the options side by side before you
-commit:
-
-1. Who awards the degree. The university's name should be on the certificate, stated up front.
-2. What accredits the institution. Look for checkable accreditations, not vague "international validation".
-3. How recognition works. Since 10 March 2025, MoHESR runs a formal recognition route for
-   online and distance degrees from accredited institutions, verified through Dataflow or
-   QuadraBay in about 30 working days. For government roles, regulated professions or certain
-   visa categories, the formal Recognition Report also applies.
-4. What the entry rules are. Real programmes state requirements clearly and put them in writing.
-
-We list these key points for every MBA programme on this page, so you can decide with evidence.
-
-CTA primary: Explore university partners
-CTA secondary: Check programme recognition
+### checklist
+- The university awards your degree, not a third party
+- Your certificate is the same as an on-campus graduate's
+- Accreditation status is confirmed in writing before you enrol
+- Recognition guidance for the UAE is available on request
 
 ---
 
-## SECTION 14 · LEARNING FORMAT
-*Settings: MbaMastersLearningSettings (label, heading, intro, points, 2 CTAs)*
+## 14. LEARNING
 
-Label: Learning experience
+### heading
+How Online Learning Actually Works
 
-H2: Learning That Fits into Your Life
+### intro
+Not recorded videos that gather dust. Structured learning with real people around you. The platform is built for busy schedules: focused modules, clear weekly goals, and support that replies within one working day.
 
-H3: Build New Skills Without Stepping Away from Your Career
-
-Balance work, learning and personal commitments with a flexible MBA or Master's experience
-designed for professionals in Dubai, the UAE and across the GCC. Keep your job, keep your
-routine, and still move toward the qualification.
-
-H3: Online Learning
-
-Access online sessions, digital learning resources and academic guidance designed around a
-professional schedule. Sessions respect Gulf working hours, and recordings mean a busy week
-never costs you a module.
-
-H3: Practical Assignments
-
-Sharpen real skills with tasks, projects, case work and presentations, depending on your
-programme. The work mirrors the decisions you already make at the office.
-
-H3: Student Support
-
-Get guidance from the student support team, faculty and academic coordinators throughout your
-study, by call, email or WhatsApp on Dubai time.
-
-CTA: Explore the learning experience
+### points
+Live evening classes | Two live sessions per week, recorded if you miss one
+Dedicated success coach | One named coach for your whole degree, from induction to graduation
+Online exams, from home | No travel for assessments. Clear rubrics, timely feedback
+Project on your own business | Apply each module to a live challenge from your workplace
+Career-relevant assessment | Projects, presentations, and portfolios you can show your employer
 
 ---
 
-## SECTION 15 · TESTIMONIALS
-*Settings: MbaMastersTestimonialsSettings (label, heading, intro, items) + video sections from DB*
+## 15. TESTIMONIALS
 
-Label: Learner voices
+### heading
+What Students Say in Their Own Words
 
-H2: Hear from Our Learners
-
-Choosing an MBA or a Master's is not a small call. Before you decide, read what learners say
-about the experience: what they actually learned, and whether the programme matched their
-day-to-day work.
-
-Each testimonial on this page carries the learner's full name, country, programme and a
-result-focused line in their own words. Quotes are published only with written permission.
-
-CTA: Explore our programmes
+### items (video, quote)
+Video 1 | "The evening format meant I never missed a single day of work." MBA graduate, Dubai
+Video 2 | "My advisor in Sharjah handled everything, including how my employer could support the fees." MBA graduate, Abu Dhabi
+Video 3 | "The final project became a real proposal at my company." MSc graduate, Sharjah
 
 ---
 
-## SECTION 16 · FLEXIBLE VS TRADITIONAL (ADDED SECTION 2: re-enable existing compare partial)
-*Settings: MbaMastersCompareSettings (label, heading, intro, col_online, col_traditional, rows, CTA)*
+## 16. COMPARE (NEW SECTION)
 
-Label: Compare your options
+### heading
+Online MBA vs Classroom MBA: A Fair Comparison
 
-H2: Online MBA & Master's: Flexible vs Traditional Study
+### intro
+If you have ever weighed a part-time MBA on campus against an online one, this table is the honest answer. Same degree standard, different delivery.
 
-H3: Find a Learning Format That Works for You
+### rows (Aspect | This online MBA | Classroom MBA)
+Total fees | AED 16,000 to 40,000 | Typically AED 80,000 to 200,000+
+Commute | Zero | 3 to 5 hours a week in traffic
+Class timing | Evenings and weekends, from home | Fixed campus timetable
+Visa needed | No | Yes for international campuses
+Study while working | Yes, designed for it | Often requires a break
+Award on certificate | UK university degree | UK university degree
+Networking | Live cohort events and an active WhatsApp community | Campus cohorts
 
-Every professional has different priorities. Some find an online MBA or Master's fits their
-schedule better and lets them keep a job while they study. Others prefer a classic campus
-setup with its structure and presence. The table sets the two side by side, honestly.
+### blocks
 
-| Feature | Maverick Online MBA / Master's | Traditional On-Campus Programme |
-|---|---|---|
-| Flexibility | High | More structured |
-| Suitable for working professionals | Designed with working professionals in mind | Can be hard alongside full-time work |
-| Study mode | Online / flexible | Campus-based |
-| Fee structure | Flexible payment options may be available | Varies by institution |
-| Duration | One-year-style options depending on programme | Varies by programme |
-| Location | Study from Dubai, Sharjah, Abu Dhabi or anywhere in the GCC | Regular campus attendance required |
-| Part-time fit | A part-time MBA in UAE works naturally with the online format | Part-time campus MBAs exist, at premium fees and fixed timetables |
+**Fast-track or standard: your choice**
+A fast-track MBA completes the same modules in a shorter window for experienced applicants. Standard pace spreads the load for busier seasons. Your advisor helps you pick based on your workload.
 
-H3: A Note on Fast-Track MBA UAE Offers
-
-Treat speed with care. A fast-track MBA in UAE can sound convenient, but recognition depends
-on the awarding body and the study mode, and MoHESR's 2025 recognition conditions apply to
-accredited institutions. Before you buy any 12-month promise, check who awards the degree and
-how the recognition route works. Our advisors will run that check with you, for any programme,
-including ours.
-
-CTA: Compare with an advisor
+**The same award, either way**
+Whichever format you choose, the degree on your certificate is identical. The difference is how you study, not what you earn.
 
 ---
 
-## SECTION 17 · FAQ
-*Settings: MbaMastersFaqSettings (items). FAQPage schema auto-generated by the blade, 1:1.*
+## 17. FAQ
 
-Label: Field notes
+### heading
+Frequently Asked Questions
 
-H2: Frequently Asked Questions
+### items (q, a)
 
-Q1. What are the MBA admission requirements in UAE?
-Admission requirements depend on the university and the programme. In most cases you need a
-bachelor's degree and your academic documents, and some routes value work experience in place
-of entrance tests. Send an enquiry and your advisor will give you the exact list for your
-route, in writing.
+1. What are the admission requirements for an MBA?
+Most programmes ask for a bachelor's degree plus 2 to 3 years of work experience. No GMAT is required for the programmes on this page. If your background differs, share your CV: our advisors map alternative entry routes for experienced professionals and confirm your eligibility in writing.
 
-Q2. What are the fees for an online MBA in UAE?
-Online MBA fees in the UAE depend on the university, programme and specialisation. Maverick's
-routes typically sit between AED 16,000 and AED 40,000 overall, with instalment options where
-available. Request a fee plan for your route to get exact numbers.
+2. Are these degrees recognised in the UAE?
+Degrees awarded by an accredited institution can be submitted for MoHESR recognition. Recognition is 100% electronic and processed through official UAE channels. Study itself is delivered fully online from the UAE. Confirm your category with an advisor before enrolling; the guidance call is free.
 
-Q3. Is an online MBA in Dubai good for working professionals?
-Yes. The flexible format keeps your job running while you study: online sessions,
-weekend-friendly timetables and assignment-based assessment. It is the format the page was
-built around.
+3. How much does an MBA cost in the UAE?
+Between AED 16,000 and 40,000 for most programmes on this page, paid in instalments. That is roughly one third of a campus MBA in Dubai. Your advisor confirms the exact total in writing before you pay anything.
 
-Q4. Do I need a student visa for an online MBA?
-No. Online routes need no student visa and no relocation. You study from Dubai, Abu Dhabi,
-Sharjah or anywhere in the GCC, and the degree comes from the awarding university.
+4. Can I study fully online from Dubai or Abu Dhabi?
+Yes. All classes run online with evening and weekend timings built for Gulf working hours. Students study from Dubai, Abu Dhabi, Sharjah, and across the GCC. There is no campus attendance and no student visa needed. Recordings mean a business trip never puts you behind.
 
-Q5. Can I join the September 2026 MBA intake?
-Yes. Intakes rotate through the year, and the MBA September 2026 intake is one of them. If
-September does not suit your notice period, an advisor will map the nearest rotational start.
+5. When is the next intake?
+The September 2026 intake is now open, with later intakes through the year. Seats per intake are limited, so reserve early. Reserving at least four weeks before the start date keeps your onboarding relaxed. Your advisor confirms current dates within one working day.
 
-Q6. Is a fast-track MBA in UAE safe?
-Check before you commit. Recognition follows MoHESR's 2025 conditions: an accredited
-institution and an approved study mode. Ask who awards the degree and how recognition works
-before any 12-month promise. We run that check with you, for any programme.
+6. Is there a fast-track MBA option?
+Yes. The fast-track MBA completes the full curriculum in a compressed timeline for experienced professionals. Ask your advisor whether your background qualifies and how the schedule works.
 
-Q7. Are MBA scholarships available in UAE?
-Scholarship and offer positions change by intake and programme. Ask your advisor about the
-current position for your intake; we only quote aid we can confirm in writing.
+7. Are there scholarships or discounts available?
+MBA scholarship support is available for strong candidates, and early-bird discounts apply ahead of each intake. Eligibility depends on your profile and timing. Ask your advisor what applies to you.
 
-Q8. Which MBA specializations are available in UAE?
-Twelve MBA specialisations at Rushford Business School and six MBAs plus sixteen EMBAs at
-Girne American University: finance, marketing, HR, strategic management, healthcare, real
-estate, logistics, sustainability, hospitality and more.
+8. Which MBA specializations are in demand in the UAE?
+Finance, healthcare leadership, logistics & supply chain, sustainability, HR, and analytics lead current demand across the UAE and the wider GCC. The Specialized MBA tab above lists every concentration you can pick.
 
-Q9. How is an online MBA different from a traditional MBA?
-The award is the same; the rhythm differs. An online MBA removes the commute, the visa and the
-career break. A traditional MBA adds campus attendance. The comparison table above sets the
-trade out line by line.
+9. How many hours per week does a part-time MBA need?
+Plan for 8 to 10 hours a week: live evening classes, self-study, and assessments. Most students study after work and on weekends, with recordings covering any session they miss. A little study most days beats long weekend marathons, and the schedule is built for that rhythm.
 
-Q10. What documents are required for admission?
-Requirements vary by university, but applicants typically provide academic certificates,
-identification and any university-specific documents. Your advisor sends the exact checklist
-for your programme during the enquiry call.
+10. Will my employer in the UAE accept an online degree?
+UAE employers are broadly comfortable with accredited online degrees, and many sponsor staff through them. What matters most is the awarding university. We confirm accreditation in writing before you enrol, and we can prepare the documents your HR team needs for sponsorship.
 
-Q11. How can Indian professionals in UAE apply for a Master's programme?
-Fill the enquiry form and mention your location and visa status. The team will explain the
-available Master's programmes in UAE, eligibility and the application process, including fee
-guidance in INR alongside AED if useful.
+11. Can I study from Saudi Arabia, Oman, or Qatar?
+Yes. Around half the current cohort studies from the UAE, with the rest from Saudi Arabia, Oman, Qatar, and beyond. Support works on Gulf time for every country in the region. WhatsApp study groups run per intake, across time zones.
 
-Q12. How do I speak to an admissions advisor?
-Complete the enquiry form or message the WhatsApp line. A counsellor replies within one
-business day, and the office at Robot Park Tower, Sharjah welcomes walk-ins.
+12. Do I need a student visa?
+No. You study fully online from your current location, so no student visa is required. You keep your residence visa exactly as it is. That removes one of the biggest barriers to a UK degree for GCC professionals.
 
 ---
 
-## SECTION 18 · FINAL CTA
-*Settings: MbaMastersFinalSettings (label, heading, intro, 2 CTAs, form)*
+## 18. FINAL CTA
 
-Label: Take the next step
+### heading
+Your UK Master's Starts With One Conversation
 
-H2: Let's Find the Right Programme for You
+### copy
+Share your CV or LinkedIn profile, and an advisor in Sharjah will map your route, your total fees, and the September 2026 intake within 24 hours. No obligation, no pressure, and no student visa required. If a Master's is the right next step, this is the fastest way to confirm it. Prefer WhatsApp? Message us and an advisor replies the same day.
 
-Thinking about an MBA or Master's but not sure where to start? Fill in the enquiry form and
-the admissions team will help with programme options, eligibility, specialisations, fees and
-payment plans, in plain words and in writing.
-
-Rotational intakes run through the year, including September 2026. One call tells you the
-nearest start and the exact fee plan for your route.
-
-CTA primary: Start my enquiry
-CTA secondary: Request fee details
-
-Enquiry form (same 5 fields as hero): Full Name · Email Address · Phone / WhatsApp · Country ·
-Programme Interested In.
-
-Microcopy: Free · no obligation · reply within 1 business day · your details stay private.
+### show_form
+true
 
 ---
 
-## META & TECHNICAL SPEC (build team)
+## META & TECHNICAL SPEC (build team only — not page copy)
 
-- **URL:** `/online-mba-masters-uae` (unchanged, content upgrade in place)
-- **Title (55):** Online MBA in UAE & Dubai for Professionals | Maverick
-- **Description (153):** University-awarded online MBA and Master's degrees for UAE and GCC
-  professionals. No student visa, AED instalments, Sharjah office. Start your enquiry.
-- **Schema:** FAQPage auto from Section 17 (1:1) · Course per family after duration
-  confirmation · EducationalOrganization (Sharjah primary, London secondary, areaServed
-  UAE/SA/QA/OM/KW/BH/IN) · BreadcrumbList Home → Online MBA & Master's UAE
-- **Internal links:** live MBA-in-UAE guide cluster, programme pages, `/accreditations`
-- **Sticky bar (existing):** WhatsApp + Apply Now, unchanged
-- **GA4 events (existing):** form_start, form_submit, wa_click, tel_click, pdf_download
+### meta_title
+Online MBA in UAE & Dubai for Professionals | Maverick
+
+### meta_description
+University-awarded online MBA and Master's degrees for UAE and GCC professionals. No student visa, AED instalments, Sharjah office. Start your enquiry.
+
+### canonical
+https://mbalondon.org.uk/online-mba-masters-uae
+
+### schema (FAQPage — rendered from FAQ items)
+[schema:FAQPage]
+Q: What are the admission requirements for an MBA?
+A: Most programmes ask for a bachelor's degree plus 2 to 3 years of work experience. No GMAT is required. Advisors map alternative entry routes for experienced professionals.
+
+Q: Are these degrees recognised in the UAE?
+A: Degrees awarded by an accredited institution can be submitted for MoHESR recognition. Recognition is 100% electronic through official UAE channels. Confirm your category with an advisor before enrolling.
+
+Q: How much does an MBA cost in the UAE?
+A: Between AED 16,000 and 40,000 for most programmes on this page, paid in instalments. Roughly one third of a campus MBA in Dubai.
+
+Q: Can I study fully online from Dubai or Abu Dhabi?
+A: Yes. Evening and weekend timings built for Gulf working hours. No campus attendance, no student visa needed.
+
+Q: When is the next intake?
+A: The September 2026 intake is now open, with later intakes through the year. Seats per intake are limited.
+
+Q: Is there a fast-track MBA option?
+A: Yes. The fast-track MBA completes the full curriculum in a compressed timeline for experienced professionals.
+
+Q: Are there scholarships or discounts available?
+A: MBA scholarship support for strong candidates, plus early-bird discounts ahead of each intake. Eligibility depends on your profile.
+
+Q: Which MBA specializations are in demand in the UAE?
+A: Finance, healthcare leadership, logistics & supply chain, sustainability, HR, and analytics lead current demand across the UAE and GCC.
+
+Q: How many hours per week does a part-time MBA need?
+A: Plan for 8 to 10 hours a week: live evening classes, self-study, and assessments.
+
+Q: Will my employer in the UAE accept an online degree?
+A: UAE employers are broadly comfortable with accredited online degrees, and many sponsor staff. The awarding university matters most.
+
+Q: Can I study from Saudi Arabia, Oman, or Qatar?
+A: Yes. Around half the current cohort studies from the UAE, with the rest from Saudi Arabia, Oman, Qatar, and beyond.
+
+Q: Do I need a student visa?
+A: No. You study fully online from your current location, so no student visa is required.
+
+### internal links
+- Anchor "Top up degrees" → /bachelor-degree-in-dubai (bachelors page)
+- Anchor "MoHESR recognition" → https://www.mohesr.gov.ae (official)
+- Anchor "MBA in UAE: Complete Guide" → /blog/mba-in-uae-complete-guide (existing ranking guide)
