@@ -134,17 +134,13 @@ class Program extends Model
     /** Learning outcomes — [{item}] normalized to a simple list */
     public function getLearningListAttribute(): \Illuminate\Support\Collection
     {
-        return collect($this->learning ?? [])
-            ->map(fn ($l) => is_array($l) ? ($l['item'] ?? $l) : $l)
-            ->values();
+        return $this->stringList($this->learning, 'item');
     }
 
     /** Careers — [{title}] normalized to a simple list */
     public function getCareersListAttribute(): \Illuminate\Support\Collection
     {
-        return collect($this->careers ?? [])
-            ->map(fn ($c) => is_array($c) ? ($c['title'] ?? $c) : $c)
-            ->values();
+        return $this->stringList($this->careers, 'title');
     }
 
     /** Programme structure — [{title, subtitle, modules:[...]}] normalized */
@@ -163,10 +159,7 @@ class Program extends Model
                                 'title' => data_get($m, 'title', ''),
                                 'overview' => data_get($m, 'overview'),
                                 'desc' => data_get($m, 'desc'),
-                                'list' => collect(data_get($m, 'list') ?? [])
-                                    ->map(fn ($li) => is_array($li) ? ($li['point'] ?? $li) : $li)
-                                    ->values()
-                                    ->all(),
+                                'list' => $this->stringList(data_get($m, 'list'), 'point')->all(),
                             ];
                         })->values()->all(),
                 ];
@@ -176,9 +169,7 @@ class Program extends Model
     /** Maverick Support — [{item}] normalized to a simple list */
     public function getSupportListAttribute(): \Illuminate\Support\Collection
     {
-        return collect($this->support ?? [])
-            ->map(fn ($s) => is_array($s) ? ($s['item'] ?? $s) : $s)
-            ->values();
+        return $this->stringList($this->support, 'item');
     }
 
     /** GCC professional reasons — [{title, text, icon}] */
@@ -224,9 +215,7 @@ class Program extends Model
     /** Fees — [{title}] normalized to a simple list */
     public function getFeesListAttribute(): \Illuminate\Support\Collection
     {
-        return collect($this->fees ?? [])
-            ->map(fn ($f) => is_array($f) ? ($f['title'] ?? $f) : $f)
-            ->values();
+        return $this->stringList($this->fees, 'title');
     }
 
     /** Reviews (Google ratings) — [{name, avatar, rating, review}] */
@@ -272,5 +261,64 @@ class Program extends Model
             ['id' => 'faq',            'label' => 'FAQ',            'render' => $this->faqs->count() > 0],
             ['id' => 'enquire',        'label' => 'Enquire',        'render' => true],
         ])->filter(fn ($s) => $s['render'])->values();
+    }
+
+    /** Repeater rows flattened to non-empty strings. Never returns arrays. */
+    protected function stringList(mixed $items, string $key): \Illuminate\Support\Collection
+    {
+        return collect($items ?? [])
+            ->map(fn ($item) => $this->stringFromListItem($item, $key))
+            ->filter(fn ($value) => filled($value))
+            ->values();
+    }
+
+    protected function stringFromListItem(mixed $item, string $key): ?string
+    {
+        if (is_string($item) || is_numeric($item)) {
+            return $this->trimmedString($item);
+        }
+
+        if (! is_array($item)) {
+            return null;
+        }
+
+        $preferred = $this->firstScalarString($item[$key] ?? null);
+        if ($preferred !== null) {
+            return $preferred;
+        }
+
+        return $this->firstScalarString($item);
+    }
+
+    protected function firstScalarString(mixed $value): ?string
+    {
+        $text = $this->trimmedString($value);
+        if ($text !== null) {
+            return $text;
+        }
+
+        if (! is_array($value)) {
+            return null;
+        }
+
+        foreach ($value as $candidate) {
+            $text = $this->firstScalarString($candidate);
+            if ($text !== null) {
+                return $text;
+            }
+        }
+
+        return null;
+    }
+
+    protected function trimmedString(mixed $value): ?string
+    {
+        if (! is_string($value) && ! is_numeric($value)) {
+            return null;
+        }
+
+        $text = trim((string) $value);
+
+        return $text === '' ? null : $text;
     }
 }
