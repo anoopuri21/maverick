@@ -190,6 +190,9 @@ Cohort size is limited and classmates bring seniority, so discussions draw on re
 **Global MBA, University for the Creative Arts (UK) with Rushford**
 One degree with an international perspective, for careers across borders. Popular in logistics, trade, and regional HQ roles across Dubai and Abu Dhabi.
 
+**MBA in International Business, University of the West of Scotland (UK)**
+A UK-awarded MBA focused on cross-border trade, global strategy, and international teams. A strong fit for professionals in logistics, import-export, and regional HQ roles.
+
 ### closing
 Not sure which route fits? Ask an advisor and get a recommendation within 24 hours. The right pick depends on your experience and your next role, and the call is free.
 
@@ -293,6 +296,7 @@ MBA, Girne American University | confirmed per programme | 10 to 15 months | AED
 Executive MBA, Girne American University | confirmed per programme | 12 to 18 months | AED instalments
 Global MBA, UCA with Rushford | confirmed per programme | 10 to 15 months | AED instalments
 MSc (Rushford, Girne) and LLM (Wolverhampton) | confirmed per programme | 8 to 18 months | AED instalments
+MBA in International Business, UWS | confirmed per programme | confirmed per programme | AED instalments
 
 ### note
 Fees depend on the programme and intake. Your advisor confirms the exact figure in writing before you pay anything.
@@ -357,6 +361,7 @@ Rushford Business School | Switzerland, EduQua and IACBE | Twelve MBAs and nine 
 Girne American University | North Cyprus, YÖDAK and YÖK, IACBE | Six MBAs, sixteen Executive MBAs, and four thesis-based MSc programmes.
 University for the Creative Arts | UK public university | Awards the Global MBA, delivered with Rushford Business School.
 University of Wolverhampton | UK public university | Awards the Master of Laws.
+University of the West of Scotland | UK public university | Awards the MBA in International Business.
 
 ### checklist
 - The university awards your degree, not a third party

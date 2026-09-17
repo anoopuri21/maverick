@@ -159,3 +159,7 @@ Client flagged that programme and university names did not match the official li
 - Awarding-body consistency: blanket UK or British degree claims replaced with awarding-university wording (hero, trust quote, Why block, final CTA, FAQ 12), since partners span Switzerland, North Cyprus, and UK.
 - Partner accreditation lines updated to verified KB facts: RBS EduQua and IACBE; GAU YÖDAK and YÖK plus IACBE; UCA and UOW as UK public universities.
 - Verification: all 49 catalogue master's programmes present verbatim; zero non-catalogue university or programme names; sweeps all 0; 16/16 keywords; content words 3,126. DOCX, PDF, and the client report regenerated.
+
+## Addendum 2026-09-16 (d): UWS MBA added per client instruction
+
+Client instructed one addition only: University of the West of Scotland, UK (UWS) with programme "MBA in International Business". Added in: section 6 (new MBA tab + intro count four to five), section 10 fees table (one row, fees and duration confirmed per programme), section 13 partners (one row, UK public university). No other content changed. Word count 3,189 (cap 3,000 to 3,500); sweeps all 0; 16/16 keywords. DOCX, PDF, and client report regenerated.
