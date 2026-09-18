@@ -42,25 +42,46 @@
 
 @section('content')
 <div class="mlp-page mlp-page--polished" id="mlpPage">
+  {{-- PDF Section 1: HERO --}}
   @include('pages.mba-masters-landing.hero')
+  {{-- PDF Section 2: TRUST --}}
   @include('pages.mba-masters-landing.trust')
+  {{-- PDF Section 3: OVERVIEW --}}
   @include('pages.mba-masters-landing.overview')
+  {{-- PDF Section 4: WHY --}}
   @include('pages.mba-masters-landing.why')
-  {{-- @include('pages.mba-masters-landing.journey') --}}
+  {{-- PDF Section 5: JOURNEY [NEW - Enabled] --}}
+  @include('pages.mba-masters-landing.journey')
+  {{-- PDF Section 6: MBA CATEGORIES --}}
   @include('pages.mba-masters-landing.mba')
+  {{-- PDF Section 7: MASTERS CATEGORIES --}}
   @include('pages.mba-masters-landing.masters')
+  {{-- PDF Section 8: CLASS OF 2025 --}}
   @include('pages.mba-masters-landing.class-2025')
+  {{-- Extra: Accreditations (social proof, not in PDF but valuable) --}}
   @include('sections.accreditations')
-  @include('pages.mba-masters-landing.class-snapshot')
+  {{-- PDF Section 9: COHORT - Your Classmates UAE and GCC [NEW] --}}
+  @include('pages.mba-masters-landing.cohort')
+  {{-- PDF Section 10: FEES --}}
   @include('pages.mba-masters-landing.fees')
+  {{-- PDF Section 11: CAREER STORIES --}}
   @include('pages.mba-masters-landing.career')
+  {{-- PDF Section 12: ALUMNI --}}
   @include('pages.mba-masters-landing.alumni')
-  @include('pages.mba-masters-landing.video-testimonials')
+  {{-- PDF Section 13: PARTNERS --}}
   @include('pages.mba-masters-landing.partners')
+  {{-- PDF Section 14: LEARNING [NEW] --}}
+  @include('pages.mba-masters-landing.learning')
+  {{-- Extra: Video testimonials & proof (not in PDF but keep as social proof) --}}
+  @include('pages.mba-masters-landing.video-testimonials')
   @include('pages.mba-masters-landing.video-proof')
+  {{-- PDF Section 15: TESTIMONIALS --}}
   @include('pages.mba-masters-landing.testimonials')
-  {{-- @include('pages.mba-masters-landing.compare') --}}
+  {{-- PDF Section 16: COMPARE [NEW - Enabled] --}}
+  @include('pages.mba-masters-landing.compare')
+  {{-- PDF Section 17: FAQ --}}
   @include('pages.mba-masters-landing.faq')
+  {{-- PDF Section 18: FINAL CTA --}}
   @include('pages.mba-masters-landing.final')
 </div>
 

@@ -1,27 +1,43 @@
-{{-- §7 Master's programmes — The Prospectus Ledger
-     Light, clean, professional directory of every Master's programme
-     (all universities combined). No university names, no counts. --}}
+{{-- §7 Master's programmes - Master's programs in UAE: Find your specialization - PDF Exact --}}
 @php
-  $programs = collect($masters->universities ?? [])
-      ->flatMap(fn ($uni) => collect($uni['programs'] ?? []))
-      ->map(fn ($program) => trim((string) ($program['title'] ?? '')))
-      ->filter(fn ($title) => $title !== '')
-      ->unique(fn ($title) => mb_strtolower($title))
-      ->values();
-  $trendingRows = collect($masters->trending ?? [])
-      ->filter(fn ($row) => filled($row['label'] ?? null))
-      ->values();
-  $trendingTitle = filled($masters->trending_title ?? null)
-      ? (string) $masters->trending_title
-      : 'Trending|Specialisations';
+  $rawPrograms = collect($masters->universities ?? [])->flatMap(fn ($uni) => $uni['programs'] ?? [])->values();
+  $programs = $rawPrograms->filter(fn ($p) => filled($p['title'] ?? null))->values();
+  
+  // Fallback to PDF exact if empty
+  if ($programs->isEmpty()) {
+      $programs = collect([
+          ['title' => 'MSc in Logistics and Supply Chain Management', 'university' => 'Rushford'],
+          ['title' => 'MSc in International Human Resource Management', 'university' => 'Rushford'],
+          ['title' => 'MSc in Sustainability, Energy and Environment', 'university' => 'Rushford'],
+          ['title' => 'MSc in Business Analytics', 'university' => 'Rushford'],
+          ['title' => 'MSc in International Hospitality and Tourism Management', 'university' => 'Rushford'],
+          ['title' => 'MSc in Strategic Leadership', 'university' => 'Rushford'],
+          ['title' => 'MSc in Digital Marketing', 'university' => 'Rushford'],
+          ['title' => 'MSc in Finance', 'university' => 'Rushford'],
+          ['title' => 'MSc in Project Management', 'university' => 'Rushford'],
+          ['title' => 'MSc in Renewable Energy', 'university' => 'GAU'],
+          ['title' => 'MSc in Software Engineering', 'university' => 'GAU'],
+          ['title' => 'MSc in Hospitality and Tourism Management', 'university' => 'GAU'],
+          ['title' => 'MSc in Computer Information Systems', 'university' => 'GAU'],
+          ['title' => 'LLM International Commercial Law & ADR', 'university' => 'Wolverhampton'],
+      ]);
+  }
+  
+  $trendingRows = collect($masters->trending ?? [])->filter(fn ($row) => filled($row['label'] ?? null))->values();
+  if ($trendingRows->isEmpty()) {
+      $trendingRows = collect([
+          ['label' => 'Sustainability, Energy and Environment', 'percent' => 92],
+          ['label' => 'Business Analytics', 'percent' => 88],
+          ['label' => 'Logistics and Supply Chain Management', 'percent' => 85],
+      ]);
+  }
+  
+  $trendingTitle = filled($masters->trending_title ?? null) ? (string) $masters->trending_title : 'Trending|Specialisations';
   $trendingParts = explode('|', $trendingTitle, 2);
-  $plate = mlp_image_url(settings_media_url($masters, 'stage_image'), [
-    'w' => 1920,
-    'fallback' => 'assets/images/edutainment/dubai-uae-skyline-students-studying-camp-1.jpg',
-  ]);
-  $heading = filled($masters->heading) ? $masters->heading : "Master's Programs";
+  $heading = filled($masters->heading) ? $masters->heading : "Master's programs in UAE: Find your specialization";
   $label = filled($masters->label) ? $masters->label : 'Programme directory';
 @endphp
+
 @if($programs->isNotEmpty() || filled($masters->heading))
 <section class="mlp-masters mlp-masters--prospectus" id="mlp-masters" aria-label="Master's programmes">
   <div class="container mlp-masters__inner">
@@ -32,16 +48,21 @@
       </div>
       @if(filled($masters->intro))
       <p class="mlp-masters__intro">{{ $masters->intro }}</p>
+      @else
+      <p class="mlp-masters__intro">Go beyond the MBA. Choose an MSc or LLM to deepen one area and lead in that domain. Popular among HR managers, logistics managers, and finance professionals aiming for regional leadership.</p>
       @endif
     </header>
 
     <div class="mlp-masters__split{{ $trendingRows->isNotEmpty() ? '' : ' mlp-masters__split--full' }}" data-mlp-reveal="masters-split">
       @if($programs->isNotEmpty())
       <ol class="mlp-masters__ledger" data-mlp-reveal="masters-list" aria-label="All Master's programmes">
-        @foreach($programs as $title)
+        @foreach($programs as $program)
         <li class="mlp-masters__item">
           <span class="mlp-masters__item-mark" aria-hidden="true"></span>
-          <span class="mlp-masters__item-title">{{ $title }}</span>
+          <span class="mlp-masters__item-title">{{ $program['title'] }}</span>
+          @if(filled($program['university'] ?? null))
+          <span class="mlp-masters__item-uni">{{ $program['university'] }}</span>
+          @endif
         </li>
         @endforeach
       </ol>
@@ -70,13 +91,14 @@
           </li>
           @endforeach
         </ul>
+        <p class="mlp-trending__note">Highest demand this quarter among GCC working professionals.</p>
       </aside>
       @endif
     </div>
 
     <div class="mlp-masters__cta-row">
       <a href="#mlp-enquire" class="mlp-masters__cta mlp-cta mlp-cta--primary">Check eligibility <span aria-hidden="true">↗</span></a>
-      <p class="mlp-masters__cta-note">Every programme above is open to enquiry — admissions team will confirm eligibility and next steps.</p>
+      <p class="mlp-masters__cta-note">Every programme above is open to enquiry — admissions team will confirm eligibility and next steps. Response within 24 hours.</p>
     </div>
   </div>
 </section>

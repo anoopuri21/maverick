@@ -77,6 +77,7 @@ use App\Settings\MbaMastersOverviewSettings;
 use App\Settings\MbaMastersSeoSettings;
 use App\Settings\MbaMastersTrustSettings;
 use App\Settings\MbaMastersWhySettings;
+use App\Settings\MbaMastersLearningSettings;
 use App\Settings\SiteSettings;
 use App\Settings\GbpAdmissionSettings;
 use App\Settings\GbpAreasSettings;
@@ -424,6 +425,9 @@ class PageController extends Controller
 
         $partners = safe_settings(MbaMastersPartnersSettings::class);
 
+        $learning = safe_settings(MbaMastersLearningSettings::class);
+        $learning->points = settings_array($learning->points ?? []);
+
         $testimonials = safe_settings(MbaMastersTestimonialsSettings::class);
         $testimonials->items = settings_array($testimonials->items ?? []);
 
@@ -477,6 +481,7 @@ class PageController extends Controller
             'videoTestimonials' => $videoTestimonials,
             'testimonialsJson' => $testimonialsJson,
             'partners' => $partners,
+            'learning' => $learning,
             'testimonials' => $testimonials,
             'compare' => $compare,
             'faq' => $faq,
