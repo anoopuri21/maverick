@@ -14,6 +14,18 @@ return [
 
     'max_upload_kilobytes' => (int) env('MEDIA_MAX_UPLOAD_KB', 5120), // 5 MB
 
+    // Milliseconds to wait between Cloudinary API calls during account
+    // migration (shared-hosting safe default, same as media:sync/clean).
+    'migration_throttle_ms' => (int) env('MEDIA_MIGRATION_THROTTLE_MS', 250),
+
+    // Milliseconds between URL checks (media:verify-urls), plus hosts to
+    // skip entirely (comma-separated, e.g. bot-hostile externals).
+    'verify_throttle_ms' => (int) env('MEDIA_VERIFY_THROTTLE_MS', 100),
+    'verify_skip_hosts' => array_values(array_filter(array_map(
+        'trim',
+        explode(',', strtolower((string) env('MEDIA_VERIFY_SKIP_HOSTS', '')))
+    ))),
+
     'allowed_mime_prefixes' => [
         'image/',
     ],
@@ -30,6 +42,9 @@ return [
         'personal_access_tokens',
         'media_assets',
         'media_recycle_logs',
+        // Migration bookkeeping (old/new urls + asset ids): never live
+        // references — scanners must not count or rewrite these rows.
+        'media_migration_map',
         'telescope_entries',
         'telescope_entries_tags',
         'telescope_monitoring',

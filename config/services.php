@@ -49,6 +49,16 @@ return [
             explode(',', (string) env('CLOUDINARY_LEGACY_ENV_SUFFIXES', 'local,testing,staging,development,dev'))
         ))),
         'secure' => true,
+        // Account-migration (old -> new) credentials. Kept separate so the
+        // main CLOUDINARY_* vars stay untouched until the Phase 3 switch.
+        // Source key/secret are reserved for a future orphan audit — the
+        // migration itself only fetches public delivery URLs (unsigned).
+        'source_cloud_name' => env('CLOUDINARY_SOURCE_CLOUD_NAME'),
+        'source_api_key' => env('CLOUDINARY_SOURCE_API_KEY'),
+        'source_api_secret' => env('CLOUDINARY_SOURCE_API_SECRET'),
+        'dest_cloud_name' => env('CLOUDINARY_DEST_CLOUD_NAME'),
+        'dest_api_key' => env('CLOUDINARY_DEST_API_KEY'),
+        'dest_api_secret' => env('CLOUDINARY_DEST_API_SECRET'),
     ],
 
 ];

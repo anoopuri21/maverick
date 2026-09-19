@@ -9,6 +9,8 @@ class CloudinaryService
 {
     protected ?Cloudinary $cloudinary = null;
 
+    protected ?Cloudinary $destCloudinary = null;
+
     public function hasCredentials(): bool
     {
         return filled(config('services.cloudinary.cloud_name'))
@@ -207,6 +209,158 @@ class CloudinaryService
             ];
         } catch (\Exception $e) {
             Log::error('Cloudinary listImagesByPrefix failed: '.$e->getMessage(), [
+                'prefix' => $prefix,
+                'next_cursor' => $nextCursor,
+            ]);
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Old (source) account cloud name for the account migration.
+     */
+    public function sourceCloudName(): ?string
+    {
+        $name = config('services.cloudinary.source_cloud_name');
+
+        return filled($name) ? (string) $name : null;
+    }
+
+    /**
+     * New (destination) account cloud name for the account migration.
+     */
+    public function destCloudName(): ?string
+    {
+        $name = config('services.cloudinary.dest_cloud_name');
+
+        return filled($name) ? (string) $name : null;
+    }
+
+    public function destConfigured(): bool
+    {
+        return filled(config('services.cloudinary.dest_cloud_name'))
+            && filled(config('services.cloudinary.dest_api_key'))
+            && filled(config('services.cloudinary.dest_api_secret'));
+    }
+
+    protected function destClient(): Cloudinary
+    {
+        if ($this->destCloudinary instanceof Cloudinary) {
+            return $this->destCloudinary;
+        }
+
+        $cloudName = config('services.cloudinary.dest_cloud_name');
+        $apiKey = config('services.cloudinary.dest_api_key');
+        $apiSecret = config('services.cloudinary.dest_api_secret');
+
+        if (empty($cloudName) || empty($apiKey) || empty($apiSecret)) {
+            throw new \RuntimeException(
+                'Cloudinary DEST credentials are missing. Please check your .env file for: '.
+                'CLOUDINARY_DEST_CLOUD_NAME, CLOUDINARY_DEST_API_KEY, CLOUDINARY_DEST_API_SECRET. '.
+                'After adding them, run: php artisan config:clear'
+            );
+        }
+
+        $this->destCloudinary = new Cloudinary([
+            'cloud' => [
+                'cloud_name' => $cloudName,
+                'api_key' => $apiKey,
+                'api_secret' => $apiSecret,
+            ],
+            'url' => ['secure' => true],
+        ]);
+
+        return $this->destCloudinary;
+    }
+
+    /**
+     * Fetch-upload a remote file into the DEST account under an exact
+     * public_id. No transformations are applied — migration bytes must be
+     * preserved 1:1. Folders in the public_id auto-create.
+     *
+     * @return array{secure_url: string|null, bytes: int|null, public_id: string|null}
+     */
+    public function uploadRemoteImage(string $remoteUrl, string $publicId): array
+    {
+        try {
+            $result = $this->destClient()->uploadApi()->upload($remoteUrl, [
+                'public_id' => $publicId,
+                'resource_type' => 'image',
+                'overwrite' => false,
+                'unique_filename' => false,
+            ]);
+
+            return [
+                'secure_url' => $result['secure_url'] ?? null,
+                'bytes' => isset($result['bytes']) ? (int) $result['bytes'] : null,
+                'public_id' => $result['public_id'] ?? null,
+            ];
+        } catch (\Exception $e) {
+            Log::error('Cloudinary dest upload failed: '.$e->getMessage(), [
+                'public_id' => $publicId,
+            ]);
+
+            throw $e;
+        }
+    }
+
+    /**
+     * DEST account resource lookup (Admin API). Returns null when the
+     * public_id does not exist there; rethrows real API errors.
+     *
+     * @return array<string, mixed>|null
+     */
+    public function destResource(string $publicId): ?array
+    {
+        try {
+            $result = $this->destClient()->adminApi()->asset($publicId, [
+                'resource_type' => 'image',
+            ]);
+
+            return is_array($result) ? $result : null;
+        } catch (\Exception $e) {
+            if (str_contains(strtolower($e->getMessage()), 'not found')) {
+                return null;
+            }
+
+            Log::error('Cloudinary dest lookup failed: '.$e->getMessage(), [
+                'public_id' => $publicId,
+            ]);
+
+            throw $e;
+        }
+    }
+
+    /**
+     * List DEST account images under a public_id prefix (Admin API, one page).
+     *
+     * @return array{resources: array<int, array<string, mixed>>, next_cursor: string|null}
+     */
+    public function listDestImagesByPrefix(string $prefix, ?string $nextCursor = null): array
+    {
+        try {
+            $options = [
+                'resource_type' => 'image',
+                'type' => 'upload',
+                'prefix' => $prefix,
+                'max_results' => 500,
+            ];
+
+            if ($nextCursor) {
+                $options['next_cursor'] = $nextCursor;
+            }
+
+            $result = $this->destClient()->adminApi()->assets($options);
+
+            return [
+                'resources' => isset($result['resources']) && is_array($result['resources'])
+                    ? $result['resources']
+                    : [],
+                'next_cursor' => $result['next_cursor'] ?? null,
+            ];
+        } catch (\Exception $e) {
+            Log::error('Cloudinary listDestImagesByPrefix failed: '.$e->getMessage(), [
                 'prefix' => $prefix,
                 'next_cursor' => $nextCursor,
             ]);
