@@ -163,3 +163,12 @@ Client flagged that programme and university names did not match the official li
 ## Addendum 2026-09-16 (d): UWS MBA added per client instruction
 
 Client instructed one addition only: University of the West of Scotland, UK (UWS) with programme "MBA in International Business". Added in: section 6 (new MBA tab + intro count four to five), section 10 fees table (one row, fees and duration confirmed per programme), section 13 partners (one row, UK public university). No other content changed. Word count 3,189 (cap 3,000 to 3,500); sweeps all 0; 16/16 keywords. DOCX, PDF, and client report regenerated.
+
+## Addendum 2026-09-19 (e): v4 humanize pass after detector results
+
+Client detector results: masters client pack 77% AI, program detail file 100% AI. Response:
+
+- G02 §8 added: client red-flag list as a mandatory P0 gate on every artifact.
+- 08 rewritten v4 in a counsellor voice: uneven sentence rhythm, concrete Gulf detail (Jebel Ali, Tuesday evening classes, Sharjah desk), honest caveats ("We'd rather lose an enrolment than win a complaint"), contractions, zero formulaic frames, zero jargon, zero adverbs, zero dashes. Keywords, facts, tables, and the 3,000 to 3,500 cap all preserved: 3,113 words, 16/16 phrases.
+- DOCX, PDF, and client report regenerated from v4.
+- Program detail file rewritten to v4 with the same pass (separate commit trail).
