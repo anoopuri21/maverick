@@ -1,4 +1,12 @@
-"""Master's Programs List PDF: University -> Master's category -> Programs.
+"""Master's Programs List PDF (strict format).
+
+Output contains ONLY the list, exactly as:
+    University name ->
+    Program category ->
+    Program name
+    Program name
+    ...
+No title, no counts, no notes, nothing else on the PDF.
 
 Source of truth: uploads/listing.pdf (master's level only) plus the
 client-approved addition (University of the West of Scotland, MBA in
@@ -11,16 +19,15 @@ from reportlab.lib import colors
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib.units import cm
-from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer
+from reportlab.platypus import Paragraph, SimpleDocTemplate
 from xml.sax.saxutils import escape
 
 OUT = "landing-page/gulf-masters/12-masters-programs-list-university-wise.pdf"
+ARROW = " \u2192"
 
 NAVY = colors.HexColor("#071444")
 RED = colors.HexColor("#B20202")
 INK = colors.HexColor("#1C1E26")
-GREY = colors.HexColor("#5A6070")
-LIGHT = colors.HexColor("#EEF2FA")
 
 UNIVERSITIES = [
     ("Rushford Business School (RBS), Switzerland", [
@@ -104,48 +111,35 @@ UNIVERSITIES = [
 
 def main():
     S = {}
-    S["title"] = ParagraphStyle("t", fontName="Helvetica-Bold", fontSize=17,
-                                textColor=NAVY, leading=21, spaceAfter=2)
-    S["sub"] = ParagraphStyle("s", fontName="Helvetica", fontSize=9.5,
-                              textColor=GREY, leading=13, spaceAfter=10)
     S["uni"] = ParagraphStyle("u", fontName="Helvetica-Bold", fontSize=12.5,
-                              textColor=NAVY, leading=16, spaceBefore=12,
-                              spaceAfter=4, backColor=LIGHT,
-                              borderPadding=(4, 4, 4, 4))
+                              textColor=NAVY, leading=17, spaceBefore=14,
+                              spaceAfter=3)
     S["cat"] = ParagraphStyle("c", fontName="Helvetica-Bold", fontSize=10.5,
-                              textColor=RED, leading=14, spaceBefore=7,
-                              spaceAfter=2)
+                              textColor=RED, leading=15, spaceBefore=8,
+                              spaceAfter=2, leftIndent=10)
     S["prog"] = ParagraphStyle("p", fontName="Helvetica", fontSize=10,
-                               textColor=INK, leading=13.5, leftIndent=14,
-                               spaceAfter=1.5)
-    S["small"] = ParagraphStyle("sm", fontName="Helvetica", fontSize=8.5,
-                                textColor=GREY, leading=11, spaceAfter=4)
+                               textColor=INK, leading=14, leftIndent=24,
+                               spaceAfter=1)
 
-    story = [
-        Paragraph("Master's Programs List", S["title"]),
-        Paragraph("University &nbsp;\u2192&nbsp; Master's program category &nbsp;\u2192&nbsp; Master's programs &nbsp;\u00b7&nbsp; Maverick &nbsp;\u00b7&nbsp; 16 September 2026", S["sub"]),
-    ]
-
-    total = 0
+    story = []
+    first = True
     for uni, cats in UNIVERSITIES:
-        n_uni = sum(len(p) for _, p in cats)
-        total += n_uni
-        story.append(Paragraph(f"{escape(uni)} &nbsp;({n_uni} master's programs)", S["uni"]))
+        st = S["uni"]
+        if first:
+            st = ParagraphStyle("u0", parent=st, spaceBefore=0)
+            first = False
+        story.append(Paragraph(escape(uni) + ARROW, st))
         for cat, progs in cats:
-            story.append(Paragraph(f"{escape(cat)} &nbsp;({len(progs)})", S["cat"]))
-            for i, p in enumerate(progs, 1):
-                story.append(Paragraph(f"{i}.&nbsp; {escape(p)}", S["prog"]))
-    story.append(Spacer(1, 8))
-    story.append(Paragraph(f"Total master's programs listed: {total}. Source: official programme "
-                           "listing (uploads/listing.pdf), master's level only, plus the approved "
-                           "University of the West of Scotland addition.", S["small"]))
+            story.append(Paragraph(escape(cat) + ARROW, S["cat"]))
+            for p in progs:
+                story.append(Paragraph(escape(p), S["prog"]))
 
     doc = SimpleDocTemplate(OUT, pagesize=A4, leftMargin=2.0 * cm,
                             rightMargin=2.0 * cm, topMargin=1.8 * cm,
-                            bottomMargin=1.8 * cm,
-                            title="Master's Programs List", author="Maverick")
+                            bottomMargin=1.8 * cm)
     doc.build(story)
-    print(f"universities {len(UNIVERSITIES)} | total master's programs {total}")
+    n = sum(len(p) for _, c in UNIVERSITIES for _, p in c)
+    print(f"universities {len(UNIVERSITIES)} | programs {n} | strict format")
     print("wrote", OUT)
 
 
