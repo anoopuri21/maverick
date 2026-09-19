@@ -100,3 +100,4 @@ Open it directly or serve it: `python3 -m http.server 8080`.
 > Production note: the real build should follow the site's existing convention —
 > Laravel route + settings-driven section classes + Blade partials + the existing
 > enquiry endpoint / Zapier / Zoho pipeline (see `11` §4).
+| 13 | ai-team/prompts/content-writer-agent-prompt.md | Content writer agent system prompt: humanize-first, 3-gate verification, paste into any new session |
