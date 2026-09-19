@@ -165,3 +165,48 @@ Two artifact classes carry the strictest version of this rule, because the clien
   cat-and-mouse:
   [Google E-E-A-T Guide 2026](https://linkbuilder.com/blog/google-eeat-guide),
   [YMYL Content Guidelines 2026](https://koanthic.com/en/ymyl-content-guidelines-complete-guide-for-2026/).
+
+## 8. Client red-flag list (added 2026-09-19, mandatory on every artifact)
+
+The client runs deliverables through AI detectors. A detector score above a low
+single-digit percentage is a failed deliverable. The flags below come from the
+client's own list and are checked on top of the scorecard in §5. Any hit is a P0.
+
+Content
+- No shallow copy: every section needs depth, a specific insight, or an angle a
+  template could not produce.
+- Signature touches: concrete nouns (Jebel Ali, a salary date, a Sharjah office),
+  small human asides, and at least one honest caveat per page.
+- No formulaic frames: "It's not X, it's Y", "In today's {blank} world",
+  "here's the kicker", rhetorical questions used to link paragraphs, paragraphs
+  that end in a forced moral.
+- No hallucination: every figure traces to a dated source on file.
+
+Tone
+- Not conformist-safe: where facts allow, take a mild, honest stance
+  ("we don't print a number here that might go stale").
+- No jargon tells: delve, align, tapestry, seamless, leverage, utilize, empower,
+  unlock, embark, plus any new word a detector report names.
+- No overcooked lines: not every sentence may sound momentous. Most sentences
+  should be plain; at most one vivid line per section.
+- No overconfidence: avoid "proved", "the reality is", guarantees. Prefer
+  "typically", "in our experience", "your advisor confirms".
+- Personification at most once per page, and only with taste.
+
+Structure
+- Rhythm must meander: alternate long (20+ word) and short (under 10 word)
+  sentences; never three clipped sentences in a row.
+- One adjective where one is enough; double adjectives are a tell.
+- Adverbs like truly, quietly, deeply are banned outright.
+- Prose first: bullets only where the design demands lists (programmes, careers,
+  modules). No PowerPoint-deck pages.
+- Headers in sentence case, never Title Case On Every Word.
+
+Starts and finishes
+- Openings go straight to the point; no deja-vu intro, no "X isn't just Y".
+- No mononymous "Conclusion" block, no platitudinal closers, no clunky brand
+  link at the end. Finish with a concrete next step instead.
+
+Gate: before delivery, T9 runs a red-flag sweep over the final text using this
+list and records the pass in the QA document. Detector-style rewrites of whole
+pages also trigger regeneration of every artifact generated from the source.
