@@ -80,8 +80,8 @@
 
     <script src="{{ cached_asset('assets/js/main.js') }}" defer></script>
     <script src="{{ cached_asset('assets/js/navigation.js') }}" defer></script>
-    <script src="{{ cached_asset('assets/js/animations-utils.js') }}" defer></script>
     @unless(request()->routeIs('mba-masters-landing'))
+    <script src="{{ cached_asset('assets/js/animations-utils.js') }}" defer></script>
     <script src="{{ cached_asset('assets/js/animations.js') }}" defer></script>
     @endunless
     @if(request()->routeIs('our-story'))
@@ -106,7 +106,9 @@
     @if(request()->routeIs('home', 'our-story', 'masters-pathway', 'global-partners', 'mba-masters-landing'))
     <script src="{{ cached_asset('assets/js/testimonials.js') }}" defer></script>
     @endif
+    @unless(request()->routeIs('mba-masters-landing'))
     <script src="{{ cached_asset('assets/js/faculty-insights-toggle.js') }}" defer></script>
+    @endunless
     <script src="{{ cached_asset('assets/js/scroll-controls.js') }}" defer></script>
 
     <script>
