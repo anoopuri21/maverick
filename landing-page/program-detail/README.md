@@ -11,10 +11,10 @@ Common facts (Rushford official listing): 16 months online, 27 courses of ~3 wee
 | 03 | 03-mba-in-strategic-management-rushford-content.md | MBA in Strategic Management | DONE |
 | 04 | 04-mba-in-real-estate-management-rushford-content.md | MBA in Real Estate Management | DONE |
 | 05 | 05-mba-in-human-resource-management-rushford-content.md | MBA in Human Resource Management | DONE |
-| 06 | 06-mba-in-marketing-rushford-content.md | MBA in Marketing | NEXT BATCH |
-| 07 | 07-mba-in-healthcare-leadership-rushford-content.md | MBA in Healthcare Leadership | NEXT BATCH |
-| 08 | 08-mba-in-hospitality-and-tourism-management-rushford-content.md | MBA in Hospitality & Tourism Management | NEXT BATCH |
-| 09 | 09-mba-in-health-economics-rushford-content.md | MBA in Health Economics | NEXT BATCH |
+| 06 | 06-mba-in-marketing-rushford-content.md | MBA in Marketing | DONE |
+| 07 | 07-mba-in-healthcare-leadership-rushford-content.md | MBA in Healthcare Leadership | DONE |
+| 08 | 08-mba-in-hospitality-and-tourism-management-rushford-content.md | MBA in Hospitality & Tourism Management | DONE |
+| 09 | 09-mba-in-health-economics-rushford-content.md | MBA in Health Economics | DONE |
 | 10 | 10-mba-in-entrepreneurship-and-innovation-rushford-content.md | MBA in Entrepreneurship and Innovation | NEXT BATCH |
 | 11 | 11-mba-in-finance-rushford-content.md | MBA in Finance | NEXT BATCH |
 | 12 | 12-master-of-business-administration-rushford-content.md | Master of Business Administration (general) | NEXT BATCH |
