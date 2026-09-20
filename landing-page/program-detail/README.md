@@ -11,7 +11,7 @@ program-detail/
 ├── girne-american-university/         IN PROGRESS
 │   ├── mba/             06 files · 12-15 months (per client course pages)
 │   ├── executive-mba/   16 files · 12-18 months, senior cohorts · DONE
-│   └── msc/             04 files · thesis-based MSc programmes
+│   └── msc/             04 files · thesis-based MSc programmes · DONE
 ├── university-for-the-creative-arts/  QUEUED
 │   └── mba/      Global MBA with Rushford · 12-18 months · 90 ECTS · triple-certified
 ├── university-of-wolverhampton/       QUEUED
@@ -83,12 +83,19 @@ program-detail/
 | 15 | executive-mba/15-emba-in-digital-marketing.md | Executive MBA in Digital Marketing | DONE · v5 |
 | 16 | executive-mba/16-emba-in-sport-management.md | Executive MBA in Sport Management | DONE · v5 |
 
+## girne-american-university/msc (thesis-based, 8-18 months)
+
+| # | File | Programme | Status |
+| --- | --- | --- | --- |
+| 01 | msc/01-msc-in-business-management.md | MSc in Business Management | DONE · v5 |
+| 02 | msc/02-msc-in-economics.md | MSc in Economics | DONE · v5 |
+| 03 | msc/03-msc-in-healthcare-management.md | MSc in Healthcare Management | DONE · v5 |
+| 04 | msc/04-msc-in-counselling-psychology.md | MSc in Counselling Psychology | DONE · v5 |
+
 ## Batch queue
 
-1. GAU MSc thesis programmes 01-04 (Business Management, Economics, Healthcare Management, Counselling Psychology)
-3. GAU MSc thesis programmes 01-04
-4. UCA Global MBA, Wolverhampton LLM, UWS MBA in International Business
-5. v5 conversion pass across the remaining Rushford v4 files (19 files), after detector validation of the v5 samples
+1. UCA Global MBA, Wolverhampton LLM, UWS MBA in International Business (UK programmes)
+2. v5 conversion pass across the remaining Rushford v4 files (19 files), after detector validation of the v5 samples
 
 ## Detector note (2026-09-20)
 
