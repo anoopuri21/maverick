@@ -15,9 +15,9 @@ Common facts (Rushford official listing): 16 months online, 27 courses of ~3 wee
 | 07 | 07-mba-in-healthcare-leadership-rushford-content.md | MBA in Healthcare Leadership | DONE |
 | 08 | 08-mba-in-hospitality-and-tourism-management-rushford-content.md | MBA in Hospitality & Tourism Management | DONE |
 | 09 | 09-mba-in-health-economics-rushford-content.md | MBA in Health Economics | DONE |
-| 10 | 10-mba-in-entrepreneurship-and-innovation-rushford-content.md | MBA in Entrepreneurship and Innovation | NEXT BATCH |
-| 11 | 11-mba-in-finance-rushford-content.md | MBA in Finance | NEXT BATCH |
-| 12 | 12-master-of-business-administration-rushford-content.md | Master of Business Administration (general) | NEXT BATCH |
+| 10 | 10-mba-in-entrepreneurship-and-innovation-rushford-content.md | MBA in Entrepreneurship and Innovation | DONE |
+| 11 | 11-mba-in-finance-rushford-content.md | MBA in Finance | DONE |
+| 12 | 12-master-of-business-administration-rushford-content.md | Master of Business Administration (general) | DONE |
 | 13 | 13-msc-in-sustainability-and-environmental-management-rushford-content.md | MSc in Sustainability and Environmental Management | PLANNED |
 | 14 | 14-msc-in-strategic-management-rushford-content.md | MSc in Strategic Management | PLANNED |
 | 15 | 15-msc-in-operations-and-supply-chain-management-rushford-content.md | MSc in Operations and Supply Chain Management | PLANNED |
