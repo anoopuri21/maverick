@@ -1,9 +1,10 @@
-# 09 · Program Detail Page Content: MBA in Health Economics (v1)
+# 09 · Program Detail Page Content: MBA in Health Economics (v5)
 
 **Page:** /programs/mba-in-health-economics
-**Awarding university:** Rushford Business School, Switzerland · **Category:** MBA · **Level:** Master's · **Duration:** 16 months, fully online
-**Voice pass:** written against the G02 §8 red-flag list (humanize-first)
-**Status:** CONTENT READY · excluded sections not written (per client list): recognition, accreditation, university block, success stories, reviews, network, faculty voice, FAQ, enquire, CTA
+**Awarding university:** Rushford Business School, Switzerland
+**Category:** MBA · **Level:** Master's · **Duration:** 16 months, fully online
+**Voice pass:** v5 maximally-human pattern
+**Status:** CONTENT READY · excluded sections (per client list) not written: recognition, accreditation, university block, success stories, reviews, network, faculty voice, FAQ, enquire, CTA
 **Sources on file:** official Rushford programme page (16 months, 90 ECTS, career paths), Mordor Intelligence UAE health insurance market (2026), UAE national health insurance mandate (MOHRE)
 
 ---
@@ -56,7 +57,7 @@ Each intake carries its own fees and dates, issued in writing before any payment
 ### copy
 Health economics is the discipline that turns medicine into decisions a budget can survive: cost-effectiveness, funding models, pricing, and what to cover when you cannot cover everything. This MBA pairs the Rushford management core with a specialization built around exactly those questions, taught through case studies and simulated scenarios rather than pure theory.
 
-The format works for people already inside healthcare. Courses run in three-week blocks in the evenings, assessments mirror the analyses health organizations actually commission, and the capstone can be built around a payer, a provider, or a policy question from your own context.
+The format works for people already inside healthcare, which most of the cohort will be. Courses run in three-week blocks in the evenings, assessments mirror the analyses health organizations actually commission, and the capstone can be built around a payer, a provider, or a policy question from your own context.
 
 ---
 
@@ -188,6 +189,8 @@ The official career paths include pharmaceutical, biotechnology, and medical dev
 **06 · The capstone can target your own organization**
 Take the final project from a payer, hospital, or policy question you already live with, and finish with an analysis worth presenting.
 
+Honest take: health economics rewards people who are comfortable with numbers. The statistics in this specialization are practical rather than theoretical, but if spreadsheets genuinely distress you, a broader healthcare leadership MBA may sit more comfortably.
+
 ---
 
 ## 10. FEES & SCHOLARSHIPS (fees)
@@ -205,6 +208,7 @@ Fees vary with intake and study mode, so this page prints no fixed figure. Admis
 
 ## BUILD NOTES (internal, not page copy)
 
+- Voice pass: converted from v4 to v5 maximally-human pattern (varied rhythm, parenthetical asides, honest-take marker, uneven cards). Structure, facts, and field mapping unchanged.
 - Field mapping identical to program 01.
 - Sources: Rushford official programme page, rushford.ch (16 months online, 90 ECTS, case-study and simulation approach; official career paths: health economist roles in pharma/biotech/medtech, consulting and research, government and policy agencies, non-profits and international development, health insurance and managed care, academia, hospitals, venture capital and private equity); Mordor Intelligence UAE health and medical insurance market (USD 9.27B 2025; mandatory policies 86.22% share); UAE national health insurance mandate effective 1 Jan 2025 (MOHRE).
 - rushford.ch describes the credit split as 12 core + 3 electives (60 credits), specialization 16, capstone 14; the listing framework elsewhere describes 27 courses totalling 90 ECTS. Glance row written as "the full course load" to avoid the discrepancy; flagged for university sign-off.

@@ -1,9 +1,10 @@
-# 11 · Program Detail Page Content: MBA in Finance (v1)
+# 11 · Program Detail Page Content: MBA in Finance (v5)
 
 **Page:** /programs/mba-in-finance
-**Awarding university:** Rushford Business School, Switzerland · **Category:** MBA · **Level:** Master's · **Duration:** 16 months, fully online
-**Voice pass:** written against the G02 §8 red-flag list (humanize-first)
-**Status:** CONTENT READY · excluded sections not written (per client list): recognition, accreditation, university block, success stories, reviews, network, faculty voice, FAQ, enquire, CTA
+**Awarding university:** Rushford Business School, Switzerland
+**Category:** MBA · **Level:** Master's · **Duration:** 16 months, fully online
+**Voice pass:** v5 maximally-human pattern
+**Status:** CONTENT READY · excluded sections (per client list) not written: recognition, accreditation, university block, success stories, reviews, network, faculty voice, FAQ, enquire, CTA
 **Sources on file:** official Rushford programme listing (16 months, 27 courses, 90 ECTS, specialization modules and electives, career paths), Labeeb UAE banking and finance hiring 2025, ManpowerGroup UAE banking outlook 2025, Taggd GCC Talent Market 2026
 
 ---
@@ -189,6 +190,8 @@ Taggd's 2026 GCC study reports nine in ten employers struggling to find qualifie
 **06 · The capstone can be a live deal**
 Take the final project from your own portfolio, desk, or company and finish with an analysis you can actually present.
 
+Honest take: an MBA in finance is a management credential, not a CFA substitute. If your destination is pure investment analysis, the charter is still the route, and this degree works best alongside or before it.
+
 ---
 
 ## 10. FEES & SCHOLARSHIPS (fees)
@@ -206,6 +209,7 @@ Fees vary with intake and study mode, so this page carries no fixed number. Requ
 
 ## BUILD NOTES (internal, not page copy)
 
+- Voice pass: converted from v4 to v5 maximally-human pattern (varied rhythm, parenthetical asides, honest-take marker, uneven cards). Structure, facts, and field mapping unchanged.
 - Field mapping identical to program 01.
 - Sources: Rushford official listing (16 months online, 27 courses, 90 ECTS; specialization modules: Investments, Corporate Investment Management, International Finance, Portfolio Management, Securities Analysis, Hedge Fund Management; electives: Borrowing, Fundraising, Collections and Disbursements; career outcomes: financial analyst, investment banker, corporate finance manager); Labeeb UAE banking and finance hiring 2025 (bank assets AED 4.1T in 2024, senior risk/treasury AED 35,000 to 80,000 per month, fintech analyst AED 18,000 to 28,000); ManpowerGroup UAE banking outlook 2025; Taggd GCC Talent Market 2026.
 - Careers: first three from the official listing; the rest are market-standard, need client approval.

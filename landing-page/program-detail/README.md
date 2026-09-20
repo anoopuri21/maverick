@@ -29,13 +29,13 @@ program-detail/
 | 03 | mba/03-mba-in-strategic-management.md | MBA in Strategic Management | DONE · v5 |
 | 04 | mba/04-mba-in-real-estate-management.md | MBA in Real Estate Management | DONE · v5 |
 | 05 | mba/05-mba-in-human-resource-management.md | MBA in Human Resource Management | DONE · v5 |
-| 06 | mba/06-mba-in-marketing.md | MBA in Marketing | DONE · v4→v5 queue |
-| 07 | mba/07-mba-in-healthcare-leadership.md | MBA in Healthcare Leadership | DONE · v4→v5 queue |
-| 08 | mba/08-mba-in-hospitality-and-tourism-management.md | MBA in Hospitality & Tourism Management | DONE · v4→v5 queue |
-| 09 | mba/09-mba-in-health-economics.md | MBA in Health Economics | DONE · v4→v5 queue |
-| 10 | mba/10-mba-in-entrepreneurship-and-innovation.md | MBA in Entrepreneurship and Innovation | DONE · v4→v5 queue |
-| 11 | mba/11-mba-in-finance.md | MBA in Finance | DONE · v4→v5 queue |
-| 12 | mba/12-master-of-business-administration-accelerated.md | Master of Business Administration (accelerated) | DONE · v4→v5 queue |
+| 06 | mba/06-mba-in-marketing.md | MBA in Marketing | DONE · v5 |
+| 07 | mba/07-mba-in-healthcare-leadership.md | MBA in Healthcare Leadership | DONE · v5 |
+| 08 | mba/08-mba-in-hospitality-and-tourism-management.md | MBA in Hospitality & Tourism Management | DONE · v5 |
+| 09 | mba/09-mba-in-health-economics.md | MBA in Health Economics | DONE · v5 |
+| 10 | mba/10-mba-in-entrepreneurship-and-innovation.md | MBA in Entrepreneurship and Innovation | DONE · v5 |
+| 11 | mba/11-mba-in-finance.md | MBA in Finance | DONE · v5 |
+| 12 | mba/12-master-of-business-administration-accelerated.md | Master of Business Administration (accelerated) | DONE · v5 |
 
 ## rushford-business-school/msc
 

@@ -1,9 +1,10 @@
-# 10 · Program Detail Page Content: MBA in Entrepreneurship and Innovation (v1)
+# 10 · Program Detail Page Content: MBA in Entrepreneurship and Innovation (v5)
 
 **Page:** /programs/mba-in-entrepreneurship-and-innovation
-**Awarding university:** Rushford Business School, Switzerland · **Category:** MBA · **Level:** Master's · **Duration:** 16 months, fully online
-**Voice pass:** written against the G02 §8 red-flag list (humanize-first)
-**Status:** CONTENT READY · excluded sections not written (per client list): recognition, accreditation, university block, success stories, reviews, network, faculty voice, FAQ, enquire, CTA
+**Awarding university:** Rushford Business School, Switzerland
+**Category:** MBA · **Level:** Master's · **Duration:** 16 months, fully online
+**Voice pass:** v5 maximally-human pattern
+**Status:** CONTENT READY · excluded sections (per client list) not written: recognition, accreditation, university block, success stories, reviews, network, faculty voice, FAQ, enquire, CTA
 **Sources on file:** official Rushford programme listing (16 months, specialization scope, career paths), UAE startup funding 2025 (Wamda, GrowthList, March 2026), Taggd GCC Talent Market 2026
 
 ---
@@ -56,7 +57,7 @@ Fee structures and intake dates are confirmed per intake and issued in writing b
 ### copy
 This MBA is aimed at people who build things: founders, would-be founders, and the corporate managers who are asked to innovate inside organizations that were not designed for it. After the Rushford management core, the specialization covers startup creation, product and service development, innovation management, technology adoption, and incubation through to growth.
 
-The format respects how these people actually live. Three-week courses, evening sessions, fully online. The capstone can be your own venture plan, a product you are taking to market, or an innovation problem your employer keeps failing to solve. Whichever you bring, the degree ends with it worked through.
+The format respects how these people actually live, which is erratically. Three-week courses, evening sessions, fully online. The capstone can be your own venture plan, a product you are taking to market, or an innovation problem your employer keeps failing to solve. Whichever you bring, the degree ends with it worked through.
 
 ---
 
@@ -188,6 +189,8 @@ The specialization is designed for intrapreneurs as well as founders; large Gulf
 **06 · The capstone is your venture**
 Bring your own startup plan or your employer's innovation problem and finish the degree with it worked through to a defendable state.
 
+Honest take: no MBA guarantees a company survives. What this one does is replace the expensive mistakes with studied ones, and on the Gulf's failure statistics, that trade is worth taking.
+
 ---
 
 ## 10. FEES & SCHOLARSHIPS (fees)
@@ -199,12 +202,13 @@ Scholarship Availability | Available for strong profiles; eligibility checked by
 Offer Validity | Early-bird pricing moves with each intake, so confirm the window
 
 ### request block
-Because fees shift with intake and study mode, no fixed figure appears here. Request the personal breakdown from admissions; it is free and commits you to nothing. Across our Master's programmes, totals usually sit between AED 16,000 and 40,000.
+Fees shift with intake and study mode, so no fixed figure appears here. Request the personal breakdown from admissions; it is free and commits you to nothing. Across our Master's programmes, totals usually sit between AED 16,000 and 40,000.
 
 ---
 
 ## BUILD NOTES (internal, not page copy)
 
+- Voice pass: converted from v4 to v5 maximally-human pattern (varied rhythm, parenthetical asides, honest-take marker, uneven cards). Structure, facts, and field mapping unchanged.
 - Field mapping identical to program 01.
 - Sources: Rushford official listing (16 months online, 27 courses, specialization scope: startup creation, product/service development, innovation management, technology adoption, incubation and growth; career paths: startup founder, product manager, corporate innovation strategist, business consultant, business development lead, intrapreneur); Wamda and GrowthList UAE startup funding 2025 (USD 2B across 218 deals; MENA record USD 7.5B; Dubai 93% of H1 2025 tech funding); Unicorn 30 programme (approved Oct 2025); Taggd GCC Talent Market 2026.
 - Note: one listing shows "138 ECTS", contradicting Rushford's standard 90 ECTS framework. Copy uses 90 ECTS; discrepancy flagged for university confirmation (same as program 06).

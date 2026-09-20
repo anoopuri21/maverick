@@ -1,9 +1,10 @@
-# 07 · Program Detail Page Content: MBA in Healthcare Leadership (v1)
+# 07 · Program Detail Page Content: MBA in Healthcare Leadership (v5)
 
 **Page:** /programs/mba-in-healthcare-leadership
-**Awarding university:** Rushford Business School, Switzerland · **Category:** MBA · **Level:** Master's · **Duration:** 16 months, fully online
-**Voice pass:** written against the G02 §8 red-flag list (humanize-first)
-**Status:** CONTENT READY · excluded sections not written (per client list): recognition, accreditation, university block, success stories, reviews, network, faculty voice, FAQ, enquire, CTA
+**Awarding university:** Rushford Business School, Switzerland
+**Category:** MBA · **Level:** Master's · **Duration:** 16 months, fully online
+**Voice pass:** v5 maximally-human pattern
+**Status:** CONTENT READY · excluded sections (per client list) not written: recognition, accreditation, university block, success stories, reviews, network, faculty voice, FAQ, enquire, CTA
 **Sources on file:** official Rushford programme listing (16 months, 90 ECTS, competency areas, career paths), MarkNtel UAE healthcare market (2026), Taggd GCC Talent Market 2026
 
 ---
@@ -56,7 +57,7 @@ Each intake has its own fee sheet and calendar. Both arrive in writing before an
 ### copy
 Healthcare leadership sits on an uncomfortable fence: patient outcomes on one side, budgets, policy, and regulation on the other. This MBA is for the people expected to stand on that fence. After the Rushford management core, the specialization works through healthcare economics, policy, information systems, ethics and medicolegal issues, telemedicine, and the emotional intelligence that evidence-based, patient-centered care actually demands.
 
-The format was built for clinicians and administrators who cannot stop working. Three-week courses, evening sessions, and a capstone that can be taken straight from your facility: a service line, a quality problem, a policy question. In a sector this regulated, the choice of problem will not be hard.
+The format was built for clinicians and administrators who cannot stop working, because most of them cannot. Three-week courses, evening sessions, and a capstone that can be taken straight from your facility: a service line, a quality problem, a policy question. In a sector this regulated, the choice of problem will not be hard.
 
 ---
 
@@ -80,7 +81,7 @@ Instalments sit against salary dates, with the schedule written down first.
 **06 · Advisors in your time zone**
 A named success coach for the degree, and Sharjah-based advisors reachable by visit or WhatsApp.
 
-Closing line: Rushford Business School, Switzerland, issues the certificate. The patient experience improvements it should lead to are on you.
+Closing line: Rushford Business School, Switzerland, issues the certificate. The patient experience improvements it should lead to are on you, and that is the part worth the effort.
 
 ---
 
@@ -188,6 +189,8 @@ The specialization treats telemedicine and technology change as management subje
 **06 · The capstone can improve your own facility**
 Take the final project from your workplace and finish with a change proposal that has academic weight and operational context.
 
+Honest take: this degree builds the management side of healthcare careers. Clinical licensing stays with your professional authority, and no MBA changes that, so plan the two tracks side by side.
+
 ---
 
 ## 10. FEES & SCHOLARSHIPS (fees)
@@ -205,6 +208,7 @@ Fees depend on intake and study mode, which is why no fixed number appears on th
 
 ## BUILD NOTES (internal, not page copy)
 
+- Voice pass: converted from v4 to v5 maximally-human pattern (varied rhythm, parenthetical asides, honest-take marker, uneven cards). Structure, facts, and field mapping unchanged.
 - Field mapping identical to program 01.
 - Sources: Rushford official listing (16 months online, 90 ECTS, competency areas incl. economics, patient satisfaction, healthcare policy, information management, ethics, medicolegal issues, telemedicine, emotional intelligence, evidence-based patient-centered care; career settings: hospitals, healthcare systems, insurance companies, government agencies); MarkNtel UAE healthcare market (USD 3.4B 2025 to USD 6.63B 2032, 10% CAGR); UAE national health insurance mandate effective 1 Jan 2025 (MOHRE, via Mordor Intelligence); Taggd GCC Talent Market 2026.
 - Stage-3 lines describe official competency areas; the listing publishes no fixed module titles for this specialization. Flagged for university sign-off.

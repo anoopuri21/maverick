@@ -1,9 +1,10 @@
-# 08 · Program Detail Page Content: MBA in Hospitality & Tourism Management (v1)
+# 08 · Program Detail Page Content: MBA in Hospitality & Tourism Management (v5)
 
 **Page:** /programs/mba-in-hospitality-and-tourism-management
-**Awarding university:** Rushford Business School, Switzerland · **Category:** MBA · **Level:** Master's · **Duration:** 16 months, fully online
-**Voice pass:** written against the G02 §8 red-flag list (humanize-first)
-**Status:** CONTENT READY · excluded sections not written (per client list): recognition, accreditation, university block, success stories, reviews, network, faculty voice, FAQ, enquire, CTA
+**Awarding university:** Rushford Business School, Switzerland
+**Category:** MBA · **Level:** Master's · **Duration:** 16 months, fully online
+**Voice pass:** v5 maximally-human pattern
+**Status:** CONTENT READY · excluded sections (per client list) not written: recognition, accreditation, university block, success stories, reviews, network, faculty voice, FAQ, enquire, CTA
 **Sources on file:** official Rushford programme listing (16 months, 90 ECTS, specialization modules and electives, career roles), Dubai DET tourism results 2025 (Gulf News, Feb 2026), Taggd GCC Talent Market 2026
 
 ---
@@ -47,7 +48,7 @@ Study Mode | Online, evenings and weekends
 Credits | 90 ECTS across the full course load
 
 ### note
-Fee and intake details are confirmed per intake, in writing, before payment. Ask for that document; it is the one that counts.
+Fee and intake details are confirmed per intake, in writing, before payment. Ask for that document, because it is the one that counts.
 
 ---
 
@@ -56,7 +57,7 @@ Fee and intake details are confirmed per intake, in writing, before payment. Ask
 ### copy
 Hospitality looks effortless from the guest's side of the desk. Behind it sits operations, law, destination strategy, events, sustainability, and increasingly technology. This MBA covers the whole back of house: the Rushford management core first, then a specialization running from hotel management fundamentals through tourism operations, environment and law, to event management and destination strategy.
 
-It runs around working lives. Courses last two to three weeks, classes sit in the evenings, and the capstone can take a live question from your property or destination: an occupancy problem, an event concept, a guest experience gap. In the busiest tourism market in the region, material will not be the issue.
+It runs around working lives, including the double shifts. Courses last two to three weeks, classes sit in the evenings, and the capstone can take a live question from your property or destination: an occupancy problem, an event concept, a guest experience gap. In the busiest tourism market in the region, material will not be the issue.
 
 ---
 
@@ -80,7 +81,7 @@ Interest-free AED instalments, schedule agreed in writing before term one.
 **06 · Support in the region**
 A named success coach for the degree, and advisors in Sharjah you can visit or message.
 
-Closing line: Rushford Business School, Switzerland, signs the certificate. The occupancy numbers you move afterwards are yours.
+Closing line: Rushford Business School, Switzerland, signs the certificate. The occupancy numbers you move afterwards are yours, and your general manager will notice.
 
 ---
 
@@ -189,6 +190,8 @@ Sustainable tourism electives match where Gulf mega projects and hotel groups ar
 **06 · The capstone can be your property's problem**
 Take the final project from your own operation and graduate with a deliverable your general manager has already seen.
 
+Honest take: hospitality promotes on results more than credentials, so treat the capstone as the piece of this degree that carries your promotion case. The certificate opens the interview; the project wins it.
+
 ---
 
 ## 10. FEES & SCHOLARSHIPS (fees)
@@ -200,12 +203,13 @@ Scholarship Availability | Available for strong profiles; eligibility checked by
 Offer Validity | Early-bird pricing is set per intake, so check before it closes
 
 ### request block
-Because fees move with the intake and study mode, no fixed figure sits on this page. Request the personal breakdown from admissions; it costs nothing and binds you to nothing. Across our Master's programmes, totals usually land between AED 16,000 and 40,000.
+Fees move with the intake and study mode, so no fixed figure sits on this page. Request the personal breakdown from admissions; it costs nothing and binds you to nothing. Across our Master's programmes, totals usually land between AED 16,000 and 40,000.
 
 ---
 
 ## BUILD NOTES (internal, not page copy)
 
+- Voice pass: converted from v4 to v5 maximally-human pattern (varied rhythm, parenthetical asides, honest-take marker, uneven cards). Structure, facts, and field mapping unchanged.
 - Field mapping identical to program 01.
 - Sources: Rushford official listing (16 months online, 90 ECTS, specialization modules: Tourism and Hospitality Operations Management, Hotel Management Fundamentals, Tourism and the Environment, Tourist Management Strategies, Tourism Hospitality and Law, Event Management; electives: Sustainable Tourism, Hospitality and Gastronomy, Innovation in Hospitality and Tourism, Destination Management, Technology Management in Hospitality and Tourism; official career roles list); Dubai DET 2025 results via Gulf News and dubai.news (19.59m visitors, 80.7% occupancy, AED 579 ADR, AED 467 RevPAR, 154,264 rooms, 827 establishments); Taggd GCC Talent Market 2026.
 - Note: the listing describes 28 courses with 18 core + 5 of 10 electives, while other Rushford listings describe 27 courses. Glance row written as "the full course load" to avoid the discrepancy; flagged for university confirmation.

@@ -1,9 +1,10 @@
-# 12 · Program Detail Page Content: Master of Business Administration (Accelerated General MBA, v1)
+# 12 · Program Detail Page Content: Master of Business Administration (Accelerated General MBA, v5)
 
 **Page:** /programs/master-of-business-administration
-**Awarding university:** Rushford Business School, Switzerland · **Category:** MBA · **Level:** Master's · **Duration:** 12 months, fully online (accelerated)
-**Voice pass:** written against the G02 §8 red-flag list (humanize-first)
-**Status:** CONTENT READY · excluded sections not written (per client list): recognition, accreditation, university block, success stories, reviews, network, faculty voice, FAQ, enquire, CTA
+**Awarding university:** Rushford Business School, Switzerland
+**Category:** MBA · **Level:** Master's · **Duration:** 12 months, fully online (accelerated)
+**Voice pass:** v5 maximally-human pattern
+**Status:** CONTENT READY · excluded sections (per client list) not written: recognition, accreditation, university block, success stories, reviews, network, faculty voice, FAQ, enquire, CTA
 **Sources on file:** official Rushford programme page (12 months, 60 ECTS, 15 courses: 12 core + 3 electives, ~3 weeks each, self-paced), Taggd GCC Talent Market 2026
 **NOTE:** This is the accelerated general MBA. It differs from the 16-month specialization MBAs: 12 months, 60 ECTS, 15 courses, no capstone.
 
@@ -57,7 +58,7 @@ Fees and intake dates are confirmed per intake, in writing, before payment. This
 ### copy
 Some people need a specialization. Plenty of others need the MBA itself: the management literacy, the credential, and the proof of commitment, on the fastest credible timetable. This accelerated MBA exists for the second group. Twelve core courses cover the full business spread, economics, accounting, analytics, finance, operations, marketing, leadership, strategy, and three electives let you lean the degree toward your own industry.
 
-It is self-paced by design. Courses average three weeks each, the materials run through video lectures, readings, simulations, and tests, and the whole degree fits into 12 to 15 hours a week of study. No capstone, no specialization, no padding. Twelve months later, the certificate arrives.
+It is self-paced by design, which is a gift and a test at once. Courses average three weeks each, the materials run through video lectures, readings, simulations, and tests, and the whole degree fits into 12 to 15 hours a week of study. No capstone, no specialization, no padding. Twelve months later, the certificate arrives.
 
 ---
 
@@ -181,6 +182,8 @@ Three electives let a banker, a hotelier, or a logistics lead shape the same deg
 **06 · Then the specialization is still open**
 Finish the accelerated MBA, and if a specialization makes sense later, the conversation with your advisor stays simple.
 
+Honest take: the trade-off for speed is depth. If you already know which industry you want to lead in, the sixteen-month specialization MBAs will serve that ambition better, and the four extra months are a smaller price than they sound.
+
 ---
 
 ## 10. FEES & SCHOLARSHIPS (fees)
@@ -198,6 +201,7 @@ Fees depend on the intake and study arrangements, so no fixed figure sits here. 
 
 ## BUILD NOTES (internal, not page copy)
 
+- Voice pass: converted from v4 to v5 maximally-human pattern (varied rhythm, parenthetical asides, honest-take marker, uneven cards). Structure, facts, and field mapping unchanged.
 - Field mapping identical to program 01, except: structure has 3 stages (no capstone on this programme), glance and hero reflect 12 months / 60 ECTS / 15 courses.
 - Sources: Rushford official programme page, rushford.ch (12 months online, 60 ECTS, 15 courses = 12 core + 3 electives, ~3 weeks average course length, self-paced e-Campus delivery, video lectures, readings, podcasts, simulations, multiple choice tests); Veranda partner page corroborates 12 months / 60 ECTS and 12 to 15 hours per week commitment (its WES/Ofqual diploma claim relates to the Veranda route and is deliberately excluded here); Taggd GCC Talent Market 2026.
 - Core course list uses the standard Rushford core; the twelve core names on this page follow the school's published core curriculum. Elective titles are not published for the accelerated MBA; stage 3 written generically, flagged for university sign-off.
