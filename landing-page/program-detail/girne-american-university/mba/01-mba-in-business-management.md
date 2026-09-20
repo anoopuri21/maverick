@@ -86,7 +86,7 @@ Closing line: The certificate is awarded by Girne American University, North Cyp
 
 ## 5. LEARNING OUTCOMES (learning)
 
-01 Read the whole business, not just your function's corner of it
+01 Read the whole business, not only your function's corner of it
 02 Manage operations for quality and cost at the same time, which is the actual job
 03 Lead teams across cultures without flattening the differences
 04 Use financial statements in decisions, not decoration
