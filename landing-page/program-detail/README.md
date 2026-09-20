@@ -10,7 +10,7 @@ program-detail/
 │   └── msc/      01-09 (12 months, 60 ECTS, 15 courses, asynchronous)
 ├── girne-american-university/         IN PROGRESS
 │   ├── mba/             06 files · 12-15 months (per client course pages)
-│   ├── executive-mba/   16 files · 12-18 months, senior cohorts
+│   ├── executive-mba/   16 files · 12-18 months, senior cohorts · DONE
 │   └── msc/             04 files · thesis-based MSc programmes
 ├── university-for-the-creative-arts/  QUEUED
 │   └── mba/      Global MBA with Rushford · 12-18 months · 90 ECTS · triple-certified
@@ -77,15 +77,15 @@ program-detail/
 | 09 | executive-mba/09-emba-in-human-resources-management.md | Executive MBA in Human Resources Management | DONE · v5 |
 | 10 | executive-mba/10-emba-in-supply-chain-management.md | Executive MBA in Supply Chain Management | DONE · v5 |
 | 11 | executive-mba/11-emba-in-health-care-management.md | Executive MBA in Health Care Management | DONE · v5 |
-| 12 | executive-mba/12-emba-in-engineering-management.md | Executive MBA in Engineering Management | NEXT |
-| 13 | executive-mba/13-emba-in-public-administration.md | Executive MBA in Public Administration | NEXT |
-| 14 | executive-mba/14-emba-in-public-health.md | Executive MBA in Public Health | NEXT |
-| 15 | executive-mba/15-emba-in-digital-marketing.md | Executive MBA in Digital Marketing | NEXT |
-| 16 | executive-mba/16-emba-in-sport-management.md | Executive MBA in Sport Management | NEXT |
+| 12 | executive-mba/12-emba-in-engineering-management.md | Executive MBA in Engineering Management | DONE · v5 |
+| 13 | executive-mba/13-emba-in-public-administration.md | Executive MBA in Public Administration | DONE · v5 |
+| 14 | executive-mba/14-emba-in-public-health.md | Executive MBA in Public Health | DONE · v5 |
+| 15 | executive-mba/15-emba-in-digital-marketing.md | Executive MBA in Digital Marketing | DONE · v5 |
+| 16 | executive-mba/16-emba-in-sport-management.md | Executive MBA in Sport Management | DONE · v5 |
 
 ## Batch queue
 
-1. GAU Executive MBA 12-16 (final batch)
+1. GAU MSc thesis programmes 01-04 (Business Management, Economics, Healthcare Management, Counselling Psychology)
 3. GAU MSc thesis programmes 01-04
 4. UCA Global MBA, Wolverhampton LLM, UWS MBA in International Business
 5. v5 conversion pass across the remaining Rushford v4 files (19 files), after detector validation of the v5 samples
