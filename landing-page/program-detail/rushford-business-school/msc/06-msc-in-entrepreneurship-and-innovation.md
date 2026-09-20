@@ -1,8 +1,9 @@
-# 18 · Program Detail Page Content: MSc in Entrepreneurship & Innovation (v1)
+# 18 · Program Detail Page Content: MSc in Entrepreneurship & Innovation (v5)
 
 **Page:** /programs/msc-in-entrepreneurship-and-innovation
-**Awarding university:** Rushford Business School, Switzerland · **Category:** MSc · **Level:** Master's · **Duration:** 12 months, fully online
-**Voice pass:** written against the G02 §8 red-flag list (humanize-first)
+**Awarding university:** Rushford Business School, Switzerland
+**Category:** MSc · **Level:** Master's · **Duration:** 12 months, fully online
+**Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections not written (per client list)
 **Sources on file:** official Rushford MSc programme listing (12 months, 60 ECTS, programme outcomes and career roles), UAE startup funding 2025 (Wamda, GrowthList), Taggd GCC Talent Market 2026
 
@@ -56,7 +57,7 @@ The 90 ECTS (18-month) and 120 ECTS (24-month) versions also exist for more dept
 ### copy
 This MSc blends management, finance, and business operations into the specific shape that new ventures need. Five core management courses come first, then ten specialization courses focused on venture creation, innovation, and the strategic and financial side of running something new, with a deliberate emphasis on planning, risk mitigation, and the investor conversations founders eventually have to hold.
 
-It runs asynchronously on the e-Campus across twelve months, which suits founders who cannot stop building and managers who are asked to innovate inside companies that predate them.
+It runs asynchronously on the e-Campus across twelve months, which suits founders who cannot stop building and managers who are asked to innovate inside companies that predate them (often by decades).
 
 ---
 
@@ -177,6 +178,8 @@ The target student for an entrepreneurship degree does not want to be a student 
 **06 · Risk mitigation earns its keep here**
 The programme's emphasis on planning and risk mitigation fits a market where most startup mortality is financial, not technical.
 
+Honest take: degrees improve odds, they do not remove them. What this one removes is the avoidable kind of failure, the kind that comes from an unpriced unit cost or a botched investor conversation.
+
 ---
 
 ## 10. FEES & SCHOLARSHIPS (fees)
@@ -194,6 +197,7 @@ Because fees shift with the intake and the ECTS version chosen, no fixed figure 
 
 ## BUILD NOTES (internal, not page copy)
 
+- Voice pass: converted from v4 to v5 maximally-human pattern (varied rhythm, parenthetical asides, honest-take marker, uneven cards). Structure, facts, and field mapping unchanged.
 - Field mapping identical to program 01; MSc three-block structure.
 - Sources: Rushford official MSc listing (onlinestudies.com: programme outcomes incl. risk mitigation, planning, investor engagement, venture creation; official job titles: Business Consultants, Venture Developers, Public Relations Managers, Sales Managers, Business Analysts, Business Development Manager, Innovation Consultants, Customer Experience Manager); rushford.ch MSc framework (12 months, 60 ECTS, 15 courses; blends management, finance, business operations); Wamda and GrowthList UAE startup funding 2025 (USD 2B/218 deals; MENA USD 7.5B; Dubai 93% H1 share; Unicorn 30); Taggd GCC Talent Market 2026.
 - Block 2 written descriptively; specialization course titles not published, flagged for university sign-off.

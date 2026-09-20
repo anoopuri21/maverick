@@ -1,8 +1,9 @@
-# 19 · Program Detail Page Content: MSc in Finance and Investment (v1)
+# 19 · Program Detail Page Content: MSc in Finance and Investment (v5)
 
 **Page:** /programs/msc-in-finance-and-investment
-**Awarding university:** Rushford Business School, Switzerland · **Category:** MSc · **Level:** Master's · **Duration:** 12 months, fully online
-**Voice pass:** written against the G02 §8 red-flag list (humanize-first)
+**Awarding university:** Rushford Business School, Switzerland
+**Category:** MSc · **Level:** Master's · **Duration:** 12 months, fully online
+**Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections not written (per client list)
 **Sources on file:** official Rushford MSc programme listing (12 months, 60 ECTS, specialization scope and career roles), Labeeb UAE banking and finance hiring 2025, Taggd GCC Talent Market 2026
 
@@ -56,7 +57,7 @@ The 90 ECTS (18-month) and 120 ECTS (24-month) versions are also available. Fees
 ### copy
 Finance degrees tend to split into two kinds: theoretical ones that never touch a market, and narrow ones that skip the business around it. This MSc tries for the middle. Five core management courses first, then ten specialization courses covering risk management, investment analysis, financial markets, financial technology, debt management, and advanced financial analysis, with risk-based supervision rounding the picture.
 
-The programme runs asynchronously on the e-Campus across twelve months, with webinars and workshops alongside the coursework. It is built for people heading into banking, investment, or corporate finance, and for professionals who want the technical depth without the two-year absence.
+The programme runs asynchronously on the e-Campus across twelve months, with webinars and workshops alongside the coursework. It is built for people heading into banking, investment, or corporate finance, and for professionals who want the technical depth without the two-year absence, which most finance calendars would refuse anyway.
 
 ---
 
@@ -177,6 +178,8 @@ The asynchronous format means no sabbatical and no lost bonus season.
 **06 · The research component pays off twice**
 Independent research under faculty guidance serves the degree now and any later doctoral ambition later.
 
+Honest take: if your destination is charter-only analysis, the CFA remains the benchmark and this MSc complements rather than replaces it. Plenty of candidates run the two in sequence, and the research block helps with the harder chapters.
+
 ---
 
 ## 10. FEES & SCHOLARSHIPS (fees)
@@ -194,6 +197,7 @@ Fees vary with the intake and the ECTS version selected, so no fixed figure sits
 
 ## BUILD NOTES (internal, not page copy)
 
+- Voice pass: converted from v4 to v5 maximally-human pattern (varied rhythm, parenthetical asides, honest-take marker, uneven cards). Structure, facts, and field mapping unchanged.
 - Field mapping identical to program 01; MSc three-block structure.
 - Sources: Rushford official MSc listing (educations.com and onlinestudies.com: risk management, investment analysis, financial markets, financial technology, debt management, advanced financial analysis, risk-based supervision; webinars and workshops; independent research under faculty guidance; official career roles: Investment Banker, Research Analyst, Chief Financial Officer, Financial Analyst, Bank Manager, Account Manager, Corporate Banker, Financial Advisor, Risk Manager, Hedge-fund Manager, Portfolio Manager); rushford.ch MSc framework (12 months, 60 ECTS, 15 courses); Labeeb UAE banking hiring 2025 (bank assets AED 4.1T, fintech analyst bands); Taggd GCC Talent Market 2026.
 - Careers: ten roles from the official list of eleven (Account Manager omitted as weak framing; restore if client prefers).

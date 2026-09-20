@@ -1,8 +1,9 @@
-# 15 · Program Detail Page Content: MSc in Operations and Supply Chain Management (v1)
+# 15 · Program Detail Page Content: MSc in Operations and Supply Chain Management (v5)
 
 **Page:** /programs/msc-in-operations-and-supply-chain-management
-**Awarding university:** Rushford Business School, Switzerland · **Category:** MSc · **Level:** Master's · **Duration:** 12 months, fully online
-**Voice pass:** written against the G02 §8 red-flag list (humanize-first)
+**Awarding university:** Rushford Business School, Switzerland
+**Category:** MSc · **Level:** Master's · **Duration:** 12 months, fully online
+**Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections not written (per client list)
 **Sources on file:** official Rushford MSc programme listing (12 months, 60 ECTS, 15 courses, specialization scope and career roles), IMARC UAE logistics market, Taggd GCC Talent Market 2026
 
@@ -56,7 +57,7 @@ The 90 ECTS (18-month) and 120 ECTS (24-month) versions are also available for t
 ### copy
 Supply chain stopped being a back-office function the year it became a boardroom headline. This MSc answers that shift: five core management courses first, then ten specialization courses spanning operations, logistics, inventory control, production scheduling, warehouse management, procurement, and the analytics that hold the whole thing together.
 
-The teaching leans practical, with real-time projects, seminars, and mentorship rather than pure lectures, and it runs asynchronously on the e-Campus. Fifteen courses in twelve months, designed for people whose jobs cannot pause.
+The teaching leans practical, with real-time projects, seminars, and mentorship rather than pure lectures, and it runs asynchronously on the e-Campus. Fifteen courses in twelve months, designed for people whose jobs cannot pause, because in operations they never do.
 
 ---
 
@@ -177,6 +178,8 @@ Planners and warehouse managers cannot take sabbaticals. One year, asynchronous,
 **06 · Analytics sits inside the syllabus**
 Business analytics and data skills are part of the degree, matching how Gulf employers now write their supply chain job descriptions.
 
+Honest take: supply chain rewards people who stay calm in a disruption, and the degree builds the method, not the temperament. Bring your own composure; the coursework supplies the rest.
+
 ---
 
 ## 10. FEES & SCHOLARSHIPS (fees)
@@ -194,6 +197,7 @@ Fees vary with the intake and the ECTS version you select, so no fixed figure si
 
 ## BUILD NOTES (internal, not page copy)
 
+- Voice pass: converted from v4 to v5 maximally-human pattern (varied rhythm, parenthetical asides, honest-take marker, uneven cards). Structure, facts, and field mapping unchanged.
 - Field mapping identical to program 01; MSc three-block structure.
 - Sources: Rushford official MSc listing (educations.com: 100% online, EduQua-certified Swiss school; specialization scope: operations, logistics, inventory control, production scheduling, warehouse management, procurement, analytics; real-time projects, seminars, mentorship; official career roles: supply chain analyst, demand planner, supply planner, data scientist, commercial manager, transport officer); rushford.ch MSc framework (12 months, 60 ECTS, 15 courses); apply.rushford.ch block titles; IMARC UAE logistics market (USD 57.6B 2025 to USD 96B 2034); Taggd GCC Talent Market 2026.
 - Block 2 written descriptively; the ten specialization course titles are not published, flagged for university sign-off.

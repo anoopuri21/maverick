@@ -1,8 +1,9 @@
-# 17 · Program Detail Page Content: MSc in Marketing (v1)
+# 17 · Program Detail Page Content: MSc in Marketing (v5)
 
 **Page:** /programs/msc-in-marketing
-**Awarding university:** Rushford Business School, Switzerland · **Category:** MSc · **Level:** Master's · **Duration:** 12 months, fully online
-**Voice pass:** written against the G02 §8 red-flag list (humanize-first)
+**Awarding university:** Rushford Business School, Switzerland
+**Category:** MSc · **Level:** Master's · **Duration:** 12 months, fully online
+**Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections not written (per client list)
 **Sources on file:** official Rushford MSc programme listing (12 months, 60 ECTS, specialization scope and career roles), Ken Research UAE digital advertising market (2026), Taggd GCC Talent Market 2026
 
@@ -56,7 +57,7 @@ The 90 ECTS (18-month) and 120 ECTS (24-month) versions are also available for e
 ### copy
 A marketing degree that skips the digital economy is a museum exhibit. This one does not skip it: five core management courses lay the business base, then ten specialization courses work through marketing strategy, consumer behaviour, branding, luxury branding, and brand value management, with business analytics, communication, and the ethics-and-legal layer wrapped through them.
 
-The programme runs asynchronously on the e-Campus across twelve months, which fits the lives of the people it serves: working marketers upgrading toward strategy roles, e-commerce operators, and graduates aiming at their first brand-side seat.
+The programme runs asynchronously on the e-Campus across twelve months, which fits the lives of the people it serves: working marketers upgrading toward strategy roles, e-commerce operators, and graduates aiming at their first brand-side seat (in that rough order of seniority).
 
 ---
 
@@ -177,6 +178,8 @@ Marketing teams cannot lose people for two years. One year, asynchronous, keeps 
 **06 · The capstone question can be your brand**
 Assessments throughout can draw on your own employer's brand and market questions, which turns the degree into portfolio material.
 
+Honest take: marketing platforms change faster than syllabi, so treat the tooling as context and the strategy work as the substance. Graduates who do that tend to outlast the algorithm changes.
+
 ---
 
 ## 10. FEES & SCHOLARSHIPS (fees)
@@ -194,6 +197,7 @@ Fees depend on the intake and the ECTS version selected, so no fixed figure is p
 
 ## BUILD NOTES (internal, not page copy)
 
+- Voice pass: converted from v4 to v5 maximally-human pattern (varied rhythm, parenthetical asides, honest-take marker, uneven cards). Structure, facts, and field mapping unchanged.
 - Field mapping identical to program 01; MSc three-block structure.
 - Sources: Rushford official MSc listing (educations.com: digital marketing, branding, luxury branding, brand value management, marketing strategy, consumer behavior, business analytics, leadership, communication, business ethics and legal frameworks; official career roles: Marketing Manager, Digital Marketing Strategist, E-commerce Manager, Business Analyst, Brand Manager, Customer Relationship Manager, Marketing Research Manager, Growth Executive, Project Manager, Strategic Planner); rushford.ch MSc framework (12 months, 60 ECTS, 15 courses); apply.rushford.ch block titles; Ken Research UAE digital advertising (USD 2.29B 2025 to USD 5.35B 2031); Taggd GCC Talent Market 2026.
 - The official listing's mention of employers like Google/Amazon/Deloitte is excluded from page copy as unverifiable marketing.

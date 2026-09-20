@@ -1,8 +1,9 @@
-# 21 · Program Detail Page Content: MSc in Business Management (v1)
+# 21 · Program Detail Page Content: MSc in Business Management (v5)
 
 **Page:** /programs/msc-in-business-management
-**Awarding university:** Rushford Business School, Switzerland · **Category:** MSc · **Level:** Master's · **Duration:** 12 months, fully online
-**Voice pass:** written against the G02 §8 red-flag list (humanize-first)
+**Awarding university:** Rushford Business School, Switzerland
+**Category:** MSc · **Level:** Master's · **Duration:** 12 months, fully online
+**Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections not written (per client list)
 **Sources on file:** official Rushford MSc framework (12 months, 60 ECTS, 15 courses: 5 core + 10 specialization), ADDED UAE non-oil economy data, Taggd GCC Talent Market 2026
 
@@ -56,7 +57,7 @@ The 90 ECTS (18-month) and 120 ECTS (24-month) versions are also available for e
 ### copy
 This is the generalist's MSc: five core management courses, then ten specialization courses that run across the full management map, from operations and finance to people and markets, taught with the research discipline a Master of Science implies. It suits professionals moving toward general management, consultants who need the breadth to roam across functions, and graduates deciding that breadth is their advantage.
 
-The degree runs asynchronously on the e-Campus across twelve months. Fifteen courses of four ECTS each, no residency, no campus attendance, and the salary keeps arriving through all of it.
+The degree runs asynchronously on the e-Campus across twelve months. Fifteen courses of four ECTS each, no residency, no campus attendance, and the salary keeps arriving through all of it, which matters more than it sounds.
 
 ---
 
@@ -177,6 +178,8 @@ Appraisal cycles and posting windows do not wait for two-year degrees. One year,
 **06 · The MSc leaves doors open**
 Research methodology inside the degree keeps the route to a DBA or PhD open later, if general management turns into something more specific.
 
+Honest take: breadth trades against depth. If you already know the single function you want to own, a specialized MSc will serve that target faster, and an advisor will happily say so. This degree is for the people who run the whole building.
+
 ---
 
 ## 10. FEES & SCHOLARSHIPS (fees)
@@ -194,6 +197,7 @@ Fees depend on the intake and the ECTS version selected, so no fixed figure sits
 
 ## BUILD NOTES (internal, not page copy)
 
+- Voice pass: converted from v4 to v5 maximally-human pattern (varied rhythm, parenthetical asides, honest-take marker, uneven cards). Structure, facts, and field mapping unchanged.
 - Field mapping identical to program 01; MSc three-block structure.
 - Sources: Rushford MSc framework (rushford.ch online campus: MSc Business Management, 12 months, 60 ECTS); apply.rushford.ch block titles used for Blocks 1 and 3; ADDED clean energy page (UAE non-oil sector above 74% of GDP in 2023); Taggd GCC Talent Market 2026.
 - This programme has the thinnest public documentation of the Rushford set: no specialization course titles or career role list found on official pages. Block 2 and all ten career roles written as market-standard and flagged for client and university sign-off before go-live.

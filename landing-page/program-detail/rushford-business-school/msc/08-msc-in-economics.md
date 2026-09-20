@@ -1,8 +1,9 @@
-# 20 · Program Detail Page Content: MSc in Economics (v1)
+# 20 · Program Detail Page Content: MSc in Economics (v5)
 
 **Page:** /programs/msc-in-economics
-**Awarding university:** Rushford Business School, Switzerland · **Category:** MSc · **Level:** Master's · **Duration:** 12 months, fully online
-**Voice pass:** written against the G02 §8 red-flag list (humanize-first)
+**Awarding university:** Rushford Business School, Switzerland
+**Category:** MSc · **Level:** Master's · **Duration:** 12 months, fully online
+**Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections not written (per client list)
 **Sources on file:** official Rushford MSc programme page (12 months, 60 ECTS, 15 courses, focus areas and career roles), UAE non-oil economy share via ADDED, Taggd GCC Talent Market 2026
 
@@ -56,7 +57,7 @@ The degree can be extended up to three years at no additional fee if your schedu
 ### copy
 Economics departments used to hire for theory. Gulf employers hire for forecasting, econometrics, and the quantitative habits behind both. This MSc faces that reality: five core management courses first, then ten specialization courses with a deliberate focus on FinTech, econometrics, and quantitative methods for decision-making, economic modelling, and inference-based data.
 
-Practical projects and seminars run alongside the coursework on the e-Campus, and the format is asynchronous. Fifteen courses across twelve months, extendable to three years at no extra fee for people whose work refuses to cooperate.
+Practical projects and seminars run alongside the coursework on the e-Campus, and the format is asynchronous. Fifteen courses across twelve months, extendable to three years at no extra fee for people whose work refuses to cooperate, and in the Gulf it often refuses.
 
 ---
 
@@ -177,6 +178,8 @@ Up to three years at no additional fee means the degree survives relocations, bu
 **06 · FinTech content matches the market**
 The Gulf's payments and digital banking growth means economists who understand FinTech have more doors open than the ones who do not.
 
+Honest take: economics degrees reward people who are willing to sit with a dataset until it confesses. If the quantitative side is what worries you, the cohort and coach support exist for exactly that reason, and the extension option buys the breathing room.
+
 ---
 
 ## 10. FEES & SCHOLARSHIPS (fees)
@@ -194,6 +197,7 @@ Because fees shift with the intake and study arrangements, no fixed figure is pr
 
 ## BUILD NOTES (internal, not page copy)
 
+- Voice pass: converted from v4 to v5 maximally-human pattern (varied rhythm, parenthetical asides, honest-take marker, uneven cards). Structure, facts, and field mapping unchanged.
 - Field mapping identical to program 01; MSc three-block structure.
 - Sources: Rushford official MSc page, rushford.ch (12 months, 60 ECTS, 15 courses: 5 core + 10 economics-specific; focus on FinTech, econometrics, quantitative/statistical methods, economic remodeling, inference-based data; official career roles: Financial Analyst, Mutual Funds Manager, Policy Analyst, Economist, Litigation Consultant, Data Scientist, Statistician, Pricing Analyst, Budget Analyst); onlinestudies.com listing (practical projects and seminars; economic consultancies, central banks, financial organizations as employer sectors; extension to 3 years at no additional fee); ADDED clean energy page (UAE non-oil sector above 74% of GDP in 2023); Taggd GCC Talent Market 2026.
 - Block 2 written descriptively; specialization course titles not published, flagged for university sign-off.

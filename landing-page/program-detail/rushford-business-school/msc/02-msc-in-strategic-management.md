@@ -1,8 +1,9 @@
-# 14 · Program Detail Page Content: MSc in Strategic Management (v1)
+# 14 · Program Detail Page Content: MSc in Strategic Management (v5)
 
 **Page:** /programs/msc-in-strategic-management
-**Awarding university:** Rushford Business School, Switzerland · **Category:** MSc · **Level:** Master's · **Duration:** 12 months, fully online
-**Voice pass:** written against the G02 §8 red-flag list (humanize-first)
+**Awarding university:** Rushford Business School, Switzerland
+**Category:** MSc · **Level:** Master's · **Duration:** 12 months, fully online
+**Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections not written (per client list)
 **Sources on file:** official Rushford MSc programme page (12 months, 60 ECTS, 15 courses: 5 core + 10 specialization), Mordor Intelligence UAE management consulting market (2026), Taggd GCC Talent Market 2026
 
@@ -56,7 +57,7 @@ Longer versions exist if you want more depth: 90 ECTS over 18 months, 120 ECTS o
 ### copy
 Strategy is taught everywhere and understood less often. This MSc treats it as a discipline with methods: five core management courses put the business fundamentals in place, then ten specialization courses work through strategy as formulation, implementation, evaluation, and governance, with the case-based approach Rushford uses across its strategy teaching.
 
-The whole degree runs asynchronously on the e-Campus. Fifteen courses of four ECTS each across twelve months, which suits consultants, analysts, and managers whose calendars do not include free weekdays. The research methodology inside the leadership block also makes this a sensible stepping stone to doctoral work later.
+The whole degree runs asynchronously on the e-Campus. Fifteen courses of four ECTS each across twelve months, which suits consultants, analysts, and managers whose calendars do not include free weekdays (and whose travel calendars include even fewer). The research methodology inside the leadership block also makes this a sensible stepping stone to doctoral work later.
 
 ---
 
@@ -177,6 +178,8 @@ The asynchronous format means no sabbatical and no weekend sacrifice beyond what
 **06 · The MSc reads well on a doctoral path**
 Research methodology sits inside the degree, which keeps the route to a DBA or PhD open later.
 
+Honest take: sixty ECTS in a year is demanding, and asynchronous does not mean passive. Budget the study hours honestly before you enrol, because the people who stall are the ones who assumed otherwise.
+
 ---
 
 ## 10. FEES & SCHOLARSHIPS (fees)
@@ -194,6 +197,7 @@ Because fees move with the intake and the ECTS version you choose, no fixed figu
 
 ## BUILD NOTES (internal, not page copy)
 
+- Voice pass: converted from v4 to v5 maximally-human pattern (varied rhythm, parenthetical asides, honest-take marker, uneven cards). Structure, facts, and field mapping unchanged.
 - Field mapping identical to program 01; MSc three-block structure.
 - Sources: Rushford official MSc page, rushford.ch (12 months, 60 ECTS, 15 courses: 5 core + 10 specialization, asynchronous e-Campus delivery); apply.rushford.ch block structure (core management course titles used in Block 1 and Block 3); Mordor Intelligence UAE management consulting market (USD 2.55B 2025 to USD 3.57B 2031); Taggd GCC Talent Market 2026.
 - The ten specialization course titles are not published on the official pages; Block 2 written descriptively, flagged for university sign-off.

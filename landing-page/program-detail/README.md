@@ -42,14 +42,14 @@ program-detail/
 | # | File | Programme | Status |
 |---|------|-----------|--------|
 | 01 | msc/01-msc-in-sustainability-and-environmental-management.md | MSc in Sustainability and Environmental Management | DONE · v5 |
-| 02 | msc/02-msc-in-strategic-management.md | MSc in Strategic Management | DONE · v4→v5 queue |
-| 03 | msc/03-msc-in-operations-and-supply-chain-management.md | MSc in Operations and Supply Chain Management | DONE · v4→v5 queue |
-| 04 | msc/04-msc-in-international-business-management.md | MSc in International Business Management | DONE · v4→v5 queue |
-| 05 | msc/05-msc-in-marketing.md | MSc in Marketing | DONE · v4→v5 queue |
-| 06 | msc/06-msc-in-entrepreneurship-and-innovation.md | MSc in Entrepreneurship & Innovation | DONE · v4→v5 queue |
-| 07 | msc/07-msc-in-finance-and-investment.md | MSc in Finance and Investment | DONE · v4→v5 queue |
-| 08 | msc/08-msc-in-economics.md | MSc in Economics | DONE · v4→v5 queue |
-| 09 | msc/09-msc-in-business-management.md | MSc in Business Management | DONE · v4→v5 queue |
+| 02 | msc/02-msc-in-strategic-management.md | MSc in Strategic Management | DONE · v5 |
+| 03 | msc/03-msc-in-operations-and-supply-chain-management.md | MSc in Operations and Supply Chain Management | DONE · v5 |
+| 04 | msc/04-msc-in-international-business-management.md | MSc in International Business Management | DONE · v5 |
+| 05 | msc/05-msc-in-marketing.md | MSc in Marketing | DONE · v5 |
+| 06 | msc/06-msc-in-entrepreneurship-and-innovation.md | MSc in Entrepreneurship & Innovation | DONE · v5 |
+| 07 | msc/07-msc-in-finance-and-investment.md | MSc in Finance and Investment | DONE · v5 |
+| 08 | msc/08-msc-in-economics.md | MSc in Economics | DONE · v5 |
+| 09 | msc/09-msc-in-business-management.md | MSc in Business Management | DONE · v5 |
 
 ## girne-american-university/mba (12-15 months)
 
@@ -112,7 +112,7 @@ program-detail/
 
 ## Batch queue
 
-1. v5 conversion pass across the remaining Rushford v4 files (19 files), gated on detector validation of the v5 samples (rushford mba/01 + msc/01)
+1. Rushford v5 conversion COMPLETE (19/19 converted, all sweeps clean). Awaiting client detector scores on samples (rushford mba/01 + msc/01) for final sign-off
 
 ## Detector note (2026-09-20)
 

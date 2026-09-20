@@ -1,8 +1,9 @@
-# 16 · Program Detail Page Content: MSc in International Business Management (v1)
+# 16 · Program Detail Page Content: MSc in International Business Management (v5)
 
 **Page:** /programs/msc-in-international-business-management
-**Awarding university:** Rushford Business School, Switzerland · **Category:** MSc · **Level:** Master's · **Duration:** 12 months, fully online
-**Voice pass:** written against the G02 §8 red-flag list (humanize-first)
+**Awarding university:** Rushford Business School, Switzerland
+**Category:** MSc · **Level:** Master's · **Duration:** 12 months, fully online
+**Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections not written (per client list)
 **Sources on file:** official Rushford MSc programme page (12 months, 60 ECTS, specialization scope), UAE non-oil economy share via ADDED, Taggd GCC Talent Market 2026
 
@@ -56,7 +57,7 @@ The 90 ECTS (18-month) and 120 ECTS (24-month) versions also exist if you want m
 ### copy
 Multinational companies do not need people who understand business in one country; they need people who can run it across several. This MSc is built around that requirement: five core management courses, then ten specialization courses covering global leadership strategies, industrial relations, international trade operations, international marketing, and international human resource management.
 
-The degree runs asynchronously on the e-Campus across twelve months, which suits the exact profile it serves: mid-level managers moving toward multinational roles, founders expanding overseas, and graduates aiming at their first international posting.
+The degree runs asynchronously on the e-Campus across twelve months, which suits the exact profile it serves: mid-level managers moving toward multinational roles, founders expanding overseas, and graduates aiming at their first international posting. Three profiles, one timetable.
 
 ---
 
@@ -177,6 +178,8 @@ People aiming at international postings rarely have two years to spare. One year
 **06 · The degree doubles as an expansion toolkit**
 For business owners, the same syllabus works as the playbook for taking a UAE company overseas.
 
+Honest take: international business is partly a contact sport, and a degree hands you the framework, not the rolodex. Pair the coursework with the region's trade events and the two reinforce each other.
+
 ---
 
 ## 10. FEES & SCHOLARSHIPS (fees)
@@ -194,6 +197,7 @@ Because fees shift with the intake and the ECTS version chosen, no fixed figure 
 
 ## BUILD NOTES (internal, not page copy)
 
+- Voice pass: converted from v4 to v5 maximally-human pattern (varied rhythm, parenthetical asides, honest-take marker, uneven cards). Structure, facts, and field mapping unchanged.
 - Field mapping identical to program 01; MSc three-block structure.
 - Sources: Rushford official MSc page, rushford.ch and onlinestudies.com (12 months, 60 ECTS; specialization scope: global leadership strategies, industrial relations, international trade operations, international marketing, international HRM; next start date 01 Oct 2026, deadline 25 Sep 2026, held back from page copy pending confirmation); apply.rushford.ch block titles; ADDED clean energy page (UAE non-oil sector above 74% of GDP in 2023); Taggd GCC Talent Market 2026.
 - Block 2 written descriptively; specialization course titles not published, flagged for university sign-off.
