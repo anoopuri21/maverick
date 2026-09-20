@@ -12,11 +12,11 @@ program-detail/
 │   ├── mba/             06 files · 12-15 months (per client course pages)
 │   ├── executive-mba/   16 files · 12-18 months, senior cohorts · DONE
 │   └── msc/             04 files · thesis-based MSc programmes · DONE
-├── university-for-the-creative-arts/  QUEUED
+├── university-for-the-creative-arts/  01 file · Global MBA · DONE
 │   └── mba/      Global MBA with Rushford · 12-18 months · 90 ECTS · triple-certified
-├── university-of-wolverhampton/       QUEUED
+├── university-of-wolverhampton/       01 file · Master of Laws (LLM) · DONE
 │   └── llm/      Master of Laws · UK-awarded
-└── university-of-the-west-of-scotland/ QUEUED
+└── university-of-the-west-of-scotland/ 01 file · MBA in International Business · DONE
     └── mba/      MBA in International Business · UK-awarded
 ```
 
@@ -92,10 +92,27 @@ program-detail/
 | 03 | msc/03-msc-in-healthcare-management.md | MSc in Healthcare Management | DONE · v5 |
 | 04 | msc/04-msc-in-counselling-psychology.md | MSc in Counselling Psychology | DONE · v5 |
 
+## university-for-the-creative-arts/mba (12-18 months)
+
+| # | File | Programme | Status |
+| --- | --- | --- | --- |
+| 01 | mba/01-global-mba.md | Global MBA (UCA + Rushford, triple-awarded) | DONE · v5 |
+
+## university-of-wolverhampton/llm (8-18 months)
+
+| # | File | Programme | Status |
+| --- | --- | --- | --- |
+| 01 | llm/01-master-of-laws.md | Master of Laws (LLM) | DONE · v5 |
+
+## university-of-the-west-of-scotland/mba (12 months)
+
+| # | File | Programme | Status |
+| --- | --- | --- | --- |
+| 01 | mba/01-mba-in-international-business.md | MBA in International Business | DONE · v5 |
+
 ## Batch queue
 
-1. UCA Global MBA, Wolverhampton LLM, UWS MBA in International Business (UK programmes)
-2. v5 conversion pass across the remaining Rushford v4 files (19 files), after detector validation of the v5 samples
+1. v5 conversion pass across the remaining Rushford v4 files (19 files), gated on detector validation of the v5 samples (rushford mba/01 + msc/01)
 
 ## Detector note (2026-09-20)
 
