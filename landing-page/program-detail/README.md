@@ -22,11 +22,11 @@ Common facts (Rushford official listing): 16 months online, 27 courses of ~3 wee
 | 14 | 14-msc-in-strategic-management-rushford-content.md | MSc in Strategic Management | DONE |
 | 15 | 15-msc-in-operations-and-supply-chain-management-rushford-content.md | MSc in Operations and Supply Chain Management | DONE |
 | 16 | 16-msc-in-international-business-management-rushford-content.md | MSc in International Business Management | DONE |
-| 17 | 17-msc-in-marketing-rushford-content.md | MSc in Marketing | PLANNED |
-| 18 | 18-msc-in-entrepreneurship-and-innovation-rushford-content.md | MSc in Entrepreneurship & Innovation | PLANNED |
-| 19 | 19-msc-in-finance-and-investment-rushford-content.md | MSc in Finance and Investment | PLANNED |
-| 20 | 20-msc-in-economics-rushford-content.md | MSc in Economics | PLANNED |
-| 21 | 21-msc-in-business-management-rushford-content.md | MSc in Business Management | PLANNED |
+| 17 | 17-msc-in-marketing-rushford-content.md | MSc in Marketing | DONE |
+| 18 | 18-msc-in-entrepreneurship-and-innovation-rushford-content.md | MSc in Entrepreneurship & Innovation | DONE |
+| 19 | 19-msc-in-finance-and-investment-rushford-content.md | MSc in Finance and Investment | DONE |
+| 20 | 20-msc-in-economics-rushford-content.md | MSc in Economics | DONE |
+| 21 | 21-msc-in-business-management-rushford-content.md | MSc in Business Management | DONE |
 
 ## Per-file sign-off list (recurring)
 - Exact fee per programme and intake

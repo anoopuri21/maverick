@@ -192,7 +192,7 @@ Scholarship Availability | Possible for strong profiles; your advisor checks eli
 Offer Validity | Early-bird pricing moves with each intake, so confirm the window
 
 ### request block
-Fees depend on the intake and on whether you choose the 60, 90, or 120 ECTS version, so no fixed figure sits here. Admissions sends a personal breakdown on request, free and without obligation. Across our Master's programmes, totals usually land between AED 16,000 and 40,000.
+Fees depend on the intake and on the ECTS version chosen, so no fixed figure sits here. Admissions sends a personal breakdown on request, free and without obligation. Across our Master's programmes, totals usually land between AED 16,000 and 40,000.
 
 ---
 
