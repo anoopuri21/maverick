@@ -1,9 +1,10 @@
-# 02 · Program Detail Page Content: MBA in Sustainability, Energy and Environment (v1)
+# 02 · Program Detail Page Content: MBA in Sustainability, Energy and Environment (v5)
 
 **Page:** /programs/mba-in-sustainability-energy-and-environment
-**Awarding university:** Rushford Business School, Switzerland · **Category:** MBA · **Level:** Master's · **Duration:** 16 months, fully online
-**Voice pass:** written against the G02 §8 red-flag list (humanize-first)
-**Status:** CONTENT READY · excluded sections not written (per client list): recognition, accreditation, university block, success stories, reviews, network, faculty voice, FAQ, enquire, CTA
+**Awarding university:** Rushford Business School, Switzerland
+**Category:** MBA · **Level:** Master's · **Duration:** 16 months, fully online
+**Voice pass:** v5 maximally-human pattern
+**Status:** CONTENT READY · excluded sections (per client list) not written: recognition, accreditation, university block, success stories, reviews, network, faculty voice, FAQ, enquire, CTA
 **Sources on file:** official Rushford programme listing (16 months, 90 ECTS, specialization outcomes and career roles), UAE Net Zero 2050 announcement (Reuters, UAE government), UAE Energy Strategy 2050 (ADDED), Taggd GCC Talent Market 2026
 
 ---
@@ -27,7 +28,7 @@ MBA in Sustainability, Energy and Environment
 Master's
 
 ### short_description
-Sixteen months, evenings only, one degree aimed at the biggest rewrite in the Gulf economy: how it produces and uses energy. Rushford Business School in Switzerland awards it, and you study it from the UAE.
+Sixteen months, evenings only, one degree pointed at the biggest rewrite in the Gulf economy: how it makes and uses energy. Rushford Business School in Switzerland awards it. You study it from wherever you already work in the UAE.
 
 ### duration
 16 months online
@@ -47,40 +48,40 @@ Study Mode | Online, evenings and weekends
 Credits | 90 ECTS across 27 courses
 
 ### note
-Every intake carries its own fee sheet and dates, so yours arrives in writing before any payment is made. That is how it works for every programme on this site.
+The fee sheet for your intake arrives in writing before any payment happens. Each intake has its own numbers and dates, so we treat the written version as the only version.
 
 ---
 
 ## 3. PROGRAMME OVERVIEW (description)
 
 ### copy
-Every boardroom in the Gulf now has an energy conversation sitting in it. This MBA joins that conversation with credentials: the standard Rushford management core first, then a specialization that runs through energy economics, sustainability strategy, renewables, efficiency, and the new language of smart cities, with climate science taught through cases rather than slogans.
+Every boardroom in the Gulf now has an energy conversation sitting in it, whether the company admits it or not. This MBA joins that conversation with credentials behind it: the standard Rushford management core first, then a specialization running through energy economics, sustainability strategy, renewables, efficiency, and the newer language of smart cities. Climate science gets taught through cases, not slogans, which matters more than it sounds.
 
-Courses run about three weeks each and sit in the evenings, so full-time jobs survive the degree. Assessments copy real decisions: a carbon budget, an efficiency plan, a policy brief. The capstone takes one live problem from the energy or environment space, and students who bring their employer's problem tend to finish with something they can present at work.
+Courses run about three weeks each and sit in the evenings, so a full-time job survives the degree. The assessments copy real decisions: a carbon budget here, an efficiency plan there, a policy brief when the module calls for it. And the capstone takes one live problem from the energy or environment space. Students who bring their employer's problem in tend to finish with something they can present at work, which is a better souvenir than a certificate alone.
 
 ---
 
 ## 4. WHY CHOOSE THIS PROGRAMME (benefits)
 
 **01 · Your salary has no idea you are doing an MBA**
-Evenings and three-week courses. The paycheque keeps landing while the specialization builds.
+Evenings and three-week courses. The paycheque keeps landing while the specialization builds, and that is the whole point of the format.
 
 **02 · The region wrote itself a 2050 target**
 The UAE committed AED 600 billion to clean energy and wants 50,000 green jobs by 2030. Someone has to run those projects, and it will be the trained ones.
 
-**03 · Cases, not slogans**
+**03 · Cases over slogans**
 Anthropogenic climate change, sea-level and precipitation impacts, studied through global cases. Then a capstone on a problem that actually exists somewhere.
 
 **04 · The award is complete**
-90 ECTS across 27 courses, capstone included. Rushford Business School, Switzerland, printed on the certificate.
+90 ECTS across 27 courses, capstone included, with Rushford Business School, Switzerland, printed on the certificate.
 
 **05 · Instalments in dirhams**
-Monthly AED payments, no interest, lined up with payday.
+Monthly AED payments, no interest, lined up with payday rather than fighting it.
 
 **06 · Named support, real people**
-A success coach who knows your name, and advisors in Sharjah reachable on WhatsApp when you have ten minutes, not an hour.
+A success coach who knows your name, and advisors in Sharjah reachable on WhatsApp when you have ten minutes. Not an hour. Ten minutes is usually what you have.
 
-Closing line: The diploma carries the Swiss school's name. The specialization is the part that opens doors in energy.
+Closing line: The diploma carries the Swiss school's name, and the specialization is the part that opens doors in energy. Both come in the same envelope.
 
 ---
 
@@ -188,6 +189,8 @@ The UAE keeps building reference projects, from the Barakah nuclear plant on the
 **06 · Taught the way the region spends**
 Energy economics, renewables, and climate policy, matched to where Gulf capital is actually flowing rather than to a textbook's assumptions.
 
+Honest take: if your interest in sustainability is purely compliance-driven, a shorter ESG certificate may do the job. This MBA is for people who want the specialization to shape their next decade, rather than a single policy document.
+
 ---
 
 ## 10. FEES & SCHOLARSHIPS (fees)
@@ -199,12 +202,13 @@ Scholarship Availability | Available for strong profiles; your advisor checks el
 Offer Validity | Early-bird pricing changes with each intake, so check before it closes
 
 ### request block
-Because fees move with the intake and the study mode, no fixed number sits on this page. Talk to admissions for a personal breakdown; the conversation is free and binds you to nothing. Across our Master's programmes, totals usually land between AED 16,000 and 40,000.
+Fees move with the intake and the study mode, so no fixed number sits on this page. Talk to admissions for a personal breakdown, which is free and binds you to nothing. Across our Master's programmes, totals usually land between AED 16,000 and 40,000.
 
 ---
 
 ## BUILD NOTES (internal, not page copy)
 
+- Voice pass: converted from v4 to v5 maximally-human pattern (varied rhythm, parenthetical asides, honest-take marker, uneven cards). Structure, facts, and field mapping unchanged.
 - Field mapping identical to program 01 (hero, snapshot, overview, benefits, learning, careers, structure, support, gcc, fees, seo).
 - Sources: Rushford official programme listing (16 months online, 27 courses, 90 ECTS, specialization outcomes, six official career roles); UAE Net Zero 2050 (Reuters, Oct 2021: AED 600 billion renewable investment); UAE Energy Strategy 2050 via ADDED (50,000 green jobs by 2030); Taggd GCC Talent Market 2026 (90% skills-gap figure).
 - Stage-3 subject names are descriptive of the official specialization curriculum (energy economics, sustainability strategy, renewables, efficiency/smart cities, climate science cases); the listing does not publish fixed module titles for this specialization. Flagged for university sign-off.

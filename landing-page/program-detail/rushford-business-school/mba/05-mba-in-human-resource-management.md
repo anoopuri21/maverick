@@ -1,9 +1,10 @@
-# 05 · Program Detail Page Content: MBA in Human Resource Management (v1)
+# 05 · Program Detail Page Content: MBA in Human Resource Management (v5)
 
 **Page:** /programs/mba-in-human-resource-management
-**Awarding university:** Rushford Business School, Switzerland · **Category:** MBA · **Level:** Master's · **Duration:** 16 months, fully online
-**Voice pass:** written against the G02 §8 red-flag list (humanize-first)
-**Status:** CONTENT READY · excluded sections not written (per client list): recognition, accreditation, university block, success stories, reviews, network, faculty voice, FAQ, enquire, CTA
+**Awarding university:** Rushford Business School, Switzerland
+**Category:** MBA · **Level:** Master's · **Duration:** 16 months, fully online
+**Voice pass:** v5 maximally-human pattern
+**Status:** CONTENT READY · excluded sections (per client list) not written: recognition, accreditation, university block, success stories, reviews, network, faculty voice, FAQ, enquire, CTA
 **Sources on file:** official Rushford programme listing (16 months, 27 courses, 90 ECTS, specialization modules and electives, career roles), MOHRE Emiratisation rules (Cabinet Resolution No. 18 of 2022), Taggd GCC Talent Market 2026
 
 ---
@@ -47,16 +48,16 @@ Study Mode | Online, evenings and weekends
 Credits | 90 ECTS across 27 courses
 
 ### note
-Fee and intake details are issued per intake, in writing, before payment. Ask for the written version; it is the only one that counts.
+Fee and intake details are issued per intake, in writing, before payment. Ask for the written version, because it is the only one that counts.
 
 ---
 
 ## 3. PROGRAMME OVERVIEW (description)
 
 ### copy
-HR stopped being a back-office function somewhere around the time retention became a board topic. This MBA treats it that way: the Rushford management core comes first, then a specialization that covers HR strategy, people management, organizational change, talent, engagement, and HR's role in international business and M&A.
+HR stopped being a back-office function somewhere around the time retention became a board topic. This MBA treats it that way: the Rushford management core comes first, then a specialization covering HR strategy, people management, organizational change, talent, engagement, and HR's role in international business and M&A.
 
-The format assumes you have a job. Courses run in three-week blocks in the evenings, assessments mirror real HR work, and the capstone can take a live problem straight from your organization. Plenty of students finish with a talent or engagement plan their employer ended up adopting.
+The format assumes you have a job, and a busy one. Courses run in three-week blocks in the evenings, assessments mirror real HR work, and the capstone can take a live problem straight from your organization. Plenty of students finish with a talent or engagement plan their employer ended up adopting, which is as good a result as any grade.
 
 ---
 
@@ -78,9 +79,9 @@ Organizational change, HR in M&A, performance and reward. The subjects that sepa
 Instalments sit against your salary date, and the plan is written down before it starts.
 
 **06 · Real people, locally**
-A named success coach for the degree and Sharjah-based advisors who answer on WhatsApp.
+A named success coach for the degree and Sharjah-based advisors who answer on WhatsApp. Usually within the day.
 
-Closing line: The certificate is issued by Rushford Business School, Switzerland. The better question is what you do with it in the first six months.
+Closing line: The certificate is issued by Rushford Business School, Switzerland. The better question is what you do with it in the first six months, and that part is yours.
 
 ---
 
@@ -189,6 +190,8 @@ Gulf employers are shifting from credential screening to skills-based hiring, an
 **06 · The capstone lands in your workplace**
 Take the final project from your own organization and finish with a people plan that has already been tested where it will be used.
 
+Honest take: an HR MBA opens doors, but it does not replace the CIPD or SHRM certifications some employers ask for in specialist roles. Think of this as the leadership layer on top of your practice, and plan the certificates alongside it if your target role needs them.
+
 ---
 
 ## 10. FEES & SCHOLARSHIPS (fees)
@@ -206,7 +209,9 @@ Fees depend on the intake and the study mode, which is why no fixed figure is pr
 
 ## BUILD NOTES (internal, not page copy)
 
+- Voice pass: converted from v4 to v5 maximally-human pattern (varied rhythm, parenthetical asides, honest-take marker, uneven cards). Structure, facts, and field mapping unchanged.
 - Field mapping identical to program 01.
 - Sources: Rushford official listing (16 months online, 27 courses, 90 ECTS, six named specialization courses plus four named electives, official career roles incl. HR Partner/HRBP, HR Manager, HR Consultant, Chief People Officer, CHRO); MOHRE Emiratisation rules (Cabinet Resolution No. 18 of 2022: 2% annual increase for firms with 50+ staff, enforcement and penalties); Dubai expatriate share ~87% (Edoxi analysis, 2025); Taggd GCC Talent Market 2026.
 - Careers: official roles kept (CEO from official list omitted as unrealistic framing; Chief People Officer/CHRO available if client prefers). Last four roles are market-standard, need client approval.
+- Honest-take note: CIPD/SHRM positioning is advisory, not a claim about the degree. Soften if client prefers.
 - Sign-off needed: exact fee, September 2026 seats, scholarship rules, Emiratisation wording if legal prefers softer language, market figures.

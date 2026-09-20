@@ -25,10 +25,10 @@ program-detail/
 | # | File | Programme | Status |
 |---|------|-----------|--------|
 | 01 | mba/01-mba-in-logistics-supply-chain-management.md | MBA in Logistics & Supply Chain Management | DONE · v5 |
-| 02 | mba/02-mba-in-sustainability-energy-and-environment.md | MBA in Sustainability, Energy and Environment | DONE · v4→v5 queue |
-| 03 | mba/03-mba-in-strategic-management.md | MBA in Strategic Management | DONE · v4→v5 queue |
-| 04 | mba/04-mba-in-real-estate-management.md | MBA in Real Estate Management | DONE · v4→v5 queue |
-| 05 | mba/05-mba-in-human-resource-management.md | MBA in Human Resource Management | DONE · v4→v5 queue |
+| 02 | mba/02-mba-in-sustainability-energy-and-environment.md | MBA in Sustainability, Energy and Environment | DONE · v5 |
+| 03 | mba/03-mba-in-strategic-management.md | MBA in Strategic Management | DONE · v5 |
+| 04 | mba/04-mba-in-real-estate-management.md | MBA in Real Estate Management | DONE · v5 |
+| 05 | mba/05-mba-in-human-resource-management.md | MBA in Human Resource Management | DONE · v5 |
 | 06 | mba/06-mba-in-marketing.md | MBA in Marketing | DONE · v4→v5 queue |
 | 07 | mba/07-mba-in-healthcare-leadership.md | MBA in Healthcare Leadership | DONE · v4→v5 queue |
 | 08 | mba/08-mba-in-hospitality-and-tourism-management.md | MBA in Hospitality & Tourism Management | DONE · v4→v5 queue |
