@@ -81,7 +81,7 @@ Monthly AED instalments, no interest, timed to the salary date.
 **06 · A person answers**
 One success coach stays with you from induction to the award letter, and the Sharjah advisors answer on WhatsApp, which matters more than it sounds when your question appears at 10pm.
 
-Closing line: The certificate names Rushford Business School, Switzerland, and nothing on it hints that you studied at a kitchen table. Which is, quietly, the whole point.
+Closing line: The certificate names Rushford Business School, Switzerland, and nothing on it hints that you studied at a kitchen table. That is the whole point, and it costs nothing to keep it that way.
 
 ---
 
