@@ -18,10 +18,10 @@ Common facts (Rushford official listing): 16 months online, 27 courses of ~3 wee
 | 10 | 10-mba-in-entrepreneurship-and-innovation-rushford-content.md | MBA in Entrepreneurship and Innovation | DONE |
 | 11 | 11-mba-in-finance-rushford-content.md | MBA in Finance | DONE |
 | 12 | 12-master-of-business-administration-rushford-content.md | Master of Business Administration (general) | DONE |
-| 13 | 13-msc-in-sustainability-and-environmental-management-rushford-content.md | MSc in Sustainability and Environmental Management | PLANNED |
-| 14 | 14-msc-in-strategic-management-rushford-content.md | MSc in Strategic Management | PLANNED |
-| 15 | 15-msc-in-operations-and-supply-chain-management-rushford-content.md | MSc in Operations and Supply Chain Management | PLANNED |
-| 16 | 16-msc-in-international-business-management-rushford-content.md | MSc in International Business Management | PLANNED |
+| 13 | 13-msc-in-sustainability-and-environmental-management-rushford-content.md | MSc in Sustainability and Environmental Management | DONE |
+| 14 | 14-msc-in-strategic-management-rushford-content.md | MSc in Strategic Management | DONE |
+| 15 | 15-msc-in-operations-and-supply-chain-management-rushford-content.md | MSc in Operations and Supply Chain Management | DONE |
+| 16 | 16-msc-in-international-business-management-rushford-content.md | MSc in International Business Management | DONE |
 | 17 | 17-msc-in-marketing-rushford-content.md | MSc in Marketing | PLANNED |
 | 18 | 18-msc-in-entrepreneurship-and-innovation-rushford-content.md | MSc in Entrepreneurship & Innovation | PLANNED |
 | 19 | 19-msc-in-finance-and-investment-rushford-content.md | MSc in Finance and Investment | PLANNED |
