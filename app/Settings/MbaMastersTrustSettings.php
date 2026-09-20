@@ -10,6 +10,8 @@ class MbaMastersTrustSettings extends Settings
 
     public ?string $quote = null;
 
+    public ?string $quote_attribution = null;
+
     public array $stats = [];
 
     public static function group(): string

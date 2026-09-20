@@ -44,10 +44,14 @@ class ManageProof extends Page implements HasForms
 
         $compare = app(MbaMastersCompareSettings::class)->toArray();
         $compare['rows'] = array_values($compare['rows'] ?? []);
+        $compare['blocks'] = array_values($compare['blocks'] ?? []);
+
+        $partners = app(MbaMastersPartnersSettings::class)->toArray();
+        $partners['checklist'] = array_values($partners['checklist'] ?? []);
 
         $this->form->fill([
             'alumni' => app(MbaMastersAlumniSettings::class)->toArray(),
-            'partners' => app(MbaMastersPartnersSettings::class)->toArray(),
+            'partners' => $partners,
             'testimonials' => $testimonials,
             'compare' => $compare,
         ]);
@@ -76,6 +80,15 @@ class ManageProof extends Page implements HasForms
                         Textarea::make('partners.intro')->label('Intro')->rows(2)->columnSpanFull(),
                         Textarea::make('partners.trust_line')->label('Trust line')->rows(2)->columnSpanFull()
                             ->helperText('Logos: University Partners admin (active + logo). No duplicate logo CRUD here.'),
+                        Repeater::make('partners.checklist')
+                            ->label('Checklist')
+                            ->schema([
+                                TextInput::make('text')->label('Item')->required()->columnSpanFull(),
+                            ])
+                            ->defaultItems(0)
+                            ->reorderable()
+                            ->addActionLabel('Add checklist item')
+                            ->columnSpanFull(),
                     ])
                     ->columns(2)
                     ->collapsed()
@@ -129,6 +142,18 @@ class ManageProof extends Page implements HasForms
                             ->itemLabel(fn (array $state): ?string => $state['criterion'] ?? null)
                             ->addActionLabel('Add row')
                             ->columnSpanFull(),
+                        Repeater::make('compare.blocks')
+                            ->label('Supporting blocks')
+                            ->schema([
+                                TextInput::make('title')->label('Title')->required()->columnSpanFull(),
+                                Textarea::make('text')->label('Text')->rows(3)->columnSpanFull(),
+                            ])
+                            ->defaultItems(0)
+                            ->reorderable()
+                            ->collapsible()
+                            ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
+                            ->addActionLabel('Add block')
+                            ->columnSpanFull(),
                         TextInput::make('compare.cta_label')->label('CTA label'),
                         TextInput::make('compare.cta_url')->label('CTA URL'),
                     ])
@@ -162,9 +187,13 @@ class ManageProof extends Page implements HasForms
 
         $compare = $data['compare'] ?? [];
         $compare['rows'] = array_values($compare['rows'] ?? []);
+        $compare['blocks'] = array_values($compare['blocks'] ?? []);
+
+        $partners = $data['partners'] ?? [];
+        $partners['checklist'] = array_values($partners['checklist'] ?? []);
 
         $ok = $this->saveSettingsGroup(MbaMastersAlumniSettings::class, $data['alumni'] ?? [])
-            && $this->saveSettingsGroup(MbaMastersPartnersSettings::class, $data['partners'] ?? [])
+            && $this->saveSettingsGroup(MbaMastersPartnersSettings::class, $partners)
             && $this->saveSettingsGroup(MbaMastersTestimonialsSettings::class, $testimonials)
             && $this->saveSettingsGroup(MbaMastersCompareSettings::class, $compare);
 

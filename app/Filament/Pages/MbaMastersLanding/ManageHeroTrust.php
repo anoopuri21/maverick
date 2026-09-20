@@ -71,6 +71,7 @@ class ManageHeroTrust extends Page implements HasForms
                     ->schema([
                                 TextInput::make('trust.label')->label('Section heading')->columnSpanFull(),
                                 Textarea::make('trust.quote')->label('Trust quote')->rows(2)->columnSpanFull(),
+                                TextInput::make('trust.quote_attribution')->label('Quote attribution')->columnSpanFull(),
                                 Repeater::make('trust.stats')
                             ->schema([
                                 TextInput::make('value')->label('Value')->placeholder('4500+'),

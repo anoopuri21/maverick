@@ -16,6 +16,8 @@ class MbaMastersPartnersSettings extends Settings
 
     public ?string $trust_line = null;
 
+    public array $checklist = [];
+
     public static function group(): string
     {
         return 'mba_masters_partners';

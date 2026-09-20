@@ -7,6 +7,7 @@ use App\Filament\Forms\Components\MediaPicker;
 use App\Filament\Pages\MbaMastersLanding\Concerns\ManagesMbaMastersChunk;
 use App\Settings\MbaMastersFeesSettings;
 use App\Settings\MbaMastersJourneySettings;
+use App\Settings\MbaMastersLearningSettings;
 use App\Settings\MbaMastersMastersSettings;
 use App\Settings\MbaMastersMbaSettings;
 use App\Settings\MbaMastersOverviewSettings;
@@ -73,6 +74,10 @@ class ManagePrograms extends Page implements HasForms
 
         $fees = safe_settings(MbaMastersFeesSettings::class)->toArray();
         $fees['rows'] = array_values($fees['rows'] ?? []);
+        $fees['blocks'] = array_values($fees['blocks'] ?? []);
+
+        $learning = safe_settings(MbaMastersLearningSettings::class)->toArray();
+        $learning['points'] = array_values($learning['points'] ?? []);
 
         $this->form->fill([
             'overview' => $overview,
@@ -81,6 +86,7 @@ class ManagePrograms extends Page implements HasForms
             'mba' => $mba,
             'masters' => $masters,
             'fees' => $fees,
+            'learning' => $learning,
         ]);
     }
 
@@ -88,7 +94,7 @@ class ManagePrograms extends Page implements HasForms
     {
         return $form
             ->schema([
-                $this->chunkHint('Edits overview, why, admission journey, MBA/Master’s catalogs and fees only.'),
+                $this->chunkHint('Edits overview, why, admission journey, MBA/Master’s catalogs, fees and learning only.'),
                 Section::make('Program overview')
                     ->schema([
                         TextInput::make('overview.label')->label('Section label'),
@@ -294,10 +300,52 @@ class ManagePrograms extends Page implements HasForms
                             ->itemLabel(fn (array $state): ?string => $state['program'] ?? null)
                             ->addActionLabel('Add row')
                             ->columnSpanFull(),
+                        Repeater::make('fees.blocks')
+                            ->label('Fee detail blocks')
+                            ->schema([
+                                TextInput::make('title')->label('Title')->required()->columnSpanFull(),
+                                Textarea::make('text')->label('Text')->rows(3)->columnSpanFull(),
+                            ])
+                            ->defaultItems(0)
+                            ->reorderable()
+                            ->collapsible()
+                            ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
+                            ->addActionLabel('Add block')
+                            ->columnSpanFull(),
                         TextInput::make('fees.cta_primary_label')->label('Primary CTA label'),
                         TextInput::make('fees.cta_primary_url')->label('Primary CTA URL'),
                         TextInput::make('fees.cta_secondary_label')->label('Secondary CTA label'),
                         TextInput::make('fees.cta_secondary_url')->label('Secondary CTA URL'),
+                    ])
+                    ->columns(2)
+                    ->collapsed()
+                    ->collapsible(),
+                Section::make('Learning experience')
+                    ->schema([
+                        TextInput::make('learning.label')->label('Section label'),
+                        TextInput::make('learning.heading')->label('Heading')->columnSpanFull(),
+                        Textarea::make('learning.intro')->label('Intro')->rows(2)->columnSpanFull(),
+                        TextInput::make('learning.plate_image')->hidden(),
+                        MediaPicker::forField('learning.plate_image', 'mba-masters-landing/learning')
+                            ->label('Study desk plate image')
+                            ->columnSpanFull(),
+                        TextInput::make('learning.plate_caption')->label('Plate caption')->columnSpanFull(),
+                        Repeater::make('learning.points')
+                            ->label('Learning points')
+                            ->schema([
+                                TextInput::make('title')->label('Title')->required(),
+                                $this->richEditor('text', 'Text'),
+                            ])
+                            ->defaultItems(0)
+                            ->reorderable()
+                            ->collapsible()
+                            ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
+                            ->addActionLabel('Add point')
+                            ->columnSpanFull(),
+                        TextInput::make('learning.cta_primary_label')->label('Primary CTA label'),
+                        TextInput::make('learning.cta_primary_url')->label('Primary CTA URL'),
+                        TextInput::make('learning.cta_secondary_label')->label('Secondary CTA label'),
+                        TextInput::make('learning.cta_secondary_url')->label('Secondary CTA URL'),
                     ])
                     ->columns(2)
                     ->collapsed()
@@ -372,13 +420,18 @@ class ManagePrograms extends Page implements HasForms
 
         $fees = $this->syncImageIfSelected($data['fees'] ?? [], 'stage_image');
         $fees['rows'] = array_values($fees['rows'] ?? []);
+        $fees['blocks'] = array_values($fees['blocks'] ?? []);
+
+        $learning = $this->syncImageIfSelected($data['learning'] ?? [], 'plate_image');
+        $learning['points'] = array_values($learning['points'] ?? []);
 
         $ok = $this->saveSettingsGroup(MbaMastersOverviewSettings::class, $overview)
             && $this->saveSettingsGroup(MbaMastersWhySettings::class, $why)
             && $this->saveSettingsGroup(MbaMastersJourneySettings::class, $journey)
             && $this->saveSettingsGroup(MbaMastersMbaSettings::class, $mba)
             && $this->saveSettingsGroup(MbaMastersMastersSettings::class, $masters)
-            && $this->saveSettingsGroup(MbaMastersFeesSettings::class, $fees);
+            && $this->saveSettingsGroup(MbaMastersFeesSettings::class, $fees)
+            && $this->saveSettingsGroup(MbaMastersLearningSettings::class, $learning);
 
         if ($ok) {
             $this->notifySaved('Programs');

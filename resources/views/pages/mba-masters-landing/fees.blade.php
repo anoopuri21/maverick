@@ -3,6 +3,9 @@
   $rows = collect($fees->rows ?? [])
       ->filter(fn ($row) => filled($row['program'] ?? null))
       ->values();
+  $blocks = collect($fees->blocks ?? [])
+      ->filter(fn ($b) => filled($b['title'] ?? null))
+      ->values();
 @endphp
 
 @if($rows->isNotEmpty() || filled($fees->heading))
@@ -67,6 +70,22 @@
 
     @if(filled($fees->note))
     <p class="pricing-cards__note">{{ $fees->note }}</p>
+    @endif
+
+    @if($blocks->isNotEmpty())
+    <ul class="pricing-cards__blocks" aria-label="Fee details">
+      @foreach($blocks as $i => $block)
+      <li class="pricing-cards__block" style="--mlp-i: {{ $i }}">
+        <span class="pricing-cards__block-index" aria-hidden="true">{{ str_pad((string) ($i + 1), 2, '0', STR_PAD_LEFT) }}</span>
+        <div>
+          <h3 class="pricing-cards__block-title">{{ $block['title'] }}</h3>
+          @if(filled($block['text'] ?? null))
+          <p class="pricing-cards__block-text">{{ $block['text'] }}</p>
+          @endif
+        </div>
+      </li>
+      @endforeach
+    </ul>
     @endif
 
     @if(filled($fees->cta_primary_label) || filled($fees->cta_secondary_label))

@@ -897,25 +897,43 @@
 }
 
 .blueprint-overview__system {
+  --blueprint-count: 5;
+  --orbit-r: clamp(14.5rem, 40cqmin, 19.5rem);
+  --core-size: clamp(9.5rem, 20cqmin, 11rem);
+  /* Card grows into whatever the frame leaves beside the orbit, capped at 32rem. */
+  --card-gap: 1rem;
+  --card-avail: calc(min(50vw - var(--container-padding, 5vw), 700px) - (var(--orbit-r) * 0.951) - var(--card-gap) - 0.5rem);
+  --card-w: clamp(12rem, var(--card-avail), 32rem);
+  /* Center sits below the midline so the north card has room above the orbit. */
+  --center-y: calc(50% + 3.5rem);
   position: relative;
-  min-height: 43rem;
-  margin-top: clamp(4rem, 8vw, 7rem);
-  padding-top: 2.25rem;
+  container-type: size;
+  width: min(100%, 58rem);
+  max-width: 100%;
+  aspect-ratio: 1 / 1.1;
+  margin: clamp(3rem, 6vw, 5.5rem) auto 0;
+  padding: 0;
   border-top: 1px solid var(--mlp-line-dark);
+  overflow: visible;
 }
 
 .blueprint-overview__diagram {
   position: absolute;
-  inset: 3.7rem 0 0;
+  inset: 0;
   z-index: 0;
   width: 100%;
-  height: calc(100% - 3.7rem);
+  height: 100%;
   overflow: visible;
+  pointer-events: none;
+}
+
+.blueprint-overview__diagram--spokes {
+  z-index: 1;
 }
 
 .blueprint-overview__grid-lines,
 .blueprint-overview__connectors,
-.blueprint-overview__diagram-nodes {
+.blueprint-overview__orbit-ring {
   fill: none;
   stroke: var(--mlp-blue);
   stroke-width: 1;
@@ -925,12 +943,20 @@
   opacity: 0.1;
 }
 
+.blueprint-overview__orbit-ring {
+  stroke: var(--mlp-navy);
+  stroke-dasharray: 5 9;
+  opacity: 0.32;
+}
+
 .blueprint-overview__connectors {
   opacity: 0.55;
 }
 
 .blueprint-overview__connectors path {
+  fill: none;
   stroke: var(--mlp-red);
+  stroke-width: 1.25;
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-dasharray: 900;
@@ -942,35 +968,23 @@
   stroke-dashoffset: 0;
 }
 
-.blueprint-overview__diagram-core {
-  fill: var(--mlp-paper);
-  stroke: var(--mlp-navy);
-  stroke-width: 1;
-  stroke-dasharray: 4 5;
-}
-
-.blueprint-overview__diagram-core-dot,
-.blueprint-overview__diagram-nodes circle {
-  fill: var(--mlp-red);
-  stroke: var(--mlp-paper);
-  stroke-width: 3;
-}
-
 .blueprint-overview__core {
   position: absolute;
-  top: calc(50% + 1.5rem);
+  top: var(--center-y, 50%);
   left: 50%;
   z-index: 2;
   display: grid;
   place-content: center;
-  width: 12rem;
-  height: 12rem;
-  padding: 1.25rem;
+  width: var(--core-size);
+  height: auto;
+  aspect-ratio: 1 / 1;
+  padding: 1.1rem;
   text-align: center;
-  border: 1px solid var(--mlp-navy);
+  border: 1px dashed var(--mlp-navy);
   border-radius: 50%;
-  background: rgba(247, 245, 241, 0.88);
+  background: rgba(247, 245, 241, 0.92);
   transform: translate(-50%, -50%);
+  box-sizing: border-box;
 }
 
 .blueprint-overview__core-kicker {
@@ -985,7 +999,7 @@
 .blueprint-overview__core strong {
   margin: 0.55rem 0;
   font-family: var(--mlp-font-display);
-  font-size: 1.35rem;
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
   font-weight: 500;
   line-height: 0.95;
   letter-spacing: -0.04em;
@@ -993,65 +1007,45 @@
 }
 
 .blueprint-overview__foundations {
-  position: relative;
+  position: absolute;
+  inset: 0;
   z-index: 2;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  grid-template-rows: repeat(3, minmax(8rem, 1fr));
-  min-height: 38rem;
   margin: 0;
-  padding: 2rem 0 0;
+  padding: 0;
   list-style: none;
+  pointer-events: none;
 }
 
+/* Node sits on the orbit; copy radiates outward by data-side */
 .blueprint-overview__foundation {
-  position: relative;
-  align-self: start;
-  max-width: 20rem;
-  padding: 0.8rem 1rem 0 1.1rem;
-  border-left: 1px solid var(--mlp-navy);
-  transition: transform 0.6s var(--mlp-ease), border-color 0.35s ease;
+  --angle: var(--blueprint-angle, calc(var(--blueprint-index) * (360deg / var(--blueprint-count, 5)) - 90deg));
+  position: absolute;
+  top: calc(var(--center-y, 50%) + (var(--orbit-r) * sin(var(--angle))));
+  left: calc(50% + (var(--orbit-r) * cos(var(--angle))));
+  z-index: 2;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  pointer-events: auto;
 }
 
-.blueprint-overview__foundation:nth-child(1) {
-  grid-column: 1;
-  grid-row: 1;
+.blueprint-overview__foundation-node {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 0.7rem;
+  height: 0.7rem;
+  border: 2px solid var(--mlp-paper);
+  border-radius: 50%;
+  background: var(--mlp-red);
+  box-shadow: 0 0 0 1px var(--mlp-red);
+  transform: translate(-50%, -50%);
 }
 
-.blueprint-overview__foundation:nth-child(2) {
-  grid-column: 3;
-  grid-row: 1;
-  justify-self: end;
-}
-
-.blueprint-overview__foundation:nth-child(3) {
-  grid-column: 1;
-  grid-row: 3;
-  align-self: end;
-}
-
-.blueprint-overview__foundation:nth-child(4) {
-  grid-column: 3;
-  grid-row: 3;
-  align-self: end;
-  justify-self: end;
-}
-
-.blueprint-overview__foundation:nth-child(5) {
-  grid-column: 2;
-  grid-row: 3;
-  align-self: end;
-  justify-self: center;
-}
-
-.blueprint-overview__foundation:hover,
-.blueprint-overview__foundation:focus-within {
-  border-color: var(--mlp-red);
-  transform: translateY(-0.35rem);
-}
-
-.blueprint-overview__foundation-node,
-  .signal-atlas__node {
+.signal-atlas__node {
   position: absolute;
   top: -0.35rem;
   left: -0.38rem;
@@ -1063,20 +1057,74 @@
   box-shadow: 0 0 0 1px var(--mlp-red);
 }
 
+.blueprint-overview__foundation-copy {
+  position: absolute;
+  top: -0.15rem;
+  width: var(--card-w);
+  max-width: 32rem;
+  transition: border-color 0.35s ease, filter 0.45s var(--mlp-ease);
+  filter: drop-shadow(0 0 0 transparent);
+}
+
+.blueprint-overview__foundation[data-side="east"] .blueprint-overview__foundation-copy,
+.blueprint-overview__foundation[data-side="west"] .blueprint-overview__foundation-copy {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.blueprint-overview__foundation[data-side="east"] .blueprint-overview__foundation-copy {
+  left: var(--card-gap);
+  padding: 0.15rem 0 0.15rem 1.1rem;
+  border-left: 1px solid var(--mlp-navy);
+  text-align: left;
+}
+
+.blueprint-overview__foundation[data-side="west"] .blueprint-overview__foundation-copy {
+  right: var(--card-gap);
+  left: auto;
+  padding: 0.15rem 1.1rem 0.15rem 0;
+  border-right: 1px solid var(--mlp-navy);
+  text-align: right;
+}
+
+.blueprint-overview__foundation[data-side="north"] .blueprint-overview__foundation-copy {
+  left: 50%;
+  top: auto;
+  bottom: var(--card-gap);
+  width: min(calc(var(--card-w) + 4rem), 32rem);
+  max-width: 32rem;
+  padding: 0 0.35rem 0.7rem;
+  border-top: 0;
+  border-bottom: 1px solid var(--mlp-navy);
+  text-align: center;
+  transform: translate(-50%, 0);
+}
+
+.blueprint-overview__foundation:hover .blueprint-overview__foundation-copy,
+.blueprint-overview__foundation:focus-within .blueprint-overview__foundation-copy {
+  border-color: var(--mlp-red);
+  filter: drop-shadow(0 6px 10px rgba(7, 20, 68, 0.08));
+}
+
+.blueprint-overview__foundation:hover,
+.blueprint-overview__foundation:focus-within {
+  z-index: 3;
+}
+
 .blueprint-overview__foundation-title {
   margin: 0 0 0.45rem;
   font-family: var(--mlp-font-display);
-  font-size: clamp(1.25rem, 1.8vw, 1.65rem);
+  font-size: clamp(1rem, 1.5vw, 1.35rem);
   font-weight: 500;
-  line-height: 1.05;
+  line-height: 1.1;
   letter-spacing: -0.03em;
   color: var(--mlp-navy);
 }
 
 .blueprint-overview__foundation-text {
   max-width: 100%;
-  font-size: 1rem;
-  line-height: 1.55;
+  font-size: 0.84rem;
+  line-height: 1.45;
   color: var(--mlp-muted-on-paper);
 }
 
@@ -1126,23 +1174,24 @@
   font-weight: 600;
 }
 
+/* Mid orbit: tighter radius/card so the east/west copy fits a 1000px viewport. */
+@media (min-width: 1000px) and (max-width: 1199px) {
+  .blueprint-overview__system {
+    width: 100%;
+    --orbit-r: clamp(13rem, 35cqmin, 17rem);
+    --core-size: clamp(9rem, 20cqmin, 10.5rem);
+    --card-gap: 0.75rem;
+  }
+
+  .blueprint-overview__foundation-text {
+    font-size: 0.8rem;
+  }
+}
+
 @media (max-width: 900px) {
   .blueprint-overview__intro {
     grid-template-columns: 1fr;
     row-gap: 1.25rem;
-  }
-
-  .blueprint-overview__system {
-    min-height: 48rem;
-  }
-
-  .blueprint-overview__foundations {
-    min-height: 43rem;
-  }
-
-  .blueprint-overview__core {
-    width: 9rem;
-    height: 9rem;
   }
 }
 
@@ -1154,8 +1203,15 @@
     height: 18rem;
     opacity: 0.08;
   }
+}
 
+/* Shared non-orbit layout: tablet (701–999px), mobile (≤700px) and the JS overlap fallback. */
+@media (max-width: 999px) {
   .blueprint-overview__system {
+    --orbit-r: 0;
+    width: 100%;
+    aspect-ratio: auto;
+    container-type: normal;
     min-height: 0;
     margin-top: 3.25rem;
     padding-top: 1.5rem;
@@ -1170,18 +1226,82 @@
     top: auto;
     left: auto;
     width: 8.75rem;
-    height: 8.75rem;
+    height: auto;
+    aspect-ratio: 1 / 1;
     margin: 2rem auto 3rem;
     transform: none;
   }
 
   .blueprint-overview__foundations {
+    position: relative;
+    inset: auto;
     display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: none;
-    gap: 0;
+    grid-template-columns: repeat(2, minmax(0, 32rem));
+    justify-content: center;
+    gap: 1.75rem clamp(2rem, 5vw, 4rem);
     min-height: 0;
-    padding: 0 0 0.0rem 0.8rem;
+    padding: 0;
+    pointer-events: auto;
+  }
+
+  .blueprint-overview__foundation,
+  .blueprint-overview__foundation[data-side] {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: auto;
+    height: auto;
+    max-width: none;
+    min-height: 0;
+    padding: 0;
+    border: 0;
+    text-align: left;
+    transform: none;
+    filter: none;
+  }
+
+  .blueprint-overview__foundation-copy,
+  .blueprint-overview__foundation[data-side] .blueprint-overview__foundation-copy {
+    position: relative;
+    top: auto;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    width: auto;
+    max-width: 32rem;
+    padding: 0.1rem 0 1.2rem 1.1rem;
+    border: 0;
+    border-left: 1px solid var(--mlp-navy);
+    text-align: left;
+    transform: none;
+    filter: none;
+  }
+
+  .blueprint-overview__foundation-node,
+  .blueprint-overview__foundation[data-side] .blueprint-overview__foundation-node {
+    top: 0.35rem;
+    left: -0.35rem;
+    right: auto;
+    transform: none;
+  }
+
+  .blueprint-overview__foundation:hover .blueprint-overview__foundation-copy,
+  .blueprint-overview__foundation:focus-within .blueprint-overview__foundation-copy {
+    filter: none;
+    border-color: var(--mlp-red);
+  }
+
+  .blueprint-overview__foundation-text {
+    max-width: 42ch;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .blueprint-overview__foundations {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding: 0 0 0 0.8rem;
   }
 
   .blueprint-overview__foundations::before,
@@ -1195,34 +1315,110 @@
     background: linear-gradient(180deg, var(--mlp-red), var(--mlp-blue));
   }
 
-  .blueprint-overview__foundation,
-  .blueprint-overview__foundation:nth-child(n) {
-    grid-column: auto;
-    grid-row: auto;
-    align-self: auto;
-    justify-self: auto;
-    max-width: none;
-    min-height: 0;
+  .blueprint-overview__foundation-copy,
+  .blueprint-overview__foundation[data-side] .blueprint-overview__foundation-copy {
     padding: 1.2rem 0 1.4rem 1.1rem;
     border-left: 0;
     border-bottom: 1px solid var(--mlp-line-dark);
-    transform: none;
   }
 
-  .blueprint-overview__foundation-node {
+  .blueprint-overview__foundation-node,
+  .blueprint-overview__foundation[data-side] .blueprint-overview__foundation-node {
     top: 1.45rem;
     left: -1.12rem;
   }
 
+  .blueprint-overview__foundation:hover .blueprint-overview__foundation-copy,
+  .blueprint-overview__foundation:focus-within .blueprint-overview__foundation-copy {
+    border-color: var(--mlp-line-dark);
+  }
+
   .blueprint-overview__foundation-text {
+    font-size: 1rem;
+  }
+}
+
+/* JS overlap/overflow guard: same compact layout at any width. */
+@media (min-width: 1000px) {
+  .blueprint-overview__system.is-compact {
+    --orbit-r: 0;
+    width: min(100%, 68rem);
+    aspect-ratio: auto;
+    container-type: normal;
+    min-height: 0;
+    padding-top: 1.5rem;
+  }
+
+  .blueprint-overview__system.is-compact .blueprint-overview__diagram {
+    display: none;
+  }
+
+  .blueprint-overview__system.is-compact .blueprint-overview__core {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 9.5rem;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    margin: 2rem auto 3rem;
+    transform: none;
+  }
+
+  .blueprint-overview__system.is-compact .blueprint-overview__foundations {
+    position: relative;
+    inset: auto;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 32rem));
+    justify-content: center;
+    gap: 1.75rem clamp(2rem, 4vw, 4rem);
+    padding: 0;
+    pointer-events: auto;
+  }
+
+  .blueprint-overview__system.is-compact .blueprint-overview__foundation,
+  .blueprint-overview__system.is-compact .blueprint-overview__foundation[data-side] {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: auto;
+    height: auto;
+    transform: none;
+  }
+
+  .blueprint-overview__system.is-compact .blueprint-overview__foundation-copy,
+  .blueprint-overview__system.is-compact .blueprint-overview__foundation[data-side] .blueprint-overview__foundation-copy {
+    position: relative;
+    top: auto;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    width: auto;
+    max-width: 32rem;
+    padding: 0.1rem 0 1.2rem 1.1rem;
+    border: 0;
+    border-left: 1px solid var(--mlp-navy);
+    text-align: left;
+    transform: none;
+  }
+
+  .blueprint-overview__system.is-compact .blueprint-overview__foundation-node,
+  .blueprint-overview__system.is-compact .blueprint-overview__foundation[data-side] .blueprint-overview__foundation-node {
+    top: 0.35rem;
+    left: -0.35rem;
+    right: auto;
+    transform: none;
+  }
+
+  .blueprint-overview__system.is-compact .blueprint-overview__foundation-text {
     max-width: 42ch;
+    font-size: 0.95rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-
   .blueprint-overview__connectors path {
     stroke-dashoffset: 0;
+    transition: none;
   }
 }
 /* —— Why Choose: light scroll chapters —— */
@@ -1309,13 +1505,13 @@
   font-weight: 500;
   line-height: 1.1;
   letter-spacing: -0.03em;
-  max-width: 14ch;
+  max-width: 100%;
   color: var(--mlp-navy);
 }
 
 .mlp-why__text {
   margin: 0;
-  max-width: 38ch;
+  max-width: 100%;
   font-size: clamp(1rem, 1.5vw, 1.15rem);
   line-height: 1.65;
   color: var(--mlp-muted-on-paper);
@@ -1342,12 +1538,146 @@
   }
 }
 
-/* —— Admission Journey: graphic spine (light) —— */
-
-@media (max-width: 900px) {
+/* —— Admission Journey: bordered step list with Lucide icons (light) —— */
+.mlp-journey {
+  position: relative;
+  padding: clamp(4.5rem, 10vw, 7.5rem) 0;
+  color: var(--color-black, #000);
+  background: var(--mlp-paper-pure);
 }
 
-@media (max-width: 420px) {
+.mlp-journey__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: start;
+}
+
+.mlp-journey__head {
+  position: sticky;
+  top: clamp(5rem, 12vh, 7rem);
+  max-width: 34rem;
+}
+
+.mlp-journey__label {
+  margin: 0 0 1rem;
+}
+
+.mlp-journey__heading {
+  margin: 0 0 1.1rem;
+}
+
+.mlp-journey__intro {
+  margin: 0;
+  max-width: 44ch;
+}
+
+.mlp-journey__steps {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid rgba(15, 41, 131, 0.22);
+}
+
+.mlp-journey__step {
+  display: grid;
+  grid-template-columns: 3rem minmax(0, 1fr);
+  column-gap: clamp(1.1rem, 2.5vw, 1.75rem);
+  align-items: start;
+  padding: clamp(1.25rem, 3vw, 2rem) 0;
+  border-bottom: 1px solid rgba(15, 41, 131, 0.22);
+  opacity: 0;
+  transform: translateY(56px);
+  will-change: transform, opacity;
+}
+
+.mlp-journey__step:last-child {
+  border-bottom: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mlp-journey__step {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.mlp-journey__icon {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border: 1px solid rgba(178, 2, 2, 0.35);
+  color: var(--color-mba-red);
+  background: var(--mlp-paper);
+}
+
+.mlp-journey__icon svg {
+  width: 1.35rem;
+  height: 1.35rem;
+  stroke: currentColor;
+  stroke-width: 1.75;
+}
+
+.mlp-journey__panel {
+  min-width: 0;
+  padding-top: 0.2rem;
+}
+
+.mlp-journey__title {
+  margin: 0 0 0.5rem;
+  font-family: var(--mlp-font-display);
+  font-size: clamp(1.15rem, 1.6vw, 1.45rem);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.mlp-journey__text {
+  max-width: 56ch;
+}
+
+.mlp-journey__text p {
+  margin: 0;
+}
+
+.mlp-journey__text p + p {
+  margin-top: 0.6rem;
+}
+
+.mlp-page--polished #mlp-journey .mlp-journey__step:hover {
+  background-color: transparent;
+}
+
+@media (max-width: 900px) {
+  .mlp-journey__layout {
+    grid-template-columns: 1fr;
+    gap: clamp(2rem, 6vw, 3rem);
+  }
+
+  .mlp-journey__head {
+    position: static;
+    max-width: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .mlp-journey__step {
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+    column-gap: 1rem;
+    padding: 1.25rem 0;
+  }
+
+  .mlp-journey__icon {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .mlp-journey__icon svg {
+    width: 1.15rem;
+    height: 1.15rem;
+  }
 }
 
 /* MBA specializations: big campus plates + program catalog (light) */
@@ -2037,7 +2367,8 @@
 }
 
 .signal-atlas__intro {
-  max-width: 48rem;
+  max-width: none;
+  width: 100%;
   margin-bottom: clamp(3rem, 7vw, 5.5rem);
 }
 
@@ -2052,17 +2383,19 @@
 }
 
 .signal-atlas__heading {
-  max-width: 17ch;
+  max-width: none;
+  width: 100%;
   margin: 0;
 }
 
 .signal-atlas__quote {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
-  gap: 0.85rem;
-  max-width: 34rem;
+  gap: 0.85rem 1rem;
+  align-items: start;
+  max-width: min(52rem, 100%);
   margin: 1.5rem 0 0;
-  padding: 1rem 0 0;
+  padding: 1.15rem 0 0;
   border-top: 1px solid var(--mlp-line-dark);
 }
 
@@ -2073,19 +2406,36 @@
   color: var(--mlp-red);
 }
 
+.signal-atlas__quote-body {
+  display: grid;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
 .signal-atlas__quote p {
   margin: 0;
   font-family: var(--mlp-font-display);
   font-size: clamp(1.15rem, 2vw, 1.65rem);
   font-weight: 500;
-  line-height: 1.2;
+  line-height: 1.25;
   letter-spacing: -0.025em;
   color: var(--mlp-navy);
 }
 
+.signal-atlas__quote-attr {
+  margin: 0;
+  font-family: var(--mlp-font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1.45;
+  text-transform: uppercase;
+  color: var(--mlp-muted-on-paper);
+}
+
 .signal-atlas__graph {
   position: relative;
-  min-height: 25rem;
+  min-height: 18rem;
   padding-top: 2rem;
 }
 
@@ -2093,9 +2443,10 @@
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(var(--signal-count, 3), minmax(0, 1fr));
   align-items: end;
-  min-height: 20rem;
+  gap: 0;
+  min-height: 14rem;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -2104,25 +2455,40 @@
 .signal-atlas__record {
   position: relative;
   display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 0.75rem;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.75rem 0.85rem;
   align-self: end;
   min-height: 8.6rem;
-  padding: 1rem 1rem 1.2rem;
+  padding: 1rem 1.15rem 1.2rem;
   border-left: 1px solid rgba(7, 20, 68, 0.22);
   background: transparent;
   transition: transform 0.5s var(--mlp-ease), border-color 0.35s ease;
 }
 
 .signal-atlas__record:nth-child(1) {
-  transform: translateY(3.4rem);
+  transform: translateY(2.4rem);
 }
 
 .signal-atlas__record:nth-child(2) {
-  transform: translateY(1.3rem);
+  transform: translateY(0.6rem);
 }
 
 .signal-atlas__record:nth-child(3) {
+  transform: translateY(2.8rem);
+}
+
+.signal-atlas__records[style*="--signal-count: 4"] .signal-atlas__record:nth-child(1),
+.signal-atlas__records[style*="--signal-count: 5"] .signal-atlas__record:nth-child(1) {
+  transform: translateY(3.4rem);
+}
+
+.signal-atlas__records[style*="--signal-count: 4"] .signal-atlas__record:nth-child(2),
+.signal-atlas__records[style*="--signal-count: 5"] .signal-atlas__record:nth-child(2) {
+  transform: translateY(1.3rem);
+}
+
+.signal-atlas__records[style*="--signal-count: 4"] .signal-atlas__record:nth-child(3),
+.signal-atlas__records[style*="--signal-count: 5"] .signal-atlas__record:nth-child(3) {
   transform: translateY(3.8rem);
 }
 
@@ -2141,6 +2507,7 @@
 
 .signal-atlas__value {
   display: block;
+  grid-column: 2;
   font-family: var(--mlp-font-display);
   font-size: clamp(2rem, 4vw, 4.25rem);
   font-weight: 500;
@@ -2155,11 +2522,11 @@
 
 .signal-atlas__label {
   grid-column: 2;
-  max-width: 12ch;
+  max-width: none;
   margin-top: 0.35rem;
   font-size: 0.72rem;
   font-weight: 600;
-  line-height: 1.35;
+  line-height: 1.4;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--mlp-muted-on-paper);
@@ -2167,26 +2534,41 @@
 
 @media (max-width: 900px) {
   .signal-atlas__heading {
-    max-width: 14ch;
+    max-width: none;
   }
 
   .signal-atlas__graph {
-    min-height: 29rem;
+    min-height: 22rem;
   }
 
   .signal-atlas__records {
-    min-height: 24rem;
+    min-height: 18rem;
   }
 
   .signal-atlas__record:nth-child(1) {
-    transform: translateY(2.5rem);
+    transform: translateY(1.8rem);
   }
 
   .signal-atlas__record:nth-child(2) {
-    transform: translateY(0.8rem);
+    transform: translateY(0.4rem);
   }
 
   .signal-atlas__record:nth-child(3) {
+    transform: translateY(2rem);
+  }
+
+  .signal-atlas__records[style*="--signal-count: 4"] .signal-atlas__record:nth-child(1),
+  .signal-atlas__records[style*="--signal-count: 5"] .signal-atlas__record:nth-child(1) {
+    transform: translateY(2.5rem);
+  }
+
+  .signal-atlas__records[style*="--signal-count: 4"] .signal-atlas__record:nth-child(2),
+  .signal-atlas__records[style*="--signal-count: 5"] .signal-atlas__record:nth-child(2) {
+    transform: translateY(0.8rem);
+  }
+
+  .signal-atlas__records[style*="--signal-count: 4"] .signal-atlas__record:nth-child(3),
+  .signal-atlas__records[style*="--signal-count: 5"] .signal-atlas__record:nth-child(3) {
     transform: translateY(2.8rem);
   }
 
@@ -2213,6 +2595,10 @@
     max-width: none;
   }
 
+  .signal-atlas__quote {
+    max-width: none;
+  }
+
   .signal-atlas__graph {
     min-height: 0;
     padding-top: 1.25rem;
@@ -2226,7 +2612,10 @@
   }
 
   .signal-atlas__record,
-  .signal-atlas__record:nth-child(n) {
+  .signal-atlas__record:nth-child(n),
+  .signal-atlas__records[style*="--signal-count: 3"] .signal-atlas__record:nth-child(n),
+  .signal-atlas__records[style*="--signal-count: 4"] .signal-atlas__record:nth-child(n),
+  .signal-atlas__records[style*="--signal-count: 5"] .signal-atlas__record:nth-child(n) {
     grid-template-columns: 2rem minmax(0, 1fr);
     min-height: 6.6rem;
     padding: 1rem 0 1rem 1rem;
@@ -2247,7 +2636,7 @@
 
   .signal-atlas__label,
   .mlp-page--polished #mlp-trust .signal-atlas__label {
-    max-width: 24ch;
+    max-width: none;
   }
 }
 
@@ -3520,7 +3909,7 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
 
 .mlp-page--polished .signal-atlas__record,
 .mlp-page--polished .blueprint-overview__foundation {
-  transition: transform 0.45s var(--mlp-ease), border-color 0.35s var(--mlp-ease), background-color 0.35s ease;
+  transition: border-color 0.35s var(--mlp-ease), background-color 0.35s ease, filter 0.45s var(--mlp-ease);
 }
 
 .mlp-page--polished .signal-atlas__record:hover {
@@ -3529,7 +3918,12 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
 
 .mlp-page--polished .blueprint-overview__foundation:hover,
 .mlp-page--polished .blueprint-overview__foundation:focus-within {
-  background: rgba(255, 255, 255, 0.46);
+  background: transparent;
+}
+
+.mlp-page--polished .blueprint-overview__foundation:hover .blueprint-overview__foundation-copy,
+.mlp-page--polished .blueprint-overview__foundation:focus-within .blueprint-overview__foundation-copy {
+  background: rgba(255, 255, 255, 0.72);
 }
 
 /* Existing middle sections: harmonise older blocks with the Light Archive */
@@ -4184,11 +4578,16 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
   -webkit-box-decoration-break: clone;
 }
 
-/* Issue 11: remove non-functional erratic Overview numbers. */
+/* Issue 11: overview cards sit above spoke lines without breaking polar transform. */
 .mlp-page--polished .blueprint-overview__foundation {
   z-index: 2;
+  background: transparent;
+  box-shadow: none;
+}
+
+.mlp-page--polished .blueprint-overview__foundation-copy {
   background: var(--mlp-paper);
-  box-shadow: 0 0 0 0.75rem var(--mlp-paper);
+  box-shadow: 0 0 0 0.55rem var(--mlp-paper);
 }
 
 /* Issue 12: university image/catalog placement stays consistent. */
@@ -5103,16 +5502,69 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
 
 .mlp-page--polished #mlp-overview .blueprint-overview__system {
   margin-top: 2rem;
-  padding-top: 2rem;
+  padding-top: 0;
 }
 
 .mlp-page--polished #mlp-overview .blueprint-overview__core {
-  border: 1px solid rgb(7 20 68 / 5%);
+  border: 1px dashed rgba(7, 20, 68, 0.35);
 }
 
-.mlp-page--polished #mlp-overview .blueprint-overview__foundation:first-child:hover,
-.mlp-page--polished #mlp-overview .blueprint-overview__foundation:first-child:focus-within {
+/* Orbit cards need compact type so five full-text cards fit around the core. */
+.mlp-page--polished #mlp-overview .blueprint-overview__foundation-title {
+  font-size: clamp(1.05rem, 1.3vw, 1.25rem);
+  line-height: 1.12;
+}
+
+.mlp-page--polished #mlp-overview .blueprint-overview__foundation-text,
+.mlp-page--polished #mlp-overview .blueprint-overview__foundation-text p {
+  font-size: 0.86rem;
+  line-height: 1.45;
+}
+
+@media (min-width: 1000px) and (max-width: 1199px) {
+  .mlp-page--polished #mlp-overview .blueprint-overview__foundation-text,
+  .mlp-page--polished #mlp-overview .blueprint-overview__foundation-text p {
+    font-size: 0.8rem;
+  }
+}
+
+.mlp-page--polished #mlp-overview .blueprint-overview__system.is-compact .blueprint-overview__foundation-title {
+  font-size: clamp(1.15rem, 1.5vw, 1.45rem);
+}
+
+.mlp-page--polished #mlp-overview .blueprint-overview__system.is-compact .blueprint-overview__foundation-text,
+.mlp-page--polished #mlp-overview .blueprint-overview__system.is-compact .blueprint-overview__foundation-text p {
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+@media (max-width: 999px) {
+  .mlp-page--polished #mlp-overview .blueprint-overview__foundation-title {
+    font-size: clamp(1.15rem, 2.4vw, 1.45rem);
+  }
+
+  .mlp-page--polished #mlp-overview .blueprint-overview__foundation-text,
+  .mlp-page--polished #mlp-overview .blueprint-overview__foundation-text p {
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
+}
+
+@media (max-width: 700px) {
+  .mlp-page--polished #mlp-overview .blueprint-overview__foundation-text,
+  .mlp-page--polished #mlp-overview .blueprint-overview__foundation-text p {
+    font-size: 1rem;
+  }
+}
+
+.mlp-page--polished #mlp-overview .blueprint-overview__foundation:hover,
+.mlp-page--polished #mlp-overview .blueprint-overview__foundation:focus-within {
   background: transparent;
+}
+
+.mlp-page--polished #mlp-overview .blueprint-overview__foundation:hover .blueprint-overview__foundation-copy,
+.mlp-page--polished #mlp-overview .blueprint-overview__foundation:focus-within .blueprint-overview__foundation-copy {
+  background: rgba(255, 255, 255, 0.9);
 }
 
 /* Included homepage accreditation section: keep content visible without the homepage-only animation bundle. */
@@ -5458,6 +5910,17 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
   text-transform: none !important;
 }
 
+.mlp-page--polished #mlp-trust .signal-atlas__heading {
+  max-width: none !important;
+  width: 100% !important;
+}
+
+.mlp-page--polished #mlp-trust .signal-atlas__quote-attr {
+  color: var(--mlp-muted-on-paper) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+}
+
 .mlp-page--polished :is(
   #accreditations .section-label span,
   #mlp-trust .signal-atlas__folio,
@@ -5515,6 +5978,23 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
   line-height: 1.7 !important;
   letter-spacing: normal !important;
   color: var(--color-black) !important;
+}
+
+/* Admission Journey colour roles: label red, heading blue, everything else black.
+   #mlpPage prefix outranks the :is() typography locks above. */
+#mlpPage.mlp-page--polished #mlp-journey .mlp-journey__label {
+  color: var(--color-mba-red) !important;
+}
+
+#mlpPage.mlp-page--polished #mlp-journey .mlp-journey__heading {
+  color: var(--color-mba-blue) !important;
+}
+
+#mlpPage.mlp-page--polished #mlp-journey .mlp-journey__intro,
+#mlpPage.mlp-page--polished #mlp-journey .mlp-journey__title,
+#mlpPage.mlp-page--polished #mlp-journey .mlp-journey__text,
+#mlpPage.mlp-page--polished #mlp-journey .mlp-journey__text p {
+  color: var(--color-black, #000) !important;
 }
 
 /* —— Video testimonials (landing): 4 frames in one row on desktop —— */
@@ -5883,6 +6363,496 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
 }
 @media (max-width: 640px) {
   .mlp-masters__split--full .mlp-masters__ledger {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* —— PDF sync additions: fee rails, partner checklist, compare blocks —— */
+
+.mlp-class-snapshot__audience {
+  margin: 0.85rem 0 0;
+  max-width: 42ch;
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--mlp-muted-on-paper);
+}
+
+.mlp-class-snapshot__regions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: clamp(1.75rem, 4vw, 3.25rem);
+  row-gap: 0;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid rgba(7, 20, 68, 0.14);
+}
+
+.mlp-class-snapshot__region {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid rgba(7, 20, 68, 0.14);
+  color: var(--mlp-navy);
+  font-family: var(--mlp-font-body);
+  font-size: var(--mlp-type-caption, 0.875rem);
+  line-height: 1.45;
+}
+
+.mlp-class-snapshot__region:nth-last-child(-n + 2) {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.mlp-class-snapshot__region img {
+  display: block;
+  flex: 0 0 auto;
+  width: 1.4rem;
+  height: 1rem;
+  margin-top: 0.2rem;
+  object-fit: cover;
+  border: 1px solid rgba(7, 20, 68, 0.14);
+}
+
+.mlp-class-snapshot__region span {
+  display: grid;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.mlp-class-snapshot__region em {
+  font-style: normal;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: var(--mlp-muted-on-paper);
+}
+
+@media (max-width: 700px) {
+  .mlp-class-snapshot__regions {
+    grid-template-columns: 1fr;
+  }
+
+  .mlp-class-snapshot__region:nth-last-child(-n + 2) {
+    border-bottom: 1px solid rgba(7, 20, 68, 0.14);
+    padding-bottom: 0.85rem;
+  }
+
+  .mlp-class-snapshot__region:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+}
+
+.blueprint-overview__class-2025-lede {
+  position: relative;
+  z-index: 1;
+  max-width: 46ch;
+  margin: 0.85rem auto 1.5rem;
+  text-align: center;
+  font-size: clamp(0.92rem, 1.4vw, 1.05rem);
+  line-height: 1.65;
+  color: rgba(245, 240, 235, 0.82);
+}
+
+.mlp-class-2025 .blueprint-overview__class-2025-lede {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.mlp-learning__kicker {
+  display: block;
+  width: 3.5rem;
+  height: 2px;
+  margin: 0 0 1rem;
+  transform-origin: left center;
+  background: var(--mlp-red);
+}
+
+.pricing-cards__blocks {
+  display: grid;
+  gap: 0;
+  margin: clamp(1.75rem, 4vw, 2.75rem) 0 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--mlp-navy);
+}
+
+.pricing-cards__block {
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr);
+  gap: 1rem;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--mlp-line-dark);
+}
+
+.pricing-cards__block-index {
+  font-family: var(--mlp-font-display);
+  font-size: 1.15rem;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  color: var(--mlp-red);
+}
+
+.pricing-cards__block-title {
+  margin: 0 0 0.4rem;
+  font-family: var(--mlp-font-display);
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  color: var(--mlp-navy);
+}
+
+.pricing-cards__block-text {
+  margin: 0;
+  max-width: 62ch;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--mlp-muted-on-paper);
+}
+
+.archive-partners__checklist {
+  display: grid;
+  gap: 0.65rem;
+  margin: 1.75rem 0 0;
+  padding: 1.25rem 0 0;
+  list-style: none;
+  border-top: 1px solid var(--mlp-navy);
+}
+
+.archive-partners__checklist li {
+  position: relative;
+  padding-left: 1.35rem;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--mlp-muted-on-paper);
+}
+
+.archive-partners__checklist li::before {
+  content: "";
+  position: absolute;
+  top: 0.45rem;
+  left: 0;
+  width: 0.55rem;
+  height: 0.55rem;
+  border: 1px solid var(--mlp-red);
+  background: transparent;
+}
+
+/* —— Compare: versus duel + mobile Online/Campus tabs —— */
+#mlp-compare.archive-parallel {
+  position: relative;
+  padding: clamp(4.5rem, 10vw, 7.5rem) 0;
+  color: var(--color-black, #000);
+  background: var(--mlp-paper-pure, #fff);
+  border-top: 1px solid var(--mlp-line-dark, rgba(7, 20, 68, 0.12));
+}
+
+#mlp-compare .archive-parallel__intro {
+  display: grid;
+  gap: 1rem;
+  max-width: 46rem;
+  margin: 0 0 clamp(2rem, 4vw, 3rem);
+}
+
+#mlp-compare .archive-parallel__label {
+  margin: 0;
+}
+
+#mlp-compare .archive-parallel__heading {
+  margin: 0;
+}
+
+#mlp-compare .archive-parallel__intro-copy {
+  margin: 0;
+  max-width: 48ch;
+}
+
+#mlp-compare .archive-parallel__brief {
+  position: relative;
+}
+
+#mlp-compare .archive-parallel__tabs {
+  display: none;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.35rem;
+  margin: 0 0 1.25rem;
+  padding: 0.3rem;
+  border: 1px solid rgba(15, 41, 131, 0.18);
+  background: var(--mlp-paper, #f7f4ef);
+}
+
+#mlp-compare .archive-parallel__tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  min-height: 2.75rem;
+  padding: 0.55rem 0.75rem;
+  border: 0;
+  background: transparent;
+  color: var(--mlp-navy, #0f2983);
+  font-family: var(--mlp-font-body, inherit);
+  font-size: 0.8rem;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+#mlp-compare .archive-parallel__tab svg {
+  width: 1rem;
+  height: 1rem;
+  flex: 0 0 auto;
+  stroke: currentColor;
+}
+
+#mlp-compare .archive-parallel__tab.is-active {
+  background: var(--color-mba-red, #b20202);
+  color: #fff;
+}
+
+#mlp-compare .archive-parallel__columns {
+  display: grid;
+  grid-template-columns: minmax(11rem, 0.72fr) minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0.75rem 1rem;
+  position: sticky;
+  top: 4.75rem;
+  z-index: 3;
+  margin: 0 0 0.35rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid rgba(15, 41, 131, 0.2);
+  background: color-mix(in srgb, var(--mlp-paper-pure, #fff) 92%, transparent);
+  backdrop-filter: blur(8px);
+}
+
+#mlp-compare .archive-parallel__col {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--mlp-font-body, inherit);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.3;
+}
+
+#mlp-compare .archive-parallel__col svg {
+  width: 1.05rem;
+  height: 1.05rem;
+  stroke: currentColor;
+}
+
+#mlp-compare .archive-parallel__col--online {
+  color: var(--color-mba-red, #b20202);
+  padding-left: 0.85rem;
+  border-left: 2px solid var(--color-mba-red, #b20202);
+}
+
+#mlp-compare .archive-parallel__col--traditional {
+  color: var(--mlp-navy, #0f2983);
+  padding-left: 0.85rem;
+  border-left: 2px solid rgba(15, 41, 131, 0.35);
+}
+
+#mlp-compare .archive-parallel__rows {
+  display: grid;
+  gap: 0;
+}
+
+#mlp-compare .archive-parallel__row {
+  display: grid;
+  grid-template-columns: minmax(11rem, 0.72fr) minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0.75rem 1rem;
+  align-items: start;
+  padding: clamp(1.15rem, 2.5vw, 1.65rem) 0;
+  border-bottom: 1px solid rgba(15, 41, 131, 0.16);
+  opacity: 0;
+  transform: translateY(48px);
+  will-change: transform, opacity;
+}
+
+#mlp-compare .archive-parallel__row:last-child {
+  border-bottom: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #mlp-compare .archive-parallel__row {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+#mlp-compare .archive-parallel__criterion {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  margin: 0;
+  padding-top: 0.35rem;
+  color: var(--color-black, #000);
+  font-family: var(--mlp-font-display, inherit);
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+#mlp-compare .archive-parallel__criterion-icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid rgba(178, 2, 2, 0.35);
+  color: var(--color-mba-red, #b20202);
+}
+
+#mlp-compare .archive-parallel__criterion-icon svg {
+  width: 1rem;
+  height: 1rem;
+  stroke: currentColor;
+}
+
+#mlp-compare .archive-parallel__side {
+  min-width: 0;
+  padding: 0.85rem 1rem;
+  border: 1px solid transparent;
+}
+
+#mlp-compare .archive-parallel__side--online {
+  background: rgba(178, 2, 2, 0.04);
+  border-color: rgba(178, 2, 2, 0.18);
+}
+
+#mlp-compare .archive-parallel__side--traditional {
+  background: rgba(15, 41, 131, 0.03);
+  border-color: rgba(15, 41, 131, 0.12);
+}
+
+#mlp-compare .archive-parallel__row:hover .archive-parallel__side--online {
+  border-color: rgba(178, 2, 2, 0.45);
+}
+
+#mlp-compare .archive-parallel__side-label {
+  display: none;
+  margin: 0 0 0.45rem;
+  color: var(--mlp-muted-on-paper, #5a5a5a);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+#mlp-compare .archive-parallel__prose {
+  color: var(--color-black, #000);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+#mlp-compare .archive-parallel__prose p {
+  margin: 0;
+}
+
+#mlp-compare .archive-parallel__prose p + p {
+  margin-top: 0.55rem;
+}
+
+#mlp-compare .archive-parallel__actions {
+  margin-top: clamp(1.75rem, 4vw, 2.75rem);
+}
+
+#mlp-compare .archive-parallel__primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--color-mba-red, #b20202);
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+
+#mlp-compare .archive-parallel__primary:hover {
+  text-decoration: underline;
+}
+
+/* Colour roles for polished page */
+#mlpPage.mlp-page--polished #mlp-compare .archive-parallel__label {
+  color: var(--color-mba-red) !important;
+}
+
+#mlpPage.mlp-page--polished #mlp-compare .archive-parallel__heading {
+  color: var(--color-mba-blue) !important;
+}
+
+#mlpPage.mlp-page--polished #mlp-compare .archive-parallel__intro-copy,
+#mlpPage.mlp-page--polished #mlp-compare .archive-parallel__criterion-text,
+#mlpPage.mlp-page--polished #mlp-compare .archive-parallel__prose,
+#mlpPage.mlp-page--polished #mlp-compare .archive-parallel__prose p {
+  color: var(--color-black, #000) !important;
+}
+
+@media (max-width: 767px) {
+  #mlp-compare .archive-parallel__tabs {
+    display: grid;
+  }
+
+  #mlp-compare .archive-parallel__columns {
+    display: none;
+  }
+
+  #mlp-compare .archive-parallel__row {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  #mlp-compare .archive-parallel__side-label {
+    display: block;
+  }
+
+  #mlp-compare .archive-parallel__side:not(.is-active) {
+    display: none;
+  }
+
+  #mlp-compare .archive-parallel__side.is-active {
+    display: block;
+  }
+}
+
+.archive-parallel__blocks {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+  margin: clamp(1.75rem, 4vw, 2.75rem) 0 0;
+  padding: clamp(1.5rem, 3vw, 2rem) 0 0;
+  list-style: none;
+  border-top: 1px solid var(--mlp-navy);
+}
+
+.archive-parallel__block h3 {
+  margin: 0 0 0.55rem;
+  font-family: var(--mlp-font-display);
+  font-size: clamp(1.2rem, 2vw, 1.55rem);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: var(--mlp-navy);
+}
+
+.archive-parallel__block p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--mlp-muted-on-paper);
+}
+
+@media (max-width: 720px) {
+  .archive-parallel__blocks {
+    grid-template-columns: 1fr;
+  }
+
+  .archive-learning__desk {
     grid-template-columns: 1fr;
   }
 }

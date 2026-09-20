@@ -464,50 +464,41 @@
 
   function initJourney(journey) {
       var jHead = journey.querySelector('[data-mlp-reveal="journey-head"]');
-      var jTrack = journey.querySelector('[data-mlp-reveal="journey-track"]');
-      var jCta = journey.querySelector('[data-mlp-reveal="journey-cta"]');
-      var jFill = journey.querySelector(".mlp-journey__spine-fill");
+      var jList = journey.querySelector('[data-mlp-reveal="journey-steps"]');
       var jSteps = journey.querySelectorAll(".mlp-journey__step");
 
       if (jHead) MLP.slideReveal(jHead, journey, { stagger: 0.08 });
-      if (jCta) MLP.slideReveal(jCta, journey, { children: false });
 
-      if (jTrack && !prefersReduced() && typeof gsap !== "undefined") {
-        ensureScrollTrigger();
-        if (jSteps.length) {
-          var jX = MLP_SLIDE_X["mlp-journey"] || -56;
-          MLP.whenInView(jTrack, "top 90%", function (instant) {
-            if (instant) {
-              gsap.set(jSteps, { opacity: 1, x: 0 });
-              return;
-            }
-            gsap.set(jSteps, { opacity: 0, x: jX });
-            gsap.to(jSteps, {
-              opacity: 1,
-              x: 0,
-              duration: 0.7,
-              stagger: 0.1,
-              ease: "power3.out",
-            });
-          });
-        }
-        if (jFill && typeof ScrollTrigger !== "undefined") {
-          gsap.fromTo(
-            jFill,
-            { height: "0%" },
-            {
-              height: "100%",
-              ease: "none",
-              scrollTrigger: {
-                trigger: jTrack,
-                start: "top 70%",
-                end: "bottom 55%",
-                scrub: 0.6,
-              },
-            }
-          );
-        }
+      if (!jList || !jSteps.length) return;
+
+      if (prefersReduced() || typeof gsap === "undefined") {
+        jSteps.forEach(function (step) {
+          step.style.opacity = "1";
+          step.style.transform = "none";
+        });
+        return;
       }
+
+      ensureScrollTrigger();
+      gsap.set(jSteps, { opacity: 0, y: 56 });
+      MLP.whenInView(jList, "top 85%", function (instant) {
+        if (instant) {
+          gsap.set(jSteps, { opacity: 1, y: 0, clearProps: "willChange" });
+          return;
+        }
+        gsap.fromTo(
+          jSteps,
+          { opacity: 0, y: 56 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            stagger: 0.12,
+            ease: "power3.out",
+            clearProps: "willChange",
+          }
+        );
+      });
   }
 
   function initMba(mbaRoot) {
@@ -852,13 +843,72 @@
       if (tRail) MLP.slideReveal(tRail, testimonials, { stagger: 0.1 });
   }
 
+  function bindCompareTabs(compare) {
+      if (!compare || compare.dataset.compareTabsBound === "1") return;
+      compare.dataset.compareTabsBound = "1";
+
+      compare.addEventListener("click", function (event) {
+        var tab = event.target.closest("[data-compare-tab]");
+        if (!tab || !compare.contains(tab)) return;
+
+        var key = tab.getAttribute("data-compare-tab");
+        if (!key) return;
+
+        event.preventDefault();
+        var tabs = compare.querySelectorAll("[data-compare-tab]");
+        var panes = compare.querySelectorAll("[data-compare-pane]");
+
+        tabs.forEach(function (other) {
+          var active = other === tab;
+          other.classList.toggle("is-active", active);
+          other.setAttribute("aria-selected", active ? "true" : "false");
+        });
+
+        panes.forEach(function (pane) {
+          pane.classList.toggle("is-active", pane.getAttribute("data-compare-pane") === key);
+        });
+      });
+  }
+
   function initCompare(compare) {
       var cHead = compare.querySelector('[data-mlp-reveal="compare-head"]');
-      var cMatrix = compare.querySelector('[data-mlp-reveal="compare-matrix"]');
-      var cCta = compare.querySelector('[data-mlp-reveal="compare-cta"]');
+      var cRows = compare.querySelector(".archive-parallel__rows");
+      var cSteps = compare.querySelectorAll(".archive-parallel__row");
+
+      bindCompareTabs(compare);
+
       if (cHead) MLP.slideReveal(cHead, compare, { stagger: 0.08 });
-      if (cMatrix) MLP.slideReveal(cMatrix, compare, { stagger: 0.06, duration: 0.7 });
-      if (cCta) MLP.slideReveal(cCta, compare, { children: false, trigger: cCta, duration: 0.6 });
+
+      if (!cRows || !cSteps.length) return;
+
+      if (prefersReduced() || typeof gsap === "undefined") {
+        cSteps.forEach(function (step) {
+          step.style.opacity = "1";
+          step.style.transform = "none";
+        });
+        return;
+      }
+
+      ensureScrollTrigger();
+      gsap.set(cSteps, { opacity: 0, y: 48 });
+      MLP.whenInView(cRows, "top 85%", function (instant) {
+        if (instant) {
+          gsap.set(cSteps, { opacity: 1, y: 0, clearProps: "willChange" });
+          return;
+        }
+        gsap.fromTo(
+          cSteps,
+          { opacity: 0, y: 48 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            stagger: 0.12,
+            ease: "power3.out",
+            clearProps: "willChange",
+          }
+        );
+      });
   }
 
   function initFaq(faq) {
@@ -954,6 +1004,8 @@
     if (bg) MLP.parallax(bg, { yPercent: 8, trigger: hero });
 
     initMotionPauses();
+
+    bindCompareTabs(document.getElementById("mlp-compare"));
 
     MLP.observeSection(".mlp-trust", initTrust, { rootMargin: "400px 0px" });
     MLP.observeSection("#mlp-overview", initOverview);

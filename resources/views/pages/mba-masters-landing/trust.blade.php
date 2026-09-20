@@ -5,6 +5,8 @@
       ->values();
   $heading = filled($trust->label) ? $trust->label : 'Trusted by learners across the GCC & beyond';
   $quote = filled($trust->quote) ? $trust->quote : 'Every number is a person who chose to keep moving.';
+  $attribution = $trust->quote_attribution ?? null;
+  $statCount = max(1, $stats->count());
 @endphp
 @if($stats->isNotEmpty())
 <section class="mlp-trust signal-atlas" id="mlp-trust" aria-labelledby="signal-atlas-title">
@@ -17,16 +19,21 @@
 
   <div class="signal-atlas__frame container">
     <header class="signal-atlas__intro">
-        <p class="signal-atlas__folio">Trust record</p>
+      <p class="signal-atlas__folio">Trust record</p>
       <h2 class="signal-atlas__heading mlp-h2" id="signal-atlas-title">{{ $heading }}</h2>
       <blockquote class="signal-atlas__quote">
         <span class="signal-atlas__quote-mark" aria-hidden="true">“</span>
-        <p>{{ $quote }}</p>
+        <div class="signal-atlas__quote-body">
+          <p>{{ $quote }}</p>
+          @if(filled($attribution))
+          <footer class="signal-atlas__quote-attr">{{ $attribution }}</footer>
+          @endif
+        </div>
       </blockquote>
     </header>
 
     <div class="signal-atlas__graph" data-signal-atlas>
-      <ol class="signal-atlas__records" aria-label="Trust statistics">
+      <ol class="signal-atlas__records" aria-label="Trust statistics" style="--signal-count: {{ $statCount }}">
         @foreach($stats as $i => $stat)
         @php
           $rawValue = (string) ($stat['value'] ?? '');

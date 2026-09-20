@@ -71,6 +71,7 @@ use App\Settings\MbaMastersClassSettings;
 use App\Settings\MbaMastersFeesSettings;
 use App\Settings\MbaMastersHeroSettings;
 use App\Settings\MbaMastersJourneySettings;
+use App\Settings\MbaMastersLearningSettings;
 use App\Settings\MbaMastersMastersSettings;
 use App\Settings\MbaMastersMbaSettings;
 use App\Settings\MbaMastersOverviewSettings;
@@ -394,6 +395,10 @@ class PageController extends Controller
 
         $fees = safe_settings(MbaMastersFeesSettings::class);
         $fees->rows = settings_array($fees->rows ?? []);
+        $fees->blocks = settings_array($fees->blocks ?? []);
+
+        $learning = safe_settings(MbaMastersLearningSettings::class);
+        $learning->points = settings_array($learning->points ?? []);
 
         $class = safe_settings(MbaMastersClassSettings::class);
         $class->metrics = settings_array($class->metrics ?? []);
@@ -423,12 +428,14 @@ class PageController extends Controller
             ->all();
 
         $partners = safe_settings(MbaMastersPartnersSettings::class);
+        $partners->checklist = settings_array($partners->checklist ?? []);
 
         $testimonials = safe_settings(MbaMastersTestimonialsSettings::class);
         $testimonials->items = settings_array($testimonials->items ?? []);
 
         $compare = safe_settings(MbaMastersCompareSettings::class);
         $compare->rows = settings_array($compare->rows ?? []);
+        $compare->blocks = settings_array($compare->blocks ?? []);
 
         $faq = safe_settings(MbaMastersFaqSettings::class);
         $faq->items = settings_array($faq->items ?? []);
@@ -471,6 +478,7 @@ class PageController extends Controller
             'mba' => $mba,
             'masters' => $masters,
             'fees' => $fees,
+            'learning' => $learning,
             'class' => $class,
             'career' => $career,
             'alumni' => $alumni,

@@ -1,10 +1,13 @@
-{{-- §7.5 MBA Class of 2025 — standalone chapter, placed after #mlp-masters --}}
+{{-- §8 Class of 2025 — cinematic graphic kept; PDF heading/lede --}}
 <section class="mlp-class-2025" id="mlp-class-2025" aria-labelledby="mlp-overview-class-2025-title">
   <div class="container">
     <div class="blueprint-overview__class-2025" id="mlp-overview-class-2025" role="group" aria-labelledby="mlp-overview-class-2025-title">
       <h3 class="blueprint-overview__class-2025-heading" id="mlp-overview-class-2025-title">
-        <span>MBA Class of</span> <strong>2025</strong>
+        <span>Class of 2025:</span> <strong>built for the GCC</strong>
       </h3>
+      <p class="blueprint-overview__class-2025-lede">
+        The most mixed cohort we have run in the Gulf: founders, government specialists, bankers, and senior operators from four markets. Group work ends up sounding like a regional business meeting, because it is one.
+      </p>
 
       <div class="blueprint-overview__class-2025-stage">
         <svg class="blueprint-overview__class-2025-lines" viewBox="0 0 1000 620" preserveAspectRatio="none" aria-hidden="true">

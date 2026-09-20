@@ -46,7 +46,7 @@
   @include('pages.mba-masters-landing.trust')
   @include('pages.mba-masters-landing.overview')
   @include('pages.mba-masters-landing.why')
-  {{-- @include('pages.mba-masters-landing.journey') --}}
+  @include('pages.mba-masters-landing.journey')
   @include('pages.mba-masters-landing.mba')
   @include('pages.mba-masters-landing.masters')
   @include('pages.mba-masters-landing.class-2025')
@@ -57,9 +57,10 @@
   @include('pages.mba-masters-landing.alumni')
   @include('pages.mba-masters-landing.video-testimonials')
   @include('pages.mba-masters-landing.partners')
+  @include('pages.mba-masters-landing.learning')
   @include('pages.mba-masters-landing.video-proof')
   @include('pages.mba-masters-landing.testimonials')
-  {{-- @include('pages.mba-masters-landing.compare') --}}
+  @include('pages.mba-masters-landing.compare')
   @include('pages.mba-masters-landing.faq')
   @include('pages.mba-masters-landing.final')
 </div>

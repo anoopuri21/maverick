@@ -22,6 +22,8 @@ class MbaMastersFeesSettings extends Settings
 
     public array $rows = [];
 
+    public array $blocks = [];
+
     public ?string $cta_primary_label = null;
 
     public ?string $cta_primary_url = null;

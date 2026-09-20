@@ -20,6 +20,8 @@ class MbaMastersCompareSettings extends Settings
 
     public array $rows = [];
 
+    public array $blocks = [];
+
     public ?string $cta_label = null;
 
     public ?string $cta_url = null;

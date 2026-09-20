@@ -20,6 +20,10 @@
       'name' => 'University of Wolverhampton',
       'src' => 'https://upload.wikimedia.org/wikipedia/en/1/19/University_of_Wolverhampton_logo.jpg',
     ],
+    [
+      'name' => 'University of the West of Scotland',
+      'src' => 'https://www.uws.ac.uk/media/5590/uws-logo.png',
+    ],
   ];
   $renderLogos = collect($listingUniversities)->map(function (array $university) use ($storedLogos): array {
     $name = mb_strtolower($university['name']);
@@ -34,6 +38,9 @@
       'src' => $stored ? media_url($stored->logo_url) : $university['src'],
     ];
   });
+  $checklist = collect($partners->checklist ?? [])
+      ->filter(fn ($item) => filled($item['text'] ?? null))
+      ->values();
 @endphp
 
 @if(filled($partners->heading) || $renderLogos->isNotEmpty())
@@ -86,6 +93,14 @@
         </div>
       </div>
     </div>
+
+    @if($checklist->isNotEmpty())
+    <ul class="archive-partners__checklist" aria-label="Partner guarantees">
+      @foreach($checklist as $item)
+      <li>{{ $item['text'] }}</li>
+      @endforeach
+    </ul>
+    @endif
 
     @if(filled($partners->trust_line))
     <p class="archive-partners__trust">{{ $partners->trust_line }}</p>

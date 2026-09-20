@@ -98,7 +98,9 @@
                     @if($program->short_description)<p class="lead rv rv-d1">{{ $program->short_description }}</p>@endif
                     <div class="hero-ctas rv rv-d2">
                         <a href="#enquire" class="btn btn-red">{{ $chrome->apply_label ?? 'Apply Now' }}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-                        <a href="{{ route('contact') }}" class="btn btn-outline">{{ $chrome->download_brochure_label ?? 'Download Brochure' }}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></a>
+                        @if(filled($program->brochure_url))
+                        <a href="{{ $program->brochure_url }}" class="btn btn-outline" target="_blank" rel="noopener">{{ $chrome->download_brochure_label ?? 'Download Brochure' }}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></a>
+                        @endif
                         <a href="#enquire" class="btn btn-outline">{{ $chrome->enquire_label ?? 'Enquire Now' }}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
                     </div>
                     @if($highlights->count())

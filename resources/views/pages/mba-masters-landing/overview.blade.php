@@ -1,8 +1,9 @@
-{{-- §3 Overview — The Learning Blueprint --}}
+{{-- §3 Overview — The Learning Blueprint (circular orbit) --}}
 @php
   $items = collect($overview->items ?? [])
       ->filter(fn ($item) => filled($item['title'] ?? null))
       ->values();
+  $itemCount = max(1, $items->count());
   $plate = mlp_image_url(settings_media_url($overview, 'plate_image'), [
     'w' => 1200,
     'fallback' => 'assets/images/homepage/mba-management.jpg',
@@ -24,7 +25,7 @@
     <span class="blueprint-overview__contour blueprint-overview__contour--two mlp-contour"></span>
   </div>
 
-  <div class="blueprint-overview__frame container">
+  <div class="blueprint-overview__frame container" data-overview-frame>
     <header class="blueprint-overview__intro mlp-intro-grid">
       @if(filled($overview->label))
       <p class="blueprint-overview__folio">{{ $overview->label }}</p>
@@ -44,31 +45,19 @@
       @endif
     </header>
 
-    <div class="blueprint-overview__system" data-overview-blueprint>
-      <svg class="blueprint-overview__diagram" viewBox="0 0 1200 620" preserveAspectRatio="none" aria-hidden="true">
+    <div class="blueprint-overview__system" data-overview-blueprint style="--blueprint-count: {{ $itemCount }}">
+      <svg class="blueprint-overview__diagram blueprint-overview__diagram--grid" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
         <g class="blueprint-overview__grid-lines">
-          <path d="M0 80H1200M0 180H1200M0 280H1200M0 380H1200M0 480H1200M0 580H1200" />
-          <path d="M100 0V620M300 0V620M500 0V620M700 0V620M900 0V620M1100 0V620" />
-        </g>
-        <g class="blueprint-overview__connectors">
-          <path d="M600 310 C475 240 360 160 130 108" />
-          <path d="M600 310 C725 240 840 160 1070 108" />
-          <path d="M600 310 C470 380 350 470 130 520" />
-          <path d="M600 310 C730 380 850 470 1070 520" />
-          <path d="M600 310 C600 390 600 492 600 578" />
-        </g>
-        <circle class="blueprint-overview__diagram-core" cx="600" cy="310" r="78" />
-        <circle class="blueprint-overview__diagram-core-dot" cx="600" cy="310" r="6" />
-        <g class="blueprint-overview__diagram-nodes">
-          <circle cx="130" cy="108" r="7" />
-          <circle cx="1070" cy="108" r="7" />
-          <circle cx="130" cy="520" r="7" />
-          <circle cx="1070" cy="520" r="7" />
-          <circle cx="600" cy="578" r="7" />
+          <path d="M0 100H1000M0 200H1000M0 300H1000M0 400H1000M0 500H1000M0 600H1000M0 700H1000M0 800H1000M0 900H1000" />
+          <path d="M100 0V1000M200 0V1000M300 0V1000M400 0V1000M500 0V1000M600 0V1000M700 0V1000M800 0V1000M900 0V1000" />
         </g>
       </svg>
+      <svg class="blueprint-overview__diagram blueprint-overview__diagram--spokes" viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-hidden="true">
+        <circle class="blueprint-overview__orbit-ring" cx="500" cy="500" r="0" fill="none" data-overview-orbit-ring />
+        <g class="blueprint-overview__connectors" data-overview-connectors></g>
+      </svg>
 
-      <div class="blueprint-overview__core" aria-hidden="true">
+      <div class="blueprint-overview__core" data-overview-core aria-hidden="true">
         <span class="blueprint-overview__core-kicker">The learner</span>
         <strong>Working<br>professional</strong>
       </div>
@@ -76,7 +65,23 @@
       @if($items->isNotEmpty())
       <ol class="blueprint-overview__foundations" aria-label="Programme foundations">
         @foreach($items as $i => $item)
-        <li class="blueprint-overview__foundation" data-overview-foundation style="--blueprint-index: {{ $i }}">
+        @php
+          $angleDeg = $i * (360 / $itemCount) - 90;
+          $normalized = fmod($angleDeg + 360, 360);
+          if ($i === 0) {
+              $side = 'north';
+          } elseif ($normalized > 90 && $normalized < 270) {
+              $side = 'west';
+          } else {
+              $side = 'east';
+          }
+        @endphp
+        <li
+          class="blueprint-overview__foundation"
+          data-overview-foundation
+          data-side="{{ $side }}"
+          style="--blueprint-index: {{ $i }}; --blueprint-angle: {{ $angleDeg }}deg"
+        >
           <span class="blueprint-overview__foundation-node" aria-hidden="true"></span>
           <div class="blueprint-overview__foundation-copy">
             <h3 class="blueprint-overview__foundation-title">{{ $item['title'] }}</h3>
