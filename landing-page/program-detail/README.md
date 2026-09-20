@@ -7,11 +7,13 @@ program-detail/
 ├── rushford-business-school/          DONE · 21 files
 │   ├── mba/      01-11 specialization MBAs (16 months, 90 ECTS, capstone)
 │   │             12 accelerated general MBA (12 months, 60 ECTS)
-│   └── msc/      01-09 (12 months, 60 ECTS, 15 courses, asynchronous)
+│   ├── msc/      01-09 (12 months, 60 ECTS, 15 courses, asynchronous)
+│   └── bba/      01-07 (20-24 months, bachelor's) · DONE
 ├── girne-american-university/         IN PROGRESS
 │   ├── mba/             06 files · 12-15 months (per client course pages)
 │   ├── executive-mba/   16 files · 12-18 months, senior cohorts · DONE
-│   └── msc/             04 files · thesis-based MSc programmes · DONE
+│   ├── msc/             04 files · thesis-based MSc programmes · DONE
+│   └── bsc/             01 file · BSc Psychology · DONE
 ├── university-for-the-creative-arts/  01 file · Global MBA · DONE
 │   └── mba/      Global MBA with Rushford · 12-18 months · 90 ECTS · triple-certified
 ├── university-of-wolverhampton/       01 file · Master of Laws (LLM) · DONE
@@ -110,9 +112,28 @@ program-detail/
 | --- | --- | --- | --- |
 | 01 | mba/01-mba-in-international-business.md | MBA in International Business | DONE · v5 |
 
+## rushford-business-school/bba (20-24 months, bachelor's)
+
+| # | File | Programme | Status |
+| --- | --- | --- | --- |
+| 01 | bba/01-bba-in-business-administration.md | BBA in Business Administration | DONE · v5 |
+| 02 | bba/02-bba-in-marketing.md | BBA in Marketing | DONE · v5 |
+| 03 | bba/03-bba-in-finance.md | BBA in Finance | DONE · v5 |
+| 04 | bba/04-bba-in-hospitality-and-tourism-management.md | BBA in Hospitality & Tourism Management | DONE · v5 |
+| 05 | bba/05-bba-in-management-information-systems.md | BBA in Management Information Systems | DONE · v5 |
+| 06 | bba/06-bba-in-project-management.md | BBA in Project Management | DONE · v5 |
+| 07 | bba/07-bba-in-human-resource-management.md | BBA in Human Resource Management | DONE · v5 |
+
+## girne-american-university/bsc (duration per pathway)
+
+| # | File | Programme | Status |
+| --- | --- | --- | --- |
+| 01 | bsc/01-bsc-in-psychology.md | BSc in Psychology | DONE · v5 |
+
 ## Batch queue
 
-1. Rushford v5 conversion COMPLETE (19/19 converted, all sweeps clean). Awaiting client detector scores on samples (rushford mba/01 + msc/01) for final sign-off
+1. Bachelor's series COMPLETE 8/8 (Rushford BBA x7 + GAU BSc Psychology x1). Sign-off list: derived content in BBA HRM page, proof fixes flagged in BUILD NOTES (GAU block errors, module typos, missing durations)
+2. Rushford v5 conversion COMPLETE (19/19 converted, all sweeps clean). Awaiting client detector scores on samples (rushford mba/01 + msc/01) for final sign-off
 
 ## Detector note (2026-09-20)
 
