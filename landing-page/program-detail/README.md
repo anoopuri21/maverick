@@ -69,10 +69,10 @@ program-detail/
 | 01 | executive-mba/01-emba-in-educational-leadership.md | Executive MBA in Educational Leadership | DONE · v5 |
 | 02 | executive-mba/02-emba-in-media-and-entertainment.md | Executive MBA in Media & Entertainment | DONE · v5 |
 | 03 | executive-mba/03-emba-in-global-banking-and-finance.md | Executive MBA in Global Banking & Finance | DONE · v5 |
-| 04 | executive-mba/04-emba-in-health-and-safety-leadership.md | Executive MBA in Health & Safety Leadership | NEXT |
-| 05 | executive-mba/05-emba-in-renewable-energy-and-sustainability.md | Executive MBA in Renewable Energy & Sustainability | NEXT |
-| 06 | executive-mba/06-emba-in-tourism-and-hospitality-management.md | Executive MBA in Tourism & Hospitality Management | NEXT |
-| 07 | executive-mba/07-emba-in-innovation-and-entrepreneurship.md | Executive MBA in Innovation & Entrepreneurship | NEXT |
+| 04 | executive-mba/04-emba-in-health-and-safety-leadership.md | Executive MBA in Health & Safety Leadership | DONE · v5 |
+| 05 | executive-mba/05-emba-in-renewable-energy-and-sustainability.md | Executive MBA in Renewable Energy & Sustainability | DONE · v5 |
+| 06 | executive-mba/06-emba-in-tourism-and-hospitality-management.md | Executive MBA in Tourism & Hospitality Management | DONE · v5 |
+| 07 | executive-mba/07-emba-in-innovation-and-entrepreneurship.md | Executive MBA in Innovation & Entrepreneurship | DONE · v5 |
 | 08 | executive-mba/08-emba-in-project-management.md | Executive MBA in Project Management | NEXT |
 | 09 | executive-mba/09-emba-in-human-resources-management.md | Executive MBA in Human Resources Management | NEXT |
 | 10 | executive-mba/10-emba-in-supply-chain-management.md | Executive MBA in Supply Chain Management | NEXT |
@@ -85,7 +85,7 @@ program-detail/
 
 ## Batch queue
 
-1. GAU Executive MBA 04-16 (batches of 3-4)
+1. GAU Executive MBA 08-16 (batches of 3-4)
 3. GAU MSc thesis programmes 01-04
 4. UCA Global MBA, Wolverhampton LLM, UWS MBA in International Business
 5. v5 conversion pass across the remaining Rushford v4 files (19 files), after detector validation of the v5 samples
