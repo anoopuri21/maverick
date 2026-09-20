@@ -59,13 +59,33 @@ program-detail/
 | 02 | mba/02-mba-in-financial-management.md | MBA in Financial Management | DONE · v5 |
 | 03 | mba/03-mba-in-international-business-management.md | MBA in International Business Management | DONE · v5 |
 | 04 | mba/04-mba-in-management-information-systems.md | MBA in Management Information Systems | DONE · v5 |
-| 05 | mba/05-mba-in-marketing.md | MBA in Marketing | NEXT |
-| 06 | mba/06-mba-in-data-science-analytics-management.md | MBA in Data Science/Analytics Management | NEXT |
+| 05 | mba/05-mba-in-marketing.md | MBA in Marketing | DONE · v5 |
+| 06 | mba/06-mba-in-data-science-analytics-management.md | MBA in Data Science/Analytics Management | DONE · v5 |
+
+## girne-american-university/executive-mba (12-18 months, senior cohorts)
+
+| # | File | Programme | Status |
+|---|------|-----------|--------|
+| 01 | executive-mba/01-emba-in-educational-leadership.md | Executive MBA in Educational Leadership | DONE · v5 |
+| 02 | executive-mba/02-emba-in-media-and-entertainment.md | Executive MBA in Media & Entertainment | DONE · v5 |
+| 03 | executive-mba/03-emba-in-global-banking-and-finance.md | Executive MBA in Global Banking & Finance | DONE · v5 |
+| 04 | executive-mba/04-emba-in-health-and-safety-leadership.md | Executive MBA in Health & Safety Leadership | NEXT |
+| 05 | executive-mba/05-emba-in-renewable-energy-and-sustainability.md | Executive MBA in Renewable Energy & Sustainability | NEXT |
+| 06 | executive-mba/06-emba-in-tourism-and-hospitality-management.md | Executive MBA in Tourism & Hospitality Management | NEXT |
+| 07 | executive-mba/07-emba-in-innovation-and-entrepreneurship.md | Executive MBA in Innovation & Entrepreneurship | NEXT |
+| 08 | executive-mba/08-emba-in-project-management.md | Executive MBA in Project Management | NEXT |
+| 09 | executive-mba/09-emba-in-human-resources-management.md | Executive MBA in Human Resources Management | NEXT |
+| 10 | executive-mba/10-emba-in-supply-chain-management.md | Executive MBA in Supply Chain Management | NEXT |
+| 11 | executive-mba/11-emba-in-health-care-management.md | Executive MBA in Health Care Management | NEXT |
+| 12 | executive-mba/12-emba-in-engineering-management.md | Executive MBA in Engineering Management | NEXT |
+| 13 | executive-mba/13-emba-in-public-administration.md | Executive MBA in Public Administration | NEXT |
+| 14 | executive-mba/14-emba-in-public-health.md | Executive MBA in Public Health | NEXT |
+| 15 | executive-mba/15-emba-in-digital-marketing.md | Executive MBA in Digital Marketing | NEXT |
+| 16 | executive-mba/16-emba-in-sport-management.md | Executive MBA in Sport Management | NEXT |
 
 ## Batch queue
 
-1. GAU MBA 05-06 (Marketing, Data Science/Analytics Management)
-2. GAU Executive MBA 01-16 (batches of 4)
+1. GAU Executive MBA 04-16 (batches of 3-4)
 3. GAU MSc thesis programmes 01-04
 4. UCA Global MBA, Wolverhampton LLM, UWS MBA in International Business
 5. v5 conversion pass across the remaining Rushford v4 files (19 files), after detector validation of the v5 samples
