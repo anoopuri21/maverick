@@ -84,7 +84,7 @@ class UniversityPartnerResource extends Resource
                     ]),
 
                 \Filament\Forms\Components\Section::make('Recognised & Accredited')
-                    ->description('Logo strip shown on every program detail page linked to this university.')
+                    ->description('Used on every linked program page: logos only in the Recognised & Accredited slider, and logo plus name in Accreditation & Recognition.')
                     ->schema([
                         \Filament\Forms\Components\Repeater::make('recognition_logos')
                             ->schema([

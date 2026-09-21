@@ -231,17 +231,6 @@ class ProgramResource extends Resource
                     ->schema([static::reviewsRepeater()]),
                             ]),
 
-                        Tab::make('Accreditation & Recognition')
-                            ->icon('heroicon-o-check-badge')
-                            #->description('Grouped accreditation grid (§10). Recognised & Accredited logos are managed on the University Partner.')
-                    ->schema([
-                                Section::make('Accreditation Groups')
-                                    #->description('Grouped logo grids in the Accreditation & Recognition section.')
-                    ->collapsible()
-                    ->collapsed(true)
-                    ->schema([static::accreditationGroupsRepeater()]),
-                            ]),
-
                         Tab::make('FAQs')
                             ->icon('heroicon-o-question-mark-circle')
                             #->description('Accordion on the programme page (§14). Only active FAQs are shown.')
@@ -384,27 +373,12 @@ class ProgramResource extends Resource
         }
         unset($row);
 
-        foreach ($data['accreditation_groups'] ?? [] as &$group) {
-            foreach ($group['items'] ?? [] as &$item) {
-                static::syncNestedMediaField($item, 'logo');
-            }
-            unset($item);
-        }
-        unset($group);
-
         if (isset($data['testimonials'])) {
             static::stripAssetIdKeys($data['testimonials']);
         }
         if (isset($data['reviews'])) {
             static::stripAssetIdKeys($data['reviews']);
         }
-
-        foreach ($data['accreditation_groups'] ?? [] as &$group) {
-            if (isset($group['items'])) {
-                static::stripAssetIdKeys($group['items']);
-            }
-        }
-        unset($group);
 
         return $data;
     }
@@ -777,40 +751,5 @@ class ProgramResource extends Resource
             ->defaultItems(0)
             ->itemLabel(fn (array $state): ?string => $state['name'] ?? 'Review')
             ->addActionLabel('Add Review');
-    }
-
-    protected static function accreditationGroupsRepeater(): Repeater
-    {
-        return Repeater::make('accreditation_groups')
-            ->schema([
-                TextInput::make('group')
-                    ->label('Group Name')
-                    ->placeholder('e.g. International Accreditation')
-                    ->validationAttribute('group name'),
-                Repeater::make('items')
-                    ->label('Logos')
-                    ->schema([
-                        TextInput::make('name')
-                            ->label('Name')
-                            ->validationAttribute('logo name'),
-                        TextInput::make('logo')
-                            ->label('Logo URL')
-                            ->nullable()
-                            ->helperText('Or choose from the media library below.'),
-                        MediaPicker::forField('logo', 'programs/accreditation')
-                    ->label('Logo Image'),
-                    ])
-                    ->reorderable()
-                    ->collapsible()
-                    ->columns(2)
-                    ->defaultItems(0)
-                    ->itemLabel(fn (array $state): ?string => $state['name'] ?? 'Logo')
-                    ->addActionLabel('Add Logo'),
-            ])
-            ->reorderable()
-            ->collapsible()
-            ->defaultItems(0)
-            ->itemLabel(fn (array $state): ?string => $state['group'] ?? 'Group')
-            ->addActionLabel('Add Group');
     }
 }

@@ -253,7 +253,7 @@ class Program extends Model
             ['id' => 'careers',        'label' => 'Careers',        'render' => ($this->learning_list->count() || $this->careers_list->count())],
             ['id' => 'structure',      'label' => 'Structure',      'render' => $this->structure_list->count() > 0],
             ['id' => 'university',     'label' => 'University',     'render' => ! empty($this->university_object->name)],
-            ['id' => 'accreditation',  'label' => 'Accreditation',  'render' => $this->accreditation_groups_list->count() > 0],
+            ['id' => 'accreditation',  'label' => 'Accreditation',  'render' => ($this->universityPartner?->recognition_logos_list?->count() ?? 0) > 0],
             ['id' => 'support',        'label' => 'Support',        'render' => $this->support_list->count() > 0],
             ['id' => 'gcc-choose',     'label' => 'GCC',            'render' => $this->gcc_reasons_list->count() > 0],
             ['id' => 'testimonials',   'label' => 'Testimonials',   'render' => $this->testimonials_list->count() > 0],

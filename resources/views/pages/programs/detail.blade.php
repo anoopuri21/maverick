@@ -23,6 +23,7 @@
     $cat = $program->programCategory;
     $highlights          = collect($program->highlights_list ?? [])->filter(fn ($h) => is_array($h))->values();
     $recognition         = $program->universityPartner?->recognition_logos_list ?? collect();
+    $recognitionLogos    = $recognition->filter(fn ($r) => filled($r['logo'] ?? null))->values();
     $snapshot            = collect($program->snapshot_list ?? [])->filter(fn ($s) => is_array($s))->values();
     $benefits            = collect($program->benefits_list ?? [])->filter(fn ($b) => is_array($b))->values();
     $learning            = collect($program->learning_list ?? []);
@@ -31,7 +32,7 @@
     $support             = collect($program->support_list ?? []);
     $gccReasons          = collect($program->gcc_reasons_list ?? []);
     $university          = $program->university_object;
-    $accreditationGroups = collect($program->accreditation_groups_list ?? []);
+    $accreditationItems  = $recognition;
     $testimonials        = collect($program->testimonials_list ?? [])->filter(fn ($t) => is_array($t))->values();
     $fees                = collect($program->fees_list ?? []);
     $faqs                = collect($program->faqs ?? []);
@@ -138,20 +139,20 @@
     </section>
 
     {{-- ============ 2. RECOGNITION STRIP (slider) ============ --}}
-    @if($recognition->count())
+    @if($recognitionLogos->count())
     <section class="recognition" aria-label="Accredited and recognised by">
         <div class="container">
             <div class="rec-head rv">
-                <span class="lab">Awarded By · <b>{{ $program->universityPartner?->name ?? (data_get($recognition->first(), 'name') ?? '') }}</b></span>
+                <span class="lab">Awarded By · <b>{{ $program->universityPartner?->name ?? '' }}</b></span>
                 <span class="lab">Recognised &amp; Accredited</span>
             </div>
             <div class="rec-track">
                 <div class="rec-slider">
-                    @foreach($recognition as $r)
-                        <div class="rec-card">{!! $renderLogoChip($r['name'] ?? '', $r['logo'] ?? null, 'rec-logo', 'rec-logo-fallback', 3) !!}</div>
+                    @foreach($recognitionLogos as $r)
+                        <div class="rec-card">{!! $renderLogoChip('', $r['logo'] ?? null, 'rec-logo', 'rec-logo-fallback', 3) !!}</div>
                     @endforeach
-                    @foreach($recognition as $r)
-                        <div class="rec-card" aria-hidden="true">{!! $renderLogoChip($r['name'] ?? '', $r['logo'] ?? null, 'rec-logo', 'rec-logo-fallback', 3) !!}</div>
+                    @foreach($recognitionLogos as $r)
+                        <div class="rec-card" aria-hidden="true">{!! $renderLogoChip('', $r['logo'] ?? null, 'rec-logo', 'rec-logo-fallback', 3) !!}</div>
                     @endforeach
                 </div>
             </div>
@@ -329,27 +330,16 @@
     </section>
     @endif
 
-    {{-- ============ 10. ACCREDITATION (logo grids) ============ --}}
-    @if($accreditationGroups->count())
+    {{-- ============ 10. ACCREDITATION (logo + name) ============ --}}
+    @if($accreditationItems->count())
     <section class="accred section tex-grid" aria-label="Accreditation and recognition">
         <div class="container">
             <div class="sec-head rv">
                 <span class="kicker">{{ $chrome->accreditation_label ?? 'Accreditation' }}</span>
                 <h2>{{ $chrome->accreditation_heading ?? 'Accreditation &amp;' }} </h2>
             </div>
-            @php
-                $accItems = $accreditationGroups->flatMap(function ($g) {
-                    return collect($g['items'] ?? [])->map(fn ($item) => [
-                        'group' => $g['group'] ?? null,
-                        'name'  => $item['name'] ?? '',
-                        'logo'  => $item['logo'] ?? null,
-                    ]);
-                })->values();
-            @endphp
-            @if($accItems->count())
             <div class="acc-board rv" data-acc-board>
                 <div class="acc-board-head">
-                    <!-- <span class="acc-caption">{{ $accItems->count() }} {{ Str::plural('accreditation', $accItems->count()) }} across {{ $accreditationGroups->count() }} {{ Str::plural('category', $accreditationGroups->count()) }}</span> -->
                     <div class="acc-nav">
                         <button type="button" class="acc-btn" data-acc-prev aria-label="Show previous accreditations"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
                         <button type="button" class="acc-btn" data-acc-next aria-label="Show next accreditations"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>
@@ -357,20 +347,15 @@
                 </div>
                 <div class="acc-rail-mask">
                     <ul class="acc-rail" data-acc-rail>
-                        @php $prevGroup = null; @endphp
-                        @foreach($accItems as $item)
-                            <li class="acc-tile @if($prevGroup !== null && $prevGroup === $item['group']) is-same-group @endif">
-                                @if(!empty($item['group']))<span class="acc-eyebrow">{{ $item['group'] }}</span>@endif
+                        @foreach($accreditationItems as $item)
+                            <li class="acc-tile">
                                 <span class="acc-plate">{!! $renderLogoChip($item['name'] ?? '', $item['logo'] ?? null, 'acc-plate-in', 'acc-plate-fallback', 0) !!}</span>
-                                @if(!empty($item['name']))<span class="acc-name">{{ $item['name'] }}</span>
-                                @endif
+                                @if(!empty($item['name']))<span class="acc-name">{{ $item['name'] }}</span>@endif
                             </li>
-                            @php $prevGroup = $item['group']; @endphp
                         @endforeach
                     </ul>
                 </div>
             </div>
-            @endif
         </div>
     </section>
     @endif
