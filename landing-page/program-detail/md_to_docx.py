@@ -424,6 +424,233 @@ def build(md_path, out_path=None):
     return str(out_path)
 
 
+
+def parse_format_b(text):
+    """Split a Format B md (GAU MSc / UK style) into title, meta, and sections."""
+    body = text.split("## BUILD NOTES")[0]
+    title = None
+    meta_lines = []
+    sections = []
+    current = None
+    for line in body.split("\n"):
+        if title is None:
+            m = re.match(r"^#\s+(.*)$", line)
+            if m:
+                title = m.group(1).strip()
+                continue
+        if current is None and line.strip().startswith("**") and ":**" in line:
+            meta_lines.append(line.strip())
+            continue
+        m = re.match(r"^##\s+(.*)$", line)
+        if m:
+            current = {"title": m.group(1).strip(), "lines": []}
+            sections.append(current)
+            continue
+        if current is not None:
+            if line.strip() == "---":
+                continue
+            current["lines"].append(line)
+    return title, meta_lines, sections
+
+
+def md_table_pairs(lines):
+    """Parse a markdown table (| a | b |) skipping header/separator rows."""
+    pairs = []
+    for ln in lines:
+        s = ln.strip()
+        if not s.startswith("|"):
+            continue
+        cells = [c.strip() for c in s.strip("|").split("|")]
+        if len(cells) < 2:
+            continue
+        if set(cells[0]) <= set("- ") or cells[0].lower() in ("row", "key"):
+            continue
+        pairs.append((cells[0], cells[1]))
+    return pairs
+
+
+def bullets_from(lines):
+    out = []
+    for ln in lines:
+        s = ln.strip()
+        if not s:
+            continue
+        m = re.match(r"^- (.+)$", s)
+        if m:
+            out.append(m.group(1))
+        elif not s.startswith("#"):
+            out.append(s)
+    return out
+
+
+B_HEADINGS = {
+    "AT A GLANCE": "Programme at a Glance",
+    "OVERVIEW": "Programme Overview",
+    "WHY THIS PROGRAMME": "Why Choose This Programme",
+    "WHAT YOU WILL LEARN": "What You Will Learn",
+    "CAREERS": "Career Opportunities",
+    "STRUCTURE": "Programme Structure",
+    "SUPPORT": "Why Study Through Maverick",
+    "GCC MARKET CONTEXT": "GCC Market Context",
+    "FEES": "Fees & Scholarships",
+}
+
+
+def build_format_b(md_path, out_path=None):
+    md = Path(md_path)
+    text = md.read_text(encoding="utf-8")
+    title, meta_lines, sections = parse_format_b(text)
+    if out_path is None:
+        out_path = md.with_suffix(".docx")
+    doc = Document()
+    style_doc(doc)
+
+    h = doc.add_heading(title or "Programme", level=1)
+    h.alignment = WD_ALIGN_PARAGRAPH.LEFT
+
+    # meta lines (Duration, Format, Delivery, Family) as an intro line
+    meta_bits = []
+    for ml in meta_lines:
+        m = re.match(r"^\*\*(.+?):\*\*\s*(.*)$", ml)
+        if m:
+            k = m.group(1).strip().lower()
+            if k in ("duration", "format", "delivery"):
+                meta_bits.append(m.group(1).strip() + ": " + m.group(2).strip())
+    if meta_bits:
+        p = doc.add_paragraph(" · ".join(meta_bits))
+        p.runs[0].font.color.rgb = GREY
+
+    # SEO section right after the title, per pattern
+    seo = next((s for s in sections if s["title"].upper() == "SEO"), None)
+    if seo:
+        doc.add_heading("SEO", level=2)
+        for ln in seo["lines"]:
+            m = re.match(r"^\*\*(.+?):\*\*\s*(.*)$", ln.strip())
+            if m:
+                p = doc.add_paragraph()
+                r = p.add_run(m.group(1).strip() + ": ")
+                r.bold = True
+                p.add_run(m.group(2).strip())
+
+    for sec in sections:
+        up = sec["title"].upper()
+        if up == "SEO":
+            continue
+        heading = B_HEADINGS.get(up, sec["title"].title())
+        doc.add_heading(heading, level=2)
+        lines = sec["lines"]
+        if up == "AT A GLANCE":
+            pairs = md_table_pairs(lines)
+            add_glance_table(doc, pairs)
+            after = []
+            seen_table = False
+            for ln in lines:
+                s = ln.strip()
+                if s.startswith("|"):
+                    seen_table = True
+                    continue
+                if seen_table and s:
+                    after.append(s)
+            for a_ in after:
+                doc.add_paragraph(a_)
+        elif up == "OVERVIEW":
+            for ln in lines:
+                if ln.strip():
+                    doc.add_paragraph(ln.strip())
+        elif up == "WHY THIS PROGRAMME":
+            card_title = None
+            buf = []
+
+            def flush_b():
+                if card_title is not None:
+                    p = doc.add_paragraph()
+                    add_runs_with_bold(p, "**" + card_title + "**")
+                    if buf:
+                        doc.add_paragraph(" ".join(buf))
+
+            for ln in lines:
+                s = ln.strip()
+                m = re.match(r"^\*\*(.+?)\*\*$", s)
+                if m:
+                    flush_b()
+                    card_title = m.group(1).strip()
+                    buf = []
+                elif s.startswith("Honest take:"):
+                    flush_b()
+                    card_title = None
+                    buf = []
+                    p = doc.add_paragraph()
+                    r = p.add_run("Honest take: ")
+                    r.bold = True
+                    p.add_run(s[len("Honest take:"):].strip())
+                elif s:
+                    buf.append(s)
+            flush_b()
+        elif up == "WHAT YOU WILL LEARN":
+            for b_ in bullets_from(lines):
+                doc.add_paragraph(b_, style="List Bullet")
+        elif up == "CAREERS":
+            paras = [ln.strip() for ln in lines if ln.strip()]
+            if paras:
+                roles = [r_.strip() for r_ in paras[0].split(",") if r_.strip()]
+                if len(roles) >= 4:
+                    for r_ in roles:
+                        doc.add_paragraph(r_, style="List Bullet")
+                    for extra in paras[1:]:
+                        doc.add_paragraph(extra)
+                else:
+                    for extra in paras:
+                        doc.add_paragraph(extra)
+        elif up == "STRUCTURE":
+            stage_title = None
+            buf = []
+
+            def flush_s():
+                if stage_title is not None:
+                    doc.add_heading(stage_title, level=3)
+                    for b_ in buf:
+                        if b_.startswith("- "):
+                            doc.add_paragraph(b_[2:], style="List Bullet")
+                        else:
+                            doc.add_paragraph(b_)
+
+            for ln in lines:
+                s = ln.strip()
+                m = re.match(r"^\*\*(.+?)\*\*$", s)
+                if m:
+                    flush_s()
+                    stage_title = m.group(1).strip()
+                    buf = []
+                elif s:
+                    buf.append(s)
+            flush_s()
+        elif up in ("SUPPORT", "GCC MARKET CONTEXT", "FEES"):
+            for ln in lines:
+                s_ = ln.strip()
+                if not s_:
+                    continue
+                m = re.match(r"^- (.+)$", s_)
+                if m:
+                    doc.add_paragraph(m.group(1), style="List Bullet")
+                elif not s_.startswith("#"):
+                    doc.add_paragraph(s_)
+        else:
+            for ln in lines:
+                if ln.strip():
+                    doc.add_paragraph(ln.strip())
+
+    doc.save(out_path)
+    return str(out_path)
+
+
+
+def convert(md_path):
+    text = Path(md_path).read_text(encoding="utf-8")
+    if "## 1. HERO" in text:
+        return build(md_path)
+    return build_format_b(md_path)
+
+
 if __name__ == "__main__":
     for f in sys.argv[1:]:
-        print(build(f))
+        print(convert(f))
