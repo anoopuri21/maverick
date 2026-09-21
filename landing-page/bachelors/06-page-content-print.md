@@ -97,7 +97,7 @@ BSc programmes (list): Business Management · Tourism and Hospitality Management
 3. **"I already work full-time. When would I study?"** Programmes here are taught online with weekend-friendly timetables, so your job stays and your degree moves.
 4. **"Those 12-month BBA offers look cheap. Are they safe?"** The 2025 ministry rules say a recognised degree must follow the approved programme structure, and a 12-month timeline may not meet that test. We do not sell that kind of product.
 
-**Chart on this section:** A pie of Dubai's private university students in 2024–25: 35% international, 65% local. Caption: International enrolment in Dubai's private universities grew 29% in one year. Source line on the page: KHDA, Dubai's education regulator.
+**Chart on this section:** A pie of Dubai's private university students in 2024-25: 35% international, 65% local. Caption: International enrolment in Dubai's private universities grew 29% in one year. Source line on the page: KHDA, Dubai's education regulator.
 
 ## Section 7: Benefits
 
@@ -211,7 +211,7 @@ Footnote: campus and fast-track figures from published fee guides, Jan and Apr 2
 
 ## Section 13: The Gulf is studying, the numbers behind the decision
 
-- 57,035 new students entered UAE higher education in 2024–25, up 13%: the highest intake in a decade (ministry data).
+- 57,035 new students entered UAE higher education in 2024-25, up 13%: the highest intake in a decade (ministry data).
 - Dubai's private universities grew 20% in a year, and international enrolment rose 29% (KHDA).
 - Business and economics is the most-studied field in the UAE (UNESCO data).
 - More than 400 bachelor's programmes are listed in the UAE (directory listings, 2026). Very few combine UK and partner universities, no student visa, and a local team in the Gulf.
