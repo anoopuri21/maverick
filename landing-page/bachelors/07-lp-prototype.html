@@ -13,6 +13,9 @@
   --blue:#0f2983; --navy:#071444; --red:#b20202; --paper:#f5f0eb; --pure:#ffffff;
   --ink:#1c1e26; --mut:#5a6070; --line:#ddd6ca; --line-d:rgba(245,240,235,.18);
   --glass:rgba(7,20,68,.55); --soft:#efe8df;
+  /* complementary accents (design-system companions, see 08-prototype-upgrade-plan.md) */
+  --gold:#c8a24b; --gold-soft:#f3ead6; --gold-ink:#7a5c17;
+  --sky:#e9eef8; --paper-deep:#ece3d7;
   --disp:'Archivo','PP Neue Montreal',system-ui,sans-serif;
   --body:'Poppins',system-ui,sans-serif;
   --e:cubic-bezier(.16,1,.3,1);
@@ -34,11 +37,23 @@ h1,h2,h3,.disp{font-family:var(--disp);letter-spacing:-.025em;line-height:1.08;f
 .btn-line{background:none;border:none;color:var(--red);text-decoration:underline;text-underline-offset:5px;text-transform:none;letter-spacing:0;font-family:var(--body);font-weight:500;font-size:.95rem;min-height:0;padding:0}
 .link-u{text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1px}
 .link-u:hover{color:var(--red)}
-[data-rv]{opacity:0;transform:translateY(26px);transition:opacity .8s var(--e),transform .8s var(--e)}
+/* cinematic reveal system: up (default), down, left, right, zoom, fade */
+[data-rv]{opacity:0;transform:translateY(34px);transition:opacity .9s var(--e),transform .9s var(--e);will-change:opacity,transform}
+[data-rv="down"]{transform:translateY(-34px)}
+[data-rv="left"]{transform:translateX(-46px)}
+[data-rv="right"]{transform:translateX(46px)}
+[data-rv="zoom"]{transform:scale(.94)}
+[data-rv="fade"]{transform:none}
 [data-rv].in{opacity:1;transform:none}
 section{position:relative}
 .ghost{position:absolute;font-family:var(--disp);font-weight:800;font-size:clamp(7rem,18vw,15rem);line-height:1;color:transparent;-webkit-text-stroke:1px var(--line);pointer-events:none;user-select:none;right:2%;top:24px;z-index:0}
 .void .ghost{-webkit-text-stroke:1px rgba(245,240,235,.14)}
+/* radial arc ornaments (design-system motif: arc as motion + type) */
+.arc{position:absolute;width:520px;height:520px;right:-150px;top:60px;opacity:.55;pointer-events:none;animation:spin 110s linear infinite;transform-origin:center}
+.arc.left{right:auto;left:-170px}
+.arc circle{fill:none;stroke:var(--line);stroke-width:1}
+.arc.gold circle{stroke:rgba(200,162,75,.4)}
+@keyframes spin{to{transform:rotate(360deg)}}
 nav{position:fixed;inset:0 0 auto 0;z-index:50;background:rgba(7,20,68,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line-d)}
 .nav-in{max-width:1180px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;gap:28px}
 .mark{font-family:var(--disp);font-weight:800;letter-spacing:.02em;color:var(--paper);font-size:1.05rem;text-decoration:none}
@@ -142,8 +157,8 @@ nav{position:fixed;inset:0 0 auto 0;z-index:50;background:rgba(7,20,68,.82);back
 .pie{position:relative;width:210px;height:210px;flex:none}
 .pie svg{transform:rotate(-90deg)}
 .pie circle{fill:none;stroke-width:26;stroke-dasharray:0 100;transition:stroke-dasharray 1.4s var(--e)}
-.in .pie .c1,.pie.in .c1{stroke-dasharray:35 65}
-.in .pie .c2,.pie.in .c2{stroke-dasharray:65 100;stroke-dashoffset:-35}
+.pie.in .c1{stroke-dasharray:35 65}
+.pie.in .c2{stroke-dasharray:65 100;stroke-dashoffset:-35}
 .pie .c1{stroke:var(--red)}
 .pie .c2{stroke:var(--navy);opacity:.9}
 .pie .big{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
@@ -156,7 +171,17 @@ nav{position:fixed;inset:0 0 auto 0;z-index:50;background:rgba(7,20,68,.82);back
 .fact+.fact{border-top:1px solid var(--line)}
 .fact b{font-family:var(--disp);font-size:1.05rem;color:var(--navy);display:block;margin-bottom:6px;letter-spacing:-.01em}
 .fact p{font-size:.88rem;color:var(--mut)}
-.fact .src{font-family:var(--disp);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--red)}
+.fact .src{font-family:var(--disp);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-ink)}
+/* degree premium graphic */
+.prem{margin-top:30px;border:1px solid var(--line);background:var(--pure);padding:24px 26px 18px}
+.prem-row{display:grid;grid-template-columns:70px 1fr auto;gap:16px;align-items:center;padding:10px 0}
+.prem-row span{font-family:var(--disp);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);font-weight:600}
+.prem-row b{font-family:var(--disp);color:var(--navy);font-size:1.05rem;letter-spacing:-.02em}
+.pr{display:block;height:24px;width:0;transition:width 1.5s var(--e) .2s}
+.pr.d{background:linear-gradient(90deg,var(--navy),var(--blue))}
+.pr.p{background:var(--line)}
+.prem.in .pr{width:var(--w)}
+.prem .cap{margin-top:14px;padding-top:12px;border-top:1px solid var(--line);font-family:var(--disp);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
 .tick{list-style:none;padding:0}
 .tick li{padding:13px 0 13px 34px;position:relative;border-bottom:1px solid var(--line);font-size:.92rem;color:var(--ink)}
 .tick li::before{content:"";position:absolute;left:4px;top:21px;width:10px;height:10px;background:var(--red)}
@@ -164,10 +189,12 @@ nav{position:fixed;inset:0 0 auto 0;z-index:50;background:rgba(7,20,68,.82);back
 .gives div{background:var(--pure);padding:24px}
 .gives b{font-family:var(--disp);color:var(--red);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase}
 .gives p{font-size:.84rem;color:var(--mut);margin-top:8px}
-.aud{background:var(--pure);padding:100px 0}
-.aud-row{display:grid;grid-template-columns:90px 1fr auto;gap:30px;align-items:center;padding:38px 22px;border-top:1px solid var(--line);transition:background .4s,padding .4s var(--e)}
-.aud-row:last-child{border-bottom:1px solid var(--line)}
+.aud{background:var(--sky);padding:100px 0;overflow:hidden}
+.aud-row{display:grid;grid-template-columns:90px 1fr auto;gap:30px;align-items:center;padding:38px 22px;border-top:1px solid rgba(15,41,131,.16);background:rgba(255,255,255,.5);transition:background .4s}
+.aud-row:hover{background:rgba(255,255,255,.85)}
+.aud-row:last-child{border-bottom:1px solid rgba(15,41,131,.16)}
 .aud-row .idx{font-family:var(--disp);font-weight:800;font-size:2rem;color:transparent;-webkit-text-stroke:1px var(--red)}
+.aud-row .aicon{width:34px;height:34px;stroke:var(--blue);stroke-width:1.6;fill:none;margin-bottom:12px}
 .aud-row h3{font-size:1.35rem;margin-bottom:6px}
 .aud-row p{font-size:.92rem;color:var(--mut);max-width:64ch}
 .steps{background:var(--navy);color:var(--paper);padding:110px 0;overflow:hidden}
@@ -175,7 +202,7 @@ nav{position:fixed;inset:0 0 auto 0;z-index:50;background:rgba(7,20,68,.82);back
 .spine{position:relative;margin-top:70px;display:grid;grid-template-columns:repeat(4,1fr);gap:34px}
 .spine svg{position:absolute;left:0;right:0;top:11px;width:100%;height:2px;overflow:visible}
 .spine svg line{stroke:var(--red);stroke-width:2;stroke-dasharray:1000;stroke-dashoffset:1000;transition:stroke-dashoffset 1.8s var(--e) .2s}
-.in .spine svg line,.spine.in svg line{stroke-dashoffset:0}
+.spine.in svg line{stroke-dashoffset:0}
 .step{position:relative;padding-top:44px}
 .step::before{content:"";position:absolute;top:2px;left:0;width:20px;height:20px;border-radius:50%;background:var(--navy);border:2px solid var(--red);animation:pulse 2.4s infinite}
 .step b{font-family:var(--disp);font-size:.7rem;letter-spacing:.16em;color:var(--red);text-transform:uppercase}
@@ -183,16 +210,16 @@ nav{position:fixed;inset:0 0 auto 0;z-index:50;background:rgba(7,20,68,.82);back
 .step p{font-size:.86rem;color:rgba(245,240,235,.7)}
 .steps .who{margin-top:64px;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line-d);border:1px solid var(--line-d)}
 .steps .who div{background:var(--navy);padding:24px}
-.steps .who b{font-family:var(--disp);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--red)}
+.steps .who b{font-family:var(--disp);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
 .steps .who p{font-size:.85rem;color:rgba(245,240,235,.72);margin-top:8px}
 .fees{background:var(--soft);padding:110px 0;overflow:hidden}
 .bars{display:flex;align-items:flex-end;gap:56px;height:300px;margin:70px 0 10px;border-bottom:2px solid var(--navy);padding:0 10px}
 .bar{display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;height:100%;gap:10px}
 .bar i{display:block;width:74px;background:var(--navy);height:0;transition:height 1.4s var(--e)}
 .bar.red i{background:var(--red)}
-.in .bar .h1a,.bar.in .h1a{height:100%}
-.in .bar .h2a,.bar.in .h2a{height:52%}
-.in .bar .h3a,.bar.in .h3a{height:12%}
+.bars.in .bar .h1a{height:100%}
+.bars.in .bar .h2a{height:52%}
+.bars.in .bar .h3a{height:12%}
 .bar b{font-family:var(--disp);font-weight:800;font-size:1.15rem;color:var(--navy);letter-spacing:-.02em}
 .bar span{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mut)}
 .quote{font-family:var(--disp);font-weight:600;font-size:clamp(1.3rem,2.3vw,1.9rem);color:var(--navy);letter-spacing:-.02em;line-height:1.35;max-width:36ch;margin-top:56px}
@@ -204,12 +231,22 @@ nav{position:fixed;inset:0 0 auto 0;z-index:50;background:rgba(7,20,68,.82);back
 .ctable td:first-child{font-family:var(--disp);font-weight:600;color:var(--navy);font-size:.82rem;letter-spacing:.02em}
 .ctable .ours{background:var(--paper);border-top:3px solid var(--red);box-shadow:0 20px 50px -30px rgba(7,20,68,.35)}
 .ctable th.ours{color:var(--red)}
-.recog{background:var(--pure);padding:110px 0}
+.recog{background:var(--pure);padding:110px 0;overflow:hidden}
 .recog-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:64px}
 .recog .stick{position:sticky;top:110px;align-self:start}
 .recog h4{font-family:var(--disp);font-size:1.05rem;color:var(--navy);margin:26px 0 8px;letter-spacing:-.01em}
 .recog h4:first-child{margin-top:0}
 .recog p{font-size:.92rem;color:var(--mut)}
+/* recognition timeline graphic */
+.tl{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin:10px 0 34px;padding-top:4px}
+.tl-line{position:absolute;top:11px;left:6px;right:6px;width:calc(100% - 12px);height:2px;overflow:visible}
+.tl-line line{stroke:var(--gold);stroke-width:2;stroke-dasharray:1200;stroke-dashoffset:1200;transition:stroke-dashoffset 2s var(--e) .2s}
+.tl.in .tl-line line{stroke-dashoffset:0}
+.tl-n{position:relative;padding-top:30px}
+.tl-dot{position:absolute;top:4px;left:0;width:16px;height:16px;border-radius:50%;background:var(--pure);border:3px solid var(--gold)}
+.tl-dot.hot{background:var(--red);border-color:var(--red);animation:pulse 2.4s infinite}
+.tl-n b{font-family:var(--disp);color:var(--navy);font-size:.95rem;letter-spacing:-.01em;display:block;margin-bottom:4px}
+.tl-n p{font-size:.78rem;color:var(--mut)}
 .attest{display:flex;gap:0;margin-top:14px;border:1px solid var(--line);border-radius:2px;overflow:hidden}
 .attest div{flex:1;padding:16px;border-right:1px solid var(--line);font-size:.78rem;color:var(--mut);background:var(--paper)}
 .attest div:last-child{border-right:none}
@@ -224,11 +261,24 @@ nav{position:fixed;inset:0 0 auto 0;z-index:50;background:rgba(7,20,68,.82);back
 .stats{display:flex;flex-wrap:wrap;margin-top:70px;border-top:1px solid var(--line-d)}
 .stat{padding:34px 44px 34px 0;margin-right:44px;border-right:1px solid var(--line-d)}
 .stat b{font-family:var(--disp);font-weight:800;font-size:clamp(2.4rem,4vw,4rem);color:#fff;letter-spacing:-.03em;line-height:1;display:block}
-.stat b small{font-size:.45em;color:var(--red)}
+.stat b small{font-size:.45em;color:var(--gold)}
 .stat span{font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,240,235,.6)}
-.slots{display:flex;gap:26px;margin-top:70px}
-.slot{width:112px;height:140px;border:1px dashed var(--line-d);display:flex;align-items:center;justify-content:center;text-align:center;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,240,235,.5);padding:8px}
-.office{background:var(--paper);padding:110px 0;overflow:hidden}
+/* student stories (placeholder layout) */
+.stories{background:var(--paper-deep);padding:110px 0;overflow:hidden}
+.story-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:60px}
+.story{position:relative;background:var(--pure);border:1px solid var(--line);padding:38px 28px 26px;display:flex;flex-direction:column;gap:16px;transition:transform .5s var(--e),box-shadow .5s var(--e)}
+.story:hover{transform:translateY(-6px);box-shadow:0 30px 60px -40px rgba(7,20,68,.4)}
+.story .q{font-family:var(--disp);font-weight:800;font-size:3.4rem;line-height:.5;color:var(--gold)}
+.story blockquote{font-size:.94rem;color:var(--ink);flex:1;font-style:normal}
+.stars{color:var(--gold);letter-spacing:4px;font-size:.85rem}
+.story .who{display:flex;gap:14px;align-items:center;border-top:1px solid var(--line);padding-top:16px}
+.story .port{width:46px;height:46px;border-radius:50%;background:var(--sky);flex:none;display:flex;align-items:center;justify-content:center}
+.story .port svg{width:26px;height:26px;stroke:var(--blue);stroke-width:1.6;fill:none}
+.story .who b{font-family:var(--disp);font-size:.92rem;color:var(--navy);display:block;letter-spacing:-.01em}
+.story .who span{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mut)}
+.sample{position:absolute;top:-1px;right:-1px;background:var(--gold-soft);border:1px solid var(--gold);color:var(--gold-ink);font-family:var(--disp);font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;padding:5px 10px}
+.stories .note{margin-top:30px;color:var(--mut);font-size:.78rem}
+.office{background:var(--paper);padding:110px 0 0;overflow:hidden}
 .off-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:start}
 .off-plate{position:relative;overflow:hidden}
 .off-plate img{transition:transform 6s var(--e)}
@@ -257,7 +307,7 @@ nav{position:fixed;inset:0 0 auto 0;z-index:50;background:rgba(7,20,68,.82);back
 .final h2{color:#fff;font-size:clamp(2.2rem,4vw,3.6rem)}
 .beats{margin-top:36px}
 .beats div{display:flex;gap:18px;padding:14px 0;border-top:1px solid var(--line-d);font-size:.92rem;color:rgba(245,240,235,.8)}
-.beats b{font-family:var(--disp);color:var(--red)}
+.beats b{font-family:var(--disp);color:var(--gold)}
 .sent{display:none;text-align:left;padding:20px 0}
 .sent.on{display:block;animation:fadein .6s var(--e)}
 .sent h3{color:#fff}
@@ -282,6 +332,9 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between}
   .aud-row{grid-template-columns:1fr;gap:10px}
   .careers .crow{grid-template-columns:1fr}
   .recog .stick{position:static}
+  .story-grid{grid-template-columns:1fr}
+  .tl{grid-template-columns:1fr;gap:34px}
+  .tl-line{display:none}
   body{padding-bottom:64px}
 }
 @media(prefers-reduced-motion:reduce){
@@ -289,6 +342,11 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between}
   [data-rv]{opacity:1;transform:none}
   .hero h1 .ln i{transform:none}
   .spine svg line{stroke-dashoffset:0}
+  .tl-line line{stroke-dashoffset:0}
+  .prem .pr{width:var(--w)}
+  .pie .c1{stroke-dasharray:35 65}
+  .pie .c2{stroke-dasharray:65 100;stroke-dashoffset:-35}
+  .bars .bar i{height:auto}
 }
 </style>
 </head>
@@ -327,7 +385,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between}
         <div><b>London headquarters</b><span>since 2012</span></div>
       </div>
     </div>
-    <form class="glass" data-rv onsubmit="return false">
+    <form class="glass" data-rv="right" onsubmit="return false">
       <h3>Start my enquiry</h3>
       <p>A counsellor calls within one working day. No payment, no commitment.</p>
       <div class="f-field"><label>Full name</label><input type="text" placeholder="Your name"></div>
@@ -347,33 +405,34 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between}
 <!-- 3 TRUST / PARTNERS -->
 <section class="strip">
   <div class="mq"><div class="mq-track" id="mq1"></div></div>
-  <div class="wrap"><div class="policy" data-rv><span class="rule"></span><p><strong style="color:var(--navy)">The UAE's MoHESR published its rules for recognising online degrees on 10 March 2025.</strong> We explain those rules below, with the date and the conditions. Maverick Business Academy has been headquartered in London since 2012.</p></div></div>
+  <div class="wrap"><div class="policy" data-rv="down"><span class="rule"></span><p><strong style="color:var(--navy)">The UAE's MoHESR published its rules for recognising online degrees on 10 March 2025.</strong> We explain those rules below, with the date and the conditions. Maverick Business Academy has been headquartered in London since 2012.</p></div></div>
 </section>
 
 <!-- 4 ROUTES / OVERVIEW -->
 <section class="routes" id="routes">
   <span class="ghost">01</span>
+  <svg class="arc" viewBox="0 0 400 400" aria-hidden="true"><circle cx="200" cy="200" r="120"/><circle cx="200" cy="200" r="160"/><circle cx="200" cy="200" r="196"/></svg>
   <div class="wrap">
     <p class="meta" style="color:var(--red)" data-rv>Programme overview</p>
     <h2 class="h2" style="margin-top:14px;max-width:28ch" data-rv>Four routes to a recognised bachelor's degree.</h2>
     <p class="lede" style="margin-top:20px;max-width:64ch" data-rv>Looking for an <span class="kw">online bachelor's degree in UAE</span> that names its awarding university? These four routes cover business, psychology, economics and top-up pathways, and every institution is printed on this page and on your certificate.</p>
 
-    <div class="fam" data-rv>
+    <div class="fam" data-rv="left">
       <div><p class="meta tag">BBA · Switzerland</p><h3>Rushford Business School</h3><p class="cred">EduQua · IACBE · QS five stars for teaching &amp; online learning · dual certified with Maverick London</p><p class="desc">Seven specialisations, taught 100% online with live, interactive lectures. If you are searching for an <span class="kw">online BBA in UAE</span> with the awarding school printed on the certificate, this is the route.</p></div>
       <div class="progs"><span class="hot">Business Administration</span><span class="hot">Marketing</span><span class="hot">Finance</span><span>Human Resource Management</span><span>Management Information Systems</span><span>Hospitality &amp; Tourism Management</span><span>Project Management</span></div>
     </div>
 
-    <div class="fam" data-rv>
+    <div class="fam" data-rv="right">
       <div><p class="meta tag">BSc · North Cyprus</p><h3>Girne American University</h3><p class="cred">YÖDAK · YÖK · IACBE for business · English-medium</p><p class="desc">Ten programmes across business, psychology and economics. If you want an <span class="kw">online BSc in UAE</span> while you keep working, your counsellor will match the programme to your week.</p></div>
       <div class="progs"><span>Business Management</span><span>Tourism and Hospitality Management</span><span class="hot">International Business Management</span><span class="hot">Psychology</span><span class="hot">Accounting and Finance Management</span><span>Marketing</span><span>Human Resources Management</span><span>Accounting</span><span>Economics</span><span>Management Information Systems</span></div>
     </div>
 
-    <div class="fam" data-rv>
+    <div class="fam" data-rv="left">
       <div><p class="meta tag">BA (Hons) · United Kingdom</p><h3>University of the West of Scotland</h3><p class="cred">UK university · QAA-regulated</p><p class="desc">One UK honours degree for students who want a <span class="kw">UK bachelor degree online</span> on the certificate while they study from the Gulf.</p></div>
       <div class="progs"><span class="hot">Global Business</span></div>
     </div>
 
-    <div class="fam" data-rv>
+    <div class="fam" data-rv="right">
       <div><p class="meta tag">Top-up · Ofqual, UK</p><h3>The top-up route</h3><p class="cred">QUALIFI Level 5 &amp; 7 diplomas · 14 Level 5 specialisations incl. Law, IT, Cyber Security</p><p class="desc">A <span class="kw">top-up bachelor's degree UAE</span> route: Ofqual-regulated diplomas topped up into a UK honours degree. The awarding university is confirmed at your counselling call.</p>
         <div class="checker" style="margin-top:20px">
           <div class="tabs">
@@ -403,11 +462,11 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between}
 <!-- 5 CATALOGUE -->
 <section class="gridsec">
   <div class="wrap">
-    <p class="meta" style="color:var(--red)" data-rv>The complete catalogue</p>
-    <h2 class="h2" style="margin-top:14px" data-rv>All eighteen programmes, named exactly as our partner universities list them.</h2>
-    <p class="lede" style="margin-top:20px;max-width:64ch" data-rv>Searching for a <span class="kw">BBA in Dubai</span> or a BSc anywhere in the Gulf? Filter the catalogue by subject area below.</p>
-    <div class="chips" id="chips" data-rv></div>
-    <table class="ptable" data-rv>
+    <p class="meta" style="color:var(--red)" data-rv="left">The complete catalogue</p>
+    <h2 class="h2" style="margin-top:14px" data-rv="left">All eighteen programmes, named exactly as our partner universities list them.</h2>
+    <p class="lede" style="margin-top:20px;max-width:64ch" data-rv="left">Searching for a <span class="kw">BBA in Dubai</span> or a BSc anywhere in the Gulf? Filter the catalogue by subject area below.</p>
+    <div class="chips" id="chips" data-rv="right"></div>
+    <table class="ptable" data-rv="right">
       <thead><tr><th>Programme</th><th>University</th><th>Subject area</th><th></th><th></th></tr></thead>
       <tbody id="ptbody"></tbody>
     </table>
@@ -421,14 +480,14 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between}
     <p class="meta" style="color:var(--red)" data-rv>Before you choose</p>
     <h2 class="h2" style="margin-top:14px;max-width:26ch" data-rv>The questions families ask before they choose.</h2>
     <div style="margin-top:56px">
-      <div class="rail" data-rv><div class="no">01</div><div class="fear">"Will employers respect an online degree?"</div><div class="ans">The UAE's own ministry published recognition rules for online degrees in March 2025. We print those rules on this page, <b>with the date and the conditions</b>, in the recognition section below.</div></div>
-      <div class="rail" data-rv><div class="no">02</div><div class="fear">"Campus means AED 35,000 to 65,000 a year, before the visa and the move."</div><div class="ans">Our fees are in AED, paid by instalment, and <b>given to you in writing before you pay anything</b>. The fee section shows what the market charges, with sources.</div></div>
-      <div class="rail" data-rv><div class="no">03</div><div class="fear">"I already work full-time. When would I study?"</div><div class="ans">Programmes here are taught online with <b>weekend-friendly timetables</b>, so your job stays and your degree moves.</div></div>
-      <div class="rail" data-rv><div class="no">04</div><div class="fear">"Those 12-month BBA offers look cheap. Are they safe?"</div><div class="ans">The 2025 ministry rules say a recognised degree must follow the approved programme structure, and a 12-month timeline may not meet that test. <b>We do not sell that kind of product.</b></div></div>
+      <div class="rail" data-rv="left"><div class="no">01</div><div class="fear">"Will employers respect an online degree?"</div><div class="ans">The UAE's own ministry published recognition rules for online degrees in March 2025. We print those rules on this page, <b>with the date and the conditions</b>, in the recognition section below.</div></div>
+      <div class="rail" data-rv="left"><div class="no">02</div><div class="fear">"Campus means AED 35,000 to 65,000 a year, before the visa and the move."</div><div class="ans">Our fees are in AED, paid by instalment, and <b>given to you in writing before you pay anything</b>. The fee section shows what the market charges, with sources.</div></div>
+      <div class="rail" data-rv="left"><div class="no">03</div><div class="fear">"I already work full-time. When would I study?"</div><div class="ans">Programmes here are taught online with <b>weekend-friendly timetables</b>, so your job stays and your degree moves.</div></div>
+      <div class="rail" data-rv="left"><div class="no">04</div><div class="fear">"Those 12-month BBA offers look cheap. Are they safe?"</div><div class="ans">The 2025 ministry rules say a recognised degree must follow the approved programme structure, and a 12-month timeline may not meet that test. <b>We do not sell that kind of product.</b></div></div>
     </div>
-    <div class="piebox" data-rv>
-      <div class="pie"><svg viewBox="0 0 42 42" width="210" height="210"><circle class="c2" cx="21" cy="21" r="15.9"/><circle class="c1" cx="21" cy="21" r="15.9"/></svg><div class="big"><b>35%</b><span>international</span></div></div>
-      <div style="max-width:46ch"><h3 style="font-size:1.3rem">Dubai's campuses are filling fast.</h3><p class="lede" style="margin-top:10px">In 2024–25, 35% of Dubai's private university students were international, and international enrolment grew 29% in one year. The demand is real. So is the need for a degree employers respect.</p><p class="meta" style="margin-top:14px;color:var(--mut)">Source: KHDA, Dubai's education regulator</p></div>
+    <div class="piebox">
+      <div class="pie" data-rv="left"><svg viewBox="0 0 42 42" width="210" height="210"><circle class="c2" cx="21" cy="21" r="15.9"/><circle class="c1" cx="21" cy="21" r="15.9"/></svg><div class="big"><b>35%</b><span>international</span></div></div>
+      <div style="max-width:46ch" data-rv="right"><h3 style="font-size:1.3rem">Dubai's campuses are filling fast.</h3><p class="lede" style="margin-top:10px">In 2024-25, 35% of Dubai's private university students were international, and international enrolment grew 29% in one year. The demand is real. So is the need for a degree employers respect.</p><p class="meta" style="margin-top:14px;color:var(--mut)">Source: KHDA, Dubai's education regulator</p></div>
     </div>
   </div>
 </section>
@@ -440,15 +499,20 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between}
     <p class="meta" style="color:var(--red)" data-rv>Benefits</p>
     <h2 class="h2" style="margin-top:14px;max-width:30ch" data-rv>What a bachelor's from Maverick puts in your hands.</h2>
     <div class="ben-grid">
-      <div>
-        <p class="meta" style="color:var(--mut);margin-bottom:18px" data-rv>Why the Gulf rewards the degree</p>
-        <div class="fact" data-rv><b>The degree premium is written into UAE policy.</b><p>MoHRE's 2026 guidelines recommend AED 12,000 a month for university graduates against AED 7,000 for diploma holders, and federal employment programmes such as Nafis place bachelor's holders in a higher support tier for eligible citizens. Read it as policy signal: across the UAE, the degree sits one rung above the diploma.</p><span class="src">MoHRE, Jan 2026 · Nafis rules, 2026</span></div>
-        <div class="fact" data-rv><b>The whole GCC is hiring graduates.</b><p>Saudi Arabia's private sector now employs around 2.4 million nationals under Vision 2030, and employers across the Gulf are asking for skills-aligned, qualified graduates. Business and economics remains the most-studied and most-hired field in the UAE.</p><span class="src">Arab News, 2025 · UNESCO data</span></div>
-        <div class="fact" data-rv><b>Work permits expect the degree.</b><p>MOHRE accepts accredited online and distance degrees for work permits, and a bachelor's degree is expected for most professional salary bands of AED 4,000 to 8,000 a month.</p><span class="src">MOHRE guide, 2026</span></div>
+      <div data-rv="left">
+        <p class="meta" style="color:var(--mut);margin-bottom:18px">Why the Gulf rewards the degree</p>
+        <div class="fact"><b>The degree premium is written into UAE policy.</b><p>MoHRE's 2026 guidelines recommend AED 12,000 a month for university graduates against AED 7,000 for diploma holders, and federal employment programmes such as Nafis place bachelor's holders in a higher support tier for eligible citizens. Read it as policy signal: across the UAE, the degree sits one rung above the diploma.</p><span class="src">MoHRE, Jan 2026 · Nafis rules, 2026</span></div>
+        <div class="prem">
+          <div class="prem-row"><span>Degree</span><i class="pr d" style="--w:100%"></i><b>AED 12,000</b></div>
+          <div class="prem-row"><span>Diploma</span><i class="pr p" style="--w:58%"></i><b>AED 7,000</b></div>
+          <p class="cap">Recommended monthly minimums · MoHRE, Jan 2026</p>
+        </div>
+        <div class="fact" style="margin-top:26px"><b>The whole GCC is hiring graduates.</b><p>Saudi Arabia's private sector now employs around 2.4 million nationals under Vision 2030, and employers across the Gulf are asking for skills-aligned, qualified graduates. Business and economics remains the most-studied and most-hired field in the UAE.</p><span class="src">Arab News, 2025 · UNESCO data</span></div>
+        <div class="fact"><b>Work permits expect the degree.</b><p>MOHRE accepts accredited online and distance degrees for work permits, and a bachelor's degree is expected for most professional salary bands of AED 4,000 to 8,000 a month.</p><span class="src">MOHRE guide, 2026</span></div>
       </div>
-      <div>
-        <p class="meta" style="color:var(--mut);margin-bottom:18px" data-rv>Why students take the degree with Maverick</p>
-        <ul class="tick" data-rv>
+      <div data-rv="right">
+        <p class="meta" style="color:var(--mut);margin-bottom:18px">Why students take the degree with Maverick</p>
+        <ul class="tick">
           <li>The awarding university is named on this page and on your certificate, never buried in fine print.</li>
           <li>No student visa and no relocation: the same route serves students in Dubai, Riyadh, Jeddah, Doha, Muscat, Kuwait City and Manama.</li>
           <li>Weekend-friendly online delivery, planned around working professionals.</li>
@@ -473,13 +537,20 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between}
 
 <!-- 8 AUDIENCE -->
 <section class="aud">
+  <span class="arc left" viewBox="0 0 400 400" aria-hidden="true" style="opacity:.35"><circle cx="200" cy="200" r="120"/><circle cx="200" cy="200" r="160"/><circle cx="200" cy="200" r="196"/></span>
   <div class="wrap">
     <p class="meta" style="color:var(--red)" data-rv>Audiences</p>
     <h2 class="h2" style="margin-top:14px" data-rv>Who these programmes are for.</h2>
     <div style="margin-top:56px">
-      <div class="aud-row" data-rv><div class="idx">01</div><div><h3>School leavers and their families</h3><p>You finished 12th grade, or you are a year or two out. Your parents want straight answers: is the degree recognised, what does it cost, who supports the student, will employers accept it? This page answers all four.</p></div><a class="btn btn-red" href="#routes">Talk about my options</a></div>
-      <div class="aud-row" data-rv><div class="idx">02</div><div><h3>Working professionals across the GCC</h3><p>You earn a salary and you are not giving it up for four years on a campus. You need a degree that fits around a job: taught online, friendly to weekends, no visa, no move, and a real person to call.</p></div><a class="btn btn-red" href="#routes">Find my programme</a></div>
-      <div class="aud-row" data-rv><div class="idx">03</div><div><h3>Diploma, HND and credit holders</h3><p>You already did the coursework. You want the legitimate way to finish, with every institution named. The top-up route checks your documents first.</p></div><a class="btn btn-red" href="#routes">Check my top-up route</a></div>
+      <div class="aud-row" data-rv="left"><div class="idx">01</div><div>
+        <svg class="aicon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2 8l10 5 10-5-10-5Z"/><path d="M6 10.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-5.5"/><path d="M22 8v6"/></svg>
+        <h3>School leavers and their families</h3><p>You finished 12th grade, or you are a year or two out. Your parents want straight answers: is the degree recognised, what does it cost, who supports the student, will employers accept it? This page answers all four.</p></div><a class="btn btn-red" href="#routes">Talk about my options</a></div>
+      <div class="aud-row" data-rv="left"><div class="idx">02</div><div>
+        <svg class="aicon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="1"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M3 12h18"/></svg>
+        <h3>Working professionals across the GCC</h3><p>You earn a salary and you are not giving it up for four years on a campus. You need a degree that fits around a job: taught online, friendly to weekends, no visa, no move, and a real person to call.</p></div><a class="btn btn-red" href="#routes">Find my programme</a></div>
+      <div class="aud-row" data-rv="left"><div class="idx">03</div><div>
+        <svg class="aicon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14"/><path d="M4 19a2 2 0 0 0 2 2h14"/><path d="M9 7h6M9 11h6M9 15h4"/></svg>
+        <h3>Diploma, HND and credit holders</h3><p>You already did the coursework. You want the legitimate way to finish, with every institution named. The top-up route checks your documents first.</p></div><a class="btn btn-red" href="#routes">Check my top-up route</a></div>
     </div>
   </div>
 </section>
@@ -513,18 +584,18 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between}
     <p class="lede" style="margin-top:20px;max-width:64ch" data-rv><strong style="color:var(--navy)">Short answer:</strong> your plan is priced in AED with instalments and given to you in writing before any payment; for comparison, campus programmes run AED 35,000 to 65,000 a year.</p>
     <p class="lede" style="margin-top:14px;max-width:64ch" data-rv>An <span class="kw">affordable bachelor's degree in UAE</span> means knowing every number before you commit. Here is what the market actually charges, with sources you can check.</p>
     <div class="bars" data-rv>
-      <div class="bar"><b>AED 105k–195k</b><i class="h1a"></i><span>Campus · 3 yrs</span></div>
+      <div class="bar"><b>AED 105k-195k</b><i class="h1a"></i><span>Campus · 3 yrs</span></div>
       <div class="bar"><b>AED 100k</b><i class="h2a"></i><span>Dubai school · online BBA · 4 yrs</span></div>
-      <div class="bar red"><b>AED 3.5k–25k</b><i class="h3a"></i><span>Fast-track · recognition risk</span></div>
+      <div class="bar red"><b>AED 3.5k-25k</b><i class="h3a"></i><span>Fast-track · recognition risk</span></div>
     </div>
-    <ul class="tick" style="margin:36px 0 0;max-width:760px" data-rv>
+    <ul class="tick" style="margin:36px 0 0;max-width:760px" data-rv="right">
       <li>Campus bachelor's programmes in Dubai run AED 35,000 to 65,000 a year. For Indian families across the UAE and the wider GCC, that is roughly INR 7.7 lakh to 14.5 lakh a year at early-2026 rates.</li>
       <li>Premium international BBA programmes are listed between AED 33,000 and 110,000, and one well-known Dubai school lists its online BBA at AED 100,000 over four years.</li>
       <li>Standard and UK top-up programmes sit in the AED 12,000 to 23,600 band.</li>
       <li>Fast-track "12-month BBA" offers run AED 3,500 to 25,000 in total, and they carry the recognition risk explained on this page.</li>
     </ul>
-    <p class="meta" style="color:var(--mut);margin-top:14px" data-rv>Published fee guides, Jan &amp; Apr 2026 · market survey Sep 2026</p>
-    <p class="quote" data-rv>Campus costs AED 35,000 to 65,000 a year plus the visa. The mills cost AED 3,500 to 25,000 plus a recognition risk. <em>Maverick is the sensible middle:</em> universities you can check by name, no student visa, weekend-friendly study, AED instalments, and a real team you can reach any working day.</p>
+    <p class="meta" style="color:var(--mut);margin-top:14px" data-rv="down">Published fee guides, Jan &amp; Apr 2026 · market survey Sep 2026</p>
+    <p class="quote" data-rv="left">Campus costs AED 35,000 to 65,000 a year plus the visa. The mills cost AED 3,500 to 25,000 plus a recognition risk. <em>Maverick is the sensible middle:</em> universities you can check by name, no student visa, weekend-friendly study, AED instalments, and a real team you can reach any working day.</p>
     <p style="margin-top:34px" data-rv><a class="btn btn-red" href="#final">Get my programme &amp; fee plan</a></p>
     <p class="lede" style="margin-top:22px;max-width:60ch" data-rv>Every plan is priced in AED, payable by instalment, and put in writing before you commit anything. No surprise lines.</p>
   </div>
@@ -536,14 +607,14 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between}
     <p class="meta" style="color:var(--red)" data-rv>Comparison</p>
     <h2 class="h2" style="margin-top:14px;max-width:30ch" data-rv>Flexible study vs campus vs 12-month fast-track.</h2>
     <p class="lede" style="margin-top:20px;max-width:60ch" data-rv>Comparing the <span class="kw">top universities in Dubai for bachelor's</span> study? Start with the question most listicles skip: who actually awards the degree?</p>
-    <table class="ctable" data-rv>
+    <table class="ctable" data-rv="zoom">
       <thead><tr><th style="width:18%"></th><th class="ours">Flexible study with Maverick</th><th>Campus university</th><th>12-month fast-track</th></tr></thead>
       <tbody>
         <tr><td>Who awards the degree?</td><td class="ours">UK and partner universities, listed by name on this page</td><td>The campus institution itself</td><td>Varies by provider. Check the awarding body.</td></tr>
         <tr><td>Recognition story</td><td class="ours">The 2025 MoHESR policy, explained with dates and conditions</td><td>Straightforward for campus degrees</td><td>Conditions may not be met. Short timelines are the risk.</td></tr>
         <tr><td>Student visa</td><td class="ours">Not needed for online routes</td><td>Required</td><td>Usually not needed</td></tr>
         <tr><td>Study format</td><td class="ours">Online, weekend-friendly, around your job</td><td>Full-time on campus</td><td>Compressed. Check the structure.</td></tr>
-        <tr><td>Cost</td><td class="ours">AED, instalments, written plan up front</td><td>AED 35,000–65,000 a year, plus visa and relocation</td><td>AED 3,500–25,000 total, plus recognition risk</td></tr>
+        <tr><td>Cost</td><td class="ours">AED, instalments, written plan up front</td><td>AED 35,000-65,000 a year, plus visa and relocation</td><td>AED 3,500-25,000 total, plus recognition risk</td></tr>
         <tr><td>Support</td><td class="ours">A named counsellor, within one working day</td><td>Campus services</td><td>Sales-led. Check the fine print.</td></tr>
       </tbody>
     </table>
@@ -554,18 +625,24 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between}
 <section class="recog" id="recog">
   <div class="wrap recog-grid">
     <div class="stick">
-      <p class="meta" style="color:var(--red)" data-rv>Recognition in the UAE</p>
-      <h2 class="h2" style="margin-top:14px" data-rv>The 2025 rules, explained simply.</h2>
-      <p class="lede" style="margin-top:18px" data-rv><strong style="color:var(--navy)">Short answer:</strong> yes for private-sector use under the 2025 MoHESR rules, with conditions; government roles and regulated professions follow the formal equivalency route.</p>
-      <div class="promise" data-rv>We make no visa promises and no blanket recognition promises. You get the dated policy, the conditions in plain words, and a counsellor who knows both.</div>
+      <p class="meta" style="color:var(--red)" data-rv="left">Recognition in the UAE</p>
+      <h2 class="h2" style="margin-top:14px" data-rv="left">The 2025 rules, explained simply.</h2>
+      <p class="lede" style="margin-top:18px" data-rv="left"><strong style="color:var(--navy)">Short answer:</strong> yes for private-sector use under the 2025 MoHESR rules, with conditions; government roles and regulated professions follow the formal equivalency route.</p>
+      <div class="promise" data-rv="left">We make no visa promises and no blanket recognition promises. You get the dated policy, the conditions in plain words, and a counsellor who knows both.</div>
     </div>
     <div>
-      <h4 data-rv>Is an online bachelor's degree valid in the UAE?</h4>
-      <p data-rv>Yes, under the current 2025 rules, with conditions. On 10 March 2025, MoHESR published its policy for degrees earned through distance, online, open or correspondence study. Recognition is conditional: the awarding institution must be accredited in its home country, the programme must follow its approved structure, and credit transfers must be licensed. The recognition fee for a bachelor's is Dh100, verification runs through Dataflow or QuadraBay, the process is fully online, takes around 30 working days, and has a three-month appeal window. The Ministry of Education began recognising online degrees in 2023, with Engineering, Medicine and Law excluded.</p>
-      <h4 data-rv>Private jobs and government jobs</h4>
-      <p data-rv>For most private-sector jobs, an accredited degree plus verification is enough. The formal Certificate of Recognition is needed for government roles, regulated professions and some visa categories. Confirm your category with a counsellor before you enrol.</p>
-      <h4 data-rv>Putting a UK degree to use in the UAE</h4>
-      <div class="attest" data-rv>
+      <div class="tl" data-rv>
+        <svg class="tl-line" viewBox="0 0 1200 2" preserveAspectRatio="none"><line x1="0" y1="1" x2="1200" y2="1"/></svg>
+        <div class="tl-n"><span class="tl-dot"></span><b>2023</b><p>The Ministry of Education begins recognising online degrees. Engineering, Medicine and Law stay excluded.</p></div>
+        <div class="tl-n"><span class="tl-dot hot"></span><b>10 March 2025</b><p>MoHESR publishes its distance-learning recognition policy: accredited institution, approved structure, licensed credit transfers.</p></div>
+        <div class="tl-n"><span class="tl-dot"></span><b>Today</b><p>Apply online. Dh100 recognition fee, Dataflow or QuadraBay verification, around 30 working days, three-month appeal window.</p></div>
+      </div>
+      <h4 data-rv="right">Is an online bachelor's degree valid in the UAE?</h4>
+      <p data-rv="right">Yes, under the current 2025 rules, with conditions. On 10 March 2025, MoHESR published its policy for degrees earned through distance, online, open or correspondence study. Recognition is conditional: the awarding institution must be accredited in its home country, the programme must follow its approved structure, and credit transfers must be licensed. The recognition fee for a bachelor's is Dh100, verification runs through Dataflow or QuadraBay, the process is fully online, takes around 30 working days, and has a three-month appeal window. The Ministry of Education began recognising online degrees in 2023, with Engineering, Medicine and Law excluded.</p>
+      <h4 data-rv="right">Private jobs and government jobs</h4>
+      <p data-rv="right">For most private-sector jobs, an accredited degree plus verification is enough. The formal Certificate of Recognition is needed for government roles, regulated professions and some visa categories. Confirm your category with a counsellor before you enrol.</p>
+      <h4 data-rv="right">Putting a UK degree to use in the UAE</h4>
+      <div class="attest" data-rv="right">
         <div><b>1 · Verify</b>Dataflow or QuadraBay verification, the usual first step.</div>
         <div><b>2 · Apostille</b>UK FCDO apostille on the degree.</div>
         <div><b>3 · Stamp</b>UAE Embassy and MOFA stamping. We guide every stage.</div>
@@ -590,7 +667,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between}
     <p class="meta" style="color:var(--red)" data-rv>Market proof</p>
     <h2 class="h2" style="margin-top:14px" data-rv>The Gulf is studying: the numbers behind the decision.</h2>
     <div class="stats" data-rv>
-      <div class="stat"><b><span data-count="57035">0</span></b><span>new UAE HE students, 2024–25 · +13%</span></div>
+      <div class="stat"><b><span data-count="57035">0</span></b><span>new UAE HE students, 2024-25 · +13%</span></div>
       <div class="stat"><b><span data-count="29">0</span><small>%</small></b><span>international growth in Dubai, one year</span></div>
       <div class="stat"><b><span data-count="400">0</span><small>+</small></b><span>bachelor's programmes listed in the UAE · directory listings, 2026</span></div>
       <div class="stat"><b><span data-count="14">0</span></b><span>years, London headquarters</span></div>
@@ -600,20 +677,55 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between}
   </div>
 </section>
 
+<!-- 13.5 STUDENT STORIES (placeholder layout: SAMPLE-tagged, replaced with consented stories before go-live) -->
+<section class="stories">
+  <span class="ghost">05</span>
+  <svg class="arc gold" viewBox="0 0 400 400" aria-hidden="true"><circle cx="200" cy="200" r="120"/><circle cx="200" cy="200" r="160"/><circle cx="200" cy="200" r="196"/></svg>
+  <div class="wrap">
+    <p class="meta" style="color:var(--red)" data-rv>Student stories</p>
+    <h2 class="h2" style="margin-top:14px;max-width:30ch" data-rv>Student stories, told the way we will publish them.</h2>
+    <p class="lede" style="margin-top:20px;max-width:62ch" data-rv>Three stories, three routes, three GCC cities. This is the layout our consented student stories will fill.</p>
+    <div class="story-grid">
+      <div class="story" data-rv>
+        <span class="sample">Sample</span>
+        <span class="q">&ldquo;</span>
+        <blockquote>Sample quote: I kept my job in Dubai through the whole degree. The live lectures fitted around my shifts, and my counsellor answered every question my parents raised.</blockquote>
+        <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <div class="who"><span class="port"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/></svg></span><div><b>Sample student name</b><span>BBA Business Administration · Dubai</span></div></div>
+      </div>
+      <div class="story" data-rv>
+        <span class="sample">Sample</span>
+        <span class="q">&ldquo;</span>
+        <blockquote>Sample quote: I received the full fee plan in writing before I paid anything, exactly as this page promised. No surprises, no visa, no relocation.</blockquote>
+        <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <div class="who"><span class="port"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/></svg></span><div><b>Sample student name</b><span>BSc Psychology · Sharjah</span></div></div>
+      </div>
+      <div class="story" data-rv>
+        <span class="sample">Sample</span>
+        <span class="q">&ldquo;</span>
+        <blockquote>Sample quote: The top-up route turned my diploma into a named UK honours degree. My transcript was checked first, and everything was confirmed in writing.</blockquote>
+        <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <div class="who"><span class="port"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/></svg></span><div><b>Sample student name</b><span>Top-up route · Riyadh</span></div></div>
+      </div>
+    </div>
+    <p class="meta note" data-rv="down">Placeholder layout · real, consented student stories replace these cards before go-live</p>
+  </div>
+</section>
+
 <!-- 14 OFFICE + GCC -->
 <section class="office" id="office">
   <div class="wrap">
     <div class="off-grid">
-      <div>
-        <p class="meta" style="color:var(--red)" data-rv>Meet us</p>
-        <h2 class="h2" style="margin-top:14px" data-rv>Meet your counsellor online, from any GCC country.</h2>
-        <p class="lede" style="margin:22px 0;max-width:56ch" data-rv>Our headquarters has been in London since 2012, and our counsellors work with students and families across the UAE (Dubai, <span class="kw">Sharjah</span>, Abu Dhabi, Ajman) and the wider GCC: Saudi Arabia (Riyadh, Jeddah), Qatar (Doha), Oman (Muscat), Kuwait (Kuwait City) and Bahrain (Manama). Searching for a <span class="kw">bachelor's degree in Sharjah</span> or anywhere else in the Gulf? A counsellor answers on WhatsApp within minutes, any working day.</p>
-        <div class="event" data-rv>
+      <div data-rv="left">
+        <p class="meta" style="color:var(--red)">Meet us</p>
+        <h2 class="h2" style="margin-top:14px">Meet your counsellor online, from any GCC country.</h2>
+        <p class="lede" style="margin:22px 0;max-width:56ch">Our headquarters has been in London since 2012, and our counsellors work with students and families across the UAE (Dubai, <span class="kw">Sharjah</span>, Abu Dhabi, Ajman) and the wider GCC: Saudi Arabia (Riyadh, Jeddah), Qatar (Doha), Oman (Muscat), Kuwait (Kuwait City) and Bahrain (Manama). Searching for a <span class="kw">bachelor's degree in Sharjah</span> or anywhere else in the Gulf? A counsellor answers on WhatsApp within minutes, any working day.</p>
+        <div class="event">
           <div class="date"><b>01</b><span>monthly</span></div>
           <div class="body"><h3>Meet your counsellor, live</h3><p>Once a month we host a live session on WhatsApp. Ask everything, and leave with a written programme and fee plan.</p><a class="btn-line" href="#">Book this month's session on WhatsApp</a></div>
         </div>
       </div>
-      <div class="off-plate" data-rv><img src="prototype-assets/office-plate.jpg" alt="A counselling session with a Maverick admissions counsellor"></div>
+      <div class="off-plate" data-rv="right"><img src="prototype-assets/office-plate.jpg" alt="A counselling session with a Maverick admissions counsellor"></div>
     </div>
   </div>
   <div class="citystrip"><div class="mq"><div class="mq-track" id="mq2"></div></div></div>
@@ -633,7 +745,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between}
   <div class="wrap final-grid">
     <div>
       <p class="meta" style="color:rgba(245,240,235,.6)" data-rv>Start your enquiry today</p>
-      <h2 style="margin-top:12px" data-rv>One enquiry. One counsellor. One written plan.</h2>
+      <h2 style="margin-top:12px" data-rv="zoom">One enquiry. One counsellor. One written plan.</h2>
       <div class="beats" data-rv>
         <div><b>01</b> No fees to ask.</div>
         <div><b>02</b> A counsellor calls within one working day.</div>
@@ -641,7 +753,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between}
         <div><b>04</b> WhatsApp us anytime, from any GCC country.</div>
       </div>
     </div>
-    <form class="glass" id="finalform" data-rv onsubmit="return false">
+    <form class="glass" id="finalform" data-rv="right" onsubmit="return false">
       <h3>Start my enquiry</h3>
       <p>Five fields. One working day. No commitment.</p>
       <div class="f-field"><label>Full name</label><input type="text"></div>
@@ -675,7 +787,7 @@ var chips=document.getElementById('chips');
 fields.forEach(function(f,i){var b=document.createElement('button');b.textContent=f;if(i===0)b.className='on';b.onclick=function(){chips.querySelectorAll('button').forEach(function(x){x.classList.remove('on')});b.classList.add('on');tb.querySelectorAll('tr').forEach(function(tr){tr.hidden=(f!=='All'&&tr.dataset.f!==f)});};chips.appendChild(b);});
 
 var acc=document.getElementById('acclist');
-FAQ.forEach(function(q,i){var d=document.createElement('div');d.className='acc-item';d.innerHTML='<button><span>'+q[0]+'</span><span class="pm">+</span></button><div class="body"><p>'+q[1]+'</p></div>';acc.appendChild(d);
+FAQ.forEach(function(q,i){var d=document.createElement('div');d.className='acc-item';d.setAttribute('data-rv','fade');d.innerHTML='<button><span>'+q[0]+'</span><span class="pm">+</span></button><div class="body"><p>'+q[1]+'</p></div>';acc.appendChild(d);
  d.querySelector('button').onclick=function(){var open=d.classList.contains('open');acc.querySelectorAll('.acc-item').forEach(function(x){x.classList.remove('open');x.querySelector('.body').style.maxHeight=null;});if(!open){d.classList.add('open');var b=d.querySelector('.body');b.style.maxHeight=b.scrollHeight+'px';}};
  if(i===0){d.classList.add('open');setTimeout(function(){var b=d.querySelector('.body');b.style.maxHeight=b.scrollHeight+'px';},400);}
 });
@@ -683,8 +795,11 @@ FAQ.forEach(function(q,i){var d=document.createElement('div');d.className='acc-i
 var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 function countUp(el){var end=+el.dataset.count,t0=null;function f(t){if(!t0)t0=t;var k=Math.min((t-t0)/1400,1);k=1-Math.pow(1-k,3);el.textContent=Math.round(end*k).toLocaleString('en-US');if(k<1)requestAnimationFrame(f);}requestAnimationFrame(f);}
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;var el=e.target;el.classList.add('in');el.querySelectorAll('[data-count]').forEach(function(c){if(!c.dataset.done){c.dataset.done=1;if(!reduce)countUp(c);else c.textContent=(+c.dataset.count).toLocaleString('en-US');}});io.unobserve(el);});},{threshold:.18});
-document.querySelectorAll('[data-rv],.piebox,.bars,.spine,.ladder').forEach(function(el){io.observe(el);if(reduce)el.classList.add('in');});
-document.querySelectorAll('.trust,.stats,.beats,.who,.tick,.gives').forEach(function(w){Array.prototype.forEach.call(w.children,function(c,i){c.style.transitionDelay=(i*.09)+'s';c.setAttribute('data-rv','');io.observe(c);});});
+document.querySelectorAll('[data-rv],.pie,.bars,.spine,.ladder,.prem,.tl').forEach(function(el){io.observe(el);if(reduce)el.classList.add('in');});
+document.querySelectorAll('.trust,.stats,.beats,.who,.gives').forEach(function(w){Array.prototype.forEach.call(w.children,function(c,i){c.style.transitionDelay=(i*.09)+'s';c.setAttribute('data-rv','');io.observe(c);});});
+/* stagger groups (elements already tagged in markup, or tagged by JS above) */
+function stag(sel,base){document.querySelectorAll(sel).forEach(function(el,i){if(!el.hasAttribute('data-rv'))return;el.style.transitionDelay=(base+i*.1)+'s';});}
+stag('.rail',0);stag('.aud-row',0);stag('.story',0);stag('.acc-item',0);stag('.tl-n',.25);stag('.step',.15);
 
 document.querySelectorAll('.checker .tabs button').forEach(function(b){b.onclick=function(){document.querySelectorAll('.checker .tabs button').forEach(function(x){x.classList.remove('on')});document.querySelectorAll('.checker .pane').forEach(function(x){x.classList.remove('on')});b.classList.add('on');document.getElementById(b.dataset.p).classList.add('on');};});
 
