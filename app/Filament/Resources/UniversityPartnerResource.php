@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\UniversityPartnerResource\Pages;
 use App\Filament\Resources\UniversityPartnerResource\RelationManagers;
+use App\Models\MediaAsset;
 use App\Models\UniversityPartner;
 use App\Filament\Concerns\HandlesCloudinaryImageFields;
 use Filament\Forms;
@@ -82,6 +83,33 @@ class UniversityPartnerResource extends Resource
                         \Filament\Forms\Components\RichEditor::make('description')->columnSpanFull(),
                     ]),
 
+                \Filament\Forms\Components\Section::make('Recognised & Accredited')
+                    ->description('Logo strip shown on every program detail page linked to this university.')
+                    ->schema([
+                        \Filament\Forms\Components\Repeater::make('recognition_logos')
+                            ->schema([
+                                \Filament\Forms\Components\TextInput::make('name')
+                                    ->validationAttribute('organisation name'),
+                                \Filament\Forms\Components\TextInput::make('logo')
+                                    ->label('Logo URL')
+                                    ->nullable()
+                                    ->helperText('Or choose from the media library below.'),
+                                MediaPicker::forField('logo', 'university-partners/recognition')
+                                    ->label('Logo Image'),
+                                \Filament\Forms\Components\RichEditor::make('note')
+                                    ->label('Note (optional)')
+                                    ->helperText('Short caption shown under the name in the marquee.')
+                                    ->columnSpanFull(),
+                            ])
+                            ->reorderable()
+                            ->collapsible()
+                            ->columns(2)
+                            ->defaultItems(0)
+                            ->itemLabel(fn (array $state): ?string => $state['name'] ?? 'Recognition')
+                            ->addActionLabel('Add Recognition Logo')
+                            ->columnSpanFull(),
+                    ]),
+
                 \Filament\Forms\Components\Section::make('URL & Programs')
                     ->schema([
                         \Filament\Forms\Components\TextInput::make('slug')
@@ -143,6 +171,49 @@ class UniversityPartnerResource extends Resource
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
+    }
+
+    /**
+     * Strip transient MediaPicker keys and sync nested logo URLs before save.
+     */
+    public static function cleanRecognitionLogos(array $data): array
+    {
+        if (! array_key_exists('recognition_logos', $data) || ! is_array($data['recognition_logos'])) {
+            return $data;
+        }
+
+        foreach ($data['recognition_logos'] as &$row) {
+            if (! is_array($row)) {
+                continue;
+            }
+
+            $assetKey = 'logo_asset_id';
+
+            if (array_key_exists($assetKey, $row)) {
+                if (! empty($row[$assetKey])) {
+                    $asset = MediaAsset::query()->find($row[$assetKey]);
+
+                    if ($asset) {
+                        $row['logo'] = $asset->url;
+                    }
+                } elseif (empty($row['logo'])) {
+                    $row['logo'] = null;
+                }
+
+                unset($row[$assetKey]);
+            }
+
+            foreach (array_keys($row) as $key) {
+                if (str_ends_with((string) $key, '_asset_id')) {
+                    unset($row[$key]);
+                }
+            }
+        }
+        unset($row);
+
+        $data['recognition_logos'] = array_values($data['recognition_logos']);
+
+        return $data;
     }
 
     public static function getRelations(): array

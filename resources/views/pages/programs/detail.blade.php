@@ -22,7 +22,7 @@
     $chrome = $chrome ?? safe_settings(\App\Settings\ProgramsDetailChromeSettings::class);
     $cat = $program->programCategory;
     $highlights          = collect($program->highlights_list ?? [])->filter(fn ($h) => is_array($h))->values();
-    $recognition         = collect($program->recognition_list ?? [])->filter(fn ($r) => is_array($r))->values();
+    $recognition         = $program->universityPartner?->recognition_logos_list ?? collect();
     $snapshot            = collect($program->snapshot_list ?? [])->filter(fn ($s) => is_array($s))->values();
     $benefits            = collect($program->benefits_list ?? [])->filter(fn ($b) => is_array($b))->values();
     $learning            = collect($program->learning_list ?? []);

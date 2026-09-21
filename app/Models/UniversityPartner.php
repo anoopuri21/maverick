@@ -26,6 +26,7 @@ class UniversityPartner extends Model
         'website_url',
         'description',
         'recognition',
+        'recognition_logos',
         'sort_order',
         'is_active',
         'logo_url_asset_id',
@@ -38,6 +39,7 @@ class UniversityPartner extends Model
         'sort_order' => 'integer',
         'latitude' => 'float',
         'longitude' => 'float',
+        'recognition_logos' => 'array',
     ];
 
     protected static function booted(): void
@@ -59,6 +61,24 @@ class UniversityPartner extends Model
     {
         return $this->getMediaUrl('campus_image_url')
             ?: $this->getMediaUrl('logo_url');
+    }
+
+    /**
+     * Recognised & Accredited logo strip shared by every linked program.
+     *
+     * @return \Illuminate\Support\Collection<int, array<string, mixed>>
+     */
+    public function getRecognitionLogosListAttribute(): \Illuminate\Support\Collection
+    {
+        return collect($this->recognition_logos ?? [])
+            ->filter(function ($row) {
+                if (! is_array($row)) {
+                    return false;
+                }
+
+                return filled($row['name'] ?? null) || filled($row['logo'] ?? null);
+            })
+            ->values();
     }
 
     /**

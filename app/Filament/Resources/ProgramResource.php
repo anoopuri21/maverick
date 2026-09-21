@@ -233,14 +233,8 @@ class ProgramResource extends Resource
 
                         Tab::make('Accreditation & Recognition')
                             ->icon('heroicon-o-check-badge')
-                            #->description('Logo marquee under the hero (§2) and grouped accreditation grid (§10).')
+                            #->description('Grouped accreditation grid (§10). Recognised & Accredited logos are managed on the University Partner.')
                     ->schema([
-                                Section::make('Recognition Marquee')
-                                    #->description('Scrolling logo strip shown directly under the hero.')
-                    ->collapsible()
-                    ->collapsed(false)
-                    ->schema([static::recognitionRepeater()]),
-
                                 Section::make('Accreditation Groups')
                                     #->description('Grouped logo grids in the Accreditation & Recognition section.')
                     ->collapsible()
@@ -380,11 +374,6 @@ class ProgramResource extends Resource
      */
     public static function cleanJsonForSave(array $data): array
     {
-        foreach ($data['recognition'] ?? [] as &$row) {
-            static::syncNestedMediaField($row, 'logo');
-        }
-        unset($row);
-
         foreach ($data['testimonials'] ?? [] as &$row) {
             static::syncNestedMediaField($row, 'thumb');
         }
@@ -403,9 +392,6 @@ class ProgramResource extends Resource
         }
         unset($group);
 
-        if (isset($data['recognition'])) {
-            static::stripAssetIdKeys($data['recognition']);
-        }
         if (isset($data['testimonials'])) {
             static::stripAssetIdKeys($data['testimonials']);
         }
@@ -791,31 +777,6 @@ class ProgramResource extends Resource
             ->defaultItems(0)
             ->itemLabel(fn (array $state): ?string => $state['name'] ?? 'Review')
             ->addActionLabel('Add Review');
-    }
-
-    protected static function recognitionRepeater(): Repeater
-    {
-        return Repeater::make('recognition')
-            ->schema([
-                TextInput::make('name')
-                    ->validationAttribute('organisation name'),
-                TextInput::make('logo')
-                    ->label('Logo URL')
-                    ->nullable()
-                    ->helperText('Or choose from the media library below.'),
-                MediaPicker::forField('logo', 'programs/recognition')
-                    ->label('Logo Image'),
-                RichEditor::make('note')
-                    ->label('Note (optional)')
-                    ->helperText('Short caption shown under the name in the marquee.')
-                    ->columnSpanFull(),
-            ])
-            ->reorderable()
-            ->collapsible()
-            ->columns(2)
-            ->defaultItems(0)
-            ->itemLabel(fn (array $state): ?string => $state['name'] ?? 'Recognition')
-            ->addActionLabel('Add Recognition Logo');
     }
 
     protected static function accreditationGroupsRepeater(): Repeater
