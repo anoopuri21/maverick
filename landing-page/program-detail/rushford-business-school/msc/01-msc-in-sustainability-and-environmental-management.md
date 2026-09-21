@@ -1,10 +1,10 @@
 # 13 · Program Detail Page Content: MSc in Sustainability and Environmental Management (v5)
 
-**Page:** /programs/msc-in-sustainability-and-environmental-management
+**Page:** /programmes/msc-in-sustainability-and-environmental-management
 **Awarding university:** Rushford Business School, Switzerland · **Category:** MSc · **Level:** Master's · **Duration:** 12 months, fully online
 **Voice pass:** v5 maximally-human pattern (detector validation sample)
 **Status:** CONTENT READY · excluded sections not written (per client list)
-**Sources on file:** official Rushford MSc programme pages (12 months, 60 ECTS, 15 courses, block structure), UAE Net Zero 2050 and Energy Strategy 2050, Taggd GCC Talent Market 2026
+**Sources on file:** official Rushford MSc programme pages (12 months, 60 ECTS, 15 courses, block structure), UAE Net Zero 2050 and Energy Strategy 2050
 
 ---
 
@@ -173,7 +173,7 @@ The UAE's net-zero plan commits AED 600 billion through 2050, and the national e
 Listed companies and funds in the Gulf face rising disclosure expectations, and the people who can produce credible ESG analysis are scarce enough to name individually.
 
 **04 · Employers keep reporting the gap**
-Taggd's 2026 GCC study found nine in ten employers struggling with skill shortages, and sustainability functions are among the newest and thinnest.
+Across the Gulf, employers keep reporting shortages of qualified candidates, and sustainability functions are among the newest and thinnest.
 
 **05 · The twelve-month format respects seniority**
 Senior professionals cannot disappear for two years. One year, asynchronous, with the salary still arriving, is the arrangement that actually gets signed.
@@ -199,6 +199,7 @@ Fees depend on the intake and on the ECTS version chosen, so no fixed figure sit
 ## BUILD NOTES (internal, not page copy)
 
 - Field mapping identical to the MBA pages; structure uses the MSc three-block format (12 months, 60 ECTS, 15 courses of 4 ECTS).
-- Sources: Rushford official MSc page, rushford.ch (12 months, 60 ECTS, 15 courses: 5 core + 10 specialization) and apply.rushford.ch (60/90/120 ECTS ladder at 12/18/24 months; block names and course titles used in the structure section); UAE Net Zero 2050 (AED 600B, Reuters/UAE government); UAE Energy Strategy 2050 via ADDED (50,000 green jobs by 2030); Taggd GCC Talent Market 2026.
+- Sources: Rushford official MSc page, rushford.ch (12 months, 60 ECTS, 15 courses: 5 core + 10 specialisation) and apply.rushford.ch (60/90/120 ECTS ladder at 12/18/24 months; block names and course titles used in the structure section); UAE Net Zero 2050 (AED 600B, Reuters/UAE government); UAE Energy Strategy 2050 via ADDED (50,000 green jobs by 2030)
 - Careers: the official page does not publish a role list for this MSc; all ten roles are market-standard and need client approval.
 - Sign-off needed: exact fee, September 2026 seats, scholarship rules, career role list approval, market figures if legal prefers softer language.
+- 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.

@@ -1,11 +1,11 @@
 # 15 · Program Detail Page Content: MSc in Operations and Supply Chain Management (v5)
 
-**Page:** /programs/msc-in-operations-and-supply-chain-management
+**Page:** /programmes/msc-in-operations-and-supply-chain-management
 **Awarding university:** Rushford Business School, Switzerland
 **Category:** MSc · **Level:** Master's · **Duration:** 12 months, fully online
 **Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections not written (per client list)
-**Sources on file:** official Rushford MSc programme listing (12 months, 60 ECTS, 15 courses, specialization scope and career roles), IMARC UAE logistics market, Taggd GCC Talent Market 2026
+**Sources on file:** official Rushford MSc programme listing (12 months, 60 ECTS, 15 courses, specialisation scope and career roles)
 
 ---
 
@@ -55,7 +55,7 @@ The 90 ECTS (18-month) and 120 ECTS (24-month) versions are also available for t
 ## 3. PROGRAMME OVERVIEW (description)
 
 ### copy
-Supply chain stopped being a back-office function the year it became a boardroom headline. This MSc answers that shift: five core management courses first, then ten specialization courses spanning operations, logistics, inventory control, production scheduling, warehouse management, procurement, and the analytics that hold the whole thing together.
+Supply chain stopped being a back-office function the year it became a boardroom headline. This MSc answers that shift: five core management courses first, then ten specialisation courses spanning operations, logistics, inventory control, production scheduling, warehouse management, procurement, and the analytics that hold the whole thing together.
 
 The teaching leans practical, with real-time projects, seminars, and mentorship rather than pure lectures, and it runs asynchronously on the e-Campus. Fifteen courses in twelve months, designed for people whose jobs cannot pause, because in operations they never do.
 
@@ -87,7 +87,7 @@ Closing line: The certificate is awarded by Rushford Business School, Switzerlan
 
 ## 5. LEARNING OUTCOMES (learning)
 
-01 Design operations strategies that fit contemporary organizations
+01 Design operations strategies that fit contemporary organisations
 02 Control inventory with data instead of habit
 03 Schedule production against real constraints
 04 Manage warehouses with structure, from layout to labour
@@ -131,7 +131,7 @@ Three blocks across fifteen courses: core management, the operations and supply 
 - Accounting for Financial Reporting
 
 **Block 2 · Operations and supply chain foundation (20 ECTS)**
-- Ten specialization courses covering operations, logistics, inventory control, production scheduling, warehouse management, procurement, and analytics
+- Ten specialisation courses covering operations, logistics, inventory control, production scheduling, warehouse management, procurement, and analytics
 
 **Block 3 · Leadership and research (20 ECTS plus electives)**
 - Research Methodology
@@ -161,13 +161,13 @@ Why GCC professionals choose this course
 ### cards
 
 **01 · Study inside the region's busiest trade machine**
-Fully online, no visa, no career break. The UAE's logistics market was valued at USD 57.6 billion in 2025 and is heading toward USD 96 billion by 2034, and you can study from inside it.
+Fully online, no visa, no career break. Cargo keeps routing through Emirati ports and airports, and the logistics sector built around them keeps growing while you study from inside it.
 
 **02 · Ports make this a home-game**
 Regional cargo keeps rerouting through Emirati ports, and the mega projects running to 2029 need operations people with formal training on the ground.
 
 **03 · Employers keep reporting the shortage**
-Taggd's 2026 GCC study found nine in ten employers struggling to find qualified candidates, and supply chain functions are near the top of the list.
+Across the Gulf, employers keep reporting shortages of qualified candidates, and supply chain functions are near the top of the list.
 
 **04 · The degree travels across industries**
 Tourism, healthcare, manufacturing, retail: the official career framing reaches well past logistics firms, which suits the Gulf's diversified employers.
@@ -199,7 +199,8 @@ Fees vary with the intake and the ECTS version you select, so no fixed figure si
 
 - Voice pass: converted from v4 to v5 maximally-human pattern (varied rhythm, parenthetical asides, honest-take marker, uneven cards). Structure, facts, and field mapping unchanged.
 - Field mapping identical to program 01; MSc three-block structure.
-- Sources: Rushford official MSc listing (educations.com: 100% online, EduQua-certified Swiss school; specialization scope: operations, logistics, inventory control, production scheduling, warehouse management, procurement, analytics; real-time projects, seminars, mentorship; official career roles: supply chain analyst, demand planner, supply planner, data scientist, commercial manager, transport officer); rushford.ch MSc framework (12 months, 60 ECTS, 15 courses); apply.rushford.ch block titles; IMARC UAE logistics market (USD 57.6B 2025 to USD 96B 2034); Taggd GCC Talent Market 2026.
-- Block 2 written descriptively; the ten specialization course titles are not published, flagged for university sign-off.
+- Sources: Rushford official MSc listing (educations.com: 100% online, EduQua-certified Swiss school; specialisation scope: operations, logistics, inventory control, production scheduling, warehouse management, procurement, analytics; real-time projects, seminars, mentorship; official career roles: supply chain analyst, demand planner, supply planner, data scientist, commercial manager, transport officer); rushford.ch MSc framework (12 months, 60 ECTS, 15 courses); apply.rushford.ch block titles
+- Block 2 written descriptively; the ten specialisation course titles are not published, flagged for university sign-off.
 - Careers: first six roles from the official listing; Operations Manager, Procurement Specialist, Inventory Manager, Warehouse Operations Manager are market-standard, need client approval.
 - Sign-off needed: exact fee, September 2026 seats, scholarship rules, Block 2 module wording, career role list approval, market figures if legal prefers softer language.
+- 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.

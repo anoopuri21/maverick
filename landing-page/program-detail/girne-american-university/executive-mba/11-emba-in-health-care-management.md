@@ -1,10 +1,10 @@
 # GAU EMBA 11 · Program Detail Page Content: Executive MBA in Health Care Management (v5)
 
-**Page:** /programs/gau-emba-in-health-care-management
+**Page:** /programmes/gau-emba-in-health-care-management
 **Awarding university:** Girne American University, North Cyprus · **Category:** Executive MBA · **Level:** Master's · **Duration:** 12 to 18 months
 **Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections not written (per client list)
-**Sources on file:** approved master landing page programme table (GAU Executive MBAs, 12-18 months), MarkNtel UAE healthcare market (2026), UAE national health insurance mandate (MOHRE), Taggd GCC Talent Market 2026
+**Sources on file:** approved master landing page programme table (GAU Executive MBAs, 12-18 months), UAE national health insurance mandate (MOHRE)
 
 ---
 
@@ -54,7 +54,7 @@ The admission letter carries the credit detail and the fee structure, in writing
 ## 3. PROGRAMME OVERVIEW (description)
 
 ### copy
-Health care runs on clinical excellence, but it survives on management: the financing, the operations, and the regulatory relationships that keep the doors open. This Executive MBA trains the second half of that sentence for people already inside the sector. The executive core covers strategy, finance, human capital, and operations, then the coursework turns each toward health systems: managing clinical organizations, navigating payer economics, leading through regulatory change, and running the service quality metrics that inspections now live on.
+Health care runs on clinical excellence, but it survives on management: the financing, the operations, and the regulatory relationships that keep the doors open. This Executive MBA trains the second half of that sentence for people already inside the sector. The executive core covers strategy, finance, human capital, and operations, then the coursework turns each toward health systems: managing clinical organisations, navigating payer economics, leading through regulatory change, and running the service quality metrics that inspections now live on.
 
 Cohorts are small and senior, drawing from hospitals, clinics, insurers, and health groups, which makes the case discussions sound like a sector roundtable with better focus. The degree closes with a graduate research project, frequently aimed at a live problem in the participant's own facility.
 
@@ -86,7 +86,7 @@ Closing line: The certificate is awarded by Girne American University, North Cyp
 
 ## 5. LEARNING OUTCOMES (learning)
 
-01 Lead health care organizations with both clinical respect and commercial command
+01 Lead health care organisations with both clinical respect and commercial command
 02 Manage hospital operations against quality metrics that regulators actually inspect
 03 Read payer economics well enough to negotiate with insurers credibly
 04 Lead through regulatory change without treating it as an interruption
@@ -128,7 +128,7 @@ Three movements: the executive core, the health care management coursework, and 
 - Operations and management information systems
 
 **Stage 2 · Health care management coursework**
-- Managing clinical organizations and service quality
+- Managing clinical organisations and service quality
 - Payer economics, regulation, and health systems strategy
 - Leadership case work across hospitals, clinics, and health groups
 
@@ -159,13 +159,13 @@ Why GCC professionals choose this course
 Fully online, no visa, no career break. The executive format assumes your diary belongs to other people's emergencies.
 
 **02 · The sector is expanding at ten percent a year**
-MarkNtel values the UAE healthcare market at USD 3.4 billion in 2025, projected to reach USD 6.63 billion by 2032, and expansion at that pace is a management problem as much as a clinical one.
+UAE healthcare keeps expanding, and expansion at that pace is a management problem as much as a clinical one.
 
 **03 · Insurance made every leader accountable twice**
 With the national health insurance mandate in force since January 2025, providers answer to payers as well as patients, which doubles the need for executives fluent in both.
 
 **04 · The skills gap includes hospital corridors**
-Taggd's 2026 GCC study reports nine in ten employers struggling to find qualified candidates, and health care administration is short on formally trained leaders.
+Across the Gulf, employers keep reporting shortages of qualified candidates, and health care administration is short on formally trained leaders.
 
 **05 · Eighteen months suits clinical calendars**
 The delivery bends around rotas, inspections, and budget cycles instead of competing with them.
@@ -191,6 +191,7 @@ Fees depend on the intake and your admission profile, so no fixed figure sits he
 ## BUILD NOTES (internal, not page copy)
 
 - Field mapping identical to the Rushford programme pages; three-stage structure written descriptively because no official module list for this EMBA was verified this cycle (flagged for university sign-off).
-- Sources: approved master landing page programme table (GAU Executive MBAs, 12-18 months); MarkNtel UAE healthcare market (USD 3.4B 2025 to USD 6.63B 2032, 10% CAGR); UAE national health insurance mandate effective 1 Jan 2025 (MOHRE); Taggd GCC Talent Market 2026.
+- Sources: approved master landing page programme table (GAU Executive MBAs, 12-18 months); UAE national health insurance mandate effective 1 Jan 2025 (MOHRE)
 - Careers: all ten roles market-standard; need client approval.
 - Sign-off needed: exact fee, September 2026 seats, scholarship rules, stage wording, credit line if university provides one, market figures if legal prefers softer language.
+- 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.

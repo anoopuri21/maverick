@@ -1,10 +1,10 @@
 # GAU EMBA 12 · Program Detail Page Content: Executive MBA in Engineering Management (v5)
 
-**Page:** /programs/gau-emba-in-engineering-management
+**Page:** /programmes/gau-emba-in-engineering-management
 **Awarding university:** Girne American University, North Cyprus · **Category:** Executive MBA · **Level:** Master's · **Duration:** 12 to 18 months
 **Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections not written (per client list)
-**Sources on file:** approved master landing page programme table (GAU Executive MBAs, 12-18 months), official GAU-awarded EMBA specialization modules (Engineering Management, Engineering Optimisation and Technology Management, Graduate Research Project), Logistics Middle East mega-project demand (Jan 2025), Taggd GCC Talent Market 2026
+**Sources on file:** approved master landing page programme table (GAU Executive MBAs, 12-18 months), official GAU-awarded EMBA specialisation modules (Engineering Management, Engineering Optimisation and Technology Management, Graduate Research Project)
 
 ---
 
@@ -54,7 +54,7 @@ The admission letter carries the credit detail and the fee structure, in writing
 ## 3. PROGRAMME OVERVIEW (description)
 
 ### copy
-Engineering careers advance on technical excellence until, suddenly, they advance on everything else: commercial judgment, people leadership, and the ability to defend an investment case. This Executive MBA is built for that transition. The executive core covers strategy, finance, human capital, and operations, then the specialization gets specific with Engineering Management and Engineering Optimisation and Technology Management, before the degree closes with a graduate research project.
+Engineering careers advance on technical excellence until, suddenly, they advance on everything else: commercial judgment, people leadership, and the ability to defend an investment case. This Executive MBA is built for that transition. The executive core covers strategy, finance, human capital, and operations, then the specialisation gets specific with Engineering Management and Engineering Optimisation and Technology Management, before the degree closes with a graduate research project.
 
 Cohorts are small and senior, drawing from construction, energy, manufacturing, and infrastructure, which gives the case discussions a familiar texture: everyone in the room has had a technically perfect proposal rejected for commercial reasons, and most have learned something from it.
 
@@ -65,7 +65,7 @@ Cohorts are small and senior, drawing from construction, energy, manufacturing, 
 **01 · The technical-to-executive bridge, built deliberately**
 The degree assumes engineering excellence is already yours, and teaches the commercial and leadership half that decides what gets built.
 
-**02 · Named specialization modules with optimisation in their title**
+**02 · Named specialisation modules with optimisation in their title**
 Engineering Management, then Engineering Optimisation and Technology Management. Improvement is the discipline, not a slogan.
 
 **03 · Eighteen months at the outside**
@@ -86,7 +86,7 @@ Closing line: The certificate is awarded by Girne American University, North Cyp
 
 ## 5. LEARNING OUTCOMES (learning)
 
-01 Lead engineering organizations with commercial command, not only technical authority
+01 Lead engineering organisations with commercial command, not only technical authority
 02 Optimise engineering operations with method and measurement
 03 Manage technology decisions against cost, risk, and strategy at once
 04 Translate engineering proposals into investment cases boards approve
@@ -118,7 +118,7 @@ Engineering Management Consultant
 Your journey, stage by stage
 
 ### intro
-Three movements: the executive core, the engineering management specialization, and the graduate research project.
+Three movements: the executive core, the engineering management specialisation, and the graduate research project.
 
 ### stages
 
@@ -127,7 +127,7 @@ Three movements: the executive core, the engineering management specialization, 
 - Financial management and human resource management
 - Operations and management information systems
 
-**Stage 2 · Engineering management specialization**
+**Stage 2 · Engineering management specialisation**
 - Engineering Management
 - Engineering Optimisation and Technology Management
 - Executive case work across infrastructure, energy, and manufacturing
@@ -159,19 +159,19 @@ Why GCC professionals choose this course
 Fully online, no visa, no career break. The executive format assumes your calendar belongs to the project.
 
 **02 · The region keeps commissioning what engineers deliver**
-Logistics Middle East's January 2025 review tracks Gulf mega projects running through 2029, and behind every one sits a bench of engineering leadership that employers are still filling.
+Gulf mega projects keep running through this decade, and behind every one sits a bench of engineering leadership that employers are still filling.
 
 **03 · Diversification runs on infrastructure**
 Energy, transport, water, and digital infrastructure keep expanding across the emirates, and the management layer above the technical teams is where the vacancies sit.
 
 **04 · The skills gap reaches technical leadership**
-Taggd's 2026 GCC study reports nine in ten employers struggling to find qualified candidates, and engineering management roles combine two scarce profiles into one.
+Across the Gulf, employers keep reporting shortages of qualified candidates, and engineering management roles combine two scarce profiles into one.
 
 **05 · Eighteen months suits delivery calendars**
 The delivery bends around milestones and shutdowns instead of competing with them.
 
 **06 · The research project can improve your own operation**
-Finish on a live question from your engineering organization and graduate with a case your leadership has already seen.
+Finish on a live question from your engineering organisation and graduate with a case your leadership has already seen.
 
 ---
 
@@ -191,6 +191,7 @@ Fees depend on the intake and your admission profile, so no fixed figure sits he
 ## BUILD NOTES (internal, not page copy)
 
 - Field mapping identical to the Rushford programme pages.
-- Sources: approved master landing page programme table (GAU Executive MBAs, 12-18 months); official GAU-awarded EMBA specialization modules as listed on partner programme documentation (Engineering Management 8 ECTS, Engineering Optimisation and Technology Management 8 ECTS, Graduate Research Project 24 ECTS); Logistics Middle East Jan 2025 (mega projects to 2029); Taggd GCC Talent Market 2026.
+- Sources: approved master landing page programme table (GAU Executive MBAs, 12-18 months); official GAU-awarded EMBA specialisation modules as listed on partner programme documentation (Engineering Management 8 ECTS, Engineering Optimisation and Technology Management 8 ECTS, Graduate Research Project 24 ECTS)
 - Careers: all ten roles market-standard; need client approval.
 - Sign-off needed: exact fee, September 2026 seats, scholarship rules, credit line if university provides one, market figures if legal prefers softer language.
+- 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.

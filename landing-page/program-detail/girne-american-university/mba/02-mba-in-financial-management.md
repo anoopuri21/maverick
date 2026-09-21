@@ -1,10 +1,10 @@
 # GAU MBA 02 · Program Detail Page Content: MBA in Financial Management (v5)
 
-**Page:** /programs/gau-mba-in-financial-management
+**Page:** /programmes/gau-mba-in-financial-management
 **Awarding university:** Girne American University, North Cyprus · **Category:** MBA · **Level:** Master's · **Duration:** 12 to 15 months
 **Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections not written (per client list)
-**Sources on file:** Girne American University programme description as carried on the client's course pages (12-15 months, flexible delivery), Labeeb UAE banking and finance hiring 2025, Taggd GCC Talent Market 2026
+**Sources on file:** Girne American University programme description as carried on the client's course pages (12-15 months, flexible delivery)
 
 ---
 
@@ -133,7 +133,7 @@ Three movements: the business core, the financial management coursework, and the
 - Financial management case work across industries
 
 **Stage 3 · The graduate research project**
-- A supervised investigation of a financial question, often drawn from the student's own organization
+- A supervised investigation of a financial question, often drawn from the student's own organisation
 
 ---
 
@@ -162,10 +162,10 @@ UAE bank assets passed AED 4.1 trillion in 2024, and the hiring runs from mid-le
 Post-2024 tightening in compliance, risk, and governance means finance employers screen harder for formal qualifications. This MBA clears the screen.
 
 **03 · Fintech bids for the same people**
-Banks and fintechs compete for hybrids who understand finance and the technology around it, and Labeeb's 2025 review shows analyst bands in growth-stage fintechs around AED 18,000 to 28,000 a month.
+Banks and fintechs compete for hybrids who understand finance and the technology around it, and that demand keeps formal qualifications scarce.
 
 **04 · The skills gap is documented**
-Taggd's 2026 GCC study reports nine in ten employers struggling to find qualified candidates, with risk and treasury among the tightest functions.
+Across the Gulf, employers keep reporting shortages of qualified candidates, with risk and treasury among the tightest functions.
 
 **05 · Fifteen months suits finance calendars**
 Close periods and audit seasons do not allow sabbaticals. The degree's upper bound is fifteen months, and the delivery bends around the busy weeks.
@@ -191,6 +191,7 @@ Fees depend on the intake and your admission profile, so no fixed number sits he
 ## BUILD NOTES (internal, not page copy)
 
 - Field mapping identical to the Rushford programme pages; three-stage structure written descriptively because no fixed module list is published for this MBA (flagged for university sign-off).
-- Sources: Girne American University programme description as carried on client course pages (12-15 months, flexible part-time and distance delivery); Labeeb UAE banking and finance hiring 2025 (bank assets AED 4.1T in 2024, fintech analyst bands AED 18,000-28,000); Taggd GCC Talent Market 2026.
+- Sources: Girne American University programme description as carried on client course pages (12-15 months, flexible part-time and distance delivery)
 - Careers: all ten roles market-standard; need client approval.
 - Sign-off needed: exact fee, September 2026 seats, scholarship rules, stage wording, credit line if university provides one, salary band wording, market figures if legal prefers softer language.
+- 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.

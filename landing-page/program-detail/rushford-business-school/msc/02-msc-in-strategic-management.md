@@ -1,11 +1,11 @@
 # 14 · Program Detail Page Content: MSc in Strategic Management (v5)
 
-**Page:** /programs/msc-in-strategic-management
+**Page:** /programmes/msc-in-strategic-management
 **Awarding university:** Rushford Business School, Switzerland
 **Category:** MSc · **Level:** Master's · **Duration:** 12 months, fully online
 **Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections not written (per client list)
-**Sources on file:** official Rushford MSc programme page (12 months, 60 ECTS, 15 courses: 5 core + 10 specialization), Mordor Intelligence UAE management consulting market (2026), Taggd GCC Talent Market 2026
+**Sources on file:** official Rushford MSc programme page (12 months, 60 ECTS, 15 courses: 5 core + 10 specialisation)
 
 ---
 
@@ -55,7 +55,7 @@ Longer versions exist if you want more depth: 90 ECTS over 18 months, 120 ECTS o
 ## 3. PROGRAMME OVERVIEW (description)
 
 ### copy
-Strategy is taught everywhere and understood less often. This MSc treats it as a discipline with methods: five core management courses put the business fundamentals in place, then ten specialization courses work through strategy as formulation, implementation, evaluation, and governance, with the case-based approach Rushford uses across its strategy teaching.
+Strategy is taught everywhere and understood less often. This MSc treats it as a discipline with methods: five core management courses put the business fundamentals in place, then ten specialisation courses work through strategy as formulation, implementation, evaluation, and governance, with the case-based approach Rushford uses across its strategy teaching.
 
 The whole degree runs asynchronously on the e-Campus. Fifteen courses of four ECTS each across twelve months, which suits consultants, analysts, and managers whose calendars do not include free weekdays (and whose travel calendars include even fewer). The research methodology inside the leadership block also makes this a sensible stepping stone to doctoral work later.
 
@@ -66,11 +66,11 @@ The whole degree runs asynchronously on the e-Campus. Fifteen courses of four EC
 **01 · Twelve months to a Swiss MSc**
 Sixty ECTS in a year. The fastest credible route on this site to a strategy credential.
 
-**02 · A specialization, in depth**
+**02 · A specialisation, in depth**
 Ten of the fifteen courses are strategy-specific, which is a ratio most general degrees cannot match.
 
 **03 · The Gulf buys strategy constantly**
-UAE management consulting was valued at USD 2.55 billion in 2025 and is forecast to reach USD 3.57 billion by 2031. Someone in every one of those engagements holds the analysis together.
+Management consulting drives a large share of the Gulf's biggest decisions. Someone in every one of those engagements holds the analysis together.
 
 **04 · Asynchronous by design**
 No fixed classroom hours. The e-Campus carries lectures, readings, simulations, and assessments around your schedule.
@@ -87,7 +87,7 @@ Closing line: Rushford Business School, Switzerland, awards the degree. The pace
 
 ## 5. LEARNING OUTCOMES (learning)
 
-01 Diagnose an organization's strategic position with evidence
+01 Diagnose an organisation's strategic position with evidence
 02 Formulate strategy that accounts for budgets, politics, and markets
 03 Implement plans without losing them inside the org chart
 04 Evaluate strategic outcomes and govern what comes next
@@ -131,7 +131,7 @@ Three blocks across fifteen courses: core management, the strategy foundation, a
 - Accounting for Financial Reporting
 
 **Block 2 · Strategy foundation (20 ECTS)**
-- Ten specialization courses covering strategy formulation, implementation, evaluation, and governance, taught with the case method
+- Ten specialisation courses covering strategy formulation, implementation, evaluation, and governance, taught with the case method
 
 **Block 3 · Leadership and research (20 ECTS plus electives)**
 - Research Methodology
@@ -164,13 +164,13 @@ Why GCC professionals choose this course
 Fully online, no visa, no career break. The degree fits around billable hours, deadlines, and travel.
 
 **02 · Consulting demand keeps compounding**
-Mordor Intelligence puts the UAE management consulting market at USD 2.55 billion in 2025, growing to USD 3.57 billion by 2031, with technology consulting the fastest-growing line.
+Consulting engagements keep growing across the UAE, with technology consulting among the fastest-moving lines.
 
 **03 · National agendas are strategy programmes**
 Every Gulf government runs multi-year transformation agendas, and they staff them with people who can formulate and track strategy.
 
 **04 · The skills gap touches analysts too**
-Taggd's 2026 GCC study reports nine in ten employers struggling to find qualified candidates, and structured strategic thinking is among the rarest.
+Across the Gulf, employers keep reporting shortages of qualified candidates, and structured strategic thinking is among the rarest.
 
 **05 · Twelve months suits senior calendars**
 The asynchronous format means no sabbatical and no weekend sacrifice beyond what you choose.
@@ -199,7 +199,8 @@ Because fees move with the intake and the ECTS version you choose, no fixed figu
 
 - Voice pass: converted from v4 to v5 maximally-human pattern (varied rhythm, parenthetical asides, honest-take marker, uneven cards). Structure, facts, and field mapping unchanged.
 - Field mapping identical to program 01; MSc three-block structure.
-- Sources: Rushford official MSc page, rushford.ch (12 months, 60 ECTS, 15 courses: 5 core + 10 specialization, asynchronous e-Campus delivery); apply.rushford.ch block structure (core management course titles used in Block 1 and Block 3); Mordor Intelligence UAE management consulting market (USD 2.55B 2025 to USD 3.57B 2031); Taggd GCC Talent Market 2026.
-- The ten specialization course titles are not published on the official pages; Block 2 written descriptively, flagged for university sign-off.
+- Sources: Rushford official MSc page, rushford.ch (12 months, 60 ECTS, 15 courses: 5 core + 10 specialisation, asynchronous e-Campus delivery); apply.rushford.ch block structure (core management course titles used in Block 1 and Block 3)
+- The ten specialisation course titles are not published on the official pages; Block 2 written descriptively, flagged for university sign-off.
 - Careers: no official role list published for this MSc; all ten roles are market-standard, need client approval.
 - Sign-off needed: exact fee, September 2026 seats, scholarship rules, Block 2 module wording, career role list approval, market figures if legal prefers softer language.
+- 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.

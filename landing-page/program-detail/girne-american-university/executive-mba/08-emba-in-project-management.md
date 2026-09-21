@@ -1,10 +1,10 @@
 # GAU EMBA 08 · Program Detail Page Content: Executive MBA in Project Management (v5)
 
-**Page:** /programs/gau-emba-in-project-management
+**Page:** /programmes/gau-emba-in-project-management
 **Awarding university:** Girne American University, North Cyprus · **Category:** Executive MBA · **Level:** Master's · **Duration:** 12 to 18 months
 **Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections not written (per client list)
-**Sources on file:** approved master landing page programme table (GAU Executive MBAs, 12-18 months), Logistics Middle East mega-project demand (Jan 2025), Taggd GCC Talent Market 2026
+**Sources on file:** approved master landing page programme table (GAU Executive MBAs, 12-18 months)
 
 ---
 
@@ -159,13 +159,13 @@ Why GCC professionals choose this course
 Fully online, no visa, no career break. The executive format assumes your calendar belongs to the programme.
 
 **02 · The region runs on project delivery**
-Logistics Middle East's January 2025 review notes the Gulf's mega projects running through 2029, and every one of them is a demand signal for senior delivery leadership.
+The Gulf's mega projects keep running through this decade, and every one of them is a demand signal for senior delivery leadership.
 
 **03 · Diversification keeps commissioning programmes**
 Every national agenda in the Gulf is executed as a portfolio of programmes, and the leadership layer for them is hired from a thin pool.
 
 **04 · The skills gap reaches delivery leadership**
-Taggd's 2026 GCC study reports nine in ten employers struggling to find qualified candidates, and programme leadership roles are among the longest-standing vacancies.
+Across the Gulf, employers keep reporting shortages of qualified candidates, and programme leadership roles are among the longest-standing vacancies.
 
 **05 · Eighteen months suits delivery calendars**
 The delivery bends around milestones and gates instead of asking you to pause them.
@@ -191,6 +191,7 @@ Fees depend on the intake and your admission profile, so no fixed figure sits he
 ## BUILD NOTES (internal, not page copy)
 
 - Field mapping identical to the Rushford programme pages; three-stage structure written descriptively because no official module list for this EMBA was verified this cycle (flagged for university sign-off).
-- Sources: approved master landing page programme table (GAU Executive MBAs, 12-18 months); Logistics Middle East Jan 2025 (Gulf mega-project pipeline running to 2029); Taggd GCC Talent Market 2026.
+- Sources: approved master landing page programme table (GAU Executive MBAs, 12-18 months)
 - Careers: all ten roles market-standard; need client approval.
 - Sign-off needed: exact fee, September 2026 seats, scholarship rules, stage wording, credit line if university provides one, market figures if legal prefers softer language.
+- 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.

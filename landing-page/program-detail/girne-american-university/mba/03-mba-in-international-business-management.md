@@ -1,10 +1,10 @@
 # GAU MBA 03 · Program Detail Page Content: MBA in International Business Management (v5)
 
-**Page:** /programs/gau-mba-in-international-business-management
+**Page:** /programmes/gau-mba-in-international-business-management
 **Awarding university:** Girne American University, North Cyprus · **Category:** MBA · **Level:** Master's · **Duration:** 12 to 15 months
 **Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections not written (per client list)
-**Sources on file:** Girne American University programme description as carried on the client's course pages (12-15 months, flexible delivery), ADDED UAE non-oil economy data, Taggd GCC Talent Market 2026
+**Sources on file:** Girne American University programme description as carried on the client's course pages (12-15 months, flexible delivery), ADDED UAE non-oil economy data
 
 ---
 
@@ -165,7 +165,7 @@ The UAE's non-oil sector contributes over 74% of GDP now, and that economy runs 
 Multinationals keep moving regional operations into Dubai and Abu Dhabi, and they staff them with managers who can hold several markets in one head.
 
 **04 · The skills gap includes international roles**
-Taggd's 2026 GCC study reports nine in ten employers struggling to find qualified candidates, and roles spanning markets are the hardest to fill from within.
+Across the Gulf, employers keep reporting shortages of qualified candidates, and roles spanning markets are the hardest to fill from within.
 
 **05 · Fifteen months suits mobile careers**
 People aiming at international postings rarely have two years to spare. The degree's upper bound is fifteen months, and it was designed assuming you travel.
@@ -191,6 +191,7 @@ Fees depend on the intake and your admission profile, so no fixed figure is prin
 ## BUILD NOTES (internal, not page copy)
 
 - Field mapping identical to the Rushford programme pages; three-stage structure written descriptively because no fixed module list is published for this MBA (flagged for university sign-off).
-- Sources: Girne American University programme description as carried on client course pages (12-15 months, flexible part-time and distance delivery); ADDED clean energy page (UAE non-oil sector above 74% of GDP in 2023); Taggd GCC Talent Market 2026.
+- Sources: Girne American University programme description as carried on client course pages (12-15 months, flexible part-time and distance delivery); ADDED clean energy page (UAE non-oil sector above 74% of GDP in 2023)
 - Careers: all ten roles market-standard; need client approval.
 - Sign-off needed: exact fee, September 2026 seats, scholarship rules, stage wording, credit line if university provides one, market figures if legal prefers softer language.
+- 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.

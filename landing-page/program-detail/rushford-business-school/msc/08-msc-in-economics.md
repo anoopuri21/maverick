@@ -1,11 +1,11 @@
 # 20 · Program Detail Page Content: MSc in Economics (v5)
 
-**Page:** /programs/msc-in-economics
+**Page:** /programmes/msc-in-economics
 **Awarding university:** Rushford Business School, Switzerland
 **Category:** MSc · **Level:** Master's · **Duration:** 12 months, fully online
 **Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections not written (per client list)
-**Sources on file:** official Rushford MSc programme page (12 months, 60 ECTS, 15 courses, focus areas and career roles), UAE non-oil economy share via ADDED, Taggd GCC Talent Market 2026
+**Sources on file:** official Rushford MSc programme page (12 months, 60 ECTS, 15 courses, focus areas and career roles), UAE non-oil economy share via ADDED
 
 ---
 
@@ -55,7 +55,7 @@ The degree can be extended up to three years at no additional fee if your schedu
 ## 3. PROGRAMME OVERVIEW (description)
 
 ### copy
-Economics departments used to hire for theory. Gulf employers hire for forecasting, econometrics, and the quantitative habits behind both. This MSc faces that reality: five core management courses first, then ten specialization courses with a deliberate focus on FinTech, econometrics, and quantitative methods for decision-making, economic modelling, and inference-based data.
+Economics departments used to hire for theory. Gulf employers hire for forecasting, econometrics, and the quantitative habits behind both. This MSc faces that reality: five core management courses first, then ten specialisation courses with a deliberate focus on FinTech, econometrics, and quantitative methods for decision-making, economic modelling, and inference-based data.
 
 Practical projects and seminars run alongside the coursework on the e-Campus, and the format is asynchronous. Fifteen courses across twelve months, extendable to three years at no extra fee for people whose work refuses to cooperate, and in the Gulf it often refuses.
 
@@ -67,7 +67,7 @@ Practical projects and seminars run alongside the coursework on the e-Campus, an
 Econometrics and statistical methods for decision-making sit at the centre of the degree, which is what applied economics hiring screens for.
 
 **02 · Forecasting is taught as a discipline**
-Economic modelling and forecasting run through the specialization, aimed at the advisory and policy roles that depend on them.
+Economic modelling and forecasting run through the specialisation, aimed at the advisory and policy roles that depend on them.
 
 **03 · FinTech has a seat at the table**
 Few economics degrees touch financial technology. This one does, and the Gulf's payments and digital banking boom makes that relevant.
@@ -131,7 +131,7 @@ Three blocks across fifteen courses: core management, the economics foundation, 
 - Accounting for Financial Reporting
 
 **Block 2 · Economics foundation (20 ECTS)**
-- Ten specialization courses covering econometrics, quantitative methods, economic modelling, forecasting, and FinTech
+- Ten specialisation courses covering econometrics, quantitative methods, economic modelling, forecasting, and FinTech
 
 **Block 3 · Leadership and research (20 ECTS plus electives)**
 - Research Methodology
@@ -169,8 +169,8 @@ Central banks, sovereign funds, and government strategy offices across the Gulf 
 **03 · The private sector wants them too**
 Consultancies, banks, and large family groups keep analyst benches for pricing, budgeting, and market forecasting, and the skills gap is real.
 
-**04 · Nine in ten employers report shortages**
-Taggd's 2026 GCC study found nine in ten employers struggling to find qualified candidates, and quantitative economics skills are among the rarest.
+**04 · Employers keep reporting shortages**
+Across the Gulf, employers keep reporting shortages of qualified candidates, and quantitative economics skills are among the rarest.
 
 **05 · The extended-duration option respects real life**
 Up to three years at no additional fee means the degree survives relocations, busy quarters, and family life.
@@ -199,7 +199,8 @@ Because fees shift with the intake and study arrangements, no fixed figure is pr
 
 - Voice pass: converted from v4 to v5 maximally-human pattern (varied rhythm, parenthetical asides, honest-take marker, uneven cards). Structure, facts, and field mapping unchanged.
 - Field mapping identical to program 01; MSc three-block structure.
-- Sources: Rushford official MSc page, rushford.ch (12 months, 60 ECTS, 15 courses: 5 core + 10 economics-specific; focus on FinTech, econometrics, quantitative/statistical methods, economic remodeling, inference-based data; official career roles: Financial Analyst, Mutual Funds Manager, Policy Analyst, Economist, Litigation Consultant, Data Scientist, Statistician, Pricing Analyst, Budget Analyst); onlinestudies.com listing (practical projects and seminars; economic consultancies, central banks, financial organizations as employer sectors; extension to 3 years at no additional fee); ADDED clean energy page (UAE non-oil sector above 74% of GDP in 2023); Taggd GCC Talent Market 2026.
-- Block 2 written descriptively; specialization course titles not published, flagged for university sign-off.
+- Sources: Rushford official MSc page, rushford.ch (12 months, 60 ECTS, 15 courses: 5 core + 10 economics-specific; focus on FinTech, econometrics, quantitative/statistical methods, economic remodeling, inference-based data; official career roles: Financial Analyst, Mutual Funds Manager, Policy Analyst, Economist, Litigation Consultant, Data Scientist, Statistician, Pricing Analyst, Budget Analyst); onlinestudies.com listing (practical projects and seminars; economic consultancies, central banks, financial organisations as employer sectors; extension to 3 years at no additional fee); ADDED clean energy page (UAE non-oil sector above 74% of GDP in 2023)
+- Block 2 written descriptively; specialisation course titles not published, flagged for university sign-off.
 - Careers: nine official roles plus Economic Consultant added (employer sectors named on the official page), flagged.
 - Sign-off needed: exact fee, September 2026 seats, scholarship rules, Block 2 module wording, career role addition, market figures if legal prefers softer language.
+- 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.

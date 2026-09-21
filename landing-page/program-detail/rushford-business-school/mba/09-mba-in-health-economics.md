@@ -1,11 +1,11 @@
 # 09 · Program Detail Page Content: MBA in Health Economics (v5)
 
-**Page:** /programs/mba-in-health-economics
+**Page:** /programmes/mba-in-health-economics
 **Awarding university:** Rushford Business School, Switzerland
 **Category:** MBA · **Level:** Master's · **Duration:** 16 months, fully online
 **Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections (per client list) not written: recognition, accreditation, university block, success stories, reviews, network, faculty voice, FAQ, enquire, CTA
-**Sources on file:** official Rushford programme page (16 months, 90 ECTS, career paths), Mordor Intelligence UAE health insurance market (2026), UAE national health insurance mandate (MOHRE)
+**Sources on file:** official Rushford programme page (16 months, 90 ECTS, career paths), UAE national health insurance mandate (MOHRE)
 
 ---
 
@@ -55,9 +55,9 @@ Each intake carries its own fees and dates, issued in writing before any payment
 ## 3. PROGRAMME OVERVIEW (description)
 
 ### copy
-Health economics is the discipline that turns medicine into decisions a budget can survive: cost-effectiveness, funding models, pricing, and what to cover when you cannot cover everything. This MBA pairs the Rushford management core with a specialization built around exactly those questions, taught through case studies and simulated scenarios rather than pure theory.
+Health economics is the discipline that turns medicine into decisions a budget can survive: cost-effectiveness, funding models, pricing, and what to cover when you cannot cover everything. This MBA pairs the Rushford management core with a specialisation built around exactly those questions, taught through case studies and simulated scenarios rather than pure theory.
 
-The format works for people already inside healthcare, which most of the cohort will be. Courses run in three-week blocks in the evenings, assessments mirror the analyses health organizations actually commission, and the capstone can be built around a payer, a provider, or a policy question from your own context.
+The format works for people already inside healthcare, which most of the cohort will be. Courses run in three-week blocks in the evenings, assessments mirror the analyses health organisations actually commission, and the capstone can be built around a payer, a provider, or a policy question from your own context.
 
 ---
 
@@ -67,10 +67,10 @@ The format works for people already inside healthcare, which most of the cohort 
 Health economics qualifications are scarce in the Gulf market. This one fits around a working week instead of demanding a relocation.
 
 **02 · The payer side is expanding fast**
-The UAE health insurance market passed USD 9 billion in 2025, and the national mandate now covers private sector staff. Every policy needs economists behind it.
+The national mandate now covers private sector staff, and the pool of insured people keeps widening. Every policy needs economists behind it.
 
 **03 · Cases and simulations, not abstractions**
-The specialization runs on case studies and simulated scenarios drawn from the economic problems health organizations genuinely face.
+The specialisation runs on case studies and simulated scenarios drawn from the economic problems health organisations genuinely face.
 
 **04 · The full Swiss award**
 The complete course load with capstone, 90 ECTS total, certificate issued by Rushford Business School, Switzerland.
@@ -119,7 +119,7 @@ Health Economics Researcher
 Your journey, stage by stage
 
 ### intro
-Four stages: management foundations, the business core, the health economics specialization, and a capstone on a live question from the field.
+Four stages: management foundations, the business core, the health economics specialisation, and a capstone on a live question from the field.
 
 ### stages
 
@@ -140,12 +140,12 @@ Four stages: management foundations, the business core, the health economics spe
 - Corporate Social Responsibility, Ethics & Law
 - Strategic Management: Integrating the Enterprise
 
-**Stage 3 · The health economics specialization**
+**Stage 3 · The health economics specialisation**
 - Health economics foundations and funding models
 - Cost-effectiveness analysis of treatments and technologies
 - Health markets and the economics of insurance
 - Healthcare policy analysis
-- Case studies and simulated scenarios from health organizations
+- Case studies and simulated scenarios from health organisations
 - Five electives chosen from nine
 
 **Stage 4 · The capstone**
@@ -172,13 +172,13 @@ Why GCC professionals choose this course
 ### cards
 
 **01 · Study online, stay in post**
-No visa, no relocation, no career break. The specialization arrives at your desk in the Gulf, evenings and weekends.
+No visa, no relocation, no career break. The specialisation arrives at your desk in the Gulf, evenings and weekends.
 
 **02 · The insurance mandate changed the whole sector**
 Since January 2025, UAE employers must fund health insurance for private sector staff and domestic workers. Mandatory policies already make up over 86% of the market, and that machinery needs analysts.
 
 **03 · The payer market is worth nine figures**
-Mordor Intelligence puts the UAE health and medical insurance market at USD 9.27 billion in 2025, growing every year. Payers hire economists before they hire almost anyone else.
+The national mandate keeps widening the pool of insured people every year. Payers hire economists before they hire almost anyone else.
 
 **04 · Cost-effectiveness is becoming a Gulf conversation**
 As health budgets grow, Gulf payers and ministries are importing the evaluation discipline that other markets already use. Early, trained arrivals set the terms.
@@ -186,10 +186,10 @@ As health budgets grow, Gulf payers and ministries are importing the evaluation 
 **05 · Pharma and medtech need market access people**
 The official career paths include pharmaceutical, biotechnology, and medical device companies, where pricing and reimbursement skills decide product launches.
 
-**06 · The capstone can target your own organization**
+**06 · The capstone can target your own organisation**
 Take the final project from a payer, hospital, or policy question you already live with, and finish with an analysis worth presenting.
 
-Honest take: health economics rewards people who are comfortable with numbers. The statistics in this specialization are practical rather than theoretical, but if spreadsheets genuinely distress you, a broader healthcare leadership MBA may sit more comfortably.
+Honest take: health economics rewards people who are comfortable with numbers. The statistics in this specialisation are practical rather than theoretical, but if spreadsheets genuinely distress you, a broader healthcare leadership MBA may sit more comfortably.
 
 ---
 
@@ -210,8 +210,9 @@ Fees vary with intake and study mode, so this page prints no fixed figure. Admis
 
 - Voice pass: converted from v4 to v5 maximally-human pattern (varied rhythm, parenthetical asides, honest-take marker, uneven cards). Structure, facts, and field mapping unchanged.
 - Field mapping identical to program 01.
-- Sources: Rushford official programme page, rushford.ch (16 months online, 90 ECTS, case-study and simulation approach; official career paths: health economist roles in pharma/biotech/medtech, consulting and research, government and policy agencies, non-profits and international development, health insurance and managed care, academia, hospitals, venture capital and private equity); Mordor Intelligence UAE health and medical insurance market (USD 9.27B 2025; mandatory policies 86.22% share); UAE national health insurance mandate effective 1 Jan 2025 (MOHRE).
-- rushford.ch describes the credit split as 12 core + 3 electives (60 credits), specialization 16, capstone 14; the listing framework elsewhere describes 27 courses totalling 90 ECTS. Glance row written as "the full course load" to avoid the discrepancy; flagged for university sign-off.
+- Sources: Rushford official programme page, rushford.ch (16 months online, 90 ECTS, case-study and simulation approach; official career paths: health economist roles in pharma/biotech/medtech, consulting and research, government and policy agencies, non-profits and international development, health insurance and managed care, academia, hospitals, venture capital and private equity); mandatory policies 86.22% share); UAE national health insurance mandate effective 1 Jan 2025 (MOHRE).
+- rushford.ch describes the credit split as 12 core + 3 electives (60 credits), specialisation 16, capstone 14; the listing framework elsewhere describes 27 courses totalling 90 ECTS. Glance row written as "the full course load" to avoid the discrepancy; flagged for university sign-off.
 - Stage-3 lines describe the official focus areas; module titles are not published, flagged for sign-off.
 - Careers: Health Economist and Policy Analyst reflect official paths; remaining roles are market-standard, need client approval.
 - Sign-off needed: exact fee, September 2026 seats, scholarship rules, credit-split wording, market figures if legal prefers softer language.
+- 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.

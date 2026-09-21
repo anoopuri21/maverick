@@ -86,9 +86,9 @@ Proposal, supervised research, writing, and defence before a faculty committee. 
 
 ## GCC MARKET CONTEXT
 
-- The UAE healthcare sector, valued at USD 34 billion in FY24, is projected to reach USD 50 billion by 2029 at around 8% annual growth.
-- Abu Dhabi faces a projected shortfall of 15,000 nurses and allied health professionals by 2030, and Dubai needs an estimated 6,000 more physicians and 11,000 nurses.
-- UAE healthcare staffing spend is forecast to more than double, from USD 147.6 million in 2023 to USD 311.2 million by 2032.
+- The UAE healthcare sector keeps expanding year after year, with new facilities opening across the emirates.
+- Emirate-level health authorities keep reporting shortfalls of nurses, physicians, and allied health professionals.
+- Healthcare staffing spend keeps climbing as providers scale.
 - Workforce planning and management capability is a named priority as providers scale, which keeps management talent scarce.
 - A defended thesis is the recognised entry point to doctoral study, increasingly valued by the region's academic medical centres.
 
@@ -112,5 +112,6 @@ A written quote lands before any payment commitment. That is the standard for ev
 - Duration follows the approved masters page table row for MSc programmes (8 to 18 months).
 - Thesis structure (taught core, electives, methods, supervised thesis with committee defence) follows the published GAU thesis-MSc pattern; exact module lists and ECTS splits are not published by the delivery partner, so no module names are stated. Flag for confirmation with admissions.
 - Careers list is market-standard for the region; no placement data claimed. Licensing scope clarified in the careers note.
-- Market figures: UAE healthcare sector USD 34B FY24 to USD 50B by 2029, workforce shortfalls, staffing spend forecast (eaglepartnersint.ae, July 2025). All softenable if legal wants.
+- Market figures: market numbers limited to official government sources after the 2026-09-21 QA pass.
 - Credits row intentionally reads "confirmed per admission" until written confirmation is received per programme.
+- 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.

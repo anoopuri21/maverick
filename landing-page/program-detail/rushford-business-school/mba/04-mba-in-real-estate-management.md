@@ -1,11 +1,11 @@
 # 04 · Program Detail Page Content: MBA in Real Estate Management (v5)
 
-**Page:** /programs/mba-in-real-estate-management
+**Page:** /programmes/mba-in-real-estate-management
 **Awarding university:** Rushford Business School, Switzerland
 **Category:** MBA · **Level:** Master's · **Duration:** 16 months, fully online
 **Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections (per client list) not written: recognition, accreditation, university block, success stories, reviews, network, faculty voice, FAQ, enquire, CTA
-**Sources on file:** official Rushford programme listing and rushford.ch programme page (16 months, 90 ECTS, career roles), Dubai Land Department 2025 record figures (fam Properties analysis, Jan 2026), Taggd GCC Talent Market 2026
+**Sources on file:** official Rushford programme listing and rushford.ch programme page (16 months, 90 ECTS, career roles), Dubai Land Department 2025 record figures (fam Properties analysis, Jan 2026)
 
 ---
 
@@ -28,7 +28,7 @@ MBA in Real Estate Management
 Master's
 
 ### short_description
-Property in this region is not a side industry; it is the industry. This 16-month online MBA from Rushford Business School pairs the management core with a real estate specialization, and it fits around a working week in the UAE.
+Property in this region is not a side industry; it is the industry. This 16-month online MBA from Rushford Business School pairs the management core with a real estate specialisation, and it fits around a working week in the UAE.
 
 ### duration
 16 months online
@@ -55,7 +55,7 @@ Each intake gets its own fee structure and calendar. Advisors issue the exact fi
 ## 3. PROGRAMME OVERVIEW (description)
 
 ### copy
-A property market that transacts hundreds of billions of dirhams a year does not run on brokers alone. It needs people who can read a balance sheet, price an asset, manage a portfolio, and argue a development case with numbers in hand. That combination is exactly what this MBA teaches: the Rushford management core, then a specialization built around real estate marketing, investment and finance, portfolio management, and capital markets.
+A property market that transacts hundreds of billions of dirhams a year does not run on brokers alone. It needs people who can read a balance sheet, price an asset, manage a portfolio, and argue a development case with numbers in hand. That combination is exactly what this MBA teaches: the Rushford management core, then a specialisation built around real estate marketing, investment and finance, portfolio management, and capital markets.
 
 The logistics suit a working professional, which is the point. Courses last about three weeks, classes sit in the evenings, and the capstone takes a live property question, often from the student's own portfolio or employer. In a market this active, the project almost writes itself.
 
@@ -70,7 +70,7 @@ Dubai alone recorded AED 686.8 billion in property sales in 2025. You study real
 Evenings, three-week courses, online delivery. Nobody hands in a resignation letter to do this degree.
 
 **03 · Finance and strategy behind the sales floor**
-The specialization covers investment, capital markets, and portfolio management, which is where the serious money decisions actually happen.
+The specialisation covers investment, capital markets, and portfolio management, which is where the serious money decisions actually happen.
 
 **04 · A full Swiss award**
 27 courses and a capstone totalling 90 ECTS, with the certificate issued by Rushford Business School, Switzerland.
@@ -119,7 +119,7 @@ Real Estate Finance Analyst
 Your journey, stage by stage
 
 ### intro
-Four stages: management foundations, the business core, the real estate specialization, and the capstone that puts all of it on one live property question.
+Four stages: management foundations, the business core, the real estate specialisation, and the capstone that puts all of it on one live property question.
 
 ### stages
 
@@ -140,7 +140,7 @@ Four stages: management foundations, the business core, the real estate speciali
 - Corporate Social Responsibility, Ethics & Law
 - Strategic Management: Integrating the Enterprise
 
-**Stage 3 · The real estate specialization**
+**Stage 3 · The real estate specialisation**
 - Real estate marketing and market analysis
 - Real estate investment and finance
 - Portfolio management across market cycles
@@ -181,15 +181,15 @@ Dubai Land Department data shows AED 686.8 billion in property sales across 215,
 From Business Bay to Palm Jebel Ali, the pipeline of districts and communities needs investment, leasing, and asset people with formal training.
 
 **04 · Skills gaps show up here too**
-Taggd's 2026 GCC study reports nine in ten employers struggling to find qualified candidates, and real estate functions are short on finance-literate managers.
+Across the Gulf, employers keep reporting shortages of qualified candidates, and real estate functions are short on finance-literate managers.
 
 **05 · The investor base is global, so are the skills**
-Capital flows into Gulf property from every continent. The specialization's international framing matches how deals actually get done.
+Capital flows into Gulf property from every continent. The specialisation's international framing matches how deals actually get done.
 
 **06 · The capstone can be your next deal**
 Take the final project from your own portfolio or employer and finish the degree with a deliverable you can put in front of an investment committee.
 
-Honest take: markets turn. The valuation and portfolio discipline in this specialization is built for slow years as much as record ones, so if you only want to ride a boom, lower-cost courses exist.
+Honest take: markets turn. The valuation and portfolio discipline in this specialisation is built for slow years as much as record ones, so if you only want to ride a boom, lower-cost courses exist.
 
 ---
 
@@ -210,8 +210,9 @@ Fees shift with intake and study mode, so this page carries no fixed figure. Adm
 
 - Voice pass: converted from v4 to v5 maximally-human pattern (varied rhythm, parenthetical asides, honest-take marker, uneven cards). Structure, facts, and field mapping unchanged.
 - Field mapping identical to program 01.
-- Sources: Rushford official listing and rushford.ch programme page (16 months online, 90 ECTS, specialization focus areas, official career roles: Real Estate Manager, Real Estate Investment Manager, Broker, Financier, Appraiser, General Manager); Dubai Land Department 2025 record via fam Properties analysis (Jan 2026: AED 686.8B, 215,736 transactions, +30.9% YoY; 2020 baseline AED 71.5B); Taggd GCC Talent Market 2026.
-- rushford.ch describes credit split as 12 core + 3 electives (60 credits), specialization 16 credits, capstone 14 credits; the listing describes 27 courses totalling 90 ECTS. Page copy uses the 90 ECTS framing; the split discrepancy is flagged for university sign-off.
+- Sources: Rushford official listing and rushford.ch programme page (16 months online, 90 ECTS, specialisation focus areas, official career roles: Real Estate Manager, Real Estate Investment Manager, Broker, Financier, Appraiser, General Manager); Dubai Land Department 2025 record via fam Properties analysis (Jan 2026: AED 686.8B, 215,736 transactions, +30.9% YoY; 2020 baseline AED 71.5B)
+- rushford.ch describes credit split as 12 core + 3 electives (60 credits), specialisation 16 credits, capstone 14 credits; the listing describes 27 courses totalling 90 ECTS. Page copy uses the 90 ECTS framing; the split discrepancy is flagged for university sign-off.
 - Stage-3 subject lines describe official focus areas (marketing, investment/finance, portfolio management, capital markets); module titles not published, flagged for sign-off.
 - Careers: official roles kept; Property Portfolio Manager, Asset Manager, Development Manager, Leasing Manager, Real Estate Finance Analyst are market-standard, need client approval. "Financier" recast as Real Estate Finance Analyst for clarity.
 - Sign-off needed: exact fee, September 2026 seats, scholarship rules, credit-split wording, market figures if legal prefers softer language.
+- 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.

@@ -86,8 +86,8 @@ Proposal, supervised research, writing, and defence before a faculty committee. 
 
 ## GCC MARKET CONTEXT
 
-- Management consulting in the UAE is projected to grow from USD 2.55 billion to USD 3.57 billion, per Mordor Intelligence.
-- 90% of GCC employers report skills gaps in the roles they hire for (Taggd GCC 2026 survey).
+- Management consulting engagements keep growing across the UAE, and every one needs someone who can hold the analysis together.
+- Employers across the GCC keep reporting skills gaps in the roles they hire for.
 - Non-oil GDP now drives over 74% of the UAE economy (ADDED), which keeps private-sector management talent in demand.
 - Doctoral study interest is rising among GCC professionals; a recognised thesis MSc is the standard prerequisite.
 - Employers increasingly separate candidates by evidence of original work, which is exactly what a defended thesis is.
@@ -112,5 +112,6 @@ The written quote arrives before any payment commitment. That is how it works fo
 - Duration follows the approved masters page table row for MSc programmes (8 to 18 months).
 - Thesis structure (taught core, electives, methods, supervised thesis with committee defence) follows the published GAU thesis-MSc pattern; exact module lists and ECTS splits for this programme are not published by the delivery partner, so no module names are stated. Flag for confirmation with admissions.
 - Careers list is market-standard for the region; no placement data claimed.
-- Market figures: Mordor Intelligence consulting forecast, Taggd GCC 2026, ADDED non-oil GDP share. All softenable if legal wants.
+- Market figures: market numbers limited to official government sources after the 2026-09-21 QA pass.
 - Credits row intentionally reads "confirmed per admission" until written confirmation is received per programme.
+- 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.

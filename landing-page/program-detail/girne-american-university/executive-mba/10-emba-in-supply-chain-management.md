@@ -1,10 +1,10 @@
 # GAU EMBA 10 · Program Detail Page Content: Executive MBA in Supply Chain Management (v5)
 
-**Page:** /programs/gau-emba-in-supply-chain-management
+**Page:** /programmes/gau-emba-in-supply-chain-management
 **Awarding university:** Girne American University, North Cyprus · **Category:** Executive MBA · **Level:** Master's · **Duration:** 12 to 18 months
 **Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections not written (per client list)
-**Sources on file:** approved master landing page programme table (GAU Executive MBAs, 12-18 months), official GAU-awarded EMBA specialization modules (Project Management Theory and Practice, Strategic Project Management and Implementation, Graduate Research Project), IMARC UAE logistics market, Taggd GCC Talent Market 2026
+**Sources on file:** approved master landing page programme table (GAU Executive MBAs, 12-18 months), official GAU-awarded EMBA specialisation modules (Project Management Theory and Practice, Strategic Project Management and Implementation, Graduate Research Project)
 
 ---
 
@@ -54,7 +54,7 @@ The admission letter carries the credit detail and the fee structure, in writing
 ## 3. PROGRAMME OVERVIEW (description)
 
 ### copy
-Senior supply chain careers now hinge on two abilities: keeping today's network running while redesigning tomorrow's. This Executive MBA trains both halves. The executive core covers strategy, finance, human capital, and operations, then the specialization gets specific with Project Management Theory and Practice and Strategic Project Management and Implementation, the disciplines that turn supply chain plans into executed change, closing with a graduate research project.
+Senior supply chain careers now hinge on two abilities: keeping today's network running while redesigning tomorrow's. This Executive MBA trains both halves. The executive core covers strategy, finance, human capital, and operations, then the specialisation gets specific with Project Management Theory and Practice and Strategic Project Management and Implementation, the disciplines that turn supply chain plans into executed change, closing with a graduate research project.
 
 Cohorts are small and senior, drawing from logistics, retail, manufacturing, and trade functions, which gives the case discussions an unusual texture: everyone in the room has lived a disruption and has opinions about what worked. The degree finishes with research aimed at a live chain, often the participant's own.
 
@@ -118,7 +118,7 @@ Supply Chain Consultant, Executive Practice
 Your journey, stage by stage
 
 ### intro
-Three movements: the executive core, the supply chain specialization, and the graduate research project.
+Three movements: the executive core, the supply chain specialisation, and the graduate research project.
 
 ### stages
 
@@ -127,7 +127,7 @@ Three movements: the executive core, the supply chain specialization, and the gr
 - Financial management and human resource management
 - Operations and management information systems
 
-**Stage 2 · Supply chain specialization**
+**Stage 2 · Supply chain specialisation**
 - Project Management: Theory and Practice
 - Strategic Project Management and Implementation
 - Executive case work across networks, sourcing, and trade
@@ -156,13 +156,13 @@ Why GCC professionals choose this course
 ### cards
 
 **01 · Study inside one of the world's busiest trade machines**
-Fully online, no visa, no career break. The UAE's logistics market was valued at USD 57.6 billion in 2025 and is heading toward USD 96 billion by 2034, and you can study from inside it.
+Fully online, no visa, no career break. Cargo keeps routing through Emirati ports and airports, and the logistics sector built around them keeps growing while you study from inside it.
 
 **02 · Cargo keeps choosing the UAE**
-Regional trade reroutes through Emirati ports year after year, and Logistics Middle East's January 2025 review tracks the mega projects running to 2029 that will keep raising the volume.
+Regional trade reroutes through Emirati ports year after year, and the mega projects running through this decade keep raising the volume.
 
 **03 · The skills gap is documented at the top too**
-Taggd's 2026 GCC study reports nine in ten employers struggling to find qualified candidates, and supply chain leadership vacancies sit among the longest.
+Across the Gulf, employers keep reporting shortages of qualified candidates, and supply chain leadership vacancies sit among the longest.
 
 **04 · Disruption made the seat strategic**
 Rerouted cargo, new corridors, and resurgent protectionism have turned supply chain leadership into a board-level conversation, which is exactly the altitude this degree teaches at.
@@ -191,6 +191,7 @@ Fees depend on the intake and your admission profile, so no fixed figure sits he
 ## BUILD NOTES (internal, not page copy)
 
 - Field mapping identical to the Rushford programme pages.
-- Sources: approved master landing page programme table (GAU Executive MBAs, 12-18 months); official GAU-awarded EMBA specialization modules as listed on partner programme documentation (Project Management Theory and Practice 8 ECTS, Strategic Project Management and Implementation 8 ECTS, Graduate Research Project 24 ECTS) confirmed as GAU-awarded content; IMARC UAE logistics market (USD 57.6B 2025 to USD 96B 2034); Logistics Middle East Jan 2025 (mega projects to 2029); Taggd GCC Talent Market 2026.
+- Sources: approved master landing page programme table (GAU Executive MBAs, 12-18 months); official GAU-awarded EMBA specialisation modules as listed on partner programme documentation (Project Management Theory and Practice 8 ECTS, Strategic Project Management and Implementation 8 ECTS, Graduate Research Project 24 ECTS) confirmed as GAU-awarded content
 - Careers: all ten roles market-standard; need client approval.
 - Sign-off needed: exact fee, September 2026 seats, scholarship rules, credit line if university provides one, market figures if legal prefers softer language.
+- 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.

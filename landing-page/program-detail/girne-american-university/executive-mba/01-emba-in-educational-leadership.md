@@ -1,10 +1,10 @@
 # GAU EMBA 01 · Program Detail Page Content: Executive MBA in Educational Leadership (v5)
 
-**Page:** /programs/gau-emba-in-educational-leadership
+**Page:** /programmes/gau-emba-in-educational-leadership
 **Awarding university:** Girne American University, North Cyprus · **Category:** Executive MBA · **Level:** Master's · **Duration:** 12 to 18 months
 **Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections not written (per client list)
-**Sources on file:** approved master landing page programme table (GAU Executive MBAs, 12-18 months), Taggd GCC Talent Market 2026
+**Sources on file:** approved master landing page programme table (GAU Executive MBAs, 12-18 months)
 
 ---
 
@@ -165,7 +165,7 @@ Private school systems across the emirates keep opening campuses and raising qua
 Inspection frameworks in the Gulf increasingly assess leadership quality as its own criterion, which puts formal leadership credentials on the agenda of every serious educator.
 
 **04 · The skills gap includes school corridors**
-Taggd's 2026 GCC study reports nine in ten employers struggling to find qualified candidates, and education groups report the same shortage in management talent.
+Across the Gulf, employers keep reporting shortages of qualified candidates, and education groups report the same shortage in management talent.
 
 **05 · Eighteen months suits the school calendar**
 The delivery bends around terms, exams, and inspections instead of asking you to ignore them.
@@ -191,6 +191,7 @@ Fees depend on the intake and your admission profile, so no fixed figure sits he
 ## BUILD NOTES (internal, not page copy)
 
 - Field mapping identical to the Rushford programme pages; three-stage structure written descriptively because no official module list for this EMBA was verified this cycle (partner listings exist but are not confirmed as GAU-official; flagged for university sign-off).
-- Sources: approved master landing page programme table (GAU Executive MBAs, 12-18 months); Taggd GCC Talent Market 2026. GCC education-sector statements kept qualitative pending sourced figures; flag if client wants numbers.
+- Sources: approved master landing page programme table (GAU Executive MBAs, 12-18 months); flag if client wants numbers.
 - Careers: all ten roles market-standard; need client approval.
 - Sign-off needed: exact fee, September 2026 seats, scholarship rules, stage wording, credit line if university provides one, education market figures if client wants them sourced.
+- 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.

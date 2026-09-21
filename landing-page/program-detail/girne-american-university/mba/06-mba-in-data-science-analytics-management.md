@@ -1,10 +1,10 @@
 # GAU MBA 06 · Program Detail Page Content: MBA in Data Science/Analytics Management (v5)
 
-**Page:** /programs/gau-mba-in-data-science-analytics-management
+**Page:** /programmes/gau-mba-in-data-science-analytics-management
 **Awarding university:** Girne American University, North Cyprus · **Category:** MBA · **Level:** Master's · **Duration:** 12 to 15 months
 **Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections not written (per client list)
-**Sources on file:** Girne American University programme description as carried on the client's course pages (12-15 months, flexible delivery), Mordor Intelligence UAE digital transformation market (2026), MarkNtel GCC digital transformation (2026), Taggd GCC Talent Market 2026
+**Sources on file:** Girne American University programme description as carried on the client's course pages (12-15 months, flexible delivery)
 
 ---
 
@@ -69,7 +69,7 @@ The degree assumes you want to lead the function: prioritization, governance, st
 Analytics careers move fast. Twelve to fifteen months keeps pace with the market it serves.
 
 **03 · The research project lands in real data**
-Graduates often aim the final investigation at a live analytics question from their own organization, a dashboard nobody trusts, a forecasting gap, which makes the degree instantly useful.
+Graduates often aim the final investigation at a live analytics question from their own organisation, a dashboard nobody trusts, a forecasting gap, which makes the degree instantly useful.
 
 **04 · An international cohort**
 Data problems repeat across markets, and hearing how students from other economies governed the same problem is worth a module by itself.
@@ -133,7 +133,7 @@ Three movements: the business core, the analytics management coursework, and the
 - Managing technical teams and analytics case work across industries
 
 **Stage 3 · The graduate research project**
-- A supervised investigation of an analytics question, often drawn from the student's own organization
+- A supervised investigation of an analytics question, often drawn from the student's own organisation
 
 ---
 
@@ -156,22 +156,22 @@ Why GCC professionals choose this course
 ### cards
 
 **01 · Study inside the fastest-growing spend line**
-Fully online, no visa, no career break. Inside the UAE's digital transformation market, forecast to grow from USD 1.57 billion in 2025 to USD 3.75 billion by 2031, analytics and AI are the fastest-growing line at a 27.2% compound rate.
+Fully online, no visa, no career break. Inside the UAE's digital transformation agenda, analytics and AI are among the fastest-moving lines.
 
 **02 · The region's ICT budget is enormous**
-GCC ICT spending passed USD 75 billion in 2025, driven by cloud, AI, and digital government, and every dirham of it creates demand for people who can manage the data.
+GCC investment in cloud, AI, and digital government keeps climbing, and every dirham of it creates demand for people who can manage the data.
 
 **03 · Gulf governments are serious about data**
 National AI strategies and data offices across the region mean analytics leadership is now a public sector career path too, not only a private one.
 
 **04 · The skills gap hits this role hardest**
-Taggd's 2026 GCC study reports nine in ten employers struggling to find qualified candidates, and managers who understand analytics are rarer than the analysts themselves.
+Across the Gulf, employers keep reporting shortages of qualified candidates, and managers who understand analytics are rarer than the analysts themselves.
 
 **05 · Fifteen months suits delivery teams**
 Data leaders cannot disappear for two years. Twelve to fifteen months, bent around sprints and migrations, keeps the work moving.
 
 **06 · The research project can fix a real gap**
-Point the final investigation at your own organization's data question and finish with a recommendation your steering committee can vote on.
+Point the final investigation at your own organisation's data question and finish with a recommendation your steering committee can vote on.
 
 ---
 
@@ -191,6 +191,7 @@ Fees depend on the intake and your admission profile, so no fixed figure sits on
 ## BUILD NOTES (internal, not page copy)
 
 - Field mapping identical to the Rushford programme pages; three-stage structure written descriptively because no fixed module list is published for this MBA (flagged for university sign-off).
-- Sources: Girne American University programme description as carried on client course pages (12-15 months, flexible part-time and distance delivery); Mordor Intelligence UAE digital transformation market (USD 1.57B 2025 to USD 3.75B 2031; analytics and AI CAGR 27.2% to 2031); MarkNtel GCC digital transformation (GCC ICT spend above USD 75B in 2025); Taggd GCC Talent Market 2026.
+- Sources: Girne American University programme description as carried on client course pages (12-15 months, flexible part-time and distance delivery); analytics and AI CAGR 27.2% to 2031)
 - Careers: all ten roles market-standard; need client approval.
 - Sign-off needed: exact fee, September 2026 seats, scholarship rules, stage wording, credit line if university provides one, market figures if legal prefers softer language.
+- 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.

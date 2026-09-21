@@ -1,10 +1,10 @@
 # GAU EMBA 15 · Program Detail Page Content: Executive MBA in Digital Marketing (v5)
 
-**Page:** /programs/gau-emba-in-digital-marketing
+**Page:** /programmes/gau-emba-in-digital-marketing
 **Awarding university:** Girne American University, North Cyprus · **Category:** Executive MBA · **Level:** Master's · **Duration:** 12 to 18 months
 **Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections not written (per client list)
-**Sources on file:** approved master landing page programme table (GAU Executive MBAs, 12-18 months), Ken Research UAE digital advertising market (2026), Taggd GCC Talent Market 2026
+**Sources on file:** approved master landing page programme table (GAU Executive MBAs, 12-18 months)
 
 ---
 
@@ -54,7 +54,7 @@ The admission letter carries the credit detail and the fee structure, in writing
 ## 3. PROGRAMME OVERVIEW (description)
 
 ### copy
-At executive level, digital marketing stops being about channels and becomes about systems: how data informs spend, how brands stay coherent across platforms that disagree, and how teams get managed when half the discipline changes every year. This Executive MBA works at that altitude. The executive core covers strategy, finance, human capital, and operations, then the coursework turns to the digital side of the discipline: channel strategy, analytics and measurement, brand building in platform economies, and leading marketing organizations through constant technical change.
+At executive level, digital marketing stops being about channels and becomes about systems: how data informs spend, how brands stay coherent across platforms that disagree, and how teams get managed when half the discipline changes every year. This Executive MBA works at that altitude. The executive core covers strategy, finance, human capital, and operations, then the coursework turns to the digital side of the discipline: channel strategy, analytics and measurement, brand building in platform economies, and leading marketing organisations through constant technical change.
 
 Cohorts are small and senior, mixing CMOs, digital directors, agency leads, and e-commerce executives, which makes the case discussions read like a marketing board with the slides removed. The degree closes with a graduate research project on a live commercial question.
 
@@ -130,10 +130,10 @@ Three movements: the executive core, the digital marketing coursework, and the g
 **Stage 2 · Digital marketing coursework**
 - Channel strategy, analytics, and measurement
 - Brand building in platform economies
-- Leadership case work across digital and e-commerce organizations
+- Leadership case work across digital and e-commerce organisations
 
 **Stage 3 · The graduate research project**
-- A supervised investigation of a digital marketing question, often drawn from the participant's own organization
+- A supervised investigation of a digital marketing question, often drawn from the participant's own organisation
 
 ---
 
@@ -156,7 +156,7 @@ Why GCC professionals choose this course
 ### cards
 
 **01 · Study inside the region's fastest-growing media budget**
-Fully online, no visa, no career break. UAE digital advertising was worth USD 2.29 billion in 2025 and is forecast to reach USD 5.35 billion by 2031, and you can study from inside it.
+Fully online, no visa, no career break. Advertising budgets across the UAE keep shifting toward digital, and you can study from inside the market they are building.
 
 **02 · Measurement made the CMO seat accountable**
 Gulf boards now read marketing through dashboards, and the leaders who can defend a number are the ones who keep the budget.
@@ -165,7 +165,7 @@ Gulf boards now read marketing through dashboards, and the leaders who can defen
 Airlines, retail groups, and city brands from this region market globally, and they staff senior digital roles accordingly.
 
 **04 · The skills gap reaches senior marketing too**
-Taggd's 2026 GCC study reports nine in ten employers struggling to find qualified candidates, and data-literate marketing leaders are the scarcest version.
+Across the Gulf, employers keep reporting shortages of qualified candidates, and data-literate marketing leaders are the scarcest version.
 
 **05 · Eighteen months suits launch calendars**
 The delivery bends around campaigns and peaks instead of asking you to pause them.
@@ -191,6 +191,7 @@ Fees depend on the intake and your admission profile, so no fixed figure sits he
 ## BUILD NOTES (internal, not page copy)
 
 - Field mapping identical to the Rushford programme pages; three-stage structure written descriptively because no official module list for this EMBA was verified this cycle (flagged for university sign-off).
-- Sources: approved master landing page programme table (GAU Executive MBAs, 12-18 months); Ken Research UAE digital advertising market (USD 2.29B 2025 to USD 5.35B 2031); Taggd GCC Talent Market 2026.
+- Sources: approved master landing page programme table (GAU Executive MBAs, 12-18 months)
 - Careers: all ten roles market-standard; need client approval.
 - Sign-off needed: exact fee, September 2026 seats, scholarship rules, stage wording, credit line if university provides one, market figures if legal prefers softer language.
+- 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.

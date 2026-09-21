@@ -1,10 +1,10 @@
 # GAU EMBA 09 · Program Detail Page Content: Executive MBA in Human Resources Management (v5)
 
-**Page:** /programs/gau-emba-in-human-resources-management
+**Page:** /programmes/gau-emba-in-human-resources-management
 **Awarding university:** Girne American University, North Cyprus · **Category:** Executive MBA · **Level:** Master's · **Duration:** 12 to 18 months
 **Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections not written (per client list)
-**Sources on file:** approved master landing page programme table (GAU Executive MBAs, 12-18 months), official GAU-awarded EMBA specialization modules (International Human Resource Management, Human Resource Analytics, Graduate Research Project), MOHRE Emiratisation rules (Cabinet Resolution No. 18 of 2022), Taggd GCC Talent Market 2026
+**Sources on file:** approved master landing page programme table (GAU Executive MBAs, 12-18 months), official GAU-awarded EMBA specialisation modules (International Human Resource Management, Human Resource Analytics, Graduate Research Project), MOHRE Emiratisation rules (Cabinet Resolution No. 18 of 2022)
 
 ---
 
@@ -54,7 +54,7 @@ The admission letter carries the credit detail and the fee structure, in writing
 ## 3. PROGRAMME OVERVIEW (description)
 
 ### copy
-Chief people officers now sit with numbers on the table and regulators on the phone, and most reached the seat through instinct and experience rather than formal preparation. This Executive MBA supplies the preparation. The executive core covers strategy, finance, and operations, then the specialization goes where modern HR leadership actually lives: international human resource management across the jurisdictions a Gulf workforce spans, and human resource analytics, the discipline that turned people decisions into defensible ones.
+Chief people officers now sit with numbers on the table and regulators on the phone, and most reached the seat through instinct and experience rather than formal preparation. This Executive MBA supplies the preparation. The executive core covers strategy, finance, and operations, then the specialisation goes where modern HR leadership actually lives: international human resource management across the jurisdictions a Gulf workforce spans, and human resource analytics, the discipline that turned people decisions into defensible ones.
 
 Cohorts are small and senior, drawing HR directors, people leads, and senior business partners, which keeps the case discussions grounded in real workforces rather than textbook ones. The degree closes with a graduate research project, and participants with access to their own people data tend to produce the most persuasive work.
 
@@ -63,7 +63,7 @@ Cohorts are small and senior, drawing HR directors, people leads, and senior bus
 ## 4. WHY CHOOSE THIS PROGRAMME (benefits)
 
 **01 · HR leadership with numbers attached**
-Human resource analytics is a named module of the specialization, which is where the function's credibility now comes from.
+Human resource analytics is a named module of the specialisation, which is where the function's credibility now comes from.
 
 **02 · International by construction**
 Gulf workforces span dozens of nationalities and employment regimes. International HRM in the curriculum is not a luxury here; it is the job.
@@ -72,7 +72,7 @@ Gulf workforces span dozens of nationalities and employment regimes. Internation
 People leaders do not get sabbaticals. Twelve to eighteen months, executive-scheduled, is the realistic version.
 
 **04 · The research project can change your own workforce plan**
-Point the final investigation at a live question from your organization and finish with a plan your board can act on.
+Point the final investigation at a live question from your organisation and finish with a plan your board can act on.
 
 **05 · Instalments in dirhams**
 Monthly AED payments, interest-free, agreed in writing before the programme starts.
@@ -118,7 +118,7 @@ HR Consultant, Executive Practice
 Your journey, stage by stage
 
 ### intro
-Three movements: the executive core, the human resources specialization, and the graduate research project.
+Three movements: the executive core, the human resources specialisation, and the graduate research project.
 
 ### stages
 
@@ -127,13 +127,13 @@ Three movements: the executive core, the human resources specialization, and the
 - Financial management and operations
 - Leadership and management information systems
 
-**Stage 2 · Human resources specialization**
+**Stage 2 · Human resources specialisation**
 - International Human Resource Management
 - Human Resource Analytics
 - Executive case work across workforce strategy and regulation
 
 **Stage 3 · The graduate research project**
-- A supervised investigation of a people leadership question, often drawn from the participant's own organization
+- A supervised investigation of a people leadership question, often drawn from the participant's own organisation
 
 ---
 
@@ -162,16 +162,16 @@ Fully online, no visa, no career break. The executive format assumes your diary 
 Under Cabinet Resolution No. 18 of 2022, private firms with 50 or more staff must grow their Emirati skilled workforce annually, and MOHRE enforces it with data-driven monitoring and penalties. That file now sits with people leaders who need formal training.
 
 **03 · Talent is the scarcest resource in the Gulf**
-With expatriates making up roughly 87% of Dubai's population, attraction and retention are the business, and Taggd's 2026 study reports nine in ten employers struggling to find qualified candidates.
+With expatriates making up the large majority of Dubai's population, attraction and retention are the business, and employers keep reporting shortages of qualified candidates.
 
 **04 · Analytics moved HR into the boardroom**
-Workforce planning now answers to dashboards and boards. The specialization's analytics module matches how Gulf CHROs are being evaluated.
+Workforce planning now answers to dashboards and boards. The specialisation's analytics module matches how Gulf CHROs are being evaluated.
 
 **05 · Eighteen months suits the HR calendar**
 The delivery bends around reviews, hiring peaks, and audit cycles instead of competing with them.
 
 **06 · The research project can become your workforce plan**
-Finish on a live question from your own organization and graduate with a document your leadership has already seen.
+Finish on a live question from your own organisation and graduate with a document your leadership has already seen.
 
 ---
 
@@ -191,6 +191,7 @@ Fees depend on the intake and your admission profile, so no fixed figure sits he
 ## BUILD NOTES (internal, not page copy)
 
 - Field mapping identical to the Rushford programme pages.
-- Sources: approved master landing page programme table (GAU Executive MBAs, 12-18 months); official GAU-awarded EMBA specialization modules as listed on partner programme documentation (International Human Resource Management 8 ECTS, Human Resource Analytics 8 ECTS, Graduate Research Project 24 ECTS) confirmed as GAU-awarded content; MOHRE Emiratisation rules (Cabinet Resolution No. 18 of 2022, 2% annual increase for firms with 50+ staff, enforcement and penalties); Dubai expatriate share ~87% (Edoxi analysis, 2025); Taggd GCC Talent Market 2026.
+- Sources: approved master landing page programme table (GAU Executive MBAs, 12-18 months); official GAU-awarded EMBA specialisation modules as listed on partner programme documentation (International Human Resource Management 8 ECTS, Human Resource Analytics 8 ECTS, Graduate Research Project 24 ECTS) confirmed as GAU-awarded content; MOHRE Emiratisation rules (Cabinet Resolution No. 18 of 2022, 2% annual increase for firms with 50+ staff, enforcement and penalties)
 - Careers: all ten roles market-standard; need client approval.
 - Sign-off needed: exact fee, September 2026 seats, scholarship rules, credit line if university provides one, market figures if legal prefers softer language.
+- 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.

@@ -1,11 +1,11 @@
 # 11 · Program Detail Page Content: MBA in Finance (v5)
 
-**Page:** /programs/mba-in-finance
+**Page:** /programmes/mba-in-finance
 **Awarding university:** Rushford Business School, Switzerland
 **Category:** MBA · **Level:** Master's · **Duration:** 16 months, fully online
 **Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections (per client list) not written: recognition, accreditation, university block, success stories, reviews, network, faculty voice, FAQ, enquire, CTA
-**Sources on file:** official Rushford programme listing (16 months, 27 courses, 90 ECTS, specialization modules and electives, career paths), Labeeb UAE banking and finance hiring 2025, ManpowerGroup UAE banking outlook 2025, Taggd GCC Talent Market 2026
+**Sources on file:** official Rushford programme listing (16 months, 27 courses, 90 ECTS, specialisation modules and electives, career paths), ManpowerGroup UAE banking outlook 2025
 
 ---
 
@@ -55,7 +55,7 @@ Each intake gets its own fees and dates, confirmed in writing before payment. As
 ## 3. PROGRAMME OVERVIEW (description)
 
 ### copy
-A finance career rewards people who can do two things at once: hold the technical line on investments, securities, and corporate finance, and explain the position to everyone else in the room. This MBA trains both. The Rushford management core runs first, then the specialization goes through investments, corporate investment management, international finance, portfolio management, securities analysis, and hedge fund management, with electives covering borrowing, fundraising, and collections.
+A finance career rewards people who can do two things at once: hold the technical line on investments, securities, and corporate finance, and explain the position to everyone else in the room. This MBA trains both. The Rushford management core runs first, then the specialisation goes through investments, corporate investment management, international finance, portfolio management, securities analysis, and hedge fund management, with electives covering borrowing, fundraising, and collections.
 
 Courses last about three weeks, classes sit in the evenings, and the assessments copy the work: simulations, projects, and a capstone on a live financial question. Students in banking and corporate finance tend to bring problems from their own desks, which keeps the degree honest.
 
@@ -119,7 +119,7 @@ Financial Controller
 Your journey, stage by stage
 
 ### intro
-Four stages: management foundations, the business core, the finance specialization, and a capstone on a live financial problem.
+Four stages: management foundations, the business core, the finance specialisation, and a capstone on a live financial problem.
 
 ### stages
 
@@ -140,7 +140,7 @@ Four stages: management foundations, the business core, the finance specializati
 - Corporate Social Responsibility, Ethics & Law
 - Strategic Management: Integrating the Enterprise
 
-**Stage 3 · The finance specialization**
+**Stage 3 · The finance specialisation**
 - Investments
 - Corporate Investment Management
 - International Finance
@@ -176,16 +176,16 @@ Why GCC professionals choose this course
 Fully online, no visa, no career break. The UAE's banking assets sit above AED 4.1 trillion, and you can study from anywhere in it.
 
 **02 · Hiring runs from mid-level upward**
-Labeeb's 2025 review of UAE banking hiring describes structural demand in risk, treasury, digital banking, and Islamic finance, with senior risk and treasury roles at tier-one banks paying AED 35,000 to 80,000 a month.
+UAE banking hiring shows structural demand in risk, treasury, digital banking, and Islamic finance, with senior risk and treasury roles among the hardest to fill.
 
 **03 · Regulation raised the bar on credentials**
 Post-2024 regulatory tightening means compliance, risk, and governance roles now screen hard for formal qualifications. The MBA clears that screen.
 
 **04 · Fintech wants hybrids**
-Banks and fintechs compete for people who understand both finance and technology, and mid-level analyst bands in growth-stage fintechs sit around AED 18,000 to 28,000 a month.
+Banks and fintechs compete for people who understand both finance and technology, which keeps formal qualifications in demand.
 
 **05 · The skill gap is documented**
-Taggd's 2026 GCC study reports nine in ten employers struggling to find qualified candidates, and finance functions are among the most affected.
+Across the Gulf, employers keep reporting shortages of qualified candidates, and finance functions are among the most affected.
 
 **06 · The capstone can be a live deal**
 Take the final project from your own portfolio, desk, or company and finish with an analysis you can actually present.
@@ -211,7 +211,8 @@ Fees vary with intake and study mode, so this page carries no fixed number. Requ
 
 - Voice pass: converted from v4 to v5 maximally-human pattern (varied rhythm, parenthetical asides, honest-take marker, uneven cards). Structure, facts, and field mapping unchanged.
 - Field mapping identical to program 01.
-- Sources: Rushford official listing (16 months online, 27 courses, 90 ECTS; specialization modules: Investments, Corporate Investment Management, International Finance, Portfolio Management, Securities Analysis, Hedge Fund Management; electives: Borrowing, Fundraising, Collections and Disbursements; career outcomes: financial analyst, investment banker, corporate finance manager); Labeeb UAE banking and finance hiring 2025 (bank assets AED 4.1T in 2024, senior risk/treasury AED 35,000 to 80,000 per month, fintech analyst AED 18,000 to 28,000); ManpowerGroup UAE banking outlook 2025; Taggd GCC Talent Market 2026.
+- Sources: Rushford official listing (16 months online, 27 courses, 90 ECTS; specialisation modules: Investments, Corporate Investment Management, International Finance, Portfolio Management, Securities Analysis, Hedge Fund Management; electives: Borrowing, Fundraising, Collections and Disbursements; career outcomes: financial analyst, investment banker, corporate finance manager); ManpowerGroup UAE banking outlook 2025
 - Careers: first three from the official listing; the rest are market-standard, need client approval.
-- Salary figures are quoted ranges from Labeeb's published bands; client to confirm they are comfortable running them on-page.
+- Salary figures removed in the 2026-09-21 QA pass; private-source numbers do not run on-page.
 - Sign-off needed: exact fee, September 2026 seats, scholarship rules, salary band wording, market figures if legal prefers softer language.
+- 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.

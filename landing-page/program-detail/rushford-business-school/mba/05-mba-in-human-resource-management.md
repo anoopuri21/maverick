@@ -1,11 +1,11 @@
 # 05 · Program Detail Page Content: MBA in Human Resource Management (v5)
 
-**Page:** /programs/mba-in-human-resource-management
+**Page:** /programmes/mba-in-human-resource-management
 **Awarding university:** Rushford Business School, Switzerland
 **Category:** MBA · **Level:** Master's · **Duration:** 16 months, fully online
 **Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections (per client list) not written: recognition, accreditation, university block, success stories, reviews, network, faculty voice, FAQ, enquire, CTA
-**Sources on file:** official Rushford programme listing (16 months, 27 courses, 90 ECTS, specialization modules and electives, career roles), MOHRE Emiratisation rules (Cabinet Resolution No. 18 of 2022), Taggd GCC Talent Market 2026
+**Sources on file:** official Rushford programme listing (16 months, 27 courses, 90 ECTS, specialisation modules and electives, career roles), MOHRE Emiratisation rules (Cabinet Resolution No. 18 of 2022)
 
 ---
 
@@ -55,9 +55,9 @@ Fee and intake details are issued per intake, in writing, before payment. Ask fo
 ## 3. PROGRAMME OVERVIEW (description)
 
 ### copy
-HR stopped being a back-office function somewhere around the time retention became a board topic. This MBA treats it that way: the Rushford management core comes first, then a specialization covering HR strategy, people management, organizational change, talent, engagement, and HR's role in international business and M&A.
+HR stopped being a back-office function somewhere around the time retention became a board topic. This MBA treats it that way: the Rushford management core comes first, then a specialisation covering HR strategy, people management, organizational change, talent, engagement, and HR's role in international business and M&A.
 
-The format assumes you have a job, and a busy one. Courses run in three-week blocks in the evenings, assessments mirror real HR work, and the capstone can take a live problem straight from your organization. Plenty of students finish with a talent or engagement plan their employer ended up adopting, which is as good a result as any grade.
+The format assumes you have a job, and a busy one. Courses run in three-week blocks in the evenings, assessments mirror real HR work, and the capstone can take a live problem straight from your organisation. Plenty of students finish with a talent or engagement plan their employer ended up adopting, which is as good a result as any grade.
 
 ---
 
@@ -119,7 +119,7 @@ Learning and Development Manager
 Your journey, stage by stage
 
 ### intro
-Four stages: foundations, business core, the HR specialization, and a capstone on a real people problem.
+Four stages: foundations, business core, the HR specialisation, and a capstone on a real people problem.
 
 ### stages
 
@@ -140,7 +140,7 @@ Four stages: foundations, business core, the HR specialization, and a capstone o
 - Corporate Social Responsibility, Ethics & Law
 - Strategic Management: Integrating the Enterprise
 
-**Stage 3 · The HR specialization**
+**Stage 3 · The HR specialisation**
 - Principles of Human Resource Management
 - Advanced Human Resource Development
 - HRM Strategy
@@ -173,13 +173,13 @@ Why GCC professionals choose this course
 ### cards
 
 **01 · From your desk, not a campus**
-Fully online, no visa, no career break. The UAE keeps your salary moving while the specialization builds.
+Fully online, no visa, no career break. The UAE keeps your salary moving while the specialisation builds.
 
 **02 · Emiratisation is a compliance job now**
 Under Cabinet Resolution No. 18 of 2022, private firms with 50 or more staff must grow their Emirati skilled workforce annually, and MOHRE monitors it with penalties for non-compliance. That is a permanent demand for qualified HR.
 
 **03 · Talent is the scarcest thing in the Gulf**
-With expatriates making up roughly 87% of Dubai's population, attraction and retention are the business. Taggd's 2026 study says nine in ten GCC employers still report skills gaps.
+With expatriates making up the large majority of Dubai's population, attraction and retention are the business. Employers across the GCC still report skills gaps.
 
 **04 · Retention is a board topic**
 Surveys of UAE workers keep showing a large share actively looking for new roles while employed. Companies respond by professionalizing HR, which means hiring people with formal training.
@@ -188,7 +188,7 @@ Surveys of UAE workers keep showing a large share actively looking for new roles
 Gulf employers are shifting from credential screening to skills-based hiring, and HR teams are the ones who have to build those systems.
 
 **06 · The capstone lands in your workplace**
-Take the final project from your own organization and finish with a people plan that has already been tested where it will be used.
+Take the final project from your own organisation and finish with a people plan that has already been tested where it will be used.
 
 Honest take: an HR MBA opens doors, but it does not replace the CIPD or SHRM certifications some employers ask for in specialist roles. Think of this as the leadership layer on top of your practice, and plan the certificates alongside it if your target role needs them.
 
@@ -211,7 +211,8 @@ Fees depend on the intake and the study mode, which is why no fixed figure is pr
 
 - Voice pass: converted from v4 to v5 maximally-human pattern (varied rhythm, parenthetical asides, honest-take marker, uneven cards). Structure, facts, and field mapping unchanged.
 - Field mapping identical to program 01.
-- Sources: Rushford official listing (16 months online, 27 courses, 90 ECTS, six named specialization courses plus four named electives, official career roles incl. HR Partner/HRBP, HR Manager, HR Consultant, Chief People Officer, CHRO); MOHRE Emiratisation rules (Cabinet Resolution No. 18 of 2022: 2% annual increase for firms with 50+ staff, enforcement and penalties); Dubai expatriate share ~87% (Edoxi analysis, 2025); Taggd GCC Talent Market 2026.
+- Sources: Rushford official listing (16 months online, 27 courses, 90 ECTS, six named specialisation courses plus four named electives, official career roles incl. HR Partner/HRBP, HR Manager, HR Consultant, Chief People Officer, CHRO); MOHRE Emiratisation rules (Cabinet Resolution No. 18 of 2022: 2% annual increase for firms with 50+ staff, enforcement and penalties)
 - Careers: official roles kept (CEO from official list omitted as unrealistic framing; Chief People Officer/CHRO available if client prefers). Last four roles are market-standard, need client approval.
 - Honest-take note: CIPD/SHRM positioning is advisory, not a claim about the degree. Soften if client prefers.
 - Sign-off needed: exact fee, September 2026 seats, scholarship rules, Emiratisation wording if legal prefers softer language, market figures.
+- 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.

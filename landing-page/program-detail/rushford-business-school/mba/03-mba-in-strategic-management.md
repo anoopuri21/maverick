@@ -1,11 +1,11 @@
 # 03 · Program Detail Page Content: MBA in Strategic Management (v5)
 
-**Page:** /programs/mba-in-strategic-management
+**Page:** /programmes/mba-in-strategic-management
 **Awarding university:** Rushford Business School, Switzerland
 **Category:** MBA · **Level:** Master's · **Duration:** 16 months, fully online
 **Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections (per client list) not written: recognition, accreditation, university block, success stories, reviews, network, faculty voice, FAQ, enquire, CTA
-**Sources on file:** official Rushford programme listing (16 months, 27 courses, 90 ECTS, specialization modules, career roles), Mordor Intelligence UAE management consulting market (2026), Taggd GCC Talent Market 2026
+**Sources on file:** official Rushford programme listing (16 months, 27 courses, 90 ECTS, specialisation modules, career roles)
 
 ---
 
@@ -55,7 +55,7 @@ Fee structures and intake dates are confirmed per intake, in writing, before you
 ## 3. PROGRAMME OVERVIEW (description)
 
 ### copy
-Plenty of professionals can execute a plan. Far fewer can build one, defend it in a room full of objections, and then check whether it worked. This MBA is aimed squarely at the second skill: after the Rushford management core, the specialization walks the full strategic arc from formulation to implementation, evaluation, and governance, with consulting and M&A on the syllabus.
+Plenty of professionals can execute a plan. Far fewer can build one, defend it in a room full of objections, and then check whether it worked. This MBA is aimed squarely at the second skill: after the Rushford management core, the specialisation walks the full strategic arc from formulation to implementation, evaluation, and governance, with consulting and M&A on the syllabus.
 
 It is built for people who work, which sounds obvious until you compare timetables. Three-week courses, evening sessions, and assignments that read like board papers rather than essays. The capstone puts the whole framework onto one live business question at the end. That is why so many students finish it holding a strategy their employer actually uses.
 
@@ -67,7 +67,7 @@ It is built for people who work, which sounds obvious until you compare timetabl
 Evening classes, three-week courses. The degree fits around the job, because that is the deal.
 
 **02 · Strategy is the skill the Gulf pays for**
-UAE management consulting was worth USD 2.55 billion in 2025 and is heading toward USD 3.57 billion by 2031. Strategy people sit at the start of that money.
+Consulting engagements drive a large share of the Gulf's biggest decisions, and strategy people sit at the start of that money.
 
 **03 · You learn the whole arc**
 Formulation, implementation, evaluation, governance. Most courses teach one act of the play, and this one teaches all four.
@@ -87,7 +87,7 @@ Closing line: The certificate names Rushford Business School, Switzerland. What 
 
 ## 5. LEARNING OUTCOMES (learning)
 
-01 Read an organization's position the way a strategist does, with evidence
+01 Read an organisation's position the way a strategist does, with evidence
 02 Formulate strategy that survives contact with budgets and politics
 03 Implement plans without watching them die in the org chart
 04 Evaluate results and govern the next decision cycle
@@ -140,7 +140,7 @@ Four stages. Two to build breadth, one to think like a strategist, one to prove 
 - Corporate Social Responsibility, Ethics & Law
 - Strategic Management: Integrating the Enterprise
 
-**Stage 3 · The strategy specialization**
+**Stage 3 · The strategy specialisation**
 - The Nature of Strategic Management
 - Strategy Formulation
 - Strategy Implementation
@@ -178,19 +178,19 @@ Why GCC professionals choose this course
 Study online from Dubai, Abu Dhabi, Sharjah, or anywhere in the GCC. No visa, no relocation, and the salary never stops.
 
 **02 · Consulting money is growing**
-Mordor Intelligence puts the UAE management consulting market at USD 2.55 billion in 2025, rising to USD 3.57 billion by 2031. Strategy skills are the entry ticket.
+Management consulting engagements keep growing across the UAE. Strategy skills are the entry ticket.
 
 **03 · Diversification keeps printing strategy work**
 Every giga project and national agenda in the Gulf starts with a strategic plan, and the region keeps commissioning them.
 
 **04 · The skills gap is real**
-Taggd's 2026 GCC study found nine in ten employers reporting serious skill shortages. Formal strategy training is one of the rarest credentials in the market.
+Employers across the Gulf keep reporting serious skill shortages. Formal strategy training is one of the rarest credentials in the market.
 
 **05 · Case work that fits the region**
 Strategic cases taught with the Gulf's mix of family business, sovereign capital, and rapid diversification in mind, instead of the usual American textbook settings.
 
 **06 · The capstone travels**
-Finish on a live strategic question from your own organization, and the deliverable doubles as evidence at your next appraisal or interview.
+Finish on a live strategic question from your own organisation, and the deliverable doubles as evidence at your next appraisal or interview.
 
 Honest take: strategy degrees reward people who read widely and argue precisely. If your interest in the subject stops at the title, a lighter general MBA will demand less of you and serve you just as well.
 
@@ -213,7 +213,8 @@ Fees change with intake and study mode, so instead of printing a figure that mig
 
 - Voice pass: converted from v4 to v5 maximally-human pattern (varied rhythm, parenthetical asides, honest-take marker, uneven cards). Structure, facts, and field mapping unchanged.
 - Field mapping identical to program 01.
-- Sources: Rushford official programme listing (16 months online, 27 courses, 90 ECTS, nine named specialization modules, official career roles incl. Strategy Manager, Corporate Strategist, Management Consultant, Business Development Manager, Strategic Planner, Risk Manager, Change Manager); Mordor Intelligence UAE management consulting market (USD 2.55B 2025 to USD 3.57B 2031); Taggd GCC Talent Market 2026.
+- Sources: Rushford official programme listing (16 months online, 27 courses, 90 ECTS, nine named specialisation modules, official career roles incl. Strategy Manager, Corporate Strategist, Management Consultant, Business Development Manager, Strategic Planner, Risk Manager, Change Manager)
 - Note: the official listing shows the final module as "Mergers and ..." (truncated). Written as "Mergers and Acquisitions" pending university confirmation.
 - Careers: first seven roles from the official listing; Transformation Manager, Corporate Development Manager, and Programme Management Lead are market-standard, need client approval.
 - Sign-off needed: exact fee, September 2026 seats, scholarship rules, M&A module wording, market figures if legal prefers softer language.
+- 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.

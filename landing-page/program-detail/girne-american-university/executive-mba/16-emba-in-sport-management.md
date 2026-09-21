@@ -1,10 +1,10 @@
 # GAU EMBA 16 · Program Detail Page Content: Executive MBA in Sport Management (v5)
 
-**Page:** /programs/gau-emba-in-sport-management
+**Page:** /programmes/gau-emba-in-sport-management
 **Awarding university:** Girne American University, North Cyprus · **Category:** Executive MBA · **Level:** Master's · **Duration:** 12 to 18 months
 **Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections not written (per client list)
-**Sources on file:** approved master landing page programme table (GAU Executive MBAs, 12-18 months), Dubai DET tourism results 2025 (Gulf News, Feb 2026), Taggd GCC Talent Market 2026
+**Sources on file:** approved master landing page programme table (GAU Executive MBAs, 12-18 months), Dubai DET tourism results 2025 (Gulf News, Feb 2026)
 
 ---
 
@@ -72,7 +72,7 @@ Small, senior, mixed across federations, clubs, venues, and agencies. The networ
 Sport calendars do not pause for study. Twelve to eighteen months, executive-scheduled, is the version that survives the season.
 
 **04 · The research project can join the board pack**
-Point the final investigation at your own organization's commercial or operational question, and finish with a document your board can read.
+Point the final investigation at your own organisation's commercial or operational question, and finish with a document your board can read.
 
 **05 · Instalments in dirhams**
 Monthly AED payments, interest-free, agreed in writing before the programme starts.
@@ -86,7 +86,7 @@ Closing line: The certificate is awarded by Girne American University, North Cyp
 
 ## 5. LEARNING OUTCOMES (learning)
 
-01 Manage sport organizations as commercial enterprises with a public mandate
+01 Manage sport organisations as commercial enterprises with a public mandate
 02 Build revenue models across tickets, rights, sponsorship, and hospitality
 03 Run events and venues with operational discipline and margin awareness
 04 Handle sports governance with the seriousness regulators now give it
@@ -133,7 +133,7 @@ Three movements: the executive core, the sport management coursework, and the gr
 - Leadership case work across federations, clubs, and sport brands
 
 **Stage 3 · The graduate research project**
-- A supervised investigation of a sport business question, often drawn from the participant's own organization
+- A supervised investigation of a sport business question, often drawn from the participant's own organisation
 
 ---
 
@@ -165,7 +165,7 @@ Dubai welcomed 19.59 million international visitors in 2025 with occupancy above
 Regional leagues, international fixtures, and franchise formats keep expanding across the Gulf, and every one of them needs commercial and operational leadership.
 
 **04 · The skills gap reaches the front office too**
-Taggd's 2026 GCC study reports nine in ten employers struggling to find qualified candidates, and sport organizations report the shortage most in business roles rather than coaching ones.
+Across the Gulf, employers keep reporting shortages of qualified candidates, and sport organisations report the shortage most in business roles rather than coaching ones.
 
 **05 · Eighteen months suits the season**
 The delivery bends around fixtures and event windows instead of asking you to choose between them.
@@ -191,6 +191,7 @@ Fees depend on the intake and your admission profile, so no fixed figure sits he
 ## BUILD NOTES (internal, not page copy)
 
 - Field mapping identical to the Rushford programme pages; three-stage structure written descriptively because no official module list for this EMBA was verified this cycle (flagged for university sign-off).
-- Sources: approved master landing page programme table (GAU Executive MBAs, 12-18 months); Dubai DET 2025 results via Gulf News (19.59m visitors, 80.7% occupancy); Taggd GCC Talent Market 2026. Sport-sector statements kept qualitative; flag if client wants sourced figures.
+- Sources: approved master landing page programme table (GAU Executive MBAs, 12-18 months); Dubai DET 2025 results via Gulf News (19.59m visitors, 80.7% occupancy); flag if client wants sourced figures.
 - Careers: all ten roles market-standard; need client approval.
 - Sign-off needed: exact fee, September 2026 seats, scholarship rules, stage wording, credit line if university provides one, market figures if legal prefers softer language.
+- 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.

@@ -1,10 +1,10 @@
 # GAU MBA 05 · Program Detail Page Content: MBA in Marketing (v5)
 
-**Page:** /programs/gau-mba-in-marketing
+**Page:** /programmes/gau-mba-in-marketing
 **Awarding university:** Girne American University, North Cyprus · **Category:** MBA · **Level:** Master's · **Duration:** 12 to 15 months
 **Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections not written (per client list)
-**Sources on file:** Girne American University programme description as carried on the client's course pages (12-15 months, flexible delivery), Ken Research UAE digital advertising market (2026), Taggd GCC Talent Market 2026
+**Sources on file:** Girne American University programme description as carried on the client's course pages (12-15 months, flexible delivery)
 
 ---
 
@@ -156,13 +156,13 @@ Why GCC professionals choose this course
 ### cards
 
 **01 · Study inside an ad-spend boom**
-Fully online, no visa, no career break. UAE digital advertising was worth USD 2.29 billion in 2025 and is forecast to reach USD 5.35 billion by 2031, and you can study from inside it.
+Fully online, no visa, no career break. Advertising budgets across the UAE keep shifting toward digital, and you can study from inside the market they are building.
 
 **02 · The Gulf's brands are going international**
 Airlines, retail groups, and city brands from this region now market globally, and they staff those teams with strategists who hold formal credentials.
 
 **03 · The skills gap reaches marketing too**
-Taggd's 2026 GCC study reports nine in ten employers struggling to find qualified candidates, and marketers who can defend a number are the scarcest kind.
+Across the Gulf, employers keep reporting shortages of qualified candidates, and marketers who can defend a number are the scarcest kind.
 
 **04 · Measurement made marketing a board topic**
 Campaigns now answer to dashboards. The degree's measurement emphasis matches how Gulf CMOs actually run their budgets.
@@ -191,6 +191,7 @@ Fees depend on the intake and your admission profile, so no fixed figure sits he
 ## BUILD NOTES (internal, not page copy)
 
 - Field mapping identical to the Rushford programme pages; three-stage structure written descriptively because no fixed module list is published for this MBA (flagged for university sign-off).
-- Sources: Girne American University programme description as carried on client course pages (12-15 months, flexible part-time and distance delivery); Ken Research UAE digital advertising market (USD 2.29B 2025 to USD 5.35B 2031); Taggd GCC Talent Market 2026.
+- Sources: Girne American University programme description as carried on client course pages (12-15 months, flexible part-time and distance delivery)
 - Careers: all ten roles market-standard; need client approval.
 - Sign-off needed: exact fee, September 2026 seats, scholarship rules, stage wording, credit line if university provides one, market figures if legal prefers softer language.
+- 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.

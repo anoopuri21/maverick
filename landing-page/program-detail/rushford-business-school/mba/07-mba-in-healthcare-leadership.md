@@ -1,11 +1,11 @@
 # 07 · Program Detail Page Content: MBA in Healthcare Leadership (v5)
 
-**Page:** /programs/mba-in-healthcare-leadership
+**Page:** /programmes/mba-in-healthcare-leadership
 **Awarding university:** Rushford Business School, Switzerland
 **Category:** MBA · **Level:** Master's · **Duration:** 16 months, fully online
 **Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections (per client list) not written: recognition, accreditation, university block, success stories, reviews, network, faculty voice, FAQ, enquire, CTA
-**Sources on file:** official Rushford programme listing (16 months, 90 ECTS, competency areas, career paths), MarkNtel UAE healthcare market (2026), Taggd GCC Talent Market 2026
+**Sources on file:** official Rushford programme listing (16 months, 90 ECTS, competency areas, career paths)
 
 ---
 
@@ -55,7 +55,7 @@ Each intake has its own fee sheet and calendar. Both arrive in writing before an
 ## 3. PROGRAMME OVERVIEW (description)
 
 ### copy
-Healthcare leadership sits on an uncomfortable fence: patient outcomes on one side, budgets, policy, and regulation on the other. This MBA is for the people expected to stand on that fence. After the Rushford management core, the specialization works through healthcare economics, policy, information systems, ethics and medicolegal issues, telemedicine, and the emotional intelligence that evidence-based, patient-centered care actually demands.
+Healthcare leadership sits on an uncomfortable fence: patient outcomes on one side, budgets, policy, and regulation on the other. This MBA is for the people expected to stand on that fence. After the Rushford management core, the specialisation works through healthcare economics, policy, information systems, ethics and medicolegal issues, telemedicine, and the emotional intelligence that evidence-based, patient-centered care actually demands.
 
 The format was built for clinicians and administrators who cannot stop working, because most of them cannot. Three-week courses, evening sessions, and a capstone that can be taken straight from your facility: a service line, a quality problem, a policy question. In a sector this regulated, the choice of problem will not be hard.
 
@@ -67,7 +67,7 @@ The format was built for clinicians and administrators who cannot stop working, 
 Evenings, three-week courses, fully online. The programme assumes you are still on the rota.
 
 **02 · The sector is being rebuilt around leaders**
-The UAE healthcare market was valued at USD 3.4 billion in 2025 and is forecast to reach USD 6.63 billion by 2032. Expansion means new departments, and departments need heads.
+The UAE keeps opening and expanding healthcare facilities. Expansion means new departments, and departments need heads.
 
 **03 · It covers the uncomfortable subjects**
 Medicolegal issues, health economics, policy. The topics most business degrees ignore and most hospitals need daily.
@@ -119,7 +119,7 @@ Telehealth Programme Manager
 Your journey, stage by stage
 
 ### intro
-Four stages: management foundations, the business core, the healthcare leadership specialization, and a capstone on a live problem from the sector.
+Four stages: management foundations, the business core, the healthcare leadership specialisation, and a capstone on a live problem from the sector.
 
 ### stages
 
@@ -140,7 +140,7 @@ Four stages: management foundations, the business core, the healthcare leadershi
 - Corporate Social Responsibility, Ethics & Law
 - Strategic Management: Integrating the Enterprise
 
-**Stage 3 · The healthcare leadership specialization**
+**Stage 3 · The healthcare leadership specialisation**
 - Healthcare economics and funding models
 - Healthcare policy and regulatory frameworks
 - Health information management systems
@@ -175,16 +175,16 @@ Why GCC professionals choose this course
 Fully online from the UAE or anywhere in the GCC. No visa, no career break, no gap in your clinical or administrative record.
 
 **02 · The market is expanding at 10% a year**
-MarkNtel values the UAE healthcare market at USD 3.4 billion in 2025, projected to reach USD 6.63 billion by 2032. Growth at that pace is a management problem as much as a clinical one.
+UAE healthcare keeps expanding year after year. Growth at that pace is a management problem as much as a clinical one.
 
 **03 · Insurance made everyone accountable**
 With the national health insurance mandate in force since January 2025, providers answer to payers as well as patients. That doubles the need for leaders who understand both sides.
 
 **04 · The skills gap includes hospital corridors**
-Taggd's 2026 GCC study reports nine in ten employers struggling with skill shortages, and healthcare administration is short on formally trained managers.
+Across the Gulf, employers keep reporting shortages of qualified candidates, and healthcare administration is short on formally trained managers.
 
 **05 · Telemedicine is policy now, not novelty**
-The specialization treats telemedicine and technology change as management subjects, matching how Gulf health systems are actually deploying them.
+The specialisation treats telemedicine and technology change as management subjects, matching how Gulf health systems are actually deploying them.
 
 **06 · The capstone can improve your own facility**
 Take the final project from your workplace and finish with a change proposal that has academic weight and operational context.
@@ -210,7 +210,8 @@ Fees depend on intake and study mode, which is why no fixed number appears on th
 
 - Voice pass: converted from v4 to v5 maximally-human pattern (varied rhythm, parenthetical asides, honest-take marker, uneven cards). Structure, facts, and field mapping unchanged.
 - Field mapping identical to program 01.
-- Sources: Rushford official listing (16 months online, 90 ECTS, competency areas incl. economics, patient satisfaction, healthcare policy, information management, ethics, medicolegal issues, telemedicine, emotional intelligence, evidence-based patient-centered care; career settings: hospitals, healthcare systems, insurance companies, government agencies); MarkNtel UAE healthcare market (USD 3.4B 2025 to USD 6.63B 2032, 10% CAGR); UAE national health insurance mandate effective 1 Jan 2025 (MOHRE, via Mordor Intelligence); Taggd GCC Talent Market 2026.
-- Stage-3 lines describe official competency areas; the listing publishes no fixed module titles for this specialization. Flagged for university sign-off.
+- Sources: Rushford official listing (16 months online, 90 ECTS, competency areas incl. economics, patient satisfaction, healthcare policy, information management, ethics, medicolegal issues, telemedicine, emotional intelligence, evidence-based patient-centered care; career settings: hospitals, healthcare systems, insurance companies, government agencies)
+- Stage-3 lines describe official competency areas; the listing publishes no fixed module titles for this specialisation. Flagged for university sign-off.
 - Careers: Healthcare Executive, Operations Manager, Policy Analyst from official listing; remaining roles are market-standard, need client approval.
 - Sign-off needed: exact fee, September 2026 seats, scholarship rules, stage-3 module wording, market figures if legal prefers softer language.
+- 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.

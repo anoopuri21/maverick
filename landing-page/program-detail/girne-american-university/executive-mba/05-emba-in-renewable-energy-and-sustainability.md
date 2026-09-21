@@ -1,10 +1,10 @@
 # GAU EMBA 05 · Program Detail Page Content: Executive MBA in Renewable Energy & Sustainability (v5)
 
-**Page:** /programs/gau-emba-in-renewable-energy-and-sustainability
+**Page:** /programmes/gau-emba-in-renewable-energy-and-sustainability
 **Awarding university:** Girne American University, North Cyprus · **Category:** Executive MBA · **Level:** Master's · **Duration:** 12 to 18 months
 **Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections not written (per client list)
-**Sources on file:** approved master landing page programme table (GAU Executive MBAs, 12-18 months), UAE Net Zero 2050 (Reuters/UAE government), UAE Energy Strategy 2050 via ADDED, Taggd GCC Talent Market 2026
+**Sources on file:** approved master landing page programme table (GAU Executive MBAs, 12-18 months), UAE Net Zero 2050 (Reuters/UAE government), UAE Energy Strategy 2050 via ADDED
 
 ---
 
@@ -88,8 +88,8 @@ Closing line: The certificate is awarded by Girne American University, North Cyp
 
 01 Evaluate renewable energy projects with the economics they deserve
 02 Build sustainability strategy that survives contact with a budget committee
-03 Navigate the policy frameworks that shape energy investment decisions
-04 Manage organizations through business-model change, which is what the transition actually is
+03 Work through the policy frameworks that shape energy investment decisions
+04 Manage organisations through business-model change, which is what the transition actually is
 05 Read carbon, efficiency, and grid questions well enough to challenge consultants
 06 Lead cross-functional transition programmes across engineering, finance, and government affairs
 07 Investigate an energy or sustainability question with research discipline
@@ -133,7 +133,7 @@ Three movements: the executive core, the renewable energy and sustainability cou
 - Transition leadership case work across the energy value chain
 
 **Stage 3 · The graduate research project**
-- A supervised investigation of an energy or sustainability question, often drawn from the participant's own organization
+- A supervised investigation of an energy or sustainability question, often drawn from the participant's own organisation
 
 ---
 
@@ -165,7 +165,7 @@ The national energy strategy sets a target of 50,000 green jobs by 2030, and the
 The UAE keeps commissioning projects that the whole sector studies, and every one of them needs executives who can manage technology, money, and policy together.
 
 **04 · The skills gap reaches the transition too**
-Taggd's 2026 GCC study reports nine in ten employers struggling to find qualified candidates, and sustainability leadership is among the newest and thinnest benches.
+Across the Gulf, employers keep reporting shortages of qualified candidates, and sustainability leadership is among the newest and thinnest benches.
 
 **05 · Eighteen months suits project calendars**
 The delivery bends around development cycles and site schedules instead of asking you to choose between them.
@@ -191,6 +191,7 @@ Fees depend on the intake and your admission profile, so no fixed figure sits he
 ## BUILD NOTES (internal, not page copy)
 
 - Field mapping identical to the Rushford programme pages; three-stage structure written descriptively because no official module list for this EMBA was verified this cycle (flagged for university sign-off).
-- Sources: approved master landing page programme table (GAU Executive MBAs, 12-18 months); UAE Net Zero 2050 (AED 600B, Reuters/UAE government); UAE Energy Strategy 2050 via ADDED (50,000 green jobs by 2030); Taggd GCC Talent Market 2026.
+- Sources: approved master landing page programme table (GAU Executive MBAs, 12-18 months); UAE Net Zero 2050 (AED 600B, Reuters/UAE government); UAE Energy Strategy 2050 via ADDED (50,000 green jobs by 2030)
 - Careers: all ten roles market-standard; need client approval.
 - Sign-off needed: exact fee, September 2026 seats, scholarship rules, stage wording, credit line if university provides one, market figures if legal prefers softer language.
+- 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.

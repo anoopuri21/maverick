@@ -1,11 +1,11 @@
 # 02 · Program Detail Page Content: MBA in Sustainability, Energy and Environment (v5)
 
-**Page:** /programs/mba-in-sustainability-energy-and-environment
+**Page:** /programmes/mba-in-sustainability-energy-and-environment
 **Awarding university:** Rushford Business School, Switzerland
 **Category:** MBA · **Level:** Master's · **Duration:** 16 months, fully online
 **Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections (per client list) not written: recognition, accreditation, university block, success stories, reviews, network, faculty voice, FAQ, enquire, CTA
-**Sources on file:** official Rushford programme listing (16 months, 90 ECTS, specialization outcomes and career roles), UAE Net Zero 2050 announcement (Reuters, UAE government), UAE Energy Strategy 2050 (ADDED), Taggd GCC Talent Market 2026
+**Sources on file:** official Rushford programme listing (16 months, 90 ECTS, specialisation outcomes and career roles), UAE Net Zero 2050 announcement (Reuters, UAE government), UAE Energy Strategy 2050 (ADDED)
 
 ---
 
@@ -55,7 +55,7 @@ The fee sheet for your intake arrives in writing before any payment happens. Eac
 ## 3. PROGRAMME OVERVIEW (description)
 
 ### copy
-Every boardroom in the Gulf now has an energy conversation sitting in it, whether the company admits it or not. This MBA joins that conversation with credentials behind it: the standard Rushford management core first, then a specialization running through energy economics, sustainability strategy, renewables, efficiency, and the newer language of smart cities. Climate science gets taught through cases, not slogans, which matters more than it sounds.
+Every boardroom in the Gulf now has an energy conversation sitting in it, whether the company admits it or not. This MBA joins that conversation with credentials behind it: the standard Rushford management core first, then a specialisation running through energy economics, sustainability strategy, renewables, efficiency, and the newer language of smart cities. Climate science gets taught through cases, not slogans, which matters more than it sounds.
 
 Courses run about three weeks each and sit in the evenings, so a full-time job survives the degree. The assessments copy real decisions: a carbon budget here, an efficiency plan there, a policy brief when the module calls for it. And the capstone takes one live problem from the energy or environment space. Students who bring their employer's problem in tend to finish with something they can present at work, which is a better souvenir than a certificate alone.
 
@@ -64,7 +64,7 @@ Courses run about three weeks each and sit in the evenings, so a full-time job s
 ## 4. WHY CHOOSE THIS PROGRAMME (benefits)
 
 **01 · Your salary has no idea you are doing an MBA**
-Evenings and three-week courses. The paycheque keeps landing while the specialization builds, and that is the whole point of the format.
+Evenings and three-week courses. The paycheque keeps landing while the specialisation builds, and that is the whole point of the format.
 
 **02 · The region wrote itself a 2050 target**
 The UAE committed AED 600 billion to clean energy and wants 50,000 green jobs by 2030. Someone has to run those projects, and it will be the trained ones.
@@ -81,7 +81,7 @@ Monthly AED payments, no interest, lined up with payday rather than fighting it.
 **06 · Named support, real people**
 A success coach who knows your name, and advisors in Sharjah reachable on WhatsApp when you have ten minutes. Not an hour. Ten minutes is usually what you have.
 
-Closing line: The diploma carries the Swiss school's name, and the specialization is the part that opens doors in energy. Both come in the same envelope.
+Closing line: The diploma carries the Swiss school's name, and the specialisation is the part that opens doors in energy. Both come in the same envelope.
 
 ---
 
@@ -94,7 +94,7 @@ Closing line: The diploma carries the Swiss school's name, and the specializatio
 05 Budget carbon like money, because increasingly it is
 06 Separate climate policy from energy policy from environment policy, and find where they overlap
 07 Explain energy decisions to people who do not work in energy
-08 Finish with a capstone rooted in a real organization's sustainability problem
+08 Finish with a capstone rooted in a real organisation's sustainability problem
 
 ---
 
@@ -140,7 +140,7 @@ Four stages. Two build the management core every Rushford MBA carries, the third
 - Corporate Social Responsibility, Ethics & Law
 - Strategic Management: Integrating the Enterprise
 
-**Stage 3 · The sustainability specialization**
+**Stage 3 · The sustainability specialisation**
 - Energy economics and the global energy framework
 - Sustainability strategy
 - Renewable energy: wind, solar, and ocean sources
@@ -181,7 +181,7 @@ The UAE's net-zero plan directs AED 600 billion into clean and renewable energy 
 The national energy strategy sets that target, and targets need specialists with formal training behind them.
 
 **04 · Employers keep reporting the gap**
-Nine in ten GCC employers told Taggd's 2026 talent study they cannot find the skills they need. Sustainability sits near the top of the shortage list.
+Employers across the GCC keep reporting that they cannot find the skills they need. Sustainability sits near the top of the shortage list.
 
 **05 · From Barakah to Masdar**
 The UAE keeps building reference projects, from the Barakah nuclear plant on the grid to Masdar City's living lab, and every one of them needs managers.
@@ -189,7 +189,7 @@ The UAE keeps building reference projects, from the Barakah nuclear plant on the
 **06 · Taught the way the region spends**
 Energy economics, renewables, and climate policy, matched to where Gulf capital is actually flowing rather than to a textbook's assumptions.
 
-Honest take: if your interest in sustainability is purely compliance-driven, a shorter ESG certificate may do the job. This MBA is for people who want the specialization to shape their next decade, rather than a single policy document.
+Honest take: if your interest in sustainability is purely compliance-driven, a shorter ESG certificate may do the job. This MBA is for people who want the specialisation to shape their next decade, rather than a single policy document.
 
 ---
 
@@ -210,7 +210,8 @@ Fees move with the intake and the study mode, so no fixed number sits on this pa
 
 - Voice pass: converted from v4 to v5 maximally-human pattern (varied rhythm, parenthetical asides, honest-take marker, uneven cards). Structure, facts, and field mapping unchanged.
 - Field mapping identical to program 01 (hero, snapshot, overview, benefits, learning, careers, structure, support, gcc, fees, seo).
-- Sources: Rushford official programme listing (16 months online, 27 courses, 90 ECTS, specialization outcomes, six official career roles); UAE Net Zero 2050 (Reuters, Oct 2021: AED 600 billion renewable investment); UAE Energy Strategy 2050 via ADDED (50,000 green jobs by 2030); Taggd GCC Talent Market 2026 (90% skills-gap figure).
-- Stage-3 subject names are descriptive of the official specialization curriculum (energy economics, sustainability strategy, renewables, efficiency/smart cities, climate science cases); the listing does not publish fixed module titles for this specialization. Flagged for university sign-off.
+- Sources: Rushford official programme listing (16 months online, 27 courses, 90 ECTS, specialisation outcomes, six official career roles); UAE Net Zero 2050 (Reuters, Oct 2021: AED 600 billion renewable investment); UAE Energy Strategy 2050 via ADDED (50,000 green jobs by 2030)
+- Stage-3 subject names are descriptive of the official specialisation curriculum (energy economics, sustainability strategy, renewables, efficiency/smart cities, climate science cases); the listing does not publish fixed module titles for this specialisation. Flagged for university sign-off.
 - Careers: first six roles are from the official listing; the last four (Sustainability Manager, ESG Analyst, Energy Analyst, CSR Manager) are market-standard and need client approval.
 - Sign-off needed: exact fee, September 2026 seats, scholarship rules, stage-3 module wording, market figures if legal wants softer phrasing.
+- 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.

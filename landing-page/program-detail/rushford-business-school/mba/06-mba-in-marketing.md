@@ -1,11 +1,11 @@
 # 06 · Program Detail Page Content: MBA in Marketing (v5)
 
-**Page:** /programs/mba-in-marketing
+**Page:** /programmes/mba-in-marketing
 **Awarding university:** Rushford Business School, Switzerland
 **Category:** MBA · **Level:** Master's · **Duration:** 16 months, fully online
 **Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections (per client list) not written: recognition, accreditation, university block, success stories, reviews, network, faculty voice, FAQ, enquire, CTA
-**Sources on file:** official Rushford programme listing (16 months, 90 ECTS, specialization modules and electives, career roles), Ken Research UAE digital advertising market (2026), Taggd GCC Talent Market 2026
+**Sources on file:** official Rushford programme listing (16 months, 90 ECTS, specialisation modules and electives, career roles)
 
 ---
 
@@ -55,7 +55,7 @@ Fees and dates are issued per intake and confirmed in writing before payment. Th
 ## 3. PROGRAMME OVERVIEW (description)
 
 ### copy
-Anyone can run an ad. The hard part of marketing is deciding what the brand stands for, what it should cost, who the research actually says will buy it, and how to prove the campaign worked. This MBA spends its specialization on exactly those decisions: marketing strategy, brand management, communications, pricing, research, consumer behaviour, and advertising, with internet marketing analytics rounding it off.
+Anyone can run an ad. The hard part of marketing is deciding what the brand stands for, what it should cost, who the research actually says will buy it, and how to prove the campaign worked. This MBA spends its specialisation on exactly those decisions: marketing strategy, brand management, communications, pricing, research, consumer behaviour, and advertising, with internet marketing analytics rounding it off.
 
 The Rushford management core runs first, so the marketing sits on top of real business literacy rather than floating above it. Courses take about three weeks each, classes run in the evenings, and the capstone lets you take a live brand or campaign question from your own workplace and finish the degree with it solved.
 
@@ -67,7 +67,7 @@ The Rushford management core runs first, so the marketing sits on top of real bu
 Three-week courses, evening delivery, fully online. The degree moves around your calendar, never the reverse.
 
 **02 · The ad money is moving online, fast**
-UAE digital advertising was worth USD 2.29 billion in 2025 and is forecast to reach USD 5.35 billion by 2031. Someone trained has to spend it well.
+Advertising budgets across the UAE keep shifting toward digital. Someone trained has to spend them well.
 
 **03 · Pricing is on the syllabus**
 Most marketing courses skip it. This one teaches pricing and pricing strategy as its own discipline, because that is where margins live.
@@ -119,7 +119,7 @@ Customer Insights Manager
 Your journey, stage by stage
 
 ### intro
-Four stages: the management foundations, the business core, the marketing specialization, and a capstone on a live brand question.
+Four stages: the management foundations, the business core, the marketing specialisation, and a capstone on a live brand question.
 
 ### stages
 
@@ -140,7 +140,7 @@ Four stages: the management foundations, the business core, the marketing specia
 - Corporate Social Responsibility, Ethics & Law
 - Strategic Management: Integrating the Enterprise
 
-**Stage 3 · The marketing specialization**
+**Stage 3 · The marketing specialisation**
 - Marketing Strategy
 - Brand Management
 - Marketing Communications
@@ -177,16 +177,16 @@ Why GCC professionals choose this course
 No visa, no relocation, no career break. The degree is delivered online to wherever in the GCC you already work.
 
 **02 · Digital ad spend is compounding**
-Ken Research puts the UAE digital advertising market at USD 2.29 billion in 2025, heading to USD 5.35 billion by 2031. Every dirham of it needs someone who can justify the spend.
+UAE advertising budgets keep shifting toward digital year after year. Every dirham needs someone who can justify the spend.
 
 **03 · Brands are the Gulf's new export**
 From airlines to football clubs to city brands, the region markets itself harder than almost anywhere. That creates senior marketing roles with real budgets.
 
 **04 · Skills gaps reach marketing too**
-Taggd's 2026 GCC study reports nine in ten employers struggling to find qualified people, and data-literate marketers are among the hardest to hire.
+Employers across the Gulf keep reporting shortages of qualified people, and data-literate marketers are among the hardest to hire.
 
 **05 · The curriculum includes the analytics**
-Internet marketing strategy and analytics sit inside the specialization, which is where most hiring conversations now start.
+Internet marketing strategy and analytics sit inside the specialisation, which is where most hiring conversations now start.
 
 **06 · The capstone can carry your portfolio**
 Finish on a live campaign or brand question from your own employer, and graduate with proof of work rather than a promise of it.
@@ -212,7 +212,8 @@ Fees shift with intake and study mode, which is why there is no fixed figure pri
 
 - Voice pass: converted from v4 to v5 maximally-human pattern (varied rhythm, parenthetical asides, honest-take marker, uneven cards). Structure, facts, and field mapping unchanged.
 - Field mapping identical to program 01.
-- Sources: Rushford official listing (16 months online, specialization modules: Marketing Strategy, Brand Management, Marketing Communications, Pricing, Marketing Research, Consumer Behaviour, Advertising; electives: Pricing Strategy, Selling Strategy, Internet Marketing Strategy and Analytics; official career roles: Marketing Manager, Brand Manager, Digital Marketing Specialist, Market Research Analyst, Product Manager, Marketing Consultant); Ken Research UAE digital advertising market (USD 2.29B 2025 to USD 5.35B 2031); Taggd GCC Talent Market 2026.
+- Sources: Rushford official listing (16 months online, specialisation modules: Marketing Strategy, Brand Management, Marketing Communications, Pricing, Marketing Research, Consumer Behaviour, Advertising; electives: Pricing Strategy, Selling Strategy, Internet Marketing Strategy and Analytics; official career roles: Marketing Manager, Brand Manager, Digital Marketing Specialist, Market Research Analyst, Product Manager, Marketing Consultant)
 - Note: one third-party listing shows "138 ECTS" for this programme, contradicting Rushford's standard 90 ECTS framework used on rushford.ch and all other listings. Copy uses 90 ECTS; discrepancy flagged for university confirmation.
 - Careers: first six roles from the official listing; the last four are market-standard and need client approval.
 - Sign-off needed: exact fee, September 2026 seats, scholarship rules, ECTS discrepancy wording, market figures if legal prefers softer language.
+- 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.

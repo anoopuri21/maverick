@@ -1,11 +1,11 @@
 # 10 · Program Detail Page Content: MBA in Entrepreneurship and Innovation (v5)
 
-**Page:** /programs/mba-in-entrepreneurship-and-innovation
+**Page:** /programmes/mba-in-entrepreneurship-and-innovation
 **Awarding university:** Rushford Business School, Switzerland
 **Category:** MBA · **Level:** Master's · **Duration:** 16 months, fully online
 **Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections (per client list) not written: recognition, accreditation, university block, success stories, reviews, network, faculty voice, FAQ, enquire, CTA
-**Sources on file:** official Rushford programme listing (16 months, specialization scope, career paths), UAE startup funding 2025 (Wamda, GrowthList, March 2026), Taggd GCC Talent Market 2026
+**Sources on file:** official Rushford programme listing (16 months, specialisation scope, career paths); Unicorn 30 programme, Dubai official initiative
 
 ---
 
@@ -55,7 +55,7 @@ Fee structures and intake dates are confirmed per intake and issued in writing b
 ## 3. PROGRAMME OVERVIEW (description)
 
 ### copy
-This MBA is aimed at people who build things: founders, would-be founders, and the corporate managers who are asked to innovate inside organizations that were not designed for it. After the Rushford management core, the specialization covers startup creation, product and service development, innovation management, technology adoption, and incubation through to growth.
+This MBA is aimed at people who build things: founders, would-be founders, and the corporate managers who are asked to innovate inside organisations that were not designed for it. After the Rushford management core, the specialisation covers startup creation, product and service development, innovation management, technology adoption, and incubation through to growth.
 
 The format respects how these people actually live, which is erratically. Three-week courses, evening sessions, fully online. The capstone can be your own venture plan, a product you are taking to market, or an innovation problem your employer keeps failing to solve. Whichever you bring, the degree ends with it worked through.
 
@@ -67,7 +67,7 @@ The format respects how these people actually live, which is erratically. Three-
 Evenings, three-week blocks, online delivery. Founders keep founding; employees keep earning.
 
 **02 · The ecosystem around you is on fire**
-UAE startups raised USD 2 billion across 218 deals in 2025, second in MENA. The region does not lack ideas; it lacks operators with formal training.
+Venture capital keeps flowing into UAE startups year after year. The region does not lack ideas; it lacks operators with formal training.
 
 **03 · It covers the awkward middle**
 The pitch is the easy part. Technology adoption, incubation, growth. The unglamorous stages where ventures die.
@@ -89,7 +89,7 @@ Closing line: The certificate names Rushford Business School, Switzerland. The v
 
 01 Turn a business idea into a viable venture, on paper and in practice
 02 Develop products and services with a plan for what happens after launch
-03 Manage innovation inside organizations that resist it
+03 Manage innovation inside organisations that resist it
 04 Evaluate technology adoption decisions with structure
 05 Run incubation and early growth without running out of runway
 06 Commercialize ideas with a real path to revenue
@@ -119,7 +119,7 @@ Innovation Programme Manager
 Your journey, stage by stage
 
 ### intro
-Four stages: management foundations, the business core, the entrepreneurship and innovation specialization, and a capstone on your own venture or problem.
+Four stages: management foundations, the business core, the entrepreneurship and innovation specialisation, and a capstone on your own venture or problem.
 
 ### stages
 
@@ -140,10 +140,10 @@ Four stages: management foundations, the business core, the entrepreneurship and
 - Corporate Social Responsibility, Ethics & Law
 - Strategic Management: Integrating the Enterprise
 
-**Stage 3 · The entrepreneurship and innovation specialization**
+**Stage 3 · The entrepreneurship and innovation specialisation**
 - Startup creation and venture development
 - Product and service development
-- Innovation management in established organizations
+- Innovation management in established organisations
 - Technology adoption and use
 - Incubation, scaling, and growth
 - Five electives chosen from nine
@@ -175,16 +175,16 @@ Why GCC professionals choose this course
 Fully online, no visa, no career break. The degree fits around a startup's chaos or a corporate calendar.
 
 **02 · MENA's money is here**
-UAE startups raised USD 2 billion across 218 deals in 2025, second only to Saudi Arabia in a MENA region that set a record at USD 7.5 billion. Capital is looking for credible operators.
+Venture capital keeps flowing into UAE startups year after year. Capital is looking for credible operators.
 
 **03 · Dubai concentrates the ecosystem**
-Dubai captured 93% of UAE tech funding in the first half of 2025, with fintech, proptech, and AI leading deal flow. The network effects of studying here are real.
+Dubai concentrates the UAE's startup ecosystem, with fintech, proptech, and AI leading the deal flow. The network effects of studying here are real.
 
 **04 · Government programmes are accelerating founders**
 Initiatives like the Unicorn 30 programme are fast-tracking frontier companies toward billion-dollar valuations, and they want founders who can defend a business plan.
 
 **05 · Corporates are hiring innovators too**
-The specialization is designed for intrapreneurs as well as founders; large Gulf organizations pay for innovation roles with actual budgets.
+The specialisation is designed for intrapreneurs as well as founders; large Gulf organisations pay for innovation roles with actual budgets.
 
 **06 · The capstone is your venture**
 Bring your own startup plan or your employer's innovation problem and finish the degree with it worked through to a defendable state.
@@ -210,8 +210,9 @@ Fees shift with intake and study mode, so no fixed figure appears here. Request 
 
 - Voice pass: converted from v4 to v5 maximally-human pattern (varied rhythm, parenthetical asides, honest-take marker, uneven cards). Structure, facts, and field mapping unchanged.
 - Field mapping identical to program 01.
-- Sources: Rushford official listing (16 months online, 27 courses, specialization scope: startup creation, product/service development, innovation management, technology adoption, incubation and growth; career paths: startup founder, product manager, corporate innovation strategist, business consultant, business development lead, intrapreneur); Wamda and GrowthList UAE startup funding 2025 (USD 2B across 218 deals; MENA record USD 7.5B; Dubai 93% of H1 2025 tech funding); Unicorn 30 programme (approved Oct 2025); Taggd GCC Talent Market 2026.
+- Sources: Rushford official listing (16 months online, 27 courses, specialisation scope: startup creation, product/service development, innovation management, technology adoption, incubation and growth; career paths: startup founder, product manager, corporate innovation strategist, business consultant, business development lead, intrapreneur); MENA record USD 7.5B; Dubai 93% of H1 2025 tech funding); Unicorn 30 programme (approved Oct 2025)
 - Note: one listing shows "138 ECTS", contradicting Rushford's standard 90 ECTS framework. Copy uses 90 ECTS; discrepancy flagged for university confirmation (same as program 06).
 - Stage-3 lines describe official scope; module titles not published, flagged for sign-off.
 - Careers: official paths kept; Venture Builder, Growth Manager, Innovation Programme Manager are market-standard, need client approval.
 - Sign-off needed: exact fee, September 2026 seats, scholarship rules, ECTS discrepancy wording, market figures if legal prefers softer language.
+- 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.

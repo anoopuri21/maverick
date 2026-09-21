@@ -1,10 +1,10 @@
 # GAU EMBA 13 · Program Detail Page Content: Executive MBA in Public Administration (v5)
 
-**Page:** /programs/gau-emba-in-public-administration
+**Page:** /programmes/gau-emba-in-public-administration
 **Awarding university:** Girne American University, North Cyprus · **Category:** Executive MBA · **Level:** Master's · **Duration:** 12 to 18 months
 **Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections not written (per client list)
-**Sources on file:** approved master landing page programme table (GAU Executive MBAs, 12-18 months), official GAU-awarded EMBA specialization modules (Public Sector Governance in a Global Context, Personnel Management in the Public Sector, Graduate Research Project), MarkNtel GCC digital transformation (2026), Taggd GCC Talent Market 2026
+**Sources on file:** approved master landing page programme table (GAU Executive MBAs, 12-18 months), official GAU-awarded EMBA specialisation modules (Public Sector Governance in a Global Context, Personnel Management in the Public Sector, Graduate Research Project)
 
 ---
 
@@ -54,7 +54,7 @@ The admission letter carries the credit detail and the fee structure, in writing
 ## 3. PROGRAMME OVERVIEW (description)
 
 ### copy
-Public administration in the Gulf has moved from processing to delivering: digital services, national agendas, and performance targets that get published. This Executive MBA trains leaders for that version of government. The executive core covers strategy, finance, human capital, and operations, then the specialization turns to Public Sector Governance in a Global Context and Personnel Management in the Public Sector, before the degree closes with a graduate research project.
+Public administration in the Gulf has moved from processing to delivering: digital services, national agendas, and performance targets that get published. This Executive MBA trains leaders for that version of government. The executive core covers strategy, finance, human capital, and operations, then the specialisation turns to Public Sector Governance in a Global Context and Personnel Management in the Public Sector, before the degree closes with a graduate research project.
 
 Cohorts are small and senior, drawing from ministries, authorities, and public enterprises, which makes the case discussions unusually frank: everyone in the room has implemented a policy they did not design, and the conversation starts from there.
 
@@ -86,7 +86,7 @@ Closing line: The certificate is awarded by Girne American University, North Cyp
 
 ## 5. LEARNING OUTCOMES (learning)
 
-01 Lead public organizations with both mandate awareness and management discipline
+01 Lead public organisations with both mandate awareness and management discipline
 02 Apply governance frameworks that hold up in a global context
 03 Manage public sector personnel under the rules that actually govern them
 04 Turn national agenda items into deliverable programmes
@@ -118,7 +118,7 @@ Government Advisor
 Your journey, stage by stage
 
 ### intro
-Three movements: the executive core, the public administration specialization, and the graduate research project.
+Three movements: the executive core, the public administration specialisation, and the graduate research project.
 
 ### stages
 
@@ -127,7 +127,7 @@ Three movements: the executive core, the public administration specialization, a
 - Financial management and human resource management
 - Operations and management information systems
 
-**Stage 2 · Public administration specialization**
+**Stage 2 · Public administration specialisation**
 - Public Sector Governance in a Global Context
 - Personnel Management in the Public Sector
 - Executive case work across government delivery and regulation
@@ -159,19 +159,19 @@ Why GCC professionals choose this course
 Fully online, no visa, no career break. The executive format assumes your calendar belongs to the mandate.
 
 **02 · Government digital projects are the fastest-growing spend**
-MarkNtel's GCC digital transformation review expects public sector digital projects to post the highest growth rate through 2031, and someone in every entity has to lead them.
+Public sector digital projects keep multiplying across the GCC, and someone in every entity has to lead them.
 
 **03 · National agendas need delivery leadership**
 Every Gulf government runs published transformation targets, and the civil servants accountable for them increasingly hold formal management credentials.
 
 **04 · The skills gap exists in government too**
-Taggd's 2026 GCC study reports nine in ten employers struggling to find qualified candidates, and public entities report the same shortage in management talent.
+Across the Gulf, employers keep reporting shortages of qualified candidates, and public entities report the same shortage in management talent.
 
 **05 · Eighteen months suits government rhythms**
 The delivery bends around budget seasons and reporting cycles instead of competing with them.
 
 **06 · The research project can serve your entity**
-Finish on a live question from your own organization and graduate with a document that doubles as strategy input.
+Finish on a live question from your own organisation and graduate with a document that doubles as strategy input.
 
 ---
 
@@ -191,6 +191,7 @@ Fees depend on the intake and your admission profile, so no fixed figure sits he
 ## BUILD NOTES (internal, not page copy)
 
 - Field mapping identical to the Rushford programme pages.
-- Sources: approved master landing page programme table (GAU Executive MBAs, 12-18 months); official GAU-awarded EMBA specialization modules as listed on partner programme documentation (Public Sector Governance in a Global Context 8 ECTS, Personnel Management in the Public Sector 8 ECTS, Graduate Research Project 24 ECTS); MarkNtel GCC digital transformation (public sector digital projects highest CAGR to 2031); Taggd GCC Talent Market 2026.
+- Sources: approved master landing page programme table (GAU Executive MBAs, 12-18 months); official GAU-awarded EMBA specialisation modules as listed on partner programme documentation (Public Sector Governance in a Global Context 8 ECTS, Personnel Management in the Public Sector 8 ECTS, Graduate Research Project 24 ECTS)
 - Careers: all ten roles market-standard; need client approval.
 - Sign-off needed: exact fee, September 2026 seats, scholarship rules, credit line if university provides one, market figures if legal prefers softer language.
+- 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.

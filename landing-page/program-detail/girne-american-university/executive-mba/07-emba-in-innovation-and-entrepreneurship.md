@@ -1,10 +1,10 @@
 # GAU EMBA 07 · Program Detail Page Content: Executive MBA in Innovation & Entrepreneurship (v5)
 
-**Page:** /programs/gau-emba-in-innovation-and-entrepreneurship
+**Page:** /programmes/gau-emba-in-innovation-and-entrepreneurship
 **Awarding university:** Girne American University, North Cyprus · **Category:** Executive MBA · **Level:** Master's · **Duration:** 12 to 18 months
 **Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections not written (per client list)
-**Sources on file:** approved master landing page programme table (GAU Executive MBAs, 12-18 months), UAE startup funding 2025 (Wamda, GrowthList), Taggd GCC Talent Market 2026
+**Sources on file:** approved master landing page programme table (GAU Executive MBAs, 12-18 months); Unicorn 30 programme, Dubai official initiative
 
 ---
 
@@ -54,7 +54,7 @@ The admission letter carries the credit detail and the fee structure, in writing
 ## 3. PROGRAMME OVERVIEW (description)
 
 ### copy
-At executive level, entrepreneurship stops being about idea generation and becomes about portfolio discipline: what to fund, what to kill, and how to keep an organization tolerant of both decisions. This Executive MBA works at that altitude. The executive core covers strategy, finance, human capital, and operations, then the coursework focuses on venture creation, corporate innovation structures, technology adoption, and the growth questions that decide whether new businesses scale or stall.
+At executive level, entrepreneurship stops being about idea generation and becomes about portfolio discipline: what to fund, what to kill, and how to keep an organisation tolerant of both decisions. This Executive MBA works at that altitude. The executive core covers strategy, finance, human capital, and operations, then the coursework focuses on venture creation, corporate innovation structures, technology adoption, and the growth questions that decide whether new businesses scale or stall.
 
 Cohorts are small and senior, mixing corporate innovation leads, business builders, and founders scaling past their first years, which gives the case discussions an unusual property: everyone in the room has something real at stake. The degree closes with a graduate research project, frequently built around the participant's own venture or innovation mandate.
 
@@ -89,7 +89,7 @@ Closing line: The certificate is awarded by Girne American University, North Cyp
 01 Run innovation as a portfolio, with funding logic and kill criteria attached
 02 Build ventures that survive their second year, which is where most die
 03 Manage technology adoption without mistaking the demo for the deployment
-04 Design corporate innovation structures that the parent organization tolerates
+04 Design corporate innovation structures that the parent organisation tolerates
 05 Read growth problems early, before they become post-mortems
 06 Lead teams through uncertainty without manufacturing false confidence
 07 Investigate a venture or innovation question with research discipline
@@ -159,7 +159,7 @@ Why GCC professionals choose this course
 Fully online, no visa, no career break. The executive format fits around build cycles, board meetings, and quarterly planning.
 
 **02 · MENA's money is here**
-UAE startups raised USD 2 billion across 218 deals in 2025, second only to Saudi Arabia in a MENA region that set a record at USD 7.5 billion. Capital is active; credible operators get noticed.
+Venture capital keeps flowing into UAE startups year after year. Capital is active; credible operators get noticed.
 
 **03 · Government programmes are accelerating the field**
 Initiatives like the Unicorn 30 programme are fast-tracking frontier companies toward billion-dollar valuations, and the ecosystem around them needs executives who can run growth.
@@ -191,6 +191,7 @@ Fees depend on the intake and your admission profile, so no fixed figure sits he
 ## BUILD NOTES (internal, not page copy)
 
 - Field mapping identical to the Rushford programme pages; three-stage structure written descriptively because no official module list for this EMBA was verified this cycle (flagged for university sign-off).
-- Sources: approved master landing page programme table (GAU Executive MBAs, 12-18 months); Wamda and GrowthList UAE startup funding 2025 (USD 2B across 218 deals; MENA record USD 7.5B); Unicorn 30 programme (approved Oct 2025); Taggd GCC Talent Market 2026.
+- Sources: approved master landing page programme table (GAU Executive MBAs, 12-18 months); MENA record USD 7.5B); Unicorn 30 programme (approved Oct 2025)
 - Careers: all ten roles market-standard; need client approval.
 - Sign-off needed: exact fee, September 2026 seats, scholarship rules, stage wording, credit line if university provides one, market figures if legal prefers softer language.
+- 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.

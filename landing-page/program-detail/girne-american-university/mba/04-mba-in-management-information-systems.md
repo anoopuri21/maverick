@@ -1,10 +1,10 @@
 # GAU MBA 04 · Program Detail Page Content: MBA in Management Information Systems (v5)
 
-**Page:** /programs/gau-mba-in-management-information-systems
+**Page:** /programmes/gau-mba-in-management-information-systems
 **Awarding university:** Girne American University, North Cyprus · **Category:** MBA · **Level:** Master's · **Duration:** 12 to 15 months
 **Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections not written (per client list)
-**Sources on file:** Girne American University programme description as carried on the client's course pages (12-15 months, flexible delivery), Mordor Intelligence UAE digital transformation market (2026), MarkNtel GCC digital transformation (2026), Taggd GCC Talent Market 2026
+**Sources on file:** Girne American University programme description as carried on the client's course pages (12-15 months, flexible delivery)
 
 ---
 
@@ -27,7 +27,7 @@ MBA in Management Information Systems
 Master's
 
 ### short_description
-The most expensive sentence in modern business is "the system should handle that." This MBA from Girne American University trains the managers who know whether it will, pairing business leadership with information systems, in 12 to 15 months, online from the UAE.
+The most expensive sentence in modern business is “the system should handle that.” This MBA from Girne American University trains the managers who know whether it will, pairing business leadership with information systems, in 12 to 15 months, online from the UAE.
 
 ### duration
 12 to 15 months
@@ -133,7 +133,7 @@ Three movements: the business core, the information systems coursework, and the 
 - Systems governance and digital transformation case work
 
 **Stage 3 · The graduate research project**
-- A supervised investigation of a systems or data question, often drawn from the student's own organization
+- A supervised investigation of a systems or data question, often drawn from the student's own organisation
 
 ---
 
@@ -156,22 +156,22 @@ Why GCC professionals choose this course
 ### cards
 
 **01 · Study inside a digital spend boom**
-Fully online, no visa, no career break. The UAE's digital transformation market was valued at USD 1.57 billion in 2025 and is forecast to reach USD 3.75 billion by 2031, with analytics and AI the fastest-growing line.
+Fully online, no visa, no career break. The UAE keeps pushing its digital transformation agenda forward, with analytics and AI among the fastest-moving lines.
 
 **02 · The region's ICT spend is enormous**
-GCC ICT spending passed USD 75 billion in 2025, driven by cloud, AI, cybersecurity, and digital government, and the UAE takes one of the largest shares. Spend like that needs managers who speak both languages.
+GCC investment in cloud, AI, cybersecurity, and digital government keeps climbing, and the UAE takes one of the largest shares. Spend like that needs managers who speak both languages.
 
 **03 · Transformation projects need bilingual leaders**
 Every Gulf ministry and large enterprise runs digital programmes, and the failure mode is rarely the technology. It is the management around it, which is what this degree teaches.
 
 **04 · The skills gap hits hybrid roles hardest**
-Taggd's 2026 GCC study reports nine in ten employers struggling to find qualified candidates, and business-technology hybrids are the rarest profile of all.
+Across the Gulf, employers keep reporting shortages of qualified candidates, and business-technology hybrids are the rarest profile of all.
 
 **05 · Fifteen months suits delivery calendars**
 IT leaders cannot vanish for two years. Twelve to fifteen months, asynchronous around the busy sprints, keeps the delivery moving.
 
 **06 · The research project can fix a real gap**
-Point the final investigation at your own organization's systems question and finish with a recommendation your steering committee can actually vote on.
+Point the final investigation at your own organisation's systems question and finish with a recommendation your steering committee can actually vote on.
 
 ---
 
@@ -191,6 +191,7 @@ Fees depend on the intake and your admission profile, so no fixed figure sits on
 ## BUILD NOTES (internal, not page copy)
 
 - Field mapping identical to the Rushford programme pages; three-stage structure written descriptively because no fixed module list is published for this MBA (flagged for university sign-off).
-- Sources: Girne American University programme description as carried on client course pages (12-15 months, flexible part-time and distance delivery); Mordor Intelligence UAE digital transformation market (USD 1.57B 2025 to USD 3.75B 2031; analytics and AI fastest-growing); MarkNtel GCC digital transformation (GCC ICT spend above USD 75B in 2025); Taggd GCC Talent Market 2026.
+- Sources: Girne American University programme description as carried on client course pages (12-15 months, flexible part-time and distance delivery); analytics and AI fastest-growing)
 - Careers: all ten roles market-standard; need client approval.
 - Sign-off needed: exact fee, September 2026 seats, scholarship rules, stage wording, credit line if university provides one, market figures if legal prefers softer language.
+- 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.

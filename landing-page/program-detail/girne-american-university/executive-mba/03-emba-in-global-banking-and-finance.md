@@ -1,10 +1,10 @@
 # GAU EMBA 03 · Program Detail Page Content: Executive MBA in Global Banking & Finance (v5)
 
-**Page:** /programs/gau-emba-in-global-banking-and-finance
+**Page:** /programmes/gau-emba-in-global-banking-and-finance
 **Awarding university:** Girne American University, North Cyprus · **Category:** Executive MBA · **Level:** Master's · **Duration:** 12 to 18 months
 **Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections not written (per client list)
-**Sources on file:** approved master landing page programme table (GAU Executive MBAs, 12-18 months), Labeeb UAE banking and finance hiring 2025, Taggd GCC Talent Market 2026
+**Sources on file:** approved master landing page programme table (GAU Executive MBAs, 12-18 months)
 
 ---
 
@@ -165,7 +165,7 @@ Post-2024 tightening in compliance, risk, and governance means senior finance ro
 The Gulf remains the centre of Islamic banking, and the institutions running it want leaders with both conventional and Sharia-compliant literacy.
 
 **04 · Fintech raised the competitive bar**
-Banks and fintechs bid for the same senior talent, and Labeeb's 2025 review shows the market paying for hybrid leaders who understand both sides.
+Banks and fintechs bid for the same senior talent, and the market pays for hybrid leaders who understand both sides.
 
 **05 · Eighteen months suits senior calendars**
 The executive format assumes you have a diary that belongs to other people, and schedules around it.
@@ -191,6 +191,7 @@ Fees depend on the intake and your admission profile, so no fixed figure sits he
 ## BUILD NOTES (internal, not page copy)
 
 - Field mapping identical to the Rushford programme pages; three-stage structure written descriptively because no official module list for this EMBA was verified this cycle (flagged for university sign-off).
-- Sources: approved master landing page programme table (GAU Executive MBAs, 12-18 months); Labeeb UAE banking and finance hiring 2025 (bank assets AED 4.1T in 2024, structural hiring in risk, treasury, digital banking, Islamic finance); Taggd GCC Talent Market 2026.
+- Sources: approved master landing page programme table (GAU Executive MBAs, 12-18 months)
 - Careers: all ten roles market-standard; need client approval.
 - Sign-off needed: exact fee, September 2026 seats, scholarship rules, stage wording, credit line if university provides one, salary band wording if used later, market figures if legal prefers softer language.
+- 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.

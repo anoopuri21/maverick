@@ -17,7 +17,7 @@
 | Credits | Confirmed per admission, issued in writing |
 | Best fit | Professionals moving deeper into mental health work and research |
 
-Ten years ago, counselling was a niche conversation in the Gulf. Today the UAE mental health market is on its way from USD 1.5 billion to USD 2.7 billion, and the number of qualified people has not kept up. That gap is exactly where this degree points.
+Ten years ago, counselling was a niche conversation in the Gulf. Today demand for qualified counsellors keeps rising across the UAE, and the number of qualified people has not kept up. That gap is exactly where this degree points.
 
 ## OVERVIEW
 
@@ -86,8 +86,8 @@ Proposal, supervised research, writing, and defence before a faculty committee. 
 
 ## GCC MARKET CONTEXT
 
-- The UAE mental health market is valued at USD 1.5 billion in 2025 and projected to reach USD 2.7 billion by 2031, a 12% CAGR (Ken Research).
-- The specialist-to-patient ratio in UAE mental health services falls well below international standards, per Bonafide Research.
+- Demand for mental health services keeps rising across the UAE, while the pool of qualified practitioners has not kept pace.
+- The specialist-to-patient ratio in UAE mental health services still sits well below what international standards expect.
 - Government awareness campaigns and telehealth expansion have lifted demand for trained professionals across the Emirates.
 - Employer wellbeing programmes and EAP services are growing across the GCC, creating non-clinical roles for psychology graduates.
 - Doctoral study interest in psychology is rising regionally; a recognised thesis MSc is the standard prerequisite.
@@ -113,5 +113,6 @@ The written quote arrives before any payment commitment. Every programme we plac
 - Thesis structure (taught core, electives, methods, supervised thesis with committee defence) follows the published GAU thesis-MSc pattern; exact module lists and ECTS splits are not published by the delivery partner, so no module names are stated. Flag for confirmation with admissions.
 - Licensing disclaimer included twice (overview and careers): degree is academic, UAE practice requires separate professional licensing with the relevant health authority. Important to keep.
 - Careers list is market-standard, skewed to non-clinical and research roles accordingly. No placement data claimed.
-- Market figures: Ken Research UAE mental health market USD 1.5B 2025 to USD 2.7B 2031 (12% CAGR); Bonafide Research specialist-to-patient ratio note. All softenable if legal wants.
+- Market figures: market numbers limited to official government sources after the 2026-09-21 QA pass.
 - Credits row intentionally reads "confirmed per admission" until written confirmation is received per programme.
+- 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.

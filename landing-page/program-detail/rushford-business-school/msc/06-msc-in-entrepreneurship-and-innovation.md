@@ -1,11 +1,11 @@
 # 18 · Program Detail Page Content: MSc in Entrepreneurship & Innovation (v5)
 
-**Page:** /programs/msc-in-entrepreneurship-and-innovation
+**Page:** /programmes/msc-in-entrepreneurship-and-innovation
 **Awarding university:** Rushford Business School, Switzerland
 **Category:** MSc · **Level:** Master's · **Duration:** 12 months, fully online
 **Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections not written (per client list)
-**Sources on file:** official Rushford MSc programme listing (12 months, 60 ECTS, programme outcomes and career roles), UAE startup funding 2025 (Wamda, GrowthList), Taggd GCC Talent Market 2026
+**Sources on file:** official Rushford MSc programme listing (12 months, 60 ECTS, programme outcomes and career roles); Unicorn 30 programme, Dubai official initiative
 
 ---
 
@@ -55,7 +55,7 @@ The 90 ECTS (18-month) and 120 ECTS (24-month) versions also exist for more dept
 ## 3. PROGRAMME OVERVIEW (description)
 
 ### copy
-This MSc blends management, finance, and business operations into the specific shape that new ventures need. Five core management courses come first, then ten specialization courses focused on venture creation, innovation, and the strategic and financial side of running something new, with a deliberate emphasis on planning, risk mitigation, and the investor conversations founders eventually have to hold.
+This MSc blends management, finance, and business operations into the specific shape that new ventures need. Five core management courses come first, then ten specialisation courses focused on venture creation, innovation, and the strategic and financial side of running something new, with a deliberate emphasis on planning, risk mitigation, and the investor conversations founders eventually have to hold.
 
 It runs asynchronously on the e-Campus across twelve months, which suits founders who cannot stop building and managers who are asked to innovate inside companies that predate them (often by decades).
 
@@ -131,7 +131,7 @@ Three blocks across fifteen courses: core management, the entrepreneurship and i
 - Accounting for Financial Reporting
 
 **Block 2 · Entrepreneurship and innovation foundation (20 ECTS)**
-- Ten specialization courses covering venture creation, innovation strategy, financial management of new and established firms, and opportunity development
+- Ten specialisation courses covering venture creation, innovation strategy, financial management of new and established firms, and opportunity development
 
 **Block 3 · Leadership and research (20 ECTS plus electives)**
 - Research Methodology
@@ -164,10 +164,10 @@ Why GCC professionals choose this course
 Fully online, no visa, no career break. The degree fits around build cycles, not the other way around.
 
 **02 · The funding is regional and real**
-UAE startups raised USD 2 billion across 218 deals in 2025, second in a MENA region that hit a record USD 7.5 billion. Investors are active; credible founders get noticed.
+Venture capital keeps flowing into UAE startups year after year. Investors are active; credible founders get noticed.
 
 **03 · Dubai concentrates the ecosystem**
-Dubai captured 93% of UAE tech funding in the first half of 2025, and initiatives like the Unicorn 30 programme are accelerating frontier companies.
+Dubai concentrates the UAE's startup ecosystem, and initiatives like the Unicorn 30 programme keep accelerating frontier companies.
 
 **04 · Corporates pay for innovation skills too**
 The programme is designed for intrapreneurs as well as founders, and large Gulf employers keep creating innovation roles with real budgets.
@@ -199,7 +199,8 @@ Because fees shift with the intake and the ECTS version chosen, no fixed figure 
 
 - Voice pass: converted from v4 to v5 maximally-human pattern (varied rhythm, parenthetical asides, honest-take marker, uneven cards). Structure, facts, and field mapping unchanged.
 - Field mapping identical to program 01; MSc three-block structure.
-- Sources: Rushford official MSc listing (onlinestudies.com: programme outcomes incl. risk mitigation, planning, investor engagement, venture creation; official job titles: Business Consultants, Venture Developers, Public Relations Managers, Sales Managers, Business Analysts, Business Development Manager, Innovation Consultants, Customer Experience Manager); rushford.ch MSc framework (12 months, 60 ECTS, 15 courses; blends management, finance, business operations); Wamda and GrowthList UAE startup funding 2025 (USD 2B/218 deals; MENA USD 7.5B; Dubai 93% H1 share; Unicorn 30); Taggd GCC Talent Market 2026.
-- Block 2 written descriptively; specialization course titles not published, flagged for university sign-off.
+- Sources: Rushford official MSc listing (onlinestudies.com: programme outcomes incl. risk mitigation, planning, investor engagement, venture creation; official job titles: Business Consultants, Venture Developers, Public Relations Managers, Sales Managers, Business Analysts, Business Development Manager, Innovation Consultants, Customer Experience Manager); rushford.ch MSc framework (12 months, 60 ECTS, 15 courses; blends management, finance, business operations); MENA USD 7.5B; Dubai 93% H1 share; Unicorn 30)
+- Block 2 written descriptively; specialisation course titles not published, flagged for university sign-off.
 - Careers: first eight from the official listing; Startup Founder and Growth Manager added as market-standard, need client approval.
 - Sign-off needed: exact fee, September 2026 seats, scholarship rules, Block 2 module wording, career role additions, market figures if legal prefers softer language.
+- 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.

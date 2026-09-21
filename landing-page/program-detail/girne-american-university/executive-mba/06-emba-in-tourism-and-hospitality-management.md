@@ -1,10 +1,10 @@
 # GAU EMBA 06 · Program Detail Page Content: Executive MBA in Tourism & Hospitality Management (v5)
 
-**Page:** /programs/gau-emba-in-tourism-and-hospitality-management
+**Page:** /programmes/gau-emba-in-tourism-and-hospitality-management
 **Awarding university:** Girne American University, North Cyprus · **Category:** Executive MBA · **Level:** Master's · **Duration:** 12 to 18 months
 **Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections not written (per client list)
-**Sources on file:** approved master landing page programme table (GAU Executive MBAs, 12-18 months), Dubai DET tourism results 2025 (Gulf News, Feb 2026), Taggd GCC Talent Market 2026
+**Sources on file:** approved master landing page programme table (GAU Executive MBAs, 12-18 months), Dubai DET tourism results 2025 (Gulf News, Feb 2026)
 
 ---
 
@@ -54,7 +54,7 @@ The admission letter carries the credit detail and the fee structure, in writing
 ## 3. PROGRAMME OVERVIEW (description)
 
 ### copy
-Hospitality produces excellent operators and, less often, executives who can hold assets, capital, and guest experience in one view at once. This Executive MBA closes that gap. The executive core covers strategy, finance, human capital, and operations, then the coursework turns each of them toward tourism and hospitality: destination economics, asset and revenue strategy, the management of guest-facing organizations at scale, and the sustainability questions that destination governments now write into contracts.
+Hospitality produces excellent operators and, less often, executives who can hold assets, capital, and guest experience in one view at once. This Executive MBA closes that gap. The executive core covers strategy, finance, human capital, and operations, then the coursework turns each of them toward tourism and hospitality: destination economics, asset and revenue strategy, the management of guest-facing organisations at scale, and the sustainability questions that destination governments now write into contracts.
 
 Cohorts are small and senior, mixing hotel general managers, destination executives, events leaders, and F&B operators, which makes the case discussions sound like a regional industry summit with better focus. The degree closes with a graduate research project on a live industry question.
 
@@ -89,7 +89,7 @@ Closing line: The certificate is awarded by Girne American University, North Cyp
 01 Manage hospitality assets with capital discipline, not only service instinct
 02 Read destination economics well enough to argue with a government tourism office
 03 Build revenue and pricing strategy across seasons and segments
-04 Lead guest-facing organizations at scale without losing the guest in the process
+04 Lead guest-facing organisations at scale without losing the guest in the process
 05 Handle sustainability and regulation as commercial factors, which is what they have become
 06 Apply strategy to an industry where the customer is also the product's reviewer
 07 Investigate a tourism or hospitality question with research discipline
@@ -133,7 +133,7 @@ Three movements: the executive core, the tourism and hospitality coursework, and
 - Sustainability, regulation, and leadership case work across the industry
 
 **Stage 3 · The graduate research project**
-- A supervised investigation of a tourism or hospitality question, often drawn from the participant's own organization
+- A supervised investigation of a tourism or hospitality question, often drawn from the participant's own organisation
 
 ---
 
@@ -191,6 +191,7 @@ Fees depend on the intake and your admission profile, so no fixed figure sits he
 ## BUILD NOTES (internal, not page copy)
 
 - Field mapping identical to the Rushford programme pages; three-stage structure written descriptively because no official module list for this EMBA was verified this cycle (flagged for university sign-off).
-- Sources: approved master landing page programme table (GAU Executive MBAs, 12-18 months); Dubai DET 2025 results via Gulf News (19.59m visitors, 80.7% occupancy, AED 579 ADR, AED 467 RevPAR, 154,264 rooms, 827 establishments); Taggd GCC Talent Market 2026.
+- Sources: approved master landing page programme table (GAU Executive MBAs, 12-18 months); Dubai DET 2025 results via Gulf News (19.59m visitors, 80.7% occupancy, AED 579 ADR, AED 467 RevPAR, 154,264 rooms, 827 establishments)
 - Careers: all ten roles market-standard; need client approval.
 - Sign-off needed: exact fee, September 2026 seats, scholarship rules, stage wording, credit line if university provides one, market figures if legal prefers softer language.
+- 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.

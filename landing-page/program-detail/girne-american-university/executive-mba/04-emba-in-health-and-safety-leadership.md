@@ -1,10 +1,10 @@
 # GAU EMBA 04 · Program Detail Page Content: Executive MBA in Health & Safety Leadership (v5)
 
-**Page:** /programs/gau-emba-in-health-and-safety-leadership
+**Page:** /programmes/gau-emba-in-health-and-safety-leadership
 **Awarding university:** Girne American University, North Cyprus · **Category:** Executive MBA · **Level:** Master's · **Duration:** 12 to 18 months
 **Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections not written (per client list)
-**Sources on file:** approved master landing page programme table (GAU Executive MBAs, 12-18 months), MarkNtel UAE healthcare market (2026), UAE national health insurance mandate (MOHRE), Taggd GCC Talent Market 2026
+**Sources on file:** approved master landing page programme table (GAU Executive MBAs, 12-18 months), UAE national health insurance mandate (MOHRE)
 
 ---
 
@@ -162,7 +162,7 @@ Fully online, no visa, no career break. The executive format assumes your diary 
 Mega projects, energy facilities, and healthcare expansion running to the end of the decade all carry safety accountability at the top, and the leadership bench for it is thin.
 
 **03 · Healthcare growth multiplies the demand**
-The UAE healthcare market was valued at USD 3.4 billion in 2025 and is projected to reach USD 6.63 billion by 2032, and every new facility inherits a safety leadership requirement.
+The UAE keeps opening and expanding healthcare facilities, and every new one inherits a safety leadership requirement.
 
 **04 · Insurance made safety a financial line**
 With the national health insurance mandate in force since January 2025, workplace health outcomes now show up in payer economics as well as regulators' reports.
@@ -191,6 +191,7 @@ Fees depend on the intake and your admission profile, so no fixed figure sits he
 ## BUILD NOTES (internal, not page copy)
 
 - Field mapping identical to the Rushford programme pages; three-stage structure written descriptively because no official module list for this EMBA was verified this cycle (flagged for university sign-off).
-- Sources: approved master landing page programme table (GAU Executive MBAs, 12-18 months); MarkNtel UAE healthcare market (USD 3.4B 2025 to USD 6.63B 2032); UAE national health insurance mandate effective 1 Jan 2025 (MOHRE); Taggd GCC Talent Market 2026.
+- Sources: approved master landing page programme table (GAU Executive MBAs, 12-18 months); UAE national health insurance mandate effective 1 Jan 2025 (MOHRE)
 - Careers: all ten roles market-standard; need client approval.
 - Sign-off needed: exact fee, September 2026 seats, scholarship rules, stage wording, credit line if university provides one, market figures if legal prefers softer language.
+- 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.

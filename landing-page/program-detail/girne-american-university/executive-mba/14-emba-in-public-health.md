@@ -1,10 +1,10 @@
 # GAU EMBA 14 · Program Detail Page Content: Executive MBA in Public Health (v5)
 
-**Page:** /programs/gau-emba-in-public-health
+**Page:** /programmes/gau-emba-in-public-health
 **Awarding university:** Girne American University, North Cyprus · **Category:** Executive MBA · **Level:** Master's · **Duration:** 12 to 18 months
 **Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections not written (per client list)
-**Sources on file:** approved master landing page programme table (GAU Executive MBAs, 12-18 months), official GAU-awarded EMBA specialization modules (Public Health Administration, Healthcare Operations Management, Graduate Research Project), MarkNtel UAE healthcare market (2026), UAE national health insurance mandate (MOHRE), Taggd GCC Talent Market 2026
+**Sources on file:** approved master landing page programme table (GAU Executive MBAs, 12-18 months), official GAU-awarded EMBA specialisation modules (Public Health Administration, Healthcare Operations Management, Graduate Research Project), UAE national health insurance mandate (MOHRE)
 
 ---
 
@@ -54,7 +54,7 @@ The admission letter carries the credit detail and the fee structure, in writing
 ## 3. PROGRAMME OVERVIEW (description)
 
 ### copy
-Public health careers used to advance through clinical or academic tracks. Now they advance through system leadership: designing services, managing operations across providers, and answering to both ministries and payers. This Executive MBA trains for that middle, where the decisions actually get made. The executive core covers strategy, finance, human capital, and operations, then the specialization moves into Public Health Administration and Healthcare Operations Management, before the degree closes with a graduate research project.
+Public health careers used to advance through clinical or academic tracks. Now they advance through system leadership: designing services, managing operations across providers, and answering to both ministries and payers. This Executive MBA trains for that middle, where the decisions actually get made. The executive core covers strategy, finance, human capital, and operations, then the specialisation moves into Public Health Administration and Healthcare Operations Management, before the degree closes with a graduate research project.
 
 Cohorts are small and senior, drawing from health authorities, hospital groups, insurers, and public health programmes, which makes the case discussions unusually useful: everyone in the room has sat through a system-level decision and has a view on how it should have been run.
 
@@ -118,7 +118,7 @@ Public Health Consultant
 Your journey, stage by stage
 
 ### intro
-Three movements: the executive core, the public health specialization, and the graduate research project.
+Three movements: the executive core, the public health specialisation, and the graduate research project.
 
 ### stages
 
@@ -127,7 +127,7 @@ Three movements: the executive core, the public health specialization, and the g
 - Financial management and human resource management
 - Operations and management information systems
 
-**Stage 2 · Public health specialization**
+**Stage 2 · Public health specialisation**
 - Public Health Administration
 - Healthcare Operations Management
 - Executive case work across health systems, authorities, and payers
@@ -159,13 +159,13 @@ Why GCC professionals choose this course
 Fully online, no visa, no career break. The executive format assumes your diary belongs to the programme, literally.
 
 **02 · The sector beneath public health keeps compounding**
-MarkNtel values the UAE healthcare market at USD 3.4 billion in 2025, projected to reach USD 6.63 billion by 2032, and every expansion adds administration and operations demand above the clinical layer.
+UAE healthcare keeps expanding, and every expansion adds administration and operations demand above the clinical layer.
 
 **03 · Insurance reshaped the whole system**
 With the national health insurance mandate in force since January 2025, public health leaders now work inside payer economics as well as clinical outcomes, which doubles the management skill requirement.
 
 **04 · The skills gap reaches system leadership**
-Taggd's 2026 GCC study reports nine in ten employers struggling to find qualified candidates, and health system administration roles sit among the hardest to fill.
+Across the Gulf, employers keep reporting shortages of qualified candidates, and health system administration roles sit among the hardest to fill.
 
 **05 · Eighteen months suits the health calendar**
 The delivery bends around planning cycles and reporting seasons instead of competing with them.
@@ -191,6 +191,7 @@ Fees depend on the intake and your admission profile, so no fixed figure sits he
 ## BUILD NOTES (internal, not page copy)
 
 - Field mapping identical to the Rushford programme pages.
-- Sources: approved master landing page programme table (GAU Executive MBAs, 12-18 months); official GAU-awarded EMBA specialization modules as listed on partner programme documentation (Public Health Administration 8 ECTS, Healthcare Operations Management 8 ECTS, Graduate Research Project 24 ECTS); MarkNtel UAE healthcare market (USD 3.4B 2025 to USD 6.63B 2032); UAE national health insurance mandate effective 1 Jan 2025 (MOHRE); Taggd GCC Talent Market 2026.
+- Sources: approved master landing page programme table (GAU Executive MBAs, 12-18 months); official GAU-awarded EMBA specialisation modules as listed on partner programme documentation (Public Health Administration 8 ECTS, Healthcare Operations Management 8 ECTS, Graduate Research Project 24 ECTS); UAE national health insurance mandate effective 1 Jan 2025 (MOHRE)
 - Careers: all ten roles market-standard; need client approval.
 - Sign-off needed: exact fee, September 2026 seats, scholarship rules, credit line if university provides one, market figures if legal prefers softer language.
+- 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.

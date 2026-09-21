@@ -1,10 +1,10 @@
 # GAU EMBA 02 · Program Detail Page Content: Executive MBA in Media & Entertainment (v5)
 
-**Page:** /programs/gau-emba-in-media-and-entertainment
+**Page:** /programmes/gau-emba-in-media-and-entertainment
 **Awarding university:** Girne American University, North Cyprus · **Category:** Executive MBA · **Level:** Master's · **Duration:** 12 to 18 months
 **Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections not written (per client list)
-**Sources on file:** approved master landing page programme table (GAU Executive MBAs, 12-18 months), Ken Research UAE digital advertising market (2026), Taggd GCC Talent Market 2026
+**Sources on file:** approved master landing page programme table (GAU Executive MBAs, 12-18 months)
 
 ---
 
@@ -54,7 +54,7 @@ The admission letter carries the credit detail and the fee structure, in writing
 ## 3. PROGRAMME OVERVIEW (description)
 
 ### copy
-Media executives learn the creative side by living it; the business side usually arrives through mistakes. This Executive MBA closes that gap. The executive core covers strategy, finance, human resources, and operations, then the coursework turns toward the media and communication industry itself: how audiences behave, how events get planned and budgeted, how brands get built across platforms, and how creative organizations get managed without killing the thing that makes them creative.
+Media executives learn the creative side by living it; the business side usually arrives through mistakes. This Executive MBA closes that gap. The executive core covers strategy, finance, human resources, and operations, then the coursework turns toward the media and communication industry itself: how audiences behave, how events get planned and budgeted, how brands get built across platforms, and how creative organisations get managed without killing the thing that makes them creative.
 
 Cohorts are small and senior, mixing producers, agency leaders, events directors, and platform managers, which makes the case discussions sound like an industry meeting, because they effectively are one. The degree closes with a graduate research project on a live industry question.
 
@@ -133,7 +133,7 @@ Three movements: the executive core, the media and entertainment coursework, and
 - Brand building, digital channels, and creative team leadership
 
 **Stage 3 · The graduate research project**
-- A supervised investigation of a media business question, often drawn from the participant's own organization
+- A supervised investigation of a media business question, often drawn from the participant's own organisation
 
 ---
 
@@ -156,7 +156,7 @@ Why GCC professionals choose this course
 ### cards
 
 **01 · Study inside the region's content boom**
-Fully online, no visa, no career break. UAE digital advertising was worth USD 2.29 billion in 2025 and is forecast to reach USD 5.35 billion by 2031, and the content economy behind it keeps widening.
+Fully online, no visa, no career break. Advertising budgets across the UAE keep shifting toward digital, and the content economy behind them keeps widening.
 
 **02 · The Gulf runs a year-round events economy**
 Exhibitions, sport, festivals, and entertainment keep the region's calendars full, and every one of them needs managers who can hold a budget and a deadline at once.
@@ -165,7 +165,7 @@ Exhibitions, sport, festivals, and entertainment keep the region's calendars ful
 The region's media free zones keep attracting companies, which means more business roles in the industry and more competition for people who understand both sides of it.
 
 **04 · The skills gap reaches creative industries too**
-Taggd's 2026 GCC study reports nine in ten employers struggling to find qualified candidates, and media companies report the shortage most sharply in commercial roles.
+Across the Gulf, employers keep reporting shortages of qualified candidates, and media companies report the shortage most sharply in commercial roles.
 
 **05 · Eighteen months suits production calendars**
 The executive format bends around seasons and shoots instead of asking you to choose between them.
@@ -191,6 +191,7 @@ Fees depend on the intake and your admission profile, so no fixed figure sits he
 ## BUILD NOTES (internal, not page copy)
 
 - Field mapping identical to the Rushford programme pages; three-stage structure written descriptively because no official module list for this EMBA was verified this cycle (partner listings exist but are not confirmed as GAU-official; flagged for university sign-off).
-- Sources: approved master landing page programme table (GAU Executive MBAs, 12-18 months); Ken Research UAE digital advertising market (USD 2.29B 2025 to USD 5.35B 2031); Taggd GCC Talent Market 2026. Events-economy statements kept qualitative; flag if client wants sourced figures.
+- Sources: approved master landing page programme table (GAU Executive MBAs, 12-18 months); flag if client wants sourced figures.
 - Careers: all ten roles market-standard; need client approval.
 - Sign-off needed: exact fee, September 2026 seats, scholarship rules, stage wording, credit line if university provides one, market figures if legal prefers softer language.
+- 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.

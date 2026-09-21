@@ -1,11 +1,11 @@
 # 16 · Program Detail Page Content: MSc in International Business Management (v5)
 
-**Page:** /programs/msc-in-international-business-management
+**Page:** /programmes/msc-in-international-business-management
 **Awarding university:** Rushford Business School, Switzerland
 **Category:** MSc · **Level:** Master's · **Duration:** 12 months, fully online
 **Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections not written (per client list)
-**Sources on file:** official Rushford MSc programme page (12 months, 60 ECTS, specialization scope), UAE non-oil economy share via ADDED, Taggd GCC Talent Market 2026
+**Sources on file:** official Rushford MSc programme page (12 months, 60 ECTS, specialisation scope), UAE non-oil economy share via ADDED
 
 ---
 
@@ -55,7 +55,7 @@ The 90 ECTS (18-month) and 120 ECTS (24-month) versions also exist if you want m
 ## 3. PROGRAMME OVERVIEW (description)
 
 ### copy
-Multinational companies do not need people who understand business in one country; they need people who can run it across several. This MSc is built around that requirement: five core management courses, then ten specialization courses covering global leadership strategies, industrial relations, international trade operations, international marketing, and international human resource management.
+Multinational companies do not need people who understand business in one country; they need people who can run it across several. This MSc is built around that requirement: five core management courses, then ten specialisation courses covering global leadership strategies, industrial relations, international trade operations, international marketing, and international human resource management.
 
 The degree runs asynchronously on the e-Campus across twelve months, which suits the exact profile it serves: mid-level managers moving toward multinational roles, founders expanding overseas, and graduates aiming at their first international posting. Three profiles, one timetable.
 
@@ -131,7 +131,7 @@ Three blocks across fifteen courses: core management, the international business
 - Accounting for Financial Reporting
 
 **Block 2 · International business foundation (20 ECTS)**
-- Ten specialization courses covering global leadership strategies, industrial relations, international trade operations, international marketing, and international HRM
+- Ten specialisation courses covering global leadership strategies, industrial relations, international trade operations, international marketing, and international HRM
 
 **Block 3 · Leadership and research (20 ECTS plus electives)**
 - Research Methodology
@@ -170,7 +170,7 @@ Abu Dhabi's investment office records the UAE's non-oil sector at over 74% of GD
 Multinationals continue moving regional operations into Dubai and Abu Dhabi, and they staff them with managers who can handle several markets at once.
 
 **04 · The skills gap includes international roles**
-Taggd's 2026 GCC study reports nine in ten employers struggling to find qualified candidates, and roles spanning markets are the hardest to fill from within.
+Across the Gulf, employers keep reporting shortages of qualified candidates, and roles spanning markets are the hardest to fill from within.
 
 **05 · Twelve months suits mobile careers**
 People aiming at international postings rarely have two years to spare. One year, asynchronous, keeps everything else moving.
@@ -199,7 +199,8 @@ Because fees shift with the intake and the ECTS version chosen, no fixed figure 
 
 - Voice pass: converted from v4 to v5 maximally-human pattern (varied rhythm, parenthetical asides, honest-take marker, uneven cards). Structure, facts, and field mapping unchanged.
 - Field mapping identical to program 01; MSc three-block structure.
-- Sources: Rushford official MSc page, rushford.ch and onlinestudies.com (12 months, 60 ECTS; specialization scope: global leadership strategies, industrial relations, international trade operations, international marketing, international HRM; next start date 01 Oct 2026, deadline 25 Sep 2026, held back from page copy pending confirmation); apply.rushford.ch block titles; ADDED clean energy page (UAE non-oil sector above 74% of GDP in 2023); Taggd GCC Talent Market 2026.
-- Block 2 written descriptively; specialization course titles not published, flagged for university sign-off.
+- Sources: Rushford official MSc page, rushford.ch and onlinestudies.com (12 months, 60 ECTS; specialisation scope: global leadership strategies, industrial relations, international trade operations, international marketing, international HRM; next start date 01 Oct 2026, deadline 25 Sep 2026, held back from page copy pending confirmation); apply.rushford.ch block titles; ADDED clean energy page (UAE non-oil sector above 74% of GDP in 2023)
+- Block 2 written descriptively; specialisation course titles not published, flagged for university sign-off.
 - Careers: no official role list published for this MSc; all ten roles are market-standard, need client approval.
 - Sign-off needed: exact fee, September 2026 seats, scholarship rules, Block 2 module wording, career role list approval, market figures if legal prefers softer language.
+- 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.

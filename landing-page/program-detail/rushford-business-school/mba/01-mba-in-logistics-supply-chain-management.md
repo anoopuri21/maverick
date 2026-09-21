@@ -1,11 +1,11 @@
 # 01 · Program Detail Page Content: MBA in Logistics & Supply Chain Management (v5)
 
-**Page:** /programs/mba-in-logistics-supply-chain-management
+**Page:** /programmes/mba-in-logistics-supply-chain-management
 **Awarding university:** Rushford Business School, Switzerland
 **Category:** MBA · **Level:** Master's · **Duration:** 16 months, fully online
 **Voice pass:** v5 maximally-human pattern (detector validation sample)
 **Status:** CONTENT READY · excluded sections (per client list) not written: recognition, accreditation, university block, success stories, reviews, network, faculty voice, FAQ, enquire, CTA
-**Sources on file:** official Rushford programme listing (curriculum, 16 months, 90 ECTS), IMARC UAE logistics market (2025), Taggd GCC Talent Market 2026, Logistics Middle East (Jan 2025), Labeeb UAE hiring outlook 2026
+**Sources on file:** official Rushford programme listing (curriculum, 16 months, 90 ECTS)
 
 ---
 
@@ -67,7 +67,7 @@ The shape suits people who work. Courses run about three weeks apiece, classes s
 Three-week courses, evening classes. The salary never notices.
 
 **02 · The Gulf cannot hire enough of this skill**
-Nine in ten GCC employers told Taggd's 2026 talent study they cannot fill supply chain roles. From Jebel Ali to KEZAD, the specialization keeps appearing in job posts that stay open for months.
+Employers across the GCC keep reporting that they cannot fill supply chain roles. From Jebel Ali to KEZAD, the specialisation keeps appearing in job posts that stay open for months.
 
 **03 · The projects are not pretend**
 Simulations during term, then a capstone on a live problem. Many students run theirs inside their own company, which is both the point and the risk, because it has to be good enough to show.
@@ -140,7 +140,7 @@ Four stages. Two build breadth, one builds the specialism, one proves it.
 - Corporate Social Responsibility, Ethics & Law
 - Strategic Management: Integrating the Enterprise
 
-**Stage 3 · The logistics specialization**
+**Stage 3 · The logistics specialisation**
 - Fundamentals of Logistics and Supply Chain
 - International Logistics
 - Risk Analysis and Assessment
@@ -176,10 +176,10 @@ Why GCC professionals choose this course
 Fully online, no visa, no career break. Living in the Gulf is the point of this degree, not an obstacle it works around.
 
 **02 · The market grows while you wait**
-IMARC valued UAE logistics at USD 57.6 billion in 2025 and projects close to USD 96 billion by 2034. All of it needs managers, and the pool of trained ones is thin.
+UAE logistics keeps expanding around Emirati ports and airports. All of it needs managers, and the pool of trained ones is thin.
 
 **03 · Employers keep failing to hire the skill**
-Nine in ten organisations reported serious supply chain gaps in Taggd's 2026 GCC study. Being the qualified candidate is a decent place to stand when nine in ten employers are struggling.
+Organisations across the Gulf keep reporting serious supply chain gaps. Being the qualified candidate is a decent place to stand when employers are struggling to hire.
 
 **04 · New roles, and they pay for paper**
 Demand planning, logistics analytics, warehouse automation. Five years ago most of these jobs did not exist. Now they hire on formal training and screen out the rest.
@@ -210,5 +210,6 @@ Fees move with intake and study mode, so instead of printing a number that could
 - Field mapping: hero → title/level/short_description/duration/highlights; snapshot → snapshot + note; overview → description; why → benefits (numbered cards + closing line); learning → learning (8 outcomes); careers → careers (10 role chips); structure → structure (4 stages with module lists); support → support (6 title + line pairs); gcc → gcc_heading + gcc_reasons (6 numbered cards); fees → fees (5 chips) + request block; seo → seo meta_title/meta_description.
 - Density matched to the live demo design; voice per G02 §8 red-flag list, v5 maximally-human pattern (detector validation sample).
 - Excluded sections stay empty on this record: recognition, accreditation_groups, university description block, testimonials, reviews, faqs, enquiry and final CTA chrome.
-- Sources: Rushford official programme listing (16 months online, 27 courses, 90 ECTS, module names); IMARC UAE logistics market 2025 to 2034; Taggd GCC Talent Market 2026 (90% skills gap figure); Logistics Middle East Jan 2025 (port cargo and mega-project demand); Labeeb UAE logistics hiring outlook 2026 (role names).
+- Sources: Rushford official programme listing (16 months online, 27 courses, 90 ECTS, module names)
 - Client sign-off needed before go-live: exact fee for this programme, September 2026 seat confirmation, scholarship rules, and the market figures if legal prefers softer wording.
+- 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.

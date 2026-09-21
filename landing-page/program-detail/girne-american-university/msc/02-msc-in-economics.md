@@ -88,7 +88,7 @@ Proposal, supervised research, writing, and defence before a faculty committee. 
 
 - UAE non-oil GDP now accounts for over 74% of the economy (ADDED), which keeps economic analysis in demand.
 - The region's diversification programmes generate continuous demand for analysts who can model growth and labour markets.
-- 90% of GCC employers report skills gaps in the roles they hire for (Taggd GCC 2026 survey).
+- Employers across the GCC keep reporting skills gaps in the roles they hire for.
 - Doctoral study interest is rising among GCC professionals; a recognised thesis MSc is the standard prerequisite.
 - A defended thesis gives you original evidence of analytical work, which employers increasingly use to separate candidates.
 
@@ -112,5 +112,6 @@ The written quote arrives before any payment commitment. Every programme we plac
 - Duration follows the approved masters page table row for MSc programmes (8 to 18 months).
 - Thesis structure (taught core, electives, methods, supervised thesis with committee defence) follows the published GAU thesis-MSc pattern; exact module lists and ECTS splits are not published by the delivery partner, so no module names are stated. Flag for confirmation with admissions.
 - Careers list is market-standard for the region; no placement data claimed.
-- Market figures: ADDED non-oil GDP share, Taggd GCC 2026. All softenable if legal wants.
+- Market figures: market numbers limited to official government sources after the 2026-09-21 QA pass.
 - Credits row intentionally reads "confirmed per admission" until written confirmation is received per programme.
+- 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.
