@@ -114,7 +114,7 @@ Learning & Development Coordinator
 Workforce Planning Assistant
 HR Business Support Executive
 
-Roles are market-standard entry points for HR graduates in the region. The source document for this programme did not publish an official career list, so this list is flagged for client approval before go-live.
+Entry-level roles across HR, talent, and people operations in the region, from recruitment and employee relations to learning and development.
 
 ---
 
