@@ -48,9 +48,15 @@ class MbaMastersLandingTest extends TestCase
         $response->assertSee('Rated 4.9 out of 5 on Google and Edarabia', false);
         $response->assertDontSee('5 things, in plain language', false);
         $response->assertSee('Why Maverick Fits a Working Life in the UAE', false);
+        $response->assertSee('MBA, Rushford Business School (Switzerland)</button>', false);
         $response->assertSee('EMBA, Girne American University (North Cyprus)</button>', false);
+        $response->assertSee('MBA in International Business, University of the West of Scotland (UK)</button>', false);
         $response->assertDontSee('Executive MBA, Girne American University (North Cyprus)', false);
         $this->assertSame(3, substr_count($response->getContent(), 'data-mlp-mba-tab='));
+        $response->assertSee('mlp-mba__uni-count">13 specializations', false);
+        $response->assertSee('mlp-mba__program-title">Artificial Intelligence', false);
+        $response->assertSee('mlp-mba__program-title">Educational Leadership', false);
+        $response->assertSee('mlp-mba__program-title">International Business<', false);
         $response->assertSee('Learners', false);
         $response->assertSee('professionals', false);
         $response->assertSee('Rajesh Menon', false);
