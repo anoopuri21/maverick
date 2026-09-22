@@ -1,7 +1,8 @@
 @php
   $snapshotMetrics = collect($class->metrics ?? [])
       ->filter(fn ($metric) => filled($metric['value'] ?? null) || filled($metric['label'] ?? null))
-      ->take(5)
+      ->reject(fn ($metric) => str_contains(mb_strtolower((string) ($metric['label'] ?? '')), 'employed full time'))
+      ->take(4)
       ->values();
   $regionIso = [
       'uae' => 'AE',
@@ -51,7 +52,7 @@
       ['name' => 'Zimbabwe', 'iso2' => 'ZW'],
       ['name' => 'Vietnam', 'iso2' => 'VN'],
   ];
-  $metricIcons = ['users-round', 'briefcase', 'calendar', 'users-round', 'handshake'];
+  $metricIcons = ['users-round', 'briefcase', 'calendar', 'handshake'];
 @endphp
 
 @if($snapshotMetrics->isNotEmpty() || $snapshotRegions->isNotEmpty() || filled($class->heading ?? null))
@@ -67,14 +68,12 @@
       @if(filled($class->intro ?? null))
       <p class="mlp-class-snapshot__intro-copy">{{ $class->intro }}</p>
       @endif
-      @if(filled($class->audience ?? null))
-      <p class="mlp-class-snapshot__audience">{{ $class->audience }}</p>
-      @endif
     </header>
 
     <div class="mlp-class-snapshot__grid">
       <section class="mlp-class-snapshot__global" aria-labelledby="mlp-class-snapshot-global-title">
-        <h3 id="mlp-class-snapshot-global-title">UAE and GCC cohorts</h3>
+        <h3 id="mlp-class-snapshot-global-title">{{ $class->global_heading ?: 'Global Cohorts' }}</h3>
+        <p class="mlp-class-snapshot__global-line">{{ $class->global_line ?: 'Classmates join from the Gulf and from countries well beyond it.' }}</p>
 
         <ul class="mlp-class-snapshot__countries" aria-label="Countries our students represent">
           @foreach($snapshotCountries as $country)

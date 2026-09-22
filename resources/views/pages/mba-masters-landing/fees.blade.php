@@ -26,7 +26,7 @@
     </header>
 
     @if($rows->isNotEmpty())
-    <div class="pricing-cards__grid" aria-label="Programme fees and structure">
+    <div class="pricing-cards__grid" aria-label="Program fees and structure">
       @foreach($rows as $row)
       @php
         $payment = trim((string) ($row['payment'] ?? ''));
@@ -37,7 +37,7 @@
       <article class="pricing-card" data-closing-element>
         <header class="pricing-card__head mlp-hairline">
           <span class="pricing-card__icon mlp-icon-box" aria-hidden="true"><i data-lucide="receipt-text"></i></span>
-          <span class="pricing-card__eyebrow">Programme route</span>
+          <span class="pricing-card__eyebrow">Program route</span>
         </header>
 
         <h3 class="pricing-card__program">{{ $row['program'] }}</h3>
@@ -64,8 +64,8 @@
     @endif
 
     <p class="pricing-cards__base" data-mlp-reveal="fees-base">
-      <span class="pricing-cards__base-label">Fee structure starts from</span>
-      <strong class="pricing-cards__base-price">AED 16,000–40,000*</strong>
+      <span class="pricing-cards__base-label">{{ $fees->banner_label ?: 'Fee structure starts from' }}</span>
+      <strong class="pricing-cards__base-price">{{ $fees->banner_value ?: 'AED 16,000–40,000*' }}</strong>
     </p>
 
     @if(filled($fees->note))

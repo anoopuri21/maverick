@@ -43,6 +43,7 @@
       @if(filled($overview->intro))
       <p class="blueprint-overview__intro-copy">{{ $overview->intro }}</p>
       @endif
+      <p class="blueprint-overview__intro-copy">Read our <a href="{{ $overview->guide_url ?: 'https://mbalondon.org.uk/mba-in-uae-complete-guide-for-working-professionals-in-2026/' }}">{{ $overview->guide_label ?: 'MBA in UAE guide' }}</a>.</p>
     </header>
 
     <div class="blueprint-overview__system" data-overview-blueprint style="--blueprint-count: {{ $itemCount }}">
@@ -63,7 +64,7 @@
       </div>
 
       @if($items->isNotEmpty())
-      <ol class="blueprint-overview__foundations" aria-label="Programme foundations">
+      <ol class="blueprint-overview__foundations" aria-label="Program foundations">
         @foreach($items as $i => $item)
         @php
           $angleDeg = $i * (360 / $itemCount) - 90;

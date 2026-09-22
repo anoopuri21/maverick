@@ -65,7 +65,7 @@
 
     @if($tabs->isNotEmpty())
     <div class="mlp-mba__chrome" data-mlp-mba-tabs data-mlp-reveal="mba-chrome">
-      <div class="mlp-mba__tablist mlp-hairline" role="tablist" aria-label="MBA specialization categories from programme listing">
+      <div class="mlp-mba__tablist mlp-hairline" role="tablist" aria-label="MBA specialization categories from the program listing">
         @foreach($tabs as $ti => $tab)
         <button
           type="button"

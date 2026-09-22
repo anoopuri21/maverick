@@ -7,6 +7,9 @@
   $quote = filled($trust->quote) ? $trust->quote : 'Every number is a person who chose to keep moving.';
   $attribution = $trust->quote_attribution ?? null;
   $statCount = max(1, $stats->count());
+  $checklist = $stats->isNotEmpty() && $stats->every(function ($stat) {
+      return preg_replace('/[^0-9.]/', '', (string) ($stat['value'] ?? '')) === '';
+  });
 @endphp
 @if($stats->isNotEmpty())
 <section class="mlp-trust signal-atlas" id="mlp-trust" aria-labelledby="signal-atlas-title">
@@ -21,19 +24,21 @@
     <header class="signal-atlas__intro">
       <p class="signal-atlas__folio">Trust record</p>
       <h2 class="signal-atlas__heading mlp-h2" id="signal-atlas-title">{{ $heading }}</h2>
+      @if(filled($attribution))
       <blockquote class="signal-atlas__quote">
         <span class="signal-atlas__quote-mark" aria-hidden="true">“</span>
         <div class="signal-atlas__quote-body">
           <p>{{ $quote }}</p>
-          @if(filled($attribution))
           <footer class="signal-atlas__quote-attr">{{ $attribution }}</footer>
-          @endif
         </div>
       </blockquote>
+      @else
+      <p class="signal-atlas__note">{{ $quote }}</p>
+      @endif
     </header>
 
     <div class="signal-atlas__graph" data-signal-atlas>
-      <ol class="signal-atlas__records" aria-label="Trust statistics" style="--signal-count: {{ $statCount }}">
+      <ol class="signal-atlas__records{{ $checklist ? ' signal-atlas__records--checklist' : '' }}" aria-label="{{ $checklist ? 'Written confirmation' : 'Trust statistics' }}" style="--signal-count: {{ $statCount }}">
         @foreach($stats as $i => $stat)
         @php
           $rawValue = (string) ($stat['value'] ?? '');
@@ -42,13 +47,13 @@
         @endphp
         <li class="signal-atlas__record{{ $i === 0 ? ' signal-atlas__record--lead' : '' }}" data-signal-record style="--signal-index: {{ $i }}">
           <span class="signal-atlas__node" aria-hidden="true"></span>
+          @if($numericValue !== '')
           <span
             class="signal-atlas__value"
-            @if($numericValue !== '')
             data-mlp-count="{{ $numericValue }}"
             data-mlp-suffix="{{ $suffix }}"
-            @endif
           >{{ $rawValue }}</span>
+          @endif
           <span class="signal-atlas__label">{{ $stat['label'] ?? '' }}</span>
         </li>
         @endforeach

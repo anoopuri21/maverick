@@ -30,6 +30,16 @@ class MbaMastersHeroSettings extends Settings
 
     public ?string $form_title = null;
 
+    public ?string $masthead_edition = null;
+
+    public ?string $masthead_academy = null;
+
+    public ?string $masthead_location = null;
+
+    public ?string $folio_primary = null;
+
+    public ?string $folio_secondary = null;
+
     public static function group(): string
     {
         return 'mba_masters_hero';

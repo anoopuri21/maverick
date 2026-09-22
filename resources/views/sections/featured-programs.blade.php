@@ -27,7 +27,7 @@
 
   <div class="programs__scroll-wrapper">
     <div class="programs__track">
-      @foreach($featuredPrograms as $index => $program)
+      @foreach($featuredPrograms as $program)
         <div class="programs__card">
           @if($url = media_url($program->image_url ?? null, 'assets/images/homepage/mba.jpg'))
           <img class="programs__card-media"
@@ -36,7 +36,6 @@
                loading="lazy" decoding="async" width="800" height="540" />
           @endif
           <div class="programs__card-header">
-            <span class="programs__card-index">{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</span>
             @if($program->universityPartner)
               <span class="programs__card-badge">{{ $program->universityPartner->name }}</span>
             @endif

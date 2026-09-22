@@ -784,15 +784,14 @@
         ".wwd__heading-line .text-reveal-inner",
         ".wwd__context",
         ".wwd__card",
-        ".wwd__card-index",
         ".wwd__card-item",
       ]);
       return;
     }
 
     const cfg = AnimationUtils.responsive(
-      { contextY: 30, cardY: 40, cardStagger: 0.15, indexDelay: 0.3, itemX: -10, itemStagger: 0.08 },
-      { contextY: 20, cardY: 20, cardStagger: 0.1, indexDelay: 0.2, itemX: -8, itemStagger: 0.06 },
+      { contextY: 30, cardY: 40, cardStagger: 0.15, itemX: -10, itemStagger: 0.08 },
+      { contextY: 20, cardY: 20, cardStagger: 0.1, itemX: -8, itemStagger: 0.06 },
     );
 
     AnimationUtils.sectionLabel("#what-we-do");
@@ -808,16 +807,6 @@
       start: "top 75%",
       y: cfg.cardY,
       stagger: cfg.cardStagger,
-    });
-
-    // Card indexes (unique)
-    AnimationUtils.fadeUp(".wwd__card-index", {
-      trigger: ".wwd__grid",
-      start: "top 75%",
-      y: 0,
-      duration: 0.5,
-      stagger: cfg.cardStagger,
-      delay: cfg.indexDelay,
     });
 
     // Card items (unique - slide from left)

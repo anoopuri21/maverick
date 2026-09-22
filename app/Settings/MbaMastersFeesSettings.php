@@ -32,6 +32,10 @@ class MbaMastersFeesSettings extends Settings
 
     public ?string $cta_secondary_url = null;
 
+    public ?string $banner_label = null;
+
+    public ?string $banner_value = null;
+
     public static function group(): string
     {
         return 'mba_masters_fees';

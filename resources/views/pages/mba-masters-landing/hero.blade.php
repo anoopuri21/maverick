@@ -20,7 +20,7 @@
   <link rel="preload" as="image" href="{{ $bg }}" fetchpriority="high">
   @endif
 @endpush
-<section class="mlp-hero prospectus-cover" id="mlp-hero" data-prospectus data-hero-assembly aria-label="Online MBA and Master's programmes">
+<section class="mlp-hero prospectus-cover" id="mlp-hero" data-prospectus data-hero-assembly aria-label="Online MBA and Master's programs">
   <div class="prospectus-cover__stage" aria-hidden="true">
     <img class="prospectus-cover__image" data-hero-image src="{{ $bg }}" alt="" width="1600" height="900" loading="eager" fetchpriority="high" decoding="async">
     <span class="prospectus-cover__wash" data-hero-wash></span>
@@ -30,10 +30,10 @@
 
   <div class="prospectus-cover__frame container">
     <header class="prospectus-cover__masthead" data-hero-masthead>
-      <span class="prospectus-cover__edition">Admissions / 2026</span>
+      <span class="prospectus-cover__edition">{{ $hero->masthead_edition ?: 'Admissions / 2026' }}</span>
       <span class="prospectus-cover__masthead-line" aria-hidden="true"></span>
-      <span class="prospectus-cover__academy">Maverick Business Academy</span>
-      <span class="prospectus-cover__location">UK · UAE · Global</span>
+      <span class="prospectus-cover__academy">{{ $hero->masthead_academy ?: 'Maverick Business Academy' }}</span>
+      <span class="prospectus-cover__location">{{ $hero->masthead_location ?: 'UK · UAE · Global' }}</span>
     </header>
 
     <div class="prospectus-cover__body">
@@ -41,7 +41,6 @@
         @if(filled($hero->eyebrow))
         <p class="prospectus-cover__eyebrow">{{ $hero->eyebrow }}</p>
         @endif
-        <p class="prospectus-cover__kicker">A prospectus for your next move</p>
 
         <h1 class="prospectus-cover__title">
           <span class="prospectus-cover__title-line" data-hero-title-line>{{ $line1 }}</span>
@@ -66,7 +65,7 @@
             <span class="prospectus-cover__primary-mark" aria-hidden="true">↗</span>
           </a>
           @endif
-          <a href="#mlp-fees" class="prospectus-cover__secondary mlp-cta">Request Fee Plan</a>
+          <a href="{{ edu_href($hero->cta_secondary_url ?: '#mlp-fees') }}" class="prospectus-cover__secondary mlp-cta">{{ $hero->cta_secondary_label ?: 'Request Fee Plan' }}</a>
         </div>
       </div>
 
@@ -81,9 +80,9 @@
     </div>
 
     <footer class="prospectus-cover__folio" data-hero-folio aria-hidden="true">
-      <span>Online MBA</span>
+      <span>{{ $hero->folio_primary ?: 'Online MBA' }}</span>
       <span class="prospectus-cover__folio-rule"></span>
-      <span>20+ Specialisations</span>
+      <span>{{ $hero->folio_secondary ?: '20+ Specializations' }}</span>
     </footer>
   </div>
 </section>

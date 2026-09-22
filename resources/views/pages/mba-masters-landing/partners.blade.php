@@ -64,12 +64,12 @@
       <div class="archive-partners__wall-head">
         <span>Academic network</span>
         <div class="archive-partners__controls">
-          <span class="archive-partners__hint">Drag / scroll to explore</span>
+          <span class="archive-partners__hint">Auto-scroll</span>
           <button type="button" class="archive-partners__toggle" data-partner-toggle aria-pressed="false">Pause</button>
         </div>
       </div>
-      <div class="archive-partners__viewport" data-partner-viewport tabindex="0" aria-label="Partner university logos. Use arrow keys or drag to explore.">
-        <div class="archive-partners__track" data-partner-track>
+      <div class="archive-partners__viewport" data-partner-viewport aria-label="Partner university logos.">
+        <div class="archive-partners__track is-marquee" data-partner-track>
           <ul class="archive-partners__logo-list" aria-label="Partner universities">
             @foreach($renderLogos as $logo)
             <li class="archive-partners__logo-item">

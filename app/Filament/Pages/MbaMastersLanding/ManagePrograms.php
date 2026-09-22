@@ -100,6 +100,8 @@ class ManagePrograms extends Page implements HasForms
                         TextInput::make('overview.label')->label('Section label'),
                         TextInput::make('overview.heading')->label('Heading')->columnSpanFull(),
                         Textarea::make('overview.intro')->label('Intro')->rows(2)->columnSpanFull(),
+                        TextInput::make('overview.guide_label')->label('Guide link text'),
+                        TextInput::make('overview.guide_url')->label('Guide link URL')->columnSpanFull(),
                         TextInput::make('overview.plate_image')->hidden(),
                         MediaPicker::forField('overview.plate_image', 'mba-masters-landing/overview')
                             ->label('Editorial plate image')
@@ -281,6 +283,8 @@ class ManagePrograms extends Page implements HasForms
                         TextInput::make('fees.heading')->label('Heading')->columnSpanFull(),
                         Textarea::make('fees.intro')->label('Intro')->rows(2)->columnSpanFull(),
                         Textarea::make('fees.note')->label('Footnote / disclaimer')->rows(2)->columnSpanFull(),
+                        TextInput::make('fees.banner_label')->label('Fee banner label'),
+                        TextInput::make('fees.banner_value')->label('Fee banner value'),
                         TextInput::make('fees.stage_image')->hidden(),
                         MediaPicker::forField('fees.stage_image', 'mba-masters-landing/fees')
                             ->label('Background plate image')

@@ -1152,9 +1152,6 @@
   box-shadow: var(--shadow-md);
 }
 .page-pd .learn-item .n {
-  font-family: var(--font-display);
-  font-size: 15px;
-  font-weight: 700;
   color: var(--color-mba-red);
   flex: none;
   width: 34px;
@@ -1165,6 +1162,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.page-pd .learn-item .n svg {
+  width: 18px;
+  height: 18px;
 }
 .page-pd .learn-item span.txt {
   font-size: 14.5px;
@@ -1343,9 +1344,6 @@
   display: none;
 }
 .page-pd .struct-item .y-num {
-  font-family: var(--font-display);
-  font-size: 13px;
-  font-weight: 700;
   color: var(--color-mba-red);
   flex: none;
   width: 44px;
@@ -1357,17 +1355,13 @@
   align-items: center;
   justify-content: center;
 }
+.page-pd .struct-item .y-num svg {
+  width: 20px;
+  height: 20px;
+}
 .page-pd .struct-item .y-main {
   flex: 1;
   min-width: 0;
-}
-.page-pd .struct-item .y-lab {
-  font-family: var(--font-display);
-  font-size: 10.5px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 2px;
 }
 .page-pd .struct-item .y-title {
   font-family: var(--font-display);
@@ -3076,4 +3070,34 @@
   .page-pd .final .ctas .btn {
     width: 100%;
   }
+}
+
+/* Programme detail alumni logos: tighter track, larger marks */
+.page-pd #alumni-network .network-slider-wrapper {
+  margin: 0.5rem 0 0;
+}
+.page-pd #alumni-network .network-slider-wrapper::before,
+.page-pd #alumni-network .network-slider-wrapper::after {
+  width: 32px;
+}
+.page-pd #alumni-network .network-slider-track {
+  gap: 0.6rem;
+  padding: 0.25rem 0;
+}
+.page-pd #alumni-network .network-card {
+  width: 260px;
+  height: 132px;
+  padding: 0;
+}
+.page-pd #alumni-network .network-logo-wrapper {
+  padding: 0.3rem 0.45rem;
+  border-radius: 10px;
+  background-color: #fff;
+}
+.page-pd #alumni-network .network-card img {
+  max-height: 116px;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  filter: none;
 }

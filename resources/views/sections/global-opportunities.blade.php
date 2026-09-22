@@ -23,11 +23,11 @@
             ->filter(fn ($item) => is_array($item) && (filled($item['title'] ?? null) || filled($item['desc'] ?? null) || filled($item['slug'] ?? null)));
         $pathways = collect(settings_array(data_get($globalOpportunities ?? null, 'pathways', [])))
             ->filter(fn ($item) => is_array($item) && (filled($item['title'] ?? null) || filled($item['desc'] ?? null) || filled($item['slug'] ?? null)));
+        $opportunityIcons = ['globe', 'repeat', 'plane', 'landmark', 'route', 'graduation-cap', 'map', 'compass'];
       @endphp
 
       <div class="opportunities__column opportunities__column--right" id="opportunities">
         <div class="opportunities__column-header">
-          <span class="opportunities__column-index">01</span>
           @if(filled($globalOpportunities->left_title ?? null))
           <h3 class="opportunities__column-title">{{ $globalOpportunities->left_title }}</h3>
           @endif
@@ -47,7 +47,7 @@
             @else
             <div class="opportunities__link{{ $isComingSoon ? ' opportunities__link--soon' : '' }}" @if($isComingSoon) aria-disabled="true" @endif>
             @endif
-              <span class="opportunities__item-number">{{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}</span>
+              <span class="opportunities__item-number" aria-hidden="true"><i data-lucide="{{ $opportunityIcons[$i % count($opportunityIcons)] }}"></i></span>
               <div class="opportunities__item-content">
                 @if(filled($item['title'] ?? null))
                 <h4 class="opportunities__item-title">
@@ -79,7 +79,6 @@
 
       <div class="opportunities__column opportunities__column--left" id="pathways">
         <div class="opportunities__column-header">
-          <span class="opportunities__column-index">02</span>
           @if(filled($globalOpportunities->right_title ?? null))
           <h3 class="opportunities__column-title">{{ $globalOpportunities->right_title }}</h3>
           @endif
@@ -99,7 +98,7 @@
             @else
             <div class="opportunities__link{{ $isComingSoon ? ' opportunities__link--soon' : '' }}" @if($isComingSoon) aria-disabled="true" @endif>
             @endif
-              <span class="opportunities__item-number">{{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}</span>
+              <span class="opportunities__item-number" aria-hidden="true"><i data-lucide="{{ $opportunityIcons[$i % count($opportunityIcons)] }}"></i></span>
               <div class="opportunities__item-content">
                 @if(filled($item['title'] ?? null))
                 <h4 class="opportunities__item-title">

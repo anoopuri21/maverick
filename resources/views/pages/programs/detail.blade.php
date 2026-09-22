@@ -243,8 +243,11 @@
                     <figure class="learn-photo"><img src="{{ $learnImgUrl }}" alt="Students in a collaborative learning environment" loading="lazy"></figure>
                 </div>
                 <div class="learn-field">
+                    @php
+                        $learnIcons = ['target', 'briefcase', 'bar-chart-3', 'megaphone', 'trending-up', 'users', 'scale', 'lightbulb'];
+                    @endphp
                     @foreach($learning as $i => $cap)
-                        <div class="learn-item rv rv-d{{ min($i % 4 + 1, 4) }}"><span class="n">{{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}</span><span class="txt">{{ $cap }}</span></div>
+                        <div class="learn-item rv rv-d{{ min($i % 4 + 1, 4) }}"><span class="n" aria-hidden="true"><i data-lucide="{{ $learnIcons[$i % count($learnIcons)] }}"></i></span><span class="txt">{{ $cap }}</span></div>
                     @endforeach
                 </div>
             </div>
@@ -259,7 +262,6 @@
             <div class="sec-head rv">
                 <span class="kicker">{{ $chrome->career_label ?? 'Career Opportunities' }}</span>
                 <h2>{{ $chrome->career_heading ?? 'Where This Degree Can' }} </h2>
-                <div>{!! html_filled($chrome->career_intro ?? null) ? rich_html($chrome->career_intro ?? null) : 'Potential careers' !!}</div>
             </div>
             <div class="career-cloud">
                 @foreach($careers as $i => $career)
@@ -284,10 +286,14 @@
             </div>
             <div class="struct-list">
                 @foreach($structure as $i => $stage)
+                @php
+                    $stageTitle = trim((string) ($stage['title'] ?? ''));
+                    $stageHeading = preg_match('/^(year|y)\s*\d+$/i', $stageTitle) ? '' : $stageTitle;
+                @endphp
                 <details class="struct-item rv" @if($i === 0) open @endif>
-                    <summary><span class="y-num">Y{{ $i + 1 }}</span><span class="y-main"><div class="y-lab">Year {{ $i + 1 }}</div><div class="y-title">{{ $stage['title'] ?? '' }}</div></span><span class="plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+                    <summary><span class="y-num" aria-hidden="true"><i data-lucide="layers"></i></span><span class="y-main">@if($stageHeading !== '')<div class="y-title">{{ $stageHeading }}</div>@elseif(!empty($stage['subtitle']))<div class="y-title">{{ $stage['subtitle'] }}</div>@endif</span><span class="plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary>
                     <div class="struct-mods">
-                        @if(!empty($stage['subtitle']))<div class="m-lab">{{ $stage['subtitle'] }}</div>@endif
+                        @if(!empty($stage['subtitle']) && $stageHeading !== '')<div class="m-lab">{{ $stage['subtitle'] }}</div>@endif
                         <ul class="mod-list">
                             @foreach(($stage['modules'] ?? []) as $m)
                                 <li class="mod-row">{{ is_array($m) ? ($m['title'] ?? '') : $m }}</li>

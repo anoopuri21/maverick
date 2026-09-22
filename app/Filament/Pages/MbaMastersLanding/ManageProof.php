@@ -99,6 +99,10 @@ class ManageProof extends Page implements HasForms
                         TextInput::make('testimonials.heading')->label('Heading')->columnSpanFull(),
                         Textarea::make('testimonials.intro')->label('Intro')->rows(2)->columnSpanFull()
                             ->helperText('Active Our Story testimonials are preferred when present; items below are published landing quotes.'),
+                        TextInput::make('testimonials.film_label')->label('Film label'),
+                        TextInput::make('testimonials.film_heading')->label('Film heading')->columnSpanFull(),
+                        Textarea::make('testimonials.film_body')->label('Film body')->rows(2)->columnSpanFull(),
+                        TextInput::make('testimonials.film_play_label')->label('Film play label'),
                         Repeater::make('testimonials.items')
                             ->label('Published quotes')
                             ->schema([

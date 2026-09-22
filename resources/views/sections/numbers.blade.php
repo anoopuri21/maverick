@@ -1,11 +1,11 @@
 @php
     $numberStats = collect([
-        ['index' => '01', 'value' => $numbers->stat1_value ?? null, 'label' => $numbers->stat1_label ?? null],
-        ['index' => '02', 'value' => $numbers->stat2_value ?? null, 'label' => $numbers->stat2_label ?? null],
-        ['index' => '03', 'value' => $numbers->stat3_value ?? null, 'label' => $numbers->stat3_label ?? null],
-        ['index' => '04', 'value' => $numbers->stat4_value ?? null, 'label' => $numbers->stat4_label ?? null],
-        ['index' => '05', 'value' => $numbers->stat5_value ?? null, 'label' => $numbers->stat5_label ?? null],
-        ['index' => '06', 'value' => $numbers->stat6_value ?? null, 'label' => $numbers->stat6_label ?? null],
+        ['icon' => 'graduation-cap', 'value' => $numbers->stat1_value ?? null, 'label' => $numbers->stat1_label ?? null],
+        ['icon' => 'globe', 'value' => $numbers->stat2_value ?? null, 'label' => $numbers->stat2_label ?? null],
+        ['icon' => 'award', 'value' => $numbers->stat3_value ?? null, 'label' => $numbers->stat3_label ?? null],
+        ['icon' => 'users', 'value' => $numbers->stat4_value ?? null, 'label' => $numbers->stat4_label ?? null],
+        ['icon' => 'flag', 'value' => $numbers->stat5_value ?? null, 'label' => $numbers->stat5_label ?? null],
+        ['icon' => 'briefcase', 'value' => $numbers->stat6_value ?? null, 'label' => $numbers->stat6_label ?? null],
     ])->filter(fn ($stat) => filled($stat['value']) || filled($stat['label']));
     $numbersLink = edu_href($numbers->context_link_url ?? null);
 @endphp
@@ -68,7 +68,7 @@
                 @if($numericValue !== null) data-counter-target="{{ $numericValue }}" data-counter-suffix="+" @endif
                 data-counter-label="{{ $stat['label'] }}">
                 <div class="numbers__card-inner">
-                    <span class="numbers__index">{{ $stat['index'] }}</span>
+                    <span class="numbers__index" aria-hidden="true"><i data-lucide="{{ $stat['icon'] }}"></i></span>
                     <div class="numbers__value-wrapper">
                         <span class="numbers__value" @if($numericValue !== null) data-counter @endif>{{ $numericValue !== null ? '0' : ($stat['value'] ?? '') }}</span>
                         @if($numericValue !== null)

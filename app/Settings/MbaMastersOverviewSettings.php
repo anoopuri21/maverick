@@ -28,6 +28,10 @@ class MbaMastersOverviewSettings extends Settings
 
     public ?string $plate_image_asset_id = null;
 
+    public ?string $guide_label = null;
+
+    public ?string $guide_url = null;
+
     public static function group(): string
     {
         return 'mba_masters_overview';

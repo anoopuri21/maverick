@@ -552,12 +552,13 @@ class ProgramResource extends Resource
         return Repeater::make('structure')
             ->schema([
                 TextInput::make('title')
-                    ->label('Year Title')
-                    ->placeholder('Year 1')
-                    ->validationAttribute('year title'),
+                    ->label('Stage Title')
+                    ->placeholder('Business Foundations')
+                    ->helperText('Leave blank, or avoid “Year 1”, “Year 2”. Those counts are not shown on the page.')
+                    ->validationAttribute('stage title'),
                 TextInput::make('subtitle')
-                    ->label('Year Subtitle')
-                    ->placeholder('Business Foundations'),
+                    ->label('Subtitle')
+                    ->placeholder('Core modules'),
                 Repeater::make('modules')
                     ->label('Modules')
                     ->schema([
@@ -592,8 +593,8 @@ class ProgramResource extends Resource
             ->reorderable()
             ->collapsible()
             ->defaultItems(0)
-            ->itemLabel(fn (array $state): ?string => $state['title'] ?? 'Year')
-            ->addActionLabel('Add Year');
+            ->itemLabel(fn (array $state): ?string => $state['title'] ?? 'Stage')
+            ->addActionLabel('Add Stage');
     }
 
     protected static function supportRepeater(): Repeater

@@ -64,6 +64,12 @@ class ManageAudience extends Page implements HasForms
                         TextInput::make('class.heading')->label('Heading')->columnSpanFull(),
                         Textarea::make('class.intro')->label('Intro')->rows(2)->columnSpanFull(),
                         Textarea::make('class.audience')->label('Audience line')->rows(2)->columnSpanFull(),
+                        TextInput::make('class.class_year_lead')->label('Class of 2025 lead'),
+                        TextInput::make('class.class_year_strong')->label('Class of 2025 strong line'),
+                        Textarea::make('class.class_year_body')->label('Class of 2025 body')->rows(2)->columnSpanFull(),
+                        TextInput::make('class.class_year_center')->label('Class of 2025 center label'),
+                        TextInput::make('class.global_heading')->label('Global cohorts heading'),
+                        TextInput::make('class.global_line')->label('Global cohorts line')->columnSpanFull(),
                         Repeater::make('class.metrics')
                             ->label('Profile metrics')
                             ->schema([
@@ -112,6 +118,9 @@ class ManageAudience extends Page implements HasForms
                         TextInput::make('career.label')->label('Section label'),
                         TextInput::make('career.heading')->label('Heading')->columnSpanFull(),
                         Textarea::make('career.intro')->label('Intro')->rows(2)->columnSpanFull(),
+                        TextInput::make('career.badge_kicker')->label('GCC badge kicker'),
+                        TextInput::make('career.badge_title')->label('GCC badge title')->columnSpanFull(),
+                        TextInput::make('career.badge_line')->label('GCC badge line')->columnSpanFull(),
                         Repeater::make('career.stories')
                             ->label('Career direction cards')
                             ->schema([
@@ -155,6 +164,10 @@ class ManageAudience extends Page implements HasForms
                                 TextInput::make('role')->label('Role / designation'),
                                 TextInput::make('category')->label('Badge / category')->placeholder('Student'),
                                 TextInput::make('thumbnail')->label('Custom thumbnail URL (optional)')->columnSpanFull(),
+                                MediaPicker::forField('thumbnail', 'mba-masters-landing/video-testimonials')
+                                    ->label('Thumbnail image')
+                                    ->helperText('Uploaded image replaces the YouTube thumbnail. Leave empty to keep the video image.')
+                                    ->columnSpanFull(),
                             ])
                             ->columns(2)
                             ->defaultItems(0)
@@ -180,6 +193,7 @@ class ManageAudience extends Page implements HasForms
 
         $existingClass = app(MbaMastersClassSettings::class)->toArray();
         $existingCareer = app(MbaMastersCareerSettings::class)->toArray();
+        $existingVideos = app(MbaMastersVideoTestimonialsSettings::class)->toArray();
 
         $class = $data['class'] ?? [];
         $class['metrics'] = array_values($class['metrics'] ?? []);
@@ -208,7 +222,16 @@ class ManageAudience extends Page implements HasForms
         );
 
         $videoTestimonials = $data['videoTestimonials'] ?? [];
-        $videoTestimonials['videos'] = array_values($videoTestimonials['videos'] ?? []);
+        $videoTestimonials['videos'] = $this->hydrateRepeaterMediaFields($videoTestimonials['videos'] ?? [], 'thumbnail');
+        foreach ($videoTestimonials['videos'] as &$video) {
+            $video = $this->syncImageIfSelected($video, 'thumbnail');
+        }
+        unset($video);
+        $videoTestimonials['videos'] = $this->preserveRepeaterImageFields(
+            array_values($videoTestimonials['videos'] ?? []),
+            $existingVideos['videos'] ?? [],
+            'thumbnail'
+        );
 
         // Save each group independently so one failing group never silently
         // skips the others (each failure already raises its own notification).

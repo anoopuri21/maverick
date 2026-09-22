@@ -3,10 +3,10 @@
   <div class="container">
     <div class="blueprint-overview__class-2025" id="mlp-overview-class-2025" role="group" aria-labelledby="mlp-overview-class-2025-title">
       <h3 class="blueprint-overview__class-2025-heading" id="mlp-overview-class-2025-title">
-        <span>Class of 2025:</span> <strong>built for the GCC</strong>
+        <span>{{ $class->class_year_lead ?: 'Class of 2025:' }}</span> <strong>{{ $class->class_year_strong ?: 'Built for the GCC Region' }}</strong>
       </h3>
       <p class="blueprint-overview__class-2025-lede">
-        The most mixed cohort we have run in the Gulf: founders, government specialists, bankers, and senior operators from four markets. Group work ends up sounding like a regional business meeting, because it is one.
+        {{ $class->class_year_body ?: 'A Maverick cohort of founders, bankers, government specialists, and senior operators who keep working while they study.' }}
       </p>
 
       <div class="blueprint-overview__class-2025-stage">
@@ -24,9 +24,8 @@
           <path class="blueprint-overview__class-2025-connector" d="M500 470 V520" />
         </svg>
 
-        <div class="blueprint-overview__class-2025-center" role="img" aria-label="MBA - 2025">
-          
-          <strong>MBA - 2025</strong>
+        <div class="blueprint-overview__class-2025-center" role="img" aria-label="{{ $class->class_year_center ?: 'MBA - 2025' }}">
+          <strong>{{ $class->class_year_center ?: 'MBA - 2025' }}</strong>
         </div>
 
         <ol class="blueprint-overview__class-2025-stats" aria-label="MBA Class of 2025 statistics">
