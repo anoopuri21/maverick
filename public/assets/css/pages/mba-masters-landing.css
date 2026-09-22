@@ -6993,6 +6993,22 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
   margin-left: 0;
 }
 
+#mlpPage.mlp-page--polished #mlp-overview .blueprint-overview__core strong {
+  font-size: clamp(16px, 1.5vw, 22px) !important;
+  line-height: 1.05 !important;
+}
+
+#mlpPage.mlp-page--polished #mlp-fees .pricing-cards__intro {
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+#mlpPage.mlp-page--polished #mlp-fees .pricing-cards__heading,
+#mlpPage.mlp-page--polished #mlp-fees .pricing-cards__intro-copy {
+  max-width: none;
+  margin-left: 0;
+}
+
 #mlpPage.mlp-page--polished :is(.mlp-prose, .blueprint-overview__intro-copy) a {
   font-family: inherit !important;
   font-size: inherit !important;

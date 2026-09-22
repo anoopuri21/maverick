@@ -59,8 +59,8 @@
       </svg>
 
       <div class="blueprint-overview__core" data-overview-core aria-hidden="true">
-        <span class="blueprint-overview__core-kicker">The learner</span>
-        <strong>Working<br>professional</strong>
+        <span class="blueprint-overview__core-kicker">Learners</span>
+        <strong>and<br>professionals</strong>
       </div>
 
       @if($items->isNotEmpty())

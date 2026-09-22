@@ -42,8 +42,6 @@
 
         <h3 class="pricing-card__program">{{ $row['program'] }}</h3>
 
-        {{-- Fee block intentionally removed from all cards (client request) --}}
-
         <dl class="pricing-card__details">
           <div>
             <dt><i data-lucide="clock" aria-hidden="true"></i>Duration</dt>
