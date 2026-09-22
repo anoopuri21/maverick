@@ -1,10 +1,10 @@
 # GAU MBA 01 · Program Detail Page Content: MBA in Business Management (v5)
 
-**Page:** /programmes/gau-mba-in-business-management
+**Page:** /programs/gau-mba-in-business-management
 **Awarding university:** Girne American University, North Cyprus · **Category:** MBA · **Level:** Master's · **Duration:** 12 to 15 months
 **Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections not written (per client list)
-**Sources on file:** Girne American University programme description as carried on the client's own course pages (12-15 months, flexible part-time and distance delivery), ADDED UAE non-oil economy data
+**Sources on file:** Girne American University program description as carried on the client's own course pages (12-15 months, flexible part-time and distance delivery), ADDED UAE non-oil economy data
 
 ---
 
@@ -14,7 +14,7 @@
 MBA in Business Management Online | Girne American University
 
 ### meta_description
-12 to 15-month MBA in Business Management from Girne American University. Flexible online study from the UAE, AED instalments. Enquire now.
+12 to 15-month MBA in Business Management from Girne American University. Flexible online study from the UAE, AED installments. Enquire now.
 
 ---
 
@@ -37,7 +37,7 @@ Girne American University | 12 to 15 months | Online study | Part-time friendly 
 
 ---
 
-## 2. PROGRAMME AT A GLANCE (snapshot)
+## 2. PROGRAM AT A GLANCE (snapshot)
 
 Degree Award | MBA
 Awarding University | Girne American University, North Cyprus
@@ -51,22 +51,22 @@ The university publishes the duration and the structure per admission letter, an
 
 ---
 
-## 3. PROGRAMME OVERVIEW (description)
+## 3. PROGRAM OVERVIEW (description)
 
 ### copy
-This is the generalist's MBA, done properly. The coursework walks the full management map, economics and accounting, finance and operations, marketing and leadership, strategy at the end holding it together, and the degree finishes with a graduate research project that asks you to investigate a business question with real rigour rather than summarize someone else's answers.
+This is the generalist's MBA, done properly. The coursework walks the full management map, economics and accounting, finance and operations, marketing and leadership, strategy at the end holding it together, and the degree finishes with a graduate research project that asks you to investigate a business question with real rigor rather than summarize someone else's answers.
 
-The format is the reason working professionals choose it. Girne American University designed the qualification to flex around part-time and distance learning, so the twelve to fifteen months fit around a job, a family, and the weeks when one of the three takes priority. Which, in the Gulf, is usually all three.
+The format is the reason working professionals choose it. Girne American University designed the qualification to flex around part-time and distance learning, so the 12 to 15 months fit around a job, a family, and the weeks when one of the three takes priority. Which, in the Gulf, is usually all three.
 
 ---
 
-## 4. WHY CHOOSE THIS PROGRAMME (benefits)
+## 4. WHY CHOOSE THIS PROGRAM (benefits)
 
 **01 · Breadth is the design**
 Not a niche degree. The management map in full, for the person who ends up responsible for all of it.
 
-**02 · A year-ish, not two years**
-Twelve to fifteen months. Long enough to matter, short enough to finish before your next promotion window closes.
+**02 · A year-ish, not 2 years**
+12 to 15 months. Long enough to matter, short enough to finish before your next promotion window closes.
 
 **03 · The research project earns its place**
 A graduate research project sits at the end, which sounds academic until you realize it is also the best interview prop you will ever carry.
@@ -74,11 +74,11 @@ A graduate research project sits at the end, which sounds academic until you rea
 **04 · An international cohort**
 Girne American University draws students across markets, so the class discussion carries more than one country's assumptions. That friction is part of the education.
 
-**05 · Instalments in dirhams**
+**05 · Installments in dirhams**
 Monthly AED payments, no interest, scheduled around salary dates and agreed in writing.
 
 **06 · Support in Sharjah**
-Advisors you can visit or message on WhatsApp, and a success coach who stays through the degree rather than the enrolment.
+Advisors you can visit or message on WhatsApp, and a success coach who stays through the degree rather than the enrollment.
 
 Closing line: The certificate is awarded by Girne American University, North Cyprus. The generalist instincts it certifies are what employers in a diversified economy keep short of.
 
@@ -103,7 +103,7 @@ General Manager
 Operations Manager
 Business Development Manager
 Management Consultant
-Programme Manager
+Program Manager
 Business Analyst
 Area Manager
 Team Leader
@@ -112,7 +112,7 @@ Entrepreneur
 
 ---
 
-## 7. PROGRAMME STRUCTURE (structure)
+## 7. PROGRAM STRUCTURE (structure)
 
 ### heading
 Your journey, stage by stage
@@ -139,12 +139,12 @@ Three movements: the business core, the applied management coursework, and the g
 
 ## 8. WHY STUDY THROUGH MAVERICK (support)
 
-Dedicated academic support | One success coach from enrolment to graduation, which is longer than most remember
+Dedicated academic support | One success coach from enrollment to graduation, which is longer than most remember
 Flexible learning | Part-time and distance delivery built around Gulf working weeks
 Assessment support | Feedback on projects and the research work, given by people who read it
-Affordable instalments | AED monthly payments, interest-free, confirmed in writing
+Affordable installments | AED monthly payments, interest-free, confirmed in writing
 Career guidance | Advisors who place generalists and managers across the Gulf and know which CV gets the call
-Documentation assistance | Enrolment handled with you, because the paperwork is dull and mistakes cost months
+Documentation assistance | Enrollment handled with you, because the paperwork is dull and mistakes cost months
 
 ---
 
@@ -164,11 +164,11 @@ The UAE's non-oil sector contributes over 74% of GDP now, and every industry it 
 **03 · Scaling companies hire breadth first**
 Fast-growing Gulf firms rarely need a third specialist before they need a first generalist. The hiring order is the pitch for this degree.
 
-**04 · The skills gap favours credentialed candidates**
+**04 · The skills gap favors credentialed candidates**
 Across the Gulf, employers keep reporting shortages of qualified candidates. A completed MBA is the simplest proof in the room.
 
-**05 · Fifteen months, maximum**
-Promotion cycles and posting windows do not wait for two-year degrees. The upper bound here is fifteen months.
+**05 · 15 months, maximum**
+Promotion cycles and posting windows do not wait for two-year degrees. The upper bound here is 15 months.
 
 **06 · The cohort is the second curriculum**
 An international classroom means your case discussions carry assumptions from several economies. In a region built on cross-border business, that habit pays.
@@ -179,20 +179,21 @@ An international classroom means your case discussions carry assumptions from se
 
 Registration Fee | Itemised in the full structure before any payment
 Initial Payment | Confirmed in writing before anything is charged
-Monthly Instalments | AED, interest-free, matched to salary dates
+Monthly Installments | AED, interest-free, matched to salary dates
 Scholarship Availability | Possible for strong profiles; your advisor checks before promising
 Offer Validity | Early-bird pricing moves with each intake, so confirm the window
 
 ### request block
-Fees depend on the intake and your admission profile, so this page carries no fixed number. Request the personal breakdown from admissions; it arrives in writing, costs nothing, and commits you to nothing. Across our Master's programmes, totals usually sit between AED 16,000 and 40,000.
+Fees depend on the intake and your admission profile, so Maverick Business Academy London shares no fixed number up front. Request the personal breakdown from admissions; it arrives in writing, costs nothing, and commits you to nothing. Across our Master's programs, totals usually sit between AED 16,000 and 40,000.
 
 ---
 
 ## BUILD NOTES (internal, not page copy)
 
-- Field mapping identical to the Rushford programme pages; structure uses a three-stage format because Girne American University publishes no fixed module list for this MBA (flagged for university sign-off).
-- Sources: Girne American University programme description as carried on mbalondon.org.uk and excellanzeducation.org course pages (12-15 months full-time equivalent, flexible part-time and distance delivery); ADDED clean energy page (UAE non-oil sector above 74% of GDP in 2023)
-- Note: the source wording mentions delivery through approved study centres; the client's positioning is online study, so page copy says online. Flagged for client confirmation.
+- Field mapping identical to the Rushford program pages; structure uses a three-stage format because Girne American University publishes no fixed module list for this MBA (flagged for university sign-off).
+- Sources: Girne American University program description as carried on mbalondon.org.uk and excellanzeducation.org course pages (12-15 months full-time equivalent, flexible part-time and distance delivery); ADDED clean energy page (UAE non-oil sector above 74% of GDP in 2023)
+- Note: the source wording mentions delivery through approved study centers; the client's positioning is online study, so page copy says online. Flagged for client confirmation.
 - Careers: all ten roles market-standard; need client approval.
 - Sign-off needed: exact fee, September 2026 seats, scholarship rules, stage wording, ECTS/credit line if university provides one, market figures if legal prefers softer language.
 - 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.
+- 2026-09-22 client-feedback pass: converted to English-US, numbers moved to figures, removed page-self-reference phrasing per brand voice (Maverick Business Academy London).

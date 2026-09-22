@@ -25,13 +25,13 @@ A taught economics degree hands you conclusions. A thesis-based one makes you pr
 
 The payoff is a skill most professionals never build: the ability to take a messy economic question, design a credible way of answering it, and defend your answer under questioning. That is the difference between quoting forecasts and making them. If a PhD is on your horizon, this is also the route that academic admissions committees expect to see.
 
-## WHY THIS PROGRAMME
+## WHY THIS PROGRAM
 
 **Real thesis, real defence**
 Not a capstone project. A supervised research thesis presented and examined by a faculty committee.
 
 **The diversification angle is real**
-The GCC is actively building non-oil economies. That generates demand for people who can analyse growth, labour, and policy, beyond reading about them.
+The GCC is actively building non-oil economies. That generates demand for people who can analyze growth, labor, and policy, beyond reading about them.
 
 **Econometrics you can actually use**
 Quantitative methods taught toward application, so your thesis rests on defensible analysis rather than narrative.
@@ -43,7 +43,7 @@ GAU carries YÖDAK and YÖK accreditation plus IACBE membership, which reads cle
 Coursework is scheduled around employment, and the thesis phase runs on your supervision timetable.
 
 **A straight path to doctoral study**
-A recognised, defended thesis MSc is the standard prerequisite for PhD programmes, and this one is built to that convention.
+A recognized, defended thesis MSc is the standard prerequisite for PhD programs, and this one is built to that convention.
 
 Honest take: if you want economics as a decision-making lens for a management role rather than as a discipline, an MBA may serve you better. This degree is for people who want to practise economics, not only consume it.
 
@@ -52,10 +52,10 @@ Honest take: if you want economics as a decision-making lens for a management ro
 - Frame an economic research question worth defending
 - Apply quantitative and econometric methods to real data
 - Read and critique economic literature at a professional level
-- Collect, clean, and analyse primary or secondary datasets
+- Collect, clean, and analyze primary or secondary datasets
 - Write for examiners without losing clarity
 - Defend findings against live committee questioning
-- Apply theory to Gulf-specific questions like diversification and labour policy
+- Apply theory to Gulf-specific questions like diversification and labor policy
 - Translate results into language decision-makers actually hear
 
 ## CAREERS
@@ -80,27 +80,27 @@ Proposal, supervised research, writing, and defence before a faculty committee. 
 - Regional admissions team in Sharjah, reachable by phone and WhatsApp
 - Supervisor matching and academic guidance through the thesis phase
 - Written confirmation of fees, dates, and requirements before payment
-- Instalment plans in AED
+- Installment plans in AED
 - Career conversations anchored in your research output, not generic listings
 - English-language support where transcripts or essays need it
 
 ## GCC MARKET CONTEXT
 
 - UAE non-oil GDP now accounts for over 74% of the economy (ADDED), which keeps economic analysis in demand.
-- The region's diversification programmes generate continuous demand for analysts who can model growth and labour markets.
+- The region's diversification programs generate continuous demand for analysts who can model growth and labor markets.
 - Employers across the GCC keep reporting skills gaps in the roles they hire for.
-- Doctoral study interest is rising among GCC professionals; a recognised thesis MSc is the standard prerequisite.
+- Doctoral study interest is rising among GCC professionals; a recognized thesis MSc is the standard prerequisite.
 - A defended thesis gives you original evidence of analytical work, which employers increasingly use to separate candidates.
 
 ## FEES
 
-- Programme fee range across the portfolio: AED 16,000 to AED 40,000
-- Exact fee for this programme: confirmed in writing at admission
-- Instalments in AED available
+- Program fee range across the portfolio: AED 16,000 to AED 40,000
+- Exact fee for this program: confirmed in writing at admission
+- Installments in AED available
 - No hidden charges; everything documented before payment
 - Employer sponsorship letters supported on request
 
-The written quote arrives before any payment commitment. Every programme we place works this way.
+The written quote arrives before any payment commitment. Every program we place works this way.
 
 ## SEO
 
@@ -109,9 +109,10 @@ The written quote arrives before any payment commitment. Every programme we plac
 
 ## BUILD NOTES
 
-- Duration follows the approved masters page table row for MSc programmes (8 to 18 months).
+- Duration follows the approved masters page table row for MSc programs (8 to 18 months).
 - Thesis structure (taught core, electives, methods, supervised thesis with committee defence) follows the published GAU thesis-MSc pattern; exact module lists and ECTS splits are not published by the delivery partner, so no module names are stated. Flag for confirmation with admissions.
 - Careers list is market-standard for the region; no placement data claimed.
 - Market figures: market numbers limited to official government sources after the 2026-09-21 QA pass.
-- Credits row intentionally reads "confirmed per admission" until written confirmation is received per programme.
+- Credits row intentionally reads "confirmed per admission" until written confirmation is received per program.
 - 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.
+- 2026-09-22 client-feedback pass: converted to English-US, numbers moved to figures, removed page-self-reference phrasing per brand voice (Maverick Business Academy London).

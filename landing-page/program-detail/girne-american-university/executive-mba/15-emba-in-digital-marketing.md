@@ -1,10 +1,10 @@
 # GAU EMBA 15 · Program Detail Page Content: Executive MBA in Digital Marketing (v5)
 
-**Page:** /programmes/gau-emba-in-digital-marketing
+**Page:** /programs/gau-emba-in-digital-marketing
 **Awarding university:** Girne American University, North Cyprus · **Category:** Executive MBA · **Level:** Master's · **Duration:** 12 to 18 months
 **Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections not written (per client list)
-**Sources on file:** approved master landing page programme table (GAU Executive MBAs, 12-18 months)
+**Sources on file:** approved master landing page program table (GAU Executive MBAs, 12-18 months)
 
 ---
 
@@ -14,7 +14,7 @@
 Executive MBA in Digital Marketing | Girne American University
 
 ### meta_description
-12 to 18-month Executive MBA in Digital Marketing from Girne American University. Online senior cohort, AED instalments. Enquire now.
+12 to 18-month Executive MBA in Digital Marketing from Girne American University. Online senior cohort, AED installments. Enquire now.
 
 ---
 
@@ -37,7 +37,7 @@ Girne American University | 12 to 18 months | Online senior cohort | Executive f
 
 ---
 
-## 2. PROGRAMME AT A GLANCE (snapshot)
+## 2. PROGRAM AT A GLANCE (snapshot)
 
 Degree Award | Executive MBA
 Awarding University | Girne American University, North Cyprus
@@ -51,16 +51,16 @@ The admission letter carries the credit detail and the fee structure, in writing
 
 ---
 
-## 3. PROGRAMME OVERVIEW (description)
+## 3. PROGRAM OVERVIEW (description)
 
 ### copy
-At executive level, digital marketing stops being about channels and becomes about systems: how data informs spend, how brands stay coherent across platforms that disagree, and how teams get managed when half the discipline changes every year. This Executive MBA works at that altitude. The executive core covers strategy, finance, human capital, and operations, then the coursework turns to the digital side of the discipline: channel strategy, analytics and measurement, brand building in platform economies, and leading marketing organisations through constant technical change.
+At executive level, digital marketing stops being about channels and becomes about systems: how data informs spend, how brands stay coherent across platforms that disagree, and how teams get managed when half the discipline changes every year. This Executive MBA works at that altitude. The executive core covers strategy, finance, human capital, and operations, then the coursework turns to the digital side of the discipline: channel strategy, analytics and measurement, brand building in platform economies, and leading marketing organizations through constant technical change.
 
 Cohorts are small and senior, mixing CMOs, digital directors, agency leads, and e-commerce executives, which makes the case discussions read like a marketing board with the slides removed. The degree closes with a graduate research project on a live commercial question.
 
 ---
 
-## 4. WHY CHOOSE THIS PROGRAMME (benefits)
+## 4. WHY CHOOSE THIS PROGRAM (benefits)
 
 **01 · Leadership level, channel-proof**
 Platforms churn; strategy and measurement survive. The coursework aims at the durable half of the discipline.
@@ -68,14 +68,14 @@ Platforms churn; strategy and measurement survive. The coursework aims at the du
 **02 · Analytics treated as a management subject**
 Measurement and data sit inside the degree as leadership questions, which matches how CMOs are now evaluated.
 
-**03 · Eighteen months at the outside**
-Marketing leaders cannot step away for two years. Twelve to eighteen months, executive-scheduled, is the realistic version.
+**03 · 18 months at the outside**
+Marketing leaders cannot step away for 2 years. 12 to 18 months, executive-scheduled, is the realistic version.
 
 **04 · The research project can steer your own budget**
 Point the final investigation at your own brand or market question and finish with a case your finance director can read.
 
-**05 · Instalments in dirhams**
-Monthly AED payments, interest-free, agreed in writing before the programme starts.
+**05 · Installments in dirhams**
+Monthly AED payments, interest-free, agreed in writing before the program starts.
 
 **06 · Support on Gulf time**
 Sharjah-based advisors in person or on WhatsApp, and a success coach for the whole degree.
@@ -112,7 +112,7 @@ Regional Marketing Director
 
 ---
 
-## 7. PROGRAMME STRUCTURE (structure)
+## 7. PROGRAM STRUCTURE (structure)
 
 ### heading
 Your journey, stage by stage
@@ -130,21 +130,21 @@ Three movements: the executive core, the digital marketing coursework, and the g
 **Stage 2 · Digital marketing coursework**
 - Channel strategy, analytics, and measurement
 - Brand building in platform economies
-- Leadership case work across digital and e-commerce organisations
+- Leadership case work across digital and e-commerce organizations
 
 **Stage 3 · The graduate research project**
-- A supervised investigation of a digital marketing question, often drawn from the participant's own organisation
+- A supervised investigation of a digital marketing question, often drawn from the participant's own organization
 
 ---
 
 ## 8. WHY STUDY THROUGH MAVERICK (support)
 
-Dedicated academic support | One success coach from enrolment to graduation
+Dedicated academic support | One success coach from enrollment to graduation
 Flexible learning | Executive scheduling arranged around campaign seasons and launches
 Assessment support | Feedback on strategy and research work, handled properly
-Affordable instalments | AED monthly payments, interest-free, confirmed in writing
+Affordable installments | AED monthly payments, interest-free, confirmed in writing
 Career guidance | Advisors familiar with marketing leadership hiring across the Gulf
-Documentation assistance | Enrolment done with you, one step at a time
+Documentation assistance | Enrollment done with you, one step at a time
 
 ---
 
@@ -167,7 +167,7 @@ Airlines, retail groups, and city brands from this region market globally, and t
 **04 · The skills gap reaches senior marketing too**
 Across the Gulf, employers keep reporting shortages of qualified candidates, and data-literate marketing leaders are the scarcest version.
 
-**05 · Eighteen months suits launch calendars**
+**05 · 18 months suits launch calendars**
 The delivery bends around campaigns and peaks instead of asking you to pause them.
 
 **06 · The research project can steer your own budget**
@@ -179,19 +179,20 @@ Finish on a live question from your own brand or market and graduate with a case
 
 Registration Fee | Itemised in the full structure before any payment
 Initial Payment | Confirmed in writing before anything is charged
-Monthly Instalments | AED, interest-free, matched to salary dates
+Monthly Installments | AED, interest-free, matched to salary dates
 Scholarship Availability | Possible for strong profiles; your advisor checks before promising
 Offer Validity | Early-bird pricing moves with each intake, so confirm the window
 
 ### request block
-Fees depend on the intake and your admission profile, so no fixed figure sits here. Admissions sends the personal breakdown in writing, free and without obligation. Across our Master's programmes, totals usually land between AED 16,000 and 40,000.
+Fees depend on the intake and your admission profile, so no fixed figure sits here. Admissions sends the personal breakdown in writing, free and without obligation. Across our Master's programs, totals usually land between AED 16,000 and 40,000.
 
 ---
 
 ## BUILD NOTES (internal, not page copy)
 
-- Field mapping identical to the Rushford programme pages; three-stage structure written descriptively because no official module list for this EMBA was verified this cycle (flagged for university sign-off).
-- Sources: approved master landing page programme table (GAU Executive MBAs, 12-18 months)
+- Field mapping identical to the Rushford program pages; three-stage structure written descriptively because no official module list for this EMBA was verified this cycle (flagged for university sign-off).
+- Sources: approved master landing page program table (GAU Executive MBAs, 12-18 months)
 - Careers: all ten roles market-standard; need client approval.
 - Sign-off needed: exact fee, September 2026 seats, scholarship rules, stage wording, credit line if university provides one, market figures if legal prefers softer language.
 - 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.
+- 2026-09-22 client-feedback pass: converted to English-US, numbers moved to figures, removed page-self-reference phrasing per brand voice (Maverick Business Academy London).

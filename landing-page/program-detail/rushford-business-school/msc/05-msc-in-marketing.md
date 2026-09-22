@@ -1,11 +1,11 @@
 # 17 · Program Detail Page Content: MSc in Marketing (v5)
 
-**Page:** /programmes/msc-in-marketing
+**Page:** /programs/msc-in-marketing
 **Awarding university:** Rushford Business School, Switzerland
 **Category:** MSc · **Level:** Master's · **Duration:** 12 months, fully online
 **Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections not written (per client list)
-**Sources on file:** official Rushford MSc programme listing (12 months, 60 ECTS, specialisation scope and career roles)
+**Sources on file:** official Rushford MSc program listing (12 months, 60 ECTS, specialization scope and career roles)
 
 ---
 
@@ -15,7 +15,7 @@
 MSc in Marketing Online | Rushford Business School | Maverick
 
 ### meta_description
-12-month online MSc in Marketing from Rushford Business School. Digital, brand and luxury branding focus. 60 ECTS, AED instalments. Enquire now.
+12-month online MSc in Marketing from Rushford Business School. Digital, brand and luxury branding focus. 60 ECTS, AED installments. Enquire now.
 
 ---
 
@@ -38,7 +38,7 @@ Rushford Business School | 12 months online | 60 ECTS | 15 courses | Asynchronou
 
 ---
 
-## 2. PROGRAMME AT A GLANCE (snapshot)
+## 2. PROGRAM AT A GLANCE (snapshot)
 
 Degree Award | MSc
 Awarding University | Rushford Business School, Switzerland
@@ -52,19 +52,19 @@ The 90 ECTS (18-month) and 120 ECTS (24-month) versions are also available for e
 
 ---
 
-## 3. PROGRAMME OVERVIEW (description)
+## 3. PROGRAM OVERVIEW (description)
 
 ### copy
-A marketing degree that skips the digital economy is a museum exhibit. This one does not skip it: five core management courses lay the business base, then ten specialisation courses work through marketing strategy, consumer behaviour, branding, luxury branding, and brand value management, with business analytics, communication, and the ethics-and-legal layer wrapped through them.
+A marketing degree that skips the digital economy is a museum exhibit. This one does not skip it: five core management courses lay the business base, then ten specialization courses work through marketing strategy, consumer behavior, branding, luxury branding, and brand value management, with business analytics, communication, and the ethics-and-legal layer wrapped through them.
 
-The programme runs asynchronously on the e-Campus across twelve months, which fits the lives of the people it serves: working marketers upgrading toward strategy roles, e-commerce operators, and graduates aiming at their first brand-side seat (in that rough order of seniority).
+The program runs asynchronously on the e-Campus across 12 months, which fits the lives of the people it serves: working marketers upgrading toward strategy roles, e-commerce operators, and graduates aiming at their first brand-side seat (in that rough order of seniority).
 
 ---
 
-## 4. WHY CHOOSE THIS PROGRAMME (benefits)
+## 4. WHY CHOOSE THIS PROGRAM (benefits)
 
 **01 · One year, and it counts**
-Sixty ECTS in twelve months. The credential arrives before most promotion cycles close.
+60 ECTS in 12 months. The credential arrives before most promotion cycles close.
 
 **02 · Luxury branding is on the syllabus**
 A genuine oddity in this market, and directly relevant to a region where luxury is a domestic industry.
@@ -73,9 +73,9 @@ A genuine oddity in this market, and directly relevant to a region where luxury 
 Business analytics is part of the structure, matching how marketing hiring now reads.
 
 **04 · Swiss award, online delivery**
-Rushford Business School, Switzerland, awards the MSc. All fifteen courses run on the e-Campus.
+Rushford Business School, Switzerland, awards the MSc. All 15 courses run on the e-Campus.
 
-**05 · Instalments in dirhams**
+**05 · Installments in dirhams**
 Monthly AED payments, interest-free, agreed in writing before term one.
 
 **06 · Support you can message**
@@ -90,7 +90,7 @@ Closing line: The degree is awarded by Rushford Business School, Switzerland. Th
 01 Build marketing strategies that hold up under budget review
 02 Manage brands, and the value they carry, with method
 03 Handle luxury branding with the specificity it demands
-04 Read consumer behaviour with evidence behind the instincts
+04 Read consumer behavior with evidence behind the instincts
 05 Put business analytics into campaign decisions
 06 Communicate marketing positions to finance as well as creative teams
 07 Work the ethics and legal frames marketing keeps tripping over
@@ -113,25 +113,25 @@ Project Manager
 
 ---
 
-## 7. PROGRAMME STRUCTURE (structure)
+## 7. PROGRAM STRUCTURE (structure)
 
 ### heading
 Your journey, block by block
 
 ### intro
-Three blocks across fifteen courses: core management, the marketing foundation, and the leadership and research block.
+Three blocks across 15 courses: core management, the marketing foundation, and the leadership and research block.
 
 ### stages
 
 **Block 1 · Core management (20 ECTS)**
 - Transformational Management
 - Managerial Economics
-- Organisational Behaviour
+- Organisational Behavior
 - Marketing in a Digital World
 - Accounting for Financial Reporting
 
 **Block 2 · Marketing foundation (20 ECTS)**
-- Ten specialisation courses covering marketing strategy, consumer behaviour, branding, luxury branding, brand value management, analytics, communication, and ethics
+- Ten specialization courses covering marketing strategy, consumer behavior, branding, luxury branding, brand value management, analytics, communication, and ethics
 
 **Block 3 · Leadership and research (20 ECTS plus electives)**
 - Research Methodology
@@ -147,9 +147,9 @@ Three blocks across fifteen courses: core management, the marketing foundation, 
 Dedicated academic support | One success coach from induction to the award letter
 Flexible learning | Asynchronous e-Campus study, built around working marketers
 Assessment support | Feedback on brand and campaign work, read properly
-Affordable instalments | Interest-free AED monthly payments, confirmed in writing
+Affordable installments | Interest-free AED monthly payments, confirmed in writing
 Career guidance | Advisors who track marketing, digital, and e-commerce hiring in the Gulf
-Documentation assistance | Enrolment handled with you, step by step
+Documentation assistance | Enrollment handled with you, step by step
 
 ---
 
@@ -172,8 +172,8 @@ Across the Gulf, employers keep reporting shortages of qualified candidates, and
 **04 · The region's brands are going global**
 Airlines, retail groups, and city brands from the Gulf now market internationally, and they staff those teams with strategists who hold formal credentials.
 
-**05 · Twelve months fits campaign calendars**
-Marketing teams cannot lose people for two years. One year, asynchronous, keeps you in the rotation.
+**05 · 12 months fits campaign calendars**
+Marketing teams cannot lose people for 2 years. 1 year, asynchronous, keeps you in the rotation.
 
 **06 · The capstone question can be your brand**
 Assessments throughout can draw on your own employer's brand and market questions, which turns the degree into portfolio material.
@@ -186,12 +186,12 @@ Honest take: marketing platforms change faster than syllabi, so treat the toolin
 
 Registration Fee | Itemised in the full structure before any payment
 Initial Payment | Confirmed in writing before anything is charged
-Monthly Instalments | AED, interest-free, matched to salary dates
+Monthly Installments | AED, interest-free, matched to salary dates
 Scholarship Availability | Possible for strong profiles; your advisor checks eligibility
 Offer Validity | Early-bird pricing moves with each intake, so confirm the window
 
 ### request block
-Fees depend on the intake and the ECTS version selected, so no fixed figure is printed here. Admissions sends a personal breakdown on request, free and without obligation. Across our Master's programmes, totals usually land between AED 16,000 and 40,000.
+Fees depend on the intake and the ECTS version selected, so no fixed figure is printed here. Admissions sends a personal breakdown on request, free and without obligation. Across our Master's programs, totals usually land between AED 16,000 and 40,000.
 
 ---
 
@@ -204,3 +204,4 @@ Fees depend on the intake and the ECTS version selected, so no fixed figure is p
 - Careers: all ten from the official listing (reordered).
 - Sign-off needed: exact fee, September 2026 seats, scholarship rules, Block 2 module wording, market figures if legal prefers softer language.
 - 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.
+- 2026-09-22 client-feedback pass: converted to English-US, numbers moved to figures, removed page-self-reference phrasing per brand voice (Maverick Business Academy London).

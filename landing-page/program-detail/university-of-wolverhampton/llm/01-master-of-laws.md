@@ -23,15 +23,15 @@ Contracts stall a launch. A regulation lands on your desk with a Friday deadline
 
 The Master of Laws from the University of Wolverhampton is a UK-awarded postgraduate law degree designed for professionals whose work is full of legal content, even if their job title is not. The taught modules build your working knowledge of how law operates in commercial and organisational settings, and the dissertation lets you investigate a legal question drawn from your own professional context.
 
-A useful way to think about it: this degree does not qualify you to practise as a lawyer in the UAE, and no honest page should imply otherwise. What it does is give you a recognised UK master's in law and the trained reasoning to read contracts, assess regulatory exposure, and hold informed conversations with counsel. That profile is increasingly valuable in a market that has added corporate tax, expanded compliance obligations, and kept adding new regulation at speed.
+A useful way to think about it: this degree does not qualify you to practise as a lawyer in the UAE, and no honest page should imply otherwise. What it does is give you a recognized UK master's in law and the trained reasoning to read contracts, assess regulatory exposure, and hold informed conversations with counsel. That profile is increasingly valuable in a market that has added corporate tax, expanded compliance obligations, and kept adding new regulation at speed.
 
-## WHY THIS PROGRAMME
+## WHY THIS PROGRAM
 
 **A UK university award, full stop**
 The degree is awarded by the University of Wolverhampton, a UK public university, not a third-party certificate.
 
 **Law for people inside business**
-The programme suits managers, finance leads, founders, and HR professionals whose daily decisions carry legal weight.
+The program suits managers, finance leads, founders, and HR professionals whose daily decisions carry legal weight.
 
 **Dissertation rooted in your work**
 Research a question from your own contracts, sector, or regulatory environment, so the study pays you back while you do it.
@@ -45,7 +45,7 @@ Taught modules run around working schedules, and the dissertation phase follows 
 **Credential that travels**
 A UK master's in law reads cleanly on applications across the GCC and internationally, including for further study.
 
-Honest take: if you want to practise law in the UAE, you need local licensing through the relevant authority, and this degree is a step on that path rather than the licence itself. For everyone else, it is legal literacy with a recognised award attached.
+Honest take: if you want to practise law in the UAE, you need local licensing through the relevant authority, and this degree is a step on that path rather than the license itself. For everyone else, it is legal literacy with a recognized award attached.
 
 ## WHAT YOU WILL LEARN
 
@@ -77,7 +77,7 @@ A supervised research dissertation on a legal question of your choice, typically
 - Regional admissions team in Sharjah, reachable by phone and WhatsApp
 - Academic guidance through taught modules and dissertation supervision
 - Written confirmation of fees, dates, and requirements before payment
-- Instalment plans in AED
+- Installment plans in AED
 - Career conversations anchored in what the degree actually qualifies you for
 - English-language support where transcripts or essays need it
 
@@ -91,13 +91,13 @@ A supervised research dissertation on a legal question of your choice, typically
 
 ## FEES
 
-- Programme fee range across the portfolio: AED 16,000 to AED 40,000
-- Exact fee for this programme: confirmed in writing at admission
-- Instalments in AED available
+- Program fee range across the portfolio: AED 16,000 to AED 40,000
+- Exact fee for this program: confirmed in writing at admission
+- Installments in AED available
 - No hidden charges; everything documented before payment
 - Employer sponsorship letters supported on request
 
-A written quote lands before any payment commitment. Every programme we place works this way.
+A written quote lands before any payment commitment. Every program we place works this way.
 
 ## SEO
 
@@ -107,8 +107,9 @@ A written quote lands before any payment commitment. Every programme we place wo
 ## BUILD NOTES
 
 - Awarding body and UK public university framing follow the approved masters page partners block.
-- Taught-modules-plus-dissertation structure follows the standard UK LLM pattern as published by the University of Wolverhampton; the exact module list for the Westford-delivered programme is not published, so no module names are stated. Flag for confirmation with admissions.
+- Taught-modules-plus-dissertation structure follows the standard UK LLM pattern as published by the University of Wolverhampton; the exact module list for the Westford-delivered program is not published, so no module names are stated. Flag for confirmation with admissions.
 - Credits row reads "confirmed per admission" until written confirmation is received.
 - Licensing disclaimer included twice (overview and careers): degree is academic, UAE legal practice requires separate licensing. Important to keep.
 - Careers list is market-standard; no placement data claimed.
 - Market figures: UAE corporate tax 9% effective June 2023 (Federal Decree-Law No. 47 of 2022), registered business count from National Economic Register data via taxfy.ae reporting. All softenable if legal wants.
+- 2026-09-22 client-feedback pass: converted to English-US, numbers moved to figures, removed page-self-reference phrasing per brand voice (Maverick Business Academy London).

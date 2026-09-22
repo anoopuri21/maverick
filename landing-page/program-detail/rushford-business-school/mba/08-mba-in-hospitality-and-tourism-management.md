@@ -1,11 +1,11 @@
 # 08 · Program Detail Page Content: MBA in Hospitality & Tourism Management (v5)
 
-**Page:** /programmes/mba-in-hospitality-and-tourism-management
+**Page:** /programs/mba-in-hospitality-and-tourism-management
 **Awarding university:** Rushford Business School, Switzerland
 **Category:** MBA · **Level:** Master's · **Duration:** 16 months, fully online
 **Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections (per client list) not written: recognition, accreditation, university block, success stories, reviews, network, faculty voice, FAQ, enquire, CTA
-**Sources on file:** official Rushford programme listing (16 months, 90 ECTS, specialisation modules and electives, career roles), Dubai DET tourism results 2025 (Gulf News, Feb 2026)
+**Sources on file:** official Rushford program listing (16 months, 90 ECTS, specialization modules and electives, career roles), Dubai DET tourism results 2025 (Gulf News, Feb 2026)
 
 ---
 
@@ -15,7 +15,7 @@
 MBA in Hospitality & Tourism Management Online | Maverick
 
 ### meta_description
-16-month online MBA in Hospitality and Tourism Management from Rushford Business School. 90 ECTS, evening study, AED instalments. Enquire now.
+16-month online MBA in Hospitality and Tourism Management from Rushford Business School. 90 ECTS, evening study, AED installments. Enquire now.
 
 ---
 
@@ -28,7 +28,7 @@ MBA in Hospitality & Tourism Management
 Master's
 
 ### short_description
-Nineteen and a half million visitors came to Dubai in 2025, and the Gulf hotel pipeline keeps growing behind them. This 16-month online MBA from Rushford Business School puts the management qualification behind the people running all of it.
+19.5 million visitors came to Dubai in 2025, and the Gulf hotel pipeline keeps growing behind them. This 16-month online MBA from Rushford Business School puts the management qualification behind the people running all of it.
 
 ### duration
 16 months online
@@ -38,7 +38,7 @@ Rushford Business School | 16 months online | 90 ECTS | Evening classes | Capsto
 
 ---
 
-## 2. PROGRAMME AT A GLANCE (snapshot)
+## 2. PROGRAM AT A GLANCE (snapshot)
 
 Degree Award | MBA
 Awarding University | Rushford Business School, Switzerland
@@ -52,16 +52,16 @@ Fee and intake details are confirmed per intake, in writing, before payment. Ask
 
 ---
 
-## 3. PROGRAMME OVERVIEW (description)
+## 3. PROGRAM OVERVIEW (description)
 
 ### copy
-Hospitality looks effortless from the guest's side of the desk. Behind it sits operations, law, destination strategy, events, sustainability, and increasingly technology. This MBA covers the whole back of house: the Rushford management core first, then a specialisation running from hotel management fundamentals through tourism operations, environment and law, to event management and destination strategy.
+Hospitality looks effortless from the guest's side of the desk. Behind it sits operations, law, destination strategy, events, sustainability, and increasingly technology. This MBA covers the whole back of house: the Rushford management core first, then a specialization running from hotel management fundamentals through tourism operations, environment and law, to event management and destination strategy.
 
 It runs around working lives, including the double shifts. Courses last two to three weeks, classes sit in the evenings, and the capstone can take a live question from your property or destination: an occupancy problem, an event concept, a guest experience gap. In the busiest tourism market in the region, material will not be the issue.
 
 ---
 
-## 4. WHY CHOOSE THIS PROGRAMME (benefits)
+## 4. WHY CHOOSE THIS PROGRAM (benefits)
 
 **01 · The job keeps paying while you study**
 Evenings, short courses, online delivery. The industry's shift patterns were part of the design.
@@ -76,7 +76,7 @@ Tourism law, tourism and the environment, sustainable tourism. The subjects that
 The complete course load with a capstone, 90 ECTS total, certificate from Rushford Business School, Switzerland.
 
 **05 · Pay monthly in dirhams**
-Interest-free AED instalments, schedule agreed in writing before term one.
+Interest-free AED installments, schedule agreed in writing before term one.
 
 **06 · Support in the region**
 A named success coach for the degree, and advisors in Sharjah you can visit or message.
@@ -113,13 +113,13 @@ Destination Marketing Executive
 
 ---
 
-## 7. PROGRAMME STRUCTURE (structure)
+## 7. PROGRAM STRUCTURE (structure)
 
 ### heading
 Your journey, stage by stage
 
 ### intro
-Four stages: management foundations, the business core, the hospitality and tourism specialisation, and a capstone on a live industry question.
+Four stages: management foundations, the business core, the hospitality and tourism specialization, and a capstone on a live industry question.
 
 ### stages
 
@@ -140,7 +140,7 @@ Four stages: management foundations, the business core, the hospitality and tour
 - Corporate Social Responsibility, Ethics & Law
 - Strategic Management: Integrating the Enterprise
 
-**Stage 3 · The hospitality and tourism specialisation**
+**Stage 3 · The hospitality and tourism specialization**
 - Tourism and Hospitality Operations Management
 - Hotel Management Fundamentals
 - Tourism and the Environment
@@ -159,9 +159,9 @@ Four stages: management foundations, the business core, the hospitality and tour
 Dedicated academic support | One success coach from induction through the award letter
 Flexible learning | Evening and weekend sessions on Gulf time, with recordings for the double shifts
 Assignment support | Feedback on operations plans and event cases, read properly
-Affordable instalments | Interest-free AED monthly payments, confirmed in writing
+Affordable installments | Interest-free AED monthly payments, confirmed in writing
 Career guidance | Advisors who know Gulf hospitality hiring, from properties to destinations
-Documentation assistance | Enrolment done with you, one step at a time
+Documentation assistance | Enrollment done with you, one step at a time
 
 ---
 
@@ -176,7 +176,7 @@ Why GCC professionals choose this course
 Fully online, no visa, no career break. Dubai alone held 154,264 rooms across 827 establishments in 2025, and you can study from any of the emirates.
 
 **02 · The visitor numbers keep setting records**
-The Dubai Department of Economy and Tourism reports 19.59 million international overnight visitors in 2025, up 5% year on year, with average occupancy at 80.7%. Three record years running.
+The Dubai Department of Economy and Tourism reports 19.59 million international overnight visitors in 2025, up 5% year on year, with average occupancy at 80.7%. That makes 3 record years running.
 
 **03 · Revenue management is getting serious**
 Average daily rates in Dubai reached AED 579 in 2025, and RevPAR crossed AED 460. Numbers like that attract professionally trained management.
@@ -198,12 +198,12 @@ Honest take: hospitality promotes on results more than credentials, so treat the
 
 Registration Fee | Itemised inside the full structure before payment
 Initial Payment | Written confirmation first, then payment
-Monthly Instalments | AED, interest-free, matched to salary dates
+Monthly Installments | AED, interest-free, matched to salary dates
 Scholarship Availability | Available for strong profiles; eligibility checked by your advisor
 Offer Validity | Early-bird pricing is set per intake, so check before it closes
 
 ### request block
-Fees move with the intake and study mode, so no fixed figure sits on this page. Request the personal breakdown from admissions; it costs nothing and binds you to nothing. Across our Master's programmes, totals usually land between AED 16,000 and 40,000.
+Fees move with the intake and study mode, so we publish no fixed figure in advance. Request the personal breakdown from admissions; it costs nothing and binds you to nothing. Across our Master's programs, totals usually land between AED 16,000 and 40,000.
 
 ---
 
@@ -211,8 +211,9 @@ Fees move with the intake and study mode, so no fixed figure sits on this page. 
 
 - Voice pass: converted from v4 to v5 maximally-human pattern (varied rhythm, parenthetical asides, honest-take marker, uneven cards). Structure, facts, and field mapping unchanged.
 - Field mapping identical to program 01.
-- Sources: Rushford official listing (16 months online, 90 ECTS, specialisation modules: Tourism and Hospitality Operations Management, Hotel Management Fundamentals, Tourism and the Environment, Tourist Management Strategies, Tourism Hospitality and Law, Event Management; electives: Sustainable Tourism, Hospitality and Gastronomy, Innovation in Hospitality and Tourism, Destination Management, Technology Management in Hospitality and Tourism; official career roles list); Dubai DET 2025 results via Gulf News and dubai.news (19.59m visitors, 80.7% occupancy, AED 579 ADR, AED 467 RevPAR, 154,264 rooms, 827 establishments)
+- Sources: Rushford official listing (16 months online, 90 ECTS, specialization modules: Tourism and Hospitality Operations Management, Hotel Management Fundamentals, Tourism and the Environment, Tourist Management Strategies, Tourism Hospitality and Law, Event Management; electives: Sustainable Tourism, Hospitality and Gastronomy, Innovation in Hospitality and Tourism, Destination Management, Technology Management in Hospitality and Tourism; official career roles list); Dubai DET 2025 results via Gulf News and dubai.news (19.59m visitors, 80.7% occupancy, AED 579 ADR, AED 467 RevPAR, 154,264 rooms, 827 establishments)
 - Note: the listing describes 28 courses with 18 core + 5 of 10 electives, while other Rushford listings describe 27 courses. Glance row written as "the full course load" to avoid the discrepancy; flagged for university confirmation.
 - Careers: eight roles from the official listing; Hospitality Consultant and Destination Marketing Executive added from official career-outcomes text.
 - Sign-off needed: exact fee, September 2026 seats, scholarship rules, course-count wording, market figures if legal prefers softer language.
 - 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.
+- 2026-09-22 client-feedback pass: converted to English-US, numbers moved to figures, removed page-self-reference phrasing per brand voice (Maverick Business Academy London).

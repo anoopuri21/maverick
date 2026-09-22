@@ -1,11 +1,11 @@
 # 19 · Program Detail Page Content: MSc in Finance and Investment (v5)
 
-**Page:** /programmes/msc-in-finance-and-investment
+**Page:** /programs/msc-in-finance-and-investment
 **Awarding university:** Rushford Business School, Switzerland
 **Category:** MSc · **Level:** Master's · **Duration:** 12 months, fully online
 **Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections not written (per client list)
-**Sources on file:** official Rushford MSc programme listing (12 months, 60 ECTS, specialisation scope and career roles)
+**Sources on file:** official Rushford MSc program listing (12 months, 60 ECTS, specialization scope and career roles)
 
 ---
 
@@ -15,7 +15,7 @@
 MSc in Finance and Investment Online | Rushford | Maverick
 
 ### meta_description
-12-month online MSc in Finance and Investment from Rushford Business School. Risk, investment analysis, financial markets. 60 ECTS, AED instalments. Enquire now.
+12-month online MSc in Finance and Investment from Rushford Business School. Risk, investment analysis, financial markets. 60 ECTS, AED installments. Enquire now.
 
 ---
 
@@ -38,7 +38,7 @@ Rushford Business School | 12 months online | 60 ECTS | 15 courses | Asynchronou
 
 ---
 
-## 2. PROGRAMME AT A GLANCE (snapshot)
+## 2. PROGRAM AT A GLANCE (snapshot)
 
 Degree Award | MSc
 Awarding University | Rushford Business School, Switzerland
@@ -52,30 +52,30 @@ The 90 ECTS (18-month) and 120 ECTS (24-month) versions are also available. Fees
 
 ---
 
-## 3. PROGRAMME OVERVIEW (description)
+## 3. PROGRAM OVERVIEW (description)
 
 ### copy
-Finance degrees tend to split into two kinds: theoretical ones that never touch a market, and narrow ones that skip the business around it. This MSc tries for the middle. Five core management courses first, then ten specialisation courses covering risk management, investment analysis, financial markets, financial technology, debt management, and advanced financial analysis, with risk-based supervision rounding the picture.
+Finance degrees tend to split into two kinds: theoretical ones that never touch a market, and narrow ones that skip the business around it. This MSc tries for the middle. Five core management courses first, then ten specialization courses covering risk management, investment analysis, financial markets, financial technology, debt management, and advanced financial analysis, with risk-based supervision rounding the picture.
 
-The programme runs asynchronously on the e-Campus across twelve months, with webinars and workshops alongside the coursework. It is built for people heading into banking, investment, or corporate finance, and for professionals who want the technical depth without the two-year absence, which most finance calendars would refuse anyway.
+The program runs asynchronously on the e-Campus across 12 months, with webinars and workshops alongside the coursework. It is built for people heading into banking, investment, or corporate finance, and for professionals who want the technical depth without the two-year absence, which most finance calendars would refuse anyway.
 
 ---
 
-## 4. WHY CHOOSE THIS PROGRAMME (benefits)
+## 4. WHY CHOOSE THIS PROGRAM (benefits)
 
-**01 · Twelve months to market-relevant depth**
-Sixty ECTS in a year. Finance careers move fast; the degree keeps pace.
+**01 · 12 months to market-relevant depth**
+60 ECTS in 1 year. Finance careers move fast; the degree keeps pace.
 
 **02 · Fintech and risk are treated seriously**
-Financial technology, debt management, and risk-based supervision sit inside the specialisation, matching where Gulf finance hiring actually points.
+Financial technology, debt management, and risk-based supervision sit inside the specialization, matching where Gulf finance hiring actually points.
 
 **03 · The investment side is the point**
 Investment analysis and financial markets carry the core weight, for people aiming at portfolio, research, and banking roles.
 
 **04 · Swiss award, online delivery**
-Rushford Business School, Switzerland, awards the MSc. All fifteen courses run on the e-Campus.
+Rushford Business School, Switzerland, awards the MSc. All 15 courses run on the e-Campus.
 
-**05 · Instalments in dirhams**
+**05 · Installments in dirhams**
 Monthly AED payments, interest-free, scheduled around salary dates and agreed in writing.
 
 **06 · Support in your time zone**
@@ -88,7 +88,7 @@ Closing line: The degree is awarded by Rushford Business School, Switzerland. Th
 ## 5. LEARNING OUTCOMES (learning)
 
 01 Connect financial decisions to the rest of the business, and explain the connection
-02 Analyse business conditions with both qualitative and quantitative data
+02 Analyze business conditions with both qualitative and quantitative data
 03 Apply financial theories and tools to assess risk properly
 04 Evaluate investment opportunities with structure and skepticism
 05 Handle debt management decisions under real constraints
@@ -113,25 +113,25 @@ Chief Financial Officer
 
 ---
 
-## 7. PROGRAMME STRUCTURE (structure)
+## 7. PROGRAM STRUCTURE (structure)
 
 ### heading
 Your journey, block by block
 
 ### intro
-Three blocks across fifteen courses: core management, the finance and investment foundation, and the leadership and research block.
+Three blocks across 15 courses: core management, the finance and investment foundation, and the leadership and research block.
 
 ### stages
 
 **Block 1 · Core management (20 ECTS)**
 - Transformational Management
 - Managerial Economics
-- Organisational Behaviour
+- Organisational Behavior
 - Marketing in a Digital World
 - Accounting for Financial Reporting
 
 **Block 2 · Finance and investment foundation (20 ECTS)**
-- Ten specialisation courses covering risk management, investment analysis, financial markets, financial technology, debt management, advanced financial analysis, and risk-based supervision
+- Ten specialization courses covering risk management, investment analysis, financial markets, financial technology, debt management, advanced financial analysis, and risk-based supervision
 
 **Block 3 · Leadership and research (20 ECTS plus electives)**
 - Research Methodology
@@ -146,10 +146,10 @@ Three blocks across fifteen courses: core management, the finance and investment
 
 Dedicated academic support | One success coach from induction to the award letter
 Flexible learning | Asynchronous e-Campus study with webinars and workshops
-Assessment support | Feedback on financial analyses and research, handled properly
-Affordable instalments | Interest-free AED monthly payments, confirmed in writing
+Assessment support | Feedback on financial analyzes and research, handled properly
+Affordable installments | Interest-free AED monthly payments, confirmed in writing
 Career guidance | Advisors who track banking, investment, and fintech hiring in the Gulf
-Documentation assistance | Enrolment worked through with you, step by step
+Documentation assistance | Enrollment worked through with you, step by step
 
 ---
 
@@ -172,7 +172,7 @@ Banks and fintechs bid for hybrids who understand both finance and technology, a
 **04 · The skills gap is documented**
 Across the Gulf, employers keep reporting shortages of qualified candidates, with risk and treasury among the tightest.
 
-**05 · Twelve months suits analysts' calendars**
+**05 · 12 months suits analysts' calendars**
 The asynchronous format means no sabbatical and no lost bonus season.
 
 **06 · The research component pays off twice**
@@ -186,12 +186,12 @@ Honest take: if your destination is charter-only analysis, the CFA remains the b
 
 Registration Fee | Itemised in the full structure before any payment
 Initial Payment | Confirmed in writing before anything is charged
-Monthly Instalments | AED, interest-free, matched to salary dates
+Monthly Installments | AED, interest-free, matched to salary dates
 Scholarship Availability | Possible for strong profiles; your advisor checks eligibility
 Offer Validity | Early-bird pricing moves with each intake, so confirm the window
 
 ### request block
-Fees vary with the intake and the ECTS version selected, so no fixed figure sits on this page. Admissions sends a personal breakdown on request, free and without obligation. Across our Master's programmes, totals usually land between AED 16,000 and 40,000.
+Fees vary with the intake and the ECTS version selected, so Maverick Business Academy London publishes no fixed figure in advance. Admissions sends a personal breakdown on request, free and without obligation. Across our Master's programs, totals usually land between AED 16,000 and 40,000.
 
 ---
 
@@ -204,3 +204,4 @@ Fees vary with the intake and the ECTS version selected, so no fixed figure sits
 - The listing's name-dropping of Barclays/Credit Suisse etc. is excluded from page copy as unverifiable marketing.
 - Sign-off needed: exact fee, September 2026 seats, scholarship rules, Block 2 module wording, career role omission, market figures if legal prefers softer language.
 - 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.
+- 2026-09-22 client-feedback pass: converted to English-US, numbers moved to figures, removed page-self-reference phrasing per brand voice (Maverick Business Academy London).

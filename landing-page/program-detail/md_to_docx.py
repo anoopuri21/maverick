@@ -225,12 +225,12 @@ def build_structure(doc, lines):
 
 SECTION_TITLES = {
     "1. HERO": None,  # handled specially under the main heading
-    "2. PROGRAMME AT A GLANCE (SNAPSHOT)": "Programme at a Glance",
-    "3. PROGRAMME OVERVIEW (DESCRIPTION)": "Programme Overview",
-    "4. WHY CHOOSE THIS PROGRAMME (BENEFITS)": "Why Choose This Programme",
+    "2. PROGRAMME AT A GLANCE (SNAPSHOT)": "Program at a Glance",
+    "3. PROGRAMME OVERVIEW (DESCRIPTION)": "Program Overview",
+    "4. WHY CHOOSE THIS PROGRAMME (BENEFITS)": "Why Choose This Program",
     "5. LEARNING OUTCOMES (LEARNING)": "What You Will Learn",
     "6. CAREER OPPORTUNITIES (CAREERS)": "Career Opportunities",
-    "7. PROGRAMME STRUCTURE (STRUCTURE)": "Programme Structure",
+    "7. PROGRAMME STRUCTURE (STRUCTURE)": "Program Structure",
     "8. WHY STUDY THROUGH MAVERICK (SUPPORT)": "Why Study Through Maverick",
     "9. WHY GCC STUDENTS CHOOSE THIS COURSE (GCC_REASONS)": "Why GCC Students Choose This Programme",
     "9. WHY GCC PROFESSIONALS CHOOSE THIS COURSE (GCC_REASONS)": "Why GCC Professionals Choose This Programme",
@@ -261,7 +261,7 @@ def build(md_path, out_path=None):
 
     # --- programme name from hero title
     hero = next((s for s in content if s["title"].upper().startswith("1. HERO")), None)
-    prog_name = "Programme"
+    prog_name = "Program"
     if hero:
         for ln in hero["lines"]:
             if ln.strip().startswith("### title"):
@@ -484,12 +484,12 @@ def bullets_from(lines):
 
 
 B_HEADINGS = {
-    "AT A GLANCE": "Programme at a Glance",
-    "OVERVIEW": "Programme Overview",
-    "WHY THIS PROGRAMME": "Why Choose This Programme",
+    "AT A GLANCE": "Program at a Glance",
+    "OVERVIEW": "Program Overview",
+    "WHY THIS PROGRAMME": "Why Choose This Program",
     "WHAT YOU WILL LEARN": "What You Will Learn",
     "CAREERS": "Career Opportunities",
-    "STRUCTURE": "Programme Structure",
+    "STRUCTURE": "Program Structure",
     "SUPPORT": "Why Study Through Maverick",
     "GCC MARKET CONTEXT": "GCC Market Context",
     "FEES": "Fees & Scholarships",
@@ -505,7 +505,7 @@ def build_format_b(md_path, out_path=None):
     doc = Document()
     style_doc(doc)
 
-    h = doc.add_heading(title or "Programme", level=1)
+    h = doc.add_heading(title or "Program", level=1)
     h.alignment = WD_ALIGN_PARAGRAPH.LEFT
 
     # meta lines (Duration, Format, Delivery, Family) as an intro line

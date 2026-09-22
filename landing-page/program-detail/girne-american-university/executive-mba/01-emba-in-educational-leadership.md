@@ -1,10 +1,10 @@
 # GAU EMBA 01 · Program Detail Page Content: Executive MBA in Educational Leadership (v5)
 
-**Page:** /programmes/gau-emba-in-educational-leadership
+**Page:** /programs/gau-emba-in-educational-leadership
 **Awarding university:** Girne American University, North Cyprus · **Category:** Executive MBA · **Level:** Master's · **Duration:** 12 to 18 months
 **Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections not written (per client list)
-**Sources on file:** approved master landing page programme table (GAU Executive MBAs, 12-18 months)
+**Sources on file:** approved master landing page program table (GAU Executive MBAs, 12-18 months)
 
 ---
 
@@ -14,7 +14,7 @@
 Executive MBA in Educational Leadership | Girne American University
 
 ### meta_description
-12 to 18-month Executive MBA in Educational Leadership from Girne American University. Online senior cohort, AED instalments. Enquire now.
+12 to 18-month Executive MBA in Educational Leadership from Girne American University. Online senior cohort, AED installments. Enquire now.
 
 ---
 
@@ -37,7 +37,7 @@ Girne American University | 12 to 18 months | Online senior cohort | Executive f
 
 ---
 
-## 2. PROGRAMME AT A GLANCE (snapshot)
+## 2. PROGRAM AT A GLANCE (snapshot)
 
 Degree Award | Executive MBA
 Awarding University | Girne American University, North Cyprus
@@ -51,16 +51,16 @@ The admission letter carries the credit detail and the fee structure, in writing
 
 ---
 
-## 3. PROGRAMME OVERVIEW (description)
+## 3. PROGRAM OVERVIEW (description)
 
 ### copy
-The Gulf's school sector grew faster than its leadership bench, and everyone in it knows it. This Executive MBA answers that gap directly. The executive core covers strategy, finance, human resources, and operations, then the coursework turns each of those disciplines toward educational institutions: planning and development, leading in a digital age, managing the organizational behaviour of schools, which is its own complicated art.
+The Gulf's school sector grew faster than its leadership bench, and everyone in it knows it. This Executive MBA answers that gap directly. The executive core covers strategy, finance, human resources, and operations, then the coursework turns each of those disciplines toward educational institutions: planning and development, leading in a digital age, managing the organizational behavior of schools, which is its own complicated art.
 
 Cohorts are deliberately small and senior, so the room contains principals, vice principals, and senior educators rather than career tourists. The degree closes with a graduate research project, and the strongest ones tend to target a problem in the participant's own institution, where the findings get used almost immediately.
 
 ---
 
-## 4. WHY CHOOSE THIS PROGRAMME (benefits)
+## 4. WHY CHOOSE THIS PROGRAM (benefits)
 
 **01 · Built for the seat you already hold**
 This is not a career-change degree. It is for people leading schools, academies, and education groups who need the business vocabulary to match their authority.
@@ -68,14 +68,14 @@ This is not a career-change degree. It is for people leading schools, academies,
 **02 · A cohort that speaks your language**
 Small and senior by design. The case discussions assume someone in the room has dealt with a regulator, a board, and a parent association in the same week.
 
-**03 · Eighteen months at the outside**
-Education leaders rarely get sabbaticals. Twelve to eighteen months, arranged around the school calendar, is the honest version of executive study.
+**03 · 18 months at the outside**
+Education leaders rarely get sabbaticals. 12 to 18 months, arranged around the school calendar, is the honest version of executive study.
 
 **04 · The research project lands in your school**
-Take the final investigation from your own institution, an enrolment question, a retention problem, a staffing model, and finish with a plan your board can act on.
+Take the final investigation from your own institution, an enrollment question, a retention problem, a staffing model, and finish with a plan your board can act on.
 
-**05 · Instalments in dirhams**
-Monthly AED payments, interest-free, agreed in writing before the programme starts.
+**05 · Installments in dirhams**
+Monthly AED payments, interest-free, agreed in writing before the program starts.
 
 **06 · Support on Gulf time**
 Sharjah-based advisors in person or on WhatsApp, and a success coach for the whole degree.
@@ -103,7 +103,7 @@ School Principal
 Academic Director
 Chief Operating Officer, Education Group
 Head of Schools
-Education Programme Director
+Education Program Director
 Curriculum Director
 Regional Education Manager
 Training Institute Director
@@ -112,7 +112,7 @@ Admissions Director
 
 ---
 
-## 7. PROGRAMME STRUCTURE (structure)
+## 7. PROGRAM STRUCTURE (structure)
 
 ### heading
 Your journey, stage by stage
@@ -128,9 +128,9 @@ Three movements: the executive core, the educational leadership coursework, and 
 - Management information systems and operations
 
 **Stage 2 · Educational leadership coursework**
-- Leading education in the twenty-first century
+- Leading education in the 21st century
 - Educational planning and development
-- Leadership and organizational behaviour in educational settings
+- Leadership and organizational behavior in educational settings
 
 **Stage 3 · The graduate research project**
 - A supervised investigation of an educational leadership challenge, often drawn from the participant's own institution
@@ -139,12 +139,12 @@ Three movements: the executive core, the educational leadership coursework, and 
 
 ## 8. WHY STUDY THROUGH MAVERICK (support)
 
-Dedicated academic support | One success coach from enrolment to graduation
+Dedicated academic support | One success coach from enrollment to graduation
 Flexible learning | Executive scheduling arranged around school terms and inspection seasons
 Assessment support | Feedback on leadership and research work, handled by readers who take it seriously
-Affordable instalments | AED monthly payments, interest-free, confirmed in writing
+Affordable installments | AED monthly payments, interest-free, confirmed in writing
 Career guidance | Advisors familiar with education leadership hiring across the Gulf, private and public
-Documentation assistance | Enrolment done with you, one step at a time
+Documentation assistance | Enrollment done with you, one step at a time
 
 ---
 
@@ -167,7 +167,7 @@ Inspection frameworks in the Gulf increasingly assess leadership quality as its 
 **04 · The skills gap includes school corridors**
 Across the Gulf, employers keep reporting shortages of qualified candidates, and education groups report the same shortage in management talent.
 
-**05 · Eighteen months suits the school calendar**
+**05 · 18 months suits the school calendar**
 The delivery bends around terms, exams, and inspections instead of asking you to ignore them.
 
 **06 · The research project can improve your own institution**
@@ -179,19 +179,20 @@ Finish on a live question from your school and graduate with a change plan that 
 
 Registration Fee | Itemised in the full structure before any payment
 Initial Payment | Confirmed in writing before anything is charged
-Monthly Instalments | AED, interest-free, matched to salary dates
+Monthly Installments | AED, interest-free, matched to salary dates
 Scholarship Availability | Possible for strong profiles; your advisor checks before promising
 Offer Validity | Early-bird pricing moves with each intake, so confirm the window
 
 ### request block
-Fees depend on the intake and your admission profile, so no fixed figure sits here. Admissions sends the personal breakdown in writing, free and without obligation. Across our Master's programmes, totals usually land between AED 16,000 and 40,000.
+Fees depend on the intake and your admission profile, so no fixed figure sits here. Admissions sends the personal breakdown in writing, free and without obligation. Across our Master's programs, totals usually land between AED 16,000 and 40,000.
 
 ---
 
 ## BUILD NOTES (internal, not page copy)
 
-- Field mapping identical to the Rushford programme pages; three-stage structure written descriptively because no official module list for this EMBA was verified this cycle (partner listings exist but are not confirmed as GAU-official; flagged for university sign-off).
-- Sources: approved master landing page programme table (GAU Executive MBAs, 12-18 months); flag if client wants numbers.
+- Field mapping identical to the Rushford program pages; three-stage structure written descriptively because no official module list for this EMBA was verified this cycle (partner listings exist but are not confirmed as GAU-official; flagged for university sign-off).
+- Sources: approved master landing page program table (GAU Executive MBAs, 12-18 months); flag if client wants numbers.
 - Careers: all ten roles market-standard; need client approval.
 - Sign-off needed: exact fee, September 2026 seats, scholarship rules, stage wording, credit line if university provides one, education market figures if client wants them sourced.
 - 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.
+- 2026-09-22 client-feedback pass: converted to English-US, numbers moved to figures, removed page-self-reference phrasing per brand voice (Maverick Business Academy London).

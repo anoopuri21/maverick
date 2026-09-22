@@ -1,11 +1,11 @@
 # 01 · Program Detail Page Content: MBA in Logistics & Supply Chain Management (v5)
 
-**Page:** /programmes/mba-in-logistics-supply-chain-management
+**Page:** /programs/mba-in-logistics-supply-chain-management
 **Awarding university:** Rushford Business School, Switzerland
 **Category:** MBA · **Level:** Master's · **Duration:** 16 months, fully online
 **Voice pass:** v5 maximally-human pattern (detector validation sample)
 **Status:** CONTENT READY · excluded sections (per client list) not written: recognition, accreditation, university block, success stories, reviews, network, faculty voice, FAQ, enquire, CTA
-**Sources on file:** official Rushford programme listing (curriculum, 16 months, 90 ECTS)
+**Sources on file:** official Rushford program listing (curriculum, 16 months, 90 ECTS)
 
 ---
 
@@ -15,7 +15,7 @@
 MBA in Logistics & Supply Chain Management Online | Maverick
 
 ### meta_description
-16-month online MBA in Logistics & Supply Chain Management, Rushford Business School. 90 ECTS, evening study, AED instalments. Enquire now.
+16-month online MBA in Logistics & Supply Chain Management, Rushford Business School. 90 ECTS, evening study, AED installments. Enquire now.
 
 ---
 
@@ -38,7 +38,7 @@ Rushford Business School | 16 months online | 90 ECTS | Evening classes | Capsto
 
 ---
 
-## 2. PROGRAMME AT A GLANCE (snapshot)
+## 2. PROGRAM AT A GLANCE (snapshot)
 
 Degree Award | MBA
 Awarding University | Rushford Business School, Switzerland
@@ -52,31 +52,31 @@ Ask for the fee sheet in writing before you pay anything. We repeat this on ever
 
 ---
 
-## 3. PROGRAMME OVERVIEW (description)
+## 3. PROGRAM OVERVIEW (description)
 
 ### copy
 Most MBAs stay general and hope the detail catches up later. This one commits early. Logistics and supply chain decide whether goods clear Jebel Ali on schedule or sit in a yard burning money, so the degree spends its first half on the management core every MBA carries, then its second half going deep: procurement, freight, distribution, risk, and the design of supply chains themselves.
 
-The shape suits people who work. Courses run about three weeks apiece, classes sit in the evenings, and the assessments copy problems you will recognise from Monday morning. The capstone, at the end, takes one live supply chain issue. Students who bring their employer's problem into it tend to mention the project at appraisal time, and their managers tend to remember it.
+The shape suits people who work. Courses run about three weeks apiece, classes sit in the evenings, and the assessments copy problems you will recognize from Monday morning. The capstone, at the end, takes one live supply chain issue. Students who bring their employer's problem into it tend to mention the project at appraisal time, and their managers tend to remember it.
 
 ---
 
-## 4. WHY CHOOSE THIS PROGRAMME (benefits)
+## 4. WHY CHOOSE THIS PROGRAM (benefits)
 
 **01 · You keep earning**
 Three-week courses, evening classes. The salary never notices.
 
 **02 · The Gulf cannot hire enough of this skill**
-Employers across the GCC keep reporting that they cannot fill supply chain roles. From Jebel Ali to KEZAD, the specialisation keeps appearing in job posts that stay open for months.
+Employers across the GCC keep reporting that they cannot fill supply chain roles. From Jebel Ali to KEZAD, the specialization keeps appearing in job posts that stay open for months.
 
 **03 · The projects are not pretend**
 Simulations during term, then a capstone on a live problem. Many students run theirs inside their own company, which is both the point and the risk, because it has to be good enough to show.
 
 **04 · The award adds up**
-Eighteen core courses, five electives chosen from nine, one capstone. That is 90 ECTS and the name Rushford Business School, Switzerland, on the certificate.
+18 core courses, 5 electives chosen from 9, one capstone. That is 90 ECTS and the name Rushford Business School, Switzerland, on the certificate.
 
 **05 · You pay the way you live**
-Monthly AED instalments, no interest, timed to the salary date.
+Monthly AED installments, no interest, timed to the salary date.
 
 **06 · A person answers**
 One success coach stays with you from induction to the award letter, and the Sharjah advisors answer on WhatsApp, which matters more than it sounds when your question appears at 10pm.
@@ -113,7 +113,7 @@ Supply Chain Analyst
 
 ---
 
-## 7. PROGRAMME STRUCTURE (structure)
+## 7. PROGRAM STRUCTURE (structure)
 
 ### heading
 Your journey, stage by stage
@@ -140,7 +140,7 @@ Four stages. Two build breadth, one builds the specialism, one proves it.
 - Corporate Social Responsibility, Ethics & Law
 - Strategic Management: Integrating the Enterprise
 
-**Stage 3 · The logistics specialisation**
+**Stage 3 · The logistics specialization**
 - Fundamentals of Logistics and Supply Chain
 - International Logistics
 - Risk Analysis and Assessment
@@ -159,9 +159,9 @@ Four stages. Two build breadth, one builds the specialism, one proves it.
 Dedicated academic support | A success coach who stays for the whole sixteen months, not the first fortnight
 Flexible learning | Evening and weekend sessions on Gulf time, with recordings for the weeks that go sideways
 Assignment support | Practical help on projects and the capstone, from people who read the brief properly
-Affordable instalments | AED monthly payments, no interest, agreed in writing
+Affordable installments | AED monthly payments, no interest, agreed in writing
 Career guidance | Advisors who have watched candidates move into Gulf logistics roles, and know what got them there
-Documentation assistance | Enrolment paperwork done with you, because it is dull and it matters
+Documentation assistance | Enrollment paperwork done with you, because it is dull and it matters
 
 ---
 
@@ -179,7 +179,7 @@ Fully online, no visa, no career break. Living in the Gulf is the point of this 
 UAE logistics keeps expanding around Emirati ports and airports. All of it needs managers, and the pool of trained ones is thin.
 
 **03 · Employers keep failing to hire the skill**
-Organisations across the Gulf keep reporting serious supply chain gaps. Being the qualified candidate is a decent place to stand when employers are struggling to hire.
+Organizations across the Gulf keep reporting serious supply chain gaps. Being the qualified candidate is a decent place to stand when employers are struggling to hire.
 
 **04 · New roles, and they pay for paper**
 Demand planning, logistics analytics, warehouse automation. Five years ago most of these jobs did not exist. Now they hire on formal training and screen out the rest.
@@ -196,12 +196,12 @@ International logistics, procurement, and risk, taught the way trade works here 
 
 Registration Fee | Part of the full structure, itemised before you pay a dirham
 Initial Payment | Agreed in writing first, always
-Monthly Instalments | AED, interest-free, following your salary date
+Monthly Installments | AED, interest-free, following your salary date
 Scholarship Availability | Real for strong candidates; your advisor checks the profile before promising anything
 Offer Validity | Early-bird pricing moves with each intake, so ask while the window is open
 
 ### request block
-Fees move with intake and study mode, so instead of printing a number that could go stale, admissions sends a personal breakdown on request. It costs nothing and commits you to nothing, which is the version of sales we are comfortable with. Across our Master's programmes, totals usually land between AED 16,000 and 40,000.
+Fees move with intake and study mode, so instead of printing a number that could go stale, admissions sends a personal breakdown on request. It costs nothing and commits you to nothing, which is the version of sales we are comfortable with. Across our Master's programs, totals usually land between AED 16,000 and 40,000.
 
 ---
 
@@ -210,6 +210,7 @@ Fees move with intake and study mode, so instead of printing a number that could
 - Field mapping: hero → title/level/short_description/duration/highlights; snapshot → snapshot + note; overview → description; why → benefits (numbered cards + closing line); learning → learning (8 outcomes); careers → careers (10 role chips); structure → structure (4 stages with module lists); support → support (6 title + line pairs); gcc → gcc_heading + gcc_reasons (6 numbered cards); fees → fees (5 chips) + request block; seo → seo meta_title/meta_description.
 - Density matched to the live demo design; voice per G02 §8 red-flag list, v5 maximally-human pattern (detector validation sample).
 - Excluded sections stay empty on this record: recognition, accreditation_groups, university description block, testimonials, reviews, faqs, enquiry and final CTA chrome.
-- Sources: Rushford official programme listing (16 months online, 27 courses, 90 ECTS, module names)
-- Client sign-off needed before go-live: exact fee for this programme, September 2026 seat confirmation, scholarship rules, and the market figures if legal prefers softer wording.
+- Sources: Rushford official program listing (16 months online, 27 courses, 90 ECTS, module names)
+- Client sign-off needed before go-live: exact fee for this program, September 2026 seat confirmation, scholarship rules, and the market figures if legal prefers softer wording.
 - 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.
+- 2026-09-22 client-feedback pass: converted to English-US, numbers moved to figures, removed page-self-reference phrasing per brand voice (Maverick Business Academy London).

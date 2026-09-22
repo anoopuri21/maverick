@@ -1,11 +1,11 @@
 # 06 · Program Detail Page Content: MBA in Marketing (v5)
 
-**Page:** /programmes/mba-in-marketing
+**Page:** /programs/mba-in-marketing
 **Awarding university:** Rushford Business School, Switzerland
 **Category:** MBA · **Level:** Master's · **Duration:** 16 months, fully online
 **Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections (per client list) not written: recognition, accreditation, university block, success stories, reviews, network, faculty voice, FAQ, enquire, CTA
-**Sources on file:** official Rushford programme listing (16 months, 90 ECTS, specialisation modules and electives, career roles)
+**Sources on file:** official Rushford program listing (16 months, 90 ECTS, specialization modules and electives, career roles)
 
 ---
 
@@ -15,7 +15,7 @@
 MBA in Marketing Online | Rushford Business School | Maverick
 
 ### meta_description
-16-month online MBA in Marketing from Rushford Business School. Brand, pricing, digital and research modules. 90 ECTS, AED instalments. Enquire now.
+16-month online MBA in Marketing from Rushford Business School. Brand, pricing, digital and research modules. 90 ECTS, AED installments. Enquire now.
 
 ---
 
@@ -38,7 +38,7 @@ Rushford Business School | 16 months online | 90 ECTS | Evening classes | Capsto
 
 ---
 
-## 2. PROGRAMME AT A GLANCE (snapshot)
+## 2. PROGRAM AT A GLANCE (snapshot)
 
 Degree Award | MBA
 Awarding University | Rushford Business School, Switzerland
@@ -52,16 +52,16 @@ Fees and dates are issued per intake and confirmed in writing before payment. Th
 
 ---
 
-## 3. PROGRAMME OVERVIEW (description)
+## 3. PROGRAM OVERVIEW (description)
 
 ### copy
-Anyone can run an ad. The hard part of marketing is deciding what the brand stands for, what it should cost, who the research actually says will buy it, and how to prove the campaign worked. This MBA spends its specialisation on exactly those decisions: marketing strategy, brand management, communications, pricing, research, consumer behaviour, and advertising, with internet marketing analytics rounding it off.
+Anyone can run an ad. The hard part of marketing is deciding what the brand stands for, what it should cost, who the research actually says will buy it, and how to prove the campaign worked. This MBA spends its specialization on exactly those decisions: marketing strategy, brand management, communications, pricing, research, consumer behavior, and advertising, with internet marketing analytics rounding it off.
 
 The Rushford management core runs first, so the marketing sits on top of real business literacy rather than floating above it. Courses take about three weeks each, classes run in the evenings, and the capstone lets you take a live brand or campaign question from your own workplace and finish the degree with it solved.
 
 ---
 
-## 4. WHY CHOOSE THIS PROGRAMME (benefits)
+## 4. WHY CHOOSE THIS PROGRAM (benefits)
 
 **01 · Keep earning while you specialise**
 Three-week courses, evening delivery, fully online. The degree moves around your calendar, never the reverse.
@@ -75,7 +75,7 @@ Most marketing courses skip it. This one teaches pricing and pricing strategy as
 **04 · The award is complete**
 27 courses, a capstone, 90 ECTS. Rushford Business School, Switzerland, issues the certificate.
 
-**05 · Instalments that follow payday**
+**05 · Installments that follow payday**
 Monthly AED payments, no interest, schedule agreed in writing before term one.
 
 **06 · Support you can put a name to**
@@ -91,7 +91,7 @@ Closing line: The certificate names Rushford Business School, Switzerland. What 
 02 Manage a brand across channels without losing the thread
 03 Set prices with structure instead of copying the competitor
 04 Design marketing research that answers the question you actually have
-05 Read consumer behaviour data and act on it
+05 Read consumer behavior data and act on it
 06 Plan communications and advertising with a measurement plan attached
 07 Run internet marketing with analytics, not vibes
 08 Finish with a capstone on a real brand or market problem
@@ -113,13 +113,13 @@ Customer Insights Manager
 
 ---
 
-## 7. PROGRAMME STRUCTURE (structure)
+## 7. PROGRAM STRUCTURE (structure)
 
 ### heading
 Your journey, stage by stage
 
 ### intro
-Four stages: the management foundations, the business core, the marketing specialisation, and a capstone on a live brand question.
+Four stages: the management foundations, the business core, the marketing specialization, and a capstone on a live brand question.
 
 ### stages
 
@@ -140,13 +140,13 @@ Four stages: the management foundations, the business core, the marketing specia
 - Corporate Social Responsibility, Ethics & Law
 - Strategic Management: Integrating the Enterprise
 
-**Stage 3 · The marketing specialisation**
+**Stage 3 · The marketing specialization**
 - Marketing Strategy
 - Brand Management
 - Marketing Communications
 - Pricing
 - Marketing Research
-- Consumer Behaviour
+- Consumer Behavior
 - Advertising
 - Electives from: Pricing Strategy, Selling Strategy, Internet Marketing Strategy and Analytics
 
@@ -160,9 +160,9 @@ Four stages: the management foundations, the business core, the marketing specia
 Dedicated academic support | One success coach from induction through the award letter
 Flexible learning | Gulf-time evening and weekend sessions, with recordings
 Assignment support | Feedback on campaign plans and research briefs from people who read them properly
-Affordable instalments | Interest-free AED monthly payments, confirmed in writing
+Affordable installments | Interest-free AED monthly payments, confirmed in writing
 Career guidance | Advisors who follow marketing and digital hiring across the Gulf
-Documentation assistance | Enrolment steps done with you, in order
+Documentation assistance | Enrollment steps done with you, in order
 
 ---
 
@@ -186,7 +186,7 @@ From airlines to football clubs to city brands, the region markets itself harder
 Employers across the Gulf keep reporting shortages of qualified people, and data-literate marketers are among the hardest to hire.
 
 **05 · The curriculum includes the analytics**
-Internet marketing strategy and analytics sit inside the specialisation, which is where most hiring conversations now start.
+Internet marketing strategy and analytics sit inside the specialization, which is where most hiring conversations now start.
 
 **06 · The capstone can carry your portfolio**
 Finish on a live campaign or brand question from your own employer, and graduate with proof of work rather than a promise of it.
@@ -199,12 +199,12 @@ Honest take: marketing tools change faster than any syllabus can follow, so trea
 
 Registration Fee | Itemised in the full structure before any payment
 Initial Payment | Written confirmation first, charge second
-Monthly Instalments | AED, interest-free, matched to salary dates
+Monthly Installments | AED, interest-free, matched to salary dates
 Scholarship Availability | Available against strong profiles; eligibility checked by your advisor
 Offer Validity | Early-bird pricing is set per intake, so confirm the window early
 
 ### request block
-Fees shift with intake and study mode, which is why there is no fixed figure printed here. Request the personal breakdown from admissions; it is free and commits you to nothing. Across our Master's programmes, totals usually sit between AED 16,000 and 40,000.
+Fees shift with intake and study mode, which is why there is no fixed figure printed here. Request the personal breakdown from admissions; it is free and commits you to nothing. Across our Master's programs, totals usually sit between AED 16,000 and 40,000.
 
 ---
 
@@ -212,8 +212,9 @@ Fees shift with intake and study mode, which is why there is no fixed figure pri
 
 - Voice pass: converted from v4 to v5 maximally-human pattern (varied rhythm, parenthetical asides, honest-take marker, uneven cards). Structure, facts, and field mapping unchanged.
 - Field mapping identical to program 01.
-- Sources: Rushford official listing (16 months online, specialisation modules: Marketing Strategy, Brand Management, Marketing Communications, Pricing, Marketing Research, Consumer Behaviour, Advertising; electives: Pricing Strategy, Selling Strategy, Internet Marketing Strategy and Analytics; official career roles: Marketing Manager, Brand Manager, Digital Marketing Specialist, Market Research Analyst, Product Manager, Marketing Consultant)
-- Note: one third-party listing shows "138 ECTS" for this programme, contradicting Rushford's standard 90 ECTS framework used on rushford.ch and all other listings. Copy uses 90 ECTS; discrepancy flagged for university confirmation.
+- Sources: Rushford official listing (16 months online, specialization modules: Marketing Strategy, Brand Management, Marketing Communications, Pricing, Marketing Research, Consumer Behavior, Advertising; electives: Pricing Strategy, Selling Strategy, Internet Marketing Strategy and Analytics; official career roles: Marketing Manager, Brand Manager, Digital Marketing Specialist, Market Research Analyst, Product Manager, Marketing Consultant)
+- Note: one third-party listing shows "138 ECTS" for this program, contradicting Rushford's standard 90 ECTS framework used on rushford.ch and all other listings. Copy uses 90 ECTS; discrepancy flagged for university confirmation.
 - Careers: first six roles from the official listing; the last four are market-standard and need client approval.
 - Sign-off needed: exact fee, September 2026 seats, scholarship rules, ECTS discrepancy wording, market figures if legal prefers softer language.
 - 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.
+- 2026-09-22 client-feedback pass: converted to English-US, numbers moved to figures, removed page-self-reference phrasing per brand voice (Maverick Business Academy London).

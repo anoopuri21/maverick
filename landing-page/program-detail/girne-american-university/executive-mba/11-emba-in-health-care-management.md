@@ -1,10 +1,10 @@
 # GAU EMBA 11 · Program Detail Page Content: Executive MBA in Health Care Management (v5)
 
-**Page:** /programmes/gau-emba-in-health-care-management
+**Page:** /programs/gau-emba-in-health-care-management
 **Awarding university:** Girne American University, North Cyprus · **Category:** Executive MBA · **Level:** Master's · **Duration:** 12 to 18 months
 **Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections not written (per client list)
-**Sources on file:** approved master landing page programme table (GAU Executive MBAs, 12-18 months), UAE national health insurance mandate (MOHRE)
+**Sources on file:** approved master landing page program table (GAU Executive MBAs, 12-18 months), UAE national health insurance mandate (MOHRE)
 
 ---
 
@@ -14,7 +14,7 @@
 Executive MBA in Health Care Management | Girne American University
 
 ### meta_description
-12 to 18-month Executive MBA in Health Care Management from Girne American University. Online senior cohort, AED instalments. Enquire now.
+12 to 18-month Executive MBA in Health Care Management from Girne American University. Online senior cohort, AED installments. Enquire now.
 
 ---
 
@@ -37,7 +37,7 @@ Girne American University | 12 to 18 months | Online senior cohort | Executive f
 
 ---
 
-## 2. PROGRAMME AT A GLANCE (snapshot)
+## 2. PROGRAM AT A GLANCE (snapshot)
 
 Degree Award | Executive MBA
 Awarding University | Girne American University, North Cyprus
@@ -51,16 +51,16 @@ The admission letter carries the credit detail and the fee structure, in writing
 
 ---
 
-## 3. PROGRAMME OVERVIEW (description)
+## 3. PROGRAM OVERVIEW (description)
 
 ### copy
-Health care runs on clinical excellence, but it survives on management: the financing, the operations, and the regulatory relationships that keep the doors open. This Executive MBA trains the second half of that sentence for people already inside the sector. The executive core covers strategy, finance, human capital, and operations, then the coursework turns each toward health systems: managing clinical organisations, navigating payer economics, leading through regulatory change, and running the service quality metrics that inspections now live on.
+Health care runs on clinical excellence, but it survives on management: the financing, the operations, and the regulatory relationships that keep the doors open. This Executive MBA trains the second half of that sentence for people already inside the sector. The executive core covers strategy, finance, human capital, and operations, then the coursework turns each toward health systems: managing clinical organizations, navigating payer economics, leading through regulatory change, and running the service quality metrics that inspections now live on.
 
 Cohorts are small and senior, drawing from hospitals, clinics, insurers, and health groups, which makes the case discussions sound like a sector roundtable with better focus. The degree closes with a graduate research project, frequently aimed at a live problem in the participant's own facility.
 
 ---
 
-## 4. WHY CHOOSE THIS PROGRAMME (benefits)
+## 4. WHY CHOOSE THIS PROGRAM (benefits)
 
 **01 · The whole institution, not one department**
 The degree is built for leaders moving from clinical or functional expertise to institutional responsibility.
@@ -68,14 +68,14 @@ The degree is built for leaders moving from clinical or functional expertise to 
 **02 · Payer economics, taught properly**
 With insurance now shaping every care decision, the finance side of health care gets its own serious treatment in the coursework.
 
-**03 · Eighteen months at the outside**
-Health executives do not get sabbaticals. Twelve to eighteen months, executive-scheduled, is the version that survives rota realities.
+**03 · 18 months at the outside**
+Health executives do not get sabbaticals. 12 to 18 months, executive-scheduled, is the version that survives rota realities.
 
 **04 · The research project can improve your own facility**
 Take the final investigation from your hospital, clinic, or group and finish with a plan your board can sign.
 
-**05 · Instalments in dirhams**
-Monthly AED payments, interest-free, agreed in writing before the programme starts.
+**05 · Installments in dirhams**
+Monthly AED payments, interest-free, agreed in writing before the program starts.
 
 **06 · Support on Gulf time**
 Sharjah-based advisors in person or on WhatsApp, and a success coach for the whole degree.
@@ -86,7 +86,7 @@ Closing line: The certificate is awarded by Girne American University, North Cyp
 
 ## 5. LEARNING OUTCOMES (learning)
 
-01 Lead health care organisations with both clinical respect and commercial command
+01 Lead health care organizations with both clinical respect and commercial command
 02 Manage hospital operations against quality metrics that regulators actually inspect
 03 Read payer economics well enough to negotiate with insurers credibly
 04 Lead through regulatory change without treating it as an interruption
@@ -112,7 +112,7 @@ Healthcare Management Consultant
 
 ---
 
-## 7. PROGRAMME STRUCTURE (structure)
+## 7. PROGRAM STRUCTURE (structure)
 
 ### heading
 Your journey, stage by stage
@@ -128,7 +128,7 @@ Three movements: the executive core, the health care management coursework, and 
 - Operations and management information systems
 
 **Stage 2 · Health care management coursework**
-- Managing clinical organisations and service quality
+- Managing clinical organizations and service quality
 - Payer economics, regulation, and health systems strategy
 - Leadership case work across hospitals, clinics, and health groups
 
@@ -139,12 +139,12 @@ Three movements: the executive core, the health care management coursework, and 
 
 ## 8. WHY STUDY THROUGH MAVERICK (support)
 
-Dedicated academic support | One success coach from enrolment to graduation
+Dedicated academic support | One success coach from enrollment to graduation
 Flexible learning | Executive scheduling arranged around clinical calendars and inspection cycles
 Assessment support | Feedback on leadership and research work, handled properly
-Affordable instalments | AED monthly payments, interest-free, confirmed in writing
+Affordable installments | AED monthly payments, interest-free, confirmed in writing
 Career guidance | Advisors familiar with health care leadership hiring across the Gulf
-Documentation assistance | Enrolment done with you, one step at a time
+Documentation assistance | Enrollment done with you, one step at a time
 
 ---
 
@@ -167,7 +167,7 @@ With the national health insurance mandate in force since January 2025, provider
 **04 · The skills gap includes hospital corridors**
 Across the Gulf, employers keep reporting shortages of qualified candidates, and health care administration is short on formally trained leaders.
 
-**05 · Eighteen months suits clinical calendars**
+**05 · 18 months suits clinical calendars**
 The delivery bends around rotas, inspections, and budget cycles instead of competing with them.
 
 **06 · The research project can improve your own facility**
@@ -179,19 +179,20 @@ Finish on a live question from your hospital or group and graduate with a change
 
 Registration Fee | Itemised in the full structure before any payment
 Initial Payment | Confirmed in writing before anything is charged
-Monthly Instalments | AED, interest-free, matched to salary dates
+Monthly Installments | AED, interest-free, matched to salary dates
 Scholarship Availability | Possible for strong profiles; your advisor checks before promising
 Offer Validity | Early-bird pricing moves with each intake, so confirm the window
 
 ### request block
-Fees depend on the intake and your admission profile, so no fixed figure sits here. Admissions sends the personal breakdown in writing, free and without obligation. Across our Master's programmes, totals usually land between AED 16,000 and 40,000.
+Fees depend on the intake and your admission profile, so no fixed figure sits here. Admissions sends the personal breakdown in writing, free and without obligation. Across our Master's programs, totals usually land between AED 16,000 and 40,000.
 
 ---
 
 ## BUILD NOTES (internal, not page copy)
 
-- Field mapping identical to the Rushford programme pages; three-stage structure written descriptively because no official module list for this EMBA was verified this cycle (flagged for university sign-off).
-- Sources: approved master landing page programme table (GAU Executive MBAs, 12-18 months); UAE national health insurance mandate effective 1 Jan 2025 (MOHRE)
+- Field mapping identical to the Rushford program pages; three-stage structure written descriptively because no official module list for this EMBA was verified this cycle (flagged for university sign-off).
+- Sources: approved master landing page program table (GAU Executive MBAs, 12-18 months); UAE national health insurance mandate effective 1 Jan 2025 (MOHRE)
 - Careers: all ten roles market-standard; need client approval.
 - Sign-off needed: exact fee, September 2026 seats, scholarship rules, stage wording, credit line if university provides one, market figures if legal prefers softer language.
 - 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.
+- 2026-09-22 client-feedback pass: converted to English-US, numbers moved to figures, removed page-self-reference phrasing per brand voice (Maverick Business Academy London).

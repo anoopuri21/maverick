@@ -1,10 +1,10 @@
 # GAU EMBA 07 · Program Detail Page Content: Executive MBA in Innovation & Entrepreneurship (v5)
 
-**Page:** /programmes/gau-emba-in-innovation-and-entrepreneurship
+**Page:** /programs/gau-emba-in-innovation-and-entrepreneurship
 **Awarding university:** Girne American University, North Cyprus · **Category:** Executive MBA · **Level:** Master's · **Duration:** 12 to 18 months
 **Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections not written (per client list)
-**Sources on file:** approved master landing page programme table (GAU Executive MBAs, 12-18 months); Unicorn 30 programme, Dubai official initiative
+**Sources on file:** approved master landing page program table (GAU Executive MBAs, 12-18 months); Unicorn 30 program, Dubai official initiative
 
 ---
 
@@ -14,7 +14,7 @@
 Executive MBA in Innovation & Entrepreneurship | Girne American University
 
 ### meta_description
-12 to 18-month Executive MBA in Innovation and Entrepreneurship from Girne American University. Online senior cohort, AED instalments. Enquire now.
+12 to 18-month Executive MBA in Innovation and Entrepreneurship from Girne American University. Online senior cohort, AED installments. Enquire now.
 
 ---
 
@@ -37,7 +37,7 @@ Girne American University | 12 to 18 months | Online senior cohort | Executive f
 
 ---
 
-## 2. PROGRAMME AT A GLANCE (snapshot)
+## 2. PROGRAM AT A GLANCE (snapshot)
 
 Degree Award | Executive MBA
 Awarding University | Girne American University, North Cyprus
@@ -51,16 +51,16 @@ The admission letter carries the credit detail and the fee structure, in writing
 
 ---
 
-## 3. PROGRAMME OVERVIEW (description)
+## 3. PROGRAM OVERVIEW (description)
 
 ### copy
-At executive level, entrepreneurship stops being about idea generation and becomes about portfolio discipline: what to fund, what to kill, and how to keep an organisation tolerant of both decisions. This Executive MBA works at that altitude. The executive core covers strategy, finance, human capital, and operations, then the coursework focuses on venture creation, corporate innovation structures, technology adoption, and the growth questions that decide whether new businesses scale or stall.
+At executive level, entrepreneurship stops being about idea generation and becomes about portfolio discipline: what to fund, what to kill, and how to keep an organization tolerant of both decisions. This Executive MBA works at that altitude. The executive core covers strategy, finance, human capital, and operations, then the coursework focuses on venture creation, corporate innovation structures, technology adoption, and the growth questions that decide whether new businesses scale or stall.
 
 Cohorts are small and senior, mixing corporate innovation leads, business builders, and founders scaling past their first years, which gives the case discussions an unusual property: everyone in the room has something real at stake. The degree closes with a graduate research project, frequently built around the participant's own venture or innovation mandate.
 
 ---
 
-## 4. WHY CHOOSE THIS PROGRAMME (benefits)
+## 4. WHY CHOOSE THIS PROGRAM (benefits)
 
 **01 · Innovation taught as capital discipline**
 Funding decisions, kill criteria, adoption curves. The unglamorous mechanics that separate executed innovation from innovation theatre.
@@ -68,14 +68,14 @@ Funding decisions, kill criteria, adoption curves. The unglamorous mechanics tha
 **02 · A cohort with skin in the game**
 Small, senior, and mixed between corporates and ventures. The discussion assumes real budgets and real deadlines.
 
-**03 · Eighteen months at the outside**
-Founders and innovation leads cannot step away for two years. Twelve to eighteen months, executive-scheduled, is the honest version.
+**03 · 18 months at the outside**
+Founders and innovation leads cannot step away for 2 years. 12 to 18 months, executive-scheduled, is the honest version.
 
 **04 · The research project is your venture's problem**
 Bring your own mandate or venture plan and finish the degree with it worked through to a defendable state.
 
-**05 · Instalments in dirhams**
-Monthly AED payments, interest-free, agreed in writing before the programme starts.
+**05 · Installments in dirhams**
+Monthly AED payments, interest-free, agreed in writing before the program starts.
 
 **06 · Support on Gulf time**
 Sharjah-based advisors in person or on WhatsApp, and a success coach for the whole degree.
@@ -89,7 +89,7 @@ Closing line: The certificate is awarded by Girne American University, North Cyp
 01 Run innovation as a portfolio, with funding logic and kill criteria attached
 02 Build ventures that survive their second year, which is where most die
 03 Manage technology adoption without mistaking the demo for the deployment
-04 Design corporate innovation structures that the parent organisation tolerates
+04 Design corporate innovation structures that the parent organization tolerates
 05 Read growth problems early, before they become post-mortems
 06 Lead teams through uncertainty without manufacturing false confidence
 07 Investigate a venture or innovation question with research discipline
@@ -104,7 +104,7 @@ Corporate Venture Director
 Startup Founder
 Venture Builder
 Head of New Business
-Innovation Programme Director
+Innovation Program Director
 Business Builder
 Growth Director
 Strategy and Innovation Lead
@@ -112,7 +112,7 @@ Entrepreneur in Residence
 
 ---
 
-## 7. PROGRAMME STRUCTURE (structure)
+## 7. PROGRAM STRUCTURE (structure)
 
 ### heading
 Your journey, stage by stage
@@ -139,12 +139,12 @@ Three movements: the executive core, the innovation and entrepreneurship coursew
 
 ## 8. WHY STUDY THROUGH MAVERICK (support)
 
-Dedicated academic support | One success coach from enrolment to graduation
+Dedicated academic support | One success coach from enrollment to graduation
 Flexible learning | Executive scheduling arranged around build cycles and corporate calendars
 Assessment support | Feedback on venture plans and research work, taken seriously
-Affordable instalments | AED monthly payments, interest-free, confirmed in writing
+Affordable installments | AED monthly payments, interest-free, confirmed in writing
 Career guidance | Advisors familiar with innovation leadership and founder hiring across the Gulf
-Documentation assistance | Enrolment done with you, one step at a time
+Documentation assistance | Enrollment done with you, one step at a time
 
 ---
 
@@ -161,13 +161,13 @@ Fully online, no visa, no career break. The executive format fits around build c
 **02 · MENA's money is here**
 Venture capital keeps flowing into UAE startups year after year. Capital is active; credible operators get noticed.
 
-**03 · Government programmes are accelerating the field**
-Initiatives like the Unicorn 30 programme are fast-tracking frontier companies toward billion-dollar valuations, and the ecosystem around them needs executives who can run growth.
+**03 · Government programs are accelerating the field**
+Initiatives like the Unicorn 30 program are fast-tracking frontier companies toward billion-dollar valuations, and the ecosystem around them needs executives who can run growth.
 
 **04 · Corporates are the other half of the market**
 Large Gulf employers keep creating innovation and venture roles with real budgets, and they screen for leaders who can manage money as well as ideas.
 
-**05 · Eighteen months suits venture pace**
+**05 · 18 months suits venture pace**
 The delivery bends around funding rounds and launch windows instead of asking you to pause them.
 
 **06 · The research project is your live problem**
@@ -179,19 +179,20 @@ Bring your own venture plan or corporate innovation mandate and finish with it w
 
 Registration Fee | Itemised in the full structure before any payment
 Initial Payment | Confirmed in writing before anything is charged
-Monthly Instalments | AED, interest-free, matched to salary dates
+Monthly Installments | AED, interest-free, matched to salary dates
 Scholarship Availability | Possible for strong profiles; your advisor checks before promising
 Offer Validity | Early-bird pricing moves with each intake, so confirm the window
 
 ### request block
-Fees depend on the intake and your admission profile, so no fixed figure sits here. Admissions sends the personal breakdown in writing, free and without obligation. Across our Master's programmes, totals usually land between AED 16,000 and 40,000.
+Fees depend on the intake and your admission profile, so no fixed figure sits here. Admissions sends the personal breakdown in writing, free and without obligation. Across our Master's programs, totals usually land between AED 16,000 and 40,000.
 
 ---
 
 ## BUILD NOTES (internal, not page copy)
 
-- Field mapping identical to the Rushford programme pages; three-stage structure written descriptively because no official module list for this EMBA was verified this cycle (flagged for university sign-off).
-- Sources: approved master landing page programme table (GAU Executive MBAs, 12-18 months); MENA record USD 7.5B); Unicorn 30 programme (approved Oct 2025)
+- Field mapping identical to the Rushford program pages; three-stage structure written descriptively because no official module list for this EMBA was verified this cycle (flagged for university sign-off).
+- Sources: approved master landing page program table (GAU Executive MBAs, 12-18 months); MENA record USD 7.5B); Unicorn 30 program (approved Oct 2025)
 - Careers: all ten roles market-standard; need client approval.
 - Sign-off needed: exact fee, September 2026 seats, scholarship rules, stage wording, credit line if university provides one, market figures if legal prefers softer language.
 - 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.
+- 2026-09-22 client-feedback pass: converted to English-US, numbers moved to figures, removed page-self-reference phrasing per brand voice (Maverick Business Academy London).

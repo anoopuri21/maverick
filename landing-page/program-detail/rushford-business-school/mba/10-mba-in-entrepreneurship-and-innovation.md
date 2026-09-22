@@ -1,11 +1,11 @@
 # 10 · Program Detail Page Content: MBA in Entrepreneurship and Innovation (v5)
 
-**Page:** /programmes/mba-in-entrepreneurship-and-innovation
+**Page:** /programs/mba-in-entrepreneurship-and-innovation
 **Awarding university:** Rushford Business School, Switzerland
 **Category:** MBA · **Level:** Master's · **Duration:** 16 months, fully online
 **Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections (per client list) not written: recognition, accreditation, university block, success stories, reviews, network, faculty voice, FAQ, enquire, CTA
-**Sources on file:** official Rushford programme listing (16 months, specialisation scope, career paths); Unicorn 30 programme, Dubai official initiative
+**Sources on file:** official Rushford program listing (16 months, specialization scope, career paths); Unicorn 30 program, Dubai official initiative
 
 ---
 
@@ -15,7 +15,7 @@
 MBA in Entrepreneurship & Innovation Online | Maverick
 
 ### meta_description
-16-month online MBA in Entrepreneurship and Innovation from Rushford Business School. 90 ECTS, evening study, AED instalments. Enquire now.
+16-month online MBA in Entrepreneurship and Innovation from Rushford Business School. 90 ECTS, evening study, AED installments. Enquire now.
 
 ---
 
@@ -38,7 +38,7 @@ Rushford Business School | 16 months online | 90 ECTS | Evening classes | Capsto
 
 ---
 
-## 2. PROGRAMME AT A GLANCE (snapshot)
+## 2. PROGRAM AT A GLANCE (snapshot)
 
 Degree Award | MBA
 Awarding University | Rushford Business School, Switzerland
@@ -52,16 +52,16 @@ Fee structures and intake dates are confirmed per intake and issued in writing b
 
 ---
 
-## 3. PROGRAMME OVERVIEW (description)
+## 3. PROGRAM OVERVIEW (description)
 
 ### copy
-This MBA is aimed at people who build things: founders, would-be founders, and the corporate managers who are asked to innovate inside organisations that were not designed for it. After the Rushford management core, the specialisation covers startup creation, product and service development, innovation management, technology adoption, and incubation through to growth.
+This MBA is aimed at people who build things: founders, would-be founders, and the corporate managers who are asked to innovate inside organizations that were not designed for it. After the Rushford management core, the specialization covers startup creation, product and service development, innovation management, technology adoption, and incubation through to growth.
 
 The format respects how these people actually live, which is erratically. Three-week courses, evening sessions, fully online. The capstone can be your own venture plan, a product you are taking to market, or an innovation problem your employer keeps failing to solve. Whichever you bring, the degree ends with it worked through.
 
 ---
 
-## 4. WHY CHOOSE THIS PROGRAMME (benefits)
+## 4. WHY CHOOSE THIS PROGRAM (benefits)
 
 **01 · Built for people who already work or run something**
 Evenings, three-week blocks, online delivery. Founders keep founding; employees keep earning.
@@ -75,7 +75,7 @@ The pitch is the easy part. Technology adoption, incubation, growth. The unglamo
 **04 · A complete Swiss award**
 27 courses and a capstone, 90 ECTS total. Rushford Business School, Switzerland, issues the certificate.
 
-**05 · Dirham instalments, interest-free**
+**05 · Dirham installments, interest-free**
 Monthly AED payments on a schedule agreed in writing before the first term.
 
 **06 · Human support, Gulf time**
@@ -89,7 +89,7 @@ Closing line: The certificate names Rushford Business School, Switzerland. The v
 
 01 Turn a business idea into a viable venture, on paper and in practice
 02 Develop products and services with a plan for what happens after launch
-03 Manage innovation inside organisations that resist it
+03 Manage innovation inside organizations that resist it
 04 Evaluate technology adoption decisions with structure
 05 Run incubation and early growth without running out of runway
 06 Commercialize ideas with a real path to revenue
@@ -109,17 +109,17 @@ Small Business Owner
 Intrapreneur
 Venture Builder
 Growth Manager
-Innovation Programme Manager
+Innovation Program Manager
 
 ---
 
-## 7. PROGRAMME STRUCTURE (structure)
+## 7. PROGRAM STRUCTURE (structure)
 
 ### heading
 Your journey, stage by stage
 
 ### intro
-Four stages: management foundations, the business core, the entrepreneurship and innovation specialisation, and a capstone on your own venture or problem.
+Four stages: management foundations, the business core, the entrepreneurship and innovation specialization, and a capstone on your own venture or problem.
 
 ### stages
 
@@ -140,10 +140,10 @@ Four stages: management foundations, the business core, the entrepreneurship and
 - Corporate Social Responsibility, Ethics & Law
 - Strategic Management: Integrating the Enterprise
 
-**Stage 3 · The entrepreneurship and innovation specialisation**
+**Stage 3 · The entrepreneurship and innovation specialization**
 - Startup creation and venture development
 - Product and service development
-- Innovation management in established organisations
+- Innovation management in established organizations
 - Technology adoption and use
 - Incubation, scaling, and growth
 - Five electives chosen from nine
@@ -158,9 +158,9 @@ Four stages: management foundations, the business core, the entrepreneurship and
 Dedicated academic support | One success coach from induction to the award letter
 Flexible learning | Evening and weekend sessions on Gulf time, recordings included
 Assignment support | Feedback on venture plans and innovation cases, taken seriously
-Affordable instalments | Interest-free AED monthly payments, confirmed in writing
+Affordable installments | Interest-free AED monthly payments, confirmed in writing
 Career guidance | Advisors who know founder and innovation hiring across the Gulf
-Documentation assistance | Enrolment done with you, step by step
+Documentation assistance | Enrollment done with you, step by step
 
 ---
 
@@ -180,11 +180,11 @@ Venture capital keeps flowing into UAE startups year after year. Capital is look
 **03 · Dubai concentrates the ecosystem**
 Dubai concentrates the UAE's startup ecosystem, with fintech, proptech, and AI leading the deal flow. The network effects of studying here are real.
 
-**04 · Government programmes are accelerating founders**
-Initiatives like the Unicorn 30 programme are fast-tracking frontier companies toward billion-dollar valuations, and they want founders who can defend a business plan.
+**04 · Government programs are accelerating founders**
+Initiatives like the Unicorn 30 program are fast-tracking frontier companies toward billion-dollar valuations, and they want founders who can defend a business plan.
 
 **05 · Corporates are hiring innovators too**
-The specialisation is designed for intrapreneurs as well as founders; large Gulf organisations pay for innovation roles with actual budgets.
+The specialization is designed for intrapreneurs as well as founders; large Gulf organizations pay for innovation roles with actual budgets.
 
 **06 · The capstone is your venture**
 Bring your own startup plan or your employer's innovation problem and finish the degree with it worked through to a defendable state.
@@ -197,12 +197,12 @@ Honest take: no MBA guarantees a company survives. What this one does is replace
 
 Registration Fee | Itemised in the full structure before any payment
 Initial Payment | Written confirmation first, payment second
-Monthly Instalments | AED, interest-free, matched to salary dates
+Monthly Installments | AED, interest-free, matched to salary dates
 Scholarship Availability | Available for strong profiles; eligibility checked by your advisor
 Offer Validity | Early-bird pricing moves with each intake, so confirm the window
 
 ### request block
-Fees shift with intake and study mode, so no fixed figure appears here. Request the personal breakdown from admissions; it is free and commits you to nothing. Across our Master's programmes, totals usually sit between AED 16,000 and 40,000.
+Fees shift with intake and study mode, so no fixed figure appears here. Request the personal breakdown from admissions; it is free and commits you to nothing. Across our Master's programs, totals usually sit between AED 16,000 and 40,000.
 
 ---
 
@@ -210,9 +210,10 @@ Fees shift with intake and study mode, so no fixed figure appears here. Request 
 
 - Voice pass: converted from v4 to v5 maximally-human pattern (varied rhythm, parenthetical asides, honest-take marker, uneven cards). Structure, facts, and field mapping unchanged.
 - Field mapping identical to program 01.
-- Sources: Rushford official listing (16 months online, 27 courses, specialisation scope: startup creation, product/service development, innovation management, technology adoption, incubation and growth; career paths: startup founder, product manager, corporate innovation strategist, business consultant, business development lead, intrapreneur); MENA record USD 7.5B; Dubai 93% of H1 2025 tech funding); Unicorn 30 programme (approved Oct 2025)
+- Sources: Rushford official listing (16 months online, 27 courses, specialization scope: startup creation, product/service development, innovation management, technology adoption, incubation and growth; career paths: startup founder, product manager, corporate innovation strategist, business consultant, business development lead, intrapreneur); MENA record USD 7.5B; Dubai 93% of H1 2025 tech funding); Unicorn 30 program (approved Oct 2025)
 - Note: one listing shows "138 ECTS", contradicting Rushford's standard 90 ECTS framework. Copy uses 90 ECTS; discrepancy flagged for university confirmation (same as program 06).
 - Stage-3 lines describe official scope; module titles not published, flagged for sign-off.
-- Careers: official paths kept; Venture Builder, Growth Manager, Innovation Programme Manager are market-standard, need client approval.
+- Careers: official paths kept; Venture Builder, Growth Manager, Innovation Program Manager are market-standard, need client approval.
 - Sign-off needed: exact fee, September 2026 seats, scholarship rules, ECTS discrepancy wording, market figures if legal prefers softer language.
 - 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.
+- 2026-09-22 client-feedback pass: converted to English-US, numbers moved to figures, removed page-self-reference phrasing per brand voice (Maverick Business Academy London).

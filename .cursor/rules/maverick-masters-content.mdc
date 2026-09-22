@@ -1,0 +1,120 @@
+---
+description: Maverick masters landing page content rules — US English, figures-first, brand voice (Maverick Business Academy London, never "this page"), official sources only, human style. Apply when writing or editing masters program-detail markdown.
+globs:
+  - landing-page/program-detail/**/*.md
+alwaysApply: false
+---
+
+# Skill: Masters Programme Page Content Improvement
+
+This skill encodes the client's standing content rules for all masters
+program-detail pages (Rushford MBA/MSc, GAU MBA/EMBA/MSc, UCA, UWS,
+Wolverhampton). Follow every section when writing, editing, or reviewing
+these files.
+
+## 1. Brand voice — we ARE Maverick Business Academy London
+
+We represent Maverick Business Academy London. We never speak as a web page.
+
+Banned (rewrite on sight):
+- "on this page", "this page carries/prints/shows/answers", "listed on the page", "the page names"
+
+Rewrites (rotate so files do not repeat the same sentence):
+- "this page carries no fixed number" → "Maverick Business Academy London shares no fixed number up front"
+- "no fixed figure sits on this page" → "no fixed figure is published up front"
+- "named on this page" → "named by our admissions team and on your certificate"
+- "printed on this page" → "confirmed in writing before you pay"
+- General rule: replace the page as subject with "we", "our admissions team", or "Maverick Business Academy London".
+
+## 2. Language — English-US only
+
+Client requirement: US spelling everywhere. Convert UK forms on sight:
+
+| UK (wrong) | US (required) |
+|---|---|
+| programme / programmes | program / programs |
+| specialisation | specialization |
+| organisation | organization |
+| analyse / analyses / analysing | analyze / analyzes / analyzing |
+| centre | center |
+| labour, favour, colour, behaviour, rigour | labor, favor, color, behavior, rigor |
+| recognise / recognised / recognising | recognize / recognized / recognizing |
+| enrol / enrolment / enrolled | enroll / enrollment / enrolled |
+| instalment | installment |
+| licence (noun) | license |
+
+Keep: "analysis" (valid in both), proper names exactly as the owner writes
+them (e.g., World Health Organization).
+
+## 3. Numbers — figures, not words
+
+Use digits for every quantity: statistics, money, percentages, credits,
+months, years, counts, ages, ratios.
+
+| Wrong | Right |
+|---|---|
+| Nineteen and a half million visitors | 19.5 million visitors |
+| eighty percent occupancy | 80% occupancy |
+| Sixty ECTS in twelve months | 60 ECTS in 12 months |
+| fifteen courses of four ECTS | 15 courses of 4 ECTS |
+| over eighteen months | over 18 months |
+| the twenty-first century | the 21st century |
+| nine in ten employers | 9 in 10 employers |
+
+Exceptions: a number that opens a sentence (restructure instead of spelling
+it out), and non-quantitative idioms ("one of the largest", "a year").
+Never mix formats in one file: if "16 months" is digits, every other
+duration must be digits too.
+
+## 4. Banned AI patterns (client red-flag list)
+
+Never in client-facing copy:
+- Em/en dashes (— or –). Use commas, colons, periods, or "to".
+- Jargon tells: delve, align, tapestry, seamless, leverage, utilize, empower, unlock, embark, robust, comprehensive, holistic, foster, elevate, tailored, ensure, cutting-edge, landscape, game-changer, pivotal, crucial, paramount, myriad, plethora, showcase, underscore, realm, dynamic world, ever-evolving, fast-paced.
+- Formula frames: "X isn't just Y", "In today's...", "In an era...", "At its core", "stands as", "serves as", "Whether you...", "more than just", "In conclusion".
+- Mononymous "Conclusion" headers; use sentence-case headers.
+- 3 clipped sentences in a row; vary sentence length deliberately.
+- Emoji anywhere.
+- Personification max once per page.
+
+## 5. Claims — official sources only
+
+A claim stays ONLY if it traces to an official website: the awarding
+university, a government ministry/regulator (MoHESR, MOHRE, KHDA, DET,
+Central Bank, Dubai Media Office, ADIO), a law, or an official
+accreditation body (EduQua, IACBE, QS, YÖDAK/YÖK, Ofqual, QAA).
+
+Remove or rewrite qualitative (no figures) when sourced from: private
+research firms (Mordor, MarkNtel, Ken Research, IMARC), recruitment/data
+firms (Taggd, Labeeb), trade publications (Logistics Middle East), venture
+data (MAGNiTT, Wamda, GrowthList), blogs and aggregators. Never invent a
+replacement figure. The client-approved AED 16,000 to 40,000 masters fee
+band stays. Never print a salary promise.
+
+## 6. Human style (v5 maximally-human pattern)
+
+- Vary rhythm: mix long winding sentences with short ones; never 3 clipped in a row.
+- Use parenthetical asides and concrete, checkable detail.
+- Keep the "Honest take:" marker where the template has one; it states limits plainly.
+- Uneven benefit cards (different lengths) beat uniform cards.
+- Real role names, real institutions, dated policies beat generic promises.
+- Simple English. No corporate polish. Target AI-detector result under 10 to 20%.
+
+## 7. Structure and tooling
+
+- Keep the field structure: `# title` → metadata block → `## SEO` → numbered
+  sections (HERO, AT A GLANCE, OVERVIEW, WHY CHOOSE, LEARNING OUTCOMES,
+  CAREERS, STRUCTURE, support, GCC context, FEES) → `## BUILD NOTES`.
+- BUILD NOTES is internal: sources, flags, dated change lines. It never
+  appears in DOCX output.
+- After editing md, regenerate DOCX:
+  `python3 landing-page/program-detail/md_to_docx.py <files>`
+- Before finishing, sweep for: em/en dashes = 0, banned words = 0,
+  "this page" = 0 in body, UK spellings = 0, words-for-numbers = 0.
+
+## 8. Grammarly (if available)
+
+Use only as a grammar/spelling/punctuation checker (US dictionary).
+Reject its voice, clarity, and formality rewrites; they push text toward
+generic AI-flavoured English and raise detector scores. After accepting
+fixes, re-run the banned-pattern sweep in section 4.

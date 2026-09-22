@@ -23,11 +23,11 @@ UAE foreign trade passed AED 3 trillion for the first time at the end of 2024, a
 
 The University of the West of Scotland MBA in International Business is a one-year UK master's delivered fully online through the university's own platform. The core modules build the integrative business base, the options let you steer toward leadership and resilience topics, and you finish with either a strategic business project or a dissertation.
 
-What distinguishes it in the regional market is the combination of a UK public university award, a genuinely international orientation, and a twelve-month timeline that working professionals can actually complete without surrendering their careers for a year. It suits the export manager eyeing new markets, the regional operations lead handling three currencies, and the founder whose next customer is in a different legal system. If you want a deep functional specialisation instead, a different programme will serve you better, and we will point you there honestly.
+What distinguishes it in the regional market is the combination of a UK public university award, a genuinely international orientation, and a 12-month timeline that working professionals can actually complete without surrendering their careers for a year. It suits the export manager eyeing new markets, the regional operations lead handling three currencies, and the founder whose next customer is in a different legal system. If you want a deep functional specialization instead, a different program will serve you better, and we will point you there honestly.
 
-## WHY THIS PROGRAMME
+## WHY THIS PROGRAM
 
-**A UK MBA in twelve months**
+**A UK MBA in 12 months**
 One year from start to award, delivered online, at a pace most working professionals finish without career interruption.
 
 **International by design**
@@ -37,7 +37,7 @@ The curriculum is oriented toward cross-border business: markets, operations, st
 You study through UWS Online and its MBA World virtual learning environment, with the university running delivery.
 
 **Finish with a project that means something**
-Choose a strategic business project, often built on your own organisation, or a dissertation if research suits your next move.
+Choose a strategic business project, often built on your own organization, or a dissertation if research suits your next move.
 
 **Options that match real job problems**
 Elective territory covers leading change and handling risk and crisis, which is what international operators actually run into.
@@ -52,7 +52,7 @@ Honest take: a one-year MBA is intense by definition. If your calendar cannot ab
 - Integrate the core business functions into cross-border decisions
 - Think analytically under time pressure and defend your calls
 - Keep organisational health intact while operating internationally
-- Lead change programmes across markets and cultures
+- Lead change programs across markets and cultures
 - Build business plans that survive contact with foreign regulations
 - Manage risk, crisis, and resilience in global operations
 - Deliver a strategic project or dissertation of postgraduate standard
@@ -73,14 +73,14 @@ Core modules including the integration of business functions, analytical thinkin
 Optional modules such as leading change, business creativity, and risk, crisis, and resilience management let you focus on the problems your role actually presents.
 
 **Stage three: final project (months 9 to 12)**
-A strategic business project or a dissertation, examined as the final stage of the degree. Many candidates build the project around their own organisation.
+A strategic business project or a dissertation, examined as the final stage of the degree. Many candidates build the project around their own organization.
 
 ## SUPPORT
 
 - Regional admissions team in Sharjah, reachable by phone and WhatsApp
 - Academic guidance through modules and the final project
 - Written confirmation of fees, dates, and requirements before payment
-- Instalment plans in AED
+- Installment plans in AED
 - Career conversations anchored in your project work, not generic listings
 - English-language support where transcripts or essays need it
 
@@ -94,13 +94,13 @@ A strategic business project or a dissertation, examined as the final stage of t
 
 ## FEES
 
-- Programme fee range across the portfolio: AED 16,000 to AED 40,000
-- Exact fee for this programme: confirmed in writing at admission
-- Instalments in AED available
+- Program fee range across the portfolio: AED 16,000 to AED 40,000
+- Exact fee for this program: confirmed in writing at admission
+- Installments in AED available
 - No hidden charges; everything documented before payment
 - Employer sponsorship letters supported on request
 
-The written quote arrives before any payment commitment. That is how every programme we place operates.
+The written quote arrives before any payment commitment. That is how every program we place operates.
 
 ## SEO
 
@@ -110,8 +110,9 @@ The written quote arrives before any payment commitment. That is how every progr
 ## BUILD NOTES
 
 - Awarding body follows the approved masters page partners block (UWS, UK public university).
-- Core and option module names (Integration of Business Functions, Analytical Thinking and Decision Making, Managing Organisational Health; options including Leading Change, Business Creativity, Risk Crisis and Resilience Management) and the final-project choice follow partner and admissions listings (globaladmissions, prospects, nanyang). Confirm the current module list for the UAE-delivered programme with admissions before publishing.
-- Twelve-month duration follows UWS published full-time MBA duration with online delivery available; approved masters page lists duration as confirmed per programme, so the admission note carries that wording.
+- Core and option module names (Integration of Business Functions, Analytical Thinking and Decision Making, Managing Organisational Health; options including Leading Change, Business Creativity, Risk Crisis and Resilience Management) and the final-project choice follow partner and admissions listings (globaladmissions, prospects, nanyang). Confirm the current module list for the UAE-delivered program with admissions before publishing.
+- 12-month duration follows UWS published full-time MBA duration with online delivery available; approved masters page lists duration as confirmed per program, so the admission note carries that wording.
 - Credits row reads "confirmed per admission" until written confirmation is received.
 - Careers list is market-standard; no placement data claimed.
 - Market figures: UAE foreign trade record AED 3 trillion, non-oil trade AED 2.997T (+14.6%), exports AED 561.2B (+27.6%), CEPA AED 135B (+42.3%), AED 4T by 2031 target (Dubai Media Office / protocol.dubai.ae, February 2025). All softenable if legal wants.
+- 2026-09-22 client-feedback pass: converted to English-US, numbers moved to figures, removed page-self-reference phrasing per brand voice (Maverick Business Academy London).

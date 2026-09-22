@@ -23,12 +23,12 @@ The Gulf healthcare system is doubling in size and short of people who can run i
 
 Healthcare management can be learned from a textbook. Healthcare management you can defend cannot. The Girne American University MSc in Healthcare Management pairs taught coursework in health systems, operations, and leadership with a supervised thesis where you investigate a real question from your own professional context.
 
-The thesis changes what this degree means on a CV. Instead of listing courses you attended, you present original findings, examined by a committee. For a clinician stepping into management, or an administrator aiming higher, that is a different order of evidence. It is also the recognised stepping stone toward doctoral study in health management, which the region's growing academic medical institutions increasingly value.
+The thesis changes what this degree means on a CV. Instead of listing courses you attended, you present original findings, examined by a committee. For a clinician stepping into management, or an administrator aiming higher, that is a different order of evidence. It is also the recognized stepping stone toward doctoral study in health management, which the region's growing academic medical institutions increasingly value.
 
-## WHY THIS PROGRAMME
+## WHY THIS PROGRAM
 
 **Thesis-weighted, not course-heavy**
-A supervised research thesis examined by a faculty committee sits at the centre of the degree. That is where the learning sticks.
+A supervised research thesis examined by a faculty committee sits at the center of the degree. That is where the learning sticks.
 
 **Built for the clinician-to-manager move**
 The coursework sequence is designed for professionals who know care delivery and need the management evidence to back it.
@@ -43,16 +43,16 @@ GAU holds YÖDAK and YÖK accreditation with IACBE membership, which holds up wh
 Coursework runs around working professionals, and the thesis phase runs on a supervision calendar rather than a lecture one.
 
 **Doctoral doors open from here**
-A defended thesis MSc is the conventional prerequisite for PhD programmes, and this one is structured to that standard.
+A defended thesis MSc is the conventional prerequisite for PhD programs, and this one is structured to that standard.
 
-Honest take: if you want a faster, purely operational credential for a management move, an executive MBA in healthcare fits better. This programme asks more of you and returns a research profile alongside the title.
+Honest take: if you want a faster, purely operational credential for a management move, an executive MBA in healthcare fits better. This program asks more of you and returns a research profile alongside the title.
 
 ## WHAT YOU WILL LEARN
 
 - Frame a healthcare management research question that matters
 - Choose and justify research methods suited to health settings
 - Read health policy and management literature critically
-- Analyse operational, financial, or workforce data from health systems
+- Analyze operational, financial, or workforce data from health systems
 - Write for an examining committee without losing clarity
 - Defend your findings under committee questioning
 - Connect management theory to Gulf healthcare realities
@@ -60,7 +60,7 @@ Honest take: if you want a faster, purely operational credential for a managemen
 
 ## CAREERS
 
-Hospital administrator, healthcare operations manager, health services researcher, clinical services manager, quality and patient safety lead, health policy analyst, consultant, academic, programme director, doctoral candidate.
+Hospital administrator, healthcare operations manager, health services researcher, clinical services manager, quality and patient safety lead, health policy analyst, consultant, academic, program director, doctoral candidate.
 
 Roles are market-standard for the region and match where graduates with this profile typically move. Licensing for clinical roles stays separate, and this degree strengthens the management side rather than the clinical one.
 
@@ -80,7 +80,7 @@ Proposal, supervised research, writing, and defence before a faculty committee. 
 - Regional admissions team in Sharjah, reachable by phone and WhatsApp
 - Supervisor matching and academic guidance through the thesis phase
 - Written confirmation of fees, dates, and requirements before payment
-- Instalment plans in AED
+- Installment plans in AED
 - Career conversations grounded in your research output, not generic listings
 - English-language support where transcripts or essays need it
 
@@ -90,17 +90,17 @@ Proposal, supervised research, writing, and defence before a faculty committee. 
 - Emirate-level health authorities keep reporting shortfalls of nurses, physicians, and allied health professionals.
 - Healthcare staffing spend keeps climbing as providers scale.
 - Workforce planning and management capability is a named priority as providers scale, which keeps management talent scarce.
-- A defended thesis is the recognised entry point to doctoral study, increasingly valued by the region's academic medical centres.
+- A defended thesis is the recognized entry point to doctoral study, increasingly valued by the region's academic medical centers.
 
 ## FEES
 
-- Programme fee range across the portfolio: AED 16,000 to AED 40,000
-- Exact fee for this programme: confirmed in writing at admission
-- Instalments in AED available
+- Program fee range across the portfolio: AED 16,000 to AED 40,000
+- Exact fee for this program: confirmed in writing at admission
+- Installments in AED available
 - No hidden charges; everything documented before payment
 - Employer sponsorship letters supported on request
 
-A written quote lands before any payment commitment. That is the standard for every programme we place.
+A written quote lands before any payment commitment. That is the standard for every program we place.
 
 ## SEO
 
@@ -109,9 +109,10 @@ A written quote lands before any payment commitment. That is the standard for ev
 
 ## BUILD NOTES
 
-- Duration follows the approved masters page table row for MSc programmes (8 to 18 months).
+- Duration follows the approved masters page table row for MSc programs (8 to 18 months).
 - Thesis structure (taught core, electives, methods, supervised thesis with committee defence) follows the published GAU thesis-MSc pattern; exact module lists and ECTS splits are not published by the delivery partner, so no module names are stated. Flag for confirmation with admissions.
 - Careers list is market-standard for the region; no placement data claimed. Licensing scope clarified in the careers note.
 - Market figures: market numbers limited to official government sources after the 2026-09-21 QA pass.
-- Credits row intentionally reads "confirmed per admission" until written confirmation is received per programme.
+- Credits row intentionally reads "confirmed per admission" until written confirmation is received per program.
 - 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.
+- 2026-09-22 client-feedback pass: converted to English-US, numbers moved to figures, removed page-self-reference phrasing per brand voice (Maverick Business Academy London).

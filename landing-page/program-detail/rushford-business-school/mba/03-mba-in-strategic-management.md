@@ -1,11 +1,11 @@
 # 03 · Program Detail Page Content: MBA in Strategic Management (v5)
 
-**Page:** /programmes/mba-in-strategic-management
+**Page:** /programs/mba-in-strategic-management
 **Awarding university:** Rushford Business School, Switzerland
 **Category:** MBA · **Level:** Master's · **Duration:** 16 months, fully online
 **Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections (per client list) not written: recognition, accreditation, university block, success stories, reviews, network, faculty voice, FAQ, enquire, CTA
-**Sources on file:** official Rushford programme listing (16 months, 27 courses, 90 ECTS, specialisation modules, career roles)
+**Sources on file:** official Rushford program listing (16 months, 27 courses, 90 ECTS, specialization modules, career roles)
 
 ---
 
@@ -15,7 +15,7 @@
 MBA in Strategic Management Online | Maverick
 
 ### meta_description
-16-month online MBA in Strategic Management from Rushford Business School. 90 ECTS, evening study, AED instalments. Enquire now.
+16-month online MBA in Strategic Management from Rushford Business School. 90 ECTS, evening study, AED installments. Enquire now.
 
 ---
 
@@ -38,7 +38,7 @@ Rushford Business School | 16 months online | 90 ECTS | Evening classes | Capsto
 
 ---
 
-## 2. PROGRAMME AT A GLANCE (snapshot)
+## 2. PROGRAM AT A GLANCE (snapshot)
 
 Degree Award | MBA
 Awarding University | Rushford Business School, Switzerland
@@ -48,20 +48,20 @@ Study Mode | Online, evenings and weekends
 Credits | 90 ECTS across 27 courses
 
 ### note
-Fee structures and intake dates are confirmed per intake, in writing, before you pay a dirham. No version of this page carries a number that could go stale, and that is deliberate.
+Fee structures and intake dates are confirmed per intake, in writing, before you pay a dirham. We publish no number that could go stale, and that is deliberate.
 
 ---
 
-## 3. PROGRAMME OVERVIEW (description)
+## 3. PROGRAM OVERVIEW (description)
 
 ### copy
-Plenty of professionals can execute a plan. Far fewer can build one, defend it in a room full of objections, and then check whether it worked. This MBA is aimed squarely at the second skill: after the Rushford management core, the specialisation walks the full strategic arc from formulation to implementation, evaluation, and governance, with consulting and M&A on the syllabus.
+Plenty of professionals can execute a plan. Far fewer can build one, defend it in a room full of objections, and then check whether it worked. This MBA is aimed squarely at the second skill: after the Rushford management core, the specialization walks the full strategic arc from formulation to implementation, evaluation, and governance, with consulting and M&A on the syllabus.
 
 It is built for people who work, which sounds obvious until you compare timetables. Three-week courses, evening sessions, and assignments that read like board papers rather than essays. The capstone puts the whole framework onto one live business question at the end. That is why so many students finish it holding a strategy their employer actually uses.
 
 ---
 
-## 4. WHY CHOOSE THIS PROGRAMME (benefits)
+## 4. WHY CHOOSE THIS PROGRAM (benefits)
 
 **01 · The career you keep while you study**
 Evening classes, three-week courses. The degree fits around the job, because that is the deal.
@@ -76,7 +76,7 @@ Formulation, implementation, evaluation, governance. Most courses teach one act 
 27 courses, 90 ECTS, and a capstone. Rushford Business School, Switzerland, issues the certificate.
 
 **05 · Payments follow your paycheque**
-Monthly AED instalments, interest-free, scheduled around salary dates.
+Monthly AED installments, interest-free, scheduled around salary dates.
 
 **06 · Support with a name attached**
 One success coach for the degree, and Sharjah-based advisors you can visit or message on WhatsApp when something needs sorting.
@@ -87,7 +87,7 @@ Closing line: The certificate names Rushford Business School, Switzerland. What 
 
 ## 5. LEARNING OUTCOMES (learning)
 
-01 Read an organisation's position the way a strategist does, with evidence
+01 Read an organization's position the way a strategist does, with evidence
 02 Formulate strategy that survives contact with budgets and politics
 03 Implement plans without watching them die in the org chart
 04 Evaluate results and govern the next decision cycle
@@ -109,11 +109,11 @@ Risk Manager
 Change Manager
 Transformation Manager
 Corporate Development Manager
-Programme Management Lead
+Program Management Lead
 
 ---
 
-## 7. PROGRAMME STRUCTURE (structure)
+## 7. PROGRAM STRUCTURE (structure)
 
 ### heading
 Your journey, stage by stage
@@ -140,7 +140,7 @@ Four stages. Two to build breadth, one to think like a strategist, one to prove 
 - Corporate Social Responsibility, Ethics & Law
 - Strategic Management: Integrating the Enterprise
 
-**Stage 3 · The strategy specialisation**
+**Stage 3 · The strategy specialization**
 - The Nature of Strategic Management
 - Strategy Formulation
 - Strategy Implementation
@@ -161,9 +161,9 @@ Four stages. Two to build breadth, one to think like a strategist, one to prove 
 Dedicated academic support | A named success coach stays with you from induction to award
 Flexible learning | Gulf-time evening and weekend sessions, recordings included
 Assignment support | Feedback on case analysis and strategy papers that reads like a manager wrote it
-Affordable instalments | Interest-free AED monthly payments, set out in writing
+Affordable installments | Interest-free AED monthly payments, set out in writing
 Career guidance | Advisors familiar with strategy and consulting hiring across the Gulf
-Documentation assistance | Enrolment steps handled together, in order, without surprises
+Documentation assistance | Enrollment steps handled together, in order, without surprises
 
 ---
 
@@ -190,7 +190,7 @@ Employers across the Gulf keep reporting serious skill shortages. Formal strateg
 Strategic cases taught with the Gulf's mix of family business, sovereign capital, and rapid diversification in mind, instead of the usual American textbook settings.
 
 **06 · The capstone travels**
-Finish on a live strategic question from your own organisation, and the deliverable doubles as evidence at your next appraisal or interview.
+Finish on a live strategic question from your own organization, and the deliverable doubles as evidence at your next appraisal or interview.
 
 Honest take: strategy degrees reward people who read widely and argue precisely. If your interest in the subject stops at the title, a lighter general MBA will demand less of you and serve you just as well.
 
@@ -200,12 +200,12 @@ Honest take: strategy degrees reward people who read widely and argue precisely.
 
 Registration Fee | Itemised in the full structure before payment
 Initial Payment | Written confirmation first, payment second
-Monthly Instalments | AED, interest-free, matched to your salary date
+Monthly Installments | AED, interest-free, matched to your salary date
 Scholarship Availability | Offered against strong profiles; eligibility checked by your advisor
 Offer Validity | Early-bird terms shift with each intake, so confirm while the window is open
 
 ### request block
-Fees change with intake and study mode, so instead of printing a figure that might date, we send a personal breakdown on request. It costs nothing and obliges you to nothing. Across our Master's programmes, totals usually sit between AED 16,000 and 40,000.
+Fees change with intake and study mode, so instead of printing a figure that might date, we send a personal breakdown on request. It costs nothing and obliges you to nothing. Across our Master's programs, totals usually sit between AED 16,000 and 40,000.
 
 ---
 
@@ -213,8 +213,9 @@ Fees change with intake and study mode, so instead of printing a figure that mig
 
 - Voice pass: converted from v4 to v5 maximally-human pattern (varied rhythm, parenthetical asides, honest-take marker, uneven cards). Structure, facts, and field mapping unchanged.
 - Field mapping identical to program 01.
-- Sources: Rushford official programme listing (16 months online, 27 courses, 90 ECTS, nine named specialisation modules, official career roles incl. Strategy Manager, Corporate Strategist, Management Consultant, Business Development Manager, Strategic Planner, Risk Manager, Change Manager)
+- Sources: Rushford official program listing (16 months online, 27 courses, 90 ECTS, nine named specialization modules, official career roles incl. Strategy Manager, Corporate Strategist, Management Consultant, Business Development Manager, Strategic Planner, Risk Manager, Change Manager)
 - Note: the official listing shows the final module as "Mergers and ..." (truncated). Written as "Mergers and Acquisitions" pending university confirmation.
-- Careers: first seven roles from the official listing; Transformation Manager, Corporate Development Manager, and Programme Management Lead are market-standard, need client approval.
+- Careers: first seven roles from the official listing; Transformation Manager, Corporate Development Manager, and Program Management Lead are market-standard, need client approval.
 - Sign-off needed: exact fee, September 2026 seats, scholarship rules, M&A module wording, market figures if legal prefers softer language.
 - 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.
+- 2026-09-22 client-feedback pass: converted to English-US, numbers moved to figures, removed page-self-reference phrasing per brand voice (Maverick Business Academy London).

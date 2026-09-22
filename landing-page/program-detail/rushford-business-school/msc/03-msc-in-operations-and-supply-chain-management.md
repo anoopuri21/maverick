@@ -1,11 +1,11 @@
 # 15 · Program Detail Page Content: MSc in Operations and Supply Chain Management (v5)
 
-**Page:** /programmes/msc-in-operations-and-supply-chain-management
+**Page:** /programs/msc-in-operations-and-supply-chain-management
 **Awarding university:** Rushford Business School, Switzerland
 **Category:** MSc · **Level:** Master's · **Duration:** 12 months, fully online
 **Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections not written (per client list)
-**Sources on file:** official Rushford MSc programme listing (12 months, 60 ECTS, 15 courses, specialisation scope and career roles)
+**Sources on file:** official Rushford MSc program listing (12 months, 60 ECTS, 15 courses, specialization scope and career roles)
 
 ---
 
@@ -15,7 +15,7 @@
 MSc in Operations & Supply Chain Management Online | Maverick
 
 ### meta_description
-12-month online MSc in Operations and Supply Chain Management from Rushford Business School. 60 ECTS, AED instalments. Enquire now.
+12-month online MSc in Operations and Supply Chain Management from Rushford Business School. 60 ECTS, AED installments. Enquire now.
 
 ---
 
@@ -38,7 +38,7 @@ Rushford Business School | 12 months online | 60 ECTS | 15 courses | Asynchronou
 
 ---
 
-## 2. PROGRAMME AT A GLANCE (snapshot)
+## 2. PROGRAM AT A GLANCE (snapshot)
 
 Degree Award | MSc
 Awarding University | Rushford Business School, Switzerland
@@ -52,30 +52,30 @@ The 90 ECTS (18-month) and 120 ECTS (24-month) versions are also available for t
 
 ---
 
-## 3. PROGRAMME OVERVIEW (description)
+## 3. PROGRAM OVERVIEW (description)
 
 ### copy
-Supply chain stopped being a back-office function the year it became a boardroom headline. This MSc answers that shift: five core management courses first, then ten specialisation courses spanning operations, logistics, inventory control, production scheduling, warehouse management, procurement, and the analytics that hold the whole thing together.
+Supply chain stopped being a back-office function the year it became a boardroom headline. This MSc answers that shift: five core management courses first, then ten specialization courses spanning operations, logistics, inventory control, production scheduling, warehouse management, procurement, and the analytics that hold the whole thing together.
 
-The teaching leans practical, with real-time projects, seminars, and mentorship rather than pure lectures, and it runs asynchronously on the e-Campus. Fifteen courses in twelve months, designed for people whose jobs cannot pause, because in operations they never do.
+The teaching leans practical, with real-time projects, seminars, and mentorship rather than pure lectures, and it runs asynchronously on the e-Campus. 15 courses in 12 months, designed for people whose jobs cannot pause, because in operations they never do.
 
 ---
 
-## 4. WHY CHOOSE THIS PROGRAMME (benefits)
+## 4. WHY CHOOSE THIS PROGRAM (benefits)
 
-**01 · Twelve months to the credential**
-Sixty ECTS across one year. Operations people rarely have eighteen to spare.
+**01 · 12 months to the credential**
+60 ECTS across 1 year. Operations people rarely have 18 to spare.
 
 **02 · Built around disruption**
-The programme is explicit about addressing global supply chain disruptions, which is the environment Gulf employers actually operate in.
+The program is explicit about addressing global supply chain disruptions, which is the environment Gulf employers actually operate in.
 
 **03 · It reaches beyond logistics**
 The official framing points graduates toward senior positions in tourism, transportation, healthcare, and manufacturing as well as supply chain proper.
 
 **04 · Swiss award, online delivery**
-Rushford Business School, Switzerland, awards the MSc. All fifteen courses run on the e-Campus.
+Rushford Business School, Switzerland, awards the MSc. All 15 courses run on the e-Campus.
 
-**05 · Instalments in dirhams**
+**05 · Installments in dirhams**
 Monthly AED payments, interest-free, agreed in writing before term one.
 
 **06 · Support with a name**
@@ -87,10 +87,10 @@ Closing line: The certificate is awarded by Rushford Business School, Switzerlan
 
 ## 5. LEARNING OUTCOMES (learning)
 
-01 Design operations strategies that fit contemporary organisations
+01 Design operations strategies that fit contemporary organizations
 02 Control inventory with data instead of habit
 03 Schedule production against real constraints
-04 Manage warehouses with structure, from layout to labour
+04 Manage warehouses with structure, from layout to labor
 05 Run procurement decisions with the numbers in hand
 06 Use analytics to spot the disruption before it lands
 07 Apply globally proven principles to local Gulf operations
@@ -113,25 +113,25 @@ Warehouse Operations Manager
 
 ---
 
-## 7. PROGRAMME STRUCTURE (structure)
+## 7. PROGRAM STRUCTURE (structure)
 
 ### heading
 Your journey, block by block
 
 ### intro
-Three blocks across fifteen courses: core management, the operations and supply chain foundation, and the leadership and research block.
+Three blocks across 15 courses: core management, the operations and supply chain foundation, and the leadership and research block.
 
 ### stages
 
 **Block 1 · Core management (20 ECTS)**
 - Transformational Management
 - Managerial Economics
-- Organisational Behaviour
+- Organisational Behavior
 - Marketing in a Digital World
 - Accounting for Financial Reporting
 
 **Block 2 · Operations and supply chain foundation (20 ECTS)**
-- Ten specialisation courses covering operations, logistics, inventory control, production scheduling, warehouse management, procurement, and analytics
+- Ten specialization courses covering operations, logistics, inventory control, production scheduling, warehouse management, procurement, and analytics
 
 **Block 3 · Leadership and research (20 ECTS plus electives)**
 - Research Methodology
@@ -146,10 +146,10 @@ Three blocks across fifteen courses: core management, the operations and supply 
 
 Dedicated academic support | One success coach from induction to the award letter
 Flexible learning | Asynchronous e-Campus study, with seminars and mentorship built in
-Assessment support | Feedback on projects and analyses, not formatting notes
-Affordable instalments | Interest-free AED monthly payments, confirmed in writing
+Assessment support | Feedback on projects and analyzes, not formatting notes
+Affordable installments | Interest-free AED monthly payments, confirmed in writing
 Career guidance | Advisors who follow logistics and operations hiring across the Gulf
-Documentation assistance | Enrolment done with you, one step at a time
+Documentation assistance | Enrollment done with you, one step at a time
 
 ---
 
@@ -172,8 +172,8 @@ Across the Gulf, employers keep reporting shortages of qualified candidates, and
 **04 · The degree travels across industries**
 Tourism, healthcare, manufacturing, retail: the official career framing reaches well past logistics firms, which suits the Gulf's diversified employers.
 
-**05 · Twelve months fits operational lives**
-Planners and warehouse managers cannot take sabbaticals. One year, asynchronous, keeps the salary intact.
+**05 · 12 months fits operational lives**
+Planners and warehouse managers cannot take sabbaticals. 1 year, asynchronous, keeps the salary intact.
 
 **06 · Analytics sits inside the syllabus**
 Business analytics and data skills are part of the degree, matching how Gulf employers now write their supply chain job descriptions.
@@ -186,12 +186,12 @@ Honest take: supply chain rewards people who stay calm in a disruption, and the 
 
 Registration Fee | Itemised in the full structure before any payment
 Initial Payment | Confirmed in writing before anything is charged
-Monthly Instalments | AED, interest-free, matched to salary dates
+Monthly Installments | AED, interest-free, matched to salary dates
 Scholarship Availability | Possible for strong profiles; your advisor checks eligibility
 Offer Validity | Early-bird pricing moves with each intake, so confirm the window
 
 ### request block
-Fees vary with the intake and the ECTS version you select, so no fixed figure sits on this page. Admissions sends a personal breakdown on request, free and without obligation. Across our Master's programmes, totals usually land between AED 16,000 and 40,000.
+Fees vary with the intake and the ECTS version you select, so no fixed figure is released up front. Admissions sends a personal breakdown on request, free and without obligation. Across our Master's programs, totals usually land between AED 16,000 and 40,000.
 
 ---
 
@@ -199,8 +199,9 @@ Fees vary with the intake and the ECTS version you select, so no fixed figure si
 
 - Voice pass: converted from v4 to v5 maximally-human pattern (varied rhythm, parenthetical asides, honest-take marker, uneven cards). Structure, facts, and field mapping unchanged.
 - Field mapping identical to program 01; MSc three-block structure.
-- Sources: Rushford official MSc listing (educations.com: 100% online, EduQua-certified Swiss school; specialisation scope: operations, logistics, inventory control, production scheduling, warehouse management, procurement, analytics; real-time projects, seminars, mentorship; official career roles: supply chain analyst, demand planner, supply planner, data scientist, commercial manager, transport officer); rushford.ch MSc framework (12 months, 60 ECTS, 15 courses); apply.rushford.ch block titles
-- Block 2 written descriptively; the ten specialisation course titles are not published, flagged for university sign-off.
+- Sources: Rushford official MSc listing (educations.com: 100% online, EduQua-certified Swiss school; specialization scope: operations, logistics, inventory control, production scheduling, warehouse management, procurement, analytics; real-time projects, seminars, mentorship; official career roles: supply chain analyst, demand planner, supply planner, data scientist, commercial manager, transport officer); rushford.ch MSc framework (12 months, 60 ECTS, 15 courses); apply.rushford.ch block titles
+- Block 2 written descriptively; the ten specialization course titles are not published, flagged for university sign-off.
 - Careers: first six roles from the official listing; Operations Manager, Procurement Specialist, Inventory Manager, Warehouse Operations Manager are market-standard, need client approval.
 - Sign-off needed: exact fee, September 2026 seats, scholarship rules, Block 2 module wording, career role list approval, market figures if legal prefers softer language.
 - 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.
+- 2026-09-22 client-feedback pass: converted to English-US, numbers moved to figures, removed page-self-reference phrasing per brand voice (Maverick Business Academy London).

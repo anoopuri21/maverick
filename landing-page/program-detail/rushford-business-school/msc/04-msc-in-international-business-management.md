@@ -1,11 +1,11 @@
 # 16 · Program Detail Page Content: MSc in International Business Management (v5)
 
-**Page:** /programmes/msc-in-international-business-management
+**Page:** /programs/msc-in-international-business-management
 **Awarding university:** Rushford Business School, Switzerland
 **Category:** MSc · **Level:** Master's · **Duration:** 12 months, fully online
 **Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections not written (per client list)
-**Sources on file:** official Rushford MSc programme page (12 months, 60 ECTS, specialisation scope), UAE non-oil economy share via ADDED
+**Sources on file:** official Rushford MSc program page (12 months, 60 ECTS, specialization scope), UAE non-oil economy share via ADDED
 
 ---
 
@@ -15,7 +15,7 @@
 MSc in International Business Management Online | Maverick
 
 ### meta_description
-12-month online MSc in International Business Management from Rushford Business School. 60 ECTS, AED instalments. Enquire now.
+12-month online MSc in International Business Management from Rushford Business School. 60 ECTS, AED installments. Enquire now.
 
 ---
 
@@ -38,7 +38,7 @@ Rushford Business School | 12 months online | 60 ECTS | 15 courses | Asynchronou
 
 ---
 
-## 2. PROGRAMME AT A GLANCE (snapshot)
+## 2. PROGRAM AT A GLANCE (snapshot)
 
 Degree Award | MSc
 Awarding University | Rushford Business School, Switzerland
@@ -52,19 +52,19 @@ The 90 ECTS (18-month) and 120 ECTS (24-month) versions also exist if you want m
 
 ---
 
-## 3. PROGRAMME OVERVIEW (description)
+## 3. PROGRAM OVERVIEW (description)
 
 ### copy
-Multinational companies do not need people who understand business in one country; they need people who can run it across several. This MSc is built around that requirement: five core management courses, then ten specialisation courses covering global leadership strategies, industrial relations, international trade operations, international marketing, and international human resource management.
+Multinational companies do not need people who understand business in one country; they need people who can run it across several. This MSc is built around that requirement: five core management courses, then ten specialization courses covering global leadership strategies, industrial relations, international trade operations, international marketing, and international human resource management.
 
-The degree runs asynchronously on the e-Campus across twelve months, which suits the exact profile it serves: mid-level managers moving toward multinational roles, founders expanding overseas, and graduates aiming at their first international posting. Three profiles, one timetable.
+The degree runs asynchronously on the e-Campus across 12 months, which suits the exact profile it serves: mid-level managers moving toward multinational roles, founders expanding overseas, and graduates aiming at their first international posting. Three profiles, one timetable.
 
 ---
 
-## 4. WHY CHOOSE THIS PROGRAMME (benefits)
+## 4. WHY CHOOSE THIS PROGRAM (benefits)
 
 **01 · One year to an international credential**
-Sixty ECTS in twelve months, for people whose next role is already in the pipeline.
+60 ECTS in 12 months, for people whose next role is already in the pipeline.
 
 **02 · The whole function set, internationalized**
 Marketing, HRM, trade operations, leadership. Each function taught the way it actually runs across borders.
@@ -73,9 +73,9 @@ Marketing, HRM, trade operations, leadership. Each function taught the way it ac
 The UAE's non-oil sector already contributes over 74% of GDP, and its trade, logistics, and headquarters economy keeps hiring people who can operate across markets.
 
 **04 · Swiss award, online delivery**
-Rushford Business School, Switzerland, awards the MSc. All fifteen courses run on the e-Campus.
+Rushford Business School, Switzerland, awards the MSc. All 15 courses run on the e-Campus.
 
-**05 · Dirham instalments, interest-free**
+**05 · Dirham installments, interest-free**
 Monthly AED payments on a schedule agreed in writing before the start.
 
 **06 · Support in your time zone**
@@ -113,25 +113,25 @@ International Business Consultant
 
 ---
 
-## 7. PROGRAMME STRUCTURE (structure)
+## 7. PROGRAM STRUCTURE (structure)
 
 ### heading
 Your journey, block by block
 
 ### intro
-Three blocks across fifteen courses: core management, the international business foundation, and the leadership and research block.
+Three blocks across 15 courses: core management, the international business foundation, and the leadership and research block.
 
 ### stages
 
 **Block 1 · Core management (20 ECTS)**
 - Transformational Management
 - Managerial Economics
-- Organisational Behaviour
+- Organisational Behavior
 - Marketing in a Digital World
 - Accounting for Financial Reporting
 
 **Block 2 · International business foundation (20 ECTS)**
-- Ten specialisation courses covering global leadership strategies, industrial relations, international trade operations, international marketing, and international HRM
+- Ten specialization courses covering global leadership strategies, industrial relations, international trade operations, international marketing, and international HRM
 
 **Block 3 · Leadership and research (20 ECTS plus electives)**
 - Research Methodology
@@ -147,9 +147,9 @@ Three blocks across fifteen courses: core management, the international business
 Dedicated academic support | One success coach from induction to the award letter
 Flexible learning | Asynchronous e-Campus study, built around working weeks
 Assessment support | Feedback on international business cases, read properly
-Affordable instalments | Interest-free AED monthly payments, confirmed in writing
+Affordable installments | Interest-free AED monthly payments, confirmed in writing
 Career guidance | Advisors familiar with multinational hiring across the Gulf
-Documentation assistance | Enrolment handled with you, step by step
+Documentation assistance | Enrollment handled with you, step by step
 
 ---
 
@@ -172,8 +172,8 @@ Multinationals continue moving regional operations into Dubai and Abu Dhabi, and
 **04 · The skills gap includes international roles**
 Across the Gulf, employers keep reporting shortages of qualified candidates, and roles spanning markets are the hardest to fill from within.
 
-**05 · Twelve months suits mobile careers**
-People aiming at international postings rarely have two years to spare. One year, asynchronous, keeps everything else moving.
+**05 · 12 months suits mobile careers**
+People aiming at international postings rarely have 2 years to spare. 1 year, asynchronous, keeps everything else moving.
 
 **06 · The degree doubles as an expansion toolkit**
 For business owners, the same syllabus works as the playbook for taking a UAE company overseas.
@@ -186,12 +186,12 @@ Honest take: international business is partly a contact sport, and a degree hand
 
 Registration Fee | Itemised in the full structure before any payment
 Initial Payment | Confirmed in writing before anything is charged
-Monthly Instalments | AED, interest-free, matched to salary dates
+Monthly Installments | AED, interest-free, matched to salary dates
 Scholarship Availability | Possible for strong profiles; your advisor checks eligibility
 Offer Validity | Early-bird pricing is set per intake, so confirm the window
 
 ### request block
-Because fees shift with the intake and the ECTS version chosen, no fixed figure is printed here. Admissions sends a personal breakdown on request, free and without obligation. Across our Master's programmes, totals usually land between AED 16,000 and 40,000.
+Because fees shift with the intake and the ECTS version chosen, no fixed figure is printed here. Admissions sends a personal breakdown on request, free and without obligation. Across our Master's programs, totals usually land between AED 16,000 and 40,000.
 
 ---
 
@@ -199,8 +199,9 @@ Because fees shift with the intake and the ECTS version chosen, no fixed figure 
 
 - Voice pass: converted from v4 to v5 maximally-human pattern (varied rhythm, parenthetical asides, honest-take marker, uneven cards). Structure, facts, and field mapping unchanged.
 - Field mapping identical to program 01; MSc three-block structure.
-- Sources: Rushford official MSc page, rushford.ch and onlinestudies.com (12 months, 60 ECTS; specialisation scope: global leadership strategies, industrial relations, international trade operations, international marketing, international HRM; next start date 01 Oct 2026, deadline 25 Sep 2026, held back from page copy pending confirmation); apply.rushford.ch block titles; ADDED clean energy page (UAE non-oil sector above 74% of GDP in 2023)
-- Block 2 written descriptively; specialisation course titles not published, flagged for university sign-off.
+- Sources: Rushford official MSc page, rushford.ch and onlinestudies.com (12 months, 60 ECTS; specialization scope: global leadership strategies, industrial relations, international trade operations, international marketing, international HRM; next start date 01 Oct 2026, deadline 25 Sep 2026, held back from page copy pending confirmation); apply.rushford.ch block titles; ADDED clean energy page (UAE non-oil sector above 74% of GDP in 2023)
+- Block 2 written descriptively; specialization course titles not published, flagged for university sign-off.
 - Careers: no official role list published for this MSc; all ten roles are market-standard, need client approval.
 - Sign-off needed: exact fee, September 2026 seats, scholarship rules, Block 2 module wording, career role list approval, market figures if legal prefers softer language.
 - 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.
+- 2026-09-22 client-feedback pass: converted to English-US, numbers moved to figures, removed page-self-reference phrasing per brand voice (Maverick Business Academy London).

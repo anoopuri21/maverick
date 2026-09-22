@@ -1,10 +1,10 @@
 # GAU MBA 04 · Program Detail Page Content: MBA in Management Information Systems (v5)
 
-**Page:** /programmes/gau-mba-in-management-information-systems
+**Page:** /programs/gau-mba-in-management-information-systems
 **Awarding university:** Girne American University, North Cyprus · **Category:** MBA · **Level:** Master's · **Duration:** 12 to 15 months
 **Voice pass:** v5 maximally-human pattern
 **Status:** CONTENT READY · excluded sections not written (per client list)
-**Sources on file:** Girne American University programme description as carried on the client's course pages (12-15 months, flexible delivery)
+**Sources on file:** Girne American University program description as carried on the client's course pages (12-15 months, flexible delivery)
 
 ---
 
@@ -14,7 +14,7 @@
 MBA in Management Information Systems | Girne American University
 
 ### meta_description
-12 to 15-month MBA in Management Information Systems from Girne American University. Online study from the UAE, AED instalments. Enquire now.
+12 to 15-month MBA in Management Information Systems from Girne American University. Online study from the UAE, AED installments. Enquire now.
 
 ---
 
@@ -37,7 +37,7 @@ Girne American University | 12 to 15 months | Online study | Part-time friendly 
 
 ---
 
-## 2. PROGRAMME AT A GLANCE (snapshot)
+## 2. PROGRAM AT A GLANCE (snapshot)
 
 Degree Award | MBA
 Awarding University | Girne American University, North Cyprus
@@ -51,7 +51,7 @@ Credit and fee details arrive with the admission letter, in writing, before paym
 
 ---
 
-## 3. PROGRAMME OVERVIEW (description)
+## 3. PROGRAM OVERVIEW (description)
 
 ### copy
 Management information systems is the discipline that keeps two rooms talking: the executives who want outcomes and the technologists who build them. This MBA is aimed at the translator role. The management core covers economics, finance, operations, and leadership, then the coursework moves into information systems management, enterprise technology decisions, analytics, and the governance questions that appear the moment a company depends on software it cannot fully see.
@@ -60,13 +60,13 @@ Girne American University delivers the qualification flexibly, for part-time and
 
 ---
 
-## 4. WHY CHOOSE THIS PROGRAMME (benefits)
+## 4. WHY CHOOSE THIS PROGRAM (benefits)
 
 **01 · The translator role, formalized**
 Business on one side, technology on the other. The person between them is worth more than either alone, and this degree trains exactly that seat.
 
-**02 · Fifteen months, maximum**
-Digital programmes move fast, and so do careers in them. Twelve to fifteen months keeps pace with the market it serves.
+**02 · 15 months, maximum**
+Digital programs move fast, and so do careers in them. 12 to 15 months keeps pace with the market it serves.
 
 **03 · The research project lands in real infrastructure**
 Graduates often point the final research at a systems question from their own employer, an ERP decision, a data governance gap, which turns the degree into a delivered recommendation.
@@ -74,7 +74,7 @@ Graduates often point the final research at a systems question from their own em
 **04 · An international cohort**
 Systems problems repeat across markets, and hearing how students from other economies solved them is worth a module of its own.
 
-**05 · Dirham instalments, interest-free**
+**05 · Dirham installments, interest-free**
 Monthly AED payments matched to salary dates, agreed in writing before term one.
 
 **06 · Support that stays**
@@ -112,7 +112,7 @@ IT Governance Analyst
 
 ---
 
-## 7. PROGRAMME STRUCTURE (structure)
+## 7. PROGRAM STRUCTURE (structure)
 
 ### heading
 Your journey, stage by stage
@@ -133,18 +133,18 @@ Three movements: the business core, the information systems coursework, and the 
 - Systems governance and digital transformation case work
 
 **Stage 3 · The graduate research project**
-- A supervised investigation of a systems or data question, often drawn from the student's own organisation
+- A supervised investigation of a systems or data question, often drawn from the student's own organization
 
 ---
 
 ## 8. WHY STUDY THROUGH MAVERICK (support)
 
-Dedicated academic support | One success coach from enrolment through graduation
+Dedicated academic support | One success coach from enrollment through graduation
 Flexible learning | Part-time and distance delivery on Gulf time, with materials for the deployment weeks
 Assessment support | Feedback on systems and analytics work, handled by readers who understand it
-Affordable instalments | AED monthly payments, interest-free, confirmed in writing
+Affordable installments | AED monthly payments, interest-free, confirmed in writing
 Career guidance | Advisors who follow IT leadership and digital hiring across the Gulf
-Documentation assistance | Enrolment done with you, one step at a time
+Documentation assistance | Enrollment done with you, one step at a time
 
 ---
 
@@ -162,16 +162,16 @@ Fully online, no visa, no career break. The UAE keeps pushing its digital transf
 GCC investment in cloud, AI, cybersecurity, and digital government keeps climbing, and the UAE takes one of the largest shares. Spend like that needs managers who speak both languages.
 
 **03 · Transformation projects need bilingual leaders**
-Every Gulf ministry and large enterprise runs digital programmes, and the failure mode is rarely the technology. It is the management around it, which is what this degree teaches.
+Every Gulf ministry and large enterprise runs digital programs, and the failure mode is rarely the technology. It is the management around it, which is what this degree teaches.
 
 **04 · The skills gap hits hybrid roles hardest**
 Across the Gulf, employers keep reporting shortages of qualified candidates, and business-technology hybrids are the rarest profile of all.
 
-**05 · Fifteen months suits delivery calendars**
-IT leaders cannot vanish for two years. Twelve to fifteen months, asynchronous around the busy sprints, keeps the delivery moving.
+**05 · 15 months suits delivery calendars**
+IT leaders cannot vanish for 2 years. 12 to 15 months, asynchronous around the busy sprints, keeps the delivery moving.
 
 **06 · The research project can fix a real gap**
-Point the final investigation at your own organisation's systems question and finish with a recommendation your steering committee can actually vote on.
+Point the final investigation at your own organization's systems question and finish with a recommendation your steering committee can actually vote on.
 
 ---
 
@@ -179,19 +179,20 @@ Point the final investigation at your own organisation's systems question and fi
 
 Registration Fee | Itemised in the full structure before any payment
 Initial Payment | Confirmed in writing before anything is charged
-Monthly Instalments | AED, interest-free, matched to salary dates
+Monthly Installments | AED, interest-free, matched to salary dates
 Scholarship Availability | Possible for strong profiles; your advisor checks before promising
 Offer Validity | Early-bird pricing moves with each intake, so confirm the window
 
 ### request block
-Fees depend on the intake and your admission profile, so no fixed figure sits on this page. Admissions sends the personal breakdown in writing, free and without obligation. Across our Master's programmes, totals usually land between AED 16,000 and 40,000.
+Fees depend on the intake and your admission profile, so no fixed figure is published up front. Admissions sends the personal breakdown in writing, free and without obligation. Across our Master's programs, totals usually land between AED 16,000 and 40,000.
 
 ---
 
 ## BUILD NOTES (internal, not page copy)
 
-- Field mapping identical to the Rushford programme pages; three-stage structure written descriptively because no fixed module list is published for this MBA (flagged for university sign-off).
-- Sources: Girne American University programme description as carried on client course pages (12-15 months, flexible part-time and distance delivery); analytics and AI fastest-growing)
+- Field mapping identical to the Rushford program pages; three-stage structure written descriptively because no fixed module list is published for this MBA (flagged for university sign-off).
+- Sources: Girne American University program description as carried on client course pages (12-15 months, flexible part-time and distance delivery); analytics and AI fastest-growing)
 - Careers: all ten roles market-standard; need client approval.
 - Sign-off needed: exact fee, September 2026 seats, scholarship rules, stage wording, credit line if university provides one, market figures if legal prefers softer language.
 - 2026-09-21 QA pass (7-point check): private-research-firm claims removed per client official-sources rule and rewritten qualitatively; UK spelling normalised; G02 sweep clean.
+- 2026-09-22 client-feedback pass: converted to English-US, numbers moved to figures, removed page-self-reference phrasing per brand voice (Maverick Business Academy London).
