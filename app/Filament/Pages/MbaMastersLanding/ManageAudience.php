@@ -37,6 +37,7 @@ class ManageAudience extends Page implements HasForms
     {
         $class = app(MbaMastersClassSettings::class)->toArray();
         $class['metrics'] = array_values($class['metrics'] ?? []);
+        $class['class_year_stats'] = array_values($class['class_year_stats'] ?? []);
         $class['regions'] = array_values($class['regions'] ?? []);
         $class['industries'] = $this->hydrateRepeaterMediaFields(array_values($class['industries'] ?? []), 'image');
 
@@ -68,6 +69,21 @@ class ManageAudience extends Page implements HasForms
                         TextInput::make('class.class_year_strong')->label('Class of 2025 strong line'),
                         Textarea::make('class.class_year_body')->label('Class of 2025 body')->rows(2)->columnSpanFull(),
                         TextInput::make('class.class_year_center')->label('Class of 2025 center label'),
+                        Repeater::make('class.class_year_stats')
+                            ->label('Class of 2025 figures')
+                            ->helperText('Order matches the graphic: students, countries, pass rate, age, experience.')
+                            ->schema([
+                                TextInput::make('label')->label('Label')->required(),
+                                TextInput::make('value')->label('Value')->required(),
+                            ])
+                            ->columns(2)
+                            ->maxItems(5)
+                            ->defaultItems(0)
+                            ->reorderable()
+                            ->collapsible()
+                            ->itemLabel(fn (array $state): ?string => $state['label'] ?? null)
+                            ->addActionLabel('Add figure')
+                            ->columnSpanFull(),
                         TextInput::make('class.global_heading')->label('Global cohorts heading'),
                         TextInput::make('class.global_line')->label('Global cohorts line')->columnSpanFull(),
                         Repeater::make('class.metrics')
@@ -197,6 +213,7 @@ class ManageAudience extends Page implements HasForms
 
         $class = $data['class'] ?? [];
         $class['metrics'] = array_values($class['metrics'] ?? []);
+        $class['class_year_stats'] = array_values($class['class_year_stats'] ?? []);
         $class['regions'] = array_values($class['regions'] ?? []);
         $class['industries'] = $this->hydrateRepeaterMediaFields($class['industries'] ?? [], 'image');
         foreach ($class['industries'] ?? [] as &$industry) {

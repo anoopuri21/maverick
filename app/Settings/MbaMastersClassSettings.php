@@ -30,6 +30,8 @@ class MbaMastersClassSettings extends Settings
 
     public ?string $class_year_center = null;
 
+    public array $class_year_stats = [];
+
     public ?string $global_heading = null;
 
     public ?string $global_line = null;

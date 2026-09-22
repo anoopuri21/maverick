@@ -402,6 +402,7 @@ class PageController extends Controller
 
         $class = safe_settings(MbaMastersClassSettings::class);
         $class->metrics = settings_array($class->metrics ?? []);
+        $class->class_year_stats = settings_array($class->class_year_stats ?? []);
         $class->regions = settings_array($class->regions ?? []);
         $class->industries = settings_array($class->industries ?? []);
 

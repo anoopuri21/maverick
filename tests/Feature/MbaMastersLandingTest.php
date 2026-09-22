@@ -96,6 +96,14 @@ class MbaMastersLandingTest extends TestCase
         $response->assertSee('Cohort', false);
         $response->assertDontSee('Class Snapshot', false);
         $response->assertSee('Class of 2025:', false);
+        $response->assertSee('MBA Students', false);
+        $response->assertSee('979', false);
+        $response->assertSee('Countries Represented', false);
+        $response->assertSee('98.70%', false);
+        $response->assertSee('Average Age', false);
+        $response->assertSee('33.7', false);
+        $response->assertSee('Average Years of Professional Experience', false);
+        $response->assertSee('11.2', false);
         $this->assertDoesNotMatchRegularExpression('/this page/i', $response->getContent());
         $response->assertSee('Built for the GCC Region', false);
         $response->assertDontSee('MoHESR', false);
