@@ -31,40 +31,40 @@ BBA in Project Management
 Bachelor's
 
 ### short_description
-Build the business, leadership, and project-management skills to plan, execute, monitor, and deliver projects successfully across industries. Rushford Business School's BBA runs twenty to twenty-four months, fully online.
+Build the business, leadership, and project-management skills to plan, execute, monitor, and deliver projects successfully across industries. Rushford Business School's BBA runs 20 to 24 months, fully online.
 
 ### duration
 20 to 24 months online
 
 ### highlights (Quick Highlights)
-Rushford Business School | 20 to 24 months online | Project management focus | Career-focused programme | Flexible learning | Scholarship available
+Rushford Business School | 20 to 24 months online | Project management focus | Career-focused program | Flexible learning | Scholarship available
 
 ---
 
-## 2. PROGRAMME AT A GLANCE (snapshot)
+## 2. PROGRAM AT A GLANCE (snapshot)
 
 Degree Award | Bachelor of Business Administration (BBA)
 Awarding University | Rushford Business School, Switzerland
-Specialisation | Project Management
+Specialization | Project Management
 Duration | 20 to 24 months
 Assessments | Assignments, projects, case studies & applied assessments
 Focus | Project Planning, Risk, Quality, Leadership & Project Delivery
 
 ### note
-Programme duration and entry pathway may vary depending on your previous academic qualifications, professional background, and approved progression pathway. Admissions confirms everything in writing, fees included, before any payment.
+Program duration and entry pathway may vary depending on your previous academic qualifications, professional background, and approved progression pathway. Admissions confirms everything in writing, fees included, before any payment.
 
 ---
 
-## 3. PROGRAMME OVERVIEW (description)
+## 3. PROGRAM OVERVIEW (description)
 
 ### copy
-Projects drive change, innovation, and growth across almost every industry. From construction and technology to healthcare, logistics, engineering, finance, and government, organisations need professionals who can manage time, cost, quality, people, risk, and resources effectively. The BBA in Project Management develops strong business-management knowledge together with specialised project-management capabilities.
+Projects drive change, innovation, and growth across almost every industry. From construction and technology to healthcare, logistics, engineering, finance, and government, organizations need professionals who can manage time, cost, quality, people, risk, and resources effectively. The BBA in Project Management develops strong business-management knowledge together with specialised project-management capabilities.
 
 Students build a foundation in leadership, financial awareness, business operations, decision-making, customer management, and organisational development, while gaining focused knowledge in project planning, scheduling, risk management, quality, procurement, agile methods, and project leadership. It suits aspiring project coordinators, working professionals who already contribute to projects, and people in construction, engineering, IT, and operations who want the management profile to match the work they do.
 
 ---
 
-## 4. WHY CHOOSE THIS PROGRAMME (benefits)
+## 4. WHY CHOOSE THIS PROGRAM (benefits)
 
 **01 · Business and project management, combined**
 Broad business knowledge with specialised project-management expertise, which is the profile PMO roles actually ask for.
@@ -124,13 +124,13 @@ IT Project Coordinator
 Events Project Coordinator
 Logistics Project Coordinator
 Business Operations Executive
-Programme Support Executive
+Program Support Executive
 
-Roles come from the programme's official career outcomes. Exact opportunities depend on experience, industry, professional skills, and employer requirements.
+Roles come from the program's official career outcomes. Exact opportunities depend on experience, industry, professional skills, and employer requirements.
 
 ---
 
-## 7. PROGRAMME STRUCTURE (structure)
+## 7. PROGRAM STRUCTURE (structure)
 
 ### heading
 Your journey, year by year
@@ -161,7 +161,7 @@ Core business and management foundations first, then advanced business subjects 
 - Agile Project Management and Scrum
 - Project Finance, Procurement and Stakeholder Management
 
-**Programme focus areas**
+**Program focus areas**
 - Business management, project planning, scheduling, risk management, quality management, procurement, project leadership, agile project management, stakeholder management, and strategic decision-making
 
 ---
@@ -170,7 +170,7 @@ Core business and management foundations first, then advanced business subjects 
 
 Dedicated academic support | Guidance to help you understand academic requirements and maintain progress
 Experienced faculty | Academics and professionals who bring practical business and project-management perspectives
-Student success team | Ongoing support from enrolment through programme completion
+Student success team | Ongoing support from enrollment through program completion
 Assignment support | Guidance on assessment requirements, academic expectations, and project-based assignments
 Career guidance | Support in connecting your qualification with professional development goals
 Documentation assistance | Administrative help throughout your student journey, including graduation procedures
@@ -194,7 +194,7 @@ Construction, engineering, technology, aviation, logistics, healthcare, energy, 
 Dubai recorded AED 686.8 billion in property sales across 215,736 transactions in 2025, per Dubai Land Department data, and every development behind those numbers is a project needing coordination.
 
 **04 · Energy transition adds another layer**
-The UAE's net-zero plan commits AED 600 billion to clean and renewable energy through 2050, and those programmes are delivered through project teams.
+The UAE's net-zero plan commits AED 600 billion to clean and renewable energy through 2050, and those programs are delivered through project teams.
 
 **05 · No career break required**
 Study from the UAE, Saudi Arabia, Qatar, Oman, Bahrain, or Kuwait while continuing your career, with the degree moving around your week.
@@ -208,9 +208,9 @@ Honest take: project management certifies with experience, and professional cert
 
 ## 10. FEES & SCHOLARSHIPS (fees)
 
-Programme Fees | Vary with the intake, approved entry route, and scholarship opportunities
+Program Fees | Vary with the intake, approved entry route, and scholarship opportunities
 Scholarships | Opportunities vary by intake; admissions confirms the latest position
-Payment Options | Registration fee, initial payment, and monthly instalments itemised in the full structure
+Payment Options | Registration fee, initial payment, and monthly installments itemised in the full structure
 Written Breakdown | Complete fee breakdown from the admissions team before any payment
 Intake Offer | Current intake offers confirmed per intake, in writing
 

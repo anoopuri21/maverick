@@ -15,7 +15,7 @@
 BSc Psychology Online | Maverick Business Academy London
 
 ### meta_description
-Study BSc Psychology online and develop knowledge in human behaviour, cognitive psychology, social psychology, developmental psychology, mental health and psychological research.
+Study BSc Psychology online and develop knowledge in human behavior, cognitive psychology, social psychology, developmental psychology, mental health and psychological research.
 
 ### url_slug
 /programs/bsc-psychology
@@ -31,46 +31,46 @@ BSc in Psychology
 Bachelor's
 
 ### short_description
-Why do people behave the way they do? The Girne American University BSc in Psychology studies behaviour, cognition, personality, development, and social interaction scientifically, with research and critical thinking built in from the start.
+Why do people behave the way they do? The Girne American University BSc in Psychology studies behavior, cognition, personality, development, and social interaction scientifically, with research and critical thinking built in from the start.
 
 ### duration
 Confirmed per pathway
 
 ### highlights (Quick Highlights)
-Girne American University | Online, flexible study | Psychology-focused programme | Research & applied learning | Career-focused | Scholarship available
+Girne American University | Online, flexible study | Psychology-focused program | Research & applied learning | Career-focused | Scholarship available
 
 ---
 
-## 2. PROGRAMME AT A GLANCE (snapshot)
+## 2. PROGRAM AT A GLANCE (snapshot)
 
 Degree Award | Bachelor of Science (BSc)
 Awarding University | Girne American University, North Cyprus
-Specialisation | Psychology
+Specialization | Psychology
 Duration | Subject to the approved academic pathway and entry route
 Assessments | Assignments, case studies, research projects & applied assessments
-Focus | Human Behaviour, Cognition, Development, Mental Health & Psychological Research
+Focus | Human Behavior, Cognition, Development, Mental Health & Psychological Research
 
 ### note
-Programme duration and entry route may vary depending on previous academic qualifications, approved credit transfer, and institutional requirements. Admissions confirms the exact pathway and fee structure in writing before any payment.
+Program duration and entry route may vary depending on previous academic qualifications, approved credit transfer, and institutional requirements. Admissions confirms the exact pathway and fee structure in writing before any payment.
 
 ---
 
-## 3. PROGRAMME OVERVIEW (description)
+## 3. PROGRAM OVERVIEW (description)
 
 ### copy
-How does the brain influence thought and emotion? How are personality, childhood experiences, social environments, and relationships connected to human behaviour? The BSc Psychology programme explores these questions through the scientific study of behaviour and mental processes, developing knowledge across cognitive psychology, social psychology, developmental psychology, biological psychology, personality, mental health, and research methods.
+How does the brain influence thought and emotion? How are personality, childhood experiences, social environments, and relationships connected to human behavior? The BSc Psychology program explores these questions through the scientific study of behavior and mental processes, developing knowledge across cognitive psychology, social psychology, developmental psychology, biological psychology, personality, mental health, and research methods.
 
-Alongside theoretical knowledge, the programme builds practical skills in research, critical thinking, communication, data interpretation, and evidence-based analysis. It suits people interested in understanding human behaviour as a discipline in its own right, and professionals working across human resources, education, healthcare administration, training, customer experience, leadership, and community services who want the science behind what they already do.
+Alongside theoretical knowledge, the program builds practical skills in research, critical thinking, communication, data interpretation, and evidence-based analysis. It suits people interested in understanding human behavior as a discipline in its own right, and professionals working across human resources, education, healthcare administration, training, customer experience, leadership, and community services who want the science behind what they already do.
 
 ---
 
-## 4. WHY CHOOSE THIS PROGRAMME (benefits)
+## 4. WHY CHOOSE THIS PROGRAM (benefits)
 
-**01 · Understand human behaviour**
+**01 · Understand human behavior**
 The psychological factors that influence how people think, communicate, learn, develop, and make decisions.
 
 **02 · Study psychology scientifically**
-How psychologists use research, evidence, and data to investigate human behaviour, rather than relying on intuition.
+How psychologists use research, evidence, and data to investigate human behavior, rather than relying on intuition.
 
 **03 · Multiple areas of psychology**
 Knowledge across cognitive, social, developmental, biological, and personality psychology, plus mental health.
@@ -91,12 +91,12 @@ Closing line: Girne American University awards the degree. What you do with the 
 ## 5. LEARNING OUTCOMES (learning)
 
 01 Understand major psychological theories and concepts
-02 Analyse human behaviour from different psychological perspectives
+02 Analyse human behavior from different psychological perspectives
 03 Understand cognitive processes including memory, learning, and decision-making
 04 Explore human development across different stages of life
-05 Understand the influence of social environments on behaviour
+05 Understand the influence of social environments on behavior
 06 Explore personality and individual differences
-07 Understand the biological foundations of behaviour
+07 Understand the biological foundations of behavior
 08 Apply psychological research methods and basic statistical analysis
 09 Evaluate psychological research critically and ethically
 10 Communicate psychological ideas clearly and professionally
@@ -120,23 +120,23 @@ Social Services Assistant
 Customer Experience Executive
 Market Research Executive
 Research Coordinator
-Wellbeing Programme Coordinator
+Wellbeing Program Coordinator
 Youth Support Worker
 Organisational Development Assistant
 Behavioural Research Executive
 Administrative & People Management Roles
 
-Roles come from the programme's official career areas. One caveat that stays on the page: some professional psychology occupations, including regulated roles such as psychologist, clinical psychologist, or counselling psychologist, normally require further postgraduate study, supervised professional training, and licensing depending on the country.
+Roles come from the program's official career areas. One caveat we always state: some professional psychology occupations, including regulated roles such as psychologist, clinical psychologist, or counselling psychologist, normally require further postgraduate study, supervised professional training, and licensing depending on the country.
 
 ---
 
-## 7. PROGRAMME STRUCTURE (structure)
+## 7. PROGRAM STRUCTURE (structure)
 
 ### heading
 Your journey through psychology
 
 ### intro
-The programme progresses from fundamental principles into more advanced areas of human behaviour, mental processes, research, and applied psychology.
+The program progresses from fundamental principles into more advanced areas of human behavior, mental processes, research, and applied psychology.
 
 ### stages
 
@@ -170,8 +170,8 @@ The programme progresses from fundamental principles into more advanced areas of
 ## 8. WHY STUDY THROUGH MAVERICK (support)
 
 Dedicated academic support | Guidance to help you understand academic expectations and maintain progress
-Experienced faculty | Academic and professional perspectives relevant to psychology, research, and human behaviour
-Student success team | Ongoing support from enrolment through programme completion
+Experienced faculty | Academic and professional perspectives relevant to psychology, research, and human behavior
+Student success team | Ongoing support from enrollment through program completion
 Assignment guidance | Academic guidance on assessments, research requirements, and assignment expectations
 Career guidance | Support in connecting academic development with future professional goals
 Documentation assistance | Administrative guidance throughout your student journey, including graduation procedures
@@ -198,20 +198,20 @@ Professionals across the GCC work with teams representing different cultures, la
 Flexible online study while living and working in the UAE, Saudi Arabia, Qatar, Oman, Bahrain, or Kuwait.
 
 **05 · People-management skills, formalised**
-A deeper understanding of motivation, behaviour, communication, and interpersonal relationships, which is what management roles keep screening for.
+A deeper understanding of motivation, behavior, communication, and interpersonal relationships, which is what management roles keep screening for.
 
 **06 · Postgraduate routes stay open**
-After the bachelor's, graduates may explore MSc Psychology, organisational psychology, counselling-related programmes, human resource management, or MBA pathways, subject to university admission requirements. The GAU family here includes an MSc in Counselling Psychology.
+After the bachelor's, graduates may explore MSc Psychology, organisational psychology, counselling-related programs, human resource management, or MBA pathways, subject to university admission requirements. The GAU family here includes an MSc in Counselling Psychology.
 
-Honest take: the bachelor's is a foundation, not a licence. Regulated psychologist roles need postgraduate study, supervised training, and licensing that vary by country, and planning for those steps early makes the whole path smoother.
+Honest take: the bachelor's is a foundation, not a license. Regulated psychologist roles need postgraduate study, supervised training, and licensing that vary by country, and planning for those steps early makes the whole path smoother.
 
 ---
 
 ## 10. FEES & SCHOLARSHIPS (fees)
 
-Programme Fees | Vary with the intake, approved entry pathway, and scholarship opportunities
+Program Fees | Vary with the intake, approved entry pathway, and scholarship opportunities
 Scholarships | Availability varies by intake; admissions confirms the latest position
-Payment Options | Registration fee, initial payment, and monthly instalments itemised in the full structure
+Payment Options | Registration fee, initial payment, and monthly installments itemised in the full structure
 Written Breakdown | Complete fee breakdown from the admissions team before any payment
 Intake Offer | Current intake offers confirmed per intake, in writing
 

@@ -31,40 +31,40 @@ BBA in Management Information Systems
 Bachelor's
 
 ### short_description
-Build the business, technology, and analytical skills that connect people, processes, data, and digital systems in modern organisations. Rushford Business School's BBA in MIS runs twenty to twenty-four months, fully online.
+Build the business, technology, and analytical skills that connect people, processes, data, and digital systems in modern organizations. Rushford Business School's BBA in MIS runs 20 to 24 months, fully online.
 
 ### duration
 20 to 24 months online
 
 ### highlights (Quick Highlights)
-Rushford Business School | 20 to 24 months online | Business + technology focus | Career-focused programme | Flexible learning | Scholarship available
+Rushford Business School | 20 to 24 months online | Business + technology focus | Career-focused program | Flexible learning | Scholarship available
 
 ---
 
-## 2. PROGRAMME AT A GLANCE (snapshot)
+## 2. PROGRAM AT A GLANCE (snapshot)
 
 Degree Award | Bachelor of Business Administration (BBA)
 Awarding University | Rushford Business School, Switzerland
-Specialisation | Management Information Systems
+Specialization | Management Information Systems
 Duration | 20 to 24 months
 Assessments | Assignments, projects, case studies & applied assessments
 Focus | Business Management, Information Systems, Analytics & Digital Transformation
 
 ### note
-Programme duration and entry pathway may vary depending on your previous academic qualifications, professional background, and approved credit-transfer or progression pathway. Admissions confirms all of it in writing, including the fee structure, before any payment.
+Program duration and entry pathway may vary depending on your previous academic qualifications, professional background, and approved credit-transfer or progression pathway. Admissions confirms all of it in writing, including the fee structure, before any payment.
 
 ---
 
-## 3. PROGRAMME OVERVIEW (description)
+## 3. PROGRAM OVERVIEW (description)
 
 ### copy
-Technology has transformed the way organisations operate, communicate, and make decisions, and today's businesses increasingly need professionals who understand both business management and technology. The BBA in Management Information Systems is designed to develop exactly that combination: essential business management knowledge with specialised study in information systems, digital transformation, business analytics, decision-support systems, and database management.
+Technology has transformed the way organizations operate, communicate, and make decisions, and today's businesses increasingly need professionals who understand both business management and technology. The BBA in Management Information Systems is designed to develop exactly that combination: essential business management knowledge with specialised study in information systems, digital transformation, business analytics, decision-support systems, and database management.
 
-Students build a strong foundation across management, leadership, finance, business operations, organisational development, and strategic decision-making, while learning how organisations use technology and information to improve efficiency, support management decisions, and create competitive advantage. One clarification worth making: this is a management degree with a technology spine, not a computer science degree. It suits aspiring business analysts, working IT professionals who want the business side, and operations people moving toward systems and analytics roles.
+Students build a strong foundation across management, leadership, finance, business operations, organisational development, and strategic decision-making, while learning how organizations use technology and information to improve efficiency, support management decisions, and create competitive advantage. One clarification worth making: this is a management degree with a technology spine, not a computer science degree. It suits aspiring business analysts, working IT professionals who want the business side, and operations people moving toward systems and analytics roles.
 
 ---
 
-## 4. WHY CHOOSE THIS PROGRAMME (benefits)
+## 4. WHY CHOOSE THIS PROGRAM (benefits)
 
 **01 · Business and technology, combined**
 A strong understanding of business management alongside the knowledge of how information systems support organisational performance.
@@ -91,7 +91,7 @@ Closing line: Rushford Business School, Switzerland, awards the degree. The syst
 ## 5. LEARNING OUTCOMES (learning)
 
 01 Understand fundamental business and management principles
-02 Explain how information systems support organisations and business strategy
+02 Explain how information systems support organizations and business strategy
 03 Understand the role of technology in digital business transformation
 04 Apply business analytics concepts to support organisational decision-making
 05 Understand decision-support systems and their managerial applications
@@ -126,11 +126,11 @@ Process Improvement Executive
 Management Executive
 Junior Business Analyst
 
-Roles come from the programme's official career outcomes. Exact opportunities depend on experience, technical capabilities, location, and employer requirements.
+Roles come from the program's official career outcomes. Exact opportunities depend on experience, technical capabilities, location, and employer requirements.
 
 ---
 
-## 7. PROGRAMME STRUCTURE (structure)
+## 7. PROGRAM STRUCTURE (structure)
 
 ### heading
 Your journey, year by year
@@ -161,16 +161,16 @@ Core business and management foundations first, then advanced business subjects 
 - Business Analytics and Decision Support Systems
 - Database Management and Business Applications
 
-**Programme focus areas**
+**Program focus areas**
 - Business management, information systems, digital transformation, business analytics, decision-support systems, database management, business applications, technology strategy, and data-driven management
 
 ---
 
 ## 8. WHY STUDY THROUGH MAVERICK (support)
 
-Dedicated academic support | Guidance throughout your programme to understand academic requirements and maintain progress
+Dedicated academic support | Guidance throughout your program to understand academic requirements and maintain progress
 Experienced faculty | Academics and professionals who bring practical business and industry perspectives
-Student success team | Ongoing support from enrolment through programme completion
+Student success team | Ongoing support from enrollment through program completion
 Assignment support | Academic guidance on assessment requirements, structure, and expectations
 Career guidance | Support in connecting your education with professional development goals
 Documentation assistance | Administrative help throughout your student journey, including graduation procedures
@@ -197,7 +197,7 @@ Study from the UAE, Saudi Arabia, Qatar, Oman, Bahrain, or Kuwait while continui
 Banking, government, aviation, healthcare, logistics, retail, energy, construction, technology, consulting: MIS knowledge applies across all of them.
 
 **05 · Business-fluent technologists are scarce**
-Organisations keep investing in digitalisation, data, automation, and technology-enabled processes, and the people they struggle to hire are the ones who understand both sides.
+Organizations keep investing in digitalisation, data, automation, and technology-enabled processes, and the people they struggle to hire are the ones who understand both sides.
 
 **06 · Progression stays open**
 Following successful completion, graduates may explore postgraduate pathways such as an MBA or master's degree, subject to the entry requirements of the chosen institution.
@@ -208,9 +208,9 @@ Honest take: if your ambition is software engineering or deep computer science, 
 
 ## 10. FEES & SCHOLARSHIPS (fees)
 
-Programme Fees | Vary with the intake, approved entry route, and scholarship opportunities
+Program Fees | Vary with the intake, approved entry route, and scholarship opportunities
 Scholarships | Opportunities vary by intake and campaign; admissions confirms the latest position
-Payment Options | Registration fee, initial payment, and monthly instalments itemised in the full structure
+Payment Options | Registration fee, initial payment, and monthly installments itemised in the full structure
 Written Breakdown | Complete fee breakdown from the admissions team before any payment
 Offer Validity | Current intake offers confirmed per intake, in writing
 

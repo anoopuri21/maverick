@@ -15,7 +15,7 @@
 BBA in Marketing Online | Rushford Business School Switzerland
 
 ### meta_description
-Study the BBA in Marketing from Rushford Business School, Switzerland. 20 to 24 months online: strategic marketing, consumer behaviour, digital, analytics and international marketing.
+Study the BBA in Marketing from Rushford Business School, Switzerland. 20 to 24 months online: strategic marketing, consumer behavior, digital, analytics and international marketing.
 
 ### url_slug
 /programs/bba-marketing-rushford-business-school
@@ -31,40 +31,40 @@ BBA in Marketing
 Bachelor's
 
 ### short_description
-From consumer insight to market leadership. Rushford Business School's BBA in Marketing builds the strategic, digital, and analytical side of modern marketing, in twenty to twenty-four months of fully online study from the UAE.
+From consumer insight to market leadership. Rushford Business School's BBA in Marketing builds the strategic, digital, and analytical side of modern marketing, in 20 to 24 months of fully online study from the UAE.
 
 ### duration
 20 to 24 months online
 
 ### highlights (Quick Highlights)
-Rushford Business School | 20 to 24 months online | Marketing specialisation | Digital + analytics focus | Industry-focused | Scholarship available
+Rushford Business School | 20 to 24 months online | Marketing specialization | Digital + analytics focus | Industry-focused | Scholarship available
 
 ---
 
-## 2. PROGRAMME AT A GLANCE (snapshot)
+## 2. PROGRAM AT A GLANCE (snapshot)
 
 Degree Award | Bachelor of Business Administration (BBA)
 Awarding University | Rushford Business School, Switzerland
-Specialisation | Marketing
+Specialization | Marketing
 Duration | 20 to 24 months
 Assessments | Assignments, projects and case studies
-Learning Focus | Strategic Marketing, Consumer Behaviour, Digital Marketing, Marketing Analytics & International Marketing
+Learning Focus | Strategic Marketing, Consumer Behavior, Digital Marketing, Marketing Analytics & International Marketing
 
 ### note
 The final duration and entry route depend on your prior qualifications and are confirmed in writing at admission, along with the fee structure for your intake. Written first, paid later. Every time.
 
 ---
 
-## 3. PROGRAMME OVERVIEW (description)
+## 3. PROGRAM OVERVIEW (description)
 
 ### copy
-The BBA in Marketing is for people who want to understand not only how businesses operate, but how brands attract, influence, and keep customers in a digital, global marketplace. The programme develops a working grasp of strategic marketing, consumer behaviour, digital marketing, marketing analytics, and international markets, and teaches you to connect customer insight with business strategy.
+The BBA in Marketing is for people who want to understand not only how businesses operate, but how brands attract, influence, and keep customers in a digital, global marketplace. The program develops a working grasp of strategic marketing, consumer behavior, digital marketing, marketing analytics, and international markets, and teaches you to connect customer insight with business strategy.
 
 You learn to analyse markets, read changing consumer expectations, evaluate marketing performance, and build strategies that support sustainable growth. Two years of business foundations sit underneath it all, so the marketing is backed by real commercial literacy. The degree suits school leavers aiming at brand-side careers and working professionals moving into marketing from adjacent roles, and it runs entirely online with live lectures, dual certified with Maverick Business Academy, London.
 
 ---
 
-## 4. WHY CHOOSE THIS PROGRAMME (benefits)
+## 4. WHY CHOOSE THIS PROGRAM (benefits)
 
 **01 · Understand today's consumer**
 How customers think, evaluate brands, and make purchasing decisions, studied as a discipline rather than guessed at.
@@ -73,7 +73,7 @@ How customers think, evaluate brands, and make purchasing decisions, studied as 
 Marketing strategy taught as the bridge between customer needs, organisational objectives, and long-term growth.
 
 **03 · Digital capability built in**
-How organisations use digital channels, data, and technology to reach, engage, and convert modern customers.
+How organizations use digital channels, data, and technology to reach, engage, and convert modern customers.
 
 **04 · Data-driven by design**
 The ability to interpret marketing information and use analytics to support smarter decisions, which is how marketing hiring reads now.
@@ -84,7 +84,7 @@ How businesses adapt strategy for international markets, cultures, and customer 
 **06 · The full business underneath**
 Two years of business and management foundations before and around the marketing specialization, so the degree carries weight beyond the marketing department.
 
-Closing line: Rushford Business School, Switzerland, awards the degree. The campaigns you run afterwards are the portfolio that matters, and this programme is built to start it early.
+Closing line: Rushford Business School, Switzerland, awards the degree. The campaigns you run afterwards are the portfolio that matters, and this program is built to start it early.
 
 ---
 
@@ -114,11 +114,11 @@ Content Marketing Executive
 CRM Executive
 E-Commerce Executive
 
-Roles come from the programme's official career outcomes across marketing, digital, brand, customer, and commercial functions.
+Roles come from the program's official career outcomes across marketing, digital, brand, customer, and commercial functions.
 
 ---
 
-## 7. PROGRAMME STRUCTURE (structure)
+## 7. PROGRAM STRUCTURE (structure)
 
 ### heading
 Build expertise for the modern marketing world
@@ -150,13 +150,13 @@ Business foundations first, advanced management second, and the marketing specia
 - International Marketing and Cross-Cultural Management
 
 **The marketing advantage**
-- Consumer insight, digital intelligence, and global strategy, the three dimensions the programme connects, so decisions come out customer-focused, commercially relevant, and supported by data
+- Consumer insight, digital intelligence, and global strategy, the three dimensions the program connects, so decisions come out customer-focused, commercially relevant, and supported by data
 
 ---
 
 ## 8. WHY STUDY THROUGH MAVERICK (support)
 
-Academic guidance | Dedicated guidance from experienced faculty throughout the programme
+Academic guidance | Dedicated guidance from experienced faculty throughout the program
 Flexible learning options | Study structures built for students and working professionals alike
 Assignment guidance | Support understanding briefs, expectations, and submission processes
 Career guidance | Direction across marketing, digital, and commercial career paths
@@ -168,7 +168,7 @@ Student success support | Ongoing assistance throughout the academic journey, th
 ## 9. WHY GCC STUDENTS CHOOSE THIS COURSE (gcc_reasons)
 
 ### gcc_heading
-Why GCC professionals choose this programme
+Why GCC professionals choose this program
 
 ### cards
 
@@ -196,14 +196,14 @@ Honest take: marketing platforms change faster than any syllabus can follow, so 
 
 ## 10. FEES & SCHOLARSHIPS (fees)
 
-Programme Fees | Vary with the intake, eligibility, and study arrangements
+Program Fees | Vary with the intake, eligibility, and study arrangements
 Scholarships | Available, subject to eligibility
-Payment Options | Registration fee, initial payment, and instalment options itemised in the breakdown
+Payment Options | Registration fee, initial payment, and installment options itemised in the breakdown
 Written Breakdown | Personalised fee plan from admissions before any payment
 Intake Dates | Confirmed per intake, in writing
 
 ### request block
-Fee structures vary with the intake, eligibility, and study arrangements. Speak with the admissions team for a personalised breakdown covering the registration fee, initial payment, instalment options, and available scholarships. It costs nothing and binds you to nothing.
+Fee structures vary with the intake, eligibility, and study arrangements. Speak with the admissions team for a personalised breakdown covering the registration fee, initial payment, installment options, and available scholarships. It costs nothing and binds you to nothing.
 
 ---
 

@@ -31,21 +31,21 @@ BBA in Finance
 Bachelor's
 
 ### short_description
-From financial insight to strategic growth. Rushford Business School's BBA in Finance builds the analytical, investment, and business-finance capabilities behind stronger decisions, in twenty to twenty-four months of fully online study.
+From financial insight to strategic growth. Rushford Business School's BBA in Finance builds the analytical, investment, and business-finance capabilities behind stronger decisions, in 20 to 24 months of fully online study.
 
 ### duration
 20 to 24 months online
 
 ### highlights (Quick Highlights)
-Rushford Business School | 20 to 24 months online | Finance specialisation | Investment + analytics focus | Industry-focused | Scholarship available
+Rushford Business School | 20 to 24 months online | Finance specialization | Investment + analytics focus | Industry-focused | Scholarship available
 
 ---
 
-## 2. PROGRAMME AT A GLANCE (snapshot)
+## 2. PROGRAM AT A GLANCE (snapshot)
 
 Degree Award | Bachelor of Business Administration (BBA)
 Awarding University | Rushford Business School, Switzerland
-Specialisation | Finance
+Specialization | Finance
 Duration | 20 to 24 months
 Assessments | Assignments, projects and case studies
 Learning Focus | Corporate Finance, Financial Statement Analysis, Investment Management, Portfolio Theory, Risk & SME Finance
@@ -55,22 +55,22 @@ Duration and entry route depend on prior qualifications and are confirmed in wri
 
 ---
 
-## 3. PROGRAMME OVERVIEW (description)
+## 3. PROGRAM OVERVIEW (description)
 
 ### copy
-The BBA in Finance is for learners who want to understand how financial decisions influence business performance, growth, and long-term success. The programme builds a foundation in business operations, leadership, and decision-making, then adds focused expertise in corporate finance, financial statement analysis, investment management, portfolio theory, and finance for SMEs and entrepreneurial ventures.
+The BBA in Finance is for learners who want to understand how financial decisions influence business performance, growth, and long-term success. The program builds a foundation in business operations, leadership, and decision-making, then adds focused expertise in corporate finance, financial statement analysis, investment management, portfolio theory, and finance for SMEs and entrepreneurial ventures.
 
 Students learn to interpret financial information, evaluate business performance, assess investment opportunities, understand risk, and support evidence-based financial decisions across different organisational environments. Two years of business foundations sit underneath the specialization, which is what separates this from a short finance course. It runs entirely online with live lectures, dual certified with Maverick Business Academy, London, and suits school leavers aiming at banking and finance careers as well as working professionals formalising what they already do.
 
 ---
 
-## 4. WHY CHOOSE THIS PROGRAMME (benefits)
+## 4. WHY CHOOSE THIS PROGRAM (benefits)
 
 **01 · Financial decision-making, strengthened**
 The ability to interpret financial information and connect finance with wider business strategy, which is the whole job.
 
 **02 · Corporate finance capability**
-How organisations assess performance, funding needs, and financial priorities to support sustainable growth.
+How organizations assess performance, funding needs, and financial priorities to support sustainable growth.
 
 **03 · Investment knowledge with structure**
 Investment principles, portfolio theory, diversification, and the relationship between risk and return, taught as a framework rather than tips.
@@ -79,7 +79,7 @@ Investment principles, portfolio theory, diversification, and the relationship b
 Confidence in reading financial statements, evaluating performance, and using evidence to support business decisions.
 
 **05 · Finance for growth, beyond scale**
-How sound financial management supports SMEs, entrepreneurial ventures, and expanding organisations, which is most of the Gulf economy.
+How sound financial management supports SMEs, entrepreneurial ventures, and expanding organizations, which is most of the Gulf economy.
 
 **06 · The business foundation stays intact**
 Years one and two cover the management core, so the finance sits on real commercial literacy.
@@ -114,11 +114,11 @@ Commercial Finance Executive
 SME Finance Officer
 Entrepreneur / Business Owner
 
-Roles come from the programme's official career outcomes across finance, banking, investment, analysis, risk, and commercial management.
+Roles come from the program's official career outcomes across finance, banking, investment, analysis, risk, and commercial management.
 
 ---
 
-## 7. PROGRAMME STRUCTURE (structure)
+## 7. PROGRAM STRUCTURE (structure)
 
 ### heading
 Build financial expertise for the modern business world
@@ -150,13 +150,13 @@ A broad business management foundation in years one and two, then the focused fi
 - Financial Management for SMEs & Entrepreneurship: budgeting, cash-flow management, funding decisions, and financial planning for small and medium-sized enterprises
 
 **The finance advantage**
-- Financial analysis, investment intelligence, and strategic growth: the three dimensions the programme connects, so graduates evaluate performance, make informed investment decisions, and contribute to commercially sound growth
+- Financial analysis, investment intelligence, and strategic growth: the three dimensions the program connects, so graduates evaluate performance, make informed investment decisions, and contribute to commercially sound growth
 
 ---
 
 ## 8. WHY STUDY THROUGH MAVERICK (support)
 
-Academic guidance | Dedicated guidance from experienced faculty throughout the programme
+Academic guidance | Dedicated guidance from experienced faculty throughout the program
 Flexible learning options | Study structures built for students and working professionals alike
 Assignment guidance | Support understanding briefs, expectations, and submission processes
 Career guidance | Direction across finance, banking, investment, and risk career paths
@@ -168,7 +168,7 @@ Student success support | Ongoing assistance throughout the academic journey, th
 ## 9. WHY GCC STUDENTS CHOOSE THIS COURSE (gcc_reasons)
 
 ### gcc_heading
-Why GCC professionals choose this programme
+Why GCC professionals choose this program
 
 ### cards
 
@@ -196,14 +196,14 @@ Honest take: a BBA in finance is a management credential with a finance spine. I
 
 ## 10. FEES & SCHOLARSHIPS (fees)
 
-Programme Fees | Vary with the intake, eligibility, and study arrangements
+Program Fees | Vary with the intake, eligibility, and study arrangements
 Scholarships | Available, subject to eligibility
-Payment Options | Registration fee, initial payment, and instalment options itemised in the breakdown
+Payment Options | Registration fee, initial payment, and installment options itemised in the breakdown
 Written Breakdown | Personalised fee plan from admissions before any payment
 Intake Dates | Confirmed per intake, in writing
 
 ### request block
-Fee structures vary with the intake, eligibility, and study arrangements. Speak with the admissions team for a personalised breakdown covering the registration fee, initial payment, instalment options, and available scholarships. It costs nothing and binds you to nothing.
+Fee structures vary with the intake, eligibility, and study arrangements. Speak with the admissions team for a personalised breakdown covering the registration fee, initial payment, installment options, and available scholarships. It costs nothing and binds you to nothing.
 
 ---
 
