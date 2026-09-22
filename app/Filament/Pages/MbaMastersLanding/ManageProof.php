@@ -10,6 +10,7 @@ use App\Settings\MbaMastersCompareSettings;
 use App\Settings\MbaMastersPartnersSettings;
 use App\Settings\MbaMastersTestimonialsSettings;
 use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -95,6 +96,11 @@ class ManageProof extends Page implements HasForms
                     ->collapsible(),
                 Section::make('Testimonials')
                     ->schema([
+                        Toggle::make('testimonials.show_section')
+                            ->label('Show testimonials section')
+                            ->default(true)
+                            ->helperText('Hides the quotes section only. The film above it stays.')
+                            ->columnSpanFull(),
                         TextInput::make('testimonials.label')->label('Section label'),
                         TextInput::make('testimonials.heading')->label('Heading')->columnSpanFull(),
                         Textarea::make('testimonials.intro')->label('Intro')->rows(2)->columnSpanFull()
@@ -178,6 +184,7 @@ class ManageProof extends Page implements HasForms
         $existingTestimonials = app(MbaMastersTestimonialsSettings::class)->toArray();
 
         $testimonials = $data['testimonials'] ?? [];
+        $testimonials['show_section'] = (bool) ($testimonials['show_section'] ?? true);
         $testimonials['items'] = $this->hydrateRepeaterMediaFields($testimonials['items'] ?? [], 'photo');
         foreach ($testimonials['items'] ?? [] as &$item) {
             $item = $this->syncImageIfSelected($item, 'photo');

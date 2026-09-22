@@ -100,6 +100,9 @@ class ManagePrograms extends Page implements HasForms
                         TextInput::make('overview.label')->label('Section label'),
                         TextInput::make('overview.heading')->label('Heading')->columnSpanFull(),
                         Textarea::make('overview.intro')->label('Intro')->rows(2)->columnSpanFull(),
+                        TextInput::make('overview.core_kicker')->label('Circle kicker'),
+                        Textarea::make('overview.core_text')->label('Circle text')->rows(2)->columnSpanFull()
+                            ->helperText('Each line appears on its own line inside the circle.'),
                         TextInput::make('overview.guide_label')->label('Guide link text'),
                         TextInput::make('overview.guide_url')->label('Guide link URL')->columnSpanFull(),
                         TextInput::make('overview.plate_image')->hidden(),

@@ -9,6 +9,7 @@ use App\Settings\MbaMastersCareerSettings;
 use App\Settings\MbaMastersClassSettings;
 use App\Settings\MbaMastersVideoTestimonialsSettings;
 use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -131,6 +132,10 @@ class ManageAudience extends Page implements HasForms
                     ->collapsible(),
                 Section::make('Career progression')
                     ->schema([
+                        Toggle::make('career.show_section')
+                            ->label('Show career section')
+                            ->default(true)
+                            ->columnSpanFull(),
                         TextInput::make('career.label')->label('Section label'),
                         TextInput::make('career.heading')->label('Heading')->columnSpanFull(),
                         Textarea::make('career.intro')->label('Intro')->rows(2)->columnSpanFull(),
@@ -227,6 +232,7 @@ class ManageAudience extends Page implements HasForms
         );
 
         $career = $data['career'] ?? [];
+        $career['show_section'] = (bool) ($career['show_section'] ?? true);
         $career['stories'] = $this->hydrateRepeaterMediaFields($career['stories'] ?? [], 'portrait');
         foreach ($career['stories'] ?? [] as &$story) {
             $story = $this->syncImageIfSelected($story, 'portrait');

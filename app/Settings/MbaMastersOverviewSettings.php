@@ -32,6 +32,10 @@ class MbaMastersOverviewSettings extends Settings
 
     public ?string $guide_url = null;
 
+    public ?string $core_kicker = null;
+
+    public ?string $core_text = null;
+
     public static function group(): string
     {
         return 'mba_masters_overview';

@@ -24,6 +24,8 @@ class MbaMastersTestimonialsSettings extends Settings
 
     public ?string $film_play_label = null;
 
+    public bool $show_section = true;
+
     public static function group(): string
     {
         return 'mba_masters_testimonials';

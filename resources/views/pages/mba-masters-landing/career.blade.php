@@ -6,7 +6,7 @@
   $fallbackPortrait = 'assets/images/homepage/business.jpg';
 @endphp
 
-@if(filled($career->heading) || $stories->isNotEmpty())
+@if(($career->show_section ?? true) && (filled($career->heading) || $stories->isNotEmpty()))
 <section class="mlp-career archive-career" id="mlp-career" aria-labelledby="archive-career-title">
   <div class="archive-career__background" aria-hidden="true">
     <span class="archive-career__wash mlp-wash"></span>

@@ -22,6 +22,8 @@ class MbaMastersCareerSettings extends Settings
 
     public ?string $badge_line = null;
 
+    public bool $show_section = true;
+
     public static function group(): string
     {
         return 'mba_masters_career';

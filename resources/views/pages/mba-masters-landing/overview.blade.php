@@ -58,9 +58,24 @@
         <g class="blueprint-overview__connectors" data-overview-connectors></g>
       </svg>
 
+      @php
+        $coreKicker = filled($overview->core_kicker ?? null) ? $overview->core_kicker : 'Learners';
+        $coreText = filled($overview->core_text ?? null) ? $overview->core_text : "and\nprofessionals";
+        $coreLines = array_values(array_filter(
+            preg_split('/\r\n|\r|\n/', $coreText) ?: [],
+            fn ($line) => trim((string) $line) !== ''
+        ));
+        if ($coreLines === []) {
+            $coreLines = ['and', 'professionals'];
+        }
+      @endphp
       <div class="blueprint-overview__core" data-overview-core aria-hidden="true">
-        <span class="blueprint-overview__core-kicker">Learners</span>
-        <strong>and<br>professionals</strong>
+        <span class="blueprint-overview__core-kicker">{{ $coreKicker }}</span>
+        <strong>
+          @foreach($coreLines as $coreIndex => $coreLine)
+            @if($coreIndex > 0)<br>@endif{{ $coreLine }}
+          @endforeach
+        </strong>
       </div>
 
       @if($items->isNotEmpty())

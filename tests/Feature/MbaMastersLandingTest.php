@@ -3,7 +3,9 @@
 namespace Tests\Feature;
 
 use App\Mail\GenericFormMail;
+use App\Settings\MbaMastersCareerSettings;
 use App\Settings\MbaMastersMbaSettings;
+use App\Settings\MbaMastersTestimonialsSettings;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Mail;
 use Tests\TestCase;
@@ -174,6 +176,26 @@ class MbaMastersLandingTest extends TestCase
         $response->assertSee('archive-closing', false);
         $response->assertSee('archive-closing__form', false);
         $response->assertSee('<h3 class="footer__newsletter-title">Stay Updated</h3>', false);
+    }
+
+    public function test_career_and_testimonials_sections_can_be_hidden(): void
+    {
+        $career = app(MbaMastersCareerSettings::class);
+        $career->show_section = false;
+        $career->save();
+
+        $testimonials = app(MbaMastersTestimonialsSettings::class);
+        $testimonials->show_section = false;
+        $testimonials->save();
+
+        $response = $this->get('/online-mba-masters-uae');
+
+        $response->assertOk();
+        $response->assertDontSee('id="mlp-career"', false);
+        $response->assertDontSee('id="mlp-testimonials"', false);
+        $response->assertSee('id="mlp-video-proof"', false);
+        $response->assertSee('Learners', false);
+        $response->assertSee('professionals', false);
     }
 
     public function test_mba_section_uses_images_configured_in_admin_settings(): void
