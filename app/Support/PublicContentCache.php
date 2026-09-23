@@ -27,7 +27,7 @@ class PublicContentCache
 
     public const EVENTS = 'events.v2';
 
-    public const NAVMENU_PROGRAMS = 'navmenu.programs.v2';
+    public const NAVMENU_PROGRAMS = 'navmenu.programs.v3';
 
     public const BLOGS_TOP_TAGS = 'blogs.top_tags';
 
@@ -88,6 +88,7 @@ class PublicContentCache
             'university-partners',
             'alumni-logos',
             'navmenu.programs',
+            'navmenu.programs.v2',
         ];
     }
 
