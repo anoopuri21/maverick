@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(ProgramSeeder::class);
         $this->call(BscPsychologyProgramSeeder::class);
+        $this->call(RushfordBbaProgramSeeder::class);
         $this->call(AwardSeeder::class);
         $this->call(FacultyInsightSeeder::class);
     }
