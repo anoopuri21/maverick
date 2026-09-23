@@ -186,8 +186,8 @@ class ManageGlobalUniversityPartners extends Page implements HasForms
                         Tab::make('SEO')
                             ->icon('heroicon-o-magnifying-glass')
                             ->schema([
-                                TextInput::make('seo.meta_title')->label('Meta Title')->maxLength(60),
-                                Textarea::make('seo.meta_description')->label('Meta Description')->rows(3)->maxLength(160),
+                                TextInput::make('seo.meta_title')->label('Meta Title'),
+                                Textarea::make('seo.meta_description')->label('Meta Description')->rows(3),
                                 Textarea::make('seo.meta_keywords')->label('Meta Keywords')->rows(2),
                                 Grid::make(2)->schema([
                                     TextInput::make('seo.canonical_url')->label('Canonical URL')->nullable(),

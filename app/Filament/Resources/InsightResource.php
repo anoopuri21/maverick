@@ -116,11 +116,9 @@ class InsightResource extends Resource
             ]),
 
             Section::make('SEO')->schema([
-                TextInput::make('meta_title')
-                    ->maxLength(255),
+                TextInput::make('meta_title'),
 
                 Textarea::make('meta_description')
-                    ->maxLength(500)
                     ->rows(2),
             ]),
         ]);
