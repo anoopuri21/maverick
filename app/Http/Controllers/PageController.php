@@ -149,12 +149,6 @@ class PageController extends Controller
         ];
 
         $cached = PublicContentCache::remember(PublicContentCache::HOMEPAGE, function () {
-            $alumniLogos = PartnerLogo::select('id', 'name', 'logo_url', 'sort_order')
-                ->where('type', 'alumni')
-                ->where('is_active', true)
-                ->orderBy('sort_order')
-                ->get();
-
             $accreditationLogos = PartnerLogo::select('id', 'name', 'logo_url', 'sort_order')
                 ->whereIn('type', ['accreditation', 'recognition'])
                 ->where('is_active', true)
@@ -210,7 +204,6 @@ class PageController extends Controller
 
             // Store plain arrays — database cache corrupts serialized Eloquent models (null bytes).
             return [
-                'alumniLogos' => $alumniLogos->toArray(),
                 'accreditationLogos' => $accreditationLogos->toArray(),
                 'facultyInsights' => $facultyInsights,
                 'events' => $events,
@@ -221,7 +214,6 @@ class PageController extends Controller
         });
 
         $collections = [
-            'alumniLogos' => PublicContentCache::hydrateRows(PartnerLogo::class, $cached['alumniLogos'] ?? []),
             'accreditationLogos' => PublicContentCache::hydrateRows(PartnerLogo::class, $cached['accreditationLogos'] ?? []),
             'facultyInsights' => PublicContentCache::hydrateRows(FacultyInsight::class, $cached['facultyInsights'] ?? []),
             'events' => PublicContentCache::hydrateRows(Event::class, $cached['events'] ?? []),

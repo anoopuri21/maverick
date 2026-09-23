@@ -7,7 +7,7 @@
 @php
     $seo             = $seo ?? null;
     $metaTitle       = $seo->meta_title ?? null;
-    $metaDescription = $seo->meta_description ?? null;
+    $metaDescription = $seo->meta_description ?? 'Maverick Business Academy - Transforming Learners into Global Leaders.';
     $canonical       = $seo->canonical_url ?? null;
     $ogTitle         = $seo->og_title ?? $metaTitle;
     $ogDescription   = $seo->og_description ?? $metaDescription;

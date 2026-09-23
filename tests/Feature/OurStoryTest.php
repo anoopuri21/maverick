@@ -59,7 +59,7 @@ class OurStoryTest extends TestCase
 
         // Section 7 CEO Message
         $response->assertSee('A Message from');
-        $response->assertSee('Our Founder & CEO', false);
+        $response->assertSee('Our Founder &amp; CEO', false);
 
         // Section 8 Gallery empty (should NOT render proof of activity)
         $response->assertDontSee('Proof of Activity');

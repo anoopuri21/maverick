@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\FacultyInsight;
 use App\Support\PublicContentCache;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 /**
  * Faculty Insights content extracted from "uploads/faculty-insights.pdf".
@@ -109,6 +110,7 @@ class FacultyInsightSeeder extends Seeder
             FacultyInsight::updateOrCreate(
                 ['title' => $item['title']],
                 [
+                    'slug' => Str::slug($item['title']),
                     'faculty_role' => $item['faculty_role'] ?? null,
                     'country' => $item['country'] ?? null,
                     'content' => $item['content'] ?? null,

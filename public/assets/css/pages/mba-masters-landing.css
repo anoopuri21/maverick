@@ -6121,6 +6121,34 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
   }
 }
 
+#mlpPage #video-testimonials .testimonials__card-player {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: none;
+}
+
+#mlpPage #video-testimonials .testimonials__card.is-playing .testimonials__card-player {
+  display: block;
+}
+
+#mlpPage #video-testimonials .testimonials__card-player iframe,
+#mlpPage #video-testimonials .testimonials__card-player video {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  object-fit: cover;
+}
+
+#mlpPage #video-testimonials .testimonials__card.is-playing .testimonials__card-poster {
+  display: none;
+}
+
+#mlpPage #video-testimonials .testimonials__card.is-playing,
+#mlpPage #video-testimonials .testimonials__card.is-playing:hover {
+  transform: none;
+}
+
 /* ————————————————————————————————————————————————
    MBA Class of 2025 — Colorful treatment
    (structure unchanged; colors + background only)

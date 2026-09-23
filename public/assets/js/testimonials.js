@@ -9,6 +9,7 @@
   const modal = document.getElementById("videoModal");
   const modalClose = document.getElementById("modalClose");
   const modalPlayer = document.getElementById("modalPlayer");
+  const inlineDesktopQuery = window.matchMedia("(min-width: 1024px)");
 
   // Render all testimonials
   function renderAllTestimonials() {
@@ -19,13 +20,16 @@
       html += `
         <article class="testimonials__card" data-video="${item.video}">
           <div class="testimonials__card-thumb">
-            <img src="${item.thumbnail}" alt="${item.name}" loading="lazy" decoding="async" width="320" height="220" />
-            <span class="testimonials__card-badge">${item.category}</span>
-            <button class="testimonials__play" aria-label="Play video by ${item.name}">
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <path d="M8 5v14l11-7z"/>
-              </svg>
-            </button>
+            <div class="testimonials__card-poster">
+              <img src="${item.thumbnail}" alt="${item.name}" loading="lazy" decoding="async" width="320" height="220" />
+              <span class="testimonials__card-badge">${item.category}</span>
+              <button class="testimonials__play" type="button" aria-label="Play video by ${item.name}">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+              </button>
+            </div>
+            <div class="testimonials__card-player"></div>
           </div>
           <div class="testimonials__card-info">
             <h4 class="testimonials__card-name">${item.name}</h4>
@@ -36,6 +40,27 @@
     });
 
     track.innerHTML = html;
+
+    track.querySelectorAll(".testimonials__card").forEach((card) => {
+      const poster = card.querySelector(".testimonials__card-poster");
+      if (poster) {
+        card.dataset.posterHtml = poster.innerHTML;
+      }
+    });
+  }
+
+  function testimonialsSection() {
+    return document.getElementById("video-testimonials");
+  }
+
+  function shouldPlayInline() {
+    const section = testimonialsSection();
+
+    return !!(
+      section &&
+      section.hasAttribute("data-testimonials-inline-desktop") &&
+      inlineDesktopQuery.matches
+    );
   }
 
   // Build a playable embed URL from any YouTube shape (watch, youtu.be,
@@ -54,6 +79,73 @@
     const separator = videoUrl.includes("?") ? "&" : "?";
 
     return videoUrl + separator + "autoplay=1";
+  }
+
+  function isEmbedUrl(videoUrl) {
+    return /youtube\.com|youtu\.be|vimeo\.com/i.test(videoUrl);
+  }
+
+  function playerMarkup(videoUrl) {
+    if (isEmbedUrl(videoUrl)) {
+      return `<iframe src="${youtubeEmbedSrc(videoUrl)}" title="Student video" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+    }
+
+    return `<video src="${videoUrl}" controls autoplay playsinline></video>`;
+  }
+
+  function restorePoster(card) {
+    const thumb = card.querySelector(".testimonials__card-thumb");
+    if (!thumb || card.querySelector(".testimonials__card-poster") || !card.dataset.posterHtml) {
+      return;
+    }
+
+    const poster = document.createElement("div");
+    poster.className = "testimonials__card-poster";
+    poster.innerHTML = card.dataset.posterHtml;
+    thumb.prepend(poster);
+  }
+
+  function resetInlineCard(card) {
+    if (!card) return;
+
+    const player = card.querySelector(".testimonials__card-player");
+    const video = player ? player.querySelector("video") : null;
+    if (video) {
+      video.pause();
+      video.removeAttribute("src");
+      video.load();
+    }
+    if (player) {
+      player.innerHTML = "";
+    }
+
+    restorePoster(card);
+    card.classList.remove("is-playing");
+  }
+
+  function stopAllInlineExcept(activeCard) {
+    document.querySelectorAll(".testimonials__card.is-playing").forEach((card) => {
+      if (card !== activeCard) {
+        resetInlineCard(card);
+      }
+    });
+  }
+
+  function playInlineCard(card, videoUrl) {
+    const player = card.querySelector(".testimonials__card-player");
+    if (!player) {
+      openModal(videoUrl);
+      return;
+    }
+
+    stopAllInlineExcept(card);
+    player.innerHTML = playerMarkup(videoUrl);
+    card.classList.add("is-playing");
+
+    const video = player.querySelector("video");
+    if (video) {
+      video.addEventListener("ended", () => resetInlineCard(card));
+    }
   }
 
   // Open modal with video
@@ -93,18 +185,27 @@
   }
 
   // Setup card clicks (event delegation)
+  // Capture on document so a drag-scroll row cannot cancel the click
+  // before the card starts playing.
   function setupCardClicks() {
     if (!track) return;
 
-    track.addEventListener("click", (e) => {
+    document.addEventListener("click", (e) => {
+      if (!track.contains(e.target)) return;
+
       const card = e.target.closest(".testimonials__card");
-      if (card) {
-        const videoUrl = card.getAttribute("data-video");
-        if (videoUrl) {
-          openModal(videoUrl);
-        }
+      if (!card || card.classList.contains("is-playing")) return;
+
+      const videoUrl = card.getAttribute("data-video");
+      if (!videoUrl) return;
+
+      if (shouldPlayInline()) {
+        playInlineCard(card, videoUrl);
+        return;
       }
-    });
+
+      openModal(videoUrl);
+    }, true);
   }
 
   // Setup modal close events

@@ -46,6 +46,10 @@ class UniversityPartnerCampusImageTest extends TestCase
             'university_partner_id' => $partner->id,
             'title' => 'Example MBA',
             'slug' => 'example-mba',
+            'description' => 'An example MBA programme overview.',
+            'highlights' => [
+                ['label' => 'Duration', 'value' => '1 Year'],
+            ],
             'is_active' => true,
         ]);
 
