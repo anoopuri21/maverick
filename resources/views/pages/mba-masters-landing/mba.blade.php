@@ -3,7 +3,7 @@
   $toSpecialization = static function ($program): ?array {
     $title = trim((string) ($program['title'] ?? ''));
 
-    if ($title === '' || strcasecmp($title, 'Global MBA') === 0 || strcasecmp($title, 'Master of Business Administration (MBA)') === 0) {
+    if ($title === '') {
       return null;
     }
 

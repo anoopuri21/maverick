@@ -6337,6 +6337,10 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.mlp-masters__split .mlp-masters__ledger > .mlp-masters__item:first-child {
+  grid-column: 1 / -1;
+}
+
 /* ————— Trending specialisations panel ————— */
 .mlp-trending {
   min-width: 0;

@@ -53,7 +53,8 @@ class MbaMastersLandingTest extends TestCase
         $response->assertSee('MBA in International Business, University of the West of Scotland (UK)</button>', false);
         $response->assertDontSee('Executive MBA, Girne American University (North Cyprus)', false);
         $this->assertSame(3, substr_count($response->getContent(), 'data-mlp-mba-tab='));
-        $response->assertSee('mlp-mba__uni-count">13 specializations', false);
+        $response->assertSee('mlp-mba__uni-count">14 specializations', false);
+        $response->assertSee('mlp-mba__program-title">Master of Business Administration (MBA)', false);
         $response->assertSee('mlp-mba__program-title">Artificial Intelligence', false);
         $response->assertSee('mlp-mba__program-title">Educational Leadership', false);
         $response->assertSee('mlp-mba__program-title">International Business<', false);
@@ -202,6 +203,31 @@ class MbaMastersLandingTest extends TestCase
         $response->assertSee('id="mlp-video-proof"', false);
         $response->assertSee('Learners', false);
         $response->assertSee('professionals', false);
+    }
+
+    public function test_admin_mba_specializations_including_global_mba_are_visible(): void
+    {
+        $settings = app(MbaMastersMbaSettings::class);
+        $tabs = $settings->tabs;
+        $tabs[] = [
+            'key' => 'uca-global-mba',
+            'label' => 'Global MBA, University for the Creative Arts (UK)',
+            'universities' => [[
+                'name' => 'University for the Creative Arts (UCA), UK',
+                'programs' => [
+                    ['title' => 'Global MBA'],
+                ],
+            ]],
+        ];
+        $settings->tabs = $tabs;
+        $settings->save();
+
+        $response = $this->get('/online-mba-masters-uae');
+
+        $response->assertOk();
+        $response->assertSee('Global MBA, University for the Creative Arts (UK)</button>', false);
+        $response->assertSee('mlp-mba__program-title">Global MBA', false);
+        $this->assertSame(4, substr_count($response->getContent(), 'data-mlp-mba-tab='));
     }
 
     public function test_mba_section_uses_images_configured_in_admin_settings(): void
