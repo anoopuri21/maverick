@@ -5238,14 +5238,16 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
 }
 
 .mlp-page--polished .luxury-testimonial__quote {
-  max-width: 40ch;
+  max-width: 100%;
   margin: 0;
-  font-family: var(--font-body) !important;
-  font-size: var(--fs-body) !important;
-  font-weight: var(--fw-regular) !important;
-  line-height: 1.7 !important;
-  letter-spacing: normal !important;
+  /* font-family: var(--font-body) !important; */
+  /* font-size: var(--fs-body) !important; */
+  /* font-weight: var(--fw-regular) !important; */
+  /* line-height: 1.5 !important; */
+  /* letter-spacing: normal !important; */
   color: var(--mlp-navy);
+  max-height: 210px;
+  overflow: auto;
 }
 
 .mlp-page--polished .luxury-testimonial__author {

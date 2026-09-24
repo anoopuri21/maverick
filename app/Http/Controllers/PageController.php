@@ -479,6 +479,7 @@ class PageController extends Controller
             'testimonialsJson' => $testimonialsJson,
             'partners' => $partners,
             'testimonials' => $testimonials,
+            'storyTestimonials' => OurStoryTestimonial::query()->where('is_active', true)->orderBy('sort_order')->get(),
             'compare' => $compare,
             'faq' => $faq,
             'final' => $final,
