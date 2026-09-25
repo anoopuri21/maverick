@@ -15,6 +15,12 @@ return Application::configure(basePath: dirname(__DIR__))
         // Trust all proxies (required for LiteSpeed/CloudFlare/Shared Hosting)
         $middleware->trustProxies(at: '*');
 
+        // Legacy WordPress URLs (old mbalondon.org.uk site) -> 301 to new pages.
+        // Disable with LEGACY_REDIRECTS_ENABLED=false in .env if it ever misfires.
+        $middleware->web(append: [
+            \App\Http\Middleware\LegacyRedirects::class,
+        ]);
+
         // Redirect unauthenticated users to Filament admin login (not default 'login' route)
         $middleware->redirectGuestsTo(function (Request $request) {
             if ($request->is('admin') || $request->is('admin/*')) {

@@ -3,6 +3,10 @@
 Prioritized checklist for cPanel / LiteSpeed / limited-resource hosts (e.g. `demo.vsinfosys.in`).
 No root SSH is required. Use the account PHP binary (cPanel “ea-php”), not system `php`.
 
+> **Going live on `www.mbalondon.org.uk`?** Follow **[GO_LIVE_PLAN.md](GO_LIVE_PLAN.md)** —
+> cPanel add-on domain, DNS A-record switch, AutoSSL, `APP_URL`, WordPress 301 redirects,
+> sitemap submission and rollback. This file covers the day-to-day deploy/hardening.
+
 ## Exact deploy runbook (no root)
 
 PHP 8.3 path may differ; check **cPanel → Select PHP Version** or `ls /opt/cpanel/ea-php*/root/usr/bin/php`.

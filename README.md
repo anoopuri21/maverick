@@ -61,6 +61,9 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 See **[docs/SHARED_HOSTING.md](docs/SHARED_HOSTING.md)** for the full hardening checklist (config/route/view cache, APP_KEY rules, Cloudinary media, queues, OPCache).
 
+Moving the demo site to the live domain (`www.mbalondon.org.uk`)? Follow the step-by-step runbook in
+**[docs/GO_LIVE_PLAN.md](docs/GO_LIVE_PLAN.md)** (DNS, cPanel add-on domain, SSL, `.env`, WordPress 301 redirects, sitemap, rollback).
+
 Quick deploy (document root must be `public/`):
 
 ```bash

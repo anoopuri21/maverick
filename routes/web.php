@@ -61,4 +61,8 @@ Route::get('/student-success', [\App\Http\Controllers\PageController::class, 'st
 Route::redirect('/faculty-voice', '/#faculty-insights', 301);
 Route::redirect('/faculty-voice/{slug}', '/#faculty-insights', 301);
 
+// XML sitemap for search engines (/sitemap.xml).
+// Must stay above the catch-all /{slug} route below.
+Route::get('/sitemap.xml', [\App\Http\Controllers\SitemapController::class, 'index'])->name('sitemap');
+
 Route::get('/{slug}', [\App\Http\Controllers\InsightController::class, 'show'])->name('insights.show');
