@@ -1,0 +1,75 @@
+/* =========================================================
+   MBA/Master's Landing — page chrome (single-page header + slim footer)
+   Loaded only on route `mba-masters-landing`.
+   Reuses the global .navbar / .footer design system untouched;
+   only the minimum modifiers needed for the single-page variant.
+   ========================================================= */
+
+/* =========================================================
+   1. HEADER — single-page anchor bar
+   Base look/spacing comes from .navbar / .inner-navbar (main.css).
+   Only narrow-desktop tightening so 6 anchors + CTA never overflow
+   (between the 1024px hamburger breakpoint and 1200px).
+   ========================================================= */
+
+@media (max-width: 1200px) {
+  .mlp-navbar .navbar__menu {
+    gap: 4px;
+  }
+
+  .mlp-navbar .navbar__link {
+    padding: 8px 12px;
+  }
+
+  .mlp-navbar .navbar__link::after {
+    left: 12px;
+    right: 12px;
+  }
+}
+
+/* Mobile overlay: Apply Now row (base rows stay .navbar__mobile-link) */
+.mlp-navbar .navbar__mobile-item--cta {
+  border-bottom: none;
+  margin-top: 1.5rem;
+}
+
+.mlp-navbar .navbar__mobile-link--cta {
+  justify-content: center;
+  background: var(--color-mba-red);
+  color: #ffffff;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 18px 0;
+}
+
+.mlp-navbar .navbar__mobile-link--cta:hover {
+  color: #ffffff;
+}
+
+/* =========================================================
+   2. FOOTER — slim two-column variant (no newsletter, no programmes)
+   All typography/colour stays .footer (main.css); only the grid
+   changes because two columns remain instead of three.
+   ========================================================= */
+
+.footer--mlp .footer__main {
+  grid-template-columns: minmax(0, 0.6fr) minmax(0, 1.4fr);
+  gap: clamp(3rem, 6vw, 6rem);
+}
+
+@media (max-width: 1024px) {
+  .footer--mlp .footer__main {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+/* Keep the bottom legal row clear of the mobile sticky action bar */
+@media (max-width: 900px) {
+  .footer--mlp {
+    padding-bottom: 4.75rem;
+  }
+}

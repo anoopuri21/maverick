@@ -62,6 +62,7 @@
 
 @push('styles')
 <link rel="stylesheet" href="{{ cached_asset('assets/css/pages/mba-masters-landing.css') }}" />
+<link rel="stylesheet" href="{{ cached_asset('assets/css/pages/mlp-chrome.css') }}" />
 @endpush
 
 @section('content')
@@ -93,8 +94,8 @@
   $wa = preg_replace('/\D+/', '', $site->whatsapp_number ?? '');
 @endphp
 <div class="mlp-sticky" id="mlpSticky" aria-label="Quick actions">
-  @if(filled($wa))
-  <a class="mlp-sticky__btn mlp-sticky__btn--wa" href="https://wa.me/{{ $wa }}" target="_blank" rel="noopener" aria-label="WhatsApp admissions">WhatsApp</a>
+  @if(filled($site->whatsapp_number))
+  <a class="mlp-sticky__btn mlp-sticky__btn--wa" href="https://wa.me/{{ $site->whatsapp_number }}" target="_blank" rel="noopener" aria-label="WhatsApp admissions">WhatsApp</a>
   @endif
   <a class="mlp-sticky__btn mlp-sticky__btn--apply" href="#mlp-enquire">Apply Now</a>
 </div>
@@ -102,4 +103,5 @@
 
 @push('scripts')
 <script src="{{ cached_asset('assets/js/pages/mba-masters-landing.js') }}" defer></script>
+<script src="{{ cached_asset('assets/js/pages/mlp-chrome.js') }}" defer></script>
 @endpush
