@@ -50,7 +50,11 @@
     <div id="cursor-outline" data-lenis-prevent></div>
 
     {{-- Navigation --}}
-    @include('partials.navbar')
+    @if(request()->routeIs('mba-masters-landing'))
+        @include('partials.mlp-navbar')
+    @else
+        @include('partials.navbar')
+    @endif
 
     {{-- Main Content --}}
     <main>
@@ -58,7 +62,11 @@
     </main>
 
     {{-- Footer --}}
-    @include('partials.footer')
+    @if(request()->routeIs('mba-masters-landing'))
+        @include('partials.mlp-footer')
+    @else
+        @include('partials.footer')
+    @endif
 
     {{-- Floating Buttons --}}
     <button id="scroll-to-top" class="floating-action floating-action--scroll" type="button" aria-label="Scroll to top">
