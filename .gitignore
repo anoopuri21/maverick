@@ -56,6 +56,3 @@ __pycache__/
 # css-equivalence harness (transient artifacts)
 scripts/css-equivalence/node_modules/
 scripts/css-equivalence/cand-tables/
-
-# MLP chrome design previews (generated artifacts)
-mlp-preview/

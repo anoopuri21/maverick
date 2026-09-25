@@ -1,37 +1,33 @@
 /* =========================================================
    MBA/Master's Landing — page chrome (single-page header + slim footer)
    Loaded only on route `mba-masters-landing`.
-   Reuses the global .navbar / .footer design; only modifiers here.
+   Reuses the global .navbar / .footer design system untouched;
+   only the minimum modifiers needed for the single-page variant.
    ========================================================= */
 
 /* =========================================================
-   1. HEADER — single-page anchor bar (always solid, inner-navbar look)
+   1. HEADER — single-page anchor bar
+   Base look/spacing comes from .navbar / .inner-navbar (main.css).
+   Only narrow-desktop tightening so 6 anchors + CTA never overflow
+   (between the 1024px hamburger breakpoint and 1200px).
    ========================================================= */
 
-/* Slightly tighter rhythm: anchors are short, no dropdown arrows */
-.mlp-navbar .navbar__menu {
-  gap: 4px;
+@media (max-width: 1200px) {
+  .mlp-navbar .navbar__menu {
+    gap: 4px;
+  }
+
+  .mlp-navbar .navbar__link {
+    padding: 8px 12px;
+  }
+
+  .mlp-navbar .navbar__link::after {
+    left: 12px;
+    right: 12px;
+  }
 }
 
-.mlp-navbar .navbar__link {
-  padding: 8px 14px;
-}
-
-.mlp-navbar .navbar__link::after {
-  left: 14px;
-  right: 14px;
-}
-
-/* Scroll-spy active section (set by mlp-chrome.js) — same underline language */
-.mlp-navbar .navbar__link.is-current {
-  color: var(--color-black);
-}
-
-.mlp-navbar .navbar__link.is-current::after {
-  transform: scaleX(1);
-}
-
-/* Mobile overlay: CTA row */
+/* Mobile overlay: Apply Now row (base rows stay .navbar__mobile-link) */
 .mlp-navbar .navbar__mobile-item--cta {
   border-bottom: none;
   margin-top: 1.5rem;
@@ -55,24 +51,13 @@
 
 /* =========================================================
    2. FOOTER — slim two-column variant (no newsletter, no programmes)
+   All typography/colour stays .footer (main.css); only the grid
+   changes because two columns remain instead of three.
    ========================================================= */
 
 .footer--mlp .footer__main {
   grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
   gap: clamp(3rem, 6vw, 6rem);
-}
-
-.footer--mlp .footer__col--brand {
-  gap: 2rem;
-}
-
-.footer--mlp .footer__about {
-  max-width: 420px;
-}
-
-/* Contact block keeps its own 2-column locale grid; give it room */
-.footer--mlp .footer__contact {
-  margin-bottom: 0;
 }
 
 @media (max-width: 1024px) {

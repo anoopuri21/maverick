@@ -77,8 +77,24 @@ Grid becomes 2 columns via modifier only:
 
 | File | Type | Purpose |
 |---|---|---|
-| `public/assets/css/pages/mlp-chrome.css` | new | `.mlp-navbar` + `.footer--mlp` modifiers, mobile sticky-bar safe padding. Loaded via `@push('styles')` on the landing page (same pattern as `mba-masters-landing.css`). |
-| `public/assets/js/pages/mlp-chrome.js` | new | Scroll-spy: marks `.is-current` on the header anchor of the section in view (IntersectionObserver, reduced-motion safe, ~70 lines). Loaded via `@push('scripts')` on the landing page. |
+| `public/assets/css/pages/mlp-chrome.css` | new | Minimum modifiers only: narrow-desktop (≤1200px) anchor tightening so 6 links + CTA never overflow, mobile overlay CTA row, 2-col footer grid + ≤1024 stack + ≤900 sticky-bar clearance. Everything else inherits `.navbar` / `.footer` from `main.css` unchanged. Loaded via `@push('styles')` on the landing page (same pattern as `mba-masters-landing.css`). |
+| `public/assets/js/pages/mlp-chrome.js` | new | Scroll-spy: marks `.is-current` on the header anchor of the section in view (rAF-throttled scroll, ~70 lines). Loaded via `@push('scripts')` on the landing page. |
+
+### Design-system compliance (verified)
+
+- Header markup uses only existing `.navbar*` classes (`inner-navbar` solid bar, `.navbar__menu/__link/__cta/__hamburger/__mobile*`); underline + hover + mobile overlay behaviour come from `main.css`/`responsive.css` untouched.
+- Footer markup uses only existing `.footer*` classes; the single modifier is the 2-column `.footer__main` grid (typography, hairlines, icons, social boxes, bottom row all base).
+- No changes to `partials/navbar.blade.php`, `partials/footer.blade.php`, `main.css`, `responsive.css`, `navigation.js` or any other page (see §6 diff list).
+
+### Responsive behaviour (verified via mockups, shots 5–8)
+
+| Breakpoint | Header | Footer |
+|---|---|---|
+| >1200px | base `.navbar` spacing | 2 columns (brand / contact) |
+| 1025–1200px | tightened anchor spacing (`mlp-chrome.css`) | 2 columns |
+| ≤1024px | hamburger + overlay (base) | 1 column stacked |
+| ≤768px | logo + hamburger bar (base) | contact locales stacked, centred bottom row (base) |
+| ≤900px | — | extra bottom padding clears `.mlp-sticky` bar |
 
 ## 6. Files touched (surgical)
 
@@ -110,7 +126,11 @@ logo assets (`render.cjs` + `build-board.sh` reproduce them):
 2. `shot-02-header-scrolled.png` — scrolled bar with active-section underline
 3. `shot-03-mobile-menu.png` — mobile overlay with section links
 4. `shot-04-footer-new.png` — new slim footer (no newsletter, no programmes)
-5. `preview-board.png` — labelled composite of all of the above
+5. `shot-05-header-1100.png` — narrow-desktop header (tightened spacing, no overflow)
+6. `shot-06-header-mobile-bar.png` — 390px top bar (logo + hamburger)
+7. `shot-07-footer-tablet.png` — 768px stacked footer
+8. `shot-08-footer-mobile.png` — 390px stacked footer
+9. `preview-board.png` — labelled composite of all of the above
 
 **Approved in review:** 6-link anchor set (Overview · Why Maverick · MBA · Master's · Fees · FAQ)
 + Apply Now CTA, and the always-solid white header bar.
