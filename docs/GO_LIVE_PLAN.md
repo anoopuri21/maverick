@@ -365,6 +365,37 @@ port 22/21 check, agar access mil gaya to files + DB backup; nahi mila to naye s
 
 ---
 
+## Appendix — Domain WHOIS (verified 25 Sep 2026, Nominet RDAP + whois.com)
+
+| Field | Value |
+|---|---|
+| Domain | `mbalondon.org.uk` |
+| Registry | **Nominet** (.uk registry) |
+| Registered on | **26 Jun 2019** |
+| **Expires on** | **26 Jun 2028** (≈ 2 saal 9 mahine baaki) |
+| Last updated / renewed | 24 Jun 2025 (3 saal ke liye renew hua) |
+| Status | **active** ✅ |
+| **Registrar** | **PDR Ltd. d/b/a PublicDomainRegistry.com** (IANA ID `PDR-IN`) — Newfold Digital group |
+| Registrant | 🔒 **Redacted for privacy** (Nominet policy) — WHOIS se owner ka naam nahi mila |
+| Nameservers | `1234.earth/mars/mercury/venus.orderbox-dns.com` (**OrderBox** = PDR ka DNS platform) |
+
+**Iska matlab (go-live ke liye):**
+
+| Point | Action |
+|---|---|
+| Domain 2028 tak valid hai | ✅ Koi renewal/payment ki tension nahi. June 2028 se pehle renew karwana hoga |
+| Registrar = PDR / PublicDomainRegistry | Ye **reseller registrar** hai — BigRock, ResellerClub, HostGator India, Bluehost India isi ke reseller hain |
+| DNS `orderbox-dns.com` par hai | DNS **client ke domain reseller panel** (BigRock/ResellerClub type) se manage hota hai — **WorldStream (purana web host) se nahi** |
+| Registrant redacted | Ownership WHOIS se confirm nahi ho sakti — client ko panel access dena hi padega |
+| Renewal month = June | Har saal June mein renewal aata hai. WHOIS email active rakhna |
+
+> **Client se poochhne ke liye:** "Domain kahan se register/manage hota hai — BigRock / ResellerClub /
+> koi aur? Humein sirf 2 A record change karne hain, aap khud karwa dijiye ya panel ka access de dijiye."
+
+Verify khud bhi kar sakte ho: https://www.nominet.uk/whois/lookup/?query=mbalondon.org.uk
+
+---
+
 ## Appendix — Is repo mein maine kya add kiya
 
 | File | Kya karta hai |
