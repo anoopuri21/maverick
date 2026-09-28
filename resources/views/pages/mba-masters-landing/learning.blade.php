@@ -42,9 +42,9 @@
         <span class="archive-learning__stack-layer archive-learning__stack-layer--front">
           <img src="{{ $plate }}" alt="" width="720" height="900" loading="lazy" decoding="async">
         </span>
-        @if(filled($learning->plate_caption))
+        <!-- @if(filled($learning->plate_caption))
         <figcaption class="archive-learning__caption">{{ $learning->plate_caption }}</figcaption>
-        @endif
+        @endif -->
       </figure>
 
       @if($points->isNotEmpty())
