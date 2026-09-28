@@ -103,5 +103,6 @@
 
 @push('scripts')
 <script src="{{ cached_asset('assets/js/pages/mba-masters-landing.js') }}" defer></script>
+<script src="{{ cached_asset('assets/js/pages/mba-masters-enquiry-validation.js') }}" defer></script>
 <script src="{{ cached_asset('assets/js/pages/mlp-chrome.js') }}" defer></script>
 @endpush

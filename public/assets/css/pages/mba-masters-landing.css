@@ -369,6 +369,39 @@
 
 /* Hero ghost/text on dark photo plate */
 
+/* ----- Client-side field validation ----- */
+.mlp-field--error input,
+.mlp-field--error select {
+  border-bottom-color: var(--mlp-red);
+}
+
+.mlp-field__error {
+  margin: 0;
+  font-family: var(--mlp-font-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--mlp-red);
+}
+
+/* Dark enquiry panel (#mlp-enquire) — brighter tone for contrast */
+#mlp-enquire .mlp-field--error input,
+#mlp-enquire .mlp-field--error select {
+  border-bottom-color: #ff9fa8;
+}
+
+#mlp-enquire .mlp-field__error {
+  margin-top: 6px;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 400;
+  color: #ff9fa8;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
 /* Below-fold sections — defer layout/paint until near viewport */
 #mlp-overview, 
 #mlp-why, 
