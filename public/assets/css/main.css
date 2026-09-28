@@ -6245,6 +6245,49 @@ body.modal-open {
   transform: translateX(4px);
 }
 
+/* Inline thank-you note shown after a successful subscribe */
+.footer__newsletter-thanks {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  margin: 0.5rem 0 0;
+  max-width: 380px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+  animation: footer-thanks-in 0.4s ease both;
+}
+
+.footer__newsletter-thanks-icon {
+  flex-shrink: 0;
+  display: inline-flex;
+  color: #e8d5b0;
+}
+
+.footer__newsletter-thanks-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+@keyframes footer-thanks-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footer__newsletter-thanks {
+    animation: none;
+  }
+}
+
 /* ----- Column Headings ----- */
 .footer__heading {
   font-family: "PP Neue Montreal", sans-serif;

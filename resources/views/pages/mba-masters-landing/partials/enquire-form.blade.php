@@ -2,10 +2,6 @@
   $formId = 'mlp-enquiry-'.\Illuminate\Support\Str::lower((string) \Illuminate\Support\Str::uuid());
 @endphp
 
-@if(session('success'))
-<p class="mlp-form__success" role="status">{{ session('success') }}</p>
-@endif
-
 @if(session('error'))
 <p class="mlp-form__errors" role="alert">{{ session('error') }}</p>
 @endif
@@ -18,7 +14,7 @@
 </ul>
 @endif
 
-<form class="mlp-form__fields" id="{{ $formId }}" action="{{ route('mba-masters-landing.enquire') }}" method="POST" novalidate>
+<form class="mlp-form__fields" id="{{ $formId }}" action="{{ route('mba-masters-landing.enquire') }}" method="POST" data-mlp-enquiry novalidate>
   @csrf
   <input type="text" name="website" value="" tabindex="-1" autocomplete="off" class="mlp-form__honeypot" aria-hidden="true">
 

@@ -26,6 +26,9 @@ Route::post('/online-mba-masters-uae/enquire', [\App\Http\Controllers\MbaMasters
     ->middleware('throttle:5,1')
     ->name('mba-masters-landing.enquire');
 
+// Thank You (post-form-submission landing)
+Route::get('/thank-you', [PageController::class, 'thankYou'])->name('thank-you');
+
 // Contact
 Route::get('/contact', [\App\Http\Controllers\ContactController::class, 'index'])->name('contact');
 Route::post('/contact', [\App\Http\Controllers\ContactController::class, 'submit'])

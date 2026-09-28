@@ -249,6 +249,28 @@ class MbaMastersLandingTest extends TestCase
         $response->assertSee('src="https://cdn.example.com/admin-campus.jpg"', false);
     }
 
+    public function test_enquiry_form_has_client_side_required_validation(): void
+    {
+        $response = $this->get('/online-mba-masters-uae');
+
+        $response->assertOk();
+
+        // Form is JS-hookable and the validation script is enqueued
+        $response->assertSee('data-mlp-enquiry', false);
+        $response->assertSee('mba-masters-enquiry-validation.js', false);
+
+        // Required attributes present on name / email / phone (both form instances)
+        $content = $response->getContent();
+        $this->assertSame(
+            2,
+            substr_count($content, 'type="text" name="name"'),
+            'Expected two enquiry forms (hero + final) on the page'
+        );
+        $this->assertMatchesRegularExpression('/name="name"[^>]*required/', $content);
+        $this->assertMatchesRegularExpression('/name="email"[^>]*required/', $content);
+        $this->assertMatchesRegularExpression('/name="phone"[^>]*required/', $content);
+    }
+
     public function test_enquiry_validation_errors_redirect_with_errors(): void
     {
         $response = $this->from('/online-mba-masters-uae')->post('/online-mba-masters-uae/enquire', [
@@ -295,8 +317,7 @@ class MbaMastersLandingTest extends TestCase
             'website' => '',
         ]);
 
-        $response->assertRedirect('/online-mba-masters-uae');
-        $response->assertSessionHas('success');
+        $response->assertRedirectToRoute('thank-you', ['return' => 'http://localhost/online-mba-masters-uae']);
 
         Mail::assertSent(GenericFormMail::class, function (GenericFormMail $mail) {
             $values = collect($mail->rows)->pluck('value', 'label');
@@ -321,7 +342,7 @@ class MbaMastersLandingTest extends TestCase
             'website' => 'http://spam.test',
         ]);
 
-        $response->assertRedirect('/online-mba-masters-uae');
+        $response->assertRedirectToRoute('thank-you', ['return' => 'http://localhost/online-mba-masters-uae']);
         Mail::assertNothingSent();
     }
 

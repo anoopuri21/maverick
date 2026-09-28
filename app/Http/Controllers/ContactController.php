@@ -33,9 +33,9 @@ class ContactController extends Controller
 
         // Honeypot anti-spam check:
         // Visually-hidden field 'website' should remain empty.
-        // If filled, silently drop/redirect as if successful.
+        // If filled, silently drop and behave as if the submission succeeded.
         if (!empty($validated['website'])) {
-            return back()->with('success', 'Thank you! We\'ll get back to you within 24 hours.');
+            return redirect()->route('thank-you', ['return' => url()->previous()]);
         }
 
         app(FormMailer::class)->send([
@@ -50,9 +50,6 @@ class ContactController extends Controller
 
         app(ZapierWebhookDispatcher::class)->dispatch(ZapierEvents::CONTACT_SUBMITTED, $validated);
 
-        $contactPage = safe_settings(ContactPageSettings::class);
-        $successMessage = $contactPage->success_message ?? 'Thank you! We\'ll get back to you within 24 hours.';
-
-        return back()->with('success', $successMessage);
+        return redirect()->route('thank-you', ['return' => url()->previous()]);
     }
 }

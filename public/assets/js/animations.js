@@ -1420,7 +1420,7 @@
         );
         if (!input || !input.value || !btn) return;
         const originalText = btn.textContent;
-        let resetDelay = 2500;
+        const resetDelay = 2500;
         try {
           const res = await fetch(newsletterForm.action, {
             method: "POST",
@@ -1438,9 +1438,24 @@
           }
 
           if (res.ok && data.ok) {
-            btn.textContent = data.message || "Subscribed ✓";
-            input.value = "";
-            resetDelay = 5000;
+            // Swap the form for an inline thank-you note that stays visible.
+            const note = document.createElement("p");
+            note.className = "footer__newsletter-thanks";
+            note.setAttribute("role", "status");
+
+            const icon = document.createElement("span");
+            icon.className = "footer__newsletter-thanks-icon";
+            icon.setAttribute("aria-hidden", "true");
+            icon.innerHTML =
+              '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>';
+
+            const text = document.createElement("span");
+            text.textContent =
+              data.message || "Thank you for subscribing.";
+
+            note.append(icon, text);
+            newsletterForm.replaceWith(note);
+            return;
           } else if (res.status === 422) {
             btn.textContent = data.errors?.email?.[0] || "Invalid email";
           } else if (res.status === 429) {
