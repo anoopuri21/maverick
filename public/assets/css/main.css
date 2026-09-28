@@ -6831,10 +6831,9 @@ body.modal-open {
   }
 
   .accred-card {
-    width: 140px;
-    height: 140px;
-    padding: 1.25rem;
-    border-radius: 16px;
+    width: 200px;
+    height: 120px;
+    padding: 1rem;
   }
 
   .accred-card__logo-wrapper {
