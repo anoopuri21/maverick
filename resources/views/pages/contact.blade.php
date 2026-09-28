@@ -144,19 +144,6 @@
                 <h2 class="contact-form__title">{{ $contactPage->form_title ?? 'Send Us a Message' }}</h2>
                 <p class="contact-form__subtitle">{{ $contactPage->form_subtitle ?? 'Fill in the fields below, and our program directors will respond to you within 24 hours.' }}</p>
 
-                {{-- Stylish custom alert for success message --}}
-                @if(session('success'))
-                    <div class="contact-alert contact-alert--success" role="alert">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="contact-alert__icon" aria-hidden="true">
-                            <circle cx="12" cy="12" r="10"/>
-                            <path d="m9 12 2 2 4-4"/>
-                        </svg>
-                        <div class="contact-alert__text">
-                            {{ session('success') ?: ($contactPage->success_message ?? 'Thank you for your message. Our team will respond within 24 hours.') }}
-                        </div>
-                    </div>
-                @endif
-
                 <form action="{{ route('contact.submit') }}" method="POST" class="contact-form">
                     @csrf
 

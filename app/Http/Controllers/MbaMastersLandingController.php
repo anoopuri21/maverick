@@ -12,7 +12,8 @@ class MbaMastersLandingController extends Controller
         $data = $request->validated();
 
         if (filled($data['website'] ?? null)) {
-            return back()->with('success', 'Thank you! Our admissions team will contact you shortly.');
+            // Honeypot hit: silently drop, but behave as if the submission succeeded.
+            return redirect()->route('thank-you', ['return' => url()->previous()]);
         }
 
         $qualifications = [
@@ -59,6 +60,6 @@ class MbaMastersLandingController extends Controller
                 ->with('error', 'We could not send your enquiry right now. Please try again or contact us directly.');
         }
 
-        return back()->with('success', 'Thank you! Our admissions team will guide you on eligibility, fees and next steps.');
+        return redirect()->route('thank-you', ['return' => url()->previous()]);
     }
 }

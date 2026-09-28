@@ -615,6 +615,37 @@ class PageController extends Controller
         return redirect()->route('our-story', [], 301);
     }
 
+    /**
+     * Thank-you landing page shown after a successful form submission.
+     *
+     * Accepts an optional ?return= URL for the "Back to previous page" CTA.
+     * The return URL is only honoured when it points back to this site —
+     * external hosts and loops back to /thank-you are rejected so the
+     * parameter can never be abused as an open redirect.
+     */
+    public function thankYou(Request $request)
+    {
+        $returnUrl = null;
+        $return = (string) $request->query('return', '');
+
+        if ($return !== '') {
+            $host = parse_url($return, PHP_URL_HOST);
+            $path = (string) (parse_url($return, PHP_URL_PATH) ?: '/');
+
+            $sameHost = $host === null || strcasecmp((string) $host, $request->getHost()) === 0;
+            $notThankYouLoop = ! str_starts_with($path, '/thank-you');
+
+            if ($sameHost && $notThankYouLoop) {
+                $returnUrl = $return;
+            }
+        }
+
+        return view('pages.thank-you', [
+            'site' => safe_settings(SiteSettings::class),
+            'returnUrl' => $returnUrl,
+        ]);
+    }
+
     public function csrCommunityImpact()
     {
         $focus = safe_settings(CsrFocusSettings::class);

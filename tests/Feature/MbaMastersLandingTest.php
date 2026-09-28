@@ -295,8 +295,7 @@ class MbaMastersLandingTest extends TestCase
             'website' => '',
         ]);
 
-        $response->assertRedirect('/online-mba-masters-uae');
-        $response->assertSessionHas('success');
+        $response->assertRedirectToRoute('thank-you', ['return' => 'http://localhost/online-mba-masters-uae']);
 
         Mail::assertSent(GenericFormMail::class, function (GenericFormMail $mail) {
             $values = collect($mail->rows)->pluck('value', 'label');
@@ -321,7 +320,7 @@ class MbaMastersLandingTest extends TestCase
             'website' => 'http://spam.test',
         ]);
 
-        $response->assertRedirect('/online-mba-masters-uae');
+        $response->assertRedirectToRoute('thank-you', ['return' => 'http://localhost/online-mba-masters-uae']);
         Mail::assertNothingSent();
     }
 

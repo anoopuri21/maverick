@@ -268,7 +268,6 @@
 }
 
 .mlp-form--panel .mlp-form__fields,
-.mlp-form--panel .mlp-form__success,
 .mlp-form--panel .mlp-form__errors {
   padding-left: 1.2rem;
   padding-right: 1.2rem;
@@ -279,14 +278,12 @@
   padding-bottom: 1.25rem;
 }
 
-.mlp-form--panel .mlp-form__success,
 .mlp-form--panel .mlp-form__errors {
   margin-left: 1.2rem;
   margin-right: 1.2rem;
 }
 
 
-.mlp-form__success,
 .mlp-form__errors {
   padding-left: 0.5rem;
   border-left: 2px solid var(--mlp-red);
@@ -782,10 +779,6 @@
   font-size: 12px;
   line-height: 12px;
   color: rgba(255, 248, 240, 0.55);
-}
-
-#mlp-enquire .mlp-form__success {
-  color: #fff8f0;
 }
 
 #mlp-enquire .mlp-form__errors {

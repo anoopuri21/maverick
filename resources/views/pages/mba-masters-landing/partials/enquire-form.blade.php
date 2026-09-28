@@ -2,10 +2,6 @@
   $formId = 'mlp-enquiry-'.\Illuminate\Support\Str::lower((string) \Illuminate\Support\Str::uuid());
 @endphp
 
-@if(session('success'))
-<p class="mlp-form__success" role="status">{{ session('success') }}</p>
-@endif
-
 @if(session('error'))
 <p class="mlp-form__errors" role="alert">{{ session('error') }}</p>
 @endif

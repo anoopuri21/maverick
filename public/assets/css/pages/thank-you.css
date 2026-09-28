@@ -1,0 +1,210 @@
+/* ==========================================================================
+   Thank You — post-submission landing
+   Uses the site design tokens from main.css (MBA blue / red / warm white)
+   ========================================================================== */
+
+.thank-you {
+  position: relative;
+  background: var(--color-warm-white, #f5f0eb);
+  min-height: 72vh;
+  display: flex;
+  align-items: center;
+  padding: clamp(140px, 20vh, 200px) 0 clamp(72px, 12vh, 120px);
+}
+
+.thank-you__inner {
+  display: flex;
+  justify-content: center;
+}
+
+.thank-you__card {
+  position: relative;
+  width: 100%;
+  max-width: 680px;
+  background: var(--color-white, #ffffff);
+  border: 1px solid rgba(15, 41, 131, 0.08);
+  border-radius: 24px;
+  box-shadow:
+    0 24px 60px rgba(7, 20, 68, 0.08),
+    0 4px 16px rgba(7, 20, 68, 0.04);
+  padding: clamp(40px, 6vw, 72px) clamp(28px, 6vw, 64px);
+  text-align: center;
+  animation: thank-you-card-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Top accent strip */
+.thank-you__card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: clamp(28px, 6vw, 64px);
+  right: clamp(28px, 6vw, 64px);
+  height: 3px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--color-mba-blue, #0f2983), var(--color-mba-red, #b20202));
+}
+
+@keyframes thank-you-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ----- Success icon ----- */
+.thank-you__icon {
+  width: clamp(64px, 9vw, 88px);
+  height: clamp(64px, 9vw, 88px);
+  margin: 0 auto clamp(20px, 3vw, 28px);
+  color: var(--color-mba-blue, #0f2983);
+  display: grid;
+  place-items: center;
+  background: rgba(15, 41, 131, 0.06);
+  border-radius: 50%;
+  padding: 14px;
+  box-sizing: content-box;
+}
+
+.thank-you__icon-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.thank-you__icon-circle {
+  stroke-dasharray: 210;
+  stroke-dashoffset: 210;
+  animation: thank-you-draw 0.9s cubic-bezier(0.65, 0, 0.35, 1) 0.25s forwards;
+}
+
+.thank-you__icon-check {
+  stroke-dasharray: 40;
+  stroke-dashoffset: 40;
+  animation: thank-you-draw 0.45s cubic-bezier(0.65, 0, 0.35, 1) 1.05s forwards;
+}
+
+@keyframes thank-you-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* ----- Copy ----- */
+.thank-you__kicker {
+  font-family: var(--font-body, "Poppins", sans-serif);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-mba-red, #b20202);
+  margin: 0 0 12px;
+}
+
+.thank-you__title {
+  font-family: var(--font-display, "PP Neue Montreal", sans-serif);
+  font-size: clamp(38px, 6vw, 60px);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--color-near-black, #0a0a0a);
+  margin: 0 0 clamp(14px, 2vw, 20px);
+}
+
+.thank-you__note {
+  font-family: var(--font-body, "Poppins", sans-serif);
+  font-size: clamp(15px, 1.4vw, 17px);
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--color-muted-grey, #2a2a2a);
+  max-width: 48ch;
+  margin: 0 auto clamp(28px, 4vw, 40px);
+}
+
+/* ----- CTAs ----- */
+.thank-you__ctas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Primary reuses the global .btn/.btn--primary (red → blue hover) */
+.thank-you__cta--home {
+  text-decoration: none;
+}
+
+/* Secondary — brand-blue ghost button */
+.thank-you__cta--back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.85rem 1.6rem;
+  background: transparent;
+  color: var(--color-mba-blue, #0f2983);
+  border: 1px solid rgba(15, 41, 131, 0.35);
+  border-radius: 2px;
+  font-family: var(--font-body, "Poppins", sans-serif);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.thank-you__cta--back svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s ease;
+}
+
+.thank-you__cta--back:hover {
+  background: var(--color-mba-blue, #0f2983);
+  border-color: var(--color-mba-blue, #0f2983);
+  color: var(--color-white, #ffffff);
+}
+
+.thank-you__cta--back:hover svg {
+  transform: translateX(-4px);
+}
+
+.thank-you__cta:focus-visible,
+.thank-you__cta--back:focus-visible {
+  outline: 2px solid var(--color-mba-blue, #0f2983);
+  outline-offset: 3px;
+}
+
+/* ----- Small screens ----- */
+@media (max-width: 520px) {
+  .thank-you__ctas {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .thank-you__cta,
+  .thank-you__cta--back {
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+/* ----- Reduced motion ----- */
+@media (prefers-reduced-motion: reduce) {
+  .thank-you__card {
+    animation: none;
+  }
+
+  .thank-you__icon-circle,
+  .thank-you__icon-check {
+    stroke-dashoffset: 0;
+    animation: none;
+  }
+}

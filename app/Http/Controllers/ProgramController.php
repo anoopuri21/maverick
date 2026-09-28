@@ -152,6 +152,6 @@ class ProgramController extends Controller
             'qualification' => $qualification,
         ]));
 
-        return back()->with('success', 'Thank you! We will get back to you shortly.');
+        return redirect()->route('thank-you', ['return' => url()->previous()]);
     }
 }
