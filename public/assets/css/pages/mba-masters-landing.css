@@ -7075,3 +7075,74 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
   line-height: inherit !important;
   letter-spacing: inherit !important;
 }
+
+/* Testimonial portrait: keep the left visual in lockstep with the active quote. */
+#mlp-testimonials .archive-voices__stack[data-testimonial-portraits] {
+  min-height: 28rem;
+  background: var(--mlp-navy);
+  border: 1px solid rgba(7, 20, 68, 0.16);
+  box-shadow: 0 28px 64px -46px rgba(7, 20, 68, 0.72);
+}
+
+#mlp-testimonials .testimonial-portrait {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.025);
+  mix-blend-mode: normal;
+  will-change: opacity, transform;
+  transition:
+    opacity 0.7s ease,
+    transform 1s var(--mlp-ease),
+    visibility 0s linear 0.7s;
+}
+
+#mlp-testimonials .testimonial-portrait.is-active {
+  z-index: 1;
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+  transition-delay: 0s;
+}
+
+#mlp-testimonials .testimonial-portrait img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: none;
+  image-rendering: auto;
+}
+
+#mlp-testimonials .archive-voices__stack[data-testimonial-portraits]::after {
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(7, 20, 68, 0.02) 38%, rgba(7, 20, 68, 0.82) 100%);
+}
+
+#mlp-testimonials .archive-voices__stack-caption {
+  z-index: 3;
+}
+
+@media (max-width: 900px) {
+  #mlp-testimonials .archive-voices__stack[data-testimonial-portraits] {
+    width: 100%;
+    max-width: 30rem;
+    min-height: 23rem;
+  }
+}
+
+@media (max-width: 620px) {
+  #mlp-testimonials .archive-voices__stack[data-testimonial-portraits] {
+    min-height: 20rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #mlp-testimonials .testimonial-portrait {
+    transition: none;
+  }
+}

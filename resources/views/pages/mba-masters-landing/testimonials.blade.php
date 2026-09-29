@@ -45,10 +45,13 @@
 
     @if($items->isNotEmpty())
     <div class="archive-voices__stage" data-closing-voices>
-      <div class="archive-voices__stack" aria-hidden="true">
-        @foreach($items->take(3) as $vi => $item)
-        <span class="archive-voices__stack-image archive-voices__stack-image--{{ $vi + 1 }} mlp-stack-layer">
-          <img src="{{ $item['photo'] ?: $fallbackPhoto }}" alt="" width="640" height="800" loading="lazy" decoding="async">
+      <div class="archive-voices__stack" data-testimonial-portraits aria-hidden="true">
+        @foreach($items as $vi => $item)
+        <span
+          class="archive-voices__stack-image testimonial-portrait{{ $vi === 0 ? ' is-active' : '' }}"
+          data-testimonial-portrait
+        >
+          <img src="{{ $item['photo'] ?: $fallbackPhoto }}" alt="" width="640" height="800" loading="{{ $vi === 0 ? 'eager' : 'lazy' }}" decoding="async">
         </span>
         @endforeach
         <span class="archive-voices__stack-caption">The experience, in their words.</span>

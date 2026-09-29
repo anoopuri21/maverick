@@ -1307,6 +1307,10 @@
     if (!carousel) return;
 
     var slides = Array.prototype.slice.call(carousel.querySelectorAll("[data-testimonial-slide]"));
+    var stage = carousel.closest("[data-closing-voices]");
+    var portraits = stage
+      ? Array.prototype.slice.call(stage.querySelectorAll("[data-testimonial-portrait]"))
+      : [];
     var previous = carousel.querySelector("[data-testimonial-prev]");
     var next = carousel.querySelector("[data-testimonial-next]");
     var toggle = carousel.querySelector("[data-testimonial-toggle]");
@@ -1326,9 +1330,19 @@
       toggle.textContent = paused ? "Play" : "Pause";
     }
 
+    function preloadPortrait(index) {
+      if (!portraits.length) return;
+      var normalizedIndex = (index + portraits.length) % portraits.length;
+      var image = portraits[normalizedIndex].querySelector("img");
+      if (image) image.loading = "eager";
+    }
+
     function showSlide(index) {
       if (!slides.length) return;
       activeIndex = (index + slides.length) % slides.length;
+      preloadPortrait(activeIndex);
+      preloadPortrait(activeIndex - 1);
+      preloadPortrait(activeIndex + 1);
 
       slides.forEach(function (slide, slideIndex) {
         var active = slideIndex === activeIndex;
@@ -1341,6 +1355,10 @@
             slide.classList.add("is-entering");
           });
         }
+      });
+
+      portraits.forEach(function (portrait, portraitIndex) {
+        portrait.classList.toggle("is-active", portraitIndex === activeIndex);
       });
 
       if (current) current.textContent = String(activeIndex + 1).padStart(2, "0");
