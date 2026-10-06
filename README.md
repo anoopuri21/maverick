@@ -7,6 +7,13 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## Local setup
+
+- **Windows + Laragon:** [`docs/WINDOWS_LARAGON_SETUP.md`](docs/WINDOWS_LARAGON_SETUP.md) — zero se full setup (PHP 8.4, Composer, Git, MySQL DB + SQL dump import, admin user, Vite build). Automation: `powershell -ExecutionPolicy Bypass -File scripts\windows-setup.ps1`
+- **Shared hosting deploy:** [`docs/SHARED_HOSTING.md`](docs/SHARED_HOSTING.md)
+
+> ⚠️ **PHP 8.4+ required.** `config/database.php` uses the `Pdo\Mysql` class, which only exists in PHP 8.4+. On PHP 8.3 any MySQL connection fails with `Class "Pdo\Mysql" not found`.
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
