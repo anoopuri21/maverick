@@ -195,3 +195,119 @@ current partner list and entry terms directly. → **GAP-SOURCE-QF-02**.
 Also note **OTHM** publishes similarly named Level 7 diplomas (e.g. Strategic Management
 and Leadership, 603/2181/7). OTHM is a third awarding body and appears nowhere in the
 tracker. Never source from it.
+
+---
+
+## 7. LEVEL 5 EXTENDED GROUP (S.No 33–46) — CROSS-CUTTING FINDINGS
+
+Added 2026-10-07 after researching all fourteen rows. Facts here apply across the
+group and must not be re-derived per row.
+
+### 7.1 ⭐ GAP-SOURCE-QF-02 is now confirmed in Qualifi's own words
+
+Three Level 5 pages publish the degree-progression caveat themselves:
+
+- S.No 37, 39, 40, 41, 42: "Final year of a HE qualification/degree in related area
+  **(subject to acceptance by the awarding institution)**."
+- S.No 43: "**(Pending a successful application to our Partner institution)** a Level 6
+  University Degree (Top-Up) course."
+
+The honesty position taken editorially since S.No 27 is therefore the awarding body's
+own published qualification, and may be quoted as such on any Qualifi page.
+
+### 7.2 Entry requirements split into two patterns — never assume
+
+| Pattern | Rows | Content |
+|---|---|---|
+| **A — "three bullets", no age, no IELTS** | 33, 36, 43 | Level 3/4 qualifications · managerial or relevant experience with clear career goals · a first degree in another discipline |
+| **B — "accessible without barriers", 18+, IELTS 6** | 34, 35, 37, 38, 39, 40, 41, 42, 44, 45, 46 | Centre assessment · 18 or over · IELTS 6 · international checks · two references, one preferably academic |
+
+Within pattern B: 34 and 46 additionally envisage a **Level 4 qualification**; 35 adds
+an **experience-without-qualifications** clause; 43 (pattern A) adds a **Level 4 before
+Level 5 sequencing rule**. Everything else in B states no prior qualification at all.
+
+### 7.3 Credits, TQT and unit counts
+
+All fourteen rows are **240 credits**. **Only S.No 34 publishes a TQT (2400).** No other
+row in the group publishes TQT or any duration.
+
+Published unit counts against 240 credits: **8** (36, 38) · **11** (34, 43, 44) ·
+**12** (33, 35, 37, 39, 40, 41, 42, 45, 46). Several pages evidently show only part of a
+combined Level 4 + Level 5 award. Disclose per row; never reconcile.
+
+### 7.4 Qualification-type field is inconsistent and means nothing
+
+"Vocational Related Qualification (Higher Education)" on most rows; "Vocational Related
+Qualification" on 34 and 35; "Regulated Qualification Framework (RQF)" on 39–42. All are
+Accredited at Level 5 on the RQF. **Not a status difference. Never present it as one.**
+
+### 7.5 Pages with NO learning outcomes published
+
+**S.No 44 and S.No 45.** Both have an `#outcomes` anchor and no outcomes block. Build
+`learning` from the stated aim and unit titles, framed as subject coverage.
+→ GAP-SOURCE-QF-09.
+
+### 7.6 Fallback awards (learner protection) — publish these, they are rare
+
+- **S.No 35:** at least 120 credits at Level 4 → Qualifi Level 4 Diploma in Psychology
+  `610/2149/0`. Stated as "will be awarded".
+- **S.No 46:** complete all Level 4 units → the Level 4 qualification. Stated as
+  "**may** be awarded" — keep the weaker hedge.
+
+No other row publishes a fallback.
+
+### 7.7 Unnamed partners — GAP-SOURCE-QF-11
+
+S.No 35 says "one of our University partners"; S.No 43 says "our Partner institution".
+**No partner is named anywhere on qualifi.net.** Never imply a named, arranged or
+guaranteed university route.
+
+### 7.8 Mandatory limitation statements for this group
+
+| Row | Must state plainly |
+|---|---|
+| 34 | Not a licence to practise; no care-sector registration |
+| 35 | Not a route to professional psychologist status; no BPS/HCPC eligibility |
+| 37 | No ACCA/CIMA/ICAEW or other professional-body exemptions |
+| 38 | Not a qualifying law degree; no SRA recognition; SQE wording is triple-hedged |
+| 43, 44 | No NCSC/CREST/CompTIA/Cisco or vendor certification alignment |
+| 46 | Not a QTS route; not initial teacher training; FE and training sector, not schools |
+
+### 7.9 Source-text defects found in this group
+
+| Row | Defect | Gap ID |
+|---|---|---|
+| 36, 38 | 8 units against 240 credits | QF-13 |
+| 37 | Units 2–3 mis-split ("Economics for Business Mathematical" / "Accounting Methods") | QF-14 |
+| 39–42 | Overview says 120 credits; Specifications block says 240 | QF-17 |
+| 40, 41, 42 | Shared overview advertises elective choice these awards do not offer | QF-18 |
+| 39 | Forbidden elective pairs given as bare unit codes with no titles | QF-21 |
+| 41 | "Web Design" printed twice — only 11 distinct units named | QF-22 |
+| 43 | "Flexible and online" conflicts with centre-led delivery | QF-23 |
+| 43 | Outcomes are L4+L5 concatenated, incl. a stray "progress into Level 5" | QF-25 |
+| 44 | "remove any such risks" — overstated | QF-27 |
+| 46 | 6+6 block structure inferred, not stated; outcomes are 3 prose areas | QF-28, QF-29 |
+
+Also throughout: the incongruous "UK higher education **postgraduate** programmes"
+clause on Level 5 pages. **Never repeat it.**
+
+### 7.10 The IT family
+
+S.No 39–42 share one overview, one outcome set, one entry block and one specification
+PDF. All common material is in **`qualifi_level-5-IT-FAMILY-SHARED.md`**; row dossiers
+carry only the differences. This is the highest duplication risk in the project
+(GAP-STYLE-QF-16) — read that file before writing any of the four pages.
+
+### 7.11 Differentiating the three security/networking awards
+
+- **S.No 43** Cyber Security — security *with management and leadership*.
+- **S.No 40** IT-Networking — networking *with the general IT core*.
+- **S.No 44** Networking and Cyber Security — the hands-on overlap, with **neither** the
+  leadership content nor the general IT grounding. Units drawn from four existing
+  Qualifi awards (`603/3331/5`, `603/4782/X`, `603/4139/7`, `603/4792/2`) — provenance
+  only; those rows are not in the tracker and must not be given pages.
+
+### 7.12 URL note resolved
+
+✅ **S.No 45's literal-space URL is genuine and resolves.** Keep it percent-encoded.
+The only remaining suspect URL in the Qualifi set is **S.No 66** (doubled path segment).
