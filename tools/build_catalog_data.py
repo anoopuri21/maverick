@@ -22,6 +22,7 @@ CATEGORIES = [
 ]
 UNIVERSITIES = [
     ("rushford-business-school", "Rushford Business School", "Switzerland", "CH", 2),
+    ("girne-american-university", "Girne American University", "North Cyprus", "CY", 3),
 ]
 
 
@@ -91,7 +92,11 @@ def parse_structure(txt):
     """Handles both the bullet form (`- Module (30 ECTS) — detail`) and the
     compact form (`Module (30) · Module (30) · ...`)."""
     stages = []
-    pat = r"\*\*(Stage \d+ — [^*]+?)\*\*\s*·\s*\*(.*?)\*\s*\n(.+?)(?=\n\s*\n\*\*Stage|\n\s*\n(?!-)|\Z)"
+    # Heading may be "Stage 1 — ...", "Semester 1", "Semesters 4 to 7", "Year 2"
+    # etc. GAU publishes semester plans, so the label is not always "Stage".
+    pat = (r"\*\*((?:Stage|Semester|Semesters|Year|Years|Part)\b[^*\n]*?)\*\*"
+           r"\s*·\s*\*(.*?)\*\s*\n(.+?)(?=\n\s*\n\*\*(?:Stage|Semester|Year|Part)"
+           r"|\n\s*\n(?!-)|\Z)")
     for m in re.finditer(pat, txt, re.S):
         title = m.group(1).strip()
         subtitle = re.sub(r"^subtitle:\s*", "", m.group(2).strip())

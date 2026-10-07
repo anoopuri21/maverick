@@ -50,7 +50,7 @@ Operations is the part of the business that has to work on a Tuesday. Rushford B
 ```html
 <p>Running operations well and explaining why it works are different skills, and only one of them survives a change of management. Rushford's DBA in Operational Management is built around the second. The specialisation sits inside a 180 ECTS structure where research design, business statistics and literature review take a full 30 ECTS, ahead of a dissertation that has to hold up in an oral defence.</p>
 <p>Pick the route that matches your record. Less than five years running a function and the coursework option fits, blending the management core with operational subjects before a dissertation of 20,000 to 25,000 words. More than five and the research option opens up, with supervision arranged at the start and a submission reaching 45,000 to 50,000 words. Everything is asynchronous.</p>
-<p>The award comes from Rushford Business School in Lucerne, and the certificate can read PhD instead of DBA if you ask in time.</p>
+<p>Lucerne-based Rushford Business School confers the qualification, and the certificate can read PhD rather than DBA provided you ask in time.</p>
 ```
 *3 paragraphs / 168 words ✅*
 

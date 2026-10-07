@@ -193,7 +193,7 @@ Supply chains fail quietly, then all at once. Rushford Business School's online 
 <p>It depends on your pathway. The coursework route ends with a 20,000 to 25,000 word dissertation and oral defence. The research route, aimed at candidates with more than five years of management experience, runs to 45,000 to 50,000 words.</p>
 
 **Is the programme genuinely part-time friendly?**
-<p>It is delivered 100% online through Rushford's e-Campus in an asynchronous format, which means no fixed class times. Most candidates complete within three years. Finishing early makes the remaining fees payable at that point, so plan the pace against your budget as well as your diary.</p>
+<p>Everything runs on Rushford's e-Campus, asynchronously, so nothing is timetabled against a clock in another country. Three years is the usual span. Should you finish ahead of that, whatever is still owed falls due immediately, so budget and diary need planning together.</p>
 
 **Who awards the qualification?**
 <p>Rushford Business School, Lucerne, Switzerland. Its online learning division is certified by eduQua, the Swiss quality label for continuing education and training, and the school holds a five-star QS Stars rating for teaching and for online learning.</p>

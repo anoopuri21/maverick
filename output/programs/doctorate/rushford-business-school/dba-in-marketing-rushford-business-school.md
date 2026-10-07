@@ -46,7 +46,7 @@ Marketing budgets get approved on conviction and cut on evidence. Rushford Busin
 ## 2.2 `description`
 
 ```html
-<p>By the time you are senior in marketing, the hard part is no longer the campaign. It is defending the reasoning behind it to people who control the budget. Rushford's DBA in Marketing puts 30 ECTS into research design, statistics and literature review for exactly that reason, then sends you into a dissertation that has to survive an oral defence by people who will not take the conclusion on trust.</p>
+<p>By the time you are senior in marketing, the hard part is no longer the campaign. It is defending the reasoning behind it to people who control the budget. Rushford's DBA in Marketing commits 30 ECTS to method, evidence and prior scholarship for exactly that reason, then sends you into a dissertation that has to survive an oral defence by people who will not take the conclusion on trust.</p>
 <p>Two routes exist. The coursework pathway suits marketers earlier in their management career and ends at 20,000 to 25,000 words. The research pathway is for candidates with more than five years in post, assigns a doctoral mentor early, and runs to 45,000 to 50,000. Both total 180 ECTS and both are delivered online and asynchronously.</p>
 <p>Rushford names chief marketing officer and vice president of marketing among the roles graduates move into, alongside consultancy. The school also allows candidates to take the PhD award instead of the DBA, which is worth knowing if teaching is part of the plan.</p>
 ```
