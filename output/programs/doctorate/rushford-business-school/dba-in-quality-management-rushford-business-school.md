@@ -47,7 +47,7 @@ Most quality programmes die at the measurement stage. Rushford Business School's
 
 ```html
 <p>Six Sigma and Lean give you a method. A doctorate asks a harder question: how do you know it worked? Rushford's DBA in Quality Management puts 30 ECTS into research design, statistics and literature review before the dissertation begins, because the difference between a quality improvement and a quality story is usually the evidence behind it.</p>
-<p>The programme runs to 180 ECTS across two pathways. Managers with under five years in post take the coursework route, covering the business management core alongside the specialisation, and finish with a 20,000 to 25,000 word dissertation. More experienced candidates take the research route, work with an assigned doctoral mentor from early on, and write up at 45,000 to 50,000 words. Everything is delivered online and asynchronously.</p>
+<p>Credit is split across two routes, both adding up to 180 ECTS. Under five years in a management post and you follow the coursework option, pairing the business core with the quality specialisation and closing on a dissertation of 20,000 to 25,000 words. Past that mark and the research option applies instead: a supervisor from the outset and a final submission three times the length.</p>
 <p>Rushford Business School in Lucerne awards it. Candidates can ask for the PhD title instead of the DBA, with one exception that depends on how you were admitted.</p>
 ```
 *3 paragraphs / 155 words ✅*
@@ -138,16 +138,16 @@ Programme Fees · Scholarships · Payment Options · Written Breakdown · Intake
 ## 4. `faqs` *(5)*
 
 **Is a master's degree required?**
-<p>No. Recognition of Prior Experience means a master's is not mandatory, though a bachelor's is. You can enter with a master's in business and management, a master's in any discipline plus more than five years of managerial experience, or a bachelor's in any discipline plus more than eight years.</p>
+<p>No, though a bachelor's is non-negotiable. You may enter with a business and management master's, with a master's in anything else plus over five years managing people or process, or on experience alone: a bachelor's and more than eight years in management. That last route is capped at the DBA award.</p>
 
 **Can I take the PhD award instead?**
-<p>Yes, every doctoral candidate may apply for it. Only one title is conferred and the choice is confirmed before or immediately after graduation requirements are met. If you were admitted through Recognition of Prior Experience, you are eligible for the DBA award only.</p>
+<p>You can ask, and the request is normally handled around the point you finish. Rushford confers one title, not both. Anyone whose place came through Recognition of Prior Experience is outside this option and graduates with the DBA.</p>
 
 **Does the programme cover Six Sigma and Lean?**
 <p>Rushford names quality management, process improvement, Six Sigma and Lean Management among the areas graduates move into. The doctorate sits above the tool level: the research track trains you to design studies and test whether an intervention actually changed anything.</p>
 
 **What English evidence is accepted?**
-<p>A Medium of Instruction letter, or IELTS 5.5, TOEFL iBT 58, TOEIC 555, PTE 50 or Duolingo 90. Waived for native speakers, for anyone schooled or degree-educated in English, and for two years' work in an English-language organisation.</p>
+<p>Four ways to satisfy it. Submit a Medium of Instruction letter; sit one of IELTS, TOEFL iBT, TOEIC, PTE or Duolingo and reach 5.5, 58, 555, 50 or 90 respectively; qualify as a native speaker; or show that your schooling, your degree or two years of your working life were conducted in English.</p>
 
 **How is it delivered?**
 <p>Entirely online through Rushford's e-Campus in an asynchronous format, so there are no fixed class times. Most candidates finish within three years. Completing early makes the remaining fees payable at that point.</p>

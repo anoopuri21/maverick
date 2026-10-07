@@ -181,13 +181,13 @@ Supply chains fail quietly, then all at once. Rushford Business School's online 
 ## 4. `faqs` *(6)*
 
 **Do I need a master's degree to apply?**
-<p>No. Rushford offers Recognition of Prior Experience, so a formal master's is not mandatory. A prior bachelor's degree is. The three entry routes are a master's in business and management; a master's in any discipline with more than five years of managerial experience; or a bachelor's in any discipline with more than eight years.</p>
+<p>Not always. Rushford runs three entry routes: a master's in business and management; a master's in any other subject backed by more than five years of managerial work; or a bachelor's in any subject backed by more than eight years. The third route is Recognition of Prior Experience, and it comes with a restriction — it leads to the DBA only, never the PhD.</p>
 
 **Can I receive a PhD instead of a DBA?**
-<p>Yes. Every doctoral candidate may apply for the PhD award in place of the DBA. Only one title is conferred, and you confirm the choice before or immediately after completing graduation requirements. The exception matters: if you were admitted through Recognition of Prior Experience, you are eligible for the DBA award only.</p>
+<p>Yes. Every doctoral candidate may request the PhD title in place of the DBA, and the decision is locked in before or immediately after the graduation requirements are met. Only one of the two is ever conferred. The exception is candidates admitted through Recognition of Prior Experience, who receive the DBA.</p>
 
 **What English language evidence do I need?**
-<p>A Medium of Instruction letter from your previous university is the simplest route. Failing that: IELTS 5.5, TOEFL iBT 58, TOEIC 555, PTE 50 or Duolingo 90. The test is waived for native speakers, for anyone schooled or degree-educated in English, and for two years' work in an English-language organisation.</p>
+<p>The easiest proof is a Medium of Instruction letter from the university you last attended. If that is not available, the accepted scores are IELTS 5.5, TOEFL iBT 58, TOEIC 555, PTE 50 or Duolingo 90. Three groups skip the test entirely: native speakers, anyone schooled or degree-educated in English, and anyone with two years behind them in an English-language organisation.</p>
 
 **How long is the dissertation?**
 <p>It depends on your pathway. The coursework route ends with a 20,000 to 25,000 word dissertation and oral defence. The research route, aimed at candidates with more than five years of management experience, runs to 45,000 to 50,000 words.</p>

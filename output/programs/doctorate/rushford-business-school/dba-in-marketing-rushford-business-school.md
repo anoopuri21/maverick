@@ -130,7 +130,7 @@ Dedicated academic support · Flexible learning · Assessment support · Afforda
 | `trending-up` | Aimed at the senior end | Rushford names CMO and VP of marketing among graduate destinations, which is the level most Gulf marketing leaders are working towards. |
 | `target` | Your own brand problem as the thesis | Applied research means the dissertation can investigate something live inside your organisation. |
 | `badge-check` | Eight years counts | A bachelor's plus more than eight years of management experience is a recognised entry route in its own right. |
-| `route` | Keep the teaching option open | The PhD award can replace the DBA on request. Recognition of Prior Experience entrants are eligible for the DBA only. |
+| `route` | Keep the teaching option open | The PhD award can replace the DBA on request. Those admitted on experience in place of a master's take the DBA. |
 | `shield` | Check your national title rules | Rushford advises applicants to confirm their own country's legislation on using "Doctor" before enrolling. |
 
 ## 3.11 `fees`
@@ -144,13 +144,13 @@ Programme Fees · Scholarships · Payment Options · Written Breakdown · Intake
 <p>No qualification guarantees a role. What Rushford states is that DBA in Marketing graduates are well equipped for leadership positions such as chief marketing officer or vice president of marketing, and that some move into consultancy instead. The doctorate is evidence of research capability at senior level; the appointment is still an appointment.</p>
 
 **Do I need a master's degree?**
-<p>No. Recognition of Prior Experience means a master's is not mandatory, though a bachelor's is. Entry runs through a master's in business and management; a master's in any discipline with more than five years of managerial experience; or a bachelor's in any discipline with more than eight years.</p>
+<p>A master's is useful but not a hard requirement. Rushford admits applicants holding a business and management master's, applicants with a master's in another field plus five years or more of managerial work, and applicants with only a bachelor's provided they bring more than eight years of management. The last of those caps the award at DBA level.</p>
 
 **Can I be awarded a PhD instead?**
 <p>Yes. All doctoral candidates may apply for the PhD award in place of the DBA, confirmed before or immediately after graduation requirements are met. Only one title is conferred. If you were admitted through Recognition of Prior Experience, the DBA is the only award available to you.</p>
 
 **What English evidence is required?**
-<p>A Medium of Instruction letter, or IELTS 5.5, TOEFL iBT 58, TOEIC 555, PTE 50 or Duolingo 90. Waived for native speakers, for anyone schooled or degree-educated in English, and for two years' work in an English-language organisation.</p>
+<p>Either a Medium of Instruction letter from your previous university, or a test score: IELTS 5.5, TOEFL iBT 58, TOEIC 555, PTE 50, Duolingo 90. You will not need either if English is your first language, if you studied in English at school or degree level, or if you have worked two years in an English-language organisation.</p>
 
 **How much writing is involved?**
 <p>More than most people expect. The coursework pathway ends with a 20,000 to 25,000 word dissertation and an oral defence; the research pathway runs to 45,000 to 50,000 words. There is a 5,000 word proposal before either.</p>

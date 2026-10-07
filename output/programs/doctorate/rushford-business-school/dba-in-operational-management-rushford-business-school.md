@@ -49,7 +49,7 @@ Operations is the part of the business that has to work on a Tuesday. Rushford B
 
 ```html
 <p>Running operations well and explaining why it works are different skills, and only one of them survives a change of management. Rushford's DBA in Operational Management is built around the second. The specialisation sits inside a 180 ECTS structure where research design, business statistics and literature review take a full 30 ECTS, ahead of a dissertation that has to hold up in an oral defence.</p>
-<p>Choose the pathway that matches your experience. Managers with fewer than five years in post take the coursework route, which pairs the business management core with the specialisation and closes at 20,000 to 25,000 words. Those with longer in the role take the research route, get a doctoral mentor early, and write to 45,000 to 50,000 words. Delivery is online and asynchronous either way, so the schedule bends around operational reality rather than the other way round.</p>
+<p>Pick the route that matches your record. Less than five years running a function and the coursework option fits, blending the management core with operational subjects before a dissertation of 20,000 to 25,000 words. More than five and the research option opens up, with supervision arranged at the start and a submission reaching 45,000 to 50,000 words. Everything is asynchronous.</p>
 <p>The award comes from Rushford Business School in Lucerne, and the certificate can read PhD instead of DBA if you ask in time.</p>
 ```
 *3 paragraphs / 168 words ✅*
@@ -129,7 +129,7 @@ Dedicated academic support · Flexible learning · Assessment support · Afforda
 | `badge-check` | Eight years of service opens the door | A bachelor's plus more than eight years of management experience is a formal entry route, not an exception. |
 | `target` | Research what you already manage | The applied dissertation can investigate an operational problem inside your own organisation. |
 | `route` | DBA or PhD, decided by you | Worth considering if university teaching is on the horizon. Recognition of Prior Experience entrants receive the DBA only. |
-| `shield` | Confirm the title rules where you live | Rushford asks applicants to check their national legislation on using "Doctor" before they enrol. |
+| `shield` | Confirm the title rules where you live | Whether you may style yourself "Doctor" is a matter of local law. Settle that question before you enrol. |
 
 ## 3.11 `fees`
 Programme Fees · Scholarships · Payment Options · Written Breakdown · Intake Offer
@@ -142,13 +142,13 @@ Programme Fees · Scholarships · Payment Options · Written Breakdown · Intake
 <p>They are separate Rushford programmes with the same 180 ECTS architecture and the same entry rules. The difference is the specialisation track and the research focus: operational management looks at how the organisation runs internally, supply chain management at the flow of goods and suppliers through it. Candidates choose one.</p>
 
 **Do I need a master's degree?**
-<p>No. Recognition of Prior Experience makes a master's optional, though a bachelor's is mandatory. Entry is via a master's in business and management; a master's in any discipline plus over five years of managerial experience; or a bachelor's in any discipline plus over eight years.</p>
+<p>A master's helps but is not compulsory. The three doors in are a business and management master's, any master's plus five-plus years of managerial experience, or a bachelor's plus eight-plus years. Choose the experience route and the PhD option closes; you would be studying for the DBA.</p>
 
 **Can the award be a PhD?**
-<p>Yes. Any doctoral candidate may apply for the PhD title in place of the DBA, confirmed before or immediately after graduation requirements are complete. Only one title is conferred. Candidates admitted through Recognition of Prior Experience are eligible for the DBA only.</p>
+<p>It can. Candidates nominate DBA or PhD before graduation and the school issues whichever was chosen — a single award, not a dual one. The one group without the choice is those admitted on experience in place of a master's; for them the DBA stands.</p>
 
 **What English evidence do you accept?**
-<p>A Medium of Instruction letter from your previous institution, or IELTS 5.5, TOEFL iBT 58, TOEIC 555, PTE 50 or Duolingo 90. Waivers apply to native speakers, anyone schooled or degree-educated in English, and two years' work in an English-language organisation.</p>
+<p>Rushford accepts a Medium of Instruction letter in place of a test. Where one is needed, the thresholds are modest by doctoral standards: 5.5 on IELTS, 58 on TOEFL iBT, 555 on TOEIC, 50 on PTE, 90 on Duolingo. Exemptions cover native speakers, English-medium education, and two years inside an English-speaking workplace.</p>
 
 **How long does it really take?**
 <p>Thirty-six months is the design. The research pathway can finish sooner. Completing early brings the remaining fees forward to that point, and taking longer follows the agreed instalment plan, so the timeline has a financial shape as well as an academic one.</p>
