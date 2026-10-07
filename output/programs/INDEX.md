@@ -36,8 +36,22 @@ and must never be hand-edited.
 | 30 | Level 3 Diploma in Hospitality and Tourism Management | Diploma | Qualifi | `level-3-diploma-in-hospitality-and-tourism-management-qualifi` | PASS | [`level-3-diploma-in-hospitality-and-tourism-management-qualifi.md`](diploma/qualifi/level-3-diploma-in-hospitality-and-tourism-management-qualifi.md) |
 | 31 | Level 3 Diploma in Accounting and Finance | Diploma | Qualifi | `level-3-diploma-in-accounting-and-finance-qualifi` | PASS | [`level-3-diploma-in-accounting-and-finance-qualifi.md`](diploma/qualifi/level-3-diploma-in-accounting-and-finance-qualifi.md) |
 | 32 | Level 3 Diploma in Information Technology | Diploma | Qualifi | `level-3-diploma-in-information-technology-qualifi` | PASS | [`level-3-diploma-in-information-technology-qualifi.md`](diploma/qualifi/level-3-diploma-in-information-technology-qualifi.md) |
+| 33 | Level 5 Extended Diploma in Business Management | Diploma | Qualifi | `level-5-extended-diploma-in-business-management-qualifi` | PASS | [`level-5-extended-diploma-in-business-management-qualifi.md`](diploma/qualifi/level-5-extended-diploma-in-business-management-qualifi.md) |
+| 34 | Level 5 Extended Diploma in Health and Social Care | Diploma | Qualifi | `level-5-extended-diploma-in-health-and-social-care-qualifi` | PASS | [`level-5-extended-diploma-in-health-and-social-care-qualifi.md`](diploma/qualifi/level-5-extended-diploma-in-health-and-social-care-qualifi.md) |
+| 35 | Level 5 Extended Diploma in Psychology | Diploma | Qualifi | `level-5-extended-diploma-in-psychology-qualifi` | PASS | [`level-5-extended-diploma-in-psychology-qualifi.md`](diploma/qualifi/level-5-extended-diploma-in-psychology-qualifi.md) |
+| 36 | Level 5 Extended Diploma in Hospitality and Tourism Management | Diploma | Qualifi | `level-5-extended-diploma-in-hospitality-and-tourism-management-qualifi` | PASS | [`level-5-extended-diploma-in-hospitality-and-tourism-management-qualifi.md`](diploma/qualifi/level-5-extended-diploma-in-hospitality-and-tourism-management-qualifi.md) |
+| 37 | Level 5 Extended Diploma in Accounting and Finance | Diploma | Qualifi | `level-5-extended-diploma-in-accounting-and-finance-qualifi` | PASS | [`level-5-extended-diploma-in-accounting-and-finance-qualifi.md`](diploma/qualifi/level-5-extended-diploma-in-accounting-and-finance-qualifi.md) |
+| 38 | Level 5 Extended Diploma in Law | Diploma | Qualifi | `level-5-extended-diploma-in-law-qualifi` | PASS | [`level-5-extended-diploma-in-law-qualifi.md`](diploma/qualifi/level-5-extended-diploma-in-law-qualifi.md) |
+| 39 | Level 5 Extended Diploma in Information Technology | Diploma | Qualifi | `level-5-extended-diploma-in-information-technology-qualifi` | PASS | [`level-5-extended-diploma-in-information-technology-qualifi.md`](diploma/qualifi/level-5-extended-diploma-in-information-technology-qualifi.md) |
+| 40 | Level 5 Extended Diploma in IT - Networking | Diploma | Qualifi | `level-5-extended-diploma-in-it-networking-qualifi` | PASS | [`level-5-extended-diploma-in-it-networking-qualifi.md`](diploma/qualifi/level-5-extended-diploma-in-it-networking-qualifi.md) |
+| 41 | Level 5 Extended Diploma in IT - Web Design | Diploma | Qualifi | `level-5-extended-diploma-in-it-web-design-qualifi` | PASS | [`level-5-extended-diploma-in-it-web-design-qualifi.md`](diploma/qualifi/level-5-extended-diploma-in-it-web-design-qualifi.md) |
+| 42 | Level 5 Extended Diploma in IT - E-commerce | Diploma | Qualifi | `level-5-extended-diploma-in-it-e-commerce-qualifi` | PASS | [`level-5-extended-diploma-in-it-e-commerce-qualifi.md`](diploma/qualifi/level-5-extended-diploma-in-it-e-commerce-qualifi.md) |
+| 43 | Level 5 Extended Diploma in Cyber Security | Diploma | Qualifi | `level-5-extended-diploma-in-cyber-security-qualifi` | PASS | [`level-5-extended-diploma-in-cyber-security-qualifi.md`](diploma/qualifi/level-5-extended-diploma-in-cyber-security-qualifi.md) |
+| 44 | Level 5 Extended Diploma in Networking and Cyber Security | Diploma | Qualifi | `level-5-extended-diploma-in-networking-and-cyber-security-qualifi` | PASS | [`level-5-extended-diploma-in-networking-and-cyber-security-qualifi.md`](diploma/qualifi/level-5-extended-diploma-in-networking-and-cyber-security-qualifi.md) |
+| 45 | Level 5 Extended Diploma in Occupational Health and Safety | Diploma | Qualifi | `level-5-extended-diploma-in-occupational-health-and-safety-qualifi` | PASS | [`level-5-extended-diploma-in-occupational-health-and-safety-qualifi.md`](diploma/qualifi/level-5-extended-diploma-in-occupational-health-and-safety-qualifi.md) |
+| 46 | Level 5 Extended Diploma in Education and Training Management | Diploma | Qualifi | `level-5-extended-diploma-in-education-and-training-management-qualifi` | PASS | [`level-5-extended-diploma-in-education-and-training-management-qualifi.md`](diploma/qualifi/level-5-extended-diploma-in-education-and-training-management-qualifi.md) |
 
-**25 programmes approved** (12 Diploma, 13 Doctorate). All carry `is_active: false` —
+**39 programmes approved** (26 Diploma, 13 Doctorate). All carry `is_active: false` —
 flip to true in the admin panel after visual QA.
 
 ## Recorded as Incomplete — deliberately not drafted
@@ -54,4 +68,4 @@ flip to true in the admin panel after visual QA.
 
 ## Pending
 
-**37 programmes** still awaiting content (S.No 33–69), awarded by: Qualifi.
+**23 programmes** still awaiting content (S.No 47–69), awarded by: Qualifi.
