@@ -11,31 +11,72 @@ Project stack: **Laravel 13.20 + Filament 3.3 + Livewire 3 + Tailwind 4 + Vite 8
 
 ---
 
-## ⚠️ Shuru karne se pehle — 4 baatein jo 90% time waste bachati hain
+## ⚠️ Shuru karne se pehle — 5 baatein jo 90% time waste bachati hain
 
-### 1. PHP **8.4+** mandatory hai. 8.3 pe app boot hi nahi hogi.
+### 1. PHP version **GUESS mat karo — source machine se match karo**
 
-`config/database.php` me Laravel 13 skeleton `Pdo\Mysql::ATTR_SSL_CA` use karta hai. `Pdo\Mysql` class **PHP 8.4** me aayi thi.
+Golden rule: **jo PHP version purane PC / server pe chal raha hai, wahi naye laptop pe lagao.** Isse "pehle chal raha tha, ab nahi" wali poori class of problems khatam ho jati hai.
 
-Ye line `extension_loaded('pdo_mysql')` ke andar hai, aur Laravel **har request pe saari config files load karta hai** — to PHP 8.3 pe `pdo_mysql` enabled hote hi poora app boot pe crash karega:
+Purane PC ya server pe ye chalao aur answer note kar lo:
+
+```bash
+php -v
+php -r "echo class_exists('Pdo\Mysql') ? 'Pdo\Mysql: YES (PHP 8.4+)' : 'Pdo\Mysql: NO (8.3 ya purana)';"
+```
+
+**Kyun ye check:** `config/database.php` (pehle commit, 2026-07-21 se) `Pdo\Mysql::ATTR_SSL_CA` use karta hai. Ye class PHP **8.4** me aayi thi. Line `extension_loaded('pdo_mysql')` ke andar hai aur Laravel har request pe config load karta hai — to **uncached** config ke saath PHP 8.3 + `pdo_mysql` pe app boot pe hi girti hai:
 
 ```
 Error: Class "Pdo\Mysql" not found in config/database.php
 ```
 
-Ye sirf MySQL ka issue nahi hai — `php artisan` commands aur SQLite pe bhi yahi fatal error aayega. `composer.json` me `php: ^8.3` likha hai, **wo galat/outdated hai — ignore karo, 8.4 hi lagao.**
+### 🤔 "Par mera server to 8.3 pe perfectly chal raha hai!"
 
-### 2. Laragon ka Terminal apna bundled Node/PHP use karta hai
+Teen me se koi ek wajah hoti hai — upar wala command bata dega kaunsi:
 
-Laragon Full ke andar `C:\laragon\bin\nodejs` hota hai. Laragon Terminal me `node -v` wahi purana Node dikhayega, nvm wala **nahi**. Fix Step 4 me hai.
+| Wajah | Kaise pata chale | Naye laptop pe kya karna |
+|---|---|---|
+| **Server actually 8.4+ pe hai** (sabse common — `docs/SHARED_HOSTING.md` me `ea-php83` sirf ek *example path* hai, live setting nahi) | command `YES (PHP 8.4+)` bolega | PHP 8.4 lagao |
+| **Config cached hai** (`bootstrap/cache/config.php` maujood hai) — tab Laravel `config/*.php` padhta hi nahi, cached array use karta hai, isliye 8.3 pe bhi chalta rehta hai | `php artisan config:clear` phir `php artisan about` chalao — agar `Pdo\Mysql not found` se fail ho, to yahi wajah hai | PHP 8.4 lagao |
+| **`pdo_mysql` load hi nahi** (koi doosra DB driver use ho raha) | `php -m \| findstr pdo` | Match kar lo — 8.3 bhi chalega |
 
-### 3. VC++ Redistributable ke bina PHP 8.4 chalega hi nahi
+> 🔑 Bottom line: **8.3 pe ye app sirf tab chal sakti hai jab config cached ho.** Naye laptop pe setup ke dauraan caches clear karna hi padta hai (warna purane PC ke absolute paths aa jate hain), aur theek usi waqt ye error saamne aa jayegi. Isliye doubt ho to **PHP 8.4 lagao — wo dono case me kaam karta hai**, aur 8.3 ke mukable kuch bhi toot-ne ka risk nahi hai (Laravel 13 / Filament 3.3 dono 8.4 support karte hain).
+
+### 2. `npm` / Vite is project me **zaroori nahi hai**
+
+`package.json` aur `vite.config.js` repo me hain, par `resources/views/` me kahin bhi `@vite` use **nahi** hota. Saara frontend CSS/JS `public/assets/`, `public/css/`, `public/js/` me plain files hain aur **Git me committed** hain.
+
+- Site chalane ke liye `npm install` / `npm run build` ki **bilkul zarurat nahi**.
+- Filament admin ke assets `composer install` publish karta hai (Vite se nahi).
+- Node/npm sirf tab chahiye jab tum `resources/css` ya `resources/js` pe kaam karo — jo abhi serve hi nahi ho raha.
+- `docs/SHARED_HOSTING.md` bhi yahi kehta hai: "Do not run npm on the shared host."
+
+Isliye neeche **Step 13 optional** hai.
+
+### 3. Laragon ka Terminal apna bundled Node/PHP use karta hai
+
+Laragon Full ke andar `C:\laragon\bin\nodejs` hota hai. Laragon Terminal me `node -v` wahi purana Node dikhayega, nvm wala **nahi**. Fix Step 4 me hai (sirf tab matter karta hai jab tum frontend build karo).
+
+### 4. VC++ Redistributable ke bina PHP chalega hi nahi
 
 Naye laptop pe aksar missing hota hai → `VCRUNTIME140.dll was not found`. Step 1 me link hai.
 
-### 4. Site ka content `database/settings/` me hai, seeders me nahi
+### 5. Site ka content `database/settings/` me hai, seeders me nahi
 
 Is project me ~137 Spatie Settings classes hain aur **93 settings-migrations** `database/settings/` me. Homepage/MBA landing ka 90% content wahan se aata hai, aur wo `php artisan migrate` ke saath apne aap chalti hain. Isliye **`migrate` skip karke sirf seed karoge to site khaali dikhegi.**
+
+---
+
+## 📌 Do raaste hain — pehle ye decide karo
+
+| | **Raasta 1: Fresh clone** (ye doc) | **Raasta 2: Purane PC ka folder copy** |
+|---|---|---|
+| Kab use karo | Naya developer, clean setup | "Bilkul waise hi chale jaise pehle chal raha tha" |
+| Kya chahiye | Internet + GitHub access | Purane PC ka folder + DB dump |
+| Guide | neeche | **[`docs/WINDOWS_FOLDER_MIGRATION.md`](WINDOWS_FOLDER_MIGRATION.md)** |
+
+Tumhara goal agar **exact same behaviour** hai, to **Raasta 2 better hai** — wahan `vendor/` ke exact versions, `.env` aur `APP_KEY` sab jaise ke taise rehte hain, aur internet/Composer resolution pe depend nahi karna padta.
+
 
 ---
 
@@ -56,7 +97,9 @@ nvm version
 
 ---
 
-## Step 1 — PHP 8.4 install karo (Laragon ke andar) 🔴 Mandatory
+## Step 1 — PHP install karo (Laragon ke andar)
+
+> **Kaunsa version?** Intro point 1 padho. Short version: **purane PC/server se match karo**; pata na ho ya doubt ho to **8.4** lo (safe default — Laravel 13 aur Filament 3.3 dono support karte hain, aur 8.3 ke mukable kuch toot-ne ka risk nahi). Neeche 8.4 ke steps hain — dusre version ke liye bas number badal do.
 
 ### 1a. Visual C++ Redistributable (pehle ye)
 
@@ -213,7 +256,9 @@ git config --global core.longpaths true
 
 ---
 
-## Step 4 — Node version theek karo (Laragon wala trap)
+## Step 4 — Node version theek karo *(optional — sirf frontend build ke liye)*
+
+> Site chalane ke liye Node ki **zarurat nahi** (dekho: intro point 2 — `@vite` kahin use nahi hota). Ye step tabhi karo jab tum `resources/css` / `resources/js` pe kaam karna chahte ho.
 
 Vite 8 ko Node `^20.19.0 || >=22.12.0` chahiye.
 
@@ -499,7 +544,11 @@ php artisan storage:link
 
 ---
 
-## Step 13 — Frontend build
+## Step 13 — Frontend build *(OPTIONAL — skip kar sakte ho)*
+
+> **Site bina npm ke poori chalti hai.** `resources/views/` me kahin `@vite` nahi hai; saara CSS/JS `public/assets/`, `public/css/`, `public/js/` me committed hai. Filament admin ke assets `composer install` publish karta hai. Pehli baar setup kar rahe ho to **ye step skip karo** — seedha Step 14 pe jao.
+
+Sirf tab chalao jab `resources/css` / `resources/js` edit karne ho:
 
 ```bash
 npm ci
@@ -508,7 +557,6 @@ npm run build
 
 - `npm ci` use karo — `package-lock.json` committed hai, isse exact same versions milenge.
 - Repo ke `.npmrc` me `ignore-scripts=true` hai — **intentional hai, hatao mat.**
-- `public/build/` gitignored hai, isliye har fresh clone pe ek baar build zaroori hai.
 
 **Hot reload chahiye:**
 
@@ -656,9 +704,8 @@ php artisan migrate --seed
 # admin
 php artisan admin:create --email=admin@maverick.test --password=Password@123
 
-# frontend
-npm ci
-npm run build
+# frontend  (OPTIONAL - site iske bina bhi chalti hai)
+# npm ci && npm run build
 
 # verify
 php artisan about

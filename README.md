@@ -9,8 +9,13 @@
 
 ## Local setup
 
-- **Windows + Laragon:** [`docs/WINDOWS_LARAGON_SETUP.md`](docs/WINDOWS_LARAGON_SETUP.md) — zero-to-running (PHP 8.4, Composer, Git, MySQL DB + SQL dump import, admin user, Vite build). Automation: `powershell -ExecutionPolicy Bypass -File scripts\windows-setup.ps1`
-- **Shared hosting deploy:** [`docs/SHARED_HOSTING.md`](docs/SHARED_HOSTING.md)
+Two supported paths:
+
+| | Guide |
+|---|---|
+| **Fresh clone** on a new machine | [`docs/WINDOWS_LARAGON_SETUP.md`](docs/WINDOWS_LARAGON_SETUP.md) |
+| **Copying the whole project folder** off an existing machine (keeps `vendor/`, `.env`, `APP_KEY` byte-identical) | [`docs/WINDOWS_FOLDER_MIGRATION.md`](docs/WINDOWS_FOLDER_MIGRATION.md) |
+| Shared hosting deploy | [`docs/SHARED_HOSTING.md`](docs/SHARED_HOSTING.md) |
 
 Create the first Filament admin (the panel requires `is_admin = true`):
 
@@ -18,13 +23,25 @@ Create the first Filament admin (the panel requires `is_admin = true`):
 php artisan admin:create
 ```
 
-> ⚠️ **PHP 8.4+ is required**, despite the `php: ^8.3` constraint in `composer.json`.
-> `config/database.php` references `Pdo\Mysql::ATTR_SSL_CA`, and the `Pdo\Mysql` class only exists in PHP 8.4+.
-> Laravel evaluates every config file on boot, so on PHP 8.3 with `pdo_mysql` enabled the app fails immediately
-> with `Class "Pdo\Mysql" not found` — for web requests *and* `php artisan`, regardless of `DB_CONNECTION`.
+### Things that surprise people
 
-> ⚠️ Site copy lives in **`database/settings/`** (93 `spatie/laravel-settings` migrations), not in `database/seeders/`.
-> They run as part of `php artisan migrate`. Skipping `migrate` leaves the front end empty.
+**PHP 8.4+ is required for an uncached config**, despite the `php: ^8.3` constraint in `composer.json`.
+`config/database.php` references `Pdo\Mysql::ATTR_SSL_CA`, and the `Pdo\Mysql` class only exists in PHP 8.4+.
+Laravel evaluates every config file on boot, so on PHP 8.3 with `pdo_mysql` loaded the app dies immediately with
+`Class "Pdo\Mysql" not found` - for web requests *and* `php artisan`, regardless of `DB_CONNECTION`.
+An environment running `php artisan config:cache` never evaluates the file and so can appear to work on 8.3;
+that illusion ends the moment the cache is cleared. Check any machine with:
+
+```bash
+php -r "echo class_exists('Pdo\Mysql') ? 'OK (8.4+)' : 'TOO OLD';"
+```
+
+**Vite is not wired up.** No Blade template uses `@vite`; the front end is served from committed files in
+`public/assets`, `public/css` and `public/js`, and Filament publishes its own assets during `composer install`.
+`npm install` / `npm run build` are **not** needed to run the app - only to work on `resources/css` or `resources/js`.
+
+**Site copy lives in `database/settings/`** (93 `spatie/laravel-settings` migrations), not in `database/seeders/`.
+They run as part of `php artisan migrate`. Skipping `migrate` leaves the front end empty.
 
 ## About Laravel
 
