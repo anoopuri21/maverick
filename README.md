@@ -9,10 +9,22 @@
 
 ## Local setup
 
-- **Windows + Laragon:** [`docs/WINDOWS_LARAGON_SETUP.md`](docs/WINDOWS_LARAGON_SETUP.md) — zero se full setup (PHP 8.4, Composer, Git, MySQL DB + SQL dump import, admin user, Vite build). Automation: `powershell -ExecutionPolicy Bypass -File scripts\windows-setup.ps1`
+- **Windows + Laragon:** [`docs/WINDOWS_LARAGON_SETUP.md`](docs/WINDOWS_LARAGON_SETUP.md) — zero-to-running (PHP 8.4, Composer, Git, MySQL DB + SQL dump import, admin user, Vite build). Automation: `powershell -ExecutionPolicy Bypass -File scripts\windows-setup.ps1`
 - **Shared hosting deploy:** [`docs/SHARED_HOSTING.md`](docs/SHARED_HOSTING.md)
 
-> ⚠️ **PHP 8.4+ required.** `config/database.php` uses the `Pdo\Mysql` class, which only exists in PHP 8.4+. On PHP 8.3 any MySQL connection fails with `Class "Pdo\Mysql" not found`.
+Create the first Filament admin (the panel requires `is_admin = true`):
+
+```bash
+php artisan admin:create
+```
+
+> ⚠️ **PHP 8.4+ is required**, despite the `php: ^8.3` constraint in `composer.json`.
+> `config/database.php` references `Pdo\Mysql::ATTR_SSL_CA`, and the `Pdo\Mysql` class only exists in PHP 8.4+.
+> Laravel evaluates every config file on boot, so on PHP 8.3 with `pdo_mysql` enabled the app fails immediately
+> with `Class "Pdo\Mysql" not found` — for web requests *and* `php artisan`, regardless of `DB_CONNECTION`.
+
+> ⚠️ Site copy lives in **`database/settings/`** (93 `spatie/laravel-settings` migrations), not in `database/seeders/`.
+> They run as part of `php artisan migrate`. Skipping `migrate` leaves the front end empty.
 
 ## About Laravel
 

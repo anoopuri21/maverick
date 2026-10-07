@@ -11,18 +11,37 @@ Project stack: **Laravel 13.20 + Filament 3.3 + Livewire 3 + Tailwind 4 + Vite 8
 
 ---
 
-## ⚠️ Sabse pehle: 3 cheezein jo log yahan fasate hain
+## ⚠️ Shuru karne se pehle — 4 baatein jo 90% time waste bachati hain
 
-1. **PHP 8.4 chahiye, 8.3 se kaam NAHI chalega.**
-   `config/database.php` me `Pdo\Mysql::ATTR_SSL_CA` constant use hua hai. Ye class PHP **8.4** me aayi hai. PHP 8.3 pe MySQL connection karte hi `Error: Class "Pdo\Mysql" not found` milega. Laragon ka bundled PHP aksar purana hota hai — neeche Step 1 me PHP 8.4 add karna hai.
-2. **`php artisan storage:link` ko Administrator terminal chahiye** (Windows symlink permission). Warna "Developer Mode" on karo.
-3. **Vite 8 ko Node `^20.19` ya `>=22.12` chahiye.** Node 22 hai to bhi `node -v` check karo — agar 22.0–22.11 hai to upgrade karo (Step 4).
+### 1. PHP **8.4+** mandatory hai. 8.3 pe app boot hi nahi hogi.
+
+`config/database.php` me Laravel 13 skeleton `Pdo\Mysql::ATTR_SSL_CA` use karta hai. `Pdo\Mysql` class **PHP 8.4** me aayi thi.
+
+Ye line `extension_loaded('pdo_mysql')` ke andar hai, aur Laravel **har request pe saari config files load karta hai** — to PHP 8.3 pe `pdo_mysql` enabled hote hi poora app boot pe crash karega:
+
+```
+Error: Class "Pdo\Mysql" not found in config/database.php
+```
+
+Ye sirf MySQL ka issue nahi hai — `php artisan` commands aur SQLite pe bhi yahi fatal error aayega. `composer.json` me `php: ^8.3` likha hai, **wo galat/outdated hai — ignore karo, 8.4 hi lagao.**
+
+### 2. Laragon ka Terminal apna bundled Node/PHP use karta hai
+
+Laragon Full ke andar `C:\laragon\bin\nodejs` hota hai. Laragon Terminal me `node -v` wahi purana Node dikhayega, nvm wala **nahi**. Fix Step 4 me hai.
+
+### 3. VC++ Redistributable ke bina PHP 8.4 chalega hi nahi
+
+Naye laptop pe aksar missing hota hai → `VCRUNTIME140.dll was not found`. Step 1 me link hai.
+
+### 4. Site ka content `database/settings/` me hai, seeders me nahi
+
+Is project me ~137 Spatie Settings classes hain aur **93 settings-migrations** `database/settings/` me. Homepage/MBA landing ka 90% content wahan se aata hai, aur wo `php artisan migrate` ke saath apne aap chalti hain. Isliye **`migrate` skip karke sirf seed karoge to site khaali dikhegi.**
 
 ---
 
-## Step 0 — Kya already hai, verify karo
+## Step 0 — Jo already hai, verify karo
 
-Laragon kholo → right-click menu → **Terminal** (ye Laragon ka apna terminal hai, PATH already set hota hai).
+Laragon kholo → right-click → **Terminal**.
 
 ```bash
 php -v
@@ -33,45 +52,48 @@ npm -v
 nvm version
 ```
 
-Jo bhi "not recognized" bole, uska section neeche hai.
-
-> **Note:** Laragon **Full** edition me Git, Composer, Node, HeidiSQL pehle se aate hain. Laragon **Lite** me sirf Apache + PHP + MySQL hota hai. Check karne ke liye `C:\laragon\bin\` folder kholo — usme `git`, `composer`, `nodejs` folders dikh rahe hain ya nahi.
+> **Laragon Full vs Lite:** Full edition me Git, Composer, Node, HeidiSQL bundled aate hain. Check karne ke liye `C:\laragon\bin\` folder kholo.
 
 ---
 
 ## Step 1 — PHP 8.4 install karo (Laragon ke andar) 🔴 Mandatory
 
-### 1a. Download
+### 1a. Visual C++ Redistributable (pehle ye)
+
+👉 **Link:** https://aka.ms/vs/17/release/vc_redist.x64.exe
+
+Install karo aur **reboot** kar lo. (PHP 8.4 Windows builds VS17 se compile hote hain — ye runtime chahiye hi chahiye.)
+
+### 1b. PHP 8.4 download
 
 👉 **Link:** https://windows.php.net/download#php-8.4
 
-Us page pe **PHP 8.4 (x.y.z)** section dhoondo aur ye wala download karo:
+Page pe **PHP 8.4 (x.y.z)** section me se ye wala:
 
 > **VS17 x64 Thread Safe** → `php-8.4.x-Win32-vs17-x64.zip`
 
-❗ **Thread Safe** hi lena hai (Non-Thread-Safe Apache ke saath kaam nahi karega). 32-bit laptop ho to x86 lena.
+❗ **Thread Safe** hi chahiye (Non-Thread-Safe me `php8apache2_4.dll` nahi hota, Apache load nahi kar paayega). 32-bit laptop ho to x86.
 
-### 1b. Laragon me daalo
+### 1c. Laragon me rakho
 
 1. ZIP extract karo.
-2. Folder ko yahan rakho aur naam exactly aise rakho:
+2. Folder yahan rakho, naam exactly aisa:
    ```
    C:\laragon\bin\php\php-8.4.x-Win32-vs17-x64\
    ```
-   (Laragon isi naming pattern se versions detect karta hai)
-3. Us folder ke andar `php.ini-development` ko copy karke **`php.ini`** naam do.
+3. Us folder me `php.ini-development` ko copy karke **`php.ini`** naam do.
 
-### 1c. php.ini me extensions on karo
+### 1d. php.ini configure karo
 
-`C:\laragon\bin\php\php-8.4.x-Win32-vs17-x64\php.ini` ko VS Code me kholo.
+`C:\laragon\bin\php\php-8.4.x-Win32-vs17-x64\php.ini` VS Code me kholo.
 
-Pehle extension directory uncomment karo:
+**extension_dir — absolute path do** (relative `"ext"` CLI me kabhi-kabhi resolve nahi hota):
 
 ```ini
-extension_dir = "ext"
+extension_dir = "C:\laragon\bin\php\php-8.4.x-Win32-vs17-x64\ext"
 ```
 
-Phir in lines ke aage ka `;` hata do (Ctrl+F se dhoondo `;extension=`):
+Phir in lines ka `;` hatao (`Ctrl+F` → `;extension=`):
 
 ```ini
 extension=bcmath
@@ -90,7 +112,7 @@ extension=sodium
 extension=zip
 ```
 
-Aur ye values set/badlo:
+Aur ye values set karo:
 
 ```ini
 memory_limit = 512M
@@ -105,40 +127,58 @@ opcache.enable_cli = 0
 opcache.revalidate_freq = 0
 ```
 
-**Kyun ye extensions:** `intl` + `mbstring` + `dom` → Filament/Carbon/Spatie, `gd` + `exif` → image handling, `curl` + `openssl` → Cloudinary API, `zip` → Composer, `pdo_mysql` → DB, `sqlite3` → tests (phpunit.xml sqlite use karta hai).
+**Kaunsa extension kyun (is project ke liye):**
 
-### 1d. Laragon me PHP 8.4 select karo
+| Extension | Kiske liye |
+|---|---|
+| `intl`, `mbstring` | Filament, Carbon, spatie/laravel-data |
+| `gd`, `exif` | Image handling / Filament uploads |
+| `curl`, `openssl` | Cloudinary SDK, Composer |
+| `zip` | Composer package extraction |
+| `pdo_mysql`, `mysqli` | Laragon MySQL |
+| `pdo_sqlite`, `sqlite3` | `php artisan test` — `phpunit.xml` me `DB_CONNECTION=sqlite`, `:memory:` |
+| `sodium` | Encryption |
+
+> `dom`, `tokenizer`, `ctype`, `json`, `filter`, `libxml`, `simplexml` Windows PHP me **built-in** hain — inhe php.ini me dhoondne ki zarurat nahi.
+
+### 1e. Laragon me PHP 8.4 select karo
 
 Laragon → right-click → **PHP → Version → php-8.4.x-Win32-vs17-x64** → phir **Stop All** → **Start All**.
 
-Verify (Laragon Terminal me):
+Verify:
 
 ```bash
-php -v          # PHP 8.4.x hona chahiye
-php -m          # list me intl, gd, curl, zip, pdo_mysql, mbstring dikhne chahiye
+php -v          # PHP 8.4.x
+php -m          # intl, gd, curl, zip, pdo_mysql, sqlite3, mbstring dikhne chahiye
+php -r "echo class_exists('Pdo\Mysql') ? 'PDO OK' : 'TOO OLD';"
 ```
+
+Last command **`PDO OK`** bole, tabhi aage badho.
+
+> **Apache start na ho to:** purane Laragon ka Apache VS16 build hota hai. Mostly VS17 PHP ke saath chal jata hai, par na chale to —
+> - Laragon → **Menu → Apache → Version** me koi naya VS17 Apache select karo, ya
+> - Apache Lounge (https://www.apachelounge.com/download/) se Apache 2.4 **VS17 x64** le kar `C:\laragon\bin\apache\` me daalo, ya
+> - Short-term workaround: Apache chhodo aur `php artisan serve` use karo (Step 14).
 
 ---
 
-## Step 2 — Composer install karo
+## Step 2 — Composer install
 
 Agar `composer -V` kaam nahi kar raha:
 
 👉 **Link:** https://getcomposer.org/Composer-Setup.exe
 
-Installer chalao:
-- Jab PHP path pooche → `C:\laragon\bin\php\php-8.4.x-Win32-vs17-x64\php.exe` select karo (bahut important — PHP 8.4 wala hi).
-- "Add to PATH" tick rehne do.
-- Proxy wala page skip.
+- Jab PHP path pooche → **`C:\laragon\bin\php\php-8.4.x-Win32-vs17-x64\php.exe`** (ye step sabse important hai — galat PHP select kiya to `composer install` platform error dega).
+- "Add to PATH" tick rehne do. Proxy page skip.
 
-Install ke baad **naya terminal** kholo:
+Verify (**naya** terminal kholkar):
 
 ```bash
-composer -V        # Composer version 2.x
-composer config -g -l | findstr php    # ya: php -v check karke confirm
+composer -V
+composer diagnose          # PHP version bhi print karta hai
 ```
 
-Thoda fast banane ke liye (optional):
+Optional, lambe installs ke liye:
 
 ```bash
 composer config -g process-timeout 2000
@@ -146,18 +186,17 @@ composer config -g process-timeout 2000
 
 ---
 
-## Step 3 — Git install karo
+## Step 3 — Git install
 
 Agar `git --version` kaam nahi kar raha:
 
 👉 **Link:** https://git-scm.com/download/win → "64-bit Git for Windows Setup"
 
-Installer me ye choices lo:
+Installer choices:
 - Editor: **Use Visual Studio Code**
-- Default branch name: `main`
+- Default branch: `main`
 - PATH: **Git from the command line and also from 3rd-party software**
-- Line endings: **Checkout as-is, commit Unix-style line endings**
-  (repo ka `.gitattributes` `eol=lf` enforce karta hai, isliye ye safe option hai)
+- Line endings: **Checkout as-is, commit Unix-style line endings** (repo ka `.gitattributes` `eol=lf` enforce karta hai)
 - Credential helper: **Git Credential Manager**
 
 Install ke baad:
@@ -167,40 +206,53 @@ git --version
 git config --global user.name "Tumhara Naam"
 git config --global user.email "tum@example.com"
 git config --global core.autocrlf false
+git config --global core.longpaths true
 ```
+
+> `core.longpaths true` zaroori hai — `vendor/` me Filament/Livewire ke nested paths Windows ki 260-char limit cross kar jate hain, warna `Filename too long` error aata hai.
 
 ---
 
-## Step 4 — Node version pakka karo (nvm se)
+## Step 4 — Node version theek karo (Laragon wala trap)
 
 Vite 8 ko Node `^20.19.0 || >=22.12.0` chahiye.
 
+**Pehle check karo kaunsa node chal raha hai:**
+
 ```bash
 node -v
+where node
 ```
 
-Agar `v22.12.0` se chhota hai:
+Agar `where node` me `C:\laragon\bin\nodejs\...` dikh raha hai, to Laragon ka bundled Node use ho raha hai, nvm wala nahi.
+
+**Fix (koi ek):**
+
+- **Option A (recommended):** Laragon ka bundled Node hata do —
+  `C:\laragon\bin\nodejs` folder ko rename karke `nodejs_disabled` kar do, phir Laragon restart.
+- **Option B:** npm commands ke liye Laragon Terminal ki jagah **Windows Terminal / PowerShell** use karo (wahan nvm wala Node milega). PHP/artisan ke liye Laragon Terminal, npm ke liye normal terminal.
+
+Phir:
 
 ```bash
 nvm install 22.20.0
 nvm use 22.20.0
-node -v
-npm -v
+node -v     # v22.20.0 (>= 22.12 hona chahiye)
 ```
 
-> nvm-windows me `nvm use` ke liye terminal **Administrator** me chalana padta hai.
+> `nvm use` ke liye terminal **Administrator** me chahiye hota hai (nvm-windows symlink banata hai).
 
 ---
 
-## Step 5 — Optional but recommended tools
+## Step 5 — Optional tools
 
 | Tool | Kyun | Link |
 |---|---|---|
-| **HeidiSQL** | DB GUI, SQL dump import/export. Laragon Full me already hota hai (`C:\laragon\bin\heidisql`) | https://www.heidisql.com/download.php |
-| **DBeaver CE** | HeidiSQL ka better alternative, cross-DB | https://dbeaver.io/download/ |
-| **Windows Terminal** | Laragon/cmd se behtar terminal | Microsoft Store |
+| **HeidiSQL** | DB GUI + SQL dump import. Laragon Full me already (`C:\laragon\bin\heidisql`) | https://www.heidisql.com/download.php |
+| **DBeaver CE** | Better cross-DB GUI | https://dbeaver.io/download/ |
+| **Windows Terminal** | Laragon/cmd se behtar | Microsoft Store |
 
-### VS Code extensions (terminal me paste kar do)
+### VS Code extensions
 
 ```bash
 code --install-extension bmewburn.vscode-intelephense-client
@@ -215,11 +267,9 @@ code --install-extension xdebug.php-debug
 
 ---
 
-## Step 6 — Project clone karo
+## Step 6 — Project clone
 
-Laragon ka web root `C:\laragon\www` hai. Project yahin clone karna hai taaki Laragon auto virtual host bana de.
-
-Laragon → right-click → **Terminal**:
+Laragon ka web root `C:\laragon\www` hai — yahin clone karo taaki auto virtual host bane.
 
 ```bash
 cd C:\laragon\www
@@ -227,77 +277,72 @@ git clone https://github.com/anoopuri21/maverick.git
 cd maverick
 ```
 
-Private repo hai to Git Credential Manager browser kholega — GitHub se login kar lena.
+Private repo pe Git Credential Manager browser kholega — GitHub se login kar lena.
 
-Specific branch chahiye to:
+Dusri branch chahiye:
 
 ```bash
 git clone -b main https://github.com/anoopuri21/maverick.git
 # ya existing clone me:
-git fetch origin
-git checkout main
+git fetch origin && git checkout main
 ```
 
 ### Virtual host
 
-Laragon → right-click → **Reload** (ya **Stop All** → **Start All**).
+Laragon → right-click → **Reload** (ya Stop All → Start All).
 
-Laragon khud `http://maverick.test` bana dega aur Laravel detect karke document root ko `public/` pe point kar dega.
+Laragon khud `http://maverick.test` banayega aur Laravel detect karke document root `maverick/public` pe set kar dega.
 
-Agar `maverick.test` na khule:
-- Laragon → **Menu → Apache → sites-enabled** → `auto.maverick.test.conf` check karo, `DocumentRoot` `C:/laragon/www/maverick/public` hona chahiye.
+Na chale to:
+- Laragon ko **Run as Administrator** se chalao (hosts file edit karne ko admin chahiye).
 - Laragon → **Preferences → General → "Auto virtual hosts"** tick hona chahiye.
-- Laragon ko **Run as Administrator** se chalao (hosts file edit karne ke liye admin chahiye).
+- `C:\laragon\etc\apache2\sites-enabled\auto.maverick.test.conf` me `DocumentRoot "C:/laragon/www/maverick/public"` check karo.
 
 ---
 
-## Step 7 — PHP dependencies install
+## Step 7 — PHP dependencies
 
 ```bash
 cd C:\laragon\www\maverick
 composer install
 ```
 
-Pehli baar 2–5 min lagenge. End me `php artisan package:discover` aur `php artisan filament:upgrade` apne aap chalenge — agar yahan DB error aaye to ignore karo, `.env` abhi set nahi hua.
+2–5 min lagenge. End me `package:discover` aur `filament:upgrade` chalenge (Filament apne CSS/JS `public/css/filament`, `public/js/filament` me publish karega).
+
+> Yahan agar `Class "Pdo\Mysql" not found` aaye → Step 1 adhoora hai, PHP 8.3 chal raha hai.
+> `Your requirements could not be resolved ... php ^8.3` aaye → Composer purane PHP se bandha hai, Composer-Setup dobara chalao.
 
 ---
 
 ## Step 8 — Laragon me Database banao
 
-### Option A — Terminal se (fastest)
-
 Laragon ka MySQL root user **bina password** ka hota hai.
+
+### Option A — Terminal (fastest)
 
 ```bash
 mysql -u root -e "CREATE DATABASE maverick_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
-```
-
-Verify:
-
-```bash
 mysql -u root -e "SHOW DATABASES;"
 ```
 
-### Option B — HeidiSQL se (GUI)
+### Option B — HeidiSQL (GUI)
 
-1. Laragon → **Database** button (ya `Menu → MySQL → HeidiSQL`).
+1. Laragon → **Database** button.
 2. Session: Host `127.0.0.1`, User `root`, Password **khaali**, Port `3306` → **Open**.
-3. Left panel me right-click → **Create new → Database**
-   - Name: `maverick_db`
-   - Collation: `utf8mb4_unicode_ci`
-   - OK.
+3. Left panel → right-click → **Create new → Database** → Name `maverick_db`, Collation `utf8mb4_unicode_ci` → OK.
 
-> Laragon me MySQL start nahi ho raha? Port 3306 kisi aur service ne le rakha hoga (purana MySQL/XAMPP). Laragon → **Preferences → Services & Ports** me MySQL port `3307` kar do aur `.env` me `DB_PORT=3307` likh dena.
+> **MySQL start nahi ho raha?** Port 3306 kisi purane MySQL/XAMPP service ne le rakha hoga. Laragon → **Preferences → Services & Ports** me MySQL port `3307` kar do, aur `.env` me `DB_PORT=3307`.
 
 ---
 
-## Step 9 — `.env` banao aur configure karo
+## Step 9 — `.env` banao
 
 ```bash
 copy .env.example .env
 ```
+> Git Bash use kar rahe ho to `cp .env.example .env`.
 
-Ab `.env` VS Code me kholo (`code .env`) aur ye values set karo:
+`code .env` karke ye values set karo:
 
 ```dotenv
 APP_NAME=Maverick
@@ -320,18 +365,20 @@ FILESYSTEM_DISK=local
 
 MAIL_MAILER=log
 
-# Cloudinary — team se real keys lo (images in ke bina load nahi hongi)
+# Cloudinary — team se real keys lo
 CLOUDINARY_CLOUD_NAME=
 CLOUDINARY_API_KEY=
 CLOUDINARY_API_SECRET=
 CLOUDINARY_UPLOAD_FOLDER=maverick-academy
 ```
 
-❗ `.env.example` me default `DB_CONNECTION=sqlite` hai — use **`mysql`** me badalna zaroori hai.
+❗ `.env.example` me default `DB_CONNECTION=sqlite` hai — **`mysql`** karna zaroori hai.
 
-📌 **Cloudinary keys:** ye repo me nahi hain (gitignored). Team lead / existing dev se `CLOUDINARY_*` values maang lo. In ke bina app chalega par admin panel me image upload aur frontend images fail karengi.
+📌 **Cloudinary keys** repo me nahi hain (gitignored). Inke bina app chalega, par admin me image upload aur Cloudinary-hosted images fail karengi. Team lead se maang lo.
 
-App key generate karo:
+> Apache non-standard port pe ho (e.g. 8080) to `APP_URL=http://maverick.test:8080` likhna — warna Vite/Livewire ke asset URLs galat banenge.
+
+App key:
 
 ```bash
 php artisan key:generate
@@ -339,137 +386,137 @@ php artisan key:generate
 
 ---
 
-## Step 10 — Database schema + data
+## Step 10 — Database schema + content
 
-Yahan **do raste** hain. Jo situation match kare wahi karo.
+**Dhyan do:** `php artisan migrate` do cheezein chalata hai —
+1. `database/migrations/` → 70+ schema migrations (tables)
+2. `database/settings/` → **93 Spatie settings migrations** (homepage, MBA landing, SEO, CEO quote... ka actual text content)
 
-### Raasta A — Fresh DB (migrations + seeders se)
+Isliye `migrate` kabhi skip mat karna.
 
-Naye developer ke liye normally yahi.
+`database/seeders/` sirf Programs, Awards, Faculty Insights, Testimonials jaise catalog records daalta hai.
+
+### Raasta A — Fresh DB (naye developer ke liye)
 
 ```bash
 php artisan migrate --seed
 ```
 
-Ye 70+ migrations chalayega aur phir `DatabaseSeeder` se Programs, Awards, Faculty Insights, Testimonials wagairah bhar dega.
+- Pehli baar 1–3 min lag sakte hain (93 settings migrations + seeders).
+- `TestimonialSeeder` testimonial images ko `public/assets/images/testimonials/` me dhoondta hai — wo repo me committed hain, to internet ki zarurat nahi. Na milein to wo Google se download try karega aur fail hone pe silently skip kar dega (crash nahi hoga).
 
-Status check:
+Verify:
 
 ```bash
 php artisan migrate:status
-mysql -u root -e "USE maverick_db; SHOW TABLES;"
+php artisan about
+mysql -u root -e "USE maverick_db; SELECT COUNT(*) FROM settings; SHOW TABLES;"
 ```
 
-### Raasta B — Production/staging ka SQL dump import karna
+`settings` table me hazaron rows hone chahiye.
 
-Agar tumhe koi `.sql` file di gayi hai (asli content ke saath):
+### Raasta B — Production/staging SQL dump import
 
-**B1. Pehle khaali DB banao** (Step 8) — agar pehle se kuch hai to reset:
+Agar `.sql` file di gayi hai:
+
+**B1. Khaali DB** (ya reset):
 
 ```bash
 mysql -u root -e "DROP DATABASE IF EXISTS maverick_db; CREATE DATABASE maverick_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
 ```
 
-**B2. Dump import karo**
+**B2. Import**
 
-Laragon Terminal / cmd me (PowerShell me `<` kaam nahi karta — cmd use karo):
-
+**cmd / Laragon Terminal me:**
 ```bash
-mysql -u root maverick_db < C:\Users\YourName\Downloads\maverick_dump.sql
+mysql -u root --default-character-set=utf8mb4 maverick_db < C:\Users\You\Downloads\maverick_dump.sql
 ```
 
-PowerShell hi use karna ho to:
-
+**PowerShell me** (`<` redirect PowerShell me nahi chalta):
 ```powershell
-Get-Content C:\Users\YourName\Downloads\maverick_dump.sql | mysql -u root maverick_db
+cmd /c "mysql -u root --default-character-set=utf8mb4 maverick_db < C:\Users\You\Downloads\maverick_dump.sql"
 ```
 
-Bada dump (>50MB) hai to:
-
+Bada dump (>50 MB):
 ```bash
-mysql -u root --max_allowed_packet=512M maverick_db < dump.sql
+mysql -u root --max_allowed_packet=512M --default-character-set=utf8mb4 maverick_db < dump.sql
 ```
 
-**HeidiSQL se:** DB select karo → **File → Run SQL file...** → `.sql` choose karo → encoding `UTF-8` → Run.
+**HeidiSQL se:** DB select → **File → Run SQL file...** → encoding `UTF-8` → Run.
 
-**B3. Import ke baad pending migrations chalao**
+**B3. Pending migrations**
 
 ```bash
 php artisan migrate
 php artisan migrate:status
 ```
 
-**B4. Dump purane host ka hai to URLs/keys theek karo**
+**B4. 🔴 APP_KEY ka rule**
 
-`.env` me `APP_URL=http://maverick.test` already set hai. Agar DB me `settings` table ke andar absolute URLs hain to admin panel se update kar lena.
+Dump me encrypted settings ho sakti hain. Agar tumhe dump ke saath **purana `APP_KEY` diya gaya hai**, to `.env` me wahi paste karo aur **`php artisan key:generate` mat chalao** — warna wo data decrypt nahi hoga.
 
-> ⚠️ **Kabhi bhi `php artisan key:generate` mat chalana agar dump ke saath purana `APP_KEY` diya gaya ho** — encrypted settings values decrypt nahi ho paayengi. Aisi situation me `.env` me wahi purana `APP_KEY` paste karo.
+**B5.** Dump purane domain ka hai to admin se absolute URLs update kar lena. `.env` ka `APP_URL` already `http://maverick.test` hai.
 
 ---
 
 ## Step 11 — Admin user banao
 
-Admin panel `/admin` pe hai aur sirf `is_admin = true` wale users ko access deta hai (`User::canAccessPanel`).
+Admin panel `/admin` pe hai aur sirf `is_admin = true` walon ko ghusne deta hai (`User::canAccessPanel`). Fresh DB me koi admin nahi hota.
+
+**Interactive (recommended — password terminal history me nahi jata):**
 
 ```bash
-php artisan tinker --execute="\App\Models\User::updateOrCreate(['email' => 'admin@maverick.test'], ['name' => 'Admin', 'password' => 'Password@123', 'is_admin' => true]);"
+php artisan admin:create
 ```
 
-Ya interactive:
+Email poochega (default `admin@maverick.test`) aur phir hidden password input lega.
+
+**Non-interactive (scripts ke liye):**
 
 ```bash
-php artisan tinker
-```
-```php
-\App\Models\User::updateOrCreate(
-    ['email' => 'admin@maverick.test'],
-    ['name' => 'Admin', 'password' => 'Password@123', 'is_admin' => true]
-);
+php artisan admin:create --email=admin@maverick.test --password=Password@123
 ```
 
-(Password model me `hashed` cast hai, isliye plain text dena sahi hai.)
+- Password minimum 8 characters.
+- Email already exist karta ho to wo user **admin bana diya jayega** (naam nahi badlega); password khaali chhod do to purana password bana rehta hai.
+- Ye command `DatabaseSeeder` ka hissa nahi hai — admin account kabhi galti se create na ho.
 
-Agar dump import kiya hai aur existing user ko admin banana hai:
-
-```bash
-php artisan tinker --execute="\App\Models\User::where('email','tum@example.com')->update(['is_admin' => true]);"
-```
+Har shell (cmd / PowerShell / Git Bash) me safe hai, kyunki `--option=value` ko quoting nahi chahiye.
 
 ---
 
-## Step 12 — Storage link
+## Step 12 — Storage link *(optional — is project me zaroori nahi)*
 
-👉 Terminal ko **Run as Administrator** se kholo (Windows symlink ke liye), phir:
+Is app me saara permanent media **Cloudinary** pe jata hai; code me `Storage::disk('public')` kahin use nahi hota. To `public/storage` symlink skip kar sakte ho.
+
+Phir bhi chahiye to terminal **Run as Administrator** se:
 
 ```bash
-cd C:\laragon\www\maverick
 php artisan storage:link
 ```
 
-Error `symlink(): A required privilege is not held by the client` aaye to:
-- Ya to admin terminal use karo,
-- Ya **Settings → Privacy & security → For developers → Developer Mode** ON kar do.
+`symlink(): A required privilege is not held by the client` aaye to ya admin terminal use karo, ya **Settings → Privacy & security → For developers → Developer Mode** ON kar do.
 
 ---
 
-## Step 13 — Frontend build (Node)
+## Step 13 — Frontend build
 
 ```bash
-npm install
+npm ci
 npm run build
 ```
 
-> Repo ke `.npmrc` me `ignore-scripts=true` hai — ye intentional hai, aise hi rehne do.
+- `npm ci` use karo — `package-lock.json` committed hai, isse exact same versions milenge.
+- Repo ke `.npmrc` me `ignore-scripts=true` hai — **intentional hai, hatao mat.**
+- `public/build/` gitignored hai, isliye har fresh clone pe ek baar build zaroori hai.
 
-Build `public/build/` banata hai (gitignored hai, isliye har fresh clone pe ek baar build zaroori hai).
-
-**Development mode** (hot reload chahiye to):
+**Hot reload chahiye:**
 
 ```bash
 npm run dev
 ```
 
-Isko alag terminal me chhod do — Vite `http://localhost:5173` pe chalega aur `maverick.test` apne aap usse assets uthayega. Kaam khatam hone pe `Ctrl+C`, aur phir production assets ke liye ek baar `npm run build` kar lena.
+Alag terminal me chhod do. Vite `http://localhost:5173` pe chalega; `maverick.test` apne aap usse assets uthayega (laravel-vite-plugin `.test` origins ko CORS allow karta hai). Kaam khatam hone pe `Ctrl+C`, phir `npm run build`.
 
 ---
 
@@ -478,52 +525,48 @@ Isko alag terminal me chhod do — Vite `http://localhost:5173` pe chalega aur `
 Laragon me Apache + MySQL green hone chahiye.
 
 - **Website:** http://maverick.test
-- **Admin panel:** http://maverick.test/admin
-- **Health check:** http://maverick.test/up (200 aana chahiye)
+- **Admin:** http://maverick.test/admin
+- **Health:** http://maverick.test/up → `200`
 
 Login: `admin@maverick.test` / `Password@123`
 
-### Laragon vhost ki jagah artisan serve (quick alternative)
+### Apache ke bina (quick alternative)
 
 ```bash
 php artisan serve
 # http://127.0.0.1:8000
 ```
+(Is case me `.env` me `APP_URL=http://127.0.0.1:8000` kar lena.)
 
 ---
 
-## Daily workflow (roz ka)
+## Daily workflow
 
 ```bash
 cd C:\laragon\www\maverick
 git pull origin main
 composer install
-php artisan migrate
-npm install
-npm run dev          # ya npm run build
+php artisan migrate        # schema + settings dono
+npm ci
+npm run dev                # ya npm run build
 ```
 
-Kuch weird behave kare to caches saaf karo:
-
-```bash
-php artisan optimize:clear
-```
-
-Sab kuch ek saath (server + queue + logs + vite) chalane ke liye:
+Sab ek saath (server + queue + logs + vite):
 
 ```bash
 composer run dev
 ```
 
-Tests:
+`.env` / config badla ho to:
 
 ```bash
-php artisan test
+php artisan optimize:clear
 ```
 
-Code style:
+Tests aur code style:
 
 ```bash
+php artisan test           # sqlite :memory: use karta hai
 ./vendor/bin/pint
 ```
 
@@ -531,66 +574,94 @@ Code style:
 
 ## Troubleshooting
 
+### PHP / Composer
+
 | Error | Fix |
 |---|---|
-| `Class "Pdo\Mysql" not found` | PHP 8.3 chal raha hai. Laragon → PHP → Version → **8.4** select karo (Step 1). |
-| `Composer detected issues: Your requirements could not be resolved... php ^8.3` | Composer purane PHP se bandha hai. Composer-Setup dobara chalao aur PHP 8.4 ka `php.exe` choose karo. |
-| `ext-intl * -> it is missing` / `Class "NumberFormatter" not found` | `php.ini` me `extension=intl` uncomment karo + Laragon restart. |
-| `ext-zip missing` composer install ke time | `extension=zip` uncomment karo. |
-| `SQLSTATE[HY000] [2002] No connection could be made` | Laragon me MySQL start nahi hai, ya port 3307 hai. `.env` ka `DB_PORT` match karao. |
-| `SQLSTATE[HY000] [1049] Unknown database 'maverick_db'` | Step 8 skip ho gaya — DB banao. |
-| `SQLSTATE[42000]: Specified key was too long` | Bahut purana MySQL 5.6 chal raha hai. Laragon → MySQL → Version → **MySQL 8.x** select karo. |
-| `maverick.test` nahi khulta / DNS error | Laragon ko **Run as Administrator** se chalao → Reload. Ya `C:\Windows\System32\drivers\etc\hosts` me `127.0.0.1 maverick.test` manually add karo. |
-| `maverick.test` pe Laragon ka default page dikhta hai | vhost ka DocumentRoot `.../maverick/public` hona chahiye. `sites-enabled` conf check karo, phir Reload. |
-| Port 80 busy / Apache start nahi hota | IIS ya "World Wide Web Publishing Service" band karo, ya Laragon → Preferences → Ports → Apache `8080`. |
-| `The stream or file "storage/logs/laravel.log" could not be opened` | `storage/` aur `bootstrap/cache/` folders writable hone chahiye — antivirus/OneDrive sync ko exclude karo. Project OneDrive folder me mat rakho. |
-| `symlink(): A required privilege is not held` | Admin terminal se `php artisan storage:link` (Step 12). |
-| Vite `crypto.hash is not a function` / engine warning | Node `>=22.12` chahiye → `nvm install 22.20.0 && nvm use 22.20.0`. |
-| Page bina CSS ke load hota hai | `npm run build` chalaya nahi. Ya `npm run dev` band ho gaya aur `public/hot` file bachi hai — usse delete kar do. |
-| Admin login ke baad **403 Forbidden** | User ka `is_admin` false hai → Step 11 ka update command chalao. |
-| Admin me images blank/broken | `.env` me Cloudinary keys missing hain. |
-| `composer install` me `Allowed memory size exhausted` | `php.ini` me `memory_limit = 512M` (ya `-1`). |
-| Composer SSL error `curl error 60` | `php.ini` me `curl.cainfo` aur `openssl.cafile` ko Laragon ke `cacert.pem` pe point karo (`C:\laragon\etc\ssl\cacert.pem`). |
-| `git clone` pe line-ending warnings | `git config --global core.autocrlf false` (repo `.gitattributes` LF enforce karta hai). |
+| `Class "Pdo\Mysql" not found` (har request/artisan pe) | PHP 8.3 chal raha hai. Laragon → PHP → Version → **8.4**. Verify: `php -r "echo class_exists('Pdo\Mysql')?'OK':'OLD';"` |
+| `VCRUNTIME140.dll was not found` / php.exe silently band | VC++ Redistributable missing → https://aka.ms/vs/17/release/vc_redist.x64.exe |
+| `Your requirements could not be resolved ... php ^8.3` | Composer purane PHP se bandha hai → Composer-Setup dobara, PHP 8.4 ka `php.exe` select |
+| `ext-intl missing` / `Class "NumberFormatter" not found` | `php.ini` me `extension=intl` uncomment + Laragon restart |
+| `ext-zip missing` | `extension=zip` uncomment |
+| `Unable to load dynamic library ... ext\php_gd.dll` | `extension_dir` galat hai → absolute path do (Step 1d) |
+| `Allowed memory size exhausted` (composer) | `php.ini` → `memory_limit = 512M` |
+| Composer `curl error 60` / SSL | `php.ini` me `curl.cainfo="C:\laragon\etc\ssl\cacert.pem"` aur `openssl.cafile` wahi |
+| `php artisan test` me `could not find driver` | `extension=pdo_sqlite` + `extension=sqlite3` uncomment |
+
+### Database
+
+| Error | Fix |
+|---|---|
+| `[2002] No connection could be made` | Laragon me MySQL start nahi, ya port 3307 hai → `.env` ka `DB_PORT` match karao |
+| `[1049] Unknown database 'maverick_db'` | Step 8 skip ho gaya |
+| `[1045] Access denied for user 'root'` | Laragon root ka password khaali hota hai → `DB_PASSWORD=` khaali rakho |
+| Dump import ke baad site khaali | `php artisan migrate` chalao (settings migrations pending hongi) + `php artisan optimize:clear` |
+| Homepage pe sab placeholder text | `migrate` nahi chala — `database/settings/` ki 93 migrations pending hain. `php artisan migrate:status` check karo |
+| PowerShell me `The '<' operator is reserved` | `cmd /c "mysql ... < dump.sql"` use karo |
+
+### Apache / vhost
+
+| Error | Fix |
+|---|---|
+| `maverick.test` DNS error | Laragon ko **Run as Administrator** se chalao → Reload. Ya `C:\Windows\System32\drivers\etc\hosts` me `127.0.0.1 maverick.test` add karo |
+| Laragon ka default page dikhta hai | vhost ka `DocumentRoot` `.../maverick/public` hona chahiye → `sites-enabled` conf check karo → Reload |
+| Apache start hi nahi hota | Port 80 busy (IIS / "World Wide Web Publishing Service" band karo), ya VS16/VS17 mismatch (Step 1e ka note) |
+| `The stream or file "storage/logs/laravel.log" could not be opened` | `storage/` + `bootstrap/cache/` writable chahiye. Project ko **OneDrive folder me mat rakho**, aur antivirus me `C:\laragon` exclude karo |
+| `symlink(): A required privilege is not held` | Admin terminal, ya Developer Mode ON (ya storage:link skip hi kar do — Step 12) |
+
+### Node / Vite
+
+| Error | Fix |
+|---|---|
+| `node -v` purana dikhta hai despite nvm | Laragon ka bundled Node shadow kar raha hai → `C:\laragon\bin\nodejs` rename karo (Step 4) |
+| `crypto.hash is not a function` / Vite engine warning | Node `>=22.12` chahiye → `nvm install 22.20.0 && nvm use 22.20.0` |
+| Page bina CSS ke | `npm run build` nahi chala; ya `npm run dev` band hua aur `public/hot` file bachi hai → use delete karo |
+| `git clone` pe `Filename too long` | `git config --global core.longpaths true` |
+
+### Admin panel
+
+| Error | Fix |
+|---|---|
+| Login ke baad **403 Forbidden** | User ka `is_admin` false hai → `php artisan admin:create --email=<wahi email>` |
+| `/admin` pe redirect loop ya login page nahi | `php artisan optimize:clear` + `php artisan filament:upgrade` |
+| Admin me Filament ka CSS/JS missing | `php artisan filament:assets` |
+| Images blank / upload fail | `.env` me Cloudinary keys missing hain |
 
 ---
 
-## Quick reference — ek nazar me saare commands
+## Quick reference — saare commands
 
 ```bash
-# 1. clone
+# clone
 cd C:\laragon\www
 git clone https://github.com/anoopuri21/maverick.git
 cd maverick
 
-# 2. php deps
+# php deps
 composer install
 
-# 3. db
+# database
 mysql -u root -e "CREATE DATABASE maverick_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
 
-# 4. env
+# env  (DB_CONNECTION=mysql, DB_DATABASE=maverick_db, DB_USERNAME=root, DB_PASSWORD=, APP_URL=http://maverick.test)
 copy .env.example .env
-#    .env me: DB_CONNECTION=mysql, DB_DATABASE=maverick_db, DB_USERNAME=root, DB_PASSWORD=, APP_URL=http://maverick.test
 php artisan key:generate
 
-# 5. schema + data   (A: fresh)
+# schema + settings + data
 php artisan migrate --seed
-#                    (B: dump se)
-# mysql -u root maverick_db < C:\path\to\dump.sql
-# php artisan migrate
+#   ya dump se:
+#   cmd /c "mysql -u root --default-character-set=utf8mb4 maverick_db < C:\path\dump.sql"
+#   php artisan migrate
 
-# 6. admin user
-php artisan tinker --execute="\App\Models\User::updateOrCreate(['email'=>'admin@maverick.test'],['name'=>'Admin','password'=>'Password@123','is_admin'=>true]);"
+# admin
+php artisan admin:create --email=admin@maverick.test --password=Password@123
 
-# 7. storage (admin terminal)
-php artisan storage:link
-
-# 8. frontend
-npm install
+# frontend
+npm ci
 npm run build
 
-# 9. open
+# verify
+php artisan about
 start http://maverick.test
 start http://maverick.test/admin
 ```
@@ -599,17 +670,19 @@ start http://maverick.test/admin
 
 ## Automation script
 
-Step 6 ke baad (clone ho jaane ke baad) sab kuch ek command me karne ke liye:
+Clone ho jaane ke baad (Step 6 ke baad) baaki sab ek command me:
 
 ```powershell
 cd C:\laragon\www\maverick
 powershell -ExecutionPolicy Bypass -File scripts\windows-setup.ps1
 ```
 
-Dump import karna ho to:
+SQL dump se setup:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File scripts\windows-setup.ps1 -SqlDump "C:\Users\You\Downloads\maverick_dump.sql"
+powershell -ExecutionPolicy Bypass -File scripts\windows-setup.ps1 -SqlDump "C:\Users\You\Downloads\maverick_dump.sql" -FreshDatabase
 ```
 
-Saare options ke liye script ke top ka comment block padh lo.
+Script pehle environment validate karta hai (PHP 8.4 + `Pdo\Mysql` class, extensions, Composer ka PHP, MySQL server reachable, Node version) aur koi problem ho to **kuch change kiye bina** clear fix message ke saath ruk jata hai. Idempotent hai — dobara chala sakte ho.
+
+Saare options: `Get-Help .\scripts\windows-setup.ps1 -Detailed`
