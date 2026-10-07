@@ -27,7 +27,7 @@ class CatalogProgramsSeeder extends Seeder
     /** Catalogue data files to load, in order. */
     private const SOURCES = [
         'doctorate_programs.php',
-        // 'diploma_programs.php',   // enable once diploma content is approved
+        'diploma_programs.php',
     ];
 
     public function run(): void

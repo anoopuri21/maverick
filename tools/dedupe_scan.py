@@ -17,7 +17,7 @@ import sys
 from collections import defaultdict
 from itertools import combinations
 
-SRC = "output/programs/doctorate"
+SRC = "output/programs"
 
 FACTUAL_MARKERS = [
     # Rushford factual boilerplate
@@ -87,6 +87,8 @@ def main():
 
     pages = {}
     for root, _dirs, files in os.walk(SRC):
+        if os.path.relpath(root, SRC).count(os.sep) != 1:
+            continue  # programme pages live at {category}/{university}/*.md
         for f in sorted(files):
             if not f.endswith(".md"):
                 continue

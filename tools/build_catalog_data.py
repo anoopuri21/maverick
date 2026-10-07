@@ -14,15 +14,26 @@ import os
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SRC = os.path.join(ROOT, "output/programs/doctorate")
-OUT = os.path.join(ROOT, "database/seeders/data/doctorate_programs.php")
-
-CATEGORIES = [
-    ("doctorate", "Doctorate", 200),
-]
-UNIVERSITIES = [
-    ("rushford-business-school", "Rushford Business School", "Switzerland", "CH", 2),
-    ("girne-american-university", "Girne American University", "North Cyprus", "CY", 3),
+# One entry per generated data file. Each build reads
+# output/programs/<src>/*/*.md and writes database/seeders/data/<out>.
+BUILDS = [
+    {
+        "src": "doctorate",
+        "out": "doctorate_programs.php",
+        "categories": [("doctorate", "Doctorate", 200)],
+        "universities": [
+            ("rushford-business-school", "Rushford Business School", "Switzerland", "CH", 2),
+            ("girne-american-university", "Girne American University", "North Cyprus", "CY", 3),
+        ],
+    },
+    {
+        "src": "diploma",
+        "out": "diploma_programs.php",
+        "categories": [("diploma", "Diploma", 300)],
+        "universities": [
+            ("gatehouse-awards", "Gatehouse Awards", "United Kingdom", "GB", 4),
+        ],
+    },
 ]
 
 
@@ -211,36 +222,44 @@ def emit(p, ind="        "):
     return "\n".join(L)
 
 
-def main():
-    files = sorted(glob.glob(os.path.join(SRC, "*/*.md")))
+def build_one(cfg):
+    src = os.path.join(ROOT, "output/programs", cfg["src"])
+    out_path = os.path.join(ROOT, "database/seeders/data", cfg["out"])
+
+    files = sorted(glob.glob(os.path.join(src, "*/*.md")))
     if not files:
-        sys.exit("No approved content found in " + SRC)
+        sys.exit("No approved content found in " + src)
     progs = [build(f) for f in files]
     progs.sort(key=lambda x: x["sort_order"])
 
-    out = ["<?php", "", "// GENERATED FILE — do not edit by hand.",
-           "// Source: output/programs/doctorate/**.md",
+    out = ["<?php", "", "// GENERATED FILE \u2014 do not edit by hand.",
+           f"// Source: output/programs/{cfg['src']}/**.md",
            "// Rebuild: python3 tools/build_catalog_data.py", "", "return [",
            "    'categories' => ["]
-    for s, n, so in CATEGORIES:
-        out.append(f"        ['slug' => {ph(s)}, 'name' => {ph(n)}, 'sort_order' => {so}],")
+    for s_, n, so in cfg["categories"]:
+        out.append(f"        ['slug' => {ph(s_)}, 'name' => {ph(n)}, 'sort_order' => {so}],")
     out += ["    ],", "    'universities' => ["]
-    for s, n, c, cc, so in UNIVERSITIES:
-        out.append(f"        ['slug' => {ph(s)}, 'name' => {ph(n)}, 'country' => {ph(c)}, "
+    for s_, n, c, cc, so in cfg["universities"]:
+        out.append(f"        ['slug' => {ph(s_)}, 'name' => {ph(n)}, 'country' => {ph(c)}, "
                    f"'country_code' => {ph(cc)}, 'sort_order' => {so}],")
     out += ["    ],", "    'programs' => ["]
     out += [emit(p) for p in progs]
     out += ["    ],", "];", ""]
 
-    os.makedirs(os.path.dirname(OUT), exist_ok=True)
-    open(OUT, "w", encoding="utf-8").write("\n".join(out))
+    os.makedirs(os.path.dirname(out_path), exist_ok=True)
+    open(out_path, "w", encoding="utf-8").write("\n".join(out))
+    return out_path, progs
 
-    print(f"Wrote {OUT}")
-    for p in progs:
-        print(f"  {p['sort_order']}  {p['slug']:58} "
-              f"hl={len(p['highlights'])} sn={len(p['snapshot'])} bn={len(p['benefits'])} "
-              f"lr={len(p['learning'])} ca={len(p['careers'])} st={len(p['structure'])} "
-              f"su={len(p['support'])} gc={len(p['gcc'])} fe={len(p['fees'])} fq={len(p['faqs'])}")
+
+def main():
+    for cfg in BUILDS:
+        out_path, progs = build_one(cfg)
+        print(f"Wrote {out_path}")
+        for p in progs:
+            print(f"  {p['sort_order']}  {p['slug']:58} "
+                  f"hl={len(p['highlights'])} sn={len(p['snapshot'])} bn={len(p['benefits'])} "
+                  f"lr={len(p['learning'])} ca={len(p['careers'])} st={len(p['structure'])} "
+                  f"su={len(p['support'])} gc={len(p['gcc'])} fe={len(p['fees'])} fq={len(p['faqs'])}")
 
 
 if __name__ == "__main__":

@@ -2,9 +2,10 @@
 
 _Last updated: 2026-10-07_
 
-Generated from `docs/program-tracker.csv`. `output/` is the single source of truth for
-page content; `database/seeders/data/doctorate_programs.php` is generated from it by
-`tools/build_catalog_data.py` and must never be hand-edited.
+Generated from `docs/program-tracker.csv` by `tools/build_index.py`. `output/` is the
+single source of truth for page content; the PHP files under
+`database/seeders/data/` are generated from it by `tools/build_catalog_data.py`
+and must never be hand-edited.
 
 ## Approved and ready to seed
 
@@ -23,9 +24,13 @@ page content; `database/seeders/data/doctorate_programs.php` is generated from i
 | 16 | PhD in Management Information Systems | Doctorate | Girne American University (GAU), North Cyprus | `phd-in-management-information-systems-girne-american-university` | PASS | [`phd-in-management-information-systems-girne-american-university.md`](doctorate/girne-american-university/phd-in-management-information-systems-girne-american-university.md) |
 | 18 | PhD in Educational Administration | Doctorate | Girne American University (GAU), North Cyprus | `phd-in-educational-administration-girne-american-university` | PASS | [`phd-in-educational-administration-girne-american-university.md`](doctorate/girne-american-university/phd-in-educational-administration-girne-american-university.md) |
 | 20 | PhD in Tourism & Hospitality | Doctorate | Girne American University (GAU), North Cyprus | `phd-in-tourism-and-hospitality-girne-american-university` | PASS | [`phd-in-tourism-and-hospitality-girne-american-university.md`](doctorate/girne-american-university/phd-in-tourism-and-hospitality-girne-american-university.md) |
+| 21 | Level 7 Diploma in Strategic Leadership & Management | Diploma | Gatehouse | `level-7-diploma-in-strategic-leadership-and-management-gatehouse-awards` | PASS | [`level-7-diploma-in-strategic-leadership-and-management-gatehouse-awards.md`](diploma/gatehouse-awards/level-7-diploma-in-strategic-leadership-and-management-gatehouse-awards.md) |
+| 22 | Level 7 Diploma in Educational Leadership & Management | Diploma | Gatehouse | `level-7-diploma-in-educational-leadership-and-management-gatehouse-awards` | PASS | [`level-7-diploma-in-educational-leadership-and-management-gatehouse-awards.md`](diploma/gatehouse-awards/level-7-diploma-in-educational-leadership-and-management-gatehouse-awards.md) |
+| 23 | Level 7 Diploma in Psychology | Diploma | Gatehouse | `level-7-diploma-in-psychology-gatehouse-awards` | PASS | [`level-7-diploma-in-psychology-gatehouse-awards.md`](diploma/gatehouse-awards/level-7-diploma-in-psychology-gatehouse-awards.md) |
+| 24 | Level 7 Diploma in Strategic Project Management in Construction | Diploma | Gatehouse | `level-7-diploma-in-strategic-project-management-in-construction-gatehouse-awards` | PASS | [`level-7-diploma-in-strategic-project-management-in-construction-gatehouse-awards.md`](diploma/gatehouse-awards/level-7-diploma-in-strategic-project-management-in-construction-gatehouse-awards.md) |
 
-**13 programmes approved.** All carry `is_active: false` — flip to true in the
-admin panel after visual QA.
+**17 programmes approved** (4 Diploma, 13 Doctorate). All carry `is_active: false` —
+flip to true in the admin panel after visual QA.
 
 ## Recorded as Incomplete — deliberately not drafted
 
@@ -41,4 +46,4 @@ admin panel after visual QA.
 
 ## Pending
 
-**49 programmes** still awaiting Phase 4 research (S.No 21–69), all Diploma-level.
+**45 programmes** still awaiting content (S.No 25–69), awarded by: Qualifi.

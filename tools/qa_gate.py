@@ -23,7 +23,7 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from build_catalog_data import seo_cell  # noqa: E402
 
-SRC = "output/programs/doctorate"
+SRC = "output/programs"
 
 AI_TELLS = [
     "in today's world", "in today s world", "in conclusion", "moreover",
@@ -120,6 +120,8 @@ def main():
 
     paths = []
     for root, _d, files in os.walk(SRC):
+        if os.path.relpath(root, SRC).count(os.sep) != 1:
+            continue  # programme pages live at {category}/{university}/*.md
         paths += [os.path.join(root, f) for f in sorted(files) if f.endswith(".md")]
 
     for p in sorted(paths):
