@@ -28,8 +28,16 @@ and must never be hand-edited.
 | 22 | Level 7 Diploma in Educational Leadership & Management | Diploma | Gatehouse | `level-7-diploma-in-educational-leadership-and-management-gatehouse-awards` | PASS | [`level-7-diploma-in-educational-leadership-and-management-gatehouse-awards.md`](diploma/gatehouse-awards/level-7-diploma-in-educational-leadership-and-management-gatehouse-awards.md) |
 | 23 | Level 7 Diploma in Psychology | Diploma | Gatehouse | `level-7-diploma-in-psychology-gatehouse-awards` | PASS | [`level-7-diploma-in-psychology-gatehouse-awards.md`](diploma/gatehouse-awards/level-7-diploma-in-psychology-gatehouse-awards.md) |
 | 24 | Level 7 Diploma in Strategic Project Management in Construction | Diploma | Gatehouse | `level-7-diploma-in-strategic-project-management-in-construction-gatehouse-awards` | PASS | [`level-7-diploma-in-strategic-project-management-in-construction-gatehouse-awards.md`](diploma/gatehouse-awards/level-7-diploma-in-strategic-project-management-in-construction-gatehouse-awards.md) |
+| 25 | Level 3 Diploma in Business Management | Diploma | Qualifi | `level-3-diploma-in-business-management-qualifi` | PASS | [`level-3-diploma-in-business-management-qualifi.md`](diploma/qualifi/level-3-diploma-in-business-management-qualifi.md) |
+| 26 | Level 3 Diploma in Introduction to Management | Diploma | Qualifi | `level-3-diploma-in-introduction-to-management-qualifi` | PASS | [`level-3-diploma-in-introduction-to-management-qualifi.md`](diploma/qualifi/level-3-diploma-in-introduction-to-management-qualifi.md) |
+| 27 | Level 3 Integrated Diploma in Business and Management | Diploma | Qualifi | `level-3-integrated-diploma-in-business-and-management-qualifi` | PASS | [`level-3-integrated-diploma-in-business-and-management-qualifi.md`](diploma/qualifi/level-3-integrated-diploma-in-business-and-management-qualifi.md) |
+| 28 | Level 3 Diploma in Business Innovation and Entrepreneurship | Diploma | Qualifi | `level-3-diploma-in-business-innovation-and-entrepreneurship-qualifi` | PASS | [`level-3-diploma-in-business-innovation-and-entrepreneurship-qualifi.md`](diploma/qualifi/level-3-diploma-in-business-innovation-and-entrepreneurship-qualifi.md) |
+| 29 | Level 3 Diploma in Health and Social Care | Diploma | Qualifi | `level-3-diploma-in-health-and-social-care-qualifi` | PASS | [`level-3-diploma-in-health-and-social-care-qualifi.md`](diploma/qualifi/level-3-diploma-in-health-and-social-care-qualifi.md) |
+| 30 | Level 3 Diploma in Hospitality and Tourism Management | Diploma | Qualifi | `level-3-diploma-in-hospitality-and-tourism-management-qualifi` | PASS | [`level-3-diploma-in-hospitality-and-tourism-management-qualifi.md`](diploma/qualifi/level-3-diploma-in-hospitality-and-tourism-management-qualifi.md) |
+| 31 | Level 3 Diploma in Accounting and Finance | Diploma | Qualifi | `level-3-diploma-in-accounting-and-finance-qualifi` | PASS | [`level-3-diploma-in-accounting-and-finance-qualifi.md`](diploma/qualifi/level-3-diploma-in-accounting-and-finance-qualifi.md) |
+| 32 | Level 3 Diploma in Information Technology | Diploma | Qualifi | `level-3-diploma-in-information-technology-qualifi` | PASS | [`level-3-diploma-in-information-technology-qualifi.md`](diploma/qualifi/level-3-diploma-in-information-technology-qualifi.md) |
 
-**17 programmes approved** (4 Diploma, 13 Doctorate). All carry `is_active: false` —
+**25 programmes approved** (12 Diploma, 13 Doctorate). All carry `is_active: false` —
 flip to true in the admin panel after visual QA.
 
 ## Recorded as Incomplete — deliberately not drafted
@@ -46,4 +54,4 @@ flip to true in the admin panel after visual QA.
 
 ## Pending
 
-**45 programmes** still awaiting content (S.No 25–69), awarded by: Qualifi.
+**37 programmes** still awaiting content (S.No 33–69), awarded by: Qualifi.

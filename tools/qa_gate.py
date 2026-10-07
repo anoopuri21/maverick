@@ -46,6 +46,8 @@ AMERICANISMS = [
 # Official names, codes and verbatim university quotations that MUST be
 # reproduced exactly and therefore cannot be re-spelled into British English.
 WHITELIST = [
+    # Qualifi official unit names (US spelling is the awarding body's own)
+    "Person-Centered Care",
     # Rushford official module / track names
     "The Landscape of Literature Review", "Specialization Track",
     "Cutting Edge Leadership", "Business Management Track", "Research Track",

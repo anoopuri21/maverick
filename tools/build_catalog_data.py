@@ -32,6 +32,7 @@ BUILDS = [
         "categories": [("diploma", "Diploma", 300)],
         "universities": [
             ("gatehouse-awards", "Gatehouse Awards", "United Kingdom", "GB", 4),
+            ("qualifi", "Qualifi", "United Kingdom", "GB", 5),
         ],
     },
 ]
