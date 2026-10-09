@@ -1,6 +1,6 @@
 # Approved Programme Content — Index
 
-_Last updated: 2026-10-07_
+_Last updated: 2026-10-09_
 
 Generated from `docs/program-tracker.csv` by `tools/build_index.py`. `output/` is the
 single source of truth for page content; the PHP files under
@@ -50,8 +50,12 @@ and must never be hand-edited.
 | 44 | Level 5 Extended Diploma in Networking and Cyber Security | Diploma | Qualifi | `level-5-extended-diploma-in-networking-and-cyber-security-qualifi` | PASS | [`level-5-extended-diploma-in-networking-and-cyber-security-qualifi.md`](diploma/qualifi/level-5-extended-diploma-in-networking-and-cyber-security-qualifi.md) |
 | 45 | Level 5 Extended Diploma in Occupational Health and Safety | Diploma | Qualifi | `level-5-extended-diploma-in-occupational-health-and-safety-qualifi` | PASS | [`level-5-extended-diploma-in-occupational-health-and-safety-qualifi.md`](diploma/qualifi/level-5-extended-diploma-in-occupational-health-and-safety-qualifi.md) |
 | 46 | Level 5 Extended Diploma in Education and Training Management | Diploma | Qualifi | `level-5-extended-diploma-in-education-and-training-management-qualifi` | PASS | [`level-5-extended-diploma-in-education-and-training-management-qualifi.md`](diploma/qualifi/level-5-extended-diploma-in-education-and-training-management-qualifi.md) |
+| 47 | Qualifi Level 7 Diploma in Business Strategy | Diploma | Qualifi | `level-7-diploma-in-business-strategy-qualifi` | PASS | [`level-7-diploma-in-business-strategy-qualifi.md`](diploma/qualifi/level-7-diploma-in-business-strategy-qualifi.md) |
+| 49 | Qualifi Level 7 Diploma in Executive Management | Diploma | Qualifi | `level-7-diploma-in-executive-management-qualifi` | PASS | [`level-7-diploma-in-executive-management-qualifi.md`](diploma/qualifi/level-7-diploma-in-executive-management-qualifi.md) |
+| 50 | Qualifi Level 7 Diploma in Strategic Management and Innovation | Diploma | Qualifi | `level-7-diploma-in-strategic-management-and-innovation-qualifi` | PASS | [`level-7-diploma-in-strategic-management-and-innovation-qualifi.md`](diploma/qualifi/level-7-diploma-in-strategic-management-and-innovation-qualifi.md) |
+| 51 | Qualifi Level 7 Diploma in Strategic Management and Leadership | Diploma | Qualifi | `level-7-diploma-in-strategic-management-and-leadership-qualifi` | PASS | [`level-7-diploma-in-strategic-management-and-leadership-qualifi.md`](diploma/qualifi/level-7-diploma-in-strategic-management-and-leadership-qualifi.md) |
 
-**39 programmes approved** (26 Diploma, 13 Doctorate). All carry `is_active: false` —
+**43 programmes approved** (30 Diploma, 13 Doctorate). All carry `is_active: false` —
 flip to true in the admin panel after visual QA.
 
 ## Recorded as Incomplete — deliberately not drafted
@@ -68,4 +72,4 @@ flip to true in the admin panel after visual QA.
 
 ## Pending
 
-**23 programmes** still awaiting content (S.No 47–69), awarded by: Qualifi.
+**19 programmes** still awaiting content (S.No 48–69), awarded by: Qualifi.

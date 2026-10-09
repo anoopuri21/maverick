@@ -21,35 +21,82 @@
 | Type | Vocational Related Qualification (Higher Education) · Level 7 · Accredited |
 | Credit Equivalency | 120 · TQT not published |
 | QAN | 603/5745/9 |
+| Progression | "• the QUALIFI Level 8 Diploma in Strategic Management and Leadership, or • **a university partner to complete a dissertation to then receive a full master's degree**, or • directly into employment in an associated profession." |
 | Availability | UK and international |
 
-⚠️ Progression: the standard Level 7 routes. `GAP-SOURCE-QF-31` applies — no university
-named, caveat must be supplied by us.
+⚠️ The master's route is unhedged, names no university and says "a **full** master's
+degree". The overview repeats it: "Completing the Diploma allows access to a dissertation
+at **one of our University partners** for a related master's degree." `GAP-SOURCE-QF-31`
+applies at full strength — no partner is named anywhere.
 
 ## 3. ⭐ Structure — the defining feature of this award
 
-**6 mandatory units**, plus a **choice of one from five specialism routes**:
-1. General Management
-2. Human Resource Management
-3. Finance
-4. Marketing
-5. Project Management
+Published instruction, verbatim: **"Learners must complete all 6 mandatory units and
+choose a specialism route to achieve 120 credits."**
+
+**Mandatory units (6):**
+1. Strategic Marketing
+2. Finance for Managers
+3. Strategic Direction
+4. Strategic Planning
+5. **Creative and Innovative Management**
+6. **Managing Corporate Responsibility in the Wider Business Environment**
+
+**Specialism routes (choose one):**
+
+| Route | Units published |
+|---|---|
+| **General Management** | Research Methods · Development as a Strategic Manager *(2 units)* |
+| **Human Resources Management** | Resourcing, Talent Management and Development · Performance Management · Contemporary HRM |
+| **Finance** | Business Finance · International Financial Management · ⚠️ Contemporary HRM |
+| **Marketing** | Customer Growth marketing *(sic, lower-case m)* · Advanced Strategic Marketing · ⚠️ Contemporary HRM |
+| **Project Management** | Planning, Controlling and Leading a Project · Procurement Risk and Contract Management · Advanced Project and Logistics Management |
 
 ⭐⭐ **This is the only Level 7 qualification in the tracker offering named specialism
-routes.** It is the single cleanest differentiator against S.No 49, 50 and 51, which
-share overview text and outcomes with it. Lead the page on the choice of route.
+routes with their units published.** It is the single cleanest differentiator against
+S.No 49, 50 and 51, which share overview text and outcomes with it. Lead the page on the
+choice of route.
 
-⚠️ Qualifi does not publish the individual unit titles within each route, nor per-unit
-credit values, nor how the 120 credits divide between mandatory units and the chosen
-specialism. Report the structure as published; point to the specification and the centre.
-→ GAP-SOURCE-QF-08 and **GAP-SOURCE-QF-88**.
+⚠️⚠️ **GAP-SOURCE-QF-88 (revised):** "Contemporary HRM" is listed as the third unit of
+the **Human Resources, Finance AND Marketing** specialisms. An HR unit inside a finance
+route and a marketing route is almost certainly a copy-paste error in the source. Report
+the routes as published, flag that the same HR unit appears in three routes, and tell
+readers to confirm the actual unit list with the centre. **Never silently substitute a
+plausible unit.**
 
-## 4. Learning Outcomes (8) and overview
+⚠️ The General Management route lists only **two** units while the other four list
+three. Report as published.
 
-⚠️⚠️ **GAP-STYLE-QF-37 applies in full.** The overview paragraph ("critically evaluate,
-challenge and synthesise … beyond the normal examination of Anglo-American management
-models") is **shared word-for-word with S.No 49, 50 and 51**, and the eight outcomes are
-the same generic management set used on 49 and 51.
+⚠️ No per-unit credits are published and the split between the six mandatory units and
+the chosen route is not stated. → GAP-SOURCE-QF-08.
+
+⭐ Note the two mandatory units that no other cluster member has: **Creative and
+Innovative Management** and **Managing Corporate Responsibility in the Wider Business
+Environment**. Ironically this award — not S.No 50, whose title says "Innovation" —
+is the one with a unit actually named for innovation (see QF-38).
+
+## 4. Learning Outcomes (8, verbatim) and overview
+
+1. To understand and apply the principles of management strategy in a business environment
+2. Review and apply the principles of business management within industry
+3. To understand and apply the principles of strategic management in a specific environment
+4. To improve the employability of learners by allowing them to explore the relationship between management theories and their practical application in the business world.
+5. Analyse problem-solving techniques specific to business and industry
+6. Select, collate, review and analyse information **form** a wide range of sources *(sic)*
+7. Work independently and as part of a team
+8. Manage one's own personal development and growth.
+
+Only outcome 1 differs from S.No 49/51 ("management strategy" rather than "strategic
+leadership"). Outcomes 2–8 are the shared generic set.
+
+⚠️ **Overview defects (confirmed on re-read):** the page opens with the shared business
+boilerplate, then "take the opportunity to learn a great deal from **this programmes**"
+and "so that **you learners** move forward" — two grammatical faults. **Do not quote the
+overview.** The third paragraph is the only substantive one: accredited at postgraduate
+Level 7, total equivalence of 120 credits, dissertation access at an unnamed partner.
+
+⚠️⚠️ **GAP-STYLE-QF-37 applies in full** — the generic outcome set is shared with 49, 50
+and 51.
 
 **Rules:**
 - Never paraphrase the shared overview paragraph in terms resembling any of the other
