@@ -54,8 +54,11 @@ and must never be hand-edited.
 | 49 | Qualifi Level 7 Diploma in Executive Management | Diploma | Qualifi | `level-7-diploma-in-executive-management-qualifi` | PASS | [`level-7-diploma-in-executive-management-qualifi.md`](diploma/qualifi/level-7-diploma-in-executive-management-qualifi.md) |
 | 50 | Qualifi Level 7 Diploma in Strategic Management and Innovation | Diploma | Qualifi | `level-7-diploma-in-strategic-management-and-innovation-qualifi` | PASS | [`level-7-diploma-in-strategic-management-and-innovation-qualifi.md`](diploma/qualifi/level-7-diploma-in-strategic-management-and-innovation-qualifi.md) |
 | 51 | Qualifi Level 7 Diploma in Strategic Management and Leadership | Diploma | Qualifi | `level-7-diploma-in-strategic-management-and-leadership-qualifi` | PASS | [`level-7-diploma-in-strategic-management-and-leadership-qualifi.md`](diploma/qualifi/level-7-diploma-in-strategic-management-and-leadership-qualifi.md) |
+| 52 | Qualifi Level 7 Diploma in Project Management | Diploma | Qualifi | `level-7-diploma-in-project-management-qualifi` | PASS | [`level-7-diploma-in-project-management-qualifi.md`](diploma/qualifi/level-7-diploma-in-project-management-qualifi.md) |
+| 53 | Qualifi Level 7 Diploma in Risk Management | Diploma | Qualifi | `level-7-diploma-in-risk-management-qualifi` | PASS | [`level-7-diploma-in-risk-management-qualifi.md`](diploma/qualifi/level-7-diploma-in-risk-management-qualifi.md) |
+| 54 | Qualifi Level 7 Diploma in Strategic Marketing | Diploma | Qualifi | `level-7-diploma-in-strategic-marketing-qualifi` | PASS | [`level-7-diploma-in-strategic-marketing-qualifi.md`](diploma/qualifi/level-7-diploma-in-strategic-marketing-qualifi.md) |
 
-**43 programmes approved** (30 Diploma, 13 Doctorate). All carry `is_active: false` —
+**46 programmes approved** (33 Diploma, 13 Doctorate). All carry `is_active: false` —
 flip to true in the admin panel after visual QA.
 
 ## Recorded as Incomplete — deliberately not drafted
@@ -72,4 +75,4 @@ flip to true in the admin panel after visual QA.
 
 ## Pending
 
-**19 programmes** still awaiting content (S.No 48–69), awarded by: Qualifi.
+**16 programmes** still awaiting content (S.No 48–69), awarded by: Qualifi.
