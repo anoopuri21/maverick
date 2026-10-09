@@ -57,8 +57,11 @@ and must never be hand-edited.
 | 52 | Qualifi Level 7 Diploma in Project Management | Diploma | Qualifi | `level-7-diploma-in-project-management-qualifi` | PASS | [`level-7-diploma-in-project-management-qualifi.md`](diploma/qualifi/level-7-diploma-in-project-management-qualifi.md) |
 | 53 | Qualifi Level 7 Diploma in Risk Management | Diploma | Qualifi | `level-7-diploma-in-risk-management-qualifi` | PASS | [`level-7-diploma-in-risk-management-qualifi.md`](diploma/qualifi/level-7-diploma-in-risk-management-qualifi.md) |
 | 54 | Qualifi Level 7 Diploma in Strategic Marketing | Diploma | Qualifi | `level-7-diploma-in-strategic-marketing-qualifi` | PASS | [`level-7-diploma-in-strategic-marketing-qualifi.md`](diploma/qualifi/level-7-diploma-in-strategic-marketing-qualifi.md) |
+| 55 | Qualifi Level 7 Diploma in Health and Social Care | Diploma | Qualifi | `level-7-diploma-in-health-and-social-care-qualifi` | PASS | [`level-7-diploma-in-health-and-social-care-qualifi.md`](diploma/qualifi/level-7-diploma-in-health-and-social-care-qualifi.md) |
+| 56 | Qualifi Level 7 Diploma in Psychology | Diploma | Qualifi | `level-7-diploma-in-psychology-qualifi` | PASS | [`level-7-diploma-in-psychology-qualifi.md`](diploma/qualifi/level-7-diploma-in-psychology-qualifi.md) |
+| 57 | Qualifi Level 7 Diploma in Occupational Health and Safety Management | Diploma | Qualifi | `level-7-diploma-in-occupational-health-and-safety-management-qualifi` | PASS | [`level-7-diploma-in-occupational-health-and-safety-management-qualifi.md`](diploma/qualifi/level-7-diploma-in-occupational-health-and-safety-management-qualifi.md) |
 
-**46 programmes approved** (33 Diploma, 13 Doctorate). All carry `is_active: false` —
+**49 programmes approved** (36 Diploma, 13 Doctorate). All carry `is_active: false` —
 flip to true in the admin panel after visual QA.
 
 ## Recorded as Incomplete — deliberately not drafted
@@ -75,4 +78,4 @@ flip to true in the admin panel after visual QA.
 
 ## Pending
 
-**16 programmes** still awaiting content (S.No 48–69), awarded by: Qualifi.
+**13 programmes** still awaiting content (S.No 48–69), awarded by: Qualifi.

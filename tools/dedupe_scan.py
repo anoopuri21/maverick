@@ -30,6 +30,12 @@ FACTUAL_MARKERS = [
     "21 credits", "7 courses", "seven courses", "30 ects", "20 ects", "10 ects",
     "3 00", "4 00", "55", "qualifying", "qualification", "institute of graduate",
     "girne american university", "scholarship", "semesters", "thesis",
+    # Professional / awarding body proper nouns - cannot be reworded
+    "international institute of risk and safety management", "nebosh", "iosh",
+    "british psychological society", "health and care professions council",
+    "chartered institute of marketing", "project management institute",
+    "chartered institute of personnel and development", "solicitors qualifying examination",
+    "qualified teacher status", "regulated qualifications framework",
 ]
 
 
