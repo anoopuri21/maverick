@@ -153,23 +153,30 @@ def main():
             if st and "'modules' =>" not in st:
                 errors.append(f"{slug}: structure has no modules")
 
-            # faqs optional but must be well-formed triples when present
+            # faqs optional but must be well-formed triples when present.
+            # questions are VARCHAR(255); a merged heading shows up as HTML.
             fq = field_blob(prog, "faqs")
             nf = count_entries(fq) if fq else 0
+            for question in php_strings(fq or "")[0::2]:
+                if len(question) > 255 or "<" in question or "\n" in question:
+                    errors.append(
+                        f"{slug}: FAQ question is {len(question)} chars "
+                        f"or contains HTML (column is VARCHAR 255)"
+                    )
 
             print(f"  {slug:58} " + " ".join(f"{k}={v}" for k, v in counts.items()) + f" faqs={nf}")
 
     print(f"\n--- {total} programme(s) across {len(files)} file(s) ---")
     if warnings:
-        print(f"\n⚠️  {len(warnings)} warning(s) (declared gaps, seeding still safe):")
+        print(f"\nWARNING: {len(warnings)} warning(s) (declared gaps, seeding still safe):")
         for w in warnings:
             print("   ", w)
     if errors:
-        print(f"\n❌ {len(errors)} error(s) — DO NOT SEED:")
+        print(f"\nERROR: {len(errors)} error(s) -- DO NOT SEED:")
         for e in errors:
             print("   ", e)
         return 1
-    print("\n✅ VALIDATION PASSED — safe to seed.")
+    print("\nVALIDATION PASSED -- safe to seed.")
     return 0
 
 

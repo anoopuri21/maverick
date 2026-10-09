@@ -134,9 +134,21 @@ def seo_cell(body, field):
 
 
 def parse_faqs(txt):
+    """One heading line between ** **, then a <p> answer.
+
+    Headings may end with ? or a full stop. The question must stay on a
+    single line so a statement heading cannot swallow the next FAQ.
+    """
     out = []
-    for i, m in enumerate(re.finditer(r"^\*\*(.+?\?)\*\*\s*\n(<p>.*?</p>)\s*$", txt, re.M | re.S), 1):
-        out.append((m.group(1).strip(), m.group(2).strip(), i))
+    for i, m in enumerate(re.finditer(
+        r"^\*\*([^\n]+?)\*\*[ \t]*\n(<p>.*?</p>)",
+        txt,
+        re.M | re.S,
+    ), 1):
+        question = m.group(1).strip()
+        if not question or "<" in question:
+            continue
+        out.append((question, m.group(2).strip(), i))
     return out
 
 

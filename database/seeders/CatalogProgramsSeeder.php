@@ -140,7 +140,7 @@ class CatalogProgramsSeeder extends Seeder
             'snapshot' => $this->pairs($row['snapshot'], 'label', 'value'),
             'benefits' => array_map(fn (array $benefit) => [
                 'title' => $benefit[0],
-                'desc' => $benefit[1] !== '' ? '<p>'.$benefit[1].'</p>' : '',
+                'desc' => $this->richParagraph($benefit[1]),
                 'icon' => $benefit[2],
             ], $row['benefits']),
             'learning' => array_map(fn (string $item) => ['item' => $item], $row['learning']),
@@ -195,6 +195,25 @@ class CatalogProgramsSeeder extends Seeder
         return collect($paragraphs)
             ->map(fn (string $paragraph) => '<p>'.$paragraph.'</p>')
             ->implode('');
+    }
+
+    /**
+     * Benefit copy is sometimes already a <p> block in the generated data.
+     * Wrap plain text only, so those rows are not stored as nested paragraphs.
+     */
+    private function richParagraph(string $text): string
+    {
+        $text = trim($text);
+
+        if ($text === '') {
+            return '';
+        }
+
+        if (strip_tags($text) !== $text) {
+            return $text;
+        }
+
+        return '<p>'.$text.'</p>';
     }
 
     /**
