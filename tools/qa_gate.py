@@ -48,6 +48,7 @@ AMERICANISMS = [
 WHITELIST = [
     # Qualifi official unit names (US spelling is the awarding body's own)
     "Person-Centered Care",
+    "Safety Programs and Concepts",   # official Qualifi unit title, S.No 58 - never anglicise
     # Rushford official module / track names
     "The Landscape of Literature Review", "Specialization Track",
     "Cutting Edge Leadership", "Business Management Track", "Research Track",
