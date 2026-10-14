@@ -228,91 +228,119 @@
         // Draggable carousel functionality
         function initCarousel(carousel) {
             const track = carousel.querySelector('[data-carousel-track], [data-awards-track]');
-            if (!track) return;
+            if (!track || carousel.dataset.carouselReady === 'true') return;
+            carousel.dataset.carouselReady = 'true';
+
+            const basePxPerSecond = 30;
+            const extraScrollSeconds = 2;
+            const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
             let isDragging = false;
+            let isAutoSliding = !reducedMotion;
+            let pointerId = null;
             let startX = 0;
+            let originTranslate = 0;
             let currentTranslate = 0;
-            let prevTranslate = 0;
-            let isAutoSliding = true;
-            let animationId = null;
+            let lastTime = 0;
+            let animationId = 0;
 
-            const getTrackWidth = () => track.scrollWidth / 3;
+            const loopWidth = () => {
+                const width = track.scrollWidth / 3;
+                return Number.isFinite(width) && width > 1 ? width : 0;
+            };
 
-            function autoSlide() {
+            const wrap = (value) => {
+                const width = loopWidth();
+                if (!width) return 0;
+                let next = value % width;
+                if (next > 0) next -= width;
+                return next;
+            };
+
+            const paint = () => {
+                track.style.transform = `translate3d(${currentTranslate}px, 0, 0)`;
+            };
+
+            function frame(now) {
                 if (!isAutoSliding || isDragging) return;
-                currentTranslate -= 0.5;
-                if (Math.abs(currentTranslate) >= getTrackWidth()) {
-                    currentTranslate = 0;
+                if (!lastTime) {
+                    lastTime = now;
+                    animationId = requestAnimationFrame(frame);
+                    return;
                 }
-                track.style.transform = `translateX(${currentTranslate}px)`;
-                animationId = requestAnimationFrame(autoSlide);
+
+                const delta = Math.min((now - lastTime) / 1000, 0.05);
+                lastTime = now;
+                const width = loopWidth();
+
+                if (width) {
+                    const duration = (width / basePxPerSecond) + extraScrollSeconds;
+                    currentTranslate = wrap(currentTranslate - (width / duration) * delta);
+                    paint();
+                }
+
+                animationId = requestAnimationFrame(frame);
             }
 
             function startAutoSlide() {
+                if (reducedMotion || isDragging) return;
                 isAutoSliding = true;
-                autoSlide();
+                lastTime = 0;
+                cancelAnimationFrame(animationId);
+                animationId = requestAnimationFrame(frame);
             }
 
             function stopAutoSlide() {
                 isAutoSliding = false;
-                if (animationId) cancelAnimationFrame(animationId);
+                lastTime = 0;
+                cancelAnimationFrame(animationId);
             }
 
-            // Mouse events
-            carousel.addEventListener('mousedown', (e) => {
-                isDragging = true;
-                startX = e.pageX;
-                prevTranslate = currentTranslate;
-                stopAutoSlide();
-            });
-
-            carousel.addEventListener('mousemove', (e) => {
-                if (!isDragging) return;
-                e.preventDefault();
-                currentTranslate = prevTranslate + (e.pageX - startX) * 1.5;
-                track.style.transform = `translateX(${currentTranslate}px)`;
-            });
-
-            carousel.addEventListener('mouseup', () => {
+            function endDrag(event) {
+                if (!isDragging || (event && event.pointerId !== pointerId)) return;
                 isDragging = false;
-                startAutoSlide();
-            });
-
-            carousel.addEventListener('mouseleave', () => {
-                if (isDragging) {
-                    isDragging = false;
-                    startAutoSlide();
+                pointerId = null;
+                carousel.classList.remove('is-dragging');
+                if (carousel.hasPointerCapture(event.pointerId)) {
+                    carousel.releasePointerCapture(event.pointerId);
                 }
-            });
-
-            // Touch events
-            carousel.addEventListener('touchstart', (e) => {
-                isDragging = true;
-                startX = e.touches[0].pageX;
-                prevTranslate = currentTranslate;
-                stopAutoSlide();
-            }, { passive: true });
-
-            carousel.addEventListener('touchmove', (e) => {
-                if (!isDragging) return;
-                currentTranslate = prevTranslate + (e.touches[0].pageX - startX) * 1.5;
-                track.style.transform = `translateX(${currentTranslate}px)`;
-            }, { passive: true });
-
-            carousel.addEventListener('touchend', () => {
-                isDragging = false;
                 startAutoSlide();
+            }
+
+            carousel.addEventListener('pointerdown', (event) => {
+                if (event.pointerType === 'mouse' && event.button !== 0) return;
+                isDragging = true;
+                pointerId = event.pointerId;
+                startX = event.clientX;
+                originTranslate = currentTranslate;
+                carousel.classList.add('is-dragging');
+                carousel.setPointerCapture(event.pointerId);
+                stopAutoSlide();
             });
 
-            // Hover pause
-            carousel.addEventListener('mouseenter', stopAutoSlide);
-            carousel.addEventListener('mouseleave', () => {
-                if (!isDragging) startAutoSlide();
+            carousel.addEventListener('pointermove', (event) => {
+                if (!isDragging || event.pointerId !== pointerId) return;
+                const delta = event.clientX - startX;
+                if (Math.abs(delta) > 4) event.preventDefault();
+                currentTranslate = wrap(originTranslate + delta);
+                paint();
             });
 
-            // Start auto-slide
-            autoSlide();
+            carousel.addEventListener('pointerup', endDrag);
+            carousel.addEventListener('pointercancel', endDrag);
+
+            if (canHover) {
+                carousel.addEventListener('pointerenter', (event) => {
+                    if (event.pointerType === 'mouse') stopAutoSlide();
+                });
+                carousel.addEventListener('pointerleave', (event) => {
+                    if (event.pointerType === 'mouse' && !isDragging) startAutoSlide();
+                });
+            }
+
+            paint();
+            startAutoSlide();
         }
 
         // Initialize accreditations carousel

@@ -50,7 +50,7 @@
                 <h1 class="cinematic-hero__title">{{ $studentSuccessPage->hero_heading }} @if(filled($studentSuccessPage->hero_heading_italic ?? null))<em>{{ $studentSuccessPage->hero_heading_italic }}</em>@endif</h1>
             @endif
             @if(filled($studentSuccessPage->hero_description ?? null))
-                <div class="cinematic-hero__desc__text">{!! rich_html($studentSuccessPage->hero_description ?? null) !!}</div>
+                <div class="cinematic-hero__desc__text"><p>{!! rich_html($studentSuccessPage->hero_description ?? null) !!}</p></div>
             @endif
             <div class="cinematic-hero__scroll-hint" aria-hidden="true"><span class="cinematic-hero__scroll-text">Scroll to explore</span><span class="cinematic-hero__scroll-arrow" data-lucide="chevron-down"></span></div>
         </div>
