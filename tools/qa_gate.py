@@ -53,7 +53,7 @@ WHITELIST = [
     "The Landscape of Literature Review", "Specialization Track",
     "Cutting Edge Leadership", "Business Management Track", "Research Track",
     # GAU official course names (US spelling is the university's own)
-    "Organizational Behavior", "Theory of Consumer Behavior",
+    "Organizational Behavior", "Theory of Consumer Behavior", "Consumer Behavior",
     "Advanced Topics in Artificial Intelligence", "Advanced Programming",
     "Advanced Report Writing in Social Sciences",
     "Strategic Management and Business Analysis",
