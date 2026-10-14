@@ -1,10 +1,12 @@
 # Runbook — Doctorate, Diploma and Bachelors catalogue seeding
 
-**Status (2026-10-14):** 67 approved catalogue pages: the existing 62 Doctorate/Diploma
-pages plus **five source-verified GAU BSc pages**. Four other requested Bachelors
-remain Research Incomplete and are **not** in the generated data. No PHP, Composer
-or vendor directory is available here; the operator runs the seed on staging.
-The dependency-free validator has passed, with declared career/snapshot warnings.
+**Status (2026-10-14):** 67 approved catalogue pages: 13 Doctorate + 49 Diploma
++ **five source-verified GAU BSc**. Eleven listed subjects remain unseeded:
+**seven earlier Doctorate** and **four requested Bachelors** (Research Incomplete).
+The repository also has 59 legacy programme seeds, giving **126 seed definitions**
+(125 listing subjects mapped, one of them provisional, plus an extra legacy MBA).
+These are code counts, **not observed staging DB counts**. No PHP, Composer, vendor
+folder or staging DB is available here; the operator runs the seed on staging.
 
 ---
 
@@ -17,10 +19,12 @@ The dependency-free validator has passed, with declared career/snapshot warnings
 | `database/seeders/data/doctorate_programs.php` | **GENERATED** — never hand-edit |
 | `database/seeders/data/diploma_programs.php` | **GENERATED** — never hand-edit |
 | `database/seeders/data/bachelors_programs.php` | **GENERATED** — five inactive GAU BSc rows only |
-| `tools/validate_catalog_data.py` | Pre-flight checks without PHP |
+| `tools/validate_catalog_data.py` | Offline pre-flight; fails for missing/empty file or active new row |
 | `tools/qa_gate.py` · `tools/dedupe_scan.py` | Content gates (style, length, uniqueness) |
-| `database/seeders/CatalogProgramsSeeder.php` | Loads all three files, by unique programme slug |
-| `database/seeders/DatabaseSeeder.php` | Registers legacy GAU/Rushford/masters seeders before this catalogue seeder |
+| `database/seeders/BachelorsProgramsSeeder.php` | **Recommended here**: only five new GAU rows, existing references only |
+| `database/seeders/ExistingCatalogProgramsSeeder.php` | Optional: all 67 catalogue rows, existing references only |
+| `database/seeders/CatalogProgramsSeeder.php` | Shared logic; legacy bootstrap **can create** Doctorate/Diploma references |
+| `database/seeders/DatabaseSeeder.php` | Full bootstrap includes legacy seeders; **do not run for this rollout** |
 
 **Flow:** content edit → `qa_gate` → `dedupe_scan` → `build` → `validate` → `seed`.
 Beech ka koi step skip mat karo.
@@ -31,108 +35,132 @@ Beech ka koi step skip mat karo.
 
 | | Count |
 |---|---|
-| Programmes in this seeder | **67** — 13 Doctorate + 49 Diploma + 5 BSc |
-| Categories | `doctorate` and `diploma` use existing seeder logic; `bachelors` **must already exist** |
-| Partners referenced | Rushford (8), existing GAU (10), Gatehouse (4), Qualifi (45); **no new Bachelor partner** |
-| Levels present | BSc · DBA · PhD · Level 3 Diploma · Level 5 Extended Diploma · Level 7 Diploma · **Level 7 International Diploma** |
+| Recommended Bachelors-only command | **5** inactive GAU BSc rows; no legacy rows touched |
+| Optional existing-only catalogue command | **67** — 13 Doctorate + 49 Diploma + 5 BSc |
+| Required pre-existing categories | Five-only: `bachelors`; all-67: `bachelors`, `doctorate`, `diploma` |
+| Required pre-existing partners | Five-only: GAU; all-67: GAU, Rushford, Gatehouse Awards, Qualifi |
 | Per programme | 1 Program row + 1 SeoMetadata row + FAQs; arrays from approved page fields |
 
-Existing Doctorate/Diploma behaviour is unchanged. For `bachelors_programs.php`, the
-catalogue seeder looks up `bachelors` and `girne-american-university` **without
-creating either**; if either is absent it throws and rolls back that file's
-transaction. `ProgramSeeder` creates them in the full `DatabaseSeeder` sequence.
-The Bachelors data file does not declare UWS because no exact UWS award qualified.
+**Neither of the two recommended commands creates a category, university/partner,
+or table.** Missing references, incomplete data files, or a slug already linked
+to a different category/partner cause an exception; the whole run rolls back.
+Never silently map Gatehouse or Qualifi diplomas under an unrelated university.
+`CatalogProgramsSeeder` still supports legacy first-time bootstrapping for the
+old Doctorate/Diploma cohort and **may create references**; do not run it or
+`DatabaseSeeder` for an existing-only rollout. The Bachelor file excludes UWS.
 
 ---
 
-## Commands
+## Commands — deploy, check, then seed on STAGING
 
-**Staging prerequisite:** the existing `bachelors` category and
-`girne-american-university` partner must already be present. Before seeding,
-check them without creating replacements:
+1. Deploy the branch **including** `bachelors_programs.php` and the new seeder
+   class. Use the Laravel project directory on the server, with migrations and
+   `vendor/` installed. Do not run bare `php artisan db:seed` (full
+   `DatabaseSeeder`) for this batch.
+2. Before deploying, run the content and data checks on the source tree:
 
-```sql
-SELECT slug FROM program_categories WHERE slug = 'bachelors';
-SELECT slug FROM university_partners WHERE slug = 'girne-american-university';
--- Both queries must return one row. Stop if either is absent.
-```
+   ```bash
+   python3 tools/qa_gate.py
+   python3 tools/dedupe_scan.py           # must show 0 STYLISTIC
+   python3 tools/build_catalog_data.py
+   python3 tools/validate_catalog_data.py # must PASS; DB is checked separately
+   python3 -m unittest discover -s tools/tests -v
+   ```
 
-```bash
-# 1. Content gates (exit 0 for both; expected QA 67/67, STYLISTIC 0)
-python3 tools/qa_gate.py
-python3 tools/dedupe_scan.py        # STYLISTIC duplicates 0 hone chahiye
+3. Back up staging using its DB engine's established procedure and record the
+   before counts. If the server has PHP, lint the changed seeders first:
 
-# 2. Rebuild three generated files from approved markdown
-python3 tools/build_catalog_data.py
+   ```bash
+   php -l database/seeders/CatalogProgramsSeeder.php
+   php -l database/seeders/BachelorsProgramsSeeder.php
+   php -l database/seeders/ExistingCatalogProgramsSeeder.php
+   php -l database/seeders/data/bachelors_programs.php
+   # STAGING/test environment only (not the live DB):
+   php artisan test --filter=CatalogSeedingSafetyTest
+   ```
 
-# 3. Pre-flight (exit 0 = safe to attempt staging; warnings are disclosed gaps)
-python3 tools/validate_catalog_data.py
+4. **Five new Bachelors only**: check that both SQL queries return one row,
+   with the expected existing IDs. If either is absent, **stop** — do not
+   create or substitute a different partner/category.
 
-# 4. Take an environment-appropriate database backup before any seed
-mysqldump -u USER -p DBNAME > backup-$(date +%F-%H%M).sql
+   ```sql
+   SELECT id, slug FROM program_categories WHERE slug = 'bachelors';
+   SELECT id, slug FROM university_partners WHERE slug = 'girne-american-university';
+   ```
 
-# 5. On STAGING, after checking the category/partner prerequisites above:
-php artisan db:seed --class=CatalogProgramsSeeder
+   Then in the Laravel project directory run:
 
-# 6. Idempotency: run again and check no programme count rises
-php artisan db:seed --class=CatalogProgramsSeeder
-#    Expected: the five new rows say "Updated:" on the second run.
+   ```bash
+   php artisan db:seed --class=BachelorsProgramsSeeder
+   # Run the SAME command again on staging; it should update, not duplicate.
+   php artisan db:seed --class=BachelorsProgramsSeeder
+   ```
 
-# 7. Production ONLY after staging visual and editorial sign-off:
-php artisan db:seed --class=CatalogProgramsSeeder --force
-```
+5. **If the earlier 62 Doctorate/Diploma catalogue rows are also missing**,
+   instead use the all-67 existing-only class. First check **all** of these
+   slugs are already present (three category rows and four partner rows):
 
-### Row-count check (step 5 ke pehle aur baad)
+   ```sql
+   SELECT id, slug FROM program_categories
+   WHERE slug IN ('bachelors', 'doctorate', 'diploma');
+   SELECT id, slug FROM university_partners
+   WHERE slug IN ('girne-american-university', 'rushford-business-school',
+                  'gatehouse-awards', 'qualifi');
+   ```
+
+   ```bash
+   php artisan db:seed --class=ExistingCatalogProgramsSeeder
+   # Repeat after checking counts to prove slug idempotency.
+   ```
+
+   These classes never insert the 59 legacy Master/BBA/GAU programme rows.
+   If any prerequisite is missing, the seeder exits with an error and rolls
+   back; ask which existing reference to use rather than inventing one.
+6. **Production only after staging tests, visual and editorial sign-off and a
+   production DB backup**: rerun the *same chosen class* with `--force`, e.g.
+   `php artisan db:seed --class=BachelorsProgramsSeeder --force`.
+
+### After-seed checks (compare with your before snapshot)
+
 ```sql
 SELECT c.slug, COUNT(*) FROM programs p
 JOIN program_categories c ON c.id = p.program_category_id
 GROUP BY c.slug;
--- Expected when legacy seeders were already run: doctorate 13, diploma 49,
--- bachelors 14 (7 Rushford BBA + 2 existing GAU BSc + 5 new GAU BSc).
--- Total across all categories: 126 if all 121 prior rows were present.
--- These are expectations, NOT a database observation; compare with your baseline.
+-- Only if the 121 legacy + earlier catalogue rows were already in your DB:
+-- doctorate 13, diploma 49, bachelors 14 (7 Rushford + 2 old GAU + 5 new GAU).
+-- Overall 126 is an expectation, not an observed staging/production count.
+
+SELECT p.slug, p.is_active, p.is_featured, c.slug AS category, u.slug AS partner
+FROM programs p
+JOIN program_categories c ON c.id = p.program_category_id
+JOIN university_partners u ON u.id = p.university_partner_id
+WHERE p.slug IN (
+  'bsc-tourism-and-hospitality-management-girne-american-university',
+  'bsc-international-business-management-girne-american-university',
+  'bsc-marketing-girne-american-university',
+  'bsc-economics-girne-american-university',
+  'bsc-management-information-systems-girne-american-university'
+);
+-- Exactly 5 rows; bachelors + girne-american-university; is_active=0, is_featured=0.
+-- Check program_categories/university_partners counts and IDs have NOT changed.
 ```
 
 ---
 
-## ⚠️ "0 programs" — activation step bhoolna mat
+## Admin visibility is not public activation
 
-All five new GAU BSc rows are created with **`is_active = false`**. The earlier
-62 catalogue rows also start inactive. Already-live GAU BSc Business Management,
-BSc Psychology and Rushford BBAs are **not changed** by this seed. Inactive
-rows are editable in Filament but absent from the public listing until approved.
+All five new GAU BSc rows start **`is_active = false`**. Older Doctorate/Diploma
+rows also started inactive on creation. Filament's Programs resource lists
+inactive rows in the admin panel; the public listing/detail routes filter them
+out (detail URL gives 404) until a separate approval and activation. The safe
+Bachelors-only seeder does **not** touch older Doctorate/Diploma, GAU, BBA or
+Master programmes. When the all-67 class is used, it revisits the 62 old
+catalogue rows; neither class overwrites admin `is_active`, `is_featured`,
+`testimonials` or `reviews` toggles on an existing row.
 
-`is_active` sirf **create** pe set hota hai — admin panel ka toggle re-seed me reset
-**nahi** hota. Yahi `is_featured`, `testimonials`, `reviews` pe bhi lagu hai.
-
-**For the old Doctorate/Diploma cohort only**, the previous category-based
-activation example remains below. **Do not apply it to `bachelors`**; that
-category already holds nine older rows, some active. Activate only the five
-reviewed slugs after individual page checks (see the new block below).
-
-```php
-// php artisan tinker
-$ids = App\Models\ProgramCategory::whereIn('slug', ['doctorate', 'diploma'])->pluck('id');
-App\Models\Program::whereIn('program_category_id', $ids)->update(['is_active' => true]);
-```
-
-Level se filter karna ho toh **chhe ke chhe** values chahiye, warna rows chhoot jayengi:
-
-```php
-App\Models\Program::whereIn('level', [
-    'DBA',
-    'PhD',
-    'Level 3 Diploma',
-    'Level 5 Extended Diploma',
-    'Level 7 Diploma',
-    'Level 7 International Diploma',   // 2 rows — ye list se sabse zyada chhootta hai
-])->update(['is_active' => true]);
-```
-
-**Only after individual BSc staging review**, activate the five generated
-Bachelors by their unique slugs. Do not use `where('level', 'BSc')` or
-`where('program_category_id', $bachelorsId)` — those would also select the
-older GAU Bachelor rows:
+**Do not activate a whole category or level**: they include other programmes
+that may not have received staging sign-off. Only after individual BSc visual
+review, activate the five generated Bachelors by their unique slugs:
 
 ```php
 // php artisan tinker — inspect the five slugs and their university first
@@ -152,17 +180,16 @@ php artisan cache:clear                          # ya poora
 
 ---
 
-## Verification checklist (step 5 ke baad)
+## Verification checklist
 
-- [ ] All previously seeded rows retained; if full baseline was present, total rises from **121 to 126** (not 126 newly created).
-- [ ] Category `bachelors` already exists; GAU partner ID stays the same; **no new partner/category** appears for this batch.
-- [ ] Five new GAU BSc slugs, sorts **70, 71, 73, 76, 77**, have `is_active = false`; existing BSc Business Management, BSc Psychology and seven Rushford BBAs are untouched.
-- [ ] Open each new page in admin and inspect all five tabs: six highlights, seven snapshot items, 6 FAQs, SEO title/description, structure stages and working source-limit copy.
-- [ ] Economics visibly discloses the missing Year 4 course grid; Tourism, International Business Management and Economics do **not** show invented career tags.
-- [ ] Marketing and MIS career chips are described as **examples, not guaranteed jobs**; hotel training/internships are not promised placements.
-- [ ] Current fees, entry, teaching location and any scholarships are confirmed by GAU separately; no blank fee field is treated as free study.
-- [ ] After approval of each intended page, targeted activation plus cache clear makes only those five publicly visible. Verify `/programs/{new-bsc-slug}` and mobile/desktop layout.
-- [ ] Second seed run leaves row count unchanged; no accidental update to the legacy master/Rushford/GAU pages.
+- [ ] Compare before/after: **five new rows**, if none of the five existed; if the full 121-row baseline was present, total rises to **126** (not 126 newly created).
+- [ ] Category and partner counts/IDs unchanged; `bachelors` and GAU reused (and Doctorate/Diploma + four existing partners reused if using the all-67 command).
+- [ ] Five GAU BSc slugs, sorts **70, 71, 73, 76, 77**, are inactive and non-featured. The existing two GAU BScs, seven Rushford BBAs and 50 Masters are untouched by either safe class.
+- [ ] For the all-67 class only, inspect the older 62 Doctorate/Diploma rows for updated copy, FAQs and SEO; admin activation toggles should be preserved.
+- [ ] In Filament admin, inspect all five tabs, six highlights, seven snapshot items, six FAQs, SEO, structure and source-limit copy. Public routes must remain hidden while inactive.
+- [ ] Economics discloses the missing Year 4 grid; Tourism, International Business Management and Economics show no invented career tags. Marketing/MIS career examples and hotel/internship opportunities are not job or placement guarantees.
+- [ ] Confirm fees, entry, teaching location and scholarships with GAU; a blank fee field is not free study. After individual approval, activate only reviewed slugs and clear public listing cache.
+- [ ] Repeat the SAME seed command; programme count must not rise. Confirm no new categories or partners.
 
 ---
 
@@ -213,13 +240,15 @@ the generated Bachelors file and seeder wiring rather than hand-editing data.
 2. `python3 tools/qa_gate.py` aur `python3 tools/dedupe_scan.py`
 3. `python3 tools/build_catalog_data.py`
 4. `python3 tools/validate_catalog_data.py`
-5. Seeder dobara chalao — purane rows update, naye create
+5. Run the appropriate **existing-reference-only** seeder again on staging;
+   a new slug creates a row, an existing slug updates its data but retains the
+   admin activation toggle.
 
 For additional Bachelors, verify the **exact award and attributable curriculum**
 first, then add a dossier and page through stations 01–06. Never change an
-existing GAU/legacy slug or silently add a UWS award. The Bachelors seeder
-requires an existing partner and category; other cohorts retain their prior
-`firstOrCreate` behaviour.
+existing GAU/legacy slug or silently add a UWS award. Both safe seed commands
+require existing categories/partners; only the separate legacy bootstrap
+`CatalogProgramsSeeder` retains `firstOrCreate` for Doctorate/Diploma.
 
 ---
 

@@ -6,6 +6,8 @@
 *.md diff=markdown
 *.php diff=php
 *.sh text eol=lf
+# Preserve the tracker’s UTF-8 BOM + CRLF format on every checkout.
+docs/program-tracker.csv text eol=crlf
 
 /.github export-ignore
 CHANGELOG.md export-ignore

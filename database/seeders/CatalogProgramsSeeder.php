@@ -13,13 +13,14 @@ use Illuminate\Support\Facades\DB;
  * generated catalogue data files. Mirrors MasterProgramsSeeder; FAQs are seeded,
  * and gcc_heading comes from the data row instead of being hardcoded.
  *
- * Idempotent — identity is the programme `slug`. Safe to re-run as new
- * content lands; existing rows are updated, never duplicated.
+ * Idempotent — identity is the programme `slug`. Existing rows are updated,
+ * never duplicated. For staging without creating categories/partners, use
+ * BachelorsProgramsSeeder (five new pages only) or
+ * ExistingCatalogProgramsSeeder (all 67 catalogue pages) instead.
  *
- *   php artisan db:seed --class=CatalogProgramsSeeder
- *   php artisan db:seed --class=CatalogProgramsSeeder --force   (production)
- *
- * Data files are generated. Do not hand-edit them:
+ * This legacy seeder can still create Doctorate/Diploma categories or partners
+ * when bootstrapping a new database. Bachelors always uses existing records.
+ * Data files are generated; never edit them by hand:
  *   python3 tools/build_catalog_data.py
  */
 class CatalogProgramsSeeder extends Seeder
@@ -31,35 +32,60 @@ class CatalogProgramsSeeder extends Seeder
         'bachelors_programs.php',
     ];
 
-    public function run(): void
+    /** @return list<string> */
+    protected function sources(): array
     {
-        foreach (self::SOURCES as $source) {
-            $path = __DIR__.'/data/'.$source;
-
-            if (! is_file($path)) {
-                $this->command?->warn("Skipping missing catalogue file: {$source}");
-
-                continue;
-            }
-
-            $this->command?->info("Loading {$source}");
-            // Bachelor pages must reuse the category and partner already seeded
-            // by ProgramSeeder; never create a new institution for this batch.
-            $this->seedFile(require $path, $source === 'bachelors_programs.php');
-        }
+        return self::SOURCES;
     }
 
-    /**
-     * @param  array{categories: array, universities: array, programs: array}  $data
-     */
-    private function seedFile(array $data, bool $existingOnly = false): void
+    /** Safe seeder variants require every declared category and partner to exist. */
+    protected function existingReferencesOnly(): bool
     {
-        DB::transaction(function () use ($data, $existingOnly) {
-            $categories = $this->categories($data['categories'] ?? [], $existingOnly);
-            $universities = $this->universities($data['universities'] ?? [], $existingOnly);
+        return false;
+    }
 
-            foreach ($data['programs'] ?? [] as $row) {
-                $this->program($row, $categories, $universities);
+    public function run(): void
+    {
+        // Read every required file before touching the database. A missing or
+        // malformed deployment must fail, not report success with fewer pages.
+        $files = [];
+        foreach ($this->sources() as $source) {
+            $path = __DIR__.'/data/'.$source;
+            if (! is_file($path)) {
+                throw new \RuntimeException("Missing catalogue data file: {$path}");
+            }
+
+            $data = require $path;
+            if (! is_array($data) || ! is_array($data['categories'] ?? null)
+                || ! is_array($data['universities'] ?? null)
+                || ! is_array($data['programs'] ?? null) || $data['programs'] === []) {
+                throw new \RuntimeException("Invalid or empty catalogue data file: {$path}");
+            }
+
+            $files[$source] = $data;
+        }
+
+        // One transaction covers every file: an absent Bachelor partner, an
+        // unexpected slug collision or a failed FAQ must roll back ALL rows.
+        DB::transaction(function () use ($files) {
+            $references = [];
+            foreach ($files as $source => $data) {
+                // The legacy bootstrap may create Doctorate/Diploma references;
+                // the two safe commands never create any, and Bachelors never do.
+                $existingOnly = $this->existingReferencesOnly()
+                    || $source === 'bachelors_programs.php';
+                $references[$source] = [
+                    $this->categories($data['categories'], $existingOnly),
+                    $this->universities($data['universities'], $existingOnly),
+                ];
+            }
+
+            foreach ($files as $source => $data) {
+                $this->command?->info("Loading {$source}");
+                [$categories, $universities] = $references[$source];
+                foreach ($data['programs'] as $row) {
+                    $this->program($row, $categories, $universities);
+                }
             }
         });
     }
@@ -136,23 +162,18 @@ class CatalogProgramsSeeder extends Seeder
      */
     private function program(array $row, array $categories, array $universities): void
     {
-        $category = $categories[$row['category_slug']]
-            ?? ProgramCategory::query()->where('slug', $row['category_slug'])->first();
-
-        $university = $universities[$row['university_slug']]
-            ?? UniversityPartner::query()->where('slug', $row['university_slug'])->first();
-
+        $category = $categories[$row['category_slug']] ?? null;
+        $university = $universities[$row['university_slug']] ?? null;
         if (! $category || ! $university) {
-            $this->command?->error(
-                "Skipped {$row['slug']}: missing ".
-                (! $category ? "category '{$row['category_slug']}'" : "university '{$row['university_slug']}'")
-            );
-
-            return;
+            throw new \RuntimeException("Undeclared category or partner for programme: {$row['slug']}");
         }
 
         $program = Program::firstOrNew(['slug' => $row['slug']]);
         $creating = ! $program->exists;
+        if (! $creating && ((int) $program->program_category_id !== (int) $category->id
+            || (int) $program->university_partner_id !== (int) $university->id)) {
+            throw new \RuntimeException("Refusing to reassign existing programme: {$row['slug']}");
+        }
 
         $program->fill([
             'program_category_id' => $category->id,

@@ -7,16 +7,19 @@ relies on, plus the template's hard limits. Run before every seed.
 
     python3 tools/validate_catalog_data.py
 
-Exit code 0 = safe to seed. 1 = do not seed.
+Exit code 0 = structural checks passed (server DB prerequisites still required).
+Exit code 1 = do not seed.
 """
 import re
 import os
 import sys
-import glob
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-FILES = sorted(glob.glob(os.path.join(ROOT, "database/seeders/data/*_programs.php")))
-SKIP = {"master_programs.php"}
+DATA_DIR = os.path.join(ROOT, "database/seeders/data")
+# Match the three files loaded by CatalogProgramsSeeder. A missing deployment
+# must fail, rather than silently validating only the files that arrived.
+EXPECTED = ("doctorate_programs.php", "diploma_programs.php", "bachelors_programs.php")
+FILES = [os.path.join(DATA_DIR, name) for name in EXPECTED]
 
 REQUIRED = ["slug", "title", "level", "category_slug", "university_slug", "duration",
             "sort_order", "hero", "overview", "highlights", "snapshot", "benefits",
@@ -29,9 +32,6 @@ COUNTS = {"highlights": (4, 8), "snapshot": (6, 8), "benefits": (4, 8),
           "gcc": (0, 8), "careers": (1, 20), "overview": (2, 3)}
 
 LIMITS = {"hero": (0, 300), "meta_title": (45, 78), "meta_description": (120, 161)}
-
-errors, warnings = [], []
-
 
 def php_strings(blob):
     """All single-quoted PHP strings in a blob, unescaped."""
@@ -86,19 +86,22 @@ def count_entries(blob):
 
 
 def main():
-    files = [f for f in FILES if os.path.basename(f) not in SKIP]
-    if not files:
-        print("No catalogue data files found.")
-        return 0
+    missing = [path for path in FILES if not os.path.isfile(path)]
+    if missing:
+        print("ERROR: missing required catalogue data file(s):")
+        for path in missing:
+            print("   ", path)
+        return 1
 
+    errors, warnings = [], []
     all_slugs, total = {}, 0
 
-    for path in files:
+    for path in FILES:
         name = os.path.basename(path)
-        text = open(path, encoding="utf-8").read()
+        with open(path, encoding="utf-8") as source:
+            text = source.read()
         print(f"\n=== {name} ===")
 
-        cats = set(php_strings(text[text.index("'categories'"):text.index("'universities'")])[0::1])
         cat_slugs = set(re.findall(r"'slug' => '([^']+)'",
                                    text[text.index("'categories'"):text.index("'universities'")]))
         uni_slugs = set(re.findall(r"'slug' => '([^']+)'",
@@ -106,9 +109,14 @@ def main():
         print(f"  categories declared : {sorted(cat_slugs)}")
         print(f"  universities declared: {sorted(uni_slugs)}")
 
-        for prog in split_programs(text):
+        programs = split_programs(text)
+        if not programs:
+            errors.append(f"{name}: no programme rows — DO NOT SEED")
+        for prog in programs:
             total += 1
             slug = (re.search(r"'slug' => '([^']+)'", prog) or [None, "?"])[1]
+            if field_blob(prog, "is_active") != "false":
+                errors.append(f"{slug}: new catalogue rows must start inactive")
 
             for key in REQUIRED:
                 if f"'{key}' =>" not in prog:
@@ -166,9 +174,9 @@ def main():
 
             print(f"  {slug:58} " + " ".join(f"{k}={v}" for k, v in counts.items()) + f" faqs={nf}")
 
-    print(f"\n--- {total} programme(s) across {len(files)} file(s) ---")
+    print(f"\n--- {total} programme(s) across {len(FILES)} file(s) ---")
     if warnings:
-        print(f"\nWARNING: {len(warnings)} warning(s) (declared gaps, seeding still safe):")
+        print(f"\nWARNING: {len(warnings)} declared content gap(s) (DB prerequisites still required):")
         for w in warnings:
             print("   ", w)
     if errors:
@@ -176,7 +184,7 @@ def main():
         for e in errors:
             print("   ", e)
         return 1
-    print("\nVALIDATION PASSED -- safe to seed.")
+    print("\nVALIDATION PASSED -- data checks passed; confirm DB prerequisites before seeding.")
     return 0
 
 
