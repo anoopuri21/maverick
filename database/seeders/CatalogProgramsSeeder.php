@@ -9,8 +9,8 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
 /**
- * Seeds Doctorate and Diploma programmes from the generated catalogue data
- * files. Mirrors MasterProgramsSeeder, with two additions: FAQs are seeded,
+ * Seeds Doctorate, Diploma and source-verified Bachelors programmes from the
+ * generated catalogue data files. Mirrors MasterProgramsSeeder; FAQs are seeded,
  * and gcc_heading comes from the data row instead of being hardcoded.
  *
  * Idempotent — identity is the programme `slug`. Safe to re-run as new
@@ -28,6 +28,7 @@ class CatalogProgramsSeeder extends Seeder
     private const SOURCES = [
         'doctorate_programs.php',
         'diploma_programs.php',
+        'bachelors_programs.php',
     ];
 
     public function run(): void
@@ -42,18 +43,20 @@ class CatalogProgramsSeeder extends Seeder
             }
 
             $this->command?->info("Loading {$source}");
-            $this->seedFile(require $path);
+            // Bachelor pages must reuse the category and partner already seeded
+            // by ProgramSeeder; never create a new institution for this batch.
+            $this->seedFile(require $path, $source === 'bachelors_programs.php');
         }
     }
 
     /**
      * @param  array{categories: array, universities: array, programs: array}  $data
      */
-    private function seedFile(array $data): void
+    private function seedFile(array $data, bool $existingOnly = false): void
     {
-        DB::transaction(function () use ($data) {
-            $categories = $this->categories($data['categories'] ?? []);
-            $universities = $this->universities($data['universities'] ?? []);
+        DB::transaction(function () use ($data, $existingOnly) {
+            $categories = $this->categories($data['categories'] ?? [], $existingOnly);
+            $universities = $this->universities($data['universities'] ?? [], $existingOnly);
 
             foreach ($data['programs'] ?? [] as $row) {
                 $this->program($row, $categories, $universities);
@@ -62,11 +65,23 @@ class CatalogProgramsSeeder extends Seeder
     }
 
     /** @return array<string, ProgramCategory> */
-    private function categories(array $rows): array
+    private function categories(array $rows, bool $existingOnly): array
     {
         $out = [];
 
         foreach ($rows as $row) {
+            if ($existingOnly) {
+                $existing = ProgramCategory::query()->where('slug', $row['slug'])->first();
+
+                if (! $existing) {
+                    throw new \RuntimeException("Existing programme category required: {$row['slug']}");
+                }
+
+                $out[$row['slug']] = $existing;
+
+                continue;
+            }
+
             $out[$row['slug']] = ProgramCategory::firstOrCreate(
                 ['slug' => $row['slug']],
                 [
@@ -83,11 +98,23 @@ class CatalogProgramsSeeder extends Seeder
     }
 
     /** @return array<string, UniversityPartner> */
-    private function universities(array $rows): array
+    private function universities(array $rows, bool $existingOnly): array
     {
         $out = [];
 
         foreach ($rows as $row) {
+            if ($existingOnly) {
+                $existing = UniversityPartner::query()->where('slug', $row['slug'])->first();
+
+                if (! $existing) {
+                    throw new \RuntimeException("Existing university partner required: {$row['slug']}");
+                }
+
+                $out[$row['slug']] = $existing;
+
+                continue;
+            }
+
             $out[$row['slug']] = UniversityPartner::firstOrCreate(
                 ['slug' => $row['slug']],
                 [

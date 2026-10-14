@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Build database/seeders/data/doctorate_programs.php from the approved
-markdown in output/programs/doctorate/.
+Build the Doctorate, Diploma and Bachelors catalogue PHP data files from
+approved markdown under output/programs/<category>/.
 
 Single source of truth = the approved content files. Never hand-edit the
 generated PHP; re-run this script instead.
@@ -33,6 +33,16 @@ BUILDS = [
         "universities": [
             ("gatehouse-awards", "Gatehouse Awards", "United Kingdom", "GB", 4),
             ("qualifi", "Qualifi", "United Kingdom", "GB", 5),
+        ],
+    },
+    {
+        "src": "bachelors",
+        "out": "bachelors_programs.php",
+        # ProgramSeeder already creates this category and GAU partner. Keep
+        # their slugs; the catalogue seeder requires them to exist already.
+        "categories": [("bachelors", "Bachelors", 5)],
+        "universities": [
+            ("girne-american-university", "Girne American University", "Northern Cyprus", "CY", 1),
         ],
     },
 ]
