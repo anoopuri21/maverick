@@ -80,7 +80,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
   -webkit-text-size-adjust: 100%;
 }
 
@@ -2853,45 +2853,51 @@ html.js .scale-in {
 .wim__pin-wrapper {
   position: relative;
   z-index: 3;
-  min-height: 100vh;
+  box-sizing: border-box;
+  min-height: 100dvh;
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  row-gap: 8px;
   text-align: center;
-  padding: clamp(96px, 10vw, 140px) var(--container-padding) 0;
+  padding-block: 70px;
+  padding-inline: var(--container-padding);
   will-change: transform, opacity;
 }
 
 .wim__heading-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  will-change: transform;
+  display: contents;
+}
+
+.wim__label,
+.wim__heading,
+.wim__statement,
+.wim__final {
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 100%;
 }
 
 .wim__label {
   justify-content: center;
-  margin-bottom: 40px;
+  margin: 0;
 }
 
 .wim__heading {
-  margin: 0 0 40px;
+  margin: 0;
   font-size: clamp(40px, 6vw, 4.5vw);
   font-weight: 500;
   line-height: 1.05;
   letter-spacing: -0.03em;
   color: var(--color-white);
   text-align: center;
+  will-change: transform;
 }
 
 .wim__statements {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0px;
-  margin-top: -40px;
-  overflow: hidden;
+  display: contents;
 }
 
 .wim__statement {
@@ -2922,7 +2928,7 @@ html.js .scale-in {
 }
 
 .wim__final {
-  margin-top: 32px;
+  margin: 0;
   opacity: 0;
 }
 
@@ -7390,15 +7396,6 @@ body.modal-open {
 
   .wim__statement-text {
     font-size: clamp(22px, 6vw, 36px);
-  }
-
-  .wim__statements {
-    margin-top: 32px;
-    gap: 6px;
-  }
-
-  .wim__final {
-    margin-top: 24px;
   }
 
   /* ===== WHO WE ARE RESPONSIVE ===== */

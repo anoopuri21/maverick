@@ -524,6 +524,7 @@
 
     const pinWrapper = section.querySelector(".wim__pin-wrapper");
     const headingWrapper = section.querySelector(".wim__heading-wrapper");
+    const headingEl = section.querySelector(".wim__heading");
     const label = section.querySelector(".wim__label");
     const bgImage = section.querySelector(".wim__bg-image");
     const finalEl = section.querySelector(".wim__final");
@@ -532,21 +533,21 @@
     );
     const totalStatements = statements.length;
 
-    if (!pinWrapper || !headingWrapper || totalStatements === 0) {
+    if (!pinWrapper || !headingWrapper || !headingEl || totalStatements === 0) {
       console.warn("WIM: Required elements not found, skipping animations.");
       return;
     }
 
-    ScrollTrigger.getAll().forEach((st) => {
-      if (st.trigger === section) st.kill();
-    });
+    if (initWIMAnimations._mm) {
+      initWIMAnimations._mm.revert();
+    }
 
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
 
     if (prefersReducedMotion) {
-      gsap.set([headingWrapper, label, finalEl, pinWrapper], {
+      gsap.set([headingEl, label, finalEl, pinWrapper], {
         clearProps: "all",
         opacity: 1,
         y: 0,
@@ -560,163 +561,160 @@
       return;
     }
 
-    const isMobile = window.innerWidth <= 768;
+    function setWimInitialState(cfg) {
+      gsap.set(headingEl, { y: cfg.headingInitY, opacity: 0 });
+      gsap.set(label, { y: 10, opacity: 0 });
+      gsap.set(statements, { opacity: 0 });
+      gsap.set(finalEl, { y: 12, opacity: 0 });
+      gsap.set(pinWrapper, { opacity: 1 });
+      statements.forEach((stmt) => {
+        const txt = stmt.querySelector(".wim__statement-text");
+        if (txt) gsap.set(txt, { y: cfg.textY || "100%" });
+      });
+      if (bgImage) gsap.set(bgImage, { scale: 1 });
+    }
 
-    const cfg = isMobile
-      ? {
-          headingInitY: "-8vh",
-          headingSettleY: "-2vh",
-          entryStart: "top 70%",
-          entryEnd: "top 20%",
-          pinEnd: "+=110%",
-          bgScale: 1.08,
-          labelOpacity: 1,
-          scrubEntry: 0.8,
-          scrubPin: 1,
+    function addWimStatementsToTimeline(tl, stmtStart, stmtZoneEnd) {
+      const stmtZone = stmtZoneEnd - stmtStart;
+      const stmtGap =
+        totalStatements > 1 ? stmtZone / (totalStatements - 1) : 0;
+
+      statements.forEach((stmt, index) => {
+        const stmtText = stmt.querySelector(".wim__statement-text");
+        const pos = stmtStart + index * stmtGap;
+
+        tl.to(
+          stmt,
+          {
+            opacity: 1,
+            duration: 0.15,
+            ease: "power2.out",
+          },
+          pos,
+        );
+
+        if (stmtText) {
+          tl.to(
+            stmtText,
+            {
+              y: "0%",
+              duration: 0.18,
+              ease: "power3.out",
+            },
+            pos,
+          );
         }
-      : {
-          headingInitY: "-15vh",
-          headingSettleY: "-3vh",
-          entryStart: "top 65%",
-          entryEnd: "top 15%",
-          pinEnd: "+=140%",
-          bgScale: 1.12,
-          labelOpacity: 0.9,
-          scrubEntry: 1,
-          scrubPin: 1.2,
-        };
+      });
+    }
 
-    const STMT_START = 0.05;
-    const STMT_ZONE_END = 0.62;
-    const FINAL_POS = 0.66;
-    const FADE_START = 0.88;
-    const FADE_DUR = 0.12;
+    const mm = gsap.matchMedia();
+    initWIMAnimations._mm = mm;
 
-    const stmtZone = STMT_ZONE_END - STMT_START;
-    const STMT_GAP = totalStatements > 1 ? stmtZone / (totalStatements - 1) : 0;
+    mm.add("(max-width: 768px)", () => {
+      const cfg = {
+        headingInitY: 12,
+        headingSettleY: 0,
+        textY: "30%",
+        labelOpacity: 1,
+      };
 
-    gsap.set(headingWrapper, { y: cfg.headingInitY, opacity: 0 });
-    gsap.set(label, { y: 10, opacity: 0 });
-    gsap.set(statements, { opacity: 0 });
-    gsap.set(finalEl, { y: 12, opacity: 0 });
-    gsap.set(pinWrapper, { opacity: 1 });
+      setWimInitialState(cfg);
 
-    statements.forEach((stmt) => {
-      const txt = stmt.querySelector(".wim__statement-text");
-      if (txt) gsap.set(txt, { y: "100%" });
+      const mobileTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "top 88%",
+          end: "top 40%",
+          scrub: 0.4,
+          invalidateOnRefresh: true,
+        },
+      });
+
+      mobileTl.to(
+        label,
+        { y: 0, opacity: cfg.labelOpacity, duration: 0.1, ease: "power2.out" },
+        0,
+      );
+
+      mobileTl.to(
+        headingEl,
+        {
+          y: cfg.headingSettleY,
+          opacity: 1,
+          duration: 0.12,
+          ease: "power2.out",
+        },
+        0.08,
+      );
+
+      addWimStatementsToTimeline(mobileTl, 0.18, 0.78);
+
+      mobileTl.to(
+        finalEl,
+        { opacity: 1, y: 0, duration: 0.1, ease: "power2.out" },
+        0.8,
+      );
     });
 
-    if (bgImage) gsap.set(bgImage, { scale: 1 });
+    mm.add("(min-width: 769px)", () => {
+      const cfg = {
+        headingInitY: 20,
+        headingSettleY: 0,
+        textY: "40%",
+        labelOpacity: 1,
+        bgScale: 1.06,
+      };
 
-    const entryTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: section,
-        start: cfg.entryStart,
-        end: cfg.entryEnd,
-        scrub: cfg.scrubEntry,
-      },
-    });
+      setWimInitialState(cfg);
 
-    entryTl
-      .to(headingWrapper, {
-        y: "0vh",
-        opacity: 1,
-        duration: 1,
-        ease: "power2.out",
-      })
-      .to(
+      const desktopTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "top 85%",
+          end: "top 28%",
+          scrub: 0.55,
+          invalidateOnRefresh: true,
+        },
+      });
+
+      if (bgImage) {
+        desktopTl.to(
+          bgImage,
+          { scale: cfg.bgScale, duration: 0.9, ease: "none" },
+          0,
+        );
+      }
+
+      desktopTl.to(
         label,
         {
           y: 0,
           opacity: cfg.labelOpacity,
-          duration: 0.7,
+          duration: 0.12,
           ease: "power2.out",
-        },
-        "-=0.5",
-      );
-
-    const wimTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: section,
-        start: "top top",
-        end: cfg.pinEnd,
-        scrub: cfg.scrubPin,
-        pin: pinWrapper,
-        anticipatePin: 1,
-        pinSpacing: true,
-        invalidateOnRefresh: true,
-      },
-    });
-
-    if (bgImage) {
-      wimTl.to(
-        bgImage,
-        {
-          scale: cfg.bgScale,
-          duration: 1,
-          ease: "none",
         },
         0,
       );
-    }
 
-    wimTl.to(
-      headingWrapper,
-      {
-        y: cfg.headingSettleY,
-        duration: 0.3,
-        ease: "power1.inOut",
-      },
-      0,
-    );
-
-    statements.forEach((stmt, index) => {
-      const stmtText = stmt.querySelector(".wim__statement-text");
-      const pos = STMT_START + index * STMT_GAP;
-
-      wimTl.to(
-        stmt,
+      desktopTl.to(
+        headingEl,
         {
+          y: cfg.headingSettleY,
           opacity: 1,
-          duration: 0.15,
+          duration: 0.14,
           ease: "power2.out",
         },
-        pos,
+        0.1,
       );
 
-      if (stmtText) {
-        wimTl.to(
-          stmtText,
-          {
-            y: "0%",
-            duration: 0.18,
-            ease: "power3.out",
-          },
-          pos,
-        );
-      }
+      addWimStatementsToTimeline(desktopTl, 0.22, 0.78);
+
+      desktopTl.to(
+        finalEl,
+        { opacity: 1, y: 0, duration: 0.1, ease: "power2.out" },
+        0.8,
+      );
     });
-
-    wimTl.to(
-      finalEl,
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.08,
-        ease: "power2.out",
-      },
-      FINAL_POS,
-    );
-
-    wimTl.to(
-      pinWrapper,
-      {
-        opacity: 0,
-        duration: FADE_DUR,
-        ease: "power1.inOut",
-      },
-      FADE_START,
-    );
   }
 
   // =========================================================
