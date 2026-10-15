@@ -28,7 +28,7 @@ rows; **public activation is not part of this rollout**.
 | `database/seeders/data/doctorate_programs.php` | **GENERATED** — never hand-edit |
 | `database/seeders/data/diploma_programs.php` | **GENERATED** — never hand-edit |
 | `database/seeders/data/bachelors_programs.php` | **GENERATED** — five inactive GAU BSc rows only |
-| `tools/validate_catalog_data.py` | Offline pre-flight; fails for missing/empty file or active new row |
+| `tools/validate_catalog_data.py` | Offline pre-flight; fails for missing/empty file, active new row or a Bachelor seed slug/title lacking `Completed` tracker approval |
 | `tools/qa_gate.py` · `tools/dedupe_scan.py` | Content gates (style, length, uniqueness) |
 | `database/seeders/BachelorsProgramsSeeder.php` | Five GAU BSc rows only, existing references only |
 | `database/seeders/ExistingCatalogProgramsSeeder.php` | **Recommended for the one-command copy refresh**: 67 catalogue + up to 55 *existing* Master/BBA rows; excludes two unapproved MBA rows |
@@ -56,6 +56,11 @@ slugs. Missing *catalogue* references, incomplete data, ambiguous FAQs, or a
 present row linked to the wrong category/partner **or title/level identity**
 cause an exception and a full transaction rollback. Never silently map a
 programme to another award/provider.
+The offline Bachelor source gate compares seed slugs **and exact titles** with
+`Completed` tracker rows and requires their approved markdown files to exist;
+all four `Incomplete` subjects fail that gate if inserted into the seed file.
+The PHP catalogue seeder also refuses to run if any generated row would start
+active. This does **not** deactivate an already present programme on re-seed.
 The refresh does replace authored copy, meta title/description and catalogue
 FAQ question/answer text, so **back up and compare admin-edited copy on staging**.
 It preserves programme activation, featured status, ordering, identities, media,

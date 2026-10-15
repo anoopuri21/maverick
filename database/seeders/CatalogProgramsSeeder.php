@@ -78,6 +78,16 @@ class CatalogProgramsSeeder extends Seeder
                 throw new \RuntimeException("Expected {$expected} programmes in {$source}; found ".count($data['programs']));
             }
 
+            // Source approval is an offline gate; at runtime, fail closed if
+            // any generated row would auto-publish on first insertion. Existing
+            // programmes keep their admin-set activation during a re-seed.
+            foreach ($data['programs'] as $row) {
+                if (! is_array($row) || ($row['is_active'] ?? null) !== false) {
+                    $slug = is_array($row) ? ($row['slug'] ?? $source) : $source;
+                    throw new \RuntimeException("Catalogue programme must default inactive: {$slug}");
+                }
+            }
+
             $files[$source] = $data;
         }
 

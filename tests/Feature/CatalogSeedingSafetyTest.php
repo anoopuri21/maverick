@@ -34,6 +34,16 @@ class CatalogSeedingSafetyTest extends TestCase
 
         $data = require database_path('seeders/data/bachelors_programs.php');
         $slugs = array_column($data['programs'], 'slug');
+        $this->assertEqualsCanonicalizing([
+            'bsc-tourism-and-hospitality-management-girne-american-university',
+            'bsc-international-business-management-girne-american-university',
+            'bsc-marketing-girne-american-university',
+            'bsc-economics-girne-american-university',
+            'bsc-management-information-systems-girne-american-university',
+        ], $slugs); // S.No 72, 74, 75 and 78 remain research-incomplete.
+        foreach ($data['programs'] as $row) {
+            $this->assertFalse($row['is_active']);
+        }
         $this->assertEqualsCanonicalizing($slugs, Program::query()->pluck('slug')->all());
         $this->assertSame(6, Program::query()->where('slug', $slugs[0])->firstOrFail()->faqs()->count());
 
