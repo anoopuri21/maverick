@@ -1,17 +1,20 @@
 #!/usr/bin/env python3
 """
-Build the Doctorate, Diploma and Bachelors catalogue PHP data files from
-approved markdown under output/programs/<category>/.
+Build the approved Doctorate, Diploma and Bachelor PHP data files from markdown
+under output/programs/<category>/, plus a separate admin-only Bachelor draft
+file from docs/bachelors-admin-drafts.json. Drafts are not public pages and
+cannot be mistaken for approved copy.
 
-Single source of truth = the approved content files. Never hand-edit the
-generated PHP; re-run this script instead.
+Never hand-edit generated PHP; re-run this script instead.
 
     python3 tools/build_catalog_data.py
 """
-import re
 import glob
+import json
 import os
+import re
 import sys
+from urllib.parse import urlparse
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # One entry per generated data file. Each build reads
@@ -46,6 +49,23 @@ BUILDS = [
         ],
     },
 ]
+
+# ExistingCatalogProgramsSeeder requires both partners to be present in the
+# database. This generated declaration NEVER authorises creating a new partner.
+ADMIN_DRAFT_BUILD = {
+    "out": "bachelors_admin_drafts.php",
+    "categories": [("bachelors", "Bachelors", 5)],
+    "universities": [
+        ("girne-american-university", "Girne American University", "Northern Cyprus", "CY", 1),
+        ("university-of-the-west-of-scotland", "University of the West of Scotland", "United Kingdom", "GB", 6),
+    ],
+}
+ADMIN_DRAFT_SOURCE = os.path.join(ROOT, "docs/bachelors-admin-drafts.json")
+ADMIN_DRAFT_IDENTITIES = {
+    72: ("Accounting and Finance Management", "girne-american-university", "gau.edu.tr"),
+    74: ("Human Resources Management", "girne-american-university", "gau.edu.tr"),
+    78: ("BA Global Business (Level 9)", "university-of-the-west-of-scotland", "uws.ac.uk"),
+}
 
 
 def ph(s):
@@ -199,6 +219,78 @@ def build(path):
     return p
 
 
+def load_admin_drafts(path=ADMIN_DRAFT_SOURCE):
+    """Read deliberately incomplete, non-public records from their own source.
+
+    Keeping these away from output/programs prevents a short draft from being
+    counted as an SEO-approved page or accidentally filling a different award.
+    The exact title/partner allowlist must be reviewed if university evidence
+    changes; changing a URL slug in the JSON alone is not award verification.
+    """
+    with open(path, encoding="utf-8") as source:
+        data = json.load(source)
+    if data.get("schema_version") != 1 or not isinstance(data.get("drafts"), list):
+        raise ValueError("Invalid admin Bachelor draft source schema")
+    drafts, seen = [], set()
+    allowed = {
+        "tracker_sno", "slug", "title", "level", "category_slug", "university_slug",
+        "sort_order", "duration", "hero", "overview", "highlights", "snapshot",
+        "structure", "source_urls", "unverified_fields",
+    }
+    for raw in data["drafts"]:
+        number = raw["tracker_sno"]
+        if number not in ADMIN_DRAFT_IDENTITIES or number in seen:
+            raise ValueError(f"Unrecognised or duplicate admin Bachelor tracker row: {number}")
+        if set(raw) - allowed:
+            raise ValueError(f"Admin Bachelor row {number}: unsupported fields {sorted(set(raw) - allowed)}")
+        seen.add(number)
+        title, partner, domain = ADMIN_DRAFT_IDENTITIES[number]
+        if (raw["title"], raw["university_slug"]) != (title, partner):
+            raise ValueError(f"Admin Bachelor row {number}: official title/partner mismatch")
+        if raw["category_slug"] != "bachelors" or raw["sort_order"] != number:
+            raise ValueError(f"Admin Bachelor row {number}: incorrect category or sort order")
+        if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)+", raw["slug"]):
+            raise ValueError(f"Admin Bachelor row {number}: invalid slug")
+        urls = raw.get("source_urls", [])
+        if not isinstance(urls, list) or not urls or any(
+            not isinstance(url, str) or urlparse(url).scheme != "https" or
+            not (urlparse(url).hostname == domain or
+                 (urlparse(url).hostname or "").endswith("." + domain))
+            for url in urls
+        ):
+            raise ValueError(f"Admin Bachelor row {number}: only official university URLs allowed")
+        if not isinstance(raw.get("unverified_fields"), list) or not raw["unverified_fields"]:
+            raise ValueError(f"Admin Bachelor row {number}: declare what the client must verify")
+        if not isinstance(raw.get("hero"), str) or not raw["hero"] or len(raw["hero"]) > 300:
+            raise ValueError(f"Admin Bachelor row {number}: hero must be concise source-limited copy")
+        if not isinstance(raw.get("overview"), list) or not raw["overview"]:
+            raise ValueError(f"Admin Bachelor row {number}: overview must attribute supported facts")
+        draft = {
+            "slug": raw["slug"], "title": title, "level": raw["level"],
+            "category_slug": "bachelors", "university_slug": partner,
+            "duration": raw["duration"], "sort_order": number, "is_active": False,
+            "admin_draft": True, "tracker_sno": number, "source_urls": urls,
+            "hero": raw.get("hero", ""), "overview": raw.get("overview", []),
+            "highlights": raw.get("highlights", []), "snapshot": raw.get("snapshot", []),
+            "benefits": raw.get("benefits", []), "learning": raw.get("learning", []),
+            "careers": raw.get("careers", []), "structure": raw.get("structure", []),
+            "support": raw.get("support", []), "gcc_heading": "", "gcc": [],
+            "fees": [], "faqs": [], "meta_title": "", "meta_description": "",
+        }
+        if (number in (72, 74) and (draft["level"], draft["duration"]) != ("Undergraduate", "4 years")) or (
+            number == 78 and (draft["level"], draft["duration"]) != ("BA", "")
+        ):
+            raise ValueError(f"Admin Bachelor row {number}: unsupported level or duration")
+        if not all(isinstance(draft[key], list) for key in (
+            "overview", "highlights", "snapshot", "benefits", "learning", "careers", "structure", "support"
+        )):
+            raise ValueError(f"Admin Bachelor row {number}: malformed content lists")
+        drafts.append(draft)
+    if seen != set(ADMIN_DRAFT_IDENTITIES):
+        raise ValueError(f"Admin Bachelor drafts missing tracker rows: {sorted(set(ADMIN_DRAFT_IDENTITIES) - seen)}")
+    return drafts
+
+
 def emit(p, ind="        "):
     i2, i3, i4 = ind + "    ", ind + "        ", ind + "            "
     L = [ind + "["]
@@ -206,6 +298,12 @@ def emit(p, ind="        "):
         L.append(f"{i2}{ph(k)} => {ph(p[k])},")
     L.append(f"{i2}'sort_order' => {p['sort_order']},")
     L.append(f"{i2}'is_active' => " + ("true" if p["is_active"] else "false") + ",")
+    if p.get("admin_draft"):
+        L.append(f"{i2}'admin_draft' => true,")
+        L.append(f"{i2}'tracker_sno' => {p['tracker_sno']},")
+        L.append(f"{i2}'source_urls' => [")
+        L += [f"{i3}{ph(url)}," for url in p["source_urls"]]
+        L.append(f"{i2}],")
     L.append(f"{i2}'hero' => {ph(p['hero'])},")
     L.append(f"{i2}'overview' => [")
     L += [f"{i3}{ph(x)}," for x in p["overview"]]
@@ -245,18 +343,22 @@ def emit(p, ind="        "):
     return "\n".join(L)
 
 
-def build_one(cfg):
-    src = os.path.join(ROOT, "output/programs", cfg["src"])
+def build_one(cfg, progs=None):
     out_path = os.path.join(ROOT, "database/seeders/data", cfg["out"])
 
-    files = sorted(glob.glob(os.path.join(src, "*/*.md")))
-    if not files:
-        sys.exit("No approved content found in " + src)
-    progs = [build(f) for f in files]
+    if progs is None:
+        src = os.path.join(ROOT, "output/programs", cfg["src"])
+        files = sorted(glob.glob(os.path.join(src, "*/*.md")))
+        if not files:
+            sys.exit("No approved content found in " + src)
+        progs = [build(f) for f in files]
+        source = f"output/programs/{cfg['src']}/**.md"
+    else:
+        source = "docs/bachelors-admin-drafts.json (ADMIN-ONLY, NOT APPROVED PAGES)"
     progs.sort(key=lambda x: x["sort_order"])
 
     out = ["<?php", "", "// GENERATED FILE \u2014 do not edit by hand.",
-           f"// Source: output/programs/{cfg['src']}/**.md",
+           f"// Source: {source}",
            "// Rebuild: python3 tools/build_catalog_data.py", "", "return [",
            "    'categories' => ["]
     for s_, n, so in cfg["categories"]:
@@ -275,8 +377,11 @@ def build_one(cfg):
 
 
 def main():
-    for cfg in BUILDS:
-        out_path, progs = build_one(cfg)
+    # Parse and verify draft identities/sources BEFORE writing any generated
+    # file. A malformed draft cannot leave a half-regenerated catalogue.
+    admin_drafts = load_admin_drafts()
+    for cfg, rows in [(cfg, None) for cfg in BUILDS] + [(ADMIN_DRAFT_BUILD, admin_drafts)]:
+        out_path, progs = build_one(cfg, rows)
         print(f"Wrote {out_path}")
         for p in progs:
             print(f"  {p['sort_order']}  {p['slug']:58} "

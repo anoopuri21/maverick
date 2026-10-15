@@ -2,7 +2,7 @@
 
 **Research Analyst · official-source recheck 2026-10-15 · Tracker S.No 78**
 
-**Research Status: Incomplete.** UWS's current transnational partner list names **BA Global Business (Level 9)** at ICBS in Sri Lanka, **not** a BA (Hons) in Global Business. The same list separately identifies an Honours **International Business & Finance** award. No UWS-hosted specification for the listed Global Business **Honours** qualification, its syllabus or delivery terms was found. No page or seed row is approved.
+**Research Status: Incomplete.** UWS's current transnational partner list names **BA Global Business (Level 9)** at ICBS in Sri Lanka, **not** a BA (Hons) in Global Business. The same list separately identifies an Honours **International Business & Finance** award. No UWS-hosted specification for the listed Global Business **Honours** qualification, its syllabus or delivery terms was found. No page or seed row is **approved for publication**. **Admin-only decision (later 2026-10-15):** the user authorised an incomplete, inactive draft named **BA Global Business (Level 9)**, without asserting an Honours award. See the [draft evidence and gaps](../bachelors-admin-draft-evidence-2026-10-15.md). This dossier's original publish-ready gate remains Incomplete.
 
 ## Official source register (uws.ac.uk; checked 2026-10-15)
 
@@ -35,4 +35,4 @@
 | 3 | GAP-BA-78-03 | **Applicant facts:** confirm award-specific entry/English conditions, applicable tuition, location/mode and any validated careers information directly with UWS. No partner, aggregator or reseller copy is admissible. |
 | 4 | GAP-BA-78-04 | **Level/Honours relationship:** obtain the formal mapping if a Level 9 BA is claimed to lead to an Honours award. Do not infer an Honours qualification or an additional year from level numbering alone. |
 
-**Editorial and seed decision:** Incomplete. No keyword-led front-matter or humanised programme copy can cure the wrong award label or missing syllabus; there is no approved page, UWS seed row or public activation. UWS has an existing partner in the project, but that relationship is not a licence to create an unverified award.
+**Publish-ready decision:** Incomplete. No keyword-led front-matter or humanised public copy can cure the wrong award label or missing syllabus. No approved page or public activation; the later **BA (Level 9) inactive admin draft** is not the listed Honours award. The existing-only seeder requires an actual UWS `university_partners` row in the target DB; the presence of UWS in a different partner table is not enough.

@@ -40,7 +40,7 @@ class CatalogSeedingSafetyTest extends TestCase
             'bsc-marketing-girne-american-university',
             'bsc-economics-girne-american-university',
             'bsc-management-information-systems-girne-american-university',
-        ], $slugs); // S.No 72, 74, 75 and 78 remain research-incomplete.
+        ], $slugs); // 72, 74 and 78 are separately seeded as incomplete drafts; 75 is withheld.
         foreach ($data['programs'] as $row) {
             $this->assertFalse($row['is_active']);
         }
@@ -70,29 +70,50 @@ class CatalogSeedingSafetyTest extends TestCase
         $this->assertDatabaseCount('university_partners', 0);
     }
 
-    public function test_all_existing_only_seeds_67_without_adding_categories_or_partners(): void
+    public function test_all_existing_only_seeds_67_pages_and_3_incomplete_drafts_without_new_references(): void
     {
-        $this->bachelorReferences();
-        foreach (['doctorate', 'diploma'] as $slug) {
-            ProgramCategory::query()->create(['name' => ucfirst($slug), 'slug' => $slug]);
-        }
-        foreach (['rushford-business-school', 'gatehouse-awards', 'qualifi'] as $slug) {
-            UniversityPartner::query()->create(['name' => $slug, 'slug' => $slug, 'country' => 'Example']);
-        }
+        $this->fullCatalogReferences();
 
         $this->seed(ExistingCatalogProgramsSeeder::class);
 
-        $this->assertDatabaseCount('programs', 67);
+        $this->assertDatabaseCount('programs', 70);
         $this->assertDatabaseCount('program_categories', 3);
-        $this->assertDatabaseCount('university_partners', 4);
-        $this->assertSame(67, Program::query()->where('is_active', false)->count());
+        $this->assertDatabaseCount('university_partners', 5);
+        $this->assertSame(70, Program::query()->where('is_active', false)->count());
+        $this->assertSame(70, \App\Filament\Resources\ProgramResource::getEloquentQuery()->count());
         $this->assertSame(13, Program::query()->whereHas('programCategory', fn ($q) => $q->where('slug', 'doctorate'))->count());
         $this->assertSame(49, Program::query()->whereHas('programCategory', fn ($q) => $q->where('slug', 'diploma'))->count());
+        $this->assertSame(8, Program::query()->whereHas('programCategory', fn ($q) => $q->where('slug', 'bachelors'))->count());
+        $this->assertSame(0, Program::query()->where('slug', 'bsc-accounting-girne-american-university')->count());
+
+        $drafts = require database_path('seeders/data/bachelors_admin_drafts.php');
+        $this->assertSame([72, 74, 78], array_column($drafts['programs'], 'tracker_sno'));
+        $this->assertSame([
+            'Accounting and Finance Management', 'Human Resources Management', 'BA Global Business (Level 9)',
+        ], array_column($drafts['programs'], 'title'));
+        foreach ($drafts['programs'] as $row) {
+            $this->assertTrue($row['admin_draft']);
+            $this->assertFalse($row['is_active']);
+            $this->assertSame('', $row['meta_title']);
+            $this->assertSame('', $row['meta_description']);
+            $this->assertSame([], $row['fees']);
+            $this->assertSame([], $row['learning']);
+            $this->assertSame([], $row['careers']);
+            $this->assertSame([], $row['faqs']);
+            $program = Program::query()->where('slug', $row['slug'])->firstOrFail();
+            $this->assertFalse($program->is_active);
+            $this->assertFalse($program->is_featured);
+            $this->assertSame($row['university_slug'], $program->universityPartner->slug);
+            $this->assertSame('', $program->seo()->firstOrFail()->meta_title);
+            $this->get(route('programs.show', ['slug' => $row['slug']]))->assertNotFound();
+        }
+        $this->assertSame('', Program::query()->where('slug', $drafts['programs'][2]['slug'])->firstOrFail()->duration);
+        $this->assertSame([], $drafts['programs'][2]['structure']); // No other UWS award's syllabus.
 
         $this->seed(ExistingCatalogProgramsSeeder::class);
-        $this->assertDatabaseCount('programs', 67);
+        $this->assertDatabaseCount('programs', 70);
         $this->assertDatabaseCount('program_categories', 3);
-        $this->assertDatabaseCount('university_partners', 4);
+        $this->assertDatabaseCount('university_partners', 5);
     }
 
     public function test_all_existing_only_stops_before_inserting_if_a_category_is_missing(): void
@@ -121,6 +142,116 @@ class CatalogSeedingSafetyTest extends TestCase
         $this->assertDatabaseCount('programs', 0);
         $this->assertDatabaseCount('program_categories', 3);
         $this->assertDatabaseCount('university_partners', 3);
+    }
+
+    public function test_existing_only_requires_the_actual_uws_university_partner_before_any_insert(): void
+    {
+        $this->fullCatalogReferences(includeUws: false);
+
+        $this->assertSeedFails(ExistingCatalogProgramsSeeder::class,
+            'Existing university partner required: university-of-the-west-of-scotland');
+
+        $this->assertDatabaseCount('programs', 0);
+        $this->assertDatabaseCount('program_categories', 3);
+        $this->assertDatabaseCount('university_partners', 4);
+    }
+
+    public function test_repeat_seed_preserves_every_client_filled_draft_field_and_activation(): void
+    {
+        $this->fullCatalogReferences();
+        $this->seed(ExistingCatalogProgramsSeeder::class);
+        $slug = 'ba-global-business-level-9-university-of-the-west-of-scotland';
+        $draft = Program::query()->where('slug', $slug)->firstOrFail();
+        $id = $draft->id;
+        $draft->update([
+            'duration' => 'Confirmed by client',
+            'short_description' => 'Client-reviewed summary',
+            'description' => '<p>Client-reviewed copy.</p>',
+            'highlights' => [['label' => 'Client', 'value' => 'Reviewed']],
+            'structure' => [['title' => 'Client stage', 'modules' => [['title' => 'Confirmed module']]]],
+            'fees' => [['title' => 'Client-confirmed fee']],
+            'is_active' => true,
+            'is_featured' => true,
+            'sort_order' => 987,
+        ]);
+        $draft->seo()->firstOrFail()->update([
+            'meta_title' => 'Client-approved SEO title',
+            'meta_description' => 'Client-approved SEO description',
+            'canonical_url' => 'https://example.test/client-reviewed',
+        ]);
+        $faq = $draft->faqs()->create([
+            'question' => 'Client question?', 'answer' => '<p>Client answer.</p>', 'sort_order' => 1,
+        ]);
+
+        $this->seed(ExistingCatalogProgramsSeeder::class);
+
+        $this->assertDatabaseCount('programs', 70);
+        $this->assertSame($id, $draft->refresh()->id);
+        $this->assertSame('Confirmed by client', $draft->duration);
+        $this->assertSame('Client-reviewed summary', $draft->short_description);
+        $this->assertSame('<p>Client-reviewed copy.</p>', $draft->description);
+        $this->assertSame([['label' => 'Client', 'value' => 'Reviewed']], $draft->highlights);
+        $this->assertSame([['title' => 'Client stage', 'modules' => [['title' => 'Confirmed module']]]], $draft->structure);
+        $this->assertSame([['title' => 'Client-confirmed fee']], $draft->fees);
+        $this->assertTrue($draft->is_active);
+        $this->assertTrue($draft->is_featured);
+        $this->assertSame(987, $draft->sort_order);
+        $this->assertSame('Client-approved SEO title', $draft->seo->meta_title);
+        $this->assertSame('Client-approved SEO description', $draft->seo->meta_description);
+        $this->assertSame('https://example.test/client-reviewed', $draft->seo->canonical_url);
+        $this->assertSame($faq->id, $draft->faqs()->firstOrFail()->id);
+    }
+
+    public function test_existing_accounting_award_under_another_slug_blocks_the_draft(): void
+    {
+        $this->fullCatalogReferences();
+        $gau = UniversityPartner::query()->where('slug', 'girne-american-university')->firstOrFail();
+        $category = ProgramCategory::query()->where('slug', 'bachelors')->firstOrFail();
+        Program::query()->create([
+            'title' => 'BSc Accounting',
+            'slug' => 'bsc-accounting-girne-american-university',
+            'program_category_id' => $category->id,
+            'university_partner_id' => $gau->id,
+        ]);
+
+        $this->assertSeedFails(ExistingCatalogProgramsSeeder::class,
+            'Possible existing Bachelor award conflicts with admin draft accounting-and-finance-management-girne-american-university: bsc-accounting-girne-american-university');
+        $this->assertDatabaseCount('programs', 1);
+    }
+
+    public function test_existing_global_business_award_under_another_slug_blocks_the_draft(): void
+    {
+        $this->fullCatalogReferences();
+        $uws = UniversityPartner::query()->where('slug', 'university-of-the-west-of-scotland')->firstOrFail();
+        $category = ProgramCategory::query()->where('slug', 'bachelors')->firstOrFail();
+        Program::query()->create([
+            'title' => 'BA (Hons) in Global Business',
+            'slug' => 'ba-hons-global-business-university-of-the-west-of-scotland',
+            'program_category_id' => $category->id,
+            'university_partner_id' => $uws->id,
+        ]);
+
+        $this->assertSeedFails(ExistingCatalogProgramsSeeder::class,
+            'Possible existing Bachelor award conflicts with admin draft ba-global-business-level-9-university-of-the-west-of-scotland: ba-hons-global-business-university-of-the-west-of-scotland');
+        $this->assertDatabaseCount('programs', 1);
+    }
+
+    public function test_existing_only_refuses_an_admin_draft_with_wrong_award_identity(): void
+    {
+        $this->fullCatalogReferences();
+        $category = ProgramCategory::query()->where('slug', 'bachelors')->firstOrFail();
+        $uws = UniversityPartner::query()->where('slug', 'university-of-the-west-of-scotland')->firstOrFail();
+        Program::query()->create([
+            'title' => 'BA (Hons) in Global Business',
+            'slug' => 'ba-global-business-level-9-university-of-the-west-of-scotland',
+            'level' => 'BA',
+            'program_category_id' => $category->id,
+            'university_partner_id' => $uws->id,
+        ]);
+
+        $this->assertSeedFails(ExistingCatalogProgramsSeeder::class,
+            'Refusing to change existing programme identity: ba-global-business-level-9-university-of-the-west-of-scotland');
+        $this->assertDatabaseCount('programs', 1);
     }
 
     public function test_late_slug_collision_rolls_back_earlier_rows_without_reassignment(): void
@@ -253,7 +384,7 @@ class CatalogSeedingSafetyTest extends TestCase
             'reviews' => [['title' => 'Retained review']],
         ]);
         $uca = UniversityPartner::query()->create(['name' => 'UCA', 'slug' => 'university-for-the-creative-arts', 'country' => 'UK']);
-        $uws = UniversityPartner::query()->create(['name' => 'UWS', 'slug' => 'university-of-the-west-of-scotland', 'country' => 'UK']);
+        $uws = UniversityPartner::query()->where('slug', 'university-of-the-west-of-scotland')->firstOrFail();
         foreach (['global-mba' => $uca, 'mba-in-international-business-university-of-the-west-of-scotland' => $uws] as $slug => $partner) {
             $exception = Program::query()->create([
                 'title' => 'Leave this programme alone',
@@ -295,7 +426,7 @@ class CatalogSeedingSafetyTest extends TestCase
             $this->assertSame('Leave SEO alone', $exception->seo()->firstOrFail()->meta_title);
             $this->assertSame('Leave this FAQ alone?', $exception->faqs()->firstOrFail()->question);
         }
-        $this->assertDatabaseCount('programs', 71); // 67 catalogue + 2 legacy updates + 2 untouched exceptions
+        $this->assertDatabaseCount('programs', 74); // 67 pages + 3 drafts + 2 legacy + 2 untouched exceptions
     }
 
     public function test_wrong_legacy_partner_rolls_back_the_catalogue_updates_too(): void
@@ -313,10 +444,10 @@ class CatalogSeedingSafetyTest extends TestCase
         $this->assertSeedFails(ExistingCatalogProgramsSeeder::class, 'Refusing to reassign existing legacy programme: mba-in-business-management-girne-american-university');
         $this->assertDatabaseCount('programs', 1);
         $this->assertDatabaseCount('program_categories', 4);
-        $this->assertDatabaseCount('university_partners', 4);
+        $this->assertDatabaseCount('university_partners', 5);
     }
 
-    private function fullCatalogReferences(): void
+    private function fullCatalogReferences(bool $includeUws = true): void
     {
         $this->bachelorReferences();
         foreach (['doctorate', 'diploma'] as $slug) {
@@ -324,6 +455,13 @@ class CatalogSeedingSafetyTest extends TestCase
         }
         foreach (['rushford-business-school', 'gatehouse-awards', 'qualifi'] as $slug) {
             UniversityPartner::query()->create(['name' => $slug, 'slug' => $slug, 'country' => 'Example']);
+        }
+        if ($includeUws) {
+            UniversityPartner::query()->create([
+                'name' => 'University of the West of Scotland',
+                'slug' => 'university-of-the-west-of-scotland',
+                'country' => 'United Kingdom',
+            ]);
         }
     }
 

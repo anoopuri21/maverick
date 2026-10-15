@@ -2,7 +2,7 @@
 
 **Research Analyst · official-source recheck 2026-10-15 · Tracker S.No 72**
 
-**Research Status: Incomplete.** GAU advertises an English-taught undergraduate Accounting and Finance Management intake and publishes an Accounting-department course grid beneath that heading. It does **not** state that the resulting award is a **BSc in Accounting and Finance Management**, or explain whether this is distinct from the faculty's **BSc Accounting** (S.No 75). No page or seed row is approved.
+**Research Status: Incomplete.** GAU advertises an English-taught undergraduate Accounting and Finance Management intake and publishes an Accounting-department course grid beneath that heading. It does **not** state that the resulting award is a **BSc in Accounting and Finance Management**, or explain whether this is distinct from the faculty's **BSc Accounting** (S.No 75). No page or seed row is **approved for publication**. **Admin-only decision (later 2026-10-15):** the user authorised an incomplete, inactive draft under the supported title **Accounting and Finance Management**, not a verified BSc and not a second Accounting award. See the [draft evidence and gaps](../bachelors-admin-draft-evidence-2026-10-15.md). This dossier's original publish-ready gate remains Incomplete.
 
 ## Source register (gau.edu.tr; checked 2026-10-15)
 
@@ -47,4 +47,4 @@ A4 supplies a live headline and course table; A5 supplies **a different BSc awar
 | 4 | GAP-BSC-72-04 | **Applicant details:** no subject-specific international entry route, delivery mode, current individual fee or professional exemptions; do not reuse YKS scores or another programme's claims. |
 | 5 | GAP-BSC-72-05 | **Dead/unavailable sources:** A6 is a missing page and A3 could not be retrieved; historical/indexed descriptions cannot repair the current award gap. |
 
-**Editorial and seed decision:** Research remains Incomplete; no front-matter, page, SEO copy, PHP generated row or public activation. Reassess only when the award and its relation to S.No 75 are evidenced on `gau.edu.tr` or in an attributable GAU-issued document. The existing one-command seeder must not silently insert this unresolved listing label.
+**Publish-ready decision:** Research remains Incomplete; no approved front-matter, page, SEO copy or public activation. The later decision permits **one separate corrected-title, inactive admin draft** with A4 facts and blanks for the client, not the unresolved BSc listing label or a second Accounting award. Reassess public promotion only when the award and its relation to S.No 75 are evidenced on `gau.edu.tr` or in an attributable GAU-issued document.

@@ -15,8 +15,8 @@ use Illuminate\Support\Facades\DB;
  *
  * Idempotent — identity is the programme `slug`. Existing rows are updated,
  * never duplicated. For staging without creating categories/partners, use
- * BachelorsProgramsSeeder (five new pages only) or
- * ExistingCatalogProgramsSeeder (all 67 catalogue pages) instead.
+ * BachelorsProgramsSeeder (five approved pages only) or
+ * ExistingCatalogProgramsSeeder (67 approved pages + three admin-only drafts) instead.
  *
  * This legacy seeder can still create Doctorate/Diploma categories or partners
  * when bootstrapping a new database. Bachelors always uses existing records.
@@ -48,6 +48,11 @@ class CatalogProgramsSeeder extends Seeder
     protected function expectedProgramCounts(): array
     {
         return [];
+    }
+
+    /** Subclasses can verify source-specific identities before any DB write. */
+    protected function validateCatalogSource(string $source, array $data): void
+    {
     }
 
     /** Optional existing-only copy refreshes run in the same transaction. */
@@ -86,7 +91,18 @@ class CatalogProgramsSeeder extends Seeder
                     $slug = is_array($row) ? ($row['slug'] ?? $source) : $source;
                     throw new \RuntimeException("Catalogue programme must default inactive: {$slug}");
                 }
+                $draftSource = $source === 'bachelors_admin_drafts.php';
+                if (($row['admin_draft'] ?? false) !== $draftSource
+                    || ($draftSource && (! $this->existingReferencesOnly()
+                        || ($row['category_slug'] ?? null) !== 'bachelors'
+                        || ($row['meta_title'] ?? null) !== ''
+                        || ($row['meta_description'] ?? null) !== ''
+                        || ($row['fees'] ?? null) !== []
+                        || ($row['faqs'] ?? null) !== []))) {
+                    throw new \RuntimeException('Unapproved Bachelor draft outside safe inactive source: '.($row['slug'] ?? $source));
+                }
             }
+            $this->validateCatalogSource($source, $data);
 
             $files[$source] = $data;
         }
@@ -99,7 +115,7 @@ class CatalogProgramsSeeder extends Seeder
                 // The legacy bootstrap may create Doctorate/Diploma references;
                 // the two safe commands never create any, and Bachelors never do.
                 $existingOnly = $this->existingReferencesOnly()
-                    || $source === 'bachelors_programs.php';
+                    || in_array($source, ['bachelors_programs.php', 'bachelors_admin_drafts.php'], true);
                 $references[$source] = [
                     $this->categories($data['categories'], $existingOnly),
                     $this->universities($data['universities'], $existingOnly),
@@ -198,6 +214,26 @@ class CatalogProgramsSeeder extends Seeder
 
         $program = Program::firstOrNew(['slug' => $row['slug']]);
         $creating = ! $program->exists;
+        if ($creating && ($row['admin_draft'] ?? false)) {
+            // A target DB may already have an earlier/original-title Bachelor
+            // under another slug. Fail rather than add a second, unverified
+            // Accounting, HR or Global Business award alongside that record.
+            $subject = match ($row['tracker_sno'] ?? null) {
+                72 => 'accounting',
+                74 => 'human resource',
+                78 => 'global business',
+                default => throw new \RuntimeException('Unrecognised Bachelor admin draft identity'),
+            };
+            $existingSubject = Program::query()
+                ->where('program_category_id', $category->id)
+                ->where('university_partner_id', $university->id)
+                ->where(fn ($query) => $query->where('title', 'like', '%'.$subject.'%')
+                    ->orWhere('slug', 'like', '%'.str_replace(' ', '-', $subject).'%'))
+                ->first();
+            if ($existingSubject) {
+                throw new \RuntimeException("Possible existing Bachelor award conflicts with admin draft {$row['slug']}: {$existingSubject->slug}");
+            }
+        }
         if (! $creating && ((int) $program->program_category_id !== (int) $category->id
             || (int) $program->university_partner_id !== (int) $university->id)) {
             throw new \RuntimeException("Refusing to reassign existing programme: {$row['slug']}");
@@ -205,6 +241,20 @@ class CatalogProgramsSeeder extends Seeder
         if (! $creating && $this->existingReferencesOnly()
             && ($program->title !== $row['title'] || $program->level !== $row['level'])) {
             throw new \RuntimeException("Refusing to change existing programme identity: {$row['slug']}");
+        }
+
+        // Incomplete admin drafts are insert-once. The client may add missing
+        // copy, fee/SEO details and FAQs in Filament; blank seed fields must
+        // NEVER wipe those edits on a repeat of the one-command rollout.
+        // Identity and partner/category guards above still apply. Preserve
+        // activation too: a previously reviewed row is not silently hidden.
+        if (! $creating && ($row['admin_draft'] ?? false)) {
+            if ($program->is_active) {
+                $this->command?->warn("  Active admin draft needs publication review: {$program->slug}");
+            }
+            $this->command?->info("  Preserved existing admin draft: {$program->title}");
+
+            return;
         }
 
         $fields = [

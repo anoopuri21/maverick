@@ -6,8 +6,9 @@ use App\Models\Program;
 use App\Support\PublicContentCache;
 
 /**
- * One existing-reference-only content refresh: 67 approved catalogue rows
- * plus the legacy Master/BBA rows that already exist in the database.
+ * One existing-reference-only refresh: 67 approved catalogue rows,
+ * three incomplete, inactive Bachelor admin drafts, and existing legacy
+ * Master/BBA rows. Drafts are insert-once; later admin edits are preserved.
  *
  * Never creates a category or partner. Missing legacy programmes are logged,
  * never inserted. UCA Global MBA and the extra UWS MBA are excluded pending
@@ -25,6 +26,20 @@ class ExistingCatalogProgramsSeeder extends CatalogProgramsSeeder
         'mba-in-international-business-university-of-the-west-of-scotland' => 'university-of-the-west-of-scotland',
     ];
 
+    // Independently fail closed if someone deploys draft PHP without running
+    // the offline tracker/source validator. The 4th incomplete Bachelor (75)
+    // is deliberately absent: GAU has not proved a distinct current award.
+    private const ADMIN_DRAFT_IDENTITIES = [
+        'accounting-and-finance-management-girne-american-university' => [72, 'Accounting and Finance Management', 'girne-american-university', 'Undergraduate', '4 years', 'gau.edu.tr'],
+        'human-resources-management-girne-american-university' => [74, 'Human Resources Management', 'girne-american-university', 'Undergraduate', '4 years', 'gau.edu.tr'],
+        'ba-global-business-level-9-university-of-the-west-of-scotland' => [78, 'BA Global Business (Level 9)', 'university-of-the-west-of-scotland', 'BA', '', 'uws.ac.uk'],
+    ];
+
+    protected function sources(): array
+    {
+        return [...parent::sources(), 'bachelors_admin_drafts.php'];
+    }
+
     protected function existingReferencesOnly(): bool
     {
         return true;
@@ -36,7 +51,55 @@ class ExistingCatalogProgramsSeeder extends CatalogProgramsSeeder
             'doctorate_programs.php' => 13,
             'diploma_programs.php' => 49,
             'bachelors_programs.php' => 5,
+            'bachelors_admin_drafts.php' => 3,
         ];
+    }
+
+    protected function validateCatalogSource(string $source, array $data): void
+    {
+        if ($source !== 'bachelors_admin_drafts.php') {
+            return;
+        }
+        $seen = [];
+        foreach ($data['programs'] as $row) {
+            $slug = $row['slug'] ?? null;
+            $identity = is_string($slug) ? (self::ADMIN_DRAFT_IDENTITIES[$slug] ?? null) : null;
+            if (! $identity || isset($seen[$slug])) {
+                throw new \RuntimeException('Unexpected or duplicate Bachelor admin draft: '.($slug ?? 'missing slug'));
+            }
+            [$number, $title, $partner, $level, $duration, $domain] = $identity;
+            if (($row['tracker_sno'] ?? null) !== $number
+                || ($row['sort_order'] ?? null) !== $number
+                || ($row['title'] ?? null) !== $title
+                || ($row['university_slug'] ?? null) !== $partner
+                || ($row['level'] ?? null) !== $level
+                || ($row['duration'] ?? null) !== $duration
+                || ($row['category_slug'] ?? null) !== 'bachelors') {
+                throw new \RuntimeException("Incorrect official Bachelor draft identity: {$slug}");
+            }
+            if (! is_array($row['source_urls'] ?? null) || $row['source_urls'] === []) {
+                throw new \RuntimeException("Bachelor admin draft lacks official URLs: {$slug}");
+            }
+            foreach ($row['source_urls'] as $url) {
+                $host = is_string($url) ? parse_url($url, PHP_URL_HOST) : null;
+                if (! is_string($url) || ! str_starts_with($url, 'https://')
+                    || ! is_string($host) || ! ($host === $domain || str_ends_with($host, '.'.$domain))) {
+                    throw new \RuntimeException("Non-university URL in Bachelor admin draft: {$slug}");
+                }
+            }
+            foreach (['benefits', 'learning', 'careers', 'support', 'gcc', 'fees', 'faqs'] as $field) {
+                if (($row[$field] ?? null) !== []) {
+                    throw new \RuntimeException("Unverified Bachelor admin draft field {$field}: {$slug}");
+                }
+            }
+            if (($row['gcc_heading'] ?? null) !== '') {
+                throw new \RuntimeException("Unverified Bachelor admin draft gcc_heading: {$slug}");
+            }
+            $seen[$slug] = true;
+        }
+        if (count($seen) !== count(self::ADMIN_DRAFT_IDENTITIES)) {
+            throw new \RuntimeException('Missing Bachelor admin draft identity; nothing seeded.');
+        }
     }
 
     public function run(): void

@@ -1,5 +1,7 @@
 # Staging handover — nine requested Bachelors listing rows
 
+> **Historical five-page handover, superseded for the current single-command rollout.** The official-titles-only decision later on 2026-10-15 adds **3 incomplete, inactive admin drafts**, not another BSc Accounting row. Current totals are **67 approved pages + 3 drafts = 70 catalogue rows** and **8 Bachelor catalogue rows**. Do not use the older counts, missing-partner list or commands below for the full rollout: follow the [current runbook](db-seeding-runbook.md) and [official evidence](bachelors-admin-draft-evidence-2026-10-15.md). The five-page-only alternative remains a valid different scope.
+
 **2026-10-14 · Branch `arena/a760cf28-maverick` · Historical initial BSc handover; NOT seeded or activated here.**
 
 **Update 2026-10-15:** For the requested one-command copy refresh, follow

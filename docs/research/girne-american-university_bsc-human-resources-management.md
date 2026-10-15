@@ -2,7 +2,7 @@
 
 **Research Analyst · official-source recheck 2026-10-15 · Tracker S.No 74**
 
-**Research Status: Incomplete.** The 2026–27 Turkish admissions table and GAU's Turkish programme panel now confirm an English-taught, **4-year undergraduate Human Resources Management route**. Neither panel names a **BSc** award or provides HR-degree modules, programme outcomes or careers. The English `-bsc` URL remains title-only. No page or seed row is approved.
+**Research Status: Incomplete.** The 2026–27 Turkish admissions table and GAU's Turkish programme panel now confirm an English-taught, **4-year undergraduate Human Resources Management route**. Neither panel names a **BSc** award or provides HR-degree modules, programme outcomes or careers. The English `-bsc` URL remains title-only. No page or seed row is **approved for publication**. **Admin-only decision (later 2026-10-15):** the user authorised a separate incomplete, inactive draft named **Human Resources Management**, without asserting a BSc or supplying the absent syllabus. See the [draft evidence and gaps](../bachelors-admin-draft-evidence-2026-10-15.md). This dossier's original publish-ready gate remains Incomplete.
 
 ## Source register (gau.edu.tr; checked 2026-10-15)
 
@@ -46,4 +46,4 @@
 | 4 | GAP-BSC-74-04 | **Professional claims:** no CIPD or other individual professional exemption/recognition evidenced. Require programme-specific confirmation before making any such claim. |
 | 5 | GAP-BSC-74-05 | **Navigation mismatch:** H9 names an HR department head, while H4 does not link a department specification. Neither resolves the missing BSc certificate or HR-specific course table. |
 
-**Editorial and seed decision:** Incomplete despite current intake and 4-year detail. The required structure, learning, careers and SEO copy cannot be sourced honestly for this BSc. No output page, generated row or activation; obtain a GAU-hosted HR BSc specification before promotion.
+**Publish-ready decision:** Incomplete despite current intake and 4-year detail. Structure, learning, careers and SEO copy cannot be sourced honestly for this BSc. No approved page or activation; the later corrected-title **inactive admin draft** contains only verifiable facts. Obtain a GAU-hosted HR BSc specification before promoting the original listing title.
