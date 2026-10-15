@@ -1,6 +1,6 @@
 # Approved Programme Content — Index
 
-_Last updated: 2026-10-14_
+_Last updated: 2026-10-15_
 
 Generated from `docs/program-tracker.csv` by `tools/build_index.py`. `output/` is the
 single source of truth for page content; the PHP files under

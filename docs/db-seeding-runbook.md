@@ -11,6 +11,11 @@ folder or staging DB is available here; the operator runs the seed on staging.
 rows **and the 55 in-scope Master/BBA legacy rows if already present**. The
 extra UWS MBA and UCA Global MBA are excluded entirely; the two older GAU BScs
 are also outside this refresh. Do not use the full bootstrap to update copy.
+**2026-10-15 Bachelor source recheck:** [S.No 72, 74, 75 and 78](bachelors-source-gate-2026-10-15.md)
+still have unresolved award/syllabus evidence and are **not in the generated
+Bachelor data**. A single command cannot honestly insert all 9 listed GAU/UWS
+Bachelor subjects yet. The agreed target is **DB/admin only** for supported new
+rows; **public activation is not part of this rollout**.
 
 ---
 
@@ -201,9 +206,11 @@ and up to 55 present in-scope legacy Master/BBA rows, but **not** the two older
 GAU BScs or the excluded UWS/UCA MBAs. Neither class changes existing
 `is_active`, `is_featured`, `sort_order`, `testimonials` or `reviews` values.
 
-**Do not activate a whole category or level**: they include other programmes
-that may not have received staging sign-off. Only after individual BSc visual
-review, activate the five generated Bachelors by their unique slugs:
+**This batch stops at inactive admin rows. Do not run the following activation
+example as part of the one-command seed.** In a later, separately authorised
+public launch, do not activate a whole category or level: they include other
+programmes that may not have received staging sign-off. Only after individual
+BSc visual review, activate approved Bachelors by their unique slugs:
 
 ```php
 // php artisan tinker — inspect the five slugs and their university first
