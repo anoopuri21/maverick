@@ -44,6 +44,17 @@ class CatalogProgramsSeeder extends Seeder
         return false;
     }
 
+    /** @return array<string, int> Expected programme count by source file. */
+    protected function expectedProgramCounts(): array
+    {
+        return [];
+    }
+
+    /** Optional existing-only copy refreshes run in the same transaction. */
+    protected function afterCatalogProgramsSeeded(array $files): void
+    {
+    }
+
     public function run(): void
     {
         // Read every required file before touching the database. A missing or
@@ -60,6 +71,11 @@ class CatalogProgramsSeeder extends Seeder
                 || ! is_array($data['universities'] ?? null)
                 || ! is_array($data['programs'] ?? null) || $data['programs'] === []) {
                 throw new \RuntimeException("Invalid or empty catalogue data file: {$path}");
+            }
+
+            $expected = $this->expectedProgramCounts()[$source] ?? null;
+            if ($expected !== null && count($data['programs']) !== $expected) {
+                throw new \RuntimeException("Expected {$expected} programmes in {$source}; found ".count($data['programs']));
             }
 
             $files[$source] = $data;
@@ -87,6 +103,8 @@ class CatalogProgramsSeeder extends Seeder
                     $this->program($row, $categories, $universities);
                 }
             }
+
+            $this->afterCatalogProgramsSeeded($files);
         });
     }
 
@@ -174,8 +192,12 @@ class CatalogProgramsSeeder extends Seeder
             || (int) $program->university_partner_id !== (int) $university->id)) {
             throw new \RuntimeException("Refusing to reassign existing programme: {$row['slug']}");
         }
+        if (! $creating && $this->existingReferencesOnly()
+            && ($program->title !== $row['title'] || $program->level !== $row['level'])) {
+            throw new \RuntimeException("Refusing to change existing programme identity: {$row['slug']}");
+        }
 
-        $program->fill([
+        $fields = [
             'program_category_id' => $category->id,
             'university_partner_id' => $university->id,
             'title' => $row['title'],
@@ -183,7 +205,6 @@ class CatalogProgramsSeeder extends Seeder
             'level' => $row['level'],
             'short_description' => $row['hero'],
             'description' => $this->paragraphs($row['overview']),
-            'sort_order' => $row['sort_order'],
             'highlights' => $this->pairs($row['highlights'], 'label', 'value'),
             'snapshot' => $this->pairs($row['snapshot'], 'label', 'value'),
             'benefits' => array_map(fn (array $benefit) => [
@@ -205,7 +226,16 @@ class CatalogProgramsSeeder extends Seeder
             'gcc_heading' => $row['gcc_heading'] ?? 'Why GCC Students Choose This Programme',
             'gcc_reasons' => $row['gcc'] ?? [],
             'fees' => array_map(fn (string $title) => ['title' => $title], $row['fees']),
-        ]);
+        ];
+
+        // The safe existing-reference commands must not change a programme's
+        // identity or admin ordering. These fields are preflight-checked above.
+        if (! $creating && $this->existingReferencesOnly()) {
+            unset($fields['program_category_id'], $fields['university_partner_id'], $fields['title'], $fields['level']);
+        } else {
+            $fields['sort_order'] = $row['sort_order'];
+        }
+        $program->fill($fields);
 
         // Only set on create, so editorial toggles made in the admin panel
         // survive a re-seed.
@@ -218,21 +248,51 @@ class CatalogProgramsSeeder extends Seeder
 
         $program->save();
 
-        $program->seo()->updateOrCreate([], [
+        // Update the authored SEO copy without erasing a canonical URL or
+        // other SEO fields set in the admin panel.
+        $seo = $program->seo()->firstOrNew([]);
+        $seo->fill([
             'meta_title' => $row['meta_title'],
             'meta_description' => $row['meta_description'],
-            'canonical_url' => null,
         ]);
+        $seo->save();
 
         foreach ($row['faqs'] ?? [] as [$question, $answer, $sort]) {
-            $program->faqs()->updateOrCreate(
-                ['question' => $question],
-                ['answer' => $answer, 'sort_order' => $sort, 'is_active' => true]
-            );
+            $this->syncFaq($program, $question, $answer, $sort);
         }
 
         $verb = $creating ? 'Created' : 'Updated';
         $this->command?->info("  {$verb}: {$program->title}");
+    }
+
+    /**
+     * Reconcile a changed question by its original numbered slot instead of
+     * inserting a duplicate FAQ. Ambiguous/admin-duplicated slots abort the
+     * transaction rather than overwriting an arbitrary record.
+     */
+    private function syncFaq(Program $program, string $question, string $answer, int $sort): void
+    {
+        $atSort = $program->faqs()->where('sort_order', $sort)->get();
+        if ($atSort->count() > 1) {
+            throw new \RuntimeException("Ambiguous FAQ slot {$sort} for programme: {$program->slug}");
+        }
+
+        $byQuestion = $program->faqs()->where('question', $question)->first();
+        if ($byQuestion && $atSort->isNotEmpty() && $byQuestion->id !== $atSort->first()->id) {
+            throw new \RuntimeException("Conflicting FAQ question and slot {$sort} for programme: {$program->slug}");
+        }
+
+        $faq = $byQuestion ?? $atSort->first() ?? $program->faqs()->make();
+        $faq->question = $question;
+        $faq->answer = $answer;
+        // Keep admin ordering if a matching FAQ was deliberately moved.
+        if (! $faq->exists || $atSort->isNotEmpty()) {
+            $faq->sort_order = $sort;
+        }
+        if (! $faq->exists) {
+            $faq->is_active = true;
+        }
+        $faq->save();
     }
 
     /**

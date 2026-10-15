@@ -1,5 +1,9 @@
 # Plan — Doctorate & Diploma programmes ko DB + Admin Panel me insert karna
 
+> Historical 2026-10-05 plan: the bootstrap commands below may create records
+> and are **not safe for the present copy refresh**. Use the existing-only
+> command and preflight in [`db-seeding-runbook.md`](db-seeding-runbook.md).
+
 **Date:** 2026-10-05 · **Scope:** 69 programmes (20 Doctorate + 49 Diploma)
 **Approach:** data-file–driven idempotent seeder, exactly like the existing `MasterProgramsSeeder`
 

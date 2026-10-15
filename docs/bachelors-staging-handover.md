@@ -1,6 +1,13 @@
 # Staging handover — nine requested Bachelors listing rows
 
-**2026-10-14 · Branch `arena/a760cf28-maverick` · Code/content ready, NOT seeded or activated.**
+**2026-10-14 · Branch `arena/a760cf28-maverick` · Historical initial BSc handover; NOT seeded or activated here.**
+
+**Update 2026-10-15:** For the requested one-command copy refresh, follow
+[`db-seeding-runbook.md`](db-seeding-runbook.md). `ExistingCatalogProgramsSeeder`
+now also refreshes up to 55 *present* Master/BBA rows; it excludes the extra UWS
+MBA and UCA Global MBA entirely. The Bachelors-only command below remains
+limited to five GAU rows. Do not assume the older all-67 instructions below
+leave legacy copy untouched.
 
 ## What can go to staging
 
@@ -11,7 +18,7 @@ Five new GAU BSc pages are approved in the existing five-tab format. They are so
 | 70 | [BSc Tourism and Hospitality Management](../output/programs/bachelors/girne-american-university/bsc-tourism-and-hospitality-management-girne-american-university.md) | Le Chateau Lambousa training is an opportunity; career tab is empty, so no career chips were invented. |
 | 71 | [BSc International Business Management](../output/programs/bachelors/girne-american-university/bsc-international-business-management-girne-american-university.md) | Two GAU pages disagree on **132 vs 120 local credits**; faculty separately says 240 ECTS. Attendance required, not advertised online. |
 | 73 | [BSc Marketing](../output/programs/bachelors/girne-american-university/bsc-marketing-girne-american-university.md) | Internship course is not an employer guarantee; senior career titles are only GAU's examples. |
-| 76 | [BSc Economics](../output/programs/bachelors/girne-american-university/bsc-economics-girne-american-university.md) | Four-year award, but published course grid stops at **Year 3**. The missing Year 4 is disclosed in visible copy. No invented career titles. |
+| 76 | [BSc Economics](../output/programs/bachelors/girne-american-university/bsc-economics-girne-american-university.md) | 4-year award, but published course grid stops at **Year 3**. The missing Year 4 is disclosed in visible copy. No invented career titles. |
 | 77 | [BSc Management Information Systems](../output/programs/bachelors/girne-american-university/bsc-management-information-systems-girne-american-university.md) | Internship/Graduation Project are named modules; GAU's nine role examples are not placements. |
 
 **Blocked, not silently skipped:** S.No **72** BSc Accounting and Finance Management (exact BSc award/relationship to Accounting unverified), **74** BSc Human Resources Management (current intake but title-only BSc page), **75** BSc Accounting (faculty BSc award but prospective page missing and separate active course unverified), **78** UWS BA (Hons) in Global Business (UWS publishes BA Global Business Level 9, not an honours specification). Their dossiers and tracker entries remain **Incomplete**, with no pages/seed data. **Seven earlier Doctorate listing rows are also Incomplete**; therefore the claim that all programmes except these four are ready is false. Across the 136-row listing, 11 remain unseeded. Details and official URLs: [`catalogue-reconciliation.md`](catalogue-reconciliation.md).
@@ -32,10 +39,10 @@ Five new GAU BSc pages are approved in the existing five-tab format. They are so
 
 - [ ] Back up staging and check `program_categories.slug = 'bachelors'` and `university_partners.slug = 'girne-american-university'` already exist; stop if either is missing. Lint the PHP and run `php artisan test --filter=CatalogSeedingSafetyTest` in a safe test environment.
 - [ ] For **only five new GAU BScs**, run `php artisan db:seed --class=BachelorsProgramsSeeder` on staging. It cannot create a category or partner and does not touch the older 62 catalogue rows or 59 legacy programme rows. Repeat it to prove idempotency. If the prior **121** rows were present, total should become **126**; `bachelors` rises from **9** to **14**.
-- [ ] If the older 62 catalogue rows are also missing, and all three categories plus GAU, Rushford, Gatehouse Awards and Qualifi partner records are already in the DB, use `php artisan db:seed --class=ExistingCatalogProgramsSeeder` instead (all 67). It fails without inserting anything if a prerequisite is missing. **Do not** run the legacy `CatalogProgramsSeeder` or full `DatabaseSeeder` for this existing-only rollout; those may create references.
-- [ ] Confirm all five GAU records are inactive, non-featured and linked to the existing GAU partner. Compare legacy GAU BSc Business Management/Psychology, Rushford BBAs and all 50 master rows for unexpected changes. Only with the all-67 command, also check the previous 62 Doctorate/Diploma rows' content and activation.
+- [ ] For the broader copy refresh, verify all three catalogue categories plus GAU, Rushford, Gatehouse Awards and Qualifi partner records already exist, then follow the current [`db-seeding-runbook.md`](db-seeding-runbook.md) for `ExistingCatalogProgramsSeeder` (67 catalogue rows + up to 55 present legacy rows). **Do not** run the bootstrap `CatalogProgramsSeeder` or full `DatabaseSeeder`; those may create references.
+- [ ] If using the Bachelors-only command, check the five new GAU rows while the older programmes remain untouched. If using the broader command, compare the 62 older catalogue rows and present Rushford BBAs/Masters for intended copy changes; the older GAU BScs and excluded UWS/UCA MBA rows must remain untouched. Existing activation settings must be preserved.
 - [ ] Inspect each new page's hero, snapshot, learning, accordion, fee labels, FAQs and SEO on mobile and desktop. Check especially the Economics Year 4 gap, three intentionally absent career tag sections, conditional hotel/internship text, elective/core split, and IBM credit discrepancy. Request updated GAU fee and entry decisions; do not infer online study or placement promises.
 - [ ] **Only after individual approval**, activate the five generated slugs (not all BSc/category rows) and clear `programs.listing.v2`. Verify each public URL `/programs/{slug}` and repeat the count check.
 - [ ] If needed, use the **Bachelors-only** rollback in [`db-seeding-runbook.md`](db-seeding-runbook.md), not the old Doctorate/Diploma rollback. Production seeding waits for staging and editorial sign-off.
 
-Exact commands, targeted activation and rollback are in [`docs/db-seeding-runbook.md`](db-seeding-runbook.md). No decision was made about the pre-existing **extra UWS MBA** or the UCA **“Global MBA + Rushford”** title difference; both are outside the requested nine and require the user's permission before any edit.
+Exact current commands, targeted activation and rollback are in [`db-seeding-runbook.md`](db-seeding-runbook.md). The pre-existing **extra UWS MBA** and UCA **Global MBA** are excluded entirely from this refresh; editing either needs separate approval.

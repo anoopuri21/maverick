@@ -20,4 +20,9 @@ class BachelorsProgramsSeeder extends CatalogProgramsSeeder
     {
         return true;
     }
+
+    protected function expectedProgramCounts(): array
+    {
+        return ['bachelors_programs.php' => 5];
+    }
 }

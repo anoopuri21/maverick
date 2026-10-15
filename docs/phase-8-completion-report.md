@@ -1,5 +1,10 @@
 # Phase 8 — Completion & Handover Report
 
+> Historical 2026-10-09 snapshot: its bootstrap seeding examples may create
+> categories/partners and must **not** be used for the current copy refresh.
+> Follow [`db-seeding-runbook.md`](db-seeding-runbook.md) instead; the existing-only
+> class excludes the UWS extra MBA and UCA Global MBA entirely.
+
 **Date:** 2026-10-09 · **Branch:** `arena/01a10b8e-maverick`
 **Status:** **Content complete.** 62 of 69 tracker rows are written, QA-passed and
 generated into the seeder data files. The remaining 7 are blocked at source and are
