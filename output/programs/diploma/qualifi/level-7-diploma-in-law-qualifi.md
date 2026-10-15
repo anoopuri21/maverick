@@ -39,9 +39,9 @@ status: approved
 ## 2.1 `short_description`
 
 ```
-Built for graduates whose degree was in something else entirely. Eight classic foundation subjects — contract, tort, criminal, land, equity and trusts among them — studied at master's level without pretending to be a route to practice.
+Built for graduates whose degree was in something else entirely. 8 classic foundation subjects — contract, tort, criminal, land, equity and trusts among them — studied at master's level without pretending to be a route to practice.
 ```
-*37 words / 234 chars ✅*
+*37 words / 231 chars ✅*
 
 ## 2.2 `description`
 
@@ -50,7 +50,7 @@ Built for graduates whose degree was in something else entirely. Eight classic f
 <p>What you study is solid and familiar: Legal Foundations, Company Law and Practice, Contract Law and Disputes, Public Law and Law of the European Union, Torts, Land Law and Property, Criminal Law and Practice, and Equity and Trusts. Anyone who has looked at a law degree syllabus will recognise most of that list.</p>
 <p>Size on the register: 120 credits, Level 7, number 610/2558/6. Study hours are not published.</p>
 ```
-*3 paragraphs / 155 words ✅*
+*3 paragraphs / 146 words ✅*
 
 ---
 
@@ -71,8 +71,8 @@ Built for graduates whose degree was in something else entirely. Eight classic f
 | Qualification number | 610/2558/6 on the Regulated Qualifications Framework |
 | Size and type | 120 credits at Level 7, a Vocational Related Qualification (Higher Education), accreditation status Accredited. Study hours are not published |
 | Stated audience | Non-law graduates seeking a grounding in foundation law subjects |
-| What Qualifi says about the SQE | Two statements, and both belong together: the award is "not a preparatory programme for the Solicitors Qualifying Examination (SQE) examinations", and it "is aligned with aspects of the SQE" in its Functioning Legal Knowledge and Practical Legal Skills and Knowledge domains |
-| Shape | Eight subjects, all required, with no optional group and no per-subject credit values published |
+| What Qualifi says about the SQE | 2 statements, and both belong together: the award is "not a preparatory programme for the Solicitors Qualifying Examination (SQE) examinations", and it "is aligned with aspects of the SQE" in its Functioning Legal Knowledge and Practical Legal Skills and Knowledge domains |
+| Shape | 8 subjects, all required, with no optional group and no per-subject credit values published |
 | Published entry | Qualifications at Level 6; and/or work experience in the legal sector; and/or a Level 6 qualification in another discipline. The connector throughout is "and/or", so whether experience alone is enough is a question for the centre |
 | Not a route to practice | No SRA, Bar Standards Board or CILEX recognition or exemption is published. This is not a qualifying law degree |
 | Progression published by Qualifi | A Qualifi Level 8 Diploma; university study towards a master's degree; or employment in an associated profession |
@@ -90,7 +90,7 @@ Built for graduates whose degree was in something else entirely. Eight classic f
 
 ## 3.4 `learning`
 
-Some honesty about the source first. Seven outcomes are published, but two of them say the same thing — independence of thought, then significant evidenced independence of thought — and two more both describe communicating your work. Strip the repetition and roughly four distinct outcomes remain. None of the seven names a single area of law; all of them describe skills. We have kept the distinct published outcomes and added subject coverage drawn from the eight published subjects and Qualifi's own stated aims. That makes the list below derived coverage from the awarding body's material, not a straight copy.
+Some honesty about the source first. 7 outcomes are published, but 2 of them say the same thing — independence of thought, then significant evidenced independence of thought — and 2 more both describe communicating your work. Strip the repetition and roughly 4 distinct outcomes remain. None of the 7 names any area of law; all of them describe skills. We have kept the distinct published outcomes and added subject coverage drawn from the 8 published subjects and Qualifi's own stated aims. That makes the list below derived coverage from the awarding body's material, not a straight copy.
 
 1. Express an understanding of law confidently and professionally
 2. Show independence of thought when working through a legal question
@@ -103,7 +103,7 @@ Some honesty about the source first. Seven outcomes are published, but two of th
 
 ## 3.6 `structure`
 
-**Part 1 — Where law starts** · *The groundwork and the two pillars of civil liability.*
+**Part 1 — Where law starts** · *The groundwork and the 2 pillars of civil liability.*
 Legal Foundations · Contract Law and Disputes · Torts
 
 **Part 2 — The state, the citizen and the company** · *Public power, criminal responsibility and corporate form.*
@@ -114,9 +114,9 @@ Land Law and Property · Equity and Trusts · 120 credits at Level 7 · Qualific
 
 ## 3.5 `careers`
 
-Read this section before any other. The qualification is not a qualifying law degree and is not an LLB. It is not the Solicitors Qualifying Examination, and Qualifi itself publishes that it is not an SQE preparation course; it is also not an SRA-recognised route to admission as a solicitor. It is not a Bar course and gives no right to practise as a barrister. Holding it confers no entitlement to carry out reserved legal activities, and no entitlement to describe yourself as a lawyer, solicitor or barrister in the United Kingdom or anywhere else. No exemption from any SRA, Bar Standards Board or CILEX requirement is published. Those three regulators publish the current routes into practice, and they are the only reliable place to check them.
+Read this section before any other. The qualification is not a qualifying law degree and is not an LLB. It is not the Solicitors Qualifying Examination, and Qualifi itself publishes that it is not an SQE preparation course; it is also not an SRA-recognised route to admission as a solicitor. It is not a Bar course and gives no right to practise as a barrister. Holding it confers no entitlement to carry out reserved legal activities, and no entitlement to describe yourself as a lawyer, solicitor or barrister in the United Kingdom or anywhere else. No exemption from any SRA, Bar Standards Board or CILEX requirement is published. Those 3 regulators publish the current routes into practice, and they are the only reliable place to check them.
 
-Within those limits, Qualifi lists three onward options as follows.
+Within those limits, Qualifi lists 3 onward options as follows.
 
 1. A Qualifi Level 8 Diploma
 2. University study towards a master's degree
@@ -125,7 +125,7 @@ Within those limits, Qualifi lists three onward options as follows.
 The master's route names no institution and sets out no credit arrangement, so treat it as an intention rather than an agreement; the admitting university decides what your diploma is worth to it. On jobs, Qualifi publishes no destinations, no salary figures and no employment rates, so none appear here.
 
 ## 3.8 `support`
-Level 6 or legal experience route in · Teaching from an approved centre · Eight required subjects · Skills-based published outcomes · Qualifi certification · Offered in the UK and overseas
+Level 6 or legal experience route in · Teaching from an approved centre · 8 required subjects · Skills-based published outcomes · Qualifi certification · Offered in the UK and overseas
 
 ## 3.9 `gcc_heading` + `gcc_reasons` *(6)*
 **Heading:** `Why Gulf-Based Professionals Study English Law Subjects`
@@ -147,7 +147,7 @@ No price published by Qualifi · Fixed by the approved centre · Varies by count
 ## 4. `faqs` *(6)*
 
 **Does holding it put me on the path to admission as a solicitor?**
-<p>By itself, no, and it should not be bought as a shortcut. Admission as a solicitor in England and Wales runs through the Solicitors Regulation Authority, which sets the SQE assessments and the qualifying work experience requirement. Qualifi states plainly that this award is not an SQE preparation course, and no SRA recognition or exemption is published for it. What the page does say is that the content is aligned with aspects of the SQE domains, meaning subject overlap, not assessment preparation. If admission is your aim, read the SRA's published route first and decide where, if anywhere, this fits.</p>
+<p>By itself, no, and it should not be bought as a shortcut. Admission as a solicitor in England and Wales runs through the Solicitors Regulation Authority, which sets the SQE assessments and the qualifying work experience requirement. Qualifi states plainly that this award is not an SQE preparation course, and no SRA recognition or exemption is published for it. What the page does say is that the content is aligned with aspects of the SQE domains, meaning subject overlap, not assessment preparation. If admission is your aim, read the SRA's published route 1st and decide where, if anywhere, this fits.</p>
 
 **Both SQE statements appear on the page — which one is true?**
 <p>Both, and that is why we print them together. The subject matter overlaps the Functioning Legal Knowledge and Practical Legal Skills and Knowledge domains that the SQE tests, which is what "aligned with aspects of the SQE" refers to. Preparing someone to sit and pass those assessments is a different exercise, with different practice material and different coaching, and Qualifi says this award does not do it. Reported separately, either sentence misleads. Reported together, the position is clear enough to act on.</p>
@@ -156,13 +156,13 @@ No price published by Qualifi · Fixed by the approved centre · Varies by count
 <p>Qualifi publishes the subject title, Public Law and Law of the European Union, and says nothing about how it treats the United Kingdom's departure from the European Union. We are not going to invent a scope for it. Retained EU law still shapes large parts of UK statute, and EU law remains directly relevant to anyone dealing with trade into the single market, so the subject is far from redundant. For the actual treatment, the centre specification dated April 2023 is the document to ask for.</p>
 
 **What does it cost, and who says so?**
-<p>The approved centre says so, because Qualifi does not. The awarding body writes the qualification, regulates it and issues the certificate; delivery, scheduling and pricing belong to the centre you enrol with. No study-hours figure is published for this award, so you have nothing official to measure a proposed timetable against. Ask for the start date, the expected finish date, and the full charge including registration and certification, then compare two centres on identical terms.</p>
+<p>The approved centre says so, because Qualifi does not. The awarding body writes the qualification, regulates it and issues the certificate; delivery, scheduling and pricing belong to the centre you enrol with. No study-hours figure is published for this award, so you have nothing official to measure a proposed timetable against. Ask for the start date, the expected finish date, and the full charge including registration and certification, then compare 2 centres on identical terms.</p>
 
 **Is there a dissertation?**
-<p>Unclear, and worth settling before you pay. Qualifi's published aims mention the opportunity for research and in-depth study of a particular area of law through a research project or dissertation. No such subject appears in the published list of eight, all of which are taught law subjects. Either the research element sits inside one of them, or it appears in the specification and not on the web page. The centre can tell you which, and the answer changes how much independent work you are taking on.</p>
+<p>Unclear, and worth settling before you pay. Qualifi's published aims mention the opportunity for research and in-depth study of a particular area of law through a research project or dissertation. No such subject appears in the published list of 8, all of which are taught law subjects. Either the research element sits inside one of them, or it appears in the specification and not on the web page. The centre can tell you which, and the answer changes how much independent work you are taking on.</p>
 
 **How does this differ from the international business law diploma?**
-<p>Different legal worlds. This one covers the domestic foundations — contract, tort, criminal, land, public law, equity and trusts — the subjects that underpin legal education generally, and it is aimed at non-law graduates building a base. The international business law award skips all of that and goes straight to cross-border commerce: trade law, financial crime, intellectual property, arbitration. One gives you the grammar of law; the other assumes you want to work on commercial transactions that cross borders.</p>
+<p>Different legal worlds. This one covers the domestic foundations — contract, tort, criminal, land, public law, equity and trusts — the subjects that underpin legal education generally, and it is aimed at non-law graduates building a base. The international business law award skips all of that and goes straight to cross-border commerce: trade law, financial crime, intellectual property, arbitration. The domestic award gives you the grammar of law; the international award assumes you want to work on commercial transactions that cross borders.</p>
 
 ---
 
@@ -170,4 +170,4 @@ No price published by Qualifi · Fixed by the approved centre · Varies by count
 | Field | Value | Count |
 |---|---|---|
 | `meta_title` | Qualifi Level 7 Diploma in Law for Non-Law Graduates | 52 ✅ |
-| `meta_description` | Qualifi Level 7 Diploma in Law. 120 credits, eight foundation subjects including contract, tort, land, criminal law, equity and trusts. | 134 ✅ |
+| `meta_description` | Qualifi Level 7 Diploma in Law. 120 credits, 8 foundation subjects including contract, tort, land, criminal law, equity and trusts. | 131 ✅ |

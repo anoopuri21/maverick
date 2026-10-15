@@ -40,18 +40,18 @@ status: approved
 ## 2.1 `short_description`
 
 ```
-Twelve subjects spanning memory, perception, attachment, biopsychology, addiction and criminology. Uniquely among Qualifi awards, it publishes a safety net: reach 120 credits at Level 4 and a Level 4 diploma is awarded even if you stop there.
+12 subjects spanning memory, perception, attachment, biopsychology, addiction and criminology. Uniquely among Qualifi awards, it publishes a safety net: reach 120 credits at Level 4 and a Level 4 diploma is awarded even if you stop there.
 ```
-*38 words / 246 chars ✅*
+*37 words / 238 chars ✅*
 
 ## 2.2 `description`
 
 ```html
 <p>Psychology attracts people long before it offers them a way in. Degrees want particular school subjects, courses want a full-time commitment, and anyone who finished school years ago often finds the door shut. This award leaves it open: no prior qualification is listed, and applicants with substantial experience but no certificates may be considered after interview.</p>
 <p>What gets studied is proper academic psychology. The scope of the discipline, social and developmental psychology, biopsychology and the nervous system, how attachments form, how memory works, visual perception, pro-social and anti-social behaviour, approaches to depression and schizophrenia, the diversity of addiction, individual differences across intelligence, personality and criminology, research methods, and contemporary debates in the field.</p>
-<p>Two published facts stand out. Qualifi describes the completed 240 credits as equivalent to a foundation degree and says it allows access to the final year at one of its university partners. And a learner who achieves at least 120 credits at Level 4 without finishing is awarded the Qualifi Level 4 Diploma in Psychology, number 610/2149/0.</p>
+<p>2 published facts stand out. Qualifi describes the completed 240 credits as equivalent to a foundation degree and says it allows access to the final year at one of its university partners. And a learner who achieves at least 120 credits at Level 4 without finishing is awarded the Qualifi Level 4 Diploma in Psychology, number 610/2149/0.</p>
 ```
-*3 paragraphs / 177 words ✅*
+*3 paragraphs / 170 words ✅*
 
 ---
 
@@ -72,7 +72,7 @@ Twelve subjects spanning memory, perception, attachment, biopsychology, addictio
 | Qualification number | 610/3465/4 on the Regulated Qualifications Framework |
 | Size | 240 credits at Level 5. Qualifi describes the extended award as the Level 4 and Level 5 diplomas combined |
 | Subjects | The Scope of Psychology · Social and Developmental Psychology · Biopsychology · The Development of Psychological Attachments · Processes of Human Memory · Research Methods and Investigating Psychology · Psychological Approaches to Depression and Schizophrenia · Visual Perception in a Psychological Context · Social Psychology: Pro and Anti-Social Behaviour · The Diversity of Addiction · Individual Differences: Intelligence, Personality and Criminology · Contemporary Issues and Debates in Psychology |
-| Entry | 18 or over. No prior qualification is listed. IELTS 6 or equivalent where English is not your first language, and normally two references with one preferably academic. Qualifi adds that applicants with considerable experience but no formal qualifications may be considered, subject to interview |
+| Entry | 18 or over. No prior qualification is listed. IELTS 6 or equivalent where English is not your first language, and normally 2 references with 1 preferably academic. Qualifi adds that applicants with considerable experience but no formal qualifications may be considered, subject to interview |
 | If you do not finish | Achieve at least 120 credits at Level 4 and Qualifi awards the Level 4 Diploma in Psychology, number 610/2149/0. Very few qualifications publish a fallback of this kind |
 | What it is not | **Not a route to becoming a psychologist.** Qualifi publishes nothing about professional registration, and this award gives no eligibility to register with any psychology body or to practise, counsel or diagnose |
 | On the university route | Qualifi calls 240 credits equivalent to a foundation degree and refers to access to the final year at one of its university partners. It names no partner institution anywhere, and any university decides its own admissions |
@@ -110,7 +110,7 @@ Psychological Approaches to Depression and Schizophrenia · The Diversity of Add
 
 ## 3.5 `careers`
 
-This award leads to no professional psychology role and Qualifi publishes no destination or earnings data for it. The three progression routes below are quoted from its page.
+This award leads to no professional psychology role and Qualifi publishes no destination or earnings data for it. The 3 progression routes below are quoted from its page.
 
 1. A Qualifi Level 6 Diploma
 2. University, to complete a first degree
@@ -142,13 +142,13 @@ Qualifi publishes no fee · The centre sets the price · International pricing v
 <p>No, and anyone telling you otherwise is misleading you. Becoming a registered psychologist requires an accredited degree, postgraduate training and registration with the professional body that governs the title where you live. Qualifi publishes nothing about any of that for this award. What you get is regulated academic study of psychology at Level 5 — a legitimate foundation, and a genuinely different thing from a licence to practise.</p>
 
 **What exactly is the fallback award?**
-<p>Qualifi states that learners who do not complete the extended diploma but achieve a minimum of 120 credits at Level 4 will be awarded the Qualifi Level 4 Diploma in Psychology, qualification number 610/2149/0. In plain terms, if life interrupts halfway you are not left empty-handed. We have found this published on only one other Qualifi award, so treat it as a real advantage of choosing this one.</p>
+<p>Qualifi states that learners who do not complete the extended diploma but achieve a minimum of 120 credits at Level 4 will be awarded the Qualifi Level 4 Diploma in Psychology, qualification number 610/2149/0. In plain terms, if life interrupts halfway you are not left empty-handed. We have found this published on only 1 other Qualifi award, so treat it as a real advantage of choosing this one.</p>
 
 **Qualifi says this equals a foundation degree. Is that official?**
 <p>That is Qualifi's own description of the 240 credits, and we report it as such rather than as a ruling from a regulator. Credit equivalence and university admission are not the same thing. A university assessing your application makes its own judgement about what the award is worth to it. Useful context, then, but not a guarantee you should plan around.</p>
 
 **Which university partners does it mention?**
-<p>Qualifi refers to access to the final year at "one of our University partners" and does not name a single institution anywhere on its site. We are not going to guess. Treat the university route as something to investigate yourself: identify the universities you would want, contact their admissions teams, and ask directly what they make of a Qualifi Level 5 extended diploma.</p>
+<p>Qualifi refers to access to the final year at "one of our University partners" and names no institution anywhere on its site. We are not going to guess. Treat the university route as something to investigate yourself: identify the universities you would want, contact their admissions teams, and ask directly what they make of a Qualifi Level 5 extended diploma.</p>
 
 **Can I apply with no qualifications at all?**
 <p>You may be considered. Qualifi states that in certain circumstances applicants with considerable experience but no formal qualifications may be accepted, subject to interview and to demonstrating they can cope with the demands of the programme. You must be 18 or over, and IELTS 6 or equivalent applies if English is not your first language. The interview decides, so prepare to talk about what you have done rather than what you hold.</p>

@@ -40,18 +40,18 @@ status: approved
 ## 2.1 `short_description`
 
 ```
-A bridging qualification for anyone heading towards an MSc in psychology, including people whose first degree was in something else entirely. Six units build the academic foundation. Important: it prepares you for further study, not for practising as a psychologist.
+A bridging qualification for anyone heading towards an MSc in psychology, including people whose first degree was in something else entirely. 6 units build the academic foundation. Important: it prepares you for further study, not for practising as a psychologist.
 ```
-*42 words / 269 chars ✅*
+*40 words / 264 chars ✅*
 
 ## 2.2 `description`
 
 ```html
 <p>Gatehouse describes this award in unusually direct terms: a broad bridging qualification for learners from psychology and non-psychology backgrounds who need a comprehensive academic foundation across the core areas of the subject before starting MSc-level study. If your degree was in nursing, teaching, social work or business and you now want to move into psychology properly, that is the gap this is built to close.</p>
-<p>The six units cover the discipline rather than a slice of it. Philosophical and theoretical foundations come first, then biological, cognitive and affective processes, then social, cultural and developmental influences, then psychopathology and intervention, then individual differences and psychometrics, and finally research methods. Each is 20 credits at Level 7, adding up to 120.</p>
+<p>The 6 units cover the discipline rather than a slice of it. Philosophical and theoretical foundations come first, then biological, cognitive and affective processes, then social, cultural and developmental influences, then psychopathology and intervention, then individual differences and psychometrics, and finally research methods. Each is 20 credits at Level 7, adding up to 120.</p>
 <p>Read this next line carefully, because it is Gatehouse's own and it matters more than anything else on the page. The qualification provides academic preparation for postgraduate study in psychology. It does not confer eligibility to practise as a psychologist or to deliver psychological interventions. Treat any provider who suggests otherwise with caution.</p>
 ```
-*3 paragraphs / 170 words ✅*
+*3 paragraphs / 172 words ✅*
 
 ---
 
@@ -71,7 +71,7 @@ A bridging qualification for anyone heading towards an MSc in psychology, includ
 | Full qualification title | GA Level 7 Diploma in Psychology, QAN 610/7550/4 |
 | Scope, in Gatehouse's words | "This qualification provides academic preparation for postgraduate study in psychology. It does not confer eligibility to practise as a psychologist or deliver psychological interventions." |
 | Awarding organisation | Gatehouse Awards Ltd, Reg. 07298045, England and Wales, regulated by Ofqual on the RQF at Level 7 |
-| Size | 120 credits over six mandatory units, each 20 credits with 60 guided learning hours and 140 study hours |
+| Size | 120 credits over 6 mandatory units, each 20 credits with 60 guided learning hours and 140 study hours |
 | Total Qualification Time | 1,200 hours, split as 360 guided learning and 840 independent study |
 | Entry | Aged 21 or above with an undergraduate honours degree or a Level 6 qualification. Prior study of psychology is not required. Experience in education, health, social care, business or other fields involving behaviour, cognition or human interaction may be accepted instead, assessed on a CV or portfolio, an interview, development evidence, academic or professional references and a written task. International English B2 on the CEFR scale applies where English is not the first language |
 | Not to be confused with | The Qualifi Level 7 Diploma in Psychology, QAN 610/2064/3, which is a separate qualification from a different awarding body with different units and 480 guided learning hours |
@@ -83,7 +83,7 @@ A bridging qualification for anyone heading towards an MSc in psychology, includ
 | `git-merge` | Designed as a conversion route | <p>Gatehouse built it for people coming from outside psychology who need the full academic grounding before an MSc will take them seriously.</p> |
 | `grid-3x3` | The whole discipline, not a corner of it | <p>Foundations, biological and cognitive, social and developmental, psychopathology, individual differences and research methods are all compulsory.</p> |
 | `microscope` | Research training aimed at postgraduate work | <p>Unit 6 goes as far as designing robust, ethically informed research proposals suitable for postgraduate level study.</p> |
-| `brain` | Psychometrics included | <p>Individual differences and the principles of applied psychology sit in one unit, so testing and measurement are covered rather than skipped.</p> |
+| `brain` | Psychometrics included | <p>Individual differences and the principles of applied psychology sit in 1 unit, so testing and measurement are covered rather than skipped.</p> |
 | `eye` | Honest about what it is not | <p>Few Level 7 diplomas publish their own limits. Gatehouse states plainly that this is not a route to practising, which protects you from mis-selling.</p> |
 | `door-open` | Entry open to several sectors | <p>Applicants without a degree can be considered on experience in education, health, social care, business or other fields involving human behaviour.</p> |
 
@@ -99,18 +99,18 @@ A bridging qualification for anyone heading towards an MSc in psychology, includ
 
 ## 3.6 `structure`
 
-**Part 1 — Mandatory units** · *All six units are required. Each is Level 7, 20 credits, 60 guided learning hours and 140 hours of independent study.*
+**Part 1 — Mandatory units** · *All 6 units are required. Each is Level 7, 20 credits, 60 guided learning hours and 140 hours of independent study.*
 Philosophical and Theoretical Foundations of Psychology (T/652/1920) · Biological, Cognitive and Affective Psychology (Y/652/1921) · Social, Cultural and Developmental Psychology (A/652/1922) · Psychopathology, Mental Health and Psychological Intervention (D/652/1923) · Individual Differences and Principles of Applied Psychology (F/652/1924) · Research Methods in Psychology (H/652/1925)
 
-**Part 2 — Rules of combination** · *All six mandatory units and 120 credits are required. There are no further rules of combination and nothing optional to choose between.*
-All six units mandatory · 120 credits in total · No optional units · No further rules of combination
+**Part 2 — Rules of combination** · *All 6 mandatory units and 120 credits are required. There are no further rules of combination and nothing optional to choose between.*
+All 6 units mandatory · 120 credits in total · No optional units · No further rules of combination
 
 **Part 3 — Assessment and quality assurance** · *How the qualification is judged and verified.*
 Coursework alongside a Portfolio of Evidence · No written examination · A research proposal at postgraduate standard in the final unit · Unit sign off at the centre, then internal moderation · External moderation by Gatehouse before the certificate is issued
 
 ## 3.5 `careers` *(⚠️ QA note C1: no destination data published; QA note C2: published scope restriction applies)*
 
-Two things need saying here. First, Gatehouse publishes no graduate destinations, salary data or employment statistics for this diploma, so none appear on this page. Second, and more importantly, the awarding body states that the qualification does not confer eligibility to practise as a psychologist or to deliver psychological interventions. It is academic preparation, not professional registration. What Gatehouse does describe is preparation for postgraduate study in psychology or related disciplines, professional development, and progression into psychology-related fields, with MSc-level study named as the intended destination. Chartered or registered psychologist status in any country is reached through routes set by that country's regulator, and this diploma is not one of them on its own.
+2 points matter here. Gatehouse publishes no graduate destinations, salary data or employment statistics for this diploma, so none appear on this page. More importantly, the awarding body states that the qualification does not confer eligibility to practise as a psychologist or to deliver psychological interventions. It is academic preparation, not professional registration. What Gatehouse does describe is preparation for postgraduate study in psychology or related disciplines, professional development, and progression into psychology-related fields, with MSc-level study named as the intended destination. Chartered or registered psychologist status in any country is reached through routes set by that country's regulator, and this diploma is not one of them on its own.
 
 
 ## 3.8 `support`
@@ -145,7 +145,7 @@ Tuition set by the approved centre · £206 awarding body registration, excludin
 <p>No. They share a name and a level, which causes genuine confusion. The Gatehouse qualification is 610/7550/4 with 360 guided learning hours and units coded from T/652/1920. The Qualifi one is 610/2064/3 with 480 guided learning hours and an entirely different unit set. Different awarding bodies, different content, separate certificates. Check the QAN on any offer letter so you know which you are signing up to.</p>
 
 **What does the assessment involve?**
-<p>Coursework and a Portfolio of Evidence, with no written examination. Across the six units you build written work and supporting evidence, which the centre signs off unit by unit before internal moderation. Gatehouse then moderates externally. The research methods unit asks you to produce an ethically informed research proposal at postgraduate standard, so expect a substantial written piece towards the end.</p>
+<p>Coursework and a Portfolio of Evidence, with no written examination. Across the 6 units you build written work and supporting evidence, which the centre signs off unit by unit before internal moderation. Gatehouse then moderates externally. The research methods unit asks you to produce an ethically informed research proposal at postgraduate standard, so expect a substantial written piece towards the end.</p>
 
 **Will a university accept it for MSc entry?**
 <p>Gatehouse designed it with MSc progression in mind, but admission is always the receiving university's decision, not the awarding body's. Before enrolling, approach the specific universities you are interested in and ask whether they will accept a 120-credit Ofqual-regulated Level 7 diploma as preparation for their course, and whether they require an accredited conversion course instead. Get the answer in writing.</p>
@@ -159,4 +159,4 @@ Tuition set by the approved centre · £206 awarding body registration, excludin
 | Field | Value | Count |
 |---|---|---|
 | `meta_title` | Level 7 Diploma in Psychology \| Gatehouse Awards, UK | 52 ✅ |
-| `meta_description` | Ofqual-regulated Level 7 Diploma in Psychology from Gatehouse Awards. A 120-credit bridging award for MSc preparation. Not a licence to practise. QAN 610/7550/4. | 159 ✅ |
+| `meta_description` | Ofqual-regulated Level 7 Diploma in Psychology from Gatehouse Awards. A 120-credit bridging award for MSc preparation. Not a licence to practise. QAN 610/7550/4. | 161 ✅ |

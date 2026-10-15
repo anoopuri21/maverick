@@ -2,21 +2,45 @@
 """
 Validate the generated catalogue data files WITHOUT PHP.
 
-Parses the PHP array literally enough to check the contract the seeder
-relies on, plus the template's hard limits. Run before every seed.
+Approved Bachelor pages still require a Completed tracker row and full page
+checks. The separate admin-draft source may contain only three specifically
+allowed, inactive and incomplete Bachelor rows; blanks never count as approved
+copy. This is a static preflight, not a replacement for PHP/DB tests.
 
     python3 tools/validate_catalog_data.py
 
-Exit code 0 = safe to seed. 1 = do not seed.
+Exit code 0 = structural checks passed (server DB prerequisites still required).
+Exit code 1 = do not seed.
 """
-import re
+import csv
+import json
 import os
+import re
 import sys
-import glob
+from urllib.parse import urlparse
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-FILES = sorted(glob.glob(os.path.join(ROOT, "database/seeders/data/*_programs.php")))
-SKIP = {"master_programs.php"}
+DATA_DIR = os.path.join(ROOT, "database/seeders/data")
+TRACKER = os.path.join(ROOT, "docs/program-tracker.csv")
+# The existing-only single-command seeder loads all four files. The bootstrap
+# seeder loads the first three; the Bachelor-only seeder still loads five pages.
+# A missing deployment must fail instead of validating whatever happened to arrive.
+EXPECTED = ("doctorate_programs.php", "diploma_programs.php", "bachelors_programs.php",
+            "bachelors_admin_drafts.php")
+FILES = [os.path.join(DATA_DIR, name) for name in EXPECTED]
+ADMIN_SOURCE = os.path.join(ROOT, "docs/bachelors-admin-drafts.json")
+ADMIN_IDENTITIES = {
+    "72": ("Accounting and Finance Management", "girne-american-university", "gau.edu.tr"),
+    "74": ("Human Resources Management", "girne-american-university", "gau.edu.tr"),
+    "78": ("BA Global Business (Level 9)", "university-of-the-west-of-scotland", "uws.ac.uk"),
+}
+ADMIN_STATUS = "Admin draft – official-title facts only (not page-approved)"
+ADMIN_DB_STATUS = "Ready to seed (inactive admin draft; corrected title)"
+ADMIN_ALLOWED_FIELDS = {
+    "tracker_sno", "slug", "title", "level", "category_slug", "university_slug",
+    "sort_order", "duration", "hero", "overview", "highlights", "snapshot",
+    "structure", "source_urls", "unverified_fields",
+}
 
 REQUIRED = ["slug", "title", "level", "category_slug", "university_slug", "duration",
             "sort_order", "hero", "overview", "highlights", "snapshot", "benefits",
@@ -29,9 +53,6 @@ COUNTS = {"highlights": (4, 8), "snapshot": (6, 8), "benefits": (4, 8),
           "gcc": (0, 8), "careers": (1, 20), "overview": (2, 3)}
 
 LIMITS = {"hero": (0, 300), "meta_title": (45, 78), "meta_description": (120, 161)}
-
-errors, warnings = [], []
-
 
 def php_strings(blob):
     """All single-quoted PHP strings in a blob, unescaped."""
@@ -85,20 +106,140 @@ def count_entries(blob):
     return len(re.findall(r"^\s*'(?:[^'\\]|\\.)*',\s*$", blob, re.M))
 
 
+def scalar(prog, key):
+    values = php_strings(field_blob(prog, key) or "")
+    return values[0] if values else None
+
+
+def admin_draft_source():
+    """Return allowed JSON draft identities and errors; trust only the 3 titles."""
+    rows, errors = {}, []
+    try:
+        with open(ADMIN_SOURCE, encoding="utf-8") as source:
+            data = json.load(source)
+    except (OSError, UnicodeError, json.JSONDecodeError) as exc:
+        return rows, [f"Bachelor admin draft source cannot be read: {exc}"]
+    if data.get("schema_version") != 1 or not isinstance(data.get("drafts"), list):
+        return rows, ["Bachelor admin draft source: invalid schema"]
+    seen = set()
+    for row in data["drafts"]:
+        if not isinstance(row, dict):
+            errors.append("Bachelor admin draft source: invalid row")
+            continue
+        number = str(row.get("tracker_sno"))
+        if number not in ADMIN_IDENTITIES or number in seen or not isinstance(row.get("tracker_sno"), int):
+            errors.append(f"Bachelor admin draft source: unexpected/duplicate tracker row {number}")
+            continue
+        if set(row) - ADMIN_ALLOWED_FIELDS:
+            errors.append(f"Bachelor admin draft {number}: unsupported JSON fields")
+        seen.add(number)
+        title, partner, domain = ADMIN_IDENTITIES[number]
+        if (row.get("title"), row.get("university_slug")) != (title, partner):
+            errors.append(f"Bachelor admin draft {number}: incorrect official title or partner")
+        if row.get("category_slug") != "bachelors" or row.get("sort_order") != int(number):
+            errors.append(f"Bachelor admin draft {number}: wrong category or sort order")
+        expected_level_duration = ("BA", "") if number == "78" else ("Undergraduate", "4 years")
+        if (row.get("level"), row.get("duration")) != expected_level_duration:
+            errors.append(f"Bachelor admin draft {number}: unsupported level or duration")
+        urls = row.get("source_urls")
+        if not isinstance(urls, list) or not urls or any(
+            not isinstance(url, str) or urlparse(url).scheme != "https" or
+            not (urlparse(url).hostname == domain or
+                 (urlparse(url).hostname or "").endswith("." + domain))
+            for url in urls
+        ):
+            errors.append(f"Bachelor admin draft {number}: only official university URLs permitted")
+        if not isinstance(row.get("unverified_fields"), list) or not row["unverified_fields"]:
+            errors.append(f"Bachelor admin draft {number}: undeclared evidence gaps")
+        if not isinstance(row.get("hero"), str) or not row["hero"] or len(row["hero"]) > 300:
+            errors.append(f"Bachelor admin draft {number}: invalid hero text")
+        if not isinstance(row.get("overview"), list) or not row["overview"]:
+            errors.append(f"Bachelor admin draft {number}: missing overview")
+        slug = row.get("slug")
+        if not isinstance(slug, str) or slug in rows:
+            errors.append(f"Bachelor admin draft {number}: missing or duplicate slug")
+            continue
+        rows[slug] = row
+    if seen != set(ADMIN_IDENTITIES):
+        errors.append("Bachelor admin draft source: expected only tracker rows 72, 74 and 78")
+    return rows, errors
+
+
+def bachelor_tracker_approval():
+    """Return approved pages, incomplete IDs, permitted admin drafts and errors.
+
+    Incomplete research never promotes a row to an approved page. Three
+    corrected-title admin drafts have distinct statuses and no Output File.
+    """
+    approved, incomplete, drafts, errors = {}, [], {}, []
+    required = {"S.No", "Program Name (as in listing)", "Program Type",
+                "Research Status", "Content Status", "Output File", "DB Status"}
+    try:
+        with open(TRACKER, encoding="utf-8-sig", newline="") as source:
+            reader = csv.DictReader(source)
+            if not reader.fieldnames or not required.issubset(reader.fieldnames):
+                return approved, incomplete, drafts, ["Bachelor tracker: missing required CSV columns"]
+            for row in reader:
+                if any(row.get(column) is None for column in required):
+                    errors.append("Bachelor tracker: malformed CSV row")
+                    continue
+                if row["Program Type"].strip() != "Bachelors":
+                    continue
+                number = row["S.No"].strip()
+                output = row["Output File"].strip()
+                content_status = row["Content Status"].strip()
+                research_status = row["Research Status"].strip()
+                if research_status.startswith("Incomplete"):
+                    incomplete.append(number)
+                    if content_status == "Completed" or output:
+                        errors.append(f"Bachelor tracker {number}: incomplete research cannot have approved content")
+                    if number in ADMIN_IDENTITIES:
+                        if content_status != ADMIN_STATUS or row["DB Status"].strip() != ADMIN_DB_STATUS:
+                            errors.append(f"Bachelor tracker {number}: incorrect inactive admin draft status")
+                        drafts[number] = row["Program Name (as in listing)"].strip()
+                    elif content_status.startswith("Admin draft") or row["DB Status"].startswith("Ready to seed"):
+                        errors.append(f"Bachelor tracker {number}: unapproved extra admin draft")
+                    continue
+                if content_status != "Completed":
+                    if output:
+                        errors.append(f"Bachelor tracker {number}: non-approved row has an Output File")
+                    continue
+                if not research_status.startswith("Complete"):
+                    errors.append(f"Bachelor tracker {number}: content Completed without complete research")
+                    continue
+                if not re.fullmatch(r"output/programs/bachelors/[a-z0-9-]+/[a-z0-9-]+\.md", output):
+                    errors.append(f"Bachelor tracker {number}: invalid or missing approved Output File")
+                    continue
+                if not os.path.isfile(os.path.join(ROOT, output)):
+                    errors.append(f"Bachelor tracker {number}: approved page is missing: {output}")
+                    continue
+                slug = os.path.basename(output)[:-3]
+                if slug in approved:
+                    errors.append(f"Bachelor tracker {number}: duplicate approved slug {slug}")
+                approved[slug] = row["Program Name (as in listing)"].strip()
+    except (OSError, UnicodeError, csv.Error) as exc:
+        errors.append(f"Bachelor tracker: cannot read {TRACKER}: {exc}")
+    return approved, incomplete, drafts, errors
+
+
 def main():
-    files = [f for f in FILES if os.path.basename(f) not in SKIP]
-    if not files:
-        print("No catalogue data files found.")
-        return 0
+    missing = [path for path in FILES if not os.path.isfile(path)]
+    if missing:
+        print("ERROR: missing required catalogue data file(s):")
+        for path in missing:
+            print("   ", path)
+        return 1
 
-    all_slugs, total = {}, 0
+    admin_source, source_errors = admin_draft_source()
+    errors, warnings = list(source_errors), []
+    all_slugs, bachelor_seed_rows, admin_seed_rows, total = {}, {}, {}, 0
 
-    for path in files:
+    for path in FILES:
         name = os.path.basename(path)
-        text = open(path, encoding="utf-8").read()
+        with open(path, encoding="utf-8") as source:
+            text = source.read()
         print(f"\n=== {name} ===")
 
-        cats = set(php_strings(text[text.index("'categories'"):text.index("'universities'")])[0::1])
         cat_slugs = set(re.findall(r"'slug' => '([^']+)'",
                                    text[text.index("'categories'"):text.index("'universities'")]))
         uni_slugs = set(re.findall(r"'slug' => '([^']+)'",
@@ -106,9 +247,14 @@ def main():
         print(f"  categories declared : {sorted(cat_slugs)}")
         print(f"  universities declared: {sorted(uni_slugs)}")
 
-        for prog in split_programs(text):
+        programs = split_programs(text)
+        if not programs:
+            errors.append(f"{name}: no programme rows — DO NOT SEED")
+        for prog in programs:
             total += 1
             slug = (re.search(r"'slug' => '([^']+)'", prog) or [None, "?"])[1]
+            if field_blob(prog, "is_active") != "false":
+                errors.append(f"{slug}: new catalogue rows must start inactive")
 
             for key in REQUIRED:
                 if f"'{key}' =>" not in prog:
@@ -123,12 +269,61 @@ def main():
                 errors.append(f"{slug}: university_slug '{us.group(1)}' not declared "
                               f"-> seeder would skip this row")
 
+            # Keep approved pages and incomplete, non-public drafts in their
+            # separate sources. A miscategorised row cannot evade the tracker.
+            is_draft = name == "bachelors_admin_drafts.php"
+            if (field_blob(prog, "admin_draft") == "true") != is_draft:
+                errors.append(f"{slug}: wrong admin_draft marker for source {name}")
+            if name in ("bachelors_programs.php", "bachelors_admin_drafts.php"):
+                if not cs or cs.group(1) != "bachelors":
+                    errors.append(f"{slug}: Bachelor seed has wrong category_slug")
+                if is_draft:
+                    admin_seed_rows[slug] = prog
+                else:
+                    bachelor_seed_rows[slug] = scalar(prog, "title") or ""
+            elif cs and cs.group(1) == "bachelors":
+                errors.append(f"{slug}: Bachelor row must be in a Bachelor seed file")
+
             if slug in all_slugs:
                 errors.append(f"{slug}: DUPLICATE slug (also in {all_slugs[slug]})")
             all_slugs[slug] = name
 
             if not re.fullmatch(r"[a-z0-9]+(-[a-z0-9]+)*", slug):
                 errors.append(f"{slug}: slug must be lowercase-hyphen")
+
+            if is_draft:
+                source = admin_source.get(slug)
+                if source is None:
+                    errors.append(f"{slug}: unapproved admin Bachelor seed slug")
+                else:
+                    if field_blob(prog, "tracker_sno") != str(source["tracker_sno"]):
+                        errors.append(f"{slug}: wrong admin draft tracker number")
+                    for key in ("slug", "title", "level", "category_slug", "university_slug",
+                                "duration", "hero"):
+                        if scalar(prog, key) != source.get(key):
+                            errors.append(f"{slug}: admin draft {key} differs from official source")
+                    if field_blob(prog, "sort_order") != str(source["sort_order"]):
+                        errors.append(f"{slug}: wrong admin draft sort_order")
+                    for key in ("overview", "source_urls"):
+                        if php_strings(field_blob(prog, key) or "") != source.get(key):
+                            errors.append(f"{slug}: admin draft {key} differs from official source")
+                    for key in ("highlights", "snapshot"):
+                        expected = [item for pair in source.get(key, []) for item in pair]
+                        if php_strings(field_blob(prog, key) or "") != expected:
+                            errors.append(f"{slug}: admin draft {key} differs from official source")
+                    stages = [item for title, subtitle, modules in source.get("structure", [])
+                              for item in ("title", title, "subtitle", subtitle, "modules", *modules)]
+                    if php_strings(field_blob(prog, "structure") or "") != stages:
+                        errors.append(f"{slug}: admin draft structure differs from official source")
+                for key in ("benefits", "learning", "careers", "support", "gcc", "fees", "faqs"):
+                    blob = field_blob(prog, key)
+                    if blob is None or count_entries(blob) != 0:
+                        errors.append(f"{slug}: unverified admin draft {key} must stay blank")
+                for key in ("gcc_heading", "meta_title", "meta_description"):
+                    if scalar(prog, key) != "":
+                        errors.append(f"{slug}: unverified admin draft {key} must stay blank")
+                if len(scalar(prog, "hero") or "") > LIMITS["hero"][1]:
+                    errors.append(f"{slug}: admin draft hero exceeds 300 characters")
 
             counts = {}
             for key, (lo, hi) in COUNTS.items():
@@ -137,20 +332,21 @@ def main():
                     continue
                 n = count_entries(blob)
                 counts[key] = n
-                if not (lo <= n <= hi):
+                if not is_draft and not (lo <= n <= hi):
                     warnings.append(f"{slug}: {key} has {n} (expected {lo}-{hi})")
 
-            for key, (lo, hi) in LIMITS.items():
-                m = re.search(rf"'{key}' => '((?:[^'\\]|\\.)*)'", prog)
-                if not m:
-                    continue
-                val = m.group(1).replace("\\'", "'")
-                if not (lo <= len(val) <= hi):
-                    errors.append(f"{slug}: {key} is {len(val)} chars (expected {lo}-{hi})")
+            if not is_draft:
+                for key, (lo, hi) in LIMITS.items():
+                    m = re.search(rf"'{key}' => '((?:[^'\\]|\\.)*)'", prog)
+                    if not m:
+                        continue
+                    val = m.group(1).replace("\\'", "'")
+                    if not (lo <= len(val) <= hi):
+                        errors.append(f"{slug}: {key} is {len(val)} chars (expected {lo}-{hi})")
 
-            # structure must have stages, each with modules
+            # Approved pages need actual structure; drafts may leave it empty.
             st = field_blob(prog, "structure")
-            if st and "'modules' =>" not in st:
+            if st and (not is_draft or count_entries(st) > 0) and "'modules' =>" not in st:
                 errors.append(f"{slug}: structure has no modules")
 
             # faqs optional but must be well-formed triples when present.
@@ -166,9 +362,34 @@ def main():
 
             print(f"  {slug:58} " + " ".join(f"{k}={v}" for k, v in counts.items()) + f" faqs={nf}")
 
-    print(f"\n--- {total} programme(s) across {len(files)} file(s) ---")
+    approved, incomplete, tracker_drafts, tracker_errors = bachelor_tracker_approval()
+    errors.extend(tracker_errors)
+    for slug in sorted(bachelor_seed_rows.keys() - approved.keys()):
+        errors.append(f"{slug}: unapproved Bachelor seed slug (no Completed tracker row)")
+    for slug in sorted(approved.keys() - bachelor_seed_rows.keys()):
+        errors.append(f"{slug}: approved Bachelor missing from seed data")
+    for slug in sorted(approved.keys() & bachelor_seed_rows.keys()):
+        if bachelor_seed_rows[slug] != approved[slug]:
+            errors.append(f"{slug}: Bachelor seed title differs from approved tracker title")
+    for slug in sorted(admin_seed_rows.keys() - admin_source.keys()):
+        errors.append(f"{slug}: admin Bachelor seed not in the official-title draft source")
+    for slug in sorted(admin_source.keys() - admin_seed_rows.keys()):
+        errors.append(f"{slug}: official-title admin Bachelor missing from seed data")
+    if set(tracker_drafts) != set(ADMIN_IDENTITIES):
+        errors.append("Bachelor tracker: expected admin drafts only at S.No 72, 74 and 78")
+    for slug, row in admin_source.items():
+        number = str(row["tracker_sno"])
+        if number in tracker_drafts and tracker_drafts[number] == row["title"]:
+            errors.append(f"{slug}: corrected admin title must differ from the original tracker listing")
+        if number not in tracker_drafts:
+            errors.append(f"{slug}: admin draft has no Research Incomplete tracker row")
+
+    print(f"\n--- {total} programme(s) across {len(FILES)} file(s) ---")
+    print(f"Bachelor source gate: {len(approved)} approved pages, {len(incomplete)} incomplete "
+          f"tracker listings, {len(admin_seed_rows)} inactive admin drafts "
+          f"({len(bachelor_seed_rows) + len(admin_seed_rows)} Bachelor seed rows total).")
     if warnings:
-        print(f"\nWARNING: {len(warnings)} warning(s) (declared gaps, seeding still safe):")
+        print(f"\nWARNING: {len(warnings)} declared content gap(s) (DB prerequisites still required):")
         for w in warnings:
             print("   ", w)
     if errors:
@@ -176,7 +397,7 @@ def main():
         for e in errors:
             print("   ", e)
         return 1
-    print("\nVALIDATION PASSED -- safe to seed.")
+    print("\nVALIDATION PASSED -- data checks passed; confirm DB prerequisites before seeding.")
     return 0
 
 

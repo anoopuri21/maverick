@@ -39,18 +39,18 @@ status: approved
 ## 2.1 `short_description`
 
 ```
-A wide first pass across the technology stack: computer systems, coding and web development, networks, mobile, cyber security and social media for business. Sixty credits at Level 3, awarded by Qualifi, open from age sixteen.
+A wide 1st pass across the technology stack: computer systems, coding and web development, networks, mobile, cyber security and social media for business. 60 credits at Level 3, awarded by Qualifi, open from age 16.
 ```
-*36 words / 231 chars ✅*
+*35 words / 215 chars ✅*
 
 ## 2.2 `description`
 
 ```html
-<p>Technology careers rarely begin with certainty about which part of technology you want. Qualifi has built this award around that reality, aiming it at equipping learners with the skills and knowledge to work in the IT sector or move on to further study, and deliberately spreading the content across the field rather than committing you early to one corner of it.</p>
+<p>Technology careers rarely begin with certainty about which part of technology you want. Qualifi has built this award around that reality, aiming it at equipping learners with the skills and knowledge to work in the IT sector or move on to further study, and deliberately spreading the content across the field rather than committing you early to 1 corner of it.</p>
 <p>The territory covered is wide. Computer systems and networking provide the infrastructure grounding. Coding and website development introduce how software and web pages are actually built. Mobile communications addresses the devices most people now use for everything. Cyber security appears as its own area rather than as a closing lecture, and social media for business connects the technical to the commercial.</p>
-<p>Entry is through a centre interview and open from the age of sixteen, with IELTS 6 expected where English is not a first language. The award is 60 credits at number 610/0659/2 on the framework, and Qualifi names a Level 4 diploma, a Level 4 diploma in IT specifically, or direct employment as the routes from here.</p>
+<p>Entry is through a centre interview and open from the age of 16, with IELTS 6 expected where English is not a first language. The award is 60 credits at number 610/0659/2 on the framework, and Qualifi names a Level 4 diploma, a Level 4 diploma in IT specifically, or direct employment as the routes from here.</p>
 ```
-*3 paragraphs / 186 words ✅*
+*3 paragraphs / 179 words ✅*
 
 ---
 
@@ -71,20 +71,20 @@ A wide first pass across the technology stack: computer systems, coding and web 
 | Qualification number | 610/0659/2 on the Regulated Qualifications Framework |
 | Size | 60 credits at Level 3 |
 | Subject areas | Computer Systems · Coding and Website Development · Networks · Mobile Communications · Cyber Security · Social Media for Business |
-| A note on the unit list | Qualifi's page prints "Coding and Website Development Networks" on a single line, which can be read as one subject or two. The overview on the same page names coding, website development and networks as separate topics, so we have listed them separately. Your centre can confirm the exact count against the Centre Specification |
-| Entry | Through a centre interview, aged 16 or over. IELTS 6 or equivalent where English is not the first language, and two supporting references are normally expected. Applicants with considerable experience but no formal qualifications may be considered after interview |
+| A note on the unit list | Qualifi's page prints "Coding and Website Development Networks" on 1 line, which can be read as 1 subject or 2. The overview on the same page names coding, website development and networks as separate topics, so we have listed them separately. Your centre can confirm the exact count against the Centre Specification |
+| Entry | Through a centre interview, aged 16 or over. IELTS 6 or equivalent where English is not the first language, and 2 supporting references are normally expected. Applicants with considerable experience but no formal qualifications may be considered after interview |
 | Onward routes published by Qualifi | A Qualifi Level 4 Diploma, the Qualifi Level 4 Diploma in IT, or directly into employment in an associated profession |
 | Worth knowing | Qualifi awards and regulates; an approved centre teaches. No duration and no fee are published by the awarding body |
 
 ## 3.3 `benefits`
 | icon | title | desc |
 |---|---|---|
-| `layout-grid` | A map before a specialism | <p>Six areas in one award lets you find out what you are drawn to before committing to a narrower Level 4 or 5 route.</p> |
+| `layout-grid` | A map before a specialism | <p>6 areas in 1 award lets you find out what you are drawn to before committing to a narrower Level 4 or 5 route.</p> |
 | `lock` | Security is not an afterthought | <p>Cyber security sits in the core content rather than being bolted on, which reflects how employers now treat it.</p> |
 | `smartphone` | Mobile taken seriously | <p>Mobile communications is covered in its own right, which many introductory IT syllabuses still skip.</p> |
 | `code` | Building as well as understanding | <p>Coding and website development mean you produce things, not only learn what the terms mean.</p> |
 | `share-2` | The commercial side included | <p>Social media for business links the technical content to how organisations actually use it.</p> |
-| `user-plus` | Open at sixteen, and to the self-taught | <p>Entry is from age 16, and Qualifi allows applicants with substantial experience but no formal qualifications to be considered after interview.</p> |
+| `user-plus` | Open at 16, and to the self-taught | <p>Entry is from age 16, and Qualifi allows applicants with substantial experience but no formal qualifications to be considered after interview.</p> |
 
 ## 3.4 `learning`
 1. Understand what computer systems are for and how they fit together
@@ -125,10 +125,10 @@ Centre interview before entry · Consideration of applicants without formal qual
 |---|---|---|
 | `cpu` | Digital transformation is regional policy | Government and private sector digitisation programmes across the GCC have created sustained demand for technically literate staff. |
 | `shield-alert` | Security skills are short everywhere | Cyber security being part of the core content gives a grounding in the area regional employers report hardest to recruit for. |
-| `school` | A realistic post-school option | With entry from sixteen, school leavers can begin a technology route without first securing a university place. |
+| `school` | A realistic post-school option | With entry from 16, school leavers can begin a technology route without 1st securing a university place. |
 | `wrench` | The self-taught are not excluded | Many people in the region learn technology independently. Qualifi lets experience without formal qualifications be considered at interview. |
 | `arrow-right-circle` | A defined ladder upwards | Qualifi runs IT diplomas at Levels 4 and 5 with networking, web design and e-commerce routes, so the next step is mapped. |
-| `clipboard-check` | Confirm the subject list | Qualifi's page is ambiguous about whether coding, web development and networks are two subjects or three. Ask your centre to confirm from the specification. |
+| `clipboard-check` | Confirm the subject list | Qualifi's page is ambiguous about whether coding, web development and networks are 2 subjects or 3. Ask your centre to confirm from the specification. |
 
 ## 3.11 `fees`
 No fee published by Qualifi · Price set by the approved centre · Differs by country and delivery mode · Ask about equipment and software costs · Get the full amount in writing
@@ -138,22 +138,22 @@ No fee published by Qualifi · Price set by the approved centre · Differs by co
 ## 4. `faqs` *(6)*
 
 **Will I be able to get a job in IT after this?**
-<p>Qualifi lists employment in an associated profession as one of three published routes, so it is an intended outcome. Being realistic about it: this is a Level 3 foundation covering a lot of ground at introductory depth, and employers hiring for technical roles usually want either demonstrated skill or a higher qualification. It is most useful as evidence of grounding, combined with things you have actually built, and as the step before Level 4 study.</p>
+<p>Qualifi lists employment in an associated profession as 1 of 3 published routes, so it is an intended outcome. Being realistic about it: this is a Level 3 foundation covering a lot of ground at introductory depth, and employers hiring for technical roles usually want either demonstrated skill or a higher qualification. It is most useful as evidence of grounding, combined with things you have actually built, and as the step before Level 4 study.</p>
 
-**Is the subject list six items or seven?**
-<p>Honestly, Qualifi's page is unclear. The unit list prints "Coding and Website Development Networks" on one line, which reads either as a single combined subject or as two separate ones. The overview on the same page lists coding, website development and networks as distinct topics, which is why we have shown them separately. The Centre Specification is the authority, and your centre should confirm the exact count before you enrol.</p>
+**Is the subject list 6 items or 7?**
+<p>Honestly, Qualifi's page is unclear. The unit list prints "Coding and Website Development Networks" on 1 line, which reads either as 1 combined subject or as 2 separate ones. The overview on the same page lists coding, website development and networks as distinct topics, which is why we have shown them separately. The Centre Specification is the authority, and your centre should confirm the exact count before you enrol.</p>
 
 **Do I need to be able to code already?**
 <p>No. Coding is taught within the award and the published outcome is to understand the purpose of coding and the different types in use, which is an introductory framing rather than an expectation of fluency. If you already code and want depth, a Level 3 overview may be too broad for you and Qualifi's Level 4 and Level 5 IT diplomas with networking, web design or e-commerce routes would fit better.</p>
 
 **Can I apply with no qualifications?**
-<p>You may be able to. Entry runs through a centre interview and applicants must be at least sixteen. Qualifi also allows people with considerable experience but no formal qualifications to be considered, subject to interview and to showing they can cope with the programme. Where English is not your first language, IELTS 6 or equivalent applies, and two supporting references are normally expected.</p>
+<p>You may be able to. Entry runs through a centre interview and applicants must be at least 16. Qualifi also allows people with considerable experience but no formal qualifications to be considered, subject to interview and to showing they can cope with the programme. Where English is not your first language, IELTS 6 or equivalent applies, and 2 supporting references are normally expected.</p>
 
 **What equipment will I need?**
 <p>Qualifi does not publish any equipment requirements, which is not the same as there being none. A qualification covering coding, web development and networks will involve practical work, and whether the centre provides machines and software or expects you to have your own varies. Ask before enrolling, because it can change the real cost noticeably.</p>
 
 **How does it compare with the Level 5 extended diplomas in IT?**
-<p>It sits two levels below them and is far broader. Qualifi's Level 5 extended range splits into separate awards for information technology, networking, web design, e-commerce and cyber security, each going considerably deeper in one direction. This qualification is the survey you take first if you do not yet know which of those you want.</p>
+<p>It sits 2 levels below them and is far broader. Qualifi's Level 5 extended range splits into separate awards for information technology, networking, web design, e-commerce and cyber security, each going considerably deeper in 1 direction. This qualification is the survey you take 1st if you do not yet know which of those you want.</p>
 
 ---
 

@@ -40,18 +40,18 @@ status: approved
 ## 2.1 `short_description`
 
 ```
-Six subjects that read like an HR department's actual remit — hiring, performance, relations, development — ending with an investigation into a live business problem. Judge this award by its subject list, not its description.
+6 subjects that read like an HR department's actual remit — hiring, performance, relations, development — ending with an investigation into a live business problem. Judge this award by its subject list, not its description.
 ```
-*35 words / 221 chars ✅*
+*35 words / 223 chars ✅*
 
 ## 2.2 `description`
 
 ```html
 <p>Here is what gets studied: Contemporary HRM; Leading, Managing and HR Development; Resourcing, Talent Management and Development; Performance Management; Employee Relations; and Investigating a Business Issue from an HR Perspective. Anyone who has worked in a people function will recognise that spread. It maps onto how HR teams are usually structured, which is not something you can say about every award at this level.</p>
-<p>The last of the six deserves separate mention. It asks you to take a genuine problem inside a business and work it through from a people angle, which turns the qualification into something you apply at your desk rather than only in an assessment. Across the whole Level 7 range offered here, no other award carries an applied investigation framed that way.</p>
-<p>One hundred and twenty credits sit behind the title, all at Level 7, registered under 603/0722/5. Total qualification time is not published.</p>
+<p>The last of the 6 deserves separate mention. It asks you to take a genuine problem inside a business and work it through from a people angle, which turns the qualification into something you apply at your desk rather than only in an assessment. Across the whole Level 7 range offered here, no other award carries an applied investigation framed that way.</p>
+<p>120 credits sit behind the title, all at Level 7, registered under 603/0722/5. Total qualification time is not published.</p>
 ```
-*3 paragraphs / 148 words ✅*
+*3 paragraphs / 145 words ✅*
 
 ---
 
@@ -73,16 +73,16 @@ Six subjects that read like an HR department's actual remit — hiring, performa
 | Size and type | 120 credits at Level 7, a Vocational Related Qualification (Higher Education), accreditation status Accredited. No total qualification time is published |
 | What it covers | Contemporary HR practice, leadership and HR development, resourcing and talent, performance, employee relations, and an applied business investigation |
 | Published entry | The whole requirement, quoted in full: a Level 6 qualification; or a first degree. Nothing about age, English language evidence, references or a centre review appears |
-| Shape | Six subjects, no optional group, no per-subject credit values published |
+| Shape | 6 subjects, no optional group, no per-subject credit values published |
 | Not a CIPD qualification | Qualifi publishes no CIPD accreditation, approval, exemption or membership entitlement for this award. It is not a route to chartered status |
-| Progression published by Qualifi | A single line: "Dissertation to complete Master's Degree at UK University". No employment route and no Level 8 route are listed |
+| Progression published by Qualifi | 1 line: "Dissertation to complete Master's Degree at UK University". No employment route and no Level 8 route are listed |
 | Worth knowing | Qualifi's written description of this qualification does not use the words "human resources" at all. The HR content lives entirely in the subject list |
 
 ## 3.3 `benefits`
 | icon | title | desc |
 |---|---|---|
-| `search` | An applied investigation | <p>The sixth subject puts you inside a real business problem, examined from the people side.</p> |
-| `user-plus` | Resourcing and talent together | <p>Hiring, succession and development are treated as one connected subject rather than three separate chores.</p> |
+| `search` | An applied investigation | <p>The 6th subject puts you inside a real business problem, examined from the people side.</p> |
+| `user-plus` | Resourcing and talent together | <p>Hiring, succession and development are treated as 1 connected subject rather than 3 separate chores.</p> |
 | `gauge` | Performance in its own right | <p>Performance Management gets a dedicated subject, which is where most HR credibility is won or lost.</p> |
 | `handshake` | Employee relations | <p>A separate subject on the relationship between employer and workforce, including where it goes wrong.</p> |
 | `trending-up` | Leading as well as administering | <p>Leading, Managing and HR Development pushes the role past process and towards influence.</p> |
@@ -90,7 +90,7 @@ Six subjects that read like an HR department's actual remit — hiring, performa
 
 ## 3.4 `learning`
 
-Read this before the list. The eight outcomes Qualifi publishes here are general business statements — the first three say "the principles of human resource management" in a business environment, within industry, and in a specific environment, without ever explaining how those three differ, and the remaining five appear word for word on at least one unrelated award in the same range. The final two are printed on a single line in the source. We have reproduced the published outcomes that are meaningful as written, and built the HR-specific entries from the six published subjects. That makes the list below derived coverage from the awarding body's own material, which we would rather say openly than pass off as its outcome set.
+Read this before the list. The 8 outcomes Qualifi publishes here are general business statements — the 1st 3 say "the principles of human resource management" in a business environment, within industry, and in a specific environment, without ever explaining how those 3 differ, and the remaining 5 appear word for word on at least 1 unrelated award in the same range. The final 2 are printed on 1 line in the source. We have reproduced the published outcomes that are meaningful as written, and built the HR-specific entries from the 6 published subjects. That makes the list below derived coverage from the awarding body's own material, which we would rather say openly than pass off as its outcome set.
 
 1. Understand and apply human resource management principles in a working business setting
 2. Review how those principles hold up inside a particular industry
@@ -103,7 +103,7 @@ Read this before the list. The eight outcomes Qualifi publishes here are general
 
 ## 3.6 `structure`
 
-**Part 1 — The practice** · *The three subjects nearest to daily HR work.*
+**Part 1 — The practice** · *The 3 subjects nearest to daily HR work.*
 Contemporary HRM · Resourcing, Talent Management and Development · Performance Management
 
 **Part 2 — The relationship and the role** · *Where HR stops administering and starts leading.*
@@ -114,14 +114,14 @@ Investigating a Business Issue from an HR Perspective · 120 credits at Level 7 
 
 ## 3.5 `careers`
 
-No destination data, salary bands or employment statistics are published by Qualifi for this qualification, and the progression panel lists no employment option either. One route appears, and this is it in full: "Dissertation to complete Master's Degree at UK University".
+No destination data, salary bands or employment statistics are published by Qualifi for this qualification, and the progression panel lists no employment option either. 1 route appears, and this is it in full: "Dissertation to complete Master's Degree at UK University".
 
 Take that carefully. The diploma itself is not a master's degree. Qualifi identifies no university that has agreed to the arrangement, sets out no credit transfer terms and attaches no conditions to the sentence. Admissions teams decide these matters for themselves, and some will ask for taught modules as well as a dissertation. Approach your chosen university first, with the qualification number to hand, and let its written reply shape your plan.
 
-There is a second thing to be clear about, because UK readers in HR will reasonably wonder. This is not a CIPD qualification. Qualifi publishes no CIPD accreditation, no approval, no exemption from CIPD assessment and no entitlement to any grade of CIPD membership. If chartered membership is your objective, go to the CIPD directly and ask what it will accept; what you learn here may support that conversation, but the award does not deliver it.
+There is a 2nd thing to be clear about, because UK readers in HR will reasonably wonder. This is not a CIPD qualification. Qualifi publishes no CIPD accreditation, no approval, no exemption from CIPD assessment and no entitlement to any grade of CIPD membership. If chartered membership is your objective, go to the CIPD directly and ask what it will accept; what you learn here may support that conversation, but the award does not deliver it.
 
 ## 3.8 `support`
-Graduate-level entry · Teaching from an approved centre · Six published subjects · Eight published learning outcomes · An applied workplace investigation · Qualifi certification
+Graduate-level entry · Teaching from an approved centre · 6 published subjects · 8 published learning outcomes · An applied workplace investigation · Qualifi certification
 
 ## 3.9 `gcc_heading` + `gcc_reasons` *(6)*
 **Heading:** `Why Gulf HR Teams Take This Subject Seriously`
@@ -149,16 +149,16 @@ No price published by Qualifi · Set by the approved centre · Varies by country
 <p>Qualifi publishes the subject title, Investigating a Business Issue from an HR Perspective, and no description of what sits inside it, so what follows reads the title rather than a syllabus. The shape of such a subject is normally recognisable: identify a real problem in an organisation, gather evidence about it, analyse what the people dimension contributes to it, and recommend something defensible. Your centre holds the assessment brief and the word count. Ask for both at the point of enquiry, because this subject will take the largest share of your effort.</p>
 
 **Qualifi's own description says nothing about HR — why?**
-<p>We noticed the same thing and would rather point it out than hide it. The overview on the page is generic text about senior and middle managers needing awareness of specialist services, and it is reused on other qualifications in this family. It contains no reference to human resources. The HR substance of this award is in the six subject titles, which are specific and credible, so that is what we have built this page from. If a centre quotes you the generic paragraph as if it described the content, press for the subject descriptors instead.</p>
+<p>We noticed the same thing and would rather point it out than hide it. The overview on the page is generic text about senior and middle managers needing awareness of specialist services, and it is reused on other qualifications in this family. It contains no reference to human resources. The HR substance of this award is in the 6 subject titles, which are specific and credible, so that is what we have built this page from. If a centre quotes you the generic paragraph as if it described the content, press for the subject descriptors instead.</p>
 
 **Why are there no dates or prices here?**
-<p>Because Qualifi does not set them. The awarding body writes and regulates the qualification and issues the certificate; an approved centre delivers it, decides the schedule and charges the fee. Study time is not published for this award, so you have no official hours figure to test a centre's proposed timetable against. Two sensible questions at enquiry stage: when does the next cohort start and finish, and what does the total cost include once registration and certification are added?</p>
+<p>Because Qualifi does not set them. The awarding body writes and regulates the qualification and issues the certificate; an approved centre delivers it, decides the schedule and charges the fee. Study time is not published for this award, so you have no official hours figure to test a centre's proposed timetable against. 2 sensible questions at enquiry stage: when does the next cohort start and finish, and what does the total cost include once registration and certification are added?</p>
 
 **Can I get on without a degree?**
-<p>Not according to what is published. The entry section lists two things and stops: a Level 6 qualification, or a first degree. Unlike several newer Qualifi awards at this level, there is no managerial experience route, no minimum age, no stated English language requirement and no paragraph about centres reviewing applications individually. Centres do apply their own admissions judgement in practice, so if you have long HR experience but no degree, the conversation to have is with the centre rather than with us.</p>
+<p>Not according to what is published. The entry section lists 2 things and stops: a Level 6 qualification, or a first degree. Unlike several newer Qualifi awards at this level, there is no managerial experience route, no minimum age, no stated English language requirement and no paragraph about centres reviewing applications individually. Centres do apply their own admissions judgement in practice, so if you have long HR experience but no degree, the conversation to have is with the centre rather than with us.</p>
 
 **How does it compare with a master's in HR?**
-<p>Different things, despite the shared level. A master's degree is awarded by a university, usually involves supervised research and a longer taught element, and carries the title. This is a 120-credit Ofqual-regulated diploma awarded by Qualifi, delivered by a private centre, and it does not confer a degree. Where the two meet is the progression line Qualifi publishes, which suggests a dissertation can complete a master's at a UK university — a claim only the receiving university can confirm, so confirm it there.</p>
+<p>Different things, despite the shared level. A master's degree is awarded by a university, usually involves supervised research and a longer taught element, and carries the title. This is a 120-credit Ofqual-regulated diploma awarded by Qualifi, delivered by a private centre, and it does not confer a degree. Where the 2 meet is the progression line Qualifi publishes, which suggests a dissertation can complete a master's at a UK university — a claim only the receiving university can confirm, so confirm it there.</p>
 
 ---
 
@@ -166,4 +166,4 @@ No price published by Qualifi · Set by the approved centre · Varies by country
 | Field | Value | Count |
 |---|---|---|
 | `meta_title` | Qualifi Level 7 Diploma in Human Resource Management | 52 ✅ |
-| `meta_description` | Qualifi Level 7 Diploma in Human Resource Management. 120 credits, six subjects covering resourcing, performance, employee relations and HR development. | 151 ✅ |
+| `meta_description` | Qualifi Level 7 Diploma in Human Resource Management. 120 credits, 6 subjects covering resourcing, performance, employee relations and HR development. | 150 ✅ |

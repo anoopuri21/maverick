@@ -39,18 +39,18 @@ status: approved
 ## 2.1 `short_description`
 
 ```
-A 120-credit postgraduate-level qualification awarded by Gatehouse Awards, regulated by Ofqual. Six units take you through marketing, people, money, governance, sustainability and research. Everything is judged on a portfolio you build from real work, so there is no exam to sit.
+A 120-credit postgraduate-level qualification awarded by Gatehouse Awards, regulated by Ofqual. 6 units take you through marketing, people, money, governance, sustainability and research. Everything is judged on a portfolio you build from real work, so there is no exam to sit.
 ```
-*44 words / 282 chars ✅*
+*41 words / 277 chars ✅*
 
 ## 2.2 `description`
 
 ```html
 <p>Gatehouse Awards built this qualification for people who already run something and now want the thinking that goes with the job title. In its own words it is designed to give you the knowledge and skills for successful leadership in strategic management positions, and to cover both the theory and the practical competence needed to lead organisations in complex, fast-moving settings.</p>
-<p>Six mandatory units sit at Level 7, each carrying 20 credits. They span strategic marketing, people management, financial decision making, governance and the global business environment, sustainable strategic management, and advanced business research methods. You complete all six to reach 120 credits; there is nothing optional and no alternative route through.</p>
-<p>Two points are worth knowing before you enquire. Gatehouse is an awarding organisation rather than a college, so teaching comes from an approved centre, and this particular diploma is delivered exclusively with one partner centre, Global Silver Light. The qualification went live on 2 February 2026 and is scheduled for review in February 2031.</p>
+<p>6 mandatory units sit at Level 7, each carrying 20 credits. They span strategic marketing, people management, financial decision making, governance and the global business environment, sustainable strategic management, and advanced business research methods. You complete all 6 to reach 120 credits; there is nothing optional and no alternative route through.</p>
+<p>2 points are worth knowing before you enquire. Gatehouse is an awarding organisation rather than a college, so teaching comes from an approved centre, and this particular diploma is delivered exclusively with 1 partner centre, Global Silver Light. The qualification went live on 2 February 2026 and is scheduled for review in February 2031.</p>
 ```
-*3 paragraphs / 164 words ✅*
+*3 paragraphs / 166 words ✅*
 
 ---
 
@@ -69,9 +69,9 @@ A 120-credit postgraduate-level qualification awarded by Gatehouse Awards, regul
 |---|---|
 | Full qualification title | GA Level 7 Diploma in Strategic Leadership and Management, QAN 610/6989/9 |
 | Awarding organisation | Gatehouse Awards Ltd, Reg. 07298045, England and Wales, regulated by Ofqual on the RQF at Level 7 |
-| Size | 120 credits over six mandatory units, each 20 credits with 50 guided learning hours and 150 study hours |
+| Size | 120 credits over 6 mandatory units, each 20 credits with 50 guided learning hours and 150 study hours |
 | Total Qualification Time | 1,200 hours, made up of 240 guided learning hours and 960 hours of independent study |
-| Entry | Aged 21 or above with an undergraduate honours degree or a Level 6 qualification. Applicants without either may be admitted on senior professional experience, typically three years or more in strategic or management roles, evidenced by CV or portfolio, interview, development records, references and a diagnostic task |
+| Entry | Aged 21 or above with an undergraduate honours degree or a Level 6 qualification. Applicants without either may be admitted on senior professional experience, typically 3 years or more in strategic or management roles, evidenced by CV or portfolio, interview, development records, references and a diagnostic task |
 | English | International English B2 on the CEFR scale where English is not the learner's first language |
 | Delivery | Under a Gatehouse exclusivity agreement, delivered with approved centre Global Silver Light. Operational from 2 February 2026, review date February 2031 |
 | Fee note | Gatehouse publishes a registration fee of £334.75 excluding VAT. That is what a centre pays the awarding body, not what a learner pays for the course. Ask your centre for its own fee, and take its advice and guidance before enrolling |
@@ -81,9 +81,9 @@ A 120-credit postgraduate-level qualification awarded by Gatehouse Awards, regul
 |---|---|---|
 | `shield-check` | A number you can look up | <p>Every Gatehouse qualification carries a QAN. This one is 610/6989/9, listed on Ofqual's register of regulated qualifications, so you can verify it yourself before paying anyone.</p> |
 | `file-text` | No examination hall | <p>The whole diploma is assessed through a Portfolio of Evidence. You gather and present proof of your own capability rather than revising for a timed paper.</p> |
-| `layers` | Six subjects, not one | <p>Marketing, people, finance, governance, sustainability and research methods each get a full 20-credit unit. None of them is squeezed into a single week of a broader module.</p> |
+| `layers` | 6 separate subjects | <p>Marketing, people, finance, governance, sustainability and research methods each get a full 20-credit unit. None of them is squeezed into 1 week of a broader module.</p> |
 | `leaf` | Sustainability has its own unit | <p>Sustainable Strategic Management is mandatory here, which is still uncommon at this level. It is examined with the same weight as finance or marketing.</p> |
-| `door-open` | A route in without a degree | <p>Applicants who lack the formal qualification can be assessed on senior experience instead, typically three years or more in strategic or management roles.</p> |
+| `door-open` | A route in without a degree | <p>Applicants who lack the formal qualification can be assessed on senior experience instead, typically 3 years or more in strategic or management roles.</p> |
 | `graduation-cap` | Groundwork for a master's | <p>Gatehouse states that the diploma supports progression to senior leadership roles and onto full master's degree level study.</p> |
 
 ## 3.4 `learning`
@@ -98,11 +98,11 @@ A 120-credit postgraduate-level qualification awarded by Gatehouse Awards, regul
 
 ## 3.6 `structure`
 
-**Part 1 — Mandatory units** · *All six units are required. Each is Level 7, 20 credits, 50 guided learning hours and 150 hours of independent study.*
+**Part 1 — Mandatory units** · *All 6 units are required. Each is Level 7, 20 credits, 50 guided learning hours and 150 hours of independent study.*
 Strategic Marketing Management (J/651/9136) · Strategic People Management (K/651/9137) · Financial Decision Making (L/651/9138) · Governance and the Global Business Environment (M/651/9139) · Sustainable Strategic Management (Y/651/9140) · Advanced Business Research Methods (A/651/9141)
 
-**Part 2 — Rules of combination** · *Achieve all six mandatory units and 120 credits. Gatehouse states there are no further rules of combination and no optional units.*
-All six units mandatory · 120 credits in total · No optional units · No further rules of combination
+**Part 2 — Rules of combination** · *Achieve all 6 mandatory units and 120 credits. Gatehouse states there are no further rules of combination and no optional units.*
+All 6 units mandatory · 120 credits in total · No optional units · No further rules of combination
 
 **Part 3 — Assessment and quality assurance** · *How the qualification is judged and verified.*
 Portfolio of Evidence, with no written examination · Each unit signed off at the approved centre · Internal moderation by the centre's quality assurer · External moderation by Gatehouse before certification · Resubmission and grading under the awarding body's published centre policies
@@ -135,7 +135,7 @@ Centre sets the course fee · £334.75 awarding body registration, excluding VAT
 ## 4. `faqs` *(6)*
 
 **Is Gatehouse Awards a university?**
-<p>No, and that difference matters. Gatehouse is an Ofqual-recognised awarding organisation, which means it writes and regulates the qualification and issues the certificate. It does not teach. The actual tuition is delivered by an approved centre. This diploma is covered by a Gatehouse exclusivity agreement with one such centre, Global Silver Light, so it is not something any provider can offer.</p>
+<p>No, and that difference matters. Gatehouse is an Ofqual-recognised awarding organisation, which means it writes and regulates the qualification and issues the certificate. It does not teach. The actual tuition is delivered by an approved centre. This diploma is covered by a Gatehouse exclusivity agreement with 1 such centre, Global Silver Light, so it is not something any provider can offer.</p>
 
 **Is a Level 7 diploma the same as a master's degree?**
 <p>No. It sits at the same level on the Regulated Qualifications Framework as master's study, and Gatehouse says it supports progression onto full master's degree level study, but it is a 120-credit diploma rather than a degree. If your goal is the degree itself, treat this as a step towards it and confirm with the receiving university how much credit they will recognise.</p>
@@ -147,7 +147,7 @@ Centre sets the course fee · £334.75 awarding body registration, excluding VAT
 <p>Gatehouse does not publish a duration in months or years. It publishes 240 guided learning hours and 1,200 hours of total qualification time, with the balance being independent study. How that spreads out depends on the centre and on how much time you can give it, so ask for an indicative timetable rather than assuming a standard academic year.</p>
 
 **Can I get on without a degree?**
-<p>Possibly. Gatehouse asks for an honours degree, or an award at Level 6, yet applicants holding neither can still be considered individually on senior professional experience — typically three years or more spent in strategic or management roles. The centre has to assess that properly, which usually means a CV or portfolio, an interview, proof of continuing development, references, and a brief diagnostic exercise.</p>
+<p>Possibly. Gatehouse asks for an honours degree, or an award at Level 6, yet applicants holding neither can still be considered individually on senior professional experience — typically 3 years or more spent in strategic or management roles. The centre has to assess that properly, which usually means a CV or portfolio, an interview, proof of continuing development, references, and a brief diagnostic exercise.</p>
 
 **Why are there no graduate job titles on this page?**
 <p>Because Gatehouse has not published any for this qualification. There is no destinations list, no salary data and no employer survey on its official pages. We would rather say so than list plausible-sounding roles that no awarding body has stood behind. The progression statements in the careers section above are Gatehouse's own words, and your centre may be able to tell you more about its past learners.</p>
@@ -158,4 +158,4 @@ Centre sets the course fee · £334.75 awarding body registration, excluding VAT
 | Field | Value | Count |
 |---|---|---|
 | `meta_title` | Level 7 Diploma in Strategic Leadership & Management \| Gatehouse | 64 ✅ |
-| `meta_description` | Ofqual-regulated Level 7 Diploma in Strategic Leadership and Management from Gatehouse Awards. 120 credits, six units, portfolio assessed, QAN 610/6989/9. | 153 ✅ |
+| `meta_description` | Ofqual-regulated Level 7 Diploma in Strategic Leadership and Management from Gatehouse Awards. 120 credits, 6 units, portfolio assessed, QAN 610/6989/9. | 152 ✅ |

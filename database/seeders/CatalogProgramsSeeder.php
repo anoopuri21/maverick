@@ -9,17 +9,18 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
 /**
- * Seeds Doctorate and Diploma programmes from the generated catalogue data
- * files. Mirrors MasterProgramsSeeder, with two additions: FAQs are seeded,
+ * Seeds Doctorate, Diploma and source-verified Bachelors programmes from the
+ * generated catalogue data files. Mirrors MasterProgramsSeeder; FAQs are seeded,
  * and gcc_heading comes from the data row instead of being hardcoded.
  *
- * Idempotent — identity is the programme `slug`. Safe to re-run as new
- * content lands; existing rows are updated, never duplicated.
+ * Idempotent — identity is the programme `slug`. Existing rows are updated,
+ * never duplicated. For staging without creating categories/partners, use
+ * BachelorsProgramsSeeder (five approved pages only) or
+ * ExistingCatalogProgramsSeeder (67 approved pages + three admin-only drafts) instead.
  *
- *   php artisan db:seed --class=CatalogProgramsSeeder
- *   php artisan db:seed --class=CatalogProgramsSeeder --force   (production)
- *
- * Data files are generated. Do not hand-edit them:
+ * This legacy seeder can still create Doctorate/Diploma categories or partners
+ * when bootstrapping a new database. Bachelors always uses existing records.
+ * Data files are generated; never edit them by hand:
  *   python3 tools/build_catalog_data.py
  */
 class CatalogProgramsSeeder extends Seeder
@@ -28,45 +29,129 @@ class CatalogProgramsSeeder extends Seeder
     private const SOURCES = [
         'doctorate_programs.php',
         'diploma_programs.php',
+        'bachelors_programs.php',
     ];
+
+    /** @return list<string> */
+    protected function sources(): array
+    {
+        return self::SOURCES;
+    }
+
+    /** Safe seeder variants require every declared category and partner to exist. */
+    protected function existingReferencesOnly(): bool
+    {
+        return false;
+    }
+
+    /** @return array<string, int> Expected programme count by source file. */
+    protected function expectedProgramCounts(): array
+    {
+        return [];
+    }
+
+    /** Subclasses can verify source-specific identities before any DB write. */
+    protected function validateCatalogSource(string $source, array $data): void
+    {
+    }
+
+    /** Optional existing-only copy refreshes run in the same transaction. */
+    protected function afterCatalogProgramsSeeded(array $files): void
+    {
+    }
 
     public function run(): void
     {
-        foreach (self::SOURCES as $source) {
+        // Read every required file before touching the database. A missing or
+        // malformed deployment must fail, not report success with fewer pages.
+        $files = [];
+        foreach ($this->sources() as $source) {
             $path = __DIR__.'/data/'.$source;
-
             if (! is_file($path)) {
-                $this->command?->warn("Skipping missing catalogue file: {$source}");
-
-                continue;
+                throw new \RuntimeException("Missing catalogue data file: {$path}");
             }
 
-            $this->command?->info("Loading {$source}");
-            $this->seedFile(require $path);
+            $data = require $path;
+            if (! is_array($data) || ! is_array($data['categories'] ?? null)
+                || ! is_array($data['universities'] ?? null)
+                || ! is_array($data['programs'] ?? null) || $data['programs'] === []) {
+                throw new \RuntimeException("Invalid or empty catalogue data file: {$path}");
+            }
+
+            $expected = $this->expectedProgramCounts()[$source] ?? null;
+            if ($expected !== null && count($data['programs']) !== $expected) {
+                throw new \RuntimeException("Expected {$expected} programmes in {$source}; found ".count($data['programs']));
+            }
+
+            // Source approval is an offline gate; at runtime, fail closed if
+            // any generated row would auto-publish on first insertion. Existing
+            // programmes keep their admin-set activation during a re-seed.
+            foreach ($data['programs'] as $row) {
+                if (! is_array($row) || ($row['is_active'] ?? null) !== false) {
+                    $slug = is_array($row) ? ($row['slug'] ?? $source) : $source;
+                    throw new \RuntimeException("Catalogue programme must default inactive: {$slug}");
+                }
+                $draftSource = $source === 'bachelors_admin_drafts.php';
+                if (($row['admin_draft'] ?? false) !== $draftSource
+                    || ($draftSource && (! $this->existingReferencesOnly()
+                        || ($row['category_slug'] ?? null) !== 'bachelors'
+                        || ($row['meta_title'] ?? null) !== ''
+                        || ($row['meta_description'] ?? null) !== ''
+                        || ($row['fees'] ?? null) !== []
+                        || ($row['faqs'] ?? null) !== []))) {
+                    throw new \RuntimeException('Unapproved Bachelor draft outside safe inactive source: '.($row['slug'] ?? $source));
+                }
+            }
+            $this->validateCatalogSource($source, $data);
+
+            $files[$source] = $data;
         }
-    }
 
-    /**
-     * @param  array{categories: array, universities: array, programs: array}  $data
-     */
-    private function seedFile(array $data): void
-    {
-        DB::transaction(function () use ($data) {
-            $categories = $this->categories($data['categories'] ?? []);
-            $universities = $this->universities($data['universities'] ?? []);
-
-            foreach ($data['programs'] ?? [] as $row) {
-                $this->program($row, $categories, $universities);
+        // One transaction covers every file: an absent Bachelor partner, an
+        // unexpected slug collision or a failed FAQ must roll back ALL rows.
+        DB::transaction(function () use ($files) {
+            $references = [];
+            foreach ($files as $source => $data) {
+                // The legacy bootstrap may create Doctorate/Diploma references;
+                // the two safe commands never create any, and Bachelors never do.
+                $existingOnly = $this->existingReferencesOnly()
+                    || in_array($source, ['bachelors_programs.php', 'bachelors_admin_drafts.php'], true);
+                $references[$source] = [
+                    $this->categories($data['categories'], $existingOnly),
+                    $this->universities($data['universities'], $existingOnly),
+                ];
             }
+
+            foreach ($files as $source => $data) {
+                $this->command?->info("Loading {$source}");
+                [$categories, $universities] = $references[$source];
+                foreach ($data['programs'] as $row) {
+                    $this->program($row, $categories, $universities);
+                }
+            }
+
+            $this->afterCatalogProgramsSeeded($files);
         });
     }
 
     /** @return array<string, ProgramCategory> */
-    private function categories(array $rows): array
+    private function categories(array $rows, bool $existingOnly): array
     {
         $out = [];
 
         foreach ($rows as $row) {
+            if ($existingOnly) {
+                $existing = ProgramCategory::query()->where('slug', $row['slug'])->first();
+
+                if (! $existing) {
+                    throw new \RuntimeException("Existing programme category required: {$row['slug']}");
+                }
+
+                $out[$row['slug']] = $existing;
+
+                continue;
+            }
+
             $out[$row['slug']] = ProgramCategory::firstOrCreate(
                 ['slug' => $row['slug']],
                 [
@@ -83,11 +168,23 @@ class CatalogProgramsSeeder extends Seeder
     }
 
     /** @return array<string, UniversityPartner> */
-    private function universities(array $rows): array
+    private function universities(array $rows, bool $existingOnly): array
     {
         $out = [];
 
         foreach ($rows as $row) {
+            if ($existingOnly) {
+                $existing = UniversityPartner::query()->where('slug', $row['slug'])->first();
+
+                if (! $existing) {
+                    throw new \RuntimeException("Existing university partner required: {$row['slug']}");
+                }
+
+                $out[$row['slug']] = $existing;
+
+                continue;
+            }
+
             $out[$row['slug']] = UniversityPartner::firstOrCreate(
                 ['slug' => $row['slug']],
                 [
@@ -109,25 +206,58 @@ class CatalogProgramsSeeder extends Seeder
      */
     private function program(array $row, array $categories, array $universities): void
     {
-        $category = $categories[$row['category_slug']]
-            ?? ProgramCategory::query()->where('slug', $row['category_slug'])->first();
-
-        $university = $universities[$row['university_slug']]
-            ?? UniversityPartner::query()->where('slug', $row['university_slug'])->first();
-
+        $category = $categories[$row['category_slug']] ?? null;
+        $university = $universities[$row['university_slug']] ?? null;
         if (! $category || ! $university) {
-            $this->command?->error(
-                "Skipped {$row['slug']}: missing ".
-                (! $category ? "category '{$row['category_slug']}'" : "university '{$row['university_slug']}'")
-            );
-
-            return;
+            throw new \RuntimeException("Undeclared category or partner for programme: {$row['slug']}");
         }
 
         $program = Program::firstOrNew(['slug' => $row['slug']]);
         $creating = ! $program->exists;
+        if ($creating && ($row['admin_draft'] ?? false)) {
+            // A target DB may already have an earlier/original-title Bachelor
+            // under another slug. Fail rather than add a second, unverified
+            // Accounting, HR or Global Business award alongside that record.
+            $subject = match ($row['tracker_sno'] ?? null) {
+                72 => 'accounting',
+                74 => 'human resource',
+                78 => 'global business',
+                default => throw new \RuntimeException('Unrecognised Bachelor admin draft identity'),
+            };
+            $existingSubject = Program::query()
+                ->where('program_category_id', $category->id)
+                ->where('university_partner_id', $university->id)
+                ->where(fn ($query) => $query->where('title', 'like', '%'.$subject.'%')
+                    ->orWhere('slug', 'like', '%'.str_replace(' ', '-', $subject).'%'))
+                ->first();
+            if ($existingSubject) {
+                throw new \RuntimeException("Possible existing Bachelor award conflicts with admin draft {$row['slug']}: {$existingSubject->slug}");
+            }
+        }
+        if (! $creating && ((int) $program->program_category_id !== (int) $category->id
+            || (int) $program->university_partner_id !== (int) $university->id)) {
+            throw new \RuntimeException("Refusing to reassign existing programme: {$row['slug']}");
+        }
+        if (! $creating && $this->existingReferencesOnly()
+            && ($program->title !== $row['title'] || $program->level !== $row['level'])) {
+            throw new \RuntimeException("Refusing to change existing programme identity: {$row['slug']}");
+        }
 
-        $program->fill([
+        // Incomplete admin drafts are insert-once. The client may add missing
+        // copy, fee/SEO details and FAQs in Filament; blank seed fields must
+        // NEVER wipe those edits on a repeat of the one-command rollout.
+        // Identity and partner/category guards above still apply. Preserve
+        // activation too: a previously reviewed row is not silently hidden.
+        if (! $creating && ($row['admin_draft'] ?? false)) {
+            if ($program->is_active) {
+                $this->command?->warn("  Active admin draft needs publication review: {$program->slug}");
+            }
+            $this->command?->info("  Preserved existing admin draft: {$program->title}");
+
+            return;
+        }
+
+        $fields = [
             'program_category_id' => $category->id,
             'university_partner_id' => $university->id,
             'title' => $row['title'],
@@ -135,7 +265,6 @@ class CatalogProgramsSeeder extends Seeder
             'level' => $row['level'],
             'short_description' => $row['hero'],
             'description' => $this->paragraphs($row['overview']),
-            'sort_order' => $row['sort_order'],
             'highlights' => $this->pairs($row['highlights'], 'label', 'value'),
             'snapshot' => $this->pairs($row['snapshot'], 'label', 'value'),
             'benefits' => array_map(fn (array $benefit) => [
@@ -157,7 +286,16 @@ class CatalogProgramsSeeder extends Seeder
             'gcc_heading' => $row['gcc_heading'] ?? 'Why GCC Students Choose This Programme',
             'gcc_reasons' => $row['gcc'] ?? [],
             'fees' => array_map(fn (string $title) => ['title' => $title], $row['fees']),
-        ]);
+        ];
+
+        // The safe existing-reference commands must not change a programme's
+        // identity or admin ordering. These fields are preflight-checked above.
+        if (! $creating && $this->existingReferencesOnly()) {
+            unset($fields['program_category_id'], $fields['university_partner_id'], $fields['title'], $fields['level']);
+        } else {
+            $fields['sort_order'] = $row['sort_order'];
+        }
+        $program->fill($fields);
 
         // Only set on create, so editorial toggles made in the admin panel
         // survive a re-seed.
@@ -170,21 +308,51 @@ class CatalogProgramsSeeder extends Seeder
 
         $program->save();
 
-        $program->seo()->updateOrCreate([], [
+        // Update the authored SEO copy without erasing a canonical URL or
+        // other SEO fields set in the admin panel.
+        $seo = $program->seo()->firstOrNew([]);
+        $seo->fill([
             'meta_title' => $row['meta_title'],
             'meta_description' => $row['meta_description'],
-            'canonical_url' => null,
         ]);
+        $seo->save();
 
         foreach ($row['faqs'] ?? [] as [$question, $answer, $sort]) {
-            $program->faqs()->updateOrCreate(
-                ['question' => $question],
-                ['answer' => $answer, 'sort_order' => $sort, 'is_active' => true]
-            );
+            $this->syncFaq($program, $question, $answer, $sort);
         }
 
         $verb = $creating ? 'Created' : 'Updated';
         $this->command?->info("  {$verb}: {$program->title}");
+    }
+
+    /**
+     * Reconcile a changed question by its original numbered slot instead of
+     * inserting a duplicate FAQ. Ambiguous/admin-duplicated slots abort the
+     * transaction rather than overwriting an arbitrary record.
+     */
+    private function syncFaq(Program $program, string $question, string $answer, int $sort): void
+    {
+        $atSort = $program->faqs()->where('sort_order', $sort)->get();
+        if ($atSort->count() > 1) {
+            throw new \RuntimeException("Ambiguous FAQ slot {$sort} for programme: {$program->slug}");
+        }
+
+        $byQuestion = $program->faqs()->where('question', $question)->first();
+        if ($byQuestion && $atSort->isNotEmpty() && $byQuestion->id !== $atSort->first()->id) {
+            throw new \RuntimeException("Conflicting FAQ question and slot {$sort} for programme: {$program->slug}");
+        }
+
+        $faq = $byQuestion ?? $atSort->first() ?? $program->faqs()->make();
+        $faq->question = $question;
+        $faq->answer = $answer;
+        // Keep admin ordering if a matching FAQ was deliberately moved.
+        if (! $faq->exists || $atSort->isNotEmpty()) {
+            $faq->sort_order = $sort;
+        }
+        if (! $faq->exists) {
+            $faq->is_active = true;
+        }
+        $faq->save();
     }
 
     /**

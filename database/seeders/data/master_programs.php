@@ -76,7 +76,7 @@ return json_decode(<<<'MASTERJSON'
       "hero": "Every company eventually needs the person who understands all of it, finance and operations and people, at once. Girne American University's MBA in Business Management builds that person, in 12 to 15 months, and lets you study from the UAE while you keep working.",
       "overview": [
         "This is the generalist's MBA, done properly. The coursework walks the full management map, economics and accounting, finance and operations, marketing and leadership, strategy at the end holding it together, and the degree finishes with a graduate research project that asks you to investigate a business question with real rigour rather than summarize someone else's answers.",
-        "The format is the reason working professionals choose it. Girne American University designed the qualification to flex around part-time and distance learning, so the twelve to fifteen months fit around a job, a family, and the weeks when one of the three takes priority. Which, in the Gulf, is usually all three.",
+        "The format is the reason working professionals choose it. Girne American University designed the qualification to flex around part-time and distance learning, so the 12 to 15 months fit around a job, a family, and the weeks when 1 of the 3 takes priority. Which, in the Gulf, is usually all 3.",
         "The certificate is awarded by Girne American University, North Cyprus. The generalist instincts it certifies are what employers in a diversified economy keep short of."
       ],
       "highlights": [
@@ -142,8 +142,8 @@ return json_decode(<<<'MASTERJSON'
           "layers"
         ],
         [
-          "A year-ish, not two years",
-          "Twelve to fifteen months. Long enough to matter, short enough to finish before your next promotion window closes.",
+          "A year-ish, not 2 years",
+          "12 to 15 months. Long enough to matter, short enough to finish before your next promotion window closes.",
           "users"
         ],
         [
@@ -153,7 +153,7 @@ return json_decode(<<<'MASTERJSON'
         ],
         [
           "An international cohort",
-          "Girne American University draws students across markets, so the class discussion carries more than one country's assumptions. That friction is part of the education.",
+          "Girne American University draws students across markets, so the class discussion carries more than 1 country's assumptions. That friction is part of the education.",
           "briefcase"
         ],
         [
@@ -192,7 +192,7 @@ return json_decode(<<<'MASTERJSON'
       "structure": [
         {
           "title": "The business core",
-          "subtitle": "Three movements: the business core, the applied management coursework, and the graduate research project that closes the degree.",
+          "subtitle": "3 movements: the business core, the applied management coursework, and the graduate research project that closes the degree.",
           "modules": [
             "Economics and accounting for managers",
             "Financial management and business analytics",
@@ -232,12 +232,12 @@ return json_decode(<<<'MASTERJSON'
         },
         {
           "title": "Diversification keeps printing generalist roles",
-          "text": "The UAE's non-oil sector contributes over 74% of GDP now, and every industry it grows needs managers who see the whole business, not one silo of it.",
+          "text": "The UAE's non-oil sector contributes over 74% of GDP now, and every industry it grows needs managers who see the whole business, not 1 silo of it.",
           "icon": "trending-up"
         },
         {
-          "title": "Scaling companies hire breadth first",
-          "text": "Fast-growing Gulf firms rarely need a third specialist before they need a first generalist. The hiring order is the pitch for this degree.",
+          "title": "Scaling companies seek breadth early",
+          "text": "Fast-growing Gulf firms rarely need a 3rd specialist before they need a 1st generalist. The hiring order is the pitch for this degree.",
           "icon": "globe"
         },
         {
@@ -246,12 +246,12 @@ return json_decode(<<<'MASTERJSON'
           "icon": "briefcase"
         },
         {
-          "title": "Fifteen months, maximum",
-          "text": "Promotion cycles and posting windows do not wait for two-year degrees. The upper bound here is fifteen months.",
+          "title": "15 months, maximum",
+          "text": "Promotion cycles and posting windows do not wait for 2-year degrees. The upper bound here is 15 months.",
           "icon": "landmark"
         },
         {
-          "title": "The cohort is the second curriculum",
+          "title": "The cohort is the 2nd curriculum",
           "text": "An international classroom means your case discussions carry assumptions from several economies. In a region built on cross-border business, that habit pays.",
           "icon": "route"
         }
@@ -277,7 +277,7 @@ return json_decode(<<<'MASTERJSON'
       "hero": "Money decisions are the ones nobody forgives, and the ones that promote people. This MBA from Girne American University pairs the management core with serious financial coursework, in 12 to 15 months, studied online from the UAE.",
       "overview": [
         "Financial management sits in an odd position: technical enough to need real coursework, broad enough to belong inside an MBA. This degree answers both. The management core covers the business around the numbers, and the financial coursework goes into analysis, planning, control, and the decisions that sit on top of all of it, with a graduate research project at the end where you investigate a financial question of your own choosing.",
-        "Girne American University runs the qualification flexibly, built for part-time and distance study, which matters because the people this degree serves are usually mid-quarter, mid-audit, or mid-close. The twelve to fifteen months bend around that instead of fighting it.",
+        "Girne American University runs the qualification flexibly, built for part-time and distance study, which matters because the people this degree serves are usually mid-quarter, mid-audit, or mid-close. The 12 to 15 months bend around that instead of fighting it.",
         "The certificate is awarded by Girne American University, North Cyprus. In a Gulf market where banking assets sit above AED 4.1 trillion, the people who manage money well are not the ones worrying about their next role."
       ],
       "highlights": [
@@ -343,8 +343,8 @@ return json_decode(<<<'MASTERJSON'
           "layers"
         ],
         [
-          "Fifteen months, maximum",
-          "Long enough to be taken seriously, short enough to finish inside two appraisal cycles.",
+          "15 months, maximum",
+          "Long enough to be taken seriously, short enough to finish inside 2 appraisal cycles.",
           "users"
         ],
         [
@@ -359,7 +359,7 @@ return json_decode(<<<'MASTERJSON'
         ],
         [
           "Dirham instalments, interest-free",
-          "Monthly AED payments matched to salary dates, agreed in writing before term one.",
+          "Monthly AED payments matched to salary dates, agreed in writing before term 1.",
           "lightbulb"
         ],
         [
@@ -393,7 +393,7 @@ return json_decode(<<<'MASTERJSON'
       "structure": [
         {
           "title": "The business core",
-          "subtitle": "Three movements: the business core, the financial management coursework, and the graduate research project.",
+          "subtitle": "3 movements: the business core, the financial management coursework, and the graduate research project.",
           "modules": [
             "Economics, accounting, and the management fundamentals",
             "Business analytics and the international business environment",
@@ -447,8 +447,8 @@ return json_decode(<<<'MASTERJSON'
           "icon": "briefcase"
         },
         {
-          "title": "Fifteen months suits finance calendars",
-          "text": "Close periods and audit seasons do not allow sabbaticals. The degree's upper bound is fifteen months, and the delivery bends around the busy weeks.",
+          "title": "15 months suits finance calendars",
+          "text": "Close periods and audit seasons do not allow sabbaticals. The degree's upper bound is 15 months, and the delivery bends around the busy weeks.",
           "icon": "landmark"
         },
         {
@@ -475,10 +475,10 @@ return json_decode(<<<'MASTERJSON'
       "category_slug": "mba",
       "university_slug": "girne-american-university",
       "duration": "12 to 15 months",
-      "hero": "Girne American University sits on an island between three continents, which is a reasonable place to learn business that crosses borders. This MBA teaches exactly that, trade operations, international marketing, cross-border HRM, in 12 to 15 months, studied online from the UAE.",
+      "hero": "Girne American University sits on an island between 3 continents, which is a reasonable place to learn business that crosses borders. This MBA teaches exactly that, trade operations, international marketing, cross-border HRM, in 12 to 15 months, studied online from the UAE.",
       "overview": [
         "International business fails in predictable places: a contract clause nobody read, a marketing campaign translated without thinking, an HR policy that collides with another country's labour law. This MBA works through exactly those failure points. The management core comes first, then coursework aimed at international trade operations, global marketing, human resource management across jurisdictions, and the leadership strategies that hold it together, with a graduate research project closing the degree.",
-        "The delivery is flexible by design, built for part-time and distance study, which suits the profile it serves: managers whose roles already span markets, and founders taking a Gulf company abroad for the first time.",
+        "The delivery is flexible by design, built for part-time and distance study, which suits the profile it serves: managers whose roles already span markets, and founders taking a Gulf company abroad for the 1st time.",
         "The certificate is awarded by Girne American University, North Cyprus. The borders you cross afterwards are yours, and now you cross them with method."
       ],
       "highlights": [
@@ -540,12 +540,12 @@ return json_decode(<<<'MASTERJSON'
       "benefits": [
         [
           "The function set, internationalized",
-          "Marketing, HR, trade, leadership. Each one taught the way it actually runs across borders, which is messier and more interesting.",
+          "Marketing, HR, trade, leadership. Each is taught the way it actually runs across borders, which is messier and more interesting.",
           "layers"
         ],
         [
-          "Fifteen months, maximum",
-          "Mobile careers do not pause for two-year degrees. The upper bound here is fifteen months, and the delivery bends around travel weeks.",
+          "15 months, maximum",
+          "Mobile careers do not pause for 2-year degrees. The upper bound here is 15 months, and the delivery bends around travel weeks.",
           "users"
         ],
         [
@@ -594,7 +594,7 @@ return json_decode(<<<'MASTERJSON'
       "structure": [
         {
           "title": "The business core",
-          "subtitle": "Three movements: the business core, the international business coursework, and the graduate research project.",
+          "subtitle": "3 movements: the business core, the international business coursework, and the graduate research project.",
           "modules": [
             "Economics, accounting, and the management fundamentals",
             "Business analytics, marketing, and operations",
@@ -639,7 +639,7 @@ return json_decode(<<<'MASTERJSON'
         },
         {
           "title": "Regional headquarters keep arriving",
-          "text": "Multinationals keep moving regional operations into Dubai and Abu Dhabi, and they staff them with managers who can hold several markets in one head.",
+          "text": "Multinationals keep moving regional operations into Dubai and Abu Dhabi, and they staff them with managers who can hold several markets in 1 head.",
           "icon": "globe"
         },
         {
@@ -648,8 +648,8 @@ return json_decode(<<<'MASTERJSON'
           "icon": "briefcase"
         },
         {
-          "title": "Fifteen months suits mobile careers",
-          "text": "People aiming at international postings rarely have two years to spare. The degree's upper bound is fifteen months, and it was designed assuming you travel.",
+          "title": "15 months suits mobile careers",
+          "text": "People aiming at international postings rarely have 2 years to spare. The degree's upper bound is 15 months, and it was designed assuming you travel.",
           "icon": "landmark"
         },
         {
@@ -678,7 +678,7 @@ return json_decode(<<<'MASTERJSON'
       "duration": "12 to 15 months",
       "hero": "The most expensive sentence in modern business is “the system should handle that.” This MBA from Girne American University trains the managers who know whether it will, pairing business leadership with information systems, in 12 to 15 months, online from the UAE.",
       "overview": [
-        "Management information systems is the discipline that keeps two rooms talking: the executives who want outcomes and the technologists who build them. This MBA is aimed at the translator role. The management core covers economics, finance, operations, and leadership, then the coursework moves into information systems management, enterprise technology decisions, analytics, and the governance questions that appear the moment a company depends on software it cannot fully see.",
+        "Management information systems is the discipline that keeps 2 rooms talking: the executives who want outcomes and the technologists who build them. This MBA is aimed at the translator role. The management core covers economics, finance, operations, and leadership, then the coursework moves into information systems management, enterprise technology decisions, analytics, and the governance questions that appear the moment a company depends on software it cannot fully see.",
         "Girne American University delivers the qualification flexibly, for part-time and distance study, which suits the people it serves: IT leads moving toward management, and business managers tired of being the least technical person in the digital transformation meeting.",
         "The certificate is awarded by Girne American University, North Cyprus. The meetings you will run afterwards are the ones where the budget and the technology finally agree."
       ],
@@ -735,18 +735,18 @@ return json_decode(<<<'MASTERJSON'
         ],
         [
           "Pathway note",
-          "Credit and fee details arrive with the admission letter, in writing, before payment. The letter is the document to read twice, once for the fees and once for the dates."
+          "Credit and fee details arrive with the admission letter, in writing, before payment. The letter is the document to read 2 times, once for the fees and once for the dates."
         ]
       ],
       "benefits": [
         [
           "The translator role, formalized",
-          "Business on one side, technology on the other. The person between them is worth more than either alone, and this degree trains exactly that seat.",
+          "Business on 1 side, technology on the other. The person between them is worth more than either alone, and this degree trains exactly that seat.",
           "layers"
         ],
         [
-          "Fifteen months, maximum",
-          "Digital programmes move fast, and so do careers in them. Twelve to fifteen months keeps pace with the market it serves.",
+          "15 months, maximum",
+          "Digital programmes move fast, and so do careers in them. 12 to 15 months keeps pace with the market it serves.",
           "users"
         ],
         [
@@ -761,7 +761,7 @@ return json_decode(<<<'MASTERJSON'
         ],
         [
           "Dirham instalments, interest-free",
-          "Monthly AED payments matched to salary dates, agreed in writing before term one.",
+          "Monthly AED payments matched to salary dates, agreed in writing before term 1.",
           "lightbulb"
         ],
         [
@@ -795,7 +795,7 @@ return json_decode(<<<'MASTERJSON'
       "structure": [
         {
           "title": "The business core",
-          "subtitle": "Three movements: the business core, the information systems coursework, and the graduate research project.",
+          "subtitle": "3 movements: the business core, the information systems coursework, and the graduate research project.",
           "modules": [
             "Economics, accounting, and the management fundamentals",
             "Financial management, operations, and marketing",
@@ -849,8 +849,8 @@ return json_decode(<<<'MASTERJSON'
           "icon": "briefcase"
         },
         {
-          "title": "Fifteen months suits delivery calendars",
-          "text": "IT leaders cannot vanish for two years. Twelve to fifteen months, asynchronous around the busy sprints, keeps the delivery moving.",
+          "title": "15 months suits delivery calendars",
+          "text": "IT leaders cannot vanish for 2 years. 12 to 15 months, asynchronous around the busy sprints, keeps the delivery moving.",
           "icon": "landmark"
         },
         {
@@ -879,8 +879,8 @@ return json_decode(<<<'MASTERJSON'
       "duration": "12 to 15 months",
       "hero": "Every emirate is a brand now, and every brand in the region is competing for the same attention. Girne American University's MBA in Marketing trains the people who decide how that competition gets won, in 12 to 15 months, studied online from the UAE.",
       "overview": [
-        "Marketing degrees come in two disappointing flavours: the theoretical one that never meets a budget, and the tactical one that teaches tools already out of date. This one aims for the middle, which is where marketing managers actually live. The management core covers the business around the brand, and the marketing coursework moves through strategy, consumer behaviour, communications, and the measurement questions that decide whether a campaign gets renewed or dropped.",
-        "Girne American University delivers the qualification flexibly, for part-time and distance study, and the degree closes with a graduate research project. Marketing teams rarely lose staff for two years of study; twelve to fifteen months, arranged around campaign calendars, is the arrangement that actually gets approved.",
+        "Marketing degrees come in 2 disappointing flavours: the theoretical one that never meets a budget, and the tactical one that teaches tools already out of date. This one aims for the middle, which is where marketing managers actually live. The management core covers the business around the brand, and the marketing coursework moves through strategy, consumer behaviour, communications, and the measurement questions that decide whether a campaign gets renewed or dropped.",
+        "Girne American University delivers the qualification flexibly, for part-time and distance study, and the degree closes with a graduate research project. Marketing teams rarely lose staff for 2 years of study; 12 to 15 months, arranged around campaign calendars, is the arrangement that actually gets approved.",
         "The certificate is awarded by Girne American University, North Cyprus. The campaigns come after, and they will be judged the way campaigns always are: by the numbers."
       ],
       "highlights": [
@@ -942,12 +942,12 @@ return json_decode(<<<'MASTERJSON'
       "benefits": [
         [
           "Strategy before tools",
-          "Platforms change every eighteen months. Strategy, positioning, and measurement do not, and that is where the coursework leans.",
+          "Platforms change every 18 months. Strategy, positioning, and measurement do not, and that is where the coursework leans.",
           "layers"
         ],
         [
-          "Fifteen months, maximum",
-          "The upper bound here is fifteen months, which fits inside the promotion cycle most marketers are aiming at anyway.",
+          "15 months, maximum",
+          "The upper bound here is 15 months, which fits inside the promotion cycle most marketers are aiming at anyway.",
           "users"
         ],
         [
@@ -975,9 +975,9 @@ return json_decode(<<<'MASTERJSON'
         "Build marketing strategy that survives the budget review",
         "Read consumer behaviour with evidence behind the instincts",
         "Manage brands across channels without losing the thread",
-        "Plan communications with a measurement plan attached from day one",
+        "Plan communications with a measurement plan attached from day 1",
         "Price with structure instead of following the competitor's panic",
-        "Run digital and traditional channels as one argument, not two",
+        "Run digital and traditional channels as 1 argument, not 2",
         "Investigate a marketing question with research discipline",
         "Defend a marketing budget to a finance director, which is the real exam"
       ],
@@ -996,7 +996,7 @@ return json_decode(<<<'MASTERJSON'
       "structure": [
         {
           "title": "The business core",
-          "subtitle": "Three movements: the business core, the marketing coursework, and the graduate research project.",
+          "subtitle": "3 movements: the business core, the marketing coursework, and the graduate research project.",
           "modules": [
             "Economics, accounting, and the management fundamentals",
             "Financial management and business analytics",
@@ -1050,8 +1050,8 @@ return json_decode(<<<'MASTERJSON'
           "icon": "briefcase"
         },
         {
-          "title": "Fifteen months fits campaign calendars",
-          "text": "Marketing teams cannot lose people for two years. Twelve to fifteen months keeps you in the rotation through launches and peaks.",
+          "title": "15 months fits campaign calendars",
+          "text": "Marketing teams cannot lose people for 2 years. 12 to 15 months keeps you in the rotation through launches and peaks.",
           "icon": "landmark"
         },
         {
@@ -1081,7 +1081,7 @@ return json_decode(<<<'MASTERJSON'
       "hero": "Data by itself has never made a decision; somebody with the authority and the literacy does. This MBA from Girne American University trains the managers who run analytics teams and defend their numbers, in 12 to 15 months, studied online from the UAE.",
       "overview": [
         "There is a shortage nobody talks about enough: people who can manage data scientists, not become one. This MBA exists for that seat. The management core covers the business the data serves, and the coursework focuses on analytics strategy, data-driven decision-making, the governance and ethics questions that arrive with every new data source, and the leadership problems specific to technical teams, which are their own species of problem.",
-        "Girne American University delivers the qualification flexibly, for part-time and distance study, and the degree ends with a graduate research project. The people it serves are usually mid-project, mid-migration, or mid-deadline, so the twelve to fifteen months are built to bend.",
+        "Girne American University delivers the qualification flexibly, for part-time and distance study, and the degree ends with a graduate research project. The people it serves are usually mid-project, mid-migration, or mid-deadline, so the 12 to 15 months are built to bend.",
         "The certificate is awarded by Girne American University, North Cyprus. The dashboards you will run afterwards are the ones leadership actually reads."
       ],
       "highlights": [
@@ -1147,8 +1147,8 @@ return json_decode(<<<'MASTERJSON'
           "layers"
         ],
         [
-          "Fifteen months, maximum",
-          "Analytics careers move fast. Twelve to fifteen months keeps pace with the market it serves.",
+          "15 months, maximum",
+          "Analytics careers move fast. 12 to 15 months keeps pace with the market it serves.",
           "users"
         ],
         [
@@ -1163,7 +1163,7 @@ return json_decode(<<<'MASTERJSON'
         ],
         [
           "Dirham instalments, interest-free",
-          "Monthly AED payments matched to salary dates, agreed in writing before term one.",
+          "Monthly AED payments matched to salary dates, agreed in writing before term 1.",
           "lightbulb"
         ],
         [
@@ -1197,7 +1197,7 @@ return json_decode(<<<'MASTERJSON'
       "structure": [
         {
           "title": "The business core",
-          "subtitle": "Three movements: the business core, the analytics management coursework, and the graduate research project.",
+          "subtitle": "3 movements: the business core, the analytics management coursework, and the graduate research project.",
           "modules": [
             "Economics, accounting, and the management fundamentals",
             "Financial management, operations, and marketing",
@@ -1251,8 +1251,8 @@ return json_decode(<<<'MASTERJSON'
           "icon": "briefcase"
         },
         {
-          "title": "Fifteen months suits delivery teams",
-          "text": "Data leaders cannot disappear for two years. Twelve to fifteen months, bent around sprints and migrations, keeps the work moving.",
+          "title": "15 months suits delivery teams",
+          "text": "Data leaders cannot disappear for 2 years. 12 to 15 months, bent around sprints and migrations, keeps the work moving.",
           "icon": "landmark"
         },
         {
@@ -1353,8 +1353,8 @@ return json_decode(<<<'MASTERJSON'
           "users"
         ],
         [
-          "Eighteen months at the outside",
-          "Education leaders rarely get sabbaticals. Twelve to eighteen months, arranged around the school calendar, is the honest version of executive study.",
+          "18 months at the outside",
+          "Education leaders rarely get sabbaticals. 12 to 18 months, arranged around the school calendar, is the honest version of executive study.",
           "target"
         ],
         [
@@ -1377,7 +1377,7 @@ return json_decode(<<<'MASTERJSON'
         "Lead educational institutions with both pedagogical and commercial judgment",
         "Plan educational development with strategy behind it, not optimism",
         "Manage school finances, budgets, and resource allocation under scrutiny",
-        "Run human resources in institutions where most staff are specialists first, employees second",
+        "Run human resources in institutions where most staff are specialists first, employees 2nd",
         "Lead education in a digital age without buying every pitch deck",
         "Apply operations discipline to timetables, facilities, and processes",
         "Investigate an educational leadership question with research discipline",
@@ -1398,7 +1398,7 @@ return json_decode(<<<'MASTERJSON'
       "structure": [
         {
           "title": "The executive core",
-          "subtitle": "Three movements: the executive core, the educational leadership coursework, and the graduate research project.",
+          "subtitle": "3 movements: the executive core, the educational leadership coursework, and the graduate research project.",
           "modules": [
             "Strategic management and business economics",
             "Financial management and human resource management",
@@ -1452,7 +1452,7 @@ return json_decode(<<<'MASTERJSON'
           "icon": "briefcase"
         },
         {
-          "title": "Eighteen months suits the school calendar",
+          "title": "18 months suits the school calendar",
           "text": "The delivery bends around terms, exams, and inspections instead of asking you to ignore them.",
           "icon": "landmark"
         },
@@ -1539,7 +1539,7 @@ return json_decode(<<<'MASTERJSON'
         ],
         [
           "Pathway note",
-          "The admission letter carries the credit detail and the fee structure, in writing, before payment. In an industry that runs on deadlines, the intake dates in that letter deserve a second look."
+          "The admission letter carries the credit detail and the fee structure, in writing, before payment. In an industry that runs on deadlines, the intake dates in that letter deserve a 2nd look."
         ]
       ],
       "benefits": [
@@ -1554,8 +1554,8 @@ return json_decode(<<<'MASTERJSON'
           "users"
         ],
         [
-          "Eighteen months at the outside",
-          "Production calendars do not pause for study. Twelve to eighteen months, executive-scheduled, is the realistic version.",
+          "18 months at the outside",
+          "Production calendars do not pause for study. 12 to 18 months, executive-scheduled, is the realistic version.",
           "target"
         ],
         [
@@ -1599,7 +1599,7 @@ return json_decode(<<<'MASTERJSON'
       "structure": [
         {
           "title": "The executive core",
-          "subtitle": "Three movements: the executive core, the media and entertainment coursework, and the graduate research project.",
+          "subtitle": "3 movements: the executive core, the media and entertainment coursework, and the graduate research project.",
           "modules": [
             "Strategic management and business economics",
             "Financial management and human resource management",
@@ -1653,7 +1653,7 @@ return json_decode(<<<'MASTERJSON'
           "icon": "briefcase"
         },
         {
-          "title": "Eighteen months suits production calendars",
+          "title": "18 months suits production calendars",
           "text": "The executive format bends around seasons and shoots instead of asking you to choose between them.",
           "icon": "landmark"
         },
@@ -1681,9 +1681,9 @@ return json_decode(<<<'MASTERJSON'
       "category_slug": "executive-mba",
       "university_slug": "girne-american-university",
       "duration": "12 to 18 months",
-      "hero": "Senior finance careers stall on one question: can this person see the whole institution, not only their own desk? This Executive MBA from Girne American University answers it, pairing the executive core with global banking and finance, over 12 to 18 months, online from the UAE.",
+      "hero": "Senior finance careers stall on 1 question: can this person see the whole institution, not only their own desk? This Executive MBA from Girne American University answers it, pairing the executive core with global banking and finance, over 12 to 18 months, online from the UAE.",
       "overview": [
-        "By the time finance professionals reach their thirties, they are excellent at one lane and expected to comment on all of them. This Executive MBA widens the view deliberately. The executive core covers strategy, operations, human capital, and leadership, then the coursework goes deep on the global side of the business: international banking structures, cross-border finance, risk and regulation as they actually operate, and the management questions that appear when money moves across jurisdictions.",
+        "By the time finance professionals reach their thirties, they are excellent at 1 lane and expected to comment on all of them. This Executive MBA widens the view deliberately. The executive core covers strategy, operations, human capital, and leadership, then the coursework goes deep on the global side of the business: international banking structures, cross-border finance, risk and regulation as they actually operate, and the management questions that appear when money moves across jurisdictions.",
         "Cohorts are small and senior, drawn from banks, insurers, fintechs, and corporate treasury functions, which turns the case discussions into something close to a working group. The degree closes with a graduate research project, and participants with access to institutional data tend to produce the most interesting ones.",
         "The certificate is awarded by Girne American University, North Cyprus. In a market with banking assets above AED 4.1 trillion, the shortage was never money; it was people trained to manage the view from higher up."
       ],
@@ -1745,7 +1745,7 @@ return json_decode(<<<'MASTERJSON'
       ],
       "benefits": [
         [
-          "The whole institution, not one desk",
+          "The whole institution, not 1 desk",
           "The degree is built for people moving from specialist to institutional view, which is the promotion that matters at this level.",
           "layers"
         ],
@@ -1755,7 +1755,7 @@ return json_decode(<<<'MASTERJSON'
           "users"
         ],
         [
-          "Eighteen months at the outside",
+          "18 months at the outside",
           "Close periods and audit seasons do not allow sabbaticals. The executive schedule bends around them instead.",
           "target"
         ],
@@ -1766,7 +1766,7 @@ return json_decode(<<<'MASTERJSON'
         ],
         [
           "Instalments in dirhams",
-          "Monthly AED payments, interest-free, agreed in writing before term one.",
+          "Monthly AED payments, interest-free, agreed in writing before term 1.",
           "lightbulb"
         ],
         [
@@ -1800,7 +1800,7 @@ return json_decode(<<<'MASTERJSON'
       "structure": [
         {
           "title": "The executive core",
-          "subtitle": "Three movements: the executive core, the global banking and finance coursework, and the graduate research project.",
+          "subtitle": "3 movements: the executive core, the global banking and finance coursework, and the graduate research project.",
           "modules": [
             "Strategic management and business economics",
             "Financial management and human resource management",
@@ -1854,7 +1854,7 @@ return json_decode(<<<'MASTERJSON'
           "icon": "briefcase"
         },
         {
-          "title": "Eighteen months suits senior calendars",
+          "title": "18 months suits senior calendars",
           "text": "The executive format assumes you have a diary that belongs to other people, and schedules around it.",
           "icon": "landmark"
         },
@@ -1956,8 +1956,8 @@ return json_decode(<<<'MASTERJSON'
           "users"
         ],
         [
-          "Eighteen months at the outside",
-          "Operations do not pause for study. Twelve to eighteen months, executive-scheduled, is the version that survives contact with shift patterns.",
+          "18 months at the outside",
+          "Operations do not pause for study. 12 to 18 months, executive-scheduled, is the version that survives contact with shift patterns.",
           "target"
         ],
         [
@@ -2001,7 +2001,7 @@ return json_decode(<<<'MASTERJSON'
       "structure": [
         {
           "title": "The executive core",
-          "subtitle": "Three movements: the executive core, the health and safety leadership coursework, and the graduate research project.",
+          "subtitle": "3 movements: the executive core, the health and safety leadership coursework, and the graduate research project.",
           "modules": [
             "Strategic management and business economics",
             "Financial management and human resource management",
@@ -2046,7 +2046,7 @@ return json_decode(<<<'MASTERJSON'
         },
         {
           "title": "Healthcare growth multiplies the demand",
-          "text": "The UAE keeps opening and expanding healthcare facilities, and every new one inherits a safety leadership requirement.",
+          "text": "The UAE keeps opening and expanding healthcare facilities, and every new 1 inherits a safety leadership requirement.",
           "icon": "globe"
         },
         {
@@ -2055,13 +2055,13 @@ return json_decode(<<<'MASTERJSON'
           "icon": "briefcase"
         },
         {
-          "title": "Eighteen months suits operational lives",
+          "title": "18 months suits operational lives",
           "text": "The delivery bends around shifts, turnarounds, and audits instead of competing with them.",
           "icon": "landmark"
         },
         {
           "title": "The research project can target your own site",
-          "text": "Finish on a live question from your operation and graduate with a plan that has already survived its first internal review.",
+          "text": "Finish on a live question from your operation and graduate with a plan that has already survived its 1st internal review.",
           "icon": "route"
         }
       ],
@@ -2153,12 +2153,12 @@ return json_decode(<<<'MASTERJSON'
         ],
         [
           "A cohort from the sector itself",
-          "Small, senior, and drawn from the companies actually spending the transition money. The network is the second curriculum.",
+          "Small, senior, and drawn from the companies actually spending the transition money. The network is the 2nd curriculum.",
           "users"
         ],
         [
-          "Eighteen months at the outside",
-          "Energy executives do not get sabbaticals. Twelve to eighteen months, executive-scheduled, is the realistic version.",
+          "18 months at the outside",
+          "Energy executives do not get sabbaticals. 12 to 18 months, executive-scheduled, is the realistic version.",
           "target"
         ],
         [
@@ -2202,7 +2202,7 @@ return json_decode(<<<'MASTERJSON'
       "structure": [
         {
           "title": "The executive core",
-          "subtitle": "Three movements: the executive core, the renewable energy and sustainability coursework, and the graduate research project.",
+          "subtitle": "3 movements: the executive core, the renewable energy and sustainability coursework, and the graduate research project.",
           "modules": [
             "Strategic management and business economics",
             "Financial management and human resource management",
@@ -2256,7 +2256,7 @@ return json_decode(<<<'MASTERJSON'
           "icon": "briefcase"
         },
         {
-          "title": "Eighteen months suits project calendars",
+          "title": "18 months suits project calendars",
           "text": "The delivery bends around development cycles and site schedules instead of asking you to choose between them.",
           "icon": "landmark"
         },
@@ -2284,9 +2284,9 @@ return json_decode(<<<'MASTERJSON'
       "category_slug": "executive-mba",
       "university_slug": "girne-american-university",
       "duration": "12 to 18 months",
-      "hero": "Nineteen and a half million visitors, eighty percent occupancy, and a hotel pipeline that keeps lengthening behind both. Somebody has to run all of that at executive level, and this Executive MBA from Girne American University exists for them, over 12 to 18 months, online from the UAE.",
+      "hero": "19.5 million visitors, 80% occupancy, and a hotel pipeline that keeps lengthening behind both. Somebody has to run all of that at executive level, and this Executive MBA from Girne American University exists for them, over 12 to 18 months, online from the UAE.",
       "overview": [
-        "Hospitality produces excellent operators and, less often, executives who can hold assets, capital, and guest experience in one view at once. This Executive MBA closes that gap. The executive core covers strategy, finance, human capital, and operations, then the coursework turns each of them toward tourism and hospitality: destination economics, asset and revenue strategy, the management of guest-facing organisations at scale, and the sustainability questions that destination governments now write into contracts.",
+        "Hospitality produces excellent operators and, less often, executives who can hold assets, capital, and guest experience in 1 view at once. This Executive MBA closes that gap. The executive core covers strategy, finance, human capital, and operations, then the coursework turns each of them toward tourism and hospitality: destination economics, asset and revenue strategy, the management of guest-facing organisations at scale, and the sustainability questions that destination governments now write into contracts.",
         "Cohorts are small and senior, mixing hotel general managers, destination executives, events leaders, and F&B operators, which makes the case discussions sound like a regional industry summit with better focus. The degree closes with a graduate research project on a live industry question.",
         "The certificate is awarded by Girne American University, North Cyprus. The occupancy numbers you move afterwards are the only review that counts."
       ],
@@ -2358,8 +2358,8 @@ return json_decode(<<<'MASTERJSON'
           "users"
         ],
         [
-          "Eighteen months at the outside",
-          "Hospitality calendars do not pause for study. Twelve to eighteen months, executive-scheduled, is the version that survives peak season.",
+          "18 months at the outside",
+          "Hospitality calendars do not pause for study. 12 to 18 months, executive-scheduled, is the version that survives peak season.",
           "target"
         ],
         [
@@ -2403,7 +2403,7 @@ return json_decode(<<<'MASTERJSON'
       "structure": [
         {
           "title": "The executive core",
-          "subtitle": "Three movements: the executive core, the tourism and hospitality coursework, and the graduate research project.",
+          "subtitle": "3 movements: the executive core, the tourism and hospitality coursework, and the graduate research project.",
           "modules": [
             "Strategic management and business economics",
             "Financial management and human resource management",
@@ -2443,7 +2443,7 @@ return json_decode(<<<'MASTERJSON'
         },
         {
           "title": "The visitor numbers keep setting records",
-          "text": "The Dubai Department of Economy and Tourism reports 19.59 million international overnight visitors in 2025, up 5% year on year, with average occupancy at 80.7%. Three record years running, and the pipeline keeps growing.",
+          "text": "The Dubai Department of Economy and Tourism reports 19.59 million international overnight visitors in 2025, up 5% year on year, with average occupancy at 80.7%. 3 record years running, and the pipeline keeps growing.",
           "icon": "trending-up"
         },
         {
@@ -2457,7 +2457,7 @@ return json_decode(<<<'MASTERJSON'
           "icon": "briefcase"
         },
         {
-          "title": "Eighteen months suits the seasons",
+          "title": "18 months suits the seasons",
           "text": "The delivery bends around peaks, openings, and festivals instead of competing with them.",
           "icon": "landmark"
         },
@@ -2488,7 +2488,7 @@ return json_decode(<<<'MASTERJSON'
       "hero": "Corporates now keep innovation budgets the way they once kept travel budgets, and most of that money is spent badly. This Executive MBA from Girne American University trains the executives who spend it well, over 12 to 18 months, studied online from the UAE.",
       "overview": [
         "At executive level, entrepreneurship stops being about idea generation and becomes about portfolio discipline: what to fund, what to kill, and how to keep an organisation tolerant of both decisions. This Executive MBA works at that altitude. The executive core covers strategy, finance, human capital, and operations, then the coursework focuses on venture creation, corporate innovation structures, technology adoption, and the growth questions that decide whether new businesses scale or stall.",
-        "Cohorts are small and senior, mixing corporate innovation leads, business builders, and founders scaling past their first years, which gives the case discussions an unusual property: everyone in the room has something real at stake. The degree closes with a graduate research project, frequently built around the participant's own venture or innovation mandate.",
+        "Cohorts are small and senior, mixing corporate innovation leads, business builders, and founders scaling past their 1st years, which gives the case discussions an unusual property: everyone in the room has something real at stake. The degree closes with a graduate research project, frequently built around the participant's own venture or innovation mandate.",
         "The certificate is awarded by Girne American University, North Cyprus. What you build with it is the part that never gets graded, and the part everybody remembers."
       ],
       "highlights": [
@@ -2559,8 +2559,8 @@ return json_decode(<<<'MASTERJSON'
           "users"
         ],
         [
-          "Eighteen months at the outside",
-          "Founders and innovation leads cannot step away for two years. Twelve to eighteen months, executive-scheduled, is the honest version.",
+          "18 months at the outside",
+          "Founders and innovation leads cannot step away for 2 years. 12 to 18 months, executive-scheduled, is the honest version.",
           "target"
         ],
         [
@@ -2581,7 +2581,7 @@ return json_decode(<<<'MASTERJSON'
       ],
       "learning": [
         "Run innovation as a portfolio, with funding logic and kill criteria attached",
-        "Build ventures that survive their second year, which is where most die",
+        "Build ventures that survive their 2nd year, which is where most die",
         "Manage technology adoption without mistaking the demo for the deployment",
         "Design corporate innovation structures that the parent organisation tolerates",
         "Read growth problems early, before they become post-mortems",
@@ -2604,7 +2604,7 @@ return json_decode(<<<'MASTERJSON'
       "structure": [
         {
           "title": "The executive core",
-          "subtitle": "Three movements: the executive core, the innovation and entrepreneurship coursework, and the graduate research project.",
+          "subtitle": "3 movements: the executive core, the innovation and entrepreneurship coursework, and the graduate research project.",
           "modules": [
             "Strategic management and business economics",
             "Financial management and human resource management",
@@ -2658,7 +2658,7 @@ return json_decode(<<<'MASTERJSON'
           "icon": "briefcase"
         },
         {
-          "title": "Eighteen months suits venture pace",
+          "title": "18 months suits venture pace",
           "text": "The delivery bends around funding rounds and launch windows instead of asking you to pause them.",
           "icon": "landmark"
         },
@@ -2686,7 +2686,7 @@ return json_decode(<<<'MASTERJSON'
       "category_slug": "executive-mba",
       "university_slug": "girne-american-university",
       "duration": "12 to 18 months",
-      "hero": "Every giga project in this region eventually comes down to one question: who owns the plan when it slips? This Executive MBA from Girne American University trains the people who own it, over 12 to 18 months, studied online from the UAE.",
+      "hero": "Every giga project in this region eventually comes down to 1 question: who owns the plan when it slips? This Executive MBA from Girne American University trains the people who own it, over 12 to 18 months, studied online from the UAE.",
       "overview": [
         "At senior level, project management stops being about tools and becomes about judgment: what to promise, what to escalate, and how to keep a programme credible when the ground moves. This Executive MBA works at that level. The executive core covers strategy, finance, human capital, and operations, then the coursework focuses on the disciplines that decide delivery outcomes: governance and stakeholder management, risk and commercial control, leading multi-team programmes, and the organizational politics every large project actually runs on.",
         "Cohorts are small and senior, drawing from construction, technology, consulting, and public sector delivery, which turns the case discussions into something like a programme board with better coffee. The degree closes with a graduate research project, and participants running live programmes tend to make it count.",
@@ -2760,8 +2760,8 @@ return json_decode(<<<'MASTERJSON'
           "users"
         ],
         [
-          "Eighteen months at the outside",
-          "Programme directors do not get sabbaticals. Twelve to eighteen months, executive-scheduled, is the version that survives delivery cycles.",
+          "18 months at the outside",
+          "Programme directors do not get sabbaticals. 12 to 18 months, executive-scheduled, is the version that survives delivery cycles.",
           "target"
         ],
         [
@@ -2805,7 +2805,7 @@ return json_decode(<<<'MASTERJSON'
       "structure": [
         {
           "title": "The executive core",
-          "subtitle": "Three movements: the executive core, the project management coursework, and the graduate research project.",
+          "subtitle": "3 movements: the executive core, the project management coursework, and the graduate research project.",
           "modules": [
             "Strategic management and business economics",
             "Financial management and human resource management",
@@ -2859,13 +2859,13 @@ return json_decode(<<<'MASTERJSON'
           "icon": "briefcase"
         },
         {
-          "title": "Eighteen months suits delivery calendars",
+          "title": "18 months suits delivery calendars",
           "text": "The delivery bends around milestones and gates instead of asking you to pause them.",
           "icon": "landmark"
         },
         {
           "title": "The research project can steer your own programme",
-          "text": "Finish on a live delivery question and graduate with a plan that has already survived its first steering review.",
+          "text": "Finish on a live delivery question and graduate with a plan that has already survived its 1st steering review.",
           "icon": "route"
         }
       ],
@@ -2887,7 +2887,7 @@ return json_decode(<<<'MASTERJSON'
       "category_slug": "executive-mba",
       "university_slug": "girne-american-university",
       "duration": "12 to 18 months",
-      "hero": "The HR function in the Gulf used to administer. Now it sets quotas, runs analytics, and answers to regulators, and the executives in charge carry all three. This Executive MBA from Girne American University trains for exactly that seat, over 12 to 18 months, online from the UAE.",
+      "hero": "The HR function in the Gulf used to administer. Now it sets quotas, runs analytics, and answers to regulators, and the executives in charge carry all 3. This Executive MBA from Girne American University trains for exactly that seat, over 12 to 18 months, online from the UAE.",
       "overview": [
         "Chief people officers now sit with numbers on the table and regulators on the phone, and most reached the seat through instinct and experience rather than formal preparation. This Executive MBA supplies the preparation. The executive core covers strategy, finance, and operations, then the specialisation goes where modern HR leadership actually lives: international human resource management across the jurisdictions a Gulf workforce spans, and human resource analytics, the discipline that turned people decisions into defensible ones.",
         "Cohorts are small and senior, drawing HR directors, people leads, and senior business partners, which keeps the case discussions grounded in real workforces rather than textbook ones. The degree closes with a graduate research project, and participants with access to their own people data tend to produce the most persuasive work.",
@@ -2961,8 +2961,8 @@ return json_decode(<<<'MASTERJSON'
           "users"
         ],
         [
-          "Eighteen months at the outside",
-          "People leaders do not get sabbaticals. Twelve to eighteen months, executive-scheduled, is the realistic version.",
+          "18 months at the outside",
+          "People leaders do not get sabbaticals. 12 to 18 months, executive-scheduled, is the realistic version.",
           "target"
         ],
         [
@@ -3006,7 +3006,7 @@ return json_decode(<<<'MASTERJSON'
       "structure": [
         {
           "title": "The executive core",
-          "subtitle": "Three movements: the executive core, the human resources specialisation, and the graduate research project.",
+          "subtitle": "3 movements: the executive core, the human resources specialisation, and the graduate research project.",
           "modules": [
             "Strategic management and business economics",
             "Financial management and operations",
@@ -3060,7 +3060,7 @@ return json_decode(<<<'MASTERJSON'
           "icon": "briefcase"
         },
         {
-          "title": "Eighteen months suits the HR calendar",
+          "title": "18 months suits the HR calendar",
           "text": "The delivery bends around reviews, hiring peaks, and audit cycles instead of competing with them.",
           "icon": "landmark"
         },
@@ -3090,7 +3090,7 @@ return json_decode(<<<'MASTERJSON'
       "duration": "12 to 18 months",
       "hero": "The last few years taught every supply chain executive the same lesson: the disruption is not the exception, it is the operating condition. This Executive MBA from Girne American University trains leaders for exactly that world, over 12 to 18 months, online from the UAE.",
       "overview": [
-        "Senior supply chain careers now hinge on two abilities: keeping today's network running while redesigning tomorrow's. This Executive MBA trains both halves. The executive core covers strategy, finance, human capital, and operations, then the specialisation gets specific with Project Management Theory and Practice and Strategic Project Management and Implementation, the disciplines that turn supply chain plans into executed change, closing with a graduate research project.",
+        "Senior supply chain careers now hinge on 2 abilities: keeping today's network running while redesigning tomorrow's. This Executive MBA trains both halves. The executive core covers strategy, finance, human capital, and operations, then the specialisation gets specific with Project Management Theory and Practice and Strategic Project Management and Implementation, the disciplines that turn supply chain plans into executed change, closing with a graduate research project.",
         "Cohorts are small and senior, drawing from logistics, retail, manufacturing, and trade functions, which gives the case discussions an unusual texture: everyone in the room has lived a disruption and has opinions about what worked. The degree finishes with research aimed at a live chain, often the participant's own.",
         "The certificate is awarded by Girne American University, North Cyprus. The disruptions will keep arriving on schedule; the difference is you will have a method for them."
       ],
@@ -3162,8 +3162,8 @@ return json_decode(<<<'MASTERJSON'
           "users"
         ],
         [
-          "Eighteen months at the outside",
-          "Supply chain leaders do not get sabbaticals. Twelve to eighteen months, executive-scheduled, is the version that survives peak seasons.",
+          "18 months at the outside",
+          "Supply chain leaders do not get sabbaticals. 12 to 18 months, executive-scheduled, is the version that survives peak seasons.",
           "target"
         ],
         [
@@ -3207,7 +3207,7 @@ return json_decode(<<<'MASTERJSON'
       "structure": [
         {
           "title": "The executive core",
-          "subtitle": "Three movements: the executive core, the supply chain specialisation, and the graduate research project.",
+          "subtitle": "3 movements: the executive core, the supply chain specialisation, and the graduate research project.",
           "modules": [
             "Strategic management and business economics",
             "Financial management and human resource management",
@@ -3261,7 +3261,7 @@ return json_decode(<<<'MASTERJSON'
           "icon": "briefcase"
         },
         {
-          "title": "Eighteen months suits the planning calendar",
+          "title": "18 months suits the planning calendar",
           "text": "The delivery bends around S&OP cycles and peaks instead of competing with them.",
           "icon": "landmark"
         },
@@ -3289,9 +3289,9 @@ return json_decode(<<<'MASTERJSON'
       "category_slug": "executive-mba",
       "university_slug": "girne-american-university",
       "duration": "12 to 18 months",
-      "hero": "Hospitals answer to patients, payers, regulators, and owners, often in the same week. The executives who keep all four satisfied are rare, and this Executive MBA from Girne American University exists to make them less so, over 12 to 18 months, online from the UAE.",
+      "hero": "Hospitals answer to patients, payers, regulators, and owners, often in the same week. The executives who keep all 4 satisfied are rare, and this Executive MBA from Girne American University exists to make them less so, over 12 to 18 months, online from the UAE.",
       "overview": [
-        "Health care runs on clinical excellence, but it survives on management: the financing, the operations, and the regulatory relationships that keep the doors open. This Executive MBA trains the second half of that sentence for people already inside the sector. The executive core covers strategy, finance, human capital, and operations, then the coursework turns each toward health systems: managing clinical organisations, navigating payer economics, leading through regulatory change, and running the service quality metrics that inspections now live on.",
+        "Health care runs on clinical excellence, but it survives on management: the financing, the operations, and the regulatory relationships that keep the doors open. This Executive MBA trains the 2nd half of that sentence for people already inside the sector. The executive core covers strategy, finance, human capital, and operations, then the coursework turns each toward health systems: managing clinical organisations, navigating payer economics, leading through regulatory change, and running the service quality metrics that inspections now live on.",
         "Cohorts are small and senior, drawing from hospitals, clinics, insurers, and health groups, which makes the case discussions sound like a sector roundtable with better focus. The degree closes with a graduate research project, frequently aimed at a live problem in the participant's own facility.",
         "The certificate is awarded by Girne American University, North Cyprus. The patient outcomes it should help improve are the measure that matters, and everyone in the sector knows it."
       ],
@@ -3348,12 +3348,12 @@ return json_decode(<<<'MASTERJSON'
         ],
         [
           "Pathway note",
-          "The admission letter carries the credit detail and the fee structure, in writing, before payment. In a sector built on documentation, you already know to read it twice."
+          "The admission letter carries the credit detail and the fee structure, in writing, before payment. In a sector built on documentation, you already know to read it 2 times."
         ]
       ],
       "benefits": [
         [
-          "The whole institution, not one department",
+          "The whole institution, not 1 department",
           "The degree is built for leaders moving from clinical or functional expertise to institutional responsibility.",
           "layers"
         ],
@@ -3363,8 +3363,8 @@ return json_decode(<<<'MASTERJSON'
           "users"
         ],
         [
-          "Eighteen months at the outside",
-          "Health executives do not get sabbaticals. Twelve to eighteen months, executive-scheduled, is the version that survives rota realities.",
+          "18 months at the outside",
+          "Health executives do not get sabbaticals. 12 to 18 months, executive-scheduled, is the version that survives rota realities.",
           "target"
         ],
         [
@@ -3408,7 +3408,7 @@ return json_decode(<<<'MASTERJSON'
       "structure": [
         {
           "title": "The executive core",
-          "subtitle": "Three movements: the executive core, the health care management coursework, and the graduate research project.",
+          "subtitle": "3 movements: the executive core, the health care management coursework, and the graduate research project.",
           "modules": [
             "Strategic management and business economics",
             "Financial management and human resource management",
@@ -3447,12 +3447,12 @@ return json_decode(<<<'MASTERJSON'
           "icon": "laptop"
         },
         {
-          "title": "The sector is expanding at ten percent a year",
+          "title": "The sector is expanding at 10% a year",
           "text": "UAE healthcare keeps expanding, and expansion at that pace is a management problem as much as a clinical one.",
           "icon": "trending-up"
         },
         {
-          "title": "Insurance made every leader accountable twice",
+          "title": "Insurance made every leader accountable 2 times",
           "text": "With the national health insurance mandate in force since January 2025, providers answer to payers as well as patients, which doubles the need for executives fluent in both.",
           "icon": "globe"
         },
@@ -3462,7 +3462,7 @@ return json_decode(<<<'MASTERJSON'
           "icon": "briefcase"
         },
         {
-          "title": "Eighteen months suits clinical calendars",
+          "title": "18 months suits clinical calendars",
           "text": "The delivery bends around rotas, inspections, and budget cycles instead of competing with them.",
           "icon": "landmark"
         },
@@ -3564,8 +3564,8 @@ return json_decode(<<<'MASTERJSON'
           "users"
         ],
         [
-          "Eighteen months at the outside",
-          "Engineering leaders do not get sabbaticals. Twelve to eighteen months, executive-scheduled, is the version that survives project cycles.",
+          "18 months at the outside",
+          "Engineering leaders do not get sabbaticals. 12 to 18 months, executive-scheduled, is the version that survives project cycles.",
           "target"
         ],
         [
@@ -3609,7 +3609,7 @@ return json_decode(<<<'MASTERJSON'
       "structure": [
         {
           "title": "The executive core",
-          "subtitle": "Three movements: the executive core, the engineering management specialisation, and the graduate research project.",
+          "subtitle": "3 movements: the executive core, the engineering management specialisation, and the graduate research project.",
           "modules": [
             "Strategic management and business economics",
             "Financial management and human resource management",
@@ -3649,7 +3649,7 @@ return json_decode(<<<'MASTERJSON'
         },
         {
           "title": "The region keeps commissioning what engineers deliver",
-          "text": "Gulf mega projects keep running through this decade, and behind every one sits a bench of engineering leadership that employers are still filling.",
+          "text": "Gulf mega projects keep running through this decade, and behind each project sits a bench of engineering leadership that employers are still filling.",
           "icon": "trending-up"
         },
         {
@@ -3659,11 +3659,11 @@ return json_decode(<<<'MASTERJSON'
         },
         {
           "title": "The skills gap reaches technical leadership",
-          "text": "Across the Gulf, employers keep reporting shortages of qualified candidates, and engineering management roles combine two scarce profiles into one.",
+          "text": "Across the Gulf, employers keep reporting shortages of qualified candidates, and engineering management roles combine 2 scarce profiles into one.",
           "icon": "briefcase"
         },
         {
-          "title": "Eighteen months suits delivery calendars",
+          "title": "18 months suits delivery calendars",
           "text": "The delivery bends around milestones and shutdowns instead of competing with them.",
           "icon": "landmark"
         },
@@ -3765,8 +3765,8 @@ return json_decode(<<<'MASTERJSON'
           "users"
         ],
         [
-          "Eighteen months at the outside",
-          "Government leaders do not get sabbaticals. Twelve to eighteen months, executive-scheduled, is the version that survives budget seasons.",
+          "18 months at the outside",
+          "Government leaders do not get sabbaticals. 12 to 18 months, executive-scheduled, is the version that survives budget seasons.",
           "target"
         ],
         [
@@ -3810,7 +3810,7 @@ return json_decode(<<<'MASTERJSON'
       "structure": [
         {
           "title": "The executive core",
-          "subtitle": "Three movements: the executive core, the public administration specialisation, and the graduate research project.",
+          "subtitle": "3 movements: the executive core, the public administration specialisation, and the graduate research project.",
           "modules": [
             "Strategic management and business economics",
             "Financial management and human resource management",
@@ -3864,7 +3864,7 @@ return json_decode(<<<'MASTERJSON'
           "icon": "briefcase"
         },
         {
-          "title": "Eighteen months suits government rhythms",
+          "title": "18 months suits government rhythms",
           "text": "The delivery bends around budget seasons and reporting cycles instead of competing with them.",
           "icon": "landmark"
         },
@@ -3951,7 +3951,7 @@ return json_decode(<<<'MASTERJSON'
         ],
         [
           "Pathway note",
-          "The admission letter carries the credit detail and the fee structure, in writing, before payment. In a discipline built on evidence, reading the paperwork first is a professional habit; start here."
+          "The admission letter carries the credit detail and the fee structure, in writing, before payment. In a discipline built on evidence, reading the paperwork 1st is a professional habit; start here."
         ]
       ],
       "benefits": [
@@ -3966,8 +3966,8 @@ return json_decode(<<<'MASTERJSON'
           "users"
         ],
         [
-          "Eighteen months at the outside",
-          "Health system leaders do not get sabbaticals. Twelve to eighteen months, executive-scheduled, is the version that survives the work.",
+          "18 months at the outside",
+          "Health system leaders do not get sabbaticals. 12 to 18 months, executive-scheduled, is the version that survives the work.",
           "target"
         ],
         [
@@ -4011,7 +4011,7 @@ return json_decode(<<<'MASTERJSON'
       "structure": [
         {
           "title": "The executive core",
-          "subtitle": "Three movements: the executive core, the public health specialisation, and the graduate research project.",
+          "subtitle": "3 movements: the executive core, the public health specialisation, and the graduate research project.",
           "modules": [
             "Strategic management and business economics",
             "Financial management and human resource management",
@@ -4065,7 +4065,7 @@ return json_decode(<<<'MASTERJSON'
           "icon": "briefcase"
         },
         {
-          "title": "Eighteen months suits the health calendar",
+          "title": "18 months suits the health calendar",
           "text": "The delivery bends around planning cycles and reporting seasons instead of competing with them.",
           "icon": "landmark"
         },
@@ -4167,8 +4167,8 @@ return json_decode(<<<'MASTERJSON'
           "users"
         ],
         [
-          "Eighteen months at the outside",
-          "Marketing leaders cannot step away for two years. Twelve to eighteen months, executive-scheduled, is the realistic version.",
+          "18 months at the outside",
+          "Marketing leaders cannot step away for 2 years. 12 to 18 months, executive-scheduled, is the realistic version.",
           "target"
         ],
         [
@@ -4212,7 +4212,7 @@ return json_decode(<<<'MASTERJSON'
       "structure": [
         {
           "title": "The executive core",
-          "subtitle": "Three movements: the executive core, the digital marketing coursework, and the graduate research project.",
+          "subtitle": "3 movements: the executive core, the digital marketing coursework, and the graduate research project.",
           "modules": [
             "Strategic management and business economics",
             "Financial management and human resource management",
@@ -4266,7 +4266,7 @@ return json_decode(<<<'MASTERJSON'
           "icon": "briefcase"
         },
         {
-          "title": "Eighteen months suits launch calendars",
+          "title": "18 months suits launch calendars",
           "text": "The delivery bends around campaigns and peaks instead of asking you to pause them.",
           "icon": "landmark"
         },
@@ -4294,7 +4294,7 @@ return json_decode(<<<'MASTERJSON'
       "category_slug": "executive-mba",
       "university_slug": "girne-american-university",
       "duration": "12 to 18 months",
-      "hero": "Sport in the Gulf is no longer a weekend hobby; it is an asset class, an events calendar, and a national strategy with a budget. This Executive MBA from Girne American University trains the executives running all three, over 12 to 18 months, studied online from the UAE.",
+      "hero": "Sport in the Gulf is no longer a weekend hobby; it is an asset class, an events calendar, and a national strategy with a budget. This Executive MBA from Girne American University trains the executives running all 3, over 12 to 18 months, studied online from the UAE.",
       "overview": [
         "The business of sport has grown up faster than its management bench. Leagues, federations, venues, and sport-adjacent brands now need executives who can handle commercial strategy, event operations, and governance in the same week. This Executive MBA trains exactly that profile. The executive core covers strategy, finance, human capital, and operations, then the coursework turns each toward the sports industry: commercial models, event and venue management, the governance questions federations live with, and the marketing machinery that fills seats and screens.",
         "Cohorts are small and senior, drawing from federations, clubs, venues, agencies, and sports marketing, which gives the case discussions a rare property: everyone in the room has a season on the line. The degree closes with a graduate research project on a live industry question.",
@@ -4368,8 +4368,8 @@ return json_decode(<<<'MASTERJSON'
           "users"
         ],
         [
-          "Eighteen months at the outside",
-          "Sport calendars do not pause for study. Twelve to eighteen months, executive-scheduled, is the version that survives the season.",
+          "18 months at the outside",
+          "Sport calendars do not pause for study. 12 to 18 months, executive-scheduled, is the version that survives the season.",
           "target"
         ],
         [
@@ -4413,7 +4413,7 @@ return json_decode(<<<'MASTERJSON'
       "structure": [
         {
           "title": "The executive core",
-          "subtitle": "Three movements: the executive core, the sport management coursework, and the graduate research project.",
+          "subtitle": "3 movements: the executive core, the sport management coursework, and the graduate research project.",
           "modules": [
             "Strategic management and business economics",
             "Financial management and human resource management",
@@ -4467,7 +4467,7 @@ return json_decode(<<<'MASTERJSON'
           "icon": "briefcase"
         },
         {
-          "title": "Eighteen months suits the season",
+          "title": "18 months suits the season",
           "text": "The delivery bends around fixtures and event windows instead of asking you to choose between them.",
           "icon": "landmark"
         },
@@ -4495,9 +4495,9 @@ return json_decode(<<<'MASTERJSON'
       "category_slug": "msc",
       "university_slug": "girne-american-university",
       "duration": "8 to 18 months, depending on pace",
-      "hero": "Most business master's degrees teach you what happened. A thesis-based one asks you to find out why, with evidence you gathered yourself. The Girne American University MSc in Business Management runs taught coursework in the first stretch and then hands you the majority of the programme to run a real research project under supervision.",
+      "hero": "Most business master's degrees teach you what happened. A thesis-based degree asks you to find out why, with evidence you gathered yourself. The Girne American University MSc in Business Management runs taught coursework in the 1st stretch and then hands you the majority of the programme to run a real research project under supervision.",
       "overview": [
-        "Most business master's degrees teach you what happened. A thesis-based one asks you to find out why, with evidence you gathered yourself. The Girne American University MSc in Business Management runs taught coursework in the first stretch and then hands you the majority of the programme to run a real research project under supervision.",
+        "Most business master's degrees teach you what happened. A thesis-based degree asks you to find out why, with evidence you gathered yourself. The Girne American University MSc in Business Management runs taught coursework in the 1st stretch and then hands you the majority of the programme to run a real research project under supervision.",
         "That makes it a slower burn than an MBA and a harder one to fake. You will read management literature the way researchers do, take a methods sequence that teaches you to design studies rather than skim them, and finish with a thesis defended in front of a committee. For someone weighing a doctoral route later, this is the honest bridge. For someone who simply wants the management toolkit faster, a taught MBA probably fits better, and we will tell you that too if you ask."
       ],
       "highlights": [
@@ -4553,13 +4553,13 @@ return json_decode(<<<'MASTERJSON'
         ],
         [
           "Pathway note",
-          "a thesis MSc reads differently on an application than a taught one. If academia or a PhD is anywhere in your five-year plan, this is the version to take."
+          "a thesis MSc reads differently on an application than a taught one. If academia or a PhD is anywhere in your 5-year plan, this is the version to take."
         ]
       ],
       "benefits": [
         [
           "The thesis is the point",
-          "Roughly a third of the degree is your own research, supervised from question to defence. Not a capstone week. Actual inquiry.",
+          "Roughly 1/3 of the degree is your own research, supervised from question to defence. Not a capstone week. Actual inquiry.",
           "layers"
         ],
         [
@@ -4629,7 +4629,7 @@ return json_decode(<<<'MASTERJSON'
           "title": "thesis (months 8 to 18)",
           "subtitle": "",
           "modules": [
-            "Proposal, supervised research, writing, and defence before a faculty committee. Most candidates spend four to six months on the thesis itself once the proposal is approved."
+            "Proposal, supervised research, writing, and defence before a faculty committee. Most candidates spend 4 to 6 months on the thesis itself once the proposal is approved."
           ]
         }
       ],
@@ -4644,7 +4644,7 @@ return json_decode(<<<'MASTERJSON'
       "gcc": [
         {
           "title": "Management consulting engagements keep growing across the UAE",
-          "text": "Management consulting engagements keep growing across the UAE, and every one needs someone who can hold the analysis together.",
+          "text": "Management consulting engagements keep growing across the UAE, and each project needs someone who can hold the analysis together.",
           "icon": "laptop"
         },
         {
@@ -4669,7 +4669,7 @@ return json_decode(<<<'MASTERJSON'
         },
         {
           "title": "Honest take",
-          "text": "If your goal is a title change at your current company within twelve months, the MBA family gets you there with less friction. This one pays off over a longer arc.",
+          "text": "If your goal is a title change at your current company within 12 months, the MBA family gets you there with less friction. This one pays off over a longer arc.",
           "icon": "shield"
         },
         {
@@ -4699,7 +4699,7 @@ return json_decode(<<<'MASTERJSON'
       "hero": "Economics in the Gulf is not an academic hobby. The region is mid-diversification, which means the people who can model, forecast, and explain what is happening to the non-oil economy have real influence. This MSc gives you the method to do that with evidence.",
       "overview": [
         "Economics in the Gulf is not an academic hobby. The region is mid-diversification, which means the people who can model, forecast, and explain what is happening to the non-oil economy have real influence. This MSc gives you the method to do that with evidence.",
-        "A taught economics degree hands you conclusions. A thesis-based one makes you produce them. The Girne American University MSc in Economics sequences core theory and econometrics first, then moves you into elective territory and, finally, a supervised research thesis defended before a committee.",
+        "A taught economics degree hands you conclusions. A thesis-based degree makes you produce them. The Girne American University MSc in Economics sequences core theory and econometrics first, then moves you into elective territory and, finally, a supervised research thesis defended before a committee.",
         "The payoff is a skill most professionals never build: the ability to take a messy economic question, design a credible way of answering it, and defend your answer under questioning. That is the difference between quoting forecasts and making them. If a PhD is on your horizon, this is also the route that academic admissions committees expect to see."
       ],
       "highlights": [
@@ -4827,7 +4827,7 @@ return json_decode(<<<'MASTERJSON'
           "title": "thesis (months 8 to 18)",
           "subtitle": "",
           "modules": [
-            "Proposal, supervised research, writing, and defence before a faculty committee. Most candidates spend four to six months on the thesis once the proposal clears."
+            "Proposal, supervised research, writing, and defence before a faculty committee. Most candidates spend 4 to 6 months on the thesis once the proposal clears."
           ]
         }
       ],
@@ -5025,7 +5025,7 @@ return json_decode(<<<'MASTERJSON'
           "title": "thesis (months 8 to 18)",
           "subtitle": "",
           "modules": [
-            "Proposal, supervised research, writing, and defence before a faculty committee. Most candidates take four to six months for the thesis once the proposal is approved."
+            "Proposal, supervised research, writing, and defence before a faculty committee. Most candidates take 4 to 6 months for the thesis once the proposal is approved."
           ]
         }
       ],
@@ -5092,10 +5092,10 @@ return json_decode(<<<'MASTERJSON'
       "category_slug": "msc",
       "university_slug": "girne-american-university",
       "duration": "8 to 18 months, depending on pace",
-      "hero": "Ten years ago, counselling was a niche conversation in the Gulf. Today demand for qualified counsellors keeps rising across the UAE, and the number of qualified people has not kept up. That gap is exactly where this degree points.",
+      "hero": "10 years ago, counselling was a niche conversation in the Gulf. Today demand for qualified counsellors keeps rising across the UAE, and the number of qualified people has not kept up. That gap is exactly where this degree points.",
       "overview": [
-        "Ten years ago, counselling was a niche conversation in the Gulf. Today demand for qualified counsellors keeps rising across the UAE, and the number of qualified people has not kept up. That gap is exactly where this degree points.",
-        "Counselling psychology attracts two kinds of students: those who want to help people, and those who want credentials on a wall. A thesis-based MSc filters for a third kind, the one who wants to understand the evidence behind what helps, and be able to test it. The Girne American University MSc in Counselling Psychology sequences taught coursework in psychological foundations and research methods, then gives you a supervised thesis to run and defend.",
+        "10 years ago, counselling was a niche conversation in the Gulf. Today demand for qualified counsellors keeps rising across the UAE, and the number of qualified people has not kept up. That gap is exactly where this degree points.",
+        "Counselling psychology attracts 2 kinds of students: those who want to help people, and those who want credentials on a wall. A thesis-based MSc filters for a 3rd kind, the one who wants to understand the evidence behind what helps, and be able to test it. The Girne American University MSc in Counselling Psychology sequences taught coursework in psychological foundations and research methods, then gives you a supervised thesis to run and defend.",
         "What you finish with is not a licence and nobody should tell you otherwise. What you finish with is a recognised postgraduate qualification with original research attached, which opens doors into support roles, research posts, organisational wellbeing work, and doctoral study. If clinical practice is your destination, this degree is a strong academic foundation on that path, and we will be straight with you about the licensing steps that sit on top of it."
       ],
       "highlights": [
@@ -5223,7 +5223,7 @@ return json_decode(<<<'MASTERJSON'
           "title": "thesis (months 8 to 18)",
           "subtitle": "",
           "modules": [
-            "Proposal, supervised research, writing, and defence before a faculty committee. Most candidates spend four to six months on the thesis once the proposal is approved."
+            "Proposal, supervised research, writing, and defence before a faculty committee. Most candidates spend 4 to 6 months on the thesis once the proposal is approved."
           ]
         }
       ],
@@ -5292,8 +5292,8 @@ return json_decode(<<<'MASTERJSON'
       "duration": "12 months",
       "hero": "12 months of evenings, 1 Swiss MBA, and a logistics career that never pauses for it. Rushford Business School in Switzerland awards the degree. You earn it from wherever in the UAE you already sit.",
       "overview": [
-        "Most MBA programs stay general and hope the detail catches up later. Logistics and supply chain decide whether goods clear Jebel Ali on schedule or sit in a yard burning money, so the degree spends its first half on the management core every MBA carries, then its second half going deep: procurement, freight, distribution, risk, and the design of supply chains themselves.",
-        "The shape suits people who work. Courses run for about three weeks apiece, classes meet in the evenings, and the assessments include copy problems you will recognize from Monday morning. The capstone ultimately takes 1 live supply chain issue. Students who bring their employer's problem into it tend to mention the project at appraisal time, and their managers tend to remember it.",
+        "Most MBA programs stay general and hope the detail catches up later. Logistics and supply chain decide whether goods clear Jebel Ali on schedule or sit in a yard burning money, so the degree spends its 1st half on the management core every MBA carries, then its 2nd half going deep: procurement, freight, distribution, risk, and the design of supply chains themselves.",
+        "The shape suits people who work. Courses run for about 3 weeks apiece, classes meet in the evenings, and the assessments include copy problems you will recognize from Monday morning. The capstone ultimately takes 1 live supply chain issue. Students who bring their employer's problem into it tend to mention the project at appraisal time, and their managers tend to remember it.",
         "The certificate names Rushford Business School, Switzerland, and nothing on it hints that you studied at a kitchen table. That is the whole point, and it costs nothing to keep it that way."
       ],
       "highlights": [
@@ -5409,7 +5409,7 @@ return json_decode(<<<'MASTERJSON'
       "structure": [
         {
           "title": "Management foundations",
-          "subtitle": "4 stages: 2 build breadth, 1 builds the specialism, and 1 proves it.",
+          "subtitle": "4 stages: 2 build breadth, a specialisation stage follows, and a final stage proves it.",
           "modules": [
             "Managerial Economics",
             "Managerial Skills",
@@ -5511,10 +5511,10 @@ return json_decode(<<<'MASTERJSON'
       "category_slug": "mba",
       "university_slug": "rushford-business-school",
       "duration": "16 months",
-      "hero": "Sixteen months, evenings only, one degree pointed at the biggest rewrite in the Gulf economy: how it makes and uses energy. Rushford Business School in Switzerland awards it. You study it from wherever you already work in the UAE.",
+      "hero": "16 months, evenings only, 1 degree pointed at the biggest rewrite in the Gulf economy: how it makes and uses energy. Rushford Business School in Switzerland awards it. You study it from wherever you already work in the UAE.",
       "overview": [
         "Every boardroom in the Gulf now has an energy conversation sitting in it, whether the company admits it or not. This MBA joins that conversation with credentials behind it: the standard Rushford management core first, then a specialisation running through energy economics, sustainability strategy, renewables, efficiency, and the newer language of smart cities. Climate science gets taught through cases, not slogans, which matters more than it sounds.",
-        "Courses run about three weeks each and sit in the evenings, so a full-time job survives the degree. The assessments copy real decisions: a carbon budget here, an efficiency plan there, a policy brief when the module calls for it. And the capstone takes one live problem from the energy or environment space. Students who bring their employer's problem in tend to finish with something they can present at work, which is a better souvenir than a certificate alone.",
+        "Courses run about 3 weeks each and sit in the evenings, so a full-time job survives the degree. The assessments copy real decisions: a carbon budget here, an efficiency plan there, a policy brief when the module calls for it. And the capstone takes 1 live problem from the energy or environment space. Students who bring their employer's problem in tend to finish with something they can present at work, which is a better souvenir than a certificate alone.",
         "The diploma carries the Swiss school's name, and the specialisation is the part that opens doors in energy. Both come in the same envelope."
       ],
       "highlights": [
@@ -5576,7 +5576,7 @@ return json_decode(<<<'MASTERJSON'
       "benefits": [
         [
           "Your salary has no idea you are doing an MBA",
-          "Evenings and three-week courses. The paycheque keeps landing while the specialisation builds, and that is the whole point of the format.",
+          "Evenings and 3-week courses. The paycheque keeps landing while the specialisation builds, and that is the whole point of the format.",
           "layers"
         ],
         [
@@ -5601,7 +5601,7 @@ return json_decode(<<<'MASTERJSON'
         ],
         [
           "Named support, real people",
-          "A success coach who knows your name, and advisors in Sharjah reachable on WhatsApp when you have ten minutes. Not an hour. Ten minutes is usually what you have.",
+          "A success coach who knows your name, and advisors in Sharjah reachable on WhatsApp when you have 10 minutes. Not an hour. 10 minutes is usually what you have.",
           "laptop"
         ]
       ],
@@ -5630,7 +5630,7 @@ return json_decode(<<<'MASTERJSON'
       "structure": [
         {
           "title": "Management foundations",
-          "subtitle": "Four stages. Two build the management core every Rushford MBA carries, the third goes deep on energy and environment, and the fourth proves the whole thing on a live brief.",
+          "subtitle": "4 stages. 2 build the management core every Rushford MBA carries, the 3rd goes deep on energy and environment, and the 4th proves the whole thing on a live brief.",
           "modules": [
             "Managerial Economics",
             "Managerial Skills",
@@ -5662,7 +5662,7 @@ return json_decode(<<<'MASTERJSON'
             "Renewable energy: wind, solar, and ocean sources",
             "Energy efficiency, energy communities, and smart cities",
             "The science of anthropogenic climate change, taught through global cases",
-            "Five electives chosen from nine"
+            "5 electives chosen from 9"
           ]
         },
         {
@@ -5714,7 +5714,7 @@ return json_decode(<<<'MASTERJSON'
         },
         {
           "title": "Honest take",
-          "text": "if your interest in sustainability is purely compliance-driven, a shorter ESG certificate may do the job. This MBA is for people who want the specialisation to shape their next decade, rather than a single policy document.",
+          "text": "if your interest in sustainability is purely compliance-driven, a shorter ESG certificate may do the job. This MBA is for people who want the specialisation to shape their next decade, rather than 1 policy document.",
           "icon": "shield"
         }
       ],
@@ -5738,8 +5738,8 @@ return json_decode(<<<'MASTERJSON'
       "duration": "16 months",
       "hero": "Strategy is where most careers stall: people run operations well but cannot explain why the business should do what it does next. This 16-month online MBA from Rushford Business School works on exactly that gap, and you study it from the UAE without leaving your job.",
       "overview": [
-        "Plenty of professionals can execute a plan. Far fewer can build one, defend it in a room full of objections, and then check whether it worked. This MBA is aimed squarely at the second skill: after the Rushford management core, the specialisation walks the full strategic arc from formulation to implementation, evaluation, and governance, with consulting and M&A on the syllabus.",
-        "It is built for people who work, which sounds obvious until you compare timetables. Three-week courses, evening sessions, and assignments that read like board papers rather than essays. The capstone puts the whole framework onto one live business question at the end. That is why so many students finish it holding a strategy their employer actually uses.",
+        "Plenty of professionals can execute a plan. Far fewer can build one, defend it in a room full of objections, and then check whether it worked. This MBA is aimed squarely at the 2nd skill: after the Rushford management core, the specialisation walks the full strategic arc from formulation to implementation, evaluation, and governance, with consulting and M&A on the syllabus.",
+        "It is built for people who work, which sounds obvious until you compare timetables. 3-week courses, evening sessions, and assignments that read like board papers rather than essays. The capstone puts the whole framework onto 1 live business question at the end. That is why so many students finish it holding a strategy their employer actually uses.",
         "The certificate names Rushford Business School, Switzerland. What it does not say is how many late nights it cost, and that part is between you and the capstone."
       ],
       "highlights": [
@@ -5801,7 +5801,7 @@ return json_decode(<<<'MASTERJSON'
       "benefits": [
         [
           "The career you keep while you study",
-          "Evening classes, three-week courses. The degree fits around the job, because that is the deal.",
+          "Evening classes, 3-week courses. The degree fits around the job, because that is the deal.",
           "layers"
         ],
         [
@@ -5811,7 +5811,7 @@ return json_decode(<<<'MASTERJSON'
         ],
         [
           "You learn the whole arc",
-          "Formulation, implementation, evaluation, governance. Most courses teach one act of the play, and this one teaches all four.",
+          "Formulation, implementation, evaluation, governance. Most courses teach 1 act of the play, and this one teaches all 4.",
           "target"
         ],
         [
@@ -5826,7 +5826,7 @@ return json_decode(<<<'MASTERJSON'
         ],
         [
           "Support with a name attached",
-          "One success coach for the degree, and Sharjah-based advisors you can visit or message on WhatsApp when something needs sorting.",
+          "1 success coach for the degree, and Sharjah-based advisors you can visit or message on WhatsApp when something needs sorting.",
           "laptop"
         ]
       ],
@@ -5855,7 +5855,7 @@ return json_decode(<<<'MASTERJSON'
       "structure": [
         {
           "title": "Management foundations",
-          "subtitle": "Four stages. Two to build breadth, one to think like a strategist, one to prove it on a live brief.",
+          "subtitle": "4 stages. 2 to build breadth, one to think like a strategist, one to prove it on a live brief.",
           "modules": [
             "Managerial Economics",
             "Managerial Skills",
@@ -5967,7 +5967,7 @@ return json_decode(<<<'MASTERJSON'
       "hero": "Property in this region is not a side industry; it is the industry. This 16-month online MBA from Rushford Business School pairs the management core with a real estate specialisation, and it fits around a working week in the UAE.",
       "overview": [
         "A property market that transacts hundreds of billions of dirhams a year does not run on brokers alone. It needs people who can read a balance sheet, price an asset, manage a portfolio, and argue a development case with numbers in hand. That combination is exactly what this MBA teaches: the Rushford management core, then a specialisation built around real estate marketing, investment and finance, portfolio management, and capital markets.",
-        "The logistics suit a working professional, which is the point. Courses last about three weeks, classes sit in the evenings, and the capstone takes a live property question, often from the student's own portfolio or employer. In a market this active, the project almost writes itself.",
+        "The logistics suit a working professional, which is the point. Courses last about 3 weeks, classes sit in the evenings, and the capstone takes a live property question, often from the student's own portfolio or employer. In a market this active, the project almost writes itself.",
         "Rushford Business School, Switzerland, signs the certificate. The market does the rest, if you use what you learn."
       ],
       "highlights": [
@@ -6034,7 +6034,7 @@ return json_decode(<<<'MASTERJSON'
         ],
         [
           "The job stays with you",
-          "Evenings, three-week courses, online delivery. Nobody hands in a resignation letter to do this degree.",
+          "Evenings, 3-week courses, online delivery. Nobody hands in a resignation letter to do this degree.",
           "users"
         ],
         [
@@ -6083,7 +6083,7 @@ return json_decode(<<<'MASTERJSON'
       "structure": [
         {
           "title": "Management foundations",
-          "subtitle": "Four stages: management foundations, the business core, the real estate specialisation, and the capstone that puts all of it on one live property question.",
+          "subtitle": "4 stages: management foundations, the business core, the real estate specialisation, and the capstone that puts all of it on 1 live property question.",
           "modules": [
             "Managerial Economics",
             "Managerial Skills",
@@ -6115,7 +6115,7 @@ return json_decode(<<<'MASTERJSON'
             "Portfolio management across market cycles",
             "Capital markets and property funding",
             "Legal, regulatory, and valuation fundamentals",
-            "Five electives chosen from nine"
+            "5 electives chosen from 9"
           ]
         },
         {
@@ -6142,7 +6142,7 @@ return json_decode(<<<'MASTERJSON'
         },
         {
           "title": "The record year keeps breaking",
-          "text": "Dubai Land Department data shows AED 686.8 billion in property sales across 215,736 transactions in 2025, up 30.9% in value year on year. Five years earlier the figure was AED 71.5 billion.",
+          "text": "Dubai Land Department data shows AED 686.8 billion in property sales across 215,736 transactions in 2025, up 30.9% in value year on year. 5 years earlier the figure was AED 71.5 billion.",
           "icon": "trending-up"
         },
         {
@@ -6192,8 +6192,8 @@ return json_decode(<<<'MASTERJSON'
       "hero": "People decisions are the ones companies get wrong most expensively. This 16-month online MBA from Rushford Business School trains the person who makes them, and it runs in the evenings so your current role keeps running too.",
       "overview": [
         "HR stopped being a back-office function somewhere around the time retention became a board topic. This MBA treats it that way: the Rushford management core comes first, then a specialisation covering HR strategy, people management, organizational change, talent, engagement, and HR's role in international business and M&A.",
-        "The format assumes you have a job, and a busy one. Courses run in three-week blocks in the evenings, assessments mirror real HR work, and the capstone can take a live problem straight from your organisation. Plenty of students finish with a talent or engagement plan their employer ended up adopting, which is as good a result as any grade.",
-        "The certificate is issued by Rushford Business School, Switzerland. The better question is what you do with it in the first six months, and that part is yours."
+        "The format assumes you have a job, and a busy one. Courses run in 3-week blocks in the evenings, assessments mirror real HR work, and the capstone can take a live problem straight from your organisation. Plenty of students finish with a talent or engagement plan their employer ended up adopting, which is as good a result as any grade.",
+        "The certificate is issued by Rushford Business School, Switzerland. The better question is what you do with it in the 1st 6 months, and that part is yours."
       ],
       "highlights": [
         [
@@ -6254,7 +6254,7 @@ return json_decode(<<<'MASTERJSON'
       "benefits": [
         [
           "Keep the role you are upgrading from",
-          "Evening sessions, three-week courses, fully online. The degree was scheduled around working lives on purpose.",
+          "Evening sessions, 3-week courses, fully online. The degree was scheduled around working lives on purpose.",
           "layers"
         ],
         [
@@ -6308,7 +6308,7 @@ return json_decode(<<<'MASTERJSON'
       "structure": [
         {
           "title": "Management foundations",
-          "subtitle": "Four stages: foundations, business core, the HR specialisation, and a capstone on a real people problem.",
+          "subtitle": "4 stages: foundations, business core, the HR specialisation, and a capstone on a real people problem.",
           "modules": [
             "Managerial Economics",
             "Managerial Skills",
@@ -6418,10 +6418,10 @@ return json_decode(<<<'MASTERJSON'
       "category_slug": "mba",
       "university_slug": "rushford-business-school",
       "duration": "16 months",
-      "hero": "Marketing budgets are the first thing cut and the last thing understood. This 16-month online MBA from Rushford Business School teaches the discipline properly, from brand to pricing to digital analytics, while you keep working in the UAE.",
+      "hero": "Marketing budgets are the 1st thing cut and the last thing understood. This 16-month online MBA from Rushford Business School teaches the discipline properly, from brand to pricing to digital analytics, while you keep working in the UAE.",
       "overview": [
         "Anyone can run an ad. The hard part of marketing is deciding what the brand stands for, what it should cost, who the research actually says will buy it, and how to prove the campaign worked. This MBA spends its specialisation on exactly those decisions: marketing strategy, brand management, communications, pricing, research, consumer behaviour, and advertising, with internet marketing analytics rounding it off.",
-        "The Rushford management core runs first, so the marketing sits on top of real business literacy rather than floating above it. Courses take about three weeks each, classes run in the evenings, and the capstone lets you take a live brand or campaign question from your own workplace and finish the degree with it solved.",
+        "The Rushford management core runs first, so the marketing sits on top of real business literacy rather than floating above it. Courses take about 3 weeks each, classes run in the evenings, and the capstone lets you take a live brand or campaign question from your own workplace and finish the degree with it solved.",
         "The certificate names Rushford Business School, Switzerland. What it does not show is the campaign plan you built at 11pm on a Tuesday, and that is the part employers ask about."
       ],
       "highlights": [
@@ -6483,7 +6483,7 @@ return json_decode(<<<'MASTERJSON'
       "benefits": [
         [
           "Keep earning while you specialise",
-          "Three-week courses, evening delivery, fully online. The degree moves around your calendar, never the reverse.",
+          "3-week courses, evening delivery, fully online. The degree moves around your calendar, never the reverse.",
           "layers"
         ],
         [
@@ -6503,7 +6503,7 @@ return json_decode(<<<'MASTERJSON'
         ],
         [
           "Instalments that follow payday",
-          "Monthly AED payments, no interest, schedule agreed in writing before term one.",
+          "Monthly AED payments, no interest, schedule agreed in writing before term 1.",
           "lightbulb"
         ],
         [
@@ -6537,7 +6537,7 @@ return json_decode(<<<'MASTERJSON'
       "structure": [
         {
           "title": "Management foundations",
-          "subtitle": "Four stages: the management foundations, the business core, the marketing specialisation, and a capstone on a live brand question.",
+          "subtitle": "4 stages: the management foundations, the business core, the marketing specialisation, and a capstone on a live brand question.",
           "modules": [
             "Managerial Economics",
             "Managerial Skills",
@@ -6650,8 +6650,8 @@ return json_decode(<<<'MASTERJSON'
       "duration": "16 months",
       "hero": "Hospitals do not fail for lack of doctors; they fail for lack of leadership that understands both care and commerce. This 16-month online MBA from Rushford Business School trains that leadership, and you complete it from the UAE without leaving your post.",
       "overview": [
-        "Healthcare leadership sits on an uncomfortable fence: patient outcomes on one side, budgets, policy, and regulation on the other. This MBA is for the people expected to stand on that fence. After the Rushford management core, the specialisation works through healthcare economics, policy, information systems, ethics and medicolegal issues, telemedicine, and the emotional intelligence that evidence-based, patient-centered care actually demands.",
-        "The format was built for clinicians and administrators who cannot stop working, because most of them cannot. Three-week courses, evening sessions, and a capstone that can be taken straight from your facility: a service line, a quality problem, a policy question. In a sector this regulated, the choice of problem will not be hard.",
+        "Healthcare leadership sits on an uncomfortable fence: patient outcomes on 1 side, budgets, policy, and regulation on the other. This MBA is for the people expected to stand on that fence. After the Rushford management core, the specialisation works through healthcare economics, policy, information systems, ethics and medicolegal issues, telemedicine, and the emotional intelligence that evidence-based, patient-centered care actually demands.",
+        "The format was built for clinicians and administrators who cannot stop working, because most of them cannot. 3-week courses, evening sessions, and a capstone that can be taken straight from your facility: a service line, a quality problem, a policy question. In a sector this regulated, the choice of problem will not be hard.",
         "Rushford Business School, Switzerland, issues the certificate. The patient experience improvements it should lead to are on you, and that is the part worth the effort."
       ],
       "highlights": [
@@ -6713,7 +6713,7 @@ return json_decode(<<<'MASTERJSON'
       "benefits": [
         [
           "Your shift schedule survives the degree",
-          "Evenings, three-week courses, fully online. The programme assumes you are still on the rota.",
+          "Evenings, 3-week courses, fully online. The programme assumes you are still on the rota.",
           "layers"
         ],
         [
@@ -6767,7 +6767,7 @@ return json_decode(<<<'MASTERJSON'
       "structure": [
         {
           "title": "Management foundations",
-          "subtitle": "Four stages: management foundations, the business core, the healthcare leadership specialisation, and a capstone on a live problem from the sector.",
+          "subtitle": "4 stages: management foundations, the business core, the healthcare leadership specialisation, and a capstone on a live problem from the sector.",
           "modules": [
             "Managerial Economics",
             "Managerial Skills",
@@ -6851,7 +6851,7 @@ return json_decode(<<<'MASTERJSON'
         },
         {
           "title": "Honest take",
-          "text": "this degree builds the management side of healthcare careers. Clinical licensing stays with your professional authority, and no MBA changes that, so plan the two tracks side by side.",
+          "text": "this degree builds the management side of healthcare careers. Clinical licensing stays with your professional authority, and no MBA changes that, so plan the 2 tracks side by side.",
           "icon": "shield"
         }
       ],
@@ -6873,10 +6873,10 @@ return json_decode(<<<'MASTERJSON'
       "category_slug": "mba",
       "university_slug": "rushford-business-school",
       "duration": "16 months",
-      "hero": "Nineteen and a half million visitors came to Dubai in 2025, and the Gulf hotel pipeline keeps growing behind them. This 16-month online MBA from Rushford Business School puts the management qualification behind the people running all of it.",
+      "hero": "19.5 million visitors came to Dubai in 2025, and the Gulf hotel pipeline keeps growing behind them. This 16-month online MBA from Rushford Business School puts the management qualification behind the people running all of it.",
       "overview": [
         "Hospitality looks effortless from the guest's side of the desk. Behind it sits operations, law, destination strategy, events, sustainability, and increasingly technology. This MBA covers the whole back of house: the Rushford management core first, then a specialisation running from hotel management fundamentals through tourism operations, environment and law, to event management and destination strategy.",
-        "It runs around working lives, including the double shifts. Courses last two to three weeks, classes sit in the evenings, and the capstone can take a live question from your property or destination: an occupancy problem, an event concept, a guest experience gap. In the busiest tourism market in the region, material will not be the issue.",
+        "It runs around working lives, including the double shifts. Courses last 2 to 3 weeks, classes sit in the evenings, and the capstone can take a live question from your property or destination: an occupancy problem, an event concept, a guest experience gap. In the busiest tourism market in the region, material will not be the issue.",
         "Rushford Business School, Switzerland, signs the certificate. The occupancy numbers you move afterwards are yours, and your general manager will notice."
       ],
       "highlights": [
@@ -6958,7 +6958,7 @@ return json_decode(<<<'MASTERJSON'
         ],
         [
           "Pay monthly in dirhams",
-          "Interest-free AED instalments, schedule agreed in writing before term one.",
+          "Interest-free AED instalments, schedule agreed in writing before term 1.",
           "lightbulb"
         ],
         [
@@ -6992,7 +6992,7 @@ return json_decode(<<<'MASTERJSON'
       "structure": [
         {
           "title": "Management foundations",
-          "subtitle": "Four stages: management foundations, the business core, the hospitality and tourism specialisation, and a capstone on a live industry question.",
+          "subtitle": "4 stages: management foundations, the business core, the hospitality and tourism specialisation, and a capstone on a live industry question.",
           "modules": [
             "Managerial Economics",
             "Managerial Skills",
@@ -7055,7 +7055,7 @@ return json_decode(<<<'MASTERJSON'
         },
         {
           "title": "The visitor numbers keep setting records",
-          "text": "The Dubai Department of Economy and Tourism reports 19.59 million international overnight visitors in 2025, up 5% year on year, with average occupancy at 80.7%. Three record years running.",
+          "text": "The Dubai Department of Economy and Tourism reports 19.59 million international overnight visitors in 2025, up 5% year on year, with average occupancy at 80.7%. 3 record years running.",
           "icon": "trending-up"
         },
         {
@@ -7105,7 +7105,7 @@ return json_decode(<<<'MASTERJSON'
       "hero": "Someone has to answer the question every health system avoids: what is this treatment worth? This 16-month online MBA from Rushford Business School trains the economist behind that answer, and you study it from the UAE while still working.",
       "overview": [
         "Health economics is the discipline that turns medicine into decisions a budget can survive: cost-effectiveness, funding models, pricing, and what to cover when you cannot cover everything. This MBA pairs the Rushford management core with a specialisation built around exactly those questions, taught through case studies and simulated scenarios rather than pure theory.",
-        "The format works for people already inside healthcare, which most of the cohort will be. Courses run in three-week blocks in the evenings, assessments mirror the analyses health organisations actually commission, and the capstone can be built around a payer, a provider, or a policy question from your own context.",
+        "The format works for people already inside healthcare, which most of the cohort will be. Courses run in 3-week blocks in the evenings, assessments mirror the analyses health organisations actually commission, and the capstone can be built around a payer, a provider, or a policy question from your own context.",
         "The certificate is issued by Rushford Business School, Switzerland. Where you aim it, payer, provider, or policy, is the interesting part."
       ],
       "highlights": [
@@ -7192,7 +7192,7 @@ return json_decode(<<<'MASTERJSON'
         ],
         [
           "Local support throughout",
-          "One success coach for the degree, and advisors in Sharjah available in person or on WhatsApp.",
+          "1 success coach for the degree, and advisors in Sharjah available in person or on WhatsApp.",
           "laptop"
         ]
       ],
@@ -7221,7 +7221,7 @@ return json_decode(<<<'MASTERJSON'
       "structure": [
         {
           "title": "Management foundations",
-          "subtitle": "Four stages: management foundations, the business core, the health economics specialisation, and a capstone on a live question from the field.",
+          "subtitle": "4 stages: management foundations, the business core, the health economics specialisation, and a capstone on a live question from the field.",
           "modules": [
             "Managerial Economics",
             "Managerial Skills",
@@ -7253,7 +7253,7 @@ return json_decode(<<<'MASTERJSON'
             "Health markets and the economics of insurance",
             "Healthcare policy analysis",
             "Case studies and simulated scenarios from health organisations",
-            "Five electives chosen from nine"
+            "5 electives chosen from 9"
           ]
         },
         {
@@ -7284,7 +7284,7 @@ return json_decode(<<<'MASTERJSON'
           "icon": "trending-up"
         },
         {
-          "title": "The payer market is worth nine figures",
+          "title": "The payer market is worth 9 figures",
           "text": "The national mandate keeps widening the pool of insured people every year. Payers hire economists before they hire almost anyone else.",
           "icon": "globe"
         },
@@ -7327,10 +7327,10 @@ return json_decode(<<<'MASTERJSON'
       "category_slug": "mba",
       "university_slug": "rushford-business-school",
       "duration": "16 months",
-      "hero": "Ideas are cheap in the Gulf; ventures that survive the second year are not. This 16-month online MBA from Rushford Business School teaches the difference, and you study it while your day job or your startup keeps running.",
+      "hero": "Ideas are cheap in the Gulf; ventures that survive the 2nd year are not. This 16-month online MBA from Rushford Business School teaches the difference, and you study it while your day job or your startup keeps running.",
       "overview": [
         "This MBA is aimed at people who build things: founders, would-be founders, and the corporate managers who are asked to innovate inside organisations that were not designed for it. After the Rushford management core, the specialisation covers startup creation, product and service development, innovation management, technology adoption, and incubation through to growth.",
-        "The format respects how these people actually live, which is erratically. Three-week courses, evening sessions, fully online. The capstone can be your own venture plan, a product you are taking to market, or an innovation problem your employer keeps failing to solve. Whichever you bring, the degree ends with it worked through.",
+        "The format respects how these people actually live, which is erratically. 3-week courses, evening sessions, fully online. The capstone can be your own venture plan, a product you are taking to market, or an innovation problem your employer keeps failing to solve. Whichever you bring, the degree ends with it worked through.",
         "The certificate names Rushford Business School, Switzerland. The venture it should help you build is the part no one can grade."
       ],
       "highlights": [
@@ -7392,7 +7392,7 @@ return json_decode(<<<'MASTERJSON'
       "benefits": [
         [
           "Built for people who already work or run something",
-          "Evenings, three-week blocks, online delivery. Founders keep founding; employees keep earning.",
+          "Evenings, 3-week blocks, online delivery. Founders keep founding; employees keep earning.",
           "layers"
         ],
         [
@@ -7412,12 +7412,12 @@ return json_decode(<<<'MASTERJSON'
         ],
         [
           "Dirham instalments, interest-free",
-          "Monthly AED payments on a schedule agreed in writing before the first term.",
+          "Monthly AED payments on a schedule agreed in writing before the 1st term.",
           "lightbulb"
         ],
         [
           "Human support, Gulf time",
-          "One named success coach for the degree, and Sharjah-based advisors on WhatsApp when you need ten minutes.",
+          "1 named success coach for the degree, and Sharjah-based advisors on WhatsApp when you need 10 minutes.",
           "laptop"
         ]
       ],
@@ -7446,7 +7446,7 @@ return json_decode(<<<'MASTERJSON'
       "structure": [
         {
           "title": "Management foundations",
-          "subtitle": "Four stages: management foundations, the business core, the entrepreneurship and innovation specialisation, and a capstone on your own venture or problem.",
+          "subtitle": "4 stages: management foundations, the business core, the entrepreneurship and innovation specialisation, and a capstone on your own venture or problem.",
           "modules": [
             "Managerial Economics",
             "Managerial Skills",
@@ -7478,7 +7478,7 @@ return json_decode(<<<'MASTERJSON'
             "Innovation management in established organisations",
             "Technology adoption and use",
             "Incubation, scaling, and growth",
-            "Five electives chosen from nine"
+            "5 electives chosen from 9"
           ]
         },
         {
@@ -7554,8 +7554,8 @@ return json_decode(<<<'MASTERJSON'
       "duration": "16 months",
       "hero": "Finance decides which ideas get funded and which die in a spreadsheet. This 16-month online MBA from Rushford Business School puts you on the deciding side, and you study it from the UAE without pausing your career.",
       "overview": [
-        "A finance career rewards people who can do two things at once: hold the technical line on investments, securities, and corporate finance, and explain the position to everyone else in the room. This MBA trains both. The Rushford management core runs first, then the specialisation goes through investments, corporate investment management, international finance, portfolio management, securities analysis, and hedge fund management, with electives covering borrowing, fundraising, and collections.",
-        "Courses last about three weeks, classes sit in the evenings, and the assessments copy the work: simulations, projects, and a capstone on a live financial question. Students in banking and corporate finance tend to bring problems from their own desks, which keeps the degree honest.",
+        "A finance career rewards people who can do 2 things at once: hold the technical line on investments, securities, and corporate finance, and explain the position to everyone else in the room. This MBA trains both. The Rushford management core runs first, then the specialisation goes through investments, corporate investment management, international finance, portfolio management, securities analysis, and hedge fund management, with electives covering borrowing, fundraising, and collections.",
+        "Courses last about 3 weeks, classes sit in the evenings, and the assessments copy the work: simulations, projects, and a capstone on a live financial question. Students in banking and corporate finance tend to bring problems from their own desks, which keeps the degree honest.",
         "Rushford Business School, Switzerland, issues the certificate. The positions it opens depend on what you do with the evenings you invest."
       ],
       "highlights": [
@@ -7617,7 +7617,7 @@ return json_decode(<<<'MASTERJSON'
       "benefits": [
         [
           "The salary keeps moving",
-          "Evenings, three-week courses, online delivery. Nobody takes a career break to learn what pays the career.",
+          "Evenings, 3-week courses, online delivery. Nobody takes a career break to learn what pays the career.",
           "layers"
         ],
         [
@@ -7642,7 +7642,7 @@ return json_decode(<<<'MASTERJSON'
         ],
         [
           "Support with a face",
-          "One success coach for the degree, plus Sharjah-based advisors in person or on WhatsApp.",
+          "1 success coach for the degree, plus Sharjah-based advisors in person or on WhatsApp.",
           "laptop"
         ]
       ],
@@ -7671,7 +7671,7 @@ return json_decode(<<<'MASTERJSON'
       "structure": [
         {
           "title": "Management foundations",
-          "subtitle": "Four stages: management foundations, the business core, the finance specialisation, and a capstone on a live financial problem.",
+          "subtitle": "4 stages: management foundations, the business core, the finance specialisation, and a capstone on a live financial problem.",
           "modules": [
             "Managerial Economics",
             "Managerial Skills",
@@ -7778,10 +7778,10 @@ return json_decode(<<<'MASTERJSON'
       "category_slug": "mba",
       "university_slug": "rushford-business-school",
       "duration": "12 months",
-      "hero": "Twelve months, fifteen courses, one complete MBA. Rushford's accelerated general degree is the fast option for people who want the credential and the fundamentals without a specialisation, and you study it entirely online from the UAE.",
+      "hero": "12 months, 15 courses, 1 complete MBA. Rushford's accelerated general degree is the fast option for people who want the credential and the fundamentals without a specialisation, and you study it entirely online from the UAE.",
       "overview": [
-        "Some people need a specialisation. Plenty of others need the MBA itself: the management literacy, the credential, and the proof of commitment, on the fastest credible timetable. This accelerated MBA exists for the second group. Twelve core courses cover the full business spread, economics, accounting, analytics, finance, operations, marketing, leadership, strategy, and three electives let you lean the degree toward your own industry.",
-        "It is self-paced by design, which is a gift and a test at once. Courses average three weeks each, the materials run through video lectures, readings, simulations, and tests, and the whole degree fits into 12 to 15 hours a week of study. No capstone, no specialisation, no padding. Twelve months later, the certificate arrives.",
+        "Some people need a specialisation. Plenty of others need the MBA itself: the management literacy, the credential, and the proof of commitment, on the fastest credible timetable. This accelerated MBA exists for the 2nd group. 12 core courses cover the full business spread, economics, accounting, analytics, finance, operations, marketing, leadership, strategy, and 3 electives let you lean the degree toward your own industry.",
+        "It is self-paced by design, which is a gift and a test at once. Courses average 3 weeks each, the materials run through video lectures, readings, simulations, and tests, and the whole degree fits into 12 to 15 hours a week of study. No capstone, no specialisation, no padding. 12 months later, the certificate arrives.",
         "The certificate is issued by Rushford Business School, Switzerland. The speed is yours; the credential is the school's."
       ],
       "highlights": [
@@ -7837,13 +7837,13 @@ return json_decode(<<<'MASTERJSON'
         ],
         [
           "Pathway note",
-          "Fees and intake dates are confirmed per intake, in writing, before payment. This is the accelerated MBA, twelve months and 60 ECTS; if you want a specialisation, those run sixteen months, and your advisor will say so plainly."
+          "Fees and intake dates are confirmed per intake, in writing, before payment. This is the accelerated MBA, 12 months and 60 ECTS; if you want a specialisation, those run 16 months, and your advisor will say so plainly."
         ]
       ],
       "benefits": [
         [
           "Done in a year",
-          "Fifteen courses across twelve months. For people who need the credential before the next appraisal cycle, the maths is the pitch.",
+          "15 courses across 12 months. For people who need the credential before the next appraisal cycle, the maths is the pitch.",
           "layers"
         ],
         [
@@ -7852,13 +7852,13 @@ return json_decode(<<<'MASTERJSON'
           "users"
         ],
         [
-          "The whole business, not one corner",
-          "Twelve core courses span the management map. Generalists run companies; this is their syllabus.",
+          "The whole business, not 1 corner",
+          "12 core courses span the management map. Generalists run companies; this is their syllabus.",
           "target"
         ],
         [
           "A Swiss award, nothing trimmed",
-          "60 ECTS across the fifteen courses, awarded by Rushford Business School, Switzerland, the same school behind the longer specialisation MBAs.",
+          "60 ECTS across the 15 courses, awarded by Rushford Business School, Switzerland, the same school behind the longer specialisation MBAs.",
           "briefcase"
         ],
         [
@@ -7897,7 +7897,7 @@ return json_decode(<<<'MASTERJSON'
       "structure": [
         {
           "title": "Foundations",
-          "subtitle": "No specialisation and no capstone here; the accelerated MBA is fifteen courses across three stages, each course around three weeks of study.",
+          "subtitle": "No specialisation and no capstone here; the accelerated MBA is 15 courses across 3 stages, each course around 3 weeks of study.",
           "modules": [
             "Managerial Economics",
             "Managerial Skills",
@@ -7921,10 +7921,10 @@ return json_decode(<<<'MASTERJSON'
           ]
         },
         {
-          "title": "Your three electives",
+          "title": "Your 3 electives",
           "subtitle": "",
           "modules": [
-            "Three electives chosen to lean the degree toward your industry or next role"
+            "3 electives chosen to lean the degree toward your industry or next role"
           ]
         }
       ],
@@ -7944,12 +7944,12 @@ return json_decode(<<<'MASTERJSON'
         },
         {
           "title": "The fastest credible route",
-          "text": "Twelve months is the shortest route to a Swiss MBA on this site, for people whose promotion window will not wait sixteen of them.",
+          "text": "12 months is the shortest route to a Swiss MBA on this site, for people whose promotion window will not wait 16 of them.",
           "icon": "trending-up"
         },
         {
           "title": "Generalists are what scaling companies hire",
-          "text": "Gulf businesses growing fast need managers who understand finance, operations, marketing, and people in one head. That breadth is the whole design.",
+          "text": "Gulf businesses growing fast need managers who understand finance, operations, marketing, and people in 1 head. That breadth is the whole design.",
           "icon": "globe"
         },
         {
@@ -7959,7 +7959,7 @@ return json_decode(<<<'MASTERJSON'
         },
         {
           "title": "Electives point the degree at your industry",
-          "text": "Three electives let a banker, a hotelier, or a logistics lead shape the same degree around their own context.",
+          "text": "3 electives let a banker, a hotelier, or a logistics lead shape the same degree around their own context.",
           "icon": "landmark"
         },
         {
@@ -7969,7 +7969,7 @@ return json_decode(<<<'MASTERJSON'
         },
         {
           "title": "Honest take",
-          "text": "the trade-off for speed is depth. If you already know which industry you want to lead in, the sixteen-month specialisation MBAs will serve that ambition better, and the four extra months are a smaller price than they sound.",
+          "text": "the trade-off for speed is depth. If you already know which industry you want to lead in, the 16-month specialisation MBAs will serve that ambition better, and the 4 extra months are a smaller price than they sound.",
           "icon": "shield"
         }
       ],
@@ -7993,8 +7993,8 @@ return json_decode(<<<'MASTERJSON'
       "duration": "12 months",
       "hero": "Sustainability jobs used to live in the communications department. They live in strategy now, and they pay for people who can argue economics, policy, and environmental science in the same breath. This 12-month online MSc from Rushford Business School trains exactly that argument, and you study it from the UAE.",
       "overview": [
-        "Five core management courses come first, and they are genuinely core: transformational management, managerial economics, organisational behaviour, digital marketing, financial reporting. Then ten courses specific to sustainability and environmental management take over, moving from development economics and the international business environment through advanced microeconomics and macroeconomics to trade and finance. It is, in one year, the economic backbone that most sustainability certificates skip.",
-        "The delivery is asynchronous on Rushford's e-Campus, which sounds like a small detail until you have tried to study on a fixed timetable while holding a job in the Gulf. Fifteen courses of four ECTS each, research methodology and business analytics inside the leadership block, done in twelve months.",
+        "5 core management courses come first, and they are genuinely core: transformational management, managerial economics, organisational behaviour, digital marketing, financial reporting. Then 10 courses specific to sustainability and environmental management take over, moving from development economics and the international business environment through advanced microeconomics and macroeconomics to trade and finance. It is, in 1 year, the economic backbone that most sustainability certificates skip.",
+        "The delivery is asynchronous on Rushford's e-Campus, which sounds like a small detail until you have tried to study on a fixed timetable while holding a job in the Gulf. 15 courses of 4 ECTS each, research methodology and business analytics inside the leadership block, done in 12 months.",
         "Rushford Business School, Switzerland, awards the degree. The timing is yours to manage, and the asynchronous format was designed assuming, correctly, that you have a job."
       ],
       "highlights": [
@@ -8050,13 +8050,13 @@ return json_decode(<<<'MASTERJSON'
         ],
         [
           "Pathway note",
-          "There are longer versions of this degree, 90 ECTS over eighteen months and 120 ECTS over twenty-four, if you want more depth than a year allows. Fees and dates are confirmed per intake, in writing, before payment. In writing, because we mean it."
+          "There are longer versions of this degree, 90 ECTS over 18 months and 120 ECTS over 24, if you want more depth than a year allows. Fees and dates are confirmed per intake, in writing, before payment. In writing, because we mean it."
         ]
       ],
       "benefits": [
         [
           "A year, done",
-          "Sixty ECTS in twelve months. For professionals who need the credential before the next budget cycle, the timeline is the feature.",
+          "60 ECTS in 12 months. For professionals who need the credential before the next budget cycle, the timeline is the feature.",
           "layers"
         ],
         [
@@ -8071,7 +8071,7 @@ return json_decode(<<<'MASTERJSON'
         ],
         [
           "A Swiss MSc without the relocation",
-          "All fifteen courses run on the e-Campus. Rushford Business School, Switzerland, awards the degree, and your address stays where it is.",
+          "All 15 courses run on the e-Campus. Rushford Business School, Switzerland, awards the degree, and your address stays where it is.",
           "briefcase"
         ],
         [
@@ -8081,7 +8081,7 @@ return json_decode(<<<'MASTERJSON'
         ],
         [
           "Support that knows your name",
-          "One success coach across the year, and Sharjah-based advisors reachable on WhatsApp, which is how most questions actually arrive.",
+          "1 success coach across the year, and Sharjah-based advisors reachable on WhatsApp, which is how most questions actually arrive.",
           "laptop"
         ]
       ],
@@ -8114,7 +8114,7 @@ return json_decode(<<<'MASTERJSON'
           "modules": [
             "Your journey, block by block",
             {
-              "title": "Three blocks across fifteen courses",
+              "title": "3 blocks across 15 courses",
               "overview": "core management, the sustainability foundation, and the leadership block carrying the research and analytics training."
             },
             "Block 1 · Core management (20 ECTS)",
@@ -8168,8 +8168,8 @@ return json_decode(<<<'MASTERJSON'
           "icon": "briefcase"
         },
         {
-          "title": "The twelve-month format respects seniority",
-          "text": "Senior professionals cannot disappear for two years. One year, asynchronous, with the salary still arriving, is the arrangement that actually gets signed.",
+          "title": "The 12-month format respects seniority",
+          "text": "Senior professionals cannot disappear for 2 years. 1 year, asynchronous, with the salary still arriving, is the arrangement that actually gets signed.",
           "icon": "landmark"
         },
         {
@@ -8196,10 +8196,10 @@ return json_decode(<<<'MASTERJSON'
       "category_slug": "msc",
       "university_slug": "rushford-business-school",
       "duration": "12 months",
-      "hero": "The difference between managing and leading is usually strategy. This 12-month online MSc from Rushford Business School closes that gap with fifteen focused courses, and you study it from the UAE without leaving your job.",
+      "hero": "The difference between managing and leading is usually strategy. This 12-month online MSc from Rushford Business School closes that gap with 15 focused courses, and you study it from the UAE without leaving your job.",
       "overview": [
-        "Strategy is taught everywhere and understood less often. This MSc treats it as a discipline with methods: five core management courses put the business fundamentals in place, then ten specialisation courses work through strategy as formulation, implementation, evaluation, and governance, with the case-based approach Rushford uses across its strategy teaching.",
-        "The whole degree runs asynchronously on the e-Campus. Fifteen courses of four ECTS each across twelve months, which suits consultants, analysts, and managers whose calendars do not include free weekdays (and whose travel calendars include even fewer). The research methodology inside the leadership block also makes this a sensible stepping stone to doctoral work later.",
+        "Strategy is taught everywhere and understood less often. This MSc treats it as a discipline with methods: 5 core management courses put the business fundamentals in place, then 10 specialisation courses work through strategy as formulation, implementation, evaluation, and governance, with the case-based approach Rushford uses across its strategy teaching.",
+        "The whole degree runs asynchronously on the e-Campus. 15 courses of 4 ECTS each across 12 months, which suits consultants, analysts, and managers whose calendars do not include free weekdays (and whose travel calendars include even fewer). The research methodology inside the leadership block also makes this a sensible stepping stone to doctoral work later.",
         "Rushford Business School, Switzerland, awards the degree. The pace is yours; the discipline is the programme's."
       ],
       "highlights": [
@@ -8260,13 +8260,13 @@ return json_decode(<<<'MASTERJSON'
       ],
       "benefits": [
         [
-          "Twelve months to a Swiss MSc",
-          "Sixty ECTS in a year. The fastest credible route on this site to a strategy credential.",
+          "12 months to a Swiss MSc",
+          "60 ECTS in a year. The fastest credible route on this site to a strategy credential.",
           "layers"
         ],
         [
           "A specialisation, in depth",
-          "Ten of the fifteen courses are strategy-specific, which is a ratio most general degrees cannot match.",
+          "10 of the 15 courses are strategy-specific, which is a ratio most general degrees cannot match.",
           "users"
         ],
         [
@@ -8286,7 +8286,7 @@ return json_decode(<<<'MASTERJSON'
         ],
         [
           "Local support throughout",
-          "One success coach for the year, and advisors in Sharjah available in person or on WhatsApp.",
+          "1 success coach for the year, and advisors in Sharjah available in person or on WhatsApp.",
           "laptop"
         ]
       ],
@@ -8319,7 +8319,7 @@ return json_decode(<<<'MASTERJSON'
           "modules": [
             "Your journey, block by block",
             {
-              "title": "Three blocks across fifteen courses",
+              "title": "3 blocks across 15 courses",
               "overview": "core management, the strategy foundation, and the leadership and research block."
             },
             "Block 1 · Core management (20 ECTS)",
@@ -8329,7 +8329,7 @@ return json_decode(<<<'MASTERJSON'
             "Marketing in a Digital World",
             "Accounting for Financial Reporting",
             "Block 2 · Strategy foundation (20 ECTS)",
-            "Ten specialisation courses covering strategy formulation, implementation, evaluation, and governance, taught with the case method",
+            "10 specialisation courses covering strategy formulation, implementation, evaluation, and governance, taught with the case method",
             "Block 3 · Leadership and research (20 ECTS plus electives)",
             "Research Methodology",
             "Business Analytics",
@@ -8369,7 +8369,7 @@ return json_decode(<<<'MASTERJSON'
           "icon": "briefcase"
         },
         {
-          "title": "Twelve months suits senior calendars",
+          "title": "12 months suits senior calendars",
           "text": "The asynchronous format means no sabbatical and no weekend sacrifice beyond what you choose.",
           "icon": "landmark"
         },
@@ -8380,7 +8380,7 @@ return json_decode(<<<'MASTERJSON'
         },
         {
           "title": "Honest take",
-          "text": "sixty ECTS in a year is demanding, and asynchronous does not mean passive. Budget the study hours honestly before you enrol, because the people who stall are the ones who assumed otherwise.",
+          "text": "60 ECTS in a year is demanding, and asynchronous does not mean passive. Budget the study hours honestly before you enrol, because the people who stall are the ones who assumed otherwise.",
           "icon": "shield"
         }
       ],
@@ -8404,8 +8404,8 @@ return json_decode(<<<'MASTERJSON'
       "duration": "12 months",
       "hero": "Goods do not move themselves, and every disruption proves it. This 12-month online MSc from Rushford Business School trains the people who keep them moving, and it runs entirely online from the UAE.",
       "overview": [
-        "Supply chain stopped being a back-office function the year it became a boardroom headline. This MSc answers that shift: five core management courses first, then ten specialisation courses spanning operations, logistics, inventory control, production scheduling, warehouse management, procurement, and the analytics that hold the whole thing together.",
-        "The teaching leans practical, with real-time projects, seminars, and mentorship rather than pure lectures, and it runs asynchronously on the e-Campus. Fifteen courses in twelve months, designed for people whose jobs cannot pause, because in operations they never do.",
+        "Supply chain stopped being a back-office function the year it became a boardroom headline. This MSc answers that shift: 5 core management courses first, then 10 specialisation courses spanning operations, logistics, inventory control, production scheduling, warehouse management, procurement, and the analytics that hold the whole thing together.",
+        "The teaching leans practical, with real-time projects, seminars, and mentorship rather than pure lectures, and it runs asynchronously on the e-Campus. 15 courses in 12 months, designed for people whose jobs cannot pause, because in operations they never do.",
         "The certificate is awarded by Rushford Business School, Switzerland. The disruptions will keep coming; the difference is you will have a method for them."
       ],
       "highlights": [
@@ -8466,8 +8466,8 @@ return json_decode(<<<'MASTERJSON'
       ],
       "benefits": [
         [
-          "Twelve months to the credential",
-          "Sixty ECTS across one year. Operations people rarely have eighteen to spare.",
+          "12 months to the credential",
+          "60 ECTS across 1 year. Operations people rarely have 18 to spare.",
           "layers"
         ],
         [
@@ -8482,17 +8482,17 @@ return json_decode(<<<'MASTERJSON'
         ],
         [
           "Swiss award, online delivery",
-          "Rushford Business School, Switzerland, awards the MSc. All fifteen courses run on the e-Campus.",
+          "Rushford Business School, Switzerland, awards the MSc. All 15 courses run on the e-Campus.",
           "briefcase"
         ],
         [
           "Instalments in dirhams",
-          "Monthly AED payments, interest-free, agreed in writing before term one.",
+          "Monthly AED payments, interest-free, agreed in writing before term 1.",
           "lightbulb"
         ],
         [
           "Support with a name",
-          "One success coach for the year, and Sharjah-based advisors reachable in person or on WhatsApp.",
+          "1 success coach for the year, and Sharjah-based advisors reachable in person or on WhatsApp.",
           "laptop"
         ]
       ],
@@ -8525,7 +8525,7 @@ return json_decode(<<<'MASTERJSON'
           "modules": [
             "Your journey, block by block",
             {
-              "title": "Three blocks across fifteen courses",
+              "title": "3 blocks across 15 courses",
               "overview": "core management, the operations and supply chain foundation, and the leadership and research block."
             },
             "Block 1 · Core management (20 ECTS)",
@@ -8535,7 +8535,7 @@ return json_decode(<<<'MASTERJSON'
             "Marketing in a Digital World",
             "Accounting for Financial Reporting",
             "Block 2 · Operations and supply chain foundation (20 ECTS)",
-            "Ten specialisation courses covering operations, logistics, inventory control, production scheduling, warehouse management, procurement, and analytics",
+            "10 specialisation courses covering operations, logistics, inventory control, production scheduling, warehouse management, procurement, and analytics",
             "Block 3 · Leadership and research (20 ECTS plus electives)",
             "Research Methodology",
             "Business Analytics",
@@ -8575,8 +8575,8 @@ return json_decode(<<<'MASTERJSON'
           "icon": "briefcase"
         },
         {
-          "title": "Twelve months fits operational lives",
-          "text": "Planners and warehouse managers cannot take sabbaticals. One year, asynchronous, keeps the salary intact.",
+          "title": "12 months fits operational lives",
+          "text": "Planners and warehouse managers cannot take sabbaticals. 1 year, asynchronous, keeps the salary intact.",
           "icon": "landmark"
         },
         {
@@ -8608,10 +8608,10 @@ return json_decode(<<<'MASTERJSON'
       "category_slug": "msc",
       "university_slug": "rushford-business-school",
       "duration": "12 months",
-      "hero": "Business in the Gulf has never stayed inside one border. This 12-month online MSc from Rushford Business School trains managers for the cross-border version of every function, and you study it from the UAE without pausing work.",
+      "hero": "Business in the Gulf has never stayed inside 1 border. This 12-month online MSc from Rushford Business School trains managers for the cross-border version of every function, and you study it from the UAE without pausing work.",
       "overview": [
-        "Multinational companies do not need people who understand business in one country; they need people who can run it across several. This MSc is built around that requirement: five core management courses, then ten specialisation courses covering global leadership strategies, industrial relations, international trade operations, international marketing, and international human resource management.",
-        "The degree runs asynchronously on the e-Campus across twelve months, which suits the exact profile it serves: mid-level managers moving toward multinational roles, founders expanding overseas, and graduates aiming at their first international posting. Three profiles, one timetable.",
+        "Multinational companies do not need people who understand business in 1 country; they need people who can run it across several. This MSc is built around that requirement: 5 core management courses, then 10 specialisation courses covering global leadership strategies, industrial relations, international trade operations, international marketing, and international human resource management.",
+        "The degree runs asynchronously on the e-Campus across 12 months, which suits the exact profile it serves: mid-level managers moving toward multinational roles, founders expanding overseas, and graduates aiming at their 1st international posting. 3 profiles, 1 timetable.",
         "The degree is awarded by Rushford Business School, Switzerland. The borders you cross after it are up to you."
       ],
       "highlights": [
@@ -8672,8 +8672,8 @@ return json_decode(<<<'MASTERJSON'
       ],
       "benefits": [
         [
-          "One year to an international credential",
-          "Sixty ECTS in twelve months, for people whose next role is already in the pipeline.",
+          "1 year to an international credential",
+          "60 ECTS in 12 months, for people whose next role is already in the pipeline.",
           "layers"
         ],
         [
@@ -8688,7 +8688,7 @@ return json_decode(<<<'MASTERJSON'
         ],
         [
           "Swiss award, online delivery",
-          "Rushford Business School, Switzerland, awards the MSc. All fifteen courses run on the e-Campus.",
+          "Rushford Business School, Switzerland, awards the MSc. All 15 courses run on the e-Campus.",
           "briefcase"
         ],
         [
@@ -8698,7 +8698,7 @@ return json_decode(<<<'MASTERJSON'
         ],
         [
           "Support in your time zone",
-          "One success coach across the year, and advisors in Sharjah in person or on WhatsApp.",
+          "1 success coach across the year, and advisors in Sharjah in person or on WhatsApp.",
           "laptop"
         ]
       ],
@@ -8707,7 +8707,7 @@ return json_decode(<<<'MASTERJSON'
         "Run international trade operations with the paperwork and the strategy both in hand",
         "Market products across markets that disagree with each other",
         "Manage international workforces across employment regimes",
-        "Handle industrial relations in more than one jurisdiction",
+        "Handle industrial relations in more than 1 jurisdiction",
         "Read emerging trends in international business before they become consensus",
         "Negotiate with employees, partners, and customers across cultures",
         "Complete assessments framed around real international business problems"
@@ -8731,7 +8731,7 @@ return json_decode(<<<'MASTERJSON'
           "modules": [
             "Your journey, block by block",
             {
-              "title": "Three blocks across fifteen courses",
+              "title": "3 blocks across 15 courses",
               "overview": "core management, the international business foundation, and the leadership and research block."
             },
             "Block 1 · Core management (20 ECTS)",
@@ -8741,7 +8741,7 @@ return json_decode(<<<'MASTERJSON'
             "Marketing in a Digital World",
             "Accounting for Financial Reporting",
             "Block 2 · International business foundation (20 ECTS)",
-            "Ten specialisation courses covering global leadership strategies, industrial relations, international trade operations, international marketing, and international HRM",
+            "10 specialisation courses covering global leadership strategies, industrial relations, international trade operations, international marketing, and international HRM",
             "Block 3 · Leadership and research (20 ECTS plus electives)",
             "Research Methodology",
             "Business Analytics",
@@ -8781,8 +8781,8 @@ return json_decode(<<<'MASTERJSON'
           "icon": "briefcase"
         },
         {
-          "title": "Twelve months suits mobile careers",
-          "text": "People aiming at international postings rarely have two years to spare. One year, asynchronous, keeps everything else moving.",
+          "title": "12 months suits mobile careers",
+          "text": "People aiming at international postings rarely have 2 years to spare. 1 year, asynchronous, keeps everything else moving.",
           "icon": "landmark"
         },
         {
@@ -8792,7 +8792,7 @@ return json_decode(<<<'MASTERJSON'
         },
         {
           "title": "Honest take",
-          "text": "international business is partly a contact sport, and a degree hands you the framework, not the rolodex. Pair the coursework with the region's trade events and the two reinforce each other.",
+          "text": "international business is partly a contact sport, and a degree hands you the framework, not the rolodex. Pair the coursework with the region's trade events and the 2 reinforce each other.",
           "icon": "shield"
         }
       ],
@@ -8814,10 +8814,10 @@ return json_decode(<<<'MASTERJSON'
       "category_slug": "msc",
       "university_slug": "rushford-business-school",
       "duration": "12 months",
-      "hero": "Marketing keeps moving toward data, and the degrees that ignore it keep ageing. This 12-month online MSc from Rushford Business School leans on digital marketing, branding, and analytics from day one, and runs entirely online from the UAE.",
+      "hero": "Marketing keeps moving toward data, and the degrees that ignore it keep ageing. This 12-month online MSc from Rushford Business School leans on digital marketing, branding, and analytics from day 1, and runs entirely online from the UAE.",
       "overview": [
-        "A marketing degree that skips the digital economy is a museum exhibit. This one does not skip it: five core management courses lay the business base, then ten specialisation courses work through marketing strategy, consumer behaviour, branding, luxury branding, and brand value management, with business analytics, communication, and the ethics-and-legal layer wrapped through them.",
-        "The programme runs asynchronously on the e-Campus across twelve months, which fits the lives of the people it serves: working marketers upgrading toward strategy roles, e-commerce operators, and graduates aiming at their first brand-side seat (in that rough order of seniority).",
+        "A marketing degree that skips the digital economy is a museum exhibit. This one does not skip it: 5 core management courses lay the business base, then 10 specialisation courses work through marketing strategy, consumer behaviour, branding, luxury branding, and brand value management, with business analytics, communication, and the ethics-and-legal layer wrapped through them.",
+        "The programme runs asynchronously on the e-Campus across 12 months, which fits the lives of the people it serves: working marketers upgrading toward strategy roles, e-commerce operators, and graduates aiming at their 1st brand-side seat (in that rough order of seniority).",
         "The degree is awarded by Rushford Business School, Switzerland. The campaigns you run afterwards will tell the rest of the story."
       ],
       "highlights": [
@@ -8878,8 +8878,8 @@ return json_decode(<<<'MASTERJSON'
       ],
       "benefits": [
         [
-          "One year, and it counts",
-          "Sixty ECTS in twelve months. The credential arrives before most promotion cycles close.",
+          "1 year, and it counts",
+          "60 ECTS in 12 months. The credential arrives before most promotion cycles close.",
           "layers"
         ],
         [
@@ -8894,17 +8894,17 @@ return json_decode(<<<'MASTERJSON'
         ],
         [
           "Swiss award, online delivery",
-          "Rushford Business School, Switzerland, awards the MSc. All fifteen courses run on the e-Campus.",
+          "Rushford Business School, Switzerland, awards the MSc. All 15 courses run on the e-Campus.",
           "briefcase"
         ],
         [
           "Instalments in dirhams",
-          "Monthly AED payments, interest-free, agreed in writing before term one.",
+          "Monthly AED payments, interest-free, agreed in writing before term 1.",
           "lightbulb"
         ],
         [
           "Support you can message",
-          "One success coach for the year, and Sharjah-based advisors reachable in person or on WhatsApp.",
+          "1 success coach for the year, and Sharjah-based advisors reachable in person or on WhatsApp.",
           "laptop"
         ]
       ],
@@ -8937,7 +8937,7 @@ return json_decode(<<<'MASTERJSON'
           "modules": [
             "Your journey, block by block",
             {
-              "title": "Three blocks across fifteen courses",
+              "title": "3 blocks across 15 courses",
               "overview": "core management, the marketing foundation, and the leadership and research block."
             },
             "Block 1 · Core management (20 ECTS)",
@@ -8947,7 +8947,7 @@ return json_decode(<<<'MASTERJSON'
             "Marketing in a Digital World",
             "Accounting for Financial Reporting",
             "Block 2 · Marketing foundation (20 ECTS)",
-            "Ten specialisation courses covering marketing strategy, consumer behaviour, branding, luxury branding, brand value management, analytics, communication, and ethics",
+            "10 specialisation courses covering marketing strategy, consumer behaviour, branding, luxury branding, brand value management, analytics, communication, and ethics",
             "Block 3 · Leadership and research (20 ECTS plus electives)",
             "Research Methodology",
             "Business Analytics",
@@ -8987,8 +8987,8 @@ return json_decode(<<<'MASTERJSON'
           "icon": "briefcase"
         },
         {
-          "title": "Twelve months fits campaign calendars",
-          "text": "Marketing teams cannot lose people for two years. One year, asynchronous, keeps you in the rotation.",
+          "title": "12 months fits campaign calendars",
+          "text": "Marketing teams cannot lose people for 2 years. 1 year, asynchronous, keeps you in the rotation.",
           "icon": "landmark"
         },
         {
@@ -9022,8 +9022,8 @@ return json_decode(<<<'MASTERJSON'
       "duration": "12 months",
       "hero": "Ventures fail for predictable reasons, and most of them are teachable. This 12-month online MSc from Rushford Business School teaches them, blending management, finance, and operations for people building companies or building inside them.",
       "overview": [
-        "This MSc blends management, finance, and business operations into the specific shape that new ventures need. Five core management courses come first, then ten specialisation courses focused on venture creation, innovation, and the strategic and financial side of running something new, with a deliberate emphasis on planning, risk mitigation, and the investor conversations founders eventually have to hold.",
-        "It runs asynchronously on the e-Campus across twelve months, which suits founders who cannot stop building and managers who are asked to innovate inside companies that predate them (often by decades).",
+        "This MSc blends management, finance, and business operations into the specific shape that new ventures need. 5 core management courses come first, then 10 specialisation courses focused on venture creation, innovation, and the strategic and financial side of running something new, with a deliberate emphasis on planning, risk mitigation, and the investor conversations founders eventually have to hold.",
+        "It runs asynchronously on the e-Campus across 12 months, which suits founders who cannot stop building and managers who are asked to innovate inside companies that predate them (often by decades).",
         "The degree is awarded by Rushford Business School, Switzerland. The venture is yours, and now the odds improve slightly, which in this business matters."
       ],
       "highlights": [
@@ -9085,7 +9085,7 @@ return json_decode(<<<'MASTERJSON'
       "benefits": [
         [
           "A year that fits a venture's pace",
-          "Sixty ECTS in twelve months. Founders do not get eighteen.",
+          "60 ECTS in 12 months. Founders do not get 18.",
           "layers"
         ],
         [
@@ -9100,7 +9100,7 @@ return json_decode(<<<'MASTERJSON'
         ],
         [
           "Swiss award, online delivery",
-          "Rushford Business School, Switzerland, awards the MSc. All fifteen courses run on the e-Campus.",
+          "Rushford Business School, Switzerland, awards the MSc. All 15 courses run on the e-Campus.",
           "briefcase"
         ],
         [
@@ -9110,7 +9110,7 @@ return json_decode(<<<'MASTERJSON'
         ],
         [
           "Gulf-time support",
-          "One success coach across the year, and advisors in Sharjah in person or on WhatsApp.",
+          "1 success coach across the year, and advisors in Sharjah in person or on WhatsApp.",
           "laptop"
         ]
       ],
@@ -9143,7 +9143,7 @@ return json_decode(<<<'MASTERJSON'
           "modules": [
             "Your journey, block by block",
             {
-              "title": "Three blocks across fifteen courses",
+              "title": "3 blocks across 15 courses",
               "overview": "core management, the entrepreneurship and innovation foundation, and the leadership and research block."
             },
             "Block 1 · Core management (20 ECTS)",
@@ -9153,7 +9153,7 @@ return json_decode(<<<'MASTERJSON'
             "Marketing in a Digital World",
             "Accounting for Financial Reporting",
             "Block 2 · Entrepreneurship and innovation foundation (20 ECTS)",
-            "Ten specialisation courses covering venture creation, innovation strategy, financial management of new and established firms, and opportunity development",
+            "10 specialisation courses covering venture creation, innovation strategy, financial management of new and established firms, and opportunity development",
             "Block 3 · Leadership and research (20 ECTS plus electives)",
             "Research Methodology",
             "Business Analytics",
@@ -9193,8 +9193,8 @@ return json_decode(<<<'MASTERJSON'
           "icon": "briefcase"
         },
         {
-          "title": "Twelve months matches founder patience",
-          "text": "The target student for an entrepreneurship degree does not want to be a student for two years. This one finishes in twelve months.",
+          "title": "12 months matches founder patience",
+          "text": "The target student for an entrepreneurship degree does not want to be a student for 2 years. This one finishes in 12 months.",
           "icon": "landmark"
         },
         {
@@ -9228,8 +9228,8 @@ return json_decode(<<<'MASTERJSON'
       "duration": "12 months",
       "hero": "The Gulf runs on capital decisions, and capital decisions reward trained judgment. This 12-month online MSc from Rushford Business School builds that judgment in risk, investment analysis, and markets, while you keep working in the UAE.",
       "overview": [
-        "Finance degrees tend to split into two kinds: theoretical ones that never touch a market, and narrow ones that skip the business around it. This MSc tries for the middle. Five core management courses first, then ten specialisation courses covering risk management, investment analysis, financial markets, financial technology, debt management, and advanced financial analysis, with risk-based supervision rounding the picture.",
-        "The programme runs asynchronously on the e-Campus across twelve months, with webinars and workshops alongside the coursework. It is built for people heading into banking, investment, or corporate finance, and for professionals who want the technical depth without the two-year absence, which most finance calendars would refuse anyway.",
+        "Finance degrees tend to split into 2 kinds: theoretical ones that never touch a market, and narrow ones that skip the business around it. This MSc tries for the middle. 5 core management courses first, then 10 specialisation courses covering risk management, investment analysis, financial markets, financial technology, debt management, and advanced financial analysis, with risk-based supervision rounding the picture.",
+        "The programme runs asynchronously on the e-Campus across 12 months, with webinars and workshops alongside the coursework. It is built for people heading into banking, investment, or corporate finance, and for professionals who want the technical depth without the 2-year absence, which most finance calendars would refuse anyway.",
         "The degree is awarded by Rushford Business School, Switzerland. The positions it supports sit on the sharp end of the region's economy."
       ],
       "highlights": [
@@ -9290,8 +9290,8 @@ return json_decode(<<<'MASTERJSON'
       ],
       "benefits": [
         [
-          "Twelve months to market-relevant depth",
-          "Sixty ECTS in a year. Finance careers move fast; the degree keeps pace.",
+          "12 months to market-relevant depth",
+          "60 ECTS in a year. Finance careers move fast; the degree keeps pace.",
           "layers"
         ],
         [
@@ -9306,7 +9306,7 @@ return json_decode(<<<'MASTERJSON'
         ],
         [
           "Swiss award, online delivery",
-          "Rushford Business School, Switzerland, awards the MSc. All fifteen courses run on the e-Campus.",
+          "Rushford Business School, Switzerland, awards the MSc. All 15 courses run on the e-Campus.",
           "briefcase"
         ],
         [
@@ -9316,7 +9316,7 @@ return json_decode(<<<'MASTERJSON'
         ],
         [
           "Support in your time zone",
-          "One success coach for the year, and advisors in Sharjah available in person or on WhatsApp.",
+          "1 success coach for the year, and advisors in Sharjah available in person or on WhatsApp.",
           "laptop"
         ]
       ],
@@ -9349,7 +9349,7 @@ return json_decode(<<<'MASTERJSON'
           "modules": [
             "Your journey, block by block",
             {
-              "title": "Three blocks across fifteen courses",
+              "title": "3 blocks across 15 courses",
               "overview": "core management, the finance and investment foundation, and the leadership and research block."
             },
             "Block 1 · Core management (20 ECTS)",
@@ -9359,7 +9359,7 @@ return json_decode(<<<'MASTERJSON'
             "Marketing in a Digital World",
             "Accounting for Financial Reporting",
             "Block 2 · Finance and investment foundation (20 ECTS)",
-            "Ten specialisation courses covering risk management, investment analysis, financial markets, financial technology, debt management, advanced financial analysis, and risk-based supervision",
+            "10 specialisation courses covering risk management, investment analysis, financial markets, financial technology, debt management, advanced financial analysis, and risk-based supervision",
             "Block 3 · Leadership and research (20 ECTS plus electives)",
             "Research Methodology",
             "Business Analytics",
@@ -9399,18 +9399,18 @@ return json_decode(<<<'MASTERJSON'
           "icon": "briefcase"
         },
         {
-          "title": "Twelve months suits analysts' calendars",
+          "title": "12 months suits analysts' calendars",
           "text": "The asynchronous format means no sabbatical and no lost bonus season.",
           "icon": "landmark"
         },
         {
-          "title": "The research component pays off twice",
+          "title": "The research component pays off 2 times",
           "text": "Independent research under faculty guidance serves the degree now and any later doctoral ambition later.",
           "icon": "route"
         },
         {
           "title": "Honest take",
-          "text": "if your destination is charter-only analysis, the CFA remains the benchmark and this MSc complements rather than replaces it. Plenty of candidates run the two in sequence, and the research block helps with the harder chapters.",
+          "text": "if your destination is charter-only analysis, the CFA remains the benchmark and this MSc complements rather than replaces it. Plenty of candidates run the 2 in sequence, and the research block helps with the harder chapters.",
           "icon": "shield"
         }
       ],
@@ -9434,8 +9434,8 @@ return json_decode(<<<'MASTERJSON'
       "duration": "12 months",
       "hero": "Every budget, policy, and forecast in the Gulf is an economics question wearing a different coat. This 12-month online MSc from Rushford Business School trains the people who answer those questions, and you study it from the UAE.",
       "overview": [
-        "Economics departments used to hire for theory. Gulf employers hire for forecasting, econometrics, and the quantitative habits behind both. This MSc faces that reality: five core management courses first, then ten specialisation courses with a deliberate focus on FinTech, econometrics, and quantitative methods for decision-making, economic modelling, and inference-based data.",
-        "Practical projects and seminars run alongside the coursework on the e-Campus, and the format is asynchronous. Fifteen courses across twelve months, extendable to three years at no extra fee for people whose work refuses to cooperate, and in the Gulf it often refuses.",
+        "Economics departments used to hire for theory. Gulf employers hire for forecasting, econometrics, and the quantitative habits behind both. This MSc faces that reality: 5 core management courses first, then 10 specialisation courses with a deliberate focus on FinTech, econometrics, and quantitative methods for decision-making, economic modelling, and inference-based data.",
+        "Practical projects and seminars run alongside the coursework on the e-Campus, and the format is asynchronous. 15 courses across 12 months, extendable to 3 years at no extra fee for people whose work refuses to cooperate, and in the Gulf it often refuses.",
         "The degree is awarded by Rushford Business School, Switzerland. The forecasts you make afterwards will be tested, and that is exactly the point."
       ],
       "highlights": [
@@ -9491,7 +9491,7 @@ return json_decode(<<<'MASTERJSON'
         ],
         [
           "Pathway note",
-          "The degree can be extended up to three years at no additional fee if your schedule demands it. Fees and dates are confirmed per intake, in writing, before payment."
+          "The degree can be extended up to 3 years at no additional fee if your schedule demands it. Fees and dates are confirmed per intake, in writing, before payment."
         ]
       ],
       "benefits": [
@@ -9512,7 +9512,7 @@ return json_decode(<<<'MASTERJSON'
         ],
         [
           "Swiss award, online delivery",
-          "Rushford Business School, Switzerland, awards the MSc. All fifteen courses run on the e-Campus.",
+          "Rushford Business School, Switzerland, awards the MSc. All 15 courses run on the e-Campus.",
           "briefcase"
         ],
         [
@@ -9522,7 +9522,7 @@ return json_decode(<<<'MASTERJSON'
         ],
         [
           "Support across the whole year",
-          "One success coach for the degree, and advisors in Sharjah in person or on WhatsApp.",
+          "1 success coach for the degree, and advisors in Sharjah in person or on WhatsApp.",
           "laptop"
         ]
       ],
@@ -9555,7 +9555,7 @@ return json_decode(<<<'MASTERJSON'
           "modules": [
             "Your journey, block by block",
             {
-              "title": "Three blocks across fifteen courses",
+              "title": "3 blocks across 15 courses",
               "overview": "core management, the economics foundation, and the leadership and research block."
             },
             "Block 1 · Core management (20 ECTS)",
@@ -9565,7 +9565,7 @@ return json_decode(<<<'MASTERJSON'
             "Marketing in a Digital World",
             "Accounting for Financial Reporting",
             "Block 2 · Economics foundation (20 ECTS)",
-            "Ten specialisation courses covering econometrics, quantitative methods, economic modelling, forecasting, and FinTech",
+            "10 specialisation courses covering econometrics, quantitative methods, economic modelling, forecasting, and FinTech",
             "Block 3 · Leadership and research (20 ECTS plus electives)",
             "Research Methodology",
             "Business Analytics",
@@ -9606,7 +9606,7 @@ return json_decode(<<<'MASTERJSON'
         },
         {
           "title": "The extended-duration option respects real life",
-          "text": "Up to three years at no additional fee means the degree survives relocations, busy quarters, and family life.",
+          "text": "Up to 3 years at no additional fee means the degree survives relocations, busy quarters, and family life.",
           "icon": "landmark"
         },
         {
@@ -9640,8 +9640,8 @@ return json_decode(<<<'MASTERJSON'
       "duration": "12 months",
       "hero": "Some careers need a specialisation. Most need the full management picture, held by someone who can act on it. This 12-month online MSc from Rushford Business School builds that picture, and you complete it from the UAE without leaving work.",
       "overview": [
-        "This is the generalist's MSc: five core management courses, then ten specialisation courses that run across the full management map, from operations and finance to people and markets, taught with the research discipline a Master of Science implies. It suits professionals moving toward general management, consultants who need the breadth to roam across functions, and graduates deciding that breadth is their advantage.",
-        "The degree runs asynchronously on the e-Campus across twelve months. Fifteen courses of four ECTS each, no residency, no campus attendance, and the salary keeps arriving through all of it, which matters more than it sounds.",
+        "This is the generalist's MSc: 5 core management courses, then 10 specialisation courses that run across the full management map, from operations and finance to people and markets, taught with the research discipline a Master of Science implies. It suits professionals moving toward general management, consultants who need the breadth to roam across functions, and graduates deciding that breadth is their advantage.",
+        "The degree runs asynchronously on the e-Campus across 12 months. 15 courses of 4 ECTS each, no residency, no campus attendance, and the salary keeps arriving through all of it, which matters more than it sounds.",
         "Rushford Business School, Switzerland, awards the degree. What you generalize with it afterwards is the interesting part."
       ],
       "highlights": [
@@ -9702,13 +9702,13 @@ return json_decode(<<<'MASTERJSON'
       ],
       "benefits": [
         [
-          "Twelve months to a Swiss MSc",
-          "Sixty ECTS in a year, for people whose next role is coming whether they are ready or not.",
+          "12 months to a Swiss MSc",
+          "60 ECTS in a year, for people whose next role is coming whether they are ready or not.",
           "layers"
         ],
         [
           "Breadth is the design",
-          "Ten specialisation courses across the management map. General managers run companies; this is the syllabus for becoming one.",
+          "10 specialisation courses across the management map. General managers run companies; this is the syllabus for becoming one.",
           "users"
         ],
         [
@@ -9728,14 +9728,14 @@ return json_decode(<<<'MASTERJSON'
         ],
         [
           "Support with a name",
-          "One success coach for the year, and advisors in Sharjah available in person or on WhatsApp.",
+          "1 success coach for the year, and advisors in Sharjah available in person or on WhatsApp.",
           "laptop"
         ]
       ],
       "learning": [
         "Manage across functions without losing the thread of any of them",
         "Read financial statements and make decisions from them",
-        "Run operations with quality and productivity in one view",
+        "Run operations with quality and productivity in 1 view",
         "Lead teams across cultures and reporting lines",
         "Market with method, not instinct",
         "Use business analytics in real decisions",
@@ -9761,7 +9761,7 @@ return json_decode(<<<'MASTERJSON'
           "modules": [
             "Your journey, block by block",
             {
-              "title": "Three blocks across fifteen courses",
+              "title": "3 blocks across 15 courses",
               "overview": "core management, the business management foundation, and the leadership and research block."
             },
             "Block 1 · Core management (20 ECTS)",
@@ -9771,7 +9771,7 @@ return json_decode(<<<'MASTERJSON'
             "Marketing in a Digital World",
             "Accounting for Financial Reporting",
             "Block 2 · Business management foundation (20 ECTS)",
-            "Ten specialisation courses across the management map, from operations and finance to people, markets, and strategy",
+            "10 specialisation courses across the management map, from operations and finance to people, markets, and strategy",
             "Block 3 · Leadership and research (20 ECTS plus electives)",
             "Research Methodology",
             "Business Analytics",
@@ -9811,8 +9811,8 @@ return json_decode(<<<'MASTERJSON'
           "icon": "briefcase"
         },
         {
-          "title": "Twelve months suits promotion windows",
-          "text": "Appraisal cycles and posting windows do not wait for two-year degrees. One year, asynchronous, keeps you in time.",
+          "title": "12 months suits promotion windows",
+          "text": "Appraisal cycles and posting windows do not wait for 2-year degrees. 1 year, asynchronous, keeps you in time.",
           "icon": "landmark"
         },
         {
@@ -9822,7 +9822,7 @@ return json_decode(<<<'MASTERJSON'
         },
         {
           "title": "Honest take",
-          "text": "breadth trades against depth. If you already know the single function you want to own, a specialized MSc will serve that target faster, and an advisor will happily say so. This degree is for the people who run the whole building.",
+          "text": "breadth trades against depth. If you already know the particular function you want to own, a specialized MSc will serve that target faster, and an advisor will happily say so. This degree is for the people who run the whole building.",
           "icon": "shield"
         }
       ],
@@ -9844,11 +9844,11 @@ return json_decode(<<<'MASTERJSON'
       "category_slug": "mba",
       "university_slug": "university-for-the-creative-arts",
       "duration": "12 to 18 months, depending on pace",
-      "hero": "This is the rare MBA that carries three separate credentials on completion. An Ofqual-regulated Level 7 Diploma, a UK master's from the University for the Creative Arts, and the Rushford MBA. One programme, three lines on the CV, each independently verifiable.",
+      "hero": "This is the rare MBA that carries 3 separate credentials on completion. An Ofqual-regulated Level 7 Diploma, a UK master's from the University for the Creative Arts, and the Rushford MBA. 1 programme, 3 lines on the CV, each independently verifiable.",
       "overview": [
-        "This is the rare MBA that carries three separate credentials on completion. An Ofqual-regulated Level 7 Diploma, a UK master's from the University for the Creative Arts, and the Rushford MBA. One programme, three lines on the CV, each independently verifiable.",
-        "The Global MBA is built for people who lead across strategy, planning, and delivery, and who want a qualification that proves all three. The taught stage runs through the core of strategic management in six modules and lets you choose two options, and then you move to a master's thesis examined at UCA.",
-        "What makes it unusual is the awarding chain. You study through Rushford, complete an Ofqual-regulated Level 7 Diploma as the first stage, and that credit transfers to UCA, which awards the final MBA. For someone in or adjacent to the creative industries, it also comes from the UK's specialist creative university, which reads differently on a CV than a generic business school name. If you only need a single general management credential and nothing more, there are lighter options, and we will say so when you ask. This one is for people who want the depth and the paper trail."
+        "This is the rare MBA that carries 3 separate credentials on completion. An Ofqual-regulated Level 7 Diploma, a UK master's from the University for the Creative Arts, and the Rushford MBA. 1 programme, 3 lines on the CV, each independently verifiable.",
+        "The Global MBA is built for people who lead across strategy, planning, and delivery, and who want a qualification that proves all 3. The taught stage runs through the core of strategic management in 6 modules and lets you choose 2 options, and then you move to a master's thesis examined at UCA.",
+        "What makes it unusual is the awarding chain. You study through Rushford, complete an Ofqual-regulated Level 7 Diploma as the 1st stage, and that credit transfers to UCA, which awards the final MBA. For someone in or adjacent to the creative industries, it also comes from the UK's specialist creative university, which reads differently on a CV than a generic business school name. If you only need 1 general management credential and nothing more, there are lighter options, and we will say so when you ask. This one is for people who want the depth and the paper trail."
       ],
       "highlights": [
         [
@@ -9904,7 +9904,7 @@ return json_decode(<<<'MASTERJSON'
       ],
       "benefits": [
         [
-          "Three credentials from one programme",
+          "3 credentials from 1 programme",
           "An Ofqual Level 7 Diploma, a UCA MBA, and a Rushford MBA, all from the same study journey and each separately verifiable.",
           "layers"
         ],
@@ -9959,7 +9959,7 @@ return json_decode(<<<'MASTERJSON'
           "title": "Ofqual Level 7 Diploma, 60 ECTS (months 1 to 8)",
           "subtitle": "",
           "modules": [
-            "Six core modules covering team performance, strategic direction and planning, information-based decision taking, and leading a strategic project, worth 45 ECTS, plus two options from four, worth 15 ECTS."
+            "6 core modules covering team performance, strategic direction and planning, information-based decision taking, and leading a strategic project, worth 45 ECTS, plus 2 options from 4, worth 15 ECTS."
           ]
         },
         {
@@ -10023,7 +10023,7 @@ return json_decode(<<<'MASTERJSON'
         "Employer sponsorship letters supported on request"
       ],
       "meta_title": "Global MBA UAE | UCA + Rushford Triple-Awarded Degree",
-      "meta_description": "Global MBA online, 12 to 18 months. Ofqual Level 7 Diploma, UCA MBA, and Rushford MBA from one programme. Fees confirmed in writing.",
+      "meta_description": "Global MBA online, 12 to 18 months. Ofqual Level 7 Diploma, UCA MBA, and Rushford MBA from 1 programme. Fees confirmed in writing.",
       "sort_order": 147
     },
     {
@@ -10033,11 +10033,11 @@ return json_decode(<<<'MASTERJSON'
       "category_slug": "mba",
       "university_slug": "university-of-the-west-of-scotland",
       "duration": "12 months at standard pace",
-      "hero": "UAE foreign trade passed AED 3 trillion for the first time at the end of 2024, and the national target is AED 4 trillion by 2031. Somewhere in that growth are the people who can run a business across borders: the pricing, the logistics, the compliance, the negotiation. This MBA trains for exactly that seat.",
+      "hero": "UAE foreign trade passed AED 3 trillion for the 1st time at the end of 2024, and the national target is AED 4 trillion by 2031. Somewhere in that growth are the people who can run a business across borders: the pricing, the logistics, the compliance, the negotiation. This MBA trains for exactly that seat.",
       "overview": [
-        "UAE foreign trade passed AED 3 trillion for the first time at the end of 2024, and the national target is AED 4 trillion by 2031. Somewhere in that growth are the people who can run a business across borders: the pricing, the logistics, the compliance, the negotiation. This MBA trains for exactly that seat.",
+        "UAE foreign trade passed AED 3 trillion for the 1st time at the end of 2024, and the national target is AED 4 trillion by 2031. Somewhere in that growth are the people who can run a business across borders: the pricing, the logistics, the compliance, the negotiation. This MBA trains for exactly that seat.",
         "The University of the West of Scotland MBA in International Business is a one-year UK master's delivered fully online through the university's own platform. The core modules build the integrative business base, the options let you steer toward leadership and resilience topics, and you finish with either a strategic business project or a dissertation.",
-        "What distinguishes it in the regional market is the combination of a UK public university award, a genuinely international orientation, and a twelve-month timeline that working professionals can actually complete without surrendering their careers for a year. It suits the export manager eyeing new markets, the regional operations lead handling three currencies, and the founder whose next customer is in a different legal system. If you want a deep functional specialisation instead, a different programme will serve you better, and we will point you there honestly."
+        "What distinguishes it in the regional market is the combination of a UK public university award, a genuinely international orientation, and a 12-month timeline that working professionals can actually complete without surrendering their careers for a year. It suits the export manager eyeing new markets, the regional operations lead handling 3 currencies, and the founder whose next customer is in a different legal system. If you want a deep functional specialisation instead, a different programme will serve you better, and we will point you there honestly."
       ],
       "highlights": [
         [
@@ -10093,8 +10093,8 @@ return json_decode(<<<'MASTERJSON'
       ],
       "benefits": [
         [
-          "A UK MBA in twelve months",
-          "One year from start to award, delivered online, at a pace most working professionals finish without career interruption.",
+          "A UK MBA in 12 months",
+          "1 year from start to award, delivered online, at a pace most working professionals finish without career interruption.",
           "layers"
         ],
         [
@@ -10370,7 +10370,7 @@ return json_decode(<<<'MASTERJSON'
       "gcc": [
         {
           "title": "UAE corporate tax, at 9% on profits above",
-          "text": "UAE corporate tax, at 9% on profits above AED 375,000, took effect in June 2023 under Federal Decree-Law No. 47 of 2022, after more than five decades without federal corporate tax for most businesses.",
+          "text": "UAE corporate tax, at 9% on profits above AED 375,000, took effect in June 2023 under Federal Decree-Law No. 47 of 2022, after more than 5 decades without federal corporate tax for most businesses.",
           "icon": "laptop"
         },
         {

@@ -39,16 +39,16 @@ status: approved
 ## 2.1 `short_description`
 
 ```
-Twelve subjects taking you from economics and bookkeeping mathematics through financial and management accounting to taxation, reporting, governance and corporate responsibility. Each published subject has a matching learning outcome, which makes the scope unusually easy to check.
+12 subjects taking you from economics and bookkeeping mathematics through financial and management accounting to taxation, reporting, governance and corporate responsibility. Each published subject has a matching learning outcome, which makes the scope unusually easy to check.
 ```
-*39 words / 285 chars ✅*
+*37 words / 277 chars ✅*
 
 ## 2.2 `description`
 
 ```html
-<p>Finance roles split in two fairly early. One side reports outwards — statutory accounts, tax returns, the numbers auditors and regulators see. The other side reports inwards, producing the figures managers use to decide things. A great many people learn one half on the job and never formally meet the other. This award covers both.</p>
+<p>Finance roles split in 2 fairly early. 1 side reports outwards — statutory accounts, tax returns, the numbers auditors and regulators see. The other side reports inwards, producing the figures managers use to decide things. A great many people learn only the external-reporting side on the job and never formally meet the other. This award covers both.</p>
 <p>Qualifi states the aim as giving learners an understanding of management accounting and finance and their role in business, and developing practical skills for a career managing business finances. The subject list follows that through: accounting in a business context, economics, accounting methods, financial accounting, management accounting, financial management, planning and control, financial reporting, taxation, leadership in accounting, management of people, and ethics and corporate responsibility.</p>
-<p>Two features set it apart from the three-subject Level 3 award. It adds leadership and people management, acknowledging that senior finance work involves running a function rather than only producing numbers. And ethics gets its own subject. In total it runs to 240 credits at Level 5 and is catalogued as 610/3329/7.</p>
+<p>2 features set it apart from the 3-subject Level 3 award. It adds leadership and people management, acknowledging that senior finance work involves running a function rather than only producing numbers. And ethics gets its own subject. In total it runs to 240 credits at Level 5 and is catalogued as 610/3329/7.</p>
 ```
 *3 paragraphs / 175 words ✅*
 
@@ -71,8 +71,8 @@ Twelve subjects taking you from economics and bookkeeping mathematics through fi
 | Qualification number | 610/3329/7 on the Regulated Qualifications Framework |
 | Size | 240 credits at Level 5 |
 | Subjects | Accounting in a Business Context · Economics for Business · Mathematical Accounting Methods · Financial Accounting · Management Accounting · Leadership and Management in Accounting · Financial Management · Financial Planning and Control · Financial Reporting · Principles and Practices of Taxation · Management of People · Ethics and Corporate Responsibility in Business |
-| A note on that list | Qualifi's page breaks two of these titles across lines as "Economics for Business Mathematical" and "Accounting Methods". Read together with its own learning outcomes, which mention economics and mathematical skills separately, the titles above are how they are plainly meant to read. The Centre Specification is the authority, so confirm with your centre |
-| Entry | 18 or over. No prior qualification level is published. IELTS 6 or equivalent where English is not your first language, plus normally two references with one preferably academic |
+| A note on that list | Qualifi's page breaks 2 of these titles across lines as "Economics for Business Mathematical" and "Accounting Methods". Read together with its own learning outcomes, which mention economics and mathematical skills separately, the titles above are how they are plainly meant to read. The Centre Specification is the authority, so confirm with your centre |
+| Entry | 18 or over. No prior qualification level is published. IELTS 6 or equivalent where English is not your first language, plus normally 2 references with 1 preferably academic |
 | Onward routes published by Qualifi | A Qualifi Level 6 Diploma in a related area · the final year of a higher education qualification or degree in a related area, which Qualifi itself notes is subject to acceptance by the awarding institution · employment in an associated profession |
 | What it does not include | No exemptions from ACCA, CIMA, ICAEW or any other professional accountancy body are published by Qualifi. If exemptions matter to you, put the qualification number to the body directly |
 
@@ -84,7 +84,7 @@ Twelve subjects taking you from economics and bookkeeping mathematics through fi
 | `landmark` | Taxation covered properly | <p>Principles and practices of taxation sits in the programme, covering personal and business tax requirements.</p> |
 | `users` | The management half | <p>Leadership in accounting and management of people recognise that senior finance work means running a team.</p> |
 | `shield` | Governance and control | <p>Financial planning and control reaches into corporate governance and investment appraisal.</p> |
-| `list-checks` | Scope you can verify | <p>Qualifi publishes one learning outcome per subject, so what each part covers is easy to check before you enrol.</p> |
+| `list-checks` | Scope you can verify | <p>Qualifi publishes 1 learning outcome per subject, so what each part covers is easy to check before you enrol.</p> |
 
 ## 3.4 `learning`
 1. Understand the micro and macroeconomic factors that affect a business
@@ -101,7 +101,7 @@ Twelve subjects taking you from economics and bookkeeping mathematics through fi
 **Part 1 — Groundwork** · *The context and the arithmetic everything else rests on.*
 Accounting in a Business Context · Economics for Business · Mathematical Accounting Methods
 
-**Part 2 — The two accounting disciplines** · *Reporting outwards, and informing decisions inwards.*
+**Part 2 — The 2 accounting disciplines** · *Reporting outwards, and informing decisions inwards.*
 Financial Accounting · Management Accounting · Financial Reporting · Principles and Practices of Taxation
 
 **Part 3 — Running a finance function** · *Control, governance, people and conduct.*
@@ -109,14 +109,14 @@ Financial Management · Financial Planning and Control · Leadership and Managem
 
 ## 3.5 `careers`
 
-No salary figures, employment rates or named job destinations are published by Qualifi here, and no professional body exemptions are claimed. The three published progression routes follow.
+No salary figures, employment rates or named job destinations are published by Qualifi here, and no professional body exemptions are claimed. The 3 published progression routes follow.
 
 1. A Qualifi Level 6 Diploma in a related area
 2. The final year of a higher education qualification or degree in a related area, subject to acceptance by the awarding institution
 3. Employment in an associated profession
 
 ## 3.8 `support`
-Centre reviews your readiness and support needs · Teaching from an approved centre · Assessment against twelve published outcomes · Qualifi certification · Centre-set timetable · Two references required at application
+Centre reviews your readiness and support needs · Teaching from an approved centre · Assessment against 12 published outcomes · Qualifi certification · Centre-set timetable · 2 references required at application
 
 ## 3.9 `gcc_heading` + `gcc_reasons` *(6)*
 **Heading:** `Why Gulf Finance Teams Use This Level`
@@ -127,7 +127,7 @@ Centre reviews your readiness and support needs · Teaching from an approved cen
 | `file-text` | Tax is no longer theoretical | VAT and corporate tax regimes introduced across the GCC make a taxation subject directly useful. |
 | `gavel` | Governance expectations rising | Capital market reforms in the region place more weight on governance, which this programme reaches into. |
 | `handshake` | Ethics matters commercially | Conduct standards are increasingly written into supplier and client contracts regionally. |
-| `arrow-up-right` | A route onwards | Qualifi runs a Level 6 diploma in related areas, so progression stays within one awarding body. |
+| `arrow-up-right` | A route onwards | Qualifi runs a Level 6 diploma in related areas, so progression stays within 1 awarding body. |
 | `search` | Check exemptions yourself | No professional body exemptions are published. Ask ACCA, CIMA or your target body directly before assuming any. |
 
 ## 3.11 `fees`
@@ -140,25 +140,25 @@ No fee published by Qualifi · The approved centre prices it · Differs by count
 **Will this exempt me from ACCA or CIMA papers?**
 <p>Qualifi publishes no exemptions from any professional accountancy body for this qualification, so we cannot tell you that it does. Exemption decisions belong to the bodies themselves and they assess qualifications individually, sometimes revising their position over time. If exemptions are part of why you are considering this, contact the body with the qualification number before enrolling and get the answer in writing.</p>
 
-**Two of the subject titles look wrong. What is going on?**
+**2 of the subject titles look wrong. What is going on?**
 <p>They do, and we have left the problem visible rather than papering over it. Qualifi's page prints "Economics for Business Mathematical" and "Accounting Methods" as consecutive items, which almost certainly means the line break fell inside the wrong title. Its own learning outcomes mention economics and mathematical skills as separate things. We have shown the sensible reading and flagged it — your centre can confirm against the Centre Specification.</p>
 
 **Do I need accounting experience to start?**
-<p>Qualifi publishes no prior qualification requirement and no experience requirement for this award. You must be 18 or over, meet IELTS 6 if English is not your first language, and normally supply two references. Beyond that, it falls to the approved centre to judge whether the workload is realistic for you. That said, the content moves quickly into financial reporting and taxation, so some exposure to accounts will help.</p>
+<p>Qualifi publishes no prior qualification requirement and no experience requirement for this award. You must be 18 or over, meet IELTS 6 if English is not your first language, and normally supply 2 references. Beyond that, it falls to the approved centre to judge whether the workload is realistic for you. That said, the content moves quickly into financial reporting and taxation, so some exposure to accounts will help.</p>
 
 **What does "subject to acceptance by the awarding institution" mean?**
 <p>It is Qualifi's own wording beside the degree route, and it is refreshingly direct. The awarding body is saying plainly that it can point to where the qualification is designed to lead, while the university or college at the other end sets its own admission criteria and applies them to you. Treat the route as a well-founded possibility to investigate with specific institutions, not as an arrangement already in place.</p>
 
 **How does this compare with the Level 3 accounting diploma?**
-<p>The Level 3 award is three subjects and 60 credits, covering transaction record-keeping, cost information and record maintenance. This is twelve subjects and 240 credits, reaching into economics, financial reporting, taxation, governance, people management and ethics. One gives you the grounding for an accounts assistant role; this prepares you for responsibility over a function.</p>
+<p>The Level 3 award is 3 subjects and 60 credits, covering transaction record-keeping, cost information and record maintenance. This is 12 subjects and 240 credits, reaching into economics, financial reporting, taxation, governance, people management and ethics. The Level 3 award gives you the grounding for an accounts assistant role; this Level 5 award prepares you for responsibility over a function.</p>
 
 **Is any of it about a specific country's tax rules?**
-<p>Qualifi titles the subject "Principles and Practices of Taxation" and its outcome refers to the principles of taxation and the requirements of personal and business tax, without naming a jurisdiction. Expect principles that transfer rather than a line-by-line guide to one country's tax code. If you need the rules of a specific country, you will want local training alongside this.</p>
+<p>Qualifi titles the subject "Principles and Practices of Taxation" and its outcome refers to the principles of taxation and the requirements of personal and business tax, without naming a jurisdiction. Expect principles that transfer rather than a line-by-line guide to 1 country's tax code. If you need the rules of a specific country, you will want local training alongside this.</p>
 
 ---
 
 ## 5. SEO
 | Field | Value | Count |
 |---|---|---|
-| `meta_title` | Level 5 Extended Diploma in Accounting and Finance \| Qualifi | 61 ✅ |
-| `meta_description` | Qualifi Level 5 Extended Diploma in Accounting and Finance. 240 credits, 12 subjects spanning economics, reporting, taxation and ethics. QAN 610/3329/7. | 153 ✅ |
+| `meta_title` | Level 5 Extended Diploma in Accounting and Finance \| Qualifi | 60 ✅ |
+| `meta_description` | Qualifi Level 5 Extended Diploma in Accounting and Finance. 240 credits, 12 subjects spanning economics, reporting, taxation and ethics. QAN 610/3329/7. | 152 ✅ |

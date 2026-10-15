@@ -39,18 +39,18 @@ status: approved
 ## 2.1 `short_description`
 
 ```
-Doctoral candidates here sit with Girne American University's Business and Economics Faculty and chase a specific problem: why what companies offer keeps missing what the market and the customer actually want. Theory and applied work, side by side, over three years in English.
+Doctoral candidates here sit with Girne American University's Business and Economics Faculty and chase a specific problem: why what companies offer keeps missing what the market and the customer actually want. Theory and applied work, side by side, over 3 years in English.
 ```
-*44 words / 272 chars ✅*
+*43 words / 273 chars ✅*
 
 ## 2.2 `description`
 
 ```html
 <p>Plenty of marketing research stops at describing behaviour. GAU frames this doctorate around a sharper brief — candidates work on the problems organisations run into when they try to supply products and services that genuinely meet marketplace and customer demands. Seminars and research, applied as well as theoretical, are conducted alongside faculty members.</p>
-<p>The taught year is where this programme separates itself from a general business doctorate. Consumer behaviour theory, integrated marketing communications and a dedicated current issues course sit beside advanced marketing theory, research methods and advanced management. That is three marketing-specific cores rather than one, and the seminar in year two is a marketing seminar, not a management one.</p>
-<p>Recognition is recorded on two levels. The programme listing shows YÖK and YÖDAK; the graduate school page adds ECBE, the European Council for Business Education. Minimum thesis length is given as two semesters, the shortest GAU publishes across its business doctorates.</p>
+<p>The taught year is where this programme separates itself from a general business doctorate. Consumer behaviour theory, integrated marketing communications and a dedicated current issues course sit beside advanced marketing theory, research methods and advanced management. That is 3 marketing-specific cores rather than one, and the seminar in year 2 is a marketing seminar, not a management one.</p>
+<p>Recognition is recorded on 2 levels. The programme listing shows YÖK and YÖDAK; the graduate school page adds ECBE, the European Council for Business Education. Minimum thesis length is given as 2 semesters, the shortest GAU publishes across its business doctorates.</p>
 ```
-*3 paragraphs / 155 words ✅*
+*3 paragraphs / 152 words ✅*
 
 ---
 
@@ -79,17 +79,17 @@ Doctoral candidates here sit with Girne American University's Business and Econo
 | icon | title | desc |
 |---|---|---|
 | `users` | Faculty you work beside | <p>GAU describes candidates as working alongside its Business and Economics Faculty, with seminars and research run together rather than at arm's length.</p> |
-| `target` | A problem worth three years | <p>The research brief is the gap between what organisations supply and what the marketplace and its customers actually demand.</p> |
-| `layers` | Four marketing cores, not one | <p>Theory, consumer behaviour, integrated communications and current issues are each taught as separate courses in the first year.</p> |
+| `target` | A problem worth 3 years | <p>The research brief is the gap between what organisations supply and what the marketplace and its customers actually demand.</p> |
+| `layers` | 4 marketing cores, not one | <p>Theory, consumer behaviour, integrated communications and current issues are each taught as separate courses in the 1st year.</p> |
 | `award` | European recognition cited | <p>ECBE, the European Council for Business Education, appears alongside YÖDAK on GAU's own graduate school page for this programme.</p> |
-| `clock` | The shortest published thesis stage | <p>Two semesters is GAU's stated minimum here, against three for its management information systems and business management doctorates.</p> |
+| `clock` | The shortest published thesis stage | <p>2 semesters is GAU's stated minimum here, against 3 for its management information systems and business management doctorates.</p> |
 | `trending-up` | Finance electives on tap | <p>Decision theory, financial markets, monetary policy and global financial management are all listed as elective options.</p> |
 
 ## 3.4 `learning`
 1. Address the problems organisations meet in matching supply to marketplace demand
 2. Develop an appreciation of marketing's intellectual growth as a discipline
 3. Trace the field's movement from economic foundations towards behavioural ones
-4. Interrogate multiple academic articles on a single topic to see how knowledge forms
+4. Interrogate multiple academic articles on 1 topic to see how knowledge forms
 5. Work with contemporary social science methods
 6. Apply advanced research methods to shape objectives, policies and planning
 7. Combine theoretical enquiry with applied investigation alongside faculty
@@ -101,29 +101,29 @@ GAU's Career Opportunities section for this doctorate renders with no content, a
 
 ## 3.6 `structure`
 
-**Stage 1 — Taught courses** · *Seven courses, 21 credits in total. Each taught course is 3 credits and 10 ECTS.*
+**Stage 1 — Taught courses** · *7 courses, 21 credits in total. Each taught course is 3 credits and 10 ECTS.*
 Year 1 Fall: Advanced Research Methods (MGMT604) · Advanced Marketing Theories (MARK601) · Theory of Consumer Behavior (MARK602)
 Year 1 Spring: Integrated Marketing Communications (MARK603) · Current Issues in Marketing (MARK610) · Advanced Management (MGMT601)
 Year 2 Fall: Departmental Elective (PTRME001) · Seminar in Marketing (MARK630, 20 ECTS)
 
-**Stage 2 — Qualifying and thesis** · *Qualifying 30 ECTS; each thesis semester 30 ECTS. Minimum thesis duration two semesters.*
+**Stage 2 — Qualifying and thesis** · *Qualifying 30 ECTS; each thesis semester 30 ECTS. Minimum thesis duration 2 semesters.*
 Year 2 Spring: Qualifying (QUAL600)
-Years 3 and 4: Thesis (THES600) across four semesters on the published course table
+Years 3 and 4: Thesis (THES600) across 4 semesters on the published course table
 
 *Named electives:* Advanced Report Writing in Social Sciences; Organizational Behavior; Theories of Final Decision Making; Financial Markets and Instruments; Monetary Theory and Policies; Global Financial Management
 
 ## 3.8 `support`
-Faculty-led seminars · Joint research with academic staff · Thesis supervision · Elective choice across six courses · Scholarship availability · Institute admissions guidance
+Faculty-led seminars · Joint research with academic staff · Thesis supervision · Elective choice across 6 courses · Scholarship availability · Institute admissions guidance
 
 ## 3.9 `gcc_heading` + `gcc_reasons` *(6)*
 **Heading:** `Why GCC Professionals Choose This Programme`
 
 | icon | title | text |
 |---|---|---|
-| `message-square` | English throughout | Taught language is English, so brand and consumer research can be written, supervised and defended without a second language in the way. |
+| `message-square` | English throughout | Taught language is English, so brand and consumer research can be written, supervised and defended without a 2nd language in the way. |
 | `award` | A European accreditation reference | The ECBE citation on GAU's graduate school page gives Gulf employers and ministries a European body to check the programme against. |
-| `clock` | A faster published route to defence | With a stated two-semester minimum thesis, this is the quickest of GAU's business doctorates on paper, which matters when study sits on top of a full role. |
-| `shopping-bag` | Consumer behaviour taught as its own course | Gulf markets turn on fast-shifting consumer expectations, and GAU gives behaviour theory a dedicated course rather than a single week. |
+| `clock` | A faster published route to defence | With a stated 2-semester minimum thesis, this is the quickest of GAU's business doctorates on paper, which matters when study sits on top of a full role. |
+| `shopping-bag` | Consumer behaviour taught as its own course | Gulf markets turn on fast-shifting consumer expectations, and GAU gives behaviour theory a dedicated course rather than 1 week. |
 | `plane` | A short hop from the Gulf | Kyrenia is a few hours from the major Gulf hubs, which keeps residency and supervision visits practical. |
 | `file-text` | Get the fee and entry list in writing | Neither tuition nor an entry requirement list is published for this doctorate. Request both from the Institute before you commit to anything. |
 
@@ -135,7 +135,7 @@ Fee not published · Scholarship available · Written quote on request · Instit
 ## 4. `faqs` *(6)*
 
 **What makes this different from the business management doctorate?**
-<p>The taught year. Where the business doctorate spreads across management, human resources and strategy, this one gives you four marketing courses: advanced theory, consumer behaviour, integrated marketing communications and current issues in the field. Your seminar is a marketing seminar, and your supervision sits with the Business and Economics Faculty.</p>
+<p>The taught year. Where the business doctorate spreads across management, human resources and strategy, this one gives you 4 marketing courses: advanced theory, consumer behaviour, integrated marketing communications and current issues in the field. Your seminar is a marketing seminar, and your supervision sits with the Business and Economics Faculty.</p>
 
 **Why can I not see any career outcomes listed?**
 <p>Because GAU has not published any. The Career Opportunities heading appears on the programme page with nothing underneath it, and the graduate school page carries no careers section at all. We would rather tell you that plainly than fill the space with job titles no university has stood behind. Ask the Institute directly about recent graduate destinations.</p>
@@ -147,10 +147,10 @@ Fee not published · Scholarship available · Written quote on request · Instit
 <p>GAU exempts applicants from its Foundation English School programme on certificates including IELTS, TOEFL, PTE, SAT and Cambridge qualifications, with a higher threshold applied to postgraduate students. Documents must reach Student Services before you sit the proficiency examination, because certificates are not accepted afterwards. Confirm the doctoral threshold with the Institute, since the published table names master's students rather than PhD candidates.</p>
 
 **How long is the whole programme?**
-<p>GAU states three years. Its own course table for this doctorate runs across four, with thesis semesters in years three and four, and the published minimum thesis duration is two semesters. The honest reading is that three years is the shortest realistic path and four is what the curriculum maps out.</p>
+<p>GAU states 3 years. Its own course table for this doctorate runs across 4, with thesis semesters in years 3 and 4, and the published minimum thesis duration is 2 semesters. The honest reading is that 3 years is the shortest realistic path and 4 is what the curriculum maps out.</p>
 
 **Can I choose an elective outside marketing?**
-<p>Yes. The published elective list is deliberately broad: advanced report writing in social sciences, organisational behaviour, theories of final decision making, financial markets and instruments, monetary theory and policies, and global financial management. One departmental elective slot sits in the autumn of year two.</p>
+<p>Yes. The published elective list is deliberately broad: advanced report writing in social sciences, organisational behaviour, theories of final decision making, financial markets and instruments, monetary theory and policies, and global financial management. 1 departmental elective slot sits in the autumn of year 2.</p>
 
 ---
 

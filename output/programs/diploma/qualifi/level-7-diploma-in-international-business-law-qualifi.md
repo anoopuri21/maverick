@@ -39,15 +39,15 @@ status: approved
 ## 2.1 `short_description`
 
 ```
-Trade across borders, money laundering and fraud, patents and brands, arbitration instead of courtrooms. Commercial law with the domestic foundations left out, plus a choice of two optional subjects and a research subject of its own.
+Trade across borders, money laundering and fraud, patents and brands, arbitration instead of courtrooms. Commercial law with the domestic foundations left out, plus a choice of 2 optional subjects and a research subject of its own.
 ```
-*37 words / 232 chars ✅*
+*36 words / 231 chars ✅*
 
 ## 2.2 `description`
 
 ```html
-<p>Six required subjects set the scope: International Trade Law, Commercial Trust Law, Industrial and Intellectual Property Law, Law of Financial Crimes, Company Law, and Legal Research and Research Methods. Two further subjects are published as optional — International Commercial Arbitration, and Corporate Governance – Principles and Practices. Very few awards in this listing publish a required and optional split at all, so the choice is a real feature rather than a formality.</p>
-<p>The emphasis never wavers from commerce conducted across jurisdictions. Goods moving between countries, money that needs tracing, ideas that need protecting, disputes settled by arbitrators rather than judges. Qualifi describes the aim as developing legal skills, analysis and logical thinking that can be applied in further study, in the legal profession and in public service — the last of those three named on no other law page here.</p>
+<p>6 required subjects set the scope: International Trade Law, Commercial Trust Law, Industrial and Intellectual Property Law, Law of Financial Crimes, Company Law, and Legal Research and Research Methods. 2 further subjects are published as optional — International Commercial Arbitration, and Corporate Governance – Principles and Practices. Very few awards in this listing publish a required and optional split at all, so the choice is a real feature rather than a formality.</p>
+<p>The emphasis never wavers from commerce conducted across jurisdictions. Goods moving between countries, money that needs tracing, ideas that need protecting, disputes settled by arbitrators rather than judges. Qualifi describes the aim as developing legal skills, analysis and logical thinking that can be applied in further study, in the legal profession and in public service — the last of those 3 named on no other law page here.</p>
 <p>On the register it carries 120 credits at Level 7 under number 603/4199/3. No total study time is given.</p>
 ```
 *3 paragraphs / 159 words ✅*
@@ -89,7 +89,7 @@ Trade across borders, money laundering and fraud, patents and brands, arbitratio
 
 ## 3.4 `learning`
 
-A short caveat on the published outcomes. Four of the seven are genuinely about this subject, and we have kept them. The remaining three — sourcing and analysing information, teamwork, and personal development — appear word for word on several unrelated Qualifi awards and carry a typo in the source, which we have corrected. Rather than repeat generic statements, we have expressed them in context and drawn the rest from the published subject list.
+A short caveat on the published outcomes. 4 of the 7 are genuinely about this subject, and we have kept them. The remaining 3 — sourcing and analysing information, teamwork, and personal development — appear word for word on several unrelated Qualifi awards and carry a typo in the source, which we have corrected. Rather than repeat generic statements, we have expressed them in context and drawn the rest from the published subject list.
 
 1. Understand the range of topics that make up international business law
 2. Work with the legal framework governing international business transactions in industry
@@ -113,14 +113,14 @@ International Commercial Arbitration · Corporate Governance – Principles and 
 
 ## 3.5 `careers`
 
-Qualifi publishes no destination data, no salary information and no employment rates for this qualification, so nothing of that kind is invented here. Three onward routes appear on its page: the Qualifi Level 8 Strategic Management and Leadership, an "LLM with the associated partner University", and direct entry into employment in an associated profession.
+Qualifi publishes no destination data, no salary information and no employment rates for this qualification, so nothing of that kind is invented here. 3 onward routes appear on its page: the Qualifi Level 8 Strategic Management and Leadership, an "LLM with the associated partner University", and direct entry into employment in an associated profession.
 
-The middle one needs care, because it names a degree. Nothing on this page awards an LLM. No partner university is identified, no list of institutions is published and no terms of any arrangement are given. Admission to a Master of Laws, and any credit a university might allow towards it, is decided by that university against its own criteria. Ask the institution you have in mind, in writing, before you treat the route as available to you.
+The middle option needs care, because it names a degree. Nothing on this page awards an LLM. No partner university is identified, no list of institutions is published and no terms of any arrangement are given. Admission to a Master of Laws, and any credit a university might allow towards it, is decided by that university against its own criteria. Ask the institution you have in mind, in writing, before you treat the route as available to you.
 
-On practice rights, be equally clear-eyed. This diploma is not a qualifying law degree, not an LLB and not an LLM. It is not a route to the Solicitors Qualifying Examination and not a Bar course. It gives no right to carry out reserved legal activities, and no right to use the title solicitor, barrister or lawyer, in the United Kingdom or in any other country. No SRA, Bar Standards Board or CILEX recognition or exemption is published. If you intend to work outside the UK, check what the regulator in that jurisdiction requires, because the rules differ sharply from one country to the next.
+On practice rights, be equally clear-eyed. This diploma is not a qualifying law degree, not an LLB and not an LLM. It is not a route to the Solicitors Qualifying Examination and not a Bar course. It gives no right to carry out reserved legal activities, and no right to use the title solicitor, barrister or lawyer, in the United Kingdom or in any other country. No SRA, Bar Standards Board or CILEX recognition or exemption is published. If you intend to work outside the UK, check what the regulator in that jurisdiction requires, because the rules differ sharply from 1 country to the next.
 
 ## 3.8 `support`
-Qualification or legal experience route in · Teaching from an approved centre · Six required subjects plus published options · Research method taught, not assumed · Qualifi certification · Available internationally
+Qualification or legal experience route in · Teaching from an approved centre · 6 required subjects plus published options · Research method taught, not assumed · Qualifi certification · Available internationally
 
 ## 3.9 `gcc_heading` + `gcc_reasons` *(6)*
 **Heading:** `Why This Fits Commercial Work Across the Gulf`
@@ -142,7 +142,7 @@ No price published by Qualifi · Decided by the approved centre · Varies by cou
 ## 4. `faqs` *(6)*
 
 **Do I have to take both optional subjects?**
-<p>Qualifi does not say, and that is a genuine gap rather than an oversight on our part. The page lists six required subjects and two optional ones, but gives no credit value for any subject and no rule about how many options must be completed to reach 120 credits. Both might be required; one might be enough. The centre specification dated April 2023 will carry the answer, so ask your centre for it and get the choice rules confirmed before you commit to a study plan.</p>
+<p>Qualifi does not say, and that is a genuine gap rather than an oversight on our part. The page lists 6 required subjects and 2 optional ones, but gives no credit value for any subject and no rule about how many options must be completed to reach 120 credits. Both might be required; one might be enough. The centre specification dated April 2023 will carry the answer, so ask your centre for it and get the choice rules confirmed before you commit to a study plan.</p>
 
 **Does it lead to an LLM?**
 <p>It might support an application. It does not deliver one. The published progression wording refers to an "LLM with the associated partner University", which sounds specific but identifies no institution anywhere on the page, and sets out no credit transfer terms. A Master of Laws is awarded by a university, under that university's own admission rules, and it will form its own view of a Level 7 diploma from an awarding body. Contact your intended university directly, quote the qualification number, and rely on what it tells you rather than on the phrase.</p>
@@ -151,7 +151,7 @@ No price published by Qualifi · Decided by the approved centre · Varies by cou
 <p>No, in any jurisdiction. The award is not a qualifying law degree, confers no practice rights and carries no published recognition from the Solicitors Regulation Authority, the Bar Standards Board or CILEX. You cannot use it to describe yourself as a lawyer, solicitor or barrister, and it does not entitle you to carry out reserved legal activities. Where it earns its keep is in commercial roles that need legal understanding without a practising certificate: contracts, compliance, trade operations, in-house support. Anyone targeting practice should start with their own regulator's published route.</p>
 
 **Who is the typical student?**
-<p>Qualifi's entry wording points at three groups: people holding a Level 6 qualification, people with work experience in the legal sector, and graduates from other disciplines who want to build a business career. Put together, the profile is someone already in commercial life — trade, shipping, finance, compliance, corporate administration — who keeps running into legal questions and wants to handle them properly. Since the connector between the three routes is "and/or", whether experience alone opens the door is a question only the centre can settle.</p>
+<p>Qualifi's entry wording points at 3 groups: people holding a Level 6 qualification, people with work experience in the legal sector, and graduates from other disciplines who want to build a business career. Put together, the profile is someone already in commercial life — trade, shipping, finance, compliance, corporate administration — who keeps running into legal questions and wants to handle them properly. Since the connector between the 3 routes is "and/or", whether experience alone opens the door is a question only the centre can settle.</p>
 
 **Length and cost: who answers that?**
 <p>Your approved centre, on both counts. Qualifi's role stops at writing, regulating and certificating the qualification; it runs no classes and publishes no price. There is no official study-hours total for this award either, which removes the usual benchmark for judging whether a proposed schedule is realistic. Useful questions at enquiry: when the next cohort begins, how long previous groups have taken, and what the quoted figure includes once registration and certification are added.</p>

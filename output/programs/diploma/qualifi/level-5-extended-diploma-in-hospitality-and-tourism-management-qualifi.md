@@ -41,7 +41,7 @@ status: approved
 ```
 Sustainability leads the subject list, destination and visitor attraction management follow, and a research project closes it. Qualifi says the Level 5 units are designed to dove-tail into a top-up undergraduate year at a UK university.
 ```
-*37 words / 236 chars ✅*
+*36 words / 236 chars ✅*
 
 ## 2.2 `description`
 
@@ -50,7 +50,7 @@ Sustainability leads the subject list, destination and visitor attraction manage
 <p>Qualifi describes it as dealing with complex and challenging organisational issues, closely linked to real-world and workplace challenges, testing and developing what learners already bring from work. Judgement is expected: the qualification asks for creative, practical responses to organisational problems, through what it calls an action-based approach.</p>
 <p>Sustainability in tourism and hospitality management opens the published subject list, which is telling. Operations management in tourism and resort operations, management of visitor attractions, tourism destination management, cultural tourism management, entrepreneurship in the sector, employability and development, and a research project make up the rest. The award carries 240 credits at number 610/3386/8.</p>
 ```
-*3 paragraphs / 162 words ✅*
+*3 paragraphs / 156 words ✅*
 
 ---
 
@@ -72,7 +72,7 @@ Sustainability leads the subject list, destination and visitor attraction manage
 | Qualification type | Vocational Related Qualification (Higher Education), accreditation status Accredited |
 | Size | 240 credits at Level 5 |
 | Subjects published | Sustainability in Tourism and Hospitality Management · Operations Management in Tourism and Resort Operations · Management of Visitor Attractions · Employability and Development in the Hospitality Industry · Tourism Destination Management · Entrepreneurship in Tourism and Hospitality Management · Cultural Tourism Management · Research Project |
-| About that list | Eight subjects are published against 240 credits, a lower count than comparable Qualifi awards at the same size, which typically list twelve. The page does not explain the difference and does not say whether a further block exists. Ask your centre to confirm the full list from the Centre Specification before enrolling |
+| About that list | 8 subjects are published against 240 credits, a lower count than comparable Qualifi awards at the same size, which typically list 12. The page does not explain the difference and does not say whether a further block exists. Ask your centre to confirm the full list from the Centre Specification before enrolling |
 | Ways in, as published | A qualification at Level 3 and/or 4; or managerial work experience with ambition and clear career goals; or a first degree in a different discipline and the intention to move into hospitality and tourism management |
 | Age and English | Not published on this page, unlike several other Qualifi Level 5 awards. Your centre will tell you what it applies |
 | Onward routes published by Qualifi | The final year of an undergraduate degree, or directly into employment in an associated profession |
@@ -81,7 +81,7 @@ Sustainability leads the subject list, destination and visitor attraction manage
 | icon | title | desc |
 |---|---|---|
 | `leaf` | Sustainability first, not last | <p>It opens the published subject list rather than appearing as a closing topic, which reflects where the sector's pressure now sits.</p> |
-| `map-pin` | Destinations as a management problem | <p>Tourism destination management treats a whole place, not a single venue, as the thing being run.</p> |
+| `map-pin` | Destinations as a management problem | <p>Tourism destination management treats a whole place, not just 1 venue, as the thing being run.</p> |
 | `landmark` | Visitor attractions covered specifically | <p>A dedicated subject on managing attractions, which operate quite differently from hotels.</p> |
 | `microscope` | Your own research project | <p>A full project subject, the clearest difference from the introductory Level 3 award in this field.</p> |
 | `palette` | Cultural tourism | <p>Treated as its own discipline, relevant anywhere heritage and culture drive visitor numbers.</p> |
@@ -110,13 +110,13 @@ Employability and Development in the Hospitality Industry · Research Project ·
 
 ## 3.5 `careers`
 
-Qualifi publishes no graduate destinations, pay information or employment rates for this award. The two routes below appear on its page and nothing has been added to them.
+Qualifi publishes no graduate destinations, pay information or employment rates for this award. The 2 routes below appear on its page and nothing has been added to them.
 
 1. The final year of an undergraduate degree, where the university accepts the application
 2. Directly into employment in an associated profession
 
 ## 3.8 `support`
-Three published ways in, including an experience route · Centre reviews the application · Teaching from an approved centre · Research project supervision at the centre · Qualifi certification · Locally agreed schedule
+3 published ways in, including an experience route · Centre reviews the application · Teaching from an approved centre · Research project supervision at the centre · Qualifi certification · Locally agreed schedule
 
 ## 3.9 `gcc_heading` + `gcc_reasons` *(6)*
 **Heading:** `Why It Fits Gulf Tourism Ambitions`
@@ -126,9 +126,9 @@ Three published ways in, including an experience route · Centre reviews the app
 | `compass` | Destination building is live policy | Several Gulf states are constructing tourism destinations outright, which is exactly what destination management addresses. |
 | `leaf` | Sustainability now gets asked about | Regional developments face growing scrutiny of environmental impact, and this treats it as a management subject. |
 | `ticket` | Attractions are opening fast | Museums, theme parks and heritage sites are multiplying, and managing them is a distinct skill set. |
-| `graduation-cap` | A shorter degree finish | The top-up year design means a degree may be one year away rather than three for an experienced manager. |
+| `graduation-cap` | A shorter degree finish | The top-up year design means a degree may be 1 year away rather than 3 for an experienced manager. |
 | `store` | Built for operators too | Entrepreneurship is a full subject, which suits the region's many independent travel and hospitality businesses. |
-| `list-checks` | Check the subject list | Only eight subjects are published for 240 credits. Ask your centre for the complete specification before paying. |
+| `list-checks` | Check the subject list | Only 8 subjects are published for 240 credits. Ask your centre for the complete specification before paying. |
 
 ## 3.11 `fees`
 No published price from Qualifi · Set by the approved centre · Varies by country · Ask about project supervision costs · Written quotation before enrolment
@@ -137,8 +137,8 @@ No published price from Qualifi · Set by the approved centre · Varies by count
 
 ## 4. `faqs` *(6)*
 
-**Why are only eight subjects listed for 240 credits?**
-<p>We noticed that too, and we cannot explain it from what Qualifi publishes. Comparable Qualifi awards at 240 credits typically list twelve subjects. The likeliest reading is that the page shows one half of a combined Level 4 and Level 5 programme, but the page nowhere says so, and we are not going to assert something the awarding body has not stated. Ask your centre for the full Centre Specification before you enrol.</p>
+**Why are only 8 subjects listed for 240 credits?**
+<p>We noticed that too, and we cannot explain it from what Qualifi publishes. Comparable Qualifi awards at 240 credits typically list 12 subjects. The likeliest reading is that the page shows only part of a combined Level 4 and Level 5 programme, but the page nowhere says so, and we are not going to assert something the awarding body has not stated. Ask your centre for the full Centre Specification before you enrol.</p>
 
 **What does "dove-tail into a top-up year" mean in practice?**
 <p>It means the Level 5 content is built to line up with the final year of a UK undergraduate degree, so a university can slot you in at that point rather than making you start over. It describes the design intent. Whether a particular university accepts you, and onto which course, is that university's decision — On sister awards at this level, Qualifi prints that condition beside the route itself.</p>
@@ -147,13 +147,13 @@ No published price from Qualifi · Set by the approved centre · Varies by count
 <p>On the published entry routes, yes. Managerial work experience combined with ambition and clear career goals is listed as a way in by itself, with no certificate alongside. The centre assesses whether your experience is enough, so describe the scale of what you run — team size, budget, responsibilities — rather than just naming your job title.</p>
 
 **Where does this sit against the Level 3 hospitality diploma?**
-<p>Almost entirely. The Level 3 award is open entry, 120 credits, and introduces the two industries at a basic level. This expects a Level 3 or 4 qualification, managerial experience or a first degree, runs to 240 credits, and deals with destinations, sustainability, culture and your own research. One is where you start; this is where you prepare to run things.</p>
+<p>Almost entirely. The Level 3 award is open entry, 120 credits, and introduces the 2 industries at a basic level. This expects a Level 3 or 4 qualification, managerial experience or a first degree, runs to 240 credits, and deals with destinations, sustainability, culture and your own research. One is where you start; this is where you prepare to run things.</p>
 
 **Is there an English requirement?**
-<p>Not one that Qualifi publishes for this particular award. Its page lists three entry routes and none mentions IELTS or a minimum age, although other Qualifi diplomas at the same level do state 18 and over with IELTS 6. Rather than assume another award's rules apply, ask your centre. Centres may also set their own language checks regardless of what the awarding body requires.</p>
+<p>Not one that Qualifi publishes for this particular award. Its page lists 3 entry routes and none mentions IELTS or a minimum age, although other Qualifi diplomas at the same level do state 18 and over with IELTS 6. Rather than assume another award's rules apply, ask your centre. Centres may also set their own language checks regardless of what the awarding body requires.</p>
 
 **What is the research project?**
-<p>It appears as one of the eight published subjects, and Qualifi gives no further detail about its length, format or assessment on the qualification page. Based on where it sits, expect an independent piece of work applying what you have studied to a real problem, supervised by your centre. The centre will tell you the scope and the deadlines, since it designs and assesses the delivery.</p>
+<p>It appears as 1 of the 8 published subjects, and Qualifi gives no further detail about its length, format or assessment on the qualification page. Based on where it sits, expect an independent piece of work applying what you have studied to a real problem, supervised by your centre. The centre will tell you the scope and the deadlines, since it designs and assesses the delivery.</p>
 
 ---
 

@@ -51,17 +51,17 @@ DBA
 ## 2.1 `short_description` *(plain text, ≤300 chars)*
 
 ```
-Supply chains fail quietly, then all at once. Rushford Business School's online DBA in Supply Chain Management gives you three years, 180 ECTS and a dissertation to work out why, using your own organisation as the evidence and without leaving the job that raised the question.
+Supply chains fail quietly, then all at once. Rushford Business School's online DBA in Supply Chain Management gives you 3 years, 180 ECTS and a dissertation to work out why, using your own organisation as the evidence and without leaving the job that raised the question.
 ```
 
 ## 2.2 `description` *(HTML, 3 paragraphs)*
 
 ```html
 <p>A doctorate is not a bigger master's. The master's taught you what good supply chain practice looks like; this one asks you to prove something about it. Rushford structures the 180 ECTS around that shift, moving from a management core and a research track into a dissertation that has to survive an oral defence. The subject matter is procurement, logistics and the architecture of the chain itself, but the real work is method, which is why the research track runs to 30 ECTS on its own.</p>
-<p>There are two routes through it. The coursework pathway suits people earlier in their management career and finishes with a 20,000 to 25,000 word dissertation. The research pathway is built for candidates with more than five years behind them, assigns a doctoral mentor early, and ends at 45,000 to 50,000 words. Both are delivered entirely online and asynchronously, so the pace is yours to set.</p>
+<p>There are 2 routes through it. The coursework pathway suits people earlier in their management career and finishes with a 20,000 to 25,000 word dissertation. The research pathway is built for candidates with more than 5 years behind them, assigns a doctoral mentor early, and ends at 45,000 to 50,000 words. Both are delivered entirely online and asynchronously, so the pace is yours to set.</p>
 <p>Rushford Business School in Lucerne awards the qualification. Whether it reads DBA or PhD on the certificate is a decision you make before graduation, and there is a condition attached to that choice worth reading properly.</p>
 ```
-*3 paragraphs / 186 words ✅ (range 110–195)*
+*3 paragraphs / 187 words ✅ (range 110–195)*
 
 ---
 
@@ -95,9 +95,9 @@ Supply chains fail quietly, then all at once. Rushford Business School's online 
 | icon | title | desc |
 |---|---|---|
 | `monitor` | Study without relocating | <p>Delivered entirely online and asynchronously. No campus, no visa, no gap on the CV where a career used to be.</p> |
-| `route` | Two routes to the same award | <p>Coursework for earlier-career managers, research for those with more than five years in post. Same 180 ECTS, different shape.</p> |
-| `badge-check` | A bachelor's can be enough | <p>Recognition of Prior Experience means a master's is not mandatory. A bachelor's plus eight years of management experience opens the door.</p> |
-| `award` | DBA or PhD, your call | <p>Every doctoral candidate may request the PhD award instead of the DBA. One title only, confirmed before graduation.</p> |
+| `route` | 2 routes to the same award | <p>Coursework for earlier-career managers, research for those with more than 5 years in post. Same 180 ECTS, different shape.</p> |
+| `badge-check` | A bachelor's can be enough | <p>Recognition of Prior Experience means a master's is not mandatory. A bachelor's plus 8 years of management experience opens the door.</p> |
+| `award` | DBA or PhD, your call | <p>Every doctoral candidate may request the PhD award instead of the DBA. 1 title only, confirmed before graduation.</p> |
 | `target` | Applied research, not abstract | <p>The dissertation investigates a real organisational problem. Most candidates use their own employer's.</p> |
 | `landmark` | Swiss-awarded | <p>Rushford Business School, Lucerne. Its online learning division holds eduQua certification, Switzerland's quality label for continuing education.</p> |
 
@@ -126,9 +126,9 @@ Supply chains fail quietly, then all at once. Rushford Business School's online 
 
 ## 3.6 `structure` *(2 stages)*
 
-**Stage 1 — Coursework pathway** · *subtitle: 180 ECTS. For managers with under five years in post.*
+**Stage 1 — Coursework pathway** · *subtitle: 180 ECTS. For managers with under 5 years in post.*
 - Business Management Track (30 ECTS) — Managerial Skills; Cutting Edge Leadership; Managerial Economics; International Business Environment; Accounting for Financial Reporting; Strategic Management: Integrating the Enterprise
-- Specialization Track (30 ECTS) — six courses chosen from the specialisation track
+- Specialization Track (30 ECTS) — 6 courses chosen from the specialisation track
 - Research Track (30 ECTS) — Introduction to Academic Research; The Landscape of Literature Review; Research Design; Business Statistics; Designing a Quantitative Research Methodology; Designing a Qualitative Research Methodology
 - Written Proposal Defence, 5,000 words (20 ECTS)
 - Doctoral Residency (10 ECTS)
@@ -136,9 +136,9 @@ Supply chains fail quietly, then all at once. Rushford Business School's online 
 - Report Writing (10 ECTS)
 - Written Dissertation & Oral Defence, 20,000–25,000 words (40 ECTS)
 
-**Stage 2 — Research pathway** · *subtitle: 180 ECTS. For candidates with more than five years of management experience.*
-- Specialization Track (15 ECTS) — three subject specialisation courses
-- Research Track (30 ECTS) — the same six research courses
+**Stage 2 — Research pathway** · *subtitle: 180 ECTS. For candidates with more than 5 years of management experience.*
+- Specialization Track (15 ECTS) — 3 subject specialisation courses
+- Research Track (30 ECTS) — the same 6 research courses
 - Written Dissertation Proposal, 5,000 words (30 ECTS)
 - Reflection & Minutes of the Meeting with Supervisor (20 ECTS)
 - Research Publication / Doctoral Residency (25 ECTS)
@@ -160,10 +160,10 @@ Supply chains fail quietly, then all at once. Rushford Business School's online 
 | icon | title | text |
 |---|---|---|
 | `monitor` | No relocation, no career break | Asynchronous online delivery means the programme runs from Dubai, Riyadh, Doha or Muscat without touching your visa status or your job. |
-| `clock` | Three years, at your own pace | You set the speed. The research pathway can finish in under three years; the coursework route can stretch if a quarter goes badly at work. |
-| `badge-check` | Eight years of experience counts | The bachelor's-plus-eight-years entry route recognises Gulf managers who built a career before they got round to a master's. |
+| `clock` | 3 years, at your own pace | You set the speed. The research pathway can finish in under 3 years; the coursework route can stretch if a quarter goes badly at work. |
+| `badge-check` | 8 years of experience counts | The bachelor's-plus-8-years entry route recognises Gulf managers who built a career before they got round to a master's. |
 | `target` | Your employer's problem is the thesis | Applied research means the dissertation can investigate something happening inside your own organisation rather than a hypothetical one. |
-| `route` | You choose DBA or PhD | Useful if you are weighing a move into teaching. One caveat: candidates admitted through Recognition of Prior Experience can only receive the DBA. |
+| `route` | You choose DBA or PhD | Useful if you are weighing a move into teaching. 1 caveat: candidates admitted through Recognition of Prior Experience can only receive the DBA. |
 | `shield` | Check your own jurisdiction | Rushford advises applicants to verify national rules on using the title "Doctor". Worth doing before you enrol, not after. |
 
 *text word counts: 22, 26, 21, 19, 25, 22 ✅ (range 8–46)*
@@ -181,22 +181,22 @@ Supply chains fail quietly, then all at once. Rushford Business School's online 
 ## 4. `faqs` *(6)*
 
 **Do I need a master's degree to apply?**
-<p>Not always. Rushford runs three entry routes: a master's in business and management; a master's in any other subject backed by more than five years of managerial work; or a bachelor's in any subject backed by more than eight years. The third route is Recognition of Prior Experience, and it comes with a restriction — it leads to the DBA only, never the PhD.</p>
+<p>Not always. Rushford runs 3 entry routes: a master's in business and management; a master's in any other subject backed by more than 5 years of managerial work; or a bachelor's in any subject backed by more than 8 years. The 3rd route is Recognition of Prior Experience, and it comes with a restriction — it leads to the DBA only, never the PhD.</p>
 
 **Can I receive a PhD instead of a DBA?**
-<p>Yes. Every doctoral candidate may request the PhD title in place of the DBA, and the decision is locked in before or immediately after the graduation requirements are met. Only one of the two is ever conferred. The exception is candidates admitted through Recognition of Prior Experience, who receive the DBA.</p>
+<p>Yes. Every doctoral candidate may request the PhD title in place of the DBA, and the decision is locked in before or immediately after the graduation requirements are met. Only 1 of the 2 is ever conferred. The exception is candidates admitted through Recognition of Prior Experience, who receive the DBA.</p>
 
 **What English language evidence do I need?**
-<p>The easiest proof is a Medium of Instruction letter from the university you last attended. If that is not available, the accepted scores are IELTS 5.5, TOEFL iBT 58, TOEIC 555, PTE 50 or Duolingo 90. Three groups skip the test entirely: native speakers, anyone schooled or degree-educated in English, and anyone with two years behind them in an English-language organisation.</p>
+<p>The easiest proof is a Medium of Instruction letter from the university you last attended. If that is not available, the accepted scores are IELTS 5.5, TOEFL iBT 58, TOEIC 555, PTE 50 or Duolingo 90. 3 groups skip the test entirely: native speakers, anyone schooled or degree-educated in English, and anyone with 2 years behind them in an English-language organisation.</p>
 
 **How long is the dissertation?**
-<p>It depends on your pathway. The coursework route ends with a 20,000 to 25,000 word dissertation and oral defence. The research route, aimed at candidates with more than five years of management experience, runs to 45,000 to 50,000 words.</p>
+<p>It depends on your pathway. The coursework route ends with a 20,000 to 25,000 word dissertation and oral defence. The research route, aimed at candidates with more than 5 years of management experience, runs to 45,000 to 50,000 words.</p>
 
 **Is the programme genuinely part-time friendly?**
-<p>Everything runs on Rushford's e-Campus, asynchronously, so nothing is timetabled against a clock in another country. Three years is the usual span. Should you finish ahead of that, whatever is still owed falls due immediately, so budget and diary need planning together.</p>
+<p>Everything runs on Rushford's e-Campus, asynchronously, so nothing is timetabled against a clock in another country. 3 years is the usual span. Should you finish ahead of that, whatever is still owed falls due immediately, so budget and diary need planning together.</p>
 
 **Who awards the qualification?**
-<p>Rushford Business School, Lucerne, Switzerland. Its online learning division is certified by eduQua, the Swiss quality label for continuing education and training, and the school holds a five-star QS Stars rating for teaching and for online learning.</p>
+<p>Rushford Business School, Lucerne, Switzerland. Its online learning division is certified by eduQua, the Swiss quality label for continuing education and training, and the school holds a 5-star QS Stars rating for teaching and for online learning.</p>
 
 ---
 
@@ -207,4 +207,4 @@ Supply chains fail quietly, then all at once. Rushford Business School's online 
 | `meta_title` | Online DBA in Supply Chain Management \| Rushford Business School | 64 chars ✅ |
 | `meta_description` | A 36-month, 180 ECTS online DBA in Supply Chain Management from Rushford Business School, Switzerland. Coursework or research pathway, DBA or PhD award. | 151 chars ✅ |
 | `og_title` | Online DBA in Supply Chain Management | 37 ✅ |
-| `og_description` | Swiss-awarded doctorate, studied entirely online. 180 ECTS, two pathways, dissertation on a real organisational problem. | 119 ✅ |
+| `og_description` | Swiss-awarded doctorate, studied entirely online. 180 ECTS, 2 pathways, dissertation on a real organisational problem. | 119 ✅ |

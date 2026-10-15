@@ -58,7 +58,7 @@ return [
         'title' => 'BBA in Business Administration',
         'meta_title' => 'BBA in Business Administration | Rushford Business School Switzerland',
         'meta_description' => 'Study the BBA in Business Administration from Rushford Business School, Switzerland. Complete the programme in 20 to 24 months and develop skills in management, marketing, finance, leadership, operations and business strategy.',
-        'hero' => 'A business degree that covers the whole building: management, marketing, finance, HR, operations, and strategy, taught by Rushford Business School in Switzerland. Twenty to twenty-four months, fully online, studied from the UAE.',
+        'hero' => 'A business degree that covers the whole building: management, marketing, finance, HR, operations, and strategy, taught by Rushford Business School in Switzerland. 20 to 24 months, fully online, studied from the UAE.',
         'overview' => [
             'The Bachelor of Business Administration from Rushford Business School is built for people who want the full picture of how a company works before they specialise in any one corner of it. The curriculum moves from management foundations through marketing, finance, business economics, human resources, and operations, and finishes with the strategic subjects: project management, customer management, logistics, and strategic management itself.',
             'Along the way it builds the professional habits that employers actually screen for: communication, teamwork, problem-solving, and decision-making with real information. The degree suits school leavers heading straight into business careers, working professionals formalising what they already do, and founders who want the discipline behind the instinct. It is taught entirely online with live, interactive lectures, and it is dual certified with Maverick Business Academy, London.',
@@ -82,12 +82,12 @@ return [
             ['Pathway note', 'Programme duration can vary with your entry route and prior qualifications, and the final timeline is confirmed in writing at admission. That written confirmation is where every question about fees and dates belongs too.'],
         ],
         'benefits' => [
-            ['The whole business, one degree', 'Management, finance, marketing, operations, HR, and strategy sit in a single curriculum, which is how real companies run.', 'layers'],
+            ['The whole business, 1 degree', 'Management, finance, marketing, operations, HR, and strategy sit in 1 curriculum, which is how real companies run.', 'layers'],
             ['Leadership is taught, not assumed', 'Communication, team management, and organisational behaviour get dedicated modules, so leading people is studied, not left to luck.', 'users'],
             ['Strategic thinking arrives early', 'The programme covers how organisations analyse their environment, manage change, and make strategic decisions, rather than saving it for the last term.', 'target'],
             ['Practical subjects, real situations', 'Customer management, project management, business development, logistics, and risk management appear as subjects in their own right.', 'briefcase'],
             ['The entrepreneur track is inside it', 'Business models, entrepreneurship, and organisational growth are on the syllabus for the founders in the room.', 'lightbulb'],
-            ['A proper online degree, not a shortcut', 'Twenty to twenty-four months of live, interactive online study, which matters because the 2025 ministry rules tie recognised degrees to approved programme structures.', 'laptop'],
+            ['A proper online degree, not a shortcut', '20 to 24 months of live, interactive online study, which matters because the 2025 ministry rules tie recognised degrees to approved programme structures.', 'laptop'],
         ],
         'learning' => [
             'Apply fundamental management principles across different organisational environments',
@@ -160,13 +160,13 @@ return [
             'Documentation support',
         ],
         'gcc' => [
-            ['title' => 'Study from the Gulf, no relocation', 'text' => 'One hundred percent online with live lectures. No visa, no flight, no gap year, and the salary or family routine keeps running.', 'icon' => 'laptop'],
-            ['title' => 'The degree premium is written into UAE policy', 'text' => "MoHRE's 2026 guidelines recommend AED 12,000 a month for university graduates against AED 7,000 for diploma holders, and federal programmes such as Nafis place bachelor's holders in a higher support tier. Policy reads the degree one rung up.", 'icon' => 'landmark'],
+            ['title' => 'Study from the Gulf, no relocation', 'text' => '100% online with live lectures. No visa, no flight, no gap year, and the salary or family routine keeps running.', 'icon' => 'laptop'],
+            ['title' => 'The degree premium is written into UAE policy', 'text' => "MoHRE's 2026 guidelines recommend AED 12,000 a month for university graduates against AED 7,000 for diploma holders, and federal programmes such as Nafis place bachelor's holders in a higher support tier. Policy reads the degree 1 rung up.", 'icon' => 'landmark'],
             ['title' => 'Online changes the cost equation', 'text' => "Campus bachelor's programmes in Dubai run AED 35,000 to 65,000 a year, and premium international BBAs are listed between AED 33,000 and 110,000. An online Swiss BBA changes what the family budget has to carry.", 'icon' => 'trending-up'],
-            ['title' => 'The duration is the credible one', 'text' => 'Twenty to twenty-four months sits with the 2025 ministry position that recognised degrees must follow approved programme structures, and those suspiciously short 12-month offers may not meet that test.', 'icon' => 'clock'],
+            ['title' => 'The duration is the credible one', 'text' => '20 to 24 months sits with the 2025 ministry position that recognised degrees must follow approved programme structures, and those suspiciously short 12-month offers may not meet that test.', 'icon' => 'clock'],
             ['title' => "Generalists fit the Gulf's diversified economy", 'text' => "With the UAE's non-oil sector driving growth, employers keep hiring people who can move between operations, marketing, HR, and finance.", 'icon' => 'briefcase'],
-            ['title' => "The bachelor's is a step, not a dead end", 'text' => "Rushford's own postgraduate family picks up from here: twelve MBA specialisations and nine MSc routes, and many students plan both degrees in one counselling call.", 'icon' => 'route'],
-            ['title' => 'Honest take', 'text' => 'A general business BBA opens the widest spread of first roles, and the narrowest path to any single one. If you already know you want finance only or marketing only, the specialised BBAs will aim you faster; this one is for people keeping options open.', 'icon' => 'shield'],
+            ['title' => "The bachelor's is a step, not a dead end", 'text' => "Rushford's own postgraduate family picks up from here: 12 MBA specialisations and 9 MSc routes, and many students plan both degrees in 1 counselling call.", 'icon' => 'route'],
+            ['title' => 'Honest take', 'text' => 'A general business BBA opens the widest spread of 1st roles, and the narrowest path to any single one. If you already know you want finance only or marketing only, the specialised BBAs will aim you faster; this one is for people keeping options open.', 'icon' => 'shield'],
             ['title' => 'Career outcomes', 'text' => "Roles come from the programme's official career outcomes. Where you land also depends on prior experience, and the generalist nature of this degree keeps the widest spread of doors open.", 'icon' => 'badge-check'],
         ],
         'fees' => ['Programme Fees', 'Scholarships', 'Payment Plans', 'Intake Dates', 'Written Structure'],
@@ -176,10 +176,10 @@ return [
         'title' => 'BBA in Marketing',
         'meta_title' => 'BBA in Marketing Online | Rushford Business School Switzerland',
         'meta_description' => 'Study the BBA in Marketing from Rushford Business School, Switzerland. 20 to 24 months online: strategic marketing, consumer behaviour, digital, analytics and international marketing.',
-        'hero' => "From consumer insight to market leadership. Rushford Business School's BBA in Marketing builds the strategic, digital, and analytical side of modern marketing, in twenty to twenty-four months of fully online study from the UAE.",
+        'hero' => "From consumer insight to market leadership. Rushford Business School's BBA in Marketing builds the strategic, digital, and analytical side of modern marketing, in 20 to 24 months of fully online study from the UAE.",
         'overview' => [
             'The BBA in Marketing is for people who want to understand not only how businesses operate, but how brands attract, influence, and keep customers in a digital, global marketplace. The programme develops a working grasp of strategic marketing, consumer behaviour, digital marketing, marketing analytics, and international markets, and teaches you to connect customer insight with business strategy.',
-            'You learn to analyse markets, read changing consumer expectations, evaluate marketing performance, and build strategies that support sustainable growth. Two years of business foundations sit underneath it all, so the marketing is backed by real commercial literacy. The degree suits school leavers aiming at brand-side careers and working professionals moving into marketing from adjacent roles, and it runs entirely online with live lectures, dual certified with Maverick Business Academy, London.',
+            'You learn to analyse markets, read changing consumer expectations, evaluate marketing performance, and build strategies that support sustainable growth. 2 years of business foundations sit underneath it all, so the marketing is backed by real commercial literacy. The degree suits school leavers aiming at brand-side careers and working professionals moving into marketing from adjacent roles, and it runs entirely online with live lectures, dual certified with Maverick Business Academy, London.',
             'Rushford Business School, Switzerland, awards the degree. The campaigns you run afterwards are the portfolio that matters, and this programme is built to start it early.',
         ],
         'highlights' => [
@@ -205,7 +205,7 @@ return [
             ['Digital capability built in', 'How organisations use digital channels, data, and technology to reach, engage, and convert modern customers.', 'monitor'],
             ['Data-driven by design', 'The ability to interpret marketing information and use analytics to support smarter decisions, which is how marketing hiring reads now.', 'bar-chart-3'],
             ['A global marketing perspective', 'How businesses adapt strategy for international markets, cultures, and customer segments, which in the GCC is daily life.', 'globe'],
-            ['The full business underneath', 'Two years of business and management foundations before and around the marketing specialization, so the degree carries weight beyond the marketing department.', 'layers'],
+            ['The full business underneath', '2 years of business and management foundations before and around the marketing specialization, so the degree carries weight beyond the marketing department.', 'layers'],
         ],
         'learning' => [
             'Create strategic marketing approaches tied to business objectives',
@@ -256,7 +256,7 @@ return [
             ['title' => 'The ad money is moving online, fast', 'text' => 'UAE digital advertising was worth USD 2.29 billion in 2025 and is forecast to reach USD 5.35 billion by 2031, per Ken Research. Every dirham of it needs marketers who can justify the spend.', 'icon' => 'trending-up'],
             ['title' => 'Multicultural consumers are the daily brief', 'text' => 'The GCC brings together consumers from dozens of nationalities, and cross-cultural marketing knowledge is what separates campaigns that land from ones that miss.', 'icon' => 'globe'],
             ['title' => 'Marketing skills travel across industries', 'text' => 'Retail, hospitality, aviation, banking, technology, real estate, healthcare, education, luxury, e-commerce: the specialization applies across all of them.', 'icon' => 'briefcase'],
-            ['title' => 'Data-literate marketers are scarce', 'text' => "Taggd's 2026 GCC study reports nine in ten employers struggling to find qualified candidates, and marketing roles that need analytics skills are among the hardest to fill.", 'icon' => 'bar-chart-3'],
+            ['title' => 'Data-literate marketers are scarce', 'text' => "Taggd's 2026 GCC study reports 9 in 10 employers struggling to find qualified candidates, and marketing roles that need analytics skills are among the hardest to fill.", 'icon' => 'bar-chart-3'],
             ['title' => 'Progression stays open', 'text' => "The degree supports marketing, business development, and management roles now, and postgraduate study later, subject to the receiving university's admission requirements.", 'icon' => 'route'],
             ['title' => 'Honest take', 'text' => 'Marketing platforms change faster than any syllabus can follow, so treat the tools as context and strategy plus analytics as the substance. Students who learn it that way outlast the algorithm changes.', 'icon' => 'shield'],
             ['title' => 'Career outcomes', 'text' => "Roles come from the programme's official career outcomes across marketing, digital, brand, customer, and commercial functions.", 'icon' => 'badge-check'],
@@ -268,10 +268,10 @@ return [
         'title' => 'BBA in Finance',
         'meta_title' => 'BBA in Finance Online | Rushford Business School Switzerland',
         'meta_description' => 'Study the BBA in Finance from Rushford Business School, Switzerland. 20 to 24 months online: corporate finance, financial statement analysis, investment management, portfolio theory and SME finance.',
-        'hero' => "From financial insight to strategic growth. Rushford Business School's BBA in Finance builds the analytical, investment, and business-finance capabilities behind stronger decisions, in twenty to twenty-four months of fully online study.",
+        'hero' => "From financial insight to strategic growth. Rushford Business School's BBA in Finance builds the analytical, investment, and business-finance capabilities behind stronger decisions, in 20 to 24 months of fully online study.",
         'overview' => [
             'The BBA in Finance is for learners who want to understand how financial decisions influence business performance, growth, and long-term success. The programme builds a foundation in business operations, leadership, and decision-making, then adds focused expertise in corporate finance, financial statement analysis, investment management, portfolio theory, and finance for SMEs and entrepreneurial ventures.',
-            'Students learn to interpret financial information, evaluate business performance, assess investment opportunities, understand risk, and support evidence-based financial decisions across different organisational environments. Two years of business foundations sit underneath the specialization, which is what separates this from a short finance course. It runs entirely online with live lectures, dual certified with Maverick Business Academy, London, and suits school leavers aiming at banking and finance careers as well as working professionals formalising what they already do.',
+            'Students learn to interpret financial information, evaluate business performance, assess investment opportunities, understand risk, and support evidence-based financial decisions across different organisational environments. 2 years of business foundations sit underneath the specialization, which is what separates this from a short finance course. It runs entirely online with live lectures, dual certified with Maverick Business Academy, London, and suits school leavers aiming at banking and finance careers as well as working professionals formalising what they already do.',
             'Rushford Business School, Switzerland, awards the degree. The decisions you make with it, in a bank, a boardroom, or your own company, are where it pays off.',
         ],
         'highlights' => [
@@ -297,7 +297,7 @@ return [
             ['Investment knowledge with structure', 'Investment principles, portfolio theory, diversification, and the relationship between risk and return, taught as a framework rather than tips.', 'trending-up'],
             ['Analytical by default', 'Confidence in reading financial statements, evaluating performance, and using evidence to support business decisions.', 'search'],
             ['Finance for growth, beyond scale', 'How sound financial management supports SMEs, entrepreneurial ventures, and expanding organisations, which is most of the Gulf economy.', 'briefcase'],
-            ['The business foundation stays intact', 'Years one and two cover the management core, so the finance sits on real commercial literacy.', 'layers'],
+            ['The business foundation stays intact', 'Years 1 and 2 cover the management core, so the finance sits on real commercial literacy.', 'layers'],
         ],
         'learning' => [
             'Interpret financial information and use it to support business decision-making',
@@ -341,9 +341,9 @@ return [
             ['title' => "The Gulf's finance sector runs in trillions", 'text' => "UAE bank assets passed AED 4.1 trillion in 2024, per Labeeb's 2025 review, and hiring runs from entry-level analyst benches upward.", 'icon' => 'landmark'],
             ['title' => 'Finance skills cross every industry', 'text' => 'Banking, real estate, hospitality, aviation, retail, technology, healthcare, construction, logistics, professional services: the specialization applies across all of them.', 'icon' => 'briefcase'],
             ['title' => 'Investment awareness is regional literacy', 'text' => 'Portfolio thinking and risk-return relationships matter in a market where wealth management and fund industries keep expanding.', 'icon' => 'trending-up'],
-            ['title' => 'The skills gap touches finance too', 'text' => "Taggd's 2026 GCC study reports nine in ten employers struggling to find qualified candidates, and finance functions are among the most affected.", 'icon' => 'search'],
+            ['title' => 'The skills gap touches finance too', 'text' => "Taggd's 2026 GCC study reports 9 in 10 employers struggling to find qualified candidates, and finance functions are among the most affected.", 'icon' => 'search'],
             ['title' => 'Progression stays open', 'text' => "The degree supports finance, investment, risk, and management roles now, and relevant postgraduate study later, subject to the receiving university's admission requirements.", 'icon' => 'route'],
-            ['title' => 'Honest take', 'text' => 'A BBA in finance is a management credential with a finance spine. If your destination is charter-level investment analysis, the CFA path will eventually sit alongside it, and this degree is a sensible first rung toward that.', 'icon' => 'shield'],
+            ['title' => 'Honest take', 'text' => 'A BBA in finance is a management credential with a finance spine. If your destination is charter-level investment analysis, the CFA path will eventually sit alongside it, and this degree is a sensible 1st rung toward that.', 'icon' => 'shield'],
             ['title' => 'Career outcomes', 'text' => "Roles come from the programme's official career outcomes across finance, banking, investment, analysis, risk, and commercial management.", 'icon' => 'badge-check'],
         ],
         'fees' => $feesMarketing,
@@ -353,7 +353,7 @@ return [
         'title' => 'BBA in Hospitality & Tourism Management',
         'meta_title' => 'BBA Hospitality & Tourism Management Online | Maverick Business Academy London',
         'meta_description' => 'Study BBA Hospitality & Tourism Management online and develop skills in hotel management, tourism, customer experience, destination management, events and service excellence.',
-        'hero' => "Build the business, leadership, and service-management skills for the global hospitality, tourism, travel, and events industries. Rushford Business School's BBA runs twenty to twenty-four months, fully online from the UAE.",
+        'hero' => "Build the business, leadership, and service-management skills for the global hospitality, tourism, travel, and events industries. Rushford Business School's BBA runs 20 to 24 months, fully online from the UAE.",
         'overview' => [
             "Hospitality and tourism are among the world's most dynamic and internationally connected industries, bringing together customer experience, business operations, travel, events, service management, and destination development. This BBA combines essential business knowledge with specialised study in hospitality operations, tourism management, customer experience, destination management, and service excellence.",
             'Students build a strong foundation in business management, leadership, financial awareness, business operations, customer management, and decision-making, while gaining specialised knowledge in hospitality strategy, tourism operations, service excellence, and destination management. It suits people heading into hotels, resorts, tourism bodies, airlines, travel, events, leisure, and guest services, whether they are starting out or already working inside the industry and ready to formalise what they know.',
@@ -442,7 +442,7 @@ return [
         ],
         'support' => $supportStandard,
         'gcc' => [
-            ['title' => 'You are studying inside a record market', 'text' => 'Dubai welcomed 19.59 million international visitors in 2025, up 5% year on year, with average occupancy at 80.7%, per the Dubai Department of Economy and Tourism. Three record years running.', 'icon' => 'trending-up'],
+            ['title' => 'You are studying inside a record market', 'text' => 'Dubai welcomed 19.59 million international visitors in 2025, up 5% year on year, with average occupancy at 80.7%, per the Dubai Department of Economy and Tourism. 3 record years running.', 'icon' => 'trending-up'],
             ['title' => 'The hotel pipeline keeps growing', 'text' => 'Dubai held 154,264 rooms across 827 establishments in 2025, with average daily rates at AED 579 and RevPAR above AED 460. Numbers like that attract professionally trained staff at every level.', 'icon' => 'landmark'],
             ['title' => 'No career break required', 'text' => 'Study from the UAE, Saudi Arabia, Qatar, Oman, Bahrain, or Kuwait while continuing your career, with the degree moving around shift patterns rather than against them.', 'icon' => 'laptop'],
             ['title' => 'The skills travel across the sector', 'text' => 'Hotels, resorts, airlines, travel, events, restaurants, tourism boards, cruise, leisure, luxury services: the specialization applies across all of them.', 'icon' => 'briefcase'],
@@ -458,10 +458,10 @@ return [
         'title' => 'BBA in Management Information Systems',
         'meta_title' => 'BBA Management Information Systems Online | Maverick Business Academy London',
         'meta_description' => 'Study BBA Management Information Systems online and develop skills in business management, digital transformation, business analytics, decision-support systems and database management.',
-        'hero' => "Build the business, technology, and analytical skills that connect people, processes, data, and digital systems in modern organisations. Rushford Business School's BBA in MIS runs twenty to twenty-four months, fully online.",
+        'hero' => "Build the business, technology, and analytical skills that connect people, processes, data, and digital systems in modern organisations. Rushford Business School's BBA in MIS runs 20 to 24 months, fully online.",
         'overview' => [
             "Technology has transformed the way organisations operate, communicate, and make decisions, and today's businesses increasingly need professionals who understand both business management and technology. The BBA in Management Information Systems is designed to develop exactly that combination: essential business management knowledge with specialised study in information systems, digital transformation, business analytics, decision-support systems, and database management.",
-            'Students build a strong foundation across management, leadership, finance, business operations, organisational development, and strategic decision-making, while learning how organisations use technology and information to improve efficiency, support management decisions, and create competitive advantage. One clarification worth making: this is a management degree with a technology spine, not a computer science degree. It suits aspiring business analysts, working IT professionals who want the business side, and operations people moving toward systems and analytics roles.',
+            'Students build a strong foundation across management, leadership, finance, business operations, organisational development, and strategic decision-making, while learning how organisations use technology and information to improve efficiency, support management decisions, and create competitive advantage. 1 clarification worth making: this is a management degree with a technology spine, not a computer science degree. It suits aspiring business analysts, working IT professionals who want the business side, and operations people moving toward systems and analytics roles.',
             'Rushford Business School, Switzerland, awards the degree. The systems you improve and the decisions you support afterwards are where it starts paying.',
         ],
         'highlights' => [
@@ -561,7 +561,7 @@ return [
         'title' => 'BBA in Project Management',
         'meta_title' => 'BBA Project Management Online | Maverick Business Academy London',
         'meta_description' => 'Study BBA Project Management online and develop skills in project planning, scheduling, risk management, quality, procurement, agile project management and leadership.',
-        'hero' => "Build the business, leadership, and project-management skills to plan, execute, monitor, and deliver projects successfully across industries. Rushford Business School's BBA runs twenty to twenty-four months, fully online.",
+        'hero' => "Build the business, leadership, and project-management skills to plan, execute, monitor, and deliver projects successfully across industries. Rushford Business School's BBA runs 20 to 24 months, fully online.",
         'overview' => [
             'Projects drive change, innovation, and growth across almost every industry. From construction and technology to healthcare, logistics, engineering, finance, and government, organisations need professionals who can manage time, cost, quality, people, risk, and resources effectively. The BBA in Project Management develops strong business-management knowledge together with specialised project-management capabilities.',
             'Students build a foundation in leadership, financial awareness, business operations, decision-making, customer management, and organisational development, while gaining focused knowledge in project planning, scheduling, risk management, quality, procurement, agile methods, and project leadership. It suits aspiring project coordinators, working professionals who already contribute to projects, and people in construction, engineering, IT, and operations who want the management profile to match the work they do.',
@@ -665,10 +665,10 @@ return [
         'title' => 'BBA in Human Resource Management',
         'meta_title' => 'BBA in Human Resource Management Online | Rushford Business School',
         'meta_description' => 'Study the BBA in Human Resource Management from Rushford Business School, Switzerland. 20 to 24 months online: business foundations plus strategic HRM, talent management and cross-cultural HR.',
-        'hero' => "A business degree with the people function at its centre. Rushford Business School's BBA in Human Resource Management pairs broad management foundations with strategic HRM, talent management, and cross-cultural HR, fully online over twenty to twenty-four months.",
+        'hero' => "A business degree with the people function at its centre. Rushford Business School's BBA in Human Resource Management pairs broad management foundations with strategic HRM, talent management, and cross-cultural HR, fully online over 20 to 24 months.",
         'overview' => [
-            'The BBA in Human Resource Management combines core business and management subjects with specialised HR modules, building broad business knowledge together with focused HR expertise. That balance matters: the people function only makes good decisions when it understands the business it serves, and this programme teaches both halves from year one.',
-            "The first two years cover the management foundations every Rushford BBA carries, from communications and leadership to financial awareness, change management, and business operations. The specialization then adds strategic human resource management, talent management and development, and organisational behaviour with cross-cultural HRM, which in a workforce as international as the Gulf's is the daily reality rather than an elective topic.",
+            'The BBA in Human Resource Management combines core business and management subjects with specialised HR modules, building broad business knowledge together with focused HR expertise. That balance matters: the people function only makes good decisions when it understands the business it serves, and this programme teaches both halves from year 1.',
+            "The 1st 2 years cover the management foundations every Rushford BBA carries, from communications and leadership to financial awareness, change management, and business operations. The specialization then adds strategic human resource management, talent management and development, and organisational behaviour with cross-cultural HRM, which in a workforce as international as the Gulf's is the daily reality rather than an elective topic.",
             'Rushford Business School, Switzerland, awards the degree. The retention numbers and hiring outcomes you influence afterwards are the part that gets remembered.',
         ],
         'highlights' => [
@@ -691,9 +691,9 @@ return [
         'benefits' => [
             ['Business first, HR on top', 'Core business and management subjects carry the degree, so the HR expertise sits on real commercial literacy.', 'layers'],
             ['Strategic HRM, taught', 'How HR strategy supports organisational goals, workforce planning, employee engagement, and long-term performance.', 'target'],
-            ['Talent management as a system', 'Recruitment, development, succession planning, performance improvement, and talent retention, treated as one connected discipline.', 'users'],
-            ['Cross-cultural by design', 'Employee behaviour, workplace culture, motivation, leadership, and managing diverse international teams, which is the Gulf in one module.', 'globe'],
-            ['Leadership runs through it', 'Leadership and the organisation, developing teams, and managing change appear across the whole programme, not in one corner of it.', 'award'],
+            ['Talent management as a system', 'Recruitment, development, succession planning, performance improvement, and talent retention, treated as 1 connected discipline.', 'users'],
+            ['Cross-cultural by design', 'Employee behaviour, workplace culture, motivation, leadership, and managing diverse international teams, which is the Gulf in 1 module.', 'globe'],
+            ['Leadership runs through it', 'Leadership and the organisation, developing teams, and managing change appear across the whole programme, not in 1 corner of it.', 'award'],
             ['Study around your life', 'Fully online with live lectures, built for school leavers and working professionals who cannot pause anything.', 'laptop'],
         ],
         'learning' => [
@@ -730,7 +730,7 @@ return [
         'support' => $supportMarketing,
         'gcc' => [
             ['title' => 'Emiratisation made HR a compliance function', 'text' => 'Under Cabinet Resolution No. 18 of 2022, private firms with 50 or more staff must grow their Emirati skilled workforce annually, and MOHRE monitors it with penalties for non-compliance. Someone trained has to run that file.', 'icon' => 'landmark'],
-            ['title' => 'Talent is the scarcest thing in the Gulf', 'text' => "With expatriates making up roughly 87% of Dubai's population, attraction and retention are the business, and nine in ten GCC employers still report skills gaps, per Taggd's 2026 study.", 'icon' => 'users'],
+            ['title' => 'Talent is the scarcest thing in the Gulf', 'text' => "With expatriates making up roughly 87% of Dubai's population, attraction and retention are the business, and 9 in 10 GCC employers still report skills gaps, per Taggd's 2026 study.", 'icon' => 'users'],
             ['title' => 'Cross-cultural HR is the local context', 'text' => 'A workforce drawn from dozens of nationalities makes cross-cultural HRM a daily practice here, not an abstract module.', 'icon' => 'globe'],
             ['title' => 'No career break required', 'text' => 'Fully online with live lectures from anywhere in the GCC, so working professionals progress academically without pausing anything.', 'icon' => 'laptop'],
             ['title' => 'People roles are professionalising', 'text' => 'Retention surveys keep pushing companies to formalise HR, which means hiring people with structured training rather than generalists who picked it up on the job.', 'icon' => 'award'],

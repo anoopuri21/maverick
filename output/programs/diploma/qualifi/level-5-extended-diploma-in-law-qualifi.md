@@ -42,7 +42,7 @@ status: approved
 ```
 Contract, criminal, public, land, tort, equity and trusts, EU law and legal methods — the classic foundation subjects of English law, studied at Level 5. It is not a qualifying law degree and grants no right to practise.
 ```
-*39 words / 219 chars ✅*
+*38 words / 220 chars ✅*
 
 ## 2.2 `description`
 
@@ -51,7 +51,7 @@ Contract, criminal, public, land, tort, equity and trusts, EU law and legal meth
 <p>Qualifi's stated aim is to let learners acquire a broad range of knowledge and understanding, and develop skills for a career in law, with the opportunity to progress to a higher-level qualification including a bachelor's degree final year. Every published learning outcome begins with the word understand — the formation of legal agreements, the sources of law, the features of the UK constitution, the nature of liability in tort.</p>
 <p>Be clear about the limits before anything else. This is not a qualifying law degree. Qualifi publishes no recognition from the Solicitors Regulation Authority and this award makes nobody eligible to practise. It is 240 credits at Level 5, number 610/3349/2, and it teaches legal knowledge rather than licensing legal work.</p>
 ```
-*3 paragraphs / 180 words ✅*
+*3 paragraphs / 175 words ✅*
 
 ---
 
@@ -74,8 +74,8 @@ Contract, criminal, public, land, tort, equity and trusts, EU law and legal meth
 | Subjects published | Contract Law · Criminal Law · Legal Methods · Public Law · Equity and Trusts · EU Law · Land Law · Law of Tort |
 | **Important limits** | **This is not a qualifying law degree. Qualifi publishes no recognition from the Solicitors Regulation Authority and no eligibility to practise law in any jurisdiction.** Qualifi says only that its law suite "will aim to provide the underpinning knowledge of the law contributing to preparation for" the Solicitors Qualifying Examination — a carefully hedged statement about knowledge, not about eligibility, exemption or entry to the profession |
 | Jurisdiction | The subjects are those of English law, with a separate EU law subject. If you intend to work under a different legal system, this teaches a framework rather than your local rules |
-| About the subject list | Eight subjects are published against 240 credits, fewer than comparable Qualifi awards of the same size. The page does not explain it. Confirm the complete list with your centre from the Centre Specification |
-| Entry | 18 or over, with no prior qualification published. IELTS 6 or equivalent where English is not your first language, plus normally two references, one preferably academic |
+| About the subject list | 8 subjects are published against 240 credits, fewer than comparable Qualifi awards of the same size. The page does not explain it. Confirm the complete list with your centre from the Centre Specification |
+| Entry | 18 or over, with no prior qualification published. IELTS 6 or equivalent where English is not your first language, plus normally 2 references, 1 preferably academic |
 | Onward routes published by Qualifi | A Qualifi Level 7 Diploma in related areas · a bachelor's degree final year · employment in an associated profession. The progression skips Level 6 entirely |
 
 ## 3.3 `benefits`
@@ -100,7 +100,7 @@ Contract, criminal, public, land, tort, equity and trusts, EU law and legal meth
 
 ## 3.6 `structure`
 
-**Part 1 — Obligations between people** · *The two great sources of civil liability.*
+**Part 1 — Obligations between people** · *The 2 great sources of civil liability.*
 Contract Law · Law of Tort
 
 **Part 2 — The state, the citizen and property** · *Public power, criminal responsibility and ownership.*
@@ -111,14 +111,14 @@ Legal Methods · EU Law · 240 credits at Level 5 · Certificated by Qualifi
 
 ## 3.5 `careers`
 
-Qualifi publishes no destinations, salaries or employment data, and this award confers no right to practise law. Its three published progression routes appear below.
+Qualifi publishes no destinations, salaries or employment data, and this award confers no right to practise law. Its 3 published progression routes appear below.
 
 1. A Qualifi Level 7 Diploma in related areas
 2. A bachelor's degree final year, where the university accepts the application
 3. Employment in an associated profession
 
 ## 3.8 `support`
-Centre reviews the application and support needs · Teaching from an approved centre · Assessment against eight published outcomes · Qualifi certification · Centre-set timetable · Two references at application
+Centre reviews the application and support needs · Teaching from an approved centre · Assessment against 8 published outcomes · Qualifi certification · Centre-set timetable · 2 references at application
 
 ## 3.9 `gcc_heading` + `gcc_reasons` *(6)*
 **Heading:** `Why Gulf Professionals Study English Law`
@@ -143,16 +143,16 @@ Qualifi publishes no price · Set by the approved centre · Varies by country ·
 <p>Not with this alone, and not directly. Becoming a solicitor in England and Wales runs through the Solicitors Regulation Authority's own route, which has its own requirements for qualifying work experience and assessment. Qualifi publishes no SRA recognition for this award and does not claim it makes anyone eligible for anything. Treat it as legal knowledge you can build on, and take the route question to the SRA.</p>
 
 **But Qualifi mentions the Solicitors Qualifying Examination.**
-<p>It does, and the exact wording matters. Qualifi says its law suite "will aim to provide the underpinning knowledge of the law contributing to preparation for" that examination. Read it closely: aiming to provide knowledge that contributes to preparation. That is three layers of hedging, and it is a statement about subject knowledge, not about eligibility, exemption or recognition. We are not going to firm it up into something it is not.</p>
+<p>It does, and the exact wording matters. Qualifi says its law suite "will aim to provide the underpinning knowledge of the law contributing to preparation for" that examination. Read it closely: aiming to provide knowledge that contributes to preparation. That is 3 layers of hedging, and it is a statement about subject knowledge, not about eligibility, exemption or recognition. We are not going to firm it up into something it is not.</p>
 
 **Why is EU law still taught?**
-<p>Qualifi lists it as one of the eight subjects and gives no explanation on the qualification page, so we will not invent one. A reasonable observation is that EU law remains relevant to anyone dealing with European counterparties, and that understanding why the Union was created and how its legal order works has value beyond membership. But that is our observation, not Qualifi's reasoning.</p>
+<p>Qualifi lists it as 1 of the 8 subjects and gives no explanation on the qualification page, so we will not invent one. A reasonable observation is that EU law remains relevant to anyone dealing with European counterparties, and that understanding why the Union was created and how its legal order works has value beyond membership. But that is our observation, not Qualifi's reasoning.</p>
 
-**Eight subjects for 240 credits — is something missing?**
-<p>Possibly. Most Qualifi awards at this credit size publish around twelve. The page gives no credit breakdown and says nothing about whether further content exists. Since Qualifi's own specification document covers the Level 4 and Level 5 law diplomas together, the published list may represent only part of the whole. Ask your centre for the complete specification before committing.</p>
+**8 subjects for 240 credits — is something missing?**
+<p>Possibly. Most Qualifi awards at this credit size publish around 12. The page gives no credit breakdown and says nothing about whether further content exists. Since Qualifi's own specification document covers the Level 4 and Level 5 law diplomas together, the published list may represent only part of the whole. Ask your centre for the complete specification before committing.</p>
 
 **Do I need any qualifications to start?**
-<p>None are published. Qualifi states only that applicants must be 18 or over, that IELTS 6 or equivalent applies where English is not your first language, and that two references are normally required with one preferably academic. The approved centre then judges whether you can meet the demands of the programme. Law reading is dense, so expect that judgement to be taken seriously.</p>
+<p>None are published. Qualifi states only that applicants must be 18 or over, that IELTS 6 or equivalent applies where English is not your first language, and that 2 references are normally required with 1 preferably academic. The approved centre then judges whether you can meet the demands of the programme. Law reading is dense, so expect that judgement to be taken seriously.</p>
 
 **Is this useful if I work outside the UK?**
 <p>It can be, with clear eyes about what it is. The subjects are English law, so they will not tell you the rules where you live unless you live under that system. What transfers is the method: how obligations arise, how liability is analysed, how to read a statute and a case. In jurisdictions and financial free zones built on common law, that grounding has direct practical value.</p>

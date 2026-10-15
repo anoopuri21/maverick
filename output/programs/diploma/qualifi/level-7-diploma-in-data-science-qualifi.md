@@ -41,16 +41,16 @@ status: approved
 ```
 R, Python and SQL are named on the official page, which no other qualification here does. Behind the tooling sit statistical inference, predictive modelling, time series work and machine learning applied to business questions.
 ```
-*35 words / 225 chars ✅*
+*34 words / 226 chars ✅*
 
 ## 2.2 `description`
 
 ```html
-<p>Qualifi rarely names a technology. On this award it names three: learners are expected to gain skills in mathematics, statistics and programming in R, Python and SQL. That single sentence tells you more about what the study involves than most listings manage in a page, and it sets a clear expectation about the kind of work you will be doing.</p>
+<p>Qualifi rarely names a technology. On this award it names 3: learners are expected to gain skills in mathematics, statistics and programming in R, Python and SQL. That 1 sentence tells you more about what the study involves than most listings manage in a page, and it sets a clear expectation about the kind of work you will be doing.</p>
 <p>The published subjects run from Exploratory Data Analysis and Statistical Inference through predictive modelling, Time Series Analysis, unsupervised multivariate methods and machine learning. Classical statistics first, then the modelling techniques built on top of it. The stated audience is people aiming at data scientist, data analyst or artificial intelligence roles.</p>
 <p>The register entry reads: Level 7, 120 credits, number 603/6693/X. Study hours are not stated, and the centre specification carries an October 2020 date — worth knowing in a field where tooling moves quickly.</p>
 ```
-*3 paragraphs / 152 words ✅*
+*3 paragraphs / 144 words ✅*
 
 ---
 
@@ -61,7 +61,7 @@ R, Python and SQL are named on the official page, which no other qualification h
 | Regulated by | Ofqual, on the RQF |
 | Credits | 120 at Level 7 |
 | Languages named | R, Python and SQL |
-| Entry option | Three years' relevant work experience |
+| Entry option | 3 years' relevant work experience |
 | Specification dated | October 2020 |
 
 ## 3.2 `snapshot`
@@ -71,9 +71,9 @@ R, Python and SQL are named on the official page, which no other qualification h
 | Qualification number | 603/6693/X on the Regulated Qualifications Framework |
 | Size and type | 120 credits at Level 7, a Vocational Related Qualification (Higher Education), accreditation status Accredited. No total qualification time is published |
 | Technologies named | R, Python and SQL, stated in Qualifi's own description of the award |
-| Subjects as published | Five bullet points: Exploratory Data Analysis; Statistical Inference; "Fundamentals of Predictive Modelling Advanced Predictive Modelling"; Time Series Analysis; "Unsupervised Multivariate Methods Machine Learning" |
-| A formatting caution | Two of those bullets appear to hold two subject titles each, which would make seven subjects rather than five. The published outcomes support that reading. We have not altered the list; ask the centre for the specification |
-| Published entry | A Level 6 qualification in a related sector, or a bachelors degree, or a minimum of three years' work experience showing current and relevant industry knowledge |
+| Subjects as published | 5 bullet points: Exploratory Data Analysis; Statistical Inference; "Fundamentals of Predictive Modelling Advanced Predictive Modelling"; Time Series Analysis; "Unsupervised Multivariate Methods Machine Learning" |
+| A formatting caution | 2 of those bullets appear to hold 2 subject titles each, which would make 7 subjects rather than 5. The published outcomes support that reading. We have not altered the list; ask the centre for the specification |
+| Published entry | A Level 6 qualification in a related sector, or a bachelors degree, or a minimum of 3 years' work experience showing current and relevant industry knowledge |
 | Not published at entry | No minimum age and no English language test score appear for this award |
 | Progression published by Qualifi | A Qualifi Level 7 and/or 8 Diploma; employment in an associated profession; or a dissertation-only route to a master's degree at one of Qualifi's university partnerships, none of which is named |
 
@@ -85,7 +85,7 @@ R, Python and SQL are named on the official page, which no other qualification h
 | `line-chart` | Time series as its own subject | <p>Forecasting from sequential data gets dedicated attention rather than a passing mention.</p> |
 | `brain` | Machine learning applied to problems | <p>The outcomes frame machine learning as something aimed at business questions, not an end in itself.</p> |
 | `broom` | Cleaning data is taken seriously | <p>Evaluating, structuring and cleaning data appears as a published outcome — the unglamorous majority of the job.</p> |
-| `briefcase` | Three years of work can open the door | <p>Relevant industry experience stands as a published alternative to a degree.</p> |
+| `briefcase` | 3 years of work can open the door | <p>Relevant industry experience stands as a published alternative to a degree.</p> |
 
 ## 3.4 `learning`
 
@@ -105,24 +105,24 @@ The outcomes below are Qualifi's own, reproduced in substance. They are unusuall
 **Part 1 — Looking at the data** · *What is actually in front of you, and what the numbers support.*
 Exploratory Data Analysis · Statistical Inference
 
-**Part 2 — Modelling and forecasting** · *Published as two bullets that appear to carry four titles.*
+**Part 2 — Modelling and forecasting** · *Published as 2 bullets that appear to carry 4 titles.*
 Fundamentals of Predictive Modelling · Advanced Predictive Modelling · Time Series Analysis
 
-**Part 3 — Patterns without labels** · *The second apparent double bullet, plus the award.*
+**Part 3 — Patterns without labels** · *The 2nd apparent double bullet, plus the award.*
 Unsupervised Multivariate Methods · Machine Learning · 120 credits at Level 7 · Qualification number 603/6693/X · Certificated by Qualifi
 
 ## 3.5 `careers`
 
 Qualifi publishes no destination statistics, no salary information and no employment rates for this qualification. What it does publish is who the award is meant for: people working towards roles as data scientists, data analysts and artificial intelligence specialists. That is a statement of intended audience, and it should not be read as evidence of where graduates end up.
 
-Three onward routes appear on the page: a Qualifi Level 7 and/or 8 Diploma, direct entry into employment in an associated profession, and a dissertation-only route to a master's degree at one of Qualifi's university partnerships.
+3 onward routes appear on the page: a Qualifi Level 7 and/or 8 Diploma, direct entry into employment in an associated profession, and a dissertation-only route to a master's degree at one of Qualifi's university partnerships.
 
-Weigh that last one carefully. The diploma does not award a master's degree. No partner institution is identified, no list is published and no terms are set out, so there is nothing you can hold anybody to. Universities decide admission and credit on their own criteria, and a dissertation-only arrangement is unusual enough that it should be confirmed in writing before it influences your decision.
+Weigh that last 1 carefully. The diploma does not award a master's degree. No partner institution is identified, no list is published and no terms are set out, so there is nothing you can hold anybody to. Universities decide admission and credit on their own criteria, and a dissertation-only arrangement is unusual enough that it should be confirmed in writing before it influences your decision.
 
 On industry credentials, nothing is published and nothing should be assumed. This award includes no vendor certification from any cloud or analytics platform, and brings no membership of a professional computing body.
 
 ## 3.8 `support`
-Degree or three years' experience route in · Teaching from an approved centre · Programming in R, Python and SQL · Eight published outcomes specific to the subject · Qualifi certification · No age or language barrier published
+Degree or 3 years' experience route in · Teaching from an approved centre · Programming in R, Python and SQL · 8 published outcomes specific to the subject · Qualifi certification · No age or language barrier published
 
 ## 3.9 `gcc_heading` + `gcc_reasons` *(6)*
 **Heading:** `Why Data Roles in the Gulf Are Growing Fast`
@@ -143,11 +143,11 @@ No price published by Qualifi · Set by the approved centre · Varies by country
 
 ## 4. `faqs` *(6)*
 
-**Are there five subjects or seven?**
-<p>Probably seven, though we have left the published list untouched. Qualifi prints five bullets, but two of them clearly run two titles together: "Fundamentals of Predictive Modelling Advanced Predictive Modelling" and "Unsupervised Multivariate Methods Machine Learning". The published outcomes treat predictive modelling, data reduction and machine learning as separate areas, which supports reading them as four distinct subjects rather than two. Correcting an awarding body's own list is not our place, so we have flagged it instead. The October 2020 specification will give the definitive count.</p>
+**Are there 5 subjects or 7?**
+<p>Probably 7, though we have left the published list untouched. Qualifi prints 5 bullets, but 2 of them clearly run 2 titles together: "Fundamentals of Predictive Modelling Advanced Predictive Modelling" and "Unsupervised Multivariate Methods Machine Learning". The published outcomes treat predictive modelling, data reduction and machine learning as separate areas, which supports reading them as 4 distinct subjects rather than 2. Correcting an awarding body's own list is not our place, so we have flagged it instead. The October 2020 specification will give the definitive count.</p>
 
 **Do I need to know how to code before starting?**
-<p>Qualifi does not say, which is itself worth knowing. The published outcome is that you will develop enough skill in R, Python and SQL to carry out advanced analysis, phrasing that suggests the languages are taught rather than assumed. Entry is based on a Level 6 qualification, a degree or three years of relevant experience, with no coding test mentioned. In practice, arriving with some familiarity will make the statistical subjects far less punishing. Ask the centre what prior exposure its intake typically has.</p>
+<p>Qualifi does not say, which is itself worth knowing. The published outcome is that you will develop enough skill in R, Python and SQL to carry out advanced analysis, phrasing that suggests the languages are taught rather than assumed. Entry is based on a Level 6 qualification, a degree or 3 years of relevant experience, with no coding test mentioned. In practice, arriving with some familiarity will make the statistical subjects far less punishing. Ask the centre what prior exposure its intake typically has.</p>
 
 **Is a 2020 specification too old for this subject?**
 <p>Judge it on what is in it rather than on the date alone. Statistical inference, predictive modelling, time series analysis and multivariate methods are stable foundations, and R, Python and SQL remain the working tools of most analytics teams. What has moved fastest since 2020 sits above that layer: large language models, newer frameworks, the way teams deploy models into production. Ask your centre directly when it last refreshed the taught material and what tooling its assignments use, because centres revise delivery independently of the specification.</p>
@@ -159,7 +159,7 @@ No price published by Qualifi · Set by the approved centre · Varies by country
 <p>That is entirely the centre's decision. What Qualifi contributes is the design, the regulation and the final certificate; who teaches you, when, and for how much is settled between you and the centre. No total qualification time is published for this award either, so there is no official hours figure against which to sanity-check a proposed timetable. Before paying anything, ask for the cohort dates, an expected completion date, and a price that separates tuition from registration and certification.</p>
 
 **How does it compare with the Level 7 IT diploma?**
-<p>They answer different questions. The IT award is broad computing — networks, databases, information systems, a delivery project and a subject on technology's effect on society — and it publishes a total study time of 1,200 hours. This one is narrow and quantitative: statistics, modelling, forecasting and machine learning, with three named languages. If your work is building and running systems, the IT award fits better. If your work is extracting answers from data, this is the closer match.</p>
+<p>They answer different questions. The IT award is broad computing — networks, databases, information systems, a delivery project and a subject on technology's effect on society — and it publishes a total study time of 1,200 hours. This one is narrow and quantitative: statistics, modelling, forecasting and machine learning, with 3 named languages. If your work is building and running systems, the IT award fits better. If your work is extracting answers from data, this is the closer match.</p>
 
 ---
 
@@ -167,4 +167,4 @@ No price published by Qualifi · Set by the approved centre · Varies by country
 | Field | Value | Count |
 |---|---|---|
 | `meta_title` | Qualifi Level 7 Diploma in Data Science — R, Python, SQL | 56 ✅ |
-| `meta_description` | Qualifi Level 7 Diploma in Data Science. 120 credits covering statistics, predictive modelling, time series and machine learning in R, Python and SQL. | 149 ✅ |
+| `meta_description` | Qualifi Level 7 Diploma in Data Science. 120 credits covering statistics, predictive modelling, time series and machine learning in R, Python and SQL. | 150 ✅ |
