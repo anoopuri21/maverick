@@ -41,16 +41,16 @@ status: approved
 ```
 Girne American University describes this as a supervised programme of scholarly research leading to a thesis that makes an original contribution. Before that comes a year on hotel leadership, yield management, service operations and competitive strategy for the hospitality industry.
 ```
-*42 words / 281 chars ✅*
+*40 words / 283 chars ✅*
 
 ## 2.2 `description`
 
 ```html
 <p>The framing GAU gives this doctorate is worth taking at face value: supervised scholarly research, ending in a thesis that contributes something original to the field. Supervision is named first, before the curriculum, which tells you where the weight sits.</p>
-<p>Coursework comes first all the same, and it is sector-specific rather than generic. Advanced Management and Advanced Research Methods open the autumn alongside Leadership in Hotel Management and Human Resources. Spring brings Yield Management for Tourism Industry, Service Operations Management and Competitive Strategy for the Hospitality Industry — the revenue side, the delivery side and the positioning side, taught as three separate courses.</p>
-<p>Year two closes the taught stage with an elective and a twenty-ECTS Seminar in Tourism and Hospitality, followed by the qualification stage. Thesis semesters then run across years three and four on the published course table. Instruction throughout is in English.</p>
+<p>Coursework still comes before the thesis, and it is sector-specific rather than generic. Advanced Management and Advanced Research Methods open the autumn alongside Leadership in Hotel Management and Human Resources. Spring brings Yield Management for Tourism Industry, Service Operations Management and Competitive Strategy for the Hospitality Industry — the revenue side, the delivery side and the positioning side, taught as 3 separate courses.</p>
+<p>Year 2 closes the taught stage with an elective and a 20-ECTS Seminar in Tourism and Hospitality, followed by the qualification stage. Thesis semesters then run across years 3 and 4 on the published course table. Instruction throughout is in English.</p>
 ```
-*3 paragraphs / 148 words ✅*
+*3 paragraphs / 144 words ✅*
 
 ---
 
@@ -60,7 +60,7 @@ Girne American University describes this as a supervised programme of scholarly 
 | Awarded by | Girne American University |
 | Duration | 3 Years |
 | Focus | Supervised research, original thesis contribution |
-| Sector courses | Four, across leadership, yield, operations and strategy |
+| Sector courses | 4, across leadership, yield, operations and strategy |
 | Seminar | Tourism and Hospitality, 20 ECTS |
 | Language | English |
 
@@ -73,17 +73,17 @@ Girne American University describes this as a supervised programme of scholarly 
 | Faculty | Institute of Social & Applied Sciences |
 | Hospitality core | Leadership in Hotel Management and Human Resources; Yield Management for Tourism Industry; Service Operations Management; Competitive Strategy for the Hospitality Industry |
 | Taught language | English |
-| Credit notation caveat | GAU's course table for this doctorate shows credit values that do not reconcile with the same course codes on its other programme pages, and lists the electives at zero credits. We report the course titles and the published ECTS, and deliberately avoid quoting a total credit figure. Confirm the arithmetic with the Institute. |
+| Credit notation caveat | GAU's course table for this doctorate shows credit values that do not reconcile with the same course codes on its other programme pages, and lists the electives at 0 credits. We report the course titles and the published ECTS, and deliberately avoid quoting a total credit figure. Confirm the arithmetic with the Institute. |
 
 ## 3.3 `benefits`
 | icon | title | desc |
 |---|---|---|
-| `user-check` | Supervision stated first | <p>GAU defines the programme as supervised scholarly research before it describes any coursework, which sets the expectation clearly.</p> |
+| `user-check` | Supervision stated up front | <p>GAU defines the programme as supervised scholarly research before it describes any coursework, which sets the expectation clearly.</p> |
 | `trending-up` | Yield management as a doctoral subject | <p>Revenue management for the tourism industry is taught as its own course, which is uncommon at this level.</p> |
 | `briefcase` | Strategy written for the sector | <p>Competitive Strategy for the Hospitality Industry replaces the generic strategy course used on other business doctorates.</p> |
 | `users` | The people side has its own course | <p>Leadership in Hotel Management and Human Resources covers the staffing reality that decides whether a property performs.</p> |
 | `settings` | Operations taught as service delivery | <p>Service Operations Management addresses how the guest experience is actually produced, not just how it is marketed.</p> |
-| `compass` | Methods before specialism | <p>Research methods and advanced management are scheduled in the first autumn, so the sector courses land on a research footing.</p> |
+| `compass` | Methods before specialism | <p>Research methods and advanced management are scheduled in the 1st autumn, so the sector courses land on a research footing.</p> |
 
 ## 3.4 `learning`
 1. Conduct supervised scholarly research leading to an original contribution to the field
@@ -108,10 +108,10 @@ Year 2 Fall: Elective · Seminar in Tourism and Hospitality (THM600, 20 ECTS)
 
 **Stage 2 — Qualification and thesis** · *Qualification 30 ECTS; each thesis semester 30 ECTS.*
 Year 2 Spring: Qualification (QUALIFIC)
-Years 3 and 4: Thesis (THES600) across four semesters on the published course table
+Years 3 and 4: Thesis (THES600) across 4 semesters on the published course table
 
 *Named electives:* Organizational Behaviour · Advanced Report Writing and Social Science · Advanced Marketing Theory · Theory of Consumer Behaviour
-*Note:* GAU publishes no minimum thesis duration for this doctorate, and the elective rows on its course table carry zero credit and zero ECTS values. Treat the sequence above as the published shape and confirm specifics with the Institute.
+*Note:* GAU publishes no minimum thesis duration for this doctorate, and the elective rows on its course table carry 0 credit and 0 ECTS values. Treat the sequence above as the published shape and confirm specifics with the Institute.
 
 ## 3.8 `support`
 Supervised research programme · Thesis supervision from the outset · Research methods taught early · Dedicated sector seminar · Scholarship availability · Institute admissions guidance
@@ -126,7 +126,7 @@ Supervised research programme · Thesis supervision from the outset · Research 
 | `user-check` | A supervised route, not a solo one | GAU defines the doctorate as supervised research, which helps professionals balancing a senior operational role against a thesis. |
 | `message-square` | Studied and defended in English | The language of instruction is English, the working language of most Gulf hospitality groups. |
 | `plane` | Reachable from the Gulf | Kyrenia is a manageable journey from the main Gulf hubs for supervision meetings and campus commitments. |
-| `alert-circle` | Check the numbers yourself | No fee is published, no minimum thesis duration is stated, and the credit values on the course table are inconsistent. Ask the Institute to confirm all three in writing. |
+| `alert-circle` | Check the numbers yourself | No fee is published, no minimum thesis duration is stated, and the credit values on the course table are inconsistent. Ask the Institute to confirm all 3 in writing. |
 
 ## 3.11 `fees`
 Fee not published · Scholarship available · Written quote on request · Institute confirmation · Currency check
@@ -139,16 +139,16 @@ Fee not published · Scholarship available · Written quote on request · Instit
 <p>It describes a supervised programme of scholarly research leading to a thesis that makes an original contribution to the field, beginning with introductory coursework in research methods and advanced management topics to equip candidates with the right set of skills for their research production. That is the full published statement, and it is a research promise rather than a career one.</p>
 
 **Which hospitality subjects are taught?**
-<p>Four, each as a separate course. Leadership in Hotel Management and Human Resources in the first autumn; then Yield Management for Tourism Industry, Service Operations Management and Competitive Strategy for the Hospitality Industry across the spring. A twenty-ECTS Seminar in Tourism and Hospitality follows in year two.</p>
+<p>4, each as a separate course. Leadership in Hotel Management and Human Resources in the 1st autumn; then Yield Management for Tourism Industry, Service Operations Management and Competitive Strategy for the Hospitality Industry across the spring. A 20-ECTS Seminar in Tourism and Hospitality follows in year 2.</p>
 
 **Why are no graduate destinations listed?**
 <p>None exist on the official pages. GAU leaves that section blank here, and its separate graduate school entry for the programme carries nothing at all. We will not fill that gap with invented job titles. If destinations are central to your decision, raise it with the Institute of Graduate Studies and Research before you apply.</p>
 
 **How long is the thesis stage?**
-<p>GAU does not state a minimum for this programme, unlike its marketing and management information systems doctorates. Its course table positions qualification at the close of year two, with thesis semesters running on through years three and four. Plan against that sequence and ask the Institute to confirm the minimum in writing.</p>
+<p>GAU does not state a minimum for this programme, unlike its marketing and management information systems doctorates. Its course table positions qualification at the close of year 2, with thesis semesters running on through years 3 and 4. Plan against that sequence and ask the Institute to confirm the minimum in writing.</p>
 
 **Why does the page warn about credit values?**
-<p>Because the published table is internally inconsistent. Qualification and thesis rows appear with credit values that differ from how the same stages are shown on GAU's other doctoral pages, and the four electives are listed at zero credits and zero ECTS. Rather than reconcile that for you, we report the course titles and the published ECTS and flag the discrepancy.</p>
+<p>Because the published table is internally inconsistent. Qualification and thesis rows appear with credit values that differ from how the same stages are shown on GAU's other doctoral pages, and the 4 electives are listed at 0 credits and 0 ECTS. Rather than reconcile that for you, we report the course titles and the published ECTS and flag the discrepancy.</p>
 
 **What entry requirements apply?**
 <p>GAU publishes a full admissions list for its business management doctorate only, not for this one. Expect the standard shape — a recognised master's degree, undergraduate and postgraduate transcripts, and evidence of English — and confirm the exact requirements with the Institute. Language certificates must reach Student Services before you sit any proficiency examination, as they are not accepted afterwards.</p>
@@ -158,5 +158,5 @@ Fee not published · Scholarship available · Written quote on request · Instit
 ## 5. SEO
 | Field | Value | Count |
 |---|---|---|
-| `meta_title` | PhD in Tourism & Hospitality \| Girne American University | 57 ✅ |
-| `meta_description` | A 3-year PhD in Tourism & Hospitality at Girne American University. Yield management, service operations and hospitality strategy, taught in English. | 150 ✅ |
+| `meta_title` | PhD in Tourism & Hospitality \| Girne American University | 56 ✅ |
+| `meta_description` | A 3-year PhD in Tourism & Hospitality at Girne American University. Yield management, service operations and hospitality strategy, taught in English. | 149 ✅ |

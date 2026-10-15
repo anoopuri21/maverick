@@ -29,7 +29,7 @@ editorial_notes: "Simplified opening and source caveats; fact base and condition
 ---
 
 ## 1.2 `title` → `BSc Management Information Systems`
-## 1.5 `duration` → `Four years`
+## 1.5 `duration` → `4 years`
 ## 1.6 `level` → `BSc`
 
 ---
@@ -37,14 +37,14 @@ editorial_notes: "Simplified opening and source caveats; fact base and condition
 ## 2.1 `short_description`
 
 ```
-A database has to work for the people using it. GAU's four-year BSc Management Information Systems brings systems analysis and programming into business study. Its timetable includes an internship unit and a graduation project; no employer is promised.
+A database has to work for the people using it. GAU's 4-year BSc Management Information Systems brings systems analysis and programming into business study. Its timetable includes an internship unit and a graduation project; no employer is promised.
 ```
 
 ## 2.2 `description`
 
 ```html
 <p>BSc Management Information Systems at Girne American University sits between business questions and the technology used to answer them. The published course plan begins with computing, algorithms and management, then turns to database systems, programming and systems analysis. Later subjects include information systems security, advanced databases, software engineering, IT project management and legal issues in computing.</p>
-<p>GAU describes four years of English-taught study and a 132-credit programme in its own local notation. Its grid includes a Year 3 Internship and a Year 4 Graduation Project. These are course titles, not promises of a particular employer or outside project. Artificial Intelligence and Human Computer Interaction appear among electives, so check availability rather than assuming either is compulsory.</p>
+<p>GAU describes 4 years of English-taught study and a 132-credit programme in its own local notation. Its grid includes a Year 3 Internship and a Year 4 Graduation Project. These are course titles, not promises of a particular employer or outside project. Artificial Intelligence and Human Computer Interaction appear among electives, so check availability rather than assuming either is compulsory.</p>
 <p>The university's career list names possible paths such as systems analyst and database administrator; it does not report where graduates were hired. GAU does not advertise this as a distance degree or a vendor qualification. The Business and Economics faculty expects attendance in class, while the degree page leaves the tuition amount blank. Confirm current arrangements and entry conditions with GAU before enrolling.</p>
 ```
 
@@ -54,7 +54,7 @@ A database has to work for the people using it. GAU's four-year BSc Management I
 | label | value |
 |---|---|
 | Awarded by | Girne American University |
-| Duration | Four years |
+| Duration | 4 years |
 | Language | English taught |
 | Core theme | Business systems and data |
 | Practice | Internship unit listed |
@@ -65,7 +65,7 @@ A database has to work for the people using it. GAU's four-year BSc Management I
 |---|---|
 | Degree Award | BSc Management Information Systems |
 | Awarding University | Girne American University, North Cyprus |
-| Duration | Four years |
+| Duration | 4 years |
 | Local credits | GAU states 132; not an ECTS conversion |
 | Published practice | Internship unit in Year 3; Graduation Project in Year 4 |
 | Career evidence | GAU's example roles, not verified graduate placements |
@@ -76,7 +76,7 @@ A database has to work for the people using it. GAU's four-year BSc Management I
 |---|---|---|
 | `database` | Build a database foundation | <p>Database Systems leads into an advanced database course, making the data layer more than a passing mention.</p> |
 | `route` | Trace a system's lifecycle | <p>System Analysis & Design and IT project management let you look at a system from requirements through delivery.</p> |
-| `shield` | Include security in the plan | <p>Information Systems Security is a named third-year subject, not an assumed feature of every computing degree.</p> |
+| `shield` | Include security in the plan | <p>Information Systems Security is a named 3rd-year subject, not an assumed feature of every computing degree.</p> |
 | `code` | Keep programming in view | <p>The grid moves from algorithm techniques to programming languages, visual programming and later software engineering.</p> |
 | `graduation-cap` | Finish with a project | <p>Graduation Project appears in Year 4. The university does not identify a client, scope or external sponsor.</p> |
 | `briefcase` | Distinguish work from a promise | <p>There is a listed internship unit. Nothing on the degree page guarantees a host, paid role or job afterwards.</p> |
@@ -107,13 +107,13 @@ GAU publishes the following examples as future opportunities. They do not establ
 
 ## 3.6 `structure`
 
-**Stage 1 — Computing and management** · *Selected first-year subjects.*
+**Stage 1 — Computing and management** · *Selected 1st-year subjects.*
 Introduction to Business Management · Introduction to Computer & Information Systems I · Algorithm & Programming Techniques · Business Mathematics I
 
-**Stage 2 — Data and design** · *Selected second-year technical units.*
+**Stage 2 — Data and design** · *Selected 2nd-year technical units.*
 Database Systems · System Analysis & Design · Fundamentals of Programming Language · Information Systems · Networking & Telecommunications
 
-**Stage 3 — Security and application** · *Selected third-year subjects and the published internship unit.*
+**Stage 3 — Security and application** · *Selected 3rd-year subjects and the published internship unit.*
 Web Applications Development · Information Systems Security · Adv. Database Management Systems · E-Commerce · Internship
 
 **Stage 4 — Project and professional scope** · *Selected final-year required subjects.*
@@ -128,7 +128,7 @@ Official CIS Course List · Business-IT Focus Explained · Internship Facts Not 
 | icon | title | text |
 |---|---|---|
 | `database` | Compare the technical depth | The required grid includes Database Systems, System Analysis & Design and Information Systems Security. Compare those titles with a software-only or management-only degree. |
-| `route` | Look at the final project | GAU lists a Graduation Project in its fourth year. Request the current project brief if you need to know how that work is assessed. |
+| `route` | Look at the final project | GAU lists a Graduation Project in its 4th year. Request the current project brief if you need to know how that work is assessed. |
 | `briefcase` | Ask about internship arrangements | An internship is listed in Year 3, but neither a host nor a guaranteed place is named. Clarify the actual process with the department. |
 | `book-open` | Treat electives as choices | Artificial Intelligence and Human Computer Interaction appear on an elective list. Do not base your decision on both being available without checking the timetable. |
 | `monitor` | Confirm classroom requirements | Faculty policy expects class attendance and treats Moodle as support. Ask GAU about teaching location and attendance before planning to study from another country. |
@@ -142,13 +142,13 @@ Current tuition request · Scholarship eligibility query · Additional charge ch
 ## 4. `faqs` *(6)*
 
 **How is this degree different from a general business BSc?**
-<p>Its published course list contains algorithms, database systems, programming, systems analysis, security and software engineering as well as management subjects. A fourth-year Graduation Project then sits alongside IT project management and professional computing issues. This is a business-and-information-systems programme, not simply a business degree with one computing elective.</p>
+<p>Its published course list contains algorithms, database systems, programming, systems analysis, security and software engineering as well as management subjects. A 4th-year Graduation Project then sits alongside IT project management and professional computing issues. This is a business-and-information-systems programme, not simply a business degree with 1 computing elective.</p>
 
 **Does the MIS internship mean a guaranteed placement?**
 <p>No such guarantee appears on GAU's programme page. The grid includes an Internship unit in Year 3, but it does not name a host, wage, allocation method or duration. If practical experience is important to you, ask the department how students arrange the unit and what its requirements are for the intake you plan to join.</p>
 
 **Are artificial intelligence and human-computer interaction compulsory?**
-<p>No. GAU's grid puts Artificial Intelligence and Human Computer Interaction in a separate elective list rather than the required fourth-year sequence. The required later subjects include IT project management, a graduation project and professional and legal issues. Check current elective availability with the department; a listed option does not guarantee a place in that subject.</p>
+<p>No. GAU's grid puts Artificial Intelligence and Human Computer Interaction in a separate elective list rather than the required 4th-year sequence. The required later subjects include IT project management, a graduation project and professional and legal issues. Check current elective availability with the department; a listed option does not guarantee a place in that subject.</p>
 
 **Which career roles does the university actually name?**
 <p>GAU gives examples including systems analyst, database administrator, programmer and software developer, as well as project lead and consultant. Those are possible future roles, not a report of graduates being hired into them. The site publishes no salary, placement rate, named employer or vendor qualification attached to this BSc.</p>
@@ -165,4 +165,4 @@ Current tuition request · Scholarship eligibility query · Additional charge ch
 | Field | Value | Count |
 |---|---|---|
 | `meta_title` | BSc Management Information Systems \| GAU, North Cyprus | 54 ✅ |
-| `meta_description` | Explore GAU's four-year BSc Management Information Systems in English: databases, systems analysis, security, internship and a graduation project. | 146 ✅ |
+| `meta_description` | Explore GAU's 4-year BSc Management Information Systems in English: databases, systems analysis, security, internship and a graduation project. | 143 ✅ |

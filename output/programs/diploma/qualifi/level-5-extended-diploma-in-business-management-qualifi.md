@@ -39,18 +39,18 @@ status: approved
 ## 2.1 `short_description`
 
 ```
-Two hundred and forty credits across twelve management subjects, and one published exit worth knowing about: Qualifi lists the final year of a UK honours degree as where this leads. Three ways in, none of them requiring a degree.
+240 credits across 12 management subjects, and 1 published exit worth knowing about: Qualifi lists the final year of a UK honours degree as where this leads. 3 ways in, none of them requiring a degree.
 ```
-*39 words / 228 chars ✅*
+*36 words / 201 chars ✅*
 
 ## 2.2 `description`
 
 ```html
-<p>Most people who end up running something learn it by being handed responsibility and working it out. This award is built for the point after that, when the job has been done for a while and the paperwork has not caught up. Qualifi sets out three ways in, and a qualification is only one of them.</p>
-<p>Twelve subjects cover the ground a working manager actually meets. Leadership, communication and developing teams deal with people. Financial awareness, business operations and effective decision making deal with running things. Managing change, responding to the changing business environment, risk management, customer management, business development and business models and growing organisations deal with what happens when conditions shift.</p>
-<p>The size matters here. Completing the award is worth 240 credits, four times a standard Level 3 diploma, and Qualifi's published progression route is the final year of a UK university honours degree. Not the first year — the last one. The qualification number is 610/1675/5 and the award is accredited at Level 5 on the framework.</p>
+<p>Most people who end up running something learn it by being handed responsibility and working it out. This award is built for the point after that, when the job has been done for a while and the paperwork has not caught up. Qualifi sets out 3 ways in, and a qualification is only one of them.</p>
+<p>12 subjects cover the ground a working manager actually meets. Leadership, communication and developing teams deal with people. Financial awareness, business operations and effective decision making deal with running things. Managing change, responding to the changing business environment, risk management, customer management, business development and business models and growing organisations deal with what happens when conditions shift.</p>
+<p>The size matters here. Completing the award is worth 240 credits, 4 times a standard Level 3 diploma, and Qualifi's published progression route is the final year of a UK university honours degree. Not the 1st year — the last one. The qualification number is 610/1675/5 and the award is accredited at Level 5 on the framework.</p>
 ```
-*3 paragraphs / 177 words ✅*
+*3 paragraphs / 170 words ✅*
 
 ---
 
@@ -79,17 +79,17 @@ Two hundred and forty credits across twelve management subjects, and one publish
 ## 3.3 `benefits`
 | icon | title | desc |
 |---|---|---|
-| `graduation-cap` | The last year, not the first | <p>Qualifi's published exit is the final year of a UK honours degree, which is the shortest published route to a degree in its whole range.</p> |
+| `graduation-cap` | The last year, not the 1st | <p>Qualifi's published exit is the final year of a UK honours degree, which is the shortest published route to a degree in its whole range.</p> |
 | `briefcase` | Experience counts as a way in | <p>Managerial work with clear career goals is listed as an entry route in its own right. No certificate required for that door.</p> |
 | `users` | People and numbers together | <p>Leadership and team development sit alongside financial awareness, which is how the job actually works.</p> |
-| `refresh-cw` | Built around change | <p>Three of the twelve subjects deal with shifting conditions: managing change, responding to the business environment, and risk.</p> |
-| `repeat` | A second career is catered for | <p>Holding a first degree in something else and wanting to move into business is a published entry route.</p> |
-| `scale` | Four times a Level 3 diploma | <p>At 240 credits this is a substantial commitment, and the credit value reflects that.</p> |
+| `refresh-cw` | Built around change | <p>3 of the 12 subjects deal with shifting conditions: managing change, responding to the business environment, and risk.</p> |
+| `repeat` | A 2nd career is catered for | <p>Holding a first degree in something else and wanting to move into business is a published entry route.</p> |
+| `scale` | 4 times a Level 3 diploma | <p>At 240 credits this is a substantial commitment, and the credit value reflects that.</p> |
 
 ## 3.4 `learning`
 1. Understand and apply the principles of leadership in a business environment
 2. Review and apply the principles of business management within industry
-3. Understand and apply management principles in one specific setting
+3. Understand and apply management principles in 1 specific setting
 4. Explore where management theory meets practice, and strengthen your employability through it
 5. Analyse problem-solving techniques that belong to business and industry
 6. Select, collate, review and analyse information drawn from a wide range of sources
@@ -109,19 +109,19 @@ Managing Change · Responding to the Changing Business Environment · Business M
 
 ## 3.5 `careers`
 
-No employment rates, salary bands or job destinations are published by Qualifi for this award. One progression route appears on its page, and it is reproduced here without addition.
+No employment rates, salary bands or job destinations are published by Qualifi for this award. 1 progression route appears on its page, and it is reproduced here without addition.
 
 1. The final year of a UK university honours degree, subject to the receiving university accepting you
 
 ## 3.8 `support`
-Three published routes in, including an experience route · Centre reviews your application · Teaching from an approved centre · Assessment against nine published outcomes · Qualifi certification · Timetable agreed locally
+3 published routes in, including an experience route · Centre reviews your application · Teaching from an approved centre · Assessment against 9 published outcomes · Qualifi certification · Timetable agreed locally
 
 ## 3.9 `gcc_heading` + `gcc_reasons` *(6)*
 **Heading:** `Why Gulf Managers Choose a Level 5 Route`
 
 | icon | title | text |
 |---|---|---|
-| `clock` | A shorter path to a degree | For a working manager, finishing a degree in one final year rather than three is the difference between possible and not. |
+| `clock` | A shorter path to a degree | For a working manager, finishing a degree in 1 final year rather than 3 is the difference between possible and not. |
 | `award` | Experience without a certificate is recognised | Plenty of capable managers across the region progressed on results alone. Qualifi lists that experience as a way in. |
 | `building-2` | Content that matches regional business | Change management, growth models and risk are daily concerns in fast-moving Gulf markets. |
 | `globe` | Available outside the UK | Qualifi states the award is offered both in the UK and internationally through approved centres. |
@@ -142,13 +142,13 @@ No price published by Qualifi · The approved centre sets it · Varies by countr
 <p>Possibly, yes. Qualifi lists work experience at a managerial level, together with ambition and clear career goals, as an entry route standing on its own. It does not ask for a certificate alongside it. What it does not define is how many years count, so the judgement falls to the approved centre reviewing your application. Set out your responsibilities plainly and let them assess it.</p>
 
 **Is there an age limit or an English test?**
-<p>Not on this page. Qualifi publishes three entry bullets here and none mentions age or IELTS, even though several of its other Level 5 diplomas state 18 and over with IELTS 6. We are not going to fill that silence with another award's rules. Ask your centre what it applies in practice, because centres can set their own admission checks on top of Qualifi's.</p>
+<p>Not on this page. Qualifi publishes 3 entry bullets here and none mentions age or IELTS, even though several of its other Level 5 diplomas state 18 and over with IELTS 6. We are not going to fill that silence with another award's rules. Ask your centre what it applies in practice, because centres can set their own admission checks on top of Qualifi's.</p>
 
 **What separates this from the Level 3 business management diploma?**
-<p>Two levels and four times the size. The Level 3 award is 60 credits, introduces the subject and exits to a Level 4 certificate or the start of a degree. This is 240 credits, assumes you are already working at or near management, adds leadership as a full theme, and exits at the far end of a degree instead of the beginning.</p>
+<p>2 levels and 4 times the size. The Level 3 award is 60 credits, introduces the subject and exits to a Level 4 certificate or the start of a degree. This is 240 credits, assumes you are already working at or near management, adds leadership as a full theme, and exits at the far end of a degree instead of the beginning.</p>
 
-**Are all twelve subjects compulsory?**
-<p>The page lists twelve and does not mark any as optional, nor does it publish credit values for individual subjects. So we cannot tell you whether there is choice inside the programme or how the 240 credits are split. Qualifi's combined specification for its business diplomas holds that detail, and your centre can walk you through it before you enrol.</p>
+**Are all 12 subjects compulsory?**
+<p>The page lists 12 and does not mark any as optional, nor does it publish credit values for individual subjects. So we cannot tell you whether there is choice inside the programme or how the 240 credits are split. Qualifi's combined specification for its business diplomas holds that detail, and your centre can walk you through it before you enrol.</p>
 
 **Timescale and price — where do those come from?**
 <p>Not from the awarding body. Qualifi puts no duration on this award and no fee, and unusually it does not publish a total qualification time either, so there is not even a notional hours figure to reason from. Both answers come from the approved centre delivering the teaching, since Qualifi writes and regulates the qualification but runs no classes itself. Get the duration, the intake dates and the full price in writing.</p>
@@ -158,5 +158,5 @@ No price published by Qualifi · The approved centre sets it · Varies by countr
 ## 5. SEO
 | Field | Value | Count |
 |---|---|---|
-| `meta_title` | Level 5 Extended Diploma in Business Management \| Qualifi | 58 ✅ |
+| `meta_title` | Level 5 Extended Diploma in Business Management \| Qualifi | 57 ✅ |
 | `meta_description` | Qualifi Level 5 Extended Diploma in Business Management. 240 credits, 12 subjects, Ofqual regulated, exits to the final year of a UK honours degree. | 148 ✅ |

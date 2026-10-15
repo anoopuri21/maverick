@@ -41,16 +41,16 @@ status: approved
 ```
 For the people who run schools and colleges rather than the people who teach in them. Policy, change, reflective practice and research methods — and emphatically not a teaching qualification of any kind.
 ```
-*34 words / 203 chars ✅*
+*33 words / 203 chars ✅*
 
 ## 2.2 `description`
 
 ```html
-<p>Qualifi is specific about the destination it has in mind: roles in education administration and management. Not the classroom. Six subjects support that — Leadership Qualities and Practice in Education, Contemporary Issues in Education: Theory, Policy and Practice, Managing Change in an Educational Context, Pedagogy and Practice in Education, Leading Reflective Practice in Education, and Research Methods in Education.</p>
-<p>The award's stated purpose is to build understanding of policy, management theory and practice in education, and to give learners a way into the problems facing professionals and policy makers. Leading change, getting performance out of a team, and running reflective practice across a staff group are the skills it names. Pedagogy appears as one subject among six, examined from the perspective of someone responsible for teaching quality rather than delivering lessons.</p>
+<p>Qualifi is specific about the destination it has in mind: roles in education administration and management. Not the classroom. 6 subjects support that — Leadership Qualities and Practice in Education, Contemporary Issues in Education: Theory, Policy and Practice, Managing Change in an Educational Context, Pedagogy and Practice in Education, Leading Reflective Practice in Education, and Research Methods in Education.</p>
+<p>The award's stated purpose is to build understanding of policy, management theory and practice in education, and to give learners a way into the problems facing professionals and policy makers. Leading change, getting performance out of a team, and running reflective practice across a staff group are the skills it names. Pedagogy appears as 1 subject among 6, examined from the perspective of someone responsible for teaching quality rather than delivering lessons.</p>
 <p>Look it up as 603/6176/1: Level 7, 120 credits, no published study hours. The specification carries an April 2023 date.</p>
 ```
-*3 paragraphs / 148 words ✅*
+*3 paragraphs / 151 words ✅*
 
 ---
 
@@ -74,9 +74,9 @@ For the people who run schools and colleges rather than the people who teach in 
 | Qualifi's stated destination | Roles in education administration and management, in its own words |
 | Teaching status | This is not Initial Teacher Training, not a PGCE, and confers no Qualified Teacher Status. Nothing about teacher registration is published for it |
 | Title clash to watch | Gatehouse Awards offers a separate Level 7 Diploma in Educational Leadership, and Qualifi itself offers a Level 5 Extended Diploma in Education and Training Management. Match on the qualification number and the awarding body, never on the title alone |
-| Published entry | The legacy two-line block: a Level 6 qualification, or a first degree. No age, English language score, references or centre-review paragraph appears |
+| Published entry | The legacy 2-line block: a Level 6 qualification, or a first degree. No age, English language score, references or centre-review paragraph appears |
 | Progression published by Qualifi | A university partner to complete a dissertation and then receive an MSc in Educational Management and Leadership; the Qualifi Level 8 Diploma in Strategic Management and Leadership; or employment in an associated profession. No university is named |
-| On the published outcomes | Most of them are generic management statements reused across unrelated Qualifi awards, and one refers to educational leadership "within industry". The real subject content sits in the six subjects |
+| On the published outcomes | Most of them are generic management statements reused across unrelated Qualifi awards, and 1 outcome refers to educational leadership "within industry". The real subject content sits in the 6 subjects |
 
 ## 3.3 `benefits`
 | icon | title | desc |
@@ -90,7 +90,7 @@ For the people who run schools and colleges rather than the people who teach in 
 
 ## 3.4 `learning`
 
-A caution about the published outcomes before the list. Qualifi prints eight numbered items for this award, but two of them are one sentence split across two numbers, so there are really seven. Of those seven, five are generic statements that appear word for word on unrelated qualifications in its range, and one refers to educational leadership "within industry" — wording clearly carried over from a business award, which we have not reproduced. The outcomes that are education-specific are the generic template with the word education substituted in. We have kept what is usable and built the rest from the six published subjects and Qualifi's own overview, so the list below is derived coverage rather than a transcription.
+A caution about the published outcomes before the list. Qualifi prints 8 numbered items for this award, but 2 of them are 1 sentence split across 2 numbers, so there are really 7. Of those 7, 5 are generic statements that appear word for word on unrelated qualifications in its range, and 1 outcome refers to educational leadership "within industry" — wording clearly carried over from a business award, which we have not reproduced. The outcomes that are education-specific are the generic template with the word education substituted in. We have kept what is usable and built the rest from the 6 published subjects and Qualifi's own overview, so the list below is derived coverage rather than a transcription.
 
 1. Understand and apply management strategy inside an educational setting
 2. Examine contemporary issues in education across theory, policy and practice
@@ -118,17 +118,17 @@ Nothing in the way of destination statistics, salary data or employment rates is
 
 Before the progression routes, the limitation that matters most. This qualification does not confer Qualified Teacher Status. It is not Initial Teacher Training or Education, it is not a PGCE, and it is not accredited by the Department for Education. It does not qualify anyone to teach in a school in the United Kingdom, and it is neither required nor recognised for registration with any teaching regulator. The presence of a pedagogy subject does not change that. What it is, clearly and usefully, is a management and leadership qualification for people working on the administrative and leadership side of education.
 
-Three routes are published. One is a Qualifi Level 8 Diploma in Strategic Management and Leadership. Another is employment in an associated profession. The third names a degree outright: progress to a university partner, complete a dissertation, and receive an MSc in Educational Management and Leadership. Handle that with care. This diploma is not an MSc and awards no degree. Qualifi identifies no university partner, publishes no list and sets out no conditions, costs or timescales. Whether any institution admits you, grants credit, or even offers a master's of that precise title is for that institution to decide. Get its answer in writing first.
+3 routes are published. One is a Qualifi Level 8 Diploma in Strategic Management and Leadership. Another is employment in an associated profession. The 3rd names a degree outright: progress to a university partner, complete a dissertation, and receive an MSc in Educational Management and Leadership. Handle that with care. This diploma is not an MSc and awards no degree. Qualifi identifies no university partner, publishes no list and sets out no conditions, costs or timescales. Whether any institution admits you, grants credit, or even offers a master's of that precise title is for that institution to decide. Get its answer in writing first.
 
 ## 3.8 `support`
-Degree or Level 6 entry · Teaching from an approved centre · Six education-specific subjects · Research methods taught · Qualifi certification · April 2023 specification
+Degree or Level 6 entry · Teaching from an approved centre · 6 education-specific subjects · Research methods taught · Qualifi certification · April 2023 specification
 
 ## 3.9 `gcc_heading` + `gcc_reasons` *(6)*
 **Heading:** `Why School Leaders Across the Gulf Look at This`
 
 | icon | title | text |
 |---|---|---|
-| `school` | Private education is expanding quickly | New schools open across the region every year, and each one needs people who can run it. |
+| `school` | Private education is expanding quickly | New schools open across the region every year, and each school needs people who can run it. |
 | `refresh-cw` | Curriculum change is constant | Institutions switching between national and international curricula need managed change, not improvisation. |
 | `users-2` | Staff turnover is high | Leading reflective practice helps hold teaching quality steady when teams change often. |
 | `file-text` | Regulators expect documented leadership | Inspection regimes across the Gulf increasingly assess management capability, not just results. |
@@ -145,7 +145,7 @@ No price published by Qualifi · Quoted by the approved centre · Varies by coun
 **Can I teach with this qualification?**
 <p>No, and that needs saying firmly because the pedagogy subject invites the assumption. The award grants no Qualified Teacher Status, is not Initial Teacher Training, is not a PGCE and holds no Department for Education accreditation. It does not permit you to teach in a UK school and plays no part in registration with any teaching regulator. Its subject is running educational institutions: policy, change, leadership, teaching quality as something you oversee. If classroom teaching is the goal, the routes to it are set by national regulators and this is not one of them.</p>
 
-**There are three similar education qualifications here — which is which?**
+**There are 3 similar education qualifications here — which is which?**
 <p>A fair question, and the titles are genuinely confusing. This one is Qualifi's Level 7 award, number 603/6176/1, 120 credits. Gatehouse Awards runs a separate Level 7 Diploma in Educational Leadership, a different qualification from a different awarding body despite the near-identical name. Qualifi also runs a Level 5 Extended Diploma in Education and Training Management, 240 credits, number 610/3648/1, aimed at a much earlier career stage. When you apply, quote the qualification number rather than the title, and check which body appears on the certificate.</p>
 
 **Does it really lead to an MSc?**
@@ -158,12 +158,12 @@ No price published by Qualifi · Quoted by the approved centre · Varies by coun
 <p>Your approved centre decides both, because the awarding body sets neither. Qualifi designs the qualification, keeps it regulated and issues the certificate; teaching, intake dates and pricing belong to the centre. Since no total qualification time is published, there is no official hours figure to measure a promised completion date against. Reasonable questions before you commit: how long recent groups have taken, what support exists for the research subject, and exactly what the quoted price includes.</p>
 
 **Is work experience in education required?**
-<p>Published requirements say nothing about it. Two routes are given and no others: hold a Level 6 qualification, or hold a first degree — with no requirement for teaching or administrative experience, no age minimum, no English language score and no references. That is a short statement by any standard, and it means the published bar does not test whether you know the sector. Most people taking an award like this are already working in it, and centres apply their own admissions judgement, so discuss your background with the centre directly.</p>
+<p>Published requirements say nothing about it. 2 routes are given and no others: hold a Level 6 qualification, or hold a first degree — with no requirement for teaching or administrative experience, no age minimum, no English language score and no references. That is a short statement by any standard, and it means the published bar does not test whether you know the sector. Most people taking an award like this are already working in it, and centres apply their own admissions judgement, so discuss your background with the centre directly.</p>
 
 ---
 
 ## 5. SEO
 | Field | Value | Count |
 |---|---|---|
-| `meta_title` | Level 7 Diploma in Educational Management and Leadership | 55 ✅ |
-| `meta_description` | Qualifi Level 7 Diploma in Educational Management and Leadership. 120 credits on policy, change, pedagogy and research for education managers. | 141 ✅ |
+| `meta_title` | Level 7 Diploma in Educational Management and Leadership | 56 ✅ |
+| `meta_description` | Qualifi Level 7 Diploma in Educational Management and Leadership. 120 credits on policy, change, pedagogy and research for education managers. | 142 ✅ |

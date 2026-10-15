@@ -6,6 +6,8 @@ Length guidance is **measured**, not invented: `min / median / max` are real sta
 Legend — **Req**: ● required · ○ recommended · ◌ optional
 **Format**: `Text` single-line · `Plain` plain textarea · `HTML` rich editor (`<p>` wrapped) · `Repeater` list of rows
 
+**Number style:** Write actual quantities as digits throughout programme copy, including durations, ages, credits, unit counts, fractions and SEO text: `4 years`, `18 months`, `12 subjects`, `Year 1`, `1/3 of the credits`. Keep an official award or module title and any verbatim source quotation exactly as published. Do not turn non-quantities or established terms such as *first language*, *first degree*, *third sector* or *net-zero* into numerals. Never add an unsupported figure just to make the copy look more precise.
+
 ---
 
 ## TAB 1 — Basic Information

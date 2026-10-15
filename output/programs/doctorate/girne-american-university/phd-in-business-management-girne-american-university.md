@@ -39,18 +39,18 @@ status: approved
 ## 2.1 `short_description`
 
 ```
-Girne American University trains this doctorate on two destinations it names out loud: a university teaching post, or a senior seat in the public or private sector. Seven taught courses, a qualifying examination, then a thesis you cannot defend until a journal has accepted your work.
+Girne American University trains this doctorate on 2 destinations it names out loud: a university teaching post, or a senior seat in the public or private sector. 7 taught courses, a qualifying examination, then a thesis you cannot defend until a journal has accepted your work.
 ```
-*46 words / 282 chars ✅*
+*46 words / 278 chars ✅*
 
 ## 2.2 `description`
 
 ```html
 <p>A doctorate that lists its own exit routes is being unusually plain with you. GAU says this one produces teaching staff for higher education institutions and senior executives across public and private organisations, and it builds backwards from there. The Institute's stated goal is qualified academic staff and qualified manpower, in those words.</p>
-<p>Seven courses carry twenty-one credits between them. Advanced Management opens the sequence beside Advanced Research Methods and Organizational Behavior; human resource management, strategic analysis and marketing theory follow in the spring. A departmental elective and a seminar close the taught stage, after which a written and oral comprehensive examination across six core subjects decides whether you progress.</p>
-<p>The thesis stage carries a condition worth reading twice. Before you may sit your defence, GAU requires at least one article accepted by a journal indexed in SSCI, SCI-Expanded or AHCI. Research conducted in public health management or public system management earns a recorded specialisation.</p>
+<p>7 courses carry 21 credits between them. Advanced Management opens the sequence beside Advanced Research Methods and Organizational Behavior; human resource management, strategic analysis and marketing theory follow in the spring. A departmental elective and a seminar close the taught stage, after which a written and oral comprehensive examination across 6 core subjects decides whether you progress.</p>
+<p>The thesis stage carries a condition worth reading 2 times. Before you may sit your defence, GAU requires at least 1 article accepted by a journal indexed in SSCI, SCI-Expanded or AHCI. Research conducted in public health management or public system management earns a recorded specialisation.</p>
 ```
-*3 paragraphs / 158 words ✅*
+*3 paragraphs / 156 words ✅*
 
 ---
 
@@ -73,12 +73,12 @@ Girne American University trains this doctorate on two destinations it names out
 | Head of Department | Prof. Dr. Murat Akkaya |
 | Specialisation options | Public Health Management or Public System Management, by thesis topic |
 | Taught language | English |
-| Progression note | GAU's own pages quote two different minimum thesis lengths for this doctorate: two semesters on the programme listing, three semesters on the graduate school page. Ask the Institute which figure governs your cohort and get the answer in writing before you plan your timeline. |
+| Progression note | GAU's own pages quote 2 different minimum thesis lengths for this doctorate: 2 semesters on the programme listing, 3 semesters on the graduate school page. Ask the Institute which figure governs your cohort and get the answer in writing before you plan your timeline. |
 
 ## 3.3 `benefits`
 | icon | title | desc |
 |---|---|---|
-| `landmark` | Two destinations, stated plainly | <p>GAU publishes exactly where this doctorate leads: teaching staff at universities, and senior executive roles in the public and private sector.</p> |
+| `landmark` | 2 destinations, stated plainly | <p>GAU publishes exactly where this doctorate leads: teaching staff at universities, and senior executive roles in the public and private sector.</p> |
 | `badge-check` | A named academic in charge | <p>The department lists its head, Prof. Dr. Murat Akkaya. You know who oversees the programme before you apply.</p> |
 | `route` | Specialise through your thesis | <p>Research in public health management or public system management is recorded as a specialisation rather than treated as a side interest.</p> |
 | `award` | Published before you defend | <p>An article in an SSCI, SCI-Expanded or AHCI indexed journal is required ahead of the defence, so you graduate with a citable record.</p> |
@@ -95,7 +95,7 @@ Girne American University trains this doctorate on two destinations it names out
 7. Analyse competitive situations and strategic dilemmas using established frameworks
 8. Trace marketing's growth from an economic to a behaviourally based discipline
 
-## 3.5 `careers` *(2 rows — ⚠️ QA note C4: only two destinations are published)*
+## 3.5 `careers` *(2 rows — ⚠️ QA note C4: only 2 destinations are published)*
 1. Teaching staff at universities
 2. Senior executive in the public and private sector
 
@@ -103,17 +103,17 @@ Girne American University trains this doctorate on two destinations it names out
 
 ## 3.6 `structure`
 
-**Stage 1 — Taught courses** · *Seven courses, 21 credits in total. Each taught course is 3 credits and 10 ECTS.*
+**Stage 1 — Taught courses** · *7 courses, 21 credits in total. Each taught course is 3 credits and 10 ECTS.*
 Year 1 Fall: Advanced Management (MGMT601) · Advanced Research Methods (MGMT604) · Organizational Behavior (MGMT606)
 Year 1 Spring: Advanced Human Resource Management (MGMT607) · Strategic Management and Business Analysis (MGMT608) · Advanced Marketing Theories (MARK601)
 Year 2 Fall: Departmental Elective (PTRME001) · Seminar in Management (MGMT630, 20 ECTS)
 
 **Stage 2 — Qualifying and thesis** · *Qualifying examination 30 ECTS; each thesis semester 30 ECTS.*
-Year 2 Spring: Qualifying examination (QUAL600) — a written and oral comprehensive examination across six core subjects
+Year 2 Spring: Qualifying examination (QUAL600) — a written and oral comprehensive examination across 6 core subjects
 Years 3 and 4: Thesis (THES600), itemised on the graduate school page as Thesis Preparation I, II and III followed by the Thesis itself
 
 *Named electives:* Advanced Report Writing in Social Sciences; Organizational Behavior; Theories of Final Decision Making; Financial Markets and Instruments; Monetary Theory and Policies; Global Financial Management
-*Graduation conditions:* minimum grade of 3.00/4.00, and at least one article listed by SSCI, SCI-Expanded, AHCI or AHCI-Expanded before the thesis defence
+*Graduation conditions:* minimum grade of 3.00/4.00, and at least 1 article listed by SSCI, SCI-Expanded, AHCI or AHCI-Expanded before the thesis defence
 
 ## 3.8 `support`
 Named head of department · Thesis supervision · Scientific preparation route · Seminar presentation training · Scholarship availability · Institute admissions guidance
@@ -124,7 +124,7 @@ Named head of department · Thesis supervision · Scientific preparation route �
 | icon | title | text |
 |---|---|---|
 | `globe` | No nationality barrier | GAU states in print that citizens of all countries can enrol. The ALES examination requirement is written for Turkish citizens only, so Gulf-based applicants are outside it. |
-| `briefcase` | Built for the executive track | One of the two published destinations is a senior executive post in the public or private sector, which maps onto the career many Gulf professionals are already midway through. |
+| `briefcase` | Built for the executive track | 1 of the 2 published destinations is a senior executive post in the public or private sector, which maps onto the career many Gulf professionals are already midway through. |
 | `hospital` | A public-sector research angle | Public health management and public system management are recognised thesis specialisations, useful across the Gulf's health authorities and government bodies. |
 | `book-open` | Your master's need not be in business | A postgraduate degree in another field is handled through scientific preparation courses rather than a refusal, which suits engineers and clinicians moving into management research. |
 | `message-square` | Taught wholly in English | The language of instruction is English, so no Turkish is needed for study, supervision or the defence. |
@@ -144,13 +144,13 @@ Fee not published · Scholarship available · Written quote on request · Instit
 <p>Only if you hold citizenship of the Republic of Turkey. GAU sets that group a threshold of at least 55 points of equal weight in ALES, the Turkish academic postgraduate entrance examination. The requirement is written for those citizens specifically, and the same page confirms that nationals of every country may enrol.</p>
 
 **How long does the thesis take?**
-<p>GAU gives two answers in two places. Its programme listing says a minimum of two semesters; its graduate school page for the same doctorate says three. Both are official. Treat the longer figure as your planning assumption and ask the Institute to confirm which applies to your intake before you arrange leave or funding.</p>
+<p>GAU gives 2 answers in 2 places. Its programme listing says a minimum of 2 semesters; its graduate school page for the same doctorate says 3. Both are official. Treat the longer figure as your planning assumption and ask the Institute to confirm which applies to your intake before you arrange leave or funding.</p>
 
 **Must I publish before graduating?**
-<p>Yes, and this is firmer than most doctorates make it. GAU requires at least one article listed by SSCI, SCI-Expanded, AHCI or AHCI-Expanded before you make your thesis defence. A graduating grade of 3.00 out of 4.00 is also stated as a minimum.</p>
+<p>Yes, and this is firmer than most doctorates make it. GAU requires at least 1 article listed by SSCI, SCI-Expanded, AHCI or AHCI-Expanded before you make your thesis defence. A graduating grade of 3.00 out of 4.00 is also stated as a minimum.</p>
 
 **What does the qualifying examination involve?**
-<p>It sits at the end of the taught stage, in the spring of year two, and carries 30 ECTS. GAU describes it as a written and oral comprehensive examination drawn from six core subjects. Passing it is what releases you to begin thesis work.</p>
+<p>It sits at the end of the taught stage, in the spring of year 2, and carries 30 ECTS. GAU describes it as a written and oral comprehensive examination drawn from 6 core subjects. Passing it is what releases you to begin thesis work.</p>
 
 **Where can I find the tuition fee?**
 <p>Nowhere on the programme page, which is worth knowing upfront. GAU renders the Fee field as a dash and marks Scholarship as available, so the figure is settled case by case with the Institute of Graduate Studies and Research. Ask for the full schedule and any scholarship award in writing before accepting a place.</p>
@@ -161,4 +161,4 @@ Fee not published · Scholarship available · Written quote on request · Instit
 | Field | Value | Count |
 |---|---|---|
 | `meta_title` | PhD in Business Management \| Girne American University | 54 ✅ |
-| `meta_description` | A 3-year PhD in Business Management at Girne American University, North Cyprus. Seven taught courses, qualifying exam, thesis. YÖK and YÖDAK. | 141 ✅ |
+| `meta_description` | A 3-year PhD in Business Management at Girne American University, North Cyprus. 7 taught courses, qualifying exam, thesis. YÖK and YÖDAK. | 137 ✅ |

@@ -39,18 +39,18 @@ status: approved
 ## 2.1 `short_description`
 
 ```
-Written, in Qualifi's own words, for managers with the authority to turn organisational strategy into operational performance. Six subjects, from safety culture to sustainability and ethics, closing with a research project you plan yourself.
+Written, in Qualifi's own words, for managers with the authority to turn organisational strategy into operational performance. 6 subjects, from safety culture to sustainability and ethics, closing with a research project you plan yourself.
 ```
-*36 words / 240 chars ✅*
+*34 words / 239 chars ✅*
 
 ## 2.2 `description`
 
 ```html
 <p>Awarding bodies rarely describe their intended reader this precisely. Qualifi says this diploma develops safety management skills for managers who have the authority and the personal attributes to translate organisational strategy into effective operational performance. That sentence does a lot of work. It is not aimed at the person carrying out inspections; it is aimed at the person who decides what the organisation's safety position is and then has to make it real.</p>
-<p>Six subjects follow that logic. Health and Safety Management Practice. Effectiveness of Health and Safety Management Systems. Factors Affecting Risk and Strategic Risk Intervention. Strategic Commitment to Health and Well-Being. Sustainability and Ethics in Health and Safety Practice. Advanced Research Methods. Notice how far the last two sit from a hazard checklist — ethics and sustainability are treated as part of the safety professional's remit, not as a separate corporate exercise.</p>
-<p>The entry requirements carry a detail found nowhere else in Qualifi's range: an honours degree at 2.2, named with its classification. Applicants must also be at least twenty-one. Credit value is 120 at Level 7, and the framework entry reads 610/2295/0.</p>
+<p>6 subjects follow that logic. Health and Safety Management Practice. Effectiveness of Health and Safety Management Systems. Factors Affecting Risk and Strategic Risk Intervention. Strategic Commitment to Health and Well-Being. Sustainability and Ethics in Health and Safety Practice. Advanced Research Methods. Notice how far the last 2 sit from a hazard checklist — ethics and sustainability are treated as part of the safety professional's remit, not as a separate corporate exercise.</p>
+<p>The entry requirements carry a detail found nowhere else in Qualifi's range: an honours degree at 2.2, named with its classification. Applicants must also be at least 21. Credit value is 120 at Level 7, and the framework entry reads 610/2295/0.</p>
 ```
-*3 paragraphs / 193 words ✅*
+*3 paragraphs / 185 words ✅*
 
 ---
 
@@ -71,9 +71,9 @@ Written, in Qualifi's own words, for managers with the authority to turn organis
 | Qualification number | 610/2295/0 on the Regulated Qualifications Framework |
 | Size and type | 120 credits at Level 7, a Vocational Related Qualification, accreditation status Accredited. No total qualification time is published |
 | Stated audience | Managers who have the authority and personal attributes to translate organisational strategy into effective operational performance |
-| Shape | Six subjects, mapping directly onto the topics named in Qualifi's own summary. No optional group and no per-subject credit values published |
-| Entry | At least twenty-one years old, holding either a Level 6 qualification or an honours degree (2.2) with relevant knowledge and experience in the occupational health and safety sector |
-| Language and references | IELTS 6 or equivalent where English is not your first language, and normally two references with at least one preferably academic |
+| Shape | 6 subjects, mapping directly onto the topics named in Qualifi's own summary. No optional group and no per-subject credit values published |
+| Entry | At least 21 years old, holding either a Level 6 qualification or an honours degree (2.2) with relevant knowledge and experience in the occupational health and safety sector |
+| Language and references | IELTS 6 or equivalent where English is not your first language, and normally 2 references with at least 1 preferably academic |
 | Onward routes published by Qualifi | A Qualifi Level 8 Diploma; employment in an associated profession; or further studies at a university. Note that no master's degree is promised here, unlike several sister awards |
 | On the IIRSM document | Qualifi links a leaflet branded with the International Institute of Risk and Safety Management. It publishes no statement of IIRSM approval, recognition or membership entitlement, and we have not read the leaflet. Treat it as a document, not an endorsement |
 
@@ -84,7 +84,7 @@ Written, in Qualifi's own words, for managers with the authority to turn organis
 | `settings-2` | Systems judged, not just described | <p>Effectiveness of Health and Safety Management Systems asks whether a system actually works, which is a harder question.</p> |
 | `shield-alert` | Strategic risk intervention | <p>A subject devoted to the factors driving risk and to intervening at the level where they are decided.</p> |
 | `heart-pulse` | Wellbeing treated strategically | <p>Strategic Commitment to Health and Well-Being puts occupational wellbeing alongside physical safety.</p> |
-| `scale` | Ethics and sustainability included | <p>One subject covers both, framed as part of the safety professional's responsibility.</p> |
+| `scale` | Ethics and sustainability included | <p>1 subject covers both, framed as part of the safety professional's responsibility.</p> |
 | `graduation-cap` | A named degree classification | <p>An honours degree at 2.2 with sector experience is published as an entry route — the only classification Qualifi states anywhere.</p> |
 
 ## 3.4 `learning`
@@ -110,7 +110,7 @@ Sustainability and Ethics in Health and Safety Practice · Advanced Research Met
 
 ## 3.5 `careers`
 
-No job destinations, salary bands or employment statistics are published by Qualifi for this award. Its page lists three onward options and they appear below as written.
+No job destinations, salary bands or employment statistics are published by Qualifi for this award. Its page lists 3 onward options and they appear below as written.
 
 1. A Qualifi Level 8 Diploma
 2. Employment in an associated profession
@@ -121,7 +121,7 @@ Worth noticing: unlike most Qualifi awards at this level, this page does not pro
 **On professional recognition, be careful.** Qualifi publishes no equivalence to any NEBOSH diploma, no IOSH accreditation and no membership entitlement with the International Institute of Risk and Safety Management, despite linking an IIRSM-branded leaflet alongside the qualification. This is a management qualification regulated by Ofqual; it is not a NEBOSH award and it does not confer a professional membership grade. If a role or a tender requires NEBOSH, IOSH membership or chartered status, check the requirements with those bodies directly.
 
 ## 3.8 `support`
-Centre reviews your application and the support it can provide · Age, qualification, language and reference requirements all published · Teaching from an approved centre · Six subjects mapped onto Qualifi's own topic list · A research project you plan yourself · Qualifi certification
+Centre reviews your application and the support it can provide · Age, qualification, language and reference requirements all published · Teaching from an approved centre · 6 subjects mapped onto Qualifi's own topic list · A research project you plan yourself · Qualifi certification
 
 ## 3.9 `gcc_heading` + `gcc_reasons` *(6)*
 **Heading:** `Why Safety Leaders in the Gulf Take This Seriously`
@@ -143,19 +143,19 @@ No price published by Qualifi · The approved centre sets it · Varies by countr
 ## 4. `faqs` *(6)*
 
 **Is this the same as a NEBOSH diploma?**
-<p>It is not, and nothing on Qualifi's page suggests otherwise. NEBOSH is a separate awarding organisation with its own qualifications and its own assessments; this diploma is awarded by Qualifi and regulated by Ofqual on the Regulated Qualifications Framework. No equivalence between the two is published, no exemption exists in either direction, and holding one does not get you the other. Employers and tender documents often name NEBOSH specifically, so read the requirement before you choose.</p>
+<p>It is not, and nothing on Qualifi's page suggests otherwise. NEBOSH is a separate awarding organisation with its own qualifications and its own assessments; this diploma is awarded by Qualifi and regulated by Ofqual on the Regulated Qualifications Framework. No equivalence between the 2 is published, no exemption exists in either direction, and holding one does not get you the other. Employers and tender documents often name NEBOSH specifically, so read the requirement before you choose.</p>
 
 **There is an IIRSM leaflet on the page. Does that mean it is IIRSM approved?**
 <p>We cannot say that, and we are not going to. Qualifi does link a leaflet carrying the International Institute of Risk and Safety Management's branding alongside this qualification, which is a fact. What the page does not contain is any statement that the award is IIRSM approved or recognised, or that it entitles you to a membership grade. We have not read the leaflet, so we claim nothing from it. If IIRSM membership matters to you, ask IIRSM what this qualification counts for.</p>
 
 **What does the entry requirement actually mean?**
-<p>Three things have to line up. You must be at least twenty-one. You need either a Level 6 qualification, or an honours degree classified at 2.2 together with relevant knowledge and experience in the occupational health and safety sector. And if English is not your first language, IELTS 6 or an accepted equivalent is required, with two references normally asked for. That named 2.2 classification is unusual — no other Qualifi qualification in this listing states a degree grade — so it is worth taking literally.</p>
+<p>3 things have to line up. You must be at least 21. You need either a Level 6 qualification, or an honours degree classified at 2.2 together with relevant knowledge and experience in the occupational health and safety sector. And if English is not your first language, IELTS 6 or an accepted equivalent is required, with 2 references normally asked for. That named 2.2 classification is unusual — no other Qualifi qualification in this listing states a degree grade — so it is worth taking literally.</p>
 
 **Why does this one not mention a master's degree?**
-<p>Because Qualifi does not put one on the page. Its published routes here are a Level 8 diploma, employment in an associated profession, and further studies at a university — the last of those stated in general terms, with no degree named and no institution identified. Several sister awards at Level 7 do advertise a master's top-up. This one does not, and rather than borrow that claim from elsewhere we have reported exactly what appears. If a specific master's is your aim, ask the university directly what it would accept.</p>
+<p>Because Qualifi does not put 1 on the page. Its published routes here are a Level 8 diploma, employment in an associated profession, and further studies at a university — the last of those stated in general terms, with no degree named and no institution identified. Several sister awards at Level 7 do advertise a master's top-up. This one does not, and rather than borrow that claim from elsewhere we have reported exactly what appears. If a specific master's is your aim, ask the university directly what it would accept.</p>
 
 **How does it differ from the International Diploma in the same subject?**
-<p>Quite a lot, despite the overlapping title. The International Diploma publishes eight subjects including ergonomics, industrial hygiene and fire safety, twelve learning outcomes, and an entry route built around engineering degrees or three years of managerial experience — no age limit, no English test. This award publishes six subjects, seven outcomes, and the full gated entry block described above. In posture, this one is the strategic award and the International Diploma is the more operational and technically specified one.</p>
+<p>Quite a lot, despite the overlapping title. The International Diploma publishes 8 subjects including ergonomics, industrial hygiene and fire safety, 12 learning outcomes, and an entry route built around engineering degrees or 3 years of managerial experience — no age limit, no English test. This award publishes 6 subjects, 7 outcomes, and the full gated entry block described above. In posture, this one is the strategic award and the International Diploma is the more operational and technically specified one.</p>
 
 **What about the timetable and the price?**
 <p>Qualifi sets neither. It writes, accredits and certificates the qualification but runs no teaching, so the schedule and the fee are decided by the approved centre you study with. No total qualification time is published for this award, meaning there is no official hours estimate to test a proposed timetable against. Request start dates, a realistic end date, and a fee broken out so registration and certification are visible as separate lines.</p>
@@ -166,4 +166,4 @@ No price published by Qualifi · The approved centre sets it · Varies by countr
 | Field | Value | Count |
 |---|---|---|
 | `meta_title` | Level 7 Diploma in Occupational Health & Safety Management | 58 ✅ |
-| `meta_description` | Qualifi Level 7 Diploma in Occupational Health and Safety Management. 120 credits, six subjects from safety culture to ethics. Not a NEBOSH qualification. | 153 ✅ |
+| `meta_description` | Qualifi Level 7 Diploma in Occupational Health and Safety Management. 120 credits, 6 subjects from safety culture to ethics. Not a NEBOSH qualification. | 152 ✅ |

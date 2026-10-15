@@ -29,7 +29,7 @@ editorial_notes: "Recast the opening and source-limit explanations for a plainer
 ---
 
 ## 1.2 `title` → `BSc Tourism and Hospitality Management`
-## 1.5 `duration` → `Four years`
+## 1.5 `duration` → `4 years`
 ## 1.6 `level` → `BSc`
 
 ---
@@ -37,14 +37,14 @@ editorial_notes: "Recast the opening and source-limit explanations for a plainer
 ## 2.1 `short_description`
 
 ```
-A hotel stay starts with a reservation, but running one also takes housekeeping, food service and revenue decisions. GAU's four-year BSc Tourism and Hospitality Management covers these areas, with an opportunity to train at its Le Chateau Lambousa hotel.
+A hotel stay starts with a reservation, but running one also takes housekeeping, food service and revenue decisions. GAU's 4-year BSc Tourism and Hospitality Management covers these areas, with an opportunity to train at its Le Chateau Lambousa hotel.
 ```
 
 ## 2.2 `description`
 
 ```html
 <p>BSc Tourism and Hospitality Management at Girne American University is built around how a visitor's stay actually works. The published courses move from hospitality basics and tourism mathematics into front office reservations, housekeeping, food and beverage service, hospitality finance and law. The later timetable reaches revenue management and resort operations.</p>
-<p>The programme is taught in English across four years at the School of Tourism and Hospitality. GAU says students have an opportunity to train at Le Chateau Lambousa, its applied training hotel. Its course grid also names internships in the second and third years. Neither statement guarantees an individual placement or a particular host.</p>
+<p>The programme is taught in English across 4 years at the School of Tourism and Hospitality. GAU says students have an opportunity to train at Le Chateau Lambousa, its applied training hotel. Its course grid also names internships in the 2nd and 3rd years. Neither statement guarantees an individual placement or a particular host.</p>
 <p>GAU leaves its Career Opportunities tab empty. The skills discussed here come from its named courses, not from verified graduate destinations. Nor does the programme panel give a tuition amount or an online route. Ask GAU for the current fee, attendance expectations and admissions requirements before making plans.</p>
 ```
 
@@ -54,7 +54,7 @@ A hotel stay starts with a reservation, but running one also takes housekeeping,
 | label | value |
 |---|---|
 | Awarded by | Girne American University |
-| Duration | Four years |
+| Duration | 4 years |
 | Language | English taught |
 | School | Tourism and Hospitality |
 | Training | Hotel opportunity stated |
@@ -65,17 +65,17 @@ A hotel stay starts with a reservation, but running one also takes housekeeping,
 |---|---|
 | Degree Award | BSc Tourism and Hospitality Management |
 | Awarding University | Girne American University, North Cyprus |
-| Duration | Four years on GAU's course grid |
+| Duration | 4 years on GAU's course grid |
 | Language | English |
 | Applied learning | Hotel training opportunity; internship units listed |
 | Outcome evidence | Learning themes inferred from courses; career destinations not published |
-| Pathway note | GAU lists four years but gives no individual price or subject-specific entry threshold here. Hotel training is an opportunity, not a promised placement. Confirm attendance, admission conditions, the current fee and any scholarship directly before paying. |
+| Pathway note | GAU lists 4 years but gives no individual price or subject-specific entry threshold here. Hotel training is an opportunity, not a promised placement. Confirm attendance, admission conditions, the current fee and any scholarship directly before paying. |
 
 ## 3.3 `benefits`
 | icon | title | desc |
 |---|---|---|
 | `map-pin` | See where service happens | <p>GAU names Le Chateau Lambousa as an applied training hotel and describes the chance to learn in different hotel departments.</p> |
-| `users` | Understand the guest journey | <p>Front office management, reservations and housekeeping appear as separate subjects, rather than a single broad hospitality survey.</p> |
+| `users` | Understand the guest journey | <p>Front office management, reservations and housekeeping appear as separate subjects, rather than 1 broad hospitality survey.</p> |
 | `utensils` | Follow food service closely | <p>Food and beverage service sits alongside nutrition, sanitation and restaurant management on the university's timetable.</p> |
 | `trending-up` | Read the operational numbers | <p>Hospitality finance, revenue management and purchasing give the course a commercial side to match its service subjects.</p> |
 | `book-open` | Connect hotels and destinations | <p>Tourism economics and tourism policy planning put individual properties in a wider travel context.</p> |
@@ -97,10 +97,10 @@ GAU leaves its Career Opportunities tab empty. The programme page instead shows 
 
 ## 3.6 `structure`
 
-**Stage 1 — Tourism foundations** · *Selected first-year subjects.*
+**Stage 1 — Tourism foundations** · *Selected 1st-year subjects.*
 Introduction to Hospitality · Tourism & Hospitality Maths · The Business of Tourism · English for Tourism 1 · HACCP&TQM Applications in Tourism
 
-**Stage 2 — Guest service operations** · *Selected second- and third-year subjects; internship entries appear in the published grid.*
+**Stage 2 — Guest service operations** · *Selected 2nd- and 3rd-year subjects; internship entries appear in the published grid.*
 Front Office Management · Housekeeping Operations · Front Office Reservation Application · Food & Beverage Service · Tourism and Hospitality Accounting · Human Resources in Hospitality · Internship
 
 **Stage 3 — Property and destination decisions** · *Selected later subjects, ending with a seminar.*
@@ -117,7 +117,7 @@ Official Curriculum Reference · Award Details Explained · Hotel Opportunity Co
 | `globe` | English is the teaching language | GAU identifies English as the taught language. If your previous qualifications were earned elsewhere, ask how its international admissions process checks your documents. |
 | `map-pin` | Training has a named setting | The university describes a chance to train at Le Chateau Lambousa. Ask how access is allocated before assuming it will feature in your own study plan. |
 | `book-open` | A course beyond hotel reception | The timetable includes sanitation, accounting, purchasing and tourism policy, which makes it worth comparing with any narrower hotel-service course you are considering. |
-| `clock` | Plan around four academic years | The official panel states four years. If you need to organise travel or work commitments, obtain the attendance timetable from GAU rather than assuming remote access. |
+| `clock` | Plan around 4 academic years | The official panel states 4 years. If you need to organise travel or work commitments, obtain the attendance timetable from GAU rather than assuming remote access. |
 | `briefcase` | Career figures remain unreported | There is no published list of graduate destinations for this award. Ask the School what alumni have gone on to do if that evidence matters to your decision. |
 | `file-text` | Ask for a current quotation | The degree page displays a dash where the fee should be. Request a dated breakdown of tuition and other charges before accepting an offer. |
 
@@ -129,9 +129,9 @@ Current tuition quote · Scholarship eligibility · Additional charges enquiry �
 ## 4. `faqs` *(6)*
 
 **Is training at the university hotel guaranteed for every student?**
-<p>No. GAU says students have the opportunity to train at Le Chateau Lambousa, its applied training hotel, but it does not set out an individual entitlement or selection process on this programme page. Its curriculum also includes internship entries in the second and third years. Ask the School how hotel access and internships work for your proposed intake.</p>
+<p>No. GAU says students have the opportunity to train at Le Chateau Lambousa, its applied training hotel, but it does not set out an individual entitlement or selection process on this programme page. Its curriculum also includes internship entries in the 2nd and 3rd years. Ask the School how hotel access and internships work for your proposed intake.</p>
 
-**What does the four-year hospitality curriculum actually cover?**
+**What does the 4-year hospitality curriculum actually cover?**
 <p>The published grid begins with hospitality and tourism foundations, then names front office management, reservations, food and beverage service, housekeeping and hospitality accounting. Later subjects include hospitality finance, tourism policy planning, revenue management, resort management and a graduation seminar. These are GAU's named course titles, not a promise that every timetable will be identical in your intake.</p>
 
 **Why are there no career titles shown for this degree?**
@@ -152,4 +152,4 @@ Current tuition quote · Scholarship eligibility · Additional charges enquiry �
 | Field | Value | Count |
 |---|---|---|
 | `meta_title` | BSc Tourism and Hospitality Management \| GAU, North Cyprus | 58 ✅ |
-| `meta_description` | Study BSc Tourism and Hospitality Management at GAU over four years in English. Explore hotel operations, revenue management and a training opportunity. | 152 ✅ |
+| `meta_description` | Study BSc Tourism and Hospitality Management at GAU over 4 years in English. Explore hotel operations, revenue management and a training opportunity. | 149 ✅ |

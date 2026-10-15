@@ -41,16 +41,16 @@ status: approved
 ```
 Qualifi calls this a semi-technical award about cyber security as a workplace management discipline. Threat and risk, forensics and cryptography sit beside business continuity, incident communications and strategic leadership. Built for whoever has to answer when something goes wrong.
 ```
-*41 words / 288 chars ✅*
+*39 words / 285 chars ✅*
 
 ## 2.2 `description`
 
 ```html
-<p>When an organisation is attacked, two kinds of people are needed. One group works the keyboards. The other decides what to tell customers, whether to pay, when to involve lawyers, how to keep the business running and who answers to the board on Monday. The second group is who this award is written for.</p>
+<p>When an organisation is attacked, 2 kinds of people are needed. 1 group works the keyboards. The other decides what to tell customers, whether to pay, when to involve lawyers, how to keep the business running and who answers to the board on Monday. The 2nd group is who this award is written for.</p>
 <p>Qualifi describes it as semi-technical, examining technical cyber security measures alongside the management, project management and leadership skills needed to organise internal and external responses to major incidents. It promises business continuity and disaster management content set inside the digital threat environment, and says the programme is designed and delivered by a mix of academics from business schools and security management teaching roles.</p>
-<p>Eleven subjects deliver it. The technical core runs from threat and risk through network and database security to cryptography, incident response and two separate treatments of forensic investigation. Around that sit the managerial subjects: security strategy as laws and policy, sector threats in banking and finance, cyber wars, incident communications, and strategic leadership. Altogether 240 credits, catalogued as 610/3296/7.</p>
+<p>11 subjects deliver it. The technical core runs from threat and risk through network and database security to cryptography, incident response and 2 separate treatments of forensic investigation. Around that sit the managerial subjects: security strategy as laws and policy, sector threats in banking and finance, cyber wars, incident communications, and strategic leadership. Altogether 240 credits, catalogued as 610/3296/7.</p>
 ```
-*3 paragraphs / 173 words ✅*
+*3 paragraphs / 176 words ✅*
 
 ---
 
@@ -73,7 +73,7 @@ Qualifi calls this a semi-technical award about cyber security as a workplace ma
 | Subjects published | Cyber Security Threat and Risk · Network Security and Data Communications · Database Security and Computer Programming · Incident Response, Investigations and Forensics · Security Strategy: Laws, Policies and Implementation · Cyber Security Threats and Risk: Banking and Finance · Cyber Wars · Cryptography · Digital Investigations and Forensics · Communications and Incident Management · Strategic Leadership |
 | Who Qualifi says it is for | Existing or aspiring organisational executives and leaders responsible for business resilience, information security, safe technological innovation, secure change management, HR planning and physical risk management |
 | Ways in, as published | A qualification at Level 3; or some technical and risk management experience in a computing or security business environment, with ambition and clear career goals; or a Level 4 qualification in another discipline and the intention to move into cyber security. Qualifi also states that **Level 4 units must be completed before Level 5 units** |
-| On the unit list | Eleven subjects are listed under a heading marked Mandatory, with no optional group printed and no credit breakdown. Confirm the complete structure with your centre |
+| On the unit list | 11 subjects are listed under a heading marked Mandatory, with no optional group printed and no credit breakdown. Confirm the complete structure with your centre |
 | Onward routes published by Qualifi | A Level 6 university degree top-up course, which Qualifi states is pending a successful application to its partner institution — no institution is named anywhere — or directly into employment in an associated profession |
 | Certifications | No alignment with NCSC, CREST, CompTIA, CISSP or any vendor certification is published. Treat this as regulated academic study, separate from industry certification |
 
@@ -83,7 +83,7 @@ Qualifi calls this a semi-technical award about cyber security as a workplace ma
 | `briefcase` | Management, not just tooling | <p>Qualifi frames the whole award around cyber security as a workplace discipline, with leadership and continuity alongside the technical content.</p> |
 | `megaphone` | Incident communications | <p>Communications and incident management is a full subject, covering what gets said and to whom when something breaks.</p> |
 | `banknote` | A banking and finance subject | <p>Sector-specific threat and risk for banking and finance, which is unusual at this level.</p> |
-| `fingerprint` | Forensics twice over | <p>Incident response with forensics, and digital investigations and forensics, both appear as separate subjects.</p> |
+| `fingerprint` | Forensics 2 times over | <p>Incident response with forensics, and digital investigations and forensics, both appear as separate subjects.</p> |
 | `key-round` | Cryptography included | <p>Taught as its own subject rather than folded into a general network security topic.</p> |
 | `list-ordered` | A published study order | <p>Qualifi states that Level 4 units must be completed before Level 5 units, so the sequence is set out in advance.</p> |
 
@@ -110,13 +110,13 @@ Security Strategy: Laws, Policies and Implementation · Communications and Incid
 
 ## 3.5 `careers`
 
-Qualifi publishes no destination data, pay figures or employment rates, and claims no alignment with any industry certification. The two published progression routes are below.
+Qualifi publishes no destination data, pay figures or employment rates, and claims no alignment with any industry certification. The 2 published progression routes are below.
 
 1. A Level 6 university degree top-up course, pending a successful application to Qualifi's partner institution
 2. Directly into employment in an associated profession
 
 ## 3.8 `support`
-Three published ways in, including an experience route · Published study order, Level 4 before Level 5 · Teaching from an approved centre · Case-study based material · Qualifi certification · Centre-set schedule
+3 published ways in, including an experience route · Published study order, Level 4 before Level 5 · Teaching from an approved centre · Case-study based material · Qualifi certification · Centre-set schedule
 
 ## 3.9 `gcc_heading` + `gcc_reasons` *(6)*
 **Heading:** `Why Gulf Organisations Need This Capability`
@@ -144,7 +144,7 @@ Qualifi publishes no price · The approved centre sets it · Varies by country a
 <p>That is how Qualifi describes the programme's design, and it adds that the format blends easily. Worth remembering, though, that Qualifi awards and regulates the qualification while an approved centre actually delivers it. Whether your centre runs it online, in person or as a mixture is the centre's decision, as are intake dates and pace. Confirm the format with the centre before you assume it.</p>
 
 **Does it prepare me for CISSP, CompTIA or similar?**
-<p>Qualifi publishes no alignment with any industry or vendor certification, so we will not suggest one exists. These are different kinds of credential: this is a regulated academic qualification assessed by a centre, while industry certifications are vendor or body examinations with their own syllabuses. Many people hold both. If a specific certification matters to your role, treat it as a separate piece of work.</p>
+<p>Qualifi publishes no alignment with any industry or vendor certification, so we will not claim any such alignment. These are different kinds of credential: this is a regulated academic qualification assessed by a centre, while industry certifications are vendor or body examinations with their own syllabuses. Many people hold both. If a specific certification matters to your role, treat it as a separate piece of work.</p>
 
 **What is the Level 4 before Level 5 rule?**
 <p>Qualifi states in its entry requirements that Level 4 units must be completed before Level 5 units. This extended award combines both halves, and the rule prevents you from attempting advanced material before the groundwork is done. It is published on no other Qualifi award we have examined, and it is genuinely useful — it tells you the shape of your study before you begin.</p>
@@ -153,7 +153,7 @@ Qualifi publishes no price · The approved centre sets it · Varies by country a
 <p>Qualifi does not say. The progression route is published as "pending a successful application to our Partner institution", and no institution is named anywhere on its website. We are not prepared to guess at one. If a degree is your goal, research universities offering top-up degrees in cyber security or risk management yourself and ask them directly what they make of this qualification.</p>
 
 **How does it differ from the networking and cyber security diploma?**
-<p>Clearly, once you compare the subjects. Seven appear on both. What differs is the final four. Here they are managerial: conflict between states, sector-specific threats in finance, how an incident gets communicated, and leadership strategy. On the networking variant those four give way to equipment work — cabling and hardware, server administration, traffic routing, and designing an estate end to end. Pick this one if accountability for the response will land on you; pick the other if you would rather be the person fixing it.</p>
+<p>Clearly, once you compare the subjects. 7 appear on both. What differs is the final 4. Here they are managerial: conflict between states, sector-specific threats in finance, how an incident gets communicated, and leadership strategy. On the networking variant those 4 give way to equipment work — cabling and hardware, server administration, traffic routing, and designing an estate end to end. Pick this one if accountability for the response will land on you; pick the other if you would rather be the person fixing it.</p>
 
 ---
 
@@ -161,4 +161,4 @@ Qualifi publishes no price · The approved centre sets it · Varies by country a
 | Field | Value | Count |
 |---|---|---|
 | `meta_title` | Level 5 Extended Diploma in Cyber Security \| Qualifi | 52 ✅ |
-| `meta_description` | Qualifi Level 5 Extended Diploma in Cyber Security. 240 credits, 11 subjects, cyber security as a management discipline. Ofqual regulated. QAN 610/3296/7. | 155 ✅ |
+| `meta_description` | Qualifi Level 5 Extended Diploma in Cyber Security. 240 credits, 11 subjects, cyber security as a management discipline. Ofqual regulated. QAN 610/3296/7. | 154 ✅ |

@@ -39,18 +39,18 @@ status: approved
 ## 2.1 `short_description`
 
 ```
-The most accessible qualification in this catalogue. Qualifi calls it an open entry award, with English at around IELTS 5.5 the only published guidance. Four subjects introduce tourism, hospitality, marketing and customer service across 120 credits.
+The most accessible qualification in this catalogue. Qualifi calls it an open entry award, with English at around IELTS 5.5 the only published guidance. 4 subjects introduce tourism, hospitality, marketing and customer service across 120 credits.
 ```
-*38 words / 251 chars ✅*
+*36 words / 246 chars ✅*
 
 ## 2.2 `description`
 
 ```html
-<p>Hospitality and tourism hire on attitude and train on the job, which leaves a lot of capable people without a qualification that says what they can do. Qualifi has removed most of the barriers to fixing that. Its entry statement for this award is a single sentence: this is an open entry qualification, with the only guidance being English competence at around IELTS 5.5.</p>
-<p>Four subjects make up the programme. Introduction to the Tourism Industry and Introduction to the Hospitality Industry map the two sectors and how they interlock. Introduction to Marketing for Hospitality and Tourism covers how destinations and venues attract people. Introduction to Customer Service for Hospitality and Tourism handles the part guests remember.</p>
+<p>Hospitality and tourism hire on attitude and train on the job, which leaves a lot of capable people without a qualification that says what they can do. Qualifi has removed most of the barriers to fixing that. Its entry statement for this award is 1 sentence: this is an open entry qualification, with the only guidance being English competence at around IELTS 5.5.</p>
+<p>4 subjects make up the programme. Introduction to the Tourism Industry and Introduction to the Hospitality Industry map the 2 sectors and how they interlock. Introduction to Marketing for Hospitality and Tourism covers how destinations and venues attract people. Introduction to Customer Service for Hospitality and Tourism handles the part guests remember.</p>
 <p>Qualifi describes the diploma as linking to key developments in the sector, with contemporary issues identified and evaluated so that learners gain a genuine vocational understanding alongside an academic perspective. It carries 120 credits at number 603/4400/3, and the published progression route is the Qualifi Level 4 Certificate in Hospitality and Tourism Management or employment in the industry.</p>
 ```
-*3 paragraphs / 184 words ✅*
+*3 paragraphs / 173 words ✅*
 
 ---
 
@@ -74,7 +74,7 @@ The most accessible qualification in this catalogue. Qualifi calls it an open en
 | Entry position | Qualifi states plainly that this is an open entry qualification. No prior qualification and no minimum age are published. English at IELTS 5.5 or equivalent evidence is the only guidance given |
 | Subjects | Introduction to the Tourism Industry, Introduction to the Hospitality Industry, Introduction to Marketing for Hospitality and Tourism, Introduction to Customer Service for Hospitality and Tourism |
 | Onward routes published by Qualifi | The Qualifi Level 4 Certificate in Hospitality and Tourism Management, or directly into employment in the industry |
-| A note on the figures | Qualifi publishes 120 credits against four subjects here, a higher ratio than its 60-credit awards carrying four to six. The combined Centre Specification covering its hospitality diplomas is the place to check how the credits are distributed |
+| A note on the figures | Qualifi publishes 120 credits against 4 subjects here, a higher ratio than its 60-credit awards carrying 4 to 6. The combined Centre Specification covering its hospitality diplomas is the place to check how the credits are distributed |
 
 ## 3.3 `benefits`
 | icon | title | desc |
@@ -98,18 +98,18 @@ The most accessible qualification in this catalogue. Qualifi calls it an open en
 
 ## 3.6 `structure`
 
-**Part 1 — The two sectors** · *How tourism and hospitality each work, and where they overlap.*
+**Part 1 — The 2 sectors** · *How tourism and hospitality each work, and where they overlap.*
 Introduction to the Tourism Industry · Introduction to the Hospitality Industry
 
-**Part 2 — Commercial and guest-facing subjects** · *The two areas that decide whether a venue or destination succeeds.*
+**Part 2 — Commercial and guest-facing subjects** · *The 2 areas that decide whether a venue or destination succeeds.*
 Introduction to Marketing for Hospitality and Tourism · Introduction to Customer Service for Hospitality and Tourism
 
-**Part 3 — Award** · *One hundred and twenty credits at Level 3, certificated by Qualifi after your centre has assessed your work.*
-120 credits · Level 3 on the RQF · Four subjects · Certificate issued by Qualifi · Delivered and assessed by an approved centre
+**Part 3 — Award** · *120 credits at Level 3, certificated by Qualifi after your centre has assessed your work.*
+120 credits · Level 3 on the RQF · 4 subjects · Certificate issued by Qualifi · Delivered and assessed by an approved centre
 
 ## 3.5 `careers`
 
-Qualifi states where the qualification leads but publishes no graduate destinations, salary bands or employment statistics for it. The two routes listed are the awarding body's own.
+Qualifi states where the qualification leads but publishes no graduate destinations, salary bands or employment statistics for it. The 2 routes listed are the awarding body's own.
 
 1. The Qualifi Level 4 Certificate in Hospitality and Tourism Management
 2. Directly into employment in an associated profession
@@ -124,7 +124,7 @@ Open entry, no qualification barrier · English evidence at enrolment · Teachin
 |---|---|---|
 | `hotel` | A sector the region is betting on | Tourism targets across the GCC have driven heavy investment in hotels, attractions and events, and that creates demand for trained staff at every level. |
 | `door-open` | No paperwork needed to begin | Open entry suits experienced hospitality workers who came up through the floor and never collected formal qualifications. |
-| `plane` | Tourism and hospitality studied together | Regional employers often run accommodation, attractions and travel services under one group, and this covers both sides. |
+| `plane` | Tourism and hospitality studied together | Regional employers often run accommodation, attractions and travel services under 1 group, and this covers both sides. |
 | `users-round` | Guest service across cultures | Customer service is a full subject, which matters in a market serving visitors from dozens of countries. |
 | `book-open` | English evidence rather than a test score barrier | Qualifi names IELTS 5.5 as guidance and accepts other evidence of competence at that level. |
 | `calculator` | Confirm the cost locally | No price is published by Qualifi. Centres in the region set their own, so compare written quotes. |
@@ -137,16 +137,16 @@ Qualifi publishes no fee · Centre sets the course price · International pricin
 ## 4. `faqs` *(6)*
 
 **Is it true I need no qualifications at all?**
-<p>That is what Qualifi publishes. The entry section for this award consists of one sentence stating that it is an open entry qualification, with the only guidance being that candidates have IELTS 5.5 or other evidence of English competence at that level. No prior certificate and no minimum age appear. Individual centres may still apply their own admission checks, so ask yours what it requires in practice.</p>
+<p>That is what Qualifi publishes. The entry section for this award consists of 1 sentence stating that it is an open entry qualification, with the only guidance being that candidates have IELTS 5.5 or other evidence of English competence at that level. No prior certificate and no minimum age appear. Individual centres may still apply their own admission checks, so ask yours what it requires in practice.</p>
 
 **What English will I actually need to show?**
 <p>Qualifi points to IELTS 5.5 or other evidence of competence at an equivalent standard, which leaves room for alternatives such as a recognised school qualification taught in English or another accepted test. It is phrased as guidance rather than as a hard threshold. Your centre will decide what it accepts, so send your evidence over early and have it confirmed before you pay anything.</p>
 
-**Why does it carry 120 credits for only four subjects?**
-<p>That ratio is higher than on Qualifi's 60-credit awards, which list four to six subjects. The qualification page does not break credits down subject by subject, so we cannot tell you how they are distributed. Qualifi publishes a combined specification covering several of its hospitality and tourism diplomas, and that document is where the breakdown lives. We have flagged this rather than guessing at numbers.</p>
+**Why does it carry 120 credits for only 4 subjects?**
+<p>That ratio is higher than on Qualifi's 60-credit awards, which list 4 to 6 subjects. The qualification page does not break credits down subject by subject, so we cannot tell you how they are distributed. Qualifi publishes a combined specification covering several of its hospitality and tourism diplomas, and that document is where the breakdown lives. We have flagged this rather than guessing at numbers.</p>
 
 **How does it differ from the Level 5 extended diploma in the same field?**
-<p>By level and by depth. This award introduces the two industries and the commercial basics; Qualifi's Level 5 extended diploma in hospitality and tourism management sits two levels higher and assumes you already have grounding. Level 3 is comparable to school-leaving standard in England, so this is where you begin rather than where you specialise.</p>
+<p>By level and by depth. This award introduces the 2 industries and the commercial basics; Qualifi's Level 5 extended diploma in hospitality and tourism management sits 2 levels higher and assumes you already have grounding. Level 3 is comparable to school-leaving standard in England, so this is where you begin rather than where you specialise.</p>
 
 **Does it qualify me to manage a hotel?**
 <p>It introduces management principles within the sector; it does not appoint you to anything. The title contains the word management because the subject matter is managerial, not because the certificate confers a role. Employers decide who manages their operations, and they generally want experience alongside a qualification. Treat this as the knowledge base that makes the experience count for more.</p>
@@ -160,4 +160,4 @@ Qualifi publishes no fee · Centre sets the course price · International pricin
 | Field | Value | Count |
 |---|---|---|
 | `meta_title` | Level 3 Diploma in Hospitality & Tourism Management \| Qualifi | 61 ✅ |
-| `meta_description` | Qualifi Level 3 Diploma in Hospitality and Tourism Management. Open entry, 120 credits, four subjects, Ofqual regulated. QAN 603/4400/3. | 136 ✅ |
+| `meta_description` | Qualifi Level 3 Diploma in Hospitality and Tourism Management. Open entry, 120 credits, 4 subjects, Ofqual regulated. QAN 603/4400/3. | 133 ✅ |

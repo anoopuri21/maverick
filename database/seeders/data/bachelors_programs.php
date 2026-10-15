@@ -18,18 +18,18 @@ return [
             'level' => 'BSc',
             'category_slug' => 'bachelors',
             'university_slug' => 'girne-american-university',
-            'duration' => 'Four years',
+            'duration' => '4 years',
             'sort_order' => 70,
             'is_active' => false,
-            'hero' => 'A hotel stay starts with a reservation, but running one also takes housekeeping, food service and revenue decisions. GAU\'s four-year BSc Tourism and Hospitality Management covers these areas, with an opportunity to train at its Le Chateau Lambousa hotel.',
+            'hero' => 'A hotel stay starts with a reservation, but running one also takes housekeeping, food service and revenue decisions. GAU\'s 4-year BSc Tourism and Hospitality Management covers these areas, with an opportunity to train at its Le Chateau Lambousa hotel.',
             'overview' => [
                 'BSc Tourism and Hospitality Management at Girne American University is built around how a visitor\'s stay actually works. The published courses move from hospitality basics and tourism mathematics into front office reservations, housekeeping, food and beverage service, hospitality finance and law. The later timetable reaches revenue management and resort operations.',
-                'The programme is taught in English across four years at the School of Tourism and Hospitality. GAU says students have an opportunity to train at Le Chateau Lambousa, its applied training hotel. Its course grid also names internships in the second and third years. Neither statement guarantees an individual placement or a particular host.',
+                'The programme is taught in English across 4 years at the School of Tourism and Hospitality. GAU says students have an opportunity to train at Le Chateau Lambousa, its applied training hotel. Its course grid also names internships in the 2nd and 3rd years. Neither statement guarantees an individual placement or a particular host.',
                 'GAU leaves its Career Opportunities tab empty. The skills discussed here come from its named courses, not from verified graduate destinations. Nor does the programme panel give a tuition amount or an online route. Ask GAU for the current fee, attendance expectations and admissions requirements before making plans.',
             ],
             'highlights' => [
                 ['Awarded by', 'Girne American University'],
-                ['Duration', 'Four years'],
+                ['Duration', '4 years'],
                 ['Language', 'English taught'],
                 ['School', 'Tourism and Hospitality'],
                 ['Training', 'Hotel opportunity stated'],
@@ -38,15 +38,15 @@ return [
             'snapshot' => [
                 ['Degree Award', 'BSc Tourism and Hospitality Management'],
                 ['Awarding University', 'Girne American University, North Cyprus'],
-                ['Duration', 'Four years on GAU\'s course grid'],
+                ['Duration', '4 years on GAU\'s course grid'],
                 ['Language', 'English'],
                 ['Applied learning', 'Hotel training opportunity; internship units listed'],
                 ['Outcome evidence', 'Learning themes inferred from courses; career destinations not published'],
-                ['Pathway note', 'GAU lists four years but gives no individual price or subject-specific entry threshold here. Hotel training is an opportunity, not a promised placement. Confirm attendance, admission conditions, the current fee and any scholarship directly before paying.'],
+                ['Pathway note', 'GAU lists 4 years but gives no individual price or subject-specific entry threshold here. Hotel training is an opportunity, not a promised placement. Confirm attendance, admission conditions, the current fee and any scholarship directly before paying.'],
             ],
             'benefits' => [
                 ['See where service happens', '<p>GAU names Le Chateau Lambousa as an applied training hotel and describes the chance to learn in different hotel departments.</p>', 'map-pin'],
-                ['Understand the guest journey', '<p>Front office management, reservations and housekeeping appear as separate subjects, rather than a single broad hospitality survey.</p>', 'users'],
+                ['Understand the guest journey', '<p>Front office management, reservations and housekeeping appear as separate subjects, rather than 1 broad hospitality survey.</p>', 'users'],
                 ['Follow food service closely', '<p>Food and beverage service sits alongside nutrition, sanitation and restaurant management on the university\'s timetable.</p>', 'utensils'],
                 ['Read the operational numbers', '<p>Hospitality finance, revenue management and purchasing give the course a commercial side to match its service subjects.</p>', 'trending-up'],
                 ['Connect hotels and destinations', '<p>Tourism economics and tourism policy planning put individual properties in a wider travel context.</p>', 'book-open'],
@@ -82,7 +82,7 @@ return [
             'structure' => [
                 [
                     'title' => 'Stage 1 — Tourism foundations',
-                    'subtitle' => 'Selected first-year subjects.',
+                    'subtitle' => 'Selected 1st-year subjects.',
                     'modules' => [
                         'Introduction to Hospitality',
                         'Tourism & Hospitality Maths',
@@ -93,7 +93,7 @@ return [
                 ],
                 [
                     'title' => 'Stage 2 — Guest service operations',
-                    'subtitle' => 'Selected second- and third-year subjects; internship entries appear in the published grid.',
+                    'subtitle' => 'Selected 2nd- and 3rd-year subjects; internship entries appear in the published grid.',
                     'modules' => [
                         'Front Office Management',
                         'Housekeeping Operations',
@@ -123,20 +123,20 @@ return [
                 ['icon' => 'globe', 'title' => 'English is the teaching language', 'text' => 'GAU identifies English as the taught language. If your previous qualifications were earned elsewhere, ask how its international admissions process checks your documents.'],
                 ['icon' => 'map-pin', 'title' => 'Training has a named setting', 'text' => 'The university describes a chance to train at Le Chateau Lambousa. Ask how access is allocated before assuming it will feature in your own study plan.'],
                 ['icon' => 'book-open', 'title' => 'A course beyond hotel reception', 'text' => 'The timetable includes sanitation, accounting, purchasing and tourism policy, which makes it worth comparing with any narrower hotel-service course you are considering.'],
-                ['icon' => 'clock', 'title' => 'Plan around four academic years', 'text' => 'The official panel states four years. If you need to organise travel or work commitments, obtain the attendance timetable from GAU rather than assuming remote access.'],
+                ['icon' => 'clock', 'title' => 'Plan around 4 academic years', 'text' => 'The official panel states 4 years. If you need to organise travel or work commitments, obtain the attendance timetable from GAU rather than assuming remote access.'],
                 ['icon' => 'briefcase', 'title' => 'Career figures remain unreported', 'text' => 'There is no published list of graduate destinations for this award. Ask the School what alumni have gone on to do if that evidence matters to your decision.'],
                 ['icon' => 'file-text', 'title' => 'Ask for a current quotation', 'text' => 'The degree page displays a dash where the fee should be. Request a dated breakdown of tuition and other charges before accepting an offer.'],
             ],
             'faqs' => [
-                ['Is training at the university hotel guaranteed for every student?', '<p>No. GAU says students have the opportunity to train at Le Chateau Lambousa, its applied training hotel, but it does not set out an individual entitlement or selection process on this programme page. Its curriculum also includes internship entries in the second and third years. Ask the School how hotel access and internships work for your proposed intake.</p>', 1],
-                ['What does the four-year hospitality curriculum actually cover?', '<p>The published grid begins with hospitality and tourism foundations, then names front office management, reservations, food and beverage service, housekeeping and hospitality accounting. Later subjects include hospitality finance, tourism policy planning, revenue management, resort management and a graduation seminar. These are GAU\'s named course titles, not a promise that every timetable will be identical in your intake.</p>', 2],
+                ['Is training at the university hotel guaranteed for every student?', '<p>No. GAU says students have the opportunity to train at Le Chateau Lambousa, its applied training hotel, but it does not set out an individual entitlement or selection process on this programme page. Its curriculum also includes internship entries in the 2nd and 3rd years. Ask the School how hotel access and internships work for your proposed intake.</p>', 1],
+                ['What does the 4-year hospitality curriculum actually cover?', '<p>The published grid begins with hospitality and tourism foundations, then names front office management, reservations, food and beverage service, housekeeping and hospitality accounting. Later subjects include hospitality finance, tourism policy planning, revenue management, resort management and a graduation seminar. These are GAU\'s named course titles, not a promise that every timetable will be identical in your intake.</p>', 2],
                 ['Why are there no career titles shown for this degree?', '<p>GAU\'s Career Opportunities tab is blank for this BSc. The course titles support a discussion of guest service, operations and commercial decision-making, but they do not document employers, salaries or actual graduate roles. The learning themes on this page are derived from those subjects. If you need recent outcomes, request them from the School rather than relying on guessed destinations.</p>', 3],
                 ['Can I take the tourism BSc entirely online from the Gulf?', '<p>The official programme page does not advertise an online route. It describes training at a university hotel and lists internships, which would need practical arrangements. Before you plan travel or take on work commitments, ask GAU which parts require attendance, where training takes place and whether any approved alternative delivery route exists for your intake.</p>', 4],
                 ['What entry and English evidence should I prepare?', '<p>GAU\'s international admissions guidance says required documents depend on the degree. Students entering English-medium departments may need its Foundation English School proficiency examination unless they meet a published exemption route. The Tourism page gives no subject-specific score or guaranteed admission rule. Send your qualifications to GAU for a written eligibility and language assessment.</p>', 5],
                 ['How much does the BSc cost and is funding assured?', '<p>The programme fee field shows a dash rather than a price. GAU\'s wider tariff page is dated 2025–2026, so it is not a safe quotation for the next intake. The degree panel says scholarships are available, not that every applicant receives one. Ask for an itemised current offer spelling out tuition, additional charges and any scholarship conditions.</p>', 6],
             ],
             'meta_title' => 'BSc Tourism and Hospitality Management | GAU, North Cyprus',
-            'meta_description' => 'Study BSc Tourism and Hospitality Management at GAU over four years in English. Explore hotel operations, revenue management and a training opportunity.',
+            'meta_description' => 'Study BSc Tourism and Hospitality Management at GAU over 4 years in English. Explore hotel operations, revenue management and a training opportunity.',
         ],
         [
             'slug' => 'bsc-international-business-management-girne-american-university',
@@ -144,31 +144,31 @@ return [
             'level' => 'BSc',
             'category_slug' => 'bachelors',
             'university_slug' => 'girne-american-university',
-            'duration' => 'Four years',
+            'duration' => '4 years',
             'sort_order' => 71,
             'is_active' => false,
-            'hero' => 'A supplier, customer and colleagues can all be in different countries. GAU\'s four-year BSc International Business Management connects cross-cultural study with an export and import workshop and supply chain coursework. Teaching is in English; the faculty requires classroom attendance.',
+            'hero' => 'A supplier, customer and colleagues can all be in different countries. GAU\'s 4-year BSc International Business Management connects cross-cultural study with an export and import workshop and supply chain coursework. Teaching is in English; the faculty requires classroom attendance.',
             'overview' => [
-                'BSc International Business Management at Girne American University looks at what changes when a business works across countries. The first years cover management, economics, accounting and statistics; the later course grid adds international business, cross-cultural study, an export and import workshop, and supply chain management. The export and import workshop is a course, not a promise of overseas study.',
-                'GAU states a four-year, English-taught BSc. Its Business and Economics faculty requires class attendance and describes Moodle as a course support tool, not a replacement for the classroom. The department says the award carries 240 ECTS. Two GAU pages disagree on the separate local-credit total, giving 132 and 120 respectively; neither figure is presented here as settled.',
+                'BSc International Business Management at Girne American University looks at what changes when a business works across countries. Years 1 and 2 cover management, economics, accounting and statistics; the later course grid adds international business, cross-cultural study, an export and import workshop, and supply chain management. The export and import workshop is a course, not a promise of overseas study.',
+                'GAU states a 4-year, English-taught BSc. Its Business and Economics faculty requires class attendance and describes Moodle as a course support tool, not a replacement for the classroom. The department says the award carries 240 ECTS. 2 GAU pages disagree on the separate local-credit total, giving 132 and 120 respectively; neither figure is presented here as settled.',
                 'GAU names broad fields such as marketing, human resources, finance, sales and operations. It does not publish graduate job titles or placement figures. Any applications of the published subjects described on this page are derived coverage, not verified destinations. Tuition and degree-specific international entry conditions are not supplied in the programme panel. Ask GAU to confirm these before you commit.',
             ],
             'highlights' => [
                 ['Awarded by', 'Girne American University'],
-                ['Duration', 'Four years'],
+                ['Duration', '4 years'],
                 ['Language', 'English taught'],
-                ['Year-four core', 'Cross-cultural and export study'],
+                ['Year-4 core', 'Cross-cultural and export study'],
                 ['ECTS', '240 per faculty'],
                 ['Attendance', 'Classroom attendance required'],
             ],
             'snapshot' => [
                 ['Degree Award', 'BSc International Business Management'],
                 ['Awarding University', 'Girne American University, North Cyprus'],
-                ['Duration', 'Four years'],
+                ['Duration', '4 years'],
                 ['Language', 'English'],
                 ['Credits note', 'Faculty: 240 ECTS; local credits conflict, 120 versus 132'],
                 ['Career evidence', 'GAU names business functions, not graduate job titles'],
-                ['Pathway note', 'The faculty requires attendance in class; Moodle is course support rather than an online route. GAU publishes different local-credit totals on its two pages. Request the approved study plan, entry decision and current written tuition offer before paying.'],
+                ['Pathway note', 'The faculty requires attendance in class; Moodle is course support rather than an online route. GAU publishes different local-credit totals on its 2 pages. Request the approved study plan, entry decision and current written tuition offer before paying.'],
             ],
             'benefits' => [
                 ['Put culture into business decisions', '<p>A named cross-cultural studies course places differences between workplaces inside the required final-year curriculum.</p>', 'globe'],
@@ -176,7 +176,7 @@ return [
                 ['Keep the business foundations', '<p>Economics, accounting, management and statistics form a base before the cross-border subjects take over.</p>', 'book-open'],
                 ['Explore wider business functions', '<p>GAU\'s career text points to marketing, human resources, finance and operations as areas where the subject may be used.</p>', 'users'],
                 ['Know how classes are taught', '<p>The faculty expects physical class attendance and uses Moodle for support; it does not present this BSc as distance learning.</p>', 'monitor'],
-                ['Question the two credit totals', '<p>One GAU page states 132 local credits, another 120. Obtain an approved plan instead of guessing which applies.</p>', 'file-text'],
+                ['Question the 2 credit totals', '<p>1 GAU page states 132 local credits, another 120. Obtain an approved plan instead of guessing which applies.</p>', 'file-text'],
             ],
             'learning' => [
                 'Compare how cultural differences affect international business practice',
@@ -184,7 +184,7 @@ return [
                 'Apply management principles to organisations working across borders',
                 'Discuss export and import decisions using the published workshop themes',
                 'Relate economics and finance foundations to international activity',
-                'Evaluate marketing choices in markets beyond one country',
+                'Evaluate marketing choices in markets beyond 1 country',
                 'Consider the role of people management within multinational work',
                 'Communicate business ideas with attention to different contexts',
             ],
@@ -208,7 +208,7 @@ return [
             'structure' => [
                 [
                     'title' => 'Stage 1 — Business groundwork',
-                    'subtitle' => 'Selected introductory and second-year courses.',
+                    'subtitle' => 'Selected introductory and 2nd-year courses.',
                     'modules' => [
                         'Introduction to Business & Management',
                         'Principles of Management',
@@ -220,7 +220,7 @@ return [
                 ],
                 [
                     'title' => 'Stage 2 — Operations and markets',
-                    'subtitle' => 'Selected third-year courses and the listed internship unit.',
+                    'subtitle' => 'Selected 3rd-year courses and the listed internship unit.',
                     'modules' => [
                         'Organizational Behavior',
                         'Human Resource Management',
@@ -232,7 +232,7 @@ return [
                 ],
                 [
                     'title' => 'Stage 3 — International practice',
-                    'subtitle' => 'Selected fourth-year required courses.',
+                    'subtitle' => 'Selected 4th-year required courses.',
                     'modules' => [
                         'International Business',
                         'Cross Cultural Studies in Org.',
@@ -257,12 +257,12 @@ return [
                 ['icon' => 'globe', 'title' => 'Look closely at cross-cultural study', 'text' => 'GAU lists a dedicated cross-cultural subject and an export and import workshop. Check the current syllabus if those are the reasons you are comparing degrees.'],
                 ['icon' => 'route', 'title' => 'Separate core from elective choice', 'text' => 'International Business and Supply Chain and Management are in the final-year grid; International Finance appears on the elective list, not as a required course.'],
                 ['icon' => 'monitor', 'title' => 'Classroom attendance needs a plan', 'text' => 'The faculty explicitly requires attendance. Moodle supports teaching but is not evidence that you can finish the BSc from your home country.'],
-                ['icon' => 'file-text', 'title' => 'Resolve the published credit mismatch', 'text' => 'One university page gives 132 local credits and another 120. The faculty separately says 240 ECTS; ask which study plan governs your intake.'],
+                ['icon' => 'file-text', 'title' => 'Resolve the published credit mismatch', 'text' => '1 university page gives 132 local credits and another 120. The faculty separately says 240 ECTS; ask which study plan governs your intake.'],
                 ['icon' => 'users', 'title' => 'Ask what graduates actually do', 'text' => 'GAU lists broad business functions rather than named jobs or placement results. If outcomes matter to you, request recent examples directly from the department.'],
-                ['icon' => 'landmark', 'title' => 'Clarify admission and cost first', 'text' => 'The programme page contains no fee amount or individual international entry threshold. Seek a current offer and admissions decision in writing.'],
+                ['icon' => 'landmark', 'title' => 'Clarify admission and cost before applying', 'text' => 'The programme page contains no fee amount or individual international entry threshold. Seek a current offer and admissions decision in writing.'],
             ],
             'faqs' => [
-                ['Why do GAU pages give different credit totals?', '<p>The prospective programme description says 132 credits, while the departmental description says 120. The latter also identifies the completed BSc as 240 ECTS, a different credit notation. These are two conflicting local-credit figures, not numbers to average or convert. Request the approved programme specification for your intake from GAU before relying on either local total.</p>', 1],
+                ['Why do GAU pages give different credit totals?', '<p>The prospective programme description says 132 credits, while the departmental description says 120. The latter also identifies the completed BSc as 240 ECTS, a different credit notation. These are 2 conflicting local-credit figures, not numbers to average or convert. Request the approved programme specification for your intake from GAU before relying on either local total.</p>', 1],
                 ['Can I study International Business Management without attending campus classes?', '<p>Not on the evidence currently published. The Business and Economics faculty describes attendance at traditional classes as compulsory and says Moodle is a support platform. GAU does not advertise a separate online route for this BSc on the reviewed pages. Ask the university which teaching site and attendance schedule would apply to you before making travel or work plans.</p>', 2],
                 ['Which subjects make this different from general business management?', '<p>The final-year grid names International Business, Cross Cultural Studies in Org., Workshop in Export and Import, and Supply Chain and Management. Earlier economics, finance and management units build a shared foundation, but those later core titles are specific reasons to consider the international course. Electives such as International Banking are listed separately and should not be treated as compulsory.</p>', 3],
                 ['Does the degree lead to a particular job abroad?', '<p>GAU names functions including marketing, human resources, accounting, sales, operations, finance and management consulting. It does not name employers, specific graduate roles or work visas. The possible applications discussed here are a reading of that broad statement and the published courses, not a report of where graduates have been hired.</p>', 4],
@@ -270,7 +270,7 @@ return [
                 ['Where can I check current tuition and scholarship terms?', '<p>The programme panel leaves its fee as a dash, although it indicates that a scholarship may be available. A wider GAU tariff is expressly dated 2025–2026 and cannot establish your present fee or individual award. Request a dated written breakdown covering tuition, any other charges and eligibility for funding before you pay.</p>', 6],
             ],
             'meta_title' => 'BSc International Business Management | GAU, North Cyprus',
-            'meta_description' => 'GAU\'s four-year BSc International Business Management is taught in English, with cross-cultural study, export and import coursework, and class attendance.',
+            'meta_description' => 'GAU\'s 4-year BSc International Business Management is taught in English, with cross-cultural study, export and import coursework, and class attendance.',
         ],
         [
             'slug' => 'bsc-marketing-girne-american-university',
@@ -278,18 +278,18 @@ return [
             'level' => 'BSc',
             'category_slug' => 'bachelors',
             'university_slug' => 'girne-american-university',
-            'duration' => 'Four years',
+            'duration' => '4 years',
             'sort_order' => 73,
             'is_active' => false,
-            'hero' => 'An advert can be clever and still miss its audience. GAU\'s four-year BSc Marketing studies buyer behaviour, strategy and integrated communications. An internship course appears in its grid, and teaching is in English through the Business and Economics faculty.',
+            'hero' => 'An advert can be clever and still miss its audience. GAU\'s 4-year BSc Marketing studies buyer behaviour, strategy and integrated communications. An internship course appears in its grid, and teaching is in English through the Business and Economics faculty.',
             'overview' => [
                 'BSc Marketing at Girne American University is not just about advertising. Students begin with business, economics, statistics and accounting, then examine consumer behaviour and marketing strategy. The later courses include international marketing, integrated marketing communications and a marketing seminar. Brand management and marketing research appear on the elective list, so they are possible choices rather than compulsory promises.',
-                'The university lists four years of English-taught study and an Internship - 30 Calendar Days unit in the third-year grid. That title does not promise a paid post or a particular employer. The Business and Economics faculty requires class attendance; its Moodle platform supports courses but is not a stated online BSc route. GAU states 132 local credits and the department awards 240 ECTS.',
+                'The university lists 4 years of English-taught study and an Internship - 30 Calendar Days unit in the 3rd-year grid. That title does not promise a paid post or a particular employer. The Business and Economics faculty requires class attendance; its Moodle platform supports courses but is not a stated online BSc route. GAU states 132 local credits and the department awards 240 ECTS.',
                 'GAU publishes example marketing roles, including senior positions. A degree alone does not make a new graduate a director or manager. The programme panel does not give a current tuition sum or marketing-specific international entry scores. Nor does a faculty accreditation statement establish CIM exemptions. Ask for written details before deciding where this degree fits your plans.',
             ],
             'highlights' => [
                 ['Awarded by', 'Girne American University'],
-                ['Duration', 'Four years'],
+                ['Duration', '4 years'],
                 ['Language', 'English taught'],
                 ['Focus', 'Consumers and communications'],
                 ['Practice', 'Internship unit listed'],
@@ -298,7 +298,7 @@ return [
             'snapshot' => [
                 ['Degree Award', 'Bachelor of Science in Marketing'],
                 ['Awarding University', 'Girne American University, North Cyprus'],
-                ['Duration', 'Four years'],
+                ['Duration', '4 years'],
                 ['Course credits', '132 local credits; faculty states 240 ECTS'],
                 ['Later core', 'Consumer behaviour, integrated communications, marketing seminar'],
                 ['Career examples', 'GAU lists possible roles, including senior positions, not placements'],
@@ -307,7 +307,7 @@ return [
             'benefits' => [
                 ['Start with the buyer', '<p>Consumer Behavior is a named required course, giving purchasing decisions a place alongside general marketing principles.</p>', 'target'],
                 ['Link strategy and communication', '<p>Marketing Strategy comes before Integrated Marketing Communications on the published grid, connecting decisions about audiences to the messages they receive.</p>', 'message-square'],
-                ['Take the subject internationally', '<p>International Marketing is a fourth-year core course, not just one of the optional specialisms.</p>', 'globe'],
+                ['Take the subject internationally', '<p>International Marketing is a 4th-year core course, not just one of the optional specialisms.</p>', 'globe'],
                 ['Choose a narrower interest', '<p>Brand Management, Advertising and Promotion, and Marketing Research are named electives; their availability should be checked for your intake.</p>', 'book-open'],
                 ['Notice the internship unit', '<p>GAU prints an Internship - 30 Calendar Days course. The title gives a duration, not a guarantee of a paid employer place.</p>', 'briefcase'],
                 ['Separate degree from membership', '<p>A BSc is an academic award. The reviewed university pages do not claim Chartered Institute of Marketing exam exemptions.</p>', 'shield'],
@@ -350,7 +350,7 @@ return [
             'structure' => [
                 [
                     'title' => 'Stage 1 — Business and evidence',
-                    'subtitle' => 'Selected foundation and second-year courses.',
+                    'subtitle' => 'Selected foundation and 2nd-year courses.',
                     'modules' => [
                         'Introduction to Business Management',
                         'Principles of Management',
@@ -362,7 +362,7 @@ return [
                 ],
                 [
                     'title' => 'Stage 2 — Buyer and channel decisions',
-                    'subtitle' => 'Named third-year units; the internship course is listed in spring.',
+                    'subtitle' => 'Named 3rd-year units; the internship course is listed in spring.',
                     'modules' => [
                         'Principles of Marketing',
                         'Consumer Behavior',
@@ -373,7 +373,7 @@ return [
                 ],
                 [
                     'title' => 'Stage 3 — Advanced marketing practice',
-                    'subtitle' => 'Selected fourth-year required courses.',
+                    'subtitle' => 'Selected 4th-year required courses.',
                     'modules' => [
                         'International Marketing',
                         'Integrated Marketing Communications',
@@ -394,8 +394,8 @@ return [
             ],
             'gcc_heading' => 'A Gulf Applicant\'s Checklist for Marketing Study',
             'gcc' => [
-                ['icon' => 'target', 'title' => 'Check the buyer-focused core', 'text' => 'Consumer Behavior and Marketing Strategy are required courses. Compare those titles with your existing experience before choosing a second business qualification.'],
-                ['icon' => 'message-square', 'title' => 'Distinguish communication from advertising', 'text' => 'Integrated Marketing Communications is core; Advertising and Promotion is an elective. The difference matters if you want one particular subject on your transcript.'],
+                ['icon' => 'target', 'title' => 'Check the buyer-focused core', 'text' => 'Consumer Behavior and Marketing Strategy are required courses. Compare those titles with your existing experience before choosing a 2nd business qualification.'],
+                ['icon' => 'message-square', 'title' => 'Distinguish communication from advertising', 'text' => 'Integrated Marketing Communications is core; Advertising and Promotion is an elective. The difference matters if you want 1 particular subject on your transcript.'],
                 ['icon' => 'briefcase', 'title' => 'Establish the internship arrangements', 'text' => 'The published internship unit says 30 calendar days. Ask GAU about host allocation, attendance and supervision; the page does not promise an employer.'],
                 ['icon' => 'monitor', 'title' => 'Make room for classroom time', 'text' => 'The faculty requires attendance and treats Moodle as course support. Confirm where and when teaching happens instead of budgeting for an assumed online route.'],
                 ['icon' => 'users', 'title' => 'Read senior job titles carefully', 'text' => 'GAU lists management and director roles as possible careers, not as jobs awarded to new graduates. Ask for actual outcomes if you need them.'],
@@ -403,14 +403,14 @@ return [
             ],
             'faqs' => [
                 ['Is marketing research a compulsory module on this BSc?', '<p>Not according to GAU\'s current grid. Marketing Research appears in the elective list, alongside Brand Management and Advertising and Promotion. Required later subjects include Consumer Behavior, Marketing Strategy, International Marketing and Integrated Marketing Communications. Elective places or combinations may vary, so request the approved course list for your intake if a particular research option matters to you.</p>', 1],
-                ['Will GAU place me with a marketing employer?', '<p>The university lists an Internship - 30 Calendar Days course in the third year, but its page does not promise a host, paid work or a role after graduation. Treat the course title as a curriculum fact. Ask how internship places are allocated and assessed, and whether any placements are available to your cohort.</p>', 2],
+                ['Will GAU place me with a marketing employer?', '<p>The university lists an Internship - 30 Calendar Days course in the 3rd year, but its page does not promise a host, paid work or a role after graduation. Treat the course title as a curriculum fact. Ask how internship places are allocated and assessed, and whether any placements are available to your cohort.</p>', 2],
                 ['Are the senior careers on GAU\'s page guaranteed outcomes?', '<p>No. Marketing Manager and Marketing & Communications Director appear in GAU\'s examples, alongside specialist and coordinator roles, but the university does not report a placement rate or starting position for graduates. Those senior titles often require experience. The career chips here reproduce named possibilities, not an assurance of employment or immediate seniority.</p>', 3],
                 ['Does this Marketing BSc give professional CIM exemptions?', '<p>The reviewed GAU programme and departmental pages do not state any Chartered Institute of Marketing exemptions or membership entitlement. The programme panel lists higher education accreditation bodies, including IACBE, but that is not the same thing as an individual professional qualification. If a CIM route matters to you, request written confirmation of any recognition before enrolling.</p>', 4],
                 ['Is the programme taught online and what English proof is needed?', '<p>GAU identifies English as the taught language, while its Business and Economics faculty expects classroom attendance and uses Moodle only as a support tool. Its international admissions guidance describes English proficiency testing and possible exemptions, not a marketing-specific automatic acceptance score. Ask the university which evidence and teaching timetable apply to your circumstances.</p>', 5],
                 ['Where can I get a reliable fee for this intake?', '<p>GAU\'s fee field contains a dash, not a price. GAU also has a general tuition schedule dated 2025–2026; that is not an individual quotation for this intake. Scholarships are marked as possible, not guaranteed. Get an itemised offer covering tuition, registration and any award conditions in writing before paying.</p>', 6],
             ],
             'meta_title' => 'BSc Marketing at Girne American University | North Cyprus',
-            'meta_description' => 'GAU\'s four-year BSc Marketing is taught in English. Study consumer behaviour, marketing strategy and integrated communications, with a listed internship unit.',
+            'meta_description' => 'GAU\'s 4-year BSc Marketing is taught in English. Study consumer behaviour, marketing strategy and integrated communications, with a listed internship unit.',
         ],
         [
             'slug' => 'bsc-economics-girne-american-university',
@@ -418,18 +418,18 @@ return [
             'level' => 'BSc',
             'category_slug' => 'bachelors',
             'university_slug' => 'girne-american-university',
-            'duration' => 'Four years',
+            'duration' => '4 years',
             'sort_order' => 76,
             'is_active' => false,
-            'hero' => 'A policy choice looks different once you test the numbers behind it. GAU\'s four-year BSc Economics connects microeconomics, statistics, international economics and forecasting. The course grid stops after Year 3, so ask for the missing final-year plan before committing.',
+            'hero' => 'A policy choice looks different once you test the numbers behind it. GAU\'s 4-year BSc Economics connects microeconomics, statistics, international economics and forecasting. The course grid stops after Year 3, so ask for the missing final-year plan before committing.',
             'overview' => [
-                'BSc Economics at Girne American University starts with economic principles, business mathematics and computing. The second-year timetable moves into intermediate microeconomics, macroeconomics and statistics. By the third year, students meet international economics, money and banking, financial economics, political economy and forecasting. That is economics work, rather than a survey of business functions.',
-                'GAU states that this English-taught programme lasts four years. There is an important omission: the course grid on its prospective page ends after Year 3. No final-year module names are published there, and the department\'s Courses heading supplies no alternative table. This page therefore shows only the subjects GAU actually lists. Ask for the approved Year 4 plan.',
+                'BSc Economics at Girne American University starts with economic principles, business mathematics and computing. The 2nd-year timetable moves into intermediate microeconomics, macroeconomics and statistics. By the 3rd year, students meet international economics, money and banking, financial economics, political economy and forecasting. That is economics work, rather than a survey of business functions.',
+                'GAU states that this English-taught programme lasts 4 years. There is an important omission: the course grid on its prospective page ends after Year 3. No final-year module names are published there, and the department\'s Courses heading supplies no alternative table. This page therefore shows only the subjects GAU actually lists. Ask for the approved Year 4 plan.',
                 'The department awards the BSc in Economics with 240 ECTS; the prospective text separately mentions 132 local credits. GAU\'s Career Opportunities tab is empty. References here to economic analysis or policy work are derived from its published subjects and outcomes, not a list of verified graduate destinations. The faculty requires class attendance, and the degree page gives no current fee amount.',
             ],
             'highlights' => [
                 ['Awarded by', 'Girne American University'],
-                ['Duration', 'Four years'],
+                ['Duration', '4 years'],
                 ['Language', 'English taught'],
                 ['Subject focus', 'Micro, macro and data'],
                 ['ECTS', '240 per department'],
@@ -438,19 +438,19 @@ return [
             'snapshot' => [
                 ['Degree Award', 'Bachelor of Science in Economics'],
                 ['Awarding University', 'Girne American University, North Cyprus'],
-                ['Duration', 'Four years'],
+                ['Duration', '4 years'],
                 ['Credits', 'Prospective: 132 local credits; department: 240 ECTS'],
                 ['Published Year 4', 'No final-year modules shown on GAU\'s course grid'],
                 ['Career evidence', 'Applications inferred from outcomes; no named graduate jobs'],
-                ['Pathway note', 'The four-year duration is explicit, but the published modules cover only three years. Request the approved final-year plan, admission and attendance conditions, and a current written tuition and scholarship offer from GAU before paying.'],
+                ['Pathway note', 'The 4-year duration is explicit, but the published modules cover only 3 years. Request the approved final-year plan, admission and attendance conditions, and a current written tuition and scholarship offer from GAU before paying.'],
             ],
             'benefits' => [
                 ['Ask an economic question', '<p>The department wants students to apply theory and methods to real economic problems, not simply memorise definitions.</p>', 'lightbulb'],
                 ['Work through the data', '<p>Statistics, mathematical economics and forecasting feature in the grid, supporting a more quantitative reading of economic issues.</p>', 'bar-chart-3'],
-                ['Follow international connections', '<p>International Economics I and II give cross-border questions their own third-year sequence.</p>', 'globe'],
+                ['Follow international connections', '<p>International Economics I and II give cross-border questions their own 3rd-year sequence.</p>', 'globe'],
                 ['Examine policy and money', '<p>Money & Banking, political economy and financial economics sit together among the published later subjects.</p>', 'landmark'],
-                ['Separate the two credit measures', '<p>The department names 240 ECTS; a separate page says 132 local credits. The units differ, and GAU offers no personal credit-transfer calculation here.</p>', 'book-open'],
-                ['Notice the missing final year', '<p>GAU says four years but displays courses only through the third. Obtain the actual Year 4 plan before deciding.</p>', 'file-text'],
+                ['Separate the 2 credit measures', '<p>The department names 240 ECTS; a separate page says 132 local credits. The units differ, and GAU offers no personal credit-transfer calculation here.</p>', 'book-open'],
+                ['Notice the missing final year', '<p>GAU says 4 years but displays courses only through Year 3. Obtain the actual Year 4 plan before deciding.</p>', 'file-text'],
             ],
             'learning' => [
                 'Compare microeconomic and macroeconomic explanations of economic change',
@@ -482,7 +482,7 @@ return [
             'structure' => [
                 [
                     'title' => 'Stage 1 — Economic foundations',
-                    'subtitle' => 'Selected subjects from the published first year.',
+                    'subtitle' => 'Selected subjects from the published 1st year.',
                     'modules' => [
                         'Intro. to Economics I',
                         'Intro. to Economics II',
@@ -493,7 +493,7 @@ return [
                 ],
                 [
                     'title' => 'Stage 2 — Models and evidence',
-                    'subtitle' => 'Selected second-year subjects.',
+                    'subtitle' => 'Selected 2nd-year subjects.',
                     'modules' => [
                         'Intermediate Microeconomics',
                         'Intermediate Macroeconomics',
@@ -504,7 +504,7 @@ return [
                 ],
                 [
                     'title' => 'Stage 3 — International and monetary questions',
-                    'subtitle' => 'Selected third-year subjects. GAU does not publish Year 4 modules on this grid.',
+                    'subtitle' => 'Selected 3rd-year subjects. GAU does not publish Year 4 modules on this grid.',
                     'modules' => [
                         'International Economics I',
                         'International Economics II',
@@ -521,21 +521,21 @@ return [
             'gcc' => [
                 ['icon' => 'bar-chart-3', 'title' => 'Check the quantitative sequence', 'text' => 'GAU moves from business mathematics and statistics to mathematical economics and forecasting. Ask for reading lists if you need to assess the level of mathematical preparation.'],
                 ['icon' => 'globe', 'title' => 'See where international study appears', 'text' => 'International Economics I and II are listed in Year 3. The programme does not promise an overseas placement or study trip.'],
-                ['icon' => 'file-text', 'title' => 'Request the unpublished fourth-year grid', 'text' => 'Duration is four years, yet the online course table ends after Year 3. Do not budget for a final-year subject that GAU has not named.'],
+                ['icon' => 'file-text', 'title' => 'Request the unpublished 4th-year grid', 'text' => 'Duration is 4 years, yet the online course table ends after Year 3. Do not budget for a final-year subject that GAU has not named.'],
                 ['icon' => 'monitor', 'title' => 'Plan for actual class attendance', 'text' => 'The Business and Economics faculty describes attendance as compulsory. Ask for the teaching timetable rather than assuming the available Moodle support makes the BSc remote.'],
                 ['icon' => 'landmark', 'title' => 'Treat careers as a question', 'text' => 'The university mentions private and public enterprise and further study, but publishes no named graduate roles. Ask the department for outcomes if those influence your decision.'],
                 ['icon' => 'receipt', 'title' => 'Secure the fee for your intake', 'text' => 'A dash appears in the programme\'s fee field. Request a written quotation and details of any scholarship before committing funds.'],
             ],
             'faqs' => [
-                ['Why does a four-year degree show only three course years?', '<p>That is how GAU currently publishes the Economics grid: its panel says four years, but the listed courses stop after Year 3. The department page confirms the award but does not fill in the missing course table. This page will not invent Year 4 subjects. Ask GAU for the approved final-year specification for your intake.</p>', 1],
-                ['Which areas of economics are actually listed on the timetable?', '<p>GAU starts with introductory economics, business mathematics and computing, followed by intermediate microeconomics and macroeconomics with statistics. Its third year names international economics, money and banking, political economy, financial economics, mathematical economics and forecasting. Those are published subjects; the elective slots and unlisted fourth year should not be mistaken for additional named courses.</p>', 2],
-                ['Do the figures of 132 credits and 240 ECTS conflict?', '<p>They are expressed in different units. GAU\'s prospective description says that students complete 132 credits, while its faculty department describes the completed BSc as 240 ECTS. Neither source explains an individual transfer calculation, and the absent fourth-year grid cannot be reconstructed from either total. Have GAU confirm how its official plan applies to your entry route.</p>', 3],
+                ['Why does a 4-year degree show only 3 course years?', '<p>That is how GAU currently publishes the Economics grid: its panel says 4 years, but the listed courses stop after Year 3. The department page confirms the award but does not fill in the missing course table. This page will not invent Year 4 subjects. Ask GAU for the approved final-year specification for your intake.</p>', 1],
+                ['Which areas of economics are actually listed on the timetable?', '<p>GAU starts with introductory economics, business mathematics and computing, followed by intermediate microeconomics and macroeconomics with statistics. Its 3rd year names international economics, money and banking, political economy, financial economics, mathematical economics and forecasting. Those are published subjects; the elective slots and unlisted 4th year should not be mistaken for additional named courses.</p>', 2],
+                ['Do the figures of 132 credits and 240 ECTS conflict?', '<p>They are expressed in different units. GAU\'s prospective description says that students complete 132 credits, while its faculty department describes the completed BSc as 240 ECTS. Neither source explains an individual transfer calculation, and the absent 4th-year grid cannot be reconstructed from either total. Have GAU confirm how its official plan applies to your entry route.</p>', 3],
                 ['What graduate jobs does the university name for Economics?', '<p>None on the Career Opportunities tab. GAU says the programme can lead towards private or public enterprise and further study, and the department describes analysis, data and economic problem-solving as learning outcomes. Any reference here to economic analysis or policy applications is derived from that material. It is not a verified graduate destination, employer or salary claim.</p>', 4],
                 ['Can I attend this BSc remotely and what English proof applies?', '<p>The Business and Economics faculty says class attendance is required and uses Moodle as a support platform. The programme panel says English is the taught language. GAU also sets out Foundation English School examination and exemption guidance for newly admitted English-medium students. Obtain your entry decision and actual attendance requirements from GAU; do not assume a fully online route.</p>', 5],
                 ['Where can I confirm tuition and entry rules for my application?', '<p>The Economics programme panel shows a dash for fees, and GAU\'s broader tariff is dated 2025–2026. Its international admissions office says documents depend on the degree, not that one score guarantees entry to Economics. Request a current written fee schedule, any scholarship conditions and a decision on your qualifications before you make a payment.</p>', 6],
             ],
             'meta_title' => 'BSc Economics at Girne American University | North Cyprus',
-            'meta_description' => 'Study a four-year English-taught BSc Economics at GAU. Explore microeconomics, banking and forecasting; ask for the missing final-year course list.',
+            'meta_description' => 'Study a 4-year English-taught BSc Economics at GAU. Explore microeconomics, banking and forecasting; ask for the missing final-year course list.',
         ],
         [
             'slug' => 'bsc-management-information-systems-girne-american-university',
@@ -543,18 +543,18 @@ return [
             'level' => 'BSc',
             'category_slug' => 'bachelors',
             'university_slug' => 'girne-american-university',
-            'duration' => 'Four years',
+            'duration' => '4 years',
             'sort_order' => 77,
             'is_active' => false,
-            'hero' => 'A database has to work for the people using it. GAU\'s four-year BSc Management Information Systems brings systems analysis and programming into business study. Its timetable includes an internship unit and a graduation project; no employer is promised.',
+            'hero' => 'A database has to work for the people using it. GAU\'s 4-year BSc Management Information Systems brings systems analysis and programming into business study. Its timetable includes an internship unit and a graduation project; no employer is promised.',
             'overview' => [
                 'BSc Management Information Systems at Girne American University sits between business questions and the technology used to answer them. The published course plan begins with computing, algorithms and management, then turns to database systems, programming and systems analysis. Later subjects include information systems security, advanced databases, software engineering, IT project management and legal issues in computing.',
-                'GAU describes four years of English-taught study and a 132-credit programme in its own local notation. Its grid includes a Year 3 Internship and a Year 4 Graduation Project. These are course titles, not promises of a particular employer or outside project. Artificial Intelligence and Human Computer Interaction appear among electives, so check availability rather than assuming either is compulsory.',
+                'GAU describes 4 years of English-taught study and a 132-credit programme in its own local notation. Its grid includes a Year 3 Internship and a Year 4 Graduation Project. These are course titles, not promises of a particular employer or outside project. Artificial Intelligence and Human Computer Interaction appear among electives, so check availability rather than assuming either is compulsory.',
                 'The university\'s career list names possible paths such as systems analyst and database administrator; it does not report where graduates were hired. GAU does not advertise this as a distance degree or a vendor qualification. The Business and Economics faculty expects attendance in class, while the degree page leaves the tuition amount blank. Confirm current arrangements and entry conditions with GAU before enrolling.',
             ],
             'highlights' => [
                 ['Awarded by', 'Girne American University'],
-                ['Duration', 'Four years'],
+                ['Duration', '4 years'],
                 ['Language', 'English taught'],
                 ['Core theme', 'Business systems and data'],
                 ['Practice', 'Internship unit listed'],
@@ -563,7 +563,7 @@ return [
             'snapshot' => [
                 ['Degree Award', 'BSc Management Information Systems'],
                 ['Awarding University', 'Girne American University, North Cyprus'],
-                ['Duration', 'Four years'],
+                ['Duration', '4 years'],
                 ['Local credits', 'GAU states 132; not an ECTS conversion'],
                 ['Published practice', 'Internship unit in Year 3; Graduation Project in Year 4'],
                 ['Career evidence', 'GAU\'s example roles, not verified graduate placements'],
@@ -572,7 +572,7 @@ return [
             'benefits' => [
                 ['Build a database foundation', '<p>Database Systems leads into an advanced database course, making the data layer more than a passing mention.</p>', 'database'],
                 ['Trace a system\'s lifecycle', '<p>System Analysis & Design and IT project management let you look at a system from requirements through delivery.</p>', 'route'],
-                ['Include security in the plan', '<p>Information Systems Security is a named third-year subject, not an assumed feature of every computing degree.</p>', 'shield'],
+                ['Include security in the plan', '<p>Information Systems Security is a named 3rd-year subject, not an assumed feature of every computing degree.</p>', 'shield'],
                 ['Keep programming in view', '<p>The grid moves from algorithm techniques to programming languages, visual programming and later software engineering.</p>', 'code'],
                 ['Finish with a project', '<p>Graduation Project appears in Year 4. The university does not identify a client, scope or external sponsor.</p>', 'graduation-cap'],
                 ['Distinguish work from a promise', '<p>There is a listed internship unit. Nothing on the degree page guarantees a host, paid role or job afterwards.</p>', 'briefcase'],
@@ -616,7 +616,7 @@ return [
             'structure' => [
                 [
                     'title' => 'Stage 1 — Computing and management',
-                    'subtitle' => 'Selected first-year subjects.',
+                    'subtitle' => 'Selected 1st-year subjects.',
                     'modules' => [
                         'Introduction to Business Management',
                         'Introduction to Computer & Information Systems I',
@@ -626,7 +626,7 @@ return [
                 ],
                 [
                     'title' => 'Stage 2 — Data and design',
-                    'subtitle' => 'Selected second-year technical units.',
+                    'subtitle' => 'Selected 2nd-year technical units.',
                     'modules' => [
                         'Database Systems',
                         'System Analysis & Design',
@@ -637,7 +637,7 @@ return [
                 ],
                 [
                     'title' => 'Stage 3 — Security and application',
-                    'subtitle' => 'Selected third-year subjects and the published internship unit.',
+                    'subtitle' => 'Selected 3rd-year subjects and the published internship unit.',
                     'modules' => [
                         'Web Applications Development',
                         'Information Systems Security',
@@ -661,22 +661,22 @@ return [
             'gcc_heading' => 'A Systems Degree: Checks for Gulf Applicants',
             'gcc' => [
                 ['icon' => 'database', 'title' => 'Compare the technical depth', 'text' => 'The required grid includes Database Systems, System Analysis & Design and Information Systems Security. Compare those titles with a software-only or management-only degree.'],
-                ['icon' => 'route', 'title' => 'Look at the final project', 'text' => 'GAU lists a Graduation Project in its fourth year. Request the current project brief if you need to know how that work is assessed.'],
+                ['icon' => 'route', 'title' => 'Look at the final project', 'text' => 'GAU lists a Graduation Project in its 4th year. Request the current project brief if you need to know how that work is assessed.'],
                 ['icon' => 'briefcase', 'title' => 'Ask about internship arrangements', 'text' => 'An internship is listed in Year 3, but neither a host nor a guaranteed place is named. Clarify the actual process with the department.'],
                 ['icon' => 'book-open', 'title' => 'Treat electives as choices', 'text' => 'Artificial Intelligence and Human Computer Interaction appear on an elective list. Do not base your decision on both being available without checking the timetable.'],
                 ['icon' => 'monitor', 'title' => 'Confirm classroom requirements', 'text' => 'Faculty policy expects class attendance and treats Moodle as support. Ask GAU about teaching location and attendance before planning to study from another country.'],
                 ['icon' => 'file-text', 'title' => 'Obtain an individual offer', 'text' => 'The MIS fee panel has no numeric amount. Ask for a dated tuition quote and an assessment of your entry documents before sending payment.'],
             ],
             'faqs' => [
-                ['How is this degree different from a general business BSc?', '<p>Its published course list contains algorithms, database systems, programming, systems analysis, security and software engineering as well as management subjects. A fourth-year Graduation Project then sits alongside IT project management and professional computing issues. This is a business-and-information-systems programme, not simply a business degree with one computing elective.</p>', 1],
+                ['How is this degree different from a general business BSc?', '<p>Its published course list contains algorithms, database systems, programming, systems analysis, security and software engineering as well as management subjects. A 4th-year Graduation Project then sits alongside IT project management and professional computing issues. This is a business-and-information-systems programme, not simply a business degree with 1 computing elective.</p>', 1],
                 ['Does the MIS internship mean a guaranteed placement?', '<p>No such guarantee appears on GAU\'s programme page. The grid includes an Internship unit in Year 3, but it does not name a host, wage, allocation method or duration. If practical experience is important to you, ask the department how students arrange the unit and what its requirements are for the intake you plan to join.</p>', 2],
-                ['Are artificial intelligence and human-computer interaction compulsory?', '<p>No. GAU\'s grid puts Artificial Intelligence and Human Computer Interaction in a separate elective list rather than the required fourth-year sequence. The required later subjects include IT project management, a graduation project and professional and legal issues. Check current elective availability with the department; a listed option does not guarantee a place in that subject.</p>', 3],
+                ['Are artificial intelligence and human-computer interaction compulsory?', '<p>No. GAU\'s grid puts Artificial Intelligence and Human Computer Interaction in a separate elective list rather than the required 4th-year sequence. The required later subjects include IT project management, a graduation project and professional and legal issues. Check current elective availability with the department; a listed option does not guarantee a place in that subject.</p>', 3],
                 ['Which career roles does the university actually name?', '<p>GAU gives examples including systems analyst, database administrator, programmer and software developer, as well as project lead and consultant. Those are possible future roles, not a report of graduates being hired into them. The site publishes no salary, placement rate, named employer or vendor qualification attached to this BSc.</p>', 4],
                 ['Can I complete the programme online while working abroad?', '<p>That is not an advertised route on the reviewed GAU pages. The Business and Economics faculty calls classroom attendance compulsory and describes Moodle as support for teaching, not as a substitute for it. Ask GAU for the actual teaching site, attendance timetable and any individually approved arrangements before committing to work or travel plans.</p>', 5],
                 ['How do I verify entry, tuition and language requirements?', '<p>The university\'s MIS page says English is the taught language but gives no MIS-specific international entry score or tuition amount. GAU\'s wider admissions and Foundation English School guidance explains the general application and language process. Have the university confirm how your qualifications will be assessed and request a current written quote including any scholarship conditions.</p>', 6],
             ],
             'meta_title' => 'BSc Management Information Systems | GAU, North Cyprus',
-            'meta_description' => 'Explore GAU\'s four-year BSc Management Information Systems in English: databases, systems analysis, security, internship and a graduation project.',
+            'meta_description' => 'Explore GAU\'s 4-year BSc Management Information Systems in English: databases, systems analysis, security, internship and a graduation project.',
         ],
     ],
 ];

@@ -38,18 +38,18 @@ status: approved
 ## 2.1 `short_description`
 
 ```
-Running a hospital is not the same as treating patients, and nobody really teaches the difference. This online doctorate from Rushford Business School gives you three years and 180 ECTS to study how your own health service actually works, and to prove what would make it better.
+Running a hospital is not the same as treating patients, and nobody really teaches the difference. This online doctorate from Rushford Business School gives you 3 years and 180 ECTS to study how your own health service actually works, and to prove what would make it better.
 ```
-*47 words / 279 chars ✅*
+*47 words / 274 chars ✅*
 
 ## 2.2 `description`
 
 ```html
 <p>Most people who end up managing a health service did not train for it. They trained as a clinician, a pharmacist or an administrator, got good at the job, and were handed a budget and a team. This doctorate is for that point in a career. It takes what you already know about wards, clinics and supply lines, and teaches you how to test it properly instead of relying on instinct.</p>
-<p>The programme runs to 180 ECTS over three years, all of it online and at whatever speed suits your rota. A third of the credit sits in research skills alone, because the end of the road is a dissertation you have to stand up and defend. Two routes are available: a taught route for those newer to management, ending at 20,000 to 25,000 words, and a research route for people with more than five years in charge, ending at 45,000 to 50,000.</p>
+<p>The programme runs to 180 ECTS over 3 years, all of it online and at whatever speed suits your rota. The published Research Track carries 30 ECTS, with proposal and dissertation assessments listed separately; you still have to defend the final work. 2 routes are available: a taught route for those newer to management, ending at 20,000 to 25,000 words, and a research route for people with more than 5 years in charge, ending at 45,000 to 50,000.</p>
 <p>Rushford Business School in Lucerne awards the degree. Its own guidance points graduates towards hospital administration, consultancy, and health policy and research work, in settings from clinics and long-term care homes to pharmaceutical firms and government bodies.</p>
 ```
-*3 paragraphs / 193 words ✅*
+*3 paragraphs / 186 words ✅*
 
 ---
 
@@ -78,10 +78,10 @@ Running a hospital is not the same as treating patients, and nobody really teach
 | icon | title | desc |
 |---|---|---|
 | `stethoscope` | Written for clinicians turned managers | Built for people who learned health management on the job rather than in a classroom. |
-| `clipboard-check` | Test ideas instead of guessing | A third of the credit is research method, so service changes can be argued with evidence. |
+| `clipboard-check` | Test ideas instead of guessing | The published Research Track carries 30 ECTS, so service changes can be argued with evidence. |
 | `monitor` | Works around a rota | Nothing is live. Study at 6am or after a late shift; the platform does not mind. |
-| `hospital` | Six named settings | Hospitals, clinics, long-term care, pharma and medical devices, government, and the non-profit sector. |
-| `badge-check` | Experience can replace a master's | A bachelor's plus more than eight years of management is an accepted way in. |
+| `hospital` | 6 named settings | Hospitals, clinics, long-term care, pharma and medical devices, government, and the non-profit sector. |
+| `badge-check` | Experience can replace a master's | A bachelor's plus more than 8 years of management is an accepted way in. |
 | `award` | Choose your title | Candidates may ask for the PhD instead of the DBA before they graduate. |
 
 ## 3.4 `learning`
@@ -104,9 +104,9 @@ Running a hospital is not the same as treating patients, and nobody really teach
 ## 3.6 `structure`
 *Common to the Rushford doctoral range — confirmed on this programme's own page.*
 
-**Stage 1 — Taught route** · *180 ECTS. For managers with fewer than five years in a leadership post.*
+**Stage 1 — Taught route** · *180 ECTS. For managers with fewer than 5 years in a leadership post.*
 - Business Management Track (30 ECTS) — Managerial Skills; Cutting Edge Leadership; Managerial Economics; International Business Environment; Accounting for Financial Reporting; Strategic Management: Integrating the Enterprise
-- Specialization Track (30 ECTS) — six courses chosen from the specialisation track
+- Specialization Track (30 ECTS) — 6 courses chosen from the specialisation track
 - Research Track (30 ECTS) — Introduction to Academic Research; The Landscape of Literature Review; Research Design; Business Statistics; Designing a Quantitative Research Methodology; Designing a Qualitative Research Methodology
 - Written Proposal Defence, 5,000 words (20 ECTS)
 - Doctoral Residency (10 ECTS)
@@ -114,9 +114,9 @@ Running a hospital is not the same as treating patients, and nobody really teach
 - Report Writing (10 ECTS)
 - Written Dissertation & Oral Defence, 20,000–25,000 words (40 ECTS)
 
-**Stage 2 — Research route** · *180 ECTS. For candidates with more than five years of management experience.*
-- Specialization Track (15 ECTS) — three subject courses
-- Research Track (30 ECTS) — the same six research courses
+**Stage 2 — Research route** · *180 ECTS. For candidates with more than 5 years of management experience.*
+- Specialization Track (15 ECTS) — 3 subject courses
+- Research Track (30 ECTS) — the same 6 research courses
 - Written Dissertation Proposal, 5,000 words (30 ECTS)
 - Reflection & Minutes of the Meeting with Supervisor (20 ECTS)
 - Research Publication / Doctoral Residency (25 ECTS)
@@ -137,7 +137,7 @@ Running a hospital is not the same as treating patients, and nobody really teach
 |---|---|---|
 | `monitor` | Stay in post while you study | Nothing is delivered live, so a hospital job in the Gulf carries on exactly as it is. No leave, no relocation. |
 | `clipboard-check` | Your own ward is the case study | The thesis can look at a real service you manage rather than an imagined one. |
-| `badge-check` | Years on the job are recognised | A bachelor's and more than eight years in management is a formal entry route, which suits people promoted from practice. |
+| `badge-check` | Years on the job are recognised | A bachelor's and more than 8 years in management is a formal entry route, which suits people promoted from practice. |
 | `clock` | Shift-friendly pacing | You decide the speed. A heavy month can be absorbed; a quiet one can be used. |
 | `award` | DBA or PhD, your call | Worth thinking about if teaching appeals later. Entrants admitted on experience alone can only take the DBA. |
 | `shield` | Check the rules on the title | Rushford asks applicants to confirm what their own country allows before using "Doctor". Do that early. |
@@ -154,19 +154,19 @@ Running a hospital is not the same as treating patients, and nobody really teach
 ## 4. `faqs` *(5)*
 
 **I am a clinician, not a business graduate. Will I cope?**
-<p>The entry rules do not ask for a business degree. A master's in any subject plus five years of management works, as does a bachelor's in any subject plus more than eight. What the programme does assume is that you currently manage something — people, a budget, a service — because the dissertation has to be built on a real problem.</p>
+<p>The entry rules do not ask for a business degree. A master's in any subject plus 5 years of management works, as does a bachelor's in any subject plus more than 8. What the programme does assume is that you currently manage something — people, a budget, a service — because the dissertation has to be built on a real problem.</p>
 
 **Do I need a master's?**
-<p>Not necessarily. Rushford operates Recognition of Prior Experience, so long service in a management role can stand in place of a master's. A bachelor's degree is still required. One catch worth knowing: anyone admitted this way can only receive the DBA, not the PhD.</p>
+<p>Not necessarily. Rushford operates Recognition of Prior Experience, so long service in a management role can stand in place of a master's. A bachelor's degree is still required. 1 catch worth knowing: anyone admitted this way can only receive the DBA, not the PhD.</p>
 
 **Can I research my own hospital?**
 <p>Yes, and most candidates do. This is an applied doctorate, so the work is meant to examine something real. Using your own employer makes the research useful, though it also means your conclusions will be read by people who already have opinions about them.</p>
 
 **What proof of English is accepted?**
-<p>A Medium of Instruction letter from your last university, or IELTS 5.5, TOEFL iBT 58, TOEIC 555, PTE 50 or Duolingo 90. You are exempt if English is your first language, if you were taught in English, or if you have spent two years working in an English-speaking organisation.</p>
+<p>A Medium of Instruction letter from your last university, or IELTS 5.5, TOEFL iBT 58, TOEIC 555, PTE 50 or Duolingo 90. You are exempt if English is your first language, if you were taught in English, or if you have spent 2 years working in an English-speaking organisation.</p>
 
 **How long does it really take?**
-<p>Three years is the stated length. The research route can run shorter because there is less taught content, and the taught route can stretch if work gets in the way. Finishing early does not reduce the fee; the remaining balance becomes payable at that point.</p>
+<p>3 years is the stated length. The research route can run shorter because there is less taught content, and the taught route can stretch if work gets in the way. Finishing early does not reduce the fee; the remaining balance becomes payable at that point.</p>
 
 ---
 
@@ -174,7 +174,7 @@ Running a hospital is not the same as treating patients, and nobody really teach
 | Field | Value | Count |
 |---|---|---|
 | `meta_title` | Online DBA in Healthcare Management \| Rushford Business School | 62 ✅ |
-| `meta_description` | A 36-month, 180 ECTS online DBA in Healthcare Management from Rushford Business School, Switzerland. Taught or research route, DBA or PhD award. | 143 ✅ |
+| `meta_description` | A 36-month, 180 ECTS online DBA in Healthcare Management from Rushford Business School, Switzerland. Taught or research route, DBA or PhD award. | 144 ✅ |
 
 ---
 

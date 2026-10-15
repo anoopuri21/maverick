@@ -39,18 +39,18 @@ status: approved
 ## 2.1 `short_description`
 
 ```
-Girne American University publishes the full syllabus for this doctorate, course by course, which is rare. Administration and supervision are studied comparatively against leading countries, dissertation work is checked by a jury twice, and an indexed publication must come out of the research.
+Girne American University publishes the full syllabus for this doctorate, course by course, which is rare. Administration and supervision are studied comparatively against leading countries, dissertation work is checked by a jury 2 times, and an indexed publication must come out of the research.
 ```
-*45 words / 290 chars ✅*
+*44 words / 296 chars ✅*
 
 ## 2.2 `description`
 
 ```html
-<p>Registered at GAU as Educational Administration and Supervision, this doctorate runs over seven published semesters and documents itself more openly than any other programme in the university's doctoral range. Every compulsory course and every elective carries a written description on the official page, so you can read what you are signing up for before you apply.</p>
+<p>Registered at GAU as Educational Administration and Supervision, this doctorate runs over 7 published semesters and documents itself more openly than any other programme in the university's doctoral range. Every compulsory course and every elective carries a written description on the official page, so you can read what you are signing up for before you apply.</p>
 <p>The comparative method shapes the whole thing. Comparative Educational Administration examines how leading countries run their systems and sets those practices against home-country philosophy; Comparative Educational Supervision does the same for inspection and strategic planning. Research training is practical, covering action research, classroom observation, SPSS for quantitative work and Nvivo or Atlas.ti for qualitative analysis.</p>
-<p>Dissertation work is divided into three parts with two formal monitoring presentations to a jury formed by the Graduate School. The final part requires a publication drawn from the dissertation under the Social Sciences Citation Index framework, alongside compliance with accepted plagiarism limits.</p>
+<p>Dissertation work is divided into 3 parts with 2 formal monitoring presentations to a jury formed by the Graduate School. The final part requires a publication drawn from the dissertation under the Social Sciences Citation Index framework, alongside compliance with accepted plagiarism limits.</p>
 ```
-*3 paragraphs / 160 words ✅*
+*3 paragraphs / 154 words ✅*
 
 ---
 
@@ -60,7 +60,7 @@ Girne American University publishes the full syllabus for this doctorate, course
 | Awarded by | Girne American University |
 | Published plan | 7 semesters |
 | Official title | Educational Administration and Supervision PhD |
-| Dissertation | Three parts, two jury monitoring points |
+| Dissertation | 3 parts, 2 jury monitoring points |
 | Publication | SSCI-framework output required |
 | Syllabus | Published in full for every course |
 
@@ -72,8 +72,8 @@ Girne American University publishes the full syllabus for this doctorate, course
 | Title as registered by GAU | Educational Administration and Supervision PhD |
 | Research software taught | SPSS for quantitative analysis; Nvivo and Atlas.ti for qualitative |
 | Statistical techniques named | General linear modelling, multiple regression, exploratory and confirmatory factor analysis, ANOVA, MANOVA, ANCOVA |
-| Elective pool | Seven courses, including a free elective from another department |
-| Important sourcing note | GAU publishes no information panel for this doctorate, so no duration in years, no tuition figure and no programme-level accreditation statement exists for it. We have not copied those values across from GAU's other doctorates. Confirm all three with the Institute of Graduate Studies and Research. |
+| Elective pool | 7 courses, including a free elective from another department |
+| Important sourcing note | GAU publishes no information panel for this doctorate, so no duration in years, no tuition figure and no programme-level accreditation statement exists for it. We have not copied those values across from GAU's other doctorates. Confirm all 3 with the Institute of Graduate Studies and Research. |
 
 ## 3.3 `benefits`
 | icon | title | desc |
@@ -81,7 +81,7 @@ Girne American University publishes the full syllabus for this doctorate, course
 | `file-text` | The syllabus is already public | <p>Every compulsory and elective course carries a published description, so the curriculum is visible before you commit.</p> |
 | `globe` | Comparative by design | <p>Administration and supervision practice in leading countries is investigated and set against home-country applications and philosophies.</p> |
 | `monitor` | Named software, taught properly | <p>SPSS for quantitative analysis, Nvivo and Atlas.ti for qualitative work, specified in the course descriptions rather than assumed.</p> |
-| `eye` | Two jury checkpoints | <p>Dissertation I and II each end with a presentation to a jury formed by the Graduate School, so problems surface early.</p> |
+| `eye` | 2 jury checkpoints | <p>Dissertation I and II each end with a presentation to a jury formed by the Graduate School, so problems surface early.</p> |
 | `book-open` | A publication from your own research | <p>Dissertation III requires an output drawn from the dissertation under the Social Sciences Citation Index framework.</p> |
 | `shuffle` | A genuinely free elective | <p>FREL 500 lets you take a course from another department of the university where the content and activities align.</p> |
 
@@ -111,7 +111,7 @@ Advanced Statistics (EYD 603) · Comparative Educational Supervision (EYD 602) �
 Thesis Seminar (TSEM 680, 20 ECTS) · Subject elective
 
 **Semesters 4 to 7** · *Qualification and dissertation*
-- Qualification Exam (QUAL 600) — written and oral, testing the subjects taught across the first three semesters plus general field topics
+- Qualification Exam (QUAL 600) — written and oral, testing the subjects taught across the 1st 3 semesters plus general field topics
 - Dissertation I (THES 690) — introduction, literature review and methodology, presented to a Graduate School jury at Monitoring 1
 - Dissertation II (THES 690) — methodology applied, findings, interpretations, results and recommendations, presented at Monitoring 2
 - Dissertation III (THES 690) — completion under the Graduate School's methodology and plagiarism conditions, with an SSCI-framework publication drawn from the work
@@ -119,7 +119,7 @@ Thesis Seminar (TSEM 680, 20 ECTS) · Subject elective
 *Elective pool:* Organizational Behavior (EYD605) · Analysis of Education Policies (EYD607) · Supervision of Instruction (EYD606) · New Trends and Approaches in Educational Supervision (EYD608) · Leadership (EYD 613) · Qualitative Research Design and Analysis (EYD 615) · Free Elective Course (FREL 500)
 
 ## 3.8 `support`
-Published course descriptions · Graduate School dissertation guidelines · Two jury monitoring presentations · Thesis seminar on proposal writing · Research software training · Institute admissions guidance
+Published course descriptions · Graduate School dissertation guidelines · 2 jury monitoring presentations · Thesis seminar on proposal writing · Research software training · Institute admissions guidance
 
 ## 3.9 `gcc_heading` + `gcc_reasons` *(6)*
 **Heading:** `Why GCC Professionals Choose This Programme`
@@ -127,11 +127,11 @@ Published course descriptions · Graduate School dissertation guidelines · Two 
 | icon | title | text |
 |---|---|---|
 | `globe` | Comparison is the method | Gulf education ministries routinely benchmark against other systems, and this doctorate makes that comparison the central academic habit rather than an occasional exercise. |
-| `clipboard-list` | Supervision and inspection taken seriously | Two full courses address educational supervision, including new trends and the supervision of instruction, which maps onto school inspectorate and quality roles across the region. |
+| `clipboard-list` | Supervision and inspection taken seriously | 2 full courses address educational supervision, including new trends and the supervision of instruction, which maps onto school inspectorate and quality roles across the region. |
 | `monitor` | Software you will actually use | SPSS, Nvivo and Atlas.ti are named in the syllabus, so the analytical skills transfer straight into ministry and institutional research work. |
-| `eye` | Progress is checked, not assumed | Two jury monitoring presentations give working professionals fixed external deadlines, which helps when study competes with a demanding post. |
+| `eye` | Progress is checked, not assumed | 2 jury monitoring presentations give working professionals fixed external deadlines, which helps when study competes with a demanding post. |
 | `book-open` | A publication to show for it | The SSCI-framework requirement in Dissertation III produces the kind of output Gulf academic promotion committees ask to see. |
-| `alert-circle` | Ask before you assume | GAU publishes no duration in years, no fee and no accreditation line for this specific doctorate. Get all three confirmed in writing by the Institute. |
+| `alert-circle` | Ask before you assume | GAU publishes no duration in years, no fee and no accreditation line for this specific doctorate. Get all 3 confirmed in writing by the Institute. |
 
 ## 3.11 `fees`
 Fee not published · Institute confirmation required · Written quote on request · Scholarship enquiry · Currency check
@@ -141,13 +141,13 @@ Fee not published · Institute confirmation required · Written quote on request
 ## 4. `faqs` *(6)*
 
 **Is this the same programme as GAU's Educational Administration and Supervision PhD?**
-<p>Yes. The listing you are reading uses the title Maverick records, while the university registers the doctorate as Educational Administration and Supervision PhD. Same programme, two names. Quote GAU's version when you write to the Institute and it will be recognised immediately.</p>
+<p>Yes. The listing you are reading uses the title Maverick records, while the university registers the doctorate as Educational Administration and Supervision PhD. Same programme, 2 names. Quote GAU's version when you write to the Institute and it will be recognised immediately.</p>
 
 **How long does it take?**
-<p>GAU does not state a figure in years for this doctorate, which is unusual among its programmes. What it does publish is a semester plan running to seven semesters, with taught work in the first three and qualification plus a three-part dissertation after that. We have chosen not to borrow the three-year figure shown on GAU's other doctoral pages, because it is not stated for this one.</p>
+<p>GAU does not state a figure in years for this doctorate, which is unusual among its programmes. What it does publish is a semester plan running to 7 semesters, with taught work in the 1st 3 and qualification plus a 3-part dissertation after that. We have chosen not to borrow the 3-year figure shown on GAU's other doctoral pages, because it is not stated for this one.</p>
 
 **What happens at a monitoring presentation?**
-<p>Twice during the dissertation you present completed work to a jury formed by the Graduate School. Monitoring 1 follows Dissertation I and covers your introduction, literature review and methodology. Monitoring 2 follows Dissertation II, by which point the methodology has been applied and your findings, results and recommendations are written up. The Graduate School announces the dates.</p>
+<p>2 times during the dissertation you present completed work to a jury formed by the Graduate School. Monitoring 1 follows Dissertation I and covers your introduction, literature review and methodology. Monitoring 2 follows Dissertation II, by which point the methodology has been applied and your findings, results and recommendations are written up. The Graduate School announces the dates.</p>
 
 **Which research methods are actually taught?**
 <p>Research Methods in Education covers action research, classroom observation, data collection methods, statistical methods, research ethics and quantitative, qualitative, mixed and experimental methodologies. Advanced Statistics then adds general linear modelling, multiple regression, exploratory and confirmatory factor analysis, and multivariate techniques including ANOVA, MANOVA and ANCOVA. A further elective covers qualitative design, interviews, observation, documentation and triangulation.</p>
@@ -164,4 +164,4 @@ Fee not published · Institute confirmation required · Written quote on request
 | Field | Value | Count |
 |---|---|---|
 | `meta_title` | PhD in Educational Administration \| Girne American Univ. | 56 ✅ |
-| `meta_description` | A PhD in Educational Administration at Girne American University. Comparative administration and supervision, SPSS and Nvivo training, staged dissertation. | 154 ✅ |
+| `meta_description` | A PhD in Educational Administration at Girne American University. Comparative administration and supervision, SPSS and Nvivo training, staged dissertation. | 155 ✅ |

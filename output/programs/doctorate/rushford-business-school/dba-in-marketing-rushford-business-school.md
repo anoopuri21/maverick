@@ -39,18 +39,18 @@ status: approved
 ## 2.1 `short_description`
 
 ```
-Marketing budgets get approved on conviction and cut on evidence. Rushford Business School's online DBA in Marketing spends 180 ECTS on the evidence side, finishing with a defended dissertation. Three years, fully online, built for people already holding the brand.
+Marketing budgets get approved on conviction and cut on evidence. Rushford Business School's online DBA in Marketing spends 180 ECTS on the evidence side, finishing with a defended dissertation. 3 years, fully online, built for people already holding the brand.
 ```
-*41 words / 263 chars ✅*
+*40 words / 261 chars ✅*
 
 ## 2.2 `description`
 
 ```html
 <p>By the time you are senior in marketing, the hard part is no longer the campaign. It is defending the reasoning behind it to people who control the budget. Rushford's DBA in Marketing commits 30 ECTS to method, evidence and prior scholarship for exactly that reason, then sends you into a dissertation that has to survive an oral defence by people who will not take the conclusion on trust.</p>
-<p>Two routes exist. The coursework pathway suits marketers earlier in their management career and ends at 20,000 to 25,000 words. The research pathway is for candidates with more than five years in post, assigns a doctoral mentor early, and runs to 45,000 to 50,000. Both total 180 ECTS and both are delivered online and asynchronously.</p>
+<p>2 routes exist. The coursework pathway suits marketers earlier in their management career and ends at 20,000 to 25,000 words. The research pathway is for candidates with more than 5 years in post, assigns a doctoral mentor early, and runs to 45,000 to 50,000. Both total 180 ECTS and both are delivered online and asynchronously.</p>
 <p>Rushford names chief marketing officer and vice president of marketing among the roles graduates move into, alongside consultancy. The school also allows candidates to take the PhD award instead of the DBA, which is worth knowing if teaching is part of the plan.</p>
 ```
-*3 paragraphs / 176 words ✅*
+*3 paragraphs / 167 words ✅*
 
 ---
 
@@ -79,11 +79,11 @@ Marketing budgets get approved on conviction and cut on evidence. Rushford Busin
 | icon | title | desc |
 |---|---|---|
 | `trending-up` | A route towards CMO | Rushford names chief marketing officer and VP of marketing among the roles its graduates move into. |
-| `target` | Defensible marketing decisions | Thirty ECTS of research method, so brand and spend arguments rest on evidence rather than conviction. |
-| `monitor` | No career break | Asynchronous online delivery. The doctorate runs alongside the role instead of replacing it for three years. |
-| `route` | Two pathways | Coursework for earlier-career marketers, research for those with five years or more in post. |
-| `badge-check` | Experience as an entry route | Recognition of Prior Experience allows a bachelor's plus eight years of management to replace a master's. |
-| `award` | DBA or PhD | Candidates may request the PhD title instead, confirmed before graduation. One title only. |
+| `target` | Defensible marketing decisions | 30 ECTS of research method, so brand and spend arguments rest on evidence rather than conviction. |
+| `monitor` | No career break | Asynchronous online delivery. The doctorate runs alongside the role instead of replacing it for 3 years. |
+| `route` | 2 pathways | Coursework for earlier-career marketers, research for those with 5 years or more in post. |
+| `badge-check` | Experience as an entry route | Recognition of Prior Experience allows a bachelor's plus 8 years of management to replace a master's. |
+| `award` | DBA or PhD | Candidates may request the PhD title instead, confirmed before graduation. 1 title only. |
 
 ## 3.4 `learning`
 1. Apply research methodologies to real business problems
@@ -109,11 +109,11 @@ Marketing budgets get approved on conviction and cut on evidence. Rushford Busin
 ## 3.6 `structure`
 *Identical across the Rushford DBA range — verified on this programme page.*
 
-**Stage 1 — Coursework pathway** · *180 ECTS. For marketers with under five years in a management post.*
-Business Management Track (30) · Specialization Track, six courses (30) · Research Track (30) · Written Proposal Defence, 5,000 words (20) · Doctoral Residency (10) · Reflection & Minutes with Supervisor (10) · Report Writing (10) · Written Dissertation & Oral Defence, 20,000–25,000 words (40)
+**Stage 1 — Coursework pathway** · *180 ECTS. For marketers with under 5 years in a management post.*
+Business Management Track (30) · Specialization Track, 6 courses (30) · Research Track (30) · Written Proposal Defence, 5,000 words (20) · Doctoral Residency (10) · Reflection & Minutes with Supervisor (10) · Report Writing (10) · Written Dissertation & Oral Defence, 20,000–25,000 words (40)
 
-**Stage 2 — Research pathway** · *180 ECTS. For candidates with more than five years of management experience.*
-Specialization Track, three courses (15) · Research Track (30) · Written Dissertation Proposal, 5,000 words (30) · Reflection & Minutes with Supervisor (20) · Research Publication / Doctoral Residency (25) · Written Dissertation & Oral Defence, 45,000–50,000 words (60)
+**Stage 2 — Research pathway** · *180 ECTS. For candidates with more than 5 years of management experience.*
+Specialization Track, 3 courses (15) · Research Track (30) · Written Dissertation Proposal, 5,000 words (30) · Reflection & Minutes with Supervisor (20) · Research Publication / Doctoral Residency (25) · Written Dissertation & Oral Defence, 45,000–50,000 words (60)
 
 *Business Management Track modules:* Managerial Skills; Cutting Edge Leadership; Managerial Economics; International Business Environment; Accounting for Financial Reporting; Strategic Management: Integrating the Enterprise
 *Research Track modules:* Introduction to Academic Research; The Landscape of Literature Review; Research Design; Business Statistics; Designing a Quantitative Research Methodology; Designing a Qualitative Research Methodology
@@ -129,7 +129,7 @@ Dedicated academic support · Flexible learning · Assessment support · Afforda
 | `monitor` | Study from the Gulf, without moving | Fully online and asynchronous. No relocation, no visa change, no gap in a marketing career that took years to build. |
 | `trending-up` | Aimed at the senior end | Rushford names CMO and VP of marketing among graduate destinations, which is the level most Gulf marketing leaders are working towards. |
 | `target` | Your own brand problem as the thesis | Applied research means the dissertation can investigate something live inside your organisation. |
-| `badge-check` | Eight years counts | A bachelor's plus more than eight years of management experience is a recognised entry route in its own right. |
+| `badge-check` | 8 years counts | A bachelor's plus more than 8 years of management experience is a recognised entry route in its own right. |
 | `route` | Keep the teaching option open | The PhD award can replace the DBA on request. Those admitted on experience in place of a master's take the DBA. |
 | `shield` | Check your national title rules | Rushford advises applicants to confirm their own country's legislation on using "Doctor" before enrolling. |
 
@@ -144,13 +144,13 @@ Programme Fees · Scholarships · Payment Options · Written Breakdown · Intake
 <p>No qualification guarantees a role. What Rushford states is that DBA in Marketing graduates are well equipped for leadership positions such as chief marketing officer or vice president of marketing, and that some move into consultancy instead. The doctorate is evidence of research capability at senior level; the appointment is still an appointment.</p>
 
 **Do I need a master's degree?**
-<p>A master's is useful but not a hard requirement. Rushford admits applicants holding a business and management master's, applicants with a master's in another field plus five years or more of managerial work, and applicants with only a bachelor's provided they bring more than eight years of management. The last of those caps the award at DBA level.</p>
+<p>A master's is useful but not a hard requirement. Rushford admits applicants holding a business and management master's, those with a master's in another field and at least 5 years' managerial experience, and applicants with only a bachelor's provided they bring more than 8 years of management. The last of those caps the award at DBA level.</p>
 
 **Can I be awarded a PhD instead?**
-<p>Yes. All doctoral candidates may apply for the PhD award in place of the DBA, confirmed before or immediately after graduation requirements are met. Only one title is conferred. If you were admitted through Recognition of Prior Experience, the DBA is the only award available to you.</p>
+<p>Yes. All doctoral candidates may apply for the PhD award in place of the DBA, confirmed before or immediately after graduation requirements are met. Only 1 title is conferred. If you were admitted through Recognition of Prior Experience, the DBA is the only award available to you.</p>
 
 **What English evidence is required?**
-<p>Either a Medium of Instruction letter from your previous university, or a test score: IELTS 5.5, TOEFL iBT 58, TOEIC 555, PTE 50, Duolingo 90. You will not need either if English is your first language, if you studied in English at school or degree level, or if you have worked two years in an English-language organisation.</p>
+<p>Either a Medium of Instruction letter from your previous university, or a test score: IELTS 5.5, TOEFL iBT 58, TOEIC 555, PTE 50, Duolingo 90. You will not need either if English is your first language, if you studied in English at school or degree level, or if you have worked 2 years in an English-language organisation.</p>
 
 **How much writing is involved?**
 <p>More than most people expect. The coursework pathway ends with a 20,000 to 25,000 word dissertation and an oral defence; the research pathway runs to 45,000 to 50,000 words. There is a 5,000 word proposal before either.</p>

@@ -40,18 +40,18 @@ status: approved
 ## 2.1 `short_description`
 
 ```
-Written for trainers and further education staff rather than schoolteachers, and Qualifi says so itself. Twelve subjects run from designing resources and engaging learners through to educational leadership. Stop partway and a Level 4 award may still be granted.
+Written for trainers and further education staff rather than schoolteachers, and Qualifi says so itself. 12 subjects run from designing resources and engaging learners through to educational leadership. Stop partway and a Level 4 award may still be granted.
 ```
-*41 words / 264 chars ✅*
+*39 words / 257 chars ✅*
 
 ## 2.2 `description`
 
 ```html
 <p>Plenty of people teach without ever having been taught how. A technician shows apprentices the job, an experienced nurse runs the ward's training, a specialist is handed a room of new starters. They manage, mostly, and they would do it considerably better with some grounding in how learning actually works.</p>
 <p>Qualifi is precise about who this serves: the knowledge and skills required by teachers and trainers in the further education and training skills sector. That phrase matters, and the page states it directly. The content follows — theories and models of learning, communication and assessment; planning and delivering inclusive teaching; using initial and diagnostic assessment to agree goals with individual learners; keeping a learning environment safe and inclusive.</p>
-<p>Twelve subjects run from the fundamentals of education and training, resource design, engaging learners and work planning, through to applied theories, lifelong learning, resource management and the principles of educational leadership and management. The award is 240 credits under number 610/3648/1, and Qualifi publishes a partial-completion provision worth knowing about.</p>
+<p>12 subjects run from the fundamentals of education and training, resource design, engaging learners and work planning, through to applied theories, lifelong learning, resource management and the principles of educational leadership and management. The award is 240 credits under number 610/3648/1, and Qualifi publishes a partial-completion provision worth knowing about.</p>
 ```
-*3 paragraphs / 177 words ✅*
+*3 paragraphs / 168 words ✅*
 
 ---
 
@@ -72,10 +72,10 @@ Written for trainers and further education staff rather than schoolteachers, and
 | Qualification number | 610/3648/1 on the Regulated Qualifications Framework |
 | Size | 240 credits at Level 5 |
 | Subjects | Fundamentals of Education and Training · Design of Education and Training Resources · Engaging Learners · Developing a Work Plan · Programme Evaluation in Education and Training · Professional Development and Reflective Practice · Applied Theories and Principles of Education and Training · Lifelong Learning · Resource Management in Education · Developing and Evaluating Operational Work Plans · Principles of Educational Leadership and Management · Reflective Practice and Professional Development |
-| How it appears to be built | Qualifi describes the award as the Level 4 Diploma in Education and Training combined with Level 5 units. The subject list pairs up accordingly, with work planning and reflective practice each appearing twice in deepened form. The page does not set out the split formally, so treat this as how it reads rather than as a published structure |
+| How it appears to be built | Qualifi describes the award as the Level 4 Diploma in Education and Training combined with Level 5 units. The subject list pairs up accordingly, with work planning and reflective practice each appearing 2 times in deepened form. The page does not set out the split formally, so treat this as how it reads rather than as a published structure |
 | **What it is not** | **Not a route to Qualified Teacher Status, and not initial teacher training.** Qualifi publishes nothing about QTS, teacher registration or any licence to teach. Its own stated audience is teachers and trainers in the further education and training skills sector. If your aim is to teach in schools, the route for that runs elsewhere |
 | If you do not finish | Learners who do not complete the extended diploma **may** be awarded the Level 4 qualification if they complete all the Level 4 units. Qualifi's wording is "may be awarded" rather than "will be", so treat it as a provision to confirm with your centre rather than a guarantee |
-| Entry | 18 or over. Qualifi envisages that learners entering at Level 5 will hold a Level 4 qualification — envisaged, not required. IELTS 6 or equivalent where English is not your first language, plus normally two references, one preferably academic |
+| Entry | 18 or over. Qualifi envisages that learners entering at Level 5 will hold a Level 4 qualification — envisaged, not required. IELTS 6 or equivalent where English is not your first language, plus normally 2 references, 1 preferably academic |
 | Onward routes published by Qualifi | A Qualifi Level 6 Diploma in related areas · a bachelor's degree final year · employment in an associated profession |
 
 ## 3.3 `benefits`
@@ -85,7 +85,7 @@ Written for trainers and further education staff rather than schoolteachers, and
 | `umbrella` | A partial-completion provision | <p>Complete all the Level 4 units and a Level 4 qualification may still be awarded if you go no further.</p> |
 | `clipboard-pen` | Assessment taught properly | <p>Initial and diagnostic assessment, agreeing individual learning goals, and assessing learning all feature.</p> |
 | `accessibility` | Inclusive teaching throughout | <p>Planning and delivering inclusive teaching, and keeping the environment safe and inclusive, are explicit.</p> |
-| `repeat-2` | Reflective practice twice | <p>It appears at both stages, which is how reflective habits are actually built rather than mentioned once.</p> |
+| `repeat-2` | Reflective practice 2 times | <p>It appears at both stages, which is how reflective habits are actually built rather than mentioned once.</p> |
 | `users-round` | Leadership at the far end | <p>Principles of educational leadership and management closes the programme for those moving into running provision.</p> |
 
 ## 3.4 `learning`
@@ -111,7 +111,7 @@ Resource Management in Education · Developing and Evaluating Operational Work P
 
 ## 3.5 `careers`
 
-Qualifi publishes no destination data, salary information or employment rates for this award, and it confers no teaching licence or registration. The three published routes follow.
+Qualifi publishes no destination data, salary information or employment rates for this award, and it confers no teaching licence or registration. The 3 published routes follow.
 
 1. A Qualifi Level 6 Diploma in related areas
 2. A bachelor's degree final year, where the university accepts the application
@@ -149,10 +149,10 @@ No fee published by Qualifi · Set by the approved centre · Varies by country �
 <p>The provision on Qualifi's page reads that anyone falling short of the full extended award may be granted the Level 4 qualification, provided every Level 4 unit has been finished. Note the word may — it is weaker than a promise, and we are not going to strengthen it. If this provision matters to your decision, raise it with your centre before enrolling and ask them to confirm exactly how it is applied.</p>
 
 **Do I need a Level 4 qualification first?**
-<p>Qualifi envisages that learners entering at Level 5 will hold one, which is softer than requiring it. Alongside that, you need to be at least eighteen, show English at IELTS 6 or an equivalent Qualifi recognises, assuming English is not your mother tongue, and line up two referees, ideally including one from education. The centre also has to satisfy itself that you can handle the programme, so experience can form part of the conversation.</p>
+<p>Qualifi envisages that learners entering at Level 5 will hold one, which is softer than requiring it. Alongside that, you need to be at least 18, show English at IELTS 6 or an equivalent Qualifi recognises, assuming English is not your mother tongue, and line up 2 referees, ideally including one from education. The centre also has to satisfy itself that you can handle the programme, so experience can form part of the conversation.</p>
 
-**Two subjects look almost identical. Is that a mistake?**
-<p>Professional Development and Reflective Practice appears at one stage and Reflective Practice and Professional Development at the other, which is the same two phrases reversed. Reading the award as the Level 4 diploma combined with Level 5 units, these are almost certainly the same theme revisited at greater depth. Qualifi does not state that explicitly, so ask your centre how the two differ in practice.</p>
+**2 subjects look almost identical. Is that a mistake?**
+<p>Professional Development and Reflective Practice appears at 1 stage and Reflective Practice and Professional Development at the other, which is the same 2 phrases reversed. Reading the award as the Level 4 diploma combined with Level 5 units, these are almost certainly the same theme revisited at greater depth. Qualifi does not state that explicitly, so ask your centre how the 2 differ in practice.</p>
 
 **Does it cover managing a department, or only teaching?**
 <p>Both, towards the end. Resource management in education, developing and evaluating operational work plans, and principles of educational leadership and management all sit in the later part of the programme. That makes it useful for someone moving from delivering training to running the function that delivers it. The management content is an addition to the teaching content, not a replacement for it.</p>
@@ -163,4 +163,4 @@ No fee published by Qualifi · Set by the approved centre · Varies by country �
 | Field | Value | Count |
 |---|---|---|
 | `meta_title` | Level 5 Diploma in Education & Training Management \| Qualifi | 60 ✅ |
-| `meta_description` | Qualifi Level 5 Extended Diploma in Education and Training Management. 240 credits, 12 subjects for FE teachers and trainers. QAN 610/3648/1. | 142 ✅ |
+| `meta_description` | Qualifi Level 5 Extended Diploma in Education and Training Management. 240 credits, 12 subjects for FE teachers and trainers. QAN 610/3648/1. | 141 ✅ |

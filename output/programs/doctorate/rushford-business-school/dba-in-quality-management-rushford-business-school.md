@@ -39,18 +39,18 @@ status: approved
 ## 2.1 `short_description`
 
 ```
-Most quality programmes die at the measurement stage. Rushford Business School's online DBA in Quality Management spends 180 ECTS teaching you to prove improvement rather than claim it, then makes you defend the proof. Three years, entirely online, from wherever you currently work.
+Most quality programmes die at the measurement stage. Rushford Business School's online DBA in Quality Management spends 180 ECTS teaching you to prove improvement rather than claim it, then makes you defend the proof. 3 years, entirely online, from wherever you currently work.
 ```
-*44 words / 280 chars ✅*
+*43 words / 278 chars ✅*
 
 ## 2.2 `description`
 
 ```html
-<p>Six Sigma and Lean give you a method. A doctorate asks a harder question: how do you know it worked? Rushford's DBA in Quality Management puts 30 ECTS into research design, statistics and literature review before the dissertation begins, because the difference between a quality improvement and a quality story is usually the evidence behind it.</p>
-<p>Credit is split across two routes, both adding up to 180 ECTS. Under five years in a management post and you follow the coursework option, pairing the business core with the quality specialisation and closing on a dissertation of 20,000 to 25,000 words. Past that mark and the research option applies instead: a supervisor from the outset and a final submission three times the length.</p>
-<p>Rushford Business School in Lucerne awards it. Candidates can ask for the PhD title instead of the DBA, with one exception that depends on how you were admitted.</p>
+<p>6 Sigma and Lean give you a method. A doctorate asks a harder question: how do you know it worked? Rushford's DBA in Quality Management puts 30 ECTS into research design, statistics and literature review before the dissertation begins, because the difference between a quality improvement and a quality story is usually the evidence behind it.</p>
+<p>Credit is split across 2 routes, both adding up to 180 ECTS. Under 5 years in a management post and you follow the coursework option, pairing the business core with the quality specialisation and closing on a dissertation of 20,000 to 25,000 words. Past that mark and the research option applies instead: a supervisor from the outset and a final submission 3 times the length.</p>
+<p>Rushford Business School in Lucerne awards it. Candidates can ask for the PhD title instead of the DBA, with 1 exception that depends on how you were admitted.</p>
 ```
-*3 paragraphs / 155 words ✅*
+*3 paragraphs / 149 words ✅*
 
 ---
 
@@ -78,11 +78,11 @@ Most quality programmes die at the measurement stage. Rushford Business School's
 ## 3.3 `benefits`
 | icon | title | desc |
 |---|---|---|
-| `target` | Evidence over anecdote | <p>Thirty ECTS of research method before the dissertation, so improvement claims can be tested rather than asserted.</p> |
+| `target` | Evidence over anecdote | <p>30 ECTS of research method before the dissertation, so improvement claims can be tested rather than asserted.</p> |
 | `monitor` | Runs around the job | <p>Asynchronous online delivery. No fixed class times, no relocation, no pause in the career that made you worth admitting.</p> |
-| `route` | Two pathways | <p>Coursework for earlier-career managers, research for those with five years or more. Both land at 180 ECTS.</p> |
-| `badge-check` | Experience counts as entry | <p>Recognition of Prior Experience means a bachelor's plus eight years of management can replace a master's.</p> |
-| `award` | DBA or PhD | <p>The title is a decision you make before graduation, not one handed to you.</p> |
+| `route` | 2 pathways | <p>Coursework for earlier-career managers, research for those with 5 years or more. Both land at 180 ECTS.</p> |
+| `badge-check` | Experience counts as entry | <p>Recognition of Prior Experience means a bachelor's plus 8 years of management can replace a master's.</p> |
+| `award` | DBA or PhD | <p>The title is a decision you make before graduation, not 1 handed to you.</p> |
 | `landmark` | Swiss-awarded | <p>Rushford Business School, Lucerne. Its online division holds eduQua certification, Switzerland's quality label for continuing education.</p> |
 
 ## 3.4 `learning`
@@ -98,7 +98,7 @@ Most quality programmes die at the measurement stage. Rushford Business School's
 ## 3.5 `careers` *(4 rows — ⚠️ QA note C4)*
 1. Quality Manager
 2. Process Improvement
-3. Six Sigma
+3. 6 Sigma
 4. Lean Management
 
 **Officially named settings:** manufacturing companies, service providers, healthcare providers, consulting firms, government agencies.
@@ -106,11 +106,11 @@ Most quality programmes die at the measurement stage. Rushford Business School's
 ## 3.6 `structure`
 *Identical to the Rushford DBA range — verified on this programme page.*
 
-**Stage 1 — Coursework pathway** · *180 ECTS. For managers with under five years in post.*
-Business Management Track (30) · Specialization Track, six courses (30) · Research Track (30) · Written Proposal Defence, 5,000 words (20) · Doctoral Residency (10) · Reflection & Minutes with Supervisor (10) · Report Writing (10) · Written Dissertation & Oral Defence, 20,000–25,000 words (40)
+**Stage 1 — Coursework pathway** · *180 ECTS. For managers with under 5 years in post.*
+Business Management Track (30) · Specialization Track, 6 courses (30) · Research Track (30) · Written Proposal Defence, 5,000 words (20) · Doctoral Residency (10) · Reflection & Minutes with Supervisor (10) · Report Writing (10) · Written Dissertation & Oral Defence, 20,000–25,000 words (40)
 
-**Stage 2 — Research pathway** · *180 ECTS. For candidates with more than five years of management experience.*
-Specialization Track, three courses (15) · Research Track (30) · Written Dissertation Proposal, 5,000 words (30) · Reflection & Minutes with Supervisor (20) · Research Publication / Doctoral Residency (25) · Written Dissertation & Oral Defence, 45,000–50,000 words (60)
+**Stage 2 — Research pathway** · *180 ECTS. For candidates with more than 5 years of management experience.*
+Specialization Track, 3 courses (15) · Research Track (30) · Written Dissertation Proposal, 5,000 words (30) · Reflection & Minutes with Supervisor (20) · Research Publication / Doctoral Residency (25) · Written Dissertation & Oral Defence, 45,000–50,000 words (60)
 
 *Business Management Track modules:* Managerial Skills; Cutting Edge Leadership; Managerial Economics; International Business Environment; Accounting for Financial Reporting; Strategic Management: Integrating the Enterprise
 *Research Track modules:* Introduction to Academic Research; The Landscape of Literature Review; Research Design; Business Statistics; Designing a Quantitative Research Methodology; Designing a Qualitative Research Methodology
@@ -124,9 +124,9 @@ Dedicated academic support · Flexible learning · Assessment support · Afforda
 | icon | title | text |
 |---|---|---|
 | `monitor` | Study from where you already are | Fully online and asynchronous, so the programme runs from Dubai, Riyadh or Doha without a visa application or a resignation letter. |
-| `badge-check` | Long service is an entry route | Eight years of management experience on top of a bachelor's is a recognised route in. Useful for Gulf professionals who built the career first. |
+| `badge-check` | Long service is an entry route | 8 years of management experience on top of a bachelor's is a recognised route in. Useful for Gulf professionals who built the career first. |
 | `target` | Research your own operation | The dissertation can investigate a live quality problem inside your organisation rather than a case study someone else wrote. |
-| `clock` | Pace set by you | Self-paced delivery. The research route can finish inside three years; the coursework route can absorb a bad quarter at work. |
+| `clock` | Pace set by you | Self-paced delivery. The research route can finish inside 3 years; the coursework route can absorb a bad quarter at work. |
 | `route` | DBA or PhD | Relevant if teaching is part of the plan. The caveat: Recognition of Prior Experience admissions are eligible for the DBA only. |
 | `shield` | Check the title rules locally | Rushford tells applicants to verify their own country's legislation on using "Doctor". Do that before enrolling. |
 
@@ -138,19 +138,19 @@ Programme Fees · Scholarships · Payment Options · Written Breakdown · Intake
 ## 4. `faqs` *(5)*
 
 **Is a master's degree required?**
-<p>No, though a bachelor's is non-negotiable. You may enter with a business and management master's, with a master's in anything else plus over five years managing people or process, or on experience alone: a bachelor's and more than eight years in management. That last route is capped at the DBA award.</p>
+<p>No, though a bachelor's is non-negotiable. You may enter with a business and management master's, with a master's in anything else plus over 5 years managing people or process, or on experience alone: a bachelor's and more than 8 years in management. That last route is capped at the DBA award.</p>
 
 **Can I take the PhD award instead?**
-<p>You can ask, and the request is normally handled around the point you finish. Rushford confers one title, not both. Anyone whose place came through Recognition of Prior Experience is outside this option and graduates with the DBA.</p>
+<p>You can ask, and the request is normally handled around the point you finish. Rushford confers 1 title, not both. Anyone whose place came through Recognition of Prior Experience is outside this option and graduates with the DBA.</p>
 
-**Does the programme cover Six Sigma and Lean?**
-<p>Rushford names quality management, process improvement, Six Sigma and Lean Management among the areas graduates move into. The doctorate sits above the tool level: the research track trains you to design studies and test whether an intervention actually changed anything.</p>
+**Does the programme cover 6 Sigma and Lean?**
+<p>Rushford names quality management, process improvement, 6 Sigma and Lean Management among the areas graduates move into. The doctorate sits above the tool level: the research track trains you to design studies and test whether an intervention actually changed anything.</p>
 
 **What English evidence is accepted?**
-<p>Four ways to satisfy it. Submit a Medium of Instruction letter; sit one of IELTS, TOEFL iBT, TOEIC, PTE or Duolingo and reach 5.5, 58, 555, 50 or 90 respectively; qualify as a native speaker; or show that your schooling, your degree or two years of your working life were conducted in English.</p>
+<p>4 ways to satisfy it. Submit a Medium of Instruction letter; sit one of IELTS, TOEFL iBT, TOEIC, PTE or Duolingo and reach 5.5, 58, 555, 50 or 90 respectively; qualify as a native speaker; or show that your schooling, your degree or 2 years of your working life were conducted in English.</p>
 
 **How is it delivered?**
-<p>Entirely online through Rushford's e-Campus in an asynchronous format, so there are no fixed class times. Most candidates finish within three years. Completing early makes the remaining fees payable at that point.</p>
+<p>Entirely online through Rushford's e-Campus in an asynchronous format, so there are no fixed class times. Most candidates finish within 3 years. Completing early makes the remaining fees payable at that point.</p>
 
 ---
 

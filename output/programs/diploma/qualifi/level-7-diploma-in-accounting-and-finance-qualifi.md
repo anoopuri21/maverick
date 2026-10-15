@@ -42,16 +42,16 @@ status: approved
 ```
 Written for the person who signs the numbers off rather than the one preparing them. Global finance strategy, strategic auditing, governance and corporate reporting, taught at the level where the serious finance decisions actually get taken and defended.
 ```
-*34 words / 209 chars ✅*
+*38 words / 254 chars ✅*
 
 ## 2.2 `description`
 
 ```html
-<p>Six subjects, and the ambition shows in their names: Strategy and Global Finance, Strategic Financial Management, Strategic Auditing, Ethical Behaviour and Corporate Governance, Corporate Reporting, and Financial Analyst. Half carry the word strategic. None of them teach bookkeeping, ledgers or tax computation. This is the finance of boardrooms, audit committees and published accounts.</p>
+<p>6 subjects, and the ambition shows in their names: Strategy and Global Finance, Strategic Financial Management, Strategic Auditing, Ethical Behaviour and Corporate Governance, Corporate Reporting, and Financial Analyst. 2 titles begin with Strategic; Strategy and Global Finance points in the same direction. None of them teach bookkeeping, ledgers or tax computation. This is the finance of boardrooms, audit committees and published accounts.</p>
 <p>Qualifi says the award is built for senior and middle managers and accountants moving up inside their organisations, and aims to produce an effective accounting and finance manager. That last phrase sets the target precisely. The reader it has in mind already understands the numbers and now needs to use them to argue, decide and answer for the result.</p>
-<p>A small oddity worth flagging: the sixth subject is called Financial Analyst — a job title where every other entry names a subject. Qualifi publishes nothing about its content, and we will not guess. Its registered size is 120 credits at Level 7; the framework reference to quote is 603/0723/7.</p>
+<p>A small oddity worth flagging: the 6th subject is called Financial Analyst — a job title where every other entry names a subject. Qualifi publishes nothing about its content, and we will not guess. Its registered size is 120 credits at Level 7; the framework reference to quote is 603/0723/7.</p>
 ```
-*3 paragraphs / 157 words ✅*
+*3 paragraphs / 171 words ✅*
 
 ---
 
@@ -73,24 +73,24 @@ Written for the person who signs the numbers off rather than the one preparing t
 | Size and type | 120 credits at Level 7, a Vocational Related Qualification (Higher Education), accreditation status Accredited. Total qualification time is not published |
 | What it covers | Global finance strategy, strategic financial management, strategic auditing, governance and ethics, corporate reporting, and a subject titled Financial Analyst |
 | Stated purpose | Qualifi describes the aim as equipping the learner to be an effective accounting and finance manager |
-| Published entry | Stated in two bullet points and nothing further: hold a Level 6 qualification, or hold a first degree. No age, English language, reference or centre-review requirement is given |
-| Shape | Six subjects, no optional group and no per-subject credit values published |
+| Published entry | Stated in 2 bullet points and nothing further: hold a Level 6 qualification, or hold a first degree. No age, English language, reference or centre-review requirement is given |
+| Shape | 6 subjects, no optional group and no per-subject credit values published |
 | No professional exemptions | Qualifi publishes no ACCA, CIMA, ICAEW, ICAS, CIPFA or AAT recognition, approval or examination exemption for this award |
-| Progression published by Qualifi | One line only: "Dissertation to complete Master's Degree at UK University". No employment route and no Level 8 route are shown |
+| Progression published by Qualifi | 1 line only: "Dissertation to complete Master's Degree at UK University". No employment route and no Level 8 route are shown |
 
 ## 3.3 `benefits`
 | icon | title | desc |
 |---|---|---|
 | `globe` | Finance with a global frame | <p>Strategy and Global Finance treats capital, currency and markets as conditions you operate inside.</p> |
 | `clipboard-check` | Auditing from the strategic end | <p>Strategic Auditing looks at assurance as a governance instrument rather than a compliance chore.</p> |
-| `scale` | Ethics and governance together | <p>One subject covers ethical behaviour and corporate governance side by side, where they belong.</p> |
+| `scale` | Ethics and governance together | <p>1 subject covers ethical behaviour and corporate governance side by side, where they belong.</p> |
 | `file-text` | Corporate reporting | <p>How an organisation tells its financial story publicly, and who holds it to account for that.</p> |
 | `trending-up` | Strategic financial management | <p>Investment, funding and value decisions taken at the level where they commit the business.</p> |
 | `briefcase` | Pitched at people in post | <p>Entry assumes a degree or Level 6 qualification, so the material starts where working finance staff already are.</p> |
 
 ## 3.4 `learning`
 
-Worth a word of explanation first. Qualifi publishes eight outcomes for this qualification, and five of them appear verbatim on at least one other award in the same family, while the first three repeat a single idea — the principles of accounting and finance applied in a business environment, within industry and in a specific environment — with no stated difference between them. We have retained what is usable, removed the duplication, and drawn the subject-specific entries from the six published subjects. The list below is therefore derived coverage built from the awarding body's own material rather than a verbatim copy of its outcomes.
+Worth a word of explanation first. Qualifi publishes 8 outcomes for this qualification, and 5 of them appear verbatim on at least 1 other award in the same family, while the 1st 3 repeat a single idea — the principles of accounting and finance applied in a business environment, within industry and in a specific environment — with no stated difference between them. We have retained what is usable, removed the duplication, and drawn the subject-specific entries from the 6 published subjects. The list below is therefore derived coverage built from the awarding body's own material rather than a verbatim copy of its outcomes.
 
 1. Understand and apply accounting and finance principles inside a working business
 2. Test how those principles behave in a particular industry setting
@@ -121,7 +121,7 @@ What the qualification does offer is graduate-level study of senior finance subj
 On outcomes, Qualifi publishes no destinations, no salary information and no employment rates, and its progression panel names no employment route. The sole published route reads: "Dissertation to complete Master's Degree at UK University". No university is identified, no agreement is described and no conditions are attached. A diploma is not a degree, and only the receiving institution can say what it will accept and what else it will require. Settle that with the university in writing before you commit money or time.
 
 ## 3.8 `support`
-Graduate-level entry · Teaching from an approved centre · Six senior finance subjects · Eight published learning outcomes · Qualifi certification · Available in the UK and internationally
+Graduate-level entry · Teaching from an approved centre · 6 senior finance subjects · 8 published learning outcomes · Qualifi certification · Available in the UK and internationally
 
 ## 3.9 `gcc_heading` + `gcc_reasons` *(6)*
 **Heading:** `Why Finance Professionals in the Gulf Look at This`
@@ -149,13 +149,13 @@ No price published by Qualifi · The approved centre sets it · Varies by countr
 <p>We cannot tell you, and we would rather say so than invent a syllabus. It is the only entry in this listing named after a job rather than a field of study, and Qualifi publishes no description beneath the title. Reading the title alone, you might reasonably expect valuation, forecasting, modelling and the interpretation of financial statements, but that is inference rather than fact. The centre specification will carry the real content. Ask for that subject's descriptor specifically before you enrol, since it is the one with the least published detail.</p>
 
 **How is this different from the Level 5 accounting and finance award?**
-<p>Almost everything differs apart from the subject name. The Level 5 Extended Diploma is a 240-credit qualification with an open way in, built to take someone from the ground up through recording, reporting and basic analysis. This is half that size at 120 credits, requires a degree or Level 6 qualification before you start, and spends its time on strategy, assurance, governance and published reporting. One builds the foundation; this assumes you already have it and asks what you do with it.</p>
+<p>Almost everything differs apart from the subject name. The Level 5 Extended Diploma is a 240-credit qualification with an open way in, built to take someone from the ground up through recording, reporting and basic analysis. This carries 50% of those credits, at 120, requires a degree or Level 6 qualification before you start, and spends its time on strategy, assurance, governance and published reporting. The Level 5 award builds the foundation; this Level 7 award assumes you already have it and asks what you do with it.</p>
 
 **Fees, start dates — where do those come from?**
 <p>From the approved centre, every time. Qualifi's role is to write, regulate and certificate the qualification, not to teach it or price it. No study-hours total is published for this award, which means there is no official benchmark to judge whether a centre's proposed timetable is realistic. Before signing anything, ask for the cohort start and expected finish dates, the tuition fee, and whether registration and certification sit inside that figure or on top of it.</p>
 
 **Is a first degree really essential?**
-<p>It is one of only two published routes, the other being a Level 6 qualification, and nothing else is listed — no managerial experience option, no age minimum, no English language score, no references. That is a notably short entry statement compared with Qualifi's newer Level 7 awards, several of which publish an experience route. Centres can and do apply their own admissions checks beyond what the awarding body prints, so if your background is strong but unqualified on paper, take it up with the centre.</p>
+<p>It is one of only 2 published routes, the other being a Level 6 qualification, and nothing else is listed — no managerial experience option, no age minimum, no English language score, no references. That is a notably short entry statement compared with Qualifi's newer Level 7 awards, several of which publish an experience route. Centres can and do apply their own admissions checks beyond what the awarding body prints, so if your background is strong but unqualified on paper, take it up with the centre.</p>
 
 **Will it help me move from accountant to finance manager?**
 <p>That is precisely the transition Qualifi describes in its own aim for the award: to equip the learner to be an effective accounting and finance manager. The subject list supports that reading, since governance, strategic auditing and global finance strategy are management concerns rather than preparer concerns. What no one can promise is the promotion itself. Qualifi publishes no destination or employment data for this qualification, so treat the award as evidence of study at that level rather than as a guarantee of the next job title.</p>
@@ -166,4 +166,4 @@ No price published by Qualifi · The approved centre sets it · Varies by countr
 | Field | Value | Count |
 |---|---|---|
 | `meta_title` | Qualifi Level 7 Diploma in Accounting and Finance | 49 ✅ |
-| `meta_description` | Qualifi Level 7 Diploma in Accounting and Finance. 120 credits, six subjects spanning global finance strategy, auditing, governance and reporting. | 145 ✅ |
+| `meta_description` | Qualifi Level 7 Diploma in Accounting and Finance. 120 credits, 6 subjects spanning global finance strategy, auditing, governance and reporting. | 144 ✅ |

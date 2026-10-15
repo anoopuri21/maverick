@@ -39,18 +39,18 @@ status: approved
 ## 2.1 `short_description`
 
 ```
-Twelve subjects on hazard control, proactive and reactive monitoring, emergency response and audit, taught alongside the communication, culture and people skills that decide whether any of it is followed. Suitable for part-time study while working.
+12 subjects on hazard control, proactive and reactive monitoring, emergency response and audit, taught alongside the communication, culture and people skills that decide whether any of it is followed. Suitable for part-time study while working.
 ```
-*38 words / 253 chars ✅*
+*35 words / 244 chars ✅*
 
 ## 2.2 `description`
 
 ```html
-<p>Safety systems fail for two reasons. Sometimes nobody worked out the hazard. More often somebody did, wrote it down, and nothing changed on the ground because the message never landed, the culture rewarded shortcuts, or no one checked. This award is built around both halves of that problem.</p>
+<p>Safety systems fail for 2 reasons. Sometimes nobody worked out the hazard. More often somebody did, wrote it down, and nothing changed on the ground because the message never landed, the culture rewarded shortcuts, or nobody checked. This award is built around both halves of that problem.</p>
 <p>Qualifi puts the technical side as hazard and risk assessment and control, monitoring and emergency response systems, and health and safety review and audit. It then names the other side explicitly: effective communication, promoting a positive culture, process management and people management, all taught in an occupational health and safety context rather than in general.</p>
-<p>Twelve subjects carry it, including an uncommon pairing — proactive monitoring systems and reactive monitoring systems as separate subjects, which is the difference between catching problems early and learning from them afterwards. Qualifi states the award suits part-time learners in the workplace as readily as full-time learners on placement. It is 240 credits, number 610/6564/X, and its specification was updated in October 2025.</p>
+<p>12 subjects carry it, including an uncommon pairing — proactive monitoring systems and reactive monitoring systems as separate subjects, which is the difference between catching problems early and learning from them afterwards. Qualifi states the award suits part-time learners in the workplace as readily as full-time learners on placement. It is 240 credits, number 610/6564/X, and its specification was updated in October 2025.</p>
 ```
-*3 paragraphs / 174 words ✅*
+*3 paragraphs / 165 words ✅*
 
 ---
 
@@ -72,14 +72,14 @@ Twelve subjects on hazard control, proactive and reactive monitoring, emergency 
 | Size | 240 credits at Level 5 |
 | Subjects | Communication Systems for Health and Safety Information · Positive Health and Safety Culture · Individual and Organisational Competence in Health and Safety Matters · Controlling Health and Safety Risks · People Management for Occupational Health and Safety · Process Management for Occupational Health and Safety · Proactive Monitoring Systems for Health and Safety · Reactive Monitoring Systems for Health and Safety · Health and Safety Emergency Response Systems and Procedures · Health and Safety Audit · Leadership Strategy for Occupational Health and Safety · Process Management and Review for Occupational Health and Safety |
 | Study pattern | Qualifi states the qualification suits part-time learners already in the workplace, and equally suits full-time learners who can take a formal work placement or part-time employment |
-| Entry | 18 or over. No prior qualification is published. IELTS 6 or equivalent where English is not your first language, plus normally two references, one preferably academic. Centres must also give applicants accurate information about the title and focus of the qualification during recruitment |
+| Entry | 18 or over. No prior qualification is published. IELTS 6 or equivalent where English is not your first language, plus normally 2 references, 1 preferably academic. Centres must also give applicants accurate information about the title and focus of the qualification during recruitment |
 | Onward routes published by Qualifi | The Qualifi Level 6 Diploma in Occupational Health and Safety Management · higher education degree programmes · employment in an associated profession |
-| A note on the detail | No learning outcomes are published on the qualification page and no credit breakdown is given for the twelve subjects. The Centre Specification, updated in October 2025, is the authoritative document and your centre can supply it |
+| A note on the detail | No learning outcomes are published on the qualification page and no credit breakdown is given for the 12 subjects. The Centre Specification, updated in October 2025, is the authoritative document and your centre can supply it |
 
 ## 3.3 `benefits`
 | icon | title | desc |
 |---|---|---|
-| `search-check` | Monitoring split in two | <p>Proactive and reactive monitoring systems are separate subjects, covering both catching problems early and learning from incidents.</p> |
+| `search-check` | Monitoring split in 2 | <p>Proactive and reactive monitoring systems are separate subjects, covering both catching problems early and learning from incidents.</p> |
 | `users-round` | Culture treated as a subject | <p>Promoting a positive health and safety culture is taught in its own right, not assumed to follow from the rules.</p> |
 | `clipboard-check` | Audit included | <p>Health and safety audit is a full subject, which is what turns a written system into a verified one.</p> |
 | `siren` | Emergency response procedures | <p>A dedicated subject on emergency response systems and procedures rather than a passing mention.</p> |
@@ -112,7 +112,7 @@ Process Management for Occupational Health and Safety · Process Management and 
 
 ## 3.5 `careers`
 
-No salary data, employment rates or named destinations are published by Qualifi for this award. The three routes below appear on its qualification page exactly as reproduced here.
+No salary data, employment rates or named destinations are published by Qualifi for this award. The 3 routes below appear on its qualification page exactly as reproduced here.
 
 1. The Qualifi Level 6 Diploma in Occupational Health and Safety Management
 2. Higher education degree programmes
@@ -141,7 +141,7 @@ No fee published by Qualifi · The approved centre sets the price · Varies by c
 ## 4. `faqs` *(6)*
 
 **Why are proactive and reactive monitoring taught separately?**
-<p>Because they are different activities with different purposes. Proactive monitoring means looking for problems before anything goes wrong — inspections, checks, measuring whether controls are actually in place. Reactive monitoring means examining what happened after an incident or near miss and feeding that back into the system. Organisations that do only the second are permanently behind. Giving each its own subject makes that distinction impossible to miss.</p>
+<p>Because they are different activities with different purposes. Proactive monitoring means looking for problems before anything goes wrong — inspections, checks, measuring whether controls are actually in place. Reactive monitoring means examining what happened after an incident or near miss and feeding that back into the system. Organisations that do only the 2nd are permanently behind. Giving each its own subject makes that distinction impossible to miss.</p>
 
 **Does this certify me as a safety officer?**
 <p>It is a regulated Level 5 qualification in the subject, not an appointment or a licence. Who may act as a competent person, safety officer or adviser is determined by the law and the regulator where you work, and frequently by your employer's own requirements too. Qualifi publishes nothing about those positions. Confirm what your jurisdiction and employer actually require before relying on any qualification to satisfy it.</p>
@@ -156,7 +156,7 @@ No fee published by Qualifi · The approved centre sets the price · Varies by c
 <p>Qualifi says the qualification is suitable for part-time learners in the workplace, and adds that it works equally for full-time learners who take a formal placement or part-time employment. So it is designed with working people in mind. The practical answer, though, depends on how your approved centre delivers it — evenings, blocks, online or in person — and that is worth settling before you enrol.</p>
 
 **What comes after it?**
-<p>Three doors are listed on the official page: Qualifi's own Level 6 Diploma in Occupational Health and Safety Management, degree programmes in higher education, and going straight into work in an associated profession. Most of its Level 5 awards name only one or two, so three is generous by comparison. Qualifi also runs occupational health and safety qualifications at Level 7, so the ladder continues well above this point.</p>
+<p>3 doors are listed on the official page: Qualifi's own Level 6 Diploma in Occupational Health and Safety Management, degree programmes in higher education, and going straight into work in an associated profession. Most of its Level 5 awards name only 1 or 2, so 3 is generous by comparison. Qualifi also runs occupational health and safety qualifications at Level 7, so the ladder continues well above this point.</p>
 
 ---
 

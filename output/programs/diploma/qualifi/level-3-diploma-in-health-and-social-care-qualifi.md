@@ -40,9 +40,9 @@ status: approved
 ## 2.1 `short_description`
 
 ```
-Four compulsory subjects on care, communication, public health and person-centred practice, then an option covering diabetes, stroke or dementia. Sixty credits and 600 hours, awarded by Qualifi under Ofqual regulation. It is a knowledge qualification, not a licence to practise.
+4 compulsory subjects on care, communication, public health and person-centred practice, then an option covering diabetes, stroke or dementia. 60 credits and 600 hours, awarded by Qualifi under Ofqual regulation. It is a knowledge qualification, not a licence to practise.
 ```
-*43 words / 283 chars ✅*
+*40 words / 272 chars ✅*
 
 ## 2.2 `description`
 
@@ -51,7 +51,7 @@ Four compulsory subjects on care, communication, public health and person-centre
 <p>The compulsory half is broad. An introduction to the field sets the terms; Communication for Health and Social Care deals with the skill that most complaints and most good outcomes turn on; Promoting Health in the Population widens the view from the individual to the community; and Person-Centred Care puts the person receiving support, rather than the service delivering it, at the middle of the decision.</p>
 <p>Then the award does something few at this level do. Its optional subjects are condition-specific: understanding diabetes care, stroke care, or dementia care. That is a practical choice for anyone whose work concentrates on one of those groups. The award carries 60 credits with a published total qualification time of 600 hours, and sits at 603/0819/9 on the framework.</p>
 ```
-*3 paragraphs / 191 words ✅*
+*3 paragraphs / 185 words ✅*
 
 ---
 
@@ -75,7 +75,7 @@ Four compulsory subjects on care, communication, public health and person-centre
 | Compulsory subjects | An introduction to Health and Social Care, Communication for Health and Social Care, Promoting Health in the Population, Person-Centered Care |
 | Optional subjects | Understanding Diabetes Care, Understanding Stroke Care, Understanding Dementia Care |
 | Important limit | Qualifi publishes nothing about registration with any care regulator. This is a knowledge qualification. It does not by itself authorise anyone to practise, and registration requirements are set by the regulator in the country where you work |
-| Onward routes published by Qualifi | A Qualifi Level 4 Certificate, or year one of a three-year UK honours degree |
+| Onward routes published by Qualifi | A Qualifi Level 4 Certificate, or year 1 of a 3-year UK honours degree |
 
 ## 3.3 `benefits`
 | icon | title | desc |
@@ -99,21 +99,21 @@ Four compulsory subjects on care, communication, public health and person-centre
 
 ## 3.6 `structure`
 
-**Part 1 — Compulsory subjects** · *All four are required.*
+**Part 1 — Compulsory subjects** · *All 4 are required.*
 An introduction to Health and Social Care · Communication for Health and Social Care · Promoting Health in the Population · Person-Centered Care
 
-**Part 2 — Condition-specific options** · *Qualifi lists these three as optional but does not state on the qualification page how many are required. Confirm with your centre.*
+**Part 2 — Condition-specific options** · *Qualifi lists these 3 as optional but does not state on the qualification page how many are required. Confirm with your centre.*
 Understanding Diabetes Care · Understanding Stroke Care · Understanding Dementia Care
 
-**Part 3 — Award** · *Sixty credits at Level 3 with 600 hours of total qualification time, certificated by Qualifi after your centre assesses.*
+**Part 3 — Award** · *60 credits at Level 3 with 600 hours of total qualification time, certificated by Qualifi after your centre assesses.*
 60 credits · 600 hours TQT · Level 3 on the RQF · Certificate from Qualifi · Taught and assessed by an approved centre
 
 ## 3.5 `careers`
 
-Qualifi publishes no job destinations, pay data or employment rates for this award, and it says nothing about professional registration. Please read the limit in the snapshot above before making career plans around it. The two routes below are the only ones the awarding body states.
+Qualifi publishes no job destinations, pay data or employment rates for this award, and it says nothing about professional registration. Please read the limit in the snapshot above before making career plans around it. The 2 routes below are the only ones the awarding body states.
 
 1. A Qualifi Level 4 Certificate
-2. Year one of a three-year honours degree at a UK university
+2. Year 1 of a 3-year honours degree at a UK university
 
 ## 3.8 `support`
 Entry decided at the centre · Teaching by an approved centre · Guidance on choosing a condition-specific option · Assessment against published outcomes · Qualifi certification · Study pattern arranged around work
@@ -125,7 +125,7 @@ Entry decided at the centre · Teaching by an approved centre · Guidance on cho
 |---|---|---|
 | `building-2` | Private healthcare is expanding regionally | Growth in private hospitals, clinics and home care across the GCC has increased demand for staff with recorded training. |
 | `file-badge` | Something verifiable on your file | Experienced carers often have years of practice and no certificate. A regulated UK qualification puts a registered number behind the experience. |
-| `brain` | Dementia care as a named option | Ageing populations have made dementia support a growing need, and it is one of the three condition-specific choices here. |
+| `brain` | Dementia care as a named option | Ageing populations have made dementia support a growing need, and it is 1 of the 3 condition-specific choices here. |
 | `languages` | Communication across languages and cultures | Care teams in the region are highly international, and the compulsory communication subject addresses exactly that difficulty. |
 | `calendar-clock` | Designed to fit around shifts | With 600 published hours and no fixed term, centres can spread delivery around rota work. |
 | `triangle-alert` | Check licensing separately | This qualification does not register you with any health authority. If you need a licence to practise in your country, confirm that route with the regulator itself. |
@@ -144,16 +144,16 @@ Not published by Qualifi · Set by your approved centre · Differs by country an
 <p>Because care work usually concentrates somewhere. Someone working in a dementia unit, a stroke rehabilitation setting or with people managing diabetes benefits more from depth in that area than from another general subject. Qualifi offering understanding of diabetes care, stroke care and dementia care as distinct choices is a practical piece of design and one of the clearer reasons to choose this award over a generic one.</p>
 
 **How many optional subjects do I take?**
-<p>The qualification page lists three as optional without stating how many are required, which is a gap in Qualifi's published information rather than something we are leaving out. The Centre Specification will answer it, and your centre can confirm before you commit. We would rather flag the gap than invent a number.</p>
+<p>The qualification page lists 3 as optional without stating how many are required, which is a gap in Qualifi's published information rather than something we are leaving out. The Centre Specification will answer it, and your centre can confirm before you commit. We would rather flag the gap than invent a number.</p>
 
 **What does 600 hours mean in practice?**
-<p>Qualifi uses total qualification time to estimate the whole effort a typical learner puts in, taught sessions and independent work alike, with preparation and assessment folded in. No part of it is a timetable, and none of it implies 600 hours sat in a classroom. It is useful as a measure of scale. For comparison, Qualifi's integrated Level 3 business award is published at 1,200 hours, so this sits at half that size.</p>
+<p>Qualifi uses total qualification time to estimate the whole effort a typical learner puts in, taught sessions and independent work alike, with preparation and assessment folded in. No part of it is a timetable, and none of it implies 600 hours sat in a classroom. It is useful as a measure of scale. For comparison, Qualifi's integrated Level 3 business award is published at 1,200 hours, so this sits at 50% of that size.</p>
 
 **Can I get in without any qualifications?**
-<p>Possibly. Three doors are published. You may hold a Level 2 award; you may have worked in care and be able to say where you intend to take that; or you may already hold a Level 3 certificate in an unrelated field and now want to cross into this one. Practical sector experience is explicitly accepted, which suits people who have been doing the work without paperwork. The centre makes the decision.</p>
+<p>Possibly. 3 doors are published. You may hold a Level 2 award; you may have worked in care and be able to say where you intend to take that; or you may already hold a Level 3 certificate in an unrelated field and now want to cross into this one. Practical sector experience is explicitly accepted, which suits people who have been doing the work without paperwork. The centre makes the decision.</p>
 
 **Where can it take me afterwards?**
-<p>Qualifi points to a Level 4 certificate, or to year one of a UK honours degree lasting three years. Universities decide their own admissions, so treat the degree route as a published possibility rather than an entitlement, and ask your target institutions what they accept. Within work, the qualification evidences knowledge; whether it leads to a promotion depends on your employer.</p>
+<p>Qualifi points to a Level 4 certificate, or to year 1 of a UK honours degree lasting 3 years. Universities decide their own admissions, so treat the degree route as a published possibility rather than an entitlement, and ask your target institutions what they accept. Within work, the qualification evidences knowledge; whether it leads to a promotion depends on your employer.</p>
 
 ---
 
