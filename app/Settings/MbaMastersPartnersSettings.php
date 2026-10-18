@@ -12,6 +12,10 @@ class MbaMastersPartnersSettings extends Settings
 
     public ?string $heading = null;
 
+    public ?string $heading_line1 = null;
+
+    public ?string $heading_line2 = null;
+
     public ?string $intro = null;
 
     public ?string $trust_line = null;

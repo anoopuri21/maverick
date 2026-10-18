@@ -529,7 +529,7 @@ html.js .scale-in {
   display: block;
   width: 40px;
   height: 1px;
-  background: var(--color-white);
+  background: var(--color-mba-blue);
   flex-shrink: 0;
 }
 

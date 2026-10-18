@@ -21,6 +21,7 @@ use App\Models\ProgramCategory;
 use App\Models\Testimonial;
 use App\Models\UniversityPartner;
 use App\Settings\AskQuotientSettings;
+use App\Settings\MbaMastersPartnersSettings;
 use App\Settings\DeiMatrixSettings;
 use App\Settings\FinalCtaSettings;
 use App\Settings\GlobalAccessPointsSettings;
@@ -308,6 +309,33 @@ class AppServiceProvider extends ServiceProvider
             }
 
             $view->with('footerProgramCategories', $footerProgramCategories);
+        });
+
+        View::composer('sections.mba-partners', function ($view) {
+            if (! $view->offsetExists('partners')) {
+                $partners = safe_settings(MbaMastersPartnersSettings::class);
+                $partners->checklist = settings_array($partners->checklist ?? []);
+                $view->with('partners', $partners);
+            }
+
+            if ($view->offsetExists('universityPartnerLogos')) {
+                return;
+            }
+
+            try {
+                $universityPartnerLogos = UniversityPartner::query()
+                    ->select('id', 'name', 'logo_url', 'sort_order')
+                    ->where('is_active', true)
+                    ->whereNotNull('logo_url')
+                    ->where('logo_url', '!=', '')
+                    ->orderBy('sort_order')
+                    ->get();
+            } catch (\Throwable $e) {
+                report($e);
+                $universityPartnerLogos = collect();
+            }
+
+            $view->with('universityPartnerLogos', $universityPartnerLogos);
         });
 
         View::composer('sections.ask-quotient', function ($view) {

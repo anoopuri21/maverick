@@ -31,9 +31,9 @@
     </div>
 
     @if($gapCountryCount > 0)
-    <div class="gap-globe-stage" data-gap-globe data-lenis-prevent>
+    <div class="gap-globe-stage" data-gap-globe>
       <aside class="gap-globe__country-panel" aria-label="Maverick Access Point countries">
-        <ol class="gap-globe__country-list">
+        <ol class="gap-globe__country-list" data-lenis-prevent>
           @foreach($globalAccessPointsCountries as $country)
           @php
             $isoNumeric = $country->iso_numeric ?? ($country['iso_numeric'] ?? '');

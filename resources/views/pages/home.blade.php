@@ -9,6 +9,7 @@
 @endpush
 
 @push('styles')
+    <link rel="stylesheet" href="{{ cached_asset('assets/css/pages/mba-masters-landing.css') }}" />
     <link rel="stylesheet" href="{{ cached_asset('assets/css/global-access-points.css') }}" />
     <link rel="stylesheet" href="{{ cached_asset('assets/css/ask-quotient.css') }}" />
     <link rel="stylesheet" href="{{ cached_asset('assets/css/dei-matrix.css') }}" />
@@ -17,6 +18,7 @@
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/d3@7" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/topojson-client@3" defer></script>
+    <script src="{{ cached_asset('assets/js/archive-partners.js') }}" defer></script>
     <script src="{{ cached_asset('assets/js/global-access-points.js') }}" defer></script>
 @endpush
 
@@ -38,6 +40,9 @@
     @include('sections.hero')
     @include('sections.numbers')
     @include('sections.what-is-maverick')
+    <div class="mlp-page mlp-page--polished">
+        @include('sections.mba-partners')
+    </div>
     @include('sections.ask-quotient')
     @include('sections.who-we-are')
     @include('sections.dei-matrix')

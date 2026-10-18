@@ -36,6 +36,13 @@ class HomePageTest extends TestCase
             $response->assertSee('id="'.$sectionId.'"', false);
         }
 
+        $content = $response->getContent();
+        $partnersPos = strpos($content, 'archive-partners');
+        $askPos = strpos($content, 'id="ask-quotient"');
+        $this->assertNotFalse($partnersPos);
+        $this->assertNotFalse($askPos);
+        $this->assertLessThan($askPos, $partnersPos);
+
         $response->assertSee('window.universityPartnersData', false);
         $response->assertSee('window.testimonialsData', false);
         $response->assertSee('window.globalAccessPointsCountries', false);

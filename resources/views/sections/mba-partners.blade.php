@@ -41,18 +41,30 @@
   $checklist = collect($partners->checklist ?? [])
       ->filter(fn ($item) => filled($item['text'] ?? null))
       ->values();
+  $headingLine1 = $partners->heading_line1 ?? null;
+  $headingLine2 = $partners->heading_line2 ?? null;
+  if (! filled($headingLine1) && ! filled($headingLine2) && filled($partners->heading ?? null)) {
+      $headingLine1 = $partners->heading;
+  }
 @endphp
 
-@if(filled($partners->heading) || $renderLogos->isNotEmpty())
+@if(filled($headingLine1) || filled($headingLine2) || $renderLogos->isNotEmpty())
 <section class="mlp-partners archive-partners" id="mlp-partners" aria-labelledby="archive-partners-title">
   <div class="archive-partners__frame container">
     <header class="archive-partners__intro mlp-intro-grid">
       <div>
         @if(filled($partners->label))
-        <p class="archive-partners__label mlp-eyebrow">{{ $partners->label }}</p>
+        <p class="section-label archive-partners__label mlp-eyebrow">{{ $partners->label }}</p>
         @endif
-        @if(filled($partners->heading))
-        <h2 class="archive-partners__heading mlp-h2" id="archive-partners-title">{{ $partners->heading }}</h2>
+        @if(filled($headingLine1) || filled($headingLine2))
+        <h2 class="archive-partners__heading section-title hwdi__heading" id="archive-partners-title">
+          @if(filled($headingLine1))
+          <span class="hwdi__heading-line">{{ $headingLine1 }}</span>
+          @endif
+          @if(filled($headingLine2))
+          <span class="hwdi__heading-line hwdi__heading-line--red">{{ $headingLine2 }}</span>
+          @endif
+        </h2>
         @endif
       </div>
       @if(filled($partners->intro))

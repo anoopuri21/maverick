@@ -660,60 +660,102 @@
       const cfg = {
         headingInitY: 20,
         headingSettleY: 0,
-        textY: "40%",
+        textY: "100%",
         labelOpacity: 1,
         bgScale: 1.06,
       };
 
       setWimInitialState(cfg);
 
-      const desktopTl = gsap.timeline({
+      if (bgImage) {
+        gsap.to(bgImage, {
+          scale: cfg.bgScale,
+          ease: "none",
+          scrollTrigger: {
+            trigger: section,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 0.55,
+            invalidateOnRefresh: true,
+          },
+        });
+      }
+
+      gsap.to(label, {
+        y: 0,
+        opacity: cfg.labelOpacity,
+        duration: 0.65,
+        ease: "power2.out",
         scrollTrigger: {
           trigger: section,
           start: "top 85%",
-          end: "top 28%",
-          scrub: 0.55,
+          toggleActions: "play none none none",
           invalidateOnRefresh: true,
+          once: true,
         },
       });
 
-      if (bgImage) {
-        desktopTl.to(
-          bgImage,
-          { scale: cfg.bgScale, duration: 0.9, ease: "none" },
-          0,
-        );
-      }
-
-      desktopTl.to(
-        label,
-        {
-          y: 0,
-          opacity: cfg.labelOpacity,
-          duration: 0.12,
-          ease: "power2.out",
+      const headingReveal = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "top 85%",
+          toggleActions: "play none none none",
+          invalidateOnRefresh: true,
+          once: true,
         },
-        0,
-      );
+      });
 
-      desktopTl.to(
+      headingReveal.to(
         headingEl,
         {
           y: cfg.headingSettleY,
           opacity: 1,
-          duration: 0.14,
+          duration: 0.7,
           ease: "power2.out",
         },
-        0.1,
+        0.12,
       );
 
-      addWimStatementsToTimeline(desktopTl, 0.22, 0.78);
+      statements.forEach((stmt) => {
+        const stmtText = stmt.querySelector(".wim__statement-text");
+        const reveal = gsap.timeline({
+          scrollTrigger: {
+            trigger: stmt,
+            start: "top 85%",
+            toggleActions: "play none none none",
+            invalidateOnRefresh: true,
+            once: true,
+          },
+        });
 
-      desktopTl.to(
-        finalEl,
-        { opacity: 1, y: 0, duration: 0.1, ease: "power2.out" },
-        0.8,
-      );
+        reveal.to(
+          stmt,
+          { opacity: 1, duration: 0.45, ease: "power2.out" },
+          0,
+        );
+
+        if (stmtText) {
+          reveal.to(
+            stmtText,
+            { y: "0%", duration: 0.7, ease: "power3.out" },
+            0,
+          );
+        }
+      });
+
+      gsap.to(finalEl, {
+        opacity: 1,
+        y: 0,
+        duration: 0.65,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: finalEl,
+          start: "top 85%",
+          toggleActions: "play none none none",
+          invalidateOnRefresh: true,
+          once: true,
+        },
+      });
     });
   }
 

@@ -77,7 +77,8 @@ class ManageProof extends Page implements HasForms
                 Section::make('University partners')
                     ->schema([
                         TextInput::make('partners.label')->label('Section label'),
-                        TextInput::make('partners.heading')->label('Heading')->columnSpanFull(),
+                        TextInput::make('partners.heading_line1')->label('Heading Line 1')->columnSpanFull(),
+                        TextInput::make('partners.heading_line2')->label('Heading Line 2 (Accent)')->columnSpanFull(),
                         Textarea::make('partners.intro')->label('Intro')->rows(2)->columnSpanFull(),
                         Textarea::make('partners.trust_line')->label('Trust line')->rows(2)->columnSpanFull()
                             ->helperText('Logos: University Partners admin (active + logo). No duplicate logo CRUD here.'),

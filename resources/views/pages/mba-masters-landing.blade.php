@@ -69,7 +69,7 @@
 <div class="mlp-page mlp-page--polished" id="mlpPage">
   @include('pages.mba-masters-landing.hero')
   @include('pages.mba-masters-landing.trust')
-  @include('pages.mba-masters-landing.partners')
+  @include('sections.mba-partners')
   @include('pages.mba-masters-landing.overview')
   @include('sections.accreditations')
   @include('pages.mba-masters-landing.video-proof')
@@ -102,6 +102,7 @@
 @endsection
 
 @push('scripts')
+<script src="{{ cached_asset('assets/js/archive-partners.js') }}" defer></script>
 <script src="{{ cached_asset('assets/js/pages/mba-masters-landing.js') }}" defer></script>
 <script src="{{ cached_asset('assets/js/pages/mba-masters-enquiry-validation.js') }}" defer></script>
 <script src="{{ cached_asset('assets/js/pages/mlp-chrome.js') }}" defer></script>

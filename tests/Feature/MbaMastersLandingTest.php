@@ -156,7 +156,8 @@ class MbaMastersLandingTest extends TestCase
         $response->assertSee('Live evening classes', false);
         $response->assertSee('Dedicated success coach', false);
         $response->assertSee('id="mlp-learning"', false);
-        $response->assertSee('International MBA Degrees from Our University Partners', false);
+        $response->assertSee('International MBA Degrees from Our', false);
+        $response->assertSee('University Partners', false);
         $response->assertSee('archive-partners', false);
         $response->assertSee('archive-partners__wall', false);
         $response->assertSee('archive-partners__checklist', false);
