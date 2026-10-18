@@ -9,7 +9,7 @@
 @endpush
 
 @push('styles')
-    <link rel="stylesheet" href="{{ cached_asset('assets/css/pages/mba-masters-landing.css') }}" />
+    <link rel="stylesheet" href="{{ cached_asset('assets/css/mba-partners.css') }}" />
     <link rel="stylesheet" href="{{ cached_asset('assets/css/global-access-points.css') }}" />
     <link rel="stylesheet" href="{{ cached_asset('assets/css/ask-quotient.css') }}" />
     <link rel="stylesheet" href="{{ cached_asset('assets/css/dei-matrix.css') }}" />
@@ -41,9 +41,7 @@
     @include('sections.hero')
     @include('sections.numbers')
     @include('sections.what-is-maverick')
-    <div class="mlp-page mlp-page--polished">
-        @include('sections.mba-partners')
-    </div>
+    @include('sections.mba-partners')
     @include('sections.ask-quotient')
     @include('sections.who-we-are')
     @include('sections.dei-matrix')
