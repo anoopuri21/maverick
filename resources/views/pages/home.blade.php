@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{{ cached_asset('assets/css/global-access-points.css') }}" />
     <link rel="stylesheet" href="{{ cached_asset('assets/css/ask-quotient.css') }}" />
     <link rel="stylesheet" href="{{ cached_asset('assets/css/dei-matrix.css') }}" />
+    <link rel="stylesheet" href="{{ cached_asset('assets/css/home-popup.css') }}" />
 @endpush
 
 @push('scripts')
@@ -61,5 +62,6 @@
     @include('sections.video-testimonials')
     @include('sections.faq')
     @include('sections.final-cta')
+    @include('sections.homepage-popup')
 
 @endsection

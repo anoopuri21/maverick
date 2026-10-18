@@ -43,6 +43,7 @@ class HomePageTest extends TestCase
         $this->assertNotFalse($askPos);
         $this->assertLessThan($askPos, $partnersPos);
 
+        $response->assertDontSee('id="homepage-popup"', false);
         $response->assertSee('window.universityPartnersData', false);
         $response->assertSee('window.testimonialsData', false);
         $response->assertSee('window.globalAccessPointsCountries', false);

@@ -27,6 +27,7 @@ use App\Settings\FinalCtaSettings;
 use App\Settings\GlobalAccessPointsSettings;
 use App\Settings\GlobalPartnersMapSettings;
 use App\Settings\HomepageChromeSettings;
+use App\Settings\HomepagePopupSettings;
 use App\Settings\WhatWeDoSettings;
 use App\Support\PublicContentCache;
 use Illuminate\Support\Facades\Event as EventFacade;
@@ -309,6 +310,14 @@ class AppServiceProvider extends ServiceProvider
             }
 
             $view->with('footerProgramCategories', $footerProgramCategories);
+        });
+
+        View::composer('sections.homepage-popup', function ($view) {
+            if ($view->offsetExists('homepagePopup')) {
+                return;
+            }
+
+            $view->with('homepagePopup', safe_settings(HomepagePopupSettings::class));
         });
 
         View::composer('sections.mba-partners', function ($view) {

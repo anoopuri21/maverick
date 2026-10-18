@@ -32,6 +32,7 @@ return [
         \App\Settings\AskQuotientSettings::class,
         \App\Settings\DeiMatrixSettings::class,
         \App\Settings\HomepageChromeSettings::class,
+        \App\Settings\HomepagePopupSettings::class,
         \App\Settings\AccreditationCinematicSettings::class,
         \App\Settings\GlobalPartnersHeroSettings::class,
         \App\Settings\GlobalPartnersOverviewSettings::class,
