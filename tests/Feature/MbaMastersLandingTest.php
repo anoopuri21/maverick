@@ -19,6 +19,7 @@ class MbaMastersLandingTest extends TestCase
         $response = $this->get('/online-mba-masters-uae');
 
         $response->assertOk();
+        $response->assertSee('assets/css/pages/mba-masters-landing.css', false);
         $this->assertSame(1, substr_count($response->getContent(), 'name="description"'));
         $response->assertSee('rel="canonical" href="'.route('mba-masters-landing', absolute: true).'"', false);
         $response->assertSee('property="og:url" content="'.route('mba-masters-landing', absolute: true).'"', false);

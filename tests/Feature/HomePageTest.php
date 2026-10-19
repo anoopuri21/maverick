@@ -14,6 +14,9 @@ class HomePageTest extends TestCase
         $response = $this->get('/');
 
         $response->assertOk();
+        $response->assertSee('assets/css/mba-partners.css', false);
+        $response->assertDontSee('assets/css/pages/mba-masters-landing.css', false);
+        $response->assertDontSee('class="mlp-page mlp-page--polished"', false);
         $this->assertSame(1, substr_count($response->getContent(), 'name="description"'));
 
         foreach ([
