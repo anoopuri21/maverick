@@ -581,16 +581,15 @@
                     <div class="fld"><label for="pd-preferred-program">Preferred Program</label>
                         <select id="pd-preferred-program" name="preferred_program">
                             <option value="">Select program</option>
-                            @foreach($allPrograms as $prog)
-                                <option value="{{ $prog->id }}">{{ e($prog->title) }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="fld"><label for="pd-program-category">Program Category</label>
-                        <select id="pd-program-category" name="program_category">
-                            <option value="">Select category</option>
-                            @foreach($programCategories as $cat)
-                                <option value="{{ $cat->id }}">{{ e($cat->name) }}</option>
+                            @php
+                                $groupedPrograms = $allPrograms->groupBy(fn ($p) => $p->programCategory?->name ?? 'Uncategorized');
+                            @endphp
+                            @foreach($groupedPrograms as $categoryName => $programs)
+                                <optgroup label="{{ e($categoryName) }}">
+                                    @foreach($programs as $prog)
+                                        <option value="{{ $prog->id }}">{{ e($prog->title) }}</option>
+                                    @endforeach
+                                </optgroup>
                             @endforeach
                         </select>
                     </div>
