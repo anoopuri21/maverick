@@ -112,9 +112,16 @@ class ProgramController extends Controller
             abort(404);
         }
 
+        $allPrograms = Program::where('is_active', true)
+            ->hasPublicSlug()
+            ->with('programCategory:id,name,slug')
+            ->orderBy('title')
+            ->get(['id', 'title', 'slug', 'program_category_id']);
+
         return view('pages.programs.detail', [
             'program' => $program,
             'chrome' => safe_settings(ProgramsDetailChromeSettings::class),
+            'allPrograms' => $allPrograms,
         ]);
     }
 
@@ -135,13 +142,18 @@ class ProgramController extends Controller
             $qualification = $qualifications[$qualification];
         }
 
+        $preferredProgram = '';
+        if (filled($data['preferred_program'] ?? null)) {
+            $preferredProgram = Program::where('id', $data['preferred_program'])->value('title') ?? '';
+        }
+
         $formMailer->send([
             'Programme' => $data['programme'] ?? '',
+            'Preferred Program' => $preferredProgram,
             'Name' => $data['name'] ?? '',
             'Email' => $data['email'] ?? '',
             'Phone' => $data['phone'] ?? '',
             'Country' => $data['country'] ?? '',
-            'Study mode' => $data['study_mode'] ?? '',
             'Qualification' => $qualification,
             'Message' => $data['message'] ?? '',
         ], 'Programme enquiry'.(filled($data['programme'] ?? null) ? ': '.$data['programme'] : ''), [
@@ -150,6 +162,7 @@ class ProgramController extends Controller
 
         app(ZapierWebhookDispatcher::class)->dispatch(ZapierEvents::PROGRAM_ENQUIRY_SUBMITTED, array_merge($data, [
             'qualification' => $qualification,
+            'preferred_program' => $preferredProgram,
         ]));
 
         return redirect()->route('thank-you', ['return' => url()->previous()]);

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ContactFormRequest;
+use App\Models\Program;
 use App\Services\FormMailer;
 use App\Services\ZapierWebhookDispatcher;
 use App\Settings\ContactPageSettings;
@@ -21,7 +22,13 @@ class ContactController extends Controller
         $contactPage = safe_settings(ContactPageSettings::class);
         $contactSeo = safe_settings(ContactSeoSettings::class);
 
-        return view('pages.contact', compact('site', 'contactPage', 'contactSeo'));
+        $allPrograms = Program::where('is_active', true)
+            ->hasPublicSlug()
+            ->with('programCategory:id,name,slug')
+            ->orderBy('title')
+            ->get(['id', 'title', 'slug', 'program_category_id']);
+
+        return view('pages.contact', compact('site', 'contactPage', 'contactSeo', 'allPrograms'));
     }
 
     /**
@@ -38,17 +45,24 @@ class ContactController extends Controller
             return redirect()->route('thank-you', ['return' => url()->previous()]);
         }
 
+        $preferredProgram = '';
+        if (filled($validated['preferred_program'] ?? null)) {
+            $preferredProgram = Program::where('id', $validated['preferred_program'])->value('title') ?? '';
+        }
+
         app(FormMailer::class)->send([
             'Name' => $validated['name'] ?? '',
             'Email' => $validated['email'] ?? '',
             'Phone' => $validated['phone'] ?? '',
-            'Subject' => $validated['subject'] ?? '',
+            'Preferred Program' => $preferredProgram,
             'Message' => $validated['message'] ?? '',
         ], 'New Contact Form Submission from '.($validated['name'] ?? 'Guest'), [
             'reply_to' => $validated['email'] ?? null,
         ]);
 
-        app(ZapierWebhookDispatcher::class)->dispatch(ZapierEvents::CONTACT_SUBMITTED, $validated);
+        app(ZapierWebhookDispatcher::class)->dispatch(ZapierEvents::CONTACT_SUBMITTED, array_merge($validated, [
+            'preferred_program' => $preferredProgram,
+        ]));
 
         return redirect()->route('thank-you', ['return' => url()->previous()]);
     }

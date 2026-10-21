@@ -2673,6 +2673,10 @@
   grid-template-columns: 1fr 1fr;
   gap: 16px;
 }
+
+.page-pd .f-row--full {
+  grid-template-columns: 1fr;
+}
 .page-pd .fld {
   margin-bottom: 16px;
 }
