@@ -23,13 +23,13 @@
 /* =========================================================
    LISTING HERO — short cinematic, catalogue-scale
    ========================================================= */
-.pl-hero.cinematic-hero { min-height: min(52vh, 460px); }
+.pl-hero.cinematic-hero { min-height: 100vh; }
 .pl-hero .cinematic-hero__title {
-  font-size: var(--pl-fs-hero);
-  font-weight: 700;
+  font-size: clamp(48px, 8vw, 110px);
+  font-weight: 800;
   max-width: 18ch;
-  line-height: 1.08;
-  letter-spacing: -0.025em;
+  line-height: 1;
+  letter-spacing: -0.03em;
 }
 .pl-hero .cinematic-hero__description { max-width: 52ch; margin-bottom: 20px; }
 .pl-hero__meta {

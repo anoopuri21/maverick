@@ -112,9 +112,21 @@ class ProgramController extends Controller
             abort(404);
         }
 
+        $programCategories = ProgramCategory::where('is_active', true)
+            ->orderBy('sort_order')
+            ->orderBy('name')
+            ->get(['id', 'name', 'slug']);
+
+        $allPrograms = Program::where('is_active', true)
+            ->hasPublicSlug()
+            ->orderBy('title')
+            ->get(['id', 'title', 'slug', 'program_category_id']);
+
         return view('pages.programs.detail', [
             'program' => $program,
             'chrome' => safe_settings(ProgramsDetailChromeSettings::class),
+            'programCategories' => $programCategories,
+            'allPrograms' => $allPrograms,
         ]);
     }
 
@@ -135,13 +147,24 @@ class ProgramController extends Controller
             $qualification = $qualifications[$qualification];
         }
 
+        $preferredProgram = '';
+        if (filled($data['preferred_program'] ?? null)) {
+            $preferredProgram = Program::where('id', $data['preferred_program'])->value('title') ?? '';
+        }
+
+        $programCategory = '';
+        if (filled($data['program_category'] ?? null)) {
+            $programCategory = ProgramCategory::where('id', $data['program_category'])->value('name') ?? '';
+        }
+
         $formMailer->send([
             'Programme' => $data['programme'] ?? '',
+            'Preferred Program' => $preferredProgram,
+            'Program Category' => $programCategory,
             'Name' => $data['name'] ?? '',
             'Email' => $data['email'] ?? '',
             'Phone' => $data['phone'] ?? '',
             'Country' => $data['country'] ?? '',
-            'Study mode' => $data['study_mode'] ?? '',
             'Qualification' => $qualification,
             'Message' => $data['message'] ?? '',
         ], 'Programme enquiry'.(filled($data['programme'] ?? null) ? ': '.$data['programme'] : ''), [
@@ -150,6 +173,8 @@ class ProgramController extends Controller
 
         app(ZapierWebhookDispatcher::class)->dispatch(ZapierEvents::PROGRAM_ENQUIRY_SUBMITTED, array_merge($data, [
             'qualification' => $qualification,
+            'preferred_program' => $preferredProgram,
+            'program_category' => $programCategory,
         ]));
 
         return redirect()->route('thank-you', ['return' => url()->previous()]);

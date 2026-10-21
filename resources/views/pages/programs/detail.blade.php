@@ -577,8 +577,23 @@
                     <div class="fld"><label for="pd-phone">Phone *</label><input id="pd-phone" name="phone" type="tel" required></div>
                     <div class="fld"><label for="pd-country">Country</label><input id="pd-country" name="country" type="text"></div>
                 </div>
-                <div class="fld"><label for="pd-study-mode">Preferred Study Mode</label>
-                    <select id="pd-study-mode" name="study_mode"><option value="">Select study mode</option><option>Online</option><option>Hybrid</option><option>Part-time</option></select>
+                <div class="f-row">
+                    <div class="fld"><label for="pd-preferred-program">Preferred Program</label>
+                        <select id="pd-preferred-program" name="preferred_program">
+                            <option value="">Select program</option>
+                            @foreach($allPrograms as $prog)
+                                <option value="{{ $prog->id }}">{{ e($prog->title) }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="fld"><label for="pd-program-category">Program Category</label>
+                        <select id="pd-program-category" name="program_category">
+                            <option value="">Select category</option>
+                            @foreach($programCategories as $cat)
+                                <option value="{{ $cat->id }}">{{ e($cat->name) }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
                 <div class="fld"><label for="pd-qualification">Highest Qualification</label>
                     <select id="pd-qualification" name="qualification"><option value="">Select qualification</option><option value="high-school">High School / Secondary</option><option value="diploma">Diploma</option><option value="bachelor">Bachelor's Degree</option><option value="master">Master's Degree</option><option value="other">Other</option></select>

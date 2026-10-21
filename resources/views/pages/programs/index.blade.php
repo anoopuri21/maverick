@@ -29,7 +29,7 @@
 @endphp
 <div class="page-pl">
 
-    <section class="cinematic-hero cinematic-hero--short pl-hero" aria-label="Programmes" data-testid="pl-hero">
+    <section class="cinematic-hero pl-hero" aria-label="Programmes" data-testid="pl-hero">
         <div class="cinematic-hero__bg" aria-hidden="true">
             <div class="cinematic-hero__bg-image" @style(['background-image: url(' . ($programsListingPage->hero_background_image ?? cached_asset('assets/images/homepage/mba.jpg')) . ')'])></div>
             <div class="cinematic-hero__gradient"></div>
