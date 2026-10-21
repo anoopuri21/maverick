@@ -29,7 +29,7 @@
 @endphp
 <div class="page-pl">
 
-    <section class="cinematic-hero cinematic-hero--short pl-hero" aria-label="Programmes" data-testid="pl-hero">
+    <section class="cinematic-hero pl-hero" aria-label="Programmes" data-testid="pl-hero">
         <div class="cinematic-hero__bg" aria-hidden="true">
             <div class="cinematic-hero__bg-image" @style(['background-image: url(' . ($programsListingPage->hero_background_image ?? cached_asset('assets/images/homepage/mba.jpg')) . ')'])></div>
             <div class="cinematic-hero__gradient"></div>
@@ -50,13 +50,16 @@
             </span>
             <h1 class="cinematic-hero__title">{{ $programsListingPage->hero_heading ?? 'Explore Your' }} <em>{{ $programsListingPage->hero_heading_italic ?? 'Programme' }}</em></h1>
             <div class="cinematic-hero__description">{!! html_filled($programsListingPage->hero_description ?? null) ? rich_html($programsListingPage->hero_description ?? null) : 'Globally recognised qualifications designed to move your career forward.' !!}</div>
-            <div class="pl-hero__meta">
-                <span class="pl-hero__meta-item">{{ $programs->count() }} programmes</span>
-                <span class="pl-hero__meta-rule"></span>
-                <span class="pl-hero__meta-item">{{ $categories->count() }} categories</span>
-            </div>
-            <div class="pl-hero__ctas">
-                <a href="#programmes" class="btn btn--outline">{{ $programsListingPage->cta_label ?? 'Browse Programmes' }}</a>
+
+            <div class="pl-hero__bottom">
+                <div class="pl-hero__meta">
+                    <span class="pl-hero__meta-item">{{ $programs->count() }} programmes</span>
+                    <span class="pl-hero__meta-rule"></span>
+                    <span class="pl-hero__meta-item">{{ $categories->count() }} categories</span>
+                </div>
+                <div class="pl-hero__ctas">
+                    <a href="#programmes" class="btn btn--outline">{{ $programsListingPage->cta_label ?? 'Browse Programmes' }}</a>
+                </div>
             </div>
         </div>
     </section>
