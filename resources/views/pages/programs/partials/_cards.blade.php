@@ -3,7 +3,7 @@
     $activeCategory = $activeCategory ?? request()->query('category', 'all');
 @endphp
 
-<div class="pl-grid" data-pl-grid @isset($nextPage) data-next-page="{{ $nextPage }}" @isset($lastPage) data-last-page="{{ $lastPage }}" @endif>
+<div class="pl-grid" data-pl-grid @isset($nextPage) data-next-page="{{ $nextPage }}" @endif @isset($lastPage) data-last-page="{{ $lastPage }}" @endif>
     @forelse($programs as $program)
         @php
             $catSlug = $program->programCategory?->slug ?? 'all';
