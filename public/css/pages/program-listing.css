@@ -39,7 +39,7 @@
 
 .pl-hero .cinematic-hero__description {
     max-width: none;
-    margin-bottom: 0;
+    margin: 0 0 48px;
     text-align: left;
 }
 

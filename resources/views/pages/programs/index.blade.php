@@ -60,7 +60,7 @@
                     <span class="pl-hero__meta-item">{{ $categories->count() }} categories</span>
                 </div>
                 <div class="pl-hero__ctas">
-                    <a href="#programmes" class="btn btn--outline">{{ $programsListingPage->cta_label ?? 'Browse Programmes' }}</a>
+                    <a href="#programmes" class="btn btn--primary">{{ $programsListingPage->cta_label ?? 'Browse Programmes' }}</a>
                 </div>
             </div>
         </div>
