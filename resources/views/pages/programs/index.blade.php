@@ -95,9 +95,7 @@
 
         {{-- Pagination: desktop only --}}
         @if($programs->hasPages())
-            <nav class="pl-pagination pl-pagination--desktop" aria-label="Programme pagination">
-                {{ $programs->links() }}
-            </nav>
+            @include('pagination.programs', ['paginator' => $programs])
         @endif
     </section>
 

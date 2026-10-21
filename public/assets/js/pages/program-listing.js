@@ -17,6 +17,32 @@
   if (!gridEl) return;
 
   // ---------------------------------------------------------------
+  // Reveal-on-scroll observer for cards (runs on ALL devices)
+  // ---------------------------------------------------------------
+  const prefersReduced =
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const cardIo = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-revealed");
+          cardIo.unobserve(entry.target);
+        }
+      });
+    },
+    { rootMargin: "0px 0px -10% 0px", threshold: 0.05 }
+  );
+
+  // Observe existing cards
+  const existingCards = Array.from(gridEl.querySelectorAll(".pl-card"));
+  existingCards.forEach((card) => cardIo.observe(card));
+
+  // Fail-open: reveal all cards after 3s
+  window.setTimeout(() => {
+    existingCards.forEach((card) => card.classList.add("is-revealed"));
+  }, 3000);
+
+  // ---------------------------------------------------------------
   // Desktop pagination: nothing to do — server-rendered links work.
   // ---------------------------------------------------------------
 
@@ -116,30 +142,6 @@
       setLoading(false);
     }
   };
-
-  // Reveal-on-scroll observer for cards (same as desktop)
-  const prefersReduced =
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const cardIo = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-revealed");
-          cardIo.unobserve(entry.target);
-        }
-      });
-    },
-    { rootMargin: "0px 0px -10% 0px", threshold: 0.05 }
-  );
-
-  // Observe existing cards
-  const existingCards = Array.from(gridEl.querySelectorAll(".pl-card"));
-  existingCards.forEach((card) => cardIo.observe(card));
-
-  // Fail-open: reveal all cards after 3s
-  window.setTimeout(() => {
-    existingCards.forEach((card) => card.classList.add("is-revealed"));
-  }, 3000);
 
   // Sentinel observer — triggers loadNextPage when scrolled into view
   const sentinelIo = new IntersectionObserver(
