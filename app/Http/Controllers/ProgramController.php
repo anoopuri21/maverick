@@ -113,35 +113,29 @@ class ProgramController extends Controller
         $queryParams = request()->query();
         unset($queryParams['page']);
 
+        $perPage = 12;
+        $totalCount = $allPrograms->count();
+        $lastPage = (int) ceil($totalCount / $perPage);
+        $hasMorePages = $currentPage < $lastPage;
+        $nextPage = $hasMorePages ? $currentPage + 1 : null;
+        $currentPageNum = $currentPage;
+
+        // Get items for current page using Collection::forPage (no paginator needed)
+        $items = $allPrograms->forPage($currentPage, $perPage)->values();
+
+        // Create LengthAwarePaginator ONLY for the view's links() method.
+        // NEVER call any method on this object after construction — all
+        // pagination metadata is computed above using simple PHP math.
         $paginatedPrograms = new LengthAwarePaginator(
-            $allPrograms->forPage($currentPage, 12)->values(),
-            $allPrograms->count(),
-            12,
+            $items,
+            $totalCount,
+            $perPage,
             $currentPage,
             [
                 'path' => request()->url(),
                 'query' => $queryParams,
             ]
         );
-
-        // Compute ALL pagination metadata upfront into simple variables.
-        // Never call paginator methods on $paginatedPrograms after this point
-        // to avoid BadMethodCallException if the type ever changes.
-        $nextPage = null;
-        $lastPage = null;
-        $currentPageNum = 1;
-        $hasMorePages = false;
-        $totalCount = $allPrograms->count();
-        $items = $allPrograms->forPage($currentPage, 12)->values();
-
-        if ($paginatedPrograms instanceof LengthAwarePaginator) {
-            $nextPage = $paginatedPrograms->nextPage();
-            $lastPage = $paginatedPrograms->lastPage();
-            $currentPageNum = $paginatedPrograms->currentPage();
-            $hasMorePages = $paginatedPrograms->hasMorePages();
-            $totalCount = $paginatedPrograms->total();
-            $items = $paginatedPrograms->items();
-        }
 
         // AJAX infinite scroll: return JSON with cards HTML + pagination metadata
         if (request()->ajax() || request()->wantsJson()) {
@@ -166,7 +160,7 @@ class ProgramController extends Controller
         return view('pages.programs.index', [
             'programsListingPage' => safe_settings(ProgramsListingPageSettings::class),
             'categories' => $categories,
-            'programs' => $items,
+            'programs' => $paginatedPrograms,
             'paginationNextPage' => $nextPage,
             'paginationLastPage' => $lastPage,
             'totalProgramCount' => $totalCount,
