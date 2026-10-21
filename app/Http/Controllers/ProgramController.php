@@ -124,51 +124,52 @@ class ProgramController extends Controller
             ]
         );
 
+        // Compute ALL pagination metadata upfront into simple variables.
+        // Never call paginator methods on $paginatedPrograms after this point
+        // to avoid BadMethodCallException if the type ever changes.
+        $nextPage = null;
+        $lastPage = null;
+        $currentPageNum = 1;
+        $hasMorePages = false;
+        $totalCount = $allPrograms->count();
+        $items = $allPrograms->forPage($currentPage, 12)->values();
+
+        if ($paginatedPrograms instanceof LengthAwarePaginator) {
+            $nextPage = $paginatedPrograms->nextPage();
+            $lastPage = $paginatedPrograms->lastPage();
+            $currentPageNum = $paginatedPrograms->currentPage();
+            $hasMorePages = $paginatedPrograms->hasMorePages();
+            $totalCount = $paginatedPrograms->total();
+            $items = $paginatedPrograms->items();
+        }
+
         // AJAX infinite scroll: return JSON with cards HTML + pagination metadata
         if (request()->ajax() || request()->wantsJson()) {
             $cardsHtml = view('pages.programs.partials._cards', [
-                'programs' => $paginatedPrograms->items(),
+                'programs' => $items,
                 'programsListingPage' => safe_settings(ProgramsListingPageSettings::class),
                 'activeCategory' => $activeCategory,
-                'nextPage' => $paginatedPrograms instanceof LengthAwarePaginator
-                    ? $paginatedPrograms->nextPage()
-                    : null,
-                'lastPage' => $paginatedPrograms instanceof LengthAwarePaginator
-                    ? $paginatedPrograms->lastPage()
-                    : null,
+                'nextPage' => $nextPage,
+                'lastPage' => $lastPage,
             ])->render();
 
             return response()->json([
                 'html' => $cardsHtml,
-                'currentPage' => $paginatedPrograms instanceof LengthAwarePaginator
-                    ? $paginatedPrograms->currentPage()
-                    : 1,
-                'lastPage' => $paginatedPrograms instanceof LengthAwarePaginator
-                    ? $paginatedPrograms->lastPage()
-                    : 1,
-                'nextPage' => $paginatedPrograms instanceof LengthAwarePaginator
-                    ? $paginatedPrograms->nextPage()
-                    : null,
-                'hasMorePages' => $paginatedPrograms instanceof LengthAwarePaginator
-                    ? $paginatedPrograms->hasMorePages()
-                    : false,
-                'total' => $paginatedPrograms instanceof LengthAwarePaginator
-                    ? $paginatedPrograms->total()
-                    : $allPrograms->count(),
+                'currentPage' => $currentPageNum,
+                'lastPage' => $lastPage,
+                'nextPage' => $nextPage,
+                'hasMorePages' => $hasMorePages,
+                'total' => $totalCount,
             ]);
         }
 
         return view('pages.programs.index', [
             'programsListingPage' => safe_settings(ProgramsListingPageSettings::class),
             'categories' => $categories,
-            'programs' => $paginatedPrograms,
-            'paginationNextPage' => $paginatedPrograms instanceof LengthAwarePaginator
-                ? $paginatedPrograms->nextPage()
-                : null,
-            'paginationLastPage' => $paginatedPrograms instanceof LengthAwarePaginator
-                ? $paginatedPrograms->lastPage()
-                : null,
-            'totalProgramCount' => $totalProgramCount,
+            'programs' => $items,
+            'paginationNextPage' => $nextPage,
+            'paginationLastPage' => $lastPage,
+            'totalProgramCount' => $totalCount,
             'programsListingSeo' => safe_settings(ProgramsListingSeoSettings::class),
         ]);
     }
