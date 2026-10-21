@@ -76,43 +76,26 @@
             </div>
         @endif
 
-        <div class="pl-grid" data-pl-grid>
-            @forelse($programs as $program)
-                @php
-                    $catSlug = $program->programCategory?->slug ?? 'all';
-                    $cardHidden = $activeCategory !== 'all' && $catSlug !== $activeCategory;
-                @endphp
-                <a href="{{ filled($program->slug) ? route('programs.show', $program->slug) : '#' }}" class="pl-card{{ $cardHidden ? ' is-hidden' : '' }}" data-category="{{ $catSlug }}" @if($cardHidden) hidden @endif @if(! filled($program->slug)) role="group" @endif>
-                    @if($url = media_url($program->image_url ?? null))
-                        <div class="pl-card__media">
-                            <img src="{{ $url }}" alt="{{ $program->title }}" loading="lazy" decoding="async" width="800" height="540">
-                        </div>
-                    @else
-                        <div class="pl-card__media pl-card__media--empty" aria-hidden="true"></div>
-                    @endif
-                    <div class="pl-card__body">
-                        @if($program->programCategory)<span class="pl-card__cat">{{ $program->programCategory->name }}</span>@endif
-                        @if($program->universityPartner)<span class="pl-card__uni">{{ $program->universityPartner->name }}</span>@endif
-                        <h2 class="pl-card__title">{{ $program->title }}</h2>
-                        @if($program->duration || $program->level)
-                            <span class="pl-card__meta">
-                                @if($program->duration){{ $program->duration }}@endif
-                                @if($program->duration && $program->level)<span class="pl-card__meta-rule">·</span>@endif
-                                @if($program->level){{ $program->level }}@endif
-                            </span>
-                        @endif
-                        @if($program->short_description)<p class="pl-card__desc">{{ $program->short_description }}</p>@endif
-                        <span class="pl-card__link">{{ $programsListingPage->card_cta_label ?? 'View Programme' }} <span aria-hidden="true">→</span></span>
-                    </div>
-                </a>
-            @empty
-                <p class="pl-empty">{{ $programsListingPage->empty_message ?? 'Programmes coming soon.' }}</p>
-            @endforelse
+        {{-- Program cards partial (server-rendered for page 1) --}}
+        @include('pages.programs.partials._cards', [
+            'programs' => $programs,
+            'programsListingPage' => $programsListingPage,
+            'activeCategory' => $activeCategory,
+            'nextPage' => $programs->nextPage(),
+            'lastPage' => $programs->lastPage(),
+        ])
+
+        {{-- Mobile infinite scroll sentinel + loading --}}
+        <div class="pl-scroll-sentinel" data-pl-sentinel></div>
+
+        <div class="pl-load-more" data-pl-load-more>
+            <div class="pl-spinner"></div>
+            <span class="pl-load-text">Loading more programmes...</span>
         </div>
 
-        {{-- Pagination --}}
+        {{-- Pagination: desktop only --}}
         @if($programs->hasPages())
-            <nav class="pl-pagination" aria-label="Programme pagination">
+            <nav class="pl-pagination pl-pagination--desktop" aria-label="Programme pagination">
                 {{ $programs->links() }}
             </nav>
         @endif

@@ -199,60 +199,132 @@
 }
 
 /* =========================================================
-   PAGINATION
+   PAGINATION — Desktop claymorphism style
    ========================================================= */
 .pl-pagination {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 8px;
-  margin: 40px 0 0;
-  padding-top: 24px;
+  gap: 10px;
+  margin: 48px 0 0;
+  padding-top: 32px;
   border-top: 1px solid var(--pl-line);
+}
+
+/* Hide pagination on mobile — infinite scroll handles it */
+@media (max-width: 1024px) {
+  .pl-pagination--desktop {
+    display: none !important;
+  }
 }
 
 .pl-pagination .pagination {
   display: flex;
-  gap: 6px;
+  gap: 10px;
   list-style: none;
   margin: 0;
   padding: 0;
+  align-items: center;
+}
+
+.pl-pagination .pagination li {
+  margin: 0;
 }
 
 .pl-pagination .pagination li a,
 .pl-pagination .pagination li span {
-  display: block;
-  width: 36px;
-  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--pl-line);
-  border-radius: 4px;
-  background: #fff;
-  color: var(--pl-navy);
-  font-size: 13px;
-  font-weight: 600;
+  min-width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 14px;
+  background: var(--pl-warm);
+  color: var(--pl-ink);
+  font-size: 14px;
+  font-weight: 700;
   text-decoration: none;
-  transition: all 0.2s ease;
+  box-shadow:
+    6px 6px 14px rgba(28, 35, 51, 0.08),
+    -6px -6px 14px rgba(255, 255, 255, 0.9);
+  transition: all 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+  cursor: pointer;
 }
 
 .pl-pagination .pagination li a:hover {
-  border-color: var(--pl-red);
-  color: var(--pl-red);
-  background: #fff;
+  box-shadow:
+    4px 4px 10px rgba(28, 35, 51, 0.12),
+    -4px -4px 10px rgba(255, 255, 255, 1);
+  transform: translateY(-2px);
 }
 
-.pl-pagination .pagination li.active a,
-.pl-pagination .pagination li.disabled span {
+.pl-pagination .pagination li a:active,
+.pl-pagination .pagination li.active a {
+  box-shadow: inset 4px 4px 8px rgba(28, 35, 51, 0.12),
+    inset -4px -4px 8px rgba(255, 255, 255, 0.9);
+  transform: translateY(0);
+}
+
+.pl-pagination .pagination li.active a {
   background: var(--pl-navy);
-  border-color: var(--pl-navy);
   color: #fff;
 }
 
-.pl-pagination .pagination li.disabled span {
-  opacity: 0.5;
+.pl-pagination .pagination li.disabled span,
+.pl-pagination .pagination li.disabled a {
+  opacity: 0.4;
   cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+/* =========================================================
+   Mobile infinite scroll — sentinel + loading
+   ========================================================= */
+.pl-scroll-sentinel {
+  height: 80px;
+  display: none; /* hidden on desktop */
+}
+
+.pl-load-more {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 40px 0;
+  opacity: 0.7;
+}
+
+.pl-load-more.is-loading {
+  display: flex;
+}
+
+.pl-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--pl-line);
+  border-top-color: var(--pl-red);
+  border-radius: 50%;
+  animation: pl-spin 0.8s linear infinite;
+}
+
+.pl-load-text {
+  font-size: 14px;
+  color: var(--pl-muted);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+@keyframes pl-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Show sentinel + loading on mobile only */
+@media (max-width: 1024px) {
+  .pl-scroll-sentinel {
+    display: block;
+  }
 }
 
 @media (max-width: 640px) {

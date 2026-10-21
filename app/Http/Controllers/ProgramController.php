@@ -113,7 +113,7 @@ class ProgramController extends Controller
         $queryParams = request()->query();
         unset($queryParams['page']);
 
-        $programs = new LengthAwarePaginator(
+        $paginatedPrograms = new LengthAwarePaginator(
             $allPrograms->forPage($currentPage, 12)->values(),
             $allPrograms->count(),
             12,
@@ -124,10 +124,30 @@ class ProgramController extends Controller
             ]
         );
 
+        // AJAX infinite scroll: return JSON with cards HTML + pagination metadata
+        if (request()->ajax() || request()->wantsJson()) {
+            $cardsHtml = view('pages.programs.partials._cards', [
+                'programs' => $paginatedPrograms->items(),
+                'programsListingPage' => safe_settings(ProgramsListingPageSettings::class),
+                'activeCategory' => $activeCategory,
+                'nextPage' => $paginatedPrograms->nextPage(),
+                'lastPage' => $paginatedPrograms->lastPage(),
+            ])->render();
+
+            return response()->json([
+                'html' => $cardsHtml,
+                'currentPage' => $paginatedPrograms->currentPage(),
+                'lastPage' => $paginatedPrograms->lastPage(),
+                'nextPage' => $paginatedPrograms->nextPage(),
+                'hasMorePages' => $paginatedPrograms->hasMorePages(),
+                'total' => $paginatedPrograms->total(),
+            ]);
+        }
+
         return view('pages.programs.index', [
             'programsListingPage' => safe_settings(ProgramsListingPageSettings::class),
             'categories' => $categories,
-            'programs' => $programs,
+            'programs' => $paginatedPrograms,
             'totalProgramCount' => $totalProgramCount,
             'programsListingSeo' => safe_settings(ProgramsListingSeoSettings::class),
         ]);
