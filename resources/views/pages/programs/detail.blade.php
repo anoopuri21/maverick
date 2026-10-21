@@ -577,7 +577,7 @@
                     <div class="fld"><label for="pd-phone">Phone *</label><input id="pd-phone" name="phone" type="tel" required></div>
                     <div class="fld"><label for="pd-country">Country</label><input id="pd-country" name="country" type="text"></div>
                 </div>
-                <div class="f-row">
+                <div class="f-row f-row--full">
                     <div class="fld"><label for="pd-preferred-program">Preferred Program</label>
                         <select id="pd-preferred-program" name="preferred_program">
                             <option value="">Select program</option>
