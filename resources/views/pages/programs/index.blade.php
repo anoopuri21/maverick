@@ -14,13 +14,15 @@
 @endif
 
 @push('styles')
-    <link rel="stylesheet" href="{{ cached_asset('assets/css/components/cinematic-hero.css') }}">
-    <link rel="stylesheet" href="{{ cached_asset('css/pages/program-listing.css') }}">
+    <link rel="preload" href="{{ cached_asset('assets/css/components/cinematic-hero.css') }}" as="style" onload="this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="{{ cached_asset('assets/css/components/cinematic-hero.css') }}"></noscript>
+    <link rel="preload" href="{{ cached_asset('css/pages/program-listing.css') }}" as="style" onload="this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="{{ cached_asset('css/pages/program-listing.css') }}"></noscript>
 @endpush
 
 @section('content')
 @php
-    $programs = collect($programs ?? []);
+    $programs = $programs ?? collect();
     $categories = collect($categories ?? []);
     $requestedCategory = request()->query('category');
     $activeCategory = ($requestedCategory && $categories->contains(fn ($cat) => ($cat->slug ?? null) === $requestedCategory))
@@ -53,7 +55,7 @@
 
             <div class="pl-hero__bottom">
                 <div class="pl-hero__meta">
-                    <span class="pl-hero__meta-item">{{ $programs->count() }} programmes</span>
+                    <span class="pl-hero__meta-item">{{ $programs->total() }} programmes</span>
                     <span class="pl-hero__meta-rule"></span>
                     <span class="pl-hero__meta-item">{{ $categories->count() }} categories</span>
                 </div>
@@ -67,7 +69,7 @@
     <section id="programmes" class="pl-list" aria-label="Programme list">
         @if($categories->count())
             <div class="pl-filter" role="group" aria-label="Filter programmes" data-pl-filter>
-                <button type="button" class="pl-filter__btn {{ $activeCategory === 'all' ? 'is-active' : '' }}" data-filter="all" aria-pressed="{{ $activeCategory === 'all' ? 'true' : 'false' }}">All ({{ $programs->count() }})</button>
+                <button type="button" class="pl-filter__btn {{ $activeCategory === 'all' ? 'is-active' : '' }}" data-filter="all" aria-pressed="{{ $activeCategory === 'all' ? 'true' : 'false' }}">All ({{ $totalProgramCount }})</button>
                 @foreach($categories as $cat)
                     <button type="button" class="pl-filter__btn {{ $activeCategory === $cat->slug ? 'is-active' : '' }}" data-filter="{{ $cat->slug }}" aria-pressed="{{ $activeCategory === $cat->slug ? 'true' : 'false' }}">{{ $cat->name }} ({{ $cat->programs_count }})</button>
                 @endforeach
@@ -83,7 +85,7 @@
                 <a href="{{ filled($program->slug) ? route('programs.show', $program->slug) : '#' }}" class="pl-card{{ $cardHidden ? ' is-hidden' : '' }}" data-category="{{ $catSlug }}" @if($cardHidden) hidden @endif @if(! filled($program->slug)) role="group" @endif>
                     @if($url = media_url($program->image_url ?? null))
                         <div class="pl-card__media">
-                            <img src="{{ $url }}" alt="{{ $program->title }}" loading="lazy" width="800" height="540">
+                            <img src="{{ $url }}" alt="{{ $program->title }}" loading="lazy" decoding="async" width="800" height="540">
                         </div>
                     @else
                         <div class="pl-card__media pl-card__media--empty" aria-hidden="true"></div>
@@ -107,6 +109,13 @@
                 <p class="pl-empty">{{ $programsListingPage->empty_message ?? 'Programmes coming soon.' }}</p>
             @endforelse
         </div>
+
+        {{-- Pagination --}}
+        @if($programs->hasPages())
+            <nav class="pl-pagination" aria-label="Programme pagination">
+                {{ $programs->links() }}
+            </nav>
+        @endif
     </section>
 
 </div>

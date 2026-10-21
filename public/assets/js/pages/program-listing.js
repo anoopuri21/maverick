@@ -1,9 +1,9 @@
 /**
- * Programme listing — category filter + entrance.
- * - Sticky filter buttons persist the active category in the URL (?category=slug)
- *   via history.replaceState so the state survives refresh.
- * - Cards are filtered by data-category; a visible empty state appears when none match.
- * - Entrance uses the same [data-reveal] pattern as the detail page (3s fail-open).
+ * Programme listing — category filter + pagination + entrance.
+ * - Category filter buttons navigate to ?category=slug (full page reload)
+ *   so server-side pagination and filtering stay in sync.
+ * - Pagination links preserve the category query string.
+ * - Cards use reveal-on-scroll (no GSAP dependency, reduced-motion safe).
  */
 
 (function () {
@@ -29,7 +29,7 @@
           }
         });
       },
-      { rootMargin: "0px 0px -10% 0px", threshold: 0.05 },
+      { rootMargin: "0px 0px -10% 0px", threshold: 0.05 }
     );
     cards.forEach((card) => io.observe(card));
   }
@@ -38,48 +38,22 @@
     cards.forEach((card) => card.classList.add("is-revealed"));
   }, 3000);
 
-  function apply(category) {
-    let visible = 0;
-    cards.forEach((card) => {
-      const match =
-        category === "all" || card.getAttribute("data-category") === category;
-      card.hidden = !match;
-      card.classList.toggle("is-hidden", !match);
-      if (match) visible++;
-    });
-
-    buttons.forEach((btn) => {
-      const active = btn.getAttribute("data-filter") === category;
-      btn.classList.toggle("is-active", active);
-      btn.setAttribute("aria-pressed", active ? "true" : "false");
-    });
-
-    // Empty state
-    let empty = gridEl.querySelector(".pl-empty--filter");
-    if (visible === 0 && !empty) {
-      empty = document.createElement("p");
-      empty.className = "pl-empty pl-empty--filter";
-      empty.textContent = "No programmes in this category yet.";
-      gridEl.appendChild(empty);
-    } else if (visible > 0 && empty) {
-      empty.remove();
-    }
-  }
-
-  // Read initial filter from URL (default: all).
-  const params = new URLSearchParams(window.location.search);
-  const initial = params.get("category");
-  const valid = initial && buttons.some((b) => b.getAttribute("data-filter") === initial);
-  apply(valid ? initial : "all");
-
+  // Category filter: navigate server-side so pagination + filter stay in sync.
   buttons.forEach((btn) => {
+    const active = btn.getAttribute("aria-pressed") === "true";
+    btn.classList.toggle("is-active", active);
+
     btn.addEventListener("click", () => {
       const category = btn.getAttribute("data-filter");
-      apply(category);
       const url = new URL(window.location.href);
-      if (category === "all") url.searchParams.delete("category");
-      else url.searchParams.set("category", category);
-      history.replaceState({}, "", url);
+      if (category === "all") {
+        url.searchParams.delete("category");
+      } else {
+        url.searchParams.set("category", category);
+      }
+      // Reset to page 1 when changing category
+      url.searchParams.delete("page");
+      window.location.href = url.toString();
     });
   });
 })();

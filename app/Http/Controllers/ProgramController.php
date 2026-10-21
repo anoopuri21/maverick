@@ -82,13 +82,46 @@ class ProgramController extends Controller
             ];
         });
 
+        $categories = PublicContentCache::hydrateRows(ProgramCategory::class, $listing['categories'] ?? []);
+
+        $allPrograms = PublicContentCache::hydrateRows(Program::class, $listing['programs'] ?? [], [
+            'program_category' => ProgramCategory::class,
+            'university_partner' => \App\Models\UniversityPartner::class,
+        ]);
+
+        $totalProgramCount = $allPrograms->count();
+
+        // Filter by category if requested (server-side so pagination + filter stay in sync)
+        $requestedCategory = request()->query('category');
+        $activeCategory = 'all';
+
+        if ($requestedCategory && $categories->contains(fn ($cat) => $cat->slug === $requestedCategory)) {
+            $activeCategory = $requestedCategory;
+            $allPrograms = $allPrograms->filter(fn ($p) => $p->programCategory?->slug === $requestedCategory)->values();
+        }
+
+        // Paginate: 12 programs per page
+        $currentPage = (int) request()->input('page', 1);
+        if ($currentPage < 1) {
+            $currentPage = 1;
+        }
+
+        $programs = \Illuminate\Pagination\LengthAwarePaginator::make(
+            $allPrograms->forPage($currentPage, 12)->values(),
+            $allPrograms->count(),
+            12,
+            $currentPage,
+            [
+                'path' => request()->url(),
+                'query' => request()->query()->except('page'),
+            ]
+        );
+
         return view('pages.programs.index', [
             'programsListingPage' => safe_settings(ProgramsListingPageSettings::class),
-            'categories' => PublicContentCache::hydrateRows(ProgramCategory::class, $listing['categories'] ?? []),
-            'programs' => PublicContentCache::hydrateRows(Program::class, $listing['programs'] ?? [], [
-                'program_category' => ProgramCategory::class,
-                'university_partner' => \App\Models\UniversityPartner::class,
-            ]),
+            'categories' => $categories,
+            'programs' => $programs,
+            'totalProgramCount' => $totalProgramCount,
             'programsListingSeo' => safe_settings(ProgramsListingSeoSettings::class),
         ]);
     }
