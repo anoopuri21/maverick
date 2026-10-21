@@ -1,9 +1,9 @@
 /**
- * Programme listing — category filter + entrance.
- * - Sticky filter buttons persist the active category in the URL (?category=slug)
- *   via history.replaceState so the state survives refresh.
- * - Cards are filtered by data-category; a visible empty state appears when none match.
- * - Entrance uses the same [data-reveal] pattern as the detail page (3s fail-open).
+ * Programme listing — category filter + pagination + infinite scroll.
+ *
+ * Desktop: Server-side pagination links (claymorphism style).
+ * Mobile:   Infinite scroll — auto-loads next 12 programs when the user
+ *           scrolls to the bottom sentinel. No URL change (AJAX only).
  */
 
 (function () {
@@ -11,75 +11,170 @@
 
   const filterEl = document.querySelector("[data-pl-filter]");
   const gridEl = document.querySelector("[data-pl-grid]");
-  if (!filterEl || !gridEl) return;
+  const sentinelEl = document.querySelector("[data-pl-sentinel]");
+  const loadMoreEl = document.querySelector("[data-pl-load-more]");
 
-  const buttons = Array.from(filterEl.querySelectorAll(".pl-filter__btn"));
-  const cards = Array.from(gridEl.querySelectorAll(".pl-card"));
+  if (!gridEl) return;
 
-  // Optional reveal-on-scroll (no GSAP dependency, reduced-motion safe).
+  // ---------------------------------------------------------------
+  // Reveal-on-scroll observer for cards (runs on ALL devices)
+  // ---------------------------------------------------------------
   const prefersReduced =
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (!prefersReduced && "IntersectionObserver" in window) {
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-revealed");
-            io.unobserve(entry.target);
-          }
-        });
-      },
-      { rootMargin: "0px 0px -10% 0px", threshold: 0.05 },
-    );
-    cards.forEach((card) => io.observe(card));
-  }
-  // Fail-open: never hide cards if something goes wrong.
+  const cardIo = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-revealed");
+          cardIo.unobserve(entry.target);
+        }
+      });
+    },
+    { rootMargin: "0px 0px -10% 0px", threshold: 0.05 }
+  );
+
+  // Observe existing cards
+  const existingCards = Array.from(gridEl.querySelectorAll(".pl-card"));
+  existingCards.forEach((card) => cardIo.observe(card));
+
+  // Fail-open: reveal all cards after 3s
   window.setTimeout(() => {
-    cards.forEach((card) => card.classList.add("is-revealed"));
+    existingCards.forEach((card) => card.classList.add("is-revealed"));
   }, 3000);
 
-  function apply(category) {
-    let visible = 0;
-    cards.forEach((card) => {
-      const match =
-        category === "all" || card.getAttribute("data-category") === category;
-      card.hidden = !match;
-      card.classList.toggle("is-hidden", !match);
-      if (match) visible++;
-    });
+  // ---------------------------------------------------------------
+  // Desktop pagination: nothing to do — server-rendered links work.
+  // ---------------------------------------------------------------
+
+  // ---------------------------------------------------------------
+  // Mobile infinite scroll
+  // ---------------------------------------------------------------
+  const isMobile = window.matchMedia("(max-width: 1024px)").matches;
+
+  if (!isMobile || !sentinelEl || !loadMoreEl) return;
+
+  const isLoading = () => loadMoreEl.classList.contains("is-loading");
+
+  const setLoading = (loading) => {
+    if (loading) {
+      loadMoreEl.classList.add("is-loading");
+    } else {
+      loadMoreEl.classList.remove("is-loading");
+    }
+  };
+
+  const getNextPage = () => {
+    const next = sentinelEl.getAttribute("data-next-page");
+    return next ? parseInt(next, 10) : null;
+  };
+
+  const getLastPage = () => {
+    const last = sentinelEl.getAttribute("data-last-page");
+    return last ? parseInt(last, 10) : null;
+  };
+
+  const getCategory = () => {
+    const params = new URLSearchParams(window.location.search);
+    return params.get("category") || "all";
+  };
+
+  const appendCards = (html) => {
+    // Insert before sentinel so sentinel stays at the very bottom
+    const wrapper = document.createElement("div");
+    wrapper.innerHTML = html.trim();
+    const cards = Array.from(wrapper.querySelectorAll(".pl-card"));
+    sentinelEl.before(...cards);
+
+    // Re-observe new cards for reveal animation
+    if (!prefersReduced && "IntersectionObserver" in window) {
+      cards.forEach((card) => cardIo.observe(card));
+    }
+  };
+
+  const loadNextPage = async () => {
+    if (isLoading()) return;
+
+    const currentPage = getNextPage();
+    const lastPage = getLastPage();
+
+    if (!currentPage || !lastPage || currentPage > lastPage) {
+      // No more pages — remove sentinel + loading UI
+      sentinelEl.remove();
+      loadMoreEl.remove();
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const params = new URLSearchParams(window.location.search);
+      params.set("page", currentPage);
+      const category = getCategory();
+      if (category && category !== "all") {
+        params.set("category", category);
+      }
+
+      const response = await fetch(`${window.location.pathname}?${params.toString()}`, {
+        headers: {
+          Accept: "application/json",
+          "X-Requested-With": "XMLHttpRequest",
+        },
+      });
+
+      if (!response.ok) throw new Error("Network response was not ok");
+
+      const data = await response.json();
+
+      if (data.html) {
+        appendCards(data.html);
+
+        // Update sentinel attributes for next load
+        if (data.nextPage) {
+          sentinelEl.setAttribute("data-next-page", data.nextPage);
+        } else {
+          sentinelEl.remove();
+          loadMoreEl.remove();
+        }
+      }
+    } catch (err) {
+      console.error("Infinite scroll error:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Sentinel observer — triggers loadNextPage when scrolled into view
+  const sentinelIo = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          loadNextPage();
+        }
+      });
+    },
+    { rootMargin: "0px 0px 15% 0px", threshold: 0.1 }
+  );
+
+  sentinelIo.observe(sentinelEl);
+
+  // ---------------------------------------------------------------
+  // Category filter: reset infinite scroll state on category change
+  // ---------------------------------------------------------------
+  if (filterEl) {
+    const buttons = Array.from(filterEl.querySelectorAll(".pl-filter__btn"));
 
     buttons.forEach((btn) => {
-      const active = btn.getAttribute("data-filter") === category;
-      btn.classList.toggle("is-active", active);
-      btn.setAttribute("aria-pressed", active ? "true" : "false");
+      btn.addEventListener("click", () => {
+        const category = btn.getAttribute("data-filter");
+        const url = new URL(window.location.href);
+        if (category === "all") {
+          url.searchParams.delete("category");
+        } else {
+          url.searchParams.set("category", category);
+        }
+        url.searchParams.delete("page");
+        window.location.href = url.toString();
+      });
     });
-
-    // Empty state
-    let empty = gridEl.querySelector(".pl-empty--filter");
-    if (visible === 0 && !empty) {
-      empty = document.createElement("p");
-      empty.className = "pl-empty pl-empty--filter";
-      empty.textContent = "No programmes in this category yet.";
-      gridEl.appendChild(empty);
-    } else if (visible > 0 && empty) {
-      empty.remove();
-    }
   }
-
-  // Read initial filter from URL (default: all).
-  const params = new URLSearchParams(window.location.search);
-  const initial = params.get("category");
-  const valid = initial && buttons.some((b) => b.getAttribute("data-filter") === initial);
-  apply(valid ? initial : "all");
-
-  buttons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const category = btn.getAttribute("data-filter");
-      apply(category);
-      const url = new URL(window.location.href);
-      if (category === "all") url.searchParams.delete("category");
-      else url.searchParams.set("category", category);
-      history.replaceState({}, "", url);
-    });
-  });
 })();

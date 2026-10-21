@@ -23,21 +23,40 @@
 /* =========================================================
    LISTING HERO — short cinematic, catalogue-scale
    ========================================================= */
-.pl-hero.cinematic-hero { min-height: min(52vh, 460px); }
+.pl-hero.cinematic-hero { min-height: 100vh; }
 .pl-hero .cinematic-hero__title {
-  font-size: var(--pl-fs-hero);
-  font-weight: 700;
+  font-size: clamp(48px, 8vw, 110px);
+  font-weight: 800;
   max-width: 18ch;
-  line-height: 1.08;
-  letter-spacing: -0.025em;
+  line-height: 1;
+  letter-spacing: -0.03em;
 }
-.pl-hero .cinematic-hero__description { max-width: 52ch; margin-bottom: 20px; }
+.pl-hero .cinematic-hero__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.pl-hero .cinematic-hero__description {
+    max-width: none;
+    margin: 0 0 48px;
+    text-align: left;
+}
+
+.pl-hero__bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: auto;
+    text-align: left;
+}
+
 .pl-hero__meta {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   gap: 12px;
-  margin-bottom: 22px;
+  margin-bottom: 0;
 }
 .pl-hero__meta-item {
   font-size: 11px;
@@ -179,5 +198,140 @@
   outline-offset: 2px;
 }
 
-@media (max-width: 1024px) { .pl-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 640px) { .pl-grid { grid-template-columns: 1fr; } }
+/* =========================================================
+   PAGINATION — Desktop claymorphism style
+   ========================================================= */
+.pl-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 48px 0 0;
+  padding-top: 32px;
+  border-top: 1px solid var(--pl-line);
+}
+
+/* Hide pagination on mobile — infinite scroll handles it */
+@media (max-width: 1024px) {
+  .pl-pagination--desktop {
+    display: none !important;
+  }
+}
+
+.pl-pagination .pagination {
+  display: flex;
+  gap: 10px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+.pl-pagination .pagination li {
+  margin: 0;
+}
+
+.pl-pagination .pagination li a,
+.pl-pagination .pagination li span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 14px;
+  background: var(--pl-warm);
+  color: var(--pl-ink);
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow:
+    6px 6px 14px rgba(28, 35, 51, 0.08),
+    -6px -6px 14px rgba(255, 255, 255, 0.9);
+  transition: all 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+  cursor: pointer;
+}
+
+.pl-pagination .pagination li a:hover {
+  box-shadow:
+    4px 4px 10px rgba(28, 35, 51, 0.12),
+    -4px -4px 10px rgba(255, 255, 255, 1);
+  transform: translateY(-2px);
+}
+
+.pl-pagination .pagination li a:active,
+.pl-pagination .pagination li.active a {
+  box-shadow: inset 4px 4px 8px rgba(28, 35, 51, 0.12),
+    inset -4px -4px 8px rgba(255, 255, 255, 0.9);
+  transform: translateY(0);
+}
+
+.pl-pagination .pagination li.active a {
+  background: var(--pl-navy);
+  color: #fff;
+}
+
+.pl-pagination .pagination li.disabled span,
+.pl-pagination .pagination li.disabled a {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+/* =========================================================
+   Mobile infinite scroll — sentinel + loading
+   ========================================================= */
+.pl-scroll-sentinel {
+  height: 80px;
+  display: none; /* hidden on desktop */
+}
+
+.pl-load-more {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 40px 0;
+  opacity: 0.7;
+}
+
+.pl-load-more.is-loading {
+  display: flex;
+}
+
+.pl-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--pl-line);
+  border-top-color: var(--pl-red);
+  border-radius: 50%;
+  animation: pl-spin 0.8s linear infinite;
+}
+
+.pl-load-text {
+  font-size: 14px;
+  color: var(--pl-muted);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+@keyframes pl-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Show sentinel + loading on mobile only */
+@media (max-width: 1024px) {
+  .pl-scroll-sentinel {
+    display: block;
+  }
+}
+
+@media (max-width: 640px) {
+  .pl-pagination .pagination li a,
+  .pl-pagination .pagination li span {
+    width: 32px;
+    height: 32px;
+    font-size: 12px;
+  }
+}

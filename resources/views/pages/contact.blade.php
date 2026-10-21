@@ -206,21 +206,30 @@
                             @enderror
                         </div>
 
-                        {{-- Subject Reason --}}
+                    </div>
+
+                    {{-- Preferred Program --}}
+                    <div class="form-group-grid">
                         <div class="form-group">
-                            <label for="subject" class="form-label">Reason for Inquiry</label>
+                            <label for="preferred_program" class="form-label">Preferred Program</label>
                             <select
-                                id="subject"
-                                name="subject"
-                                class="form-select @error('subject') form-select--error @enderror"
+                                id="preferred_program"
+                                name="preferred_program"
+                                class="form-select @error('preferred_program') form-select--error @enderror"
                             >
-                                <option value="General Inquiry" {{ old('subject') === 'General Inquiry' ? 'selected' : '' }}>General Inquiry</option>
-                                <option value="Admissions" {{ old('subject') === 'Admissions' ? 'selected' : '' }}>Admissions</option>
-                                <option value="Partnership" {{ old('subject') === 'Partnership' ? 'selected' : '' }}>Partnership</option>
-                                <option value="Support" {{ old('subject') === 'Support' ? 'selected' : '' }}>Support</option>
-                                <option value="Other" {{ old('subject') === 'Other' ? 'selected' : '' }}>Other</option>
+                                <option value="">Select program</option>
+                                @php
+                                    $groupedPrograms = $allPrograms->groupBy(fn ($p) => $p->programCategory?->name ?? 'Uncategorized');
+                                @endphp
+                                @foreach($groupedPrograms as $categoryName => $programs)
+                                    <optgroup label="{{ e($categoryName) }}">
+                                        @foreach($programs as $prog)
+                                            <option value="{{ $prog->id }}">{{ e($prog->title) }}</option>
+                                        @endforeach
+                                    </optgroup>
+                                @endforeach
                             </select>
-                            @error('subject')
+                            @error('preferred_program')
                                 <span class="form-error-msg" role="alert">{{ $message }}</span>
                             @enderror
                         </div>
