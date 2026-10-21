@@ -55,7 +55,7 @@
 
             <div class="pl-hero__bottom">
                 <div class="pl-hero__meta">
-                    <span class="pl-hero__meta-item">{{ $programs->total() }} programmes</span>
+                    <span class="pl-hero__meta-item">{{ $totalProgramCount }} programmes</span>
                     <span class="pl-hero__meta-rule"></span>
                     <span class="pl-hero__meta-item">{{ $categories->count() }} categories</span>
                 </div>

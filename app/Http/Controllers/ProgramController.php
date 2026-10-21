@@ -130,17 +130,31 @@ class ProgramController extends Controller
                 'programs' => $paginatedPrograms->items(),
                 'programsListingPage' => safe_settings(ProgramsListingPageSettings::class),
                 'activeCategory' => $activeCategory,
-                'nextPage' => $paginatedPrograms->nextPage(),
-                'lastPage' => $paginatedPrograms->lastPage(),
+                'nextPage' => $paginatedPrograms instanceof LengthAwarePaginator
+                    ? $paginatedPrograms->nextPage()
+                    : null,
+                'lastPage' => $paginatedPrograms instanceof LengthAwarePaginator
+                    ? $paginatedPrograms->lastPage()
+                    : null,
             ])->render();
 
             return response()->json([
                 'html' => $cardsHtml,
-                'currentPage' => $paginatedPrograms->currentPage(),
-                'lastPage' => $paginatedPrograms->lastPage(),
-                'nextPage' => $paginatedPrograms->nextPage(),
-                'hasMorePages' => $paginatedPrograms->hasMorePages(),
-                'total' => $paginatedPrograms->total(),
+                'currentPage' => $paginatedPrograms instanceof LengthAwarePaginator
+                    ? $paginatedPrograms->currentPage()
+                    : 1,
+                'lastPage' => $paginatedPrograms instanceof LengthAwarePaginator
+                    ? $paginatedPrograms->lastPage()
+                    : 1,
+                'nextPage' => $paginatedPrograms instanceof LengthAwarePaginator
+                    ? $paginatedPrograms->nextPage()
+                    : null,
+                'hasMorePages' => $paginatedPrograms instanceof LengthAwarePaginator
+                    ? $paginatedPrograms->hasMorePages()
+                    : false,
+                'total' => $paginatedPrograms instanceof LengthAwarePaginator
+                    ? $paginatedPrograms->total()
+                    : $allPrograms->count(),
             ]);
         }
 
@@ -148,8 +162,12 @@ class ProgramController extends Controller
             'programsListingPage' => safe_settings(ProgramsListingPageSettings::class),
             'categories' => $categories,
             'programs' => $paginatedPrograms,
-            'paginationNextPage' => $paginatedPrograms->nextPage(),
-            'paginationLastPage' => $paginatedPrograms->lastPage(),
+            'paginationNextPage' => $paginatedPrograms instanceof LengthAwarePaginator
+                ? $paginatedPrograms->nextPage()
+                : null,
+            'paginationLastPage' => $paginatedPrograms instanceof LengthAwarePaginator
+                ? $paginatedPrograms->lastPage()
+                : null,
             'totalProgramCount' => $totalProgramCount,
             'programsListingSeo' => safe_settings(ProgramsListingSeoSettings::class),
         ]);
