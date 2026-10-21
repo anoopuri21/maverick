@@ -106,7 +106,7 @@ class ProgramController extends Controller
             $currentPage = 1;
         }
 
-        $programs = \Illuminate\Pagination\LengthAwarePaginator::make(
+        $programs = new \Illuminate\Pagination\LengthAwarePaginator(
             $allPrograms->forPage($currentPage, 12)->values(),
             $allPrograms->count(),
             12,
