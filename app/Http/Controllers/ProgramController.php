@@ -13,6 +13,7 @@ use App\Settings\ProgramsListingPageSettings;
 use App\Settings\ProgramsDetailChromeSettings;
 use App\Support\PublicContentCache;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class ProgramController extends Controller
 {
@@ -106,14 +107,20 @@ class ProgramController extends Controller
             $currentPage = 1;
         }
 
-        $programs = new \Illuminate\Pagination\LengthAwarePaginator(
+        // Build query string for pagination links, excluding 'page' so it
+        // doesn't duplicate in URLs. request()->query() returns an array,
+        // so use array operations (not ->except() which is a Collection method).
+        $queryParams = request()->query();
+        unset($queryParams['page']);
+
+        $programs = new LengthAwarePaginator(
             $allPrograms->forPage($currentPage, 12)->values(),
             $allPrograms->count(),
             12,
             $currentPage,
             [
                 'path' => request()->url(),
-                'query' => request()->query()->except('page'),
+                'query' => $queryParams,
             ]
         );
 
