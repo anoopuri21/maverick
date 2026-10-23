@@ -31,15 +31,17 @@ class Event extends Model
         static::saving(function (self $event) {
             $event->title = (string) ($event->title ?? '');
 
-            if (empty($event->slug) && ! empty($event->title)) {
-                $baseSlug = Str::slug($event->title);
-                $slug = $baseSlug;
-                $count = 1;
-                while (static::where('slug', $slug)->where('id', '!=', $event->id ?? 0)->exists()) {
-                    $slug = $baseSlug . '-' . $count;
-                    $count++;
+            if (\Illuminate\Support\Facades\Schema::hasColumn('events', 'slug')) {
+                if (empty($event->slug) && ! empty($event->title)) {
+                    $baseSlug = Str::slug($event->title);
+                    $slug = $baseSlug;
+                    $count = 1;
+                    while (static::where('slug', $slug)->where('id', '!=', $event->id ?? 0)->exists()) {
+                        $slug = $baseSlug . '-' . $count;
+                        $count++;
+                    }
+                    $event->slug = $slug;
                 }
-                $event->slug = $slug;
             }
 
             if (empty($event->event_date)) {

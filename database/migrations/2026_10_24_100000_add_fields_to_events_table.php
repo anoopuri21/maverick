@@ -12,10 +12,30 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('events', function (Blueprint $table) {
-            $table->string('slug')->nullable()->unique()->after('title');
-            $table->string('display_image')->nullable()->after('location');
-            $table->json('gallery_images')->nullable()->after('display_image');
+            if (! Schema::hasColumn('events', 'slug')) {
+                $table->string('slug')->nullable()->unique()->after('title');
+            }
+            if (! Schema::hasColumn('events', 'display_image')) {
+                $table->string('display_image')->nullable()->after('location');
+            }
+            if (! Schema::hasColumn('events', 'gallery_images')) {
+                $table->json('gallery_images')->nullable()->after('display_image');
+            }
         });
+
+        // Backfill slug for existing records if any exist without slug
+        $events = \App\Models\Event::whereNull('slug')->orWhere('slug', '')->get();
+        foreach ($events as $event) {
+            $baseSlug = \Illuminate\Support\Str::slug($event->title ?: 'event-' . $event->id);
+            $slug = $baseSlug;
+            $count = 1;
+            while (\App\Models\Event::where('slug', $slug)->where('id', '!=', $event->id)->exists()) {
+                $slug = $baseSlug . '-' . $count;
+                $count++;
+            }
+            $event->timestamps = false;
+            $event->update(['slug' => $slug]);
+        }
     }
 
     /**
@@ -24,7 +44,19 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('events', function (Blueprint $table) {
-            $table->dropColumn(['slug', 'display_image', 'gallery_images']);
+            $columnsToDrop = [];
+            if (Schema::hasColumn('events', 'slug')) {
+                $columnsToDrop[] = 'slug';
+            }
+            if (Schema::hasColumn('events', 'display_image')) {
+                $columnsToDrop[] = 'display_image';
+            }
+            if (Schema::hasColumn('events', 'gallery_images')) {
+                $columnsToDrop[] = 'gallery_images';
+            }
+            if (! empty($columnsToDrop)) {
+                $table->dropColumn($columnsToDrop);
+            }
         });
     }
 };
