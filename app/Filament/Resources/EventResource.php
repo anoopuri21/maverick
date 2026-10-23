@@ -31,8 +31,10 @@ class EventResource extends Resource
                     ->unique(Event::class, 'slug', ignoreRecord: true),
                 Forms\Components\DatePicker::make('event_date')
                     ->required(),
-                Forms\Components\TextInput::make('event_type')
-                    ->placeholder('e.g., Masterclass, Webinar, Workshop, Conference'),
+                Forms\Components\TimePicker::make('event_time')
+                    ->label('Event Time')
+                    ->placeholder('e.g. 10:00 AM')
+                    ->nullable(),
                 Forms\Components\TextInput::make('location')
                     ->placeholder('e.g., London, UK / Online Zoom'),
                 Forms\Components\TextInput::make('link_url')
@@ -69,8 +71,8 @@ class EventResource extends Resource
                 Tables\Columns\TextColumn::make('event_date')
                     ->date()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('event_type')
-                    ->searchable(),
+                Tables\Columns\TextColumn::make('event_time')
+                    ->label('Time'),
                 Tables\Columns\TextColumn::make('location')
                     ->searchable(),
                 Tables\Columns\IconColumn::make('is_active')

@@ -527,10 +527,64 @@
     justify-content: center;
     cursor: pointer;
     transition: background 0.2s ease;
+    z-index: 10;
 }
 
 .ed-lightbox__close:hover {
     background: #dc2626;
+}
+
+.ed-lightbox__nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    z-index: 10;
+}
+
+.ed-lightbox__nav i {
+    width: 24px;
+    height: 24px;
+}
+
+.ed-lightbox__nav:hover {
+    background: #dc2626;
+    border-color: #dc2626;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.ed-lightbox__nav--prev {
+    left: 16px;
+}
+
+.ed-lightbox__nav--next {
+    right: 16px;
+}
+
+.ed-lightbox__counter {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    padding: 6px 16px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    z-index: 10;
 }
 
 /* Related Events Section */

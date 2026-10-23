@@ -21,8 +21,8 @@
         </div>
         <div class="ep-card__content">
             <div class="ep-card__header">
-                @if(filled($e->event_type))
-                    <span class="ep-card__tag">{{ $e->event_type }}</span>
+                @if(filled($e->event_time))
+                    <span class="ep-card__tag"><i data-lucide="clock" style="width:14px;height:14px;display:inline-block;vertical-align:-2px;margin-right:3px;"></i> {{ $e->event_time }}</span>
                 @endif
                 @if(filled($e->location))
                     <span class="ep-card__location"><i data-lucide="map-pin"></i> {{ $e->location }}</span>

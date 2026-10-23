@@ -15,7 +15,7 @@ class EventsPageTest extends TestCase
         Event::create([
             'title' => 'Global Leadership Masterclass',
             'event_date' => now()->addDays(5)->toDateString(),
-            'event_type' => 'Masterclass',
+            'event_time' => '10:00 AM',
             'location' => 'London, UK',
             'description' => 'Join us for a global leadership summit.',
             'is_active' => true,
@@ -25,7 +25,7 @@ class EventsPageTest extends TestCase
 
         $response->assertStatus(200);
         $response->assertSee('Global Leadership Masterclass');
-        $response->assertSee('Masterclass');
+        $response->assertSee('10:00 AM');
         $response->assertSee('London, UK');
     }
 
@@ -61,7 +61,7 @@ class EventsPageTest extends TestCase
         $event = Event::create([
             'title' => 'Past Executive Forum 2025',
             'event_date' => now()->subMonth()->toDateString(),
-            'event_type' => 'Forum',
+            'event_time' => '02:00 PM',
             'location' => 'Dubai, UAE',
             'description' => 'A successful past executive networking event.',
             'display_image' => 'https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg',

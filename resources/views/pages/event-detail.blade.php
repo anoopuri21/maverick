@@ -26,9 +26,6 @@
         <div class="container">
             <div class="ed-hero__glass-card">
                 <div class="ed-hero__meta">
-                    @if(filled($event->event_type))
-                        <span class="ed-tag">{{ $event->event_type }}</span>
-                    @endif
                     @if($event->is_past)
                         <span class="ed-badge ed-badge--past"><i data-lucide="clock"></i> Past Event</span>
                     @else
@@ -43,6 +40,12 @@
                         <i data-lucide="calendar"></i>
                         <span>{{ $event->event_date ? $event->event_date->format('F d, Y') : 'TBA' }}</span>
                     </div>
+                    @if(filled($event->event_time))
+                    <div class="ed-pill">
+                        <i data-lucide="clock"></i>
+                        <span>{{ $event->event_time }}</span>
+                    </div>
+                    @endif
                     @if(filled($event->location))
                     <div class="ed-pill">
                         <i data-lucide="map-pin"></i>
@@ -118,22 +121,22 @@
                                 </div>
                             </div>
 
+                            @if(filled($event->event_time))
+                            <div class="ed-info-item">
+                                <div class="ed-info-item__icon"><i data-lucide="clock"></i></div>
+                                <div>
+                                    <span class="ed-info-item__label">Time</span>
+                                    <span class="ed-info-item__val">{{ $event->event_time }}</span>
+                                </div>
+                            </div>
+                            @endif
+
                             @if(filled($event->location))
                             <div class="ed-info-item">
                                 <div class="ed-info-item__icon"><i data-lucide="map-pin"></i></div>
                                 <div>
                                     <span class="ed-info-item__label">Location</span>
                                     <span class="ed-info-item__val">{{ $event->location }}</span>
-                                </div>
-                            </div>
-                            @endif
-
-                            @if(filled($event->event_type))
-                            <div class="ed-info-item">
-                                <div class="ed-info-item__icon"><i data-lucide="tag"></i></div>
-                                <div>
-                                    <span class="ed-info-item__label">Category</span>
-                                    <span class="ed-info-item__val">{{ $event->event_type }}</span>
                                 </div>
                             </div>
                             @endif
@@ -183,7 +186,17 @@
         <button type="button" class="ed-lightbox__close" id="ed-lightbox-close" aria-label="Close Lightbox">
             <i data-lucide="x"></i>
         </button>
+
+        <button type="button" class="ed-lightbox__nav ed-lightbox__nav--prev" id="ed-lightbox-prev" aria-label="Previous Image">
+            <i data-lucide="chevron-left"></i>
+        </button>
+
+        <button type="button" class="ed-lightbox__nav ed-lightbox__nav--next" id="ed-lightbox-next" aria-label="Next Image">
+            <i data-lucide="chevron-right"></i>
+        </button>
+
         <img src="" alt="" id="ed-lightbox-img">
+        <div class="ed-lightbox__counter" id="ed-lightbox-counter">1 / 1</div>
     </div>
 </div>
 
@@ -192,22 +205,45 @@
 @push('scripts')
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        const galleryItems = document.querySelectorAll('.ed-gallery-item');
+        const galleryItems = Array.from(document.querySelectorAll('.ed-gallery-item'));
         const lightbox = document.getElementById('ed-lightbox');
         const lightboxImg = document.getElementById('ed-lightbox-img');
         const lightboxClose = document.getElementById('ed-lightbox-close');
+        const lightboxPrev = document.getElementById('ed-lightbox-prev');
+        const lightboxNext = document.getElementById('ed-lightbox-next');
+        const lightboxCounter = document.getElementById('ed-lightbox-counter');
 
-        if (!lightbox || !lightboxImg) return;
+        if (!lightbox || !lightboxImg || galleryItems.length === 0) return;
 
-        galleryItems.forEach(item => {
+        let currentIndex = 0;
+
+        const images = galleryItems.map(item => item.getAttribute('data-full-image'));
+
+        const showImageAtIndex = (index) => {
+            if (index < 0) index = images.length - 1;
+            if (index >= images.length) index = 0;
+            currentIndex = index;
+
+            lightboxImg.src = images[currentIndex];
+            if (lightboxCounter) {
+                lightboxCounter.textContent = `${currentIndex + 1} / ${images.length}`;
+            }
+
+            if (images.length <= 1) {
+                if (lightboxPrev) lightboxPrev.style.display = 'none';
+                if (lightboxNext) lightboxNext.style.display = 'none';
+            } else {
+                if (lightboxPrev) lightboxPrev.style.display = 'flex';
+                if (lightboxNext) lightboxNext.style.display = 'flex';
+            }
+        };
+
+        galleryItems.forEach((item, index) => {
             item.addEventListener('click', () => {
-                const fullSrc = item.getAttribute('data-full-image');
-                if (fullSrc) {
-                    lightboxImg.src = fullSrc;
-                    lightbox.removeAttribute('hidden');
-                    lightbox.setAttribute('aria-hidden', 'false');
-                    document.body.style.overflow = 'hidden';
-                }
+                showImageAtIndex(index);
+                lightbox.removeAttribute('hidden');
+                lightbox.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
             });
         });
 
@@ -218,9 +254,9 @@
             document.body.style.overflow = '';
         };
 
-        if (lightboxClose) {
-            lightboxClose.addEventListener('click', closeLightbox);
-        }
+        if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+        if (lightboxPrev) lightboxPrev.addEventListener('click', () => showImageAtIndex(currentIndex - 1));
+        if (lightboxNext) lightboxNext.addEventListener('click', () => showImageAtIndex(currentIndex + 1));
 
         lightbox.addEventListener('click', (e) => {
             if (e.target === lightbox || e.target.classList.contains('ed-lightbox__backdrop')) {
@@ -229,9 +265,11 @@
         });
 
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && !lightbox.hasAttribute('hidden')) {
-                closeLightbox();
-            }
+            if (lightbox.hasAttribute('hidden')) return;
+
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') showImageAtIndex(currentIndex - 1);
+            if (e.key === 'ArrowRight') showImageAtIndex(currentIndex + 1);
         });
     });
 </script>
