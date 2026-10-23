@@ -21,15 +21,7 @@ class VoicesTestimonialsService
      * - Results are cached in a single array-safe cache entry across all pages
      *   and automatically invalidated whenever any record or setting changes.
      *
-     * @return Collection<int, array{
-     *     id: int,
-     *     name: string,
-     *     role: string,
-     *     quote: string,
-     *     photo: ?string,
-     *     initial: string,
-     *     pages: list<string>
-     * }>
+     * @return Collection<int, array<string, mixed>>
      */
     public function itemsForPage(string $pageKey): Collection
     {
@@ -44,15 +36,7 @@ class VoicesTestimonialsService
     }
 
     /**
-     * @return Collection<int, array{
-     *     id: int,
-     *     name: string,
-     *     role: string,
-     *     quote: string,
-     *     photo: ?string,
-     *     initial: string,
-     *     pages: list<string>
-     * }>
+     * @return Collection<int, array<string, mixed>>
      */
     public function allActiveItems(): Collection
     {
@@ -84,15 +68,7 @@ class VoicesTestimonialsService
     /**
      * Normalize an `OurStoryTestimonial` model into a pure scalar array safe for caching.
      *
-     * @return array{
-     *     id: int,
-     *     name: string,
-     *     role: string,
-     *     quote: string,
-     *     photo: ?string,
-     *     initial: string,
-     *     pages: list<string>
-     * }
+     * @return array<string, mixed>
      */
     public static function normalizeModel(OurStoryTestimonial $item): array
     {

@@ -18,11 +18,9 @@ class VoicesTestimonialsSettings extends Settings
 
     public ?string $stack_caption = null;
 
-    /**
-     * Dynamic list of `{key: string, label: string}` display page targets managed from Admin.
-     *
-     * @var array<int, array{key?: string, label?: string}>
-     */
+    // Dynamic list of ['key' => string, 'label' => string] display page targets managed from Admin.
+    // NOTE: keep this a plain comment — Spatie's PropertyReflector parses @var docblocks via
+    // phpdocumentor/type-resolver and crashes on array{...} shapes.
     public array $pages = [];
 
     public static function group(): string

@@ -29,13 +29,7 @@ class VoicesTestimonials extends Component
     public bool $show;
 
     /**
-     * @var Collection<int, array{
-     *     name: string,
-     *     role: string,
-     *     quote: string,
-     *     photo: ?string,
-     *     initial: string
-     * }>
+     * @var Collection<int, array<string, mixed>>
      */
     public Collection $items;
 

@@ -140,6 +140,7 @@ return [
         \App\Settings\MbaMastersLearningSettings::class,
         \App\Settings\MbaMastersPartnersSettings::class,
         \App\Settings\MbaMastersTestimonialsSettings::class,
+        \App\Settings\VoicesTestimonialsSettings::class,
         \App\Settings\MbaMastersCompareSettings::class,
         \App\Settings\MbaMastersFaqSettings::class,
         \App\Settings\MbaMastersFinalSettings::class,

@@ -50,11 +50,12 @@ final class TestimonialPages
         if (is_array($configured)) {
             foreach ($configured as $key => $label) {
                 $cleanKey = self::sanitizeKey($key);
+                $cleanLabel = trim((string) $label);
+
                 if ($cleanKey === '' || isset($options[$cleanKey])) {
                     continue;
                 }
 
-                $cleanLabel = trim((string) $label);
                 $options[$cleanKey] = $cleanLabel !== '' ? $cleanLabel : Str::headline($cleanKey);
             }
         }
@@ -65,7 +66,7 @@ final class TestimonialPages
     /**
      * Registered page keys in configured display order.
      *
-     * @return list<string>
+     * @return array<int, string>
      */
     public static function keys(): array
     {
@@ -86,7 +87,7 @@ final class TestimonialPages
      * Normalize single/multi-select input (JSON string, iterable, or scalar)
      * into a deduplicated, 0-indexed list of clean non-empty page keys.
      *
-     * @return list<string>
+     * @return array<int, string>
      */
     public static function normalize(mixed $pages): array
     {
