@@ -29,11 +29,19 @@ class EventResource extends Resource
                 Forms\Components\TextInput::make('slug')
                     ->required()
                     ->unique(Event::class, 'slug', ignoreRecord: true),
+                Forms\Components\TextInput::make('event_type')
+                    ->label('Event Type')
+                    ->placeholder('e.g. Masterclass, Webinar, Workshop, Conference')
+                    ->nullable(),
                 Forms\Components\DatePicker::make('event_date')
                     ->required(),
-                Forms\Components\TimePicker::make('event_time')
-                    ->label('Event Time')
+                Forms\Components\TimePicker::make('event_start_time')
+                    ->label('Start Time')
                     ->placeholder('e.g. 10:00 AM')
+                    ->nullable(),
+                Forms\Components\TimePicker::make('event_end_time')
+                    ->label('End Time')
+                    ->placeholder('e.g. 02:00 PM')
                     ->nullable(),
                 Forms\Components\TextInput::make('location')
                     ->placeholder('e.g., London, UK / Online Zoom'),
@@ -51,7 +59,23 @@ class EventResource extends Resource
                     ->multiple()
                     ->reorderable()
                     ->directory('events/gallery')
-                    ->helperText('Photos from the event (especially for past events gallery section). Upload single or multiple images.'),
+                    ->helperText('Photos from the event. Upload single or multiple images.'),
+                Forms\Components\Repeater::make('gallery_videos')
+                    ->label('Video Gallery')
+                    ->schema([
+                        Forms\Components\TextInput::make('url')
+                            ->label('Video URL or Storage Path')
+                            ->placeholder('e.g. https://www.youtube.com/watch?v=... or https://vimeo.com/... or uploaded video path')
+                            ->required(),
+                        Forms\Components\TextInput::make('title')
+                            ->label('Video Title / Subtitle')
+                            ->placeholder('e.g. Keynote Highlights')
+                            ->nullable(),
+                    ])
+                    ->columnSpanFull()
+                    ->collapsible()
+                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? $state['url'] ?? null)
+                    ->helperText('Add videos for the event video gallery. Supports YouTube, Vimeo, or direct MP4 URLs. Plays directly full-frame on the page without popups.'),
                 Forms\Components\RichEditor::make('description')
                     ->columnSpanFull(),
                 Forms\Components\Toggle::make('is_active')
@@ -68,10 +92,13 @@ class EventResource extends Resource
                 Tables\Columns\TextColumn::make('title')
                     ->searchable()
                     ->sortable(),
+                Tables\Columns\TextColumn::make('event_type')
+                    ->label('Type')
+                    ->badge(),
                 Tables\Columns\TextColumn::make('event_date')
                     ->date()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('event_time')
+                Tables\Columns\TextColumn::make('formatted_time')
                     ->label('Time'),
                 Tables\Columns\TextColumn::make('location')
                     ->searchable(),

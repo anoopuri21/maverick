@@ -13,10 +13,13 @@ class Event extends Model
         'description',
         'event_date',
         'event_time',
+        'event_start_time',
+        'event_end_time',
         'event_type',
         'location',
         'display_image',
         'gallery_images',
+        'gallery_videos',
         'link_url',
         'is_active',
     ];
@@ -25,6 +28,7 @@ class Event extends Model
         'is_active' => 'boolean',
         'event_date' => 'date',
         'gallery_images' => 'array',
+        'gallery_videos' => 'array',
     ];
 
     protected static function booted(): void
@@ -49,6 +53,26 @@ class Event extends Model
                 $event->event_date = now()->toDateString();
             }
         });
+    }
+
+    public function getFormattedTimeAttribute(): ?string
+    {
+        $start = $this->event_start_time;
+        $end = $this->event_end_time;
+
+        if (! empty($start) && ! empty($end)) {
+            return "{$start} - {$end}";
+        }
+
+        if (! empty($start)) {
+            return $start;
+        }
+
+        if (! empty($end)) {
+            return $end;
+        }
+
+        return $this->event_time ?: null;
     }
 
     public function getDisplayImageUrlAttribute(): ?string
@@ -80,6 +104,55 @@ class Event extends Model
             }
             return asset('storage/' . ltrim($path, '/'));
         }, $gallery)));
+    }
+
+    public function getFormattedVideosAttribute(): array
+    {
+        $videos = $this->gallery_videos;
+        if (! is_array($videos)) {
+            return [];
+        }
+
+        $formatted = [];
+        foreach ($videos as $video) {
+            $url = is_array($video) ? ($video['url'] ?? $video['video_url'] ?? '') : (string) $video;
+            $url = trim($url);
+            if (empty($url)) {
+                continue;
+            }
+
+            $embedUrl = null;
+            $type = 'direct';
+
+            // YouTube match
+            if (preg_match('/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/', $url, $matches)) {
+                $embedUrl = 'https://www.youtube.com/embed/' . $matches[1];
+                $type = 'youtube';
+            }
+            // Vimeo match
+            elseif (preg_match('/vimeo\.com\/(?:channels\/(?:\w+\/)?|groups\/[^\/]*\/videos\/|album\/\d+\/video\/|video\/|)(\d+)/', $url, $matches)) {
+                $embedUrl = 'https://player.vimeo.com/video/' . $matches[1];
+                $type = 'vimeo';
+            }
+            // Direct video or storage link
+            else {
+                if (Str::startsWith($url, ['http://', 'https://'])) {
+                    $embedUrl = $url;
+                } else {
+                    $embedUrl = asset('storage/' . ltrim($url, '/'));
+                }
+                $type = 'direct';
+            }
+
+            $formatted[] = [
+                'original' => $url,
+                'embed_url' => $embedUrl,
+                'type' => $type,
+                'title' => is_array($video) ? ($video['title'] ?? '') : '',
+            ];
+        }
+
+        return $formatted;
     }
 
     public function getIsPastAttribute(): bool

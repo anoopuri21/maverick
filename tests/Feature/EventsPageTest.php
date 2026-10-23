@@ -14,8 +14,10 @@ class EventsPageTest extends TestCase
     {
         Event::create([
             'title' => 'Global Leadership Masterclass',
+            'event_type' => 'Masterclass',
             'event_date' => now()->addDays(5)->toDateString(),
-            'event_time' => '10:00 AM',
+            'event_start_time' => '10:00 AM',
+            'event_end_time' => '01:00 PM',
             'location' => 'London, UK',
             'description' => 'Join us for a global leadership summit.',
             'is_active' => true,
@@ -25,7 +27,8 @@ class EventsPageTest extends TestCase
 
         $response->assertStatus(200);
         $response->assertSee('Global Leadership Masterclass');
-        $response->assertSee('10:00 AM');
+        $response->assertSee('Masterclass');
+        $response->assertSee('10:00 AM - 01:00 PM');
         $response->assertSee('London, UK');
     }
 
@@ -56,18 +59,23 @@ class EventsPageTest extends TestCase
         $this->assertEquals(15, $data['next_offset']);
     }
 
-    public function test_event_detail_page_loads_with_gallery()
+    public function test_event_detail_page_loads_with_gallery_and_videos()
     {
         $event = Event::create([
             'title' => 'Past Executive Forum 2025',
+            'event_type' => 'Forum',
             'event_date' => now()->subMonth()->toDateString(),
-            'event_time' => '02:00 PM',
+            'event_start_time' => '02:00 PM',
+            'event_end_time' => '05:00 PM',
             'location' => 'Dubai, UAE',
             'description' => 'A successful past executive networking event.',
             'display_image' => 'https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg',
             'gallery_images' => [
                 'https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg',
                 'https://images.pexels.com/photos/1181407/pexels-photo-1181407.jpeg',
+            ],
+            'gallery_videos' => [
+                ['url' => 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', 'title' => 'Keynote Opening Session'],
             ],
             'is_active' => true,
         ]);
@@ -76,9 +84,29 @@ class EventsPageTest extends TestCase
 
         $response->assertStatus(200);
         $response->assertSee('Past Executive Forum 2025');
+        $response->assertSee('Forum');
+        $response->assertSee('02:00 PM - 05:00 PM');
         $response->assertSee('Dubai, UAE');
-        $response->assertSee('Gallery');
+        $response->assertSee('Photo');
         $response->assertSee('2 Photos');
-        $response->assertSee('https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg');
+        $response->assertSee('Video');
+        $response->assertSee('Keynote Opening Session');
+        $response->assertSee('https://www.youtube.com/embed/dQw4w9WgXcQ');
+    }
+
+    public function test_empty_fields_do_not_throw_errors_or_render_empty_sections()
+    {
+        $event = Event::create([
+            'title' => 'Minimal Event',
+            'event_date' => now()->addMonth()->toDateString(),
+            'is_active' => true,
+        ]);
+
+        $response = $this->get(route('events.show', $event->slug));
+
+        $response->assertStatus(200);
+        $response->assertSee('Minimal Event');
+        $response->assertDontSee('Photo Gallery');
+        $response->assertDontSee('Video Gallery');
     }
 }

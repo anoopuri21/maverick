@@ -31,26 +31,38 @@
                     @else
                         <span class="ed-badge ed-badge--upcoming"><i data-lucide="sparkles"></i> Upcoming Event</span>
                     @endif
+
+                    @if(!empty($event->event_type))
+                        <span class="ed-badge" style="background: rgba(185,28,28,0.2); color: #f87171; border: 1px solid rgba(248,113,113,0.3); margin-left: 0.5rem;">
+                            {{ $event->event_type }}
+                        </span>
+                    @endif
                 </div>
 
-                <h1 class="ed-hero__title">{{ $event->title }}</h1>
+                @if(!empty($event->title))
+                    <h1 class="ed-hero__title">{{ $event->title }}</h1>
+                @endif
 
                 <div class="ed-hero__pills">
-                    <div class="ed-pill">
-                        <i data-lucide="calendar"></i>
-                        <span>{{ $event->event_date ? $event->event_date->format('F d, Y') : 'TBA' }}</span>
-                    </div>
-                    @if(filled($event->event_time))
-                    <div class="ed-pill">
-                        <i data-lucide="clock"></i>
-                        <span>{{ $event->event_time }}</span>
-                    </div>
+                    @if(!empty($event->event_date))
+                        <div class="ed-pill">
+                            <i data-lucide="calendar"></i>
+                            <span>{{ $event->event_date->format('F d, Y') }}</span>
+                        </div>
                     @endif
-                    @if(filled($event->location))
-                    <div class="ed-pill">
-                        <i data-lucide="map-pin"></i>
-                        <span>{{ $event->location }}</span>
-                    </div>
+
+                    @if(!empty($event->formatted_time))
+                        <div class="ed-pill">
+                            <i data-lucide="clock"></i>
+                            <span>{{ $event->formatted_time }}</span>
+                        </div>
+                    @endif
+
+                    @if(!empty($event->location))
+                        <div class="ed-pill">
+                            <i data-lucide="map-pin"></i>
+                            <span>{{ $event->location }}</span>
+                        </div>
                     @endif
                 </div>
             </div>
@@ -63,46 +75,81 @@
             <div class="ed-layout">
                 {{-- Left Content Column --}}
                 <div class="ed-main">
-                    @if($event->display_image_url)
+                    @if(!empty($event->display_image_url))
                         <div class="ed-featured-media">
                             <img src="{{ $event->display_image_url }}" alt="{{ $event->title }}">
                         </div>
                     @endif
 
                     {{-- Claymorphism Content Card --}}
-                    <div class="ed-clay-card ed-clay-card--content">
-                        <h2 class="ed-section-title">About <em>Event</em></h2>
-                        <div class="ed-description rich-text">
-                            @if(filled($event->description))
+                    @if(!empty($event->description))
+                        <div class="ed-clay-card ed-clay-card--content">
+                            <h2 class="ed-section-title">About <em>Event</em></h2>
+                            <div class="ed-description rich-text">
                                 {!! rich_html($event->description) !!}
-                            @else
-                                <p>Detailed information about this event will be published shortly. Stay tuned!</p>
-                            @endif
-                        </div>
-                    </div>
-
-                    {{-- Event Gallery Section (Supports single & multiple photos) --}}
-                    @if(count($event->gallery_image_urls) > 0)
-                    <div class="ed-clay-card ed-clay-card--gallery">
-                        <div class="ed-gallery-header">
-                            <div>
-                                <h2 class="ed-section-title">Event <em>Gallery</em></h2>
-                                <p class="ed-gallery-sub">Highlights and memories captured during the event.</p>
                             </div>
-                            <span class="ed-gallery-count"><i data-lucide="image"></i> {{ count($event->gallery_image_urls) }} {{ Str::plural('Photo', count($event->gallery_image_urls)) }}</span>
                         </div>
+                    @endif
 
-                        <div class="ed-gallery-grid @if(count($event->gallery_image_urls) === 1) ed-gallery-grid--single @endif">
-                            @foreach($event->gallery_image_urls as $index => $imageUrl)
-                                <button type="button" class="ed-gallery-item" data-full-image="{{ $imageUrl }}" data-index="{{ $index }}" aria-label="View full image {{ $index + 1 }}">
-                                    <img src="{{ $imageUrl }}" alt="{{ $event->title }} photo {{ $index + 1 }}" loading="lazy">
-                                    <div class="ed-gallery-item__overlay">
-                                        <i data-lucide="maximize-2"></i>
-                                    </div>
-                                </button>
-                            @endforeach
+                    {{-- Photo Gallery Section (Supports single & multiple photos) --}}
+                    @if(!empty($event->gallery_image_urls) && count($event->gallery_image_urls) > 0)
+                        <div class="ed-clay-card ed-clay-card--gallery">
+                            <div class="ed-gallery-header">
+                                <div>
+                                    <h2 class="ed-section-title">Photo <em>Gallery</em></h2>
+                                    <p class="ed-gallery-sub">Highlights and memories captured during the event.</p>
+                                </div>
+                                <span class="ed-gallery-count"><i data-lucide="image"></i> {{ count($event->gallery_image_urls) }} {{ Str::plural('Photo', count($event->gallery_image_urls)) }}</span>
+                            </div>
+
+                            <div class="ed-gallery-grid @if(count($event->gallery_image_urls) === 1) ed-gallery-grid--single @endif">
+                                @foreach($event->gallery_image_urls as $index => $imageUrl)
+                                    <button type="button" class="ed-gallery-item" data-full-image="{{ $imageUrl }}" data-index="{{ $index }}" aria-label="View full image {{ $index + 1 }}">
+                                        <img src="{{ $imageUrl }}" alt="{{ $event->title }} photo {{ $index + 1 }}" loading="lazy">
+                                        <div class="ed-gallery-item__overlay">
+                                            <i data-lucide="maximize-2"></i>
+                                        </div>
+                                    </button>
+                                @endforeach
+                            </div>
                         </div>
-                    </div>
+                    @endif
+
+                    {{-- Video Gallery Section (Full frame directly on page) --}}
+                    @if(!empty($event->formatted_videos) && count($event->formatted_videos) > 0)
+                        <div class="ed-clay-card ed-clay-card--videos">
+                            <div class="ed-gallery-header">
+                                <div>
+                                    <h2 class="ed-section-title">Video <em>Gallery</em></h2>
+                                    <p class="ed-gallery-sub">Watch recorded sessions, keynotes, and event highlights directly.</p>
+                                </div>
+                                <span class="ed-gallery-count"><i data-lucide="video"></i> {{ count($event->formatted_videos) }} {{ Str::plural('Video', count($event->formatted_videos)) }}</span>
+                            </div>
+
+                            <div class="ed-videos-list">
+                                @foreach($event->formatted_videos as $vid)
+                                    <div class="ed-video-card">
+                                        @if(!empty($vid['title']))
+                                            <h3 class="ed-video-card__title"><i data-lucide="play-circle"></i> {{ $vid['title'] }}</h3>
+                                        @endif
+                                        <div class="ed-video-frame">
+                                            @if(in_array($vid['type'], ['youtube', 'vimeo']))
+                                                <iframe src="{{ $vid['embed_url'] }}"
+                                                        title="{{ $vid['title'] ?: 'Event Video' }}"
+                                                        frameborder="0"
+                                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                        allowfullscreen></iframe>
+                                            @else
+                                                <video controls preload="metadata">
+                                                    <source src="{{ $vid['embed_url'] }}" type="video/mp4">
+                                                    Your browser does not support the video tag.
+                                                </video>
+                                            @endif
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
                     @endif
                 </div>
 
@@ -113,36 +160,48 @@
                         <h3 class="ed-sidebar__title">Event Details</h3>
 
                         <div class="ed-info-list">
-                            <div class="ed-info-item">
-                                <div class="ed-info-item__icon"><i data-lucide="calendar"></i></div>
-                                <div>
-                                    <span class="ed-info-item__label">Date</span>
-                                    <span class="ed-info-item__val">{{ $event->event_date ? $event->event_date->format('l, M d, Y') : 'To Be Announced' }}</span>
+                            @if(!empty($event->event_type))
+                                <div class="ed-info-item">
+                                    <div class="ed-info-item__icon"><i data-lucide="tag"></i></div>
+                                    <div>
+                                        <span class="ed-info-item__label">Event Type</span>
+                                        <span class="ed-info-item__val">{{ $event->event_type }}</span>
+                                    </div>
                                 </div>
-                            </div>
-
-                            @if(filled($event->event_time))
-                            <div class="ed-info-item">
-                                <div class="ed-info-item__icon"><i data-lucide="clock"></i></div>
-                                <div>
-                                    <span class="ed-info-item__label">Time</span>
-                                    <span class="ed-info-item__val">{{ $event->event_time }}</span>
-                                </div>
-                            </div>
                             @endif
 
-                            @if(filled($event->location))
-                            <div class="ed-info-item">
-                                <div class="ed-info-item__icon"><i data-lucide="map-pin"></i></div>
-                                <div>
-                                    <span class="ed-info-item__label">Location</span>
-                                    <span class="ed-info-item__val">{{ $event->location }}</span>
+                            @if(!empty($event->event_date))
+                                <div class="ed-info-item">
+                                    <div class="ed-info-item__icon"><i data-lucide="calendar"></i></div>
+                                    <div>
+                                        <span class="ed-info-item__label">Date</span>
+                                        <span class="ed-info-item__val">{{ $event->event_date->format('l, M d, Y') }}</span>
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
+
+                            @if(!empty($event->formatted_time))
+                                <div class="ed-info-item">
+                                    <div class="ed-info-item__icon"><i data-lucide="clock"></i></div>
+                                    <div>
+                                        <span class="ed-info-item__label">Time</span>
+                                        <span class="ed-info-item__val">{{ $event->formatted_time }}</span>
+                                    </div>
+                                </div>
+                            @endif
+
+                            @if(!empty($event->location))
+                                <div class="ed-info-item">
+                                    <div class="ed-info-item__icon"><i data-lucide="map-pin"></i></div>
+                                    <div>
+                                        <span class="ed-info-item__label">Location</span>
+                                        <span class="ed-info-item__val">{{ $event->location }}</span>
+                                    </div>
+                                </div>
                             @endif
                         </div>
 
-                        @if(!$event->is_past && filled($event->link_url))
+                        @if(!$event->is_past && !empty($event->link_url))
                             <a href="{{ $event->link_url }}" target="_blank" rel="noopener noreferrer" class="ed-neo-btn ed-neo-btn--primary">
                                 Register Now <i data-lucide="external-link"></i>
                             </a>
@@ -163,19 +222,19 @@
     </section>
 
     {{-- Related Events Section --}}
-    @if(count($relatedEvents) > 0)
-    <section class="ed-related">
-        <div class="container">
-            <div class="sec-head">
-                <div class="sec-label">More Events</div>
-                <h2 class="sec-title">Explore <em>Other Events</em></h2>
-            </div>
+    @if(!empty($relatedEvents) && count($relatedEvents) > 0)
+        <section class="ed-related">
+            <div class="container">
+                <div class="sec-head">
+                    <div class="sec-label">More Events</div>
+                    <h2 class="sec-title">Explore <em>Other Events</em></h2>
+                </div>
 
-            <div class="ep-grid">
-                @include('pages._event-cards', ['events' => $relatedEvents])
+                <div class="ep-grid">
+                    @include('pages._event-cards', ['events' => $relatedEvents])
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
     @endif
 </div>
 
