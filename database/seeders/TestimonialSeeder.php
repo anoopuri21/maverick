@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Seeders;
 
 use App\Models\MediaAsset;
@@ -13,6 +15,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Schema;
+use Throwable;
 
 class TestimonialSeeder extends Seeder
 {
@@ -25,6 +28,7 @@ class TestimonialSeeder extends Seeder
         $dataFile = __DIR__ . '/data/testimonials.php';
         if (! File::exists($dataFile)) {
             $this->command?->error("Testimonials data file not found at: {$dataFile}");
+
             return;
         }
 
@@ -37,8 +41,6 @@ class TestimonialSeeder extends Seeder
             TestimonialPages::OUR_STORY,
         ];
 
-        $this->command?->info('Seeding ' . count($testimonials) . ' testimonials into DB table `our_story_testimonials`...');
-
         $destinationDir = public_path('assets/images/testimonials');
         if (! File::isDirectory($destinationDir)) {
             File::makeDirectory($destinationDir, 0755, true, true);
@@ -46,112 +48,145 @@ class TestimonialSeeder extends Seeder
 
         OurStoryTestimonial::withTrashed()->forceDelete();
 
-        foreach ($testimonials as $t) {
-            $imagePath = ltrim((string) ($t['local_image'] ?? ''), '/');
+        foreach ($testimonials as $item) {
+            $imagePath = ltrim((string) ($item['local_image'] ?? ''), '/');
             $fullLocalPath = public_path($imagePath);
 
-            if (! File::exists($fullLocalPath) && ! empty($t['remote_image_url'])) {
-                try {
-                    $response = Http::timeout(10)->get($t['remote_image_url']);
-                    if ($response->successful()) {
-                        File::put($fullLocalPath, $response->body());
-                    }
-                } catch (\Throwable $e) {
-                    Log::warning("Could not download testimonial image for {$t['name']}: " . $e->getMessage());
-                }
+            if (! File::exists($fullLocalPath) && ! empty($item['remote_image_url'])) {
+                $this->downloadPortraitImage($item['remote_image_url'], $fullLocalPath, (string) $item['name']);
             }
 
-            $mediaAssetId = null;
-            if (Schema::hasTable('media_assets') && $imagePath !== '') {
-                try {
-                    $hash = File::exists($fullLocalPath)
-                        ? hash_file('sha256', $fullLocalPath)
-                        : hash('sha256', $t['name'] . '_' . $t['image_filename']);
-
-                    $diskEnv = config('app.env', 'production');
-                    $fileSize = File::exists($fullLocalPath) ? File::size($fullLocalPath) : null;
-                    $dimensions = File::exists($fullLocalPath) ? @getimagesize($fullLocalPath) : null;
-
-                    $mediaAsset = MediaAsset::withoutGlobalScopes()->where('hash', $hash)->first();
-
-                    if (! $mediaAsset) {
-                        $publicId = 'testimonials/' . pathinfo($t['image_filename'], PATHINFO_FILENAME);
-                        if (MediaAsset::withoutGlobalScopes()->where('cloudinary_public_id', $publicId)->exists()) {
-                            $publicId .= '_' . substr($hash, 0, 8);
-                        }
-
-                        $mediaAsset = MediaAsset::create([
-                            'hash' => $hash,
-                            'original_name' => $t['image_filename'],
-                            'mime_type' => 'image/jpeg',
-                            'size_bytes' => $fileSize,
-                            'width' => $dimensions[0] ?? 800,
-                            'height' => $dimensions[1] ?? 800,
-                            'cloudinary_public_id' => $publicId,
-                            'url' => '/' . $imagePath,
-                            'folder' => 'testimonials',
-                            'alt' => $t['name'] . ' - ' . $t['course'],
-                            'disk_env' => $diskEnv,
-                            'used' => true,
-                            'is_duplicate' => false,
-                        ]);
-                    } else {
-                        $mediaAsset->update([
-                            'url' => '/' . $imagePath,
-                            'used' => true,
-                        ]);
-                    }
-
-                    $mediaAssetId = $mediaAsset->id;
-                } catch (\Throwable $e) {
-                    $this->command?->warn("  [MediaAsset] Warning for {$t['name']}: " . $e->getMessage());
-                }
-            }
+            $mediaAssetId = $this->syncMediaAsset($item, $imagePath, $fullLocalPath);
 
             OurStoryTestimonial::create([
-                'name' => $t['name'],
-                'organisation' => $t['organisation'],
-                'position' => $t['position'],
-                'country' => $t['country'],
-                'rating' => $t['rating'] ?? 5,
-                'testimonial' => trim((string) ($t['quote'] ?? strip_tags((string) $t['testimonial']))),
+                'name' => $item['name'],
+                'organisation' => $item['organisation'] ?? null,
+                'position' => $item['position'] ?? null,
+                'country' => $item['country'] ?? null,
+                'rating' => (int) ($item['rating'] ?? 5),
+                'testimonial' => OurStoryTestimonial::sanitizeQuote(
+                    (string) ($item['quote'] ?? $item['testimonial'] ?? '')
+                ),
                 'photo' => $imagePath !== '' ? '/' . $imagePath : null,
                 'media_asset_id' => $mediaAssetId,
-                'pages' => $t['pages'] ?? $defaultPages,
-                'sort_order' => $t['sort_order'],
+                'pages' => $item['pages'] ?? $defaultPages,
+                'sort_order' => (int) ($item['sort_order'] ?? 0),
                 'is_active' => true,
             ]);
         }
 
-        // Ensure legacy settings array does not duplicate DB rows
+        $this->clearLegacySettingsQuotes();
+        $this->syncVideoTestimonials($videos);
+
+        PublicContentCache::flush();
+        $this->command?->info('✓ Seeded ' . count($testimonials) . ' student testimonials into `our_story_testimonials`.');
+    }
+
+    private function downloadPortraitImage(string $remoteUrl, string $destinationPath, string $studentName): void
+    {
+        try {
+            $response = Http::timeout(10)->get($remoteUrl);
+            if ($response->successful()) {
+                File::put($destinationPath, $response->body());
+            }
+        } catch (Throwable $e) {
+            Log::warning("Could not download testimonial image for {$studentName}: " . $e->getMessage());
+        }
+    }
+
+    /**
+     * @param  array<string, mixed>  $item
+     */
+    private function syncMediaAsset(array $item, string $imagePath, string $fullLocalPath): ?int
+    {
+        if (! Schema::hasTable('media_assets') || $imagePath === '') {
+            return null;
+        }
+
+        try {
+            $filename = (string) ($item['image_filename'] ?? basename($imagePath));
+            $hash = File::exists($fullLocalPath)
+                ? hash_file('sha256', $fullLocalPath)
+                : hash('sha256', ($item['name'] ?? '') . '_' . $filename);
+
+            $fileSize = File::exists($fullLocalPath) ? File::size($fullLocalPath) : null;
+            $dimensions = File::exists($fullLocalPath) ? @getimagesize($fullLocalPath) : null;
+
+            $mediaAsset = MediaAsset::withoutGlobalScopes()->where('hash', $hash)->first();
+
+            if (! $mediaAsset) {
+                $publicId = 'testimonials/' . pathinfo($filename, PATHINFO_FILENAME);
+                if (MediaAsset::withoutGlobalScopes()->where('cloudinary_public_id', $publicId)->exists()) {
+                    $publicId .= '_' . substr($hash, 0, 8);
+                }
+
+                $mediaAsset = MediaAsset::create([
+                    'hash' => $hash,
+                    'original_name' => $filename,
+                    'mime_type' => 'image/jpeg',
+                    'size_bytes' => $fileSize,
+                    'width' => $dimensions[0] ?? 800,
+                    'height' => $dimensions[1] ?? 800,
+                    'cloudinary_public_id' => $publicId,
+                    'url' => '/' . $imagePath,
+                    'folder' => 'testimonials',
+                    'alt' => ($item['name'] ?? '') . ' - ' . ($item['course'] ?? ''),
+                    'disk_env' => config('app.env', 'production'),
+                    'used' => true,
+                    'is_duplicate' => false,
+                ]);
+            } else {
+                $mediaAsset->update([
+                    'url' => '/' . $imagePath,
+                    'used' => true,
+                ]);
+            }
+
+            return (int) $mediaAsset->id;
+        } catch (Throwable $e) {
+            $this->command?->warn("  [MediaAsset] Warning for {$item['name']}: " . $e->getMessage());
+
+            return null;
+        }
+    }
+
+    private function clearLegacySettingsQuotes(): void
+    {
         try {
             $mbaSettings = app(MbaMastersTestimonialsSettings::class);
             $mbaSettings->items = [];
             $mbaSettings->save();
-        } catch (\Throwable) {
+        } catch (Throwable) {
+        }
+    }
+
+    /**
+     * @param  array<int, array<string, mixed>>  $videos
+     */
+    private function syncVideoTestimonials(array $videos): void
+    {
+        if ($videos === []) {
+            return;
         }
 
-        if (! empty($videos)) {
-            try {
-                $videoSettings = app(MbaMastersVideoTestimonialsSettings::class);
-                $mergedVideos = [];
-                foreach ($videos as $v) {
-                    $mergedVideos[] = [
-                        'name' => $v['name'],
-                        'role' => $v['role'],
-                        'category' => $v['category'] ?? 'STUDENT',
-                        'video_url' => $v['video_url'],
-                        'thumbnail' => null,
-                        'thumbnail_asset_id' => null,
-                    ];
-                }
-                $videoSettings->videos = $mergedVideos;
-                $videoSettings->save();
-            } catch (\Throwable) {
+        try {
+            $videoSettings = app(MbaMastersVideoTestimonialsSettings::class);
+            $mergedVideos = [];
+
+            foreach ($videos as $video) {
+                $mergedVideos[] = [
+                    'name' => $video['name'],
+                    'role' => $video['role'],
+                    'category' => $video['category'] ?? 'STUDENT',
+                    'video_url' => $video['video_url'],
+                    'thumbnail' => null,
+                    'thumbnail_asset_id' => null,
+                ];
             }
-        }
 
-        PublicContentCache::flush();
-        $this->command?->info('✓ Seeded ' . count($testimonials) . ' student testimonials into `our_story_testimonials`.');
+            $videoSettings->videos = $mergedVideos;
+            $videoSettings->save();
+        } catch (Throwable) {
+        }
     }
 }

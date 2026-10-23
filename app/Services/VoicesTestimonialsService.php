@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Services;
 
 use App\Models\OurStoryTestimonial;
@@ -14,12 +16,10 @@ class VoicesTestimonialsService
     /**
      * Retrieve normalized testimonial items strictly assigned to `$pageKey`.
      *
-     * Guaranteed behavior:
-     * - Only active, non-deleted testimonials whose `pages` array contains `$pageKey`
-     *   are returned.
+     * - Only active, non-deleted records whose `pages` array contains `$pageKey` are returned.
      * - Unselected pages NEVER receive the testimonial.
      * - Results are cached in a single array-safe cache entry across all pages
-     *   and automatically invalidated when any testimonial is created/updated/deleted.
+     *   and automatically invalidated whenever any record or setting changes.
      *
      * @return Collection<int, array{
      *     id: int,
@@ -33,13 +33,13 @@ class VoicesTestimonialsService
      */
     public function itemsForPage(string $pageKey): Collection
     {
-        $cleanPage = trim($pageKey);
+        $cleanPage = TestimonialPages::sanitizeKey($pageKey);
         if ($cleanPage === '') {
             return collect();
         }
 
         return $this->allActiveItems()
-            ->filter(fn (array $item): bool => in_array($cleanPage, $item['pages'], true))
+            ->filter(static fn (array $item): bool => in_array($cleanPage, $item['pages'], true))
             ->values();
     }
 
@@ -62,15 +62,15 @@ class VoicesTestimonialsService
             }
 
             /** @var array<int, array<string, mixed>> $rows */
-            $rows = PublicContentCache::remember(PublicContentCache::VOICES_TESTIMONIALS, function (): array {
+            $rows = PublicContentCache::remember(PublicContentCache::VOICES_TESTIMONIALS, static function (): array {
                 return OurStoryTestimonial::query()
                     ->active()
-                    ->with('mediaAsset')
+                    ->with('mediaAsset:id,url,alt')
                     ->orderBy('sort_order')
                     ->orderBy('id')
                     ->get()
-                    ->map(fn (OurStoryTestimonial $item): array => self::normalizeModel($item))
-                    ->filter(fn (array $item): bool => $item['quote'] !== '')
+                    ->map(static fn (OurStoryTestimonial $item): array => self::normalizeModel($item))
+                    ->filter(static fn (array $item): bool => $item['quote'] !== '')
                     ->values()
                     ->all();
             });
@@ -82,8 +82,7 @@ class VoicesTestimonialsService
     }
 
     /**
-     * Normalize an Eloquent model or raw array item for rendering in
-     * `<x-voices-testimonials />`.
+     * Normalize an `OurStoryTestimonial` model into a pure scalar array safe for caching.
      *
      * @return array{
      *     id: int,
@@ -98,7 +97,7 @@ class VoicesTestimonialsService
     public static function normalizeModel(OurStoryTestimonial $item): array
     {
         $name = trim((string) $item->name);
-        $initial = mb_strtoupper(mb_substr($name !== '' ? $name : 'S', 0, 1));
+        $initial = $name !== '' ? mb_strtoupper(mb_substr($name, 0, 1)) : '';
 
         return [
             'id' => (int) $item->id,

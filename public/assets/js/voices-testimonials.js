@@ -4,12 +4,15 @@
  * Powers every `<x-voices-testimonials page="..." />` instance on any page:
  * - Multi-instance safe (`[data-voices-section]` / `[data-luxury-testimonials]`)
  * - Synchronized portrait stack crossfade & smart neighbor image preloading
- * - Autoplay with hover/focus/hidden-tab pause + Play/Pause toggle button
- * - Keyboard ArrowLeft / ArrowRight navigation & touch pointer swipe
- * - Optional GSAP scroll reveal when `window.gsap` is present, graceful CSS fallback otherwise
+ * - Autoplay with hover, focus, hidden-tab & reduced-motion pause + Play/Pause toggle
+ * - Accessible keyboard ArrowLeft / ArrowRight navigation
+ * - Direction-disambiguated horizontal touch swipe (ignores vertical scroll & text selection)
+ * - Clean `destroy()` lifecycle support for SPA / Livewire re-renders
  */
 (function () {
   "use strict";
+
+  var instances = [];
 
   function prefersReducedMotion() {
     return Boolean(
@@ -17,14 +20,20 @@
     );
   }
 
+  function hasActiveTextSelection() {
+    if (!window.getSelection) return false;
+    var selection = window.getSelection();
+    return Boolean(selection && String(selection.toString()).trim().length > 0);
+  }
+
   function initCarouselInstance(carousel) {
-    if (!carousel || carousel.dataset.voicesReady === "1") return;
+    if (!carousel || carousel.dataset.voicesReady === "1") return null;
     carousel.dataset.voicesReady = "1";
 
     var slides = Array.prototype.slice.call(
       carousel.querySelectorAll("[data-testimonial-slide]")
     );
-    if (!slides.length) return;
+    if (!slides.length) return null;
 
     var stage = carousel.closest("[data-closing-voices]");
     var portraits = stage
@@ -44,6 +53,7 @@
     var timer = null;
     var resumeTimer = null;
     var startX = null;
+    var startY = null;
 
     function updateToggle() {
       if (!toggle) return;
@@ -70,10 +80,17 @@
         slide.setAttribute("aria-hidden", active ? "false" : "true");
         slide.classList.toggle("is-active", active);
         slide.classList.remove("is-entering");
-        if (active && !reduced) {
-          window.requestAnimationFrame(function () {
-            slide.classList.add("is-entering");
-          });
+
+        if (active) {
+          var quoteBox = slide.querySelector(".luxury-testimonial__quote");
+          if (quoteBox && typeof quoteBox.scrollTop === "number") {
+            quoteBox.scrollTop = 0;
+          }
+          if (!reduced) {
+            window.requestAnimationFrame(function () {
+              slide.classList.add("is-entering");
+            });
+          }
         }
       });
 
@@ -104,7 +121,7 @@
           paused = false;
           updateToggle();
         }
-      }, 4200);
+      }, 4500);
     }
 
     function startTimer() {
@@ -117,42 +134,39 @@
       }, 6000);
     }
 
-    if (previous) {
-      previous.addEventListener("click", function () {
-        goPrevious();
-        scheduleResume();
-      });
+    function onPrevClick() {
+      goPrevious();
+      scheduleResume();
     }
 
-    if (next) {
-      next.addEventListener("click", function () {
-        goNext();
-        scheduleResume();
-      });
+    function onNextClick() {
+      goNext();
+      scheduleResume();
     }
 
-    if (toggle) {
-      toggle.addEventListener("click", function () {
-        paused = !paused;
-        updateToggle();
-        startTimer();
-      });
+    function onToggleClick() {
+      paused = !paused;
+      updateToggle();
+      startTimer();
     }
 
-    carousel.addEventListener("mouseenter", function () {
+    function onMouseEnter() {
       hovered = true;
-    });
-    carousel.addEventListener("mouseleave", function () {
-      hovered = false;
-    });
-    carousel.addEventListener("focusin", function () {
-      focused = true;
-    });
-    carousel.addEventListener("focusout", function () {
-      focused = false;
-    });
+    }
 
-    carousel.addEventListener("keydown", function (event) {
+    function onMouseLeave() {
+      hovered = false;
+    }
+
+    function onFocusIn() {
+      focused = true;
+    }
+
+    function onFocusOut() {
+      focused = false;
+    }
+
+    function onKeyDown(event) {
       if (event.key === "ArrowLeft") {
         event.preventDefault();
         goPrevious();
@@ -162,43 +176,79 @@
         goNext();
         scheduleResume();
       }
-    });
+    }
 
-    carousel.addEventListener("pointerdown", function (event) {
+    function onPointerDown(event) {
       startX = event.clientX;
+      startY = event.clientY != null ? event.clientY : 0;
       scheduleResume();
-    });
-    carousel.addEventListener("pointerup", function (event) {
+    }
+
+    function onPointerUp(event) {
       if (startX === null) return;
-      var distance = event.clientX - startX;
+      var dx = event.clientX - startX;
+      var dy = (event.clientY != null ? event.clientY : 0) - (startY || 0);
       startX = null;
-      if (Math.abs(distance) > 44) {
-        if (distance < 0) goNext();
+      startY = null;
+
+      if (hasActiveTextSelection()) return;
+
+      if (Math.abs(dx) > 44 && Math.abs(dx) > Math.abs(dy) * 1.4) {
+        if (dx < 0) goNext();
         else goPrevious();
       }
-    });
-    carousel.addEventListener("pointercancel", function () {
+    }
+
+    function onPointerCancel() {
       startX = null;
-    });
+      startY = null;
+    }
 
     function onVisibilityChange() {
       pageHidden = Boolean(document.hidden);
     }
+
+    if (previous) previous.addEventListener("click", onPrevClick);
+    if (next) next.addEventListener("click", onNextClick);
+    if (toggle) toggle.addEventListener("click", onToggleClick);
+
+    carousel.addEventListener("mouseenter", onMouseEnter);
+    carousel.addEventListener("mouseleave", onMouseLeave);
+    carousel.addEventListener("focusin", onFocusIn);
+    carousel.addEventListener("focusout", onFocusOut);
+    carousel.addEventListener("keydown", onKeyDown);
+    carousel.addEventListener("pointerdown", onPointerDown);
+    carousel.addEventListener("pointerup", onPointerUp);
+    carousel.addEventListener("pointercancel", onPointerCancel);
     document.addEventListener("visibilitychange", onVisibilityChange);
 
     showSlide(0);
     updateToggle();
     startTimer();
 
-    window.addEventListener(
-      "beforeunload",
-      function () {
-        window.clearInterval(timer);
-        window.clearTimeout(resumeTimer);
-        document.removeEventListener("visibilitychange", onVisibilityChange);
-      },
-      { once: true }
-    );
+    function destroy() {
+      window.clearInterval(timer);
+      window.clearTimeout(resumeTimer);
+      if (previous) previous.removeEventListener("click", onPrevClick);
+      if (next) next.removeEventListener("click", onNextClick);
+      if (toggle) toggle.removeEventListener("click", onToggleClick);
+      carousel.removeEventListener("mouseenter", onMouseEnter);
+      carousel.removeEventListener("mouseleave", onMouseLeave);
+      carousel.removeEventListener("focusin", onFocusIn);
+      carousel.removeEventListener("focusout", onFocusOut);
+      carousel.removeEventListener("keydown", onKeyDown);
+      carousel.removeEventListener("pointerdown", onPointerDown);
+      carousel.removeEventListener("pointerup", onPointerUp);
+      carousel.removeEventListener("pointercancel", onPointerCancel);
+      document.removeEventListener("visibilitychange", onVisibilityChange);
+      delete carousel.dataset.voicesReady;
+    }
+
+    window.addEventListener("beforeunload", destroy, { once: true });
+
+    var handle = { carousel: carousel, destroy: destroy };
+    instances.push(handle);
+    return handle;
   }
 
   function initSectionReveal(section) {
@@ -254,18 +304,24 @@
 
   function initAllVoicesSections() {
     var sections = document.querySelectorAll("[data-voices-section], .mlp-testimonials");
-    Array.prototype.forEach.call(sections, function (section) {
-      initSectionReveal(section);
-    });
+    Array.prototype.forEach.call(sections, initSectionReveal);
 
     var carousels = document.querySelectorAll("[data-luxury-testimonials]");
-    Array.prototype.forEach.call(carousels, function (carousel) {
-      initCarouselInstance(carousel);
-    });
+    Array.prototype.forEach.call(carousels, initCarouselInstance);
+  }
+
+  function destroyAllVoicesSections() {
+    while (instances.length) {
+      var handle = instances.pop();
+      if (handle && typeof handle.destroy === "function") {
+        handle.destroy();
+      }
+    }
   }
 
   window.MaverickVoicesTestimonials = {
     init: initAllVoicesSections,
+    destroy: destroyAllVoicesSections,
   };
 
   if (document.readyState === "loading") {

@@ -1,9 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\View\Components;
 
 use App\Services\VoicesTestimonialsService;
 use App\Settings\VoicesTestimonialsSettings;
+use App\Support\TestimonialPages;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
@@ -43,14 +46,7 @@ class VoicesTestimonials extends Component
      * comes directly from the database (`our_story_testimonials` + `settings` tables)
      * with zero hardcoded fallback strings or images.
      *
-     * @param  string  $page  Page registry key (e.g. 'mba-masters-landing', 'our-story')
-     * @param  string  $id  HTML section id attribute
-     * @param  ?string  $label  Optional page-level DB setting label; falls back to global DB `VoicesTestimonialsSettings::$label` when null
-     * @param  ?string  $heading  Optional page-level DB setting heading; falls back to global DB `VoicesTestimonialsSettings::$heading` when null
-     * @param  ?string  $intro  Optional page-level DB setting intro; falls back to global DB `VoicesTestimonialsSettings::$intro` when null
-     * @param  ?string  $stackCaption  Optional page-level DB caption; falls back to global DB `VoicesTestimonialsSettings::$stack_caption` when null
-     * @param  bool  $show  Page-level visibility toggle from DB settings
-     * @param  iterable<int, array<string, mixed>>|null  $items  Optional explicit collection; defaults to DB `VoicesTestimonialsService::itemsForPage($page)`
+     * @param  iterable<int, array<string, mixed>>|null  $items
      */
     public function __construct(
         string $page,
@@ -64,20 +60,16 @@ class VoicesTestimonials extends Component
     ) {
         $globalSettings = safe_settings(VoicesTestimonialsSettings::class);
 
-        $this->page = trim($page);
-        $this->id = trim($id) !== '' ? trim($id) : 'mlp-testimonials';
+        $this->page = TestimonialPages::sanitizeKey($page);
+        $cleanId = preg_replace('/[^a-zA-Z0-9_-]/', '', trim($id)) ?: 'mlp-testimonials';
+        $this->id = $cleanId;
 
-        // Strict DB-only resolution: explicit page DB setting if provided, otherwise global DB setting;
-        // if an admin clears a field to empty string "", keep it empty instead of injecting hardcoded text.
-        $this->label = $label !== null ? trim($label) : ($globalSettings->label !== null ? trim($globalSettings->label) : null);
-        $this->heading = $heading !== null ? trim($heading) : ($globalSettings->heading !== null ? trim($globalSettings->heading) : null);
-        $this->intro = $intro !== null ? trim($intro) : ($globalSettings->intro !== null ? trim($globalSettings->intro) : null);
-        $this->stackCaption = $stackCaption !== null
-            ? trim($stackCaption)
-            : ($globalSettings->stack_caption !== null ? trim($globalSettings->stack_caption) : null);
+        $this->label = self::resolveCopy($label, $globalSettings->label);
+        $this->heading = self::resolveCopy($heading, $globalSettings->heading);
+        $this->intro = self::resolveCopy($intro, $globalSettings->intro);
+        $this->stackCaption = self::resolveCopy($stackCaption, $globalSettings->stack_caption);
 
-        $globalEnabled = (bool) ($globalSettings->show_section ?? true);
-        $this->show = $globalEnabled && $show;
+        $this->show = (bool) ($globalSettings->show_section ?? true) && $show;
 
         $this->items = $items !== null
             ? collect($items)->values()
@@ -92,5 +84,14 @@ class VoicesTestimonials extends Component
     public function render(): View|Closure|string
     {
         return view('components.voices-testimonials');
+    }
+
+    private static function resolveCopy(?string $override, ?string $globalDefault): ?string
+    {
+        if ($override !== null) {
+            return trim($override);
+        }
+
+        return $globalDefault !== null ? trim($globalDefault) : null;
     }
 }

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Program;
 use App\Settings\HeroSettings;
 use App\Settings\AskQuotientSettings;
 use App\Settings\DeiMatrixSettings;
@@ -12,7 +11,6 @@ use App\Settings\NumbersSettings;
 use App\Settings\WhoWeAreSettings;
 use App\Settings\CeoSettings;
 use App\Settings\WhatIsMaverickSettings;
-use App\Models\OurStoryTestimonial;
 use App\Models\PartnerLogo;
 use App\Models\UniversityPartner;
 use App\Models\FacultyInsight;

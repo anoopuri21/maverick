@@ -1,11 +1,11 @@
 /* ==========================================================================
    MAVERICK BUSINESS ACADEMY — Standalone Voices Testimonials Component
-   Self-contained CSS extracted from `#mlp-testimonials` so `<x-voices-testimonials>`
-   renders identically on `/online-mba-masters-uae`, `/our-story`, and any future page.
+   Single canonical stylesheet for `<x-voices-testimonials page="..." />`.
+   Renders identically on `/online-mba-masters-uae`, `/our-story`, and any
+   future page with zero external stylesheet coupling.
    ========================================================================== */
 
 .mlp-testimonials.archive-voices {
-  /* Self-contained tokens inheriting global brand CSS variables from main.css */
   --mlp-blue: var(--color-mba-blue, #0f2983);
   --mlp-navy: var(--color-mba-dark-blue, #071444);
   --mlp-red: var(--color-mba-red, #b20202);
@@ -15,6 +15,7 @@
   --mlp-void: #071444;
   --mlp-paper: #f7f5f1;
   --mlp-paper-pure: #ffffff;
+  --mlp-surface-soft: #f0ebe4;
   --mlp-line-dark: rgba(7, 20, 68, 0.12);
   --mlp-muted-on-paper: rgba(18, 18, 18, 0.62);
   --mlp-font-display: var(--font-display, "PP Neue Montreal", sans-serif);
@@ -124,31 +125,37 @@
 .mlp-testimonials .archive-voices__stack[data-testimonial-portraits] {
   position: sticky;
   top: 7rem;
-  aspect-ratio: 4 / 5;
+  min-height: 28rem;
   width: 100%;
-  max-width: 28rem;
-  min-height: 0;
   overflow: hidden;
   background: var(--mlp-navy);
+  border: 1px solid rgba(7, 20, 68, 0.16);
+  box-shadow: 0 28px 64px -46px rgba(7, 20, 68, 0.72);
 }
 
 .mlp-testimonials .testimonial-portrait {
   position: absolute;
   inset: 0;
   margin: 0;
+  overflow: hidden;
   opacity: 0;
   visibility: hidden;
   z-index: 1;
   mix-blend-mode: normal;
-  transform: scale(1.03);
-  transition: opacity 0.65s ease, transform 0.8s ease, visibility 0.65s ease;
+  transform: scale(1.025);
+  will-change: opacity, transform;
+  transition:
+    opacity 0.7s ease,
+    transform 1s var(--mlp-ease),
+    visibility 0s linear 0.7s;
 }
 
 .mlp-testimonials .testimonial-portrait.is-active {
+  z-index: 2;
   opacity: 1;
   visibility: visible;
-  z-index: 2;
   transform: scale(1);
+  transition-delay: 0s;
 }
 
 .mlp-testimonials .testimonial-portrait img {
@@ -157,7 +164,8 @@
   height: 100%;
   object-fit: cover;
   object-position: center 18%;
-  filter: contrast(1.03) saturate(0.96);
+  filter: none;
+  image-rendering: auto;
 }
 
 .mlp-testimonials .testimonial-portrait__placeholder {
@@ -167,7 +175,7 @@
   height: 100%;
   background: var(--mlp-navy);
   color: rgba(255, 255, 255, 0.24);
-  font-family: var(--mlp-font-display);
+  font-family: var(--mlp-font-display) !important;
   font-size: clamp(4.5rem, 9vw, 7.5rem);
   font-weight: 500;
   letter-spacing: -0.04em;
@@ -179,8 +187,8 @@
   position: absolute;
   inset: 0;
   z-index: 3;
-  background: linear-gradient(180deg, rgba(7, 20, 68, 0.04) 44%, rgba(7, 20, 68, 0.72) 100%);
   pointer-events: none;
+  background: linear-gradient(180deg, rgba(7, 20, 68, 0.02) 38%, rgba(7, 20, 68, 0.82) 100%);
 }
 
 .mlp-testimonials .archive-voices__stack-caption {
@@ -190,12 +198,12 @@
   left: 1.4rem;
   z-index: 4;
   max-width: 16ch;
-  font-family: var(--mlp-font-display);
-  font-size: clamp(1.5rem, 3vw, 2.7rem);
-  font-weight: 500;
-  line-height: 0.98;
-  letter-spacing: -0.04em;
-  color: var(--mlp-white);
+  font-family: var(--mlp-font-display) !important;
+  font-size: clamp(1.5rem, 3vw, 2.55rem) !important;
+  font-weight: 500 !important;
+  line-height: 1.02 !important;
+  letter-spacing: -0.03em !important;
+  color: var(--mlp-white) !important;
 }
 
 /* —— Right Column: Luxury Single-Quote Carousel —— */
@@ -204,16 +212,15 @@
 }
 
 .mlp-testimonials .luxury-testimonials {
+  position: relative;
+  min-width: 0;
+  padding: 0 0 1rem;
   border-top: 1px solid var(--mlp-navy);
-  padding-top: clamp(1.5rem, 3vw, 2.3rem);
-  display: grid;
-  gap: 1.5rem;
 }
 
 .mlp-testimonials .luxury-testimonials__slides {
-  min-height: clamp(17rem, 26vw, 21rem);
-  display: grid;
-  align-items: center;
+  position: relative;
+  min-height: 22rem;
 }
 
 .mlp-testimonials .luxury-testimonial[hidden] {
@@ -221,16 +228,19 @@
 }
 
 .mlp-testimonials .luxury-testimonial {
-  margin: 0;
-  padding: 0 0 1.6rem;
   display: grid;
-  gap: 1.35rem;
+  grid-template-columns: 2rem minmax(0, 1fr);
+  gap: 1rem;
+  min-height: 22rem;
+  margin: 0;
+  padding: clamp(1.5rem, 3vw, 2.5rem) 0 1.75rem;
   transition: opacity 0.45s var(--mlp-ease), transform 0.45s var(--mlp-ease);
 }
 
 .mlp-testimonials .luxury-testimonial__quote-icon {
   display: inline-flex;
-  align-items: center;
+  align-items: flex-start;
+  padding-top: 0.2rem;
   color: var(--mlp-red);
 }
 
@@ -244,86 +254,107 @@
 }
 
 .mlp-testimonials .luxury-testimonial__quote {
+  max-width: 100%;
   margin: 0;
-  max-width: 52ch;
-  color: var(--mlp-navy);
-  font-family: var(--mlp-font-display);
-  font-size: clamp(1.06rem, 1.48vw, 1.42rem);
-  font-weight: 500;
-  line-height: 1.56;
-  letter-spacing: -0.015em;
+  padding-right: 0.5rem;
+  max-height: 15.5rem;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(7, 20, 68, 0.24) transparent;
+  color: var(--mlp-navy) !important;
+  font-family: var(--mlp-font-body) !important;
+  font-size: clamp(1rem, 1.28vw, 1.16rem) !important;
+  font-weight: var(--fw-regular, 400) !important;
+  line-height: 1.7 !important;
+  letter-spacing: normal !important;
   white-space: pre-line;
 }
 
+.mlp-testimonials .luxury-testimonial__quote::-webkit-scrollbar {
+  width: 5px;
+}
+
+.mlp-testimonials .luxury-testimonial__quote::-webkit-scrollbar-thumb {
+  background: rgba(7, 20, 68, 0.24);
+  border-radius: 999px;
+}
+
 .mlp-testimonials .luxury-testimonial__author {
+  grid-column: 2;
   display: flex;
   align-items: center;
-  gap: 0.95rem;
+  gap: 0.85rem;
+  align-self: end;
+  margin-top: 1.35rem;
 }
 
 .mlp-testimonials .luxury-testimonial__author img,
 .mlp-testimonials .luxury-testimonial__initial {
-  width: 3.4rem;
-  height: 3.4rem;
-  border-radius: 50%;
-  flex: 0 0 3.4rem;
+  display: grid;
+  place-items: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  flex: 0 0 3.5rem;
   object-fit: cover;
+  border-radius: 50%;
+  background: var(--mlp-surface-soft);
   border: 1px solid var(--mlp-line-dark);
 }
 
 .mlp-testimonials .luxury-testimonial__initial {
-  display: grid;
-  place-items: center;
-  background: var(--mlp-navy);
-  color: var(--mlp-white);
-  font-family: var(--mlp-font-display);
+  font-family: var(--mlp-font-display) !important;
+  font-size: 1.35rem;
   font-weight: 500;
+  color: var(--mlp-red);
 }
 
 .mlp-testimonials .luxury-testimonial__author > span:last-child {
   display: grid;
-  gap: 0.16rem;
+  gap: 0.2rem;
 }
 
 .mlp-testimonials .luxury-testimonial__author cite {
   font-style: normal;
-  color: var(--mlp-navy);
-  font-family: var(--mlp-font-display);
-  font-size: clamp(1.02rem, 1.35vw, 1.2rem);
-  font-weight: 600;
-  line-height: 1.2;
+  font-family: var(--mlp-font-body) !important;
+  font-size: var(--fs-body, clamp(15px, 1.2vw, 18px)) !important;
+  font-weight: 600 !important;
+  line-height: 1.3 !important;
+  color: var(--mlp-navy) !important;
 }
 
 .mlp-testimonials .luxury-testimonial__author small {
-  color: var(--mlp-muted-on-paper);
-  font-family: var(--mlp-font-body);
-  font-size: var(--fs-caption, 13px);
-  line-height: 1.45;
+  font-family: var(--mlp-font-body) !important;
+  font-size: var(--fs-caption, 13px) !important;
+  font-weight: var(--fw-regular, 400) !important;
+  line-height: 1.45 !important;
+  color: var(--mlp-muted-on-paper) !important;
 }
 
 /* —— Carousel Controls —— */
 .mlp-testimonials .luxury-testimonials__controls {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  gap: 0.65rem;
+  gap: 0.75rem;
+  padding-top: 1rem;
 }
 
 .mlp-testimonials .luxury-testimonials__control,
 .mlp-testimonials .luxury-testimonials__toggle {
-  min-width: 2.85rem;
-  min-height: 2.85rem;
-  padding: 0 0.85rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid var(--mlp-line-dark);
-  background: var(--mlp-white);
+  display: inline-grid;
+  place-items: center;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  padding: 0.5rem 0.85rem;
   color: var(--mlp-navy);
-  font-family: var(--mlp-font-body);
-  font-size: var(--fs-caption, 13px);
-  font-weight: 600;
+  background: transparent;
+  border: 1px solid var(--mlp-line-dark);
+  border-radius: 0;
   cursor: pointer;
+  font-family: var(--mlp-font-body) !important;
+  font-size: var(--fs-caption, 13px) !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase;
   transition:
     background 0.25s var(--mlp-ease),
     color 0.25s var(--mlp-ease),
@@ -334,18 +365,19 @@
 .mlp-testimonials .luxury-testimonials__control:focus-visible,
 .mlp-testimonials .luxury-testimonials__toggle:hover,
 .mlp-testimonials .luxury-testimonials__toggle:focus-visible {
-  border-color: var(--mlp-navy);
-  background: var(--mlp-navy);
   color: var(--mlp-white);
+  background: var(--mlp-navy);
+  border-color: var(--mlp-navy);
   outline: none;
 }
 
 .mlp-testimonials .luxury-testimonials__progress {
-  margin: 0 0.35rem;
+  margin: 0 auto 0 0.25rem;
+  font-family: var(--mlp-font-body) !important;
+  font-size: var(--fs-caption, 13px) !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.1em !important;
   color: var(--mlp-muted-on-paper);
-  font-family: var(--mlp-font-body);
-  font-size: var(--fs-caption, 13px);
-  letter-spacing: 0.12em;
 }
 
 /* —— Responsive Breakpoints —— */
@@ -367,28 +399,31 @@
   .mlp-testimonials .archive-voices__stack[data-testimonial-portraits] {
     position: relative;
     top: auto;
-    max-width: 24rem;
-    aspect-ratio: 4 / 4.6;
+    width: 100%;
+    max-width: 30rem;
+    min-height: 23rem;
   }
 }
 
 @media (max-width: 620px) {
   .mlp-testimonials .archive-voices__stack[data-testimonial-portraits] {
     max-width: none;
-    aspect-ratio: 4 / 4.2;
+    min-height: 20rem;
   }
 
   .mlp-testimonials .luxury-testimonials__slides,
   .mlp-testimonials .luxury-testimonial {
-    min-height: 0;
+    min-height: 24rem;
   }
 
   .mlp-testimonials .luxury-testimonials__controls {
-    width: 100%;
+    flex-wrap: wrap;
   }
 
   .mlp-testimonials .luxury-testimonials__progress {
-    margin-right: auto;
+    order: 5;
+    width: 100%;
+    margin: 0;
   }
 }
 

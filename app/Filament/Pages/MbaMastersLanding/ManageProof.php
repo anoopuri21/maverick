@@ -1,9 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Pages\MbaMastersLanding;
 
 use App\Filament\Concerns\SavesSettingsGroups;
-use App\Filament\Forms\Components\MediaPicker;
 use App\Filament\Pages\MbaMastersLanding\Concerns\ManagesMbaMastersChunk;
 use App\Filament\Resources\OurStoryTestimonialResource;
 use App\Settings\MbaMastersAlumniSettings;
@@ -41,10 +42,6 @@ class ManageProof extends Page implements HasForms
     public function mount(): void
     {
         $testimonials = app(MbaMastersTestimonialsSettings::class)->toArray();
-        $testimonials['items'] = $this->hydrateRepeaterMediaFields(
-            array_values($testimonials['items'] ?? []),
-            'photo'
-        );
 
         $compare = app(MbaMastersCompareSettings::class)->toArray();
         $compare['rows'] = array_values($compare['rows'] ?? []);
@@ -174,11 +171,9 @@ class ManageProof extends Page implements HasForms
             return;
         }
 
-        $existingTestimonials = app(MbaMastersTestimonialsSettings::class)->toArray();
-
         $testimonials = $data['testimonials'] ?? [];
         $testimonials['show_section'] = (bool) ($testimonials['show_section'] ?? true);
-        $testimonials['items'] = array_values($existingTestimonials['items'] ?? []);
+        $testimonials['items'] = [];
 
         $compare = $data['compare'] ?? [];
         $compare['rows'] = array_values($compare['rows'] ?? []);

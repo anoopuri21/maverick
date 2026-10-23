@@ -1,21 +1,23 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Support;
 
 use App\Settings\VoicesTestimonialsSettings;
 use Illuminate\Support\Str;
 use Throwable;
 
-class TestimonialPages
+final class TestimonialPages
 {
     public const MBA_MASTERS_LANDING = 'mba-masters-landing';
 
     public const OUR_STORY = 'our-story';
 
     /**
-     * All registered page options (`page-key => Human Label`) resolved from
-     * Admin DB settings (`VoicesTestimonialsSettings::$pages`) merged with any
-     * code-registered pages in `config/testimonials.php`.
+     * Resolve all available display page options (`page-key => Human Label`)
+     * from Admin DB settings (`VoicesTestimonialsSettings::$pages`) merged with
+     * baseline pages registered in `config/testimonials.php`.
      *
      * @return array<string, string>
      */
@@ -23,33 +25,35 @@ class TestimonialPages
     {
         $options = [];
 
-        // 1. Admin-managed pages stored in DB (`voices_testimonials.pages`)
         try {
             $settings = safe_settings(VoicesTestimonialsSettings::class);
             $dbPages = settings_array($settings->pages ?? []);
+
             foreach ($dbPages as $row) {
                 if (! is_array($row)) {
                     continue;
                 }
-                $key = Str::slug(trim((string) ($row['key'] ?? '')));
+
+                $key = self::sanitizeKey($row['key'] ?? null);
                 if ($key === '') {
                     continue;
                 }
+
                 $label = trim((string) ($row['label'] ?? ''));
                 $options[$key] = $label !== '' ? $label : Str::headline($key);
             }
         } catch (Throwable) {
-            // Ignore before migrations run
+            // Safe fallback before settings table migrations have executed.
         }
 
-        // 2. Merge baseline / developer-configured keys from config/testimonials.php
         $configured = config('testimonials.pages', []);
         if (is_array($configured)) {
             foreach ($configured as $key => $label) {
-                $cleanKey = trim((string) $key);
+                $cleanKey = self::sanitizeKey($key);
                 if ($cleanKey === '' || isset($options[$cleanKey])) {
                     continue;
                 }
+
                 $cleanLabel = trim((string) $label);
                 $options[$cleanKey] = $cleanLabel !== '' ? $cleanLabel : Str::headline($cleanKey);
             }
@@ -59,7 +63,7 @@ class TestimonialPages
     }
 
     /**
-     * Registered page keys in display order.
+     * Registered page keys in configured display order.
      *
      * @return list<string>
      */
@@ -69,11 +73,13 @@ class TestimonialPages
     }
 
     /**
-     * Resolve human-readable label for a page key.
+     * Human-readable label for a given page key.
      */
     public static function label(string $pageKey): string
     {
-        return self::options()[$pageKey] ?? Str::headline($pageKey);
+        $cleanKey = self::sanitizeKey($pageKey);
+
+        return self::options()[$cleanKey] ?? Str::headline($cleanKey !== '' ? $cleanKey : $pageKey);
     }
 
     /**
@@ -99,12 +105,24 @@ class TestimonialPages
                 continue;
             }
 
-            $clean = trim((string) $page);
+            $clean = self::sanitizeKey($page);
             if ($clean !== '' && ! in_array($clean, $normalized, true)) {
                 $normalized[] = $clean;
             }
         }
 
         return array_values($normalized);
+    }
+
+    /**
+     * Sanitize a page key into a safe URL-style slug (`a-z0-9-`).
+     */
+    public static function sanitizeKey(mixed $raw): string
+    {
+        if (! is_scalar($raw)) {
+            return '';
+        }
+
+        return Str::slug(trim((string) $raw));
     }
 }

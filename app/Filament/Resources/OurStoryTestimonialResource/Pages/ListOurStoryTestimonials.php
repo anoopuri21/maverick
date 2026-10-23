@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\OurStoryTestimonialResource\Pages;
 
 use App\Filament\Resources\OurStoryTestimonialResource;
 use App\Settings\VoicesTestimonialsSettings;
 use App\Support\PublicContentCache;
+use App\Support\TestimonialPages;
 use Filament\Actions;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Section;
@@ -13,7 +16,6 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\ListRecords;
-use Illuminate\Support\Str;
 
 class ListOurStoryTestimonials extends ListRecords
 {
@@ -29,7 +31,7 @@ class ListOurStoryTestimonials extends ListRecords
                 ->modalHeading('Testimonials Section & Display Pages Settings')
                 ->modalDescription('Manage global default copy, visibility, and available pages for the shared Voices Testimonials component.')
                 ->modalWidth('2xl')
-                ->fillForm(function (): array {
+                ->fillForm(static function (): array {
                     $settings = safe_settings(VoicesTestimonialsSettings::class);
 
                     return [
@@ -62,6 +64,7 @@ class ListOurStoryTestimonials extends ListRecords
                             Textarea::make('intro')
                                 ->label('Default Section Intro')
                                 ->rows(2)
+                                ->maxLength(600)
                                 ->columnSpanFull(),
                         ]),
 
@@ -88,22 +91,24 @@ class ListOurStoryTestimonials extends ListRecords
                                 ]),
                         ]),
                 ])
-                ->action(function (array $data): void {
+                ->action(static function (array $data): void {
                     $settings = app(VoicesTestimonialsSettings::class);
                     $settings->show_section = (bool) ($data['show_section'] ?? true);
-                    $settings->label = $data['label'] ?? null;
-                    $settings->heading = $data['heading'] ?? null;
-                    $settings->intro = $data['intro'] ?? null;
-                    $settings->stack_caption = $data['stack_caption'] ?? null;
+                    $settings->label = isset($data['label']) ? trim((string) $data['label']) : null;
+                    $settings->heading = isset($data['heading']) ? trim((string) $data['heading']) : null;
+                    $settings->intro = isset($data['intro']) ? trim((string) $data['intro']) : null;
+                    $settings->stack_caption = isset($data['stack_caption']) ? trim((string) $data['stack_caption']) : null;
 
                     $cleanPages = [];
+                    $seenKeys = [];
                     foreach (($data['pages'] ?? []) as $row) {
                         if (! is_array($row)) {
                             continue;
                         }
-                        $key = Str::slug(trim((string) ($row['key'] ?? '')));
+                        $key = TestimonialPages::sanitizeKey($row['key'] ?? '');
                         $label = trim((string) ($row['label'] ?? ''));
-                        if ($key !== '' && $label !== '') {
+                        if ($key !== '' && $label !== '' && ! isset($seenKeys[$key])) {
+                            $seenKeys[$key] = true;
                             $cleanPages[] = [
                                 'key' => $key,
                                 'label' => $label,

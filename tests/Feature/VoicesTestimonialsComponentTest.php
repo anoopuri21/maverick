@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Feature;
 
 use App\Filament\Resources\OurStoryTestimonialResource;
@@ -120,11 +122,33 @@ class VoicesTestimonialsComponentTest extends TestCase
             ->assertSee('Nadia El-Khoury');
     }
 
+    public function test_model_sanitizes_html_xss_entities_and_normalizes_attributes_on_save(): void
+    {
+        $record = OurStoryTestimonial::create([
+            'name' => '  Zayd Al-Farsi  ',
+            'position' => '  Executive MBA  ',
+            'organisation' => '   ',
+            'country' => '  Oman ',
+            'rating' => 99,
+            'testimonial' => ' “<p>Transformative <strong>leadership</strong> journey &amp; growth.</p><script>alert(1)</script>” ',
+            'pages' => ['MBA Masters Landing!', 'our-story', 'our-story', ''],
+            'is_active' => true,
+        ]);
+
+        $this->assertSame('Zayd Al-Farsi', $record->name);
+        $this->assertSame('Executive MBA', $record->position);
+        $this->assertNull($record->organisation);
+        $this->assertSame('Oman', $record->country);
+        $this->assertSame(5, $record->rating);
+        $this->assertSame('Transformative leadership journey & growth.', $record->testimonial);
+        $this->assertSame(['mba-masters-landing', 'our-story'], $record->pages);
+        $this->assertSame('Executive MBA, Oman', $record->display_role);
+    }
+
     public function test_admin_panel_has_exclusive_control_with_zero_hardcoded_fallbacks(): void
     {
         OurStoryTestimonial::withTrashed()->forceDelete();
 
-        // When DB table has 0 active testimonials, neither page renders any hardcoded testimonial
         $this->get('/online-mba-masters-uae')
             ->assertOk()
             ->assertDontSee('id="mlp-testimonials"', false);
@@ -133,8 +157,6 @@ class VoicesTestimonialsComponentTest extends TestCase
             ->assertOk()
             ->assertDontSee('id="mlp-testimonials"', false);
 
-        // When Admin adds a future page dynamically via DB settings and leaves caption blank,
-        // no hardcoded caption or fallback image path appears
         $globalSettings = app(VoicesTestimonialsSettings::class);
         $globalSettings->stack_caption = '';
         $globalSettings->pages = [

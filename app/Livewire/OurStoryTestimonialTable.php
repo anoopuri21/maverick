@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Livewire;
 
 use App\Filament\Resources\OurStoryTestimonialResource;
@@ -31,7 +33,7 @@ class OurStoryTestimonialTable extends Component implements HasForms, HasTable
             ->headerActions([
                 CreateAction::make()
                     ->label('Add Testimonial')
-                    ->form(fn (Form $form) => OurStoryTestimonialResource::form($form))
+                    ->form(fn (Form $form): Form => OurStoryTestimonialResource::form($form))
                     ->mutateFormDataUsing(function (array $data): array {
                         $data = $this->mutateEmbeddedMedia($data, 'photo');
                         $data['pages'] = TestimonialPages::normalize($data['pages'] ?? []);
@@ -41,7 +43,7 @@ class OurStoryTestimonialTable extends Component implements HasForms, HasTable
             ])
             ->actions([
                 EditAction::make()
-                    ->form(fn (Form $form) => OurStoryTestimonialResource::form($form))
+                    ->form(fn (Form $form): Form => OurStoryTestimonialResource::form($form))
                     ->mutateFormDataUsing(function (array $data): array {
                         $data = $this->mutateEmbeddedMedia($data, 'photo', $this->getMountedTableActionRecord());
                         $data['pages'] = TestimonialPages::normalize($data['pages'] ?? []);

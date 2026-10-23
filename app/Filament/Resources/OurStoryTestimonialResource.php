@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources;
 
 use App\Filament\Forms\Components\MediaPicker;
@@ -47,16 +49,16 @@ class OurStoryTestimonialResource extends Resource
                             ->required()
                             ->maxLength(255),
                         Forms\Components\TextInput::make('position')
-                            ->label('Role / Course / Designation')
-                            ->placeholder('e.g. Global MBA · UCA or Senior Manager')
+                            ->label('Course / Role / Designation')
+                            ->placeholder('e.g. Global MBA (Triple Qualification)')
                             ->maxLength(255),
                         Forms\Components\TextInput::make('organisation')
                             ->label('University / Organisation (Optional)')
-                            ->placeholder('e.g. Rushford Business School or Deloitte')
+                            ->placeholder('e.g. University for the Creative Arts (UCA)')
                             ->maxLength(255),
                         Forms\Components\TextInput::make('country')
-                            ->label('Country / Location (Optional)')
-                            ->placeholder('e.g. UAE, Saudi Arabia, Qatar')
+                            ->label('Country / Nationality (Optional)')
+                            ->placeholder('e.g. UAE, UK, India')
                             ->maxLength(255),
                     ]),
 
@@ -65,9 +67,11 @@ class OurStoryTestimonialResource extends Resource
                         Forms\Components\Textarea::make('testimonial')
                             ->label('Quote / Testimonial')
                             ->required()
-                            ->rows(5)
-                            ->formatStateUsing(fn (?string $state, ?OurStoryTestimonial $record): string => $record ? $record->plain_quote : (string) ($state ?? ''))
-                            ->helperText('Enter the student testimonial quote (plain text — stylized quotation marks are added automatically on the page).')
+                            ->rows(6)
+                            ->maxLength(5000)
+                            ->formatStateUsing(fn (?string $state, ?OurStoryTestimonial $record): string => $record ? $record->plain_quote : OurStoryTestimonial::sanitizeQuote($state))
+                            ->dehydrateStateUsing(fn (?string $state): string => OurStoryTestimonial::sanitizeQuote($state))
+                            ->helperText('Enter plain text quote (quotation marks and clean paragraph spacing are rendered automatically on the page).')
                             ->columnSpanFull(),
                         Forms\Components\Hidden::make('photo'),
                         MediaPicker::make('media_asset_id')
@@ -78,7 +82,7 @@ class OurStoryTestimonialResource extends Resource
                     ]),
 
                 Forms\Components\Section::make('Page Assignment & Visibility')
-                    ->description('Choose one or multiple pages where this testimonial should display. Unselected pages will NOT display this testimonial.')
+                    ->description('Select single or multiple pages where this testimonial should display. Unselected pages will NOT display it.')
                     ->columns(2)
                     ->schema([
                         Forms\Components\Select::make('pages')
@@ -90,12 +94,13 @@ class OurStoryTestimonialResource extends Resource
                             ->required()
                             ->minItems(1)
                             ->default(fn (): array => TestimonialPages::keys())
-                            ->helperText('Select single or multiple pages. This testimonial displays ONLY on selected page(s).')
+                            ->helperText('Select one or multiple pages. This testimonial renders ONLY on selected page(s).')
                             ->columnSpanFull(),
                         Forms\Components\TextInput::make('sort_order')
                             ->label('Display Order')
                             ->numeric()
-                            ->default(0)
+                            ->minValue(0)
+                            ->default(fn (): int => ((int) OurStoryTestimonial::withTrashed()->max('sort_order')) + 1)
                             ->helperText('Lower numbers appear first in the Voices carousel.'),
                         Forms\Components\Toggle::make('is_active')
                             ->label('Active')
@@ -127,6 +132,7 @@ class OurStoryTestimonialResource extends Resource
                 Tables\Columns\TextColumn::make('plain_quote')
                     ->label('Quote')
                     ->limit(220)
+                    ->tooltip(fn (OurStoryTestimonial $record): ?string => mb_strlen($record->plain_quote) > 220 ? $record->plain_quote : null)
                     ->wrap()
                     ->extraHeaderAttributes(['style' => 'min-width: 380px; width: 46%;'])
                     ->extraAttributes(['style' => 'min-width: 380px; width: 46%; white-space: normal;']),
@@ -144,7 +150,7 @@ class OurStoryTestimonialResource extends Resource
                     ->label('Display Page')
                     ->options(fn (): array => TestimonialPages::options())
                     ->query(function (Builder $query, array $data): Builder {
-                        $value = trim((string) ($data['value'] ?? ''));
+                        $value = TestimonialPages::sanitizeKey($data['value'] ?? '');
 
                         return $value !== ''
                             ? $query->whereJsonContains('pages', $value)
@@ -172,6 +178,7 @@ class OurStoryTestimonialResource extends Resource
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()
+            ->with('mediaAsset:id,url,alt')
             ->withoutGlobalScopes([
                 SoftDeletingScope::class,
             ]);

@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use App\Models\OurStoryGalleryImage;
 use App\Models\OurStoryTestimonial;
-use App\Models\OurStoryTimeline;
 use App\Support\TestimonialPages;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Artisan;

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Console\Commands;
 
 use Database\Seeders\TestimonialSeeder;
@@ -24,7 +26,7 @@ class SeedTestimonialsCommand extends Command
         $seeder->run();
 
         $this->line('');
-        $this->info('All 10 student testimonials are now stored in DB (`our_story_testimonials`) and managed exclusively from:');
+        $this->info('All 10 student testimonials are synced in DB (`our_story_testimonials`) and managed exclusively from:');
         $this->line('  -> Admin Panel: Global Content -> Testimonials');
 
         return self::SUCCESS;

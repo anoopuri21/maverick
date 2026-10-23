@@ -3,6 +3,10 @@
     100% controlled via Filament Admin Panel (`Global Content -> Testimonials` & DB tables
     `our_story_testimonials` + `settings`) with zero hardcoded text or fallback images.
 --}}
+@php
+    $totalCount = $items->count();
+@endphp
+
 @once
     @push('styles')
         <link rel="stylesheet" href="{{ cached_asset('assets/css/voices-testimonials.css') }}" />
@@ -54,6 +58,7 @@
                                 width="760"
                                 height="960"
                                 loading="{{ $index === 0 ? 'eager' : 'lazy' }}"
+                                fetchpriority="{{ $index === 0 ? 'auto' : 'low' }}"
                                 decoding="async"
                             />
                         @else
@@ -66,11 +71,21 @@
                 @endif
             </div>
 
-            <div class="archive-voices__list luxury-testimonials" data-mlp-reveal="testimonials-rail" data-luxury-testimonials>
+            <div
+                class="archive-voices__list luxury-testimonials"
+                role="region"
+                aria-roledescription="carousel"
+                aria-label="{{ filled($heading) ? $heading : 'Testimonials' }}"
+                data-mlp-reveal="testimonials-rail"
+                data-luxury-testimonials
+            >
                 <div class="luxury-testimonials__slides" aria-live="polite">
                     @foreach($items as $index => $item)
                         <blockquote
                             class="luxury-testimonial mlp-hairline {{ $index === 0 ? 'is-active' : '' }}"
+                            role="group"
+                            aria-roledescription="slide"
+                            aria-label="{{ ($index + 1) . ' of ' . $totalCount }}"
                             data-testimonial-slide="{{ $index }}"
                             data-closing-element
                             @if($index > 0) hidden aria-hidden="true" @endif
@@ -107,7 +122,7 @@
                     @endforeach
                 </div>
 
-                @if($items->count() > 1)
+                @if($totalCount > 1)
                     <div class="luxury-testimonials__controls" aria-label="Testimonial controls">
                         <button type="button" class="luxury-testimonials__control" data-testimonial-prev aria-label="Previous testimonial">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
@@ -118,7 +133,7 @@
                         <p class="luxury-testimonials__progress" aria-live="off">
                             <span data-testimonial-current>01</span>
                             <span aria-hidden="true">/</span>
-                            <span data-testimonial-total>{{ str_pad((string) $items->count(), 2, '0', STR_PAD_LEFT) }}</span>
+                            <span data-testimonial-total>{{ str_pad((string) $totalCount, 2, '0', STR_PAD_LEFT) }}</span>
                         </p>
                         <button type="button" class="luxury-testimonials__toggle" data-testimonial-toggle aria-pressed="false">Pause</button>
                     </div>
