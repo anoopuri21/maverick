@@ -21,12 +21,6 @@
                 class="rounded-lg px-4 py-2 text-sm font-medium">
                 Gallery Images
             </button>
-            <button type="button"
-                @click="activeTab = 'testimonials'"
-                :class="activeTab === 'testimonials' ? 'bg-primary-600 text-white' : 'bg-white text-gray-600 hover:bg-gray-50'"
-                class="rounded-lg px-4 py-2 text-sm font-medium">
-                Testimonials
-            </button>
         </div>
 
         {{-- Settings tab (form) --}}
@@ -45,9 +39,6 @@
         </div>
         <div x-show="activeTab === 'gallery'" x-cloak>
             <livewire:our-story-gallery-image-table />
-        </div>
-        <div x-show="activeTab === 'testimonials'" x-cloak>
-            <livewire:our-story-testimonial-table />
         </div>
     </div>
 </x-filament-panels::page>

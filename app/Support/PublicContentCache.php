@@ -49,6 +49,8 @@ class PublicContentCache
 
     public const MLP_STORY_TESTIMONIALS = 'mlp-story-testimonials';
 
+    public const VOICES_TESTIMONIALS = 'voices-testimonials.v1';
+
     public const ADMIN_OVERVIEW = 'admin.site_overview_counts';
 
     /**
@@ -73,6 +75,9 @@ class PublicContentCache
             self::GLOBAL_ACCESS_POINTS,
             self::ALUMNI_LOGOS,
             self::FOOTER_PROGRAM_CATEGORIES,
+            self::MLP_UNIVERSITY_LOGOS,
+            self::MLP_STORY_TESTIMONIALS,
+            self::VOICES_TESTIMONIALS,
             self::ADMIN_OVERVIEW,
             // Legacy keys (pre array-safe cache)
             'homepage',
