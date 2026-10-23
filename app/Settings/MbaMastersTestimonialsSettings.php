@@ -14,6 +14,8 @@ class MbaMastersTestimonialsSettings extends Settings
 
     public ?string $intro = null;
 
+    public ?string $stack_caption = null;
+
     public array $items = [];
 
     public ?string $film_label = null;

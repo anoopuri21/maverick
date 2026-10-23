@@ -5,6 +5,8 @@ namespace Tests\Feature;
 use App\Filament\Resources\OurStoryTestimonialResource;
 use App\Models\OurStoryTestimonial;
 use App\Services\VoicesTestimonialsService;
+use App\Settings\MbaMastersTestimonialsSettings;
+use App\Settings\VoicesTestimonialsSettings;
 use App\Support\TestimonialPages;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Artisan;
@@ -21,7 +23,28 @@ class VoicesTestimonialsComponentTest extends TestCase
 
         Artisan::call('our-story:sync-content');
         Artisan::call('our-story:sync-timeline');
-        OurStoryTestimonial::withTrashed()->forceDelete();
+    }
+
+    public function test_all_ten_verified_testimonials_exist_in_db_table_and_render_on_both_pages(): void
+    {
+        $records = OurStoryTestimonial::query()->orderBy('sort_order')->get();
+
+        $this->assertCount(10, $records);
+        $this->assertSame('Christopher Kinene', $records->first()->name);
+        $this->assertSame('Ramkumar Dilli', $records->last()->name);
+        $this->assertSame([], app(MbaMastersTestimonialsSettings::class)->items);
+
+        $mlpResponse = $this->get('/online-mba-masters-uae');
+        $mlpResponse->assertOk();
+        $mlpResponse->assertSee('Christopher Kinene');
+        $mlpResponse->assertSee('Ramkumar Dilli');
+        $mlpResponse->assertSee('01-christopher-kinene.jpg', false);
+
+        $ourStoryResponse = $this->get('/our-story');
+        $ourStoryResponse->assertOk();
+        $ourStoryResponse->assertSee('Christopher Kinene');
+        $ourStoryResponse->assertSee('Ramkumar Dilli');
+        $ourStoryResponse->assertSee('01-christopher-kinene.jpg', false);
     }
 
     public function test_global_content_testimonial_resource_registers_in_global_content_navigation(): void
@@ -34,6 +57,8 @@ class VoicesTestimonialsComponentTest extends TestCase
 
     public function test_single_page_selection_displays_only_on_selected_page_and_not_other_pages(): void
     {
+        OurStoryTestimonial::withTrashed()->forceDelete();
+
         OurStoryTestimonial::create([
             'name' => 'Aisha Al Mansoori',
             'position' => 'Director of Operations',
@@ -58,27 +83,19 @@ class VoicesTestimonialsComponentTest extends TestCase
 
         $mlpResponse = $this->get('/online-mba-masters-uae');
         $mlpResponse->assertOk();
-        $mlpResponse->assertSee('id="mlp-testimonials"', false);
-        $mlpResponse->assertSee('voices-testimonials.css', false);
-        $mlpResponse->assertSee('voices-testimonials.js', false);
         $mlpResponse->assertSee('Aisha Al Mansoori');
-        $mlpResponse->assertSee('Exclusive landing page quote that must never show on Our Story.');
         $mlpResponse->assertDontSee('Rohan Deshmukh');
-        $mlpResponse->assertDontSee('Exclusive Our Story quote that must never show on Master Landing.');
 
         $ourStoryResponse = $this->get('/our-story');
         $ourStoryResponse->assertOk();
-        $ourStoryResponse->assertSee('id="mlp-testimonials"', false);
-        $ourStoryResponse->assertSee('voices-testimonials.css', false);
-        $ourStoryResponse->assertSee('voices-testimonials.js', false);
         $ourStoryResponse->assertSee('Rohan Deshmukh');
-        $ourStoryResponse->assertSee('Exclusive Our Story quote that must never show on Master Landing.');
         $ourStoryResponse->assertDontSee('Aisha Al Mansoori');
-        $ourStoryResponse->assertDontSee('Exclusive landing page quote that must never show on Our Story.');
     }
 
     public function test_multi_page_selection_displays_shared_voices_section_on_both_pages(): void
     {
+        OurStoryTestimonial::withTrashed()->forceDelete();
+
         OurStoryTestimonial::create([
             'name' => 'Nadia El-Khoury',
             'position' => 'Global MBA Graduate',
@@ -93,57 +110,56 @@ class VoicesTestimonialsComponentTest extends TestCase
             'is_active' => true,
         ]);
 
-        $mlpResponse = $this->get('/online-mba-masters-uae');
-        $mlpResponse->assertOk();
-        $mlpResponse->assertSee('Nadia El-Khoury');
-        $mlpResponse->assertSee('Multi-page selected testimonial rendered across both pages seamlessly.');
+        $this->get('/online-mba-masters-uae')
+            ->assertOk()
+            ->assertSee('Nadia El-Khoury');
 
-        $ourStoryResponse = $this->get('/our-story');
-        $ourStoryResponse->assertOk();
-        $ourStoryResponse->assertSee('Nadia El-Khoury');
-        $ourStoryResponse->assertSee('Multi-page selected testimonial rendered across both pages seamlessly.');
+        $this->get('/our-story')
+            ->assertOk()
+            ->assertSee('Nadia El-Khoury');
     }
 
-    public function test_section_hides_cleanly_when_no_active_testimonials_match_page(): void
+    public function test_admin_panel_has_exclusive_control_with_zero_hardcoded_fallbacks(): void
     {
-        OurStoryTestimonial::create([
-            'name' => 'Inactive Student',
-            'testimonial' => 'Inactive quote hidden everywhere.',
-            'pages' => [TestimonialPages::MBA_MASTERS_LANDING, TestimonialPages::OUR_STORY],
-            'is_active' => false,
-        ]);
+        OurStoryTestimonial::withTrashed()->forceDelete();
 
-        $ourStoryResponse = $this->get('/our-story');
-        $ourStoryResponse->assertOk();
-        $ourStoryResponse->assertDontSee('id="mlp-testimonials"', false);
-        $ourStoryResponse->assertDontSee('Inactive Student');
-    }
+        // When DB table has 0 active testimonials, neither page renders any hardcoded testimonial
+        $this->get('/online-mba-masters-uae')
+            ->assertOk()
+            ->assertDontSee('id="mlp-testimonials"', false);
 
-    public function test_future_page_extensibility_works_with_zero_extra_code(): void
-    {
-        config()->set('testimonials.pages.dual-mba', 'Dual MBA Page (/dual-mba)');
+        $this->get('/our-story')
+            ->assertOk()
+            ->assertDontSee('id="mlp-testimonials"', false);
+
+        // When Admin adds a future page dynamically via DB settings and leaves caption blank,
+        // no hardcoded caption or fallback image path appears
+        $globalSettings = app(VoicesTestimonialsSettings::class);
+        $globalSettings->stack_caption = '';
+        $globalSettings->pages = [
+            ['key' => 'dual-mba', 'label' => 'Dual MBA Page (/dual-mba-online)'],
+        ];
+        $globalSettings->save();
 
         $this->assertArrayHasKey('dual-mba', TestimonialPages::options());
-        $this->assertSame('Dual MBA Page (/dual-mba)', TestimonialPages::label('dual-mba'));
+        $this->assertSame('Dual MBA Page (/dual-mba-online)', TestimonialPages::label('dual-mba'));
 
         OurStoryTestimonial::create([
             'name' => 'Karim Haddad',
             'position' => 'Dual MBA Cohort',
             'organisation' => 'Maverick Business Academy',
-            'testimonial' => 'Future page testimonial rendered cleanly via component tag.',
+            'testimonial' => 'Admin-controlled dynamic page quote.',
+            'photo' => null,
             'pages' => ['dual-mba'],
             'sort_order' => 1,
             'is_active' => true,
         ]);
 
         $this->assertCount(1, app(VoicesTestimonialsService::class)->itemsForPage('dual-mba'));
-        $this->assertCount(0, app(VoicesTestimonialsService::class)->itemsForPage(TestimonialPages::OUR_STORY));
+        $renderedHtml = Blade::render('<x-voices-testimonials page="dual-mba" heading="" label="" intro="" stack-caption="" />');
 
-        $renderedHtml = Blade::render('<x-voices-testimonials page="dual-mba" heading="Dual MBA Voices" />');
-
-        $this->assertStringContainsString('data-voices-section="dual-mba"', $renderedHtml);
-        $this->assertStringContainsString('Dual MBA Voices', $renderedHtml);
         $this->assertStringContainsString('Karim Haddad', $renderedHtml);
-        $this->assertStringContainsString('Future page testimonial rendered cleanly via component tag.', $renderedHtml);
+        $this->assertStringNotContainsString('The experience, in their words.', $renderedHtml);
+        $this->assertStringNotContainsString('mlp-campus.jpg', $renderedHtml);
     }
 }

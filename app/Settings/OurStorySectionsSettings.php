@@ -20,6 +20,8 @@ class OurStorySectionsSettings extends Settings
 
     public ?string $testimonials_intro = null;
 
+    public ?string $testimonials_stack_caption = null;
+
     public bool $show_testimonials = true;
 
     public static function group(): string

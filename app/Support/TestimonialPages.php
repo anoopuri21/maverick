@@ -2,7 +2,9 @@
 
 namespace App\Support;
 
+use App\Settings\VoicesTestimonialsSettings;
 use Illuminate\Support\Str;
+use Throwable;
 
 class TestimonialPages
 {
@@ -11,29 +13,46 @@ class TestimonialPages
     public const OUR_STORY = 'our-story';
 
     /**
-     * All registered page options (`page-key => Human Label`) for Admin forms,
-     * table filters, and badges.
+     * All registered page options (`page-key => Human Label`) resolved from
+     * Admin DB settings (`VoicesTestimonialsSettings::$pages`) merged with any
+     * code-registered pages in `config/testimonials.php`.
      *
      * @return array<string, string>
      */
     public static function options(): array
     {
-        $configured = config('testimonials.pages', []);
+        $options = [];
 
-        if (! is_array($configured)) {
-            return [];
+        // 1. Admin-managed pages stored in DB (`voices_testimonials.pages`)
+        try {
+            $settings = safe_settings(VoicesTestimonialsSettings::class);
+            $dbPages = settings_array($settings->pages ?? []);
+            foreach ($dbPages as $row) {
+                if (! is_array($row)) {
+                    continue;
+                }
+                $key = Str::slug(trim((string) ($row['key'] ?? '')));
+                if ($key === '') {
+                    continue;
+                }
+                $label = trim((string) ($row['label'] ?? ''));
+                $options[$key] = $label !== '' ? $label : Str::headline($key);
+            }
+        } catch (Throwable) {
+            // Ignore before migrations run
         }
 
-        $options = [];
-        foreach ($configured as $key => $label) {
-            $cleanKey = trim((string) $key);
-            if ($cleanKey === '') {
-                continue;
+        // 2. Merge baseline / developer-configured keys from config/testimonials.php
+        $configured = config('testimonials.pages', []);
+        if (is_array($configured)) {
+            foreach ($configured as $key => $label) {
+                $cleanKey = trim((string) $key);
+                if ($cleanKey === '' || isset($options[$cleanKey])) {
+                    continue;
+                }
+                $cleanLabel = trim((string) $label);
+                $options[$cleanKey] = $cleanLabel !== '' ? $cleanLabel : Str::headline($cleanKey);
             }
-
-            $options[$cleanKey] = trim((string) $label) !== ''
-                ? trim((string) $label)
-                : Str::headline($cleanKey);
         }
 
         return $options;

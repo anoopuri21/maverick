@@ -8,5 +8,6 @@
     :label="$testimonials->label"
     :heading="$testimonials->heading"
     :intro="$testimonials->intro"
+    :stack-caption="$testimonials->stack_caption"
     :show="(bool) ($testimonials->show_section ?? true)"
 />

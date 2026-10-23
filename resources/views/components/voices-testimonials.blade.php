@@ -1,8 +1,7 @@
 {{--
     Standalone Voices Testimonials Component (`<x-voices-testimonials page="..." />`)
-    Renders the signature `#mlp-testimonials` portrait-stack + luxury single-quote carousel
-    strictly filtered by `$page` key from `config/testimonials.php`, and self-registers its
-    own stylesheet (`voices-testimonials.css`) and script (`voices-testimonials.js`) once per page.
+    100% controlled via Filament Admin Panel (`Global Content -> Testimonials` & DB tables
+    `our_story_testimonials` + `settings`) with zero hardcoded text or fallback images.
 --}}
 @once
     @push('styles')
@@ -17,7 +16,7 @@
     class="mlp-testimonials archive-voices"
     id="{{ $id }}"
     data-voices-section="{{ $page }}"
-    aria-labelledby="{{ $id }}-heading"
+    @if(filled($heading)) aria-labelledby="{{ $id }}-heading" @endif
 >
     <div class="archive-voices__background" aria-hidden="true">
         <span class="archive-voices__wash mlp-wash"></span>
@@ -25,15 +24,21 @@
     </div>
 
     <div class="archive-voices__frame container">
-        <div class="archive-voices__intro mlp-intro-grid" data-mlp-reveal="testimonials-head">
-            <div>
-                <p class="archive-voices__label mlp-eyebrow">{{ $label }}</p>
-                <h2 class="archive-voices__heading mlp-h2" id="{{ $id }}-heading">{{ $heading }}</h2>
+        @if(filled($label) || filled($heading) || filled($intro))
+            <div class="archive-voices__intro mlp-intro-grid" data-mlp-reveal="testimonials-head">
+                <div>
+                    @if(filled($label))
+                        <p class="archive-voices__label mlp-eyebrow">{{ $label }}</p>
+                    @endif
+                    @if(filled($heading))
+                        <h2 class="archive-voices__heading mlp-h2" id="{{ $id }}-heading">{{ $heading }}</h2>
+                    @endif
+                </div>
+                @if(filled($intro))
+                    <p class="archive-voices__intro-copy">{{ $intro }}</p>
+                @endif
             </div>
-            @if(filled($intro))
-                <p class="archive-voices__intro-copy">{{ $intro }}</p>
-            @endif
-        </div>
+        @endif
 
         <div class="archive-voices__stage" data-closing-voices>
             <div class="archive-voices__stack" data-testimonial-portraits aria-hidden="true">
@@ -52,18 +57,13 @@
                                 decoding="async"
                             />
                         @else
-                            <img
-                                src="/assets/images/mlp-campus.jpg"
-                                alt=""
-                                width="760"
-                                height="960"
-                                loading="{{ $index === 0 ? 'eager' : 'lazy' }}"
-                                decoding="async"
-                            />
+                            <span class="testimonial-portrait__placeholder">{{ $item['initial'] ?? '' }}</span>
                         @endif
                     </div>
                 @endforeach
-                <span class="archive-voices__stack-caption">{{ $stackCaption }}</span>
+                @if(filled($stackCaption))
+                    <span class="archive-voices__stack-caption">{{ $stackCaption }}</span>
+                @endif
             </div>
 
             <div class="archive-voices__list luxury-testimonials" data-mlp-reveal="testimonials-rail" data-luxury-testimonials>
@@ -85,17 +85,19 @@
                                 @if(filled($item['photo'] ?? null))
                                     <img
                                         src="{{ $item['photo'] }}"
-                                        alt="{{ $item['name'] ?? 'Student' }}"
+                                        alt="{{ $item['name'] ?? '' }}"
                                         width="64"
                                         height="64"
                                         loading="lazy"
                                         decoding="async"
                                     />
                                 @else
-                                    <span class="luxury-testimonial__initial" aria-hidden="true">{{ $item['initial'] ?? mb_strtoupper(mb_substr($item['name'] ?? 'S', 0, 1)) }}</span>
+                                    <span class="luxury-testimonial__initial" aria-hidden="true">{{ $item['initial'] ?? '' }}</span>
                                 @endif
                                 <span>
-                                    <cite>{{ $item['name'] ?? '' }}</cite>
+                                    @if(filled($item['name'] ?? null))
+                                        <cite>{{ $item['name'] }}</cite>
+                                    @endif
                                     @if(filled($item['role'] ?? null))
                                         <small>{{ $item['role'] }}</small>
                                     @endif

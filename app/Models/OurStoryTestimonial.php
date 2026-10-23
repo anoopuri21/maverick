@@ -91,7 +91,7 @@ class OurStoryTestimonial extends Model
     }
 
     /**
-     * Resolve clean author subtitle (e.g. "Senior Manager · Deloitte, Dubai").
+     * Resolve clean author subtitle from DB columns (`position · organisation, country`).
      */
     public function getDisplayRoleAttribute(): string
     {
@@ -110,21 +110,22 @@ class OurStoryTestimonial extends Model
     }
 
     /**
-     * Clean plain-text quote safe for typography wrapping in the Voices component.
+     * Clean quote text preserving paragraph breaks without raw HTML tags.
      */
     public function getPlainQuoteAttribute(): string
     {
         $raw = (string) ($this->testimonial ?? '');
-        $withBreaks = preg_replace('/<\s*br\s*\/?\s*>/i', ' ', $raw) ?? $raw;
-        $withParagraphs = preg_replace('/<\/\s*p\s*>\s*<\s*p[^>]*>/i', ' ', $withBreaks) ?? $withBreaks;
+        $withBreaks = preg_replace('/<\s*br\s*\/?\s*>/i', "\n", $raw) ?? $raw;
+        $withParagraphs = preg_replace('/<\/\s*p\s*>\s*<\s*p[^>]*>/i', "\n\n", $withBreaks) ?? $withBreaks;
         $decoded = html_entity_decode(strip_tags($withParagraphs), ENT_QUOTES | ENT_HTML5, 'UTF-8');
-        $collapsed = preg_replace('/\s+/u', ' ', $decoded) ?? $decoded;
+        $normalizedLines = preg_replace("/[ \t]+/u", ' ', str_replace(["\r\n", "\r"], "\n", $decoded)) ?? $decoded;
+        $collapsedParagraphs = preg_replace("/\n{3,}/u", "\n\n", $normalizedLines) ?? $normalizedLines;
 
-        return trim($collapsed, " \t\n\r\0\x0B\"“”");
+        return trim($collapsedParagraphs, " \t\n\r\0\x0B\"“”");
     }
 
     /**
-     * Resolve portrait image URL preferring attached MediaAsset when available.
+     * Resolve portrait image URL strictly from attached MediaAsset or `photo` DB column.
      */
     public function getResolvedPhotoUrlAttribute(): ?string
     {

@@ -3,6 +3,7 @@
 namespace App\View\Components;
 
 use App\Services\VoicesTestimonialsService;
+use App\Settings\VoicesTestimonialsSettings;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
@@ -14,13 +15,13 @@ class VoicesTestimonials extends Component
 
     public string $id;
 
-    public string $label;
+    public ?string $label;
 
-    public string $heading;
+    public ?string $heading;
 
-    public string $intro;
+    public ?string $intro;
 
-    public string $stackCaption;
+    public ?string $stackCaption;
 
     public bool $show;
 
@@ -36,14 +37,20 @@ class VoicesTestimonials extends Component
     public Collection $items;
 
     /**
-     * @param  string  $page  Page registry key (e.g. 'mba-masters-landing', 'our-story', or any future key in config/testimonials.php)
-     * @param  string  $id  HTML section id attribute (defaults to 'mlp-testimonials')
-     * @param  ?string  $label  Optional section eyebrow label override
-     * @param  ?string  $heading  Optional section H2 heading override
-     * @param  ?string  $intro  Optional section intro paragraph override
-     * @param  ?string  $stackCaption  Optional left portrait stack caption override
-     * @param  bool  $show  Whether the section is enabled on the calling page
-     * @param  iterable<int, array<string, mixed>>|null  $items  Optional pre-fetched items; when null, automatically resolves page-scoped testimonials via VoicesTestimonialsService
+     * 100% Admin-Controlled Voices Testimonials Component.
+     *
+     * Every piece of copy, visibility state, portrait photo, quote, and page assignment
+     * comes directly from the database (`our_story_testimonials` + `settings` tables)
+     * with zero hardcoded fallback strings or images.
+     *
+     * @param  string  $page  Page registry key (e.g. 'mba-masters-landing', 'our-story')
+     * @param  string  $id  HTML section id attribute
+     * @param  ?string  $label  Optional page-level DB setting label; falls back to global DB `VoicesTestimonialsSettings::$label` when null
+     * @param  ?string  $heading  Optional page-level DB setting heading; falls back to global DB `VoicesTestimonialsSettings::$heading` when null
+     * @param  ?string  $intro  Optional page-level DB setting intro; falls back to global DB `VoicesTestimonialsSettings::$intro` when null
+     * @param  ?string  $stackCaption  Optional page-level DB caption; falls back to global DB `VoicesTestimonialsSettings::$stack_caption` when null
+     * @param  bool  $show  Page-level visibility toggle from DB settings
+     * @param  iterable<int, array<string, mixed>>|null  $items  Optional explicit collection; defaults to DB `VoicesTestimonialsService::itemsForPage($page)`
      */
     public function __construct(
         string $page,
@@ -55,19 +62,22 @@ class VoicesTestimonials extends Component
         bool $show = true,
         ?iterable $items = null,
     ) {
-        $defaults = (array) config('testimonials.defaults', []);
+        $globalSettings = safe_settings(VoicesTestimonialsSettings::class);
 
         $this->page = trim($page);
         $this->id = trim($id) !== '' ? trim($id) : 'mlp-testimonials';
-        $this->label = filled($label) ? trim((string) $label) : (string) ($defaults['label'] ?? 'Testimonials');
-        $this->heading = filled($heading) ? trim((string) $heading) : (string) ($defaults['heading'] ?? 'What students say in their own words');
-        $this->intro = $intro !== null
-            ? trim($intro)
-            : (string) ($defaults['intro'] ?? '');
-        $this->stackCaption = filled($stackCaption)
-            ? trim((string) $stackCaption)
-            : (string) ($defaults['stack_caption'] ?? 'The experience, in their words.');
-        $this->show = $show;
+
+        // Strict DB-only resolution: explicit page DB setting if provided, otherwise global DB setting;
+        // if an admin clears a field to empty string "", keep it empty instead of injecting hardcoded text.
+        $this->label = $label !== null ? trim($label) : ($globalSettings->label !== null ? trim($globalSettings->label) : null);
+        $this->heading = $heading !== null ? trim($heading) : ($globalSettings->heading !== null ? trim($globalSettings->heading) : null);
+        $this->intro = $intro !== null ? trim($intro) : ($globalSettings->intro !== null ? trim($globalSettings->intro) : null);
+        $this->stackCaption = $stackCaption !== null
+            ? trim($stackCaption)
+            : ($globalSettings->stack_caption !== null ? trim($globalSettings->stack_caption) : null);
+
+        $globalEnabled = (bool) ($globalSettings->show_section ?? true);
+        $this->show = $globalEnabled && $show;
 
         $this->items = $items !== null
             ? collect($items)->values()

@@ -135,6 +135,7 @@ class ManageOurStory extends Page implements HasForms
                                     ->default(true),
                                 TextInput::make('sections.testimonials_badge')->label('Testimonials Badge'),
                                 TextInput::make('sections.testimonials_heading')->label('Testimonials Heading'),
+                                TextInput::make('sections.testimonials_stack_caption')->label('Testimonials Portrait Caption'),
                                 Textarea::make('sections.testimonials_intro')
                                     ->label('Testimonials Intro')
                                     ->rows(2),

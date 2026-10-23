@@ -160,6 +160,20 @@
   filter: contrast(1.03) saturate(0.96);
 }
 
+.mlp-testimonials .testimonial-portrait__placeholder {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  background: var(--mlp-navy);
+  color: rgba(255, 255, 255, 0.24);
+  font-family: var(--mlp-font-display);
+  font-size: clamp(4.5rem, 9vw, 7.5rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  user-select: none;
+}
+
 .mlp-testimonials .archive-voices__stack[data-testimonial-portraits]::after {
   content: "";
   position: absolute;
@@ -231,13 +245,14 @@
 
 .mlp-testimonials .luxury-testimonial__quote {
   margin: 0;
-  max-width: 34ch;
+  max-width: 52ch;
   color: var(--mlp-navy);
   font-family: var(--mlp-font-display);
-  font-size: clamp(1.22rem, 2.25vw, 1.92rem);
+  font-size: clamp(1.06rem, 1.48vw, 1.42rem);
   font-weight: 500;
-  line-height: 1.3;
-  letter-spacing: -0.02em;
+  line-height: 1.56;
+  letter-spacing: -0.015em;
+  white-space: pre-line;
 }
 
 .mlp-testimonials .luxury-testimonial__author {

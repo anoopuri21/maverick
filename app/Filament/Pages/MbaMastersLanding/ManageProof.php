@@ -106,6 +106,7 @@ class ManageProof extends Page implements HasForms
                             ->helperText('Hides the quotes section only. The film above it stays.')
                             ->columnSpanFull(),
                         TextInput::make('testimonials.label')->label('Section label'),
+                        TextInput::make('testimonials.stack_caption')->label('Portrait caption'),
                         TextInput::make('testimonials.heading')->label('Heading')->columnSpanFull(),
                         Textarea::make('testimonials.intro')->label('Intro')->rows(2)->columnSpanFull(),
                         TextInput::make('testimonials.film_label')->label('Film label'),

@@ -368,9 +368,10 @@
 <x-voices-testimonials
   :page="\App\Support\TestimonialPages::OUR_STORY"
   id="mlp-testimonials"
-  :label="$storySections->testimonials_badge ?? 'Testimonials'"
-  :heading="$storySections->testimonials_heading ?? 'What Our Students Say'"
-  :intro="$storySections->testimonials_intro ?? null"
+  :label="$storySections->testimonials_badge"
+  :heading="$storySections->testimonials_heading"
+  :intro="$storySections->testimonials_intro"
+  :stack-caption="$storySections->testimonials_stack_caption"
   :show="(bool) ($storySections->show_testimonials ?? true)"
 />
 
