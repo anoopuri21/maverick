@@ -3,7 +3,9 @@
 namespace Tests\Feature;
 
 use App\Models\OurStoryGalleryImage;
+use App\Models\OurStoryTestimonial;
 use App\Models\OurStoryTimeline;
+use App\Support\TestimonialPages;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Artisan;
 use Tests\TestCase;
@@ -92,5 +94,29 @@ class OurStoryTest extends TestCase
         // Ensure award and accreditation indicators from older templates are gone
         $response->assertDontSee('Awards &amp; Recognition');
         $response->assertDontSee('id="awards"');
+    }
+
+    /** @test */
+    public function test_our_story_renders_shared_mlp_voices_testimonials_section_when_assigned()
+    {
+        OurStoryTestimonial::create([
+            'name' => 'Zayd Al Nuaimi',
+            'position' => 'Senior Project Manager',
+            'organisation' => 'Emaar Properties',
+            'country' => 'UAE',
+            'testimonial' => 'Maverick delivered a flexible UK MBA experience tailored for working leaders.',
+            'pages' => [TestimonialPages::OUR_STORY],
+            'sort_order' => 1,
+            'is_active' => true,
+        ]);
+
+        $response = $this->get('/our-story');
+
+        $response->assertStatus(200);
+        $response->assertSee('id="mlp-testimonials"', false);
+        $response->assertSee('archive-voices', false);
+        $response->assertSee('luxury-testimonial', false);
+        $response->assertSee('Zayd Al Nuaimi');
+        $response->assertDontSee('os-testi-slider', false);
     }
 }

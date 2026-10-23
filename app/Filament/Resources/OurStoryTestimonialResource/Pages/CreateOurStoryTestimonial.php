@@ -4,6 +4,7 @@ namespace App\Filament\Resources\OurStoryTestimonialResource\Pages;
 
 use App\Filament\Forms\Components\MediaPicker;
 use App\Filament\Resources\OurStoryTestimonialResource;
+use App\Support\TestimonialPages;
 use Filament\Resources\Pages\CreateRecord;
 
 class CreateOurStoryTestimonial extends CreateRecord
@@ -12,6 +13,9 @@ class CreateOurStoryTestimonial extends CreateRecord
 
     protected function mutateFormDataBeforeCreate(array $data): array
     {
-        return MediaPicker::syncUrlFromAsset($data, 'photo');
+        $data = MediaPicker::syncFieldFromAsset($data, 'photo', 'media_asset_id');
+        $data['pages'] = TestimonialPages::normalize($data['pages'] ?? []);
+
+        return $data;
     }
 }

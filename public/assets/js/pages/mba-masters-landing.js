@@ -1059,13 +1059,6 @@
       if (partnersTrust) MLP.slideReveal(partnersTrust, partners, { children: false, trigger: partnersTrust, duration: 0.65 });
   }
 
-  function initTestimonials(testimonials) {
-      var tHead = testimonials.querySelector('[data-mlp-reveal="testimonials-head"]');
-      var tRail = testimonials.querySelector('[data-mlp-reveal="testimonials-rail"]');
-      if (tHead) MLP.slideReveal(tHead, testimonials, { stagger: 0.08 });
-      if (tRail) MLP.slideReveal(tRail, testimonials, { stagger: 0.1 });
-  }
-
   function initCompare(compare) {
       var cHead = compare.querySelector('[data-mlp-reveal="compare-head"]');
       var cRows = compare.querySelector(".archive-parallel__rows");
@@ -1303,153 +1296,11 @@
     if (reduced) desk.classList.add("is-reduced-motion");
   }
 
-  function initLuxuryTestimonials(carousel) {
-    if (!carousel) return;
-
-    var slides = Array.prototype.slice.call(carousel.querySelectorAll("[data-testimonial-slide]"));
-    var stage = carousel.closest("[data-closing-voices]");
-    var portraits = stage
-      ? Array.prototype.slice.call(stage.querySelectorAll("[data-testimonial-portrait]"))
-      : [];
-    var previous = carousel.querySelector("[data-testimonial-prev]");
-    var next = carousel.querySelector("[data-testimonial-next]");
-    var toggle = carousel.querySelector("[data-testimonial-toggle]");
-    var current = carousel.querySelector("[data-testimonial-current]");
-    var reduced = prefersReduced();
-    var activeIndex = 0;
-    var paused = reduced;
-    var hovered = false;
-    var focused = false;
-    var timer = null;
-    var resumeTimer = null;
-    var startX = null;
-
-    function updateToggle() {
-      if (!toggle) return;
-      toggle.setAttribute("aria-pressed", paused ? "true" : "false");
-      toggle.textContent = paused ? "Play" : "Pause";
-    }
-
-    function preloadPortrait(index) {
-      if (!portraits.length) return;
-      var normalizedIndex = (index + portraits.length) % portraits.length;
-      var image = portraits[normalizedIndex].querySelector("img");
-      if (image) image.loading = "eager";
-    }
-
-    function showSlide(index) {
-      if (!slides.length) return;
-      activeIndex = (index + slides.length) % slides.length;
-      preloadPortrait(activeIndex);
-      preloadPortrait(activeIndex - 1);
-      preloadPortrait(activeIndex + 1);
-
-      slides.forEach(function (slide, slideIndex) {
-        var active = slideIndex === activeIndex;
-        slide.hidden = !active;
-        slide.setAttribute("aria-hidden", active ? "false" : "true");
-        slide.classList.toggle("is-active", active);
-        slide.classList.remove("is-entering");
-        if (active && !reduced) {
-          window.requestAnimationFrame(function () {
-            slide.classList.add("is-entering");
-          });
-        }
-      });
-
-      portraits.forEach(function (portrait, portraitIndex) {
-        portrait.classList.toggle("is-active", portraitIndex === activeIndex);
-      });
-
-      if (current) current.textContent = String(activeIndex + 1).padStart(2, "0");
-    }
-
-    function goNext() {
-      showSlide(activeIndex + 1);
-    }
-
-    function goPrevious() {
-      showSlide(activeIndex - 1);
-    }
-
-    function scheduleResume() {
-      if (reduced) return;
-      window.clearTimeout(resumeTimer);
-      paused = true;
-      updateToggle();
-      resumeTimer = window.setTimeout(function () {
-        if (!hovered && !focused) {
-          paused = false;
-          updateToggle();
-        }
-      }, 4200);
-    }
-
-    function startTimer() {
-      if (reduced || slides.length < 2) return;
-      window.clearInterval(timer);
-      timer = window.setInterval(function () {
-        if (!paused && !hovered && !focused) goNext();
-      }, 6000);
-    }
-
-    if (previous) previous.addEventListener("click", function () { goPrevious(); scheduleResume(); });
-    if (next) next.addEventListener("click", function () { goNext(); scheduleResume(); });
-    if (toggle) {
-      toggle.addEventListener("click", function () {
-        paused = !paused;
-        updateToggle();
-        startTimer();
-      });
-    }
-
-    carousel.addEventListener("mouseenter", function () { hovered = true; });
-    carousel.addEventListener("mouseleave", function () { hovered = false; });
-    carousel.addEventListener("focusin", function () { focused = true; });
-    carousel.addEventListener("focusout", function () { focused = false; });
-    carousel.addEventListener("keydown", function (event) {
-      if (event.key === "ArrowLeft") {
-        event.preventDefault();
-        goPrevious();
-        scheduleResume();
-      }
-      if (event.key === "ArrowRight") {
-        event.preventDefault();
-        goNext();
-        scheduleResume();
-      }
-    });
-
-    carousel.addEventListener("pointerdown", function (event) {
-      startX = event.clientX;
-      scheduleResume();
-    });
-    carousel.addEventListener("pointerup", function (event) {
-      if (startX === null) return;
-      var distance = event.clientX - startX;
-      startX = null;
-      if (Math.abs(distance) > 44) {
-        if (distance < 0) goNext();
-        else goPrevious();
-      }
-    });
-    carousel.addEventListener("pointercancel", function () { startX = null; });
-
-    showSlide(0);
-    updateToggle();
-    startTimer();
-
-    window.addEventListener("beforeunload", function () {
-      window.clearInterval(timer);
-      window.clearTimeout(resumeTimer);
-    }, { once: true });
-  }
-
   function initPage() {
     initMotionPauses();
 
     MLP.observeInView(
-      "[data-archive-class], [data-archive-career], [data-archive-learning], [data-archive-element], [data-closing-element], [data-closing-voices]"
+      "[data-archive-class], [data-archive-career], [data-archive-learning], [data-archive-element]"
     );
 
     MLP.observeSection(".mlp-trust", initTrust, { rootMargin: "400px 0px" });
@@ -1464,7 +1315,6 @@
     MLP.observeSection("#mlp-alumni", initAlumni);
     MLP.observeSection("#mlp-learning", initLearning);
     MLP.observeSection("#mlp-partners", initPartners);
-    MLP.observeSection("#mlp-testimonials", initTestimonials);
     MLP.observeSection("#mlp-compare", initCompare);
     MLP.observeSection("#mlp-faq", initFaq);
     MLP.observeSection("#mlp-final", initFinal);
@@ -1472,7 +1322,6 @@
     MLP.observeSection("[data-partner-wall]", initPartnerWall);
     MLP.observeSection("#mlp-video-proof", initInlineYoutube);
     MLP.observeSection("[data-topic-desk]", initTopicDesk);
-    MLP.observeSection("[data-luxury-testimonials]", initLuxuryTestimonials);
 
     requestAnimationFrame(function () {
       requestAnimationFrame(function () {

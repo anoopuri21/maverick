@@ -5,9 +5,9 @@ namespace App\Livewire;
 use App\Filament\Forms\Components\MediaPicker;
 use App\Filament\Resources\OurStoryTestimonialResource;
 use App\Models\OurStoryTestimonial;
+use App\Support\TestimonialPages;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
-use Filament\Forms\Form;
 use Filament\Tables\Actions\CreateAction;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\EditAction;
@@ -23,29 +23,26 @@ class OurStoryTestimonialTable extends Component implements HasForms, HasTable
 
     public function table(Table $table): Table
     {
-        return OurStoryTestimonialResource::table(
-            $table->query(OurStoryTestimonialResource::getEloquentQuery())
-        )
+        return OurStoryTestimonialResource::table($table)
+            ->query(OurStoryTestimonial::query())
             ->headerActions([
                 CreateAction::make()
-                    ->form(fn (Form $form) => OurStoryTestimonialResource::form($form))
-                    ->mutateFormDataUsing(fn (array $data): array => MediaPicker::syncUrlFromAsset($data, 'photo')),
+                    ->label('Add Testimonial')
+                    ->form(fn ($form) => OurStoryTestimonialResource::form($form))
+                    ->mutateFormDataUsing(function (array $data): array {
+                        $data = MediaPicker::syncFieldFromAsset($data, 'photo', 'media_asset_id');
+                        $data['pages'] = TestimonialPages::normalize($data['pages'] ?? []);
+
+                        return $data;
+                    }),
             ])
             ->actions([
                 EditAction::make()
-                    ->form(fn (Form $form) => OurStoryTestimonialResource::form($form))
-                    ->mutateFormDataUsing(function (array $data): array {
-                        $data = MediaPicker::syncUrlFromAsset($data, 'photo');
-                        $record = $this->getMountedTableActionRecord();
-                        if (empty($data['photo']) && $record && filled($record->photo)) {
-                            $userClearedAsset = array_key_exists('media_asset_id', $data)
-                                && empty($data['media_asset_id'])
-                                && filled($record->media_asset_id);
-
-                            if (! $userClearedAsset) {
-                                $data['photo'] = $record->photo;
-                            }
-                        }
+                    ->form(fn ($form) => OurStoryTestimonialResource::form($form))
+                    ->mutateFormDataUsing(function (array $data, OurStoryTestimonial $record): array {
+                        $data = MediaPicker::syncFieldFromAsset($data, 'photo', 'media_asset_id');
+                        $data = MediaPicker::preserveOrClearField($data, 'photo', $record->photo, 'media_asset_id');
+                        $data['pages'] = TestimonialPages::normalize($data['pages'] ?? []);
 
                         return $data;
                     }),
@@ -53,8 +50,8 @@ class OurStoryTestimonialTable extends Component implements HasForms, HasTable
             ]);
     }
 
-    public function render(): \Illuminate\View\View
+    public function render()
     {
-        return view('livewire.embedded-crud-table');
+        return view('livewire.embedded-table');
     }
 }

@@ -363,12 +363,16 @@
 @include('sections.our-story-gallery')
 
 {{-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-     SECTION 9: OUR STORY TESTIMONIAL SLIDER
+     SECTION 9: TESTIMONIALS (Shared Voices Component)
      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --}}
-@include('sections.our-story-testimonials', [
-  'osTestimonialsLabel' => $storySections->testimonials_badge ?? 'Testimonials',
-  'osTestimonialsHeading' => $storySections->testimonials_heading ?? 'What Our Students Say',
-])
+<x-voices-testimonials
+  :page="\App\Support\TestimonialPages::OUR_STORY"
+  id="mlp-testimonials"
+  :label="$storySections->testimonials_badge ?? 'Testimonials'"
+  :heading="$storySections->testimonials_heading ?? 'What Our Students Say'"
+  :intro="$storySections->testimonials_intro ?? null"
+  :show="(bool) ($storySections->show_testimonials ?? true)"
+/>
 
 {{-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
      FINAL CTA

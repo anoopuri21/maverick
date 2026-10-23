@@ -1,0 +1,127 @@
+{{--
+    Standalone Voices Testimonials Component (`<x-voices-testimonials page="..." />`)
+    Renders the signature `#mlp-testimonials` portrait-stack + luxury single-quote carousel
+    strictly filtered by `$page` key from `config/testimonials.php`, and self-registers its
+    own stylesheet (`voices-testimonials.css`) and script (`voices-testimonials.js`) once per page.
+--}}
+@once
+    @push('styles')
+        <link rel="stylesheet" href="{{ cached_asset('assets/css/voices-testimonials.css') }}" />
+    @endpush
+    @push('scripts')
+        <script src="{{ cached_asset('assets/js/voices-testimonials.js') }}" defer></script>
+    @endpush
+@endonce
+
+<section
+    class="mlp-testimonials archive-voices"
+    id="{{ $id }}"
+    data-voices-section="{{ $page }}"
+    aria-labelledby="{{ $id }}-heading"
+>
+    <div class="archive-voices__background" aria-hidden="true">
+        <span class="archive-voices__wash mlp-wash"></span>
+        <span class="archive-voices__rule archive-voices__rule--one"></span>
+    </div>
+
+    <div class="archive-voices__frame container">
+        <div class="archive-voices__intro mlp-intro-grid" data-mlp-reveal="testimonials-head">
+            <div>
+                <p class="archive-voices__label mlp-eyebrow">{{ $label }}</p>
+                <h2 class="archive-voices__heading mlp-h2" id="{{ $id }}-heading">{{ $heading }}</h2>
+            </div>
+            @if(filled($intro))
+                <p class="archive-voices__intro-copy">{{ $intro }}</p>
+            @endif
+        </div>
+
+        <div class="archive-voices__stage" data-closing-voices>
+            <div class="archive-voices__stack" data-testimonial-portraits aria-hidden="true">
+                @foreach($items as $index => $item)
+                    <div
+                        class="archive-voices__stack-image testimonial-portrait {{ $index === 0 ? 'is-active' : '' }}"
+                        data-testimonial-portrait="{{ $index }}"
+                    >
+                        @if(filled($item['photo'] ?? null))
+                            <img
+                                src="{{ $item['photo'] }}"
+                                alt=""
+                                width="760"
+                                height="960"
+                                loading="{{ $index === 0 ? 'eager' : 'lazy' }}"
+                                decoding="async"
+                            />
+                        @else
+                            <img
+                                src="/assets/images/mlp-campus.jpg"
+                                alt=""
+                                width="760"
+                                height="960"
+                                loading="{{ $index === 0 ? 'eager' : 'lazy' }}"
+                                decoding="async"
+                            />
+                        @endif
+                    </div>
+                @endforeach
+                <span class="archive-voices__stack-caption">{{ $stackCaption }}</span>
+            </div>
+
+            <div class="archive-voices__list luxury-testimonials" data-mlp-reveal="testimonials-rail" data-luxury-testimonials>
+                <div class="luxury-testimonials__slides" aria-live="polite">
+                    @foreach($items as $index => $item)
+                        <blockquote
+                            class="luxury-testimonial mlp-hairline {{ $index === 0 ? 'is-active' : '' }}"
+                            data-testimonial-slide="{{ $index }}"
+                            data-closing-element
+                            @if($index > 0) hidden aria-hidden="true" @endif
+                        >
+                            <span class="luxury-testimonial__quote-icon" aria-hidden="true">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <path d="M9.983 3v7.391c0 5.704-3.731 9.57-8.983 10.609l-.995-2.151c2.432-.917 3.995-3.638 3.995-5.849H0V3h9.983zm14.017 0v7.391c0 5.704-3.748 9.571-9 10.609l-.996-2.151c2.433-.917 3.996-3.638 3.996-5.849H14V3h10z"/>
+                                </svg>
+                            </span>
+                            <p class="luxury-testimonial__quote">&ldquo;{{ $item['quote'] }}&rdquo;</p>
+                            <footer class="luxury-testimonial__author">
+                                @if(filled($item['photo'] ?? null))
+                                    <img
+                                        src="{{ $item['photo'] }}"
+                                        alt="{{ $item['name'] ?? 'Student' }}"
+                                        width="64"
+                                        height="64"
+                                        loading="lazy"
+                                        decoding="async"
+                                    />
+                                @else
+                                    <span class="luxury-testimonial__initial" aria-hidden="true">{{ $item['initial'] ?? mb_strtoupper(mb_substr($item['name'] ?? 'S', 0, 1)) }}</span>
+                                @endif
+                                <span>
+                                    <cite>{{ $item['name'] ?? '' }}</cite>
+                                    @if(filled($item['role'] ?? null))
+                                        <small>{{ $item['role'] }}</small>
+                                    @endif
+                                </span>
+                            </footer>
+                        </blockquote>
+                    @endforeach
+                </div>
+
+                @if($items->count() > 1)
+                    <div class="luxury-testimonials__controls" aria-label="Testimonial controls">
+                        <button type="button" class="luxury-testimonials__control" data-testimonial-prev aria-label="Previous testimonial">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+                        </button>
+                        <button type="button" class="luxury-testimonials__control" data-testimonial-next aria-label="Next testimonial">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                        </button>
+                        <p class="luxury-testimonials__progress" aria-live="off">
+                            <span data-testimonial-current>01</span>
+                            <span aria-hidden="true">/</span>
+                            <span data-testimonial-total>{{ str_pad((string) $items->count(), 2, '0', STR_PAD_LEFT) }}</span>
+                        </p>
+                        <button type="button" class="luxury-testimonials__toggle" data-testimonial-toggle aria-pressed="false">Pause</button>
+                    </div>
+                @endif
+            </div>
+        </div>
+    </div>
+</section>

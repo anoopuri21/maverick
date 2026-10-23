@@ -240,18 +240,7 @@ class PageController extends Controller
         ];
 
         $cached = PublicContentCache::remember(PublicContentCache::OUR_STORY, function () {
-            $ourStoryTestimonials = OurStoryTestimonial::query()
-                ->select('id', 'name', 'organisation', 'position', 'country', 'rating', 'testimonial', 'photo', 'sort_order')
-                ->where('is_active', true)
-                ->orderBy('sort_order')
-                ->get();
-
             $timelines = \App\Models\OurStoryTimeline::select('id', 'year', 'title', 'description', 'icon_url', 'sort_order')
-                ->where('is_active', true)
-                ->orderBy('sort_order')
-                ->get();
-
-            $awards = \App\Models\OurStoryAward::select('id', 'title', 'image_url', 'sort_order', 'is_active')
                 ->where('is_active', true)
                 ->orderBy('sort_order')
                 ->get();
@@ -267,40 +256,20 @@ class PageController extends Controller
                 ->orderBy('sort_order')
                 ->get();
 
-            $testimonials = Testimonial::select('id', 'name', 'designation', 'company', 'thumbnail_url', 'video_url', 'video_type', 'sort_order')
-                ->where('is_active', true)
-                ->orderBy('sort_order')
-                ->limit(9)
-                ->get();
-
-            $testimonialsJson = $testimonials->map(fn ($t) => [
-                'category' => strtoupper($t->company ?? 'STUDENT'),
-                'name' => $t->name,
-                'role' => $t->designation ?? '',
-                'thumbnail' => $t->auto_thumbnail,
-                'video' => $t->embed_url,
-            ])->values()->all();
-
             // Store plain arrays — database cache corrupts serialized Eloquent models.
             return [
-                'ourStoryTestimonials' => $ourStoryTestimonials->toArray(),
                 'timelines' => $timelines->toArray(),
-                'awards' => $awards->toArray(),
                 'galleryImages' => $galleryImages->toArray(),
                 'accreditationLogos' => $accreditationLogos->toArray(),
-                'testimonials' => $testimonials->toArray(),
-                'testimonialsJson' => $testimonialsJson,
             ];
         });
 
         $collections = [
-            'ourStoryTestimonials' => PublicContentCache::hydrateRows(OurStoryTestimonial::class, $cached['ourStoryTestimonials'] ?? []),
+            'ourStoryTestimonials' => app(\App\Services\VoicesTestimonialsService::class)
+                ->itemsForPage(\App\Support\TestimonialPages::OUR_STORY),
             'timelines' => PublicContentCache::hydrateRows(\App\Models\OurStoryTimeline::class, $cached['timelines'] ?? []),
-            'awards' => PublicContentCache::hydrateRows(\App\Models\OurStoryAward::class, $cached['awards'] ?? []),
             'galleryImages' => PublicContentCache::hydrateRows(\App\Models\OurStoryGalleryImage::class, $cached['galleryImages'] ?? []),
             'accreditationLogos' => PublicContentCache::hydrateRows(PartnerLogo::class, $cached['accreditationLogos'] ?? []),
-            'testimonials' => PublicContentCache::hydrateRows(Testimonial::class, $cached['testimonials'] ?? []),
-            'testimonialsJson' => collect($cached['testimonialsJson'] ?? []),
         ];
 
         $data = array_merge($settings, $collections, [
@@ -479,7 +448,8 @@ class PageController extends Controller
             'testimonialsJson' => $testimonialsJson,
             'partners' => $partners,
             'testimonials' => $testimonials,
-            'storyTestimonials' => OurStoryTestimonial::query()->where('is_active', true)->orderBy('sort_order')->get(),
+            'storyTestimonials' => app(\App\Services\VoicesTestimonialsService::class)
+                ->itemsForPage(\App\Support\TestimonialPages::MBA_MASTERS_LANDING),
             'compare' => $compare,
             'faq' => $faq,
             'final' => $final,

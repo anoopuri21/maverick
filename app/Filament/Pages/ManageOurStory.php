@@ -2,6 +2,9 @@
 
 namespace App\Filament\Pages;
 
+use App\Filament\Concerns\SavesSettingsGroups;
+use App\Filament\Forms\Components\MediaPicker;
+use App\Filament\Resources\OurStoryTestimonialResource;
 use App\Settings\OurStoryBeginningSettings;
 use App\Settings\OurStoryHeroSettings;
 use App\Settings\OurStoryImpactSettings;
@@ -10,20 +13,21 @@ use App\Settings\OurStorySeoSettings;
 use App\Settings\OurStoryTodaySettings;
 use App\Settings\OurStoryVisionSettings;
 use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Tabs\Tab;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
-use App\Filament\Concerns\SavesSettingsGroups;
-use App\Filament\Forms\Components\MediaPicker;
+use Illuminate\Support\HtmlString;
 
 class ManageOurStory extends Page implements HasForms
 {
@@ -126,8 +130,20 @@ class ManageOurStory extends Page implements HasForms
                                 TextInput::make('sections.journey_heading')->label('Journey Heading'),
                                 TextInput::make('sections.gallery_badge')->label('Gallery Badge'),
                                 TextInput::make('sections.gallery_heading')->label('Gallery Heading'),
+                                Toggle::make('sections.show_testimonials')
+                                    ->label('Show Testimonials Section')
+                                    ->default(true),
                                 TextInput::make('sections.testimonials_badge')->label('Testimonials Badge'),
                                 TextInput::make('sections.testimonials_heading')->label('Testimonials Heading'),
+                                Textarea::make('sections.testimonials_intro')
+                                    ->label('Testimonials Intro')
+                                    ->rows(2),
+                                Placeholder::make('global_testimonials_notice')
+                                    ->label('Student Testimonials (Global Content)')
+                                    ->content(fn (): HtmlString => new HtmlString(
+                                        'Individual student testimonials, portraits, and page assignments are managed centrally in '
+                                        . '<a href="' . e(OurStoryTestimonialResource::getUrl('index')) . '" class="font-semibold text-primary-600 underline hover:text-primary-500">Global Content &rarr; Testimonials</a>.'
+                                    )),
                             ]),
 
                         Tab::make('SEO')
@@ -186,6 +202,7 @@ class ManageOurStory extends Page implements HasForms
             $today = MediaPicker::syncFieldFromAsset($data['today'] ?? [], 'image_url');
             $impact = $data['impact'] ?? [];
             $sections = $data['sections'] ?? [];
+            $sections['show_testimonials'] = (bool) ($sections['show_testimonials'] ?? true);
             $vision = MediaPicker::syncFieldFromAsset($data['vision'] ?? [], 'background_image_url');
             unset($vision['background_image_url_asset_id']);
             $seo = MediaPicker::syncFieldFromAsset($data['seo'] ?? [], 'og_image_url');
