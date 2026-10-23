@@ -138,8 +138,6 @@ class OurStoryTestimonial extends Model
             return null;
         }
 
-        return Str::startsWith($photo, ['http://', 'https://', '/', 'data:'])
-            ? $photo
-            : '/' . ltrim($photo, '/');
+        return media_url($photo);
     }
 }

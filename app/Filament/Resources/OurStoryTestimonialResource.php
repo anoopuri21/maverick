@@ -114,28 +114,30 @@ class OurStoryTestimonialResource extends Resource
                 Tables\Columns\TextColumn::make('sort_order')
                     ->label('#')
                     ->sortable()
-                    ->width('60px'),
-                Tables\Columns\ImageColumn::make('photo')
-                    ->label('Photo')
-                    ->getStateUsing(fn (OurStoryTestimonial $record): ?string => $record->resolved_photo_url)
-                    ->circular()
-                    ->size(48),
+                    ->width('56px'),
                 Tables\Columns\TextColumn::make('name')
                     ->label('Student')
                     ->searchable()
                     ->sortable()
+                    ->wrap()
+                    ->width('220px')
+                    ->extraHeaderAttributes(['style' => 'width: 220px; min-width: 190px; max-width: 220px;'])
+                    ->extraAttributes(['style' => 'width: 220px; min-width: 190px; max-width: 220px; white-space: normal;'])
                     ->description(fn (OurStoryTestimonial $record): string => $record->display_role),
                 Tables\Columns\TextColumn::make('plain_quote')
                     ->label('Quote')
-                    ->limit(70)
-                    ->wrap(),
+                    ->limit(220)
+                    ->wrap()
+                    ->extraHeaderAttributes(['style' => 'min-width: 380px; width: 46%;'])
+                    ->extraAttributes(['style' => 'min-width: 380px; width: 46%; white-space: normal;']),
                 Tables\Columns\TextColumn::make('pages')
                     ->label('Pages')
                     ->badge()
                     ->color('primary')
                     ->formatStateUsing(fn (string $state): string => TestimonialPages::label($state)),
                 Tables\Columns\ToggleColumn::make('is_active')
-                    ->label('Active'),
+                    ->label('Active')
+                    ->width('80px'),
             ])
             ->filters([
                 Tables\Filters\SelectFilter::make('page')
