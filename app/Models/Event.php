@@ -55,10 +55,28 @@ class Event extends Model
         });
     }
 
+    protected function formatSingleTime(?string $time): ?string
+    {
+        if (empty($time)) {
+            return null;
+        }
+
+        try {
+            $timestamp = strtotime($time);
+            if ($timestamp !== false) {
+                return date('h:i A', $timestamp);
+            }
+        } catch (\Throwable $e) {
+            // fallback if string parsing fails
+        }
+
+        return $time;
+    }
+
     public function getFormattedTimeAttribute(): ?string
     {
-        $start = $this->event_start_time;
-        $end = $this->event_end_time;
+        $start = $this->formatSingleTime($this->event_start_time);
+        $end = $this->formatSingleTime($this->event_end_time);
 
         if (! empty($start) && ! empty($end)) {
             return "{$start} - {$end}";
@@ -72,7 +90,7 @@ class Event extends Model
             return $end;
         }
 
-        return $this->event_time ?: null;
+        return $this->event_time ? $this->formatSingleTime($this->event_time) : null;
     }
 
     public function getDisplayImageUrlAttribute(): ?string

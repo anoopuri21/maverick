@@ -22,15 +22,21 @@
             @endif
         </div>
         <div class="ep-card__content">
-            <div class="ep-card__header">
+            <div class="ep-card__meta">
                 @if(!empty($e->event_type))
-                    <span class="ep-card__tag" style="background: rgba(185,28,28,0.1); color: var(--color-brand-red, #B91C1C); border-color: rgba(185,28,28,0.2);">{{ $e->event_type }}</span>
+                    <div class="ep-card__meta-row">
+                        <span class="ep-card__tag" style="background: rgba(185,28,28,0.1); color: var(--color-brand-red, #B91C1C); border-color: rgba(185,28,28,0.2);">{{ $e->event_type }}</span>
+                    </div>
                 @endif
                 @if(!empty($e->formatted_time))
-                    <span class="ep-card__tag"><i data-lucide="clock" style="width:14px;height:14px;display:inline-block;vertical-align:-2px;margin-right:3px;"></i> {{ $e->formatted_time }}</span>
+                    <div class="ep-card__meta-row ep-card__time">
+                        <i data-lucide="clock"></i> <span>{{ $e->formatted_time }}</span>
+                    </div>
                 @endif
                 @if(!empty($e->location))
-                    <span class="ep-card__location"><i data-lucide="map-pin"></i> {{ $e->location }}</span>
+                    <div class="ep-card__meta-row ep-card__location">
+                        <i data-lucide="map-pin"></i> <span>{{ $e->location }}</span>
+                    </div>
                 @endif
             </div>
             <h3 class="ep-card__title">{{ $e->title }}</h3>
