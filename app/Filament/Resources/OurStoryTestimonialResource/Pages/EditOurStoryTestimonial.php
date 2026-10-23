@@ -4,7 +4,6 @@ namespace App\Filament\Resources\OurStoryTestimonialResource\Pages;
 
 use App\Filament\Forms\Components\MediaPicker;
 use App\Filament\Resources\OurStoryTestimonialResource;
-use App\Models\OurStoryTestimonial;
 use App\Support\TestimonialPages;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
@@ -15,10 +14,7 @@ class EditOurStoryTestimonial extends EditRecord
 
     protected function mutateFormDataBeforeSave(array $data): array
     {
-        /** @var OurStoryTestimonial $record */
-        $record = $this->getRecord();
-        $data = MediaPicker::syncFieldFromAsset($data, 'photo', 'media_asset_id');
-        $data = MediaPicker::preserveOrClearField($data, 'photo', $record->photo, 'media_asset_id');
+        $data = MediaPicker::syncUrlFromAsset($data, 'photo');
         $data['pages'] = TestimonialPages::normalize($data['pages'] ?? []);
 
         return $data;

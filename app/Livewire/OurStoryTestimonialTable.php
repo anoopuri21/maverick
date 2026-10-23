@@ -2,35 +2,38 @@
 
 namespace App\Livewire;
 
-use App\Filament\Forms\Components\MediaPicker;
 use App\Filament\Resources\OurStoryTestimonialResource;
-use App\Models\OurStoryTestimonial;
+use App\Livewire\Concerns\MutatesEmbeddedMediaPicker;
 use App\Support\TestimonialPages;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
+use Filament\Forms\Form;
 use Filament\Tables\Actions\CreateAction;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
+use Illuminate\View\View;
 use Livewire\Component;
 
 class OurStoryTestimonialTable extends Component implements HasForms, HasTable
 {
     use InteractsWithForms;
     use InteractsWithTable;
+    use MutatesEmbeddedMediaPicker;
 
     public function table(Table $table): Table
     {
-        return OurStoryTestimonialResource::table($table)
-            ->query(OurStoryTestimonial::query())
+        return OurStoryTestimonialResource::table(
+            $table->query(OurStoryTestimonialResource::getEloquentQuery())
+        )
             ->headerActions([
                 CreateAction::make()
                     ->label('Add Testimonial')
-                    ->form(fn ($form) => OurStoryTestimonialResource::form($form))
+                    ->form(fn (Form $form) => OurStoryTestimonialResource::form($form))
                     ->mutateFormDataUsing(function (array $data): array {
-                        $data = MediaPicker::syncFieldFromAsset($data, 'photo', 'media_asset_id');
+                        $data = $this->mutateEmbeddedMedia($data, 'photo');
                         $data['pages'] = TestimonialPages::normalize($data['pages'] ?? []);
 
                         return $data;
@@ -38,10 +41,9 @@ class OurStoryTestimonialTable extends Component implements HasForms, HasTable
             ])
             ->actions([
                 EditAction::make()
-                    ->form(fn ($form) => OurStoryTestimonialResource::form($form))
-                    ->mutateFormDataUsing(function (array $data, OurStoryTestimonial $record): array {
-                        $data = MediaPicker::syncFieldFromAsset($data, 'photo', 'media_asset_id');
-                        $data = MediaPicker::preserveOrClearField($data, 'photo', $record->photo, 'media_asset_id');
+                    ->form(fn (Form $form) => OurStoryTestimonialResource::form($form))
+                    ->mutateFormDataUsing(function (array $data): array {
+                        $data = $this->mutateEmbeddedMedia($data, 'photo', $this->getMountedTableActionRecord());
                         $data['pages'] = TestimonialPages::normalize($data['pages'] ?? []);
 
                         return $data;
@@ -50,8 +52,8 @@ class OurStoryTestimonialTable extends Component implements HasForms, HasTable
             ]);
     }
 
-    public function render()
+    public function render(): View
     {
-        return view('livewire.embedded-table');
+        return view('livewire.embedded-crud-table');
     }
 }

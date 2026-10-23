@@ -13,7 +13,7 @@ class CreateOurStoryTestimonial extends CreateRecord
 
     protected function mutateFormDataBeforeCreate(array $data): array
     {
-        $data = MediaPicker::syncFieldFromAsset($data, 'photo', 'media_asset_id');
+        $data = MediaPicker::syncUrlFromAsset($data, 'photo');
         $data['pages'] = TestimonialPages::normalize($data['pages'] ?? []);
 
         return $data;
