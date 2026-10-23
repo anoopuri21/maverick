@@ -6,22 +6,31 @@ use App\Models\Event;
 use App\Settings\EventsPageSettings;
 use App\Settings\EventsSeoSettings;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class EventController extends Controller
 {
     /**
-     * Display event listing with initial batch and pagination support.
+     * Display event listing with separate Upcoming and Past events sections and pagination.
      */
     public function index(Request $request)
     {
         $limit = 10;
         $offset = (int) $request->query('offset', 0);
-
-        $query = Event::query()
-            ->where('is_active', true)
-            ->orderBy('event_date', 'desc');
+        $type = $request->query('type', 'upcoming');
+        $today = Carbon::today()->toDateString();
 
         if ($request->ajax() || $request->wantsJson()) {
+            $query = Event::query()->where('is_active', true);
+
+            if ($type === 'past') {
+                $query->whereDate('event_date', '<', $today)
+                      ->orderBy('event_date', 'desc');
+            } else {
+                $query->whereDate('event_date', '>=', $today)
+                      ->orderBy('event_date', 'asc');
+            }
+
             $total = (clone $query)->count();
             $events = $query->skip($offset)->take($limit)->get();
 
@@ -37,20 +46,36 @@ class EventController extends Controller
             ]);
         }
 
-        $events = $query->take($limit)->get();
-        $total = Event::query()->where('is_active', true)->count();
+        $upcomingQuery = Event::query()
+            ->where('is_active', true)
+            ->whereDate('event_date', '>=', $today)
+            ->orderBy('event_date', 'asc');
+
+        $upcomingTotal = (clone $upcomingQuery)->count();
+        $upcomingEvents = $upcomingQuery->take($limit)->get();
+
+        $pastQuery = Event::query()
+            ->where('is_active', true)
+            ->whereDate('event_date', '<', $today)
+            ->orderBy('event_date', 'desc');
+
+        $pastTotal = (clone $pastQuery)->count();
+        $pastEvents = $pastQuery->take($limit)->get();
 
         return view('pages.events', [
             'eventsPage' => safe_settings(EventsPageSettings::class),
-            'events' => $events,
-            'total' => $total,
-            'hasMore' => $events->count() < $total,
+            'upcomingEvents' => $upcomingEvents,
+            'upcomingTotal' => $upcomingTotal,
+            'upcomingHasMore' => $upcomingEvents->count() < $upcomingTotal,
+            'pastEvents' => $pastEvents,
+            'pastTotal' => $pastTotal,
+            'pastHasMore' => $pastEvents->count() < $pastTotal,
             'eventsSeo' => safe_settings(EventsSeoSettings::class),
         ]);
     }
 
     /**
-     * Display individual event detail page.
+     * Display individual event detail page with More Events slider items.
      */
     public function show(string $slug)
     {
@@ -58,15 +83,15 @@ class EventController extends Controller
             ->where('is_active', true)
             ->firstOrFail();
 
-        $relatedEvents = Event::where('is_active', true)
+        $moreEvents = Event::where('is_active', true)
             ->where('id', '!=', $event->id)
             ->orderBy('event_date', 'desc')
-            ->take(3)
+            ->take(5)
             ->get();
 
         return view('pages.event-detail', [
             'event' => $event,
-            'relatedEvents' => $relatedEvents,
+            'relatedEvents' => $moreEvents,
             'eventsSeo' => safe_settings(EventsSeoSettings::class),
         ]);
     }

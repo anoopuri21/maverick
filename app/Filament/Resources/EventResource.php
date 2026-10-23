@@ -37,10 +37,12 @@ class EventResource extends Resource
                     ->required(),
                 Forms\Components\TimePicker::make('event_start_time')
                     ->label('Start Time')
+                    ->displayFormat('h:i A')
                     ->placeholder('e.g. 10:00 AM')
                     ->nullable(),
                 Forms\Components\TimePicker::make('event_end_time')
                     ->label('End Time')
+                    ->displayFormat('h:i A')
                     ->placeholder('e.g. 02:00 PM')
                     ->nullable(),
                 Forms\Components\TextInput::make('location')

@@ -20,7 +20,8 @@
 
 @section('content')
 @php
-    $events = collect($events ?? []);
+    $upcomingEvents = collect($upcomingEvents ?? []);
+    $pastEvents = collect($pastEvents ?? []);
     $eventsPage = $eventsPage ?? safe_settings(\App\Settings\EventsPageSettings::class);
 @endphp
 <div class="ep">
@@ -54,31 +55,59 @@
         </div>
     </section>
 
-    {{-- Events Grid Section with Infinite Load --}}
-    <section class="section">
+    {{-- Upcoming Events Section --}}
+    <section class="section events-section events-section--upcoming" id="upcoming-section">
         <div class="container">
             <div class="sec-head">
-                <div class="sec-label">{{ $eventsPage->section_label ?? "What's On" }}</div>
-                <h2 class="sec-title">{{ $eventsPage->section_heading ?? 'Explore' }} <em>{{ $eventsPage->section_heading_italic ?? 'Events' }}</em></h2>
-                <p class="sec-sub">{{ $eventsPage->section_subheading ?? 'Save the date — opportunities to learn, connect and grow with the Maverick community.' }}</p>
+                <div class="sec-label">Upcoming Calendar</div>
+                <h2 class="sec-title">Upcoming <em>Events</em></h2>
+                <p class="sec-sub">Save the date — join our upcoming masterclasses, webinars, and interactive sessions.</p>
             </div>
 
-            <div class="ep-grid" id="events-grid" data-next-offset="10" data-has-more="{{ $hasMore ? 'true' : 'false' }}">
-                @include('pages._event-cards', ['events' => $events])
+            <div class="ep-grid" id="upcoming-events-grid" data-type="upcoming" data-next-offset="{{ $upcomingEvents->count() }}" data-has-more="{{ $upcomingHasMore ? 'true' : 'false' }}">
+                @include('pages._event-cards', ['events' => $upcomingEvents])
             </div>
 
-            <div class="ep-empty" id="events-empty" style="{{ $events->isEmpty() ? 'display: block;' : 'display: none;' }}">
+            <div class="ep-empty" id="upcoming-events-empty" style="{{ $upcomingEvents->isEmpty() ? 'display: block;' : 'display: none;' }}">
                 <div class="ep-empty__icon"><i data-lucide="calendar-x"></i></div>
-                <h3>No events found</h3>
-                <p>No events currently scheduled. Check back soon for updates!</p>
+                <h3>No Upcoming Events</h3>
+                <p>There are currently no scheduled upcoming events. Check back soon for updates!</p>
             </div>
 
-            <div class="ep-loader" id="events-loader" style="display: none;">
+            <div class="ep-loader" id="upcoming-events-loader" style="display: none;">
                 <div class="ep-loader__spinner"></div>
-                <span>Loading more events...</span>
+                <span>Loading more upcoming events...</span>
             </div>
 
-            <div id="events-sentinel"></div>
+            <div id="upcoming-events-sentinel"></div>
+        </div>
+    </section>
+
+    {{-- Past Events Section --}}
+    <section class="section events-section events-section--past" id="past-section" style="background: rgba(255,255,255,0.02); border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4rem;">
+        <div class="container">
+            <div class="sec-head">
+                <div class="sec-label">Event Archives</div>
+                <h2 class="sec-title">Past <em>Events</em></h2>
+                <p class="sec-sub">Browse highlights, photo galleries, and video keynotes from our previous events.</p>
+            </div>
+
+            <div class="ep-grid" id="past-events-grid" data-type="past" data-next-offset="{{ $pastEvents->count() }}" data-has-more="{{ $pastHasMore ? 'true' : 'false' }}">
+                @include('pages._event-cards', ['events' => $pastEvents])
+            </div>
+
+            <div class="ep-empty" id="past-events-empty" style="{{ $pastEvents->isEmpty() ? 'display: block;' : 'display: none;' }}">
+                <div class="ep-empty__icon"><i data-lucide="history"></i></div>
+                <h3>No Past Events Found</h3>
+                <p>No past events recorded in the archive yet.</p>
+            </div>
+
+            <div class="ep-loader" id="past-events-loader" style="display: none;">
+                <div class="ep-loader__spinner"></div>
+                <span>Loading more past events...</span>
+            </div>
+
+            <div id="past-events-sentinel"></div>
         </div>
     </section>
 </div>

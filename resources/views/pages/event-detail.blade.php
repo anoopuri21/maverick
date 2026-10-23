@@ -221,17 +221,36 @@
         </div>
     </section>
 
-    {{-- Related Events Section --}}
+    {{-- More Events Responsive Slider Section --}}
     @if(!empty($relatedEvents) && count($relatedEvents) > 0)
         <section class="ed-related">
             <div class="container">
-                <div class="sec-head">
-                    <div class="sec-label">More Events</div>
-                    <h2 class="sec-title">Explore <em>Other Events</em></h2>
+                <div class="ed-slider-head">
+                    <div class="sec-head" style="margin-bottom: 0;">
+                        <div class="sec-label">More Events</div>
+                        <h2 class="sec-title">Explore <em>Other Events</em></h2>
+                    </div>
+
+                    @if(count($relatedEvents) > 1)
+                        <div class="ed-slider-controls">
+                            <button type="button" class="ed-slider-btn ed-slider-btn--prev" id="ed-slider-prev" aria-label="Previous events">
+                                <i data-lucide="chevron-left"></i>
+                            </button>
+                            <button type="button" class="ed-slider-btn ed-slider-btn--next" id="ed-slider-next" aria-label="Next events">
+                                <i data-lucide="chevron-right"></i>
+                            </button>
+                        </div>
+                    @endif
                 </div>
 
-                <div class="ep-grid">
-                    @include('pages._event-cards', ['events' => $relatedEvents])
+                <div class="ed-slider-wrapper">
+                    <div class="ed-slider-track" id="ed-slider-track">
+                        @foreach($relatedEvents as $relEvent)
+                            <div class="ed-slider-slide">
+                                @include('pages._event-cards', ['events' => [$relEvent]])
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </section>
@@ -264,6 +283,7 @@
 @push('scripts')
 <script>
     document.addEventListener('DOMContentLoaded', () => {
+        // Gallery Lightbox
         const galleryItems = Array.from(document.querySelectorAll('.ed-gallery-item'));
         const lightbox = document.getElementById('ed-lightbox');
         const lightboxImg = document.getElementById('ed-lightbox-img');
@@ -272,64 +292,102 @@
         const lightboxNext = document.getElementById('ed-lightbox-next');
         const lightboxCounter = document.getElementById('ed-lightbox-counter');
 
-        if (!lightbox || !lightboxImg || galleryItems.length === 0) return;
+        if (lightbox && lightboxImg && galleryItems.length > 0) {
+            let currentIndex = 0;
+            const images = galleryItems.map(item => item.getAttribute('data-full-image'));
 
-        let currentIndex = 0;
+            const showImageAtIndex = (index) => {
+                if (index < 0) index = images.length - 1;
+                if (index >= images.length) index = 0;
+                currentIndex = index;
 
-        const images = galleryItems.map(item => item.getAttribute('data-full-image'));
+                lightboxImg.src = images[currentIndex];
+                if (lightboxCounter) {
+                    lightboxCounter.textContent = `${currentIndex + 1} / ${images.length}`;
+                }
 
-        const showImageAtIndex = (index) => {
-            if (index < 0) index = images.length - 1;
-            if (index >= images.length) index = 0;
-            currentIndex = index;
+                if (images.length <= 1) {
+                    if (lightboxPrev) lightboxPrev.style.display = 'none';
+                    if (lightboxNext) lightboxNext.style.display = 'none';
+                } else {
+                    if (lightboxPrev) lightboxPrev.style.display = 'flex';
+                    if (lightboxNext) lightboxNext.style.display = 'flex';
+                }
+            };
 
-            lightboxImg.src = images[currentIndex];
-            if (lightboxCounter) {
-                lightboxCounter.textContent = `${currentIndex + 1} / ${images.length}`;
-            }
-
-            if (images.length <= 1) {
-                if (lightboxPrev) lightboxPrev.style.display = 'none';
-                if (lightboxNext) lightboxNext.style.display = 'none';
-            } else {
-                if (lightboxPrev) lightboxPrev.style.display = 'flex';
-                if (lightboxNext) lightboxNext.style.display = 'flex';
-            }
-        };
-
-        galleryItems.forEach((item, index) => {
-            item.addEventListener('click', () => {
-                showImageAtIndex(index);
-                lightbox.removeAttribute('hidden');
-                lightbox.setAttribute('aria-hidden', 'false');
-                document.body.style.overflow = 'hidden';
+            galleryItems.forEach((item, index) => {
+                item.addEventListener('click', () => {
+                    showImageAtIndex(index);
+                    lightbox.removeAttribute('hidden');
+                    lightbox.setAttribute('aria-hidden', 'false');
+                    document.body.style.overflow = 'hidden';
+                });
             });
-        });
 
-        const closeLightbox = () => {
-            lightbox.setAttribute('hidden', 'true');
-            lightbox.setAttribute('aria-hidden', 'true');
-            lightboxImg.src = '';
-            document.body.style.overflow = '';
-        };
+            const closeLightbox = () => {
+                lightbox.setAttribute('hidden', 'true');
+                lightbox.setAttribute('aria-hidden', 'true');
+                lightboxImg.src = '';
+                document.body.style.overflow = '';
+            };
 
-        if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
-        if (lightboxPrev) lightboxPrev.addEventListener('click', () => showImageAtIndex(currentIndex - 1));
-        if (lightboxNext) lightboxNext.addEventListener('click', () => showImageAtIndex(currentIndex + 1));
+            if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+            if (lightboxPrev) lightboxPrev.addEventListener('click', () => showImageAtIndex(currentIndex - 1));
+            if (lightboxNext) lightboxNext.addEventListener('click', () => showImageAtIndex(currentIndex + 1));
 
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox || e.target.classList.contains('ed-lightbox__backdrop')) {
-                closeLightbox();
-            }
-        });
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox || e.target.classList.contains('ed-lightbox__backdrop')) {
+                    closeLightbox();
+                }
+            });
 
-        document.addEventListener('keydown', (e) => {
-            if (lightbox.hasAttribute('hidden')) return;
+            document.addEventListener('keydown', (e) => {
+                if (lightbox.hasAttribute('hidden')) return;
 
-            if (e.key === 'Escape') closeLightbox();
-            if (e.key === 'ArrowLeft') showImageAtIndex(currentIndex - 1);
-            if (e.key === 'ArrowRight') showImageAtIndex(currentIndex + 1);
-        });
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowLeft') showImageAtIndex(currentIndex - 1);
+                if (e.key === 'ArrowRight') showImageAtIndex(currentIndex + 1);
+            });
+        }
+
+        // More Events Responsive Slider
+        const sliderTrack = document.getElementById('ed-slider-track');
+        const prevBtn = document.getElementById('ed-slider-prev');
+        const nextBtn = document.getElementById('ed-slider-next');
+
+        if (sliderTrack && prevBtn && nextBtn) {
+            const slides = Array.from(sliderTrack.children);
+            let currentSlideIndex = 0;
+
+            const getVisibleSlidesCount = () => {
+                if (window.innerWidth >= 1024) return 3;
+                if (window.innerWidth >= 640) return 2;
+                return 1;
+            };
+
+            const updateSliderPosition = () => {
+                const maxIndex = Math.max(0, slides.length - getVisibleSlidesCount());
+                if (currentSlideIndex > maxIndex) currentSlideIndex = maxIndex;
+                if (currentSlideIndex < 0) currentSlideIndex = 0;
+
+                if (slides.length > 0) {
+                    const slideWidth = slides[0].getBoundingClientRect().width + 24; // width + gap
+                    sliderTrack.style.transform = `translateX(-${currentSlideIndex * slideWidth}px)`;
+                }
+            };
+
+            prevBtn.addEventListener('click', () => {
+                currentSlideIndex--;
+                updateSliderPosition();
+            });
+
+            nextBtn.addEventListener('click', () => {
+                currentSlideIndex++;
+                updateSliderPosition();
+            });
+
+            window.addEventListener('resize', updateSliderPosition);
+        }
     });
 </script>
 @endpush

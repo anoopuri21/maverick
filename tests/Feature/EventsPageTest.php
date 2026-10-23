@@ -30,19 +30,21 @@ class EventsPageTest extends TestCase
         $response->assertSee('Masterclass');
         $response->assertSee('10:00 AM - 01:00 PM');
         $response->assertSee('London, UK');
+        $response->assertSee('Upcoming Events');
+        $response->assertSee('Past Events');
     }
 
     public function test_events_ajax_infinite_load_returns_json()
     {
         for ($i = 1; $i <= 15; $i++) {
             Event::create([
-                'title' => "Event Number $i",
+                'title' => "Past Event Number $i",
                 'event_date' => now()->subDays($i)->toDateString(),
                 'is_active' => true,
             ]);
         }
 
-        $response = $this->getJson(route('events', ['offset' => 10]), [
+        $response = $this->getJson(route('events', ['type' => 'past', 'offset' => 10]), [
             'X-Requested-With' => 'XMLHttpRequest',
         ]);
 
@@ -57,6 +59,7 @@ class EventsPageTest extends TestCase
         $data = $response->json();
         $this->assertFalse($data['has_more']);
         $this->assertEquals(15, $data['next_offset']);
+        $this->assertEquals(15, $data['total']);
     }
 
     public function test_event_detail_page_loads_with_gallery_and_videos()
@@ -92,6 +95,7 @@ class EventsPageTest extends TestCase
         $response->assertSee('Video');
         $response->assertSee('Keynote Opening Session');
         $response->assertSee('https://www.youtube.com/embed/dQw4w9WgXcQ');
+        $response->assertSee('More Events');
     }
 
     public function test_empty_fields_do_not_throw_errors_or_render_empty_sections()
