@@ -27,11 +27,12 @@ class VoicesTestimonialsComponentTest extends TestCase
 
     public function test_all_ten_verified_testimonials_exist_in_db_table_and_render_on_both_pages(): void
     {
-        $records = OurStoryTestimonial::query()->orderBy('sort_order')->get();
+        $paginator = OurStoryTestimonial::query()->orderBy('sort_order')->paginate(10);
 
-        $this->assertCount(10, $records);
-        $this->assertSame('Christopher Kinene', $records->first()->name);
-        $this->assertSame('Ramkumar Dilli', $records->last()->name);
+        $this->assertSame(10, $paginator->total());
+        $this->assertCount(10, $paginator->items());
+        $this->assertSame('Christopher Kinene', $paginator->items()[0]->name);
+        $this->assertSame('Ramkumar Dilli', $paginator->items()[9]->name);
         $this->assertSame([], app(MbaMastersTestimonialsSettings::class)->items);
 
         $mlpResponse = $this->get('/online-mba-masters-uae');

@@ -59,9 +59,12 @@ class OurStoryTestimonial extends Model
     }
 
     /**
-     * Filter active testimonials assigned to a specific page key.
+     * Filter active testimonials assigned to a specific display page key.
+     *
+     * Note: intentionally NOT named `scopeForPage` because Laravel's
+     * `Eloquent\Builder::paginate()` internally invokes `Query\Builder::forPage($page, $perPage)`.
      */
-    public function scopeForPage(Builder $query, string $pageKey): Builder
+    public function scopeAssignedToPage(Builder $query, string $pageKey): Builder
     {
         $cleanKey = trim($pageKey);
 
