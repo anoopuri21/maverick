@@ -25,7 +25,7 @@
 @endphp
 <div class="ep">
 
-    {{-- Cinematic Hero (same structure as other pages) --}}
+    {{-- Cinematic Hero --}}
     <section class="cinematic-hero" aria-label="Events Hero">
         <div class="cinematic-hero__bg" aria-hidden="true">
             @php $eventsHeroBg = settings_media_url($eventsPage, 'hero_background_image') ?: 'https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg?auto=compress&cs=tinysrgb&w=1920'; @endphp
@@ -47,49 +47,45 @@
             </div>
         </div>
         <div class="container cinematic-hero__content">
-            <span class="cinematic-hero__eyebrow"><span class="cinematic-hero__eyebrow-line"></span>{{ $eventsPage->hero_tag ?? 'Upcoming Events' }}</span>
+            <span class="cinematic-hero__eyebrow"><span class="cinematic-hero__eyebrow-line"></span>{{ $eventsPage->hero_tag ?? 'Upcoming & Past Events' }}</span>
             <h1 class="cinematic-hero__title">{{ $eventsPage->hero_heading ?? 'Discover Our' }} <em>{{ $eventsPage->hero_heading_italic ?? 'Events' }}</em></h1>
             <div class="cinematic-hero__description">{!! html_filled($eventsPage->hero_description ?? null) ? rich_html($eventsPage->hero_description ?? null) : 'Webinars, workshops and masterclasses designed to keep you learning, connected and ahead.' !!}</div>
             <div class="cinematic-hero__scroll-hint" aria-hidden="true"><span class="cinematic-hero__scroll-text">Scroll to explore</span><span class="cinematic-hero__scroll-arrow" data-lucide="chevron-down"></span></div>
         </div>
     </section>
 
-    {{-- Editorial events list --}}
+    {{-- Events Grid Section with Infinite Load --}}
     <section class="section">
         <div class="container">
             <div class="sec-head">
                 <div class="sec-label">{{ $eventsPage->section_label ?? "What's On" }}</div>
-                <h2 class="sec-title">{{ $eventsPage->section_heading ?? 'Upcoming' }} <em>{{ $eventsPage->section_heading_italic ?? 'Events' }}</em></h2>
+                <h2 class="sec-title">{{ $eventsPage->section_heading ?? 'Explore' }} <em>{{ $eventsPage->section_heading_italic ?? 'Events' }}</em></h2>
                 <p class="sec-sub">{{ $eventsPage->section_subheading ?? 'Save the date — opportunities to learn, connect and grow with the Maverick community.' }}</p>
             </div>
-            <div class="ep-events">
-                @forelse($events as $e)
-                <div class="ep-event">
-                    <div class="date">
-                        <div class="d">{{ $e->event_date ? $e->event_date->format('d') : '00' }}</div>
-                        <div class="m">{{ $e->event_date ? $e->event_date->format('M') : '---' }}</div>
-                    </div>
-                    <div class="info">
-                        @if(filled($e->title))
-                        <h3>{{ $e->title }}</h3>
-                        @endif
-                        @if(filled($e->description))
-                        <div>{!! rich_html($e->description ?? null) !!}</div>
-                        @endif
-                    </div>
-                    @if(filled($e->event_type))
-                    <span class="tag">{{ $e->event_type }}</span>
-                    @endif
-                </div>
-                @empty
-                <div class="ep-events-empty">
-                    <p>No events currently scheduled. Check back soon!</p>
-                </div>
-                @endforelse
+
+            <div class="ep-grid" id="events-grid" data-next-offset="10" data-has-more="{{ $hasMore ? 'true' : 'false' }}">
+                @include('pages._event-cards', ['events' => $events])
             </div>
+
+            <div class="ep-empty" id="events-empty" style="{{ $events->isEmpty() ? 'display: block;' : 'display: none;' }}">
+                <div class="ep-empty__icon"><i data-lucide="calendar-x"></i></div>
+                <h3>No events found</h3>
+                <p>No events currently scheduled. Check back soon for updates!</p>
+            </div>
+
+            <div class="ep-loader" id="events-loader" style="display: none;">
+                <div class="ep-loader__spinner"></div>
+                <span>Loading more events...</span>
+            </div>
+
+            <div id="events-sentinel"></div>
         </div>
     </section>
 </div>
 
 @include('sections.final-cta')
+
+@push('scripts')
+<script src="{{ cached_asset('assets/js/pages/events-listing.js') }}" defer></script>
+@endpush
 @endsection
