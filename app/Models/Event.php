@@ -113,16 +113,27 @@ class Event extends Model
             return [];
         }
 
-        return array_values(array_filter(array_map(function ($item) {
+        // Handle single associative item corrupted by legacy single-item wrap
+        if (isset($gallery['url']) || isset($gallery['image_url'])) {
+            $gallery = [$gallery];
+        }
+
+        $urls = [];
+        foreach ($gallery as $item) {
             $path = is_array($item) ? ($item['url'] ?? $item['image_url'] ?? '') : (string) $item;
+            $path = trim($path);
             if (empty($path)) {
-                return null;
+                continue;
             }
+
             if (Str::startsWith($path, ['http://', 'https://'])) {
-                return $path;
+                $urls[] = $path;
+            } else {
+                $urls[] = asset('storage/' . ltrim($path, '/'));
             }
-            return asset('storage/' . ltrim($path, '/'));
-        }, $gallery)));
+        }
+
+        return array_values(array_unique($urls));
     }
 
     public function getFormattedVideosAttribute(): array

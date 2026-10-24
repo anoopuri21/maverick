@@ -112,9 +112,20 @@ class EventResource extends Resource
                                     ->mutateDehydratedStateUsing(function ($state) {
                                         return static::normalizeRepeaterState($state, function ($item) {
                                             if (is_string($item)) {
-                                                return ['url' => $item];
+                                                return ! empty(trim($item)) ? ['url' => trim($item)] : null;
                                             }
-                                            return is_array($item) ? $item : null;
+                                            if (is_array($item)) {
+                                                $url = $item['url'] ?? '';
+                                                if (empty($url) && ! empty($item['url_asset_id'])) {
+                                                    $asset = \App\Models\MediaAsset::find($item['url_asset_id']);
+                                                    if ($asset) {
+                                                        $url = $asset->url;
+                                                        $item['url'] = $url;
+                                                    }
+                                                }
+                                                return ! empty(trim($url)) ? $item : null;
+                                            }
+                                            return null;
                                         });
                                     })
                                     ->schema([
