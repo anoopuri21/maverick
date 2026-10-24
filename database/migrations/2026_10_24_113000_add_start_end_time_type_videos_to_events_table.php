@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::table('events', function (Blueprint $table) {
             if (! Schema::hasColumn('events', 'event_start_time')) {
-                $table->string('event_start_time')->nullable()->after('event_date');
+                $table->string('event_start_time')->nullable();
             }
             if (! Schema::hasColumn('events', 'event_end_time')) {
-                $table->string('event_end_time')->nullable()->after('event_start_time');
+                $table->string('event_end_time')->nullable();
             }
             if (! Schema::hasColumn('events', 'gallery_videos')) {
-                $table->json('gallery_videos')->nullable()->after('gallery_images');
+                $table->json('gallery_videos')->nullable();
             }
         });
     }
