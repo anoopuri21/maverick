@@ -188,4 +188,24 @@ class EventsPageTest extends TestCase
         $this->assertIsArray($hydratedData['gallery_videos'][0]);
         $this->assertEquals('https://www.youtube.com/watch?v=dQw4w9WgXcQ', $hydratedData['gallery_videos'][0]['url']);
     }
+
+    public function test_repeater_state_normalizer_handles_all_data_types()
+    {
+        $transform = fn ($item) => is_string($item) ? ['url' => $item] : (is_array($item) ? $item : null);
+
+        // Case 1: null
+        $this->assertEquals([], \App\Filament\Resources\EventResource::normalizeRepeaterState(null, $transform));
+
+        // Case 2: raw string
+        $this->assertEquals([['url' => 'https://example.com/a.jpg']], \App\Filament\Resources\EventResource::normalizeRepeaterState('https://example.com/a.jpg', $transform));
+
+        // Case 3: JSON array string
+        $this->assertEquals([['url' => 'https://example.com/b.jpg']], \App\Filament\Resources\EventResource::normalizeRepeaterState('["https://example.com/b.jpg"]', $transform));
+
+        // Case 4: Array of strings
+        $this->assertEquals([['url' => 'https://example.com/c.jpg']], \App\Filament\Resources\EventResource::normalizeRepeaterState(['https://example.com/c.jpg'], $transform));
+
+        // Case 5: Standard associative array
+        $this->assertEquals([['url' => 'https://example.com/d.jpg']], \App\Filament\Resources\EventResource::normalizeRepeaterState([['url' => 'https://example.com/d.jpg']], $transform));
+    }
 }

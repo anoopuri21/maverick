@@ -22,6 +22,33 @@ class EventResource extends Resource
     protected static ?string $navigationGroup = 'Insights';
     protected static ?int $navigationSort = 2;
 
+    public static function normalizeRepeaterState(mixed $state, callable $transformItem): array
+    {
+        if (is_string($state)) {
+            $decoded = json_decode($state, true);
+            if (json_last_error() === JSON_ERROR_NONE && is_array($decoded)) {
+                $state = $decoded;
+            } else {
+                $trimmed = trim($state);
+                $state = $trimmed !== '' ? [$trimmed] : [];
+            }
+        }
+
+        if (! is_array($state)) {
+            return [];
+        }
+
+        $result = [];
+        foreach ($state as $item) {
+            $transformed = $transformItem($item);
+            if ($transformed !== null) {
+                $result[] = $transformed;
+            }
+        }
+
+        return array_values($result);
+    }
+
     public static function form(Form $form): Form
     {
         return $form
@@ -74,37 +101,49 @@ class EventResource extends Resource
                                 Forms\Components\Repeater::make('gallery_images')
                                     ->label('Event Photo Gallery')
                                     ->afterStateHydrated(function (Forms\Components\Repeater $component, $state) {
-                                        if (is_array($state)) {
-                                            $formatted = array_map(function ($item) {
-                                                if (is_string($item)) {
-                                                    return ['url' => $item];
-                                                }
-                                                return $item;
-                                            }, $state);
-                                            $component->state($formatted);
-                                        }
+                                        $formatted = static::normalizeRepeaterState($state, function ($item) {
+                                            if (is_string($item)) {
+                                                return ['url' => $item];
+                                            }
+                                            return is_array($item) ? $item : null;
+                                        });
+                                        $component->state($formatted);
+                                    })
+                                    ->mutateDehydratedStateUsing(function ($state) {
+                                        return static::normalizeRepeaterState($state, function ($item) {
+                                            if (is_string($item)) {
+                                                return ['url' => $item];
+                                            }
+                                            return is_array($item) ? $item : null;
+                                        });
                                     })
                                     ->schema([
                                         MediaPicker::forField('url', 'events/gallery')
                                             ->label('Photo')
                                             ->helperText('Select from Media Library or upload new photo.'),
                                     ])
-                                    ->itemLabel(fn (array $state): ?string => ! empty($state['url']) ? basename($state['url']) : 'Photo')
+                                    ->itemLabel(fn (array|null $state): ?string => ! empty($state['url']) ? basename($state['url']) : 'Photo')
                                     ->collapsible()
                                     ->reorderable()
                                     ->helperText('Add single or multiple photos for the event gallery.'),
                                 Forms\Components\Repeater::make('gallery_videos')
                                     ->label('Video Gallery')
                                     ->afterStateHydrated(function (Forms\Components\Repeater $component, $state) {
-                                        if (is_array($state)) {
-                                            $formatted = array_map(function ($item) {
-                                                if (is_string($item)) {
-                                                    return ['url' => $item, 'title' => ''];
-                                                }
-                                                return $item;
-                                            }, $state);
-                                            $component->state($formatted);
-                                        }
+                                        $formatted = static::normalizeRepeaterState($state, function ($item) {
+                                            if (is_string($item)) {
+                                                return ['url' => $item, 'title' => ''];
+                                            }
+                                            return is_array($item) ? $item : null;
+                                        });
+                                        $component->state($formatted);
+                                    })
+                                    ->mutateDehydratedStateUsing(function ($state) {
+                                        return static::normalizeRepeaterState($state, function ($item) {
+                                            if (is_string($item)) {
+                                                return ['url' => $item, 'title' => ''];
+                                            }
+                                            return is_array($item) ? $item : null;
+                                        });
                                     })
                                     ->schema([
                                         Forms\Components\TextInput::make('url')
@@ -118,7 +157,7 @@ class EventResource extends Resource
                                     ])
                                     ->columnSpanFull()
                                     ->collapsible()
-                                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? $state['url'] ?? null),
+                                    ->itemLabel(fn (array|null $state): ?string => is_array($state) ? ($state['title'] ?? $state['url'] ?? null) : null),
                             ]),
 
                         Forms\Components\Tabs\Tab::make('Registration Form Fields')
@@ -128,6 +167,17 @@ class EventResource extends Resource
                                     ->content('Standard mandatory fields (Full Name, Email, Phone Number, Guest Count, and Joining Confirmation) are automatically included. Add any additional custom fields for this event below.'),
                                 Forms\Components\Repeater::make('registration_fields')
                                     ->label('Dynamic Form Fields')
+                                    ->afterStateHydrated(function (Forms\Components\Repeater $component, $state) {
+                                        $formatted = static::normalizeRepeaterState($state, function ($item) {
+                                            return is_array($item) ? $item : null;
+                                        });
+                                        $component->state($formatted);
+                                    })
+                                    ->mutateDehydratedStateUsing(function ($state) {
+                                        return static::normalizeRepeaterState($state, function ($item) {
+                                            return is_array($item) ? $item : null;
+                                        });
+                                    })
                                     ->schema([
                                         Forms\Components\TextInput::make('label')
                                             ->label('Field Label / Question')
@@ -155,7 +205,7 @@ class EventResource extends Resource
                                     ])
                                     ->columns(2)
                                     ->collapsible()
-                                    ->itemLabel(fn (array $state): ?string => $state['label'] ?? 'Custom Field'),
+                                    ->itemLabel(fn (array|null $state): ?string => is_array($state) ? ($state['label'] ?? 'Custom Field') : 'Custom Field'),
                             ]),
                     ])
                     ->columnSpanFull(),

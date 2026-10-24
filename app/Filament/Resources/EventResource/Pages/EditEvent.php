@@ -16,23 +16,20 @@ class EditEvent extends EditRecord
 
     protected function mutateFormDataBeforeFill(array $data): array
     {
-        if (isset($data['gallery_images']) && is_array($data['gallery_images'])) {
-            $data['gallery_images'] = array_map(function ($item) {
-                if (is_string($item)) {
-                    return ['url' => $item];
-                }
-                return $item;
-            }, $data['gallery_images']);
-        }
+        $data['gallery_images'] = EventResource::normalizeRepeaterState(
+            $data['gallery_images'] ?? null,
+            fn ($item) => is_string($item) ? ['url' => $item] : (is_array($item) ? $item : null)
+        );
 
-        if (isset($data['gallery_videos']) && is_array($data['gallery_videos'])) {
-            $data['gallery_videos'] = array_map(function ($item) {
-                if (is_string($item)) {
-                    return ['url' => $item, 'title' => ''];
-                }
-                return $item;
-            }, $data['gallery_videos']);
-        }
+        $data['gallery_videos'] = EventResource::normalizeRepeaterState(
+            $data['gallery_videos'] ?? null,
+            fn ($item) => is_string($item) ? ['url' => $item, 'title' => ''] : (is_array($item) ? $item : null)
+        );
+
+        $data['registration_fields'] = EventResource::normalizeRepeaterState(
+            $data['registration_fields'] ?? null,
+            fn ($item) => is_array($item) ? $item : null
+        );
 
         return $data;
     }
