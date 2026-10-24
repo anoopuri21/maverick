@@ -18,8 +18,10 @@ class Event extends Model
         'event_type',
         'location',
         'display_image',
+        'display_image_asset_id',
         'gallery_images',
         'gallery_videos',
+        'registration_fields',
         'link_url',
         'is_active',
     ];
@@ -29,6 +31,7 @@ class Event extends Model
         'event_date' => 'date',
         'gallery_images' => 'array',
         'gallery_videos' => 'array',
+        'registration_fields' => 'array',
     ];
 
     protected static function booted(): void

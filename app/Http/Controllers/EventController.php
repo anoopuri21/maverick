@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Services\FormMailer;
 use App\Settings\EventsPageSettings;
 use App\Settings\EventsSeoSettings;
 use Illuminate\Http\Request;
@@ -94,5 +95,101 @@ class EventController extends Controller
             'relatedEvents' => $moreEvents,
             'eventsSeo' => safe_settings(EventsSeoSettings::class),
         ]);
+    }
+
+    /**
+     * Display separate dedicated event registration page.
+     */
+    public function showRegister(string $slug)
+    {
+        $event = Event::where('slug', $slug)
+            ->where('is_active', true)
+            ->firstOrFail();
+
+        return view('pages.event-register', [
+            'event' => $event,
+            'eventsSeo' => safe_settings(EventsSeoSettings::class),
+        ]);
+    }
+
+    /**
+     * Submit event registration form and send notification email via FormMailer (Zoho integration).
+     */
+    public function submitRegister(Request $request, string $slug, FormMailer $formMailer)
+    {
+        $event = Event::where('slug', $slug)
+            ->where('is_active', true)
+            ->firstOrFail();
+
+        $rules = [
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'required|string|max:50',
+            'guest_count' => 'required|string|max:50',
+            'attending_masterclass' => 'required|string|max:100',
+        ];
+
+        $labels = [
+            'event_title' => 'Event Title',
+            'event_date' => 'Event Date',
+            'event_time' => 'Event Time',
+            'venue' => 'Venue / Location',
+            'name' => 'Full Name',
+            'email' => 'Email Address',
+            'phone' => 'Phone / Contact Number',
+            'guest_count' => 'How many guests?',
+            'attending_masterclass' => 'Joining Status',
+        ];
+
+        $customFields = $event->registration_fields ?? [];
+
+        foreach ($customFields as $index => $field) {
+            $key = "custom_{$index}";
+            $isRequired = ! empty($field['is_required']);
+            $rules[$key] = $isRequired ? 'required' : 'nullable';
+            if (! empty($field['label'])) {
+                $labels[$key] = $field['label'];
+            }
+        }
+
+        $validated = $request->validate($rules);
+
+        $formData = [
+            'event_title' => $event->title,
+            'event_date' => $event->event_date ? $event->event_date->format('l, d F Y') : 'N/A',
+            'event_time' => $event->formatted_time ?: 'N/A',
+            'venue' => $event->location ?: 'N/A',
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'phone' => $validated['phone'],
+            'guest_count' => $validated['guest_count'],
+            'attending_masterclass' => $validated['attending_masterclass'],
+        ];
+
+        foreach ($customFields as $index => $field) {
+            $key = "custom_{$index}";
+            if (isset($validated[$key])) {
+                $formData[$key] = is_array($validated[$key]) ? implode(', ', $validated[$key]) : $validated[$key];
+            }
+        }
+
+        $formMailer->send(
+            $formData,
+            "New Event Registration: {$event->title}",
+            [
+                'reply_to' => $validated['email'],
+                'labels' => $labels,
+            ]
+        );
+
+        if ($request->ajax() || $request->wantsJson()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Your registration has been submitted successfully.',
+                'redirect_url' => route('thank-you'),
+            ]);
+        }
+
+        return redirect()->route('thank-you')->with('success', 'Your registration has been submitted successfully.');
     }
 }

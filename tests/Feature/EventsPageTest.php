@@ -113,4 +113,47 @@ class EventsPageTest extends TestCase
         $response->assertDontSee('Photo Gallery');
         $response->assertDontSee('Video Gallery');
     }
+
+    public function test_event_registration_page_loads_and_submits_successfully()
+    {
+        $event = Event::create([
+            'title' => 'Generative AI 2.0 Masterclass',
+            'event_date' => now()->addDays(10)->toDateString(),
+            'event_start_time' => '10:00 AM',
+            'event_end_time' => '02:00 PM',
+            'location' => 'Grand Mercure Hotel, Dubai',
+            'registration_fields' => [
+                [
+                    'label' => 'Company Name',
+                    'type' => 'text',
+                    'is_required' => true,
+                ],
+                [
+                    'label' => 'Designation',
+                    'type' => 'text',
+                    'is_required' => false,
+                ],
+            ],
+            'is_active' => true,
+        ]);
+
+        $getRes = $this->get(route('events.register', $event->slug));
+        $getRes->assertStatus(200);
+        $getRes->assertSee('Registration Form – Generative AI 2.0 Masterclass');
+        $getRes->assertSee('Company Name');
+        $getRes->assertSee('How many guests?');
+        $getRes->assertSee('Will you be joining us for the masterclass');
+
+        $postRes = $this->post(route('events.register.submit', $event->slug), [
+            'name' => 'Anoop Puri',
+            'phone' => '+971500000000',
+            'email' => 'puri.anoop21@gmail.com',
+            'guest_count' => 'Single',
+            'attending_masterclass' => "Yes, I'll be there",
+            'custom_0' => 'Alutions FZE',
+            'custom_1' => 'Founder & CEO',
+        ]);
+
+        $postRes->assertRedirect(route('thank-you'));
+    }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Concerns\HandlesCloudinaryImageFields;
+use App\Filament\Forms\Components\MediaPicker;
 use App\Filament\Resources\EventResource\Pages;
 use App\Models\Event;
 use Filament\Forms;
@@ -12,6 +14,8 @@ use Filament\Tables\Table;
 
 class EventResource extends Resource
 {
+    use HandlesCloudinaryImageFields;
+
     protected static ?string $model = Event::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-calendar';
@@ -22,66 +26,111 @@ class EventResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('title')
-                    ->required()
-                    ->live(onBlur: true)
-                    ->afterStateUpdated(fn ($state, Forms\Set $set) => $set('slug', \Illuminate\Support\Str::slug($state))),
-                Forms\Components\TextInput::make('slug')
-                    ->required()
-                    ->unique(Event::class, 'slug', ignoreRecord: true),
-                Forms\Components\TextInput::make('event_type')
-                    ->label('Event Type')
-                    ->placeholder('e.g. Masterclass, Webinar, Workshop, Conference')
-                    ->nullable(),
-                Forms\Components\DatePicker::make('event_date')
-                    ->required(),
-                Forms\Components\TimePicker::make('event_start_time')
-                    ->label('Start Time')
-                    ->displayFormat('h:i A')
-                    ->placeholder('e.g. 10:00 AM')
-                    ->nullable(),
-                Forms\Components\TimePicker::make('event_end_time')
-                    ->label('End Time')
-                    ->displayFormat('h:i A')
-                    ->placeholder('e.g. 02:00 PM')
-                    ->nullable(),
-                Forms\Components\TextInput::make('location')
-                    ->placeholder('e.g., London, UK / Online Zoom'),
-                Forms\Components\TextInput::make('link_url')
-                    ->url()
-                    ->nullable()
-                    ->placeholder('External link or registration URL'),
-                Forms\Components\FileUpload::make('display_image')
-                    ->image()
-                    ->directory('events/display')
-                    ->imageEditor()
-                    ->helperText('Main display image for listing and hero banner.'),
-                Forms\Components\FileUpload::make('gallery_images')
-                    ->image()
-                    ->multiple()
-                    ->reorderable()
-                    ->directory('events/gallery')
-                    ->helperText('Photos from the event. Upload single or multiple images.'),
-                Forms\Components\Repeater::make('gallery_videos')
-                    ->label('Video Gallery')
-                    ->schema([
-                        Forms\Components\TextInput::make('url')
-                            ->label('Video URL or Storage Path')
-                            ->placeholder('e.g. https://www.youtube.com/watch?v=... or https://vimeo.com/... or uploaded video path')
-                            ->required(),
-                        Forms\Components\TextInput::make('title')
-                            ->label('Video Title / Subtitle')
-                            ->placeholder('e.g. Keynote Highlights')
-                            ->nullable(),
+                Forms\Components\Tabs::make('Event Management')
+                    ->tabs([
+                        Forms\Components\Tabs\Tab::make('Event Details')
+                            ->schema([
+                                Forms\Components\TextInput::make('title')
+                                    ->required()
+                                    ->live(onBlur: true)
+                                    ->afterStateUpdated(fn ($state, Forms\Set $set) => $set('slug', \Illuminate\Support\Str::slug($state))),
+                                Forms\Components\TextInput::make('slug')
+                                    ->required()
+                                    ->unique(Event::class, 'slug', ignoreRecord: true),
+                                Forms\Components\TextInput::make('event_type')
+                                    ->label('Event Type')
+                                    ->placeholder('e.g. Masterclass, Webinar, Workshop, Conference')
+                                    ->nullable(),
+                                Forms\Components\DatePicker::make('event_date')
+                                    ->required(),
+                                Forms\Components\TimePicker::make('event_start_time')
+                                    ->label('Start Time')
+                                    ->displayFormat('h:i A')
+                                    ->placeholder('e.g. 10:00 AM')
+                                    ->nullable(),
+                                Forms\Components\TimePicker::make('event_end_time')
+                                    ->label('End Time')
+                                    ->displayFormat('h:i A')
+                                    ->placeholder('e.g. 02:00 PM')
+                                    ->nullable(),
+                                Forms\Components\TextInput::make('location')
+                                    ->placeholder('e.g., Grand Mercure Hotel, Dubai / Online Zoom'),
+                                Forms\Components\TextInput::make('link_url')
+                                    ->url()
+                                    ->nullable()
+                                    ->placeholder('External link or custom registration URL'),
+                                Forms\Components\RichEditor::make('description')
+                                    ->columnSpanFull(),
+                                Forms\Components\Toggle::make('is_active')
+                                    ->default(true),
+                            ])->columns(2),
+
+                        Forms\Components\Tabs\Tab::make('Media Gallery')
+                            ->schema([
+                                MediaPicker::forField('display_image', 'events/display')
+                                    ->label('Main Display Image')
+                                    ->helperText('Main cover photo for event cards and detail hero banner.'),
+                                Forms\Components\FileUpload::make('gallery_images')
+                                    ->label('Event Photo Gallery')
+                                    ->image()
+                                    ->multiple()
+                                    ->reorderable()
+                                    ->directory('events/gallery')
+                                    ->helperText('Upload single or multiple event photos for the past event gallery.'),
+                                Forms\Components\Repeater::make('gallery_videos')
+                                    ->label('Video Gallery')
+                                    ->schema([
+                                        Forms\Components\TextInput::make('url')
+                                            ->label('Video URL')
+                                            ->placeholder('e.g. https://www.youtube.com/watch?v=... or Vimeo URL')
+                                            ->required(),
+                                        Forms\Components\TextInput::make('title')
+                                            ->label('Video Title')
+                                            ->placeholder('e.g. Executive Summary')
+                                            ->nullable(),
+                                    ])
+                                    ->columnSpanFull()
+                                    ->collapsible()
+                                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? $state['url'] ?? null),
+                            ]),
+
+                        Forms\Components\Tabs\Tab::make('Registration Form Fields')
+                            ->schema([
+                                Forms\Components\Placeholder::make('info')
+                                    ->label('Custom Registration Fields')
+                                    ->content('Standard mandatory fields (Full Name, Email, Phone Number, Guest Count, and Joining Confirmation) are automatically included. Add any additional custom fields for this event below.'),
+                                Forms\Components\Repeater::make('registration_fields')
+                                    ->label('Dynamic Form Fields')
+                                    ->schema([
+                                        Forms\Components\TextInput::make('label')
+                                            ->label('Field Label / Question')
+                                            ->required()
+                                            ->placeholder('e.g., Organization / Company Name'),
+                                        Forms\Components\Select::make('type')
+                                            ->label('Field Type')
+                                            ->options([
+                                                'text' => 'Short Text (Input)',
+                                                'textarea' => 'Long Text (Textarea)',
+                                                'select' => 'Dropdown Select',
+                                                'radio' => 'Multiple Choice (Radio)',
+                                            ])
+                                            ->default('text')
+                                            ->required()
+                                            ->live(),
+                                        Forms\Components\TagsInput::make('options')
+                                            ->label('Options (for Dropdown Select or Radio)')
+                                            ->placeholder('Add option and press Enter')
+                                            ->visible(fn (Forms\Get $get) => in_array($get('type'), ['select', 'radio'])),
+                                        Forms\Components\Toggle::make('is_required')
+                                            ->label('Required Field')
+                                            ->default(false),
+                                    ])
+                                    ->columns(2)
+                                    ->collapsible()
+                                    ->itemLabel(fn (array $state): ?string => $state['label'] ?? 'Custom Field'),
+                            ]),
                     ])
-                    ->columnSpanFull()
-                    ->collapsible()
-                    ->itemLabel(fn (array $state): ?string => $state['title'] ?? $state['url'] ?? null)
-                    ->helperText('Add videos for the event video gallery. Supports YouTube, Vimeo, or direct MP4 URLs. Plays directly full-frame on the page without popups.'),
-                Forms\Components\RichEditor::make('description')
                     ->columnSpanFull(),
-                Forms\Components\Toggle::make('is_active')
-                    ->default(true),
             ]);
     }
 

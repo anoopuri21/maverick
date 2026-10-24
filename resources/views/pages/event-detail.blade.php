@@ -201,9 +201,11 @@
                             @endif
                         </div>
 
-                        @if(!$event->is_past && !empty($event->link_url))
-                            <a href="{{ $event->link_url }}" target="_blank" rel="noopener noreferrer" class="ed-neo-btn ed-neo-btn--primary">
-                                Register Now <i data-lucide="external-link"></i>
+                        @if(!$event->is_past)
+                            <a href="{{ !empty($event->link_url) ? $event->link_url : route('events.register', $event->slug) }}"
+                               @if(!empty($event->link_url)) target="_blank" rel="noopener noreferrer" @endif
+                               class="ed-neo-btn ed-neo-btn--primary">
+                                Register Now <i data-lucide="arrow-right"></i>
                             </a>
                         @else
                             <a href="{{ route('contact') }}" class="ed-neo-btn ed-neo-btn--secondary">

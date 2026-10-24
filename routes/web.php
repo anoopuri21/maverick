@@ -57,6 +57,10 @@ Route::get('/programs/{slug}', [\App\Http\Controllers\ProgramController::class, 
 // Events
 Route::get('/events', [EventController::class, 'index'])->name('events');
 Route::get('/events/{slug}', [EventController::class, 'show'])->name('events.show');
+Route::get('/events/{slug}/register', [EventController::class, 'showRegister'])->name('events.register');
+Route::post('/events/{slug}/register', [EventController::class, 'submitRegister'])
+    ->middleware('throttle:5,1')
+    ->name('events.register.submit');
 
 Route::get('/student-success/stories', [\App\Http\Controllers\PageController::class, 'studentSuccessStories'])->name('student-success.stories');
 Route::get('/student-success/videos', [\App\Http\Controllers\PageController::class, 'studentSuccessVideos'])->name('student-success.videos');
