@@ -13,28 +13,30 @@ return new class extends Migration
     {
         Schema::table('events', function (Blueprint $table) {
             if (! Schema::hasColumn('events', 'slug')) {
-                $table->string('slug')->nullable()->unique()->after('title');
+                $table->string('slug')->nullable()->unique();
             }
             if (! Schema::hasColumn('events', 'display_image')) {
-                $table->string('display_image')->nullable()->after('location');
+                $table->string('display_image')->nullable();
             }
             if (! Schema::hasColumn('events', 'gallery_images')) {
-                $table->json('gallery_images')->nullable()->after('display_image');
+                $table->json('gallery_images')->nullable();
             }
         });
 
         // Backfill slug for existing records if any exist without slug
-        $events = \App\Models\Event::whereNull('slug')->orWhere('slug', '')->get();
-        foreach ($events as $event) {
-            $baseSlug = \Illuminate\Support\Str::slug($event->title ?: 'event-' . $event->id);
-            $slug = $baseSlug;
-            $count = 1;
-            while (\App\Models\Event::where('slug', $slug)->where('id', '!=', $event->id)->exists()) {
-                $slug = $baseSlug . '-' . $count;
-                $count++;
+        if (Schema::hasColumn('events', 'slug')) {
+            $events = \App\Models\Event::whereNull('slug')->orWhere('slug', '')->get();
+            foreach ($events as $event) {
+                $baseSlug = \Illuminate\Support\Str::slug($event->title ?: 'event-' . $event->id);
+                $slug = $baseSlug;
+                $count = 1;
+                while (\App\Models\Event::where('slug', $slug)->where('id', '!=', $event->id)->exists()) {
+                    $slug = $baseSlug . '-' . $count;
+                    $count++;
+                }
+                $event->timestamps = false;
+                $event->update(['slug' => $slug]);
             }
-            $event->timestamps = false;
-            $event->update(['slug' => $slug]);
         }
     }
 
