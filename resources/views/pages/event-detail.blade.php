@@ -21,49 +21,68 @@
         <div class="ed-grid-overlay"></div>
     </div>
 
-    {{-- Hero Section --}}
+    {{-- Hero Section (Claymorphism Inflated 3D Card with Bottom-Left CTA) --}}
     <section class="ed-hero">
         <div class="container">
-            <div class="ed-hero__glass-card">
-                <div class="ed-hero__meta">
-                    @if($event->is_past)
-                        <span class="ed-badge ed-badge--past"><i data-lucide="clock"></i> Past Event</span>
-                    @else
-                        <span class="ed-badge ed-badge--upcoming"><i data-lucide="sparkles"></i> Upcoming Event</span>
+            <div class="ed-hero__clay-card">
+                <div class="ed-hero__top">
+                    <div class="ed-hero__meta">
+                        @if($event->is_past)
+                            <span class="ed-badge ed-badge--past"><i data-lucide="clock"></i> Past Event</span>
+                        @else
+                            <span class="ed-badge ed-badge--upcoming"><i data-lucide="sparkles"></i> Upcoming Event</span>
+                        @endif
+
+                        @if(!empty($event->event_type))
+                            <span class="ed-badge ed-badge--type">
+                                {{ $event->event_type }}
+                            </span>
+                        @endif
+                    </div>
+
+                    @if(!empty($event->title))
+                        <h1 class="ed-hero__title">{{ $event->title }}</h1>
                     @endif
 
-                    @if(!empty($event->event_type))
-                        <span class="ed-badge" style="background: rgba(185,28,28,0.2); color: #f87171; border: 1px solid rgba(248,113,113,0.3); margin-left: 0.5rem;">
-                            {{ $event->event_type }}
-                        </span>
-                    @endif
+                    <div class="ed-hero__pills">
+                        @if(!empty($event->event_date))
+                            <div class="ed-pill">
+                                <i data-lucide="calendar"></i>
+                                <span>{{ $event->event_date->format('F d, Y') }}</span>
+                            </div>
+                        @endif
+
+                        @if(!empty($event->formatted_time))
+                            <div class="ed-pill">
+                                <i data-lucide="clock"></i>
+                                <span>{{ $event->formatted_time }}</span>
+                            </div>
+                        @endif
+
+                        @if(!empty($event->location))
+                            <div class="ed-pill">
+                                <i data-lucide="map-pin"></i>
+                                <span>{{ $event->location }}</span>
+                            </div>
+                        @endif
+                    </div>
                 </div>
 
-                @if(!empty($event->title))
-                    <h1 class="ed-hero__title">{{ $event->title }}</h1>
-                @endif
-
-                <div class="ed-hero__pills">
-                    @if(!empty($event->event_date))
-                        <div class="ed-pill">
-                            <i data-lucide="calendar"></i>
-                            <span>{{ $event->event_date->format('F d, Y') }}</span>
-                        </div>
-                    @endif
-
-                    @if(!empty($event->formatted_time))
-                        <div class="ed-pill">
-                            <i data-lucide="clock"></i>
-                            <span>{{ $event->formatted_time }}</span>
-                        </div>
-                    @endif
-
-                    @if(!empty($event->location))
-                        <div class="ed-pill">
-                            <i data-lucide="map-pin"></i>
-                            <span>{{ $event->location }}</span>
-                        </div>
-                    @endif
+                {{-- Bottom-Left CTA Area --}}
+                <div class="ed-hero__bottom">
+                    <div class="ed-hero__cta-wrapper">
+                        @if(!$event->is_past)
+                            <a href="{{ !empty($event->link_url) ? $event->link_url : route('events.register', $event->slug) }}"
+                               @if(!empty($event->link_url)) target="_blank" rel="noopener noreferrer" @endif
+                               class="ed-clay-btn ed-clay-btn--primary">
+                                Register Now <i data-lucide="arrow-right"></i>
+                            </a>
+                        @else
+                            <a href="{{ route('contact') }}" class="ed-clay-btn ed-clay-btn--secondary">
+                                Contact Organizer <i data-lucide="arrow-right"></i>
+                            </a>
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>
