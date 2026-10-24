@@ -157,4 +157,35 @@ class EventsPageTest extends TestCase
 
         $postRes->assertRedirect(route('thank-you'));
     }
+
+    public function test_event_with_string_gallery_images_can_be_hydrated_and_rendered_without_error()
+    {
+        $event = Event::create([
+            'title' => 'Legacy Gallery Event',
+            'event_date' => now()->subDay()->toDateString(),
+            'gallery_images' => [
+                'https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg',
+            ],
+            'gallery_videos' => [
+                'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+            ],
+            'is_active' => true,
+        ]);
+
+        $response = $this->get(route('events.show', $event->slug));
+        $response->assertStatus(200);
+        $response->assertSee('Legacy Gallery Event');
+        $response->assertSee('https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg');
+
+        $editPage = new \App\Filament\Resources\EventResource\Pages\EditEvent();
+        $refMethod = new \ReflectionMethod($editPage, 'mutateFormDataBeforeFill');
+        $refMethod->setAccessible(true);
+
+        $hydratedData = $refMethod->invoke($editPage, $event->attributesToArray());
+
+        $this->assertIsArray($hydratedData['gallery_images'][0]);
+        $this->assertEquals('https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg', $hydratedData['gallery_images'][0]['url']);
+        $this->assertIsArray($hydratedData['gallery_videos'][0]);
+        $this->assertEquals('https://www.youtube.com/watch?v=dQw4w9WgXcQ', $hydratedData['gallery_videos'][0]['url']);
+    }
 }

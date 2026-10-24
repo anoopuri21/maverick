@@ -42,7 +42,8 @@ class EventResource extends Resource
                                     ->placeholder('e.g. Masterclass, Webinar, Workshop, Conference')
                                     ->nullable(),
                                 Forms\Components\DatePicker::make('event_date')
-                                    ->required(),
+                                    ->label('Event Date')
+                                    ->nullable(),
                                 Forms\Components\TimePicker::make('event_start_time')
                                     ->label('Start Time')
                                     ->displayFormat('h:i A')
@@ -72,6 +73,17 @@ class EventResource extends Resource
                                     ->helperText('Main cover photo for event cards and detail hero banner.'),
                                 Forms\Components\Repeater::make('gallery_images')
                                     ->label('Event Photo Gallery')
+                                    ->afterStateHydrated(function (Forms\Components\Repeater $component, $state) {
+                                        if (is_array($state)) {
+                                            $formatted = array_map(function ($item) {
+                                                if (is_string($item)) {
+                                                    return ['url' => $item];
+                                                }
+                                                return $item;
+                                            }, $state);
+                                            $component->state($formatted);
+                                        }
+                                    })
                                     ->schema([
                                         MediaPicker::forField('url', 'events/gallery')
                                             ->label('Photo')
@@ -83,11 +95,22 @@ class EventResource extends Resource
                                     ->helperText('Add single or multiple photos for the event gallery.'),
                                 Forms\Components\Repeater::make('gallery_videos')
                                     ->label('Video Gallery')
+                                    ->afterStateHydrated(function (Forms\Components\Repeater $component, $state) {
+                                        if (is_array($state)) {
+                                            $formatted = array_map(function ($item) {
+                                                if (is_string($item)) {
+                                                    return ['url' => $item, 'title' => ''];
+                                                }
+                                                return $item;
+                                            }, $state);
+                                            $component->state($formatted);
+                                        }
+                                    })
                                     ->schema([
                                         Forms\Components\TextInput::make('url')
                                             ->label('Video URL')
                                             ->placeholder('e.g. https://www.youtube.com/watch?v=... or Vimeo URL')
-                                            ->required(),
+                                            ->nullable(),
                                         Forms\Components\TextInput::make('title')
                                             ->label('Video Title')
                                             ->placeholder('e.g. Executive Summary')

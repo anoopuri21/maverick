@@ -14,6 +14,29 @@ class EditEvent extends EditRecord
 
     protected static string $resource = EventResource::class;
 
+    protected function mutateFormDataBeforeFill(array $data): array
+    {
+        if (isset($data['gallery_images']) && is_array($data['gallery_images'])) {
+            $data['gallery_images'] = array_map(function ($item) {
+                if (is_string($item)) {
+                    return ['url' => $item];
+                }
+                return $item;
+            }, $data['gallery_images']);
+        }
+
+        if (isset($data['gallery_videos']) && is_array($data['gallery_videos'])) {
+            $data['gallery_videos'] = array_map(function ($item) {
+                if (is_string($item)) {
+                    return ['url' => $item, 'title' => ''];
+                }
+                return $item;
+            }, $data['gallery_videos']);
+        }
+
+        return $data;
+    }
+
     protected function mutateFormDataBeforeSave(array $data): array
     {
         $data = MediaPicker::syncFieldFromAsset($data, 'display_image');

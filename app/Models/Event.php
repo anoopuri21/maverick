@@ -52,9 +52,6 @@ class Event extends Model
                 }
             }
 
-            if (empty($event->event_date)) {
-                $event->event_date = now()->toDateString();
-            }
         });
     }
 
