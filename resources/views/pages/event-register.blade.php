@@ -372,6 +372,15 @@
                                     </label>
                                 @endforeach
                             </div>
+                        @elseif($type === 'checkbox')
+                            <div class="er-radio-group">
+                                @foreach($options as $optIndex => $opt)
+                                    <label class="er-radio-label">
+                                        <input type="checkbox" name="{{ $key }}[]" value="{{ $opt }}" class="er-radio-input" @if(is_array(old($key)) && in_array($opt, old($key))) checked @endif>
+                                        <span>{{ $opt }}</span>
+                                    </label>
+                                @endforeach
+                            </div>
                         @endif
 
                         @error($key)

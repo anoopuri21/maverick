@@ -116,7 +116,8 @@ class Event extends Model
             return [];
         }
 
-        return array_values(array_filter(array_map(function ($path) {
+        return array_values(array_filter(array_map(function ($item) {
+            $path = is_array($item) ? ($item['url'] ?? $item['image_url'] ?? '') : (string) $item;
             if (empty($path)) {
                 return null;
             }

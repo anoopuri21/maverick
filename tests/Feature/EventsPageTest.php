@@ -114,7 +114,7 @@ class EventsPageTest extends TestCase
         $response->assertDontSee('Video Gallery');
     }
 
-    public function test_event_registration_page_loads_and_submits_successfully()
+    public function test_event_registration_page_loads_and_submits_successfully_with_checkboxes()
     {
         $event = Event::create([
             'title' => 'Generative AI 2.0 Masterclass',
@@ -129,9 +129,10 @@ class EventsPageTest extends TestCase
                     'is_required' => true,
                 ],
                 [
-                    'label' => 'Designation',
-                    'type' => 'text',
-                    'is_required' => false,
+                    'label' => 'Topics of Interest',
+                    'type' => 'checkbox',
+                    'options' => ['Generative AI', 'Prompt Engineering', 'LLM Fine-Tuning'],
+                    'is_required' => true,
                 ],
             ],
             'is_active' => true,
@@ -141,8 +142,8 @@ class EventsPageTest extends TestCase
         $getRes->assertStatus(200);
         $getRes->assertSee('Registration Form – Generative AI 2.0 Masterclass');
         $getRes->assertSee('Company Name');
-        $getRes->assertSee('How many guests?');
-        $getRes->assertSee('Will you be joining us for the masterclass');
+        $getRes->assertSee('Topics of Interest');
+        $getRes->assertSee('Prompt Engineering');
 
         $postRes = $this->post(route('events.register.submit', $event->slug), [
             'name' => 'Anoop Puri',
@@ -151,7 +152,7 @@ class EventsPageTest extends TestCase
             'guest_count' => 'Single',
             'attending_masterclass' => "Yes, I'll be there",
             'custom_0' => 'Alutions FZE',
-            'custom_1' => 'Founder & CEO',
+            'custom_1' => ['Generative AI', 'LLM Fine-Tuning'],
         ]);
 
         $postRes->assertRedirect(route('thank-you'));

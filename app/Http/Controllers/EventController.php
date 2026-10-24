@@ -146,7 +146,14 @@ class EventController extends Controller
         foreach ($customFields as $index => $field) {
             $key = "custom_{$index}";
             $isRequired = ! empty($field['is_required']);
-            $rules[$key] = $isRequired ? 'required' : 'nullable';
+            $type = $field['type'] ?? 'text';
+
+            if ($type === 'checkbox') {
+                $rules[$key] = $isRequired ? 'required|array|min:1' : 'nullable|array';
+            } else {
+                $rules[$key] = $isRequired ? 'required' : 'nullable';
+            }
+
             if (! empty($field['label'])) {
                 $labels[$key] = $field['label'];
             }

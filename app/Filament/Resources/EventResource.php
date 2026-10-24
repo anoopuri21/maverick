@@ -70,13 +70,17 @@ class EventResource extends Resource
                                 MediaPicker::forField('display_image', 'events/display')
                                     ->label('Main Display Image')
                                     ->helperText('Main cover photo for event cards and detail hero banner.'),
-                                Forms\Components\FileUpload::make('gallery_images')
+                                Forms\Components\Repeater::make('gallery_images')
                                     ->label('Event Photo Gallery')
-                                    ->image()
-                                    ->multiple()
+                                    ->schema([
+                                        MediaPicker::forField('url', 'events/gallery')
+                                            ->label('Photo')
+                                            ->helperText('Select from Media Library or upload new photo.'),
+                                    ])
+                                    ->itemLabel(fn (array $state): ?string => ! empty($state['url']) ? basename($state['url']) : 'Photo')
+                                    ->collapsible()
                                     ->reorderable()
-                                    ->directory('events/gallery')
-                                    ->helperText('Upload single or multiple event photos for the past event gallery.'),
+                                    ->helperText('Add single or multiple photos for the event gallery.'),
                                 Forms\Components\Repeater::make('gallery_videos')
                                     ->label('Video Gallery')
                                     ->schema([
@@ -113,14 +117,15 @@ class EventResource extends Resource
                                                 'textarea' => 'Long Text (Textarea)',
                                                 'select' => 'Dropdown Select',
                                                 'radio' => 'Multiple Choice (Radio)',
+                                                'checkbox' => 'Checkbox (Multiple Options)',
                                             ])
                                             ->default('text')
                                             ->required()
                                             ->live(),
                                         Forms\Components\TagsInput::make('options')
-                                            ->label('Options (for Dropdown Select or Radio)')
+                                            ->label('Options (for Dropdown, Radio, or Checkbox)')
                                             ->placeholder('Add option and press Enter')
-                                            ->visible(fn (Forms\Get $get) => in_array($get('type'), ['select', 'radio'])),
+                                            ->visible(fn (Forms\Get $get) => in_array($get('type'), ['select', 'radio', 'checkbox'])),
                                         Forms\Components\Toggle::make('is_required')
                                             ->label('Required Field')
                                             ->default(false),
