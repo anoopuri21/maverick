@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\EventController;
 
 // Homepage
 Route::get('/', [PageController::class, 'home'])->name('home');
@@ -53,10 +54,14 @@ Route::post('/programs/enquire', [\App\Http\Controllers\ProgramController::class
     ->name('programs.enquire');
 Route::get('/programs/{slug}', [\App\Http\Controllers\ProgramController::class, 'show'])->name('programs.show');
 
-// Unified Detail (root-level permalink)
-// Registered LAST so every other named route above is matched first.
+// Events
+Route::get('/events', [EventController::class, 'index'])->name('events');
+Route::get('/events/{slug}', [EventController::class, 'show'])->name('events.show');
+Route::get('/events/{slug}/register', [EventController::class, 'showRegister'])->name('events.register');
+Route::post('/events/{slug}/register', [EventController::class, 'submitRegister'])
+    ->middleware('throttle:5,1')
+    ->name('events.register.submit');
 
-Route::get('/events', [\App\Http\Controllers\PageController::class, 'events'])->name('events');
 Route::get('/student-success/stories', [\App\Http\Controllers\PageController::class, 'studentSuccessStories'])->name('student-success.stories');
 Route::get('/student-success/videos', [\App\Http\Controllers\PageController::class, 'studentSuccessVideos'])->name('student-success.videos');
 Route::get('/student-success', [\App\Http\Controllers\PageController::class, 'studentSuccess'])->name('student-success');
@@ -64,4 +69,5 @@ Route::get('/student-success', [\App\Http\Controllers\PageController::class, 'st
 Route::redirect('/faculty-voice', '/#faculty-insights', 301);
 Route::redirect('/faculty-voice/{slug}', '/#faculty-insights', 301);
 
+// Unified Detail (root-level permalink)
 Route::get('/{slug}', [\App\Http\Controllers\InsightController::class, 'show'])->name('insights.show');
