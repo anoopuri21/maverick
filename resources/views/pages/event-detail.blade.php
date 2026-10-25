@@ -242,7 +242,7 @@
         </div>
     </section>
 
-    {{-- More Events Responsive Slider Section --}}
+    {{-- More Events Claymorphism Responsive Slider Section --}}
     @if(!empty($relatedEvents) && count($relatedEvents) > 0)
         <section class="ed-related">
             <div class="container">
@@ -268,7 +268,54 @@
                     <div class="ed-slider-track" id="ed-slider-track">
                         @foreach($relatedEvents as $relEvent)
                             <div class="ed-slider-slide">
-                                @include('pages._event-cards', ['events' => [$relEvent]])
+                                <article class="ed-clay-rel-card">
+                                    <div class="ed-clay-rel-card__media">
+                                        @if(!empty($relEvent->display_image_url))
+                                            <img src="{{ $relEvent->display_image_url }}" alt="{{ $relEvent->title }}" loading="lazy">
+                                        @else
+                                            <div class="ed-clay-rel-card__placeholder">
+                                                <i data-lucide="calendar"></i>
+                                            </div>
+                                        @endif
+
+                                        <div class="ed-clay-rel-card__badges">
+                                            @if($relEvent->is_past)
+                                                <span class="ed-badge ed-badge--past">Past</span>
+                                            @else
+                                                <span class="ed-badge ed-badge--upcoming">Upcoming</span>
+                                            @endif
+                                            @if(!empty($relEvent->event_type))
+                                                <span class="ed-badge ed-badge--type">{{ $relEvent->event_type }}</span>
+                                            @endif
+                                        </div>
+                                    </div>
+
+                                    <div class="ed-clay-rel-card__body">
+                                        <h3 class="ed-clay-rel-card__title">
+                                            <a href="{{ route('events.show', $relEvent->slug) }}">{{ $relEvent->title }}</a>
+                                        </h3>
+
+                                        <div class="ed-clay-rel-card__meta">
+                                            @if(!empty($relEvent->event_date))
+                                                <div class="ed-clay-rel-card__meta-item">
+                                                    <i data-lucide="calendar"></i>
+                                                    <span>{{ $relEvent->event_date->format('M d, Y') }}</span>
+                                                </div>
+                                            @endif
+
+                                            @if(!empty($relEvent->location))
+                                                <div class="ed-clay-rel-card__meta-item">
+                                                    <i data-lucide="map-pin"></i>
+                                                    <span>{{ $relEvent->location }}</span>
+                                                </div>
+                                            @endif
+                                        </div>
+
+                                        <a href="{{ route('events.show', $relEvent->slug) }}" class="ed-clay-btn ed-clay-btn--sm">
+                                            View Event Details <i data-lucide="arrow-right"></i>
+                                        </a>
+                                    </div>
+                                </article>
                             </div>
                         @endforeach
                     </div>
