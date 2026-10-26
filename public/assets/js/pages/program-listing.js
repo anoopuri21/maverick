@@ -14,6 +14,28 @@
   const sentinelEl = document.querySelector("[data-pl-sentinel]");
   const loadMoreEl = document.querySelector("[data-pl-load-more]");
 
+  // ---------------------------------------------------------------
+  // Category filter tabs: Runs on BOTH desktop and mobile.
+  // Changes category URL parameter and reloads page / resets list.
+  // ---------------------------------------------------------------
+  if (filterEl) {
+    const buttons = Array.from(filterEl.querySelectorAll(".pl-filter__btn"));
+
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const category = btn.getAttribute("data-filter");
+        const url = new URL(window.location.href);
+        if (category === "all") {
+          url.searchParams.delete("category");
+        } else {
+          url.searchParams.set("category", category);
+        }
+        url.searchParams.delete("page");
+        window.location.href = url.toString();
+      });
+    });
+  }
+
   if (!gridEl) return;
 
   // ---------------------------------------------------------------
@@ -43,10 +65,6 @@
   }, 3000);
 
   // ---------------------------------------------------------------
-  // Desktop pagination: nothing to do — server-rendered links work.
-  // ---------------------------------------------------------------
-
-  // ---------------------------------------------------------------
   // Mobile infinite scroll
   // ---------------------------------------------------------------
   const isMobile = window.matchMedia("(max-width: 1024px)").matches;
@@ -64,12 +82,12 @@
   };
 
   const getNextPage = () => {
-    const next = sentinelEl.getAttribute("data-next-page");
+    const next = sentinelEl.getAttribute("data-next-page") || gridEl.getAttribute("data-next-page");
     return next ? parseInt(next, 10) : null;
   };
 
   const getLastPage = () => {
-    const last = sentinelEl.getAttribute("data-last-page");
+    const last = sentinelEl.getAttribute("data-last-page") || gridEl.getAttribute("data-last-page");
     return last ? parseInt(last, 10) : null;
   };
 
@@ -83,7 +101,9 @@
     const wrapper = document.createElement("div");
     wrapper.innerHTML = html.trim();
     const cards = Array.from(wrapper.querySelectorAll(".pl-card"));
-    sentinelEl.before(...cards);
+    if (cards.length > 0) {
+      gridEl.append(...cards);
+    }
 
     // Re-observe new cards for reveal animation
     if (!prefersReduced && "IntersectionObserver" in window) {
@@ -99,8 +119,8 @@
 
     if (!currentPage || !lastPage || currentPage > lastPage) {
       // No more pages — remove sentinel + loading UI
-      sentinelEl.remove();
-      loadMoreEl.remove();
+      sentinelEl.style.display = "none";
+      loadMoreEl.style.display = "none";
       return;
     }
 
@@ -128,12 +148,14 @@
       if (data.html) {
         appendCards(data.html);
 
-        // Update sentinel attributes for next load
+        // Update sentinel and grid attributes for next load
         if (data.nextPage) {
           sentinelEl.setAttribute("data-next-page", data.nextPage);
+          gridEl.setAttribute("data-next-page", data.nextPage);
         } else {
-          sentinelEl.remove();
-          loadMoreEl.remove();
+          sentinelEl.removeAttribute("data-next-page");
+          sentinelEl.style.display = "none";
+          loadMoreEl.style.display = "none";
         }
       }
     } catch (err) {
@@ -152,29 +174,8 @@
         }
       });
     },
-    { rootMargin: "0px 0px 15% 0px", threshold: 0.1 }
+    { rootMargin: "0px 0px 25% 0px", threshold: 0.1 }
   );
 
   sentinelIo.observe(sentinelEl);
-
-  // ---------------------------------------------------------------
-  // Category filter: reset infinite scroll state on category change
-  // ---------------------------------------------------------------
-  if (filterEl) {
-    const buttons = Array.from(filterEl.querySelectorAll(".pl-filter__btn"));
-
-    buttons.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const category = btn.getAttribute("data-filter");
-        const url = new URL(window.location.href);
-        if (category === "all") {
-          url.searchParams.delete("category");
-        } else {
-          url.searchParams.set("category", category);
-        }
-        url.searchParams.delete("page");
-        window.location.href = url.toString();
-      });
-    });
-  }
 })();

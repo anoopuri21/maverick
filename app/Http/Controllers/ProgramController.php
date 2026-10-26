@@ -155,7 +155,7 @@ class ProgramController extends Controller
             'programs' => $paginatedPrograms,
             'paginationNextPage' => $nextPage,
             'paginationLastPage' => $lastPage,
-            'totalProgramCount' => $totalCount,
+            'totalProgramCount' => $totalProgramCount,
             'programsListingSeo' => safe_settings(ProgramsListingSeoSettings::class),
         ]);
     }
