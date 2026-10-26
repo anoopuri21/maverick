@@ -222,7 +222,7 @@
         @endif
         <li>
           <a href="{{ $navCat['viewAll'] ?? route('programs.index', ['category' => $navCat['slug']]) }}" class="navbar__mobile-category-sublink navbar__mobile-category-viewall">
-            <span class="navbar__mobile-category-title">View All {{ $navCat['name'] }}</span>
+            View All {{ $navCat['name'] }}
           </a>
         </li>
       </ul>

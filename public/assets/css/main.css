@@ -1249,7 +1249,6 @@ html.js .scale-in {
 }
 
 .mega__program-uni {
-  display:block;
   font-family: var(--font-body);
   font-size: 12px;
   font-weight: var(--fw-regular, 400);
@@ -1264,13 +1263,9 @@ html.js .scale-in {
   padding: 8px 0;
 }
 .navbar__mobile-category-uni {
-  display: block;
   font-size: 11.5px;
   font-weight: 400;
-  color: #aaa;
-}
-.navbar__mobile-category-uni::before {
-  content: " · ";
+  color: var(--color-muted, #8a8a9a);
 }
 .navbar__mobile-category-empty {
   font-size: 13px;
