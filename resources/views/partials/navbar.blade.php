@@ -25,7 +25,6 @@
             <span class="navbar__arrow" aria-hidden="true"></span>
           </button>
           <!-- Programs Mega Menu -->
-          <!-- Programs Mega Menu -->
           <div class="navbar__mega" data-mega="programs" aria-hidden="true">
             <div class="mega__backdrop"></div>
             <div class="mega__panel">
@@ -207,15 +206,23 @@
       </button>
       <ul class="navbar__mobile-category-panel" data-mobile-category-panel="{{ $navCat['slug'] }}">
         @foreach(($navCat['programs'] ?? []) as $navProg)
-        <li><a href="{{ $navProg['url'] ?? '#' }}" class="navbar__mobile-category-sublink">{{ $navProg['title'] ?? '' }}@if(!empty($navProg['university'])) <span class="navbar__mobile-category-uni">· {{ $navProg['university'] }}</span>@endif <span class="navbar__mobile-category-sublink-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span></a></li>
+        <li>
+          <a href="{{ $navProg['url'] ?? '#' }}" class="navbar__mobile-category-sublink">
+            <span class="navbar__mobile-category-text-wrap">
+              <span class="navbar__mobile-category-title">{{ $navProg['title'] ?? '' }}</span>
+              @if(!empty($navProg['university']))
+                <span class="navbar__mobile-category-uni">{{ $navProg['university'] }}</span>
+              @endif
+            </span>
+          </a>
+        </li>
         @endforeach
         @if(empty($navCat['programs']))
         <li class="navbar__mobile-category-empty">No programmes yet.</li>
         @endif
         <li>
           <a href="{{ $navCat['viewAll'] ?? route('programs.index', ['category' => $navCat['slug']]) }}" class="navbar__mobile-category-sublink navbar__mobile-category-viewall">
-            View All {{ $navCat['name'] }}
-            <span class="navbar__mobile-category-sublink-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+            <span class="navbar__mobile-category-title">View All {{ $navCat['name'] }}</span>
           </a>
         </li>
       </ul>

@@ -148,13 +148,6 @@
         @endif
       </div>
     </div>
-    <!-- <div class="os-today__pills fade-up" aria-label="Programme categories">
-      <span class="os-today__pill">Undergraduate</span>
-      <span class="os-today__pill">Postgraduate</span>
-      <span class="os-today__pill">Doctoral</span>
-      <span class="os-today__pill">Executive Education</span>
-      <span class="os-today__pill">Professional Development</span>
-    </div> -->
   </div>
 </section>
 @endif
@@ -321,32 +314,38 @@
     </div>
   </div>
 
-  {{-- Mobile: Vertical Stacked Cards --}}
+  {{-- Mobile: Swipeable Claymorphism Horizontal Cards --}}
   <div class="os-journey__mobile" data-journey-mobile>
     <div class="container">
       <div class="os-journey__mobile-header">
         <span class="os-section-label fade-up">{{ $storySections->journey_badge ?? 'Journey' }}</span>
         <h2 class="os-section-heading fade-up">{!! $storySections->journey_heading ?? 'Our <em>Journey</em>' !!}</h2>
       </div>
-      @foreach($timelines as $index => $item)
-      @php
-        $yearStr = $item->year ?? '';
-        $shortYear = is_numeric($yearStr) ? substr($yearStr, -2) : $yearStr;
-      @endphp
-      <div class="os-journey__mobile-card fade-up">
-        <div class="os-journey__mobile-card-year" aria-hidden="true">{{ $shortYear }}</div>
-        <span class="os-journey__year-badge">{{ $yearStr }}</span>
-        <h3 class="os-journey__mobile-card-title">{{ $item->title ?? '' }}</h3>
-        @if($item->description)
-        <div class="os-journey__mobile-card-desc">{!! rich_html($item->description ?? null) !!}</div>
-        @endif
-        @if($url = media_url($item->icon_url ?? null))
-        <div class="os-journey__mobile-card-image">
-          <img src="{{ $url }}" alt="{{ $item->title ?? $yearStr }}" loading="lazy" />
+      <div class="os-journey__mobile-slider">
+        <div class="os-journey__mobile-track">
+          @foreach($timelines as $index => $item)
+          @php
+            $yearStr = $item->year ?? '';
+            $shortYear = is_numeric($yearStr) ? substr($yearStr, -2) : $yearStr;
+          @endphp
+          <div class="os-journey__mobile-slide">
+            <div class="os-journey__mobile-card os-clay-card fade-up">
+              <div class="os-journey__mobile-card-year" aria-hidden="true">{{ $shortYear }}</div>
+              <span class="os-journey__year-badge">{{ $yearStr }}</span>
+              <h3 class="os-journey__mobile-card-title">{{ $item->title ?? '' }}</h3>
+              @if($item->description)
+              <div class="os-journey__mobile-card-desc">{!! rich_html($item->description ?? null) !!}</div>
+              @endif
+              @if($url = media_url($item->icon_url ?? null))
+              <div class="os-journey__mobile-card-image">
+                <img src="{{ $url }}" alt="{{ $item->title ?? $yearStr }}" loading="lazy" />
+              </div>
+              @endif
+            </div>
+          </div>
+          @endforeach
         </div>
-        @endif
       </div>
-      @endforeach
     </div>
   </div>
 </section>
