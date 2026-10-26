@@ -321,32 +321,44 @@
     </div>
   </div>
 
-  {{-- Mobile: Vertical Stacked Cards --}}
+  {{-- Mobile: Swipeable Journey Cards --}}
   <div class="os-journey__mobile" data-journey-mobile>
     <div class="container">
       <div class="os-journey__mobile-header">
         <span class="os-section-label fade-up">{{ $storySections->journey_badge ?? 'Journey' }}</span>
         <h2 class="os-section-heading fade-up">{!! $storySections->journey_heading ?? 'Our <em>Journey</em>' !!}</h2>
       </div>
-      @foreach($timelines as $index => $item)
-      @php
-        $yearStr = $item->year ?? '';
-        $shortYear = is_numeric($yearStr) ? substr($yearStr, -2) : $yearStr;
-      @endphp
-      <div class="os-journey__mobile-card fade-up">
-        <div class="os-journey__mobile-card-year" aria-hidden="true">{{ $shortYear }}</div>
-        <span class="os-journey__year-badge">{{ $yearStr }}</span>
-        <h3 class="os-journey__mobile-card-title">{{ $item->title ?? '' }}</h3>
-        @if($item->description)
-        <div class="os-journey__mobile-card-desc">{!! rich_html($item->description ?? null) !!}</div>
-        @endif
-        @if($url = media_url($item->icon_url ?? null))
-        <div class="os-journey__mobile-card-image">
-          <img src="{{ $url }}" alt="{{ $item->title ?? $yearStr }}" loading="lazy" />
-        </div>
-        @endif
+      <div
+        class="os-journey__mobile-track"
+        data-journey-mobile-track
+        role="region"
+        aria-label="Our Journey timeline"
+        tabindex="0"
+      >
+        @foreach($timelines as $index => $item)
+          @php
+            $yearStr = $item->year ?? '';
+            $shortYear = is_numeric($yearStr) ? substr($yearStr, -2) : $yearStr;
+          @endphp
+          <div
+            class="os-journey__mobile-card fade-up"
+            role="group"
+            aria-label="{{ $yearStr }}: {{ $item->title ?? '' }}"
+          >
+            <div class="os-journey__mobile-card-year" aria-hidden="true">{{ $shortYear }}</div>
+            <span class="os-journey__year-badge">{{ $yearStr }}</span>
+            <h3 class="os-journey__mobile-card-title">{{ $item->title ?? '' }}</h3>
+            @if($item->description)
+              <div class="os-journey__mobile-card-desc">{!! rich_html($item->description ?? null) !!}</div>
+            @endif
+            @if($url = media_url($item->icon_url ?? null))
+              <div class="os-journey__mobile-card-image">
+                <img src="{{ $url }}" alt="{{ $item->title ?? $yearStr }}" loading="lazy" />
+              </div>
+            @endif
+          </div>
+        @endforeach
       </div>
-      @endforeach
     </div>
   </div>
 </section>
