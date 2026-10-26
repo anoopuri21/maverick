@@ -46,7 +46,6 @@
                 data-story-course="{{ $s['course'] ?? '' }}"
                 data-story-university="{{ $s['university'] ?? '' }}"
                 data-story-nationality="{{ $s['nationality'] ?? '' }}"
-                data-story-role="{{ $s['role'] ?? '' }}"
                 data-story-photo="{{ $s['photo'] ?? '' }}"
                 data-story-quote="{{ trim(html_entity_decode(strip_tags($s['quote'] ?? ''), ENT_QUOTES | ENT_HTML5, 'UTF-8')) }}"
                 aria-label="View full story for {{ $s['name'] }}"

@@ -7,7 +7,7 @@ use Tests\TestCase;
 
 class StudentSuccessStoryMetadataTest extends TestCase
 {
-    public function test_pdf_role_metadata_is_split_for_card_display_without_mutating_source_text(): void
+    public function test_pdf_role_metadata_is_split_into_card_display_fields(): void
     {
         $cases = [
             [
@@ -51,7 +51,6 @@ class StudentSuccessStoryMetadataTest extends TestCase
 
             $payload = $story->cardPayload();
 
-            $this->assertSame($sourceRole, $payload['role']);
             $this->assertSame($course, $payload['course']);
             $this->assertSame($university, $payload['university']);
             $this->assertSame($nationality, $payload['nationality']);

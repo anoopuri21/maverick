@@ -79,7 +79,6 @@ document.addEventListener('DOMContentLoaded', function () {
         setStoryText('[data-story-modal-course]', trigger.dataset.storyCourse, 'Not specified');
         setStoryText('[data-story-modal-nationality]', trigger.dataset.storyNationality, 'Not specified');
         setStoryText('[data-story-modal-quote]', trigger.dataset.storyQuote, 'No description provided.');
-        setStoryText('[data-story-modal-source]', trigger.dataset.storyRole, '');
 
         if (storyPhoto && storyFallback) {
             if (photo) {

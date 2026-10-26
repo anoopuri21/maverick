@@ -174,9 +174,6 @@
 .ep-story-modal__full-quote{padding:20px 21px;border:1px solid rgba(255,255,255,.78);border-radius:19px;background:rgba(255,255,255,.57);box-shadow:inset 1px 1px 4px rgba(255,255,255,.82),0 12px 30px rgba(22,43,88,.07)}
 .ep-story-modal__quote-label{display:block;margin-bottom:10px;color:#8b2639;font-size:9px;font-weight:800;letter-spacing:.15em;text-transform:uppercase}
 .ep-story-modal__full-quote blockquote{margin:0;color:#263653;font-size:14px;line-height:1.75;white-space:pre-wrap;overflow-wrap:anywhere}
-.ep-story-modal__source{margin-top:14px;border-top:1px solid rgba(38,58,103,.12);color:#435578}
-.ep-story-modal__source summary{width:max-content;max-width:100%;padding:13px 0 7px;color:#42547b;font-size:11px;font-weight:750;cursor:pointer}
-.ep-story-modal__source p{margin:0 0 4px;color:#56637e;font-size:12px;line-height:1.6;overflow-wrap:anywhere}
 
 @media(hover:hover){
   .ep-success-card--story:hover{transform:translateY(-5px);box-shadow:16px 18px 34px rgba(18,37,80,.15),-9px -9px 24px rgba(255,255,255,.9),inset 1px 1px 0 rgba(255,255,255,.95)}

@@ -70,7 +70,6 @@ class StudentSuccessStory extends Model
 
         return [
             'name' => $name,
-            'role' => $this->role ?? '',
             'course' => $metadata['course'],
             'university' => $metadata['university'],
             'nationality' => $metadata['nationality'],

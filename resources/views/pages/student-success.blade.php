@@ -148,11 +148,6 @@
                 <span class="ep-story-modal__quote-label">Full description</span>
                 <blockquote id="studentStoryModalQuote" data-story-modal-quote></blockquote>
             </div>
-
-            <details class="ep-story-modal__source">
-                <summary>Original PDF metadata</summary>
-                <p data-story-modal-source></p>
-            </details>
         </div>
     </div>
 </div>
