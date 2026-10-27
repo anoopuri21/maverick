@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Concerns\EnsuresUniqueSlug;
 use App\Concerns\HasMediaAssets;
 
@@ -61,9 +62,24 @@ class Insight extends Model
         return $query->where('is_featured', true)->category($category);
     }
 
+    public function featuredImageAsset(): BelongsTo
+    {
+        return $this->belongsTo(MediaAsset::class, 'featured_image_url_asset_id');
+    }
+
+    public function resolvedFeaturedImageUrl(): ?string
+    {
+        return $this->featuredImageAsset?->url ?: $this->featured_image_url;
+    }
+
+    public function resolvedFeaturedImageAlt(): ?string
+    {
+        return $this->featured_image_alt ?: $this->featuredImageAsset?->alt;
+    }
+
     public function hasImage(): bool
     {
-        return !empty($this->featured_image_url);
+        return filled($this->resolvedFeaturedImageUrl());
     }
 
     public function hasCategory(string $category): bool
@@ -79,6 +95,11 @@ class Insight extends Model
         // (An item tagged both "blogs" and "news" that is featured will
         // un-feature the current featured item in EACH of its categories.)
         static::saving(function (Insight $insight) {
+            // Treat an empty form value as unset; reading time is optional.
+            if ($insight->reading_time_minutes === '') {
+                $insight->reading_time_minutes = null;
+            }
+
             if ($insight->is_featured) {
                 foreach (($insight->categories ?? []) as $cat) {
                     $query = static::where('is_featured', true)

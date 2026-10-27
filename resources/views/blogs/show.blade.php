@@ -7,7 +7,7 @@
     @include('partials.seo-meta', ['seo' => (object) [
         'meta_title' => ($post->meta_title ?? $post->title) . ' | Maverick Business Academy',
         'meta_description' => $post->meta_description ?? $post->excerpt,
-        'og_image_url' => $post->featured_image_url,
+        'og_image_url' => $post->resolvedFeaturedImageUrl(),
         'og_type' => 'article',
     ]])
 @endpush
@@ -66,11 +66,11 @@
             <div class="blog-article-header__inner">
                 <div class="blog-article-header__meta">
                     <div class="blog-article-header__author">
-                        @if($url = media_url($post->author_avatar_url ?? null))
+                        @if($url = mlp_image_url($post->author_avatar_url ?? null, ['w' => 64]))
                             <img src="{{ $url }}"
                                  alt="{{ $post->author_name }}"
                                  class="blog-article-header__author-avatar"
-                                 width="32" height="32" loading="lazy">
+                                 width="32" height="32" loading="lazy" decoding="async">
                         @else
                             <span class="blog-article-header__author-avatar" aria-hidden="true">
                                 {{ strtoupper(mb_substr($post->author_name ?? 'M', 0, 1)) }}
@@ -86,14 +86,16 @@
                             {{ \Carbon\Carbon::parse($post->published_at)->format('M d, Y') }}
                         </time>
                     @endif
-                    <span class="blog-article-header__divider" aria-hidden="true">|</span>
-                    <span class="blog-article-header__reading-time">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12" aria-hidden="true">
-                            <circle cx="12" cy="12" r="10"/>
-                            <polyline points="12 6 12 12 16 14"/>
-                        </svg>
-                        {{ $post->reading_time_minutes ?? 1 }} min read
-                    </span>
+                    @if($post->reading_time_minutes)
+                        <span class="blog-article-header__divider" aria-hidden="true">|</span>
+                        <span class="blog-article-header__reading-time">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12" aria-hidden="true">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12 6 12 12 16 14"/>
+                            </svg>
+                            {{ $post->reading_time_minutes }} min read
+                        </span>
+                    @endif
                 </div>
             </div>
         </div>
@@ -107,14 +109,14 @@
         <div class="container">
             <div class="blog-featured-image-box--inner">
                 <figure class="blog-featured-image-box">
-                    <img src="{{ $post->featured_image_url }}"
-                         alt="{{ $post->featured_image_alt ?? $post->title }}"
-                         loading="lazy"
-                         width="900" height="500">
-                    @if($post->featured_image_alt)
+                    <img src="{{ mlp_image_url($post->resolvedFeaturedImageUrl(), ['w' => 1200]) }}"
+                         alt="{{ $post->resolvedFeaturedImageAlt() ?: $post->title }}"
+                         width="1200" height="675"
+                         loading="eager" fetchpriority="high" decoding="async">
+                    @if($post->resolvedFeaturedImageAlt())
                         <figcaption class="blog-featured-image-caption">
                             <span class="blog-featured-image-caption-mark" aria-hidden="true">◆</span>
-                            {{ $post->featured_image_alt }}
+                            {{ $post->resolvedFeaturedImageAlt() }}
                         </figcaption>
                     @endif
                 </figure>
@@ -235,10 +237,10 @@
                         <div class="blog-card__image">
                             <div class="blog-card__image-accent" aria-hidden="true"></div>
                             @if($relatedPost->hasImage())
-                                <img src="{{ $relatedPost->featured_image_url }}"
-                                     alt="{{ $relatedPost->featured_image_alt ?? $relatedPost->title }}"
-                                     loading="lazy"
-                                     width="400" height="250">
+                                <img src="{{ mlp_image_url($relatedPost->resolvedFeaturedImageUrl(), ['w' => 400]) }}"
+                                     alt="{{ $relatedPost->resolvedFeaturedImageAlt() ?: $relatedPost->title }}"
+                                     width="400" height="250"
+                                     loading="lazy" decoding="async">
                             @else
                                 <div class="blog-card__thumb-fallback" aria-hidden="true">
                                     {{ strtoupper(mb_substr($relatedPost->title, 0, 2)) }}
@@ -256,11 +258,11 @@
                                 <p class="blog-card__excerpt">{{ $relatedPost->excerpt }}</p>
                             @endif
                             <div class="blog-card__author">
-                                    @if($url = media_url($relatedPost->author_avatar_url ?? null))
+                                    @if($url = mlp_image_url($relatedPost->author_avatar_url ?? null, ['w' => 56]))
                                     <img src="{{ $url }}"
                                          alt="{{ $relatedPost->author_name }}"
                                          class="blog-card__author-avatar"
-                                         width="28" height="28" loading="lazy">
+                                         width="28" height="28" loading="lazy" decoding="async">
                                 @else
                                     <span class="blog-card__author-avatar" aria-hidden="true">
                                         {{ strtoupper(mb_substr($relatedPost->author_name ?? 'M', 0, 1)) }}
@@ -275,9 +277,13 @@
                                             <time datetime="{{ $relatedPost->published_at }}">
                                                 {{ \Carbon\Carbon::parse($relatedPost->published_at)->format('M d, Y') }}
                                             </time>
+                                        @endif
+                                        @if($relatedPost->published_at && $relatedPost->reading_time_minutes)
                                             <span class="blog-card__author-meta-sep" aria-hidden="true">·</span>
                                         @endif
-                                        <span>{{ $relatedPost->reading_time_minutes ?? 1 }} min read</span>
+                                        @if($relatedPost->reading_time_minutes)
+                                            <span>{{ $relatedPost->reading_time_minutes }} min read</span>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

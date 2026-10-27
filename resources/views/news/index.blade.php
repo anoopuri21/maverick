@@ -3,7 +3,15 @@
 @section('title', 'News & Announcements | Maverick Business Academy')
 @section('meta_description', 'Stay updated with the latest institutional news, campus announcements, and academic milestones from Maverick Business Academy.')
 
+@php
+    $newsHero = $newsHero ?? safe_settings(\App\Settings\NewsHeroSettings::class);
+    $newsHeroImage = mlp_image_url($newsHero->image_url ?? null, ['w' => 1600]);
+@endphp
+
 @push('head')
+    @if(filled($newsHeroImage))
+        <link rel="preload" as="image" href="{{ $newsHeroImage }}" fetchpriority="high">
+    @endif
     @include('partials.seo-meta', ['seo' => (object) [
         'meta_title' => 'News & Announcements | Maverick Business Academy',
         'meta_description' => 'Stay updated with the latest institutional news, campus announcements, and academic milestones from Maverick Business Academy.',
@@ -17,7 +25,6 @@
 
 @section('content')
 @php
-    $newsHero = $newsHero ?? safe_settings(\App\Settings\NewsHeroSettings::class);
     $ticker = collect($ticker ?? []);
     $topTags = collect($topTags ?? []);
 @endphp
@@ -30,8 +37,8 @@
     ════════════════════════════════════════════ --}}
     <section class="news-masthead" aria-label="News Hero">
         <div class="news-masthead__bg" aria-hidden="true">
-            @if(filled($newsHero->image_url ?? null))
-            <div class="news-masthead__bg-image" style="background-image: url('{{ $newsHero->image_url }}')"></div>
+            @if(filled($newsHeroImage))
+            <div class="news-masthead__bg-image" style="background-image: url('{{ $newsHeroImage }}')"></div>
             @endif
             <div class="news-masthead__gradient"></div>
             <div class="news-masthead__noise"></div>
@@ -124,10 +131,15 @@
                 <article class="news-featured">
                     <div class="news-featured__image">
                         <div class="news-featured__image-accent" aria-hidden="true"></div>
-                        @if($featured->hasImage())
-                            <img src="{{ $featured->featured_image_url }}"
-                                 alt="{{ $featured->featured_image_alt ?? $featured->title }}"
-                                 loading="lazy">
+                        @php
+                            $featuredImageUrl = $featured->featuredImageAsset?->url ?: $featured->featured_image_url;
+                            $featuredImageAlt = $featured->featured_image_alt ?: $featured->featuredImageAsset?->alt ?: $featured->title;
+                        @endphp
+                        @if(filled($featuredImageUrl))
+                            <img src="{{ mlp_image_url($featuredImageUrl, ['w' => 960]) }}"
+                                 alt="{{ $featuredImageAlt }}"
+                                 width="960" height="600"
+                                 loading="lazy" decoding="async">
                         @else
                             <div class="news-featured__image news-featured__image--fallback">
                                 <span class="news-featured__image-initial">
@@ -148,11 +160,11 @@
                         @endif
                         <div class="news-featured__meta">
                             <div class="news-featured__author">
-                                @if($url = media_url($featured->author_avatar_url ?? null))
+                                @if($url = mlp_image_url($featured->author_avatar_url ?? null, ['w' => 56]))
                                     <img src="{{ $url }}"
                                          alt="{{ $featured->author_name }}"
                                          class="news-featured__author-avatar"
-                                         width="28" height="28" loading="lazy">
+                                         width="28" height="28" loading="lazy" decoding="async">
                                 @else
                                     <span class="news-featured__author-avatar" aria-hidden="true">
                                         {{ strtoupper(mb_substr($featured->author_name ?? 'M', 0, 1)) }}
@@ -185,88 +197,57 @@
                     Recent <span class="news-list-section__title-em">Announcements</span>
                 </h2>
 
-                <div class="news-list">
-                    @foreach($articles as $article)
-                    <article class="news-row">
-                        <time class="news-row__date" datetime="{{ $article->published_at }}">
-                            {{ $article->published_at ? \Carbon\Carbon::parse($article->published_at)->format('M d, Y') : '' }}
-                        </time>
-                        <div class="news-row__content">
-                            <div class="news-row__meta">
-                                <span class="news-row__author">
-                                    {{ $article->author_name ?? 'Maverick Business Academy' }}
-                                </span>
-                                @if($article->published_at)
-                                    <span class="news-row__divider" aria-hidden="true">|</span>
-                                    <span class="news-row__read-time">
-                                        {{ $article->reading_time_minutes ?? 1 }} min read
-                                    </span>
-                                @endif
-                            </div>
-                            <h3 class="news-row__title">
-                                <a href="{{ route('insights.show', $article->slug) }}">
-                                    {{ $article->title }}
-                                </a>
-                            </h3>
-                            @if(!empty($article->excerpt))
-                                <p class="news-row__excerpt">{{ $article->excerpt }}</p>
-                            @endif
-                        </div>
-                    </article>
-                    @endforeach
+                <div class="news-list"
+                     data-news-list
+                     data-next-url="{{ $articles->nextPageUrl() ?? '' }}"
+                     data-loaded-count="{{ $articles->count() }}">
+                    @include('news.partials.article-cards', ['articles' => $articles])
                 </div>
 
-                {{-- Pagination --}}
+                {{-- Server-side pagination remains available when JavaScript is disabled. --}}
                 @if($articles->hasPages())
-                <nav class="blog-pagination" aria-label="News pagination" style="margin-top: 40px;">
-                    <ul style="list-style: none; margin: 0; padding: 0; display: flex; align-items: center; gap: 6px;">
-                        @if ($articles->onFirstPage())
-                            <li class="blog-pagination__item blog-pagination__item--disabled" aria-disabled="true" aria-label="Previous page">
-                                <span class="blog-pagination__link" aria-hidden="true">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16">
-                                        <path d="M15 19l-7-7 7-7"/>
-                                    </svg>
-                                </span>
-                            </li>
+                <nav class="news-pagination" aria-label="News pagination" data-news-pagination>
+                    <div class="news-pagination__links">
+                        @if($articles->onFirstPage())
+                            <span class="news-pagination__link news-pagination__link--disabled" aria-disabled="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                    <path d="M15 19l-7-7 7-7"/>
+                                </svg>
+                                <span>Newer articles</span>
+                            </span>
                         @else
-                            <li class="blog-pagination__item">
-                                <a class="blog-pagination__link" href="{{ $articles->previousPageUrl() }}" rel="prev" aria-label="Previous page">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16">
-                                        <path d="M15 19l-7-7 7-7"/>
-                                    </svg>
-                                </a>
-                            </li>
+                            <a class="news-pagination__link" href="{{ $articles->previousPageUrl() }}" rel="prev">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                    <path d="M15 19l-7-7 7-7"/>
+                                </svg>
+                                <span>Newer articles</span>
+                            </a>
                         @endif
-                        @foreach ($articles->getUrlRange(1, $articles->lastPage()) as $page => $url)
-                            @if ($page == $articles->currentPage())
-                                <li class="blog-pagination__item blog-pagination__item--active" aria-current="page">
-                                    <span class="blog-pagination__link">{{ $page }}</span>
-                                </li>
-                            @else
-                                <li class="blog-pagination__item">
-                                    <a class="blog-pagination__link" href="{{ $url }}">{{ $page }}</a>
-                                </li>
-                            @endif
-                        @endforeach
-                        @if ($articles->hasMorePages())
-                            <li class="blog-pagination__item">
-                                <a class="blog-pagination__link" href="{{ $articles->nextPageUrl() }}" rel="next" aria-label="Next page">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16">
-                                        <path d="M9 5l7 7-7 7"/>
-                                    </svg>
-                                </a>
-                            </li>
+
+                        <span class="news-pagination__status" aria-current="page" data-news-loaded-label>Page {{ $articles->currentPage() }}</span>
+
+                        @if($articles->hasMorePages())
+                            <a class="news-pagination__link" href="{{ $articles->nextPageUrl() }}" rel="next" data-news-next>
+                                <span>Older articles</span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                    <path d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </a>
                         @else
-                            <li class="blog-pagination__item blog-pagination__item--disabled" aria-disabled="true" aria-label="Next page">
-                                <span class="blog-pagination__link" aria-hidden="true">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16">
-                                        <path d="M9 5l7 7-7 7"/>
-                                    </svg>
-                                </span>
-                            </li>
+                            <span class="news-pagination__link news-pagination__link--disabled" aria-disabled="true">
+                                <span>Older articles</span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                    <path d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </span>
                         @endif
-                    </ul>
+                    </div>
                 </nav>
+                @endif
+
+                @if($articles->hasMorePages())
+                    <div class="news-load-sentinel" data-news-sentinel aria-hidden="true"></div>
+                    <p class="news-load-status" data-news-load-status role="status" aria-live="polite"></p>
                 @endif
 
                 @else
@@ -355,47 +336,5 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ cached_asset('assets/js/blog.js') }}" defer></script>
-    <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // News ticker GSAP horizontal scroll
-        var tickerTrack = document.getElementById('news-ticker-track');
-        if (!tickerTrack) return;
-        if (typeof gsap === 'undefined') return;
-
-        var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (prefersReducedMotion) {
-            tickerTrack.style.transform = 'translateX(0)';
-            return;
-        }
-
-        var tickerWrap = document.getElementById('news-ticker');
-        var isPaused = false;
-
-        function startTicker() {
-            if (isPaused || typeof gsap === 'undefined') return;
-            var totalWidth = tickerTrack.scrollWidth / 2;
-            gsap.to(tickerTrack, {
-                x: -totalWidth,
-                duration: 40,
-                ease: 'none',
-                repeat: -1,
-            });
-        }
-
-        function pauseTicker() { isPaused = true; }
-        function resumeTicker() { isPaused = false; startTicker(); }
-
-        tickerWrap.addEventListener('mouseenter', pauseTicker);
-        tickerWrap.addEventListener('mouseleave', resumeTicker);
-
-        // Also pause when tab is hidden
-        document.addEventListener('visibilitychange', function () {
-            if (document.hidden) { pauseTicker(); }
-            else { resumeTicker(); }
-        });
-
-        startTicker();
-    });
-    </script>
+    <script src="{{ cached_asset('assets/js/pages/news-listing.js') }}" defer></script>
 @endpush

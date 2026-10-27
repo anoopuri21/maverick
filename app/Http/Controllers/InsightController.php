@@ -9,12 +9,20 @@ class InsightController extends Controller
 {
     public function show(Insight $slug)
     {
+        $slug->load('featuredImageAsset:id,url,alt');
+
         if ($slug->hasCategory('news')) {
+            $slug->content = lazy_load_rich_content_images(normalize_rich_html_media($slug->content));
+
             $moreUpdates = Insight::published()->category('news')
                 ->where('id', '!=', $slug->id)
                 ->latest('published_at')
+                ->latest('id')
                 ->take(5)
-                ->get(['id', 'title', 'slug', 'excerpt', 'featured_image_url', 'published_at', 'categories']);
+                ->get([
+                    'id', 'title', 'slug', 'excerpt', 'published_at',
+                    'reading_time_minutes', 'author_name',
+                ]);
 
             return view('news.show', [
                 'article' => $slug,
@@ -49,13 +57,19 @@ class InsightController extends Controller
                 $contentWithAnchors = preg_replace($pattern, $replacement, $contentWithAnchors, 1);
             }
         }
-        $slug->content = $contentWithAnchors;
+        $slug->content = lazy_load_rich_content_images(normalize_rich_html_media($contentWithAnchors));
 
         $relatedPosts = Insight::published()->category('blogs')
+            ->with('featuredImageAsset:id,url,alt')
             ->where('id', '!=', $slug->id)
             ->latest('published_at')
+            ->latest('id')
             ->take(3)
-            ->get(['id', 'title', 'slug', 'excerpt', 'featured_image_url', 'published_at', 'reading_time_minutes', 'categories', 'tags']);
+            ->get([
+                'id', 'title', 'slug', 'excerpt', 'featured_image_url',
+                'featured_image_url_asset_id', 'featured_image_alt', 'published_at',
+                'reading_time_minutes', 'author_name', 'author_avatar_url',
+            ]);
 
         return view('blogs.show', [
             'post' => $slug,
