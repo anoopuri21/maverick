@@ -28,4 +28,14 @@ class RichHtmlTest extends TestCase
 
         $this->assertSame($html, rich_html($html));
     }
+
+    public function test_rich_content_images_get_lazy_and_async_hints(): void
+    {
+        $html = '<p>Intro</p><img src="/one.jpg"><img src="/two.jpg" loading="eager" />';
+
+        $optimized = lazy_load_rich_content_images($html);
+
+        $this->assertStringContainsString('<img src="/one.jpg" loading="lazy" decoding="async">', $optimized);
+        $this->assertStringContainsString('<img src="/two.jpg" loading="eager" decoding="async" />', $optimized);
+    }
 }

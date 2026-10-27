@@ -16,21 +16,29 @@ class InsightAdminTest extends TestCase
         $this->artisan('db:seed');
     }
 
-    public function test_null_reading_time_defaults_to_one_minute(): void
+    public function test_empty_reading_time_stays_null_and_is_hidden_from_public_ui(): void
     {
         $insight = Insight::create([
-            'title' => 'Reading Time Fallback',
-            'slug' => 'reading-time-fallback',
+            'title' => 'Optional Reading Time',
+            'slug' => 'optional-reading-time',
             'content' => '<p>Short article.</p>',
             'categories' => ['news'],
             'published_at' => now(),
-            'reading_time_minutes' => null,
+            'reading_time_minutes' => '',
         ]);
 
         $this->assertDatabaseHas('insights', [
             'id' => $insight->id,
-            'reading_time_minutes' => 1,
+            'reading_time_minutes' => null,
         ]);
+
+        $this->get('/news')
+            ->assertOk()
+            ->assertDontSee('min read');
+
+        $this->get('/optional-reading-time')
+            ->assertOk()
+            ->assertDontSee('min read');
     }
 
     /**

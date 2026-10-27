@@ -177,6 +177,39 @@ if (! function_exists('normalize_rich_html_media')) {
     }
 }
 
+if (! function_exists('lazy_load_rich_content_images')) {
+    /**
+     * Add non-blocking image hints to rich-text body images when editors omit them.
+     */
+    function lazy_load_rich_content_images(?string $html): string
+    {
+        if (! html_filled($html)) {
+            return '';
+        }
+
+        $optimized = preg_replace_callback('/<img\\b([^>]*)>/i', static function (array $matches): string {
+            $attributes = $matches[1];
+            $selfClosing = preg_match('/\\s*\\/\\s*$/', $attributes) === 1;
+
+            if ($selfClosing) {
+                $attributes = preg_replace('/\\s*\\/\\s*$/', '', $attributes) ?? $attributes;
+            }
+
+            if (! preg_match('/(?:^|\\s)loading\\s*=/i', $attributes)) {
+                $attributes .= ' loading="lazy"';
+            }
+
+            if (! preg_match('/(?:^|\\s)decoding\\s*=/i', $attributes)) {
+                $attributes .= ' decoding="async"';
+            }
+
+            return '<img'.$attributes.($selfClosing ? ' /' : '').'>';
+        }, $html);
+
+        return $optimized ?? $html;
+    }
+}
+
 if (! function_exists('edu_cta_class')) {
     function edu_cta_class(?string $style): string
     {

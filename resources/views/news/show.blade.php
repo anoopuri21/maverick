@@ -7,7 +7,7 @@
     @include('partials.seo-meta', ['seo' => (object) [
         'meta_title' => ($article->meta_title ?? $article->title) . ' | Maverick Business Academy',
         'meta_description' => $article->meta_description ?? $article->excerpt,
-        'og_image_url' => $article->featured_image_url,
+        'og_image_url' => $article->resolvedFeaturedImageUrl(),
         'og_type' => 'article',
     ]])
 @endpush
@@ -80,11 +80,11 @@
 
             <div class="news-editorial-header__byline">
                 <div class="news-editorial-header__author">
-                    @if($url = media_url($article->author_avatar_url ?? null))
+                    @if($url = mlp_image_url($article->author_avatar_url ?? null, ['w' => 68]))
                         <img src="{{ $url }}"
                              alt="{{ $article->author_name }}"
                              class="news-editorial-header__author-avatar"
-                             width="34" height="34" loading="lazy">
+                             width="34" height="34" loading="lazy" decoding="async">
                     @else
                         <span class="news-editorial-header__author-avatar" aria-hidden="true">
                             {{ strtoupper(mb_substr($article->author_name ?? 'M', 0, 1)) }}
@@ -102,14 +102,16 @@
                     </time>
                 @endif
 
-                <span class="news-editorial-header__byline-divider" aria-hidden="true">&bull;</span>
-                <span class="news-editorial-header__read-time">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12" aria-hidden="true">
-                        <circle cx="12" cy="12" r="10"/>
-                        <polyline points="12 6 12 12 16 14"/>
-                    </svg>
-                    {{ $article->reading_time_minutes ?? 1 }} min read
-                </span>
+                @if($article->reading_time_minutes)
+                    <span class="news-editorial-header__byline-divider" aria-hidden="true">&bull;</span>
+                    <span class="news-editorial-header__read-time">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12" aria-hidden="true">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                        {{ $article->reading_time_minutes }} min read
+                    </span>
+                @endif
 
                 @if(!empty($article->author_bio))
                     <span class="news-editorial-header__byline-divider" aria-hidden="true">&bull;</span>
@@ -125,14 +127,14 @@
     @if($article->hasImage())
     <div class="news-detail-image-box">
         <figure style="margin: 0;">
-            <img src="{{ $article->featured_image_url }}"
-                 alt="{{ $article->featured_image_alt ?? $article->title }}"
-                 loading="lazy"
-                 width="900" height="500">
-            @if($article->featured_image_alt)
+            <img src="{{ mlp_image_url($article->resolvedFeaturedImageUrl(), ['w' => 1200]) }}"
+                 alt="{{ $article->resolvedFeaturedImageAlt() ?: $article->title }}"
+                 width="1200" height="675"
+                 loading="eager" fetchpriority="high" decoding="async">
+            @if($article->resolvedFeaturedImageAlt())
                 <figcaption class="news-detail-image-box__caption">
                     <span class="news-detail-image-box__caption-mark" aria-hidden="true">◆</span>
-                    {{ $article->featured_image_alt }}
+                    {{ $article->resolvedFeaturedImageAlt() }}
                 </figcaption>
             @endif
         </figure>
@@ -236,10 +238,10 @@
                                 <span class="news-row__author">
                                     {{ $item->author_name ?? 'Maverick Business Academy' }}
                                 </span>
-                                @if($item->published_at)
+                                @if($item->reading_time_minutes)
                                     <span class="news-row__divider" aria-hidden="true">|</span>
                                     <span class="news-row__read-time">
-                                        {{ $item->reading_time_minutes ?? 1 }} min read
+                                        {{ $item->reading_time_minutes }} min read
                                     </span>
                                 @endif
                             </div>

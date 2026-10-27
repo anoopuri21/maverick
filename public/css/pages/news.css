@@ -921,6 +921,10 @@
   text-decoration: none;
 }
 
+.news-list .news-row__image--fallback {
+  background: url('../../assets/images/edutainment/international-students-university-campus-1.jpg') center / cover no-repeat;
+}
+
 .news-list .news-row__image img {
   display: block;
   width: 100%;
@@ -931,22 +935,6 @@
 
 .news-list .news-row--listing:hover .news-row__image img {
   transform: scale(1.04);
-}
-
-.news-row__image-placeholder {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
-  background:
-    radial-gradient(circle at 75% 20%, rgba(255, 255, 255, 0.16), transparent 38%),
-    linear-gradient(135deg, #10265e, #3150a0);
-  color: rgba(255, 255, 255, 0.9);
-  font-family: var(--font-display, 'PP Neue Montreal', sans-serif);
-  font-size: clamp(28px, 4vw, 48px);
-  font-weight: 800;
-  letter-spacing: 0.06em;
 }
 
 .news-list .news-row--listing .news-row__meta {
@@ -1043,6 +1031,25 @@
   font-size: 13px;
   font-weight: 500;
   white-space: nowrap;
+}
+
+.news-load-sentinel {
+  width: 100%;
+  height: 1px;
+  pointer-events: none;
+}
+
+.news-load-status {
+  margin: 12px 0 0;
+  color: #6e7382;
+  font-family: var(--font-body, 'Poppins', sans-serif);
+  font-size: 13px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.news-load-status:empty {
+  display: none;
 }
 
 @media (max-width: 768px) {

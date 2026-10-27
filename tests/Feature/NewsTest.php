@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Insight;
+use App\Models\MediaAsset;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -44,6 +45,8 @@ class NewsTest extends TestCase
         $response->assertSee('News &amp; <em class="news-masthead__title-em">Announcements</em>', false);
         $response->assertSee('Academy Launches New Global Doctorate Initiative');
         $response->assertSee('Sharjah Campus Welcomes Fall Cohort');
+        $response->assertSee('international-students-university-campus-1.jpg', false);
+        $response->assertSee('data-news-thumbnail', false);
     }
 
     /**
@@ -51,13 +54,22 @@ class NewsTest extends TestCase
      */
     public function test_news_listing_loads_ten_articles_at_a_time_with_lazy_thumbnails(): void
     {
+        $cover = MediaAsset::create([
+            'hash' => hash('sha256', 'news-cover-test'),
+            'cloudinary_public_id' => 'news-cover-test',
+            'url' => 'https://images.example.test/news-cover.webp',
+            'folder' => 'news',
+            'alt' => 'Campus ceremony',
+        ]);
+
         for ($i = 1; $i <= 11; $i++) {
             Insight::factory()->create([
                 'title' => "Paginated News {$i}",
                 'slug' => "paginated-news-{$i}",
                 'categories' => ['news'],
-                'featured_image_url' => $i === 1 ? 'https://images.example.test/news-cover.webp' : null,
-                'featured_image_alt' => $i === 1 ? 'Campus ceremony' : null,
+                'featured_image_url' => null,
+                'featured_image_url_asset_id' => $i === 1 ? $cover->id : null,
+                'featured_image_alt' => null,
                 'published_at' => now()->subMinutes($i),
             ]);
         }
@@ -70,12 +82,31 @@ class NewsTest extends TestCase
         $firstPage->assertSee('alt="Campus ceremony"', false);
         $firstPage->assertSee('loading="lazy"', false);
         $firstPage->assertSee('decoding="async"', false);
+        $this->assertSame(10, substr_count($firstPage->getContent(), 'data-news-thumbnail'));
+        $firstPage->assertSee('data-news-list', false);
+        $firstPage->assertSee('data-news-next', false);
+        $firstPage->assertSee('data-news-sentinel', false);
         $firstPage->assertDontSee('Paginated News 11');
         $firstPage->assertSee('Older articles');
 
         $this->get(route('news.index', ['page' => 2]))
             ->assertOk()
             ->assertSee('Paginated News 11');
+
+        $autoLoadResponse = $this->getJson(route('news.index', ['page' => 2]));
+        $autoLoadResponse->assertOk()->assertJsonStructure([
+            'html',
+            'count',
+            'current_page',
+            'next_url',
+            'has_more',
+        ]);
+        $this->assertSame(3, $autoLoadResponse->json('count'));
+        $this->assertFalse($autoLoadResponse->json('has_more'));
+        $this->assertNull($autoLoadResponse->json('next_url'));
+        $this->assertStringContainsString('Paginated News 11', $autoLoadResponse->json('html'));
+        $this->assertStringContainsString('international-students-university-campus-1.jpg', $autoLoadResponse->json('html'));
+        $this->assertStringContainsString('data-news-thumbnail', $autoLoadResponse->json('html'));
     }
 
     /**

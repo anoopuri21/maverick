@@ -110,11 +110,10 @@ class InsightResource extends Resource
 
                 TextInput::make('reading_time_minutes')
                     ->numeric()
-                    ->default(1)
-                    ->required()
+                    ->nullable()
                     ->minValue(1)
                     ->suffix('minutes')
-                    ->helperText('Defaults to 1 minute; override manually if needed.'),
+                    ->helperText('Optional. Leave blank to hide reading time on the public page.'),
             ]),
 
             Section::make('SEO')->schema([
@@ -152,7 +151,9 @@ class InsightResource extends Resource
                     ->sortable(),
 
                 TextColumn::make('reading_time_minutes')
-                    ->suffix(' min read'),
+                    ->label('Reading Time')
+                    ->formatStateUsing(fn ($state): string => is_numeric($state) && (int) $state > 0 ? $state.' min read' : '')
+                    ->placeholder(''),
             ])
             ->filters([
                 SelectFilter::make('categories')
