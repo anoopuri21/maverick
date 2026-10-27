@@ -18,6 +18,7 @@
 @section('content')
 @php
     $newsHero = $newsHero ?? safe_settings(\App\Settings\NewsHeroSettings::class);
+    $newsHeroImage = mlp_image_url($newsHero->image_url ?? null, ['w' => 1600]);
     $ticker = collect($ticker ?? []);
     $topTags = collect($topTags ?? []);
 @endphp
@@ -30,8 +31,8 @@
     ════════════════════════════════════════════ --}}
     <section class="news-masthead" aria-label="News Hero">
         <div class="news-masthead__bg" aria-hidden="true">
-            @if(filled($newsHero->image_url ?? null))
-            <div class="news-masthead__bg-image" style="background-image: url('{{ $newsHero->image_url }}')"></div>
+            @if(filled($newsHeroImage))
+            <div class="news-masthead__bg-image" style="background-image: url('{{ $newsHeroImage }}')"></div>
             @endif
             <div class="news-masthead__gradient"></div>
             <div class="news-masthead__noise"></div>
@@ -125,9 +126,10 @@
                     <div class="news-featured__image">
                         <div class="news-featured__image-accent" aria-hidden="true"></div>
                         @if($featured->hasImage())
-                            <img src="{{ $featured->featured_image_url }}"
+                            <img src="{{ mlp_image_url($featured->featured_image_url, ['w' => 960]) }}"
                                  alt="{{ $featured->featured_image_alt ?? $featured->title }}"
-                                 loading="lazy">
+                                 width="960" height="600"
+                                 loading="lazy" decoding="async">
                         @else
                             <div class="news-featured__image news-featured__image--fallback">
                                 <span class="news-featured__image-initial">
@@ -148,11 +150,11 @@
                         @endif
                         <div class="news-featured__meta">
                             <div class="news-featured__author">
-                                @if($url = media_url($featured->author_avatar_url ?? null))
+                                @if($url = mlp_image_url($featured->author_avatar_url ?? null, ['w' => 56]))
                                     <img src="{{ $url }}"
                                          alt="{{ $featured->author_name }}"
                                          class="news-featured__author-avatar"
-                                         width="28" height="28" loading="lazy">
+                                         width="28" height="28" loading="lazy" decoding="async">
                                 @else
                                     <span class="news-featured__author-avatar" aria-hidden="true">
                                         {{ strtoupper(mb_substr($featured->author_name ?? 'M', 0, 1)) }}
@@ -187,12 +189,29 @@
 
                 <div class="news-list">
                     @foreach($articles as $article)
-                    <article class="news-row">
-                        <time class="news-row__date" datetime="{{ $article->published_at }}">
-                            {{ $article->published_at ? \Carbon\Carbon::parse($article->published_at)->format('M d, Y') : '' }}
-                        </time>
+                    <article class="news-row news-row--listing">
+                        <a href="{{ route('insights.show', $article->slug) }}"
+                           class="news-row__image"
+                           aria-label="Read: {{ $article->title }}">
+                            @if($article->hasImage())
+                                <img src="{{ mlp_image_url($article->featured_image_url, ['w' => 480]) }}"
+                                     alt="{{ $article->featured_image_alt ?: $article->title }}"
+                                     width="480" height="300"
+                                     loading="lazy" decoding="async">
+                            @else
+                                <span class="news-row__image-placeholder" aria-hidden="true">
+                                    {{ strtoupper(mb_substr($article->title, 0, 2)) }}
+                                </span>
+                            @endif
+                        </a>
                         <div class="news-row__content">
                             <div class="news-row__meta">
+                                @if($article->published_at)
+                                    <time class="news-row__date" datetime="{{ $article->published_at }}">
+                                        {{ \Carbon\Carbon::parse($article->published_at)->format('M d, Y') }}
+                                    </time>
+                                    <span class="news-row__divider" aria-hidden="true">|</span>
+                                @endif
                                 <span class="news-row__author">
                                     {{ $article->author_name ?? 'Maverick Business Academy' }}
                                 </span>
@@ -216,56 +235,44 @@
                     @endforeach
                 </div>
 
-                {{-- Pagination --}}
+                {{-- Server-side pagination keeps each request to 10 recent stories. --}}
                 @if($articles->hasPages())
-                <nav class="blog-pagination" aria-label="News pagination" style="margin-top: 40px;">
-                    <ul style="list-style: none; margin: 0; padding: 0; display: flex; align-items: center; gap: 6px;">
-                        @if ($articles->onFirstPage())
-                            <li class="blog-pagination__item blog-pagination__item--disabled" aria-disabled="true" aria-label="Previous page">
-                                <span class="blog-pagination__link" aria-hidden="true">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16">
-                                        <path d="M15 19l-7-7 7-7"/>
-                                    </svg>
-                                </span>
-                            </li>
+                <nav class="news-pagination" aria-label="News pagination">
+                    <div class="news-pagination__links">
+                        @if($articles->onFirstPage())
+                            <span class="news-pagination__link news-pagination__link--disabled" aria-disabled="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                    <path d="M15 19l-7-7 7-7"/>
+                                </svg>
+                                <span>Newer articles</span>
+                            </span>
                         @else
-                            <li class="blog-pagination__item">
-                                <a class="blog-pagination__link" href="{{ $articles->previousPageUrl() }}" rel="prev" aria-label="Previous page">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16">
-                                        <path d="M15 19l-7-7 7-7"/>
-                                    </svg>
-                                </a>
-                            </li>
+                            <a class="news-pagination__link" href="{{ $articles->previousPageUrl() }}" rel="prev">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                    <path d="M15 19l-7-7 7-7"/>
+                                </svg>
+                                <span>Newer articles</span>
+                            </a>
                         @endif
-                        @foreach ($articles->getUrlRange(1, $articles->lastPage()) as $page => $url)
-                            @if ($page == $articles->currentPage())
-                                <li class="blog-pagination__item blog-pagination__item--active" aria-current="page">
-                                    <span class="blog-pagination__link">{{ $page }}</span>
-                                </li>
-                            @else
-                                <li class="blog-pagination__item">
-                                    <a class="blog-pagination__link" href="{{ $url }}">{{ $page }}</a>
-                                </li>
-                            @endif
-                        @endforeach
-                        @if ($articles->hasMorePages())
-                            <li class="blog-pagination__item">
-                                <a class="blog-pagination__link" href="{{ $articles->nextPageUrl() }}" rel="next" aria-label="Next page">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16">
-                                        <path d="M9 5l7 7-7 7"/>
-                                    </svg>
-                                </a>
-                            </li>
+
+                        <span class="news-pagination__status" aria-current="page">Page {{ $articles->currentPage() }}</span>
+
+                        @if($articles->hasMorePages())
+                            <a class="news-pagination__link" href="{{ $articles->nextPageUrl() }}" rel="next">
+                                <span>Older articles</span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                    <path d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </a>
                         @else
-                            <li class="blog-pagination__item blog-pagination__item--disabled" aria-disabled="true" aria-label="Next page">
-                                <span class="blog-pagination__link" aria-hidden="true">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16">
-                                        <path d="M9 5l7 7-7 7"/>
-                                    </svg>
-                                </span>
-                            </li>
+                            <span class="news-pagination__link news-pagination__link--disabled" aria-disabled="true">
+                                <span>Older articles</span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                    <path d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </span>
                         @endif
-                    </ul>
+                    </div>
                 </nav>
                 @endif
 
@@ -355,7 +362,6 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ cached_asset('assets/js/blog.js') }}" defer></script>
     <script>
     document.addEventListener('DOMContentLoaded', function () {
         // News ticker GSAP horizontal scroll

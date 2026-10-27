@@ -47,6 +47,38 @@ class NewsTest extends TestCase
     }
 
     /**
+     * The listing renders article thumbnails lazily and serves at most ten cards per page.
+     */
+    public function test_news_listing_loads_ten_articles_at_a_time_with_lazy_thumbnails(): void
+    {
+        for ($i = 1; $i <= 11; $i++) {
+            Insight::factory()->create([
+                'title' => "Paginated News {$i}",
+                'slug' => "paginated-news-{$i}",
+                'categories' => ['news'],
+                'featured_image_url' => $i === 1 ? 'https://images.example.test/news-cover.webp' : null,
+                'featured_image_alt' => $i === 1 ? 'Campus ceremony' : null,
+                'published_at' => now()->subMinutes($i),
+            ]);
+        }
+
+        $firstPage = $this->get(route('news.index'));
+
+        $firstPage->assertOk();
+        $this->assertSame(10, substr_count($firstPage->getContent(), 'news-row news-row--listing'));
+        $firstPage->assertSee('https://images.example.test/news-cover.webp', false);
+        $firstPage->assertSee('alt="Campus ceremony"', false);
+        $firstPage->assertSee('loading="lazy"', false);
+        $firstPage->assertSee('decoding="async"', false);
+        $firstPage->assertDontSee('Paginated News 11');
+        $firstPage->assertSee('Older articles');
+
+        $this->get(route('news.index', ['page' => 2]))
+            ->assertOk()
+            ->assertSee('Paginated News 11');
+    }
+
+    /**
      * Test news detail page works.
      */
     public function test_news_detail_page(): void

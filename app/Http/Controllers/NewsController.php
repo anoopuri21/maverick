@@ -18,11 +18,14 @@ class NewsController extends Controller
 
         $featured = Insight::published()->featuredIn('news')->latest('published_at')->first($listingColumns);
 
+        // Keep the public feed to ten rows per request without a full COUNT query.
         $articles = Insight::published()->category('news')
             ->select($listingColumns)
             ->when($featured, fn ($q) => $q->where('id', '!=', $featured->id))
             ->latest('published_at')
-            ->paginate(10);
+            ->latest('id')
+            ->simplePaginate(10)
+            ->withQueryString();
 
         $ticker = Insight::published()->category('news')
             ->latest('published_at')
