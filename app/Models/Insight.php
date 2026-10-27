@@ -79,6 +79,11 @@ class Insight extends Model
         // (An item tagged both "blogs" and "news" that is featured will
         // un-feature the current featured item in EACH of its categories.)
         static::saving(function (Insight $insight) {
+            // Keep reading time non-null even when imports or model callers omit it.
+            if ($insight->reading_time_minutes === null || $insight->reading_time_minutes === '') {
+                $insight->reading_time_minutes = 1;
+            }
+
             if ($insight->is_featured) {
                 foreach (($insight->categories ?? []) as $cat) {
                     $query = static::where('is_featured', true)

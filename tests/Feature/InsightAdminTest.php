@@ -16,6 +16,23 @@ class InsightAdminTest extends TestCase
         $this->artisan('db:seed');
     }
 
+    public function test_null_reading_time_defaults_to_one_minute(): void
+    {
+        $insight = Insight::create([
+            'title' => 'Reading Time Fallback',
+            'slug' => 'reading-time-fallback',
+            'content' => '<p>Short article.</p>',
+            'categories' => ['news'],
+            'published_at' => now(),
+            'reading_time_minutes' => null,
+        ]);
+
+        $this->assertDatabaseHas('insights', [
+            'id' => $insight->id,
+            'reading_time_minutes' => 1,
+        ]);
+    }
+
     /**
      * Test creating a single record with both categories and verifying it appears on both.
      */

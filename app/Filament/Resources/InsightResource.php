@@ -109,10 +109,12 @@ class InsightResource extends Resource
                     ,
 
                 TextInput::make('reading_time_minutes')
-                    ->numeric()->nullable()
+                    ->numeric()
+                    ->default(1)
+                    ->required()
                     ->minValue(1)
                     ->suffix('minutes')
-                    ->helperText('Auto-calculated or override manually.'),
+                    ->helperText('Defaults to 1 minute; override manually if needed.'),
             ]),
 
             Section::make('SEO')->schema([
