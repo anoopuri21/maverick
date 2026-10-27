@@ -25,7 +25,6 @@
             <span class="navbar__arrow" aria-hidden="true"></span>
           </button>
           <!-- Programs Mega Menu -->
-          <!-- Programs Mega Menu -->
           <div class="navbar__mega" data-mega="programs" aria-hidden="true">
             <div class="mega__backdrop"></div>
             <div class="mega__panel">
@@ -209,10 +208,12 @@
         @foreach(($navCat['programs'] ?? []) as $navProg)
         <li>
           <a href="{{ $navProg['url'] ?? '#' }}" class="navbar__mobile-category-sublink">
-            <span class="navbar__mobile-category-program-title">{{ $navProg['title'] ?? '' }}</span>
-            @if(!empty($navProg['university']))
-            <span class="navbar__mobile-category-uni">{{ $navProg['university'] }}</span>
-            @endif
+            <span class="navbar__mobile-category-text-wrap">
+              <span class="navbar__mobile-category-title">{{ $navProg['title'] ?? '' }}</span>
+              @if(!empty($navProg['university']))
+                <span class="navbar__mobile-category-uni">{{ $navProg['university'] }}</span>
+              @endif
+            </span>
           </a>
         </li>
         @endforeach
@@ -221,7 +222,7 @@
         @endif
         <li>
           <a href="{{ $navCat['viewAll'] ?? route('programs.index', ['category' => $navCat['slug']]) }}" class="navbar__mobile-category-sublink navbar__mobile-category-viewall">
-            <span class="navbar__mobile-category-program-title">View All {{ $navCat['name'] }}</span>
+            View All {{ $navCat['name'] }}
           </a>
         </li>
       </ul>

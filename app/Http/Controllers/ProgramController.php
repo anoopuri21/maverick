@@ -92,13 +92,12 @@ class ProgramController extends Controller
 
         $totalProgramCount = $allPrograms->count();
 
-        // Filter by category if requested (server-side so pagination + filter stay in sync)
+        // Filter by category if requested
         $requestedCategory = request()->query('category');
         $activeCategory = 'all';
 
         if ($requestedCategory && $categories->contains(fn ($cat) => $cat->slug === $requestedCategory)) {
             $activeCategory = $requestedCategory;
-            $allPrograms = $allPrograms->filter(fn ($p) => $p->programCategory?->slug === $requestedCategory)->values();
         }
 
         // Paginate: 12 programs per page
@@ -107,9 +106,6 @@ class ProgramController extends Controller
             $currentPage = 1;
         }
 
-        // Build query string for pagination links, excluding 'page' so it
-        // doesn't duplicate in URLs. request()->query() returns an array,
-        // so use array operations (not ->except() which is a Collection method).
         $queryParams = request()->query();
         unset($queryParams['page']);
 
@@ -120,12 +116,8 @@ class ProgramController extends Controller
         $nextPage = $hasMorePages ? $currentPage + 1 : null;
         $currentPageNum = $currentPage;
 
-        // Get items for current page using Collection::forPage (no paginator needed)
         $items = $allPrograms->forPage($currentPage, $perPage)->values();
 
-        // Create LengthAwarePaginator ONLY for the view's links() method.
-        // NEVER call any method on this object after construction — all
-        // pagination metadata is computed above using simple PHP math.
         $paginatedPrograms = new LengthAwarePaginator(
             $items,
             $totalCount,
@@ -163,7 +155,7 @@ class ProgramController extends Controller
             'programs' => $paginatedPrograms,
             'paginationNextPage' => $nextPage,
             'paginationLastPage' => $lastPage,
-            'totalProgramCount' => $totalCount,
+            'totalProgramCount' => $totalProgramCount,
             'programsListingSeo' => safe_settings(ProgramsListingSeoSettings::class),
         ]);
     }

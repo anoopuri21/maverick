@@ -77,16 +77,16 @@
         @endif
 
         {{-- Program cards partial (server-rendered for page 1) --}}
-@include('pages.programs.partials._cards', [
-    'programs' => $programs,
-    'programsListingPage' => $programsListingPage,
-    'activeCategory' => $activeCategory,
-    'nextPage' => $paginationNextPage ?? null,
-    'lastPage' => $paginationLastPage ?? null,
-])
+        @include('pages.programs.partials._cards', [
+            'programs' => $programs,
+            'programsListingPage' => $programsListingPage,
+            'activeCategory' => $activeCategory,
+            'nextPage' => $paginationNextPage ?? null,
+            'lastPage' => $paginationLastPage ?? null,
+        ])
 
         {{-- Mobile infinite scroll sentinel + loading --}}
-        <div class="pl-scroll-sentinel" data-pl-sentinel></div>
+        <div class="pl-scroll-sentinel" data-pl-sentinel @isset($paginationNextPage) data-next-page="{{ $paginationNextPage }}" @endif @isset($paginationLastPage) data-last-page="{{ $paginationLastPage }}" @endif></div>
 
         <div class="pl-load-more" data-pl-load-more>
             <div class="pl-spinner"></div>
