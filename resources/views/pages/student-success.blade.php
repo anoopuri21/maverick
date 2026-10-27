@@ -111,6 +111,48 @@
     @endif
 </div>
 
+@if(($storyTotal ?? 0) > 0)
+<div class="ep-story-modal" id="studentStoryModal" role="dialog" aria-modal="true" aria-labelledby="studentStoryModalName" aria-describedby="studentStoryModalQuote" tabindex="-1" hidden>
+    <div class="ep-story-modal__backdrop" data-story-close aria-hidden="true"></div>
+    <div class="ep-story-modal__panel">
+        <div class="ep-story-modal__photo">
+            <img data-story-modal-photo alt="" hidden>
+            <div class="ep-story-modal__fallback" data-story-modal-fallback aria-hidden="true" hidden></div>
+            <span class="ep-story-modal__photo-shade" aria-hidden="true"></span>
+        </div>
+        <div class="ep-story-modal__content">
+            <button type="button" class="ep-story-modal__close" data-story-close aria-label="Close student story">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M18 6 6 18M6 6l12 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                </svg>
+            </button>
+            <span class="ep-story-modal__eyebrow">Student success story</span>
+            <h2 class="ep-story-modal__name" id="studentStoryModalName" data-story-modal-name></h2>
+
+            <dl class="ep-story-modal__details">
+                <div>
+                    <dt>University</dt>
+                    <dd data-story-modal-university></dd>
+                </div>
+                <div>
+                    <dt>Course</dt>
+                    <dd data-story-modal-course></dd>
+                </div>
+                <div>
+                    <dt>Nationality</dt>
+                    <dd data-story-modal-nationality></dd>
+                </div>
+            </dl>
+
+            <div class="ep-story-modal__full-quote">
+                <span class="ep-story-modal__quote-label">Full description</span>
+                <blockquote id="studentStoryModalQuote" data-story-modal-quote></blockquote>
+            </div>
+        </div>
+    </div>
+</div>
+@endif
+
 @if(($videoTotal ?? 0) > 0)
 <div class="ep-vmodal" id="successVideoModal" role="dialog" aria-modal="true" aria-label="Video player" hidden>
     <button type="button" class="ep-vmodal__close" data-video-close aria-label="Close video">
