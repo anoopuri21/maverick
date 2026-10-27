@@ -7,7 +7,7 @@
             <div class="ep-success-card__fallback" aria-hidden="true">{{ $s['initials'] }}</div>
         @endif
         <span class="ep-success-card__fade" aria-hidden="true"></span>
-        <span class="ep-success-card__badge">Student Success</span>
+        <!-- <span class="ep-success-card__badge">Student Success</span> -->
     </div>
 
     <div class="ep-success-card__body">

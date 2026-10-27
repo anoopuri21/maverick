@@ -131,7 +131,7 @@
 .ep-success-card--story .ep-success-card__media{height:320px;min-height:320px;position:relative;overflow:hidden;background:linear-gradient(145deg,#e9edfa,#d9e1f4)}
 .ep-success-card--story .ep-success-card__media img{width:100%;height:100%;display:block;object-fit:cover;object-position:center 38%;transition:transform .55s cubic-bezier(.2,.7,.2,1)}
 .ep-success-card--story .ep-success-card__fade{height:30%;background:linear-gradient(180deg,transparent,rgba(238,243,255,.94))}
-.ep-success-card__badge{position:absolute;top:18px;left:18px;z-index:1;padding:8px 12px;border:1px solid rgba(255,255,255,.74);border-radius:999px;background:rgba(248,250,255,.76);backdrop-filter:blur(12px);color:#1b326e;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;box-shadow:0 5px 14px rgba(17,32,69,.12)}
+/* .ep-success-card__badge{position:absolute;top:18px;left:18px;z-index:1;padding:8px 12px;border:1px solid rgba(255,255,255,.74);border-radius:999px;background:rgba(248,250,255,.76);backdrop-filter:blur(12px);color:#1b326e;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;box-shadow:0 5px 14px rgba(17,32,69,.12)} */
 .ep-success-card--story .ep-success-card__body{min-height:350px;flex:1;display:flex;flex-direction:column;padding:12px 24px 22px;background:transparent}
 .ep-success-card__heading{min-height:76px;margin-bottom:12px}
 .ep-success-card__eyebrow{display:block;margin-bottom:6px;color:#7c2434;font-size:9px;font-weight:800;letter-spacing:.17em;text-transform:uppercase}
