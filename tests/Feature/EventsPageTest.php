@@ -145,7 +145,8 @@ class EventsPageTest extends TestCase
         $getRes->assertSee('Topics of Interest');
         $getRes->assertSee('Prompt Engineering');
 
-        $postRes = $this->post(route('events.register.submit', $event->slug), [
+        $previousPage = route('events.register', $event->slug);
+        $postRes = $this->from($previousPage)->post(route('events.register.submit', $event->slug), [
             'name' => 'Anoop Puri',
             'phone' => '+971500000000',
             'email' => 'puri.anoop21@gmail.com',
@@ -155,7 +156,7 @@ class EventsPageTest extends TestCase
             'custom_1' => ['Generative AI', 'LLM Fine-Tuning'],
         ]);
 
-        $postRes->assertRedirect(route('thank-you'));
+        $postRes->assertRedirectToRoute('thank-you', ['return' => $previousPage]);
     }
 
     public function test_event_with_string_gallery_images_can_be_hydrated_and_rendered_without_error()
