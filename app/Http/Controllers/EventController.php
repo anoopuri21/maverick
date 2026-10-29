@@ -80,9 +80,7 @@ class EventController extends Controller
      */
     public function show(string $slug)
     {
-        $event = Event::where('slug', $slug)
-            ->where('is_active', true)
-            ->firstOrFail();
+        $event = $this->findActiveEvent($slug);
 
         $moreEvents = Event::where('is_active', true)
             ->where('id', '!=', $event->id)
@@ -102,9 +100,7 @@ class EventController extends Controller
      */
     public function showRegister(string $slug)
     {
-        $event = Event::where('slug', $slug)
-            ->where('is_active', true)
-            ->firstOrFail();
+        $event = $this->findActiveEvent($slug);
 
         return view('pages.event-register', [
             'event' => $event,
@@ -117,9 +113,7 @@ class EventController extends Controller
      */
     public function submitRegister(Request $request, string $slug, FormMailer $formMailer)
     {
-        $event = Event::where('slug', $slug)
-            ->where('is_active', true)
-            ->firstOrFail();
+        $event = $this->findActiveEvent($slug);
 
         $rules = [
             'name' => 'required|string|max:255',
@@ -201,5 +195,26 @@ class EventController extends Controller
 
         return redirect()->route('thank-you', ['return' => $returnUrl])
             ->with('success', 'Your registration has been submitted successfully.');
+    }
+
+    private function findActiveEvent(string $identifier): Event
+    {
+        $event = Event::query()
+            ->where('is_active', true)
+            ->where('slug', $identifier)
+            ->first();
+
+        if ($event) {
+            return $event;
+        }
+
+        if (ctype_digit($identifier)) {
+            return Event::query()
+                ->where('is_active', true)
+                ->where('id', (int) $identifier)
+                ->firstOrFail();
+        }
+
+        abort(404);
     }
 }

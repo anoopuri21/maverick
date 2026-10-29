@@ -72,7 +72,7 @@
                 <div class="ed-hero__bottom">
                     <div class="ed-hero__cta-wrapper">
                         @if(!$event->is_past)
-                            <a href="{{ !empty($event->link_url) ? $event->link_url : route('events.register', $event->slug) }}"
+                            <a href="{{ !empty($event->link_url) ? $event->link_url : route('events.register', $event->slug ?: $event->id) }}"
                                @if(!empty($event->link_url)) target="_blank" rel="noopener noreferrer" @endif
                                class="ed-clay-btn ed-clay-btn--primary">
                                 Register Now <i data-lucide="arrow-right"></i>
@@ -221,7 +221,7 @@
                         </div>
 
                         @if(!$event->is_past)
-                            <a href="{{ !empty($event->link_url) ? $event->link_url : route('events.register', $event->slug) }}"
+                            <a href="{{ !empty($event->link_url) ? $event->link_url : route('events.register', $event->slug ?: $event->id) }}"
                                @if(!empty($event->link_url)) target="_blank" rel="noopener noreferrer" @endif
                                class="ed-neo-btn ed-neo-btn--primary">
                                 Register Now <i data-lucide="arrow-right"></i>
@@ -292,7 +292,7 @@
 
                                     <div class="ed-clay-rel-card__body">
                                         <h3 class="ed-clay-rel-card__title">
-                                            <a href="{{ route('events.show', $relEvent->slug) }}">{{ $relEvent->title }}</a>
+                                            <a href="{{ route('events.show', $relEvent->slug ?: $relEvent->id) }}">{{ $relEvent->title }}</a>
                                         </h3>
 
                                         <div class="ed-clay-rel-card__meta">
@@ -311,7 +311,7 @@
                                             @endif
                                         </div>
 
-                                        <a href="{{ route('events.show', $relEvent->slug) }}" class="ed-clay-btn ed-clay-btn--sm">
+                                        <a href="{{ route('events.show', $relEvent->slug ?: $relEvent->id) }}" class="ed-clay-btn ed-clay-btn--sm">
                                             View Event Details <i data-lucide="arrow-right"></i>
                                         </a>
                                     </div>

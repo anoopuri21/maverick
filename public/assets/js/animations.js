@@ -862,6 +862,7 @@
             duration: 0.4,
             stagger: cfg.itemStagger,
             ease: "power2.out",
+            immediateRender: false,
             scrollTrigger: {
               trigger: card,
               start: "top 70%",
@@ -880,19 +881,7 @@
   function initHWDIAnimations() {
     if (!elementExists("#how-we-do-it")) return;
 
-    gsap.set(".hwdi__heading-line .text-reveal-inner", { y: "110%" });
-    gsap.set(".hwdi__subtitle", { opacity: 0 });
-    gsap.set(".hwdi__step", { opacity: 0 });
-    gsap.set(".hwdi__step-number", { scale: 0.7, opacity: 0 });
-    gsap.set(".hwdi__step-accent", {
-      scaleY: 0,
-      transformOrigin: "top center",
-    });
-    gsap.set(".hwdi__connector-line", {
-      scaleX: 0,
-      transformOrigin: "left center",
-    });
-
+    // Keep the section visible until its scroll-triggered enhancement runs.
     if (AnimationUtils.prefersReducedMotion) {
       AnimationUtils.setReducedMotion([
         ".hwdi__heading-line .text-reveal-inner",
@@ -945,6 +934,7 @@
         duration: cfg.accentDur,
         stagger: cfg.accentStagger,
         ease: "power2.out",
+        immediateRender: false,
         scrollTrigger: {
           trigger: ".hwdi__steps",
           start: "top 70%",
@@ -1075,7 +1065,13 @@
     tl.fromTo(
       ".ceo__image-wrapper",
       { opacity: 0, scale: 0.95 },
-      { opacity: 1, scale: 1, duration: 0.9, ease: "power2.out" },
+      {
+        opacity: 1,
+        scale: 1,
+        duration: 0.9,
+        ease: "power2.out",
+        immediateRender: false,
+      },
     );
 
     tl.fromTo(
@@ -1092,6 +1088,7 @@
         stagger: 0.15,
         duration: 0.8,
         ease: "power2.out",
+        immediateRender: false,
       },
       "-=0.4",
     );
@@ -1271,15 +1268,15 @@
       duration: 0.7
     });
 
-    // Slider: down-to-top at 40% visible
+    // Animate only when the section enters; default HTML remains visible if a trigger misses.
     if (slider) {
-      gsap.set(slider, { opacity: 0, y: 40 });
-      gsap.to(slider, {
+      gsap.fromTo(slider, { opacity: 0, y: 40 }, {
         opacity: 1,
         y: 0,
         duration: 0.8,
         ease: "power3.out",
         overwrite: "auto",
+        immediateRender: false,
         scrollTrigger: {
           trigger: "#faculty-insights",
           start: "top 60%",
@@ -1295,14 +1292,14 @@
 
     // Cards: down-to-top
     if (cards.length) {
-      gsap.set(cards, { opacity: 0, y: 40 });
-      gsap.to(cards, {
+      gsap.fromTo(cards, { opacity: 0, y: 40 }, {
         opacity: 1,
         y: 0,
         duration: 0.7,
         stagger: 0.12,
         ease: "power3.out",
         overwrite: "auto",
+        immediateRender: false,
         scrollTrigger: {
           trigger: "#faculty-insights .insights__scroll",
           start: "top 65%",
@@ -1517,37 +1514,44 @@
     const cols = document.querySelectorAll(".footer__col");
     const bottom = document.querySelector(".footer__bottom");
 
-    if (cols.length) gsap.set(cols, { opacity: 0, y: 30 });
-    if (bottom) gsap.set(bottom, { opacity: 0, y: 20 });
-
     if (cols.length) {
-      gsap.to(cols, {
-        opacity: 1,
-        y: 0,
-        duration: 0.7,
-        stagger: 0.12,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: "#footer",
-          start: "top 85%",
-          toggleActions: "play none none none",
+      gsap.fromTo(
+        cols,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          stagger: 0.12,
+          ease: "power2.out",
+          immediateRender: false,
+          scrollTrigger: {
+            trigger: "#footer",
+            start: "top 85%",
+            toggleActions: "play none none none",
+          },
         },
-      });
+      );
     }
 
     if (bottom) {
-      gsap.to(bottom, {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        delay: 0.4,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: "#footer",
-          start: "top 85%",
-          toggleActions: "play none none none",
+      gsap.fromTo(
+        bottom,
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          delay: 0.4,
+          ease: "power2.out",
+          immediateRender: false,
+          scrollTrigger: {
+            trigger: "#footer",
+            start: "top 85%",
+            toggleActions: "play none none none",
+          },
         },
-      });
+      );
     }
   }
 
@@ -1611,6 +1615,7 @@
           delay: f.delay || 0,
           stagger: f.stagger || 0,
           ease: "power2.out",
+          immediateRender: false,
           scrollTrigger: {
             trigger: sectionSelector,
             start: "top 80%",
@@ -1633,6 +1638,7 @@
           duration: 0.7,
           stagger: 0.05,
           ease: "power2.out",
+          immediateRender: false,
           scrollTrigger: {
             trigger: sectionSelector,
             start: "top 80%",
@@ -1710,14 +1716,140 @@
       ],
     });
   }
+  const failOpenTargets = [
+    ".text-reveal-inner",
+    ".fade-up",
+    ".fade-in",
+    ".scale-in",
+    ".hero__content",
+    ".hero__video",
+    ".hero__video-fallback",
+    ".hero__overlay",
+    ".hero__accent-bar",
+    ".hero__eyebrow-line",
+    ".hero__subheading",
+    ".hero__ctas",
+    ".hero__trust",
+    ".wim__pin-wrapper",
+    ".wim__heading",
+    ".wim__label",
+    ".wim__statement",
+    ".wim__statement-text",
+    ".wim__final",
+    ".hwdi__subtitle",
+    ".hwdi__step",
+    ".hwdi__step-number",
+    ".hwdi__step-accent",
+    ".hwdi__connector-line",
+    ".insights__slider",
+    ".insights__card",
+    ".footer__col",
+    ".footer__bottom",
+    ".ceo__image-wrapper",
+    ".ceo__quote",
+    ".ceo__body",
+    ".ceo__signature",
+  ].join(",");
+
+  function revealAnimationSection(selector) {
+    const section = document.querySelector(selector);
+    if (!section) return;
+
+    const elements = [section, ...section.querySelectorAll("*")];
+
+    if (typeof gsap !== "undefined") {
+      gsap.killTweensOf(elements);
+    }
+
+    if (typeof ScrollTrigger !== "undefined") {
+      ScrollTrigger.getAll().forEach((trigger) => {
+        const triggerElement = trigger.trigger;
+        if (
+          triggerElement &&
+          (triggerElement === section || section.contains(triggerElement))
+        ) {
+          trigger.kill(true);
+        }
+      });
+    }
+
+    elements.forEach((element) => {
+      const isAnimationTarget = element.matches(failOpenTargets);
+
+      if (element.style.opacity === "0" || isAnimationTarget) {
+        element.style.removeProperty("opacity");
+      }
+      if (element.style.visibility === "hidden" && isAnimationTarget) {
+        element.style.removeProperty("visibility");
+      }
+      if (isAnimationTarget) {
+        element.style.removeProperty("transform");
+        element.style.removeProperty("clip-path");
+      }
+    });
+
+    section
+      .querySelectorAll(".insights__slider, .insights__card")
+      .forEach((element) => {
+        element.classList.add("is-revealed");
+      });
+  }
+
+  function safelyInitializeAnimation(name, selector, initialize) {
+    try {
+      initialize();
+    } catch (error) {
+      console.error(
+        `Animations: ${name} failed; showing its content without animation.`,
+        error,
+      );
+      try {
+        revealAnimationSection(selector);
+      } catch (recoveryError) {
+        console.error(
+          `Animations: recovery failed for ${name}.`,
+          recoveryError,
+        );
+      }
+    }
+  }
+
+  let scrollRefreshQueued = false;
+
+  function scheduleScrollTriggerRefresh() {
+    if (scrollRefreshQueued || typeof ScrollTrigger === "undefined") return;
+
+    scrollRefreshQueued = true;
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        scrollRefreshQueued = false;
+        try {
+          ScrollTrigger.refresh();
+          ScrollTrigger.update();
+        } catch (error) {
+          console.warn("Animations: scroll position refresh failed.", error);
+        }
+      });
+    });
+  }
+
+  window.addEventListener("pageshow", scheduleScrollTriggerRefresh, {
+    passive: true,
+  });
+  window.addEventListener("load", scheduleScrollTriggerRefresh, {
+    once: true,
+    passive: true,
+  });
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(scheduleScrollTriggerRefresh).catch(() => {});
+  }
+
   function initAllAnimations() {
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
 
-    if (!prefersReducedMotion) {
-      initHeroAnimations();
-    } else {
+    if (prefersReducedMotion) {
       gsap.set(
         [
           ".text-reveal-inner",
@@ -1739,57 +1871,70 @@
       }
     }
 
-    initHeroScrollAnimations();
+    const initializers = [
+      [
+        "hero intro",
+        "#hero",
+        () => {
+          if (!prefersReducedMotion) initHeroAnimations();
+        },
+      ],
+      ["hero scroll", "#hero", initHeroScrollAnimations],
+      ["numbers", "#numbers", initNumbersAnimations],
+      ["what is Maverick", "#what-is-maverick", initWIMAnimations],
+      ["who we are", "#who-we-are", initWWAAnimations],
+      ["CEO message", "#ceo-message", initCEOAnimations],
+      ["what we do", "#what-we-do", initWWDAnimations],
+      ["how we do it", "#how-we-do-it", initHWDIAnimations],
+      ["alumni", "#alumni-network", initAlumniAnimations],
+      ["featured programs", "#featured-programs", initProgramsAnimations],
+      ["why Maverick", "#why-maverick", initWhyMaverickAnimations],
+      [
+        "global access points",
+        "#global-access-points",
+        initGlobalAccessPointsAnimations,
+      ],
+      [
+        "global opportunities",
+        "#global-opportunities",
+        initOpportunitiesAnimations,
+      ],
+      ["university partners", "#university-partners", initPartnersAnimations],
+      ["faculty insights", "#faculty-insights", initInsightsAnimations],
+      ["upcoming events", "#upcoming-events", initEventsAnimations],
+      ["video testimonials", "#video-testimonials", initTestimonialsAnimations],
+      ["final CTA", "#final-cta", initFinalCTAAnimations],
+      ["footer", "#footer", initFooterAnimations],
+      ["accreditations", "#accreditations", initAccreditationsAnimations],
+      ["alumni slider", "#alumni-network", initNetworkAnimations],
+    ];
 
-    initNumbersAnimations();
+    initializers.forEach(([name, selector, initialize]) => {
+      safelyInitializeAnimation(name, selector, initialize);
+    });
 
-    initWIMAnimations();
-
-    initWWAAnimations();
-
-    initCEOAnimations();
-
-    initWWDAnimations();
-
-    initHWDIAnimations();
-
-    initAlumniAnimations();
-
-    initProgramsAnimations();
-
-    initWhyMaverickAnimations();
-
-    initGlobalAccessPointsAnimations();
-
-    initOpportunitiesAnimations();
-
-    initPartnersAnimations();
-
-    initInsightsAnimations();
-
-    initEventsAnimations();
-
-    initTestimonialsAnimations();
-
-    initFinalCTAAnimations();
-
-    initFooterAnimations();
-
-    initAccreditationsAnimations();
-
-    initNetworkAnimations();
-
-    if (typeof ScrollTrigger !== "undefined") {
-      ScrollTrigger.refresh();
-    }
+    scheduleScrollTriggerRefresh();
   }
 
   function startAnimations() {
-    if (window.__animationsStarted) return;
+    if (window.__animationsStarted || window.__animationsStarting) return;
     // Our Story page uses public/assets/js/our-story-animations.js
     if (window.location.pathname.includes("our-story")) return;
-    window.__animationsStarted = true;
-    initAllAnimations();
+
+    window.__animationsStarting = true;
+    try {
+      initAllAnimations();
+      window.__animationsStarted = true;
+    } catch (error) {
+      console.error(
+        "Animations: bootstrap failed; falling back to visible content.",
+        error,
+      );
+      revealAnimationSection("main");
+      window.__animationsStarted = true;
+    } finally {
+      window.__animationsStarting = false;
+    }
   }
 
   if (window.__lenisReady) {

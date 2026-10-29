@@ -13,7 +13,7 @@ class PublicContentCache
 {
     public const TTL = 86400;
 
-    public const HOMEPAGE = 'homepage.v3';
+    public const HOMEPAGE = 'homepage.v4';
 
     public const OUR_STORY = 'our-story.v3';
 
@@ -79,6 +79,8 @@ class PublicContentCache
             self::MLP_STORY_TESTIMONIALS,
             self::VOICES_TESTIMONIALS,
             self::ADMIN_OVERVIEW,
+            // Previous homepage payloads used client-side testimonial JSON.
+            'homepage.v3',
             // Previous homepage payload did not include event slugs.
             'homepage.v2',
             // Legacy keys (pre array-safe cache)
@@ -101,9 +103,12 @@ class PublicContentCache
 
     public static function remember(string $key, callable $callback, ?int $ttl = null): mixed
     {
-        if (Cache::has($key)) {
-            $cached = Cache::get($key);
+        // The sentinel lets us detect a miss with one backend read instead of
+        // the previous has() + get() pair. As with Cache::has(), null is a miss.
+        $missing = new \stdClass;
+        $cached = Cache::get($key, $missing);
 
+        if ($cached !== $missing && $cached !== null) {
             if (self::containsIncomplete($cached)) {
                 Cache::forget($key);
             } else {

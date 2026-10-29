@@ -232,12 +232,12 @@
     <div class="er-container">
         {{-- Back Link --}}
         <div style="margin-bottom: 16px;">
-            <a href="{{ route('events.show', $event->slug) }}" style="color: #5f6368; text-decoration: none; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 6px;">
+            <a href="{{ route('events.show', $event->slug ?: $event->id) }}" style="color: #5f6368; text-decoration: none; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 6px;">
                 <i data-lucide="arrow-left" style="width: 16px; height: 16px;"></i> Back to Event Details
             </a>
         </div>
 
-        <form action="{{ route('events.register.submit', $event->slug) }}" method="POST" id="event-registration-form">
+        <form action="{{ route('events.register.submit', $event->slug ?: $event->id) }}" method="POST" id="event-registration-form">
             @csrf
 
             {{-- Header Card --}}

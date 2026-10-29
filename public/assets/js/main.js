@@ -83,6 +83,20 @@
   // LOADING STATE
   // =========================================================
 
+  // Native browser scroll restoration may happen after Lenis is constructed.
+  // Re-sync Lenis once the restored viewport is available, without overriding
+  // the browser's scrollRestoration policy or forcing the page back to top.
+  function syncLenisWithRestoredScroll() {
+    if (!lenis || typeof lenis.scrollTo !== 'function') return;
+
+    const restoredY = window.scrollY || window.pageYOffset || 0;
+    lenis.scrollTo(restoredY, { immediate: true, force: true });
+  }
+
+  window.addEventListener('pageshow', () => {
+    requestAnimationFrame(() => requestAnimationFrame(syncLenisWithRestoredScroll));
+  }, { passive: true });
+
   function initLoadingState() {
     // Remove is-loading class from body
     // This triggers the CSS eyebrow line animation

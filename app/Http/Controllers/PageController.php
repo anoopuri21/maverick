@@ -177,11 +177,20 @@ class PageController extends Controller
                     ->get()
             );
 
-            $testimonials = Testimonial::select('id', 'name', 'designation', 'company', 'thumbnail_url', 'video_url', 'video_type', 'sort_order')
-                ->where('is_active', true)
-                ->orderBy('sort_order')
-                ->limit(9)
-                ->get();
+            $testimonials = PublicContentCache::serializeRows(
+                Testimonial::select('name', 'designation', 'company', 'thumbnail_url', 'video_url')
+                    ->where('is_active', true)
+                    ->orderBy('sort_order')
+                    ->limit(9)
+                    ->get(),
+                fn (Testimonial $testimonial) => [
+                    'name' => $testimonial->name,
+                    'designation' => $testimonial->designation,
+                    'company' => $testimonial->company,
+                    'thumbnail_url' => $testimonial->auto_thumbnail,
+                    'embed_url' => $testimonial->embed_url,
+                ]
+            );
 
             $homepageFaqs = PublicContentCache::serializeRows(
                 \App\Models\Faq::select('id', 'question', 'answer', 'sort_order')
@@ -192,21 +201,12 @@ class PageController extends Controller
                     ->get()
             );
 
-            $testimonialsJson = $testimonials->map(fn ($t) => [
-                'category' => strtoupper($t->company ?? 'STUDENT'),
-                'name' => $t->name,
-                'role' => $t->designation ?? '',
-                'thumbnail' => $t->auto_thumbnail,
-                'video' => $t->embed_url,
-            ])->values()->all();
-
             // Store plain arrays — database cache corrupts serialized Eloquent models (null bytes).
             return [
                 'accreditationLogos' => $accreditationLogos->toArray(),
                 'facultyInsights' => $facultyInsights,
                 'events' => $events,
-                'testimonials' => $testimonials->toArray(),
-                'testimonialsJson' => $testimonialsJson,
+                'testimonials' => $testimonials,
                 'homepageFaqs' => $homepageFaqs,
             ];
         });
@@ -215,8 +215,7 @@ class PageController extends Controller
             'accreditationLogos' => PublicContentCache::hydrateRows(PartnerLogo::class, $cached['accreditationLogos'] ?? []),
             'facultyInsights' => PublicContentCache::hydrateRows(FacultyInsight::class, $cached['facultyInsights'] ?? []),
             'events' => PublicContentCache::hydrateRows(Event::class, $cached['events'] ?? []),
-            'testimonials' => PublicContentCache::hydrateRows(Testimonial::class, $cached['testimonials'] ?? []),
-            'testimonialsJson' => collect($cached['testimonialsJson'] ?? []),
+            'testimonials' => PublicContentCache::hydratePlainRows($cached['testimonials'] ?? []),
             'homepageFaqs' => PublicContentCache::hydrateRows(\App\Models\Faq::class, $cached['homepageFaqs'] ?? []),
         ];
 

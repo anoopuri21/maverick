@@ -34,7 +34,6 @@
     @php
         $homeSeo = $homeSeo ?? safe_settings(\App\Settings\HomepageSeoSettings::class);
         $events = collect($events ?? []);
-        $testimonialsJson = collect($testimonialsJson ?? []);
         $homepageFaqs = collect($homepageFaqs ?? []);
     @endphp
 
