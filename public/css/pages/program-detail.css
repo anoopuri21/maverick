@@ -863,6 +863,12 @@
   gap: clamp(30px, 5vw, 70px);
   align-items: center;
 }
+.page-pd .ov-grid--single {
+  grid-template-columns: minmax(0, 1fr);
+}
+.page-pd .ov-grid--single .ov-copy {
+  max-width: 80ch;
+}
 .page-pd .ov-copy p {
   font-size: 16px;
   line-height: 1.75;
@@ -924,13 +930,15 @@
 }
 .page-pd .ov-figure .stat .num {
   font-family: var(--font-display);
-  font-size: 34px;
+  font-size: clamp(20px, 2.4vw, 34px);
   font-weight: 700;
   color: var(--color-mba-blue);
-  line-height: 1;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
 }
 .page-pd .ov-figure .stat .cap {
   font-size: 13px;
+  line-height: 1.45;
   color: var(--muted);
   margin-top: 6px;
 }
