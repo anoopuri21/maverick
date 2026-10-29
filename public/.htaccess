@@ -13,6 +13,13 @@
     RewriteCond %{HTTP:x-xsrf-token} .
     RewriteRule .* - [E=HTTP_X_XSRF_TOKEN:%{HTTP:X-XSRF-Token}]
 
+    # Let's Encrypt / cPanel AutoSSL (ACME http-01) must be served as a static
+    # file and NEVER routed through index.php. Without this the front controller
+    # below turns /.well-known/acme-challenge/<token> into a Laravel 404 and
+    # AutoSSL fails with "Invalid response ... 404". The [L] stops rewriting so
+    # the real challenge file under the document root is returned as-is.
+    RewriteRule ^\.well-known/acme-challenge/ - [L]
+
     # Redirect Trailing Slashes If Not A Folder...
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_URI} (.+)/$
