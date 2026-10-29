@@ -32,6 +32,13 @@
     $support             = collect($program->support_list ?? []);
     $gccReasons          = collect($program->gcc_reasons_list ?? []);
     $university          = $program->university_object;
+    $universityName      = trim((string) data_get($university, 'name', ''));
+    $universityDescription = preg_replace('/<[^>]+>/', ' ', (string) data_get($university, 'description', '')) ?? '';
+    $universityDescription = html_entity_decode(strip_tags($universityDescription), ENT_QUOTES | ENT_HTML5, 'UTF-8');
+    $universityDescription = trim(preg_replace('/\s+/u', ' ', $universityDescription) ?? $universityDescription);
+    $universityDescription = filled($universityDescription)
+        ? \Illuminate\Support\Str::limit($universityDescription, 160)
+        : '';
     $accreditationItems  = $recognition;
     $testimonials        = collect($program->testimonials_list ?? [])->filter(fn ($t) => is_array($t))->values();
     $fees                = collect($program->fees_list ?? []);
@@ -183,21 +190,23 @@
     {{-- ============ 4. OVERVIEW (Flat + Editorial) ============ --}}
     @if($program->description)
     <section class="overview section" aria-label="Programme introduction">
-        <div class="container ov-grid">
+        <div class="container ov-grid @if(!filled($universityName)) ov-grid--single @endif">
             <div class="ov-copy rv">
                 <span class="kicker">{{ $chrome->overview_label ?? 'Programme Overview' }}</span>
                 <h2 class="d" style="font-size:clamp(28px,3.4vw,42px);line-height:1.06;letter-spacing:-.03em;margin:14px 0 22px">{{ $chrome->overview_heading ?? 'About this' }} </h2>
                 <div class="ov-rule"></div>
                 <div class="ov-copy"><div>{!! rich_html($program->description ?? null) !!}</div></div>
             </div>
-            @if($highlights->count())
-            <div class="ov-figure rv rv-d1">
-                @if($uniImgUrl)<img class="ov-photo" src="{{ $uniImgUrl }}" alt="Campus at {{ $university->name ?? 'partner university' }}" loading="lazy">@endif
+            @if(filled($universityName))
+            <div class="ov-figure rv rv-d1" data-testid="program-overview-university-card">
+                @if($uniImgUrl)<img class="ov-photo" src="{{ $uniImgUrl }}" alt="Campus at {{ $universityName }}" loading="lazy">@endif
                 <div class="ov-shade"></div>
                 @if($hasScholarship)<span class="badge">Globally Recognised</span>@endif
                 <div class="stat">
-                    <div class="num">{{ $highlights->first()['value'] ?? 'Leadership' }}</div>
-                    <div class="cap">{{ collect($highlights->pluck('value'))->implode(' · ') }}</div>
+                    <div class="num" data-testid="program-overview-university-name">{{ $universityName }}</div>
+                    @if(filled($universityDescription))
+                    <div class="cap" data-testid="program-overview-university-description">{{ $universityDescription }}</div>
+                    @endif
                 </div>
             </div>
             @endif
