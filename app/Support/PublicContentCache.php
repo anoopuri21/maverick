@@ -13,7 +13,7 @@ class PublicContentCache
 {
     public const TTL = 86400;
 
-    public const HOMEPAGE = 'homepage.v2';
+    public const HOMEPAGE = 'homepage.v3';
 
     public const OUR_STORY = 'our-story.v3';
 
@@ -79,6 +79,8 @@ class PublicContentCache
             self::MLP_STORY_TESTIMONIALS,
             self::VOICES_TESTIMONIALS,
             self::ADMIN_OVERVIEW,
+            // Previous homepage payload did not include event slugs.
+            'homepage.v2',
             // Legacy keys (pre array-safe cache)
             'homepage',
             'homepage_data_v1',

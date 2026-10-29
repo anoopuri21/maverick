@@ -170,7 +170,7 @@ class PageController extends Controller
             );
 
             $events = PublicContentCache::serializeRows(
-                Event::select('id', 'title', 'description', 'event_date', 'event_type', 'location', 'link_url')
+                Event::select('id', 'slug', 'title', 'description', 'event_date', 'event_type', 'location', 'link_url')
                     ->where('is_active', true)
                     ->orderBy('event_date', 'desc')
                     ->limit(10)

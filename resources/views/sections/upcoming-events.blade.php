@@ -33,13 +33,19 @@
       <div class="events__scroll" data-scroll-container>
         <div class="events__track">
           @foreach($events as $event)
-            <article class="events__card fade-up">
+            <article class="events__card fade-up" data-testid="homepage-event-card">
               <div class="events__card-date">
                 <span class="events__date-day">{{ $event->event_date?->format('d') ?? '' }}</span>
                 <span class="events__date-month">{{ $event->event_date ? strtoupper($event->event_date->format('M Y')) : '' }}</span>
               </div>
               <div style="display:flex; flex-wrap:wrap; height:100%; align-content:space-between;">
-                <h3 class="events__card-title">{{ $event->title }}</h3>
+                <h3 class="events__card-title">
+                  <a
+                    href="{{ route('events.show', $event->slug) }}"
+                    class="events__card-link"
+                    aria-label="View event details for {{ $event->title }}"
+                  >{{ $event->title }}</a>
+                </h3>
                 @if($event->description)
                   <div class="events__card-desc">{!! rich_html($event->description ?? null) !!}</div>
                 @endif
