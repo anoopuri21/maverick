@@ -61,11 +61,12 @@ class HomePageTest extends TestCase
         $response->assertDontSee('No upcoming events.', false);
     }
 
-    public function test_homepage_event_cards_link_to_their_event_detail_page(): void
+    public function test_homepage_event_cards_link_to_details_not_external_registration(): void
     {
         $event = Event::query()->create([
             'title' => 'Homepage Event Card Test',
             'event_date' => now()->addDays(7)->toDateString(),
+            'link_url' => 'https://registration.example.com/homepage-event',
             'is_active' => true,
         ]);
 
@@ -74,8 +75,10 @@ class HomePageTest extends TestCase
         $response->assertOk();
         $response->assertSee('id="upcoming-events"', false);
         $response->assertSee('data-testid="homepage-event-card"', false);
+        $response->assertSee('class="events__card-link"', false);
         $response->assertSee('href="'.route('events.show', $event->slug).'"', false);
         $response->assertSee('aria-label="View event details for Homepage Event Card Test"', false);
+        $response->assertDontSee('href="https://registration.example.com/homepage-event"', false);
 
         $this->get(route('events.show', $event->slug))
             ->assertOk()
