@@ -5405,6 +5405,7 @@ html:not(.js) .insights__card {
 
 /* ----- Event Card ----- */
 .events__card {
+  position: relative;
   flex: 0 0 380px;
   scroll-snap-align: start;
   background-color: #8d0000;
@@ -5414,11 +5415,36 @@ html:not(.js) .insights__card {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  cursor: pointer;
   transition: border-color 0.4s ease;
 }
 
-.events__card:hover {
-  border-color: var(--color-white);
+.events__card:hover,
+.events__card:focus-within {
+  border-color: #c9a96e;
+}
+
+.events__card-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Stretch the title link across the card without nesting links from rich text. */
+.events__card-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+}
+
+.events__card-link:focus-visible::after {
+  outline: 3px solid #c9a96e;
+  outline-offset: -5px;
+}
+
+.events__card-desc a {
+  position: relative;
+  z-index: 1;
 }
 
 .events__card-type {
