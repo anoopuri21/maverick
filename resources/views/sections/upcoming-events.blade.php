@@ -41,7 +41,7 @@
               <div style="display:flex; flex-wrap:wrap; height:100%; align-content:space-between;">
                 <h3 class="events__card-title">
                   <a
-                    href="{{ route('events.show', $event->slug) }}"
+                    href="{{ route('events.show', $event->slug ?: $event->id) }}"
                     class="events__card-link"
                     aria-label="View event details for {{ $event->title }}"
                   >{{ $event->title }}</a>

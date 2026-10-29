@@ -493,26 +493,9 @@ html.lenis body {
 
 .text-reveal-inner {
   display: block;
-  transform: translateY(110%);
-  will-change: transform;
 }
 
-html.js .fade-up {
-  opacity: 0;
-  transform: translateY(40px);
-  will-change: transform, opacity;
-}
-
-html.js .fade-in {
-  opacity: 0;
-  will-change: opacity;
-}
-
-html.js .scale-in {
-  opacity: 0;
-  transform: scale(0.9);
-  will-change: transform, opacity;
-}
+/* Content stays visible by default; animation scripts may enhance it on scroll. */
 
 /* =========================================================
    SECTION 9 — SECTION DIVIDERS
@@ -1855,7 +1838,7 @@ html.js .scale-in {
 
 .hero__subheading {
   max-width: 600px;
-  /* Initial animation state comes from .fade-up */
+  /* Animation is progressive enhancement; content remains visible by default. */
 }
 
 .hero__subheading-text {
@@ -1874,7 +1857,7 @@ html.js .scale-in {
   align-items: center;
   gap: 16px;
   flex-wrap: wrap;
-  /* Initial animation state comes from .fade-up */
+  /* Animation is progressive enhancement; content remains visible by default. */
 }
 
 /* Hero button refinements */
@@ -1908,7 +1891,7 @@ html.js .scale-in {
   padding-top: 16px;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   flex-wrap: wrap;
-  /* Initial animation state comes from .fade-up */
+  /* Animation is progressive enhancement; content remains visible by default. */
 }
 
 .hero__trust-item {
@@ -2522,7 +2505,6 @@ html.js .scale-in {
   font-weight: var(--fw-semibold);
   letter-spacing: 0.1em;
   color: var(--color-white);
-  opacity: 0;
 }
 .section--light .wwd__card-index.accent-text {
   color: var(--color-white);
@@ -2570,7 +2552,6 @@ html.js .scale-in {
   color: rgba(255, 255, 255, 0.8);
   padding-left: 16px;
   position: relative;
-  opacity: 0;
 }
 
 .wwd__card-item::before {
@@ -2904,7 +2885,6 @@ html.js .scale-in {
 
 .wim__statement {
   overflow: hidden;
-  opacity: 0;
 }
 
 .wim__statement-text {
@@ -2914,7 +2894,6 @@ html.js .scale-in {
   font-weight: 500;
   line-height: 1.5;
   color: var(--color-mba-white);
-  transform: translateY(110%);
 }
 
 .wim__statement:nth-child(2) .wim__statement-text {
@@ -2931,7 +2910,6 @@ html.js .scale-in {
 
 .wim__final {
   margin: 0;
-  opacity: 0;
 }
 
 .wim__final-text {
@@ -4548,40 +4526,6 @@ html.js .scale-in {
   gap: 28px;
   /* CLS: reserve min-height for controls */
   min-height: 0;
-}
-
-/* Fallback visibility - ensure visible if JS disabled, hidden only when JS enabled and GSAP will animate */
-html.js .insights__slider {
-  opacity: 0;
-  transform: translateY(40px);
-  will-change: transform, opacity;
-}
-
-html.js .insights__slider.is-revealed {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-html:not(.js) .insights__slider {
-  opacity: 1;
-  transform: none;
-}
-
-/* Card initial state for JS animation - down to top */
-html.js .insights__card {
-  opacity: 0;
-  transform: translateY(40px);
-  will-change: transform, opacity;
-}
-
-html.js .insights__card.is-revealed {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-html:not(.js) .insights__card {
-  opacity: 1;
-  transform: none;
 }
 
 /* Scroll container - single card viewport */

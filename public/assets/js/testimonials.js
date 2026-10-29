@@ -2,7 +2,9 @@
   "use strict";
 
   // Testimonials data - flattened array with category badges
-  const testimonialsData = window.testimonialsData || [];
+  const testimonialsData = Array.isArray(window.testimonialsData)
+    ? window.testimonialsData
+    : [];
 
   // DOM elements
   const track = document.getElementById("testimonialsTrack");
@@ -10,21 +12,67 @@
   const modalClose = document.getElementById("modalClose");
   const modalPlayer = document.getElementById("modalPlayer");
   const inlineDesktopQuery = window.matchMedia("(min-width: 1024px)");
+  const HTML_ESCAPE_MAP = {
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;",
+  };
+  const YOUTUBE_HOSTS = new Set([
+    "youtube.com",
+    "m.youtube.com",
+    "youtu.be",
+    "youtube-nocookie.com",
+  ]);
+  const HTTP_PROTOCOLS = new Set(["http:", "https:"]);
 
-  // Render all testimonials
+  function escapeHtml(value) {
+    return String(value ?? "").replace(
+      /[&<>"']/g,
+      (character) => HTML_ESCAPE_MAP[character],
+    );
+  }
+
+  function rememberPosterMarkup() {
+    if (!track) return;
+
+    track.querySelectorAll(".testimonials__card").forEach((card) => {
+      const poster = card.querySelector(".testimonials__card-poster");
+      if (poster && !card.dataset.posterHtml) {
+        card.dataset.posterHtml = poster.innerHTML;
+      }
+    });
+  }
+
+  // Keep server-rendered cards intact; use the JSON path only on legacy pages
+  // whose testimonial tracks are still intentionally rendered client-side.
   function renderAllTestimonials() {
     if (!track) return;
 
+    if (track.querySelector(".testimonials__card")) {
+      rememberPosterMarkup();
+      return;
+    }
+
     let html = "";
     testimonialsData.forEach((item) => {
+      if (!item || typeof item !== "object") return;
+
+      const name = escapeHtml(item.name);
+      const video = escapeHtml(item.video);
+      const thumbnail = escapeHtml(item.thumbnail);
+      const category = escapeHtml(item.category);
+      const role = escapeHtml(item.role);
+
       html += `
-        <article class="testimonials__card" data-video="${item.video}">
+        <article class="testimonials__card" data-video="${video}">
           <div class="testimonials__card-thumb">
             <div class="testimonials__card-poster">
-              <img src="${item.thumbnail}" alt="${item.name}" loading="lazy" decoding="async" width="320" height="220" />
-              <span class="testimonials__card-badge">${item.category}</span>
-              <button class="testimonials__play" type="button" aria-label="Play video by ${item.name}">
-                <svg viewBox="0 0 24 24" fill="currentColor">
+              <img src="${thumbnail}" alt="${name}" loading="lazy" decoding="async" width="320" height="220" />
+              <span class="testimonials__card-badge">${category}</span>
+              <button class="testimonials__play" type="button" aria-label="Play video by ${name}">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                   <path d="M8 5v14l11-7z"/>
                 </svg>
               </button>
@@ -32,21 +80,15 @@
             <div class="testimonials__card-player"></div>
           </div>
           <div class="testimonials__card-info">
-            <h4 class="testimonials__card-name">${item.name}</h4>
-            <span class="testimonials__card-role">${item.role}</span>
+            <h4 class="testimonials__card-name">${name}</h4>
+            <span class="testimonials__card-role">${role}</span>
           </div>
         </article>
       `;
     });
 
     track.innerHTML = html;
-
-    track.querySelectorAll(".testimonials__card").forEach((card) => {
-      const poster = card.querySelector(".testimonials__card-poster");
-      if (poster) {
-        card.dataset.posterHtml = poster.innerHTML;
-      }
-    });
+    rememberPosterMarkup();
   }
 
   function testimonialsSection() {
@@ -63,34 +105,81 @@
     );
   }
 
-  // Build a playable embed URL from any YouTube shape (watch, youtu.be,
-  // shorts, live, /embed/, raw id) so the popup always plays, even if a
-  // server-provided URL was not already in /embed/ form.
-  function youtubeEmbedSrc(videoUrl) {
-    const idMatch = videoUrl.match(
-      /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?|shorts|live)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i
-    );
-    const id = idMatch ? idMatch[1] : (/^[a-zA-Z0-9_-]{11}$/.test(videoUrl) ? videoUrl : null);
+  function parseVideoUrl(videoUrl) {
+    const value = String(videoUrl ?? "").trim();
+    if (!value) return null;
 
-    if (id) {
-      return "https://www.youtube.com/embed/" + id + "?rel=0&autoplay=1";
+    try {
+      return new URL(value, window.location.origin);
+    } catch (_) {
+      return null;
     }
-
-    const separator = videoUrl.includes("?") ? "&" : "?";
-
-    return videoUrl + separator + "autoplay=1";
   }
 
-  function isEmbedUrl(videoUrl) {
-    return /youtube\.com|youtu\.be|vimeo\.com/i.test(videoUrl);
+  function embedUrl(videoUrl) {
+    const rawVideoId = String(videoUrl ?? "").trim();
+    if (/^[a-zA-Z0-9_-]{11}$/.test(rawVideoId)) {
+      return `https://www.youtube.com/embed/${rawVideoId}?rel=0&autoplay=1`;
+    }
+
+    const url = parseVideoUrl(rawVideoId);
+    if (!url || !HTTP_PROTOCOLS.has(url.protocol)) return null;
+
+    const hostname = url.hostname.toLowerCase().replace(/^www\./, "");
+    if (YOUTUBE_HOSTS.has(hostname)) {
+      let videoId = null;
+
+      if (hostname === "youtu.be") {
+        videoId = url.pathname.split("/").filter(Boolean)[0] || null;
+      } else if (url.pathname === "/watch") {
+        videoId = url.searchParams.get("v");
+      } else {
+        const match = url.pathname.match(/^\/(?:e|embed|v|shorts|live)\/([^/]+)/i);
+        videoId = match ? match[1] : null;
+      }
+
+      if (videoId && /^[a-zA-Z0-9_-]{11}$/.test(videoId)) {
+        return `https://www.youtube.com/embed/${videoId}?rel=0&autoplay=1`;
+      }
+    }
+
+    if (hostname === "vimeo.com" || hostname === "player.vimeo.com") {
+      const match = url.pathname.match(/\/(\d+)\/?$/);
+      if (match) {
+        return `https://player.vimeo.com/video/${match[1]}?autoplay=1`;
+      }
+    }
+
+    return null;
+  }
+
+  function safeMediaUrl(videoUrl) {
+    const url = parseVideoUrl(videoUrl);
+    if (!url || !HTTP_PROTOCOLS.has(url.protocol)) return null;
+
+    const isMixedContent =
+      window.location.protocol === "https:" &&
+      url.protocol === "http:" &&
+      url.origin !== window.location.origin;
+
+    return isMixedContent ? null : url.href;
   }
 
   function playerMarkup(videoUrl) {
-    if (isEmbedUrl(videoUrl)) {
-      return `<iframe src="${youtubeEmbedSrc(videoUrl)}" title="Student video" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+    const embedSrc = embedUrl(videoUrl);
+    if (embedSrc) {
+      return (
+        `<iframe src="${escapeHtml(embedSrc)}" title="Student video" ` +
+        `allow="autoplay; encrypted-media" allowfullscreen></iframe>`
+      );
     }
 
-    return `<video src="${videoUrl}" controls autoplay playsinline></video>`;
+    const mediaSrc = safeMediaUrl(videoUrl);
+    if (mediaSrc) {
+      return `<video src="${escapeHtml(mediaSrc)}" controls autoplay playsinline></video>`;
+    }
+
+    return "";
   }
 
   function restorePoster(card) {
@@ -138,8 +227,11 @@
       return;
     }
 
+    const markup = playerMarkup(videoUrl);
+    if (!markup) return;
+
     stopAllInlineExcept(card);
-    player.innerHTML = playerMarkup(videoUrl);
+    player.innerHTML = markup;
     card.classList.add("is-playing");
 
     const video = player.querySelector("video");
@@ -148,17 +240,12 @@
     }
   }
 
-  // Open modal with video
+  // Open modal with a validated YouTube/Vimeo embed or HTTP(S) media source.
   function openModal(videoUrl) {
     if (!modal || !modalPlayer) return;
 
-    // Detect YouTube vs local video
-    let playerContent;
-    if (videoUrl.includes("youtube.com") || videoUrl.includes("youtu.be")) {
-      playerContent = `<iframe src="${youtubeEmbedSrc(videoUrl)}" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
-    } else {
-      playerContent = `<video src="${videoUrl}" controls autoplay></video>`;
-    }
+    const playerContent = playerMarkup(videoUrl);
+    if (!playerContent) return;
 
     modalPlayer.innerHTML = playerContent;
     modal.classList.add("testimonials__modal--active");

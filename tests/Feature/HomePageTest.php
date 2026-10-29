@@ -3,6 +3,9 @@
 namespace Tests\Feature;
 
 use App\Models\Event;
+use App\Models\FacultyInsight;
+use App\Models\Testimonial;
+use App\Support\PublicContentCache;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -49,7 +52,6 @@ class HomePageTest extends TestCase
 
         $response->assertDontSee('id="homepage-popup"', false);
         $response->assertSee('window.universityPartnersData', false);
-        $response->assertSee('window.testimonialsData', false);
         $response->assertSee('window.globalAccessPointsCountries', false);
         $response->assertSee('gap-countries-json', false);
         $response->assertDontSee('debug-216c24', false);
@@ -59,6 +61,45 @@ class HomePageTest extends TestCase
         $response->assertDontSee('No featured programs yet.', false);
         $response->assertDontSee('No insights available yet.', false);
         $response->assertDontSee('No upcoming events.', false);
+    }
+
+    public function test_homepage_dynamic_sections_are_server_rendered_without_client_injection(): void
+    {
+        Event::query()->create([
+            'title' => 'Server Rendered Upcoming Event',
+            'event_date' => now()->addDays(7)->toDateString(),
+            'is_active' => true,
+        ]);
+
+        FacultyInsight::query()->create([
+            'title' => 'Server Rendered Faculty Voice',
+            'content' => 'Faculty content is present in the initial response.',
+            'faculty_role' => 'Professor',
+            'country' => 'India',
+            'is_active' => true,
+            'sort_order' => 1,
+        ]);
+
+        Testimonial::query()->create([
+            'name' => 'Server Rendered Student Story',
+            'designation' => 'MBA Graduate',
+            'company' => 'Student',
+            'video_url' => 'https://youtu.be/dQw4w9WgXcQ',
+            'is_active' => true,
+            'sort_order' => 1,
+        ]);
+
+        $response = $this->get('/');
+
+        $response->assertOk();
+        $response->assertSee('data-testid="homepage-event-card"', false);
+        $response->assertSee('Server Rendered Upcoming Event');
+        $response->assertSee('id="faculty-insights"', false);
+        $response->assertSee('Server Rendered Faculty Voice');
+        $response->assertSee('data-testid="homepage-testimonial-card"', false);
+        $response->assertSee('Server Rendered Student Story');
+        $response->assertSee('https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0', false);
+        $response->assertDontSee('window.testimonialsData', false);
     }
 
     public function test_homepage_event_cards_link_to_details_not_external_registration(): void
@@ -83,5 +124,31 @@ class HomePageTest extends TestCase
         $this->get(route('events.show', $event->slug))
             ->assertOk()
             ->assertSee('Homepage Event Card Test');
+    }
+
+    public function test_homepage_event_without_slug_uses_its_id_for_event_routes(): void
+    {
+        $event = Event::query()->create([
+            'title' => 'Legacy Homepage Event',
+            'event_date' => now()->addDays(7)->toDateString(),
+            'is_active' => true,
+        ]);
+
+        Event::query()->whereKey($event->id)->update(['slug' => null]);
+        PublicContentCache::forget(PublicContentCache::HOMEPAGE);
+
+        $response = $this->get('/');
+
+        $response->assertOk();
+        $response->assertSee('href="'.route('events.show', $event->id).'"', false);
+
+        $details = $this->get(route('events.show', $event->id));
+        $details->assertOk();
+        $details->assertSee('Legacy Homepage Event');
+        $details->assertSee('href="'.route('events.register', $event->id).'"', false);
+
+        $registration = $this->get(route('events.register', $event->id));
+        $registration->assertOk();
+        $registration->assertSee('action="'.route('events.register.submit', $event->id).'"', false);
     }
 }
