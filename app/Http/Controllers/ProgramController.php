@@ -100,6 +100,12 @@ class ProgramController extends Controller
             $activeCategory = $requestedCategory;
         }
 
+        $programsToPaginate = $activeCategory === 'all'
+            ? $allPrograms
+            : $allPrograms
+                ->filter(fn (Program $program) => $program->programCategory?->slug === $activeCategory)
+                ->values();
+
         // Paginate: 12 programs per page
         $currentPage = (int) request()->input('page', 1);
         if ($currentPage < 1) {
@@ -110,13 +116,13 @@ class ProgramController extends Controller
         unset($queryParams['page']);
 
         $perPage = 12;
-        $totalCount = $allPrograms->count();
+        $totalCount = $programsToPaginate->count();
         $lastPage = (int) ceil($totalCount / $perPage);
         $hasMorePages = $currentPage < $lastPage;
         $nextPage = $hasMorePages ? $currentPage + 1 : null;
         $currentPageNum = $currentPage;
 
-        $items = $allPrograms->forPage($currentPage, $perPage)->values();
+        $items = $programsToPaginate->forPage($currentPage, $perPage)->values();
 
         $paginatedPrograms = new LengthAwarePaginator(
             $items,
