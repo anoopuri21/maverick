@@ -26,6 +26,9 @@ class ZohoSettings extends Settings
 
     public ?string $default_recipient = null;
 
+    /** @var list<array{email: string}> */
+    public array $additional_recipients = [];
+
     public static function group(): string
     {
         return 'zoho';
