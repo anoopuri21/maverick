@@ -5872,7 +5872,7 @@ body.modal-open {
 }
 
 .faq__item.active .faq__answer {
-  max-height: 300px;
+  max-height: 100%;
 }
 
 .faq__item.active .faq__icon {
@@ -5950,7 +5950,9 @@ body.modal-open {
   line-height: 1.6;
   margin: 0;
 }
-
+#final-cta .section-title span {
+    color: var(--color-white);
+}
 .final-cta__buttons {
   display: flex;
   gap: 1rem;
