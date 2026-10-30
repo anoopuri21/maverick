@@ -156,7 +156,9 @@
   width: 100%;
   height: 100%;
   cursor: grab;
-  touch-action: none;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
   outline: none;
 }
 
@@ -382,7 +384,7 @@
   font-family: var(--font-display, "PP Neue Montreal", sans-serif);
   font-size: clamp(2rem, 4.2vw, 4rem);
   font-weight: 500;
-  letter-spacing: -0.055em;
+  letter-spacing: normal;
   line-height: 0.95;
 }
 
@@ -459,6 +461,10 @@
 #global-access-points .gap__header {
   max-width: 64rem;
   margin-bottom: 0.25rem;
+}
+
+#global-access-points .gap__heading {
+  letter-spacing: normal;
 }
 
 #global-access-points .gap-globe-stage {

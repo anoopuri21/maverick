@@ -366,10 +366,23 @@
   }
 
   function onPointerDown(event) {
-    if (event.pointerType === "mouse" && event.button !== 0) return;
-    isDragging = true;
+    if (
+      isDragging ||
+      event.isPrimary === false ||
+      (event.pointerType === "mouse" && event.button !== 0)
+    ) {
+      return;
+    }
+
     pointerId = event.pointerId;
-    canvas.setPointerCapture(pointerId);
+    try {
+      canvas.setPointerCapture(pointerId);
+    } catch (error) {
+      pointerId = null;
+      return;
+    }
+
+    isDragging = true;
     stage.classList.add("is-grabbing");
     dragStart = {
       x: event.clientX,
@@ -384,11 +397,12 @@
     velocity = [0, 0];
     hoveredCountry = null;
     updateStatus("Release to let the globe drift");
-    event.preventDefault();
   }
 
   function onPointerMove(event) {
     if (isDragging) {
+      if (event.pointerId !== pointerId) return;
+
       var now = performance.now();
       var elapsed = Math.max(16, now - lastPointer.time);
       var dx = event.clientX - dragStart.x;
@@ -407,7 +421,6 @@
         (-deltaY * dragScale * 0.72) / (elapsed / 16),
       ];
       lastPointer = { x: event.clientX, y: event.clientY, time: now };
-      event.preventDefault();
       return;
     }
 
@@ -415,7 +428,7 @@
   }
 
   function endPointer(event) {
-    if (!isDragging) return;
+    if (!isDragging || (event && event.pointerId !== pointerId)) return;
     isDragging = false;
     stage.classList.remove("is-grabbing");
     lastInteraction = performance.now();
@@ -425,7 +438,6 @@
     pointerId = null;
     updateStatus("Grab the globe to explore");
     if (reducedMotion) velocity = [0, 0];
-    if (event) event.preventDefault();
   }
 
   function onKeyDown(event) {
@@ -532,6 +544,7 @@
   canvas.addEventListener("pointermove", onPointerMove);
   canvas.addEventListener("pointerup", endPointer);
   canvas.addEventListener("pointercancel", endPointer);
+  canvas.addEventListener("lostpointercapture", endPointer);
   canvas.addEventListener("pointerleave", function () {
     if (!isDragging) {
       hoveredCountry = null;
@@ -549,10 +562,14 @@
     resizeObserver = new ResizeObserver(function () {
       setupCanvas();
     });
-    resizeObserver.observe(stage);
+    resizeObserver.observe(visual || stage);
   } else {
     window.addEventListener("resize", setupCanvas, { passive: true });
   }
+
+  window.addEventListener("blur", function () {
+    endPointer(null);
+  });
 
   window.addEventListener("beforeunload", function () {
     if (frameId) window.cancelAnimationFrame(frameId);
