@@ -26,7 +26,9 @@ class ZohoSettings extends Settings
 
     public ?string $default_recipient = null;
 
-    /** @var list<array{email: string}> */
+    // Admin-managed recipient rows shaped like ['email' => string].
+    // Keep this as a plain comment: Spatie's PropertyReflector parses @var
+    // property docblocks via phpdocumentor and crashes on array-shape syntax.
     public array $additional_recipients = [];
 
     public static function group(): string
