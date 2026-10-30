@@ -5400,10 +5400,49 @@ html.lenis body {
   width: fit-content;
 }
 
+.events__card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
 .events__card-date {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
+}
+
+#upcoming-events .events__upcoming-badge {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 0.2rem;
+  padding: 0.5rem 0.8rem;
+  border: 1px solid rgba(7, 20, 68, 0.2);
+  border-radius: 999px;
+  color: #071444;
+  background: #f5d98f;
+  box-shadow: 0 4px 14px rgba(7, 20, 68, 0.18);
+  font-family: "Poppins", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+#upcoming-events .events__upcoming-badge::before {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: #8d0000;
+  content: "";
 }
 
 .events__date-day {
@@ -5496,6 +5535,12 @@ html.lenis body {
   .events__card {
     flex: 0 0 300px;
     padding: 1.5rem;
+  }
+
+  #upcoming-events .events__upcoming-badge {
+    gap: 0.35rem;
+    padding: 0.4rem 0.6rem;
+    font-size: 0.62rem;
   }
 
   .events__date-day {

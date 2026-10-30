@@ -34,9 +34,14 @@
         <div class="events__track">
           @foreach($events as $event)
             <article class="events__card fade-up" data-testid="homepage-event-card">
-              <div class="events__card-date">
-                <span class="events__date-day">{{ $event->event_date?->format('d') ?? '' }}</span>
-                <span class="events__date-month">{{ $event->event_date ? strtoupper($event->event_date->format('M Y')) : '' }}</span>
+              <div class="events__card-header">
+                <div class="events__card-date">
+                  <span class="events__date-day">{{ $event->event_date?->format('d') ?? '' }}</span>
+                  <span class="events__date-month">{{ $event->event_date ? strtoupper($event->event_date->format('M Y')) : '' }}</span>
+                </div>
+                @if($event->event_date && $event->event_date->greaterThanOrEqualTo(today()))
+                  <span class="events__upcoming-badge">Upcoming</span>
+                @endif
               </div>
               <div style="display:flex; flex-wrap:wrap; height:100%; align-content:space-between;">
                 <h3 class="events__card-title">

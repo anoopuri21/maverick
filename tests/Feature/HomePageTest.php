@@ -110,6 +110,11 @@ class HomePageTest extends TestCase
             'link_url' => 'https://registration.example.com/homepage-event',
             'is_active' => true,
         ]);
+        $pastEvent = Event::query()->create([
+            'title' => 'Homepage Past Event Card Test',
+            'event_date' => now()->subDay()->toDateString(),
+            'is_active' => true,
+        ]);
 
         $response = $this->get('/');
 
@@ -120,6 +125,29 @@ class HomePageTest extends TestCase
         $response->assertSee('href="'.route('events.show', $event->slug).'"', false);
         $response->assertSee('aria-label="View event details for Homepage Event Card Test"', false);
         $response->assertDontSee('href="https://registration.example.com/homepage-event"', false);
+
+        preg_match_all(
+            '~<article class="events__card fade-up" data-testid="homepage-event-card">.*?</article>~s',
+            $response->getContent(),
+            $eventCardMatches
+        );
+        $findEventCard = static function (string $title) use ($eventCardMatches): ?string {
+            foreach ($eventCardMatches[0] as $card) {
+                if (str_contains($card, $title)) {
+                    return $card;
+                }
+            }
+
+            return null;
+        };
+
+        $futureCard = $findEventCard($event->title);
+        $this->assertIsString($futureCard);
+        $this->assertStringContainsString('<span class="events__upcoming-badge">Upcoming</span>', $futureCard);
+
+        $pastCard = $findEventCard($pastEvent->title);
+        $this->assertIsString($pastCard);
+        $this->assertStringNotContainsString('events__upcoming-badge', $pastCard);
 
         $this->get(route('events.show', $event->slug))
             ->assertOk()
