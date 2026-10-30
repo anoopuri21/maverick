@@ -224,11 +224,6 @@ class ProgramResource extends Resource
                     ->collapsed(true)
                     ->schema([static::feesRepeater()]),
 
-                                Section::make('Student Reviews')
-                                    #->description('Google-style review cards (§16). Avatar photo optional — initials used as fallback.')
-                    ->collapsible()
-                    ->collapsed(true)
-                    ->schema([static::reviewsRepeater()]),
                             ]),
 
                         Tab::make('FAQs')
@@ -718,39 +713,5 @@ class ProgramResource extends Resource
             ->defaultItems(0)
             ->itemLabel(fn (array $state): ?string => $state['title'] ?? 'Fee item')
             ->addActionLabel('Add Fee Item');
-    }
-
-    protected static function reviewsRepeater(): Repeater
-    {
-        return Repeater::make('reviews')
-            ->schema([
-                TextInput::make('name')
-                    ->validationAttribute('reviewer name'),
-                TextInput::make('avatar')
-                    ->label('Avatar URL')
-                    ->nullable()
-                    ->helperText('Optional. Or choose from the media library below.'),
-                MediaPicker::forField('avatar', 'programs/reviews')
-                    ->label('Avatar Image'),
-                Select::make('rating')
-                    ->options([
-                        1 => '1 star',
-                        2 => '2 stars',
-                        3 => '3 stars',
-                        4 => '4 stars',
-                        5 => '5 stars',
-                    ])
-                    ->default(5)
-                    ->validationAttribute('rating'),
-                RichEditor::make('review')
-                    ->label('Review Text')
-                    ->columnSpanFull(),
-            ])
-            ->reorderable()
-            ->collapsible()
-            ->columns(2)
-            ->defaultItems(0)
-            ->itemLabel(fn (array $state): ?string => $state['name'] ?? 'Review')
-            ->addActionLabel('Add Review');
     }
 }

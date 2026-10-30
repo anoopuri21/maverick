@@ -13,6 +13,7 @@ use App\Support\TestimonialPages;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
 
 class VoicesTestimonialsComponentTest extends TestCase
@@ -56,6 +57,24 @@ class VoicesTestimonialsComponentTest extends TestCase
         $this->assertSame('Global Content', OurStoryTestimonialResource::getNavigationGroup());
         $this->assertArrayHasKey(TestimonialPages::MBA_MASTERS_LANDING, TestimonialPages::options());
         $this->assertArrayHasKey(TestimonialPages::OUR_STORY, TestimonialPages::options());
+        $this->assertSame(
+            'Program Detail Pages (/programs/{slug})',
+            TestimonialPages::options()[TestimonialPages::PROGRAM_DETAIL] ?? null,
+        );
+
+        $adminPages = json_decode(
+            (string) DB::table('settings')
+                ->where('group', 'voices_testimonials')
+                ->where('name', 'pages')
+                ->value('payload'),
+            true,
+        );
+
+        $this->assertIsArray($adminPages);
+        $this->assertContains([
+            'key' => TestimonialPages::PROGRAM_DETAIL,
+            'label' => 'Program Detail Pages (/programs/{slug})',
+        ], $adminPages);
     }
 
     public function test_single_page_selection_displays_only_on_selected_page_and_not_other_pages(): void
