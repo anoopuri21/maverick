@@ -4083,40 +4083,36 @@ html.lenis body {
   stroke-width: 2;
 }
 
-.partners__pin--hub .partners__pin-dot {
-  fill: #811d1d;
-  stroke: #ffffff;
-  stroke-width: 2px;
-}
-
-.partners__pin--active .partners__pin-dot {
+#university-partners .partners__pin--active .partners__pin-dot {
   fill: var(--color-mba-red);
   stroke-width: 3;
 }
 
-/* Pin labels */
-.partners__pin-label {
+/* Show only the selected country name; no city/hub label is pinned by default. */
+#university-partners .partners__pin-label {
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   font-size: 11px;
   fill: #ffffff;
   text-anchor: middle;
   letter-spacing: 0.05em;
-  opacity: 0.6;
-  transition: opacity 0.3s ease;
+  opacity: 0;
+  transform: translateY(4px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
   pointer-events: none;
 }
 
-.partners__pin:hover .partners__pin-label,
-.partners__pin--active .partners__pin-label {
+#university-partners .partners__pin--active .partners__pin-label {
   opacity: 1;
+  transform: translateY(0);
 }
 
-.partners__pin--hub .partners__pin-label {
-  opacity: 1;
-  fill: #ffffff;
-  font-weight: 500;
-  font-size: 12px;
+@media (prefers-reduced-motion: reduce) {
+  #university-partners .partners__pin-label {
+    transition: none;
+  }
 }
 
 /* ============================================================

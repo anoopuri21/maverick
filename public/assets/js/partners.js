@@ -41,6 +41,7 @@
   let librariesLoading = false;
   let lastRenderedWidth = 0;
   let lastRenderedHeight = 0;
+  let activeCountryId = null;
 
   // ========================================================
   // ── LAZY SCRIPT LOADER ──────────────────────────────────
@@ -178,41 +179,33 @@
       if (!coords) return;
 
       const [x, y] = coords;
-      const isHub = country.isHub;
-
       const pinGroup = pinsGroup
         .append("g")
-        .attr("class", `partners__pin${isHub ? " partners__pin--hub" : ""}`)
+        .attr("class", "partners__pin")
         .attr("data-country-id", country.id)
         .attr("role", "button")
         .attr("tabindex", "0")
+        .attr("aria-pressed", "false")
         .attr("aria-label", `Show universities in ${country.name}`);
 
-      if (isHub) {
-        pinGroup
-          .append("circle")
-          .attr("class", "partners__pin-ring")
-          .attr("cx", x)
-          .attr("cy", y)
-          .attr("r", 7);
-      }
-
+      // Keep map pins visually neutral until a country is selected.
       pinGroup
         .append("circle")
         .attr("class", "partners__pin-dot")
         .attr("cx", x)
         .attr("cy", y)
-        .attr("r", isHub ? 7 : 5);
+        .attr("r", 5);
 
       pinGroup
         .append("text")
         .attr("class", "partners__pin-label")
         .attr("x", x)
         .attr("y", y - 15)
-        .text(country.city);
+        .text(country.name);
     });
 
     mapInitialized = true;
+    syncActivePinStates();
 
     // Pin reveal animation (respects reduced motion)
     if (!prefersReducedMotion && typeof gsap !== "undefined") {
@@ -273,7 +266,8 @@
       listHTML += `
         <button class="partners__mobile-item" 
                 data-country-id="${country.id}" 
-                aria-label="Show universities in ${country.name}">
+                aria-label="Show universities in ${country.name}"
+                aria-pressed="false">
           <span class="partners__mobile-country">${country.name}</span>
           ${hubBadge}
           <span class="partners__mobile-count">${uniCount} ${uniCount === 1 ? "University" : "Universities"}</span>
@@ -289,13 +283,27 @@
   // ── RENDER DETAIL PANEL ─────────────────────────────────
   // ========================================================
 
+  function syncActivePinStates() {
+    const section = document.getElementById("university-partners");
+    if (!section) return;
+
+    section.querySelectorAll(".partners__pin").forEach((pin) => {
+      const isActive = pin.dataset.countryId === activeCountryId;
+      pin.classList.toggle("partners__pin--active", isActive);
+      pin.setAttribute("aria-pressed", isActive ? "true" : "false");
+    });
+  }
+
   function renderDetailPanel(countryId, animate = true) {
     const country = countriesData.find((c) => c.id === countryId);
     if (!country) return;
 
-    const countryEl = document.getElementById("partnersDetailCountry");
-    const countEl = document.getElementById("partnersDetailCount");
-    const universitiesEl = document.getElementById("partnersUniversities");
+    const section = document.getElementById("university-partners");
+    if (!section) return;
+
+    const countryEl = section.querySelector("#partnersDetailCountry");
+    const countEl = section.querySelector("#partnersDetailCount");
+    const universitiesEl = section.querySelector("#partnersUniversities");
 
     if (!countryEl || !countEl || !universitiesEl) return;
 
@@ -363,25 +371,57 @@
       buildContent();
     }
 
-    // Update active states
-    document.querySelectorAll(".partners__pin").forEach((pin) => {
-      pin.classList.toggle(
-        "partners__pin--active",
-        pin.dataset.countryId === countryId,
-      );
-    });
+    // Keep map and responsive-list selection in sync, including after lazy map load.
+    activeCountryId = country.id;
+    syncActivePinStates();
 
-    document.querySelectorAll(".partners__mobile-item").forEach((item) => {
-      item.classList.toggle(
-        "partners__mobile-item--active",
-        item.dataset.countryId === countryId,
-      );
+    section.querySelectorAll(".partners__mobile-item").forEach((item) => {
+      const isActive = item.dataset.countryId === countryId;
+      item.classList.toggle("partners__mobile-item--active", isActive);
+      item.setAttribute("aria-pressed", isActive ? "true" : "false");
     });
   }
 
   // ========================================================
   // ── CLICK HANDLERS ──────────────────────────────────────
   // ========================================================
+
+  // Keep Lenis untouched globally; only the desktop university list owns its wheel scrolling.
+  function setupDesktopUniversityScrollRegion() {
+    const scrollRegion = document.getElementById("partnersUniversities");
+    if (!scrollRegion) return () => {};
+
+    const desktopQuery = typeof window.matchMedia === "function"
+      ? window.matchMedia("(min-width: 769px)")
+      : null;
+
+    const updateScrollHandling = () => {
+      const isDesktop = desktopQuery
+        ? desktopQuery.matches
+        : window.innerWidth > 768;
+
+      if (isDesktop) {
+        scrollRegion.setAttribute("data-lenis-prevent", "");
+      } else {
+        scrollRegion.removeAttribute("data-lenis-prevent");
+      }
+    };
+
+    updateScrollHandling();
+
+    if (desktopQuery && typeof desktopQuery.addEventListener === "function") {
+      desktopQuery.addEventListener("change", updateScrollHandling);
+      return () => desktopQuery.removeEventListener("change", updateScrollHandling);
+    }
+
+    if (desktopQuery && typeof desktopQuery.addListener === "function") {
+      desktopQuery.addListener(updateScrollHandling);
+      return () => desktopQuery.removeListener(updateScrollHandling);
+    }
+
+    window.addEventListener("resize", updateScrollHandling);
+    return () => window.removeEventListener("resize", updateScrollHandling);
+  }
 
   function setupPinClickHandlers() {
     const pinsContainer = document.getElementById("partnersPins");
@@ -474,6 +514,8 @@
   function initPartners() {
     if (!document.getElementById("university-partners")) return;
 
+    const cleanupDesktopScrollRegion = setupDesktopUniversityScrollRegion();
+
     // Static parts (render immediately)
     renderMobileList();
     setupMobileClickHandlers();
@@ -489,6 +531,7 @@
     window.addEventListener("beforeunload", () => {
       clearTimeout(resizeTimer);
       window.removeEventListener("resize", handleResize);
+      cleanupDesktopScrollRegion();
     });
     // Show first country by default
     if (countriesData.length > 0) {
