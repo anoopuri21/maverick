@@ -14,6 +14,8 @@ final class TestimonialPages
 
     public const OUR_STORY = 'our-story';
 
+    public const PROGRAM_DETAIL = 'program-detail';
+
     /**
      * Resolve all available display page options (`page-key => Human Label`)
      * from Admin DB settings (`VoicesTestimonialsSettings::$pages`) merged with

@@ -2,10 +2,12 @@
 
 namespace Tests\Feature;
 
+use App\Models\OurStoryTestimonial;
 use App\Models\Program;
 use App\Models\ProgramCategory;
 use App\Models\UniversityPartner;
 use App\Support\PublicContentCache;
+use App\Support\TestimonialPages;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Cache;
 use Tests\TestCase;
@@ -74,6 +76,58 @@ class ProgramsListingPageTest extends TestCase
         $response->assertSee('Masters', false);
         $response->assertSee('Example University', false);
         $this->assertStringNotContainsString('Attempt to read property', $response->getContent());
+    }
+
+    public function test_program_detail_uses_page_assigned_shared_testimonials_and_preserves_success_stories(): void
+    {
+        $this->seedProgram();
+
+        $program = Program::query()->where('slug', 'global-mba')->firstOrFail();
+        $program->testimonials = [[
+            'name' => 'Success Story Still Visible',
+            'role' => 'MBA Graduate',
+            'country' => 'India',
+            'category' => 'Alumni',
+        ]];
+        $program->reviews = [[
+            'name' => 'Legacy Google Review',
+            'rating' => 5,
+            'review' => 'This old review block must no longer render.',
+        ]];
+        $program->save();
+
+        OurStoryTestimonial::create([
+            'name' => 'Program Detail Testimonial',
+            'position' => 'MBA Graduate',
+            'organisation' => 'Example University',
+            'testimonial' => 'This quote is assigned only to programme detail routes.',
+            'pages' => [TestimonialPages::PROGRAM_DETAIL],
+            'sort_order' => 1,
+            'is_active' => true,
+        ]);
+
+        OurStoryTestimonial::create([
+            'name' => 'Our Story Only Testimonial',
+            'testimonial' => 'This quote is not assigned to programme detail routes.',
+            'pages' => [TestimonialPages::OUR_STORY],
+            'sort_order' => 2,
+            'is_active' => true,
+        ]);
+
+        $programResponse = $this->get(route('programs.show', 'global-mba'));
+
+        $programResponse->assertOk();
+        $programResponse->assertSee('id="mlp-testimonials"', false);
+        $programResponse->assertSee('Program Detail Testimonial');
+        $programResponse->assertSee('Success Story Still Visible');
+        $programResponse->assertSee('aria-label="Student success stories"', false);
+        $programResponse->assertDontSee('Our Story Only Testimonial');
+        $programResponse->assertDontSee('Legacy Google Review');
+        $programResponse->assertDontSee('aria-label="Student reviews"', false);
+
+        $this->get(route('our-story'))
+            ->assertOk()
+            ->assertDontSee('Program Detail Testimonial');
     }
 
     public function test_navbar_view_all_links_include_category_query(): void

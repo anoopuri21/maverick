@@ -83,7 +83,7 @@ class ManageMailTemplateSettings extends SettingsPage
                     Notification::make()
                         ->title($ok ? 'Test email sent' : 'Could not send')
                         ->body($ok
-                            ? 'Sent to the default recipient (Zoho Mail settings) — please check your inbox.'
+                            ? 'Sent to the configured recipient(s) from Zoho Mail settings — check the primary inbox and any BCC inboxes.'
                             : 'The email could not be sent — check the FormMailer lines in storage/logs/laravel.log.')
                         ->{$ok ? 'success' : 'danger'}()
                         ->send();

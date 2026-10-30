@@ -30,6 +30,9 @@ class CSRCommunityImpactTest extends TestCase
         // SECTION 1: OUR COMMITMENT
         $response->assertSee('Our <span class="csr-text-accent">Commitment</span>', false);
         $response->assertSee('At Maverick Business Academy, we believe education extends beyond classrooms.');
+        $response->assertSee('class="csr-commitment__impact-note"', false);
+        $response->assertSee('<strong>1%</strong>', false);
+        $response->assertSee('of Maverick’s commitment goes towards charity and community initiatives.');
 
         // SECTION 2: CSR FOCUS AREAS
         $response->assertSee('Education &amp; Skill Development', false);

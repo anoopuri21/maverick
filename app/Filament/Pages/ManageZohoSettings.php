@@ -4,6 +4,7 @@ namespace App\Filament\Pages;
 
 use App\Settings\ZohoSettings;
 use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -32,9 +33,24 @@ class ManageZohoSettings extends SettingsPage
                         ->label('Enable Zoho SMTP')
                         ->helperText('Turn off to keep the site working without Zoho. Forms still submit; email uses the default Laravel mailer (usually log) instead of Zoho.'),
                     TextInput::make('default_recipient')
-                        ->label('Default recipient (admin inbox)')
+                        ->label('Primary recipient (To)')
                         ->email()
-                        ->helperText('Where new form emails go if the form does not set its own recipient. Example: admissions@yourdomain.com. Falls back to Site Settings email if empty.'),
+                        ->maxLength(254)
+                        ->helperText('Main destination for form notifications. If empty or invalid, General Settings → UAE Email is used; if that is empty or invalid, fazil@mbalondon.org.uk is the fallback.'),
+                    Repeater::make('additional_recipients')
+                        ->label('Additional recipients (BCC)')
+                        ->schema([
+                            TextInput::make('email')
+                                ->label('Email address')
+                                ->email()
+                                ->maxLength(254)
+                                ->required(),
+                        ])
+                        ->defaultItems(0)
+                        ->reorderable(false)
+                        ->addActionLabel('Add recipient')
+                        ->helperText('Each address receives a blind copy of every form notification. BCC keeps recipient addresses hidden from one another.')
+                        ->columnSpanFull(),
                     TextInput::make('from_name')
                         ->label('From name')
                         ->helperText('Display name on outgoing mail, e.g. Maverick Business Academy. The From address is always the Zoho username below.'),

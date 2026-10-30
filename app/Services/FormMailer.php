@@ -21,7 +21,7 @@ class FormMailer
 
     /**
      * @param  array<string, mixed>  $fields
-     * @param  array<string, mixed>  $options  to, reply_to, labels
+     * @param  array<string, mixed>  $options  to (email or email list), reply_to, labels
      */
     public function send(array $fields, string $subject, array $options = []): bool
     {
@@ -37,10 +37,23 @@ class FormMailer
             $zoho = safe_settings(ZohoSettings::class);
             $site = safe_settings(SiteSettings::class);
 
-            $recipient = $options['to']
-                ?? (filled($zoho->default_recipient ?? null) ? $zoho->default_recipient : null)
-                ?? (filled($site->email ?? null) ? $site->email : null)
-                ?? 'admissions@mbalondon.org.uk';
+            $toRecipients = $this->normalizeRecipients($options['to'] ?? null);
+            $toRecipients = $toRecipients !== []
+                ? $toRecipients
+                : $this->normalizeRecipients($zoho->default_recipient ?? null);
+            $toRecipients = $toRecipients !== []
+                ? $toRecipients
+                : $this->normalizeRecipients($site->email ?? null);
+            $toRecipients = $toRecipients !== []
+                ? $toRecipients
+                : ['fazil@mbalondon.org.uk'];
+
+            $bccRecipients = $this->normalizeRecipients($zoho->additional_recipients ?? []);
+            $toLookup = array_fill_keys(array_map('strtolower', $toRecipients), true);
+            $bccRecipients = array_values(array_filter(
+                $bccRecipients,
+                fn (string $recipient): bool => ! isset($toLookup[strtolower($recipient)])
+            ));
 
             $replyTo = $options['reply_to']
                 ?? (filled($zoho->reply_to ?? null) ? $zoho->reply_to : null)
@@ -58,7 +71,13 @@ class FormMailer
             );
 
             $mailer = ! empty($zoho->enabled) ? Mail::mailer('zoho') : Mail::mailer();
-            $mailer->to($recipient)->send($mailable);
+            $pendingMail = $mailer->to($toRecipients);
+
+            if ($bccRecipients !== []) {
+                $pendingMail->bcc($bccRecipients);
+            }
+
+            $pendingMail->send($mailable);
 
             return true;
         } catch (Throwable $e) {
@@ -68,6 +87,47 @@ class FormMailer
 
             return false;
         }
+    }
+
+    /**
+     * Accept email strings or Filament repeater rows, then filter and deduplicate them.
+     *
+     * @return list<string>
+     */
+    private function normalizeRecipients(mixed $recipients): array
+    {
+        if (is_string($recipients)) {
+            $recipients = [$recipients];
+        }
+
+        if (! is_array($recipients)) {
+            return [];
+        }
+
+        $validRecipients = [];
+
+        foreach ($recipients as $recipient) {
+            if (is_array($recipient)) {
+                $recipient = $recipient['email'] ?? null;
+            }
+
+            if (! is_string($recipient)) {
+                continue;
+            }
+
+            $email = trim($recipient);
+            if (
+                $email === ''
+                || strlen($email) > 254
+                || filter_var($email, FILTER_VALIDATE_EMAIL) === false
+            ) {
+                continue;
+            }
+
+            $validRecipients[strtolower($email)] = $email;
+        }
+
+        return array_values($validRecipients);
     }
 
     /**

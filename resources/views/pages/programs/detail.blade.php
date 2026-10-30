@@ -43,7 +43,6 @@
     $testimonials        = collect($program->testimonials_list ?? [])->filter(fn ($t) => is_array($t))->values();
     $fees                = collect($program->fees_list ?? []);
     $faqs                = collect($program->faqs ?? []);
-    $reviews             = collect($program->reviews_list ?? [])->filter(fn ($r) => is_array($r))->values();
     // Scholarship ribbon only if content mentions scholarships
     $hasScholarship = $highlights->contains(fn($h) => stripos(($h['label'] ?? '').' '.($h['value'] ?? ''), 'scholar') !== false)
                       || $fees->contains(fn($f) => stripos($f, 'scholar') !== false)
@@ -124,8 +123,6 @@
                     <div class="hero-meta rv rv-d4">
                         @if($program->duration)<span class="m"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>{{ $program->duration }}</span><span class="sep"></span>@endif
                         @if($program->level)<span class="m"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>{{ $program->level }}</span><span class="sep"></span>@endif
-                        <!-- @if($reviews->count())<span class="m"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>{{ $reviews->count() }} Google reviews</span>
-                        @endif -->
                     </div>
                 </div>
                 @if($snapshot->count())
@@ -469,45 +466,8 @@
 
     @include('sections.alumni-network')
     
-    {{-- ============ 16. REVIEWS (Google rating) ============ --}}
-    @if($reviews->count())
-    <section class="reviews section tex-grid" aria-label="Student reviews">
-        <div class="container">
-            <div class="sec-head center rv">
-                <span class="kicker">Reviews</span>
-                <h2>Student <em>Reviews</em></h2>
-            </div>
-            @php
-                $avg = round($reviews->avg('rating'), 1);
-                $fullStars = (int) round($avg);
-            @endphp
-            <div class="rev-flow">
-                @foreach($reviews as $r)
-                <div class="rev-card">
-                    <div class="head"><span class="ava">@php $avatarUrl = media_url($r['avatar'] ?? null); @endphp
-                        @if($avatarUrl)
-                            <img class="ava-img" src="{{ $avatarUrl }}" alt="{{ $r['name'] ?? '' }}" loading="lazy" onerror="this.hidden=true;this.nextElementSibling.hidden=false">
-                            <span class="ava-fallback" hidden>{{ $initials($r['name'] ?? '') }}</span>
-                        @else
-                            <span class="ava-fallback">{{ $initials($r['name'] ?? '') }}</span>
-                        @endif
-                    </span><div><div class="nm">{{ $r['name'] ?? '' }}</div><div class="rl" style="font-size:12px;color:var(--muted)">Student</div></div></div>
-                    <div class="stars">@for($i = 1; $i <= ($r['rating'] ?? 5); $i++)<svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 1-5 5 1 7-6-4-6 4 1-7-5-5 7-1z"/></svg>@endfor</div>
-                    @if(!empty($r['review']))
-                    <div class="q-wrap" data-rev-clamp>
-                        <div class="q" id="rev-q-{{ $loop->index }}">{!! $r['review'] !!}</div>
-                        <button type="button" class="rev-more" aria-expanded="false" aria-controls="rev-q-{{ $loop->index }}">
-                            <span class="rev-more-label">Read more</span>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-                        </button>
-                    </div>
-                    @endif
-                </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
-    @endif
+    {{-- Admin-assigned shared testimonials for every programme detail route. --}}
+    <x-voices-testimonials page="program-detail" id="mlp-testimonials" />
     
     @include('sections.faculty-insights')
 
@@ -570,7 +530,6 @@
                 </div>
                 <div class="enq-trust">
                     <span class="trust-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 1-5 5 1 7-6-4-6 4 1-7-5-5 7-1z"/></svg>Flexible study</span>
-                    @if($reviews->count())<span class="trust-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 1-5 5 1 7-6-4-6 4 1-7-5-5 7-1z"/></svg>4.8 star Rating</span>@endif
                 </div>
             </div>
             <form class="enq-form rv rv-d1" action="{{ route('programs.enquire') }}" method="POST">
@@ -662,70 +621,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     // Fail-open: never leave content hidden
     window.setTimeout(() => { document.querySelectorAll('.page-pd .rv:not(.in)').forEach(el => el.classList.add('in')); }, 3000);
-
-    // Reviews: 10-line clamp with expand/collapse, one open at a time
-    const revWraps = Array.from(document.querySelectorAll('[data-rev-clamp]'));
-    if (revWraps.length) {
-        const clampHeight = q => {
-            const lines = parseInt(getComputedStyle(q).getPropertyValue('--rev-lines'), 10) || 10;
-            const lh = parseFloat(getComputedStyle(q).lineHeight) || 22;
-            return Math.round(lines * lh);
-        };
-
-        const collapse = wrap => {
-            const q = wrap.querySelector('.q');
-            const btn = wrap.querySelector('.rev-more');
-            if (!q || !wrap.classList.contains('is-open')) return;
-            q.style.maxHeight = q.scrollHeight + 'px';
-            // Force a reflow so the transition runs from the measured height
-            void q.offsetHeight;
-            wrap.classList.remove('is-open');
-            q.style.maxHeight = clampHeight(q) + 'px';
-            if (btn) {
-                btn.setAttribute('aria-expanded', 'false');
-                const label = btn.querySelector('.rev-more-label');
-                if (label) label.textContent = 'Read more';
-            }
-        };
-
-        const expand = wrap => {
-            const q = wrap.querySelector('.q');
-            const btn = wrap.querySelector('.rev-more');
-            if (!q) return;
-            revWraps.forEach(other => { if (other !== wrap) collapse(other); });
-            wrap.classList.add('is-open');
-            q.style.maxHeight = q.scrollHeight + 'px';
-            if (btn) {
-                btn.setAttribute('aria-expanded', 'true');
-                const label = btn.querySelector('.rev-more-label');
-                if (label) label.textContent = 'Show less';
-            }
-        };
-
-        revWraps.forEach(wrap => {
-            const q = wrap.querySelector('.q');
-            const btn = wrap.querySelector('.rev-more');
-            if (!q || !btn) return;
-
-            wrap.classList.add('is-clamped');
-            if (q.scrollHeight <= q.clientHeight + 2) {
-                wrap.classList.remove('is-clamped');
-                return;
-            }
-
-            // Once the transition settles, drop the cap so reflows can't re-clip the text
-            q.addEventListener('transitionend', e => {
-                if (e.propertyName !== 'max-height') return;
-                if (wrap.classList.contains('is-open')) q.style.maxHeight = 'none';
-                else q.style.maxHeight = '';
-            });
-
-            btn.addEventListener('click', () => {
-                if (wrap.classList.contains('is-open')) collapse(wrap);
-                else expand(wrap);
-            });
-        });
-    }
 
     // Accreditation rail: arrows + drag, only when the logos actually overflow
     document.querySelectorAll('[data-acc-board]').forEach(board => {

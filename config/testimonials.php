@@ -14,5 +14,6 @@ return [
     'pages' => [
         'mba-masters-landing' => "Master's Landing Page (/online-mba-masters-uae)",
         'our-story' => 'Our Story Page (/our-story)',
+        'program-detail' => 'Program Detail Pages (/programs/{slug})',
     ],
 ];
