@@ -1,43 +1,12 @@
-{{-- §13 University partners — The Light Archive / Kinetic Partner Wall --}}
+{{-- §13 Shared dynamic university partner wall. --}}
 @php
-  $storedLogos = collect($universityPartnerLogos ?? [])
-      ->filter(fn ($logo) => filled(media_url($logo->logo_url ?? null)))
+  $renderLogos = collect($universityPartnerLogos ?? [])
+      ->map(fn ($logo) => [
+          'name' => trim((string) data_get($logo, 'name', '')),
+          'src' => media_url(data_get($logo, 'src') ?? data_get($logo, 'logo_url')),
+      ])
+      ->filter(fn ($logo) => filled($logo['name']) && filled($logo['src']))
       ->values();
-  $listingUniversities = [
-    [
-      'name' => 'Rushford Business School',
-      'src' => 'https://rushford.ch/wp-content/uploads/2022/12/RUSHFORD-LOGO-COLOR-1.png',
-    ],
-    [
-      'name' => 'Girne American University',
-      'src' => 'https://www.gau.edu.tr/template/gau/assets/img/logo2_en.png',
-    ],
-    [
-      'name' => 'University for the Creative Arts',
-      'src' => 'https://www.uca.ac.uk/media/uca-2020/site-assets/media/logos/uca-logo-black.png',
-    ],
-    [
-      'name' => 'University of Wolverhampton',
-      'src' => 'https://upload.wikimedia.org/wikipedia/en/1/19/University_of_Wolverhampton_logo.jpg',
-    ],
-    [
-      'name' => 'University of the West of Scotland',
-      'src' => 'https://www.uws.ac.uk/media/5590/uws-logo.png',
-    ],
-  ];
-  $renderLogos = collect($listingUniversities)->map(function (array $university) use ($storedLogos): array {
-    $name = mb_strtolower($university['name']);
-    $stored = $storedLogos->first(function ($logo) use ($name) {
-      $storedName = mb_strtolower(trim((string) ($logo->name ?? '')));
-
-      return $storedName !== '' && (str_contains($storedName, $name) || str_contains($name, $storedName));
-    });
-
-    return [
-      'name' => $university['name'],
-      'src' => $stored ? media_url($stored->logo_url) : $university['src'],
-    ];
-  });
   $checklist = collect($partners->checklist ?? [])
       ->filter(fn ($item) => filled($item['text'] ?? null))
       ->values();
@@ -49,7 +18,8 @@
 @endphp
 
 @if(filled($headingLine1) || filled($headingLine2) || $renderLogos->isNotEmpty())
-<section class="mlp-partners archive-partners" id="mlp-partners" aria-labelledby="archive-partners-title">
+<section class="mlp-partners archive-partners" id="mlp-partners"
+  @if(filled($headingLine1) || filled($headingLine2)) aria-labelledby="archive-partners-title" @else aria-label="University partners" @endif>
   <div class="archive-partners__frame container">
     <header class="archive-partners__intro mlp-intro-grid">
       <div>
@@ -72,32 +42,33 @@
       @endif
     </header>
 
+    @if($renderLogos->isNotEmpty())
     <div class="archive-partners__wall mlp-hairline" data-partner-wall>
       <div class="archive-partners__wall-head">
         <span>Academic network</span>
-        <div class="archive-partners__controls">
+        <div class="archive-partners__controls" data-partner-controls hidden>
           <span class="archive-partners__hint">Auto-scroll</span>
-          <button type="button" class="archive-partners__toggle" data-partner-toggle aria-pressed="false">Pause</button>
+          <button
+            type="button"
+            class="archive-partners__toggle"
+            data-partner-toggle
+            aria-label="Pause or resume partner logo auto-scroll"
+            aria-pressed="false"
+          >Pause</button>
         </div>
       </div>
-      <div class="archive-partners__viewport" data-partner-viewport aria-label="Partner university logos.">
-        <div class="archive-partners__track is-marquee" data-partner-track>
-          <ul class="archive-partners__logo-list" aria-label="Partner universities">
+      <div
+        class="archive-partners__viewport"
+        data-partner-viewport
+        role="region"
+        aria-label="Partner university logos"
+        tabindex="0"
+      >
+        <div class="archive-partners__track" data-partner-track>
+          <ul class="archive-partners__logo-list" data-partner-list aria-label="Partner universities">
             @foreach($renderLogos as $logo)
             <li class="archive-partners__logo-item">
-              @if(filled($logo['src']))
-              <img src="{{ $logo['src'] }}" alt="{{ $logo['name'] }}" width="220" height="88" loading="lazy" decoding="async">
-              @endif
-              <span>{{ $logo['name'] }}</span>
-            </li>
-            @endforeach
-          </ul>
-          <ul class="archive-partners__logo-list archive-partners__logo-list--clone" aria-hidden="true">
-            @foreach($renderLogos as $logo)
-            <li class="archive-partners__logo-item">
-              @if(filled($logo['src']))
               <img src="{{ $logo['src'] }}" alt="" width="220" height="88" loading="lazy" decoding="async">
-              @endif
               <span>{{ $logo['name'] }}</span>
             </li>
             @endforeach
@@ -105,6 +76,7 @@
         </div>
       </div>
     </div>
+    @endif
 
     @if($checklist->isNotEmpty())
     <ul class="archive-partners__checklist" aria-label="Partner guarantees">

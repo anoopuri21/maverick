@@ -4,7 +4,9 @@ namespace Tests\Feature;
 
 use App\Models\Event;
 use App\Models\FacultyInsight;
+use App\Models\MediaAsset;
 use App\Models\Testimonial;
+use App\Models\UniversityPartner;
 use App\Support\PublicContentCache;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -15,6 +17,13 @@ class HomePageTest extends TestCase
 
     public function test_homepage_renders_core_sections_and_single_seo_description(): void
     {
+        UniversityPartner::query()->create([
+            'name' => 'Homepage Dynamic Partner',
+            'logo_url' => 'https://cdn.example.com/homepage-partner.png',
+            'sort_order' => 1,
+            'is_active' => true,
+        ]);
+
         $response = $this->get('/');
 
         $response->assertOk();
@@ -37,6 +46,7 @@ class HomePageTest extends TestCase
             'why-maverick',
             'global-opportunities',
             'university-partners',
+            'mlp-partners',
             'video-testimonials',
             'final-cta',
         ] as $sectionId) {
@@ -61,6 +71,109 @@ class HomePageTest extends TestCase
         $response->assertDontSee('No featured programs yet.', false);
         $response->assertDontSee('No insights available yet.', false);
         $response->assertDontSee('No upcoming events.', false);
+    }
+
+    public function test_shared_partner_wall_renders_every_active_partner_from_admin_records_in_sort_order(): void
+    {
+        $logoAsset = MediaAsset::query()->create([
+            'hash' => str_repeat('d', 64),
+            'original_name' => 'admin-managed-partner-logo.png',
+            'mime_type' => 'image/png',
+            'cloudinary_public_id' => 'university-partners/admin-managed-logo',
+            'url' => 'https://cdn.example.com/admin-managed-partner-logo.png',
+            'folder' => 'university-partners',
+            'disk_env' => 'testing',
+        ]);
+
+        $partners = [
+            'Active Partner 04' => 40,
+            'Active Partner 01' => 10,
+            'Active Partner 07' => 70,
+            'Active Partner 03' => 30,
+            'Active Partner 06' => 60,
+            'Active Partner 02' => 20,
+            'Active Partner 05' => 50,
+        ];
+
+        foreach ($partners as $name => $sortOrder) {
+            UniversityPartner::query()->create([
+                'name' => $name,
+                'logo_url' => $name === 'Active Partner 01'
+                    ? 'https://cdn.example.com/stale-partner-logo.png'
+                    : 'https://cdn.example.com/'.strtolower(str_replace(' ', '-', $name)).'.png',
+                'logo_url_asset_id' => $name === 'Active Partner 01' ? $logoAsset->id : null,
+                'sort_order' => $sortOrder,
+                'is_active' => true,
+            ]);
+        }
+
+        UniversityPartner::query()->create([
+            'name' => 'Inactive Partner Must Stay Hidden',
+            'logo_url' => 'https://cdn.example.com/inactive-partner.png',
+            'sort_order' => 0,
+            'is_active' => false,
+        ]);
+
+        $response = $this->get('/');
+
+        $response->assertOk();
+        preg_match(
+            '~<section class="mlp-partners archive-partners" id="mlp-partners".*?</section>~s',
+            $response->getContent(),
+            $matches
+        );
+        $section = $matches[0] ?? '';
+
+        $this->assertNotSame('', $section);
+        $this->assertSame(7, substr_count($section, 'class="archive-partners__logo-item"'));
+        $this->assertStringNotContainsString('Inactive Partner Must Stay Hidden', $section);
+        $this->assertStringContainsString('src="https://cdn.example.com/admin-managed-partner-logo.png"', $section);
+        $this->assertStringNotContainsString('stale-partner-logo.png', $section);
+        $this->assertStringNotContainsString('rushford.ch/wp-content', $section);
+        $this->assertStringNotContainsString('www.gau.edu.tr/template', $section);
+        $this->assertStringNotContainsString('is-marquee', $section);
+        $this->assertStringNotContainsString('logo-list--clone', $section);
+
+        $lastPosition = -1;
+        foreach ([
+            'Active Partner 01',
+            'Active Partner 02',
+            'Active Partner 03',
+            'Active Partner 04',
+            'Active Partner 05',
+            'Active Partner 06',
+            'Active Partner 07',
+        ] as $name) {
+            $position = strpos($section, $name);
+            $this->assertNotFalse($position);
+            $this->assertGreaterThan($lastPosition, $position);
+            $lastPosition = $position;
+        }
+    }
+
+    public function test_single_university_partner_wall_stays_static_without_a_clone(): void
+    {
+        UniversityPartner::query()->create([
+            'name' => 'Only Active Partner',
+            'logo_url' => 'https://cdn.example.com/only-partner.png',
+            'sort_order' => 1,
+            'is_active' => true,
+        ]);
+
+        $response = $this->get('/');
+
+        $response->assertOk();
+        preg_match(
+            '~<section class="mlp-partners archive-partners" id="mlp-partners".*?</section>~s',
+            $response->getContent(),
+            $matches
+        );
+        $section = $matches[0] ?? '';
+
+        $this->assertNotSame('', $section);
+        $this->assertSame(1, substr_count($section, 'class="archive-partners__logo-item"'));
+        $this->assertStringNotContainsString('is-marquee', $section);
+        $this->assertStringNotContainsString('logo-list--clone', $section);
     }
 
     public function test_homepage_dynamic_sections_are_server_rendered_without_client_injection(): void

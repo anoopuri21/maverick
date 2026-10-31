@@ -8,6 +8,7 @@ use App\Models\Faq;
 use App\Models\GlobalAccessPointCountry;
 use App\Models\GupPartnerUniversity;
 use App\Models\Insight;
+use App\Models\MediaAsset;
 use App\Models\MediaGalleryPhoto;
 use App\Models\MediaGalleryVideo;
 use App\Models\OurStoryAward;
@@ -327,21 +328,37 @@ class AppServiceProvider extends ServiceProvider
                 $view->with('partners', $partners);
             }
 
-            if ($view->offsetExists('universityPartnerLogos')) {
-                return;
-            }
-
             try {
-                $universityPartnerLogos = UniversityPartner::query()
-                    ->select('id', 'name', 'logo_url', 'sort_order')
-                    ->where('is_active', true)
-                    ->whereNotNull('logo_url')
-                    ->where('logo_url', '!=', '')
-                    ->orderBy('sort_order')
-                    ->get();
+                $universityPartnerLogos = PublicContentCache::remember(
+                    PublicContentCache::MLP_UNIVERSITY_LOGOS,
+                    function () {
+                        $partners = UniversityPartner::query()
+                            ->listedInPartnerWall()
+                            ->select('id', 'name', 'logo_url', 'logo_url_asset_id', 'sort_order')
+                            ->orderBy('sort_order')
+                            ->orderBy('name')
+                            ->orderBy('id')
+                            ->get();
+
+                        $assetIds = $partners->pluck('logo_url_asset_id')->filter()->unique()->values();
+                        $logoUrls = $assetIds->isEmpty()
+                            ? collect()
+                            : MediaAsset::query()->whereIn('id', $assetIds)->pluck('url', 'id');
+
+                        return $partners
+                            ->map(fn (UniversityPartner $partner): array => [
+                                'id' => (int) $partner->id,
+                                'name' => trim((string) $partner->name),
+                                'src' => media_url($logoUrls->get($partner->logo_url_asset_id) ?: $partner->logo_url),
+                            ])
+                            ->filter(fn (array $partner): bool => filled($partner['name']) && filled($partner['src']))
+                            ->values()
+                            ->all();
+                    }
+                );
             } catch (\Throwable $e) {
                 report($e);
-                $universityPartnerLogos = collect();
+                $universityPartnerLogos = [];
             }
 
             $view->with('universityPartnerLogos', $universityPartnerLogos);
@@ -397,6 +414,7 @@ class AppServiceProvider extends ServiceProvider
             Testimonial::class,
             Faq::class,
             Insight::class,
+            MediaAsset::class,
             MediaGalleryPhoto::class,
             MediaGalleryVideo::class,
             OurStoryTimeline::class,

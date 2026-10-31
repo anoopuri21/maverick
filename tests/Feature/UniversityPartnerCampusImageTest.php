@@ -2,11 +2,15 @@
 
 namespace Tests\Feature;
 
+use App\Filament\Resources\UniversityPartnerResource\Pages\CreateUniversityPartner;
 use App\Models\MediaAsset;
 use App\Models\Program;
 use App\Models\ProgramCategory;
 use App\Models\UniversityPartner;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Validation\ValidationException;
+use Livewire\Livewire;
 use Tests\TestCase;
 
 class UniversityPartnerCampusImageTest extends TestCase
@@ -62,6 +66,56 @@ class UniversityPartnerCampusImageTest extends TestCase
         );
         $response->assertDontSee('src="https://cdn.example.com/university-logo.png"', false);
         $response->assertDontSee('stale-campus.jpg', false);
+    }
+
+    public function test_active_university_requires_a_name_and_logo_in_admin(): void
+    {
+        $user = User::factory()->create(['is_admin' => true]);
+
+        Livewire::actingAs($user)
+            ->test(CreateUniversityPartner::class)
+            ->fillForm([
+                'name' => '',
+                'logo_url' => null,
+                'logo_url_asset_id' => null,
+                'is_active' => true,
+            ])
+            ->call('create')
+            ->assertHasFormErrors([
+                'name' => 'required',
+                'logo_url_asset_id' => 'required',
+            ]);
+    }
+
+    public function test_last_active_partner_wall_entry_cannot_be_deactivated(): void
+    {
+        $partner = UniversityPartner::query()->create([
+            'name' => 'Only Active University',
+            'logo_url' => 'https://cdn.example.com/only-active-university.png',
+            'is_active' => true,
+        ]);
+
+        try {
+            $partner->update(['is_active' => false]);
+            $this->fail('The last active university partner should not be deactivated.');
+        } catch (ValidationException $exception) {
+            $this->assertArrayHasKey('is_active', $exception->errors());
+        }
+
+        $this->assertTrue($partner->fresh()->is_active);
+    }
+
+    public function test_last_active_partner_wall_entry_cannot_be_deleted(): void
+    {
+        $partner = UniversityPartner::query()->create([
+            'name' => 'Only Active University',
+            'logo_url' => 'https://cdn.example.com/only-active-university.png',
+            'is_active' => true,
+        ]);
+
+        $this->expectException(ValidationException::class);
+
+        $partner->delete();
     }
 
     public function test_program_detail_keeps_the_existing_logo_fallback_without_a_campus_image(): void

@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Concerns\EnsuresUniqueSlug;
 use App\Concerns\HasMediaAssets;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Validation\ValidationException;
 
 class UniversityPartner extends Model
 {
@@ -48,6 +50,88 @@ class UniversityPartner extends Model
             $partner->name = (string) ($partner->name ?? '');
             $partner->country = (string) ($partner->country ?? '');
         });
+
+        static::updating(function (self $partner): void {
+            if ($partner->wasPartnerWallEntry() && ! $partner->isPartnerWallEntry()) {
+                $partner->ensureAnotherPartnerWallEntryRemains('is_active');
+            }
+        });
+
+        static::deleting(function (self $partner): void {
+            if ($partner->isPartnerWallEntry()) {
+                $partner->ensureAnotherPartnerWallEntryRemains('record');
+            }
+        });
+    }
+
+    /**
+     * Scope to active universities that have the name and a resolvable logo
+     * required by the shared public partner wall.
+     */
+    public function scopeListedInPartnerWall(Builder $query): Builder
+    {
+        $table = $this->getTable();
+
+        return $query
+            ->where($table.'.is_active', true)
+            ->whereNotNull($table.'.name')
+            ->where($table.'.name', '<>', '')
+            ->where(function ($logos) use ($table): void {
+                $logos->where(function ($url) use ($table): void {
+                    $url->whereNotNull($table.'.logo_url')
+                        ->where($table.'.logo_url', '<>', '');
+                })->orWhereIn(
+                    $table.'.logo_url_asset_id',
+                    MediaAsset::query()
+                        ->select('id')
+                        ->whereNotNull('url')
+                        ->where('url', '<>', '')
+                );
+            });
+    }
+
+    private function wasPartnerWallEntry(): bool
+    {
+        return (bool) $this->getRawOriginal('is_active')
+            && filled($this->getRawOriginal('name'))
+            && (
+                filled($this->getRawOriginal('logo_url'))
+                || $this->hasResolvableLogoAsset($this->getRawOriginal('logo_url_asset_id'))
+            );
+    }
+
+    private function isPartnerWallEntry(): bool
+    {
+        return (bool) $this->is_active
+            && filled($this->name)
+            && (
+                filled($this->logo_url)
+                || $this->hasResolvableLogoAsset($this->logo_url_asset_id)
+            );
+    }
+
+    private function hasResolvableLogoAsset(mixed $assetId): bool
+    {
+        return filled($assetId)
+            && MediaAsset::query()
+                ->whereKey($assetId)
+                ->whereNotNull('url')
+                ->where('url', '<>', '')
+                ->exists();
+    }
+
+    private function ensureAnotherPartnerWallEntryRemains(string $attribute): void
+    {
+        $anotherListedPartnerExists = static::query()
+            ->listedInPartnerWall()
+            ->where($this->qualifyColumn($this->getKeyName()), '<>', $this->getKey())
+            ->exists();
+
+        if (! $anotherListedPartnerExists) {
+            throw ValidationException::withMessages([
+                $attribute => 'At least one active university partner with a name and logo must remain.',
+            ]);
+        }
     }
 
     /**
