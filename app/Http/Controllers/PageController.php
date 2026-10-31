@@ -12,7 +12,6 @@ use App\Settings\WhoWeAreSettings;
 use App\Settings\CeoSettings;
 use App\Settings\WhatIsMaverickSettings;
 use App\Models\PartnerLogo;
-use App\Models\UniversityPartner;
 use App\Models\FacultyInsight;
 use App\Models\Event;
 use App\Models\Testimonial;
@@ -413,14 +412,6 @@ class PageController extends Controller
             ->orderBy('sort_order')
             ->get();
 
-        $universityPartnerLogos = UniversityPartner::query()
-            ->select('id', 'name', 'logo_url', 'sort_order')
-            ->where('is_active', true)
-            ->whereNotNull('logo_url')
-            ->where('logo_url', '!=', '')
-            ->orderBy('sort_order')
-            ->get();
-
         $accreditationLogos = PartnerLogo::query()
             ->select('id', 'name', 'logo_url', 'sort_order')
             ->whereIn('type', ['accreditation', 'recognition'])
@@ -453,7 +444,6 @@ class PageController extends Controller
             'seo' => $seo,
             'site' => safe_settings(SiteSettings::class),
             'alumniLogos' => $alumniLogos,
-            'universityPartnerLogos' => $universityPartnerLogos,
             'accreditationLogos' => $accreditationLogos,
         ]);
     }

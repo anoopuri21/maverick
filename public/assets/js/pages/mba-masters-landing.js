@@ -1159,48 +1159,6 @@
     track.classList.add("is-landing-slider");
   }
 
-  function initPartnerWall(wall) {
-    if (!wall || wall.dataset.mlpPartnerWall === "1") return;
-    wall.dataset.mlpPartnerWall = "1";
-
-    var track = wall.querySelector("[data-partner-track]");
-    var toggle = wall.querySelector("[data-partner-toggle]");
-    if (!track) return;
-
-    track.classList.add("is-marquee");
-    var reduced = prefersReduced();
-    var paused = reduced;
-
-    function setPaused(value) {
-      paused = value;
-      wall.classList.toggle("is-paused", paused);
-      if (toggle) {
-        toggle.setAttribute("aria-pressed", paused ? "true" : "false");
-        toggle.textContent = paused ? "Play" : "Pause";
-      }
-    }
-
-    if (toggle && !reduced) {
-      toggle.addEventListener("click", function () {
-        setPaused(!paused);
-      });
-    }
-
-    if ("IntersectionObserver" in window) {
-      var wallIo = new IntersectionObserver(
-        function (entries) {
-          entries.forEach(function (entry) {
-            wall.classList.toggle("is-offscreen", !entry.isIntersecting);
-          });
-        },
-        { threshold: 0 }
-      );
-      wallIo.observe(wall);
-    }
-
-    setPaused(reduced);
-  }
-
   function initInlineYoutube(section) {
     var players = (section || document).querySelectorAll("[data-inline-youtube]");
     players.forEach(function (player) {
@@ -1319,7 +1277,6 @@
     MLP.observeSection("#mlp-faq", initFaq);
     MLP.observeSection("#mlp-final", initFinal);
     MLP.observeSection("#accreditations", initAccreditations);
-    MLP.observeSection("[data-partner-wall]", initPartnerWall);
     MLP.observeSection("#mlp-video-proof", initInlineYoutube);
     MLP.observeSection("[data-topic-desk]", initTopicDesk);
 

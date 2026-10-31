@@ -62,6 +62,7 @@
 
 @push('styles')
 <link rel="stylesheet" href="{{ cached_asset('assets/css/pages/mba-masters-landing.css') }}" />
+<link rel="stylesheet" href="{{ cached_asset('assets/css/mba-partners.css') }}" />
 <link rel="stylesheet" href="{{ cached_asset('assets/css/pages/mlp-chrome.css') }}" />
 @endpush
 

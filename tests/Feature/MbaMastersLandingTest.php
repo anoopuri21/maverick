@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Mail\GenericFormMail;
+use App\Models\UniversityPartner;
 use App\Settings\MbaMastersCareerSettings;
 use App\Settings\MbaMastersMbaSettings;
 use App\Settings\MbaMastersTestimonialsSettings;
@@ -16,10 +17,18 @@ class MbaMastersLandingTest extends TestCase
 
     public function test_landing_page_renders_hero_and_trust(): void
     {
+        UniversityPartner::query()->create([
+            'name' => 'MBA Landing Dynamic Partner',
+            'logo_url' => 'https://cdn.example.com/mba-landing-partner.png',
+            'sort_order' => 1,
+            'is_active' => true,
+        ]);
+
         $response = $this->get('/online-mba-masters-uae');
 
         $response->assertOk();
         $response->assertSee('assets/css/pages/mba-masters-landing.css', false);
+        $response->assertSee('assets/css/mba-partners.css', false);
         $this->assertSame(1, substr_count($response->getContent(), 'name="description"'));
         $response->assertSee('rel="canonical" href="'.route('mba-masters-landing', absolute: true).'"', false);
         $response->assertSee('property="og:url" content="'.route('mba-masters-landing', absolute: true).'"', false);
@@ -38,6 +47,7 @@ class MbaMastersLandingTest extends TestCase
         $response->assertSee('data-hero-assembly', false);
         $response->assertSee('prospectus-cover__enquiry', false);
         $response->assertSee('prospectus-enquiry-title', false);
+        $response->assertSee('assets/js/archive-partners.js', false);
         $response->assertSee('mba-masters-landing.js', false);
         $response->assertSee('signal-atlas', false);
         $response->assertSee('signal-atlas__record', false);
@@ -162,6 +172,7 @@ class MbaMastersLandingTest extends TestCase
         $response->assertSee('archive-partners', false);
         $response->assertSee('archive-partners__wall', false);
         $response->assertSee('archive-partners__checklist', false);
+        $response->assertSee('MBA Landing Dynamic Partner', false);
         $response->assertSee('id="mlp-video-proof"', false);
         $response->assertSee('archive-video-proof__player', false);
         $response->assertSee('data-inline-youtube', false);

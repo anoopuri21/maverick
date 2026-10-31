@@ -34,9 +34,9 @@ class UniversityPartnerResource extends Resource
                     ->schema([
                         \Filament\Forms\Components\Grid::make(2)->schema([
                             \Filament\Forms\Components\TextInput::make('name')
-                                ,
-                            \Filament\Forms\Components\TextInput::make('country')
-                                ,
+                                ->required()
+                                ->maxLength(255),
+                            \Filament\Forms\Components\TextInput::make('country'),
                             \Filament\Forms\Components\TextInput::make('country_code')
                                 ->maxLength(3)
                                 ->helperText('e.g. UAE, UK, USA'),
@@ -72,8 +72,13 @@ class UniversityPartnerResource extends Resource
                         \Filament\Forms\Components\TextInput::make('recognition')
                             ->helperText('e.g. AACSB Accredited, QAA Reviewed')
                             ->columnSpanFull(),
+                        Forms\Components\Hidden::make('logo_url'),
                         MediaPicker::forField('logo_url', 'university-partners')
                             ->label('Logo')
+                            ->required(fn (Forms\Get $get): bool => (bool) $get('is_active')
+                                && blank($get('logo_url'))
+                                && blank($get('logo_url_asset_id')))
+                            ->helperText('Required for every active university on the public partner wall.')
                             ->columnSpanFull(),
                         MediaPicker::forField('campus_image_url', 'university-partners/campuses')
                             ->label('Campus image')
@@ -138,7 +143,8 @@ class UniversityPartnerResource extends Resource
                                 ->numeric()->nullable()
                                 ->default(0),
                             \Filament\Forms\Components\Toggle::make('is_active')
-                                ->default(true),
+                                ->default(true)
+                                ->live(),
                         ]),
                     ]),
             ]);

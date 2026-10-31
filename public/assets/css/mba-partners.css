@@ -1,4 +1,4 @@
-/* Homepage-only styles for the shared university partner wall. */
+/* Shared university partner wall used by the homepage and both partner landing pages. */
 #mlp-partners {
   --mlp-navy: var(--color-mba-dark-blue, #071444);
   --mlp-line-dark: rgba(7, 20, 68, 0.12);
@@ -85,6 +85,10 @@
   gap: 1rem;
 }
 
+#mlp-partners .archive-partners__controls[hidden] {
+  display: none;
+}
+
 #mlp-partners .archive-partners__hint {
   font-size: 0.6rem;
   font-weight: 500;
@@ -109,22 +113,34 @@
   background: var(--mlp-navy);
 }
 
-#mlp-partners .archive-partners__toggle:focus-visible {
+#mlp-partners .archive-partners__toggle:focus-visible,
+#mlp-partners .archive-partners__viewport:focus-visible {
   outline: 2px solid var(--mlp-red);
   outline-offset: 3px;
 }
 
 #mlp-partners .archive-partners__viewport {
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  scrollbar-width: thin;
+}
+
+#mlp-partners .archive-partners__wall.is-animating .archive-partners__viewport {
   overflow: hidden;
 }
 
 #mlp-partners .archive-partners__track {
   display: flex;
   width: max-content;
+  min-width: 100%;
+  justify-content: center;
 }
 
 #mlp-partners .archive-partners__track.is-marquee {
-  animation: mbaPartnersMarquee 42s linear infinite;
+  min-width: 0;
+  justify-content: flex-start;
+  animation: mbaPartnersMarquee var(--partner-marquee-duration, 42s) linear infinite;
 }
 
 #mlp-partners .archive-partners__wall.is-paused .archive-partners__track.is-marquee,
@@ -136,6 +152,7 @@
   display: flex;
   flex: 0 0 auto;
   align-items: stretch;
+  width: max-content;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -229,6 +246,11 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  #mlp-partners .archive-partners__wall.is-animating .archive-partners__viewport {
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
   #mlp-partners .archive-partners__track.is-marquee {
     animation: none;
   }
