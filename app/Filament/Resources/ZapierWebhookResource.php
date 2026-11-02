@@ -34,7 +34,7 @@ class ZapierWebhookResource extends Resource
         return $form
             ->schema([
                 Forms\Components\Section::make('Webhook connection')
-                    ->description('Create the Zap in Zapier first (Webhooks by Zapier → Catch Hook), then paste the webhook URL here. No code changes are needed to connect a new Zap.')
+                    ->description('Create a Zap in Zapier first (Webhooks by Zapier → Catch Hook), then paste its URL here. Only the events listed below are supported; adding a new form type requires app support.')
                     ->schema([
                         Forms\Components\Select::make('event_key')
                             ->label('Event')
