@@ -4,10 +4,13 @@ namespace Tests\Feature;
 
 use App\Mail\GenericFormMail;
 use App\Models\UniversityPartner;
+use App\Models\ZapierWebhook;
 use App\Settings\MbaMastersCareerSettings;
 use App\Settings\MbaMastersMbaSettings;
 use App\Settings\MbaMastersTestimonialsSettings;
+use App\Support\ZapierEvents;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 use Tests\TestCase;
 
@@ -344,9 +347,67 @@ class MbaMastersLandingTest extends TestCase
         });
     }
 
+    public function test_mba_masters_landing_enquiry_event_is_available_for_zapier(): void
+    {
+        $this->assertSame(
+            'MBA/Master landing enquiry submitted',
+            ZapierEvents::options()[ZapierEvents::MBA_MASTERS_LANDING_ENQUIRY_SUBMITTED]
+        );
+    }
+
+    public function test_successful_enquiry_dispatches_flat_readable_payload_to_zapier(): void
+    {
+        Mail::fake();
+        Http::fake([
+            'hooks.zapier.com/*' => Http::response('ok', 200),
+        ]);
+
+        ZapierWebhook::query()->create([
+            'event_key' => ZapierEvents::MBA_MASTERS_LANDING_ENQUIRY_SUBMITTED,
+            'url' => 'https://hooks.zapier.com/hooks/catch/mba-landing',
+            'is_enabled' => true,
+        ]);
+
+        $response = $this->from('/online-mba-masters-uae')->post('/online-mba-masters-uae/enquire', [
+            'name' => 'Alex Student',
+            'email' => 'alex@example.com',
+            'phone' => '+971500000000',
+            'country' => 'UAE',
+            'program' => "Master's / MSc",
+            'specialization' => 'Finance',
+            'qualification' => 'bachelor',
+            'start_timeline' => '1-3-months',
+            'website' => '',
+        ]);
+
+        $response->assertRedirectToRoute('thank-you', ['return' => 'http://localhost/online-mba-masters-uae']);
+
+        Http::assertSent(function ($request) {
+            return $request->url() === 'https://hooks.zapier.com/hooks/catch/mba-landing'
+                && $request['name'] === 'Alex Student'
+                && $request['email'] === 'alex@example.com'
+                && $request['phone'] === '+971500000000'
+                && $request['country'] === 'UAE'
+                && $request['program'] === "Master's / MSc"
+                && $request['specialization'] === 'Finance'
+                && $request['qualification'] === "Bachelor's Degree"
+                && $request['start_timeline'] === '1–3 months'
+                && $request['_event'] === ZapierEvents::MBA_MASTERS_LANDING_ENQUIRY_SUBMITTED
+                && isset($request['_triggered_at'])
+                && ! isset($request['website']);
+        });
+    }
+
     public function test_enquiry_honeypot_skips_mail(): void
     {
         Mail::fake();
+        Http::fake();
+
+        ZapierWebhook::query()->create([
+            'event_key' => ZapierEvents::MBA_MASTERS_LANDING_ENQUIRY_SUBMITTED,
+            'url' => 'https://hooks.zapier.com/hooks/catch/mba-landing',
+            'is_enabled' => true,
+        ]);
 
         $response = $this->from('/online-mba-masters-uae')->post('/online-mba-masters-uae/enquire', [
             'name' => 'Bot',
@@ -357,11 +418,21 @@ class MbaMastersLandingTest extends TestCase
 
         $response->assertRedirectToRoute('thank-you', ['return' => 'http://localhost/online-mba-masters-uae']);
         Mail::assertNothingSent();
+        Http::assertNothingSent();
     }
 
-    public function test_enquiry_surfaces_error_when_mail_fails(): void
+    public function test_mail_failure_keeps_error_response_but_still_dispatches_lead_to_zapier(): void
     {
+        Http::fake([
+            'hooks.zapier.com/*' => Http::response('ok', 200),
+        ]);
         Mail::shouldReceive('mailer')->andThrow(new \RuntimeException('SMTP down'));
+
+        ZapierWebhook::query()->create([
+            'event_key' => ZapierEvents::MBA_MASTERS_LANDING_ENQUIRY_SUBMITTED,
+            'url' => 'https://hooks.zapier.com/hooks/catch/mba-landing',
+            'is_enabled' => true,
+        ]);
 
         $response = $this->from('/online-mba-masters-uae')->post('/online-mba-masters-uae/enquire', [
             'name' => 'Alex Student',
@@ -375,6 +446,12 @@ class MbaMastersLandingTest extends TestCase
         $response->assertRedirect('/online-mba-masters-uae');
         $response->assertSessionHas('error');
         $response->assertSessionMissing('success');
+
+        Http::assertSent(function ($request) {
+            return $request->url() === 'https://hooks.zapier.com/hooks/catch/mba-landing'
+                && $request['email'] === 'alex@example.com'
+                && $request['_event'] === ZapierEvents::MBA_MASTERS_LANDING_ENQUIRY_SUBMITTED;
+        });
     }
 
     public function test_masters_settings_class_resolves_with_trending_defaults(): void

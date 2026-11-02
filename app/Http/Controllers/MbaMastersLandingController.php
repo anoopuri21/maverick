@@ -4,11 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\MbaMastersLandingEnquiryRequest;
 use App\Services\FormMailer;
+use App\Services\ZapierWebhookDispatcher;
+use App\Support\ZapierEvents;
 
 class MbaMastersLandingController extends Controller
 {
-    public function enquire(MbaMastersLandingEnquiryRequest $request, FormMailer $formMailer)
-    {
+    public function enquire(
+        MbaMastersLandingEnquiryRequest $request,
+        FormMailer $formMailer,
+        ZapierWebhookDispatcher $zapierWebhookDispatcher
+    ) {
         $data = $request->validated();
 
         if (filled($data['website'] ?? null)) {
@@ -52,6 +57,19 @@ class MbaMastersLandingController extends Controller
             'How soon you want to start' => $timeline,
         ], 'MBA/Master\'s landing enquiry'.(filled($data['name'] ?? null) ? ': '.$data['name'] : ''), [
             'reply_to' => $data['email'] ?? null,
+        ]);
+
+        // Keep CRM lead capture independent from the notification-email result.
+        // The dispatcher handles delivery failures without changing the form response.
+        $zapierWebhookDispatcher->dispatch(ZapierEvents::MBA_MASTERS_LANDING_ENQUIRY_SUBMITTED, [
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'phone' => $data['phone'],
+            'country' => $data['country'] ?? '',
+            'program' => $data['program'] ?? '',
+            'specialization' => $data['specialization'] ?? '',
+            'qualification' => $qualification,
+            'start_timeline' => $timeline,
         ]);
 
         if (! $sent) {
