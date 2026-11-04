@@ -175,3 +175,11 @@
     </div>
   </div>
 </footer>
+
+<div class="mlp-academic-disclaimer" role="note">
+  <div class="container">
+    <p class="mlp-academic-disclaimer__text">
+      Programmes offered by Maverick Business Academy London may follow different academic and awarding pathways, including routes involving the University for the Creative Arts (UCA), UK. The awarding institution and the parties responsible for academic quality assurance, degree issuance and transcripts vary by programme and will be confirmed in writing before enrolment. Any UAE Ministry of Higher Education and Scientific Research (MOHESR) – Commission for Academic Accreditation (CAA) attestation or equivalency is subject to applicable requirements and the authorities’ decision; Maverick Business Academy London does not guarantee attestation or equivalency.
+    </p>
+  </div>
+</div>
