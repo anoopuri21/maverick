@@ -238,6 +238,6 @@ class ProgramController extends Controller
             'preferred_program' => $preferredProgram,
         ]));
 
-        return redirect()->route('thank-you', ['return' => url()->previous()]);
+        return redirect()->route('thank-you')->with('thank_you_previous_url', url()->previous());
     }
 }

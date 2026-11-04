@@ -29,7 +29,8 @@ class ProgramEnquiryTest extends TestCase
             'message' => '',
         ]);
 
-        $response->assertRedirectToRoute('thank-you', ['return' => 'http://localhost/programs/sample']);
+        $response->assertRedirectToRoute('thank-you');
+        $response->assertSessionHas('thank_you_previous_url', 'http://localhost/programs/sample');
 
         Mail::assertSent(GenericFormMail::class, function (GenericFormMail $mail) {
             $values = collect($mail->rows)->pluck('value', 'label');
@@ -73,7 +74,7 @@ class ProgramEnquiryTest extends TestCase
             'message' => 'Interested in intake dates.',
         ]);
 
-        $response->assertRedirectToRoute('thank-you', ['return' => 'http://localhost/programs/sample']);
+        $response->assertRedirectToRoute('thank-you');
 
         Http::assertSent(function ($request) {
             return $request->url() === 'https://hooks.zapier.com/hooks/catch/enquiry'

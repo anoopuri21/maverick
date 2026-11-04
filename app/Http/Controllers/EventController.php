@@ -186,15 +186,19 @@ class EventController extends Controller
         $returnUrl = url()->previous();
 
         if ($request->ajax() || $request->wantsJson()) {
+            $request->session()->flash('thank_you_previous_url', $returnUrl);
+
             return response()->json([
                 'success' => true,
                 'message' => 'Your registration has been submitted successfully.',
-                'redirect_url' => route('thank-you', ['return' => $returnUrl]),
+                'redirect_url' => route('thank-you'),
             ]);
         }
 
-        return redirect()->route('thank-you', ['return' => $returnUrl])
-            ->with('success', 'Your registration has been submitted successfully.');
+        return redirect()->route('thank-you')->with([
+            'success' => 'Your registration has been submitted successfully.',
+            'thank_you_previous_url' => $returnUrl,
+        ]);
     }
 
     private function findActiveEvent(string $identifier): Event

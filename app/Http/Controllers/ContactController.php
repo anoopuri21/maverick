@@ -42,7 +42,7 @@ class ContactController extends Controller
         // Visually-hidden field 'website' should remain empty.
         // If filled, silently drop and behave as if the submission succeeded.
         if (!empty($validated['website'])) {
-            return redirect()->route('thank-you', ['return' => url()->previous()]);
+            return redirect()->route('thank-you')->with('thank_you_previous_url', url()->previous());
         }
 
         $preferredProgram = '';
@@ -64,6 +64,6 @@ class ContactController extends Controller
             'preferred_program' => $preferredProgram,
         ]));
 
-        return redirect()->route('thank-you', ['return' => url()->previous()]);
+        return redirect()->route('thank-you')->with('thank_you_previous_url', url()->previous());
     }
 }

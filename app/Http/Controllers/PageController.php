@@ -575,32 +575,71 @@ class PageController extends Controller
     /**
      * Thank-you landing page shown after a successful form submission.
      *
-     * Accepts an optional ?return= URL for the "Back to previous page" CTA.
-     * The return URL is only honoured when it points back to this site —
-     * external hosts and loops back to /thank-you are rejected so the
-     * parameter can never be abused as an open redirect.
+     * The previous page is carried through a one-request session flash, not
+     * the query string. Legacy ?return= links are redirected to the clean URL.
      */
     public function thankYou(Request $request)
     {
-        $returnUrl = null;
-        $return = (string) $request->query('return', '');
-
-        if ($return !== '') {
-            $host = parse_url($return, PHP_URL_HOST);
-            $path = (string) (parse_url($return, PHP_URL_PATH) ?: '/');
-
-            $sameHost = $host === null || strcasecmp((string) $host, $request->getHost()) === 0;
-            $notThankYouLoop = ! str_starts_with($path, '/thank-you');
-
-            if ($sameHost && $notThankYouLoop) {
-                $returnUrl = $return;
-            }
+        if ($request->query->has('return')) {
+            return redirect()->route('thank-you');
         }
+
+        $previousUrl = $request->session()->get('thank_you_previous_url');
+        $returnUrl = $this->safeThankYouPreviousUrl(
+            is_string($previousUrl) ? $previousUrl : null,
+            $request
+        );
 
         return view('pages.thank-you', [
             'site' => safe_settings(SiteSettings::class),
             'returnUrl' => $returnUrl,
         ]);
+    }
+
+    private function safeThankYouPreviousUrl(?string $url, Request $request): ?string
+    {
+        if (! filled($url)) {
+            return null;
+        }
+
+        $url = trim($url);
+        $parts = parse_url($url);
+
+        if ($parts === false) {
+            return null;
+        }
+
+        $host = $parts['host'] ?? null;
+        $scheme = strtolower((string) ($parts['scheme'] ?? ''));
+
+        if ($host !== null) {
+            $urlPort = (int) ($parts['port'] ?? ($scheme === 'https' ? 443 : 80));
+
+            if (
+                ! in_array($scheme, ['http', 'https'], true)
+                || $scheme !== strtolower($request->getScheme())
+                || strcasecmp((string) $host, $request->getHost()) !== 0
+                || $urlPort !== $request->getPort()
+                || isset($parts['user'])
+                || isset($parts['pass'])
+            ) {
+                return null;
+            }
+        } elseif (
+            ! str_starts_with($url, '/')
+            || str_starts_with($url, '//')
+            || str_contains($url, '\\')
+        ) {
+            return null;
+        }
+
+        $path = (string) ($parts['path'] ?? '/');
+
+        if (strcasecmp(rtrim($path, '/'), '/thank-you') === 0) {
+            return null;
+        }
+
+        return $url;
     }
 
     public function csrCommunityImpact()
