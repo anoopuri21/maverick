@@ -2773,6 +2773,7 @@
 .archive-closing__image-layer--front { top: 13%; right: 3%; width: min(32vw, 29rem); height: min(38vw, 34rem); opacity: 0.7; mix-blend-mode: multiply; transform: rotate(-4deg); }
 .archive-closing__frame { display: grid; grid-template-columns: minmax(0, 1fr) minmax(320px, 0.78fr); gap: clamp(2rem, 7vw, 8rem); align-items: start; }
 .archive-closing__intro { max-width: 31rem; padding-top: 1rem; }
+#mlp-final .archive-closing__actions > .mlp-cta--ghost { display: none; }
 .archive-closing__heading { max-width: 10ch; }
 .archive-closing__intro-copy { max-width: 37ch; margin-top: 1.2rem; font-size: 0.96rem; line-height: 1.65; color: var(--mlp-muted-on-paper); }
 .archive-closing__form { position: relative; z-index: 2; padding: 1.25rem clamp(1rem, 2vw, 1.5rem) 1.5rem; background: rgba(255, 255, 255, 0.8); border-top: 3px solid var(--mlp-red); box-shadow: 0 22px 60px -42px rgba(7, 20, 68, 0.55); }

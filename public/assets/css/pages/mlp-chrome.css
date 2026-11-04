@@ -73,3 +73,29 @@
     padding-bottom: 4.75rem;
   }
 }
+
+/* Separate academic and UAE-recognition notice below the MLP footer. */
+.mlp-academic-disclaimer {
+  padding: 1rem 0;
+  background: var(--color-mba-dark-blue);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mlp-academic-disclaimer__text {
+  max-width: 100%;
+  margin: 0 auto;
+  color: rgba(255, 255, 255, 0.58);
+  font: 300 0.75rem/1.6 "Poppins", sans-serif;
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .mlp-academic-disclaimer {
+    padding: 0.85rem 0;
+  }
+
+  .mlp-academic-disclaimer__text {
+    font-size: 0.7rem;
+    text-align: left;
+  }
+}

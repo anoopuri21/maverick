@@ -32,6 +32,15 @@ class MbaMastersLandingTest extends TestCase
         $response->assertOk();
         $response->assertSee('assets/css/pages/mba-masters-landing.css', false);
         $response->assertSee('assets/css/mba-partners.css', false);
+        $response->assertSee('class="mlp-academic-disclaimer"', false);
+        $response->assertSee('University for the Creative Arts (UCA), UK', false);
+        $response->assertSee('MOHESR', false);
+        $content = $response->getContent();
+        $footerEndPosition = strrpos($content, '</footer>');
+        $disclaimerPosition = strpos($content, 'class="mlp-academic-disclaimer"');
+        $this->assertNotFalse($footerEndPosition);
+        $this->assertNotFalse($disclaimerPosition);
+        $this->assertGreaterThan($footerEndPosition, $disclaimerPosition);
         $this->assertSame(1, substr_count($response->getContent(), 'name="description"'));
         $response->assertSee('rel="canonical" href="'.route('mba-masters-landing', absolute: true).'"', false);
         $response->assertSee('property="og:url" content="'.route('mba-masters-landing', absolute: true).'"', false);
