@@ -584,15 +584,15 @@ class PageController extends Controller
             return redirect()->route('thank-you');
         }
 
-        $previousUrl = $request->session()->get('thank_you_previous_url');
-        $returnUrl = $this->safeThankYouPreviousUrl(
-            is_string($previousUrl) ? $previousUrl : null,
+        $flashedPreviousUrl = $request->session()->get('thank_you_previous_url');
+        $previousUrl = $this->safeThankYouPreviousUrl(
+            is_string($flashedPreviousUrl) ? $flashedPreviousUrl : null,
             $request
         );
 
         return view('pages.thank-you', [
             'site' => safe_settings(SiteSettings::class),
-            'returnUrl' => $returnUrl,
+            'previousUrl' => $previousUrl,
         ]);
     }
 

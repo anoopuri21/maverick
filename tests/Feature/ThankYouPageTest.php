@@ -71,6 +71,17 @@ HTML;
         $response->assertSee('href="'.route('home').'" class="thank-you__cta thank-you__cta--back"', false);
     }
 
+    public function test_thank_you_rejects_previous_url_with_different_origin_port(): void
+    {
+        $response = $this->withSession([
+            'thank_you_previous_url' => 'http://localhost:9999/phish',
+        ])->get('/thank-you');
+
+        $response->assertOk();
+        $response->assertDontSee('localhost:9999', false);
+        $response->assertSee('href="'.route('home').'" class="thank-you__cta thank-you__cta--back"', false);
+    }
+
     public function test_thank_you_rejects_previous_url_loop_to_itself(): void
     {
         $response = $this->withSession([

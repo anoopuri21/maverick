@@ -36,7 +36,7 @@
                 <a href="{{ route('home') }}" class="btn btn--primary thank-you__cta thank-you__cta--home">
                     <span>Back to Homepage</span>
                 </a>
-                <a href="{{ $returnUrl ?? route('home') }}" class="thank-you__cta thank-you__cta--back" data-thank-you-previous-link>
+                <a href="{{ $previousUrl ?? route('home') }}" class="thank-you__cta thank-you__cta--back" data-thank-you-previous-link>
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <path d="M19 12H5" />
                         <path d="M12 19l-7-7 7-7" />
@@ -56,7 +56,7 @@
     const storageKey = 'maverick:thank-you:previous-url';
     const previousLink = document.querySelector('[data-thank-you-previous-link]');
     const homeUrl = @json(route('home'));
-    const serverPreviousUrl = @json($returnUrl);
+    const serverPreviousUrl = @json($previousUrl);
 
     const safeSameOriginUrl = (value) => {
         if (!value) return null;
@@ -65,7 +65,12 @@
             const url = new URL(value, window.location.origin);
             const path = url.pathname.replace(/\/+$/, '') || '/';
 
-            if (url.origin !== window.location.origin || path.toLowerCase() === '/thank-you') {
+            if (
+                url.origin !== window.location.origin
+                || url.username
+                || url.password
+                || path.toLowerCase() === '/thank-you'
+            ) {
                 return null;
             }
 
