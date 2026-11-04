@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Event;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Mail;
 use Tests\TestCase;
 
 class EventsPageTest extends TestCase
@@ -156,7 +157,32 @@ class EventsPageTest extends TestCase
             'custom_1' => ['Generative AI', 'LLM Fine-Tuning'],
         ]);
 
-        $postRes->assertRedirectToRoute('thank-you', ['return' => $previousPage]);
+        $postRes->assertRedirectToRoute('thank-you');
+        $postRes->assertSessionHas('thank_you_previous_url', $previousPage);
+    }
+
+    public function test_event_ajax_registration_uses_clean_thank_you_url_and_flashes_previous_page(): void
+    {
+        Mail::fake();
+
+        $event = Event::create([
+            'title' => 'AJAX registration event',
+            'event_date' => now()->addDays(5)->toDateString(),
+            'is_active' => true,
+        ]);
+
+        $previousPage = route('events.register', $event->slug);
+        $response = $this->from($previousPage)->postJson(route('events.register.submit', $event->slug), [
+            'name' => 'Test Registrant',
+            'email' => 'registrant@example.com',
+            'phone' => '+971500000000',
+            'guest_count' => 'Single',
+            'attending_masterclass' => 'Yes',
+        ]);
+
+        $response->assertOk();
+        $response->assertJsonPath('redirect_url', route('thank-you'));
+        $response->assertSessionHas('thank_you_previous_url', $previousPage);
     }
 
     public function test_event_with_string_gallery_images_can_be_hydrated_and_rendered_without_error()

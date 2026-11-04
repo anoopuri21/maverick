@@ -36,7 +36,7 @@
                 <a href="{{ route('home') }}" class="btn btn--primary thank-you__cta thank-you__cta--home">
                     <span>Back to Homepage</span>
                 </a>
-                <a href="{{ $returnUrl ?? route('home') }}" class="thank-you__cta thank-you__cta--back">
+                <a href="{{ $previousUrl ?? route('home') }}" class="thank-you__cta thank-you__cta--back" data-thank-you-previous-link>
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <path d="M19 12H5" />
                         <path d="M12 19l-7-7 7-7" />
@@ -49,3 +49,84 @@
     </div>
 </section>
 @endsection
+
+@push('scripts')
+<script>
+(() => {
+    const storageKey = 'maverick:thank-you:previous-url';
+    const previousLink = document.querySelector('[data-thank-you-previous-link]');
+    const homeUrl = @json(route('home'));
+    const serverPreviousUrl = @json($previousUrl);
+
+    const safeSameOriginUrl = (value) => {
+        if (!value) return null;
+
+        try {
+            const url = new URL(value, window.location.origin);
+            const path = url.pathname.replace(/\/+$/, '') || '/';
+
+            if (
+                url.origin !== window.location.origin
+                || url.username
+                || url.password
+                || path.toLowerCase() === '/thank-you'
+            ) {
+                return null;
+            }
+
+            return url.href;
+        } catch {
+            return null;
+        }
+    };
+
+    const previousUrl = safeSameOriginUrl(serverPreviousUrl) || safeSameOriginUrl(document.referrer);
+    const fallbackUrl = safeSameOriginUrl(homeUrl) || `${window.location.origin}/`;
+    const clearPreviousUrl = () => {
+        try {
+            window.localStorage.removeItem(storageKey);
+        } catch {
+            // Storage may be unavailable in restricted browser contexts.
+        }
+    };
+
+    try {
+        window.localStorage.removeItem(storageKey);
+
+        if (previousUrl) {
+            window.localStorage.setItem(storageKey, previousUrl);
+        }
+
+        const storedUrl = safeSameOriginUrl(window.localStorage.getItem(storageKey));
+
+        if (previousLink) {
+            previousLink.href = storedUrl || fallbackUrl;
+        }
+    } catch {
+        if (previousLink) {
+            previousLink.href = previousUrl || fallbackUrl;
+        }
+    }
+
+    window.addEventListener('pagehide', clearPreviousUrl);
+    window.addEventListener('pageshow', (event) => {
+        if (event.persisted && previousUrl) {
+            try {
+                window.localStorage.setItem(storageKey, previousUrl);
+            } catch {
+                // Storage may be unavailable in restricted browser contexts.
+            }
+        }
+    });
+})();
+</script>
+
+<!-- Event snippet for Sign-up conversion page -->
+<script>
+  gtag('event', 'conversion', {
+      'send_to': 'AW-17992316259/CpjZCM6y-bEdEOPqs4ND',
+      'value': 1.0,
+      'currency': 'AED'
+  });
+</script>
+@endpush

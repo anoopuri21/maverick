@@ -67,7 +67,8 @@ class ContactFeatureTest extends TestCase
         ]);
 
         $response->assertStatus(302);
-        $response->assertRedirectToRoute('thank-you', ['return' => 'http://localhost/contact']);
+        $response->assertRedirectToRoute('thank-you');
+        $response->assertSessionHas('thank_you_previous_url', 'http://localhost/contact');
 
         Mail::assertSent(GenericFormMail::class, function ($mail) {
             $values = collect($mail->rows)->pluck('value', 'label');
@@ -96,7 +97,7 @@ class ContactFeatureTest extends TestCase
 
         $response->assertStatus(302);
         // Bot should still get the standard success flow (thank-you redirect)
-        $response->assertRedirectToRoute('thank-you', ['return' => 'http://localhost/contact']);
+        $response->assertRedirectToRoute('thank-you');
 
         // But no mail should be sent
         Mail::assertNotSent(GenericFormMail::class);
@@ -126,7 +127,7 @@ class ContactFeatureTest extends TestCase
         ]);
 
         $response->assertStatus(302);
-        $response->assertRedirectToRoute('thank-you', ['return' => 'http://localhost/contact']);
+        $response->assertRedirectToRoute('thank-you');
 
         \Illuminate\Support\Facades\Http::assertSent(function ($request) {
             return $request->url() === 'https://hooks.zapier.com/hooks/catch/test' &&
@@ -162,6 +163,6 @@ class ContactFeatureTest extends TestCase
 
         // Flow should still be fully successful for user
         $response->assertStatus(302);
-        $response->assertRedirectToRoute('thank-you', ['return' => 'http://localhost/contact']);
+        $response->assertRedirectToRoute('thank-you');
     }
 }

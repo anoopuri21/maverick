@@ -333,7 +333,8 @@ class MbaMastersLandingTest extends TestCase
             'website' => '',
         ]);
 
-        $response->assertRedirectToRoute('thank-you', ['return' => 'http://localhost/online-mba-masters-uae']);
+        $response->assertRedirectToRoute('thank-you');
+        $response->assertSessionHas('thank_you_previous_url', 'http://localhost/online-mba-masters-uae');
 
         Mail::assertSent(GenericFormMail::class, function (GenericFormMail $mail) {
             $values = collect($mail->rows)->pluck('value', 'label');
@@ -380,7 +381,7 @@ class MbaMastersLandingTest extends TestCase
             'website' => '',
         ]);
 
-        $response->assertRedirectToRoute('thank-you', ['return' => 'http://localhost/online-mba-masters-uae']);
+        $response->assertRedirectToRoute('thank-you');
 
         Http::assertSent(function ($request) {
             return $request->url() === 'https://hooks.zapier.com/hooks/catch/mba-landing'
@@ -416,7 +417,7 @@ class MbaMastersLandingTest extends TestCase
             'website' => 'http://spam.test',
         ]);
 
-        $response->assertRedirectToRoute('thank-you', ['return' => 'http://localhost/online-mba-masters-uae']);
+        $response->assertRedirectToRoute('thank-you');
         Mail::assertNothingSent();
         Http::assertNothingSent();
     }

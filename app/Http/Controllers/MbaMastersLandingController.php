@@ -18,7 +18,7 @@ class MbaMastersLandingController extends Controller
 
         if (filled($data['website'] ?? null)) {
             // Honeypot hit: silently drop, but behave as if the submission succeeded.
-            return redirect()->route('thank-you', ['return' => url()->previous()]);
+            return redirect()->route('thank-you')->with('thank_you_previous_url', url()->previous());
         }
 
         $qualifications = [
@@ -78,6 +78,6 @@ class MbaMastersLandingController extends Controller
                 ->with('error', 'We could not send your enquiry right now. Please try again or contact us directly.');
         }
 
-        return redirect()->route('thank-you', ['return' => url()->previous()]);
+        return redirect()->route('thank-you')->with('thank_you_previous_url', url()->previous());
     }
 }
