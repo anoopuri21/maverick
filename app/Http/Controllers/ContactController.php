@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ContactFormRequest;
 use App\Models\Program;
 use App\Services\FormMailer;
+use App\Services\GoogleRecaptchaVerifier;
 use App\Services\ZapierWebhookDispatcher;
 use App\Settings\ContactPageSettings;
 use App\Settings\ContactSeoSettings;
 use App\Settings\SiteSettings;
 use App\Support\ZapierEvents;
+use Illuminate\Validation\ValidationException;
 
 class ContactController extends Controller
 {
@@ -34,7 +36,7 @@ class ContactController extends Controller
     /**
      * Handle contact form submission.
      */
-    public function submit(ContactFormRequest $request)
+    public function submit(ContactFormRequest $request, GoogleRecaptchaVerifier $recaptchaVerifier)
     {
         $validated = $request->validated();
 
@@ -43,6 +45,12 @@ class ContactController extends Controller
         // If filled, silently drop and behave as if the submission succeeded.
         if (!empty($validated['website'])) {
             return redirect()->route('thank-you')->with('thank_you_previous_url', url()->previous());
+        }
+
+        if (! $recaptchaVerifier->verify($request->input('g-recaptcha-response'))) {
+            throw ValidationException::withMessages([
+                'recaptcha' => 'Please complete the reCAPTCHA verification and try again.',
+            ]);
         }
 
         $preferredProgram = '';

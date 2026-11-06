@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use App\Services\FormMailer;
+use App\Services\GoogleRecaptchaVerifier;
 use App\Settings\EventsPageSettings;
 use App\Settings\EventsSeoSettings;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Validation\ValidationException;
 
 class EventController extends Controller
 {
@@ -111,8 +113,12 @@ class EventController extends Controller
     /**
      * Submit event registration form and send notification email via FormMailer (Zoho integration).
      */
-    public function submitRegister(Request $request, string $slug, FormMailer $formMailer)
-    {
+    public function submitRegister(
+        Request $request,
+        string $slug,
+        FormMailer $formMailer,
+        GoogleRecaptchaVerifier $recaptchaVerifier
+    ) {
         $event = $this->findActiveEvent($slug);
 
         $rules = [
@@ -154,6 +160,12 @@ class EventController extends Controller
         }
 
         $validated = $request->validate($rules);
+
+        if (! $recaptchaVerifier->verify($request->input('g-recaptcha-response'))) {
+            throw ValidationException::withMessages([
+                'recaptcha' => 'Please complete the reCAPTCHA verification and try again.',
+            ]);
+        }
 
         $formData = [
             'event_title' => $event->title,

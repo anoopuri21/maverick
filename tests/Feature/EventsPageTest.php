@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Event;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 use Tests\TestCase;
 
@@ -139,13 +140,17 @@ class EventsPageTest extends TestCase
             'is_active' => true,
         ]);
 
+        config(['services.recaptcha.site_key' => 'test-site-key']);
         $getRes = $this->get(route('events.register', $event->slug));
         $getRes->assertStatus(200);
+        $getRes->assertSee('class="g-recaptcha" data-sitekey="test-site-key"', false);
         $getRes->assertSee('Registration Form – Generative AI 2.0 Masterclass');
         $getRes->assertSee('Company Name');
         $getRes->assertSee('Topics of Interest');
         $getRes->assertSee('Prompt Engineering');
 
+        Mail::fake();
+        $this->fakeRecaptcha();
         $previousPage = route('events.register', $event->slug);
         $postRes = $this->from($previousPage)->post(route('events.register.submit', $event->slug), [
             'name' => 'Anoop Puri',
@@ -155,6 +160,7 @@ class EventsPageTest extends TestCase
             'attending_masterclass' => "Yes, I'll be there",
             'custom_0' => 'Alutions FZE',
             'custom_1' => ['Generative AI', 'LLM Fine-Tuning'],
+            'g-recaptcha-response' => 'test-token',
         ]);
 
         $postRes->assertRedirectToRoute('thank-you');
@@ -164,6 +170,7 @@ class EventsPageTest extends TestCase
     public function test_event_ajax_registration_uses_clean_thank_you_url_and_flashes_previous_page(): void
     {
         Mail::fake();
+        $this->fakeRecaptcha();
 
         $event = Event::create([
             'title' => 'AJAX registration event',
@@ -178,6 +185,7 @@ class EventsPageTest extends TestCase
             'phone' => '+971500000000',
             'guest_count' => 'Single',
             'attending_masterclass' => 'Yes',
+            'g-recaptcha-response' => 'test-token',
         ]);
 
         $response->assertOk();
@@ -235,4 +243,45 @@ class EventsPageTest extends TestCase
         // Case 5: Standard associative array
         $this->assertEquals([['url' => 'https://example.com/d.jpg']], \App\Filament\Resources\EventResource::normalizeRepeaterState([['url' => 'https://example.com/d.jpg']], $transform));
     }
+
+    public function test_invalid_recaptcha_blocks_event_registration_mail(): void
+    {
+        Mail::fake();
+        $event = Event::create([
+            'title' => 'CAPTCHA verification event',
+            'event_date' => now()->addDays(5)->toDateString(),
+            'is_active' => true,
+        ]);
+        $this->fakeRecaptcha(false);
+
+        $response = $this->from(route('events.register', $event->slug))
+            ->post(route('events.register.submit', $event->slug), [
+                'name' => 'Invalid CAPTCHA',
+                'email' => 'invalid@example.com',
+                'phone' => '+971500000000',
+                'guest_count' => 'Single',
+                'attending_masterclass' => 'Yes',
+                'g-recaptcha-response' => 'invalid-token',
+            ]);
+
+        $response->assertSessionHasErrors('recaptcha');
+        Mail::assertNothingSent();
+    }
+
+    private function fakeRecaptcha(bool $success = true, array $additionalResponses = []): void
+    {
+        config([
+            'services.recaptcha.site_key' => 'test-site-key',
+            'services.recaptcha.secret_key' => 'test-secret-key',
+            'services.recaptcha.allowed_hostnames' => ['localhost'],
+        ]);
+
+        Http::fake(array_merge([
+            'https://www.google.com/recaptcha/api/siteverify' => Http::response([
+                'success' => $success,
+                'hostname' => 'localhost',
+            ], 200),
+        ], $additionalResponses));
+    }
+
 }
