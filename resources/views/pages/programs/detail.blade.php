@@ -566,6 +566,19 @@
                     <select id="pd-qualification" name="qualification"><option value="">Select qualification</option><option value="high-school">High School / Secondary</option><option value="diploma">Diploma</option><option value="bachelor">Bachelor's Degree</option><option value="master">Master's Degree</option><option value="other">Other</option></select>
                 </div>
                 <div class="fld"><label for="pd-message">Message</label><textarea id="pd-message" name="message" rows="3"></textarea></div>
+                @if (filled(config('services.recaptcha.site_key')))
+                    <div class="fld">
+                        <div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.site_key') }}" aria-label="reCAPTCHA verification"></div>
+                        @error('recaptcha')
+                            <span class="form-error-msg" role="alert">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    @once
+                        @push('scripts')
+                            <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+                        @endpush
+                    @endonce
+                @endif
                 <button type="submit" class="enq-submit">Submit Enquiry</button>
             </form>
         </div>

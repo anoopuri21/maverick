@@ -251,6 +251,20 @@
                         @enderror
                     </div>
 
+                    @if (filled(config('services.recaptcha.site_key')))
+                        <div class="form-group" style="margin-top: 12px;">
+                            <div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.site_key') }}" aria-label="reCAPTCHA verification"></div>
+                            @error('recaptcha')
+                                <span class="form-error-msg" role="alert">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        @once
+                            @push('scripts')
+                                <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+                            @endpush
+                        @endonce
+                    @endif
+
                     {{-- Submit Button --}}
                     <div class="form-group" style="margin-top: 12px;">
                         <button type="submit" class="btn btn-submit-form" id="submit-btn">

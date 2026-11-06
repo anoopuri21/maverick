@@ -6,6 +6,7 @@ use App\Http\Requests\ProgramEnquiryRequest;
 use App\Models\Program;
 use App\Models\ProgramCategory;
 use App\Services\FormMailer;
+use App\Services\GoogleRecaptchaVerifier;
 use App\Services\ZapierWebhookDispatcher;
 use App\Support\ZapierEvents;
 use App\Settings\ProgramsListingSeoSettings;
@@ -14,6 +15,7 @@ use App\Settings\ProgramsDetailChromeSettings;
 use App\Support\PublicContentCache;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Validation\ValidationException;
 
 class ProgramController extends Controller
 {
@@ -198,9 +200,18 @@ class ProgramController extends Controller
         ]);
     }
 
-    public function enquire(ProgramEnquiryRequest $request, FormMailer $formMailer)
-    {
+    public function enquire(
+        ProgramEnquiryRequest $request,
+        FormMailer $formMailer,
+        GoogleRecaptchaVerifier $recaptchaVerifier
+    ) {
         $data = $request->validated();
+
+        if (! $recaptchaVerifier->verify($request->input('g-recaptcha-response'))) {
+            throw ValidationException::withMessages([
+                'recaptcha' => 'Please complete the reCAPTCHA verification and try again.',
+            ]);
+        }
 
         $qualifications = [
             'high-school' => 'High School / Secondary',

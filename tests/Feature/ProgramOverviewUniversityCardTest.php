@@ -24,10 +24,12 @@ class ProgramOverviewUniversityCardTest extends TestCase
         $this->createProgram('label-only-highlights', $partner, [
             ['label' => 'Professional accreditation'],
         ]);
+        config(['services.recaptcha.site_key' => 'test-site-key']);
 
         $response = $this->get(route('programs.show', 'label-only-highlights'));
 
         $response->assertOk();
+        $response->assertSee('class="g-recaptcha" data-sitekey="test-site-key"', false);
         $response->assertSee('Quick Highlights');
         $response->assertSee('Professional accreditation');
         $response->assertSee('data-testid="program-overview-university-card"', false);

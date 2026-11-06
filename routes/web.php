@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\SitemapController;
 
 // Homepage
 Route::get('/', [PageController::class, 'home'])->name('home');
@@ -23,6 +24,7 @@ Route::get('/masters-pathways', [PageController::class, 'mastersPathway'])->name
 Route::get('/educational-tours-edutainment', [PageController::class, 'edutainment'])->name('edutainment');
 Route::get('/dual-mba-online', [PageController::class, 'dualMba'])->name('dual-mba');
 Route::get('/online-mba-masters-uae', [PageController::class, 'mbaMastersLanding'])->name('mba-masters-landing');
+Route::redirect('/masters', '/online-mba-masters-uae', 301);
 Route::post('/online-mba-masters-uae/enquire', [\App\Http\Controllers\MbaMastersLandingController::class, 'enquire'])
     ->middleware('throttle:5,1')
     ->name('mba-masters-landing.enquire');
@@ -68,6 +70,8 @@ Route::get('/student-success', [\App\Http\Controllers\PageController::class, 'st
 
 Route::redirect('/faculty-voice', '/#faculty-insights', 301);
 Route::redirect('/faculty-voice/{slug}', '/#faculty-insights', 301);
+
+Route::get('/sitemap.xml', SitemapController::class)->name('sitemap');
 
 // Unified Detail (root-level permalink)
 Route::get('/{slug}', [\App\Http\Controllers\InsightController::class, 'show'])->name('insights.show');

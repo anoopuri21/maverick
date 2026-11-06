@@ -390,6 +390,20 @@
                 @endforeach
             @endif
 
+            @if (filled(config('services.recaptcha.site_key')))
+                <div class="er-card">
+                    <div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.site_key') }}" aria-label="reCAPTCHA verification"></div>
+                    @error('recaptcha')
+                        <div class="er-error-text" role="alert">{{ $message }}</div>
+                    @enderror
+                </div>
+                @once
+                    @push('scripts')
+                        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+                    @endpush
+                @endonce
+            @endif
+
             {{-- Actions --}}
             <div class="er-actions-row">
                 <button type="submit" class="er-submit-btn">Submit</button>

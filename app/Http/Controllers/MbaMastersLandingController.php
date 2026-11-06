@@ -4,21 +4,30 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\MbaMastersLandingEnquiryRequest;
 use App\Services\FormMailer;
+use App\Services\GoogleRecaptchaVerifier;
 use App\Services\ZapierWebhookDispatcher;
 use App\Support\ZapierEvents;
+use Illuminate\Validation\ValidationException;
 
 class MbaMastersLandingController extends Controller
 {
     public function enquire(
         MbaMastersLandingEnquiryRequest $request,
         FormMailer $formMailer,
-        ZapierWebhookDispatcher $zapierWebhookDispatcher
+        ZapierWebhookDispatcher $zapierWebhookDispatcher,
+        GoogleRecaptchaVerifier $recaptchaVerifier
     ) {
         $data = $request->validated();
 
         if (filled($data['website'] ?? null)) {
             // Honeypot hit: silently drop, but behave as if the submission succeeded.
             return redirect()->route('thank-you')->with('thank_you_previous_url', url()->previous());
+        }
+
+        if (! $recaptchaVerifier->verify($request->input('g-recaptcha-response'))) {
+            throw ValidationException::withMessages([
+                'recaptcha' => 'Please complete the reCAPTCHA verification and try again.',
+            ]);
         }
 
         $qualifications = [

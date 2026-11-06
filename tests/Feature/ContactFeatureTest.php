@@ -7,6 +7,7 @@ use App\Models\ZapierWebhook;
 use App\Settings\SiteSettings;
 use App\Support\ZapierEvents;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 use Tests\TestCase;
 
@@ -25,10 +26,13 @@ class ContactFeatureTest extends TestCase
      */
     public function test_contact_page_renders(): void
     {
+        config(['services.recaptcha.site_key' => 'test-site-key']);
+
         $response = $this->get('/contact');
 
         $response->assertStatus(200);
         $response->assertSee("Let's Start a Conversation");
+        $response->assertSee('class="g-recaptcha" data-sitekey="test-site-key"', false);
         $response->assertSee("Sharjah");
         $response->assertSee("UAE Campus");
         $response->assertSee("UK Campus");
@@ -56,6 +60,7 @@ class ContactFeatureTest extends TestCase
     public function test_contact_form_submission(): void
     {
         Mail::fake();
+        $this->fakeRecaptcha();
 
         $response = $this->from('/contact')->post('/contact', [
             'name' => 'John Doe',
@@ -64,6 +69,7 @@ class ContactFeatureTest extends TestCase
             'subject' => 'Admissions',
             'message' => 'Hello, I would like to inquire about Executive MBA programs.',
             'website' => '', // Empty honeypot
+            'g-recaptcha-response' => 'test-token',
         ]);
 
         $response->assertStatus(302);
@@ -109,7 +115,9 @@ class ContactFeatureTest extends TestCase
     public function test_contact_form_zapier_success(): void
     {
         Mail::fake();
-        \Illuminate\Support\Facades\Http::fake();
+        $this->fakeRecaptcha(true, [
+            'hooks.zapier.com/*' => Http::response('ok', 200),
+        ]);
 
         ZapierWebhook::create([
             'event_key' => ZapierEvents::CONTACT_SUBMITTED,
@@ -124,6 +132,7 @@ class ContactFeatureTest extends TestCase
             'subject' => 'General Inquiry',
             'message' => 'Hello Zapier!',
             'website' => '',
+            'g-recaptcha-response' => 'test-token',
         ]);
 
         $response->assertStatus(302);
@@ -142,8 +151,8 @@ class ContactFeatureTest extends TestCase
     public function test_contact_form_zapier_failure_does_not_block(): void
     {
         Mail::fake();
-        \Illuminate\Support\Facades\Http::fake([
-            '*' => \Illuminate\Support\Facades\Http::response('Error', 500),
+        $this->fakeRecaptcha(true, [
+            'hooks.zapier.com/*' => Http::response('Error', 500),
         ]);
 
         ZapierWebhook::create([
@@ -159,10 +168,54 @@ class ContactFeatureTest extends TestCase
             'subject' => 'General Inquiry',
             'message' => 'Hello Failure!',
             'website' => '',
+            'g-recaptcha-response' => 'test-token',
         ]);
 
         // Flow should still be fully successful for user
         $response->assertStatus(302);
         $response->assertRedirectToRoute('thank-you');
+    }
+
+    public function test_invalid_recaptcha_blocks_contact_mail_and_zapier_dispatch(): void
+    {
+        Mail::fake();
+        ZapierWebhook::create([
+            'event_key' => ZapierEvents::CONTACT_SUBMITTED,
+            'url' => 'https://hooks.zapier.com/hooks/catch/test',
+            'is_enabled' => true,
+        ]);
+        $this->fakeRecaptcha(false, [
+            'hooks.zapier.com/*' => Http::response('ok', 200),
+        ]);
+
+        $response = $this->from('/contact')->post('/contact', [
+            'name' => 'Invalid CAPTCHA',
+            'email' => 'invalid@example.com',
+            'phone' => '+1234567890',
+            'subject' => 'General Inquiry',
+            'message' => 'This should not be sent.',
+            'website' => '',
+            'g-recaptcha-response' => 'invalid-token',
+        ]);
+
+        $response->assertSessionHasErrors('recaptcha');
+        Mail::assertNothingSent();
+        Http::assertNotSent(fn ($request) => $request->url() === 'https://hooks.zapier.com/hooks/catch/test');
+    }
+
+    private function fakeRecaptcha(bool $success = true, array $additionalResponses = []): void
+    {
+        config([
+            'services.recaptcha.site_key' => 'test-site-key',
+            'services.recaptcha.secret_key' => 'test-secret-key',
+            'services.recaptcha.allowed_hostnames' => ['localhost'],
+        ]);
+
+        Http::fake(array_merge([
+            'https://www.google.com/recaptcha/api/siteverify' => Http::response([
+                'success' => $success,
+                'hostname' => 'localhost',
+            ], 200),
+        ], $additionalResponses));
     }
 }

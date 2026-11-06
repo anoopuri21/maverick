@@ -17,6 +17,7 @@ class ProgramEnquiryTest extends TestCase
     public function test_enquiry_allows_empty_optional_message(): void
     {
         Mail::fake();
+        $this->fakeRecaptcha();
 
         $response = $this->from('/programs/sample')->post('/programs/enquire', [
             'programme' => 'Executive MBA',
@@ -27,6 +28,7 @@ class ProgramEnquiryTest extends TestCase
             'study_mode' => 'Online',
             'qualification' => 'bachelor',
             'message' => '',
+            'g-recaptcha-response' => 'test-token',
         ]);
 
         $response->assertRedirectToRoute('thank-you');
@@ -53,7 +55,7 @@ class ProgramEnquiryTest extends TestCase
     public function test_enquiry_dispatches_zapier_webhook_when_configured(): void
     {
         Mail::fake();
-        Http::fake([
+        $this->fakeRecaptcha(true, [
             'hooks.zapier.com/*' => Http::response('ok', 200),
         ]);
 
@@ -72,6 +74,7 @@ class ProgramEnquiryTest extends TestCase
             'study_mode' => 'Online',
             'qualification' => 'bachelor',
             'message' => 'Interested in intake dates.',
+            'g-recaptcha-response' => 'test-token',
         ]);
 
         $response->assertRedirectToRoute('thank-you');
@@ -82,5 +85,39 @@ class ProgramEnquiryTest extends TestCase
                 && $request['programme'] === 'Executive MBA'
                 && $request['_event'] === ZapierEvents::PROGRAM_ENQUIRY_SUBMITTED;
         });
+    }
+
+    public function test_invalid_recaptcha_blocks_program_enquiry_mail(): void
+    {
+        Mail::fake();
+        $this->fakeRecaptcha(false);
+
+        $response = $this->from('/programs/sample')->post('/programs/enquire', [
+            'programme' => 'Executive MBA',
+            'name' => 'Jane Doe',
+            'email' => 'jane@example.com',
+            'phone' => '+971 50 000 0000',
+            'g-recaptcha-response' => 'invalid-token',
+        ]);
+
+        $response->assertSessionHasErrors('recaptcha');
+        Mail::assertNothingSent();
+        Http::assertSent(fn ($request) => $request->url() === 'https://www.google.com/recaptcha/api/siteverify');
+    }
+
+    private function fakeRecaptcha(bool $success = true, array $additionalResponses = []): void
+    {
+        config([
+            'services.recaptcha.site_key' => 'test-site-key',
+            'services.recaptcha.secret_key' => 'test-secret-key',
+            'services.recaptcha.allowed_hostnames' => ['localhost'],
+        ]);
+
+        Http::fake(array_merge([
+            'https://www.google.com/recaptcha/api/siteverify' => Http::response([
+                'success' => $success,
+                'hostname' => 'localhost',
+            ], 200),
+        ], $additionalResponses));
     }
 }

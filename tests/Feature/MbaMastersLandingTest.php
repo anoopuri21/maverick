@@ -18,6 +18,14 @@ class MbaMastersLandingTest extends TestCase
 {
     use RefreshDatabase;
 
+    public function test_legacy_masters_url_redirects_permanently_to_the_current_landing_page(): void
+    {
+        $response = $this->get('/masters');
+
+        $response->assertStatus(301);
+        $response->assertRedirect(route('mba-masters-landing'));
+    }
+
     public function test_landing_page_renders_hero_and_trust(): void
     {
         UniversityPartner::query()->create([
@@ -27,9 +35,12 @@ class MbaMastersLandingTest extends TestCase
             'is_active' => true,
         ]);
 
+        config(['services.recaptcha.site_key' => 'test-site-key']);
+
         $response = $this->get('/online-mba-masters-uae');
 
         $response->assertOk();
+        $this->assertSame(2, substr_count($response->getContent(), 'class="g-recaptcha"'));
         $response->assertSee('assets/css/pages/mba-masters-landing.css', false);
         $response->assertSee('assets/css/mba-partners.css', false);
         $response->assertSee('class="mlp-academic-disclaimer"', false);
@@ -329,6 +340,7 @@ class MbaMastersLandingTest extends TestCase
     public function test_enquiry_sends_zoho_mail_notification(): void
     {
         Mail::fake();
+        $this->fakeRecaptcha();
 
         $response = $this->from('/online-mba-masters-uae')->post('/online-mba-masters-uae/enquire', [
             'name' => 'Alex Student',
@@ -340,6 +352,7 @@ class MbaMastersLandingTest extends TestCase
             'qualification' => 'bachelor',
             'start_timeline' => '1-3-months',
             'website' => '',
+            'g-recaptcha-response' => 'test-token',
         ]);
 
         $response->assertRedirectToRoute('thank-you');
@@ -368,7 +381,7 @@ class MbaMastersLandingTest extends TestCase
     public function test_successful_enquiry_dispatches_flat_readable_payload_to_zapier(): void
     {
         Mail::fake();
-        Http::fake([
+        $this->fakeRecaptcha(true, [
             'hooks.zapier.com/*' => Http::response('ok', 200),
         ]);
 
@@ -388,6 +401,7 @@ class MbaMastersLandingTest extends TestCase
             'qualification' => 'bachelor',
             'start_timeline' => '1-3-months',
             'website' => '',
+            'g-recaptcha-response' => 'test-token',
         ]);
 
         $response->assertRedirectToRoute('thank-you');
@@ -433,7 +447,7 @@ class MbaMastersLandingTest extends TestCase
 
     public function test_mail_failure_keeps_error_response_but_still_dispatches_lead_to_zapier(): void
     {
-        Http::fake([
+        $this->fakeRecaptcha(true, [
             'hooks.zapier.com/*' => Http::response('ok', 200),
         ]);
         Mail::shouldReceive('mailer')->andThrow(new \RuntimeException('SMTP down'));
@@ -451,6 +465,7 @@ class MbaMastersLandingTest extends TestCase
             'program' => 'MBA',
             'start_timeline' => '1-3-months',
             'website' => '',
+            'g-recaptcha-response' => 'test-token',
         ]);
 
         $response->assertRedirect('/online-mba-masters-uae');
@@ -524,4 +539,46 @@ class MbaMastersLandingTest extends TestCase
         $response->assertDontSee('Affordable MBA in Finance', false);
         $response->assertSee('mlp-trending__title-dark">Hot</span>', false);
     }
+
+    public function test_invalid_recaptcha_blocks_mba_landing_mail_and_zapier_dispatch(): void
+    {
+        Mail::fake();
+        ZapierWebhook::query()->create([
+            'event_key' => ZapierEvents::MBA_MASTERS_LANDING_ENQUIRY_SUBMITTED,
+            'url' => 'https://hooks.zapier.com/hooks/catch/mba-landing',
+            'is_enabled' => true,
+        ]);
+        $this->fakeRecaptcha(false, [
+            'hooks.zapier.com/*' => Http::response('ok', 200),
+        ]);
+
+        $response = $this->from('/online-mba-masters-uae')->post('/online-mba-masters-uae/enquire', [
+            'name' => 'Invalid CAPTCHA',
+            'email' => 'invalid@example.com',
+            'phone' => '+971500000000',
+            'website' => '',
+            'g-recaptcha-response' => 'invalid-token',
+        ]);
+
+        $response->assertSessionHasErrors('recaptcha');
+        Mail::assertNothingSent();
+        Http::assertNotSent(fn ($request) => $request->url() === 'https://hooks.zapier.com/hooks/catch/mba-landing');
+    }
+
+    private function fakeRecaptcha(bool $success = true, array $additionalResponses = []): void
+    {
+        config([
+            'services.recaptcha.site_key' => 'test-site-key',
+            'services.recaptcha.secret_key' => 'test-secret-key',
+            'services.recaptcha.allowed_hostnames' => ['localhost'],
+        ]);
+
+        Http::fake(array_merge([
+            'https://www.google.com/recaptcha/api/siteverify' => Http::response([
+                'success' => $success,
+                'hostname' => 'localhost',
+            ], 200),
+        ], $additionalResponses));
+    }
+
 }
