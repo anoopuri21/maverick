@@ -28,6 +28,7 @@ class HomePageTest extends TestCase
 
         $response->assertOk();
         $response->assertSee('rel="icon" href="'.asset('favicon.ico').'" type="image/x-icon"', false);
+        $this->assertFileExists(public_path('favicon.ico'));
         $response->assertSee('assets/css/mba-partners.css', false);
         $response->assertDontSee('assets/css/pages/mba-masters-landing.css', false);
         $response->assertDontSee('class="mlp-page mlp-page--polished"', false);

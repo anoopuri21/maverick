@@ -21,6 +21,7 @@
 @php
     $chrome = $chrome ?? safe_settings(\App\Settings\ProgramsDetailChromeSettings::class);
     $cat = $program->programCategory;
+    $showBachelorsSnapshotNote = $showBachelorsSnapshotNote ?? false;
     $highlights          = collect($program->highlights_list ?? [])->filter(fn ($h) => is_array($h))->values();
     $recognition         = $program->universityPartner?->recognition_logos_list ?? collect();
     $recognitionLogos    = $recognition->filter(fn ($r) => filled($r['logo'] ?? null))->values();
@@ -131,11 +132,13 @@
                     @foreach($snapshot->take(6) as $s)
                         <div class="hc-row"><span class="l">{{ $s['label'] ?? '' }}</span><span class="v">{{ $s['value'] ?? '' }}</span></div>
                     @endforeach
+                    @if($showBachelorsSnapshotNote)
                     <div class="hc-note">
                         <p>
                         Note: <span>Duration will be based on your experience and it can be advanced bachelors too which differs from prospects to prospects</span>
                         </p>
                     </div>
+                    @endif
                 </div>
                 @endif
             </div>
