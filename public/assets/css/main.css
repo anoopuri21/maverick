@@ -6577,6 +6577,37 @@ body.modal-open {
   }
 }
 
+.site-attribution {
+  margin: 0;
+  padding: 0.85rem 1rem;
+  background: var(--color-mba-dark-blue);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.65);
+  font-family: "Poppins", sans-serif;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.site-attribution__link {
+  color: #ffffff;
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.site-attribution__link:hover,
+.site-attribution__link:focus-visible {
+  color: #e8d5b0;
+}
+
+@media (max-width: 480px) {
+  .site-attribution {
+    padding: 0.75rem 1rem;
+    font-size: 0.75rem;
+  }
+}
+
 /* =========================================================
    ===== ACCREDITATIONS, PARTNERSHIPS & RECOGNITIONS SECTION =====
    Maverick Business Academy — Logo Slider & Badges

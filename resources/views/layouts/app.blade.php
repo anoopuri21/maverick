@@ -88,6 +88,11 @@
         @include('partials.footer')
     @endif
 
+    <p class="site-attribution">
+        Designed and Developed by
+        <a class="site-attribution__link" href="https://www.vsinfosys.in/" target="_blank" rel="noopener noreferrer">VS Infosys</a>
+    </p>
+
     {{-- Floating Buttons --}}
     <button id="scroll-to-top" class="floating-action floating-action--scroll" type="button" aria-label="Scroll to top">
         <span aria-hidden="true" data-lucide="arrow-up"></span>
