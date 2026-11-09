@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class ProgramCategory extends Model
 {
+    public const BACHELOR_SLUG = 'bachelor';
     public const BACHELORS_SLUG = 'bachelors';
 
     use EnsuresUniqueSlug;
