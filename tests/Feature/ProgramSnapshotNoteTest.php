@@ -26,6 +26,22 @@ class ProgramSnapshotNoteTest extends TestCase
         $response->assertSee('Online');
     }
 
+    public function test_singular_bachelor_category_slug_shows_duration_note_in_snapshot_card(): void
+    {
+        $program = $this->createProgramInCategory(
+            'bachelor-snapshot-note',
+            'Bachelor',
+            ProgramCategory::BACHELOR_SLUG
+        );
+
+        $response = $this->get(route('programs.show', $program->slug));
+
+        $response->assertOk();
+        $response->assertSee('Duration will be based on your experience');
+        $response->assertSee('Snapshot study mode');
+        $response->assertSee('Online');
+    }
+
     public function test_non_bachelors_programs_hide_duration_note_but_keep_snapshot_rows(): void
     {
         foreach (['mba', 'masters', 'diploma', 'doctorate'] as $categorySlug) {
