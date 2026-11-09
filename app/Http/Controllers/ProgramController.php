@@ -197,6 +197,7 @@ class ProgramController extends Controller
             'program' => $program,
             'chrome' => safe_settings(ProgramsDetailChromeSettings::class),
             'allPrograms' => $allPrograms,
+            'showBachelorsSnapshotNote' => $program->programCategory?->slug === ProgramCategory::BACHELORS_SLUG,
         ]);
     }
 

@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class ProgramCategory extends Model
 {
+    public const BACHELORS_SLUG = 'bachelors';
+
     use EnsuresUniqueSlug;
 
     protected $fillable = [
