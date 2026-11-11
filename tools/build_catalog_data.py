@@ -23,9 +23,29 @@ BUILDS = [
     {
         "src": "doctorate",
         "out": "doctorate_programs.php",
+        # Psychology and Law ship in doctorate_gau_programs.php instead.
+        "exclude_slugs": [
+            "phd-in-psychology-girne-american-university",
+            "phd-in-law-girne-american-university",
+        ],
         "categories": [("doctorate", "Doctorate", 200)],
         "universities": [
             ("rushford-business-school", "Rushford Business School", "Switzerland", "CH", 2),
+            ("girne-american-university", "Girne American University", "North Cyprus", "CY", 3),
+        ],
+    },
+    {
+        # Publication subset: the two GAU doctorates GAU lists but does not
+        # describe, seeded by GauDoctorateProgramsSeeder. Kept out of the
+        # parent build so the catalogue row count stays unchanged.
+        "src": "doctorate",
+        "out": "doctorate_gau_programs.php",
+        "slugs": [
+            "phd-in-psychology-girne-american-university",
+            "phd-in-law-girne-american-university",
+        ],
+        "categories": [("doctorate", "Doctorate", 200)],
+        "universities": [
             ("girne-american-university", "Girne American University", "North Cyprus", "CY", 3),
         ],
     },
@@ -353,6 +373,21 @@ def build_one(cfg, progs=None):
             sys.exit("No approved content found in " + src)
         progs = [build(f) for f in files]
         source = f"output/programs/{cfg['src']}/**.md"
+        # Pages that ship in their own publication file are kept out of the
+        # parent catalogue, so its row count and the seeders that assert it
+        # stay unchanged.
+        if cfg.get("exclude_slugs"):
+            excluded = set(cfg["exclude_slugs"])
+            progs = [p for p in progs if p["slug"] not in excluded]
+        # An optional subset build writes only the named slugs. The parent
+        # build keeps every page, so a subset can never shrink it.
+        if cfg.get("slugs"):
+            wanted = set(cfg["slugs"])
+            progs = [p for p in progs if p["slug"] in wanted]
+            missing = wanted - {p["slug"] for p in progs}
+            if missing:
+                sys.exit("Missing approved content for: " + ", ".join(sorted(missing)))
+            source = f"output/programs/{cfg['src']}/**.md (subset: {len(progs)} pages)"
     else:
         source = "docs/bachelors-admin-drafts.json (ADMIN-ONLY, NOT APPROVED PAGES)"
     progs.sort(key=lambda x: x["sort_order"])
