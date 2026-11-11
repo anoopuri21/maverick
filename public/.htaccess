@@ -20,6 +20,38 @@
     # the real challenge file under the document root is returned as-is.
     RewriteRule ^\.well-known/acme-challenge/ - [L]
 
+    # -----------------------------------------------------------------------
+    # Legacy URL redirects (Search Console 404 cleanup)
+    # Sources are legacy paths that currently return 404; targets are live
+    # pages, with the homepage used where no live equivalent exists.
+    # Must stay above the front-controller rule below.
+    # -----------------------------------------------------------------------
+    # Old WooCommerce product pages: exact programme matches first, else home.
+    RewriteRule ^product/bsc-management-information-systems/?$ /programs/bsc-management-information-systems [R=301,L,NC]
+    RewriteRule ^product/bsc-psychology/?$ /programs/bsc-psychology [R=301,L,NC]
+    RewriteRule ^product(/.*)?$ / [R=301,L,NC]
+
+    # Old WordPress feeds: point at the live article permalink.
+    RewriteRule ^news-blog/([^/]+)/feed/?$ /$1 [R=301,L,NC]
+    # This feed's article no longer exists at any path.
+    RewriteRule ^global-entrepreneurs-graduate-in-glory-at-the-8th-maverick-business-academys-doctoral-convocation/feed/?$ / [R=301,L,NC]
+    RewriteRule ^([^/]+)/feed/?$ /$1 [R=301,L,NC]
+
+    # Old WooCommerce system pages.
+    RewriteRule ^shop/?$ / [R=301,L,NC]
+    RewriteRule ^category(/.*)?$ / [R=301,L,NC]
+    RewriteRule ^product-category(/.*)?$ / [R=301,L,NC]
+    RewriteRule ^student-public-account/?$ / [R=301,L,NC]
+
+    # Legacy articles with a live equivalent.
+    RewriteRule ^european-professional-doctorate-eu/?$ /european-professional-doctorate-your-complete-guide [R=301,L,NC]
+
+    # Legacy articles with no live equivalent.
+    RewriteRule ^best-mba-in-dubai-uae/?$ / [R=301,L,NC]
+    RewriteRule ^mba-in-entrepreneurship/?$ / [R=301,L,NC]
+    RewriteRule ^building-ceos-european-professional-doctorate-advantages-at-maverick/?$ / [R=301,L,NC]
+    RewriteRule ^maverick-business-academy-is-championing-accessible-entrepreneurial-education-across-the-globe-2/?$ / [R=301,L,NC]
+
     # Redirect Trailing Slashes If Not A Folder...
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_URI} (.+)/$
