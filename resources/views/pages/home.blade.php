@@ -7,6 +7,9 @@
 @push('head')
     @include('partials.seo-meta', ['seo' => $homeSeo])
 
+    {{-- Ahrefs site verification (homepage only) --}}
+    <meta name="ahrefs-site-verification" content="2921b6a19b7d2c7f5975f9b76ab905e90b4ea33a2dea1a8a3ffdb7475799b6e3">
+
     {{-- Ahrefs Web Analytics (homepage only) --}}
     <script src="https://analytics.ahrefs.com/analytics.js" data-key="SruPIuZaSb+AKf4gNAhcvg" async></script>
 @endpush
