@@ -1,2 +1,4 @@
 User-agent: *
-Disallow:
+Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+Sitemap: https://mbalondon.org.uk/sitemap.xml
