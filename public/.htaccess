@@ -46,6 +46,9 @@
     # Legacy articles with a live equivalent.
     RewriteRule ^european-professional-doctorate-eu/?$ /european-professional-doctorate-your-complete-guide [R=301,L,NC]
 
+    # Old WordPress "business-courses" page -> closest live Level 7 health programme.
+    RewriteRule ^business-courses/level-7-diploma-in-health-coaching-and-applied-nutrition/?$ /programs/level-7-diploma-in-health-and-social-care-qualifi [R=301,L,NC]
+
     # Legacy articles with no live equivalent.
     RewriteRule ^best-mba-in-dubai-uae/?$ / [R=301,L,NC]
     RewriteRule ^mba-in-entrepreneurship/?$ / [R=301,L,NC]
