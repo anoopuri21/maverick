@@ -6,6 +6,9 @@
 
 @push('head')
     @include('partials.seo-meta', ['seo' => $homeSeo])
+
+    {{-- Ahrefs Web Analytics (homepage only) --}}
+    <script src="https://analytics.ahrefs.com/analytics.js" data-key="SruPIuZaSb+AKf4gNAhcvg" async></script>
 @endpush
 
 @push('styles')
