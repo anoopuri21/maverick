@@ -15,6 +15,9 @@ return Application::configure(basePath: dirname(__DIR__))
         // Trust all proxies (required for LiteSpeed/CloudFlare/Shared Hosting)
         $middleware->trustProxies(at: '*');
 
+        // /Programs/... -> /programs/... (Laravel routes are case-sensitive)
+        $middleware->append(\App\Http\Middleware\RedirectUppercasePaths::class);
+
         // Redirect unauthenticated users to Filament admin login (not default 'login' route)
         $middleware->redirectGuestsTo(function (Request $request) {
             if ($request->is('admin') || $request->is('admin/*')) {
