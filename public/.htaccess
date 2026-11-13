@@ -55,6 +55,61 @@
     RewriteRule ^building-ceos-european-professional-doctorate-advantages-at-maverick/?$ / [R=301,L,NC]
     RewriteRule ^maverick-business-academy-is-championing-accessible-entrepreneurial-education-across-the-globe-2/?$ / [R=301,L,NC]
 
+    # -----------------------------------------------------------------------
+    # Legacy 404 cleanup — batch 2 (every source below was verified as 404 on
+    # the live site). Order matters: known paths first, catch-alls last.
+    # -----------------------------------------------------------------------
+
+    # Old WordPress blog permalinks -> the same article's live root permalink.
+    # The /feed/ variants are already handled by the rules above.
+    RewriteRule ^news-blog/([^/]+)/?$ /$1 [R=301,L,NC]
+
+    # Old "business-courses" catalogue and its dead WordPress filter URLs.
+    # Trailing "?" drops the legacy ?terms[]=&category[]= query string.
+    RewriteRule ^business-courses/?$ /programs? [R=301,L,NC]
+
+    # Old business-courses programme pages -> closest live programme/listing.
+    RewriteRule ^business-courses/ba-hons-business-management-strategy/?$ /programs/ba-hons-in-global-business [R=301,L,NC]
+    RewriteRule ^business-courses/doctor-of-business-administration/?$ /programs?category=doctorate [R=301,L,NC]
+    RewriteRule ^business-courses/doctor-of-philosophy-phd/?$ /programs?category=doctorate [R=301,L,NC]
+    RewriteRule ^business-courses/level-5-diploma-in-business-enterprise/?$ /programs/level-5-extended-diploma-in-business-management-qualifi [R=301,L,NC]
+    RewriteRule ^business-courses/ma-educational-administration-supervision/?$ /programs/level-7-diploma-in-educational-management-and-leadership-qualifi [R=301,L,NC]
+    RewriteRule ^business-courses/maverick-business-academy/?$ /our-story [R=301,L,NC]
+    RewriteRule ^business-courses/mba-tourism-hospitality-management/?$ /programs/mba-in-hospitality-and-tourism-management-rushford-business-school [R=301,L,NC]
+    # No live equivalent for the old University of Gloucestershire MBA.
+    RewriteRule ^business-courses/university-of-gloucestershire-mba/?$ / [R=301,L,NC]
+
+    # Any other old business-courses URL (still linked from old articles).
+    RewriteRule ^business-courses(/.*)?$ /programs [R=301,L,NC]
+
+    # Old "courses" programme pages.
+    RewriteRule ^courses/doctor-of-business-administration/?$ /programs?category=doctorate [R=301,L,NC]
+    RewriteRule ^courses/doctor-of-philosophy-phd/?$ /programs?category=doctorate [R=301,L,NC]
+    RewriteRule ^courses/level-4-diploma-in-information-technology/?$ /programs/level-5-extended-diploma-in-information-technology-qualifi [R=301,L,NC]
+
+    # Old WordPress taxonomy archive -> live bachelors filter.
+    RewriteRule ^courses_category(/.*)?$ /programs?category=bachelors [R=301,L,NC]
+
+    # Old landing page -> closest live listing.
+    RewriteRule ^executive-mba-in-dubai-uae/?$ /programs?category=executive-mba [R=301,L,NC]
+
+    # Institution / board / media pages that moved.
+    RewriteRule ^university-overview/?$ /our-story [R=301,L,NC]
+    RewriteRule ^university(/.*)?$ /our-story [R=301,L,NC]
+    RewriteRule ^board-of-council(/.*)?$ /leadership-board [R=301,L,NC]
+    RewriteRule ^maverick-media-lab/?$ /media-gallery [R=301,L,NC]
+    RewriteRule ^contact-us/?$ /contact [R=301,L,NC]
+
+    # Old homepage aliases (/home and /Home).
+    RewriteRule ^home/?$ / [R=301,L,NC]
+
+    # Old paginated article URLs -> the article itself (or the homepage).
+    RewriteRule ^mba-in-entrepreneurship/page/[0-9]+/?$ / [R=301,L,NC]
+    RewriteRule ^(.+)/page/[0-9]+/?$ /$1 [R=301,L,NC]
+
+    # Old WordPress asset / junk paths.
+    RewriteRule ^wp-content(/.*)?$ / [R=301,L,NC]
+
     # Redirect Trailing Slashes If Not A Folder...
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_URI} (.+)/$
