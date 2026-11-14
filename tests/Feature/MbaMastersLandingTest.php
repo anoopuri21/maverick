@@ -42,6 +42,8 @@ class MbaMastersLandingTest extends TestCase
         $response->assertOk();
         $this->assertSame(2, substr_count($response->getContent(), 'class="g-recaptcha"'));
         $response->assertSee('assets/css/pages/mba-masters-landing.css', false);
+        $response->assertSee('<link rel="preconnect" href="https://fonts.cdnfonts.com" crossorigin />', false);
+        $response->assertSee('<link rel="preload" href="https://fonts.cdnfonts.com/s/100431/ppneuemontreal-bold.woff" as="font" type="font/woff" crossorigin />', false);
         $response->assertSee('assets/css/mba-partners.css', false);
         $response->assertSee('class="mlp-academic-disclaimer"', false);
         $response->assertSee('University for the Creative Arts (UCA), UK', false);
