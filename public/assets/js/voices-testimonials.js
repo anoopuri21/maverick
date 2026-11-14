@@ -50,6 +50,13 @@
     var hovered = false;
     var focused = false;
     var pageHidden = Boolean(document.hidden);
+    // On the MBA landing page, do not run the off-screen carousel during
+    // initial load and scrolling. Other pages retain their existing behavior.
+    var landingSection = carousel.closest('[data-voices-section="mba-masters-landing"]');
+    var useVisibilityGate = Boolean(landingSection && "IntersectionObserver" in window);
+    var inView = !useVisibilityGate;
+    var visibilityObserver = null;
+    var destroyed = false;
     var timer = null;
     var resumeTimer = null;
     var startX = null;
@@ -125,8 +132,9 @@
     }
 
     function startTimer() {
-      if (reduced || slides.length < 2) return;
       window.clearInterval(timer);
+      timer = null;
+      if (destroyed || reduced || slides.length < 2 || !inView || (useVisibilityGate && pageHidden)) return;
       timer = window.setInterval(function () {
         if (!paused && !hovered && !focused && !pageHidden) {
           goNext();
@@ -206,6 +214,7 @@
 
     function onVisibilityChange() {
       pageHidden = Boolean(document.hidden);
+      if (useVisibilityGate) startTimer();
     }
 
     if (previous) previous.addEventListener("click", onPrevClick);
@@ -224,11 +233,24 @@
 
     showSlide(0);
     updateToggle();
+    if (useVisibilityGate) {
+      visibilityObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          inView = entry.isIntersecting;
+          startTimer();
+        });
+      }, { threshold: 0 });
+      visibilityObserver.observe(landingSection);
+    }
     startTimer();
 
     function destroy() {
+      if (destroyed) return;
+      destroyed = true;
       window.clearInterval(timer);
       window.clearTimeout(resumeTimer);
+      if (visibilityObserver) visibilityObserver.disconnect();
+      window.removeEventListener("beforeunload", destroy);
       if (previous) previous.removeEventListener("click", onPrevClick);
       if (next) next.removeEventListener("click", onNextClick);
       if (toggle) toggle.removeEventListener("click", onToggleClick);

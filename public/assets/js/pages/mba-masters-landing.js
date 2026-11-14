@@ -113,7 +113,6 @@
     rescueQueue.push({
       trigger: trigger,
       start: start,
-      isDone: function () { return done; },
       rescue: function () {
         show(true);
       },
@@ -211,7 +210,6 @@
     rescueQueue.push({
       trigger: trigger,
       start: start,
-      isDone: function () { return done; },
       rescue: function () {
         fire(true);
       },
@@ -270,31 +268,22 @@
     io.observe(el);
   };
 
-  /** Coalesce trigger measurements after section initialization and scroll restoration. */
-  var refreshQueued = false;
+  /** Re-measure triggers after browser scroll restoration. */
   MLP.refreshTriggers = function () {
-    if (refreshQueued) return;
-    refreshQueued = true;
-    requestAnimationFrame(function () {
-      refreshQueued = false;
-      if (typeof ScrollTrigger === "undefined") return;
+    if (typeof ScrollTrigger !== "undefined") {
       ScrollTrigger.refresh();
-    });
+    }
   };
 
   /**
    * After scroll restoration: force-show any armed reveal that is already past start
    * but never received onEnter (mid-page soft/hard refresh bug).
-   * Completed reveals are removed while pending reveals remain available.
    */
   MLP.rescuePastReveals = function () {
-    rescueQueue = rescueQueue.filter(function (item) {
-      if (!item || item.isDone()) return false;
-      if (item.trigger && MLP.isPastStart(item.trigger, item.start)) {
+    rescueQueue.forEach(function (item) {
+      if (item && item.trigger && MLP.isPastStart(item.trigger, item.start) && typeof item.rescue === "function") {
         item.rescue();
-        return false;
       }
-      return true;
     });
     MLP.refreshTriggers();
   };
@@ -421,50 +410,45 @@
     });
   };
 
-  /** Pause CSS marquees / prose rings / infinite loops when off-screen. */
+  /** Pause CSS marquees / prose rings when off-screen. */
   function initMotionPauses() {
     if (!("IntersectionObserver" in window)) return;
 
-    // Single shared observer for all pause targets (was 1 observer per element).
-    var pauseTargets = [];
     document.querySelectorAll("[data-mlp-alumni-marquee]").forEach(function (marquee) {
       if (marquee.dataset.mlpMarqueeInit === "1") return;
       marquee.dataset.mlpMarqueeInit = "1";
-      pauseTargets.push(marquee);
+      var io = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (prefersReduced()) {
+              marquee.classList.add("is-paused");
+              return;
+            }
+            marquee.classList.toggle("is-paused", !entry.isIntersecting);
+          });
+        },
+        { threshold: 0 }
+      );
+      io.observe(marquee);
     });
+
     document.querySelectorAll(".mlp-page .mlp-prose").forEach(function (prose) {
       if (prose.dataset.mlpProsePauseInit === "1") return;
       prose.dataset.mlpProsePauseInit = "1";
-      pauseTargets.push(prose);
+      var io = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (prefersReduced()) {
+              prose.classList.add("is-offscreen");
+              return;
+            }
+            prose.classList.toggle("is-offscreen", !entry.isIntersecting);
+          });
+        },
+        { threshold: 0, rootMargin: "80px 0px" }
+      );
+      io.observe(prose);
     });
-    // Infinite CSS loops that previously ran even when off-screen:
-    // trust bounce, prose ring, accreditation marquee, alumni marquee.
-    document.querySelectorAll(
-      "#mlp-trust, #accreditations, .archive-alumni__track, .accred-slider-track"
-    ).forEach(function (el) {
-      if (el.dataset.mlpLoopPauseInit === "1") return;
-      el.dataset.mlpLoopPauseInit = "1";
-      pauseTargets.push(el);
-    });
-
-    if (!pauseTargets.length) return;
-
-    var sharedIo = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          var el = entry.target;
-          if (prefersReduced()) {
-            el.classList.add("is-paused");
-            el.classList.add("is-offscreen");
-            return;
-          }
-          el.classList.toggle("is-paused", !entry.isIntersecting);
-          el.classList.toggle("is-offscreen", !entry.isIntersecting);
-        });
-      },
-      { threshold: 0, rootMargin: "80px 0px" }
-    );
-    pauseTargets.forEach(function (el) { sharedIo.observe(el); });
   }
 
   function initHeroAssembly() {
@@ -502,8 +486,7 @@
     });
 
     window.gsap.set([image, wash], { opacity: 0 });
-    // Avoid animating a filter across the full hero image.
-    window.gsap.set(image, { scale: 1.08 });
+    window.gsap.set(image, { scale: 1.08, filter: "saturate(0.35) contrast(1.05) brightness(0.42) blur(4px)" });
     window.gsap.set(registration, { opacity: 0, clipPath: "inset(0 100% 0 0)" });
     window.gsap.set(masthead ? masthead.children : [], { opacity: 0, y: -14 });
     window.gsap.set(statement ? statement.children : [], { opacity: 0, y: 22 });
@@ -512,7 +495,7 @@
     window.gsap.set(folio ? folio.children : [], { opacity: 0, y: 12 });
 
     tl.to([image, wash], { opacity: 1, duration: 0.42 }, 0)
-      .to(image, { scale: 1.035, duration: 1.05 }, 0)
+      .to(image, { scale: 1.035, filter: "saturate(0.68) contrast(1.08) brightness(0.64) blur(0px)", duration: 1.05 }, 0)
       .to(registration, { opacity: 1, clipPath: "inset(0 0% 0 0)", duration: 0.72 }, 0.16)
       .to(masthead ? masthead.children : [], { opacity: 1, y: 0, duration: 0.55, stagger: 0.06 }, 0.34)
       .to(statement ? statement.children : [], { opacity: 1, y: 0, duration: 0.62, stagger: 0.07 }, 0.58)
