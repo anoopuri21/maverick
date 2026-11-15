@@ -3,7 +3,9 @@
 namespace Tests\Feature;
 
 use App\Settings\HomepageSeoSettings;
+use App\Support\PreferredOrigin;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Tests\TestCase;
 
@@ -42,9 +44,20 @@ class PreferredOriginAndHomepageSeoTest extends TestCase
         config(['seo.origin_redirect_enabled' => false]);
         $html = $this->get('http://www.mbalondon.org.uk/')->assertOk()->getContent();
         $this->assertStringContainsString('rel="canonical" href="https://mbalondon.org.uk/"', $html);
+        $this->assertStringContainsString('property="og:url" content="https://mbalondon.org.uk/"', $html);
         $xml = $this->get('http://www.mbalondon.org.uk/sitemap.xml')->assertOk()->getContent();
         $this->assertStringContainsString('<loc>https://mbalondon.org.uk/</loc>', $xml);
         $this->assertStringNotContainsString('<loc>http://www.mbalondon.org.uk/', $xml);
+    }
+
+    public function test_preferred_root_has_one_trailing_slash_and_other_urls_keep_their_paths(): void
+    {
+        $request = Request::create('http://www.mbalondon.org.uk/');
+        $this->assertSame('https://mbalondon.org.uk/', PreferredOrigin::normalize('http://www.mbalondon.org.uk', $request));
+        $this->assertSame('https://mbalondon.org.uk/', PreferredOrigin::normalize('http://www.mbalondon.org.uk/', $request));
+        $this->assertSame('https://mbalondon.org.uk/?ref=1', PreferredOrigin::normalize('http://www.mbalondon.org.uk?ref=1', $request));
+        $this->assertSame('https://mbalondon.org.uk/programs?ref=1', PreferredOrigin::normalize('http://www.mbalondon.org.uk/programs?ref=1', $request));
+        $this->assertSame('https://other.example', PreferredOrigin::normalize('https://other.example', $request));
     }
 
     public function test_forwarded_https_is_not_redirected_when_the_proxy_is_trusted(): void

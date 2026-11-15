@@ -20,6 +20,10 @@ class PreferredOrigin
             return $url;
         }
 
-        return preg_replace('~^https?://(?:www\.)?mbalondon\.org\.uk(?=[/?#]|$)~i', self::URL, $url);
+        $normalized = preg_replace('~^https?://(?:www\.)?mbalondon\.org\.uk(?=[/?#]|$)~i', self::URL, $url);
+
+        // Laravel's url()->current() omits the slash for the homepage, while
+        // route('home') includes it. Keep both signals consistent.
+        return preg_replace('~^https://mbalondon\.org\.uk(?=[?#]|$)~', self::URL.'/', $normalized);
     }
 }
