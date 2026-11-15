@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use App\Models\Insight;
 use App\Models\Program;
+use App\Support\PreferredOrigin;
 use App\Settings\AccreditationsSeoSettings;
 use App\Settings\ContactSeoSettings;
 use App\Settings\CsrSeoSettings;
@@ -155,6 +156,8 @@ class SitemapController extends Controller
 
     private function addUrl(array &$urls, string $loc, ?string $lastmod): void
     {
+        $loc = PreferredOrigin::normalize($loc, request());
+
         $urls[$loc] = [
             'loc' => $loc,
             'lastmod' => $lastmod,
@@ -168,10 +171,12 @@ class SitemapController extends Controller
 
     private function canonicalUrl(?string $canonicalUrl, string $fallback): string
     {
-        $canonicalUrl = trim((string) $canonicalUrl);
+        $canonicalUrl = trim((string) PreferredOrigin::normalize($canonicalUrl, request()));
         $canonicalHost = parse_url($canonicalUrl, PHP_URL_HOST);
         $scheme = parse_url($canonicalUrl, PHP_URL_SCHEME);
-        $appHost = parse_url((string) config('app.url'), PHP_URL_HOST);
+        $appHost = PreferredOrigin::appliesTo(request())
+            ? 'mbalondon.org.uk'
+            : parse_url((string) config('app.url'), PHP_URL_HOST);
         $appHost = is_string($appHost) && $appHost !== '' ? $appHost : request()->getHost();
 
         if (! is_string($canonicalHost)

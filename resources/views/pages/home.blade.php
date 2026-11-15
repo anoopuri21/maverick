@@ -1,11 +1,16 @@
 @extends('layouts.app')
 
-@section('title', ($homeSeo->meta_title ?? 'Maverick Business Academy | Transforming Learners into Global Leaders'))
+@php
+    $homeTitle = filled($homeSeo->meta_title ?? null) ? $homeSeo->meta_title : 'Business Programmes & Pathways | Maverick Business Academy';
+    $homeDescription = filled($homeSeo->meta_description ?? null) ? $homeSeo->meta_description : 'Explore business programmes, MBA and university pathways for learners and professionals at Maverick Business Academy.';
+@endphp
+
+@section('title'){{ $homeTitle }}@endsection
 @section('seo_from_partial')
 @endsection
 
 @push('head')
-    @include('partials.seo-meta', ['seo' => $homeSeo])
+    @include('partials.seo-meta', ['seo' => $homeSeo, 'fallbackTitle' => $homeTitle, 'fallbackDescription' => $homeDescription])
 
     {{-- Ahrefs site verification (homepage only) --}}
     <meta name="ahrefs-site-verification" content="2921b6a19b7d2c7f5975f9b76ab905e90b4ea33a2dea1a8a3ffdb7475799b6e3">

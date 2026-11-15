@@ -6,18 +6,18 @@
      ============================================================ --}}
 @php
     $seo             = $seo ?? null;
-    $metaTitle       = $seo->meta_title ?? null;
-    $metaDescription = $seo->meta_description ?? 'Maverick Business Academy - Transforming Learners into Global Leaders.';
-    $canonical       = $seo->canonical_url ?? null;
-    $ogTitle         = $seo->og_title ?? $metaTitle;
-    $ogDescription   = $seo->og_description ?? $metaDescription;
+    $metaTitle       = isset($fallbackTitle) && blank($seo->meta_title ?? null) ? $fallbackTitle : ($seo->meta_title ?? null);
+    $metaDescription = isset($fallbackDescription) && blank($seo->meta_description ?? null) ? $fallbackDescription : ($seo->meta_description ?? 'Maverick Business Academy - Transforming Learners into Global Leaders.');
+    $canonical       = \App\Support\PreferredOrigin::normalize($seo->canonical_url ?? null, request());
+    $ogTitle         = isset($fallbackTitle) && blank($seo->og_title ?? null) ? $metaTitle : ($seo->og_title ?? $metaTitle);
+    $ogDescription   = isset($fallbackDescription) && blank($seo->og_description ?? null) ? $metaDescription : ($seo->og_description ?? $metaDescription);
     $ogImage         = settings_media_url($seo, 'og_image_url');
     $ogType          = $seo->og_type ?? 'website';
     $twitterCard     = $seo->twitter_card ?? 'summary_large_image';
-    $twitterTitle    = $seo->twitter_title ?? $ogTitle;
-    $twitterDesc     = $seo->twitter_description ?? $ogDescription;
+    $twitterTitle    = isset($fallbackTitle) && blank($seo->twitter_title ?? null) ? $ogTitle : ($seo->twitter_title ?? $ogTitle);
+    $twitterDesc     = isset($fallbackDescription) && blank($seo->twitter_description ?? null) ? $ogDescription : ($seo->twitter_description ?? $ogDescription);
     $twitterImage    = settings_media_url($seo, 'twitter_image_url') ?: $ogImage;
-    $ogUrl           = $canonical ?: url()->current();
+    $ogUrl           = $canonical ?: \App\Support\PreferredOrigin::normalize(url()->current(), request());
 @endphp
 
 @if($metaTitle)
