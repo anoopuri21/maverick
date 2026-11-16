@@ -130,6 +130,8 @@ class HomePageTest extends TestCase
         $this->assertSame(7, substr_count($section, 'class="archive-partners__logo-item"'));
         $this->assertStringNotContainsString('Inactive Partner Must Stay Hidden', $section);
         $this->assertStringContainsString('src="https://cdn.example.com/admin-managed-partner-logo.png"', $section);
+        // The adjacent visible name already labels the partner; avoid duplicate speech.
+        $this->assertMatchesRegularExpression('~<img[^>]*src="https://cdn\.example\.com/admin-managed-partner-logo\.png"[^>]*alt=""[^>]*>\s*<span>Active Partner 01</span>~s', $section);
         $this->assertStringNotContainsString('stale-partner-logo.png', $section);
         $this->assertStringNotContainsString('rushford.ch/wp-content', $section);
         $this->assertStringNotContainsString('www.gau.edu.tr/template', $section);

@@ -12,7 +12,11 @@
     {{-- SEO Meta --}}
     <title>@yield('title', 'Maverick Business Academy | Transforming Learners into Global Leaders')</title>
     @hasSection('meta_description')
-    <meta name="description" content="@yield('meta_description')" />
+    @php
+        $pageMetaDescription = View::yieldContent('meta_description');
+        $pageMetaDescription = filled($pageMetaDescription) ? $pageMetaDescription : 'Maverick Business Academy - Transforming Learners into Global Leaders.';
+    @endphp
+    <meta name="description" content="{{ $pageMetaDescription }}" />
     @else
     @unless(View::hasSection('seo_from_partial'))
     <meta name="description" content="Maverick Business Academy - Transforming Learners into Global Leaders." />
