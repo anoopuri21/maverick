@@ -21,12 +21,12 @@
             ->values()
             ->all();
     @endphp
-    @if(empty($seo->schema_json) && $faqSchemaItems !== [])
+    @if(\App\Support\SchemaJson::encode($seo->schema_json ?? null) === null && $faqSchemaItems !== [])
     <script type="application/ld+json">{!! json_encode([
         '@context' => 'https://schema.org',
         '@type' => 'FAQPage',
         'mainEntity' => $faqSchemaItems,
-    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
+    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) !!}</script>
     @endif
     <script type="application/ld+json">{!! json_encode([
         '@context' => 'https://schema.org',
@@ -45,13 +45,13 @@
                 'item' => route('mba-masters-landing'),
             ],
         ],
-    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
+    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) !!}</script>
     <script type="application/ld+json">{!! json_encode([
         '@context' => 'https://schema.org',
         '@type' => 'Organization',
         'name' => 'Maverick Business Academy London',
         'url' => route('home'),
-    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
+    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) !!}</script>
 @endpush
 
 @if(!empty($seo->custom_body_scripts))

@@ -15,6 +15,8 @@ class PublicContentCache
 
     public const HOMEPAGE = 'homepage.v4';
 
+    public const HOMEPAGE_EVENTS = 'homepage.events.v1';
+
     public const OUR_STORY = 'our-story.v3';
 
     public const PROGRAMS_LISTING = 'programs.listing.v2';
@@ -60,6 +62,7 @@ class PublicContentCache
     {
         return [
             self::HOMEPAGE,
+            self::HOMEPAGE_EVENTS,
             self::OUR_STORY,
             self::PROGRAMS_LISTING,
             self::ACCREDITATIONS,

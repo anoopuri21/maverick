@@ -20,6 +20,22 @@
     # the real challenge file under the document root is returned as-is.
     RewriteRule ^\.well-known/acme-challenge/ - [L]
 
+    # Consolidate the known production origins without affecting other hosts.
+    # Keep this after the ACME exception and before legacy redirects.
+    # Preserve the original path and query string; do not build the host from input.
+    RewriteCond %{HTTP_HOST} ^(www\.)?mbalondon\.org\.uk$ [NC]
+    RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$ [NC]
+    RewriteCond %{HTTP_HOST} ^www\.mbalondon\.org\.uk$ [NC,OR]
+    RewriteCond %{HTTPS} !=on
+    RewriteRule ^ https://mbalondon.org.uk%{REQUEST_URI} [R=301,L,NE]
+
+    # Preserve the method and body for form submissions and other requests.
+    RewriteCond %{HTTP_HOST} ^(www\.)?mbalondon\.org\.uk$ [NC]
+    RewriteCond %{REQUEST_METHOD} !^(GET|HEAD)$ [NC]
+    RewriteCond %{HTTP_HOST} ^www\.mbalondon\.org\.uk$ [NC,OR]
+    RewriteCond %{HTTPS} !=on
+    RewriteRule ^ https://mbalondon.org.uk%{REQUEST_URI} [R=308,L,NE]
+
     # -----------------------------------------------------------------------
     # Legacy URL redirects (Search Console 404 cleanup)
     # Sources are legacy paths that currently return 404; targets are live

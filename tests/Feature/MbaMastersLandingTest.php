@@ -42,6 +42,8 @@ class MbaMastersLandingTest extends TestCase
         $response->assertOk();
         $this->assertSame(2, substr_count($response->getContent(), 'class="g-recaptcha"'));
         $response->assertSee('assets/css/pages/mba-masters-landing.css', false);
+        $response->assertSee('<link rel="preconnect" href="https://fonts.cdnfonts.com" crossorigin />', false);
+        $response->assertSee('<link rel="preload" href="https://fonts.cdnfonts.com/s/100431/ppneuemontreal-bold.woff" as="font" type="font/woff" crossorigin />', false);
         $response->assertSee('assets/css/mba-partners.css', false);
         $response->assertSee('class="mlp-academic-disclaimer"', false);
         $response->assertSee('University for the Creative Arts (UCA), UK', false);
@@ -163,7 +165,18 @@ class MbaMastersLandingTest extends TestCase
         $response->assertSee('33.7', false);
         $response->assertSee('Average Years of Professional Experience', false);
         $response->assertSee('11.2', false);
-        $this->assertDoesNotMatchRegularExpression('/this page/i', $response->getContent());
+        // Check page text, not HTML comments or script/style source.
+        $document = new \DOMDocument;
+        $previous = libxml_use_internal_errors(true);
+        $document->loadHTML('<?xml encoding="UTF-8">'.$response->getContent());
+        libxml_clear_errors();
+        libxml_use_internal_errors($previous);
+        $textNodes = (new \DOMXPath($document))->query('//body//text()[not(ancestor::script) and not(ancestor::style)]');
+        $pageText = '';
+        foreach ($textNodes as $textNode) {
+            $pageText .= ' '.$textNode->textContent;
+        }
+        $this->assertDoesNotMatchRegularExpression('/this page/i', $pageText);
         $response->assertSee('Built for the GCC Region', false);
         $response->assertDontSee('MoHESR', false);
         $response->assertSee('Your Maverick Cohort: Professionals Across the UAE and GCC', false);
@@ -172,7 +185,8 @@ class MbaMastersLandingTest extends TestCase
         $response->assertDontSee('mlp-class-snapshot__audience', false);
         $response->assertDontSee('Employed full time while studying', false);
         $response->assertSee('Online MBA for professionals across the GCC', false);
-        $response->assertSee('is-marquee', false);
+        // The marquee class is added by JavaScript, not present in server-rendered HTML.
+        $response->assertSee('assets/js/archive-partners.js', false);
         $response->assertSee('mlp-class-snapshot', false);
         $response->assertSee('mlp-class-snapshot__metric', false);
         $response->assertSee('mlp-class-snapshot__country', false);
@@ -218,7 +232,8 @@ class MbaMastersLandingTest extends TestCase
         $this->assertGreaterThanOrEqual(2, substr_count($response->getContent(), 'name="start_timeline"'));
         $response->assertSee('archive-closing', false);
         $response->assertSee('archive-closing__form', false);
-        $response->assertSee('<h3 class="footer__newsletter-title">Stay Updated</h3>', false);
+        $response->assertSee('class="footer footer--mlp"', false);
+        $response->assertDontSee('class="footer__newsletter"', false);
     }
 
     public function test_career_and_testimonials_sections_can_be_hidden(): void

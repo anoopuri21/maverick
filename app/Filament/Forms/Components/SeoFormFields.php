@@ -100,7 +100,7 @@ class SeoFormFields
                         ->label('Schema.org JSON-LD')
                         ->rows(5)
                         ->rules(['nullable', 'json'])
-                        ->helperText('Paste a valid JSON-LD block (including the <script> tags). Rendered only when non-empty.'),
+                        ->helperText('Paste valid JSON-LD only, without <script> tags. Rendered only when non-empty.'),
                     Textarea::make('custom_head_scripts')
                         ->label('Custom Head Scripts')
                         ->rows(3)

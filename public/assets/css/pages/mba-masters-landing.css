@@ -3811,7 +3811,7 @@ html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero
 
 html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-wash],
   html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-masthead] > *,
-  html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-statement] > *,
+  html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-statement] > :not(.prospectus-cover__title),
   html.js .prospectus-cover[data-hero-assembly]:not(.is-hero-assembled) [data-hero-folio] > * {
   opacity: 0;
 }

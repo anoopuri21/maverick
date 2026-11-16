@@ -12,7 +12,12 @@
     {{-- SEO Meta --}}
     <title>@yield('title', 'Maverick Business Academy | Transforming Learners into Global Leaders')</title>
     @hasSection('meta_description')
-    <meta name="description" content="@yield('meta_description')" />
+    @php
+        // Inline Blade sections are already HTML-escaped; recover the text before escaping the attribute.
+        $pageMetaDescription = html_entity_decode(View::yieldContent('meta_description'), ENT_QUOTES | ENT_HTML5, 'UTF-8');
+        $pageMetaDescription = filled($pageMetaDescription) ? $pageMetaDescription : 'Maverick Business Academy - Transforming Learners into Global Leaders.';
+    @endphp
+    <meta name="description" content="{{ $pageMetaDescription }}" />
     @else
     @unless(View::hasSection('seo_from_partial'))
     <meta name="description" content="Maverick Business Academy - Transforming Learners into Global Leaders." />
@@ -25,6 +30,11 @@
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
     <link rel="preconnect" href="https://unpkg.com" crossorigin />
+    @if(request()->routeIs('mba-masters-landing'))
+    {{-- The landing headline uses the 700-weight face from the stylesheet below. --}}
+    <link rel="preconnect" href="https://fonts.cdnfonts.com" crossorigin />
+    <link rel="preload" href="https://fonts.cdnfonts.com/s/100431/ppneuemontreal-bold.woff" as="font" type="font/woff" crossorigin />
+    @endif
     <link href="https://fonts.cdnfonts.com/css/pp-neue-montreal" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
 

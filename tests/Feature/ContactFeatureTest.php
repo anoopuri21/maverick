@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Mail\GenericFormMail;
 use App\Models\ZapierWebhook;
 use App\Settings\SiteSettings;
+use App\Settings\ZohoSettings;
 use App\Support\ZapierEvents;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Http;
@@ -61,12 +62,16 @@ class ContactFeatureTest extends TestCase
     {
         Mail::fake();
         $this->fakeRecaptcha();
+        $zoho = app(ZohoSettings::class);
+        $zoho->enabled = false;
+        $zoho->default_recipient = 'contact-test@example.com';
+        $zoho->additional_recipients = [];
+        $zoho->save();
 
         $response = $this->from('/contact')->post('/contact', [
             'name' => 'John Doe',
             'email' => 'johndoe@example.com',
             'phone' => '+971 50 000 0000',
-            'subject' => 'Admissions',
             'message' => 'Hello, I would like to inquire about Executive MBA programs.',
             'website' => '', // Empty honeypot
             'g-recaptcha-response' => 'test-token',
@@ -79,9 +84,11 @@ class ContactFeatureTest extends TestCase
         Mail::assertSent(GenericFormMail::class, function ($mail) {
             $values = collect($mail->rows)->pluck('value', 'label');
 
-            return $mail->hasTo('admissions@mbalondon.org.uk') &&
+            return $mail->hasTo('contact-test@example.com') &&
+                   $mail->replyToAddress === 'johndoe@example.com' &&
                    $values->get('Name') === 'John Doe' &&
-                   $values->get('Subject') === 'Admissions';
+                   $values->get('Email') === 'johndoe@example.com' &&
+                   $values->get('Message') === 'Hello, I would like to inquire about Executive MBA programs.';
         });
     }
 

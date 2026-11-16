@@ -15,6 +15,9 @@ return Application::configure(basePath: dirname(__DIR__))
         // Trust all proxies (required for LiteSpeed/CloudFlare/Shared Hosting)
         $middleware->trustProxies(at: '*');
 
+        // Consolidate only the known production hosts; local and preview hosts are unaffected.
+        $middleware->append(\App\Http\Middleware\RedirectPreferredOrigin::class);
+
         // /Programs/... -> /programs/... (Laravel routes are case-sensitive)
         $middleware->append(\App\Http\Middleware\RedirectUppercasePaths::class);
 
