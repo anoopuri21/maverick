@@ -57,13 +57,14 @@
                         />
                     @endif
 
-                    @if(!empty($site->phone))
+                    @if(filled($site->phone) || filled($site->phone_secondary))
+                        @php $primaryPhone = filled($site->phone) ? $site->phone : $site->phone_secondary; @endphp
                         <x-contact.info-card
                             icon="phone"
                             :label="$contactPage->label_phone ?? 'Admissions & Hotlines'"
-                            :value="$site->phone"
-                            :secondary="$site->phone_secondary ?? null"
-                            :link="'tel:' . str_replace(' ', '', $site->phone)"
+                            :value="$primaryPhone"
+                            :secondary="filled($site->phone) ? $site->phone_secondary : null"
+                            :link="'tel:' . preg_replace('/[^\d+]/', '', $primaryPhone)"
                         />
                     @endif
 
@@ -100,7 +101,7 @@
                             icon="phone"
                             :label="$contactPage->label_phone ?? 'Admissions & Hotlines'"
                             :value="$site->uk_phone"
-                            :link="'tel:' . str_replace(' ', '', $site->uk_phone)"
+                            :link="'tel:' . preg_replace('/[^\d+]/', '', $site->uk_phone)"
                         />
                     @endif
 

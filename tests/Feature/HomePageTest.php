@@ -262,13 +262,59 @@ class HomePageTest extends TestCase
         $this->assertIsString($futureCard);
         $this->assertStringContainsString('<span class="events__upcoming-badge">Upcoming</span>', $futureCard);
 
-        $pastCard = $findEventCard($pastEvent->title);
-        $this->assertIsString($pastCard);
-        $this->assertStringNotContainsString('events__upcoming-badge', $pastCard);
+        $this->assertNull($findEventCard($pastEvent->title));
+        $this->get(route('events'))->assertOk()->assertSee($pastEvent->title);
+        $this->get(route('events.show', $pastEvent->slug))->assertOk()->assertSee($pastEvent->title);
 
         $this->get(route('events.show', $event->slug))
             ->assertOk()
             ->assertSee('Homepage Event Card Test');
+    }
+
+    public function test_homepage_upcoming_events_refresh_at_midnight_and_exclude_inactive_events(): void
+    {
+        $this->travelTo(today()->setTime(23, 59, 30));
+        Event::query()->create(['title' => 'Today Event', 'event_date' => today()->toDateString(), 'is_active' => true]);
+        Event::query()->create(['title' => 'Tomorrow Event', 'event_date' => today()->addDay()->toDateString(), 'is_active' => true]);
+        Event::query()->create(['title' => 'Inactive Event', 'event_date' => today()->toDateString(), 'is_active' => false]);
+        Event::query()->create(['title' => 'Undated Event', 'event_date' => null, 'is_active' => true]);
+
+        $this->get('/')->assertOk()->assertSeeInOrder(['Today Event', 'Tomorrow Event'])->assertDontSee('Inactive Event')->assertDontSee('Undated Event');
+        $this->travel(31)->seconds();
+        $this->get('/')->assertOk()->assertDontSee('Today Event')->assertSee('Tomorrow Event');
+        $this->travel(1)->days();
+        $this->get('/')->assertOk()->assertDontSee('id="upcoming-events"', false);
+        $this->travelBack();
+    }
+
+    public function test_homepage_event_cache_is_invalidated_when_an_event_changes(): void
+    {
+        $event = Event::query()->create([
+            'title' => 'Editable Upcoming Event',
+            'event_date' => today()->addDays(2)->toDateString(),
+            'is_active' => true,
+        ]);
+
+        $this->get('/')->assertOk()->assertSee('Editable Upcoming Event');
+        $event->update(['title' => 'Updated Upcoming Event']);
+        $this->get('/')->assertOk()->assertSee('Updated Upcoming Event')->assertDontSee('Editable Upcoming Event');
+        $event->delete();
+        $this->get('/')->assertOk()->assertDontSee('Updated Upcoming Event');
+    }
+
+    public function test_homepage_limits_upcoming_events_to_the_ten_nearest(): void
+    {
+        for ($day = 11; $day >= 1; $day--) {
+            Event::query()->create([
+                'title' => sprintf('Upcoming Day %02d', $day),
+                'event_date' => today()->addDays($day)->toDateString(),
+                'is_active' => true,
+            ]);
+        }
+
+        $this->get('/')->assertOk()
+            ->assertSeeInOrder(['Upcoming Day 01', 'Upcoming Day 05', 'Upcoming Day 10'])
+            ->assertDontSee('Upcoming Day 11');
     }
 
     public function test_homepage_event_without_slug_uses_its_id_for_event_routes(): void

@@ -17,4 +17,6 @@ Items below are outside technical implementation and require client/SEO or edito
 
 ## P3
 
-Not reviewed for implementation in this phase; add client-owned P3 actions when P3 work is approved.
+- **Pending client/admin:** Verify the current UK and UAE addresses, phone numbers and email addresses, including whether each location and contact is appropriate to publish. Update the shared site settings after approval and check the contact page and both footer variants.
+- **Pending client/SEO:** Review eligible external business listings and keep approved details consistent; listing access and ongoing maintenance require separate scope agreement.
+- **Pending client/admin:** Keep event dates and publication status current, and review completed-event details or recaps. The homepage shows active events dated today or later; the events page retains a separate past-events section. Event classification uses the application's configured timezone and calendar date.

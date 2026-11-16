@@ -168,14 +168,6 @@ class PageController extends Controller
                 ]
             );
 
-            $events = PublicContentCache::serializeRows(
-                Event::select('id', 'slug', 'title', 'description', 'event_date', 'event_type', 'location', 'link_url')
-                    ->where('is_active', true)
-                    ->orderBy('event_date', 'desc')
-                    ->limit(10)
-                    ->get()
-            );
-
             $testimonials = PublicContentCache::serializeRows(
                 Testimonial::select('name', 'designation', 'company', 'thumbnail_url', 'video_url')
                     ->where('is_active', true)
@@ -204,16 +196,28 @@ class PageController extends Controller
             return [
                 'accreditationLogos' => $accreditationLogos->toArray(),
                 'facultyInsights' => $facultyInsights,
-                'events' => $events,
                 'testimonials' => $testimonials,
                 'homepageFaqs' => $homepageFaqs,
             ];
         });
 
+        // Refresh at the next local midnight so an event cannot remain upcoming on the following day.
+        $events = PublicContentCache::remember(PublicContentCache::HOMEPAGE_EVENTS, function () {
+            return PublicContentCache::serializeRows(
+                Event::select('id', 'slug', 'title', 'description', 'event_date', 'event_type', 'location', 'link_url')
+                    ->where('is_active', true)
+                    ->whereDate('event_date', '>=', today()->toDateString())
+                    ->orderBy('event_date')
+                    ->orderBy('id')
+                    ->limit(10)
+                    ->get()
+            );
+        }, max(1, (int) now()->diffInSeconds(today()->addDay())));
+
         $collections = [
             'accreditationLogos' => PublicContentCache::hydrateRows(PartnerLogo::class, $cached['accreditationLogos'] ?? []),
             'facultyInsights' => PublicContentCache::hydrateRows(FacultyInsight::class, $cached['facultyInsights'] ?? []),
-            'events' => PublicContentCache::hydrateRows(Event::class, $cached['events'] ?? []),
+            'events' => PublicContentCache::hydrateRows(Event::class, $events),
             'testimonials' => PublicContentCache::hydratePlainRows($cached['testimonials'] ?? []),
             'homepageFaqs' => PublicContentCache::hydrateRows(\App\Models\Faq::class, $cached['homepageFaqs'] ?? []),
         ];

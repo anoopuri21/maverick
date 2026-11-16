@@ -50,7 +50,7 @@
             @if($secondary)
                 <div class="contact-info-card__secondary-row">
                     @if($link && str_starts_with($link, 'tel:'))
-                        <a href="tel:{{ str_replace(' ', '', $secondary) }}" class="contact-info-card__action-link">
+                        <a href="tel:{{ preg_replace('/[^\d+]/', '', $secondary) }}" class="contact-info-card__action-link">
                             {{ $secondary }}
                         </a>
                     @else
