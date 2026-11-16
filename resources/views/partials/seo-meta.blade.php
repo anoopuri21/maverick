@@ -10,7 +10,8 @@
     $metaDescription = isset($fallbackDescription) && blank($seo->meta_description ?? null) ? $fallbackDescription : ($seo->meta_description ?? 'Maverick Business Academy - Transforming Learners into Global Leaders.');
     // The layout owns the description when the page defines this section.
     if (View::hasSection('meta_description')) {
-        $sectionDescription = View::yieldContent('meta_description');
+        // Inline Blade sections are already HTML-escaped; social tags need the original text.
+        $sectionDescription = html_entity_decode(View::yieldContent('meta_description'), ENT_QUOTES | ENT_HTML5, 'UTF-8');
         $metaDescription = filled($sectionDescription) ? $sectionDescription : 'Maverick Business Academy - Transforming Learners into Global Leaders.';
     }
     $canonical       = \App\Support\PreferredOrigin::normalize($seo->canonical_url ?? null, request());

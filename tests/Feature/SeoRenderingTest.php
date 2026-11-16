@@ -24,8 +24,10 @@ class SeoRenderingTest extends TestCase
 
         $this->assertDescriptions('/programs/'.$program->slug, 'Programme & leadership details');
 
-        $program->seo()->create(['meta_description' => 'Custom course description']);
-        $this->assertDescriptions('/programs/'.$program->slug, 'Custom course description');
+        $description = 'Custom &amp; course "details" <script>alert(1)</script>';
+        $program->seo()->create(['meta_description' => $description]);
+        $this->assertDescriptions('/programs/'.$program->slug, $description);
+        $this->assertStringNotContainsString('<script>alert(1)</script>', $this->get('/programs/'.$program->slug)->getContent());
     }
 
     public function test_explicit_social_descriptions_remain_independent_of_the_page_description(): void
@@ -109,6 +111,7 @@ class SeoRenderingTest extends TestCase
         $this->assertCount(1, $descriptions, $uri);
         $this->assertSame($expected, $descriptions->item(0)->getAttribute('content'));
         $this->assertSame($expected, $xpath->query('//meta[@property="og:description"]')->item(0)->getAttribute('content'));
+        $this->assertSame($expected, $xpath->query('//meta[@name="twitter:description"]')->item(0)->getAttribute('content'));
     }
 
     private function xpath(string $html): DOMXPath

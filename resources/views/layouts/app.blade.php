@@ -13,7 +13,8 @@
     <title>@yield('title', 'Maverick Business Academy | Transforming Learners into Global Leaders')</title>
     @hasSection('meta_description')
     @php
-        $pageMetaDescription = View::yieldContent('meta_description');
+        // Inline Blade sections are already HTML-escaped; recover the text before escaping the attribute.
+        $pageMetaDescription = html_entity_decode(View::yieldContent('meta_description'), ENT_QUOTES | ENT_HTML5, 'UTF-8');
         $pageMetaDescription = filled($pageMetaDescription) ? $pageMetaDescription : 'Maverick Business Academy - Transforming Learners into Global Leaders.';
     @endphp
     <meta name="description" content="{{ $pageMetaDescription }}" />
