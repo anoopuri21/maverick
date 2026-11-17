@@ -1,0 +1,98 @@
+OLD SITE COURSES NAVIGATION — reference URLs, not redirect targets
+Source: https://wp.vsinfosys.in/ (Courses menu; repeated menu copies deduplicated)
+Exact reference host shown; do not assume every corresponding original-domain URL without verification.
+
+[UK Qualifications > Diplomas > Level 3]
+https://wp.vsinfosys.in/business-courses/level-3-diploma-in-introduction-to-management/
+https://wp.vsinfosys.in/business-courses/level-3-diploma-in-business-management/
+https://wp.vsinfosys.in/business-courses/level-3-diploma-in-business-innovation-and-entreprenuership/
+https://wp.vsinfosys.in/business-courses/level-3-diploma-in-hospitality-and-tourism-management/
+https://wp.vsinfosys.in/business-courses/level-3-diploma-in-health-and-social-care/
+
+[UK Qualifications > Diplomas > Level 4]
+https://wp.vsinfosys.in/business-courses/level-4-diploma-in-health-and-social-care/
+https://wp.vsinfosys.in/business-courses/level-4-diploma-in-business-management/
+https://wp.vsinfosys.in/business-courses/level-4-certificate-in-developing-the-new-business-plan/
+https://wp.vsinfosys.in/business-courses/level-4-diploma-in-entrepreneurship/
+https://wp.vsinfosys.in/business-courses/level-4-diploma-in-hospitality-and-tourism-management/
+https://wp.vsinfosys.in/business-courses/level-4-diploma-in-information-technology/
+https://wp.vsinfosys.in/business-courses/level-4-diploma-in-it-networking/
+https://wp.vsinfosys.in/business-courses/level-4-diploma-in-it-web-design/
+https://wp.vsinfosys.in/business-courses/level-4-diploma-in-it-e-commerce/
+https://wp.vsinfosys.in/business-courses/level-4-diploma-in-cyber-security/
+https://wp.vsinfosys.in/business-courses/level-4-diploma-in-coaching/
+
+[UK Qualifications > Diplomas > Level 5]
+https://wp.vsinfosys.in/business-courses/level-5-diploma-in-health-and-social-care/
+https://wp.vsinfosys.in/business-courses/level-5-diploma-in-business-management/
+https://wp.vsinfosys.in/business-courses/level-5-diploma-in-business-enterprise/
+https://wp.vsinfosys.in/business-courses/level-5-diploma-in-hospitality-and-tourism-management/
+https://wp.vsinfosys.in/business-courses/level-5-diploma-in-information-technology/
+https://wp.vsinfosys.in/business-courses/level-5-diploma-in-it-networking/
+https://wp.vsinfosys.in/business-courses/level-5-diploma-in-it-web-design/
+https://wp.vsinfosys.in/business-courses/level-5-diploma-in-it-e-commerce/
+https://wp.vsinfosys.in/business-courses/level-5-diploma-in-it-cyber-security/
+https://wp.vsinfosys.in/business-courses/level-5-certificate-in-teaching-english-as-foreign-language-the-tefl-academy/
+https://wp.vsinfosys.in/business-courses/level-5-certificate-in-teaching-practice-tefl-the-tefl-academy/
+
+[UK Qualifications > Diplomas > Level 7]
+https://wp.vsinfosys.in/business-courses/level-7-diploma-in-strategic-management-and-leadership/
+https://wp.vsinfosys.in/business-courses/level-7-diploma-in-strategic-management-and-innovation/
+https://wp.vsinfosys.in/business-courses/level-7-diploma-in-human-resource-management/
+https://wp.vsinfosys.in/business-courses/level-7-diploma-in-hospitality-and-tourism-and-management/
+https://wp.vsinfosys.in/business-courses/level-7-diploma-in-accounting-and-finance/
+https://wp.vsinfosys.in/business-courses/level-7-diploma-in-international-business-law/
+https://wp.vsinfosys.in/business-courses/level-7-diploma-in-health-coaching-and-applied-nutrition/
+https://wp.vsinfosys.in/business-courses/level-7-diploma-in-education-management-and-leadership/
+https://wp.vsinfosys.in/business-courses/level-7-diploma-in-logistics-and-supply-chain-management/
+
+[UK Qualifications > Diplomas > Level 8]
+https://wp.vsinfosys.in/business-courses/level-8-diploma-in-strategic-management-and-leadership/
+
+[UK Qualifications > MBA]
+https://wp.vsinfosys.in/business-courses/global-mba/
+https://wp.vsinfosys.in/business-courses/university-of-gloucestershire-mba/
+
+[UK Qualifications > MSc]
+https://wp.vsinfosys.in/business-courses/msc-accounting-finance/
+https://wp.vsinfosys.in/business-courses/msc-human-resource-management/
+
+[Bachelors]
+https://wp.vsinfosys.in/?post_type=stm-courses&p=27508
+https://wp.vsinfosys.in/business-courses/bachelor-of-science-bsc-in-business-management/
+https://wp.vsinfosys.in/business-courses/bsc-psychology/
+https://wp.vsinfosys.in/business-courses/bsc-management-information-systems/
+
+[Masters]
+https://wp.vsinfosys.in/business-courses/swiss-global-mba/
+https://wp.vsinfosys.in/business-courses/mba-business-management/
+https://wp.vsinfosys.in/business-courses/mba-project-management/
+https://wp.vsinfosys.in/business-courses/mba-management-information-systemsit/
+https://wp.vsinfosys.in/business-courses/mba-tourism-hospitality-management/
+https://wp.vsinfosys.in/business-courses/mba-engineering-management/
+https://wp.vsinfosys.in/business-courses/mba-healthcare-management/
+https://wp.vsinfosys.in/business-courses/mba-logistics-and-supply-chain-management/
+https://wp.vsinfosys.in/business-courses/msc-social-counselling-psychology/
+https://wp.vsinfosys.in/business-courses/mba-data-science-analytics-management/
+
+[Doctorate]
+https://wp.vsinfosys.in/business-courses/doctor-of-philosophy-phd/
+https://wp.vsinfosys.in/business-courses/doctor-of-business-administration/
+https://wp.vsinfosys.in/business-courses/european-professional-doctorate-eu/
+
+[Corporate Trainings]
+https://wp.vsinfosys.in/business-courses/uk-cpd-accredited-intensive-certification-course/
+https://wp.vsinfosys.in/business-courses/maverick-business-academy/
+
+[Category and submenu links — not individual courses]
+Courses menu: https://wp.vsinfosys.in/#
+UK Qualifications: https://wp.vsinfosys.in/business-courses/?terms%5B%5D=96&category%5B%5D=96
+Diplomas: https://wp.vsinfosys.in/business-courses/?terms%5B%5D=97&category%5B%5D=97
+MBA: https://wp.vsinfosys.in/business-courses/?terms%5B%5D=100&category%5B%5D=100
+MSc: https://wp.vsinfosys.in/business-courses/?terms%5B%5D=101&category%5B%5D=101
+Bachelors: https://wp.vsinfosys.in/business-courses/?terms%5B%5D=122&category%5B%5D=122
+Masters: https://wp.vsinfosys.in/business-courses/?terms%5B%5D=123&category%5B%5D=123
+Doctorate: https://wp.vsinfosys.in/business-courses/?terms%5B%5D=134&category%5B%5D=134
+Corporate Trainings: https://wp.vsinfosys.in/business-courses/?terms%5B%5D=133&category%5B%5D=133
+Mini MBA: https://wp.vsinfosys.in/business-courses/?terms%5B%5D=124&category%5B%5D=124
+Level 3 / 4 / 5 / 7 / 8 menu headings point to https://wp.vsinfosys.in/; these are not individual course URLs.
