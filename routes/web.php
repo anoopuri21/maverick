@@ -73,5 +73,20 @@ Route::redirect('/faculty-voice/{slug}', '/#faculty-insights', 301);
 
 Route::get('/sitemap.xml', SitemapController::class)->name('sitemap');
 
+// Payment page — reached only through a private link, never linked from the site.
+Route::middleware('noindex')->group(function () {
+    Route::get('/pay/{token}', [\App\Http\Controllers\PaymentPageController::class, 'show'])->name('pay.show');
+    Route::post('/pay/{token}/checkout', [\App\Http\Controllers\PaymentPageController::class, 'checkout'])
+        ->middleware('throttle:10,1')
+        ->name('pay.checkout');
+    Route::get('/pay/{token}/success', [\App\Http\Controllers\PaymentPageController::class, 'success'])->name('pay.success');
+    Route::get('/pay/{token}/cancelled', [\App\Http\Controllers\PaymentPageController::class, 'cancelled'])->name('pay.cancelled');
+});
+
+// Provider callbacks: no session, no CSRF, signature verified instead.
+Route::post('/payments/stripe/webhook', [\App\Http\Controllers\PaymentPageController::class, 'webhook'])
+    ->middleware('throttle:120,1')
+    ->name('payments.stripe.webhook');
+
 // Unified Detail (root-level permalink)
 Route::get('/{slug}', [\App\Http\Controllers\InsightController::class, 'show'])->name('insights.show');

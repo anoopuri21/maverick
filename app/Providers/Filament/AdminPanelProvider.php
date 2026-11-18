@@ -46,6 +46,7 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->sidebarCollapsibleOnDesktop(true)
             ->navigationGroups([
+                'Payments',
                 'Homepage',
                 'About Section',
                 'Programs',

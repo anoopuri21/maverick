@@ -15,6 +15,18 @@ return Application::configure(basePath: dirname(__DIR__))
         // Trust all proxies (required for LiteSpeed/CloudFlare/Shared Hosting)
         $middleware->trustProxies(at: '*');
 
+        // Payment pages must never be indexed or cached by a proxy.
+        $middleware->alias([
+            'noindex' => \App\Http\Middleware\NoIndex::class,
+        ]);
+
+        // The payment provider posts its own callback, so there is no browser
+        // session to carry a CSRF token. The request is authenticated by the
+        // provider's HMAC signature instead.
+        $middleware->validateCsrfTokens(except: [
+            'payments/stripe/webhook',
+        ]);
+
         // Redirect unauthenticated users to Filament admin login (not default 'login' route)
         $middleware->redirectGuestsTo(function (Request $request) {
             if ($request->is('admin') || $request->is('admin/*')) {
