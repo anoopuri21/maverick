@@ -59,7 +59,10 @@ class StripeGateway implements PaymentGateway
                 ->retry(2, 400)
                 ->post(rtrim($this->config['api_base'], '/').'/v1/checkout/sessions', $body);
         } catch (ConnectionException $e) {
-            Log::error('Stripe checkout connection failed', ['transaction_id' => $transaction->id, 'error' => $e->getMessage()]);
+            Log::error('Stripe checkout connection failed', [
+                'transaction_id' => $transaction->id,
+                'exception' => class_basename($e),
+            ]);
 
             throw new \RuntimeException('The payment provider is unreachable. Please try again in a minute.');
         }
@@ -68,7 +71,7 @@ class StripeGateway implements PaymentGateway
             Log::error('Stripe checkout rejected', [
                 'transaction_id' => $transaction->id,
                 'status' => $response->status(),
-                'error' => $response->json('error.message'),
+                'provider_error_code' => $response->json('error.code'),
             ]);
 
             throw new \RuntimeException('The payment provider could not start this payment.');

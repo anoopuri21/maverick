@@ -6,7 +6,7 @@
     <section class="card">
         @if ($status === 'paid')
             <div class="notice notice--ok" role="status">
-                Payment received. A receipt is on its way to the email address on your plan.
+                Payment received. Your plan has been updated.
             </div>
             <h1>Thank you — your payment is in.</h1>
             <p class="lede">{{ $plan->student_name }} · {{ $plan->program_title }}</p>

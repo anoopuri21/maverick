@@ -95,7 +95,12 @@ class PaymentPlanService
                 'currency' => $installment->plan->currency,
                 'status' => PaymentTransaction::STATUS_SUCCEEDED,
                 'paid_at' => now(),
-                'payload' => ['recorded_by' => 'admin', 'via' => $via, 'reference' => $reference],
+                'payload' => [
+                    'recorded_by' => 'admin',
+                    'recorded_by_user_id' => auth()->id(),
+                    'via' => $via,
+                    'reference' => $reference,
+                ],
             ]);
 
             $installment->forceFill([
@@ -109,18 +114,6 @@ class PaymentPlanService
 
             return $transaction;
         });
-    }
-
-    public function markPending(PaymentInstallment $installment): void
-    {
-        $installment->forceFill([
-            'status' => PaymentInstallment::STATUS_PENDING,
-            'paid_at' => null,
-            'paid_via' => null,
-            'reference' => null,
-        ])->save();
-
-        $this->syncPlanStatus($installment->plan);
     }
 
     public function syncPlanStatus(PaymentPlan $plan): void

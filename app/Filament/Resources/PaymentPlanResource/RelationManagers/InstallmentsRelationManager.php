@@ -100,22 +100,6 @@ class InstallmentsRelationManager extends RelationManager
                             ->success()
                             ->send();
                     }),
-                Tables\Actions\Action::make('mark_pending')
-                    ->label('Undo')
-                    ->icon('heroicon-o-arrow-uturn-left')
-                    ->color('gray')
-                    ->visible(fn (PaymentInstallment $record): bool => $record->isPaid())
-                    ->requiresConfirmation()
-                    ->modalHeading('Reopen this installment?')
-                    ->modalDescription('The paid date, method and reference on this installment will be cleared, and the plan is reopened if it had been completed.')
-                    ->action(function (PaymentInstallment $record): void {
-                        app(PaymentPlanService::class)->markPending($record);
-
-                        Notification::make()
-                            ->title('Installment reopened')
-                            ->warning()
-                            ->send();
-                    }),
             ])
             ->headerActions([])
             ->bulkActions([]);

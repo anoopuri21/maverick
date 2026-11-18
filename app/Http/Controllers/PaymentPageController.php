@@ -97,14 +97,19 @@ class PaymentPageController extends Controller
                 'cancel_url' => route('pay.cancelled', $plan->token),
             ]);
         } catch (\Throwable $e) {
+            Log::error('Payment checkout initialization failed', [
+                'transaction_id' => $transaction->id,
+                'exception' => class_basename($e),
+            ]);
+
             $transaction->forceFill([
                 'status' => PaymentTransaction::STATUS_FAILED,
-                'payload' => ['error' => $e->getMessage()],
+                'payload' => ['failure' => 'checkout_initialization'],
             ])->save();
 
             return redirect()
                 ->route('pay.show', $plan->token)
-                ->with('pay_error', $e->getMessage());
+                ->with('pay_error', 'We could not start the payment. Please try again or contact admissions.');
         }
 
         $transaction->forceFill(['gateway_session_id' => $session['session_id']])->save();
@@ -223,7 +228,10 @@ class PaymentPageController extends Controller
             return;
         }
 
-        $this->applyPayment($transaction, $session['payment_intent'] ?? $sessionId, $session);
+        $this->applyPayment($transaction, $session['payment_intent'] ?? $sessionId, [
+            'source' => 'webhook',
+            'gateway_session_id' => $sessionId,
+        ]);
     }
 
     /** @param array<string, mixed> $session */
@@ -249,19 +257,31 @@ class PaymentPageController extends Controller
             return;
         }
 
-        if ($result['amount_minor'] !== null && $result['amount_minor'] !== $transaction->amount_minor) {
-            Log::error('Return-page amount mismatch', ['transaction_id' => $transaction->id]);
+        $verifiedCurrency = strtoupper((string) ($result['currency'] ?? ''));
+
+        if (
+            $result['amount_minor'] !== $transaction->amount_minor
+            || $verifiedCurrency !== strtoupper($transaction->currency)
+        ) {
+            Log::error('Return-page payment verification mismatch', [
+                'transaction_id' => $transaction->id,
+                'amount_matches' => $result['amount_minor'] === $transaction->amount_minor,
+                'currency_matches' => $verifiedCurrency === strtoupper($transaction->currency),
+            ]);
 
             return;
         }
 
-        $this->applyPayment($transaction, $result['reference'], ['source' => 'return_page', 'session' => $sessionId]);
+        $this->applyPayment($transaction, $result['reference'], [
+            'source' => 'return_page',
+            'gateway_session_id' => $sessionId,
+        ]);
     }
 
-    /** @param array<string, mixed> $raw */
-    private function applyPayment(PaymentTransaction $transaction, ?string $reference, array $raw): void
+    /** @param array<string, mixed> $metadata */
+    private function applyPayment(PaymentTransaction $transaction, ?string $reference, array $metadata): void
     {
-        DB::transaction(function () use ($transaction, $reference, $raw) {
+        DB::transaction(function () use ($transaction, $reference, $metadata) {
             $fresh = PaymentTransaction::query()->lockForUpdate()->find($transaction->id);
 
             if (! $fresh || $fresh->status === PaymentTransaction::STATUS_SUCCEEDED) {
@@ -272,7 +292,7 @@ class PaymentPageController extends Controller
                 'status' => PaymentTransaction::STATUS_SUCCEEDED,
                 'gateway_reference' => $reference,
                 'paid_at' => now(),
-                'payload' => $raw,
+                'payload' => $metadata,
             ])->save();
 
             $installment = $fresh->installment;

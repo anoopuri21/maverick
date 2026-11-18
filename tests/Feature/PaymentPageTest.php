@@ -117,6 +117,26 @@ class PaymentPageTest extends TestCase
         $this->assertSame(0, PaymentTransaction::query()->count());
     }
 
+    public function test_checkout_failure_does_not_expose_provider_error_text(): void
+    {
+        $this->configureStripe();
+        $plan = $this->plan();
+
+        Http::fake([
+            'api.stripe.com/v1/checkout/sessions' => Http::response([
+                'error' => ['message' => 'private provider diagnostic'],
+            ], 500),
+        ]);
+
+        $this->post('/pay/'.$plan->token.'/checkout', ['mode' => 'installment'])
+            ->assertRedirect(route('pay.show', $plan->token))
+            ->assertSessionHas('pay_error', 'We could not start the payment. Please try again or contact admissions.');
+
+        $transaction = PaymentTransaction::query()->sole();
+        $this->assertSame(PaymentTransaction::STATUS_FAILED, $transaction->status);
+        $this->assertSame(['failure' => 'checkout_initialization'], $transaction->payload);
+    }
+
     public function test_webhook_marks_the_installment_paid_and_ignores_a_replay(): void
     {
         $this->configureStripe();
@@ -158,7 +178,12 @@ class PaymentPageTest extends TestCase
         $this->assertTrue($installment->isPaid());
         $this->assertSame('card', $installment->paid_via);
         $this->assertSame(50000, $plan->paidMinor());
-        $this->assertSame(PaymentTransaction::STATUS_SUCCEEDED, PaymentTransaction::query()->sole()->status);
+        $transaction = PaymentTransaction::query()->sole();
+        $this->assertSame(PaymentTransaction::STATUS_SUCCEEDED, $transaction->status);
+        $this->assertSame([
+            'source' => 'webhook',
+            'gateway_session_id' => 'cs_test_paid',
+        ], $transaction->payload);
 
         // The same event delivered again must not pay a second installment.
         $this->call('POST', '/payments/stripe/webhook', [], [], [], $headers, $payload)->assertOk();
@@ -241,9 +266,40 @@ class PaymentPageTest extends TestCase
 
         $this->get('/pay/'.$plan->token.'/success?session=cs_test_return')
             ->assertOk()
-            ->assertSee('Thank you', false);
+            ->assertSee('Thank you', false)
+            ->assertDontSee('A receipt is on its way');
 
         $this->assertTrue($plan->installments()->first()->isPaid());
+    }
+
+    public function test_return_page_does_not_settle_a_session_with_the_wrong_currency(): void
+    {
+        $this->configureStripe();
+        $plan = $this->plan();
+
+        Http::fake([
+            'api.stripe.com/v1/checkout/sessions' => Http::response([
+                'id' => 'cs_test_wrong_currency',
+                'url' => 'https://checkout.stripe.com/c/pay/cs_test_wrong_currency',
+            ], 200),
+            'api.stripe.com/v1/checkout/sessions/cs_test_wrong_currency' => Http::response([
+                'id' => 'cs_test_wrong_currency',
+                'status' => 'complete',
+                'payment_status' => 'paid',
+                'amount_total' => 50000,
+                'currency' => 'usd',
+                'payment_intent' => 'pi_test_wrong_currency',
+            ], 200),
+        ]);
+
+        $this->post('/pay/'.$plan->token.'/checkout', ['mode' => 'installment']);
+
+        $this->get('/pay/'.$plan->token.'/success?session=cs_test_wrong_currency')
+            ->assertOk()
+            ->assertSee('Payment is being confirmed');
+
+        $this->assertFalse($plan->installments()->first()->isPaid());
+        $this->assertSame(PaymentTransaction::STATUS_PENDING, PaymentTransaction::query()->sole()->status);
     }
 
     public function test_an_expired_link_stops_accepting_card_payments(): void

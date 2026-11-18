@@ -226,13 +226,13 @@ Notifications after a verified state change
 
 These are review risks, not confirmed exploits. Verify and address them before live payment use.
 
-- Checkout currently creates a new transaction for each request. Add protection against multiple pending sessions for the same installment and full balance.
-- The return page checks a verified amount when available, but the reviewed path does not compare the returned currency. Require both amount and currency checks.
-- A webhook signature and timestamp check exist, and payment application uses a database transaction lock. A durable unique provider event record and a unique session constraint were not found.
-- The public success page says a receipt is on its way, but no payment mail sender was found in the reviewed payment module.
-- The manual Undo action clears installment paid fields without reversing or annotating the successful transaction. Replace it with an audited correction or reversal flow and permission checks.
+- Checkout still creates a new transaction for each request. Protection against multiple pending sessions for the same installment and full balance remains a live charge blocker.
+- The return path now requires both the verified amount and currency to match. The regression test is written but has not run.
+- A webhook signature and timestamp check exist, and payment application uses a database transaction lock. A durable unique provider event record and a unique session constraint are still missing.
+- The success page no longer promises that an email receipt was sent. The actual student receipt and finance mail workflow is still missing.
+- The silent Undo action has been removed. Manual paid entries now record the authenticated user ID, but a reviewed correction or reversal workflow and role permissions remain to be defined.
 - The reviewed schema cascades plan deletion to installments and transactions. Financial records should be retained and corrected, not silently erased.
-- The payment transaction stores a raw payload and some checkout exceptions are stored or returned as messages. Minimize retained fields and show students a generic error.
+- Successful payment records now keep only a small set of provider identifiers. Checkout failures return a generic message and provider logs omit raw error text. These changes are not runtime tested.
 - Global proxy trust is configured broadly. Confirm the actual host proxy chain and trust only the intended proxies; forwarded headers affect scheme and client IP handling.
 - Payment plan records are behind the Filament login, but payment specific role authorization is Unknown.
 - The hosted page limits card data exposure, but no PCI scope statement should be made until the merchant's acquirer confirms the correct assessment path.
@@ -249,15 +249,43 @@ Source review only. Nothing below has been runtime tested in this workspace.
 | University, course, purpose and new or existing student rules | Missing | Not present in the reviewed plan form or model. |
 | Initial UAE payment methods | Unknown | Hosted checkout code exists. Account eligibility and actual displayed methods are not verified. |
 | Consent based monthly card attempts | Missing | No consent record, saved method workflow, schedule runner, retry policy or revocation path was found. |
-| Verified payment and paid or remaining status | Partial | Callback signature, time window, webhook amount and currency checks, plus transaction locking exist. Return currency validation and durable event deduplication need work. |
-| Student receipt and finance copy | Missing | No sender found; current page wording overstates what happens. |
+| Verified payment and paid or remaining status | Partial | Callback and return paths compare amount and currency; transaction locking exists. Durable event deduplication and duplicate checkout protection remain missing. Runtime result is Unknown. |
+| Student receipt and finance copy | Missing | No mail sender was found. The success page no longer claims a receipt was sent. |
 | Shadobooks sync or reconciliation export | Missing | No connector or export was found in the reviewed payment module. |
-| Feature tests | Written, not run | Fourteen feature cases cover schedule sums, page rendering, checkout, callbacks, return verification and plan states. Test results are Unknown. |
+| Feature tests | Written, not run | Sixteen feature cases cover schedule sums, page rendering, checkout, callbacks, return verification, safe error messages and plan states. Test results are Unknown. |
+
+## Codebase file change map
+
+The following file map separates safe source changes from work that depends on client or host confirmation. Do not mark a row complete until the source change is reviewed and its tests pass in an approved environment.
+
+### Current safe implementation batch
+
+| File | Change | Status |
+|---|---|---|
+| `app/Http/Controllers/PaymentPageController.php` | Require verified amount and currency on the return path; use generic student facing errors; store only approved payment metadata, not the full provider response | Implemented in source; runtime unverified |
+| `app/Payments/StripeGateway.php` | Keep raw provider error text and connection details out of logs | Implemented in source; runtime unverified |
+| `app/Payments/PaymentPlanService.php` | Record the authenticated staff user on manual payment entries; remove the unrecorded reset to pending operation | Implemented in source; runtime unverified |
+| `app/Filament/Resources/PaymentPlanResource/RelationManagers/InstallmentsRelationManager.php` | Remove the silent Undo action until a reviewed, audited correction or reversal flow exists | Implemented in source; runtime unverified |
+| `resources/views/pay/result.blade.php` | Do not tell students a receipt was sent until a mail workflow exists | Implemented in source; runtime unverified |
+| `tests/Feature/PaymentPageTest.php` | Add regression coverage for return currency mismatch, metadata minimization and safe error messages | Added; 16 feature cases are written, not run |
+
+### Gated implementation work
+
+| Files or area | Planned change | Dependency |
+|---|---|---|
+| `app/Filament/Resources/PaymentPlanResource.php`, `app/Filament/Resources/PaymentPlanResource/Pages/CreatePaymentPlan.php`, `app/Models/PaymentPlan.php`, and a new migration | Add university, course, purpose, student type and any client approved student identifier fields | Client confirms the lists and new or existing student rules |
+| `app/Payments/PaymentGateway.php`, `app/Payments/StripeGateway.php`, `app/Payments/PaymentPlanService.php`, `app/Http/Controllers/PaymentPageController.php`, a new migration and scheduler entry | Add consent records, saved method handling, scheduled card attempts, limited retries and revocation | Merchant account confirms off session eligibility; client approves consent and failure wording; hosting scheduler is confirmed |
+| `app/Http/Controllers/PaymentPageController.php`, `app/Models/PaymentTransaction.php`, a new event ledger migration/model and an outbox processor | Deduplicate provider events, prevent parallel checkout attempts, retain minimal event data and dispatch notifications after commit | Database constraints and test database are reviewed; hosting supports the chosen processing method |
+| New mail classes, notification configuration and outbox handling | Send exactly one student confirmation and finance copy after settlement | Finance recipient, sender configuration and approved receipt content are supplied |
+| `app/Filament/Resources/PaymentPlanResource.php` and a new reconciliation export service | Produce a CSV from the internal plan, installment and settled transaction records, with spreadsheet formula protection | Finance confirms required columns, date range and staff permissions; no Shadobooks API is required for this fallback |
+| New Shadobooks adapter | Sync supported invoice and payment fields without duplicate updates | Shadobooks tenant, API documentation, permissions and sample records are supplied |
+| `bootstrap/app.php` | Replace broad proxy trust only with the actual approved proxy list | Hosting provider confirms the proxy chain and addresses |
+| Payment migration and admin correction flow | Preserve the financial ledger and record corrections instead of cascading deletion or silently clearing paid status | Migration review, approval and a defined finance correction policy |
 
 ## Working constraints
 
-- Do not change code while this plan is being reviewed.
-- Do not run migrations, seeders, package installs or builds without approval.
+- Follow the file change map. Work that depends on an Unknown client, merchant or hosting decision stays blocked until that decision is confirmed.
+- Do not run migrations, seeders, package installs or builds without approval. The new feature tests use `RefreshDatabase`, so run them only against an approved isolated test database.
 - Do not read or create `.env` files. Never put secret values in a commit or a message.
-- PHP and Composer are unavailable in the current sandbox. Do not report tests as passing until they run in a suitable environment.
-- Current production drivers and merchant account eligibility remain Unknown until confirmed.
+- PHP and Composer are unavailable in the current sandbox. Source changes and written tests remain runtime unverified until they run in a suitable environment.
+- Current production drivers, merchant account eligibility, finance recipient and Shadobooks access remain Unknown until confirmed.
