@@ -14,7 +14,9 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         // Trusted proxies can be enumerated per deployment; "*" is retained as
         // the default for shared hosting where the upstream IP is not stable.
-        $trusted = config('app.trusted_proxies', '*');
+        // Read the environment directly: this middleware callback runs before
+        // the config repository is available during HTTP kernel resolution.
+        $trusted = env('TRUSTED_PROXIES', '*');
         $middleware->trustProxies(
             at: $trusted === '*'
                 ? '*'

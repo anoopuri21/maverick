@@ -51,6 +51,9 @@ A follow-up review of the implemented phases found and corrected these issues:
   half-subscribed lead that the visitor is told to retry.
 - **Phase 14 — validation:** credential-like field names with suffixes (`*_secret`,
   `*_token`, any `*password*`) are also excluded from inferred validation overrides.
+- **Phase 7 — bootstrap timing:** the trusted-proxy middleware callback reads
+  `TRUSTED_PROXIES` from the environment directly because it runs before the config
+  repository is bound (reported as `Class "config" does not exist` on a local Laragon install).
 
 ## Verification in this checkout
 
