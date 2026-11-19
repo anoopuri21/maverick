@@ -55,7 +55,7 @@ class GenericFormMail extends Mailable
                 'headerText' => $this->htmlToText($headerHtml),
                 'footerText' => $this->htmlToText($footerHtml),
                 'logoUrl' => $this->absoluteUrl(
-                    media_url($site->logo_white_url ?? null, 'assets/images/logo-white.png')
+                    media_url($site->logo_white_url ?? null, 'https://mbalondon.org.uk/assets/images/logo-white.png?v=1784704976')
                 ),
                 'siteName' => 'Maverick Business Academy',
             ],
