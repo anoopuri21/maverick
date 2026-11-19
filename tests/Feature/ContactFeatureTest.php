@@ -5,13 +5,18 @@ namespace Tests\Feature;
 use App\Mail\GenericFormMail;
 use App\Models\ZapierWebhook;
 use App\Settings\SiteSettings;
+use App\Settings\ZohoSettings;
 use App\Support\ZapierEvents;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
+use Tests\Concerns\FakesRecaptcha;
 use Tests\TestCase;
 
 class ContactFeatureTest extends TestCase
 {
+    use FakesRecaptcha;
+
     use RefreshDatabase;
 
     protected function setUp(): void
@@ -25,10 +30,17 @@ class ContactFeatureTest extends TestCase
      */
     public function test_contact_page_renders(): void
     {
+        config([
+            'services.recaptcha.enabled' => true,
+            'services.recaptcha.site_key' => 'test-site-key',
+            'services.recaptcha.secret_key' => 'test-secret-key',
+        ]);
+
         $response = $this->get('/contact');
 
         $response->assertStatus(200);
         $response->assertSee("Let's Start a Conversation");
+        $response->assertSee('class="g-recaptcha" data-sitekey="test-site-key"', false);
         $response->assertSee("Sharjah");
         $response->assertSee("UAE Campus");
         $response->assertSee("UK Campus");
@@ -56,25 +68,34 @@ class ContactFeatureTest extends TestCase
     public function test_contact_form_submission(): void
     {
         Mail::fake();
+        $this->fakeRecaptcha();
+        $zoho = app(ZohoSettings::class);
+        $zoho->enabled = false;
+        $zoho->default_recipient = 'contact-test@example.com';
+        $zoho->additional_recipients = [];
+        $zoho->save();
 
-        $response = $this->post('/contact', [
+        $response = $this->from('/contact')->post('/contact', [
             'name' => 'John Doe',
             'email' => 'johndoe@example.com',
             'phone' => '+971 50 000 0000',
-            'subject' => 'Admissions',
             'message' => 'Hello, I would like to inquire about Executive MBA programs.',
             'website' => '', // Empty honeypot
+            'g-recaptcha-response' => 'test-token',
         ]);
 
         $response->assertStatus(302);
-        $response->assertSessionHas('success', 'Thank you! We\'ll get back to you within 24 hours.');
+        $response->assertRedirectToRoute('thank-you');
+        $response->assertSessionHas('thank_you_previous_url', 'http://localhost/contact');
 
         Mail::assertSent(GenericFormMail::class, function ($mail) {
             $values = collect($mail->rows)->pluck('value', 'label');
 
-            return $mail->hasTo('admissions@mbalondon.org.uk') &&
+            return $mail->hasTo('contact-test@example.com') &&
+                   $mail->replyToAddress === 'johndoe@example.com' &&
                    $values->get('Name') === 'John Doe' &&
-                   $values->get('Subject') === 'Admissions';
+                   $values->get('Email') === 'johndoe@example.com' &&
+                   $values->get('Message') === 'Hello, I would like to inquire about Executive MBA programs.';
         });
     }
 
@@ -85,7 +106,7 @@ class ContactFeatureTest extends TestCase
     {
         Mail::fake();
 
-        $response = $this->post('/contact', [
+        $response = $this->from('/contact')->post('/contact', [
             'name' => 'Spam Bot',
             'email' => 'spambot@example.com',
             'phone' => '123456',
@@ -95,8 +116,8 @@ class ContactFeatureTest extends TestCase
         ]);
 
         $response->assertStatus(302);
-        // User should still see standard success response
-        $response->assertSessionHas('success', 'Thank you! We\'ll get back to you within 24 hours.');
+        // Bot should still get the standard success flow (thank-you redirect)
+        $response->assertRedirectToRoute('thank-you');
 
         // But no mail should be sent
         Mail::assertNotSent(GenericFormMail::class);
@@ -108,7 +129,9 @@ class ContactFeatureTest extends TestCase
     public function test_contact_form_zapier_success(): void
     {
         Mail::fake();
-        \Illuminate\Support\Facades\Http::fake();
+        $this->fakeRecaptcha(true, [
+            'hooks.zapier.com/*' => Http::response('ok', 200),
+        ]);
 
         ZapierWebhook::create([
             'event_key' => ZapierEvents::CONTACT_SUBMITTED,
@@ -116,17 +139,18 @@ class ContactFeatureTest extends TestCase
             'is_enabled' => true,
         ]);
 
-        $response = $this->post('/contact', [
+        $response = $this->from('/contact')->post('/contact', [
             'name' => 'John Zapier',
             'email' => 'zapier@example.com',
             'phone' => '+1234567890',
             'subject' => 'General Inquiry',
             'message' => 'Hello Zapier!',
             'website' => '',
+            'g-recaptcha-response' => 'test-token',
         ]);
 
         $response->assertStatus(302);
-        $response->assertSessionHas('success');
+        $response->assertRedirectToRoute('thank-you');
 
         \Illuminate\Support\Facades\Http::assertSent(function ($request) {
             return $request->url() === 'https://hooks.zapier.com/hooks/catch/test' &&
@@ -141,8 +165,8 @@ class ContactFeatureTest extends TestCase
     public function test_contact_form_zapier_failure_does_not_block(): void
     {
         Mail::fake();
-        \Illuminate\Support\Facades\Http::fake([
-            '*' => \Illuminate\Support\Facades\Http::response('Error', 500),
+        $this->fakeRecaptcha(true, [
+            'hooks.zapier.com/*' => Http::response('Error', 500),
         ]);
 
         ZapierWebhook::create([
@@ -151,17 +175,45 @@ class ContactFeatureTest extends TestCase
             'is_enabled' => true,
         ]);
 
-        $response = $this->post('/contact', [
+        $response = $this->from('/contact')->post('/contact', [
             'name' => 'John Failure',
             'email' => 'failure@example.com',
             'phone' => '+1234567890',
             'subject' => 'General Inquiry',
             'message' => 'Hello Failure!',
             'website' => '',
+            'g-recaptcha-response' => 'test-token',
         ]);
 
         // Flow should still be fully successful for user
         $response->assertStatus(302);
-        $response->assertSessionHas('success');
+        $response->assertRedirectToRoute('thank-you');
+    }
+
+    public function test_invalid_recaptcha_blocks_contact_mail_and_zapier_dispatch(): void
+    {
+        Mail::fake();
+        ZapierWebhook::create([
+            'event_key' => ZapierEvents::CONTACT_SUBMITTED,
+            'url' => 'https://hooks.zapier.com/hooks/catch/test',
+            'is_enabled' => true,
+        ]);
+        $this->fakeRecaptcha(false, [
+            'hooks.zapier.com/*' => Http::response('ok', 200),
+        ]);
+
+        $response = $this->from('/contact')->post('/contact', [
+            'name' => 'Invalid CAPTCHA',
+            'email' => 'invalid@example.com',
+            'phone' => '+1234567890',
+            'subject' => 'General Inquiry',
+            'message' => 'This should not be sent.',
+            'website' => '',
+            'g-recaptcha-response' => 'invalid-token',
+        ]);
+
+        $response->assertSessionHasErrors('recaptcha');
+        Mail::assertNothingSent();
+        Http::assertNotSent(fn ($request) => $request->url() === 'https://hooks.zapier.com/hooks/catch/test');
     }
 }

@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ContactFormRequest;
+use App\Models\Program;
 use App\Services\FormMailer;
+use App\Services\GoogleRecaptchaVerifier;
 use App\Services\ZapierWebhookDispatcher;
 use App\Settings\ContactPageSettings;
 use App\Settings\ContactSeoSettings;
 use App\Settings\SiteSettings;
 use App\Support\ZapierEvents;
+use Illuminate\Validation\ValidationException;
 
 class ContactController extends Controller
 {
@@ -21,38 +24,59 @@ class ContactController extends Controller
         $contactPage = safe_settings(ContactPageSettings::class);
         $contactSeo = safe_settings(ContactSeoSettings::class);
 
-        return view('pages.contact', compact('site', 'contactPage', 'contactSeo'));
+        $allPrograms = Program::where('is_active', true)
+            ->hasPublicSlug()
+            ->with('programCategory:id,name,slug')
+            ->orderBy('title')
+            ->get(['id', 'title', 'slug', 'program_category_id']);
+
+        return view('pages.contact', compact('site', 'contactPage', 'contactSeo', 'allPrograms'));
     }
 
     /**
      * Handle contact form submission.
      */
-    public function submit(ContactFormRequest $request)
+    public function submit(ContactFormRequest $request, GoogleRecaptchaVerifier $recaptchaVerifier)
     {
         $validated = $request->validated();
 
         // Honeypot anti-spam check:
         // Visually-hidden field 'website' should remain empty.
-        // If filled, silently drop/redirect as if successful.
+        // If filled, silently drop and behave as if the submission succeeded.
         if (!empty($validated['website'])) {
-            return back()->with('success', 'Thank you! We\'ll get back to you within 24 hours.');
+            return redirect()->route('thank-you')->with('thank_you_previous_url', url()->previous());
         }
 
-        app(FormMailer::class)->send([
+        if (! $recaptchaVerifier->verify($request->input('g-recaptcha-response'))) {
+            throw ValidationException::withMessages([
+                'recaptcha' => 'Please complete the reCAPTCHA verification and try again.',
+            ]);
+        }
+
+        $preferredProgram = '';
+        if (filled($validated['preferred_program'] ?? null)) {
+            $preferredProgram = Program::where('id', $validated['preferred_program'])->value('title') ?? '';
+        }
+
+        $sent = app(FormMailer::class)->send([
             'Name' => $validated['name'] ?? '',
             'Email' => $validated['email'] ?? '',
             'Phone' => $validated['phone'] ?? '',
-            'Subject' => $validated['subject'] ?? '',
+            'Preferred Program' => $preferredProgram,
             'Message' => $validated['message'] ?? '',
         ], 'New Contact Form Submission from '.($validated['name'] ?? 'Guest'), [
             'reply_to' => $validated['email'] ?? null,
         ]);
 
-        app(ZapierWebhookDispatcher::class)->dispatch(ZapierEvents::CONTACT_SUBMITTED, $validated);
+        // CRM capture is independent of the notification email (see MBA landing).
+        app(ZapierWebhookDispatcher::class)->dispatch(ZapierEvents::CONTACT_SUBMITTED, array_merge($validated, [
+            'preferred_program' => $preferredProgram,
+        ]));
 
-        $contactPage = safe_settings(ContactPageSettings::class);
-        $successMessage = $contactPage->success_message ?? 'Thank you! We\'ll get back to you within 24 hours.';
+        if (! $sent) {
+            return back()->withInput()->with('error', 'We could not send your message right now. Please try again or contact us directly.');
+        }
 
-        return back()->with('success', $successMessage);
+        return redirect()->route('thank-you')->with('thank_you_previous_url', url()->previous());
     }
 }

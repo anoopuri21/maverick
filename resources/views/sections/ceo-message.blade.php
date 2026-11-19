@@ -53,7 +53,7 @@
 
         @if(html_filled($ceo->quote ?? null))
         <blockquote class="ceo__quote fade-up">
-          "{!! rich_html($ceo->quote ?? null) !!}"
+          {!! rich_html($ceo->quote ?? null) !!}
         </blockquote>
         @endif
 

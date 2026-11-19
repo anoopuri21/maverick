@@ -123,4 +123,25 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    /*
+     * Shared hosting / preview proxies. Keep "*" only when the upstream proxy
+     * cannot be enumerated; otherwise list the proxy IPs explicitly.
+     */
+    'trusted_proxies' => env('TRUSTED_PROXIES', '*'),
+
+    /*
+     * Inferred validation rules for Filament text fields. Set to false to rely
+     * solely on rules declared in each resource/page.
+     */
+    'filament_lenient_validation' => filter_var(env('FILAMENT_LENIENT_VALIDATION', true), FILTER_VALIDATE_BOOLEAN),
+
+    /*
+     * Hosts for which local/preview requests may override the root URL.
+     * Wildcards such as *.e2b.app are supported.
+     */
+    'allowed_url_hosts' => array_values(array_filter(array_map(
+        'trim',
+        explode(',', (string) env('APP_ALLOWED_URL_HOSTS', 'localhost,127.0.0.1,*.e2b.app'))
+    ))),
+
 ];

@@ -15,6 +15,7 @@
 
 @push('styles')
     <link rel="stylesheet" href="{{ cached_asset('css/pages/global-university-partners.css') }}">
+    <link rel="stylesheet" href="{{ cached_asset('assets/css/mba-partners.css') }}">
     <link rel="stylesheet" href="{{ cached_asset('assets/css/components/cinematic-hero.css') }}">
 @endpush
 
@@ -123,7 +124,7 @@
 @endif
 
 @include('sections.university-partners')
-
+@include('sections.mba-partners')
 
 {{-- ═══════════════════════════════════════════
      PARTNER UNIVERSITIES — 3D Cards with Aura
@@ -408,5 +409,6 @@
 @endsection
 
 @push('scripts')
+    <script src="{{ cached_asset('assets/js/archive-partners.js') }}" defer></script>
     <script src="{{ cached_asset('assets/js/pages/global-university-partners.js') }}" defer></script>
 @endpush

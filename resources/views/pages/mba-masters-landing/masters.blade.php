@@ -1,5 +1,5 @@
-{{-- §7 Master's programmes — The Prospectus Ledger
-     Light, clean, professional directory of every Master's programme
+{{-- §7 Master's programs — The Prospectus Ledger
+     Light, clean, professional directory of every Master's program
      (all universities combined). No university names, no counts. --}}
 @php
   $programs = collect($masters->universities ?? [])
@@ -13,17 +13,17 @@
       ->values();
   $trendingTitle = filled($masters->trending_title ?? null)
       ? (string) $masters->trending_title
-      : 'Trending|Specialisations';
+      : 'Trending|Specializations';
   $trendingParts = explode('|', $trendingTitle, 2);
   $plate = mlp_image_url(settings_media_url($masters, 'stage_image'), [
     'w' => 1920,
     'fallback' => 'assets/images/edutainment/dubai-uae-skyline-students-studying-camp-1.jpg',
   ]);
   $heading = filled($masters->heading) ? $masters->heading : "Master's Programs";
-  $label = filled($masters->label) ? $masters->label : 'Programme directory';
+  $label = filled($masters->label) ? $masters->label : 'Program directory';
 @endphp
 @if($programs->isNotEmpty() || filled($masters->heading))
-<section class="mlp-masters mlp-masters--prospectus" id="mlp-masters" aria-label="Master's programmes">
+<section class="mlp-masters mlp-masters--prospectus" id="mlp-masters" aria-label="Master's programs">
   <div class="container mlp-masters__inner">
     <header class="mlp-masters__head mlp-intro-grid" data-mlp-reveal="masters-head">
       <div>
@@ -37,7 +37,7 @@
 
     <div class="mlp-masters__split{{ $trendingRows->isNotEmpty() ? '' : ' mlp-masters__split--full' }}" data-mlp-reveal="masters-split">
       @if($programs->isNotEmpty())
-      <ol class="mlp-masters__ledger" data-mlp-reveal="masters-list" aria-label="All Master's programmes">
+      <ol class="mlp-masters__ledger" data-mlp-reveal="masters-list" aria-label="All Master's programs">
         @foreach($programs as $title)
         <li class="mlp-masters__item">
           <span class="mlp-masters__item-mark" aria-hidden="true"></span>
@@ -48,7 +48,7 @@
       @endif
 
       @if($trendingRows->isNotEmpty())
-      <aside class="mlp-trending" aria-label="Trending specialisations">
+      <aside class="mlp-trending" aria-label="Trending specializations">
         <h3 class="mlp-trending__title">
           @php $trendingDark = trim($trendingParts[0] ?? ''); @endphp
           <span class="mlp-trending__title-dark">{{ $trendingDark !== '' ? $trendingDark : 'Trending' }}</span>
@@ -76,7 +76,7 @@
 
     <div class="mlp-masters__cta-row">
       <a href="#mlp-enquire" class="mlp-masters__cta mlp-cta mlp-cta--primary">Check eligibility <span aria-hidden="true">↗</span></a>
-      <p class="mlp-masters__cta-note">Every programme above is open to enquiry — admissions team will confirm eligibility and next steps.</p>
+      <p class="mlp-masters__cta-note">Every program above is open. Admissions will tell you if you qualify, and what comes next.</p>
     </div>
   </div>
 </section>

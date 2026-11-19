@@ -19,17 +19,22 @@ class BlogController extends Controller
         $searchQuery = trim((string) $request->query('search', ''));
 
         $listingColumns = [
-            'id', 'title', 'slug', 'excerpt', 'featured_image_url', 'featured_image_alt',
-            'published_at', 'reading_time_minutes', 'categories', 'tags',
-            'author_name', 'author_avatar_url', 'is_featured',
+            'id', 'title', 'slug', 'excerpt', 'featured_image_url', 'featured_image_url_asset_id',
+            'featured_image_alt', 'published_at', 'reading_time_minutes', 'author_name', 'author_avatar_url',
         ];
 
         $featuredPost = null;
         if ($searchQuery === '') {
-            $featuredPost = Insight::published()->featuredIn('blogs')->latest('published_at')->first($listingColumns);
+            $featuredPost = Insight::published()->featuredIn('blogs')
+                ->with('featuredImageAsset:id,url,alt')
+                ->latest('published_at')
+                ->latest('id')
+                ->first($listingColumns);
         }
 
-        $query = Insight::published()->category('blogs')->select($listingColumns);
+        $query = Insight::published()->category('blogs')
+            ->with('featuredImageAsset:id,url,alt')
+            ->select($listingColumns);
 
         if ($featuredPost) {
             $query->where('id', '!=', $featuredPost->id);
@@ -42,7 +47,8 @@ class BlogController extends Controller
             });
         }
 
-        $paginatedPosts = $query->latest('published_at')->paginate(10)->withQueryString();
+        // simplePaginate avoids a full COUNT query on the public article feed.
+        $paginatedPosts = $query->latest('published_at')->latest('id')->simplePaginate(10)->withQueryString();
 
         $blogHero = safe_settings(BlogHeroSettings::class);
 

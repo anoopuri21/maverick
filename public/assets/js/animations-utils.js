@@ -65,6 +65,7 @@ const AnimationUtils = (() => {
         stagger,
         delay,
         ease,
+        immediateRender: false,
         scrollTrigger: {
           trigger: trigger || elements[0].closest("section"),
           start,
@@ -102,6 +103,7 @@ const AnimationUtils = (() => {
         stagger,
         delay,
         ease,
+        immediateRender: false,
         scrollTrigger: {
           trigger: trigger || elements[0].closest("section"),
           start,
@@ -127,6 +129,7 @@ const AnimationUtils = (() => {
         y: 0,
         duration: 0.6,
         ease: "power2.out",
+        immediateRender: false,
         scrollTrigger: {
           trigger: sectionSelector,
           start: "top 75%",
@@ -162,6 +165,7 @@ const AnimationUtils = (() => {
         duration,
         stagger,
         ease,
+        immediateRender: false,
         scrollTrigger: {
           trigger: trigger || elements[0].closest("section"),
           start,
@@ -198,6 +202,7 @@ const AnimationUtils = (() => {
         stagger,
         delay,
         ease: "power2.out",
+        immediateRender: false,
         scrollTrigger: {
           trigger: trigger || elements[0].closest("section"),
           start,
@@ -234,6 +239,7 @@ const AnimationUtils = (() => {
         stagger,
         delay,
         ease: "power2.out",
+        immediateRender: false,
         scrollTrigger: {
           trigger: trigger || elements[0].closest("section"),
           start,
@@ -269,6 +275,7 @@ const AnimationUtils = (() => {
         stagger,
         delay,
         ease: "power2.inOut",
+        immediateRender: false,
         scrollTrigger: {
           trigger: trigger || elements[0].closest("section"),
           start,

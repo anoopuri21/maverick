@@ -44,9 +44,9 @@ document.addEventListener('DOMContentLoaded', () => {
       .fromTo('.edu-intro__emphasis', { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, '-=0.2')
       .fromTo('.edu-intro__ctas', { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, '-=0.2');
 
-    // Generic .fade-up — skip hero (handled above) to avoid GSAP conflicts
+    // Generic .fade-up — skip sections with dedicated timelines to avoid GSAP conflicts
     document.querySelectorAll('.fade-up').forEach((el) => {
-      if (el.closest('.edu-hero')) return;
+      if (el.closest('.edu-hero, .edu-intro')) return;
 
       gsap.fromTo(
         el,

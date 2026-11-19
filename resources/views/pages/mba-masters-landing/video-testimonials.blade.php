@@ -6,7 +6,7 @@
   $vtHeading = filled($videoTestimonials->heading) ? $videoTestimonials->heading : 'Hear it from our students';
 @endphp
 @if($videos->isNotEmpty())
-<section id="video-testimonials" class="testimonials section-wrapper section--light" aria-label="Video Testimonials">
+<section id="video-testimonials" class="testimonials section-wrapper section--light" data-testimonials-inline-desktop aria-label="Video Testimonials">
   <div class="container testimonials__inner">
     <div class="testimonials__header">
       <div class="section-label"><span>{{ $vtLabel }}</span></div>

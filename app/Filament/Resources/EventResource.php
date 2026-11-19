@@ -2,38 +2,224 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Concerns\HandlesCloudinaryImageFields;
+use App\Filament\Forms\Components\MediaPicker;
 use App\Filament\Resources\EventResource\Pages;
-use App\Filament\Resources\EventResource\RelationManagers;
 use App\Models\Event;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
 
 class EventResource extends Resource
 {
+    use HandlesCloudinaryImageFields;
+
     protected static ?string $model = Event::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-calendar';
     protected static ?string $navigationGroup = 'Insights';
     protected static ?int $navigationSort = 2;
+
+    public static function normalizeRepeaterState(mixed $state, callable $transformItem): array
+    {
+        if (is_string($state)) {
+            $decoded = json_decode($state, true);
+            if (json_last_error() === JSON_ERROR_NONE && is_array($decoded)) {
+                $state = $decoded;
+            } else {
+                $trimmed = trim($state);
+                $state = $trimmed !== '' ? [$trimmed] : [];
+            }
+        }
+
+        if (! is_array($state)) {
+            return [];
+        }
+
+        $result = [];
+        foreach ($state as $item) {
+            $transformed = $transformItem($item);
+            if ($transformed !== null) {
+                $result[] = $transformed;
+            }
+        }
+
+        return array_values($result);
+    }
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('title')
-                    ,
-                Forms\Components\DatePicker::make('event_date')
-                    ,
-                Forms\Components\TextInput::make('event_type'),
-                Forms\Components\RichEditor::make('description'),
-                Forms\Components\TextInput::make('location'),
-                Forms\Components\TextInput::make('link_url')
-                    ->nullable(),
-                Forms\Components\Toggle::make('is_active'),
+                Forms\Components\Tabs::make('Event Management')
+                    ->tabs([
+                        Forms\Components\Tabs\Tab::make('Event Details')
+                            ->schema([
+                                Forms\Components\TextInput::make('title')
+                                    ->required()
+                                    ->live(onBlur: true)
+                                    ->afterStateUpdated(fn ($state, Forms\Set $set) => $set('slug', \Illuminate\Support\Str::slug($state))),
+                                Forms\Components\TextInput::make('slug')
+                                    ->required()
+                                    ->unique(Event::class, 'slug', ignoreRecord: true),
+                                Forms\Components\TextInput::make('event_type')
+                                    ->label('Event Type')
+                                    ->placeholder('e.g. Masterclass, Webinar, Workshop, Conference')
+                                    ->nullable(),
+                                Forms\Components\DatePicker::make('event_date')
+                                    ->label('Event Date')
+                                    ->nullable(),
+                                Forms\Components\TimePicker::make('event_start_time')
+                                    ->label('Start Time')
+                                    ->displayFormat('h:i A')
+                                    ->placeholder('e.g. 10:00 AM')
+                                    ->nullable(),
+                                Forms\Components\TimePicker::make('event_end_time')
+                                    ->label('End Time')
+                                    ->displayFormat('h:i A')
+                                    ->placeholder('e.g. 02:00 PM')
+                                    ->nullable(),
+                                Forms\Components\TextInput::make('location')
+                                    ->placeholder('e.g., Grand Mercure Hotel, Dubai / Online Zoom'),
+                                Forms\Components\TextInput::make('link_url')
+                                    ->url()
+                                    ->nullable()
+                                    ->placeholder('External link or custom registration URL'),
+                                Forms\Components\RichEditor::make('description')
+                                    ->columnSpanFull(),
+                                Forms\Components\Toggle::make('is_active')
+                                    ->default(true),
+                            ])->columns(2),
+
+                        Forms\Components\Tabs\Tab::make('Media Gallery')
+                            ->schema([
+                                MediaPicker::forField('display_image', 'events/display')
+                                    ->label('Main Display Image')
+                                    ->helperText('Main cover photo for event cards and detail hero banner.'),
+                                Forms\Components\Repeater::make('gallery_images')
+                                    ->label('Event Photo Gallery')
+                                    ->afterStateHydrated(function (Forms\Components\Repeater $component, $state) {
+                                        $formatted = static::normalizeRepeaterState($state, function ($item) {
+                                            if (is_string($item)) {
+                                                return ['url' => $item];
+                                            }
+                                            return is_array($item) ? $item : null;
+                                        });
+                                        $component->state($formatted);
+                                    })
+                                    ->mutateDehydratedStateUsing(function ($state) {
+                                        return static::normalizeRepeaterState($state, function ($item) {
+                                            if (is_string($item)) {
+                                                return ! empty(trim($item)) ? ['url' => trim($item)] : null;
+                                            }
+                                            if (is_array($item)) {
+                                                $url = $item['url'] ?? '';
+                                                if (empty($url) && ! empty($item['url_asset_id'])) {
+                                                    $asset = \App\Models\MediaAsset::find($item['url_asset_id']);
+                                                    if ($asset) {
+                                                        $url = $asset->url;
+                                                        $item['url'] = $url;
+                                                    }
+                                                }
+                                                return ! empty(trim($url)) ? $item : null;
+                                            }
+                                            return null;
+                                        });
+                                    })
+                                    ->schema([
+                                        MediaPicker::forField('url', 'events/gallery')
+                                            ->label('Photo')
+                                            ->helperText('Select from Media Library or upload new photo.'),
+                                    ])
+                                    ->itemLabel(fn (array|null $state): ?string => ! empty($state['url']) ? basename($state['url']) : 'Photo')
+                                    ->collapsible()
+                                    ->reorderable()
+                                    ->helperText('Add single or multiple photos for the event gallery.'),
+                                Forms\Components\Repeater::make('gallery_videos')
+                                    ->label('Video Gallery')
+                                    ->afterStateHydrated(function (Forms\Components\Repeater $component, $state) {
+                                        $formatted = static::normalizeRepeaterState($state, function ($item) {
+                                            if (is_string($item)) {
+                                                return ['url' => $item, 'title' => ''];
+                                            }
+                                            return is_array($item) ? $item : null;
+                                        });
+                                        $component->state($formatted);
+                                    })
+                                    ->mutateDehydratedStateUsing(function ($state) {
+                                        return static::normalizeRepeaterState($state, function ($item) {
+                                            if (is_string($item)) {
+                                                return ['url' => $item, 'title' => ''];
+                                            }
+                                            return is_array($item) ? $item : null;
+                                        });
+                                    })
+                                    ->schema([
+                                        Forms\Components\TextInput::make('url')
+                                            ->label('Video URL')
+                                            ->placeholder('e.g. https://www.youtube.com/watch?v=... or Vimeo URL')
+                                            ->nullable(),
+                                        Forms\Components\TextInput::make('title')
+                                            ->label('Video Title')
+                                            ->placeholder('e.g. Executive Summary')
+                                            ->nullable(),
+                                    ])
+                                    ->columnSpanFull()
+                                    ->collapsible()
+                                    ->itemLabel(fn (array|null $state): ?string => is_array($state) ? ($state['title'] ?? $state['url'] ?? null) : null),
+                            ]),
+
+                        Forms\Components\Tabs\Tab::make('Registration Form Fields')
+                            ->schema([
+                                Forms\Components\Placeholder::make('info')
+                                    ->label('Custom Registration Fields')
+                                    ->content('Standard mandatory fields (Full Name, Email, Phone Number, Guest Count, and Joining Confirmation) are automatically included. Add any additional custom fields for this event below.'),
+                                Forms\Components\Repeater::make('registration_fields')
+                                    ->label('Dynamic Form Fields')
+                                    ->afterStateHydrated(function (Forms\Components\Repeater $component, $state) {
+                                        $formatted = static::normalizeRepeaterState($state, function ($item) {
+                                            return is_array($item) ? $item : null;
+                                        });
+                                        $component->state($formatted);
+                                    })
+                                    ->mutateDehydratedStateUsing(function ($state) {
+                                        return static::normalizeRepeaterState($state, function ($item) {
+                                            return is_array($item) ? $item : null;
+                                        });
+                                    })
+                                    ->schema([
+                                        Forms\Components\TextInput::make('label')
+                                            ->label('Field Label / Question')
+                                            ->required()
+                                            ->placeholder('e.g., Organization / Company Name'),
+                                        Forms\Components\Select::make('type')
+                                            ->label('Field Type')
+                                            ->options([
+                                                'text' => 'Short Text (Input)',
+                                                'textarea' => 'Long Text (Textarea)',
+                                                'select' => 'Dropdown Select',
+                                                'radio' => 'Multiple Choice (Radio)',
+                                                'checkbox' => 'Checkbox (Multiple Options)',
+                                            ])
+                                            ->default('text')
+                                            ->required()
+                                            ->live(),
+                                        Forms\Components\TagsInput::make('options')
+                                            ->label('Options (for Dropdown, Radio, or Checkbox)')
+                                            ->placeholder('Add option and press Enter')
+                                            ->visible(fn (Forms\Get $get) => in_array($get('type'), ['select', 'radio', 'checkbox'])),
+                                        Forms\Components\Toggle::make('is_required')
+                                            ->label('Required Field')
+                                            ->default(false),
+                                    ])
+                                    ->columns(2)
+                                    ->collapsible()
+                                    ->itemLabel(fn (array|null $state): ?string => is_array($state) ? ($state['label'] ?? 'Custom Field') : 'Custom Field'),
+                            ]),
+                    ])
+                    ->columnSpanFull(),
             ]);
     }
 
@@ -41,12 +227,23 @@ class EventResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('title'),
+                Tables\Columns\ImageColumn::make('display_image')
+                    ->square(),
+                Tables\Columns\TextColumn::make('title')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('event_type')
+                    ->label('Type')
+                    ->badge(),
                 Tables\Columns\TextColumn::make('event_date')
                     ->date()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('event_type'),
-                Tables\Columns\IconColumn::make('is_active')->boolean(),
+                Tables\Columns\TextColumn::make('formatted_time')
+                    ->label('Time'),
+                Tables\Columns\TextColumn::make('location')
+                    ->searchable(),
+                Tables\Columns\IconColumn::make('is_active')
+                    ->boolean(),
             ])
             ->filters([
                 Tables\Filters\TernaryFilter::make('is_active'),

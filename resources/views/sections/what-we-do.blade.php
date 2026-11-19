@@ -31,7 +31,6 @@
       <!-- Card 1: Academic Qualifications -->
       <div class="wwd__card fade-up">
         <div class="wwd__card-inner">
-          <span class="wwd__card-index accent-text">01</span>
           <h3 class="wwd__card-title">{{ $whatWeDo->pillar1_title }}</h3>
           <div class="wwd__card-desc">
             {!! rich_html($whatWeDo->pillar1_desc ?? null) !!}
@@ -53,7 +52,6 @@
       <!-- Card 2: Professional Development -->
       <div class="wwd__card fade-up">
         <div class="wwd__card-inner">
-          <span class="wwd__card-index accent-text">02</span>
           <h3 class="wwd__card-title">{{ $whatWeDo->pillar2_title }}</h3>
           <div class="wwd__card-desc">
             {!! rich_html($whatWeDo->pillar2_desc ?? null) !!}
@@ -75,7 +73,6 @@
       <!-- Card 3: International Opportunities -->
       <div class="wwd__card fade-up">
         <div class="wwd__card-inner">
-          <span class="wwd__card-index accent-text">03</span>
           <h3 class="wwd__card-title">{{ $whatWeDo->pillar3_title }}</h3>
           <div class="wwd__card-desc">
             {!! rich_html($whatWeDo->pillar3_desc ?? null) !!}

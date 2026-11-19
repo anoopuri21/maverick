@@ -17,28 +17,34 @@ class MediaUsageService
     /**
      * Scan every media reference, persist used / is_duplicate flags.
      *
-     * @return array{used: int, unused: int, duplicates: int, referenced_ids: list<int>}
+     * @return array{used: int, unused: int, duplicates: int, referenced_ids: list<int>, errors: list<string>}
      */
     public function refresh(): array
     {
-        $referenced = $this->collectReferencedAssetIds();
+        $scan = $this->collectReferencedAssetIdsWithErrors();
+        $referenced = $scan['ids'];
         $duplicateIds = $this->duplicateAssetIds();
 
         $used = 0;
         $unused = 0;
         $duplicates = 0;
 
+        // An incomplete reference map must never overwrite usage flags.
+        $writeFlags = $scan['errors'] === [];
+
         MediaAsset::withoutGlobalScopes([SoftDeletingScope::class])
             ->orderBy('id')
-            ->chunkById(200, function ($assets) use ($referenced, $duplicateIds, &$used, &$unused, &$duplicates) {
+            ->chunkById(200, function ($assets) use ($referenced, $duplicateIds, $writeFlags, &$used, &$unused, &$duplicates) {
                 foreach ($assets as $asset) {
                     $isUsed = isset($referenced[$asset->id]);
                     $isDup = isset($duplicateIds[$asset->id]);
 
-                    $asset->forceFill([
-                        'used' => $isUsed,
-                        'is_duplicate' => $isDup,
-                    ])->saveQuietly();
+                    if ($writeFlags) {
+                        $asset->forceFill([
+                            'used' => $isUsed,
+                            'is_duplicate' => $isDup,
+                        ])->saveQuietly();
+                    }
 
                     $isUsed ? $used++ : $unused++;
                     if ($isDup) {
@@ -46,6 +52,12 @@ class MediaUsageService
                     }
                 }
             });
+
+        if (! $writeFlags) {
+            Log::warning('[media-usage] Usage flags were left unchanged because the reference scan was incomplete', [
+                'errors' => $scan['errors'],
+            ]);
+        }
 
         Log::info('[media-usage] Refreshed usage flags', [
             'used' => $used,
@@ -58,6 +70,7 @@ class MediaUsageService
             'unused' => $unused,
             'duplicates' => $duplicates,
             'referenced_ids' => array_keys($referenced),
+            'errors' => $scan['errors'],
         ];
     }
 
@@ -66,6 +79,18 @@ class MediaUsageService
      */
     public function collectReferencedAssetIds(): array
     {
+        return $this->collectReferencedAssetIdsWithErrors()['ids'];
+    }
+
+    /**
+     * Errors are returned so destructive callers can refuse to act on an
+     * incomplete reference map instead of deleting media that is still in use.
+     *
+     * @return array{ids: array<int, true>, errors: list<string>}
+     */
+    public function collectReferencedAssetIdsWithErrors(): array
+    {
+        $errors = [];
         $assets = MediaAsset::withoutGlobalScopes([SoftDeletingScope::class])
             ->get(['id', 'url', 'cloudinary_public_id']);
 
@@ -155,6 +180,7 @@ class MediaUsageService
                     }
                 }, $chunkColumn);
             } catch (\Throwable $e) {
+                $errors[] = $table.': '.$e->getMessage();
                 Log::warning('[media-usage] Skipped table scan', [
                     'table' => $table,
                     'error' => $e->getMessage(),
@@ -162,7 +188,7 @@ class MediaUsageService
             }
         }
 
-        return $referenced;
+        return ['ids' => $referenced, 'errors' => $errors];
     }
 
     /**

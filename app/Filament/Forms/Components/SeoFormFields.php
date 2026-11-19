@@ -26,9 +26,7 @@ class SeoFormFields
                 ->schema([
                     Grid::make(2)->schema([
                         TextInput::make('meta_title')
-                            ->label('Meta Title')
-                            ->maxLength(60)
-                            ->helperText('Best under 60 characters.'),
+                            ->label('Meta Title'),
                         TextInput::make('canonical_url')
                             ->label('Canonical URL')
                             ->nullable()
@@ -36,9 +34,7 @@ class SeoFormFields
                     ]),
                     Textarea::make('meta_description')
                         ->label('Meta Description')
-                        ->rows(3)
-                        ->maxLength(160)
-                        ->helperText('Best under 160 characters.'),
+                        ->rows(3),
                     Textarea::make('meta_keywords')
                         ->label('Meta Keywords')
                         ->rows(2)
@@ -104,7 +100,7 @@ class SeoFormFields
                         ->label('Schema.org JSON-LD')
                         ->rows(5)
                         ->rules(['nullable', 'json'])
-                        ->helperText('Paste a valid JSON-LD block (including the <script> tags). Rendered only when non-empty.'),
+                        ->helperText('Paste valid JSON-LD only, without <script> tags. Rendered only when non-empty.'),
                     Textarea::make('custom_head_scripts')
                         ->label('Custom Head Scripts')
                         ->rows(3)
@@ -149,15 +145,13 @@ class SeoFormFields
                         ->schema([
                             TextInput::make('seo.meta_title')
                                 ->label('Meta Title')
-                                ->maxLength(60)
-                                ->helperText('Optimal: 50-60 characters. Shown in browser tab & search results.')
+                                ->helperText('Shown in the browser tab and search results.')
                                 ->columnSpanFull(),
 
                             Textarea::make('seo.meta_description')
                                 ->label('Meta Description')
-                                ->maxLength(160)
                                 ->rows(3)
-                                ->helperText('Optimal: 150-160 characters. Shown in Google search snippets.')
+                                ->helperText('Shown in search snippets.')
                                 ->columnSpanFull(),
 
                             Textarea::make('seo.meta_keywords')

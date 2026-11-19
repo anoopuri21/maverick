@@ -24,7 +24,7 @@
             </h2>
             @endif
             @if(html_filled($destinations->sub ?? null))
-            <div class="body-text fade-up mp-richtext">{!! $destinations->sub !!}</div>
+            <div class="body-text fade-up mp-richtext">{!! rich_html($destinations->sub) !!}</div>
             @endif
         </div>
 

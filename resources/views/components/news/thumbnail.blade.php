@@ -5,15 +5,19 @@
     $variants = ['variant-1', 'variant-2', 'variant-3', 'variant-4'];
     $variant = $variants[$seed % count($variants)];
     $initial = strtoupper(mb_substr($post->title, 0, 1));
+    $imageUrl = $post->resolvedFeaturedImageUrl();
+    $imageAlt = $post->resolvedFeaturedImageAlt() ?: $post->title;
 @endphp
 
-@if($post->hasImage())
+@if(filled($imageUrl))
     <div class="news-thumb" style="aspect-ratio: {{ $aspect }}">
         <img
             @if($imgId) id="{{ $imgId }}"@endif
-            src="{{ $post->featured_image_url }}"
-            alt="{{ $post->featured_image_alt ?? $post->title }}"
+            src="{{ mlp_image_url($imageUrl, ['w' => 800]) }}"
+            alt="{{ $imageAlt }}"
             loading="lazy"
+            decoding="async"
+            width="800" height="450"
         />
         <div class="news-thumb__badge-overlay">
             <span class="news-badge">News</span>

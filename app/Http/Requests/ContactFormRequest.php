@@ -25,7 +25,7 @@ class ContactFormRequest extends FormRequest
             'name' => 'required|string|max:100',
             'email' => 'required|email|max:150',
             'phone' => 'nullable|string|max:20',
-            'subject' => 'nullable|string|max:100',
+            'preferred_program' => 'nullable|integer|exists:programs,id',
             'message' => 'required|string|max:2000',
             'website' => 'nullable|string|max:100', // honeypot
         ];

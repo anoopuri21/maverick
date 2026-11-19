@@ -54,7 +54,7 @@
         </h1>
         @endif
         @if(html_filled($hero->sub ?? null))
-        <div class="cinematic-hero__description gbp-richtext">{!! $hero->sub !!}</div>
+        <div class="cinematic-hero__description gbp-richtext">{!! rich_html($hero->sub) !!}</div>
         @endif
     </div>
 </section>

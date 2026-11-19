@@ -224,28 +224,6 @@ class ProgramResource extends Resource
                     ->collapsed(true)
                     ->schema([static::feesRepeater()]),
 
-                                Section::make('Student Reviews')
-                                    #->description('Google-style review cards (§16). Avatar photo optional — initials used as fallback.')
-                    ->collapsible()
-                    ->collapsed(true)
-                    ->schema([static::reviewsRepeater()]),
-                            ]),
-
-                        Tab::make('Accreditation & Recognition')
-                            ->icon('heroicon-o-check-badge')
-                            #->description('Logo marquee under the hero (§2) and grouped accreditation grid (§10).')
-                    ->schema([
-                                Section::make('Recognition Marquee')
-                                    #->description('Scrolling logo strip shown directly under the hero.')
-                    ->collapsible()
-                    ->collapsed(false)
-                    ->schema([static::recognitionRepeater()]),
-
-                                Section::make('Accreditation Groups')
-                                    #->description('Grouped logo grids in the Accreditation & Recognition section.')
-                    ->collapsible()
-                    ->collapsed(true)
-                    ->schema([static::accreditationGroupsRepeater()]),
                             ]),
 
                         Tab::make('FAQs')
@@ -380,11 +358,6 @@ class ProgramResource extends Resource
      */
     public static function cleanJsonForSave(array $data): array
     {
-        foreach ($data['recognition'] ?? [] as &$row) {
-            static::syncNestedMediaField($row, 'logo');
-        }
-        unset($row);
-
         foreach ($data['testimonials'] ?? [] as &$row) {
             static::syncNestedMediaField($row, 'thumb');
         }
@@ -395,30 +368,12 @@ class ProgramResource extends Resource
         }
         unset($row);
 
-        foreach ($data['accreditation_groups'] ?? [] as &$group) {
-            foreach ($group['items'] ?? [] as &$item) {
-                static::syncNestedMediaField($item, 'logo');
-            }
-            unset($item);
-        }
-        unset($group);
-
-        if (isset($data['recognition'])) {
-            static::stripAssetIdKeys($data['recognition']);
-        }
         if (isset($data['testimonials'])) {
             static::stripAssetIdKeys($data['testimonials']);
         }
         if (isset($data['reviews'])) {
             static::stripAssetIdKeys($data['reviews']);
         }
-
-        foreach ($data['accreditation_groups'] ?? [] as &$group) {
-            if (isset($group['items'])) {
-                static::stripAssetIdKeys($group['items']);
-            }
-        }
-        unset($group);
 
         return $data;
     }
@@ -592,12 +547,13 @@ class ProgramResource extends Resource
         return Repeater::make('structure')
             ->schema([
                 TextInput::make('title')
-                    ->label('Year Title')
-                    ->placeholder('Year 1')
-                    ->validationAttribute('year title'),
+                    ->label('Stage Title')
+                    ->placeholder('Business Foundations')
+                    ->helperText('Leave blank, or avoid “Year 1”, “Year 2”. Those counts are not shown on the page.')
+                    ->validationAttribute('stage title'),
                 TextInput::make('subtitle')
-                    ->label('Year Subtitle')
-                    ->placeholder('Business Foundations'),
+                    ->label('Subtitle')
+                    ->placeholder('Core modules'),
                 Repeater::make('modules')
                     ->label('Modules')
                     ->schema([
@@ -632,8 +588,8 @@ class ProgramResource extends Resource
             ->reorderable()
             ->collapsible()
             ->defaultItems(0)
-            ->itemLabel(fn (array $state): ?string => $state['title'] ?? 'Year')
-            ->addActionLabel('Add Year');
+            ->itemLabel(fn (array $state): ?string => $state['title'] ?? 'Stage')
+            ->addActionLabel('Add Stage');
     }
 
     protected static function supportRepeater(): Repeater
@@ -757,99 +713,5 @@ class ProgramResource extends Resource
             ->defaultItems(0)
             ->itemLabel(fn (array $state): ?string => $state['title'] ?? 'Fee item')
             ->addActionLabel('Add Fee Item');
-    }
-
-    protected static function reviewsRepeater(): Repeater
-    {
-        return Repeater::make('reviews')
-            ->schema([
-                TextInput::make('name')
-                    ->validationAttribute('reviewer name'),
-                TextInput::make('avatar')
-                    ->label('Avatar URL')
-                    ->nullable()
-                    ->helperText('Optional. Or choose from the media library below.'),
-                MediaPicker::forField('avatar', 'programs/reviews')
-                    ->label('Avatar Image'),
-                Select::make('rating')
-                    ->options([
-                        1 => '1 star',
-                        2 => '2 stars',
-                        3 => '3 stars',
-                        4 => '4 stars',
-                        5 => '5 stars',
-                    ])
-                    ->default(5)
-                    ->validationAttribute('rating'),
-                RichEditor::make('review')
-                    ->label('Review Text')
-                    ->columnSpanFull(),
-            ])
-            ->reorderable()
-            ->collapsible()
-            ->columns(2)
-            ->defaultItems(0)
-            ->itemLabel(fn (array $state): ?string => $state['name'] ?? 'Review')
-            ->addActionLabel('Add Review');
-    }
-
-    protected static function recognitionRepeater(): Repeater
-    {
-        return Repeater::make('recognition')
-            ->schema([
-                TextInput::make('name')
-                    ->validationAttribute('organisation name'),
-                TextInput::make('logo')
-                    ->label('Logo URL')
-                    ->nullable()
-                    ->helperText('Or choose from the media library below.'),
-                MediaPicker::forField('logo', 'programs/recognition')
-                    ->label('Logo Image'),
-                RichEditor::make('note')
-                    ->label('Note (optional)')
-                    ->helperText('Short caption shown under the name in the marquee.')
-                    ->columnSpanFull(),
-            ])
-            ->reorderable()
-            ->collapsible()
-            ->columns(2)
-            ->defaultItems(0)
-            ->itemLabel(fn (array $state): ?string => $state['name'] ?? 'Recognition')
-            ->addActionLabel('Add Recognition Logo');
-    }
-
-    protected static function accreditationGroupsRepeater(): Repeater
-    {
-        return Repeater::make('accreditation_groups')
-            ->schema([
-                TextInput::make('group')
-                    ->label('Group Name')
-                    ->placeholder('e.g. International Accreditation')
-                    ->validationAttribute('group name'),
-                Repeater::make('items')
-                    ->label('Logos')
-                    ->schema([
-                        TextInput::make('name')
-                            ->label('Name')
-                            ->validationAttribute('logo name'),
-                        TextInput::make('logo')
-                            ->label('Logo URL')
-                            ->nullable()
-                            ->helperText('Or choose from the media library below.'),
-                        MediaPicker::forField('logo', 'programs/accreditation')
-                    ->label('Logo Image'),
-                    ])
-                    ->reorderable()
-                    ->collapsible()
-                    ->columns(2)
-                    ->defaultItems(0)
-                    ->itemLabel(fn (array $state): ?string => $state['name'] ?? 'Logo')
-                    ->addActionLabel('Add Logo'),
-            ])
-            ->reorderable()
-            ->collapsible()
-            ->defaultItems(0)
-            ->itemLabel(fn (array $state): ?string => $state['group'] ?? 'Group')
-            ->addActionLabel('Add Group');
     }
 }

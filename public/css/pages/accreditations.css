@@ -401,9 +401,10 @@
     padding: 2rem 0;
     cursor: grab;
     z-index: 1;
+    touch-action: pan-y;
 }
 
-.accreditations__carousel:active {
+.accreditations__carousel.is-dragging {
     cursor: grabbing;
 }
 
@@ -413,6 +414,13 @@
     padding: 0 24px;
     will-change: transform;
     user-select: none;
+    transition: none;
+}
+
+.accreditations__carousel img {
+    -webkit-user-drag: none;
+    user-select: none;
+    pointer-events: none;
 }
 
 /* Accreditation Card (Logo + Title Only) */
@@ -643,21 +651,38 @@
     .accred-hero__corners {
         inset: 1rem;
     }
-    
-    .accreditations__card {
-        width: 180px;
-        padding: 1.5rem 1rem;
+
+    .accreditations__carousel-track {
+        gap: 28px;
+        padding: 0 20px;
     }
-    
+
+    .accreditations__card {
+        width: min(78vw, 280px);
+        padding: 1.35rem 1.15rem 1.15rem;
+    }
+
     .accreditations__card-logo {
-        width: 60px;
-        height: 60px;
+        width: 100%;
+        height: 168px;
+        margin-bottom: 1rem;
+    }
+
+    .accreditations__card-logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center;
     }
 }
 
 @media (max-width: 480px) {
     .accreditations__card {
-        width: 160px;
+        width: min(82vw, 280px);
+    }
+
+    .accreditations__card-logo {
+        height: 156px;
     }
     
     .awards__grid {

@@ -109,18 +109,17 @@ class InsightResource extends Resource
                     ,
 
                 TextInput::make('reading_time_minutes')
-                    ->numeric()->nullable()
+                    ->numeric()
+                    ->nullable()
                     ->minValue(1)
                     ->suffix('minutes')
-                    ->helperText('Auto-calculated or override manually.'),
+                    ->helperText('Optional. Leave blank to hide reading time on the public page.'),
             ]),
 
             Section::make('SEO')->schema([
-                TextInput::make('meta_title')
-                    ->maxLength(255),
+                TextInput::make('meta_title'),
 
                 Textarea::make('meta_description')
-                    ->maxLength(500)
                     ->rows(2),
             ]),
         ]);
@@ -152,7 +151,9 @@ class InsightResource extends Resource
                     ->sortable(),
 
                 TextColumn::make('reading_time_minutes')
-                    ->suffix(' min read'),
+                    ->label('Reading Time')
+                    ->formatStateUsing(fn ($state): string => is_numeric($state) && (int) $state > 0 ? $state.' min read' : '')
+                    ->placeholder(''),
             ])
             ->filters([
                 SelectFilter::make('categories')

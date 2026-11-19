@@ -83,6 +83,20 @@
   // LOADING STATE
   // =========================================================
 
+  // Native browser scroll restoration may happen after Lenis is constructed.
+  // Re-sync Lenis once the restored viewport is available, without overriding
+  // the browser's scrollRestoration policy or forcing the page back to top.
+  function syncLenisWithRestoredScroll() {
+    if (!lenis || typeof lenis.scrollTo !== 'function') return;
+
+    const restoredY = window.scrollY || window.pageYOffset || 0;
+    lenis.scrollTo(restoredY, { immediate: true, force: true });
+  }
+
+  window.addEventListener('pageshow', () => {
+    requestAnimationFrame(() => requestAnimationFrame(syncLenisWithRestoredScroll));
+  }, { passive: true });
+
   function initLoadingState() {
     // Remove is-loading class from body
     // This triggers the CSS eyebrow line animation
@@ -221,12 +235,35 @@
 
     scrollToTopBtn.addEventListener('click', (event) => {
       event.preventDefault();
+      scrollToTopBtn.blur();
+
+      document.dispatchEvent(new CustomEvent('nav:scroll-lock'));
+      let unlocked = false;
+      const unlock = () => {
+        if (unlocked) return;
+        unlocked = true;
+        document.dispatchEvent(new CustomEvent('nav:scroll-unlock'));
+      };
+
       if (window.lenisInstance) {
-        window.lenisInstance.scrollTo(0, { duration: 1.2 });
+        window.lenisInstance.scrollTo(0, {
+          duration: 1.1,
+          lock: true,
+          force: true,
+          programmatic: true,
+          onComplete: unlock,
+        });
+        window.setTimeout(unlock, 1400);
       } else if (window.gsap && window.gsap.to) {
-        window.gsap.to(window, { duration: 1.2, scrollTo: 0, ease: 'power3.inOut' });
+        window.gsap.to(window, {
+          duration: 1.1,
+          scrollTo: 0,
+          ease: 'power3.inOut',
+          onComplete: unlock,
+        });
       } else {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0, behavior: 'auto' });
+        unlock();
       }
     });
   }

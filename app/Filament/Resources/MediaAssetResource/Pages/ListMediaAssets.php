@@ -25,6 +25,17 @@ class ListMediaAssets extends ListRecords
                 ->color('gray')
                 ->action(function (): void {
                     $usage = app(\App\Services\MediaUsageService::class)->refresh();
+                    $errors = $usage['errors'] ?? [];
+
+                    if ($errors !== []) {
+                        Notification::make()
+                            ->title('Usage scan incomplete')
+                            ->body('Usage flags were left unchanged: '.implode('; ', $errors))
+                            ->warning()
+                            ->send();
+
+                        return;
+                    }
 
                     Notification::make()
                         ->title('Usage flags updated')
@@ -55,6 +66,10 @@ class ListMediaAssets extends ListRecords
                     $remote = $preview['cloudinary_error']
                         ? $preview['cloudinary_error']
                         : count($preview['cloudinary_orphans']).' Cloudinary file(s) not referenced by the site.';
+                    $scanErrors = $preview['scan_errors'] ?? [];
+                    $warning = $scanErrors !== []
+                        ? '<p><strong>Reference scan incomplete; deletion will be refused:</strong> '.e(implode('; ', $scanErrors)).'</p>'
+                        : '';
 
                     return [
                         Placeholder::make('summary')
@@ -62,7 +77,7 @@ class ListMediaAssets extends ListRecords
                                 '<p><strong>Used:</strong> '.$preview['usage']['used'].
                                 ' &nbsp; <strong>Unused:</strong> '.$preview['usage']['unused'].
                                 ' &nbsp; <strong>Duplicates:</strong> '.$preview['usage']['duplicates'].'</p>'.
-                                '<p>'.$remote.'</p>'
+                                '<p>'.$remote.'</p>'.$warning
                             )),
                         Textarea::make('preview')
                             ->label('Would recycle')
@@ -91,6 +106,16 @@ class ListMediaAssets extends ListRecords
                         dryRun: false,
                         deleteFromCloudinary: (bool) ($data['purge_cloudinary'] ?? false),
                     );
+
+                    if ($result['errors'] !== []) {
+                        Notification::make()
+                            ->title('Clean was incomplete')
+                            ->body(implode('; ', $result['errors']))
+                            ->danger()
+                            ->send();
+
+                        return;
+                    }
 
                     Notification::make()
                         ->title('Unused media recycled')

@@ -14,7 +14,19 @@ class MbaMastersTestimonialsSettings extends Settings
 
     public ?string $intro = null;
 
+    public ?string $stack_caption = null;
+
     public array $items = [];
+
+    public ?string $film_label = null;
+
+    public ?string $film_heading = null;
+
+    public ?string $film_body = null;
+
+    public ?string $film_play_label = null;
+
+    public bool $show_section = true;
 
     public static function group(): string
     {

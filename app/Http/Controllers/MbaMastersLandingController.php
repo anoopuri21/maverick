@@ -4,15 +4,30 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\MbaMastersLandingEnquiryRequest;
 use App\Services\FormMailer;
+use App\Services\GoogleRecaptchaVerifier;
+use App\Services\ZapierWebhookDispatcher;
+use App\Support\ZapierEvents;
+use Illuminate\Validation\ValidationException;
 
 class MbaMastersLandingController extends Controller
 {
-    public function enquire(MbaMastersLandingEnquiryRequest $request, FormMailer $formMailer)
-    {
+    public function enquire(
+        MbaMastersLandingEnquiryRequest $request,
+        FormMailer $formMailer,
+        ZapierWebhookDispatcher $zapierWebhookDispatcher,
+        GoogleRecaptchaVerifier $recaptchaVerifier
+    ) {
         $data = $request->validated();
 
         if (filled($data['website'] ?? null)) {
-            return back()->with('success', 'Thank you! Our admissions team will contact you shortly.');
+            // Honeypot hit: silently drop, but behave as if the submission succeeded.
+            return redirect()->route('thank-you')->with('thank_you_previous_url', url()->previous());
+        }
+
+        if (! $recaptchaVerifier->verify($request->input('g-recaptcha-response'))) {
+            throw ValidationException::withMessages([
+                'recaptcha' => 'Please complete the reCAPTCHA verification and try again.',
+            ]);
         }
 
         $qualifications = [
@@ -53,12 +68,25 @@ class MbaMastersLandingController extends Controller
             'reply_to' => $data['email'] ?? null,
         ]);
 
+        // Keep CRM lead capture independent from the notification-email result.
+        // The dispatcher handles delivery failures without changing the form response.
+        $zapierWebhookDispatcher->dispatch(ZapierEvents::MBA_MASTERS_LANDING_ENQUIRY_SUBMITTED, [
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'phone' => $data['phone'],
+            'country' => $data['country'] ?? '',
+            'program' => $data['program'] ?? '',
+            'specialization' => $data['specialization'] ?? '',
+            'qualification' => $qualification,
+            'start_timeline' => $timeline,
+        ]);
+
         if (! $sent) {
             return back()
                 ->withInput()
                 ->with('error', 'We could not send your enquiry right now. Please try again or contact us directly.');
         }
 
-        return back()->with('success', 'Thank you! Our admissions team will guide you on eligibility, fees and next steps.');
+        return redirect()->route('thank-you')->with('thank_you_previous_url', url()->previous());
     }
 }

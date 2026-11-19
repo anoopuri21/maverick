@@ -3,7 +3,16 @@
 @section('title', 'Latest Articles & Insights | Maverick Business Academy')
 @section('meta_description', 'Explore cutting-edge business articles, corporate strategies, academic research, and leadership advice from the expert faculty at Maverick Business Academy.')
 
+@php
+    $blogHero = $blogHero ?? safe_settings(\App\Settings\BlogHeroSettings::class);
+    $blogHeroImage = mlp_image_url($blogHero->image_url ?? null, ['w' => 1600]);
+    $topTags = collect($topTags ?? []);
+@endphp
+
 @push('head')
+    @if(filled($blogHeroImage))
+        <link rel="preload" as="image" href="{{ $blogHeroImage }}" fetchpriority="high">
+    @endif
     @include('partials.seo-meta', ['seo' => (object) [
         'meta_title' => 'Latest Articles & Insights | Maverick Business Academy',
         'meta_description' => 'Explore cutting-edge business articles, corporate strategies, academic research, and leadership advice from the expert faculty at Maverick Business Academy.',
@@ -16,10 +25,6 @@
 @endpush
 
 @section('content')
-@php
-    $blogHero = $blogHero ?? safe_settings(\App\Settings\BlogHeroSettings::class);
-    $topTags = collect($topTags ?? []);
-@endphp
 <div class="blog-page blog-listing">
 
     {{-- ═══════════════════════════════════════════
@@ -28,8 +33,8 @@
     ════════════════════════════════════════════ --}}
     <section class="blog-hero" aria-label="Blog Hero">
         <div class="blog-hero__bg" aria-hidden="true">
-            @if($blogHero->image_url)
-            <div class="blog-hero__bg-image" style="background-image: url('{{ $blogHero->image_url }}')"></div>
+            @if(filled($blogHeroImage))
+            <div class="blog-hero__bg-image" style="background-image: url('{{ $blogHeroImage }}')"></div>
             @endif
             <div class="blog-hero__gradient"></div>
             <div class="blog-hero__noise"></div>
@@ -93,9 +98,10 @@
                         <div class="blog-featured__image">
                             <div class="blog-featured__image-accent" aria-hidden="true"></div>
                             @if($featuredPost->hasImage())
-                                <img src="{{ $featuredPost->featured_image_url }}"
-                                     alt="{{ $featuredPost->featured_image_alt ?? $featuredPost->title }}"
-                                     loading="lazy">
+                                <img src="{{ mlp_image_url($featuredPost->resolvedFeaturedImageUrl(), ['w' => 960]) }}"
+                                     alt="{{ $featuredPost->resolvedFeaturedImageAlt() ?: $featuredPost->title }}"
+                                     width="960" height="600"
+                                     loading="lazy" decoding="async">
                             @else
                                 <div class="blog-featured__image blog-featured__image--fallback">
                                     <span class="blog-featured__image-initial">
@@ -116,11 +122,11 @@
                             @endif
                             <div class="blog-featured__meta">
                                 <div class="blog-featured__author">
-                                    @if($url = media_url($featuredPost->author_avatar_url ?? null))
+                                    @if($url = mlp_image_url($featuredPost->author_avatar_url ?? null, ['w' => 64]))
                                         <img src="{{ $url }}"
                                              alt="{{ $featuredPost->author_name }}"
                                              class="blog-featured__author-avatar"
-                                             width="32" height="32" loading="lazy">
+                                             width="32" height="32" loading="lazy" decoding="async">
                                     @else
                                         <span class="blog-featured__author-avatar" aria-hidden="true">
                                             {{ strtoupper(mb_substr($featuredPost->author_name ?? 'M', 0, 1)) }}
@@ -180,11 +186,11 @@
                                     <p class="blog-card__excerpt">{{ $post->excerpt }}</p>
                                 @endif
                                 <div class="blog-card__author">
-                                    @if($url = media_url($post->author_avatar_url ?? null))
+                                    @if($url = mlp_image_url($post->author_avatar_url ?? null, ['w' => 56]))
                                         <img src="{{ $url }}"
                                              alt="{{ $post->author_name }}"
                                              class="blog-card__author-avatar"
-                                             width="28" height="28" loading="lazy">
+                                             width="28" height="28" loading="lazy" decoding="async">
                                     @else
                                         <span class="blog-card__author-avatar" aria-hidden="true">
                                             {{ strtoupper(mb_substr($post->author_name ?? 'M', 0, 1)) }}
@@ -199,9 +205,13 @@
                                                 <time datetime="{{ $post->published_at }}">
                                                     {{ \Carbon\Carbon::parse($post->published_at)->format('M d, Y') }}
                                                 </time>
+                                            @endif
+                                            @if($post->published_at && $post->reading_time_minutes)
                                                 <span class="blog-card__author-meta-sep" aria-hidden="true">·</span>
                                             @endif
-                                            <span>{{ $post->reading_time_minutes ?? 1 }} min read</span>
+                                            @if($post->reading_time_minutes)
+                                                <span>{{ $post->reading_time_minutes }} min read</span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -222,9 +232,8 @@
                 @if($paginatedPosts->hasPages())
                 <nav class="blog-pagination" aria-label="Article pagination">
                     <ul style="list-style: none; margin: 0; padding: 0; display: flex; align-items: center; gap: 6px;">
-                        {{-- Previous --}}
-                        @if ($paginatedPosts->onFirstPage())
-                            <li class="blog-pagination__item blog-pagination__item--disabled" aria-disabled="true" aria-label="Previous page">
+                        @if($paginatedPosts->onFirstPage())
+                            <li class="blog-pagination__item blog-pagination__item--disabled" aria-disabled="true">
                                 <span class="blog-pagination__link" aria-hidden="true">
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16">
                                         <path d="M15 19l-7-7 7-7"/>
@@ -241,21 +250,11 @@
                             </li>
                         @endif
 
-                        {{-- Page numbers --}}
-                        @foreach ($paginatedPosts->getUrlRange(1, $paginatedPosts->lastPage()) as $page => $url)
-                            @if ($page == $paginatedPosts->currentPage())
-                                <li class="blog-pagination__item blog-pagination__item--active" aria-current="page">
-                                    <span class="blog-pagination__link">{{ $page }}</span>
-                                </li>
-                            @else
-                                <li class="blog-pagination__item">
-                                    <a class="blog-pagination__link" href="{{ $url }}">{{ $page }}</a>
-                                </li>
-                            @endif
-                        @endforeach
+                        <li class="blog-pagination__item blog-pagination__item--active" aria-current="page">
+                            <span class="blog-pagination__link">Page {{ $paginatedPosts->currentPage() }}</span>
+                        </li>
 
-                        {{-- Next --}}
-                        @if ($paginatedPosts->hasMorePages())
+                        @if($paginatedPosts->hasMorePages())
                             <li class="blog-pagination__item">
                                 <a class="blog-pagination__link" href="{{ $paginatedPosts->nextPageUrl() }}" rel="next" aria-label="Next page">
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16">
@@ -264,7 +263,7 @@
                                 </a>
                             </li>
                         @else
-                            <li class="blog-pagination__item blog-pagination__item--disabled" aria-disabled="true" aria-label="Next page">
+                            <li class="blog-pagination__item blog-pagination__item--disabled" aria-disabled="true">
                                 <span class="blog-pagination__link" aria-hidden="true">
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16">
                                         <path d="M9 5l7 7-7 7"/>

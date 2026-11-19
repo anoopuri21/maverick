@@ -16,10 +16,18 @@ class EditUniversityPartner extends EditRecord
 
     protected function mutateFormDataBeforeSave(array $data): array
     {
+        $logos = $data['recognition_logos'] ?? null;
+        unset($data['recognition_logos']);
+
         $data = MediaPicker::syncFieldFromAsset($data, 'logo_url');
         $data = MediaPicker::syncFieldFromAsset($data, 'campus_image_url');
+        $data = $this->preserveExistingImageFields($data, $this->record);
 
-        return $this->preserveExistingImageFields($data, $this->record);
+        if ($logos !== null) {
+            $data['recognition_logos'] = $logos;
+        }
+
+        return UniversityPartnerResource::cleanRecognitionLogos($data);
     }
 
     protected function getHeaderActions(): array

@@ -39,9 +39,16 @@ class StudentSuccessStoryResource extends Resource
                     ->label('Portrait Photo'),
                 Forms\Components\Select::make('stars')
                     ->label('Rating')
-                    ->options([1 => '1 Star', 2 => '2 Stars', 3 => '3 Stars', 4 => '4 Stars', 5 => '5 Stars'])
+                    ->options([
+                        0 => 'Not provided',
+                        1 => '1 Star',
+                        2 => '2 Stars',
+                        3 => '3 Stars',
+                        4 => '4 Stars',
+                        5 => '5 Stars',
+                    ])
                     ->default(5)
-                    ->helperText('Stored for admin only — not shown on the public cards.'),
+                    ->helperText('Stored for admin only — not shown on the public cards. Use “Not provided” when the source has no rating.'),
                 Forms\Components\TextInput::make('sort_order')
                     ->numeric()
                     ->default(0)
@@ -57,6 +64,7 @@ class StudentSuccessStoryResource extends Resource
                 Tables\Columns\TextColumn::make('sort_order')->sortable(),
                 Tables\Columns\ImageColumn::make('photo')
                     ->label('Photo')
+                    ->getStateUsing(static fn (StudentSuccessStory $record): ?string => media_url($record->photo))
                     ->circular()
                     ->size(48),
                 Tables\Columns\TextColumn::make('name')->searchable()->sortable(),

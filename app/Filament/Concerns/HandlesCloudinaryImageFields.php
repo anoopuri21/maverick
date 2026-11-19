@@ -29,12 +29,13 @@ trait HandlesCloudinaryImageFields
                 continue;
             }
 
-            if (! $this->isImageField($key)) {
+            // Skip array/repeater fields (like gallery_images) so their items are not truncated
+            if (is_array($value)) {
                 continue;
             }
 
-            if (is_array($value)) {
-                $value = array_values($value)[0] ?? null;
+            if (! $this->isImageField($key)) {
+                continue;
             }
 
             $existing = data_get($source, $key);

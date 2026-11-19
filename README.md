@@ -1,75 +1,90 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Maverick Academy website
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Laravel 13 + Filament 3 application for the Maverick Business Academy marketing site.
+Public pages are driven by Spatie settings and a handful of content models; editors manage
+them at `/admin`. Media is stored on Cloudinary. Form notifications use Zoho Mail (or the
+default Laravel mailer), newsletter signups can sync to Zoho Campaigns, and lead events can
+be forwarded to Zapier webhooks configured in the admin panel.
 
-## About Laravel
+## Requirements
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- PHP 8.3+ with `bcmath`, `curl`, `dom`, `fileinfo`, `gd`, `intl`, `mbstring`, `pdo_sqlite`/`pdo_mysql`, `xml`, `zip`
+- Composer 2
+- Node 20+ (only to build Vite/Tailwind assets locally)
+- MySQL or SQLite for local development
+- Cloudinary credentials for admin media uploads
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
-
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+## Local setup
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+git clone <this-repo> && cd maverick
+composer install
+cp .env.example .env
+php artisan key:generate
+# Edit .env: DB_*, APP_URL, Cloudinary keys (see below)
+php artisan migrate
+php artisan db:seed                    # demo content only; safe on a fresh local DB
+php artisan make:filament-user         # create your /admin login
+npm ci --ignore-scripts && npm run build
+php artisan serve
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+Admin panel: `http://localhost:8000/admin`.
 
-## Contributing
+## Configuration
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+All deployment-specific values live in `.env` (never commit it). The important groups:
 
-## Code of Conduct
+| Group | Variables | Notes |
+|---|---|---|
+| App | `APP_URL`, `APP_ENV`, `APP_DEBUG` | Set the real public URL before caching config. |
+| Origin | `PREFERRED_ORIGIN_URL`, `PREFERRED_ORIGIN_HOSTS` | Canonical URL and aliases consolidated by redirects/canonicals/sitemap. Defaults match production. |
+| Mail fallback | `CONTACT_FALLBACK_EMAIL` | Last-resort form recipient when all admin settings are empty. |
+| Cloudinary | `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET`, `CLOUDINARY_UPLOAD_FOLDER` | Required for the media library. See `docs/cloudinary-guide.md`. |
+| reCAPTCHA | `RECAPTCHA_ENABLED`, `RECAPTCHA_SITE_KEY`, `RECAPTCHA_SECRET_KEY`, `RECAPTCHA_ALLOWED_HOSTNAMES` | v2 checkbox. Leave disabled until all values are set; public forms remain usable without it. Enable on production and include the exact serving hostname (comma-separated). |
+| Proxy / preview | `TRUSTED_PROXIES`, `APP_ALLOWED_URL_HOSTS` | Only needed behind a known proxy or preview host. Supports `*.e2b.app` style wildcards. |
+| Zapier | configured at `/admin` | Webhook URLs and event subscriptions are stored in the database, not `.env`. |
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Zoho Mail, Zoho Campaigns, mail template HTML, SEO fields and all page content are managed
+in `/admin`; see `ZOHO_ZAPIER_SETUP.md` and `docs/zoho-setup-step-by-step.md`.
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-
-## Shared hosting / production
-
-See **[docs/SHARED_HOSTING.md](docs/SHARED_HOSTING.md)** for the full hardening checklist (config/route/view cache, APP_KEY rules, Cloudinary media, queues, OPCache).
-
-Quick deploy (document root must be `public/`):
+After changing `.env` or `config/*` on a server, rebuild caches:
 
 ```bash
-alias php='/opt/cpanel/ea-php83/root/usr/bin/php'
-alias composer='/opt/cpanel/ea-php83/root/usr/bin/php /usr/local/bin/composer'
-cd ~/demo.vsinfosys.in
-git pull origin main
-composer install --no-dev --optimize-autoloader --no-interaction
-bash scripts/shared-hosting-optimize.sh
+php artisan optimize:clear && php artisan config:cache
 ```
 
-Never run `php artisan key:generate` on an existing production `.env`.
+## Tests and code style
+
+```bash
+composer test                 # php artisan test (SQLite in-memory)
+npm test                      # JS regression tests in tests/js/
+npm run build                 # Vite build
+vendor/bin/pint --test        # formatting
+```
+
+The same PHP and JS checks run in GitHub Actions on pushes and pull requests.
+
+## Deployment
+
+For cPanel/LiteSpeed shared hosting, follow `docs/SHARED_HOSTING.md` and run
+`bash scripts/shared-hosting-optimize.sh` after every deploy. The document root must be
+`public/`. Never run `php artisan key:generate` on an existing production `.env`.
+
+## Media maintenance
+
+```bash
+php artisan media:clean                         # dry run
+php artisan media:clean --confirm               # recycle unused rows
+php artisan media:clean --confirm --purge-cloudinary --include-orphans
+```
+
+Destructive runs are refused if any reference-table scan fails. See `docs/cloudinary-guide.md`.
+
+## Further documentation
+
+- `docs/SHARED_HOSTING.md` — production deploy/hardening checklist
+- `ZOHO_ZAPIER_SETUP.md`, `docs/zoho-setup-step-by-step.md` — form email, newsletter, webhooks
+- `docs/cloudinary-guide.md` — media library
+- `docs/mlp-design-system.md`, `docs/program-content-template.md` — content conventions
+- `docs/REMEDIATION_PHASES.md` — review follow-up tracking sheet

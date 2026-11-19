@@ -28,4 +28,39 @@ class RichHtmlTest extends TestCase
 
         $this->assertSame($html, rich_html($html));
     }
+
+    public function test_executable_markup_is_removed_from_stored_rich_text(): void
+    {
+        $html = '<p>Safe copy</p>'
+            .'<script>alert("xss")</script>'
+            .'<img src="/photo.jpg" onerror="alert(1)">'
+            .'<a href="jav&#x09;ascript:alert(1)">Link</a>';
+
+        $rendered = rich_html($html);
+
+        $this->assertStringContainsString('<p>Safe copy</p>', $rendered);
+        $this->assertStringNotContainsString('<script', $rendered);
+        $this->assertStringNotContainsString('onerror', $rendered);
+        $this->assertStringNotContainsString('javascript:', strtolower($rendered));
+    }
+
+    public function test_editor_prose_helpers_use_the_same_sanitizer(): void
+    {
+        $html = '<p>Chapter</p><iframe src="https://example.com"></iframe>';
+
+        $rendered = \App\Support\MlpProse::html($html);
+
+        $this->assertStringContainsString('<p>Chapter</p>', $rendered);
+        $this->assertStringNotContainsString('<iframe', $rendered);
+    }
+
+    public function test_rich_content_images_get_lazy_and_async_hints(): void
+    {
+        $html = '<p>Intro</p><img src="/one.jpg"><img src="/two.jpg" loading="eager" />';
+
+        $optimized = lazy_load_rich_content_images($html);
+
+        $this->assertStringContainsString('<img src="/one.jpg" loading="lazy" decoding="async">', $optimized);
+        $this->assertStringContainsString('<img src="/two.jpg" loading="eager" decoding="async" />', $optimized);
+    }
 }

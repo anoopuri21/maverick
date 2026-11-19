@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Program;
 use App\Settings\HeroSettings;
 use App\Settings\AskQuotientSettings;
 use App\Settings\DeiMatrixSettings;
@@ -12,9 +11,7 @@ use App\Settings\NumbersSettings;
 use App\Settings\WhoWeAreSettings;
 use App\Settings\CeoSettings;
 use App\Settings\WhatIsMaverickSettings;
-use App\Models\OurStoryTestimonial;
 use App\Models\PartnerLogo;
-use App\Models\UniversityPartner;
 use App\Models\FacultyInsight;
 use App\Models\Event;
 use App\Models\Testimonial;
@@ -71,6 +68,7 @@ use App\Settings\MbaMastersClassSettings;
 use App\Settings\MbaMastersFeesSettings;
 use App\Settings\MbaMastersHeroSettings;
 use App\Settings\MbaMastersJourneySettings;
+use App\Settings\MbaMastersLearningSettings;
 use App\Settings\MbaMastersMastersSettings;
 use App\Settings\MbaMastersMbaSettings;
 use App\Settings\MbaMastersOverviewSettings;
@@ -148,12 +146,6 @@ class PageController extends Controller
         ];
 
         $cached = PublicContentCache::remember(PublicContentCache::HOMEPAGE, function () {
-            $alumniLogos = PartnerLogo::select('id', 'name', 'logo_url', 'sort_order')
-                ->where('type', 'alumni')
-                ->where('is_active', true)
-                ->orderBy('sort_order')
-                ->get();
-
             $accreditationLogos = PartnerLogo::select('id', 'name', 'logo_url', 'sort_order')
                 ->whereIn('type', ['accreditation', 'recognition'])
                 ->where('is_active', true)
@@ -176,19 +168,20 @@ class PageController extends Controller
                 ]
             );
 
-            $events = PublicContentCache::serializeRows(
-                Event::select('id', 'title', 'description', 'event_date', 'event_type', 'location', 'link_url')
+            $testimonials = PublicContentCache::serializeRows(
+                Testimonial::select('name', 'designation', 'company', 'thumbnail_url', 'video_url')
                     ->where('is_active', true)
-                    ->orderBy('event_date', 'desc')
-                    ->limit(10)
-                    ->get()
+                    ->orderBy('sort_order')
+                    ->limit(9)
+                    ->get(),
+                fn (Testimonial $testimonial) => [
+                    'name' => $testimonial->name,
+                    'designation' => $testimonial->designation,
+                    'company' => $testimonial->company,
+                    'thumbnail_url' => $testimonial->auto_thumbnail,
+                    'embed_url' => $testimonial->embed_url,
+                ]
             );
-
-            $testimonials = Testimonial::select('id', 'name', 'designation', 'company', 'thumbnail_url', 'video_url', 'video_type', 'sort_order')
-                ->where('is_active', true)
-                ->orderBy('sort_order')
-                ->limit(9)
-                ->get();
 
             $homepageFaqs = PublicContentCache::serializeRows(
                 \App\Models\Faq::select('id', 'question', 'answer', 'sort_order')
@@ -199,33 +192,33 @@ class PageController extends Controller
                     ->get()
             );
 
-            $testimonialsJson = $testimonials->map(fn ($t) => [
-                'category' => strtoupper($t->company ?? 'STUDENT'),
-                'name' => $t->name,
-                'role' => $t->designation ?? '',
-                'thumbnail' => $t->auto_thumbnail,
-                'video' => $t->embed_url,
-            ])->values()->all();
-
             // Store plain arrays — database cache corrupts serialized Eloquent models (null bytes).
             return [
-                'alumniLogos' => $alumniLogos->toArray(),
                 'accreditationLogos' => $accreditationLogos->toArray(),
                 'facultyInsights' => $facultyInsights,
-                'events' => $events,
-                'testimonials' => $testimonials->toArray(),
-                'testimonialsJson' => $testimonialsJson,
+                'testimonials' => $testimonials,
                 'homepageFaqs' => $homepageFaqs,
             ];
         });
 
+        // Refresh at the next local midnight so an event cannot remain upcoming on the following day.
+        $events = PublicContentCache::remember(PublicContentCache::HOMEPAGE_EVENTS, function () {
+            return PublicContentCache::serializeRows(
+                Event::select('id', 'slug', 'title', 'description', 'event_date', 'event_type', 'location', 'link_url')
+                    ->where('is_active', true)
+                    ->whereDate('event_date', '>=', today()->toDateString())
+                    ->orderBy('event_date')
+                    ->orderBy('id')
+                    ->limit(10)
+                    ->get()
+            );
+        }, max(1, (int) now()->diffInSeconds(today()->addDay())));
+
         $collections = [
-            'alumniLogos' => PublicContentCache::hydrateRows(PartnerLogo::class, $cached['alumniLogos'] ?? []),
             'accreditationLogos' => PublicContentCache::hydrateRows(PartnerLogo::class, $cached['accreditationLogos'] ?? []),
             'facultyInsights' => PublicContentCache::hydrateRows(FacultyInsight::class, $cached['facultyInsights'] ?? []),
-            'events' => PublicContentCache::hydrateRows(Event::class, $cached['events'] ?? []),
-            'testimonials' => PublicContentCache::hydrateRows(Testimonial::class, $cached['testimonials'] ?? []),
-            'testimonialsJson' => collect($cached['testimonialsJson'] ?? []),
+            'events' => PublicContentCache::hydrateRows(Event::class, $events),
+            'testimonials' => PublicContentCache::hydratePlainRows($cached['testimonials'] ?? []),
             'homepageFaqs' => PublicContentCache::hydrateRows(\App\Models\Faq::class, $cached['homepageFaqs'] ?? []),
         ];
 
@@ -247,18 +240,7 @@ class PageController extends Controller
         ];
 
         $cached = PublicContentCache::remember(PublicContentCache::OUR_STORY, function () {
-            $ourStoryTestimonials = OurStoryTestimonial::query()
-                ->select('id', 'name', 'organisation', 'position', 'country', 'rating', 'testimonial', 'photo', 'sort_order')
-                ->where('is_active', true)
-                ->orderBy('sort_order')
-                ->get();
-
             $timelines = \App\Models\OurStoryTimeline::select('id', 'year', 'title', 'description', 'icon_url', 'sort_order')
-                ->where('is_active', true)
-                ->orderBy('sort_order')
-                ->get();
-
-            $awards = \App\Models\OurStoryAward::select('id', 'title', 'image_url', 'sort_order', 'is_active')
                 ->where('is_active', true)
                 ->orderBy('sort_order')
                 ->get();
@@ -274,40 +256,20 @@ class PageController extends Controller
                 ->orderBy('sort_order')
                 ->get();
 
-            $testimonials = Testimonial::select('id', 'name', 'designation', 'company', 'thumbnail_url', 'video_url', 'video_type', 'sort_order')
-                ->where('is_active', true)
-                ->orderBy('sort_order')
-                ->limit(9)
-                ->get();
-
-            $testimonialsJson = $testimonials->map(fn ($t) => [
-                'category' => strtoupper($t->company ?? 'STUDENT'),
-                'name' => $t->name,
-                'role' => $t->designation ?? '',
-                'thumbnail' => $t->auto_thumbnail,
-                'video' => $t->embed_url,
-            ])->values()->all();
-
             // Store plain arrays — database cache corrupts serialized Eloquent models.
             return [
-                'ourStoryTestimonials' => $ourStoryTestimonials->toArray(),
                 'timelines' => $timelines->toArray(),
-                'awards' => $awards->toArray(),
                 'galleryImages' => $galleryImages->toArray(),
                 'accreditationLogos' => $accreditationLogos->toArray(),
-                'testimonials' => $testimonials->toArray(),
-                'testimonialsJson' => $testimonialsJson,
             ];
         });
 
         $collections = [
-            'ourStoryTestimonials' => PublicContentCache::hydrateRows(OurStoryTestimonial::class, $cached['ourStoryTestimonials'] ?? []),
+            'ourStoryTestimonials' => app(\App\Services\VoicesTestimonialsService::class)
+                ->itemsForPage(\App\Support\TestimonialPages::OUR_STORY),
             'timelines' => PublicContentCache::hydrateRows(\App\Models\OurStoryTimeline::class, $cached['timelines'] ?? []),
-            'awards' => PublicContentCache::hydrateRows(\App\Models\OurStoryAward::class, $cached['awards'] ?? []),
             'galleryImages' => PublicContentCache::hydrateRows(\App\Models\OurStoryGalleryImage::class, $cached['galleryImages'] ?? []),
             'accreditationLogos' => PublicContentCache::hydrateRows(PartnerLogo::class, $cached['accreditationLogos'] ?? []),
-            'testimonials' => PublicContentCache::hydrateRows(Testimonial::class, $cached['testimonials'] ?? []),
-            'testimonialsJson' => collect($cached['testimonialsJson'] ?? []),
         ];
 
         $data = array_merge($settings, $collections, [
@@ -394,9 +356,14 @@ class PageController extends Controller
 
         $fees = safe_settings(MbaMastersFeesSettings::class);
         $fees->rows = settings_array($fees->rows ?? []);
+        $fees->blocks = settings_array($fees->blocks ?? []);
+
+        $learning = safe_settings(MbaMastersLearningSettings::class);
+        $learning->points = settings_array($learning->points ?? []);
 
         $class = safe_settings(MbaMastersClassSettings::class);
         $class->metrics = settings_array($class->metrics ?? []);
+        $class->class_year_stats = settings_array($class->class_year_stats ?? []);
         $class->regions = settings_array($class->regions ?? []);
         $class->industries = settings_array($class->industries ?? []);
 
@@ -423,12 +390,14 @@ class PageController extends Controller
             ->all();
 
         $partners = safe_settings(MbaMastersPartnersSettings::class);
+        $partners->checklist = settings_array($partners->checklist ?? []);
 
         $testimonials = safe_settings(MbaMastersTestimonialsSettings::class);
         $testimonials->items = settings_array($testimonials->items ?? []);
 
         $compare = safe_settings(MbaMastersCompareSettings::class);
         $compare->rows = settings_array($compare->rows ?? []);
+        $compare->blocks = settings_array($compare->blocks ?? []);
 
         $faq = safe_settings(MbaMastersFaqSettings::class);
         $faq->items = settings_array($faq->items ?? []);
@@ -444,14 +413,6 @@ class PageController extends Controller
             ->select('id', 'name', 'logo_url', 'sort_order')
             ->where('type', 'alumni')
             ->where('is_active', true)
-            ->orderBy('sort_order')
-            ->get();
-
-        $universityPartnerLogos = UniversityPartner::query()
-            ->select('id', 'name', 'logo_url', 'sort_order')
-            ->where('is_active', true)
-            ->whereNotNull('logo_url')
-            ->where('logo_url', '!=', '')
             ->orderBy('sort_order')
             ->get();
 
@@ -471,6 +432,7 @@ class PageController extends Controller
             'mba' => $mba,
             'masters' => $masters,
             'fees' => $fees,
+            'learning' => $learning,
             'class' => $class,
             'career' => $career,
             'alumni' => $alumni,
@@ -478,13 +440,14 @@ class PageController extends Controller
             'testimonialsJson' => $testimonialsJson,
             'partners' => $partners,
             'testimonials' => $testimonials,
+            'storyTestimonials' => app(\App\Services\VoicesTestimonialsService::class)
+                ->itemsForPage(\App\Support\TestimonialPages::MBA_MASTERS_LANDING),
             'compare' => $compare,
             'faq' => $faq,
             'final' => $final,
             'seo' => $seo,
             'site' => safe_settings(SiteSettings::class),
             'alumniLogos' => $alumniLogos,
-            'universityPartnerLogos' => $universityPartnerLogos,
             'accreditationLogos' => $accreditationLogos,
         ]);
     }
@@ -611,6 +574,76 @@ class PageController extends Controller
     public function aboutUs()
     {
         return redirect()->route('our-story', [], 301);
+    }
+
+    /**
+     * Thank-you landing page shown after a successful form submission.
+     *
+     * The previous page is carried through a one-request session flash, not
+     * the query string. Legacy ?return= links are redirected to the clean URL.
+     */
+    public function thankYou(Request $request)
+    {
+        if ($request->query->has('return')) {
+            return redirect()->route('thank-you');
+        }
+
+        $flashedPreviousUrl = $request->session()->get('thank_you_previous_url');
+        $previousUrl = $this->safeThankYouPreviousUrl(
+            is_string($flashedPreviousUrl) ? $flashedPreviousUrl : null,
+            $request
+        );
+
+        return view('pages.thank-you', [
+            'site' => safe_settings(SiteSettings::class),
+            'previousUrl' => $previousUrl,
+        ]);
+    }
+
+    private function safeThankYouPreviousUrl(?string $url, Request $request): ?string
+    {
+        if (! filled($url)) {
+            return null;
+        }
+
+        $url = trim($url);
+        $parts = parse_url($url);
+
+        if ($parts === false) {
+            return null;
+        }
+
+        $host = $parts['host'] ?? null;
+        $scheme = strtolower((string) ($parts['scheme'] ?? ''));
+
+        if ($host !== null) {
+            $urlPort = (int) ($parts['port'] ?? ($scheme === 'https' ? 443 : 80));
+
+            if (
+                ! in_array($scheme, ['http', 'https'], true)
+                || $scheme !== strtolower($request->getScheme())
+                || strcasecmp((string) $host, $request->getHost()) !== 0
+                || $urlPort !== $request->getPort()
+                || isset($parts['user'])
+                || isset($parts['pass'])
+            ) {
+                return null;
+            }
+        } elseif (
+            ! str_starts_with($url, '/')
+            || str_starts_with($url, '//')
+            || str_contains($url, '\\')
+        ) {
+            return null;
+        }
+
+        $path = (string) ($parts['path'] ?? '/');
+
+        if (strcasecmp(rtrim($path, '/'), '/thank-you') === 0) {
+            return null;
+        }
+
+        return $url;
     }
 
     public function csrCommunityImpact()

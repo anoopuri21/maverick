@@ -23,6 +23,22 @@ class NewsletterSubscribeTest extends TestCase
         $response->assertJsonValidationErrors(['email']);
     }
 
+    public function test_newsletter_honeypot_is_silently_ignored(): void
+    {
+        Mail::fake();
+        Http::fake();
+
+        $response = $this->postJson('/newsletter', [
+            'email' => 'bot@example.com',
+            'website' => 'https://spam.example.com',
+        ]);
+
+        $response->assertOk();
+        $response->assertJson(['ok' => true, 'message' => 'Thank you for subscribing.']);
+        Mail::assertNothingSent();
+        Http::assertNothingSent();
+    }
+
     public function test_newsletter_sends_notification_email(): void
     {
         Mail::fake();
@@ -46,6 +62,25 @@ class NewsletterSubscribeTest extends TestCase
                 && $values->has('Submitted at');
         });
 
+        Http::assertNothingSent();
+    }
+
+    public function test_newsletter_mail_failure_skips_zoho_and_zapier_side_effects(): void
+    {
+        Mail::shouldReceive('mailer')->andThrow(new \RuntimeException('SMTP unavailable'));
+        Http::fake();
+
+        ZapierWebhook::create([
+            'event_key' => ZapierEvents::NEWSLETTER_SUBSCRIBED,
+            'url' => 'https://hooks.zapier.com/hooks/catch/newsletter',
+            'is_enabled' => true,
+        ]);
+
+        $response = $this->postJson('/newsletter', [
+            'email' => 'subscriber@example.com',
+        ]);
+
+        $response->assertStatus(503);
         Http::assertNothingSent();
     }
 

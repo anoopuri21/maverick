@@ -1,22 +1,27 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Pages\MbaMastersLanding;
 
 use App\Filament\Concerns\SavesSettingsGroups;
-use App\Filament\Forms\Components\MediaPicker;
 use App\Filament\Pages\MbaMastersLanding\Concerns\ManagesMbaMastersChunk;
+use App\Filament\Resources\OurStoryTestimonialResource;
 use App\Settings\MbaMastersAlumniSettings;
 use App\Settings\MbaMastersCompareSettings;
 use App\Settings\MbaMastersPartnersSettings;
 use App\Settings\MbaMastersTestimonialsSettings;
+use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
 use Filament\Pages\Page;
+use Illuminate\Support\HtmlString;
 
 class ManageProof extends Page implements HasForms
 {
@@ -37,17 +42,17 @@ class ManageProof extends Page implements HasForms
     public function mount(): void
     {
         $testimonials = app(MbaMastersTestimonialsSettings::class)->toArray();
-        $testimonials['items'] = $this->hydrateRepeaterMediaFields(
-            array_values($testimonials['items'] ?? []),
-            'photo'
-        );
 
         $compare = app(MbaMastersCompareSettings::class)->toArray();
         $compare['rows'] = array_values($compare['rows'] ?? []);
+        $compare['blocks'] = array_values($compare['blocks'] ?? []);
+
+        $partners = app(MbaMastersPartnersSettings::class)->toArray();
+        $partners['checklist'] = array_values($partners['checklist'] ?? []);
 
         $this->form->fill([
             'alumni' => app(MbaMastersAlumniSettings::class)->toArray(),
-            'partners' => app(MbaMastersPartnersSettings::class)->toArray(),
+            'partners' => $partners,
             'testimonials' => $testimonials,
             'compare' => $compare,
         ]);
@@ -72,37 +77,45 @@ class ManageProof extends Page implements HasForms
                 Section::make('University partners')
                     ->schema([
                         TextInput::make('partners.label')->label('Section label'),
-                        TextInput::make('partners.heading')->label('Heading')->columnSpanFull(),
+                        TextInput::make('partners.heading_line1')->label('Heading Line 1')->columnSpanFull(),
+                        TextInput::make('partners.heading_line2')->label('Heading Line 2 (Accent)')->columnSpanFull(),
                         Textarea::make('partners.intro')->label('Intro')->rows(2)->columnSpanFull(),
                         Textarea::make('partners.trust_line')->label('Trust line')->rows(2)->columnSpanFull()
                             ->helperText('Logos: University Partners admin (active + logo). No duplicate logo CRUD here.'),
+                        Repeater::make('partners.checklist')
+                            ->label('Checklist')
+                            ->schema([
+                                TextInput::make('text')->label('Item')->required()->columnSpanFull(),
+                            ])
+                            ->defaultItems(0)
+                            ->reorderable()
+                            ->addActionLabel('Add checklist item')
+                            ->columnSpanFull(),
                     ])
                     ->columns(2)
                     ->collapsed()
                     ->collapsible(),
                 Section::make('Testimonials')
                     ->schema([
+                        Toggle::make('testimonials.show_section')
+                            ->label('Show testimonials section')
+                            ->default(true)
+                            ->helperText('Hides the quotes section only. The film above it stays.')
+                            ->columnSpanFull(),
                         TextInput::make('testimonials.label')->label('Section label'),
+                        TextInput::make('testimonials.stack_caption')->label('Portrait caption'),
                         TextInput::make('testimonials.heading')->label('Heading')->columnSpanFull(),
-                        Textarea::make('testimonials.intro')->label('Intro')->rows(2)->columnSpanFull()
-                            ->helperText('Active Our Story testimonials are preferred when present; items below are published landing quotes.'),
-                        Repeater::make('testimonials.items')
-                            ->label('Published quotes')
-                            ->schema([
-                                TextInput::make('name')->label('Name'),
-                                TextInput::make('role')->label('Role / company'),
-                                Textarea::make('quote')->label('Quote')->rows(3)->columnSpanFull(),
-                                TextInput::make('photo')->hidden(),
-                                MediaPicker::forField('photo', 'mba-masters-landing/testimonials')
-                                    ->label('Photo')
-                                    ->columnSpanFull(),
-                            ])
-                            ->columns(2)
-                            ->defaultItems(0)
-                            ->reorderable()
-                            ->collapsible()
-                            ->itemLabel(fn (array $state): ?string => $state['name'] ?? null)
-                            ->addActionLabel('Add quote')
+                        Textarea::make('testimonials.intro')->label('Intro')->rows(2)->columnSpanFull(),
+                        TextInput::make('testimonials.film_label')->label('Film label'),
+                        TextInput::make('testimonials.film_heading')->label('Film heading')->columnSpanFull(),
+                        Textarea::make('testimonials.film_body')->label('Film body')->rows(2)->columnSpanFull(),
+                        TextInput::make('testimonials.film_play_label')->label('Film play label'),
+                        Placeholder::make('global_testimonials_notice')
+                            ->label('Student Testimonials (Global Content)')
+                            ->content(fn (): HtmlString => new HtmlString(
+                                'Individual student testimonials, portraits, and page assignments are managed centrally in '
+                                . '<a href="' . e(OurStoryTestimonialResource::getUrl('index')) . '" class="font-semibold text-primary-600 underline hover:text-primary-500">Global Content &rarr; Testimonials</a>.'
+                            ))
                             ->columnSpanFull(),
                     ])
                     ->columns(2)
@@ -129,6 +142,18 @@ class ManageProof extends Page implements HasForms
                             ->itemLabel(fn (array $state): ?string => $state['criterion'] ?? null)
                             ->addActionLabel('Add row')
                             ->columnSpanFull(),
+                        Repeater::make('compare.blocks')
+                            ->label('Supporting blocks')
+                            ->schema([
+                                TextInput::make('title')->label('Title')->required()->columnSpanFull(),
+                                Textarea::make('text')->label('Text')->rows(3)->columnSpanFull(),
+                            ])
+                            ->defaultItems(0)
+                            ->reorderable()
+                            ->collapsible()
+                            ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
+                            ->addActionLabel('Add block')
+                            ->columnSpanFull(),
                         TextInput::make('compare.cta_label')->label('CTA label'),
                         TextInput::make('compare.cta_url')->label('CTA URL'),
                     ])
@@ -146,25 +171,19 @@ class ManageProof extends Page implements HasForms
             return;
         }
 
-        $existingTestimonials = app(MbaMastersTestimonialsSettings::class)->toArray();
-
         $testimonials = $data['testimonials'] ?? [];
-        $testimonials['items'] = $this->hydrateRepeaterMediaFields($testimonials['items'] ?? [], 'photo');
-        foreach ($testimonials['items'] ?? [] as &$item) {
-            $item = $this->syncImageIfSelected($item, 'photo');
-        }
-        unset($item);
-        $testimonials['items'] = $this->preserveRepeaterImageFields(
-            array_values($testimonials['items'] ?? []),
-            $existingTestimonials['items'] ?? [],
-            'photo'
-        );
+        $testimonials['show_section'] = (bool) ($testimonials['show_section'] ?? true);
+        $testimonials['items'] = [];
 
         $compare = $data['compare'] ?? [];
         $compare['rows'] = array_values($compare['rows'] ?? []);
+        $compare['blocks'] = array_values($compare['blocks'] ?? []);
+
+        $partners = $data['partners'] ?? [];
+        $partners['checklist'] = array_values($partners['checklist'] ?? []);
 
         $ok = $this->saveSettingsGroup(MbaMastersAlumniSettings::class, $data['alumni'] ?? [])
-            && $this->saveSettingsGroup(MbaMastersPartnersSettings::class, $data['partners'] ?? [])
+            && $this->saveSettingsGroup(MbaMastersPartnersSettings::class, $partners)
             && $this->saveSettingsGroup(MbaMastersTestimonialsSettings::class, $testimonials)
             && $this->saveSettingsGroup(MbaMastersCompareSettings::class, $compare);
 

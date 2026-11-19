@@ -1,4 +1,7 @@
-@php $homepageChrome = $homepageChrome ?? null; @endphp
+@php
+  $homepageChrome = $homepageChrome ?? null;
+  $testimonials = collect($testimonials ?? []);
+@endphp
 <section id="video-testimonials" class="testimonials section-wrapper section--light"
   aria-label="Video Testimonials">
   <div class="container testimonials__inner">
@@ -29,7 +32,32 @@
       </button>
       <div class="testimonials__scroll" data-scroll-container>
         <div class="testimonials__track" id="testimonialsTrack">
-            {{-- Dynamically rendered by testimonials.js from window.testimonialsData --}}
+          @foreach($testimonials as $testimonial)
+            @php
+              $videoUrl = $testimonial->embed_url;
+              $thumbnailUrl = $testimonial->thumbnail_url;
+            @endphp
+            <article class="testimonials__card" data-video="{{ $videoUrl }}" data-testid="homepage-testimonial-card">
+              <div class="testimonials__card-thumb">
+                <div class="testimonials__card-poster">
+                  <img src="{{ $thumbnailUrl }}" alt="{{ $testimonial->name }}" loading="lazy" decoding="async" width="320" height="220" />
+                  <span class="testimonials__card-badge">{{ strtoupper($testimonial->company ?? 'STUDENT') }}</span>
+                  @if(filled($videoUrl))
+                    <button class="testimonials__play" type="button" aria-label="Play video by {{ $testimonial->name }}">
+                      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M8 5v14l11-7z"/>
+                      </svg>
+                    </button>
+                  @endif
+                </div>
+                <div class="testimonials__card-player"></div>
+              </div>
+              <div class="testimonials__card-info">
+                <h4 class="testimonials__card-name">{{ $testimonial->name }}</h4>
+                <span class="testimonials__card-role">{{ $testimonial->designation }}</span>
+              </div>
+            </article>
+          @endforeach
         </div>
       </div>
       <button class="scroll-row__btn scroll-row__btn--next" aria-label="Scroll right" data-scroll-next>
@@ -50,7 +78,4 @@
     </div>
   </div>
 
- <script>
-    window.testimonialsData = @json($testimonialsJson ?? []);
-</script>
 </section>

@@ -16,6 +16,6 @@ class CreateUniversityPartner extends CreateRecord
         $data = MediaPicker::syncFieldFromAsset($data, 'logo_url');
         $data = MediaPicker::syncFieldFromAsset($data, 'campus_image_url');
 
-        return $data;
+        return UniversityPartnerResource::cleanRecognitionLogos($data);
     }
 }

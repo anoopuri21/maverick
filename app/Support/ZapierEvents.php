@@ -10,6 +10,8 @@ class ZapierEvents
 
     public const PROGRAM_ENQUIRY_SUBMITTED = 'program.enquiry_submitted';
 
+    public const MBA_MASTERS_LANDING_ENQUIRY_SUBMITTED = 'mba_masters_landing.enquiry_submitted';
+
     /**
      * @return array<string, string>
      */
@@ -19,6 +21,7 @@ class ZapierEvents
             self::CONTACT_SUBMITTED => 'Contact form submitted',
             self::NEWSLETTER_SUBSCRIBED => 'Newsletter signup',
             self::PROGRAM_ENQUIRY_SUBMITTED => 'Programme enquiry submitted',
+            self::MBA_MASTERS_LANDING_ENQUIRY_SUBMITTED => 'MBA/Master landing enquiry submitted',
         ];
     }
 }

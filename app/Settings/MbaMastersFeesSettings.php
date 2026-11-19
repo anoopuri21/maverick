@@ -22,6 +22,8 @@ class MbaMastersFeesSettings extends Settings
 
     public array $rows = [];
 
+    public array $blocks = [];
+
     public ?string $cta_primary_label = null;
 
     public ?string $cta_primary_url = null;
@@ -29,6 +31,10 @@ class MbaMastersFeesSettings extends Settings
     public ?string $cta_secondary_label = null;
 
     public ?string $cta_secondary_url = null;
+
+    public ?string $banner_label = null;
+
+    public ?string $banner_value = null;
 
     public static function group(): string
     {

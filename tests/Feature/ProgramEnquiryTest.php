@@ -8,15 +8,19 @@ use App\Support\ZapierEvents;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
+use Tests\Concerns\FakesRecaptcha;
 use Tests\TestCase;
 
 class ProgramEnquiryTest extends TestCase
 {
+    use FakesRecaptcha;
+
     use RefreshDatabase;
 
     public function test_enquiry_allows_empty_optional_message(): void
     {
         Mail::fake();
+        $this->fakeRecaptcha();
 
         $response = $this->from('/programs/sample')->post('/programs/enquire', [
             'programme' => 'Executive MBA',
@@ -27,10 +31,11 @@ class ProgramEnquiryTest extends TestCase
             'study_mode' => 'Online',
             'qualification' => 'bachelor',
             'message' => '',
+            'g-recaptcha-response' => 'test-token',
         ]);
 
-        $response->assertRedirect('/programs/sample');
-        $response->assertSessionHas('success');
+        $response->assertRedirectToRoute('thank-you');
+        $response->assertSessionHas('thank_you_previous_url', 'http://localhost/programs/sample');
 
         Mail::assertSent(GenericFormMail::class, function (GenericFormMail $mail) {
             $values = collect($mail->rows)->pluck('value', 'label');
@@ -53,7 +58,7 @@ class ProgramEnquiryTest extends TestCase
     public function test_enquiry_dispatches_zapier_webhook_when_configured(): void
     {
         Mail::fake();
-        Http::fake([
+        $this->fakeRecaptcha(true, [
             'hooks.zapier.com/*' => Http::response('ok', 200),
         ]);
 
@@ -72,9 +77,10 @@ class ProgramEnquiryTest extends TestCase
             'study_mode' => 'Online',
             'qualification' => 'bachelor',
             'message' => 'Interested in intake dates.',
+            'g-recaptcha-response' => 'test-token',
         ]);
 
-        $response->assertRedirect('/programs/sample');
+        $response->assertRedirectToRoute('thank-you');
 
         Http::assertSent(function ($request) {
             return $request->url() === 'https://hooks.zapier.com/hooks/catch/enquiry'
@@ -82,5 +88,23 @@ class ProgramEnquiryTest extends TestCase
                 && $request['programme'] === 'Executive MBA'
                 && $request['_event'] === ZapierEvents::PROGRAM_ENQUIRY_SUBMITTED;
         });
+    }
+
+    public function test_invalid_recaptcha_blocks_program_enquiry_mail(): void
+    {
+        Mail::fake();
+        $this->fakeRecaptcha(false);
+
+        $response = $this->from('/programs/sample')->post('/programs/enquire', [
+            'programme' => 'Executive MBA',
+            'name' => 'Jane Doe',
+            'email' => 'jane@example.com',
+            'phone' => '+971 50 000 0000',
+            'g-recaptcha-response' => 'invalid-token',
+        ]);
+
+        $response->assertSessionHasErrors('recaptcha');
+        Mail::assertNothingSent();
+        Http::assertSent(fn ($request) => $request->url() === 'https://www.google.com/recaptcha/api/siteverify');
     }
 }

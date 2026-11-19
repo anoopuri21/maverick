@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\BlogPost;
 use App\Models\Insight;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -102,5 +103,33 @@ class BlogTest extends TestCase
 
         $response->assertStatus(200);
         $response->assertSee('blog-thumb--fallback', false);
+    }
+
+    public function test_empty_blog_post_reading_time_is_saved_as_null(): void
+    {
+        $post = BlogPost::create([
+            'title' => 'BlogPost without reading time',
+            'slug' => 'blog-post-without-reading-time',
+            'content' => '<p>Content.</p>',
+            'reading_time_minutes' => '',
+        ]);
+
+        $this->assertDatabaseHas('blog_posts', [
+            'id' => $post->id,
+            'reading_time_minutes' => null,
+        ]);
+    }
+
+    public function test_empty_reading_time_is_hidden_from_blog_listing_and_detail(): void
+    {
+        Insight::category('blogs')->update(['reading_time_minutes' => null]);
+
+        $this->get('/blogs')
+            ->assertOk()
+            ->assertDontSee('min read');
+
+        $this->get('/unlocking-global-leadership-future-executive-mba')
+            ->assertOk()
+            ->assertDontSee('min read');
     }
 }

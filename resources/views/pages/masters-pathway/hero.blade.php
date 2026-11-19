@@ -48,10 +48,10 @@
         </h1>
         @endif
         @if(html_filled($hero->sub ?? null))
-        <div class="cinematic-hero__description mp-richtext">{!! $hero->sub !!}</div>
+        <div class="cinematic-hero__description mp-richtext">{!! rich_html($hero->sub) !!}</div>
         @endif
         @foreach($heroParagraphs as $paragraph)
-        <div class="mp-hero__desc mp-richtext">{!! $paragraph !!}</div>
+        <div class="mp-hero__desc mp-richtext">{!! rich_html($paragraph) !!}</div>
         @endforeach
         @if($heroCtas->isNotEmpty())
         <div class="mp-hero__ctas">

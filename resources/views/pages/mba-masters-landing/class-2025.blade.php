@@ -1,10 +1,37 @@
-{{-- §7.5 MBA Class of 2025 — standalone chapter, placed after #mlp-masters --}}
+{{-- §8 Class of 2025 — cinematic graphic kept; PDF heading/lede --}}
+@php
+  $classYearDefaults = [
+      ['label' => 'MBA Students', 'value' => '979'],
+      ['label' => 'Countries Represented', 'value' => '77'],
+      ['label' => 'Pass Rate', 'value' => '98.70%'],
+      ['label' => 'Average Age', 'value' => '33.7'],
+      ['label' => 'Average Years of Professional Experience', 'value' => '11.2'],
+  ];
+  $classYearStored = collect($class->class_year_stats ?? [])
+      ->filter(fn ($row) => filled($row['label'] ?? null) || filled($row['value'] ?? null))
+      ->take(5)
+      ->values();
+  $classYearStats = collect($classYearDefaults)->map(function (array $default, int $index) use ($classYearStored) {
+      $row = $classYearStored->get($index);
+      if (! is_array($row)) {
+          return $default;
+      }
+
+      return [
+          'label' => filled($row['label'] ?? null) ? $row['label'] : $default['label'],
+          'value' => filled($row['value'] ?? null) ? $row['value'] : $default['value'],
+      ];
+  });
+@endphp
 <section class="mlp-class-2025" id="mlp-class-2025" aria-labelledby="mlp-overview-class-2025-title">
   <div class="container">
     <div class="blueprint-overview__class-2025" id="mlp-overview-class-2025" role="group" aria-labelledby="mlp-overview-class-2025-title">
       <h3 class="blueprint-overview__class-2025-heading" id="mlp-overview-class-2025-title">
-        <span>MBA Class of</span> <strong>2025</strong>
+        <span>{{ $class->class_year_lead ?: 'Class of 2025:' }}</span> <strong>{{ $class->class_year_strong ?: 'Built for the GCC Region' }}</strong>
       </h3>
+      <p class="blueprint-overview__class-2025-lede">
+        {{ $class->class_year_body ?: 'A Maverick cohort of founders, bankers, government specialists, and senior operators who keep working while they study.' }}
+      </p>
 
       <div class="blueprint-overview__class-2025-stage">
         <svg class="blueprint-overview__class-2025-lines" viewBox="0 0 1000 620" preserveAspectRatio="none" aria-hidden="true">
@@ -21,9 +48,8 @@
           <path class="blueprint-overview__class-2025-connector" d="M500 470 V520" />
         </svg>
 
-        <div class="blueprint-overview__class-2025-center" role="img" aria-label="MBA - 2025">
-          
-          <strong>MBA - 2025</strong>
+        <div class="blueprint-overview__class-2025-center" role="img" aria-label="{{ $class->class_year_center ?: 'MBA - 2025' }}">
+          <strong>{{ $class->class_year_center ?: 'MBA - 2025' }}</strong>
         </div>
 
         <ol class="blueprint-overview__class-2025-stats" aria-label="MBA Class of 2025 statistics">
@@ -36,8 +62,8 @@
               </svg>
             </article>
             <div class="blueprint-overview__class-2025-stat-copy" id="mlp-overview-stat-students">
-              <span class="blueprint-overview__class-2025-label">MBA Students</span>
-              <strong class="blueprint-overview__class-2025-value">979</strong>
+              <span class="blueprint-overview__class-2025-label">{{ $classYearStats[0]['label'] }}</span>
+              <strong class="blueprint-overview__class-2025-value">{{ $classYearStats[0]['value'] }}</strong>
             </div>
           </li>
 
@@ -50,8 +76,8 @@
               </svg>
             </article>
             <div class="blueprint-overview__class-2025-stat-copy" id="mlp-overview-stat-countries">
-              <span class="blueprint-overview__class-2025-label">Countries Represented</span>
-              <strong class="blueprint-overview__class-2025-value">77</strong>
+              <span class="blueprint-overview__class-2025-label">{{ $classYearStats[1]['label'] }}</span>
+              <strong class="blueprint-overview__class-2025-value">{{ $classYearStats[1]['value'] }}</strong>
             </div>
           </li>
 
@@ -63,8 +89,8 @@
               </svg>
             </article>
             <div class="blueprint-overview__class-2025-stat-copy" id="mlp-overview-stat-pass-rate">
-              <span class="blueprint-overview__class-2025-label">Pass Rate</span>
-              <strong class="blueprint-overview__class-2025-value">98.70%</strong>
+              <span class="blueprint-overview__class-2025-label">{{ $classYearStats[2]['label'] }}</span>
+              <strong class="blueprint-overview__class-2025-value">{{ $classYearStats[2]['value'] }}</strong>
             </div>
           </li>
 
@@ -77,8 +103,8 @@
               </svg>
             </article>
             <div class="blueprint-overview__class-2025-stat-copy" id="mlp-overview-stat-age">
-              <span class="blueprint-overview__class-2025-label">Average Age</span>
-              <strong class="blueprint-overview__class-2025-value">33.7</strong>
+              <span class="blueprint-overview__class-2025-label">{{ $classYearStats[3]['label'] }}</span>
+              <strong class="blueprint-overview__class-2025-value">{{ $classYearStats[3]['value'] }}</strong>
             </div>
           </li>
 
@@ -90,8 +116,8 @@
               </svg>
             </article>
             <div class="blueprint-overview__class-2025-stat-copy" id="mlp-overview-stat-experience">
-              <span class="blueprint-overview__class-2025-label">Average Years of Professional Experience</span>
-              <strong class="blueprint-overview__class-2025-value">11.2</strong>
+              <span class="blueprint-overview__class-2025-label">{{ $classYearStats[4]['label'] }}</span>
+              <strong class="blueprint-overview__class-2025-value">{{ $classYearStats[4]['value'] }}</strong>
             </div>
           </li>
         </ol>

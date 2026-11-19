@@ -22,6 +22,8 @@
 
           <form class="footer__newsletter-form" data-newsletter-form action="{{ route('newsletter.subscribe') }}" method="POST">
             @csrf
+            <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true"
+              style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden" />
             <input type="email" name="email" class="footer__newsletter-input" placeholder="Your email address" required
               aria-label="Email for newsletter" />
             <button type="submit" class="footer__newsletter-btn" aria-label="Subscribe">

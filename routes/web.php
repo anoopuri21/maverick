@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\SitemapController;
 
 // Homepage
 Route::get('/', [PageController::class, 'home'])->name('home');
@@ -22,9 +24,13 @@ Route::get('/masters-pathways', [PageController::class, 'mastersPathway'])->name
 Route::get('/educational-tours-edutainment', [PageController::class, 'edutainment'])->name('edutainment');
 Route::get('/dual-mba-online', [PageController::class, 'dualMba'])->name('dual-mba');
 Route::get('/online-mba-masters-uae', [PageController::class, 'mbaMastersLanding'])->name('mba-masters-landing');
+Route::redirect('/masters', '/online-mba-masters-uae', 301);
 Route::post('/online-mba-masters-uae/enquire', [\App\Http\Controllers\MbaMastersLandingController::class, 'enquire'])
     ->middleware('throttle:5,1')
     ->name('mba-masters-landing.enquire');
+
+// Thank You (post-form-submission landing)
+Route::get('/thank-you', [PageController::class, 'thankYou'])->name('thank-you');
 
 // Contact
 Route::get('/contact', [\App\Http\Controllers\ContactController::class, 'index'])->name('contact');
@@ -50,10 +56,14 @@ Route::post('/programs/enquire', [\App\Http\Controllers\ProgramController::class
     ->name('programs.enquire');
 Route::get('/programs/{slug}', [\App\Http\Controllers\ProgramController::class, 'show'])->name('programs.show');
 
-// Unified Detail (root-level permalink)
-// Registered LAST so every other named route above is matched first.
+// Events
+Route::get('/events', [EventController::class, 'index'])->name('events');
+Route::get('/events/{slug}', [EventController::class, 'show'])->name('events.show');
+Route::get('/events/{slug}/register', [EventController::class, 'showRegister'])->name('events.register');
+Route::post('/events/{slug}/register', [EventController::class, 'submitRegister'])
+    ->middleware('throttle:5,1')
+    ->name('events.register.submit');
 
-Route::get('/events', [\App\Http\Controllers\PageController::class, 'events'])->name('events');
 Route::get('/student-success/stories', [\App\Http\Controllers\PageController::class, 'studentSuccessStories'])->name('student-success.stories');
 Route::get('/student-success/videos', [\App\Http\Controllers\PageController::class, 'studentSuccessVideos'])->name('student-success.videos');
 Route::get('/student-success', [\App\Http\Controllers\PageController::class, 'studentSuccess'])->name('student-success');
@@ -61,4 +71,7 @@ Route::get('/student-success', [\App\Http\Controllers\PageController::class, 'st
 Route::redirect('/faculty-voice', '/#faculty-insights', 301);
 Route::redirect('/faculty-voice/{slug}', '/#faculty-insights', 301);
 
+Route::get('/sitemap.xml', SitemapController::class)->name('sitemap');
+
+// Unified Detail (root-level permalink)
 Route::get('/{slug}', [\App\Http\Controllers\InsightController::class, 'show'])->name('insights.show');

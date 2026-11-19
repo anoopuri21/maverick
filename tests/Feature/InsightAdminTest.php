@@ -16,6 +16,31 @@ class InsightAdminTest extends TestCase
         $this->artisan('db:seed');
     }
 
+    public function test_empty_reading_time_stays_null_and_is_hidden_from_public_ui(): void
+    {
+        $insight = Insight::create([
+            'title' => 'Optional Reading Time',
+            'slug' => 'optional-reading-time',
+            'content' => '<p>Short article.</p>',
+            'categories' => ['news'],
+            'published_at' => now(),
+            'reading_time_minutes' => '',
+        ]);
+
+        $this->assertDatabaseHas('insights', [
+            'id' => $insight->id,
+            'reading_time_minutes' => null,
+        ]);
+
+        $this->get('/news')
+            ->assertOk()
+            ->assertDontSee('min read');
+
+        $this->get('/optional-reading-time')
+            ->assertOk()
+            ->assertDontSee('min read');
+    }
+
     /**
      * Test creating a single record with both categories and verifying it appears on both.
      */

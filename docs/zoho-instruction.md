@@ -142,7 +142,9 @@ Honeypot / `_token` fields automatically skip.
 ## 5. Enable / disable / change recipient / test
 
 - **Disable Zoho:** Admin → Zoho Mail → Enable Zoho SMTP OFF. Forms still submit. Email default Laravel mailer (`MAIL_MAILER` in `.env`, usually `log`) pe jaati hai.
-- **Change recipient:** Default recipient field badlo, Save. Contact/newsletter/enquiry sab yahi use karte hain unless a form `to` option pass kare. Empty recipient = Site Settings email, then `admissions@mbalondon.org.uk`.
+- **Primary recipient:** Admin → Site Settings → Zoho Mail → Sending → **Primary recipient (To)** field badlo, Save. Form-specific `to` override ho to woh primary recipient ko override karta hai.
+- **Additional recipients:** **Additional recipients (BCC)** mein `Add recipient` se one or more valid email addresses add karo. Contact, newsletter notification, enquiry, MBA Masters enquiry, and event registration emails sab configured extra inboxes ko BCC karte hain; addresses ek-doosre ko visible nahi hote.
+- **Fallback:** Valid form-specific `to` override sabse pehle use hota hai; warna Primary recipient. Primary empty/invalid ho to General Settings ka UAE Email use hota hai; woh bhi empty/invalid ho to `fazil@mbalondon.org.uk` use hota hai.
 - **Test:**
   1. Credentials save + Enable ON.
   2. Contact page se ek real message bhejo, ya footer newsletter.

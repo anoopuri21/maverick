@@ -3,6 +3,9 @@
   $rows = collect($fees->rows ?? [])
       ->filter(fn ($row) => filled($row['program'] ?? null))
       ->values();
+  $blocks = collect($fees->blocks ?? [])
+      ->filter(fn ($b) => filled($b['title'] ?? null))
+      ->values();
 @endphp
 
 @if($rows->isNotEmpty() || filled($fees->heading))
@@ -23,7 +26,7 @@
     </header>
 
     @if($rows->isNotEmpty())
-    <div class="pricing-cards__grid" aria-label="Programme fees and structure">
+    <div class="pricing-cards__grid" aria-label="Program fees and structure">
       @foreach($rows as $row)
       @php
         $payment = trim((string) ($row['payment'] ?? ''));
@@ -34,12 +37,10 @@
       <article class="pricing-card" data-closing-element>
         <header class="pricing-card__head mlp-hairline">
           <span class="pricing-card__icon mlp-icon-box" aria-hidden="true"><i data-lucide="receipt-text"></i></span>
-          <span class="pricing-card__eyebrow">Programme route</span>
+          <span class="pricing-card__eyebrow">Program route</span>
         </header>
 
         <h3 class="pricing-card__program">{{ $row['program'] }}</h3>
-
-        {{-- Fee block intentionally removed from all cards (client request) --}}
 
         <dl class="pricing-card__details">
           <div>
@@ -61,12 +62,28 @@
     @endif
 
     <p class="pricing-cards__base" data-mlp-reveal="fees-base">
-      <span class="pricing-cards__base-label">Fee structure starts from</span>
-      <strong class="pricing-cards__base-price">AED 16,000–40,000*</strong>
+      <span class="pricing-cards__base-label">{{ $fees->banner_label ?: 'Fee structure starts from' }}</span>
+      <strong class="pricing-cards__base-price">{{ $fees->banner_value ?: 'AED 16,000–40,000*' }}</strong>
     </p>
 
     @if(filled($fees->note))
     <p class="pricing-cards__note">{{ $fees->note }}</p>
+    @endif
+
+    @if($blocks->isNotEmpty())
+    <ul class="pricing-cards__blocks" aria-label="Fee details">
+      @foreach($blocks as $i => $block)
+      <li class="pricing-cards__block" style="--mlp-i: {{ $i }}">
+        <span class="pricing-cards__block-index" aria-hidden="true">{{ str_pad((string) ($i + 1), 2, '0', STR_PAD_LEFT) }}</span>
+        <div>
+          <h3 class="pricing-cards__block-title">{{ $block['title'] }}</h3>
+          @if(filled($block['text'] ?? null))
+          <p class="pricing-cards__block-text">{{ $block['text'] }}</p>
+          @endif
+        </div>
+      </li>
+      @endforeach
+    </ul>
     @endif
 
     @if(filled($fees->cta_primary_label) || filled($fees->cta_secondary_label))

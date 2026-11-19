@@ -51,6 +51,11 @@ class ManageHeroTrust extends Page implements HasForms
                 Section::make('Hero')
                     ->description('Above-the-fold headline, background, CTAs and enquiry form title.')
                     ->schema([
+                        TextInput::make('hero.masthead_edition')->label('Masthead edition'),
+                        TextInput::make('hero.masthead_academy')->label('Masthead academy'),
+                        TextInput::make('hero.masthead_location')->label('Masthead location')->columnSpanFull(),
+                        TextInput::make('hero.folio_primary')->label('Folio left'),
+                        TextInput::make('hero.folio_secondary')->label('Folio right'),
                         TextInput::make('hero.eyebrow')->label('Eyebrow'),
                         TextInput::make('hero.headline')->label('H1 headline')->columnSpanFull(),
                         Textarea::make('hero.subheading')->label('Subheading')->rows(3)->columnSpanFull(),
@@ -71,6 +76,7 @@ class ManageHeroTrust extends Page implements HasForms
                     ->schema([
                                 TextInput::make('trust.label')->label('Section heading')->columnSpanFull(),
                                 Textarea::make('trust.quote')->label('Trust quote')->rows(2)->columnSpanFull(),
+                                TextInput::make('trust.quote_attribution')->label('Quote attribution')->columnSpanFull(),
                                 Repeater::make('trust.stats')
                             ->schema([
                                 TextInput::make('value')->label('Value')->placeholder('4500+'),

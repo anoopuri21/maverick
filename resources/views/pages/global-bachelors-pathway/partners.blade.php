@@ -24,7 +24,7 @@
             </h2>
             @endif
             @if(html_filled($partners->sub ?? null))
-            <div class="gbp-partners__sub body-text fade-up gbp-richtext">{!! $partners->sub !!}</div>
+            <div class="gbp-partners__sub body-text fade-up gbp-richtext">{!! rich_html($partners->sub) !!}</div>
             @endif
         </div>
 

@@ -3,7 +3,7 @@
   $toSpecialization = static function ($program): ?array {
     $title = trim((string) ($program['title'] ?? ''));
 
-    if ($title === '' || strcasecmp($title, 'Global MBA') === 0 || strcasecmp($title, 'Master of Business Administration (MBA)') === 0) {
+    if ($title === '') {
       return null;
     }
 
@@ -65,7 +65,7 @@
 
     @if($tabs->isNotEmpty())
     <div class="mlp-mba__chrome" data-mlp-mba-tabs data-mlp-reveal="mba-chrome">
-      <div class="mlp-mba__tablist mlp-hairline" role="tablist" aria-label="MBA specialization categories from programme listing">
+      <div class="mlp-mba__tablist mlp-hairline" role="tablist" aria-label="MBA specialization categories from the program listing">
         @foreach($tabs as $ti => $tab)
         <button
           type="button"

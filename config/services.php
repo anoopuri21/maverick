@@ -34,6 +34,20 @@ return [
             'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
         ],
     ],
+    'recaptcha' => [
+        // Forms stay usable when CAPTCHA has not been set up yet. Enable only
+        // after all three values below are filled for the deployed origin.
+        'enabled' => filter_var(env('RECAPTCHA_ENABLED', false), FILTER_VALIDATE_BOOLEAN),
+        'site_key' => env('RECAPTCHA_SITE_KEY'),
+        'secret_key' => env('RECAPTCHA_SECRET_KEY'),
+        'allowed_hostnames' => array_values(array_filter(array_map(
+            'trim',
+            explode(',', (string) env(
+                'RECAPTCHA_ALLOWED_HOSTNAMES',
+                'mbalondon.org.uk,www.mbalondon.org.uk'
+            ))
+        ))),
+    ],
     'cloudinary' => [
         'cloud_name' => env('CLOUDINARY_CLOUD_NAME'),
         'api_key' => env('CLOUDINARY_API_KEY'),

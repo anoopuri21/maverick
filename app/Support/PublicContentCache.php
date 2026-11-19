@@ -13,7 +13,9 @@ class PublicContentCache
 {
     public const TTL = 86400;
 
-    public const HOMEPAGE = 'homepage.v2';
+    public const HOMEPAGE = 'homepage.v4';
+
+    public const HOMEPAGE_EVENTS = 'homepage.events.v1';
 
     public const OUR_STORY = 'our-story.v3';
 
@@ -27,7 +29,7 @@ class PublicContentCache
 
     public const EVENTS = 'events.v2';
 
-    public const NAVMENU_PROGRAMS = 'navmenu.programs.v2';
+    public const NAVMENU_PROGRAMS = 'navmenu.programs.v3';
 
     public const BLOGS_TOP_TAGS = 'blogs.top_tags';
 
@@ -49,6 +51,8 @@ class PublicContentCache
 
     public const MLP_STORY_TESTIMONIALS = 'mlp-story-testimonials';
 
+    public const VOICES_TESTIMONIALS = 'voices-testimonials.v1';
+
     public const ADMIN_OVERVIEW = 'admin.site_overview_counts';
 
     /**
@@ -58,6 +62,7 @@ class PublicContentCache
     {
         return [
             self::HOMEPAGE,
+            self::HOMEPAGE_EVENTS,
             self::OUR_STORY,
             self::PROGRAMS_LISTING,
             self::ACCREDITATIONS,
@@ -73,7 +78,14 @@ class PublicContentCache
             self::GLOBAL_ACCESS_POINTS,
             self::ALUMNI_LOGOS,
             self::FOOTER_PROGRAM_CATEGORIES,
+            self::MLP_UNIVERSITY_LOGOS,
+            self::MLP_STORY_TESTIMONIALS,
+            self::VOICES_TESTIMONIALS,
             self::ADMIN_OVERVIEW,
+            // Previous homepage payloads used client-side testimonial JSON.
+            'homepage.v3',
+            // Previous homepage payload did not include event slugs.
+            'homepage.v2',
             // Legacy keys (pre array-safe cache)
             'homepage',
             'homepage_data_v1',
@@ -88,14 +100,18 @@ class PublicContentCache
             'university-partners',
             'alumni-logos',
             'navmenu.programs',
+            'navmenu.programs.v2',
         ];
     }
 
     public static function remember(string $key, callable $callback, ?int $ttl = null): mixed
     {
-        if (Cache::has($key)) {
-            $cached = Cache::get($key);
+        // The sentinel lets us detect a miss with one backend read instead of
+        // the previous has() + get() pair. As with Cache::has(), null is a miss.
+        $missing = new \stdClass;
+        $cached = Cache::get($key, $missing);
 
+        if ($cached !== $missing && $cached !== null) {
             if (self::containsIncomplete($cached)) {
                 Cache::forget($key);
             } else {

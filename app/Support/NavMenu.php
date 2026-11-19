@@ -45,7 +45,7 @@ class NavMenu
                     'slug'     => $category->slug,
                     'icon'     => $category->icon,
                     'viewAll'  => route('programs.index', ['category' => $category->slug]),
-                    'programs' => $category->programs->map(function ($p) {
+                    'programs' => $category->programs->take(12)->map(function ($p) {
                         return [
                             'title'      => $p->title,
                             'url'        => route('programs.show', $p->slug),

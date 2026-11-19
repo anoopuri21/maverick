@@ -30,7 +30,7 @@
             @if($overviewParagraphs->isNotEmpty())
             <div class="mp-overview__right">
                 @foreach($overviewParagraphs as $paragraph)
-                <div class="body-text fade-up mp-richtext">{!! $paragraph !!}</div>
+                <div class="body-text fade-up mp-richtext">{!! rich_html($paragraph) !!}</div>
                 @endforeach
             </div>
             @endif

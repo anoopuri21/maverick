@@ -5,7 +5,7 @@ namespace App\Support;
 final class MlpProse
 {
     /**
-     * Trusted admin HTML from Filament RichEditor, or escaped plain text wrapped in <p>.
+     * Sanitized admin HTML from Filament RichEditor, or escaped plain text wrapped in <p>.
      */
     public static function html(?string $content): string
     {
@@ -15,7 +15,7 @@ final class MlpProse
         }
 
         if (str_contains($content, '<')) {
-            return $content;
+            return sanitize_rich_html($content);
         }
 
         return '<p>'.e($content).'</p>';

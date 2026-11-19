@@ -57,13 +57,14 @@
                         />
                     @endif
 
-                    @if(!empty($site->phone))
+                    @if(filled($site->phone) || filled($site->phone_secondary))
+                        @php $primaryPhone = filled($site->phone) ? $site->phone : $site->phone_secondary; @endphp
                         <x-contact.info-card
                             icon="phone"
                             :label="$contactPage->label_phone ?? 'Admissions & Hotlines'"
-                            :value="$site->phone"
-                            :secondary="$site->phone_secondary ?? null"
-                            :link="'tel:' . str_replace(' ', '', $site->phone)"
+                            :value="$primaryPhone"
+                            :secondary="filled($site->phone) ? $site->phone_secondary : null"
+                            :link="'tel:' . preg_replace('/[^\d+]/', '', $primaryPhone)"
                         />
                     @endif
 
@@ -100,7 +101,7 @@
                             icon="phone"
                             :label="$contactPage->label_phone ?? 'Admissions & Hotlines'"
                             :value="$site->uk_phone"
-                            :link="'tel:' . str_replace(' ', '', $site->uk_phone)"
+                            :link="'tel:' . preg_replace('/[^\d+]/', '', $site->uk_phone)"
                         />
                     @endif
 
@@ -143,19 +144,6 @@
             <div class="contact-card contact-form-container" data-scroll-reveal>
                 <h2 class="contact-form__title">{{ $contactPage->form_title ?? 'Send Us a Message' }}</h2>
                 <p class="contact-form__subtitle">{{ $contactPage->form_subtitle ?? 'Fill in the fields below, and our program directors will respond to you within 24 hours.' }}</p>
-
-                {{-- Stylish custom alert for success message --}}
-                @if(session('success'))
-                    <div class="contact-alert contact-alert--success" role="alert">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="contact-alert__icon" aria-hidden="true">
-                            <circle cx="12" cy="12" r="10"/>
-                            <path d="m9 12 2 2 4-4"/>
-                        </svg>
-                        <div class="contact-alert__text">
-                            {{ session('success') ?: ($contactPage->success_message ?? 'Thank you for your message. Our team will respond within 24 hours.') }}
-                        </div>
-                    </div>
-                @endif
 
                 <form action="{{ route('contact.submit') }}" method="POST" class="contact-form">
                     @csrf
@@ -219,21 +207,30 @@
                             @enderror
                         </div>
 
-                        {{-- Subject Reason --}}
+                    </div>
+
+                    {{-- Preferred Program --}}
+                    <div class="form-group-grid">
                         <div class="form-group">
-                            <label for="subject" class="form-label">Reason for Inquiry</label>
+                            <label for="preferred_program" class="form-label">Preferred Program</label>
                             <select
-                                id="subject"
-                                name="subject"
-                                class="form-select @error('subject') form-select--error @enderror"
+                                id="preferred_program"
+                                name="preferred_program"
+                                class="form-select @error('preferred_program') form-select--error @enderror"
                             >
-                                <option value="General Inquiry" {{ old('subject') === 'General Inquiry' ? 'selected' : '' }}>General Inquiry</option>
-                                <option value="Admissions" {{ old('subject') === 'Admissions' ? 'selected' : '' }}>Admissions</option>
-                                <option value="Partnership" {{ old('subject') === 'Partnership' ? 'selected' : '' }}>Partnership</option>
-                                <option value="Support" {{ old('subject') === 'Support' ? 'selected' : '' }}>Support</option>
-                                <option value="Other" {{ old('subject') === 'Other' ? 'selected' : '' }}>Other</option>
+                                <option value="">Select program</option>
+                                @php
+                                    $groupedPrograms = $allPrograms->groupBy(fn ($p) => $p->programCategory?->name ?? 'Uncategorized');
+                                @endphp
+                                @foreach($groupedPrograms as $categoryName => $programs)
+                                    <optgroup label="{{ e($categoryName) }}">
+                                        @foreach($programs as $prog)
+                                            <option value="{{ $prog->id }}">{{ e($prog->title) }}</option>
+                                        @endforeach
+                                    </optgroup>
+                                @endforeach
                             </select>
-                            @error('subject')
+                            @error('preferred_program')
                                 <span class="form-error-msg" role="alert">{{ $message }}</span>
                             @enderror
                         </div>
@@ -254,6 +251,20 @@
                             <span class="form-error-msg" role="alert">{{ $message }}</span>
                         @enderror
                     </div>
+
+                    @if (recaptcha_enabled())
+                        <div class="form-group" style="margin-top: 12px;">
+                            <div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.site_key') }}" aria-label="reCAPTCHA verification"></div>
+                            @error('recaptcha')
+                                <span class="form-error-msg" role="alert">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        @once
+                            @push('scripts')
+                                <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+                            @endpush
+                        @endonce
+                    @endif
 
                     {{-- Submit Button --}}
                     <div class="form-group" style="margin-top: 12px;">

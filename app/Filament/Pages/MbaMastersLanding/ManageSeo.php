@@ -47,10 +47,10 @@ class ManageSeo extends Page implements HasForms
                 Section::make('Meta & social')
                     ->schema([
                         Grid::make(2)->schema([
-                            TextInput::make('seo.meta_title')->label('Meta Title')->maxLength(60),
+                            TextInput::make('seo.meta_title')->label('Meta Title'),
                             TextInput::make('seo.canonical_url')->label('Canonical URL')->nullable(),
                         ]),
-                        Textarea::make('seo.meta_description')->label('Meta Description')->rows(3)->maxLength(160),
+                        Textarea::make('seo.meta_description')->label('Meta Description')->rows(3),
                         TextInput::make('seo.meta_keywords')->label('Meta Keywords'),
                         Select::make('seo.robots')->label('Robots')
                             ->options([

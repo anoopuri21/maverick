@@ -1,0 +1,173 @@
+---
+tracker_sno: 3
+slug: dba-in-operational-management-rushford-business-school
+title: DBA in Operational Management
+awarding_body: Rushford Business School, Switzerland
+category: doctorate
+station: 04-edited
+agents: [SEO Content Writer, Humanizer/Editor]
+research_file: docs/research/rushford-business-school_dba-operational-management.md
+status: complete
+gaps: [GAP-SOURCE-RBS-01, GAP-SOURCE-RBS-02, GAP-SOURCE-RBS-04, GAP-POLICY-01]
+updated: 2026-10-05
+---
+
+# DBA in Operational Management — Draft Content
+
+**Primary keyword:** online DBA in Operational Management
+**Secondary:** Rushford Business School, Swiss doctorate online, operations management doctorate, 180 ECTS DBA
+
+> ⚠️ **Title note:** the official Rushford title is *Operational Management*, not *Operations Management*. The listing PDF matches it exactly. Do not "correct" this. (NAME-04, resolved.)
+
+---
+
+## 1.2 `title` → `DBA in Operational Management` *(4 words / 29 chars ✅)*
+## 1.5 `duration` → `36 Months`
+## 1.6 `level` → `DBA`
+
+---
+
+## 2.1 `short_description`
+
+```
+Operations is the part of the business that has to work on a Tuesday. Rushford Business School's online DBA in Operational Management gives it three years of research attention, 180 ECTS and a defended dissertation, without asking you to step away from running anything.
+```
+*44 words / 272 chars ✅*
+
+## 2.2 `description`
+
+```html
+<p>Running operations well and explaining why it works are different skills, and only one of them survives a change of management. Rushford's DBA in Operational Management is built around the second. The specialisation sits inside a 180 ECTS structure where research design, business statistics and literature review take a full 30 ECTS, ahead of a dissertation that has to hold up in an oral defence.</p>
+<p>Choose the pathway that matches your experience. Managers with fewer than five years in post take the coursework route, which pairs the business management core with the specialisation and closes at 20,000 to 25,000 words. Those with longer in the role take the research route, get a doctoral mentor early, and write to 45,000 to 50,000 words. Delivery is online and asynchronous either way, so the schedule bends around operational reality rather than the other way round.</p>
+<p>The award comes from Rushford Business School in Lucerne, and the certificate can read PhD instead of DBA if you ask in time.</p>
+```
+*3 paragraphs / 168 words ✅*
+
+---
+
+## 3.1 `highlights`
+| label | value |
+|---|---|
+| Awarded by | Rushford Business School |
+| Duration | 36 months |
+| Credits | 180 ECTS |
+| Study mode | 100% online, asynchronous |
+| Pathways | Coursework or research |
+| Award | DBA or PhD |
+
+## 3.2 `snapshot`
+| label | value |
+|---|---|
+| Degree Award | Doctor of Business Administration (DBA) |
+| Awarding University | Rushford Business School, Lucerne, Switzerland |
+| Specialisation | Operational Management |
+| Duration | 36 months |
+| Credits | 180 ECTS |
+| Study Mode | 100% online, asynchronous and self-paced via e-Campus |
+| Pathway note | Entry route, pathway and fees depend on your prior qualifications and management experience. Admissions confirms your exact pathway and fee structure in writing before you pay anything. Read that letter slowly; it is the document that counts. |
+
+## 3.3 `benefits`
+| icon | title | desc |
+|---|---|---|
+| `clock` | Built for people still on shift | Asynchronous delivery with no fixed class times, so study slots into the hours operations leaves you. |
+| `target` | A real problem, properly investigated | Applied research. The dissertation can take a live operational failure and work out what actually caused it. |
+| `route` | Pathway matched to experience | Coursework under five years in post, research over five. Same credit total, different workload shape. |
+| `badge-check` | A bachelor's plus eight years | Recognition of Prior Experience means long service can stand in for a master's degree at entry. |
+| `award` | Two possible titles | Candidates may request the PhD award instead of the DBA, confirmed before graduation. |
+| `landmark` | Swiss-awarded | Rushford Business School, Lucerne. The online learning division holds eduQua certification. |
+
+## 3.4 `learning`
+1. Apply research methodologies to real business problems
+2. Conduct primary and secondary research into business challenges
+3. Predict outcomes using deep operational management fundamentals
+4. Command business communication at senior level
+5. Articulate complex strategy clearly and without padding
+6. Build reports from data collection through to visualisation
+7. Produce research capable of peer-reviewed publication
+8. Design and defend a doctoral thesis
+
+## 3.5 `careers` *(3 rows — ⚠️ QA note C4)*
+1. Operations Manager
+2. Supply Chain Manager
+3. Logistics Manager
+
+**Officially named settings:** manufacturing companies, service providers, retail and e-commerce companies, consulting firms, government agencies.
+
+## 3.6 `structure`
+*Identical across the Rushford DBA range — verified on this programme page.*
+
+**Stage 1 — Coursework pathway** · *180 ECTS. For managers with under five years in post.*
+Business Management Track (30) · Specialization Track, six courses (30) · Research Track (30) · Written Proposal Defence, 5,000 words (20) · Doctoral Residency (10) · Reflection & Minutes with Supervisor (10) · Report Writing (10) · Written Dissertation & Oral Defence, 20,000–25,000 words (40)
+
+**Stage 2 — Research pathway** · *180 ECTS. For candidates with more than five years of management experience.*
+Specialization Track, three courses (15) · Research Track (30) · Written Dissertation Proposal, 5,000 words (30) · Reflection & Minutes with Supervisor (20) · Research Publication / Doctoral Residency (25) · Written Dissertation & Oral Defence, 45,000–50,000 words (60)
+
+*Business Management Track modules:* Managerial Skills; Cutting Edge Leadership; Managerial Economics; International Business Environment; Accounting for Financial Reporting; Strategic Management: Integrating the Enterprise
+*Research Track modules:* Introduction to Academic Research; The Landscape of Literature Review; Research Design; Business Statistics; Designing a Quantitative Research Methodology; Designing a Qualitative Research Methodology
+
+## 3.8 `support`
+Dedicated academic support · Flexible learning · Assessment support · Affordable instalments · Career guidance · Documentation assistance
+
+## 3.9 `gcc_heading` + `gcc_reasons` *(6 — ⚠️ QA note C5)*
+**Heading:** `Why GCC Professionals Choose This Programme`
+
+| icon | title | text |
+|---|---|---|
+| `monitor` | No relocation required | Delivered online and asynchronously, so the doctorate runs alongside a role in the UAE, Saudi Arabia, Qatar, Oman, Bahrain or Kuwait. |
+| `clock` | Fits an operations diary | There are no fixed class times. Study moves when the shift pattern, the shutdown or the peak season moves. |
+| `badge-check` | Eight years of service opens the door | A bachelor's plus more than eight years of management experience is a formal entry route, not an exception. |
+| `target` | Research what you already manage | The applied dissertation can investigate an operational problem inside your own organisation. |
+| `route` | DBA or PhD, decided by you | Worth considering if university teaching is on the horizon. Recognition of Prior Experience entrants receive the DBA only. |
+| `shield` | Confirm the title rules where you live | Rushford asks applicants to check their national legislation on using "Doctor" before they enrol. |
+
+## 3.11 `fees`
+Programme Fees · Scholarships · Payment Options · Written Breakdown · Intake Offer
+
+---
+
+## 4. `faqs` *(5)*
+
+**How is this different from the DBA in Supply Chain Management?**
+<p>They are separate Rushford programmes with the same 180 ECTS architecture and the same entry rules. The difference is the specialisation track and the research focus: operational management looks at how the organisation runs internally, supply chain management at the flow of goods and suppliers through it. Candidates choose one.</p>
+
+**Do I need a master's degree?**
+<p>No. Recognition of Prior Experience makes a master's optional, though a bachelor's is mandatory. Entry is via a master's in business and management; a master's in any discipline plus over five years of managerial experience; or a bachelor's in any discipline plus over eight years.</p>
+
+**Can the award be a PhD?**
+<p>Yes. Any doctoral candidate may apply for the PhD title in place of the DBA, confirmed before or immediately after graduation requirements are complete. Only one title is conferred. Candidates admitted through Recognition of Prior Experience are eligible for the DBA only.</p>
+
+**What English evidence do you accept?**
+<p>A Medium of Instruction letter from your previous institution, or IELTS 5.5, TOEFL iBT 58, TOEIC 555, PTE 50 or Duolingo 90. Waivers apply to native speakers, anyone schooled or degree-educated in English, and two years' work in an English-language organisation.</p>
+
+**How long does it really take?**
+<p>Thirty-six months is the design. The research pathway can finish sooner. Completing early brings the remaining fees forward to that point, and taking longer follows the agreed instalment plan, so the timeline has a financial shape as well as an academic one.</p>
+
+---
+
+## 5. SEO
+| Field | Value | Count |
+|---|---|---|
+| `meta_title` | Online DBA in Operational Management \| Rushford Business School | 63 ✅ |
+| `meta_description` | A 36-month, 180 ECTS online DBA in Operational Management from Rushford Business School, Switzerland. Coursework or research pathway, DBA or PhD award. | 151 ✅ |
+
+---
+
+## 6. QA / Fact-Checker pass — **VERDICT: PASS (3 declared gaps)**
+
+| Check | Result |
+|---|---|
+| Duration / ECTS / mode / pathway ECTS / word counts | ✅ exact |
+| Entry routes, RPE, PhD exclusion, English thresholds | ✅ exact |
+| Careers = 3 officially named roles; 5 named settings | ✅ nothing invented |
+| Title spelling "Operational Management" preserved | ✅ NAME-04 honoured |
+| No unverified accreditations, fees, stats, rankings, "EPD" | ✅ |
+| Counts, British English, HTML placement | ✅ |
+| **C4** careers 3 rows vs 8–20 | ⚠️ declared gap RBS-04 |
+| **C5** gcc_reasons carry no sourced market data | ⚠️ declared gap |
+| **Differentiation vs S.No 1 (SCM)** | ✅ Deliberately addressed head-on in FAQ 1 rather than hidden. Zero shared sentences with the SCM draft; the angle is internal operations vs external chain. |
+
+### Humanizer changelog
+- Cut the opening definition and replaced it with a working observation ("has to work on a Tuesday").
+- Removed "seamlessly", "comprehensive understanding", "it is important to note that" and two "Additionally"s.
+- Added an FAQ that names the overlap with the Supply Chain draft instead of pretending the two pages are unrelated — honest, and it also kills the duplicate-content risk.
+- Mixed sentence lengths in para 2; previously five sentences all sat between 18 and 22 words.

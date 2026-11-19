@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Concerns\EnsuresUniqueSlug;
 use App\Concerns\HasMediaAssets;
 
@@ -46,6 +47,10 @@ class BlogPost extends Model
         parent::boot();
 
         static::saving(function (BlogPost $post) {
+            if ($post->reading_time_minutes === '') {
+                $post->reading_time_minutes = null;
+            }
+
             if ($post->is_featured) {
                 static::where('is_featured', true)
                     ->where('id', '!=', $post->id ?? 0)
@@ -71,8 +76,23 @@ class BlogPost extends Model
         return $query->where('is_featured', true);
     }
 
+    public function featuredImageAsset(): BelongsTo
+    {
+        return $this->belongsTo(MediaAsset::class, 'featured_image_url_asset_id');
+    }
+
+    public function resolvedFeaturedImageUrl(): ?string
+    {
+        return $this->featuredImageAsset?->url ?: $this->featured_image_url;
+    }
+
+    public function resolvedFeaturedImageAlt(): ?string
+    {
+        return $this->featured_image_alt ?: $this->featuredImageAsset?->alt;
+    }
+
     public function hasImage(): bool
     {
-        return !empty($this->featured_image_url);
+        return filled($this->resolvedFeaturedImageUrl());
     }
 }

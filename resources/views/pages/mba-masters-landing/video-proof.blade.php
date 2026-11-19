@@ -15,10 +15,10 @@
   <div class="archive-video-proof__frame container">
     <header class="archive-video-proof__intro mlp-intro-grid">
       <div>
-        <p class="archive-video-proof__label">Experience in motion</p>
-        <h2 class="archive-video-proof__heading" id="mlp-video-proof-title">See the Maverick journey in motion.</h2>
+        <p class="archive-video-proof__label">{{ $testimonials->film_label ?: 'Experience in motion' }}</p>
+        <h2 class="archive-video-proof__heading" id="mlp-video-proof-title">{{ $testimonials->film_heading ?: 'See the Maverick journey in motion.' }}</h2>
       </div>
-      <p class="archive-video-proof__intro-copy">A closer look at the people, ambition and learning culture behind the next chapter.</p>
+      <p class="archive-video-proof__intro-copy">{{ $testimonials->film_body ?: 'A closer look at the people, ambition and learning culture behind the next chapter.' }}</p>
     </header>
 
     <div
@@ -41,7 +41,7 @@
         <span class="archive-video-proof__play" aria-hidden="true">
           <i data-lucide="play"></i>
         </span>
-        <span class="archive-video-proof__play-label" aria-hidden="true">Play film</span>
+        <span class="archive-video-proof__play-label" aria-hidden="true">{{ $testimonials->film_play_label ?: 'Play film' }}</span>
       </button>
       @else
       <p class="archive-video-proof__fallback">The video is currently unavailable.</p>

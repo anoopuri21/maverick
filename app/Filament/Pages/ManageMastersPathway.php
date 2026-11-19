@@ -324,8 +324,8 @@ class ManageMastersPathway extends Page implements HasForms
                         Tab::make('SEO')
                             ->icon('heroicon-o-magnifying-glass')
                             ->schema([
-                                TextInput::make('seo.meta_title')->label('Meta Title')->maxLength(70),
-                                Textarea::make('seo.meta_description')->label('Meta Description')->rows(3)->maxLength(160),
+                                TextInput::make('seo.meta_title')->label('Meta Title'),
+                                Textarea::make('seo.meta_description')->label('Meta Description')->rows(3),
                                 TextInput::make('seo.meta_keywords')->label('Meta Keywords'),
                                 TextInput::make('seo.canonical_url')->label('Canonical URL'),
                                 TextInput::make('seo.robots')->label('Robots'),

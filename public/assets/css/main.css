@@ -80,7 +80,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
   -webkit-text-size-adjust: 100%;
 }
 
@@ -493,26 +493,9 @@ html.lenis body {
 
 .text-reveal-inner {
   display: block;
-  transform: translateY(110%);
-  will-change: transform;
 }
 
-html.js .fade-up {
-  opacity: 0;
-  transform: translateY(40px);
-  will-change: transform, opacity;
-}
-
-html.js .fade-in {
-  opacity: 0;
-  will-change: opacity;
-}
-
-html.js .scale-in {
-  opacity: 0;
-  transform: scale(0.9);
-  will-change: transform, opacity;
-}
+/* Content stays visible by default; animation scripts may enhance it on scroll. */
 
 /* =========================================================
    SECTION 9 — SECTION DIVIDERS
@@ -529,7 +512,7 @@ html.js .scale-in {
   display: block;
   width: 40px;
   height: 1px;
-  background: var(--color-white);
+  background: var(--color-mba-blue);
   flex-shrink: 0;
 }
 
@@ -1113,8 +1096,7 @@ html.js .scale-in {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--color-accent);
-  color: var(--color-mba-dark-blue);
+  color: #f7b500;
   opacity: 0;
   transform: translateX(-6px) scale(0.8);
   transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
@@ -1458,51 +1440,54 @@ html.js .scale-in {
     border-top: none;
   }
 
-  .navbar__mobile-category-sublink {
+}
+
+/* Mobile Programs rows: program title first, university on its own line. */
+@media (max-width: 1024px) {
+  .navbar__mobile-category-panel .navbar__mobile-category-sublink {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 4px;
+    width: 100%;
     padding: 12px 20px 12px 44px;
     font-family: var(--font-body);
     font-size: 13px;
     line-height: 1.4;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.72);
+    text-align: left;
     text-decoration: none;
     transition:
       color 0.25s ease,
-      padding-left 0.25s ease,
       background 0.25s ease;
   }
 
-  .navbar__mobile-category-sublink:active,
-  .navbar__mobile-category-sublink:hover {
-    color: var(--color-white);
-    padding-left: 48px;
-    background: rgba(255, 255, 255, 0.03);
-  }
-
-  .navbar__mobile-category-sublink-arrow {
-    width: 16px;
-    height: 16px;
-    flex-shrink: 0;
-    color: var(--color-accent);
-    opacity: 0;
-    transform: translateX(-4px);
-    transition: all 0.25s ease;
-  }
-
-  .navbar__mobile-category-sublink:active
-    .navbar__mobile-category-sublink-arrow,
-  .navbar__mobile-category-sublink:hover
-    .navbar__mobile-category-sublink-arrow {
-    opacity: 1;
-    transform: translateX(0);
-  }
-
-  .navbar__mobile-category-sublink-arrow svg {
+  .navbar__mobile-category-program-title,
+  .navbar__mobile-category-uni {
+    display: block;
     width: 100%;
-    height: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  .navbar__mobile-category-uni {
+    margin: 0;
+    font-size: 11.5px;
+    font-weight: 400;
+    line-height: 1.35;
+    color: var(--color-muted, #8a8a9a);
+    white-space: normal;
+  }
+
+  .navbar__mobile-category-viewall .navbar__mobile-category-program-title {
+    color: var(--color-accent);
+    font-weight: var(--fw-medium);
+  }
+
+  .navbar__mobile-category-panel .navbar__mobile-category-sublink:active,
+  .navbar__mobile-category-panel .navbar__mobile-category-sublink:hover {
+    color: var(--color-white);
+    background: rgba(255, 255, 255, 0.03);
   }
 }
 
@@ -1853,7 +1838,7 @@ html.js .scale-in {
 
 .hero__subheading {
   max-width: 600px;
-  /* Initial animation state comes from .fade-up */
+  /* Animation is progressive enhancement; content remains visible by default. */
 }
 
 .hero__subheading-text {
@@ -1872,7 +1857,7 @@ html.js .scale-in {
   align-items: center;
   gap: 16px;
   flex-wrap: wrap;
-  /* Initial animation state comes from .fade-up */
+  /* Animation is progressive enhancement; content remains visible by default. */
 }
 
 /* Hero button refinements */
@@ -1906,7 +1891,7 @@ html.js .scale-in {
   padding-top: 16px;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   flex-wrap: wrap;
-  /* Initial animation state comes from .fade-up */
+  /* Animation is progressive enhancement; content remains visible by default. */
 }
 
 .hero__trust-item {
@@ -2238,14 +2223,15 @@ html.js .scale-in {
   transform: scaleX(1);
 }
 
-/* Index number styling */
+/* Index icon styling */
 .numbers__index {
-  font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.2em;
+  display: flex;
+  align-items: center;
   color: var(--color-mba-blue);
-  text-transform: uppercase;
+}
+.numbers__index svg {
+  width: 22px;
+  height: 22px;
 }
 
 .section--light .numbers__index {
@@ -2519,7 +2505,6 @@ html.js .scale-in {
   font-weight: var(--fw-semibold);
   letter-spacing: 0.1em;
   color: var(--color-white);
-  opacity: 0;
 }
 .section--light .wwd__card-index.accent-text {
   color: var(--color-white);
@@ -2567,7 +2552,6 @@ html.js .scale-in {
   color: rgba(255, 255, 255, 0.8);
   padding-left: 16px;
   position: relative;
-  opacity: 0;
 }
 
 .wwd__card-item::before {
@@ -2852,50 +2836,55 @@ html.js .scale-in {
 .wim__pin-wrapper {
   position: relative;
   z-index: 3;
-  min-height: 100vh;
+  box-sizing: border-box;
+  min-height: 100dvh;
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  row-gap: 8px;
   text-align: center;
-  padding: clamp(96px, 10vw, 140px) var(--container-padding) 0;
+  padding-block: 70px;
+  padding-inline: var(--container-padding);
   will-change: transform, opacity;
 }
 
 .wim__heading-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  will-change: transform;
+  display: contents;
+}
+
+.wim__label,
+.wim__heading,
+.wim__statement,
+.wim__final {
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 100%;
 }
 
 .wim__label {
   justify-content: center;
-  margin-bottom: 40px;
+  margin: 0;
 }
 
 .wim__heading {
-  margin: 0 0 40px;
+  margin: 0;
   font-size: clamp(40px, 6vw, 4.5vw);
   font-weight: 500;
   line-height: 1.05;
   letter-spacing: -0.03em;
   color: var(--color-white);
   text-align: center;
+  will-change: transform;
 }
 
 .wim__statements {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0px;
-  margin-top: -40px;
-  overflow: hidden;
+  display: contents;
 }
 
 .wim__statement {
   overflow: hidden;
-  opacity: 0;
 }
 
 .wim__statement-text {
@@ -2905,7 +2894,6 @@ html.js .scale-in {
   font-weight: 500;
   line-height: 1.5;
   color: var(--color-mba-white);
-  transform: translateY(110%);
 }
 
 .wim__statement:nth-child(2) .wim__statement-text {
@@ -2921,8 +2909,7 @@ html.js .scale-in {
 }
 
 .wim__final {
-  margin-top: 32px;
-  opacity: 0;
+  margin: 0;
 }
 
 .wim__final-text {
@@ -3811,14 +3798,14 @@ html.js .scale-in {
 }
 
 .opportunities__item-number {
-  font-family: "PP Neue Montreal", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 500;
-  font-size: 0.875rem;
+  display: flex;
   color: rgba(10, 10, 10, 0.4);
-  letter-spacing: 0.1em;
   padding-top: 0.25rem;
   transition: color 0.4s ease;
+}
+.opportunities__item-number svg {
+  width: 20px;
+  height: 20px;
 }
 
 .opportunities__item-content {
@@ -4096,40 +4083,36 @@ html.js .scale-in {
   stroke-width: 2;
 }
 
-.partners__pin--hub .partners__pin-dot {
-  fill: #811d1d;
-  stroke: #ffffff;
-  stroke-width: 2px;
-}
-
-.partners__pin--active .partners__pin-dot {
+#university-partners .partners__pin--active .partners__pin-dot {
   fill: var(--color-mba-red);
   stroke-width: 3;
 }
 
-/* Pin labels */
-.partners__pin-label {
+/* Show only the selected country name; no city/hub label is pinned by default. */
+#university-partners .partners__pin-label {
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   font-size: 11px;
   fill: #ffffff;
   text-anchor: middle;
   letter-spacing: 0.05em;
-  opacity: 0.6;
-  transition: opacity 0.3s ease;
+  opacity: 0;
+  transform: translateY(4px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
   pointer-events: none;
 }
 
-.partners__pin:hover .partners__pin-label,
-.partners__pin--active .partners__pin-label {
+#university-partners .partners__pin--active .partners__pin-label {
   opacity: 1;
+  transform: translateY(0);
 }
 
-.partners__pin--hub .partners__pin-label {
-  opacity: 1;
-  fill: #ffffff;
-  font-weight: 500;
-  font-size: 12px;
+@media (prefers-reduced-motion: reduce) {
+  #university-partners .partners__pin-label {
+    transition: none;
+  }
 }
 
 /* ============================================================
@@ -4539,40 +4522,6 @@ html.js .scale-in {
   gap: 28px;
   /* CLS: reserve min-height for controls */
   min-height: 0;
-}
-
-/* Fallback visibility - ensure visible if JS disabled, hidden only when JS enabled and GSAP will animate */
-html.js .insights__slider {
-  opacity: 0;
-  transform: translateY(40px);
-  will-change: transform, opacity;
-}
-
-html.js .insights__slider.is-revealed {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-html:not(.js) .insights__slider {
-  opacity: 1;
-  transform: none;
-}
-
-/* Card initial state for JS animation - down to top */
-html.js .insights__card {
-  opacity: 0;
-  transform: translateY(40px);
-  will-change: transform, opacity;
-}
-
-html.js .insights__card.is-revealed {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-html:not(.js) .insights__card {
-  opacity: 1;
-  transform: none;
 }
 
 /* Scroll container - single card viewport */
@@ -5396,6 +5345,7 @@ html:not(.js) .insights__card {
 
 /* ----- Event Card ----- */
 .events__card {
+  position: relative;
   flex: 0 0 380px;
   scroll-snap-align: start;
   background-color: #8d0000;
@@ -5405,11 +5355,36 @@ html:not(.js) .insights__card {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  cursor: pointer;
   transition: border-color 0.4s ease;
 }
 
-.events__card:hover {
-  border-color: var(--color-white);
+.events__card:hover,
+.events__card:focus-within {
+  border-color: #c9a96e;
+}
+
+.events__card-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Stretch the title link across the card without nesting links from rich text. */
+.events__card-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+}
+
+.events__card-link:focus-visible::after {
+  outline: 3px solid #c9a96e;
+  outline-offset: -5px;
+}
+
+.events__card-desc a {
+  position: relative;
+  z-index: 1;
 }
 
 .events__card-type {
@@ -5425,10 +5400,49 @@ html:not(.js) .insights__card {
   width: fit-content;
 }
 
+.events__card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
 .events__card-date {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
+}
+
+#upcoming-events .events__upcoming-badge {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 0.2rem;
+  padding: 0.5rem 0.8rem;
+  border: 1px solid rgba(7, 20, 68, 0.2);
+  border-radius: 999px;
+  color: #071444;
+  background: #f5d98f;
+  box-shadow: 0 4px 14px rgba(7, 20, 68, 0.18);
+  font-family: "Poppins", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+#upcoming-events .events__upcoming-badge::before {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: #8d0000;
+  content: "";
 }
 
 .events__date-day {
@@ -5521,6 +5535,12 @@ html:not(.js) .insights__card {
   .events__card {
     flex: 0 0 300px;
     padding: 1.5rem;
+  }
+
+  #upcoming-events .events__upcoming-badge {
+    gap: 0.35rem;
+    padding: 0.4rem 0.6rem;
+    font-size: 0.62rem;
   }
 
   .events__date-day {
@@ -5852,7 +5872,7 @@ body.modal-open {
 }
 
 .faq__item.active .faq__answer {
-  max-height: 300px;
+  max-height: 100%;
 }
 
 .faq__item.active .faq__icon {
@@ -5930,7 +5950,9 @@ body.modal-open {
   line-height: 1.6;
   margin: 0;
 }
-
+#final-cta .section-title span {
+    color: var(--color-white);
+}
 .final-cta__buttons {
   display: flex;
   gap: 1rem;
@@ -6244,6 +6266,49 @@ body.modal-open {
   transform: translateX(4px);
 }
 
+/* Inline thank-you note shown after a successful subscribe */
+.footer__newsletter-thanks {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  margin: 0.5rem 0 0;
+  max-width: 380px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+  animation: footer-thanks-in 0.4s ease both;
+}
+
+.footer__newsletter-thanks-icon {
+  flex-shrink: 0;
+  display: inline-flex;
+  color: #e8d5b0;
+}
+
+.footer__newsletter-thanks-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+@keyframes footer-thanks-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footer__newsletter-thanks {
+    animation: none;
+  }
+}
+
 /* ----- Column Headings ----- */
 .footer__heading {
   font-family: "PP Neue Montreal", sans-serif;
@@ -6509,6 +6574,37 @@ body.modal-open {
 
   .footer__legal {
     gap: 1.5rem;
+  }
+}
+
+.site-attribution {
+  margin: 0;
+  padding: 0.85rem 1rem;
+  background: var(--color-mba-dark-blue);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.65);
+  font-family: "Poppins", sans-serif;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.site-attribution__link {
+  color: #ffffff;
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.site-attribution__link:hover,
+.site-attribution__link:focus-visible {
+  color: #e8d5b0;
+}
+
+@media (max-width: 480px) {
+  .site-attribution {
+    padding: 0.75rem 1rem;
+    font-size: 0.75rem;
   }
 }
 
@@ -6830,10 +6926,9 @@ body.modal-open {
   }
 
   .accred-card {
-    width: 140px;
-    height: 140px;
-    padding: 1.25rem;
-    border-radius: 16px;
+    width: 200px;
+    height: 120px;
+    padding: 1rem;
   }
 
   .accred-card__logo-wrapper {
@@ -7347,15 +7442,6 @@ body.modal-open {
 
   .wim__statement-text {
     font-size: clamp(22px, 6vw, 36px);
-  }
-
-  .wim__statements {
-    margin-top: 32px;
-    gap: 6px;
-  }
-
-  .wim__final {
-    margin-top: 24px;
   }
 
   /* ===== WHO WE ARE RESPONSIVE ===== */

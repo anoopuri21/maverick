@@ -524,6 +524,7 @@
 
     const pinWrapper = section.querySelector(".wim__pin-wrapper");
     const headingWrapper = section.querySelector(".wim__heading-wrapper");
+    const headingEl = section.querySelector(".wim__heading");
     const label = section.querySelector(".wim__label");
     const bgImage = section.querySelector(".wim__bg-image");
     const finalEl = section.querySelector(".wim__final");
@@ -532,21 +533,21 @@
     );
     const totalStatements = statements.length;
 
-    if (!pinWrapper || !headingWrapper || totalStatements === 0) {
+    if (!pinWrapper || !headingWrapper || !headingEl || totalStatements === 0) {
       console.warn("WIM: Required elements not found, skipping animations.");
       return;
     }
 
-    ScrollTrigger.getAll().forEach((st) => {
-      if (st.trigger === section) st.kill();
-    });
+    if (initWIMAnimations._mm) {
+      initWIMAnimations._mm.revert();
+    }
 
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
 
     if (prefersReducedMotion) {
-      gsap.set([headingWrapper, label, finalEl, pinWrapper], {
+      gsap.set([headingEl, label, finalEl, pinWrapper], {
         clearProps: "all",
         opacity: 1,
         y: 0,
@@ -560,163 +561,202 @@
       return;
     }
 
-    const isMobile = window.innerWidth <= 768;
-
-    const cfg = isMobile
-      ? {
-          headingInitY: "-8vh",
-          headingSettleY: "-2vh",
-          entryStart: "top 70%",
-          entryEnd: "top 20%",
-          pinEnd: "+=110%",
-          bgScale: 1.08,
-          labelOpacity: 1,
-          scrubEntry: 0.8,
-          scrubPin: 1,
-        }
-      : {
-          headingInitY: "-15vh",
-          headingSettleY: "-3vh",
-          entryStart: "top 65%",
-          entryEnd: "top 15%",
-          pinEnd: "+=140%",
-          bgScale: 1.12,
-          labelOpacity: 0.9,
-          scrubEntry: 1,
-          scrubPin: 1.2,
-        };
-
-    const STMT_START = 0.05;
-    const STMT_ZONE_END = 0.62;
-    const FINAL_POS = 0.66;
-    const FADE_START = 0.88;
-    const FADE_DUR = 0.12;
-
-    const stmtZone = STMT_ZONE_END - STMT_START;
-    const STMT_GAP = totalStatements > 1 ? stmtZone / (totalStatements - 1) : 0;
-
-    gsap.set(headingWrapper, { y: cfg.headingInitY, opacity: 0 });
-    gsap.set(label, { y: 10, opacity: 0 });
-    gsap.set(statements, { opacity: 0 });
-    gsap.set(finalEl, { y: 12, opacity: 0 });
-    gsap.set(pinWrapper, { opacity: 1 });
-
-    statements.forEach((stmt) => {
-      const txt = stmt.querySelector(".wim__statement-text");
-      if (txt) gsap.set(txt, { y: "100%" });
-    });
-
-    if (bgImage) gsap.set(bgImage, { scale: 1 });
-
-    const entryTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: section,
-        start: cfg.entryStart,
-        end: cfg.entryEnd,
-        scrub: cfg.scrubEntry,
-      },
-    });
-
-    entryTl
-      .to(headingWrapper, {
-        y: "0vh",
-        opacity: 1,
-        duration: 1,
-        ease: "power2.out",
-      })
-      .to(
-        label,
-        {
-          y: 0,
-          opacity: cfg.labelOpacity,
-          duration: 0.7,
-          ease: "power2.out",
-        },
-        "-=0.5",
-      );
-
-    const wimTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: section,
-        start: "top top",
-        end: cfg.pinEnd,
-        scrub: cfg.scrubPin,
-        pin: pinWrapper,
-        anticipatePin: 1,
-        pinSpacing: true,
-        invalidateOnRefresh: true,
-      },
-    });
-
-    if (bgImage) {
-      wimTl.to(
-        bgImage,
-        {
-          scale: cfg.bgScale,
-          duration: 1,
-          ease: "none",
-        },
-        0,
-      );
+    function setWimInitialState(cfg) {
+      gsap.set(headingEl, { y: cfg.headingInitY, opacity: 0 });
+      gsap.set(label, { y: 10, opacity: 0 });
+      gsap.set(statements, { opacity: 0 });
+      gsap.set(finalEl, { y: 12, opacity: 0 });
+      gsap.set(pinWrapper, { opacity: 1 });
+      statements.forEach((stmt) => {
+        const txt = stmt.querySelector(".wim__statement-text");
+        if (txt) gsap.set(txt, { y: cfg.textY || "100%" });
+      });
+      if (bgImage) gsap.set(bgImage, { scale: 1 });
     }
 
-    wimTl.to(
-      headingWrapper,
-      {
-        y: cfg.headingSettleY,
-        duration: 0.3,
-        ease: "power1.inOut",
-      },
-      0,
-    );
+    function addWimStatementsToTimeline(tl, stmtStart, stmtZoneEnd) {
+      const stmtZone = stmtZoneEnd - stmtStart;
+      const stmtGap =
+        totalStatements > 1 ? stmtZone / (totalStatements - 1) : 0;
 
-    statements.forEach((stmt, index) => {
-      const stmtText = stmt.querySelector(".wim__statement-text");
-      const pos = STMT_START + index * STMT_GAP;
+      statements.forEach((stmt, index) => {
+        const stmtText = stmt.querySelector(".wim__statement-text");
+        const pos = stmtStart + index * stmtGap;
 
-      wimTl.to(
-        stmt,
-        {
-          opacity: 1,
-          duration: 0.15,
-          ease: "power2.out",
-        },
-        pos,
-      );
-
-      if (stmtText) {
-        wimTl.to(
-          stmtText,
+        tl.to(
+          stmt,
           {
-            y: "0%",
-            duration: 0.18,
-            ease: "power3.out",
+            opacity: 1,
+            duration: 0.15,
+            ease: "power2.out",
           },
           pos,
         );
-      }
+
+        if (stmtText) {
+          tl.to(
+            stmtText,
+            {
+              y: "0%",
+              duration: 0.18,
+              ease: "power3.out",
+            },
+            pos,
+          );
+        }
+      });
+    }
+
+    const mm = gsap.matchMedia();
+    initWIMAnimations._mm = mm;
+
+    mm.add("(max-width: 768px)", () => {
+      const cfg = {
+        headingInitY: 12,
+        headingSettleY: 0,
+        textY: "30%",
+        labelOpacity: 1,
+      };
+
+      setWimInitialState(cfg);
+
+      const mobileTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "top 88%",
+          end: "top 40%",
+          scrub: 0.4,
+          invalidateOnRefresh: true,
+        },
+      });
+
+      mobileTl.to(
+        label,
+        { y: 0, opacity: cfg.labelOpacity, duration: 0.1, ease: "power2.out" },
+        0,
+      );
+
+      mobileTl.to(
+        headingEl,
+        {
+          y: cfg.headingSettleY,
+          opacity: 1,
+          duration: 0.12,
+          ease: "power2.out",
+        },
+        0.08,
+      );
+
+      addWimStatementsToTimeline(mobileTl, 0.18, 0.78);
+
+      mobileTl.to(
+        finalEl,
+        { opacity: 1, y: 0, duration: 0.1, ease: "power2.out" },
+        0.8,
+      );
     });
 
-    wimTl.to(
-      finalEl,
-      {
+    mm.add("(min-width: 769px)", () => {
+      const cfg = {
+        headingInitY: 20,
+        headingSettleY: 0,
+        textY: "100%",
+        labelOpacity: 1,
+        bgScale: 1.06,
+      };
+
+      setWimInitialState(cfg);
+
+      if (bgImage) {
+        gsap.to(bgImage, {
+          scale: cfg.bgScale,
+          ease: "none",
+          scrollTrigger: {
+            trigger: section,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 0.55,
+            invalidateOnRefresh: true,
+          },
+        });
+      }
+
+      gsap.to(label, {
+        y: 0,
+        opacity: cfg.labelOpacity,
+        duration: 0.65,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: section,
+          start: "top 85%",
+          toggleActions: "play none none none",
+          invalidateOnRefresh: true,
+          once: true,
+        },
+      });
+
+      const headingReveal = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "top 85%",
+          toggleActions: "play none none none",
+          invalidateOnRefresh: true,
+          once: true,
+        },
+      });
+
+      headingReveal.to(
+        headingEl,
+        {
+          y: cfg.headingSettleY,
+          opacity: 1,
+          duration: 0.7,
+          ease: "power2.out",
+        },
+        0.12,
+      );
+
+      statements.forEach((stmt) => {
+        const stmtText = stmt.querySelector(".wim__statement-text");
+        const reveal = gsap.timeline({
+          scrollTrigger: {
+            trigger: stmt,
+            start: "top 85%",
+            toggleActions: "play none none none",
+            invalidateOnRefresh: true,
+            once: true,
+          },
+        });
+
+        reveal.to(
+          stmt,
+          { opacity: 1, duration: 0.45, ease: "power2.out" },
+          0,
+        );
+
+        if (stmtText) {
+          reveal.to(
+            stmtText,
+            { y: "0%", duration: 0.7, ease: "power3.out" },
+            0,
+          );
+        }
+      });
+
+      gsap.to(finalEl, {
         opacity: 1,
         y: 0,
-        duration: 0.08,
+        duration: 0.65,
         ease: "power2.out",
-      },
-      FINAL_POS,
-    );
-
-    wimTl.to(
-      pinWrapper,
-      {
-        opacity: 0,
-        duration: FADE_DUR,
-        ease: "power1.inOut",
-      },
-      FADE_START,
-    );
+        scrollTrigger: {
+          trigger: finalEl,
+          start: "top 85%",
+          toggleActions: "play none none none",
+          invalidateOnRefresh: true,
+          once: true,
+        },
+      });
+    });
   }
 
   // =========================================================
@@ -784,15 +824,14 @@
         ".wwd__heading-line .text-reveal-inner",
         ".wwd__context",
         ".wwd__card",
-        ".wwd__card-index",
         ".wwd__card-item",
       ]);
       return;
     }
 
     const cfg = AnimationUtils.responsive(
-      { contextY: 30, cardY: 40, cardStagger: 0.15, indexDelay: 0.3, itemX: -10, itemStagger: 0.08 },
-      { contextY: 20, cardY: 20, cardStagger: 0.1, indexDelay: 0.2, itemX: -8, itemStagger: 0.06 },
+      { contextY: 30, cardY: 40, cardStagger: 0.15, itemX: -10, itemStagger: 0.08 },
+      { contextY: 20, cardY: 20, cardStagger: 0.1, itemX: -8, itemStagger: 0.06 },
     );
 
     AnimationUtils.sectionLabel("#what-we-do");
@@ -810,16 +849,6 @@
       stagger: cfg.cardStagger,
     });
 
-    // Card indexes (unique)
-    AnimationUtils.fadeUp(".wwd__card-index", {
-      trigger: ".wwd__grid",
-      start: "top 75%",
-      y: 0,
-      duration: 0.5,
-      stagger: cfg.cardStagger,
-      delay: cfg.indexDelay,
-    });
-
     // Card items (unique - slide from left)
     document.querySelectorAll(".wwd__card").forEach((card) => {
       const items = card.querySelectorAll(".wwd__card-item");
@@ -833,6 +862,7 @@
             duration: 0.4,
             stagger: cfg.itemStagger,
             ease: "power2.out",
+            immediateRender: false,
             scrollTrigger: {
               trigger: card,
               start: "top 70%",
@@ -851,19 +881,7 @@
   function initHWDIAnimations() {
     if (!elementExists("#how-we-do-it")) return;
 
-    gsap.set(".hwdi__heading-line .text-reveal-inner", { y: "110%" });
-    gsap.set(".hwdi__subtitle", { opacity: 0 });
-    gsap.set(".hwdi__step", { opacity: 0 });
-    gsap.set(".hwdi__step-number", { scale: 0.7, opacity: 0 });
-    gsap.set(".hwdi__step-accent", {
-      scaleY: 0,
-      transformOrigin: "top center",
-    });
-    gsap.set(".hwdi__connector-line", {
-      scaleX: 0,
-      transformOrigin: "left center",
-    });
-
+    // Keep the section visible until its scroll-triggered enhancement runs.
     if (AnimationUtils.prefersReducedMotion) {
       AnimationUtils.setReducedMotion([
         ".hwdi__heading-line .text-reveal-inner",
@@ -916,6 +934,7 @@
         duration: cfg.accentDur,
         stagger: cfg.accentStagger,
         ease: "power2.out",
+        immediateRender: false,
         scrollTrigger: {
           trigger: ".hwdi__steps",
           start: "top 70%",
@@ -1046,7 +1065,13 @@
     tl.fromTo(
       ".ceo__image-wrapper",
       { opacity: 0, scale: 0.95 },
-      { opacity: 1, scale: 1, duration: 0.9, ease: "power2.out" },
+      {
+        opacity: 1,
+        scale: 1,
+        duration: 0.9,
+        ease: "power2.out",
+        immediateRender: false,
+      },
     );
 
     tl.fromTo(
@@ -1063,6 +1088,7 @@
         stagger: 0.15,
         duration: 0.8,
         ease: "power2.out",
+        immediateRender: false,
       },
       "-=0.4",
     );
@@ -1242,15 +1268,15 @@
       duration: 0.7
     });
 
-    // Slider: down-to-top at 40% visible
+    // Animate only when the section enters; default HTML remains visible if a trigger misses.
     if (slider) {
-      gsap.set(slider, { opacity: 0, y: 40 });
-      gsap.to(slider, {
+      gsap.fromTo(slider, { opacity: 0, y: 40 }, {
         opacity: 1,
         y: 0,
         duration: 0.8,
         ease: "power3.out",
         overwrite: "auto",
+        immediateRender: false,
         scrollTrigger: {
           trigger: "#faculty-insights",
           start: "top 60%",
@@ -1266,14 +1292,14 @@
 
     // Cards: down-to-top
     if (cards.length) {
-      gsap.set(cards, { opacity: 0, y: 40 });
-      gsap.to(cards, {
+      gsap.fromTo(cards, { opacity: 0, y: 40 }, {
         opacity: 1,
         y: 0,
         duration: 0.7,
         stagger: 0.12,
         ease: "power3.out",
         overwrite: "auto",
+        immediateRender: false,
         scrollTrigger: {
           trigger: "#faculty-insights .insights__scroll",
           start: "top 65%",
@@ -1431,7 +1457,7 @@
         );
         if (!input || !input.value || !btn) return;
         const originalText = btn.textContent;
-        let resetDelay = 2500;
+        const resetDelay = 2500;
         try {
           const res = await fetch(newsletterForm.action, {
             method: "POST",
@@ -1449,9 +1475,24 @@
           }
 
           if (res.ok && data.ok) {
-            btn.textContent = data.message || "Subscribed ✓";
-            input.value = "";
-            resetDelay = 5000;
+            // Swap the form for an inline thank-you note that stays visible.
+            const note = document.createElement("p");
+            note.className = "footer__newsletter-thanks";
+            note.setAttribute("role", "status");
+
+            const icon = document.createElement("span");
+            icon.className = "footer__newsletter-thanks-icon";
+            icon.setAttribute("aria-hidden", "true");
+            icon.innerHTML =
+              '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>';
+
+            const text = document.createElement("span");
+            text.textContent =
+              data.message || "Thank you for subscribing.";
+
+            note.append(icon, text);
+            newsletterForm.replaceWith(note);
+            return;
           } else if (res.status === 422) {
             btn.textContent = data.errors?.email?.[0] || "Invalid email";
           } else if (res.status === 429) {
@@ -1473,37 +1514,44 @@
     const cols = document.querySelectorAll(".footer__col");
     const bottom = document.querySelector(".footer__bottom");
 
-    if (cols.length) gsap.set(cols, { opacity: 0, y: 30 });
-    if (bottom) gsap.set(bottom, { opacity: 0, y: 20 });
-
     if (cols.length) {
-      gsap.to(cols, {
-        opacity: 1,
-        y: 0,
-        duration: 0.7,
-        stagger: 0.12,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: "#footer",
-          start: "top 85%",
-          toggleActions: "play none none none",
+      gsap.fromTo(
+        cols,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          stagger: 0.12,
+          ease: "power2.out",
+          immediateRender: false,
+          scrollTrigger: {
+            trigger: "#footer",
+            start: "top 85%",
+            toggleActions: "play none none none",
+          },
         },
-      });
+      );
     }
 
     if (bottom) {
-      gsap.to(bottom, {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        delay: 0.4,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: "#footer",
-          start: "top 85%",
-          toggleActions: "play none none none",
+      gsap.fromTo(
+        bottom,
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          delay: 0.4,
+          ease: "power2.out",
+          immediateRender: false,
+          scrollTrigger: {
+            trigger: "#footer",
+            start: "top 85%",
+            toggleActions: "play none none none",
+          },
         },
-      });
+      );
     }
   }
 
@@ -1567,6 +1615,7 @@
           delay: f.delay || 0,
           stagger: f.stagger || 0,
           ease: "power2.out",
+          immediateRender: false,
           scrollTrigger: {
             trigger: sectionSelector,
             start: "top 80%",
@@ -1589,6 +1638,7 @@
           duration: 0.7,
           stagger: 0.05,
           ease: "power2.out",
+          immediateRender: false,
           scrollTrigger: {
             trigger: sectionSelector,
             start: "top 80%",
@@ -1666,14 +1716,140 @@
       ],
     });
   }
+  const failOpenTargets = [
+    ".text-reveal-inner",
+    ".fade-up",
+    ".fade-in",
+    ".scale-in",
+    ".hero__content",
+    ".hero__video",
+    ".hero__video-fallback",
+    ".hero__overlay",
+    ".hero__accent-bar",
+    ".hero__eyebrow-line",
+    ".hero__subheading",
+    ".hero__ctas",
+    ".hero__trust",
+    ".wim__pin-wrapper",
+    ".wim__heading",
+    ".wim__label",
+    ".wim__statement",
+    ".wim__statement-text",
+    ".wim__final",
+    ".hwdi__subtitle",
+    ".hwdi__step",
+    ".hwdi__step-number",
+    ".hwdi__step-accent",
+    ".hwdi__connector-line",
+    ".insights__slider",
+    ".insights__card",
+    ".footer__col",
+    ".footer__bottom",
+    ".ceo__image-wrapper",
+    ".ceo__quote",
+    ".ceo__body",
+    ".ceo__signature",
+  ].join(",");
+
+  function revealAnimationSection(selector) {
+    const section = document.querySelector(selector);
+    if (!section) return;
+
+    const elements = [section, ...section.querySelectorAll("*")];
+
+    if (typeof gsap !== "undefined") {
+      gsap.killTweensOf(elements);
+    }
+
+    if (typeof ScrollTrigger !== "undefined") {
+      ScrollTrigger.getAll().forEach((trigger) => {
+        const triggerElement = trigger.trigger;
+        if (
+          triggerElement &&
+          (triggerElement === section || section.contains(triggerElement))
+        ) {
+          trigger.kill(true);
+        }
+      });
+    }
+
+    elements.forEach((element) => {
+      const isAnimationTarget = element.matches(failOpenTargets);
+
+      if (element.style.opacity === "0" || isAnimationTarget) {
+        element.style.removeProperty("opacity");
+      }
+      if (element.style.visibility === "hidden" && isAnimationTarget) {
+        element.style.removeProperty("visibility");
+      }
+      if (isAnimationTarget) {
+        element.style.removeProperty("transform");
+        element.style.removeProperty("clip-path");
+      }
+    });
+
+    section
+      .querySelectorAll(".insights__slider, .insights__card")
+      .forEach((element) => {
+        element.classList.add("is-revealed");
+      });
+  }
+
+  function safelyInitializeAnimation(name, selector, initialize) {
+    try {
+      initialize();
+    } catch (error) {
+      console.error(
+        `Animations: ${name} failed; showing its content without animation.`,
+        error,
+      );
+      try {
+        revealAnimationSection(selector);
+      } catch (recoveryError) {
+        console.error(
+          `Animations: recovery failed for ${name}.`,
+          recoveryError,
+        );
+      }
+    }
+  }
+
+  let scrollRefreshQueued = false;
+
+  function scheduleScrollTriggerRefresh() {
+    if (scrollRefreshQueued || typeof ScrollTrigger === "undefined") return;
+
+    scrollRefreshQueued = true;
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        scrollRefreshQueued = false;
+        try {
+          ScrollTrigger.refresh();
+          ScrollTrigger.update();
+        } catch (error) {
+          console.warn("Animations: scroll position refresh failed.", error);
+        }
+      });
+    });
+  }
+
+  window.addEventListener("pageshow", scheduleScrollTriggerRefresh, {
+    passive: true,
+  });
+  window.addEventListener("load", scheduleScrollTriggerRefresh, {
+    once: true,
+    passive: true,
+  });
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(scheduleScrollTriggerRefresh).catch(() => {});
+  }
+
   function initAllAnimations() {
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
 
-    if (!prefersReducedMotion) {
-      initHeroAnimations();
-    } else {
+    if (prefersReducedMotion) {
       gsap.set(
         [
           ".text-reveal-inner",
@@ -1695,57 +1871,70 @@
       }
     }
 
-    initHeroScrollAnimations();
+    const initializers = [
+      [
+        "hero intro",
+        "#hero",
+        () => {
+          if (!prefersReducedMotion) initHeroAnimations();
+        },
+      ],
+      ["hero scroll", "#hero", initHeroScrollAnimations],
+      ["numbers", "#numbers", initNumbersAnimations],
+      ["what is Maverick", "#what-is-maverick", initWIMAnimations],
+      ["who we are", "#who-we-are", initWWAAnimations],
+      ["CEO message", "#ceo-message", initCEOAnimations],
+      ["what we do", "#what-we-do", initWWDAnimations],
+      ["how we do it", "#how-we-do-it", initHWDIAnimations],
+      ["alumni", "#alumni-network", initAlumniAnimations],
+      ["featured programs", "#featured-programs", initProgramsAnimations],
+      ["why Maverick", "#why-maverick", initWhyMaverickAnimations],
+      [
+        "global access points",
+        "#global-access-points",
+        initGlobalAccessPointsAnimations,
+      ],
+      [
+        "global opportunities",
+        "#global-opportunities",
+        initOpportunitiesAnimations,
+      ],
+      ["university partners", "#university-partners", initPartnersAnimations],
+      ["faculty insights", "#faculty-insights", initInsightsAnimations],
+      ["upcoming events", "#upcoming-events", initEventsAnimations],
+      ["video testimonials", "#video-testimonials", initTestimonialsAnimations],
+      ["final CTA", "#final-cta", initFinalCTAAnimations],
+      ["footer", "#footer", initFooterAnimations],
+      ["accreditations", "#accreditations", initAccreditationsAnimations],
+      ["alumni slider", "#alumni-network", initNetworkAnimations],
+    ];
 
-    initNumbersAnimations();
+    initializers.forEach(([name, selector, initialize]) => {
+      safelyInitializeAnimation(name, selector, initialize);
+    });
 
-    initWIMAnimations();
-
-    initWWAAnimations();
-
-    initCEOAnimations();
-
-    initWWDAnimations();
-
-    initHWDIAnimations();
-
-    initAlumniAnimations();
-
-    initProgramsAnimations();
-
-    initWhyMaverickAnimations();
-
-    initGlobalAccessPointsAnimations();
-
-    initOpportunitiesAnimations();
-
-    initPartnersAnimations();
-
-    initInsightsAnimations();
-
-    initEventsAnimations();
-
-    initTestimonialsAnimations();
-
-    initFinalCTAAnimations();
-
-    initFooterAnimations();
-
-    initAccreditationsAnimations();
-
-    initNetworkAnimations();
-
-    if (typeof ScrollTrigger !== "undefined") {
-      ScrollTrigger.refresh();
-    }
+    scheduleScrollTriggerRefresh();
   }
 
   function startAnimations() {
-    if (window.__animationsStarted) return;
+    if (window.__animationsStarted || window.__animationsStarting) return;
     // Our Story page uses public/assets/js/our-story-animations.js
     if (window.location.pathname.includes("our-story")) return;
-    window.__animationsStarted = true;
-    initAllAnimations();
+
+    window.__animationsStarting = true;
+    try {
+      initAllAnimations();
+      window.__animationsStarted = true;
+    } catch (error) {
+      console.error(
+        "Animations: bootstrap failed; falling back to visible content.",
+        error,
+      );
+      revealAnimationSection("main");
+      window.__animationsStarted = true;
+    } finally {
+      window.__animationsStarting = false;
+    }
   }
 
   if (window.__lenisReady) {

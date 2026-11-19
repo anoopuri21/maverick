@@ -6,6 +6,7 @@ use App\Http\Requests\ProgramEnquiryRequest;
 use App\Models\Program;
 use App\Models\ProgramCategory;
 use App\Services\FormMailer;
+use App\Services\GoogleRecaptchaVerifier;
 use App\Services\ZapierWebhookDispatcher;
 use App\Support\ZapierEvents;
 use App\Settings\ProgramsListingSeoSettings;
@@ -13,6 +14,8 @@ use App\Settings\ProgramsListingPageSettings;
 use App\Settings\ProgramsDetailChromeSettings;
 use App\Support\PublicContentCache;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Validation\ValidationException;
 
 class ProgramController extends Controller
 {
@@ -82,13 +85,85 @@ class ProgramController extends Controller
             ];
         });
 
+        $categories = PublicContentCache::hydrateRows(ProgramCategory::class, $listing['categories'] ?? []);
+
+        $allPrograms = PublicContentCache::hydrateRows(Program::class, $listing['programs'] ?? [], [
+            'program_category' => ProgramCategory::class,
+            'university_partner' => \App\Models\UniversityPartner::class,
+        ]);
+
+        $totalProgramCount = $allPrograms->count();
+
+        // Filter by category if requested
+        $requestedCategory = request()->query('category');
+        $activeCategory = 'all';
+
+        if ($requestedCategory && $categories->contains(fn ($cat) => $cat->slug === $requestedCategory)) {
+            $activeCategory = $requestedCategory;
+        }
+
+        $programsToPaginate = $activeCategory === 'all'
+            ? $allPrograms
+            : $allPrograms
+                ->filter(fn (Program $program) => $program->programCategory?->slug === $activeCategory)
+                ->values();
+
+        // Paginate: 12 programs per page
+        $currentPage = (int) request()->input('page', 1);
+        if ($currentPage < 1) {
+            $currentPage = 1;
+        }
+
+        $queryParams = request()->query();
+        unset($queryParams['page']);
+
+        $perPage = 12;
+        $totalCount = $programsToPaginate->count();
+        $lastPage = (int) ceil($totalCount / $perPage);
+        $hasMorePages = $currentPage < $lastPage;
+        $nextPage = $hasMorePages ? $currentPage + 1 : null;
+        $currentPageNum = $currentPage;
+
+        $items = $programsToPaginate->forPage($currentPage, $perPage)->values();
+
+        $paginatedPrograms = new LengthAwarePaginator(
+            $items,
+            $totalCount,
+            $perPage,
+            $currentPage,
+            [
+                'path' => request()->url(),
+                'query' => $queryParams,
+            ]
+        );
+
+        // AJAX infinite scroll: return JSON with cards HTML + pagination metadata
+        if (request()->ajax() || request()->wantsJson()) {
+            $cardsHtml = view('pages.programs.partials._cards', [
+                'programs' => $items,
+                'programsListingPage' => safe_settings(ProgramsListingPageSettings::class),
+                'activeCategory' => $activeCategory,
+                'nextPage' => $nextPage,
+                'lastPage' => $lastPage,
+            ])->render();
+
+            return response()->json([
+                'html' => $cardsHtml,
+                'currentPage' => $currentPageNum,
+                'lastPage' => $lastPage,
+                'nextPage' => $nextPage,
+                'hasMorePages' => $hasMorePages,
+                'total' => $totalCount,
+            ]);
+        }
+
         return view('pages.programs.index', [
             'programsListingPage' => safe_settings(ProgramsListingPageSettings::class),
-            'categories' => PublicContentCache::hydrateRows(ProgramCategory::class, $listing['categories'] ?? []),
-            'programs' => PublicContentCache::hydrateRows(Program::class, $listing['programs'] ?? [], [
-                'program_category' => ProgramCategory::class,
-                'university_partner' => \App\Models\UniversityPartner::class,
-            ]),
+            'categories' => $categories,
+            'programs' => $paginatedPrograms,
+            'paginationNextPage' => $nextPage,
+            'paginationLastPage' => $lastPage,
+            'totalProgramCount' => $totalProgramCount,
             'programsListingSeo' => safe_settings(ProgramsListingSeoSettings::class),
         ]);
     }
@@ -112,15 +187,35 @@ class ProgramController extends Controller
             abort(404);
         }
 
+        $allPrograms = Program::where('is_active', true)
+            ->hasPublicSlug()
+            ->with('programCategory:id,name,slug')
+            ->orderBy('title')
+            ->get(['id', 'title', 'slug', 'program_category_id']);
+
         return view('pages.programs.detail', [
             'program' => $program,
             'chrome' => safe_settings(ProgramsDetailChromeSettings::class),
+            'allPrograms' => $allPrograms,
+            'showBachelorsSnapshotNote' => in_array($program->programCategory?->slug, [
+                ProgramCategory::BACHELOR_SLUG,
+                ProgramCategory::BACHELORS_SLUG,
+            ], true),
         ]);
     }
 
-    public function enquire(ProgramEnquiryRequest $request, FormMailer $formMailer)
-    {
+    public function enquire(
+        ProgramEnquiryRequest $request,
+        FormMailer $formMailer,
+        GoogleRecaptchaVerifier $recaptchaVerifier
+    ) {
         $data = $request->validated();
+
+        if (! $recaptchaVerifier->verify($request->input('g-recaptcha-response'))) {
+            throw ValidationException::withMessages([
+                'recaptcha' => 'Please complete the reCAPTCHA verification and try again.',
+            ]);
+        }
 
         $qualifications = [
             'high-school' => 'High School / Secondary',
@@ -135,13 +230,18 @@ class ProgramController extends Controller
             $qualification = $qualifications[$qualification];
         }
 
-        $formMailer->send([
+        $preferredProgram = '';
+        if (filled($data['preferred_program'] ?? null)) {
+            $preferredProgram = Program::where('id', $data['preferred_program'])->value('title') ?? '';
+        }
+
+        $sent = $formMailer->send([
             'Programme' => $data['programme'] ?? '',
+            'Preferred Program' => $preferredProgram,
             'Name' => $data['name'] ?? '',
             'Email' => $data['email'] ?? '',
             'Phone' => $data['phone'] ?? '',
             'Country' => $data['country'] ?? '',
-            'Study mode' => $data['study_mode'] ?? '',
             'Qualification' => $qualification,
             'Message' => $data['message'] ?? '',
         ], 'Programme enquiry'.(filled($data['programme'] ?? null) ? ': '.$data['programme'] : ''), [
@@ -150,8 +250,13 @@ class ProgramController extends Controller
 
         app(ZapierWebhookDispatcher::class)->dispatch(ZapierEvents::PROGRAM_ENQUIRY_SUBMITTED, array_merge($data, [
             'qualification' => $qualification,
+            'preferred_program' => $preferredProgram,
         ]));
 
-        return back()->with('success', 'Thank you! We will get back to you shortly.');
+        if (! $sent) {
+            return back()->withInput()->with('error', 'We could not send your enquiry right now. Please try again or contact us directly.');
+        }
+
+        return redirect()->route('thank-you')->with('thank_you_previous_url', url()->previous());
     }
 }

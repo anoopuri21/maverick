@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon" />
 
     {{-- JS availability flag (progressive enhancement) --}}
     <script>document.documentElement.classList.add('js');</script>
@@ -11,7 +12,12 @@
     {{-- SEO Meta --}}
     <title>@yield('title', 'Maverick Business Academy | Transforming Learners into Global Leaders')</title>
     @hasSection('meta_description')
-    <meta name="description" content="@yield('meta_description')" />
+    @php
+        // Inline Blade sections are already HTML-escaped; recover the text before escaping the attribute.
+        $pageMetaDescription = html_entity_decode(View::yieldContent('meta_description'), ENT_QUOTES | ENT_HTML5, 'UTF-8');
+        $pageMetaDescription = filled($pageMetaDescription) ? $pageMetaDescription : 'Maverick Business Academy - Transforming Learners into Global Leaders.';
+    @endphp
+    <meta name="description" content="{{ $pageMetaDescription }}" />
     @else
     @unless(View::hasSection('seo_from_partial'))
     <meta name="description" content="Maverick Business Academy - Transforming Learners into Global Leaders." />
@@ -24,6 +30,11 @@
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
     <link rel="preconnect" href="https://unpkg.com" crossorigin />
+    @if(request()->routeIs('mba-masters-landing'))
+    {{-- The landing headline uses the 700-weight face from the stylesheet below. --}}
+    <link rel="preconnect" href="https://fonts.cdnfonts.com" crossorigin />
+    <link rel="preload" href="https://fonts.cdnfonts.com/s/100431/ppneuemontreal-bold.woff" as="font" type="font/woff" crossorigin />
+    @endif
     <link href="https://fonts.cdnfonts.com/css/pp-neue-montreal" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
@@ -38,6 +49,25 @@
 
     {{-- Head meta (SEO tags injected per page) --}}
     @stack('head')
+        <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17992316259">
+    </script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'AW-17992316259');
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4448X23Q4E"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-4448X23Q4E');
+    </script>
 </head>
 
 <body class="is-loading" style="min-height: 100vh;">
@@ -50,7 +80,11 @@
     <div id="cursor-outline" data-lenis-prevent></div>
 
     {{-- Navigation --}}
-    @include('partials.navbar')
+    @if(request()->routeIs('mba-masters-landing'))
+        @include('partials.mlp-navbar')
+    @else
+        @include('partials.navbar')
+    @endif
 
     {{-- Main Content --}}
     <main>
@@ -58,14 +92,23 @@
     </main>
 
     {{-- Footer --}}
-    @include('partials.footer')
+    @if(request()->routeIs('mba-masters-landing'))
+        @include('partials.mlp-footer')
+    @else
+        @include('partials.footer')
+    @endif
+
+    <p class="site-attribution">
+        Designed and Developed by
+        <a class="site-attribution__link" href="https://www.vsinfosys.in/" target="_blank" rel="noopener noreferrer">VS Infosys</a>
+    </p>
 
     {{-- Floating Buttons --}}
     <button id="scroll-to-top" class="floating-action floating-action--scroll" type="button" aria-label="Scroll to top">
         <span aria-hidden="true" data-lucide="arrow-up"></span>
     </button>
 
-    @if(filled($site->whatsapp_number ?? null) && ! request()->routeIs('mba-masters-landing'))
+    @if(filled($site->whatsapp_number ?? null))
     <a id="whatsapp-float" class="floating-action floating-action--whatsapp" href="https://wa.me/{{ $site->whatsapp_number }}" target="_blank" rel="noopener noreferrer" aria-label="Contact via WhatsApp">
         <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 1.8a8.2 8.2 0 1 1-4.2 15.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 0 1 12 3.8z"/></svg>
     </a>
@@ -80,8 +123,8 @@
 
     <script src="{{ cached_asset('assets/js/main.js') }}" defer></script>
     <script src="{{ cached_asset('assets/js/navigation.js') }}" defer></script>
-    <script src="{{ cached_asset('assets/js/animations-utils.js') }}" defer></script>
     @unless(request()->routeIs('mba-masters-landing'))
+    <script src="{{ cached_asset('assets/js/animations-utils.js') }}" defer></script>
     <script src="{{ cached_asset('assets/js/animations.js') }}" defer></script>
     @endunless
     @if(request()->routeIs('our-story'))
@@ -106,7 +149,9 @@
     @if(request()->routeIs('home', 'our-story', 'masters-pathway', 'global-partners', 'mba-masters-landing'))
     <script src="{{ cached_asset('assets/js/testimonials.js') }}" defer></script>
     @endif
+    @unless(request()->routeIs('mba-masters-landing'))
     <script src="{{ cached_asset('assets/js/faculty-insights-toggle.js') }}" defer></script>
+    @endunless
     <script src="{{ cached_asset('assets/js/scroll-controls.js') }}" defer></script>
 
     <script>

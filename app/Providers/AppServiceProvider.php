@@ -8,6 +8,7 @@ use App\Models\Faq;
 use App\Models\GlobalAccessPointCountry;
 use App\Models\GupPartnerUniversity;
 use App\Models\Insight;
+use App\Models\MediaAsset;
 use App\Models\MediaGalleryPhoto;
 use App\Models\MediaGalleryVideo;
 use App\Models\OurStoryAward;
@@ -21,11 +22,13 @@ use App\Models\ProgramCategory;
 use App\Models\Testimonial;
 use App\Models\UniversityPartner;
 use App\Settings\AskQuotientSettings;
+use App\Settings\MbaMastersPartnersSettings;
 use App\Settings\DeiMatrixSettings;
 use App\Settings\FinalCtaSettings;
 use App\Settings\GlobalAccessPointsSettings;
 use App\Settings\GlobalPartnersMapSettings;
 use App\Settings\HomepageChromeSettings;
+use App\Settings\HomepagePopupSettings;
 use App\Settings\WhatWeDoSettings;
 use App\Support\PublicContentCache;
 use Illuminate\Support\Facades\Event as EventFacade;
@@ -64,14 +67,16 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         // Preview / reverse-proxy: generate asset URLs from the incoming host
-        // so CSS/JS load on the sandbox preview domain (local only).
+        // so CSS/JS load on the sandbox preview domain (local only). The host
+        // must be explicitly allowed; never trust a raw forwarded-host header.
         if ($this->app->environment('local') && ! $this->app->runningInConsole()) {
-            $host = $_SERVER['HTTP_X_FORWARDED_HOST'] ?? $_SERVER['HTTP_HOST'] ?? null;
-            $proto = $_SERVER['HTTP_X_FORWARDED_PROTO']
-                ?? ((! empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http');
-            if ($host) {
-                URL::forceRootUrl($proto.'://'.$host);
-                if ($proto === 'https') {
+            $request = request();
+            $host = $request->getHttpHost();
+            $scheme = $request->getScheme();
+
+            if ($this->isAllowedUrlHost($host)) {
+                URL::forceRootUrl($scheme.'://'.$host);
+                if ($scheme === 'https') {
                     URL::forceScheme('https');
                 }
             }
@@ -310,6 +315,57 @@ class AppServiceProvider extends ServiceProvider
             $view->with('footerProgramCategories', $footerProgramCategories);
         });
 
+        View::composer('sections.homepage-popup', function ($view) {
+            if ($view->offsetExists('homepagePopup')) {
+                return;
+            }
+
+            $view->with('homepagePopup', safe_settings(HomepagePopupSettings::class));
+        });
+
+        View::composer('sections.mba-partners', function ($view) {
+            if (! $view->offsetExists('partners')) {
+                $partners = safe_settings(MbaMastersPartnersSettings::class);
+                $partners->checklist = settings_array($partners->checklist ?? []);
+                $view->with('partners', $partners);
+            }
+
+            try {
+                $universityPartnerLogos = PublicContentCache::remember(
+                    PublicContentCache::MLP_UNIVERSITY_LOGOS,
+                    function () {
+                        $partners = UniversityPartner::query()
+                            ->listedInPartnerWall()
+                            ->select('id', 'name', 'logo_url', 'logo_url_asset_id', 'sort_order')
+                            ->orderBy('sort_order')
+                            ->orderBy('name')
+                            ->orderBy('id')
+                            ->get();
+
+                        $assetIds = $partners->pluck('logo_url_asset_id')->filter()->unique()->values();
+                        $logoUrls = $assetIds->isEmpty()
+                            ? collect()
+                            : MediaAsset::query()->whereIn('id', $assetIds)->pluck('url', 'id');
+
+                        return $partners
+                            ->map(fn (UniversityPartner $partner): array => [
+                                'id' => (int) $partner->id,
+                                'name' => trim((string) $partner->name),
+                                'src' => media_url($logoUrls->get($partner->logo_url_asset_id) ?: $partner->logo_url),
+                            ])
+                            ->filter(fn (array $partner): bool => filled($partner['name']) && filled($partner['src']))
+                            ->values()
+                            ->all();
+                    }
+                );
+            } catch (\Throwable $e) {
+                report($e);
+                $universityPartnerLogos = [];
+            }
+
+            $view->with('universityPartnerLogos', $universityPartnerLogos);
+        });
+
         View::composer('sections.ask-quotient', function ($view) {
             if ($view->offsetExists('askQuotient')) {
                 return;
@@ -360,6 +416,7 @@ class AppServiceProvider extends ServiceProvider
             Testimonial::class,
             Faq::class,
             Insight::class,
+            MediaAsset::class,
             MediaGalleryPhoto::class,
             MediaGalleryVideo::class,
             OurStoryTimeline::class,
@@ -375,5 +432,36 @@ class AppServiceProvider extends ServiceProvider
             $model::saved(fn () => PublicContentCache::flush());
             $model::deleted(fn () => PublicContentCache::flush());
         }
+    }
+
+    private function isAllowedUrlHost(string $host): bool
+    {
+        $host = strtolower((string) parse_url('//'.$host, PHP_URL_HOST));
+
+        if ($host === '' || preg_match('/^[a-z0-9.-]+$/', $host) !== 1) {
+            return false;
+        }
+
+        foreach ((array) config('app.allowed_url_hosts', []) as $allowed) {
+            $allowed = strtolower(trim((string) $allowed));
+
+            if ($allowed === '*') {
+                return true;
+            }
+
+            if (str_starts_with($allowed, '*.')) {
+                if (str_ends_with($host, substr($allowed, 1))) {
+                    return true;
+                }
+
+                continue;
+            }
+
+            if ($host === $allowed) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

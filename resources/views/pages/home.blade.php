@@ -1,22 +1,36 @@
 @extends('layouts.app')
 
-@section('title', ($homeSeo->meta_title ?? 'Maverick Business Academy | Transforming Learners into Global Leaders'))
+@php
+    $homeTitle = filled($homeSeo->meta_title ?? null) ? $homeSeo->meta_title : 'Business Programmes & Pathways | Maverick Business Academy';
+    $homeDescription = filled($homeSeo->meta_description ?? null) ? $homeSeo->meta_description : 'Explore business programmes, MBA and university pathways for learners and professionals at Maverick Business Academy.';
+@endphp
+
+@section('title'){{ $homeTitle }}@endsection
 @section('seo_from_partial')
 @endsection
 
 @push('head')
-    @include('partials.seo-meta', ['seo' => $homeSeo])
+    @include('partials.seo-meta', ['seo' => $homeSeo, 'fallbackTitle' => $homeTitle, 'fallbackDescription' => $homeDescription])
+
+    {{-- Ahrefs site verification (homepage only) --}}
+    <meta name="ahrefs-site-verification" content="2921b6a19b7d2c7f5975f9b76ab905e90b4ea33a2dea1a8a3ffdb7475799b6e3">
+
+    {{-- Ahrefs Web Analytics (homepage only) --}}
+    <script src="https://analytics.ahrefs.com/analytics.js" data-key="SruPIuZaSb+AKf4gNAhcvg" async></script>
 @endpush
 
 @push('styles')
+    <link rel="stylesheet" href="{{ cached_asset('assets/css/mba-partners.css') }}" />
     <link rel="stylesheet" href="{{ cached_asset('assets/css/global-access-points.css') }}" />
     <link rel="stylesheet" href="{{ cached_asset('assets/css/ask-quotient.css') }}" />
     <link rel="stylesheet" href="{{ cached_asset('assets/css/dei-matrix.css') }}" />
+    <link rel="stylesheet" href="{{ cached_asset('assets/css/home-popup.css') }}" />
 @endpush
 
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/d3@7" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/topojson-client@3" defer></script>
+    <script src="{{ cached_asset('assets/js/archive-partners.js') }}" defer></script>
     <script src="{{ cached_asset('assets/js/global-access-points.js') }}" defer></script>
 @endpush
 
@@ -31,13 +45,13 @@
     @php
         $homeSeo = $homeSeo ?? safe_settings(\App\Settings\HomepageSeoSettings::class);
         $events = collect($events ?? []);
-        $testimonialsJson = collect($testimonialsJson ?? []);
         $homepageFaqs = collect($homepageFaqs ?? []);
     @endphp
 
     @include('sections.hero')
     @include('sections.numbers')
     @include('sections.what-is-maverick')
+    @include('sections.mba-partners')
     @include('sections.ask-quotient')
     @include('sections.who-we-are')
     @include('sections.dei-matrix')
@@ -56,5 +70,6 @@
     @include('sections.video-testimonials')
     @include('sections.faq')
     @include('sections.final-cta')
+    @include('sections.homepage-popup')
 
 @endsection

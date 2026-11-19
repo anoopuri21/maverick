@@ -49,7 +49,7 @@ class SeedHomepageSettings extends SettingsMigration
         $this->migrator->add('who_we_are.stat2_suffix', 'Countries');
         $this->migrator->add('who_we_are.stat2_label', 'Reached');
         $this->migrator->add('who_we_are.cta_text', 'Discover Our Story');
-        $this->migrator->add('who_we_are.cta_url', '/about-us/our-story');
+        $this->migrator->add('who_we_are.cta_url', '/our-story');
         $this->migrator->add('who_we_are.image_url', 'assets/images/homepage/mavrick-transform.png');
 
         // CEO

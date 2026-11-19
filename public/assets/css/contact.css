@@ -366,47 +366,6 @@
     border-color: #cc2233;
 }
 
-/* Alert Notification style */
-.contact-alert {
-    padding: 20px 24px;
-    border-radius: 12px;
-    margin-bottom: 32px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    animation: alertFadeIn 0.4s ease-out;
-}
-
-.contact-alert--success {
-    background-color: rgba(15, 41, 131, 0.04);
-    border: 1px solid rgba(15, 41, 131, 0.1);
-    color: var(--color-mba-blue);
-}
-
-.contact-alert__icon {
-    flex-shrink: 0;
-    width: 24px;
-    height: 24px;
-}
-
-.contact-alert__text {
-    font-family: var(--font-body);
-    font-size: 14px;
-    font-weight: var(--fw-medium);
-    line-height: 1.5;
-}
-
-@keyframes alertFadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-8px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
 /* Button style overrides */
 .btn-submit-form {
     background-color: var(--color-mba-red);

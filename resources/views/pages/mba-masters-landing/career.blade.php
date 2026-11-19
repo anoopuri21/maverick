@@ -6,7 +6,7 @@
   $fallbackPortrait = 'assets/images/homepage/business.jpg';
 @endphp
 
-@if(filled($career->heading) || $stories->isNotEmpty())
+@if(($career->show_section ?? true) && (filled($career->heading) || $stories->isNotEmpty()))
 <section class="mlp-career archive-career" id="mlp-career" aria-labelledby="archive-career-title">
   <div class="archive-career__background" aria-hidden="true">
     <span class="archive-career__wash mlp-wash"></span>
@@ -40,18 +40,16 @@
         <span class="archive-career__stack-caption">Skills that travel across industries.</span>
       </div>
 
-      <div class="mlp-uae-badge" role="note" aria-label="Top-rated online learning experience in UAE">
-        <p class="mlp-uae-badge__title">Top-rated online learning<br>experience in UAE</p>
-        <div class="mlp-uae-badge__row">
-          <div class="mlp-uae-badge__country">
-            <strong>UAE</strong>
-            <span>Top-Rated</span>
-          </div>
-          <span class="mlp-uae-badge__flag" aria-hidden="true">
-            <span class="mlp-uae-badge__flag-red"></span>
-            <span class="mlp-uae-badge__flag-stripes"><span></span><span></span><span></span></span>
-          </span>
-        </div>
+      @php
+        $badgeKicker = $career->badge_kicker ?: 'GCC';
+        $badgeTitle = $career->badge_title ?: 'Online MBA for professionals across the GCC';
+        $badgeLine = $career->badge_line ?: 'Study from home, on a schedule that fits a full-time job.';
+      @endphp
+      <div class="mlp-uae-badge" role="note" aria-label="{{ $badgeTitle }}">
+        <p class="mlp-uae-badge__kicker">{{ $badgeKicker }}</p>
+        <p class="mlp-uae-badge__title">{{ $badgeTitle }}</p>
+        <p class="mlp-uae-badge__line">{{ $badgeLine }}</p>
+        <span class="mlp-gcc-badge__mark" aria-hidden="true">{{ $badgeKicker }}</span>
       </div>
       </div>
 

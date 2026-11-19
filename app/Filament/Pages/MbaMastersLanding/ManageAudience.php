@@ -9,6 +9,7 @@ use App\Settings\MbaMastersCareerSettings;
 use App\Settings\MbaMastersClassSettings;
 use App\Settings\MbaMastersVideoTestimonialsSettings;
 use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -37,6 +38,7 @@ class ManageAudience extends Page implements HasForms
     {
         $class = app(MbaMastersClassSettings::class)->toArray();
         $class['metrics'] = array_values($class['metrics'] ?? []);
+        $class['class_year_stats'] = array_values($class['class_year_stats'] ?? []);
         $class['regions'] = array_values($class['regions'] ?? []);
         $class['industries'] = $this->hydrateRepeaterMediaFields(array_values($class['industries'] ?? []), 'image');
 
@@ -64,6 +66,27 @@ class ManageAudience extends Page implements HasForms
                         TextInput::make('class.heading')->label('Heading')->columnSpanFull(),
                         Textarea::make('class.intro')->label('Intro')->rows(2)->columnSpanFull(),
                         Textarea::make('class.audience')->label('Audience line')->rows(2)->columnSpanFull(),
+                        TextInput::make('class.class_year_lead')->label('Class of 2025 lead'),
+                        TextInput::make('class.class_year_strong')->label('Class of 2025 strong line'),
+                        Textarea::make('class.class_year_body')->label('Class of 2025 body')->rows(2)->columnSpanFull(),
+                        TextInput::make('class.class_year_center')->label('Class of 2025 center label'),
+                        Repeater::make('class.class_year_stats')
+                            ->label('Class of 2025 figures')
+                            ->helperText('Order matches the graphic: students, countries, pass rate, age, experience.')
+                            ->schema([
+                                TextInput::make('label')->label('Label')->required(),
+                                TextInput::make('value')->label('Value')->required(),
+                            ])
+                            ->columns(2)
+                            ->maxItems(5)
+                            ->defaultItems(0)
+                            ->reorderable()
+                            ->collapsible()
+                            ->itemLabel(fn (array $state): ?string => $state['label'] ?? null)
+                            ->addActionLabel('Add figure')
+                            ->columnSpanFull(),
+                        TextInput::make('class.global_heading')->label('Global cohorts heading'),
+                        TextInput::make('class.global_line')->label('Global cohorts line')->columnSpanFull(),
                         Repeater::make('class.metrics')
                             ->label('Profile metrics')
                             ->schema([
@@ -109,9 +132,16 @@ class ManageAudience extends Page implements HasForms
                     ->collapsible(),
                 Section::make('Career progression')
                     ->schema([
+                        Toggle::make('career.show_section')
+                            ->label('Show career section')
+                            ->default(true)
+                            ->columnSpanFull(),
                         TextInput::make('career.label')->label('Section label'),
                         TextInput::make('career.heading')->label('Heading')->columnSpanFull(),
                         Textarea::make('career.intro')->label('Intro')->rows(2)->columnSpanFull(),
+                        TextInput::make('career.badge_kicker')->label('GCC badge kicker'),
+                        TextInput::make('career.badge_title')->label('GCC badge title')->columnSpanFull(),
+                        TextInput::make('career.badge_line')->label('GCC badge line')->columnSpanFull(),
                         Repeater::make('career.stories')
                             ->label('Career direction cards')
                             ->schema([
@@ -155,6 +185,10 @@ class ManageAudience extends Page implements HasForms
                                 TextInput::make('role')->label('Role / designation'),
                                 TextInput::make('category')->label('Badge / category')->placeholder('Student'),
                                 TextInput::make('thumbnail')->label('Custom thumbnail URL (optional)')->columnSpanFull(),
+                                MediaPicker::forField('thumbnail', 'mba-masters-landing/video-testimonials')
+                                    ->label('Thumbnail image')
+                                    ->helperText('Uploaded image replaces the YouTube thumbnail. Leave empty to keep the video image.')
+                                    ->columnSpanFull(),
                             ])
                             ->columns(2)
                             ->defaultItems(0)
@@ -180,9 +214,11 @@ class ManageAudience extends Page implements HasForms
 
         $existingClass = app(MbaMastersClassSettings::class)->toArray();
         $existingCareer = app(MbaMastersCareerSettings::class)->toArray();
+        $existingVideos = app(MbaMastersVideoTestimonialsSettings::class)->toArray();
 
         $class = $data['class'] ?? [];
         $class['metrics'] = array_values($class['metrics'] ?? []);
+        $class['class_year_stats'] = array_values($class['class_year_stats'] ?? []);
         $class['regions'] = array_values($class['regions'] ?? []);
         $class['industries'] = $this->hydrateRepeaterMediaFields($class['industries'] ?? [], 'image');
         foreach ($class['industries'] ?? [] as &$industry) {
@@ -196,6 +232,7 @@ class ManageAudience extends Page implements HasForms
         );
 
         $career = $data['career'] ?? [];
+        $career['show_section'] = (bool) ($career['show_section'] ?? true);
         $career['stories'] = $this->hydrateRepeaterMediaFields($career['stories'] ?? [], 'portrait');
         foreach ($career['stories'] ?? [] as &$story) {
             $story = $this->syncImageIfSelected($story, 'portrait');
@@ -208,7 +245,16 @@ class ManageAudience extends Page implements HasForms
         );
 
         $videoTestimonials = $data['videoTestimonials'] ?? [];
-        $videoTestimonials['videos'] = array_values($videoTestimonials['videos'] ?? []);
+        $videoTestimonials['videos'] = $this->hydrateRepeaterMediaFields($videoTestimonials['videos'] ?? [], 'thumbnail');
+        foreach ($videoTestimonials['videos'] as &$video) {
+            $video = $this->syncImageIfSelected($video, 'thumbnail');
+        }
+        unset($video);
+        $videoTestimonials['videos'] = $this->preserveRepeaterImageFields(
+            array_values($videoTestimonials['videos'] ?? []),
+            $existingVideos['videos'] ?? [],
+            'thumbnail'
+        );
 
         // Save each group independently so one failing group never silently
         // skips the others (each failure already raises its own notification).

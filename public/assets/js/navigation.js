@@ -20,6 +20,7 @@
     DESKTOP_BREAKPOINT: 1024,
     SCROLLED_THRESHOLD: 80,
     HIDE_THRESHOLD: 200,
+    DIRECTION_DELTA: 12,
     CLOSE_DELAY: 150,
   };
 
@@ -49,6 +50,8 @@
   // ---------------------------------------------------------------------
   const state = {
     lastScrollY: window.scrollY || 0,
+    navScrollLocked: false,
+    usingLenis: false,
     ticking: false,
     isMobileMenuOpen: false,
     megaCloseTimeout: null,
@@ -62,12 +65,15 @@
 
   function rafThrottle(fn) {
     let queued = false;
+    let latestArgs = [];
     return function (...args) {
+      latestArgs = args;
       if (queued) return;
       queued = true;
       requestAnimationFrame(() => {
-        fn.apply(this, args);
+        const callArgs = latestArgs;
         queued = false;
+        fn.apply(this, callArgs);
       });
     };
   }
@@ -83,8 +89,9 @@
       );
     }
 
-    function update() {
-      const currentScrollY = window.scrollY || 0;
+    function update(scrollPos) {
+      const currentScrollY =
+        typeof scrollPos === "number" ? scrollPos : window.scrollY || 0;
 
       navbar.classList.toggle(
         "is-scrolled",
@@ -92,28 +99,56 @@
       );
 
       const menuOpen = isAnyMenuOpen();
-      const shouldHide =
+      const pastHide =
         currentScrollY > CONFIG.HIDE_THRESHOLD &&
         !menuOpen &&
         !state.isMobileMenuOpen;
 
-      if (shouldHide) {
-        navbar.classList.toggle(
-          "is-hidden",
-          currentScrollY > state.lastScrollY,
-        );
-      } else {
+      if (!pastHide || state.navScrollLocked) {
         navbar.classList.remove("is-hidden");
+        state.lastScrollY = currentScrollY <= 0 ? 0 : currentScrollY;
+        return;
       }
 
-      state.lastScrollY = currentScrollY <= 0 ? 0 : currentScrollY;
+      const delta = currentScrollY - state.lastScrollY;
+      if (delta > CONFIG.DIRECTION_DELTA) {
+        navbar.classList.add("is-hidden");
+        state.lastScrollY = currentScrollY;
+      } else if (delta < -CONFIG.DIRECTION_DELTA) {
+        navbar.classList.remove("is-hidden");
+        state.lastScrollY = currentScrollY;
+      }
     }
 
     const onScroll = rafThrottle(update);
 
+    function bindScroll() {
+      if (state.usingLenis) return;
+      if (window.lenisInstance) {
+        state.usingLenis = true;
+        window.lenisInstance.on("scroll", (event) => onScroll(event.scroll));
+        return;
+      }
+      window.addEventListener("scroll", () => onScroll(), { passive: true });
+    }
+
     function init() {
       update();
-      window.addEventListener("scroll", onScroll, { passive: true });
+      if (window.__lenisReady) {
+        bindScroll();
+      } else {
+        document.addEventListener("lenisReady", bindScroll, { once: true });
+      }
+
+      document.addEventListener("nav:scroll-lock", () => {
+        state.navScrollLocked = true;
+        navbar.classList.remove("is-hidden");
+      });
+      document.addEventListener("nav:scroll-unlock", () => {
+        state.navScrollLocked = false;
+        state.lastScrollY = window.scrollY || 0;
+        update();
+      });
     }
 
     return { init, update };

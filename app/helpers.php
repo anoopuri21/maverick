@@ -2,6 +2,14 @@
 
 use Illuminate\Support\Str;
 
+if (! function_exists('recaptcha_enabled')) {
+    /** Mirror the verifier's configuration so views never show a widget we ignore. */
+    function recaptcha_enabled(): bool
+    {
+        return app(\App\Services\GoogleRecaptchaVerifier::class)->isEnabled();
+    }
+}
+
 if (! function_exists('mlp_image_url')) {
     /**
      * Optimized image URL for MBA/Master's landing (MLP).
@@ -114,6 +122,66 @@ if (! function_exists('cached_asset')) {
     }
 }
 
+if (! function_exists('sanitize_rich_html')) {
+    /**
+     * Strip executable markup from stored rich text while leaving ordinary
+     * editor HTML byte-for-byte unchanged. Used for CMS content (including
+     * legacy imports), never for deliberately configured analytics scripts.
+     */
+    function sanitize_rich_html(?string $html): string
+    {
+        $html = (string) $html;
+
+        if ($html === '') {
+            return '';
+        }
+
+        $blocked = 'script|style|iframe|object|embed|form|link|meta|base|template|noscript|svg|math';
+
+        // Drop whole dangerous elements, including their contents.
+        $html = preg_replace("#<\\s*({$blocked})\\b[^>]*>.*?<\\s*/\\s*\\1\\s*>#is", '', $html) ?? $html;
+        $html = preg_replace("#<\\s*({$blocked})\\b[^>]*/?\\s*>#i", '', $html) ?? $html;
+
+        // Filter attributes: event handlers, script/data URLs and active CSS.
+        return (string) preg_replace_callback(
+            "/\\s([a-z_:][a-z0-9_:-]*)\\s*=\\s*(\"([^\"]*)\"|'([^']*)'|([^\\s>]+))/i",
+            static function (array $match): string {
+                $name = strtolower($match[1]);
+                $value = $match[3] !== '' ? $match[3] : ($match[4] !== '' ? $match[4] : ($match[5] ?? ''));
+
+                if (str_starts_with($name, 'on') || in_array($name, ['srcdoc', 'formaction'], true)) {
+                    return '';
+                }
+
+                $decoded = html_entity_decode($value, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+                $decoded = html_entity_decode($decoded, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+                $schemeCheck = preg_replace('/[\x00-\x20]+/', '', $decoded) ?? $decoded;
+
+                if (
+                    in_array($name, ['href', 'src', 'action', 'xlink:href', 'poster', 'data'], true)
+                    && preg_match('/^(?:javascript|vbscript|data):/i', $schemeCheck) === 1
+                ) {
+                    return '';
+                }
+
+                if (
+                    $name === 'style'
+                    && preg_match("/(?:expression\\s*\\(|javascript\\s*:|url\\s*\\(\\s*['\"]?\\s*(?:javascript|data):)/i", $decoded) === 1
+                ) {
+                    return '';
+                }
+
+                if ($name === 'srcset' && stripos($decoded, 'javascript:') !== false) {
+                    return '';
+                }
+
+                return $match[0];
+            },
+            $html
+        );
+    }
+}
+
 if (! function_exists('html_filled')) {
     function html_filled(?string $value): bool
     {
@@ -138,7 +206,7 @@ if (! function_exists('rich_html')) {
         $value = $value ?? '';
 
         if (strip_tags($value) !== $value) {
-            return $value;
+            return sanitize_rich_html($value);
         }
 
         return nl2br(e($value), false);
@@ -174,6 +242,39 @@ if (! function_exists('normalize_rich_html_media')) {
             },
             $html
         );
+    }
+}
+
+if (! function_exists('lazy_load_rich_content_images')) {
+    /**
+     * Add non-blocking image hints to rich-text body images when editors omit them.
+     */
+    function lazy_load_rich_content_images(?string $html): string
+    {
+        if (! html_filled($html)) {
+            return '';
+        }
+
+        $optimized = preg_replace_callback('/<img\\b([^>]*)>/i', static function (array $matches): string {
+            $attributes = $matches[1];
+            $selfClosing = preg_match('/\\s*\\/\\s*$/', $attributes) === 1;
+
+            if ($selfClosing) {
+                $attributes = preg_replace('/\\s*\\/\\s*$/', '', $attributes) ?? $attributes;
+            }
+
+            if (! preg_match('/(?:^|\\s)loading\\s*=/i', $attributes)) {
+                $attributes .= ' loading="lazy"';
+            }
+
+            if (! preg_match('/(?:^|\\s)decoding\\s*=/i', $attributes)) {
+                $attributes .= ' decoding="async"';
+            }
+
+            return '<img'.$attributes.($selfClosing ? ' /' : '').'>';
+        }, $html);
+
+        return $optimized ?? $html;
     }
 }
 

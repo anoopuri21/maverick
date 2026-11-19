@@ -2,10 +2,6 @@
   $formId = 'mlp-enquiry-'.\Illuminate\Support\Str::lower((string) \Illuminate\Support\Str::uuid());
 @endphp
 
-@if(session('success'))
-<p class="mlp-form__success" role="status">{{ session('success') }}</p>
-@endif
-
 @if(session('error'))
 <p class="mlp-form__errors" role="alert">{{ session('error') }}</p>
 @endif
@@ -18,7 +14,7 @@
 </ul>
 @endif
 
-<form class="mlp-form__fields" id="{{ $formId }}" action="{{ route('mba-masters-landing.enquire') }}" method="POST" novalidate>
+<form class="mlp-form__fields" id="{{ $formId }}" action="{{ route('mba-masters-landing.enquire') }}" method="POST" data-mlp-enquiry novalidate>
   @csrf
   <input type="text" name="website" value="" tabindex="-1" autocomplete="off" class="mlp-form__honeypot" aria-hidden="true">
 
@@ -67,6 +63,20 @@
       <option value="more-than-6-months" @selected(old('start_timeline') === 'more-than-6-months')>More than 6 months</option>
     </select>
   </label>
+
+  @if (recaptcha_enabled())
+  <div class="mlp-form__captcha mlp-field--full">
+    <div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.site_key') }}" aria-label="reCAPTCHA verification"></div>
+    @error('recaptcha')
+    <p class="mlp-form__errors" role="alert">{{ $message }}</p>
+    @enderror
+  </div>
+  @once
+  @push('scripts')
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  @endpush
+  @endonce
+  @endif
 
   <button type="submit" class="mlp-btn mlp-btn--primary mlp-btn--block">Submit enquiry <span aria-hidden="true">↗</span></button>
 </form>
