@@ -108,7 +108,7 @@ class ImportLegacyBlogs extends Command
             $html
         );
 
-        return trim($html);
+        return trim(sanitize_rich_html($html));
     }
 
     protected function generateExcerpt(?string $existingExcerpt, string $content): string

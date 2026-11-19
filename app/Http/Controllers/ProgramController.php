@@ -235,7 +235,7 @@ class ProgramController extends Controller
             $preferredProgram = Program::where('id', $data['preferred_program'])->value('title') ?? '';
         }
 
-        $formMailer->send([
+        $sent = $formMailer->send([
             'Programme' => $data['programme'] ?? '',
             'Preferred Program' => $preferredProgram,
             'Name' => $data['name'] ?? '',
@@ -252,6 +252,10 @@ class ProgramController extends Controller
             'qualification' => $qualification,
             'preferred_program' => $preferredProgram,
         ]));
+
+        if (! $sent) {
+            return back()->withInput()->with('error', 'We could not send your enquiry right now. Please try again or contact us directly.');
+        }
 
         return redirect()->route('thank-you')->with('thank_you_previous_url', url()->previous());
     }

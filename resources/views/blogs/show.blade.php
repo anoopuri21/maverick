@@ -134,7 +134,7 @@
             {{-- ── MAIN: Article Body ── --}}
             <div class="blog-detail-main">
                 <div class="blog-article-body">
-                    {!! $post->content !!}
+                    {!! rich_html($post->content) !!}
                 </div>
 
                 {{-- Editorial Signature --}}

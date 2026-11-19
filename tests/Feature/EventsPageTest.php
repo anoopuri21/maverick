@@ -6,10 +6,13 @@ use App\Models\Event;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
+use Tests\Concerns\FakesRecaptcha;
 use Tests\TestCase;
 
 class EventsPageTest extends TestCase
 {
+    use FakesRecaptcha;
+
     use RefreshDatabase;
 
     public function test_events_listing_page_loads_successfully()
@@ -62,6 +65,23 @@ class EventsPageTest extends TestCase
         $this->assertFalse($data['has_more']);
         $this->assertEquals(15, $data['next_offset']);
         $this->assertEquals(15, $data['total']);
+    }
+
+    public function test_events_ajax_clamps_a_negative_offset(): void
+    {
+        Event::create([
+            'title' => 'Future Event',
+            'event_date' => now()->addDay()->toDateString(),
+            'is_active' => true,
+        ]);
+
+        $response = $this->getJson(route('events', ['offset' => -10]), [
+            'X-Requested-With' => 'XMLHttpRequest',
+        ]);
+
+        $response->assertOk();
+        $this->assertSame(1, $response->json('next_offset'));
+        $this->assertStringContainsString('Future Event', $response->json('html'));
     }
 
     public function test_event_detail_page_loads_with_gallery_and_videos()
@@ -140,7 +160,11 @@ class EventsPageTest extends TestCase
             'is_active' => true,
         ]);
 
-        config(['services.recaptcha.site_key' => 'test-site-key']);
+        config([
+            'services.recaptcha.enabled' => true,
+            'services.recaptcha.site_key' => 'test-site-key',
+            'services.recaptcha.secret_key' => 'test-secret-key',
+        ]);
         $getRes = $this->get(route('events.register', $event->slug));
         $getRes->assertStatus(200);
         $getRes->assertSee('class="g-recaptcha" data-sitekey="test-site-key"', false);
@@ -267,21 +291,4 @@ class EventsPageTest extends TestCase
         $response->assertSessionHasErrors('recaptcha');
         Mail::assertNothingSent();
     }
-
-    private function fakeRecaptcha(bool $success = true, array $additionalResponses = []): void
-    {
-        config([
-            'services.recaptcha.site_key' => 'test-site-key',
-            'services.recaptcha.secret_key' => 'test-secret-key',
-            'services.recaptcha.allowed_hostnames' => ['localhost'],
-        ]);
-
-        Http::fake(array_merge([
-            'https://www.google.com/recaptcha/api/siteverify' => Http::response([
-                'success' => $success,
-                'hostname' => 'localhost',
-            ], 200),
-        ], $additionalResponses));
-    }
-
 }

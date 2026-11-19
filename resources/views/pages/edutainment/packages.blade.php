@@ -20,7 +20,7 @@
         'titleBreak' => $packages->title_break,
       ])
       @if(html_filled($packages->intro ?? null))
-      <div class="edu-richtext fade-up">{!! $packages->intro !!}</div>
+      <div class="edu-richtext fade-up">{!! rich_html($packages->intro) !!}</div>
       @endif
     </div>
 

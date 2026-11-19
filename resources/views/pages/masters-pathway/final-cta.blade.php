@@ -25,7 +25,7 @@
             </h2>
             @endif
             @if(html_filled($finalCta->sub ?? null))
-            <div class="mp-final__sub mp-richtext">{!! $finalCta->sub !!}</div>
+            <div class="mp-final__sub mp-richtext">{!! rich_html($finalCta->sub) !!}</div>
             @endif
             @if(html_filled($finalCta->description ?? null))
             <div class="mp-final__description body-text mp-richtext">{!! rich_html($finalCta->description ?? null) !!}</div>

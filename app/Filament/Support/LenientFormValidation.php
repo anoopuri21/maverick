@@ -8,8 +8,25 @@ use Filament\Forms\Components\TextInput;
 
 class LenientFormValidation
 {
+    /** Fields where an inferred format/length rule must never be applied. */
+    private const EXCLUDED_FIELDS = [
+        'password',
+        'password_confirmation',
+        'current_password',
+        'secret',
+        'client_secret',
+        'api_secret',
+        'api_key',
+        'refresh_token',
+        'token',
+    ];
+
     public static function register(): void
     {
+        if (! (bool) config('app.filament_lenient_validation', true)) {
+            return;
+        }
+
         TextInput::configureUsing(function (TextInput $component): void {
             self::applyToTextInput($component);
         });
@@ -23,7 +40,7 @@ class LenientFormValidation
     {
         $name = self::fieldName($component);
 
-        if ($name === '') {
+        if ($name === '' || self::isExcluded($name)) {
             return;
         }
 
@@ -60,6 +77,10 @@ class LenientFormValidation
     {
         $name = self::fieldName($component);
 
+        if ($name === '' || self::isExcluded($name)) {
+            return;
+        }
+
         if ($name === 'schema_json') {
             $component->rules(['nullable', 'json']);
 
@@ -69,6 +90,14 @@ class LenientFormValidation
         if (! self::hasMaxLength($component) && ! str_contains($name, 'content') && ! str_contains($name, 'answer')) {
             $component->maxLength(65535);
         }
+    }
+
+    protected static function isExcluded(string $name): bool
+    {
+        return in_array($name, self::EXCLUDED_FIELDS, true)
+            || str_contains($name, 'password')
+            || str_ends_with($name, '_secret')
+            || str_ends_with($name, '_token');
     }
 
     protected static function fieldName(Component $component): string

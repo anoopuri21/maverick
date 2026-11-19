@@ -25,7 +25,7 @@
                 </h2>
                 @endif
                 @if(html_filled($requirements->intro ?? null))
-                <div class="body-text fade-up mp-richtext">{!! $requirements->intro !!}</div>
+                <div class="body-text fade-up mp-richtext">{!! rich_html($requirements->intro) !!}</div>
                 @endif
             </div>
             @if($reqItems->isNotEmpty())

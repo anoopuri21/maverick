@@ -27,7 +27,7 @@
         'titleBreak' => $experiences->title_break,
       ])
       @if(html_filled($experiences->intro ?? null))
-      <div class="edu-richtext fade-up">{!! $experiences->intro !!}</div>
+      <div class="edu-richtext fade-up">{!! rich_html($experiences->intro) !!}</div>
       @endif
     </div>
 

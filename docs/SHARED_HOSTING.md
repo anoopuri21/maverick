@@ -23,7 +23,8 @@ cd ~/demo.vsinfosys.in
 cp .env.example .env
 # Edit .env: APP_ENV=production, APP_DEBUG=false, APP_URL=https://your-domain.tld,
 # DB_*, CACHE_STORE=file, SESSION_DRIVER=file, QUEUE_CONNECTION=sync,
-# Cloudinary keys, APP_KEY still empty.
+# Cloudinary keys, PREFERRED_ORIGIN_*, reCAPTCHA_* (see README.md),
+# APP_KEY still empty.
 php artisan key:generate
 ```
 
@@ -77,7 +78,9 @@ Equivalent Composer shortcut after a pull (does not migrate or `down`/`up`): `co
 | 2 | `.env` exists with a stable `APP_KEY` | Generate **once** on first deploy: `php artisan key:generate`. **Never** regenerate on later deploys. |
 | 3 | `APP_ENV=production` and `APP_DEBUG=false` | Leaking stack traces is a security + disk risk. |
 | 4 | Cloudinary credentials set | Media is Cloudinary-only; without creds admin uploads fail (by design). |
-| 5 | Run optimize script after each deploy | `bash scripts/shared-hosting-optimize.sh` |
+| 5 | Public form configuration decided | Either leave `RECAPTCHA_ENABLED=false` (forms work without a widget) or set enabled + site key + secret key + exact `RECAPTCHA_ALLOWED_HOSTNAMES`. See `README.md`. |
+| 6 | `PREFERRED_ORIGIN_URL` / `PREFERRED_ORIGIN_HOSTS` match the live domain | Used for canonical tags, redirects and sitemap entries. Defaults target `mbalondon.org.uk`. |
+| 7 | Run optimize script after each deploy | `bash scripts/shared-hosting-optimize.sh` |
 
 ## P1 — Caching workflow (config / route / view)
 

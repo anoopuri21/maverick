@@ -156,7 +156,7 @@
                 <div class="accred-cinematic__content" data-cinematic-content>
                     @if($cinematicSettings->heading)
                     <h2 class="accred-cinematic__heading">
-                        {!! $cinematicSettings->heading !!}
+                        {!! rich_html($cinematicSettings->heading) !!}
                     </h2>
                     @endif
                     @if(html_filled($cinematicSettings->text ?? null))

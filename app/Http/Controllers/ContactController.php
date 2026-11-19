@@ -58,7 +58,7 @@ class ContactController extends Controller
             $preferredProgram = Program::where('id', $validated['preferred_program'])->value('title') ?? '';
         }
 
-        app(FormMailer::class)->send([
+        $sent = app(FormMailer::class)->send([
             'Name' => $validated['name'] ?? '',
             'Email' => $validated['email'] ?? '',
             'Phone' => $validated['phone'] ?? '',
@@ -68,9 +68,14 @@ class ContactController extends Controller
             'reply_to' => $validated['email'] ?? null,
         ]);
 
+        // CRM capture is independent of the notification email (see MBA landing).
         app(ZapierWebhookDispatcher::class)->dispatch(ZapierEvents::CONTACT_SUBMITTED, array_merge($validated, [
             'preferred_program' => $preferredProgram,
         ]));
+
+        if (! $sent) {
+            return back()->withInput()->with('error', 'We could not send your message right now. Please try again or contact us directly.');
+        }
 
         return redirect()->route('thank-you')->with('thank_you_previous_url', url()->previous());
     }

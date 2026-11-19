@@ -1,11 +1,12 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "laravel/laravel",
+    "name": "anoopuri21/maverick",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
+    "description": "Maverick Business Academy marketing website and Filament CMS.",
     "keywords": [
         "laravel",
-        "framework"
+        "filament",
+        "marketing-site"
     ],
     "license": "MIT",
     "require": {

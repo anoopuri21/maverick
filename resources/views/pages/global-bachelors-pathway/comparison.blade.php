@@ -9,7 +9,7 @@
         @if(html_filled($comparison->heading ?? null))
         <div class="gbp-comparison__header">
             <h2 class="gbp-comparison__heading section-title gbp-richtext">
-                <span class="text-reveal-wrapper"><span class="text-reveal-inner">{!! $comparison->heading !!}</span></span>
+                <span class="text-reveal-wrapper"><span class="text-reveal-inner">{!! rich_html($comparison->heading) !!}</span></span>
             </h2>
         </div>
         @endif
@@ -97,7 +97,7 @@
             @endif
             @if(html_filled($comparison->callout_description ?? null))
             <div class="gbp-comparison-callout__right">
-                <div class="gbp-comparison-callout__description gbp-richtext">{!! $comparison->callout_description !!}</div>
+                <div class="gbp-comparison-callout__description gbp-richtext">{!! rich_html($comparison->callout_description) !!}</div>
             </div>
             @endif
         </div>

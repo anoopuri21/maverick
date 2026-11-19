@@ -18,6 +18,7 @@ class NewsletterSubscribeRequest extends FormRequest
     {
         return [
             'email' => 'required|email|max:150',
+            'website' => 'nullable|string', // honeypot; never reject a bot for its length
         ];
     }
 }

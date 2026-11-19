@@ -8,10 +8,13 @@ use App\Support\ZapierEvents;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
+use Tests\Concerns\FakesRecaptcha;
 use Tests\TestCase;
 
 class ProgramEnquiryTest extends TestCase
 {
+    use FakesRecaptcha;
+
     use RefreshDatabase;
 
     public function test_enquiry_allows_empty_optional_message(): void
@@ -103,21 +106,5 @@ class ProgramEnquiryTest extends TestCase
         $response->assertSessionHasErrors('recaptcha');
         Mail::assertNothingSent();
         Http::assertSent(fn ($request) => $request->url() === 'https://www.google.com/recaptcha/api/siteverify');
-    }
-
-    private function fakeRecaptcha(bool $success = true, array $additionalResponses = []): void
-    {
-        config([
-            'services.recaptcha.site_key' => 'test-site-key',
-            'services.recaptcha.secret_key' => 'test-secret-key',
-            'services.recaptcha.allowed_hostnames' => ['localhost'],
-        ]);
-
-        Http::fake(array_merge([
-            'https://www.google.com/recaptcha/api/siteverify' => Http::response([
-                'success' => $success,
-                'hostname' => 'localhost',
-            ], 200),
-        ], $additionalResponses));
     }
 }

@@ -16,12 +16,30 @@ class NewsletterController extends Controller
         ZohoCampaignsService $campaigns,
     ) {
         $email = $request->validated('email');
-        $synced = $campaigns->subscribe($email);
 
-        $formMailer->send([
+        // Hidden honeypot field: bots fill it, real users never see it.
+        if (filled($request->validated('website'))) {
+            return response()->json([
+                'ok' => true,
+                'message' => 'Thank you for subscribing.',
+            ]);
+        }
+
+        // Notification first: if it fails, do not subscribe or dispatch the
+        // lead and then tell the visitor to try again (which could duplicate it).
+        $sent = $formMailer->send([
             'Email' => $email,
             'Submitted at' => now()->toDateTimeString(),
         ], 'New newsletter signup');
+
+        if (! $sent) {
+            return response()->json([
+                'ok' => false,
+                'message' => 'We could not record your subscription right now. Please try again shortly.',
+            ], 503);
+        }
+
+        $synced = $campaigns->subscribe($email);
 
         app(ZapierWebhookDispatcher::class)->dispatch(ZapierEvents::NEWSLETTER_SUBSCRIBED, [
             'email' => $email,

@@ -12,8 +12,20 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        // Trust all proxies (required for LiteSpeed/CloudFlare/Shared Hosting)
-        $middleware->trustProxies(at: '*');
+        // Trusted proxies can be enumerated per deployment; "*" is retained as
+        // the default for shared hosting where the upstream IP is not stable.
+        // Read the environment directly: this middleware callback runs before
+        // the config repository is available during HTTP kernel resolution.
+        $trusted = env('TRUSTED_PROXIES', '*');
+        $middleware->trustProxies(
+            at: $trusted === '*'
+                ? '*'
+                : array_values(array_filter(array_map('trim', explode(',', (string) $trusted)))),
+            headers: Request::HEADER_X_FORWARDED_FOR
+                | Request::HEADER_X_FORWARDED_HOST
+                | Request::HEADER_X_FORWARDED_PROTO
+                | Request::HEADER_X_FORWARDED_PORT
+        );
 
         // Consolidate only the known production hosts; local and preview hosts are unaffected.
         $middleware->append(\App\Http\Middleware\RedirectPreferredOrigin::class);

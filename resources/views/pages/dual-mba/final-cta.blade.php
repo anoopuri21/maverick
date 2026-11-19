@@ -37,7 +37,7 @@
       @endif
 
       @if(html_filled($finalCta->sub ?? null))
-      <div class="dmba-cta__sub dmba-richtext">{!! $finalCta->sub !!}</div>
+      <div class="dmba-cta__sub dmba-richtext">{!! rich_html($finalCta->sub) !!}</div>
       @endif
 
       @if($ctaButtons->isNotEmpty())

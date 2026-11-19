@@ -47,7 +47,7 @@
 
           @if(html_filled($hero->sub ?? null))
           <div class="dmba-hero__sub dmba-richtext" data-dmba-hero="sub" data-testid="dmba-hero-sub">
-            {!! $hero->sub !!}
+            {!! rich_html($hero->sub) !!}
           </div>
           @endif
 

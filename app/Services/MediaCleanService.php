@@ -17,10 +17,11 @@ class MediaCleanService
 
     /**
      * @return array{
-     *     usage: array{used: int, unused: int, duplicates: int, referenced_ids: list<int>},
+     *     usage: array{used: int, unused: int, duplicates: int, referenced_ids: list<int>, errors: list<string>},
      *     unused_assets: list<array<string, mixed>>,
      *     cloudinary_orphans: list<array<string, mixed>>,
-     *     cloudinary_error: string|null
+     *     cloudinary_error: string|null,
+     *     scan_errors: list<string>
      * }
      */
     public function preview(): array
@@ -44,6 +45,7 @@ class MediaCleanService
             'unused_assets' => $unused,
             'cloudinary_orphans' => $cloudinary['orphans'],
             'cloudinary_error' => $cloudinary['error'],
+            'scan_errors' => $usage['errors'] ?? [],
         ];
     }
 
@@ -59,6 +61,24 @@ class MediaCleanService
         $deleted = 0;
         $cloudinaryDeleted = 0;
         $skipped = 0;
+
+        if (! $dryRun && ($preview['scan_errors'] ?? []) !== []) {
+            $errors = array_merge(['Reference scan was incomplete; no media was deleted.'], $preview['scan_errors']);
+
+            Log::error('[media-clean] Refused to delete media after an incomplete scan', [
+                'errors' => $errors,
+            ]);
+
+            return [
+                'dry_run' => $dryRun,
+                'deleted' => 0,
+                'cloudinary_deleted' => 0,
+                'skipped' => 0,
+                'orphans' => 0,
+                'errors' => $errors,
+                'preview' => $preview,
+            ];
+        }
 
         foreach ($preview['unused_assets'] as $row) {
             if ($dryRun) {
@@ -139,7 +159,20 @@ class MediaCleanService
             return null;
         }
 
-        $stillUsed = $this->usage->collectReferencedAssetIds();
+        $scan = $this->usage->collectReferencedAssetIdsWithErrors();
+        // A failed rescan is treated as "still used": better one missed cleanup
+        // than deleting an asset whose reference table could not be read.
+        if (($scan['errors'] ?? []) !== [] || ! array_key_exists('ids', $scan)) {
+            Log::warning('[media-clean] Kept an asset because the rescan was incomplete', [
+                'id' => $id,
+                'errors' => $scan['errors'] ?? ['scan result was unavailable'],
+            ]);
+            $asset->forceFill(['used' => true])->saveQuietly();
+
+            return null;
+        }
+
+        $stillUsed = $scan['ids'];
         if (isset($stillUsed[$asset->id]) || $asset->used) {
             $asset->forceFill(['used' => true])->saveQuietly();
 

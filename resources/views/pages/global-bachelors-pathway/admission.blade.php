@@ -60,7 +60,7 @@
                 </ul>
                 @endif
                 @if(html_filled($admission->note ?? null))
-                <div class="gbp-admission__note fade-up gbp-richtext">{!! $admission->note !!}</div>
+                <div class="gbp-admission__note fade-up gbp-richtext">{!! rich_html($admission->note) !!}</div>
                 @endif
             </div>
             @endif

@@ -67,14 +67,16 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         // Preview / reverse-proxy: generate asset URLs from the incoming host
-        // so CSS/JS load on the sandbox preview domain (local only).
+        // so CSS/JS load on the sandbox preview domain (local only). The host
+        // must be explicitly allowed; never trust a raw forwarded-host header.
         if ($this->app->environment('local') && ! $this->app->runningInConsole()) {
-            $host = $_SERVER['HTTP_X_FORWARDED_HOST'] ?? $_SERVER['HTTP_HOST'] ?? null;
-            $proto = $_SERVER['HTTP_X_FORWARDED_PROTO']
-                ?? ((! empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http');
-            if ($host) {
-                URL::forceRootUrl($proto.'://'.$host);
-                if ($proto === 'https') {
+            $request = request();
+            $host = $request->getHttpHost();
+            $scheme = $request->getScheme();
+
+            if ($this->isAllowedUrlHost($host)) {
+                URL::forceRootUrl($scheme.'://'.$host);
+                if ($scheme === 'https') {
                     URL::forceScheme('https');
                 }
             }
@@ -430,5 +432,36 @@ class AppServiceProvider extends ServiceProvider
             $model::saved(fn () => PublicContentCache::flush());
             $model::deleted(fn () => PublicContentCache::flush());
         }
+    }
+
+    private function isAllowedUrlHost(string $host): bool
+    {
+        $host = strtolower((string) parse_url('//'.$host, PHP_URL_HOST));
+
+        if ($host === '' || preg_match('/^[a-z0-9.-]+$/', $host) !== 1) {
+            return false;
+        }
+
+        foreach ((array) config('app.allowed_url_hosts', []) as $allowed) {
+            $allowed = strtolower(trim((string) $allowed));
+
+            if ($allowed === '*') {
+                return true;
+            }
+
+            if (str_starts_with($allowed, '*.')) {
+                if (str_ends_with($host, substr($allowed, 1))) {
+                    return true;
+                }
+
+                continue;
+            }
+
+            if ($host === $allowed) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

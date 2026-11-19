@@ -20,7 +20,7 @@
         'titleBreak' => $whoFor->title_break,
       ])
       @if(html_filled($whoFor->intro ?? null))
-      <div class="edu-richtext fade-up">{!! $whoFor->intro !!}</div>
+      <div class="edu-richtext fade-up">{!! rich_html($whoFor->intro) !!}</div>
       @endif
     </div>
 
