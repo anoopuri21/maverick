@@ -252,7 +252,7 @@
                         @enderror
                     </div>
 
-                    @if (filled(config('services.recaptcha.site_key')))
+                    @if (recaptcha_enabled())
                         <div class="form-group" style="margin-top: 12px;">
                             <div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.site_key') }}" aria-label="reCAPTCHA verification"></div>
                             @error('recaptcha')

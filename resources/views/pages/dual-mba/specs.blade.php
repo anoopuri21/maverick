@@ -24,7 +24,7 @@
       </h2>
       @endif
       @if(html_filled($specs->intro ?? null))
-      <div class="body-text dmba-richtext dmba-specs__intro">{!! $specs->intro !!}</div>
+      <div class="body-text dmba-richtext dmba-specs__intro">{!! rich_html($specs->intro) !!}</div>
       @endif
     </div>
 

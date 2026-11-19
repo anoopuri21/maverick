@@ -36,7 +36,7 @@ class ManageZohoSettings extends SettingsPage
                         ->label('Primary recipient (To)')
                         ->email()
                         ->maxLength(254)
-                        ->helperText('Main destination for form notifications. If empty or invalid, General Settings → UAE Email is used; if that is empty or invalid, fazil@mbalondon.org.uk is the fallback.'),
+                        ->helperText('Main destination for form notifications. If empty or invalid, General Settings → UAE Email is used; if that is empty or invalid, the configured CONTACT_FALLBACK_EMAIL is used.'),
                     Repeater::make('additional_recipients')
                         ->label('Additional recipients (BCC)')
                         ->schema([

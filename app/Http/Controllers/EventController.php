@@ -19,7 +19,9 @@ class EventController extends Controller
     public function index(Request $request)
     {
         $limit = 10;
-        $offset = (int) $request->query('offset', 0);
+        // Clamp both ends: negative offsets are invalid and huge values can
+        // produce an unusable SQL OFFSET.
+        $offset = min(1_000_000, max(0, (int) $request->query('offset', 0)));
         $type = $request->query('type', 'upcoming');
         $today = Carbon::today()->toDateString();
 
@@ -186,7 +188,7 @@ class EventController extends Controller
             }
         }
 
-        $formMailer->send(
+        $sent = $formMailer->send(
             $formData,
             "New Event Registration: {$event->title}",
             [
@@ -196,6 +198,16 @@ class EventController extends Controller
         );
 
         $returnUrl = url()->previous();
+
+        if (! $sent) {
+            $message = 'We could not send your registration right now. Please try again or contact us directly.';
+
+            if ($request->ajax() || $request->wantsJson()) {
+                return response()->json(['success' => false, 'message' => $message], 503);
+            }
+
+            return back()->withInput()->with('error', $message);
+        }
 
         if ($request->ajax() || $request->wantsJson()) {
             $request->session()->flash('thank_you_previous_url', $returnUrl);

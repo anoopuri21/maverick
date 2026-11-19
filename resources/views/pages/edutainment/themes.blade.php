@@ -19,7 +19,7 @@
         'titleBreak' => $themes->title_break,
       ])
       @if(html_filled($themes->intro ?? null))
-      <div class="edu-richtext fade-up">{!! $themes->intro !!}</div>
+      <div class="edu-richtext fade-up">{!! rich_html($themes->intro) !!}</div>
       @endif
     </div>
 

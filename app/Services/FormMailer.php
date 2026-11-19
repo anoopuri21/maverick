@@ -46,7 +46,7 @@ class FormMailer
                 : $this->normalizeRecipients($site->email ?? null);
             $toRecipients = $toRecipients !== []
                 ? $toRecipients
-                : ['fazil@mbalondon.org.uk'];
+                : [filled(config('site.fallback_email')) ? config('site.fallback_email') : 'fazil@mbalondon.org.uk'];
 
             $bccRecipients = $this->normalizeRecipients($zoho->additional_recipients ?? []);
             $toLookup = array_fill_keys(array_map('strtolower', $toRecipients), true);

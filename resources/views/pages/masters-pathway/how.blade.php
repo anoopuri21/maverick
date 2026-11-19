@@ -55,7 +55,7 @@
         @endif
 
         @if(html_filled($how->notice ?? null))
-        <div class="mp-how__notice mp-richtext">{!! $how->notice !!}</div>
+        <div class="mp-how__notice mp-richtext">{!! rich_html($how->notice) !!}</div>
         @endif
     </div>
 </section>

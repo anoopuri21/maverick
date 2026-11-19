@@ -64,7 +64,7 @@
     </select>
   </label>
 
-  @if (filled(config('services.recaptcha.site_key')))
+  @if (recaptcha_enabled())
   <div class="mlp-form__captcha mlp-field--full">
     <div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.site_key') }}" aria-label="reCAPTCHA verification"></div>
     @error('recaptcha')

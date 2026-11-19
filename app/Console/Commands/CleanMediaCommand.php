@@ -59,6 +59,10 @@ class CleanMediaCommand extends Command
             $this->warn('Cloudinary compare: '.$preview['cloudinary_error']);
         }
 
+        foreach ($preview['scan_errors'] ?? [] as $scanError) {
+            $this->warn('Incomplete reference scan: '.$scanError);
+        }
+
         $unused = $preview['unused_assets'];
         if ($unused !== []) {
             $this->newLine();

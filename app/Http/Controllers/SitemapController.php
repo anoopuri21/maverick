@@ -175,7 +175,7 @@ class SitemapController extends Controller
         $canonicalHost = parse_url($canonicalUrl, PHP_URL_HOST);
         $scheme = parse_url($canonicalUrl, PHP_URL_SCHEME);
         $appHost = PreferredOrigin::appliesTo(request())
-            ? 'mbalondon.org.uk'
+            ? parse_url(PreferredOrigin::url(), PHP_URL_HOST)
             : parse_url((string) config('app.url'), PHP_URL_HOST);
         $appHost = is_string($appHost) && $appHost !== '' ? $appHost : request()->getHost();
 

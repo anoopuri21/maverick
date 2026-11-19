@@ -33,7 +33,7 @@
             </h2>
             @endif
             @foreach($introParagraphs as $paragraph)
-            <div class="gbp-intro__paragraph fade-up gbp-richtext">{!! $paragraph !!}</div>
+            <div class="gbp-intro__paragraph fade-up gbp-richtext">{!! rich_html($paragraph) !!}</div>
             @endforeach
         </div>
         @endif

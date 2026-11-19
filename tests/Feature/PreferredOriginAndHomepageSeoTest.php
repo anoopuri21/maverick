@@ -111,6 +111,56 @@ class PreferredOriginAndHomepageSeoTest extends TestCase
         $this->assertStringContainsString('rel="canonical" href="https://partner.example.org/page"', $html);
     }
 
+    public function test_canonical_host_is_always_treated_as_a_known_origin(): void
+    {
+        config([
+            'site.preferred_origin.url' => 'https://example.org',
+            'site.preferred_origin.hosts' => [],
+        ]);
+
+        $this->assertTrue(PreferredOrigin::appliesTo(Request::create('https://example.org/')));
+    }
+
+    public function test_custom_port_canonical_origin_is_normalized_without_duplicating_the_port(): void
+    {
+        config([
+            'site.preferred_origin.url' => 'http://localhost:8000',
+            'site.preferred_origin.hosts' => ['localhost'],
+        ]);
+
+        $request = Request::create('http://localhost:8000/programs');
+
+        $this->assertSame(
+            'http://localhost:8000/programs',
+            PreferredOrigin::normalize('http://localhost:8000/programs', $request)
+        );
+    }
+
+    public function test_http_canonical_origin_does_not_redirect_to_itself(): void
+    {
+        config([
+            'seo.origin_redirect_enabled' => true,
+            'site.preferred_origin.url' => 'http://localhost:8000',
+            'site.preferred_origin.hosts' => ['localhost'],
+        ]);
+
+        $this->get('http://localhost:8000/programs')->assertOk();
+    }
+
+    public function test_preferred_origin_is_configurable(): void
+    {
+        config([
+            'site.preferred_origin.url' => 'https://example.org',
+            'site.preferred_origin.hosts' => ['example.org', 'www.example.org'],
+        ]);
+
+        $request = Request::create('http://www.example.org/programs?ref=1');
+
+        $this->assertTrue(PreferredOrigin::appliesTo($request));
+        $this->assertSame('https://example.org/programs?ref=1', PreferredOrigin::normalize('http://www.example.org/programs?ref=1', $request));
+        $this->assertSame('https://mbalondon.org.uk', PreferredOrigin::URL);
+    }
+
     public function test_sitemap_normalizes_known_origin_canonical_override(): void
     {
         $seo = app(HomepageSeoSettings::class);

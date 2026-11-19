@@ -23,7 +23,7 @@
             </h2>
             @endif
             @if(html_filled($finalCta->sub ?? null))
-            <div class="gbp-final__sub gbp-richtext">{!! $finalCta->sub !!}</div>
+            <div class="gbp-final__sub gbp-richtext">{!! rich_html($finalCta->sub) !!}</div>
             @endif
             @if(html_filled($finalCta->description ?? null))
             <div class="gbp-final__description body-text gbp-richtext">{!! rich_html($finalCta->description ?? null) !!}</div>

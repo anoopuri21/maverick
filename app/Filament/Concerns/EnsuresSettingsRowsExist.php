@@ -3,7 +3,6 @@
 namespace App\Filament\Concerns;
 
 use ReflectionClass;
-use ReflectionMethod;
 use ReflectionProperty;
 use Spatie\LaravelSettings\SettingsMapper;
 
@@ -30,10 +29,8 @@ trait EnsuresSettingsRowsExist
 
     protected function ensureSettingsRowsExist(object $settings): void
     {
-        $mapper = app(SettingsMapper::class);
-        $getConfig = new ReflectionMethod($mapper, 'getConfig');
-        $getConfig->setAccessible(true);
-        $config = $getConfig->invoke($mapper, get_class($settings));
+        // initialize() is the package's public accessor for the settings config.
+        $config = app(SettingsMapper::class)->initialize(get_class($settings));
 
         $repo = $config->getRepository();
         $group = $config->getGroup();

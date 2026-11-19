@@ -5,7 +5,7 @@
     <div class="os-gallery__header">
       <span class="os-section-label fade-up">{{ $storySections->gallery_badge ?? 'Moments' }}</span>
       <h2 class="os-section-heading os-section-heading--center fade-up">
-        {!! $storySections->gallery_heading ?? 'Moments That <em>Define Us</em>' !!}
+        {!! rich_html($storySections->gallery_heading ?? 'Moments That <em>Define Us</em>') !!}
       </h2>
     </div>
   </div>

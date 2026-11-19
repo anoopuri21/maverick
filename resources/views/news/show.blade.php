@@ -150,7 +150,7 @@
             {{-- ── MAIN: Article Body ── --}}
             <div class="news-detail-main">
                 <div class="news-article-body">
-                    {!! $article->content !!}
+                    {!! rich_html($article->content) !!}
                 </div>
 
                 {{-- Editorial Signature --}}

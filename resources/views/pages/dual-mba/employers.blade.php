@@ -48,7 +48,7 @@
             @endif
           >0</span>
           @if(filled($employers->counter_label))
-          <span class="dmba-employers__counter-label">{!! $employers->counter_label !!}</span>
+          <span class="dmba-employers__counter-label">{!! rich_html($employers->counter_label) !!}</span>
           @endif
         </div>
         @endif

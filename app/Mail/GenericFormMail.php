@@ -73,7 +73,7 @@ class GenericFormMail extends Mailable
             return null;
         }
 
-        return trim($html);
+        return trim(sanitize_rich_html($html));
     }
 
     /**

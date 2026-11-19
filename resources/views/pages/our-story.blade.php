@@ -64,7 +64,7 @@
     </span>
     @if(html_filled($hero->heading ?? null))
     <h1 class="os-hero__title fade-up" data-testid="hero-title">
-      {!! $hero->heading !!}
+      {!! rich_html($hero->heading) !!}
     </h1>
     @endif
     @if(filled($hero->subtitle ?? null))
@@ -319,7 +319,7 @@
     <div class="container">
       <div class="os-journey__mobile-header">
         <span class="os-section-label fade-up">{{ $storySections->journey_badge ?? 'Journey' }}</span>
-        <h2 class="os-section-heading fade-up">{!! $storySections->journey_heading ?? 'Our <em>Journey</em>' !!}</h2>
+        <h2 class="os-section-heading fade-up">{!! rich_html($storySections->journey_heading ?? 'Our <em>Journey</em>') !!}</h2>
       </div>
       <div class="os-journey__mobile-slider">
         <div class="os-journey__mobile-track">

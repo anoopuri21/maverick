@@ -24,7 +24,11 @@ class ProgramOverviewUniversityCardTest extends TestCase
         $this->createProgram('label-only-highlights', $partner, [
             ['label' => 'Professional accreditation'],
         ]);
-        config(['services.recaptcha.site_key' => 'test-site-key']);
+        config([
+            'services.recaptcha.enabled' => true,
+            'services.recaptcha.site_key' => 'test-site-key',
+            'services.recaptcha.secret_key' => 'test-secret-key',
+        ]);
 
         $response = $this->get(route('programs.show', 'label-only-highlights'));
 

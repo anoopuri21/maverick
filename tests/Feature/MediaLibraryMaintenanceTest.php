@@ -82,6 +82,59 @@ class MediaLibraryMaintenanceTest extends TestCase
         $this->assertSame(1, MediaAsset::query()->count());
     }
 
+    public function test_confirmed_clean_aborts_when_reference_scan_is_incomplete(): void
+    {
+        $asset = MediaAsset::query()->create($this->assetAttrs());
+
+        $usage = $this->createMock(MediaUsageService::class);
+        $usage->method('refresh')->willReturn([
+            'used' => 0,
+            'unused' => 1,
+            'duplicates' => 0,
+            'referenced_ids' => [],
+            'errors' => ['settings: table scan failed'],
+        ]);
+        $this->app->instance(MediaUsageService::class, $usage);
+
+        $result = $this->app->make(\App\Services\MediaCleanService::class)->execute(
+            dryRun: false,
+            deleteFromCloudinary: true,
+            includeOrphans: true
+        );
+
+        $this->assertSame(0, $result['deleted']);
+        $this->assertContains('settings: table scan failed', $result['errors']);
+        $this->assertNotNull($asset->fresh());
+    }
+
+    public function test_confirmed_clean_keeps_an_asset_when_the_rescan_is_incomplete(): void
+    {
+        $asset = MediaAsset::query()->create($this->assetAttrs());
+
+        $usage = $this->createMock(MediaUsageService::class);
+        $usage->method('refresh')->willReturn([
+            'used' => 0,
+            'unused' => 1,
+            'duplicates' => 0,
+            'referenced_ids' => [],
+            'errors' => [],
+        ]);
+        $usage->method('collectReferencedAssetIdsWithErrors')->willReturn([
+            'ids' => [],
+            'errors' => ['settings: table scan failed'],
+        ]);
+        $this->app->instance(MediaUsageService::class, $usage);
+
+        $result = $this->app->make(\App\Services\MediaCleanService::class)->execute(
+            dryRun: false,
+            deleteFromCloudinary: false,
+            includeOrphans: false
+        );
+
+        $this->assertSame(0, $result['deleted']);
+        $this->assertNotNull($asset->fresh());
+    }
+
     /**
      * @param  array<string, mixed>  $overrides
      * @return array<string, mixed>

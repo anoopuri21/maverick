@@ -12,10 +12,13 @@ use App\Support\ZapierEvents;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
+use Tests\Concerns\FakesRecaptcha;
 use Tests\TestCase;
 
 class MbaMastersLandingTest extends TestCase
 {
+    use FakesRecaptcha;
+
     use RefreshDatabase;
 
     public function test_legacy_masters_url_redirects_permanently_to_the_current_landing_page(): void
@@ -35,7 +38,11 @@ class MbaMastersLandingTest extends TestCase
             'is_active' => true,
         ]);
 
-        config(['services.recaptcha.site_key' => 'test-site-key']);
+        config([
+            'services.recaptcha.enabled' => true,
+            'services.recaptcha.site_key' => 'test-site-key',
+            'services.recaptcha.secret_key' => 'test-secret-key',
+        ]);
 
         $response = $this->get('/online-mba-masters-uae');
 
@@ -579,21 +586,4 @@ class MbaMastersLandingTest extends TestCase
         Mail::assertNothingSent();
         Http::assertNotSent(fn ($request) => $request->url() === 'https://hooks.zapier.com/hooks/catch/mba-landing');
     }
-
-    private function fakeRecaptcha(bool $success = true, array $additionalResponses = []): void
-    {
-        config([
-            'services.recaptcha.site_key' => 'test-site-key',
-            'services.recaptcha.secret_key' => 'test-secret-key',
-            'services.recaptcha.allowed_hostnames' => ['localhost'],
-        ]);
-
-        Http::fake(array_merge([
-            'https://www.google.com/recaptcha/api/siteverify' => Http::response([
-                'success' => $success,
-                'hostname' => 'localhost',
-            ], 200),
-        ], $additionalResponses));
-    }
-
 }
