@@ -64,10 +64,11 @@ class MediaAssetResource extends Resource
                     ->label('Folder')
                     ->content(fn (?MediaAsset $record): string => $record?->folder ?? '—')
                     ->visibleOn('edit'),
-                TextInput::make('disk_env')
-                    ->label('Environment')
-                    ->disabled()
-                    ->dehydrated(false)
+                Forms\Components\Placeholder::make('storage_display')
+                    ->label('Storage')
+                    ->content(fn (?MediaAsset $record): string => $record?->storage_path
+                        ? ($record->storage_disk ?: 'public').': '.$record->storage_path
+                        : 'Legacy remote asset (not yet recovered)')
                     ->visibleOn('edit'),
                 Forms\Components\Placeholder::make('used_display')
                     ->label('Used')
@@ -95,9 +96,12 @@ class MediaAssetResource extends Resource
                 TextColumn::make('folder')
                     ->badge()
                     ->searchable(),
-                TextColumn::make('disk_env')
-                    ->label('Env')
-                    ->badge(),
+                TextColumn::make('storage_path')
+                    ->label('Storage path')
+                    ->placeholder('Legacy remote')
+                    ->limit(36)
+                    ->toggleable(isToggledHiddenByDefault: true)
+                    ->copyable(),
                 TextColumn::make('size_bytes')
                     ->label('Size')
                     ->formatStateUsing(fn ($state) => $state ? number_format($state / 1024, 1).' KB' : '—'),

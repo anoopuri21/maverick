@@ -23,7 +23,7 @@ cd ~/demo.vsinfosys.in
 cp .env.example .env
 # Edit .env: APP_ENV=production, APP_DEBUG=false, APP_URL=https://your-domain.tld,
 # DB_*, CACHE_STORE=file, SESSION_DRIVER=file, QUEUE_CONNECTION=sync,
-# Cloudinary keys, PREFERRED_ORIGIN_*, reCAPTCHA_* (see README.md),
+# media storage settings, PREFERRED_ORIGIN_*, reCAPTCHA_* (see README.md),
 # APP_KEY still empty.
 php artisan key:generate
 ```
@@ -77,7 +77,7 @@ Equivalent Composer shortcut after a pull (does not migrate or `down`/`up`): `co
 | 1 | Document root = `public/` | Required. Never point the vhost at the repo root. |
 | 2 | `.env` exists with a stable `APP_KEY` | Generate **once** on first deploy: `php artisan key:generate`. **Never** regenerate on later deploys. |
 | 3 | `APP_ENV=production` and `APP_DEBUG=false` | Leaking stack traces is a security + disk risk. |
-| 4 | Cloudinary credentials set | Media is Cloudinary-only; without creds admin uploads fail (by design). |
+| 4 | Persistent media directory + off-site backup | `storage/app/public/media` must be writable, survive deployments, and be backed up with the database. |
 | 5 | Public form configuration decided | Either leave `RECAPTCHA_ENABLED=false` (forms work without a widget) or set enabled + site key + secret key + exact `RECAPTCHA_ALLOWED_HOSTNAMES`. See `README.md`. |
 | 6 | `PREFERRED_ORIGIN_URL` / `PREFERRED_ORIGIN_HOSTS` match the live domain | Used for canonical tags, redirects and sitemap entries. Defaults target `mbalondon.org.uk`. |
 | 7 | Run optimize script after each deploy | `bash scripts/shared-hosting-optimize.sh` |
@@ -134,11 +134,14 @@ When `QUEUE_CONNECTION=database`, the scheduler drains the queue each minute wit
 
 | Layer | Behavior |
 |-------|----------|
-| Permanent media | Cloudinary only (`MediaLibraryService` + `CloudinaryService`) |
+| Permanent media | Application-owned `storage/app/public/media`, served through `public/storage` |
 | Temp uploads | `storage/app/private/livewire-tmp` via Livewire (`disk=local`, max **5MB**, images only, auto-cleanup) |
 | Hard limit | `config/media.php` → `MEDIA_MAX_UPLOAD_KB` (default 5120) enforced in `MediaLibraryService` |
+| Backup | Back up `storage/app/public/media` **and the database** off-site together; preserve `storage/` on every deploy |
 
-Do **not** store large originals under `public/` or `storage/app/public`. Prefer Cloudinary URLs in the DB.
+Run `php artisan storage:link` after deploy (the optimize script already does this). See
+`docs/self-hosted-media.md` for the Cloudinary recovery runbook; do not disable the legacy
+account until the copied site has been verified.
 
 ## P5 — Database
 
@@ -163,14 +166,16 @@ LOG_LEVEL=error
 LOG_DAILY_DAYS=7
 
 FILESYSTEM_DISK=local
+MEDIA_STORAGE_DISK=public
+MEDIA_STORAGE_PREFIX=media
 MEDIA_MAX_UPLOAD_KB=5120
+MEDIA_REMOTE_DOWNLOAD_TIMEOUT=90
 
+# Keep legacy Cloudinary values only until media:migrate-cloudinary has
+# recovered every asset and the public site has been verified.
 CLOUDINARY_CLOUD_NAME=...
 CLOUDINARY_API_KEY=...
 CLOUDINARY_API_SECRET=...
-CLOUDINARY_UPLOAD_FOLDER=maverick-academy
-CLOUDINARY_ENV_FOLDER=false
-CLOUDINARY_DISK_ENV=shared
 ```
 
 `file` cache/session reduces MySQL load on small shared plans. Use `database` sessions only if you need sticky sessions across multiple nodes (rare on shared hosting).
@@ -199,7 +204,7 @@ After each deploy, OPCache will pick up new files within `revalidate_freq`. If t
 1. `GET /up` → 200
 2. Homepage + one program + blog index load
 3. Admin login works
-4. Cloudinary image on a CMS page loads over HTTPS
+4. Self-hosted `/storage/media/...` image on a CMS page loads over HTTPS
 5. `storage/logs` is not exploding (daily + `LOG_LEVEL=error`)
 6. Confirm `bootstrap/cache/config.php` exists after optimize
 

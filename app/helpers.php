@@ -314,15 +314,21 @@ if (! function_exists('slug_href')) {
     }
 }
 
-if (! function_exists('cloudinary_upload')) {
-    function cloudinary_upload(?string $path, string $folder = 'general'): ?string
+if (! function_exists('media_upload')) {
+    /**
+     * Store a direct Filament settings upload in the self-hosted media library.
+     * MediaPicker uploads use the same MediaLibraryService directly.
+     */
+    function media_upload(?string $path, string $folder = 'general'): ?string
     {
         if (! filled($path) || ! is_readable($path)) {
             return null;
         }
 
         try {
-            return app(\App\Services\CloudinaryService::class)->uploadImage($path, $folder);
+            return app(\App\Services\MediaLibraryService::class)
+                ->store($path, $folder, basename($path))
+                ->url;
         } catch (Throwable $e) {
             report($e);
 

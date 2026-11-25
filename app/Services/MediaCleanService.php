@@ -210,8 +210,19 @@ class MediaCleanService
      */
     protected function inspectCloudinary(array $referenced): array
     {
+        // Once every library item is self-hosted there is no reason to call a
+        // retired Cloudinary account during routine cleanup.
+        $hasRemoteOnlyAssets = MediaAsset::withoutGlobalScopes([SoftDeletingScope::class])
+            ->whereNull('storage_path')
+            ->whereNotNull('cloudinary_public_id')
+            ->exists();
+
+        if (! $hasRemoteOnlyAssets) {
+            return ['orphans' => [], 'error' => null];
+        }
+
         if (! $this->cloudinary->hasCredentials()) {
-            return ['orphans' => [], 'error' => 'Cloudinary credentials are not configured; skipped remote compare.'];
+            return ['orphans' => [], 'error' => 'Legacy Cloudinary credentials are not configured; skipped remote compare.'];
         }
 
         try {

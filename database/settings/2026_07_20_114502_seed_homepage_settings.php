@@ -16,7 +16,8 @@ class SeedHomepageSettings extends SettingsMigration
         $this->migrator->add('hero.cta_primary_url', '/programs/');
         $this->migrator->add('hero.cta_secondary_text', 'Speak with an Advisor');
         $this->migrator->add('hero.cta_secondary_url', '/contact');
-        $this->migrator->add('hero.video_url', 'https://res.cloudinary.com/i08gwudw/video/upload/v1783604725/maverick-hero_sxhbex.webm');
+        // Configure the self-hosted hero video URL from Admin → Homepage → Hero Section.
+        $this->migrator->add('hero.video_url', null);
 
         // Numbers
         $this->migrator->add('numbers.heading_line1', 'Where Education');
@@ -58,7 +59,7 @@ class SeedHomepageSettings extends SettingsMigration
         $this->migrator->add('ceo.quote', 'We do not simply deliver qualifications. We create opportunities that transform lives, careers, and communities.');
         $this->migrator->add('ceo.body_paragraph1', 'Maverick Business Academy was founded with a vision to make internationally recognised education more accessible, practical, and transformational for learners around the world.');
         $this->migrator->add('ceo.body_paragraph2', 'Our mission goes beyond academic achievement. We focus on empowering individuals with the knowledge, confidence, and opportunities required to succeed in a rapidly changing global environment.');
-        $this->migrator->add('ceo.image_url', 'https://res.cloudinary.com/i08gwudw/image/upload/v1783478429/ASD01131_v3opum.jpg');
+        $this->migrator->add('ceo.image_url', '/storage/media/cloudinary/b2950a41eb4b81702d1db2f5a539519dc2c33321818abbd0e361122c4152d7ed.jpg');
         $this->migrator->add('ceo.badge_text', 'Dean, Group CEO & Founder');
 
         // What Is Maverick

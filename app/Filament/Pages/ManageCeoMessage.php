@@ -67,10 +67,10 @@ class ManageCeoMessage extends SettingsPage
                         ->columnSpanFull()
                         ->fetchFileInformation(false)
                         ->getUploadedFileUsing(function (?string $file) {
-                            return static::existingCloudinaryImage($file);
+                            return static::existingStoredImage($file);
                         })
                     ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
-                            return cloudinary_upload($file->getRealPath() ?: null, 'homepage/ceo');
+                            return media_upload($file->getRealPath() ?: null, 'homepage/ceo');
                         }),
                 ]),
         ]);

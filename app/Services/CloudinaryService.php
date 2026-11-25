@@ -185,13 +185,36 @@ class CloudinaryService
      */
     public function listImagesByPrefix(string $prefix, ?string $nextCursor = null): array
     {
+        return $this->listImages($prefix, $nextCursor);
+    }
+
+    /**
+     * List every image visible to the configured Cloudinary credentials.
+     * Used once by the self-hosted migration to recover even unreferenced
+     * assets before the old account can be disabled.
+     *
+     * @return array{resources: array<int, array<string, mixed>>, next_cursor: string|null}
+     */
+    public function listAllImages(?string $nextCursor = null): array
+    {
+        return $this->listImages(null, $nextCursor);
+    }
+
+    /**
+     * @return array{resources: array<int, array<string, mixed>>, next_cursor: string|null}
+     */
+    protected function listImages(?string $prefix, ?string $nextCursor = null): array
+    {
         try {
             $options = [
                 'resource_type' => 'image',
                 'type' => 'upload',
-                'prefix' => $prefix,
                 'max_results' => 500,
             ];
+
+            if (filled($prefix)) {
+                $options['prefix'] = $prefix;
+            }
 
             if ($nextCursor) {
                 $options['next_cursor'] = $nextCursor;
@@ -206,7 +229,7 @@ class CloudinaryService
                 'next_cursor' => $result['next_cursor'] ?? null,
             ];
         } catch (\Exception $e) {
-            Log::error('Cloudinary listImagesByPrefix failed: '.$e->getMessage(), [
+            Log::error('Cloudinary image list failed: '.$e->getMessage(), [
                 'prefix' => $prefix,
                 'next_cursor' => $nextCursor,
             ]);

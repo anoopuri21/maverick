@@ -12,25 +12,24 @@ use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 class MediaLibraryService
 {
     public function __construct(
-        protected CloudinaryService $cloudinary,
+        protected MediaStorageService $storage,
     ) {}
 
     public function currentDiskEnv(): string
     {
-        return $this->cloudinary->diskEnv();
+        // Existing remote rows use `shared`; this distinct marker allows a new
+        // self-hosted upload to coexist with the same legacy file hash while a
+        // migration is still in progress.
+        return 'self-hosted';
     }
 
     public function scopeLibrary(Builder $query): Builder
     {
-        if ($this->cloudinary->usesEnvFolder()) {
-            $query->where('disk_env', $this->currentDiskEnv());
-        }
-
         return $query;
     }
 
     /**
-     * Store a file in the media library with SHA-256 dedupe.
+     * Store a file in the self-hosted media library with SHA-256 dedupe.
      */
     public function store(
         string|UploadedFile|TemporaryUploadedFile $file,
@@ -62,14 +61,10 @@ class MediaLibraryService
         $hash = hash_file('sha256', $path);
         $diskEnv = $this->currentDiskEnv();
 
-        $existingQuery = MediaAsset::withoutGlobalScopes([SoftDeletingScope::class])
-            ->where('hash', $hash);
-
-        if ($this->cloudinary->usesEnvFolder()) {
-            $existingQuery->where('disk_env', $diskEnv);
-        }
-
-        $existing = $existingQuery->first();
+        $existing = MediaAsset::withoutGlobalScopes([SoftDeletingScope::class])
+            ->where('hash', $hash)
+            ->whereNotNull('storage_path')
+            ->first();
 
         if ($existing) {
             if ($existing->trashed()) {
@@ -82,32 +77,32 @@ class MediaLibraryService
             return $existing;
         }
 
-        $uploaded = $this->cloudinary->uploadImageDetailed($path, $folder);
-        $url = $uploaded['url'] ?? null;
-        $publicId = $uploaded['public_id'] ?? null;
-
-        if (! $url || ! $publicId) {
-            throw new \RuntimeException('Cloudinary upload did not return url/public_id');
-        }
-
-        $dimensions = @getimagesize($path) ?: [null, null];
+        $stored = $this->storage->storeFile($path, $folder, $originalName);
 
         $asset = MediaAsset::create([
             'hash' => $hash,
             'original_name' => $originalName,
-            'mime_type' => $mime !== '' ? $mime : null,
-            'size_bytes' => $sizeBytes ?: null,
-            'width' => $dimensions[0] ?? null,
-            'height' => $dimensions[1] ?? null,
-            'cloudinary_public_id' => $publicId,
-            'url' => $url,
-            'folder' => $uploaded['folder'] ?? $this->cloudinary->resolveUploadFolder($folder),
+            'mime_type' => $stored['mime_type'] ?: ($mime !== '' ? $mime : null),
+            'size_bytes' => $stored['size_bytes'] ?: $sizeBytes ?: null,
+            'width' => $stored['width'],
+            'height' => $stored['height'],
+            'cloudinary_public_id' => null,
+            'url' => $stored['url'],
+            'source_url' => null,
+            'folder' => trim(str_replace('\\', '/', $folder), '/') ?: 'general',
             'disk_env' => $diskEnv,
+            'storage_disk' => $stored['disk'],
+            'storage_path' => $stored['path'],
             'used' => false,
             'is_duplicate' => false,
         ]);
 
-        Log::info('[media-library] Created new asset', ['id' => $asset->id, 'hash' => $hash, 'folder' => $asset->folder]);
+        Log::info('[media-library] Created self-hosted asset', [
+            'id' => $asset->id,
+            'hash' => $hash,
+            'folder' => $asset->folder,
+            'path' => $asset->storage_path,
+        ]);
 
         return $asset;
     }

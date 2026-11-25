@@ -17,7 +17,7 @@ return new class extends SettingsMigration
         $this->migrator->add('global_partners_overview.heading', 'Building Global Pathways Through ');
         $this->migrator->add('global_partners_overview.heading_italic', 'Strategic Academic Partnerships');
         $this->migrator->add('global_partners_overview.paragraph', 'Maverick Business Academy collaborates with internationally recognized universities and educational institutions to provide learners with access to globally respected qualifications, flexible learning opportunities, and career-focused academic pathways');
-        $this->migrator->add('global_partners_overview.image', 'https://res.cloudinary.com/i08gwudw/image/upload/v1785340343/maverick-academy/our-story/timeline/qpg8khpl9f0tg6xzyhz5.jpg');
+        $this->migrator->add('global_partners_overview.image', '/storage/media/cloudinary/99f056b2ecf739d0ca55feae0bea89c8cbb4c1465793a798fde2c1c59966c987.jpg');
         $this->migrator->add('global_partners_overview.image_asset_id', null);
 
         $this->migrator->add('global_partners_cards.label', 'PARTNER UNIVERSITIES');
@@ -40,9 +40,9 @@ return new class extends SettingsMigration
         $this->migrator->add('global_partners_benefits.tag', 'Student Benefits');
         $this->migrator->add('global_partners_benefits.heading', 'Benefits of Studying Through ');
         $this->migrator->add('global_partners_benefits.heading_italic', 'Maverick Partnerships');
-        $this->migrator->add('global_partners_benefits.main_image', 'https://res.cloudinary.com/i08gwudw/image/upload/v1784534077/maverick-academy/programs/igxpmziapl3v5xaqozki.jpg');
+        $this->migrator->add('global_partners_benefits.main_image', '/storage/media/cloudinary/50935bbdcb27cc8a9e15753bba8013d2bb08338324b3c1ada28f5a4749b47427.jpg');
         $this->migrator->add('global_partners_benefits.main_image_asset_id', null);
-        $this->migrator->add('global_partners_benefits.secondary_image', 'https://res.cloudinary.com/i08gwudw/image/upload/v1784441348/mba_sa4pmo.jpg');
+        $this->migrator->add('global_partners_benefits.secondary_image', '/storage/media/cloudinary/fd98c9b510479661bb18efa0a4b1442f6981e1c08e0a6dd671138d5687593194.jpg');
         $this->migrator->add('global_partners_benefits.secondary_image_asset_id', null);
         $this->migrator->add('global_partners_benefits.stat_number', '30k+');
         $this->migrator->add('global_partners_benefits.stat_label', 'GLOBAL ALUMNI');
