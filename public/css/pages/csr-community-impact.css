@@ -247,7 +247,7 @@
 .csr-commitment {
   position: relative;
   padding: clamp(4rem, 8vw, 7.5rem) 0;
-  background: url('https://res.cloudinary.com/i08gwudw/image/upload/v1785600206/dotted-grid-paper-bg.jpg');
+  background: url('/storage/media/cloudinary/bd3596d810c2446298456717e318e48aff6e3ade37944645dc78cd7bbd7c7f1e.jpg');
 }
 
 .csr-commitment__grid {
@@ -314,7 +314,7 @@
 .csr-focus {
   position: relative;
   padding: clamp(4rem, 8vw, 7.5rem) 0;
-  background: url('https://res.cloudinary.com/i08gwudw/image/upload/v1785600206/dotted-grid-paper-bg.jpg');
+  background: url('/storage/media/cloudinary/bd3596d810c2446298456717e318e48aff6e3ade37944645dc78cd7bbd7c7f1e.jpg');
 }
 
 .csr-focus__grid {
@@ -409,7 +409,7 @@ box-shadow:  20px 20px 60px #bebebe,
 .csr-gallery {
   position: relative;
   padding: clamp(4rem, 8vw, 7.5rem) 0;
-  background: url('https://res.cloudinary.com/i08gwudw/image/upload/v1785600206/dotted-grid-paper-bg.jpg');
+  background: url('/storage/media/cloudinary/bd3596d810c2446298456717e318e48aff6e3ade37944645dc78cd7bbd7c7f1e.jpg');
 }
 
 .csr-gallery__grid {
@@ -579,7 +579,7 @@ box-shadow:  20px 20px 60px #bebebe,
 .csr-scholarship {
   position: relative;
   padding: clamp(4rem, 8vw, 7.5rem) 0;
-  background: url('https://res.cloudinary.com/i08gwudw/image/upload/v1785600206/dotted-grid-paper-bg.jpg');
+  background: url('/storage/media/cloudinary/bd3596d810c2446298456717e318e48aff6e3ade37944645dc78cd7bbd7c7f1e.jpg');
 }
 
 .csr-scholarship__split {

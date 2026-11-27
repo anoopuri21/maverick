@@ -3356,7 +3356,7 @@ html.lenis body {
 }
 .why:before {
   content: "";
-  background: url("https://res.cloudinary.com/i08gwudw/image/upload/v1783605569/bgm-wm_mav1.png")
+  background: url("/storage/media/cloudinary/f826e7c30d19284680389b1e90882081f923ed5b4ab91e3bd219ff5a4a2e794e.png")
     no-repeat;
   background-size: contain;
   background-color: #fff;

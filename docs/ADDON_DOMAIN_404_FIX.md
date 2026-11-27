@@ -157,7 +157,7 @@ RewriteRule ^(.*)$ https://mbalondon.org.uk/$1 [L,R=301]
 - [ ] `php artisan optimize:clear && php artisan config:cache`
 - [ ] `.env`: `APP_ENV=production`, `APP_DEBUG=false`, `APP_URL=https://mbalondon.org.uk`
 - [ ] `curl -I https://mbalondon.org.uk/up` → 200
-- [ ] Homepage + admin login + ek Cloudinary image HTTPS pe load
+- [ ] Homepage + admin login + ek self-hosted `/storage/media` image HTTPS pe load
 - [ ] Canonical decide (redirect ya dono zinda)
 
 Sabse common galti: **path repo-root pe set karna, `public/` pe nahi.** Wahin aapka 404 aa raha hai.

@@ -171,6 +171,8 @@ class MediaLibraryModal extends Component
             $term = '%'.$this->search.'%';
             $query->where(function ($q) use ($term) {
                 $q->where('original_name', 'like', $term)
+                    ->orWhere('storage_path', 'like', $term)
+                    ->orWhere('source_url', 'like', $term)
                     ->orWhere('cloudinary_public_id', 'like', $term);
             });
         }

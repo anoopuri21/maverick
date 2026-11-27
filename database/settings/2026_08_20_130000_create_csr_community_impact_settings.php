@@ -19,7 +19,7 @@ return new class extends SettingsMigration
         $this->migrator->add('csr_commitment.heading', 'Our ');
         $this->migrator->add('csr_commitment.heading_italic', 'Commitment');
         $this->migrator->add('csr_commitment.body', 'At Maverick Business Academy, we believe education extends beyond classrooms. Through our CSR initiatives, we actively contribute to community development, educational accessibility, professional growth, and social wellbeing.');
-        $this->migrator->add('csr_commitment.image_url', 'https://res.cloudinary.com/i08gwudw/image/upload/v1785846422/csr-impact_bh8qyb.png');
+        $this->migrator->add('csr_commitment.image_url', '/storage/media/cloudinary/79d2247ff10c1f90ac1b50131024106a12f6a70afc1e6861bfafe8d806c4db35.png');
         $this->migrator->add('csr_commitment.image_url_asset_id', null);
 
         // ─── Focus Areas ───

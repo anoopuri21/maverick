@@ -3,7 +3,6 @@
 namespace App\Filament\Pages;
 
 use App\Settings\SiteSettings;
-use App\Services\CloudinaryService;
 use App\Filament\Concerns\HandlesCloudinaryImageFields;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Grid;
@@ -43,9 +42,9 @@ class ManageSiteSettings extends SettingsPage
                             ->maxSize(2048)
                             ->fetchFileInformation(false)
                             ->nullable()
-                            ->getUploadedFileUsing(fn (?string $file): ?array => static::existingCloudinaryImage($file))
+                            ->getUploadedFileUsing(fn (?string $file): ?array => static::existingStoredImage($file))
                             ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
-                                return cloudinary_upload($file->getRealPath() ?: null, 'site');
+                                return media_upload($file->getRealPath() ?: null, 'site');
                             }),
                         FileUpload::make('logo_white_url')
                             ->label('Logo (White)')
@@ -53,9 +52,9 @@ class ManageSiteSettings extends SettingsPage
                             ->maxSize(2048)
                             ->fetchFileInformation(false)
                             ->nullable()
-                            ->getUploadedFileUsing(fn (?string $file): ?array => static::existingCloudinaryImage($file))
+                            ->getUploadedFileUsing(fn (?string $file): ?array => static::existingStoredImage($file))
                             ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
-                                return cloudinary_upload($file->getRealPath() ?: null, 'site');
+                                return media_upload($file->getRealPath() ?: null, 'site');
                             }),
                     ]),
                 ]),

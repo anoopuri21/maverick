@@ -3,7 +3,6 @@
 namespace App\Filament\Pages;
 
 use App\Settings\WhoWeAreSettings;
-use App\Services\CloudinaryService;
 use App\Filament\Concerns\HandlesCloudinaryImageFields;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Grid;
@@ -72,9 +71,9 @@ class ManageWhoWeAre extends SettingsPage
                         ->columnSpanFull()
                         ->fetchFileInformation(false)
                         ->nullable()
-                        ->getUploadedFileUsing(fn (?string $file): ?array => static::existingCloudinaryImage($file))
+                        ->getUploadedFileUsing(fn (?string $file): ?array => static::existingStoredImage($file))
                         ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
-                            return cloudinary_upload($file->getRealPath() ?: null, 'homepage/who-we-are');
+                            return media_upload($file->getRealPath() ?: null, 'homepage/who-we-are');
                         }),
                 ]),
         ]);

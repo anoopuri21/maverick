@@ -3,14 +3,11 @@
 namespace App\Filament\Pages;
 
 use App\Settings\HeroSettings;
-use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Pages\SettingsPage;
-use App\Services\CloudinaryService;
-use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class ManageHero extends SettingsPage
 {
@@ -52,9 +49,9 @@ class ManageHero extends SettingsPage
             Section::make('Background Video')
                 ->schema([
                     TextInput::make('video_url')
-                        ->label('Cloudinary Video URL')
+                        ->label('Background Video URL')
                         ->nullable()
-                        ->helperText('WebM format recommended.')
+                        ->helperText('Use a URL hosted on your own server. WebM format is recommended.')
                         ->columnSpanFull(),
                 ]),
         ]);

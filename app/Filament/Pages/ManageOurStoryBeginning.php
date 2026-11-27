@@ -3,7 +3,6 @@
 namespace App\Filament\Pages;
 
 use App\Settings\OurStoryBeginningSettings;
-use App\Services\CloudinaryService;
 use App\Filament\Concerns\HandlesCloudinaryImageFields;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Section;
@@ -83,9 +82,9 @@ class ManageOurStoryBeginning extends SettingsPage
                         ->columnSpanFull()
                         ->fetchFileInformation(false)
                         ->nullable()
-                        ->getUploadedFileUsing(fn (?string $file): ?array => static::existingCloudinaryImage($file))
+                        ->getUploadedFileUsing(fn (?string $file): ?array => static::existingStoredImage($file))
                         ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
-                            return cloudinary_upload($file->getRealPath() ?: null, 'our-story/beginning');
+                            return media_upload($file->getRealPath() ?: null, 'our-story/beginning');
                         }),
                 ]),
         ]);

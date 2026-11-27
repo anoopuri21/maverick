@@ -48,7 +48,7 @@ class ListMediaAssets extends ListRecords
                 ->icon('heroicon-o-trash')
                 ->color('danger')
                 ->modalHeading('Clean Media Library')
-                ->modalDescription('Unused files only. Used media is never deleted. Soft-delete is reversible; Cloudinary destroy is optional.')
+                ->modalDescription('Unused files only. Used media is never deleted. Soft-delete is reversible; self-hosted files remain until Force Delete.')
                 ->modalSubmitActionLabel('Recycle unused media')
                 ->form(function (): array {
                     $preview = app(MediaCleanService::class)->preview();
@@ -88,8 +88,12 @@ class ListMediaAssets extends ListRecords
                             ->label('I understand this soft-deletes unused library rows only')
                             ->accepted(),
                         Checkbox::make('purge_cloudinary')
-                            ->label('Also delete unused files from Cloudinary (public_id is kept in the recycle log)')
-                            ->helperText('Leave unchecked to keep Cloudinary files. You can purge later with php artisan media:clean --confirm --purge-cloudinary.'),
+                            ->label('Also delete legacy remote Cloudinary copies (not recommended during recovery)')
+                            ->helperText('This applies only to remaining remote-only legacy assets. Leave unchecked while validating self-hosted recovery.')
+                            ->visible(fn (): bool => \App\Models\MediaAsset::query()
+                                ->whereNull('storage_path')
+                                ->whereNotNull('cloudinary_public_id')
+                                ->exists()),
                     ];
                 })
                 ->action(function (array $data): void {
@@ -119,7 +123,7 @@ class ListMediaAssets extends ListRecords
 
                     Notification::make()
                         ->title('Unused media recycled')
-                        ->body('Soft-deleted '.$result['deleted'].' row(s). Cloudinary destroyed: '.$result['cloudinary_deleted'].'.')
+                        ->body('Soft-deleted '.$result['deleted'].' row(s). Legacy remote copies destroyed: '.$result['cloudinary_deleted'].'.')
                         ->success()
                         ->send();
                 }),

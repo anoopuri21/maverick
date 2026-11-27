@@ -3,7 +3,6 @@
 namespace App\Filament\Pages;
 
 use App\Settings\OurStoryTodaySettings;
-use App\Services\CloudinaryService;
 use App\Filament\Concerns\HandlesCloudinaryImageFields;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Section;
@@ -70,9 +69,9 @@ class ManageOurStoryToday extends SettingsPage
                         ->columnSpanFull()
                         ->fetchFileInformation(false)
                         ->nullable()
-                        ->getUploadedFileUsing(fn (?string $file): ?array => static::existingCloudinaryImage($file))
+                        ->getUploadedFileUsing(fn (?string $file): ?array => static::existingStoredImage($file))
                         ->saveUploadedFileUsing(function (TemporaryUploadedFile $file) {
-                            return cloudinary_upload($file->getRealPath() ?: null, 'our-story/today');
+                            return media_upload($file->getRealPath() ?: null, 'our-story/today');
                         }),
                 ]),
         ]);
