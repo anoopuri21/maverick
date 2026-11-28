@@ -117,7 +117,7 @@ class CloudinaryMediaMigrationService
     protected function recoverStaticSources(bool $write): void
     {
         foreach ((array) config('media.legacy_static_cloudinary_urls', []) as $url) {
-            if (! is_string($url) || ! $this->isCloudinaryImage($url)) {
+            if (! is_string($url) || ! $this->isLegacyCloudinaryImage($url)) {
                 continue;
             }
 
@@ -149,7 +149,7 @@ class CloudinaryMediaMigrationService
                 $page = $this->cloudinary->listAllImages($cursor);
                 foreach ($page['resources'] as $resource) {
                     $url = $resource['secure_url'] ?? null;
-                    if (! is_string($url) || ! $this->isCloudinaryImage($url)) {
+                    if (! is_string($url) || ! $this->isLegacyCloudinaryImage($url)) {
                         continue;
                     }
 
@@ -193,7 +193,7 @@ class CloudinaryMediaMigrationService
                 $suffix = substr($match[0], strlen($rawUrl));
                 $url = $rawUrl;
 
-                if (! $this->isCloudinaryImage($url)) {
+                if (! $this->isLegacyCloudinaryImage($url)) {
                     return $match[0];
                 }
 
@@ -373,6 +373,26 @@ class CloudinaryMediaMigrationService
             || preg_match('/\.(?:avif|bmp|gif|ico|jpe?g|png|svg|tiff?|webp)$/i', $path) === 1;
 
         return $isCloudinaryHost && $hasImagePath;
+    }
+
+    /**
+     * Only recover the deliberately configured legacy account. A site can
+     * temporarily contain Cloudinary URLs from a newer account; those remain
+     * untouched until that account has its own reviewed migration plan.
+     */
+    protected function isLegacyCloudinaryImage(string $url): bool
+    {
+        if (! $this->isCloudinaryImage($url)) {
+            return false;
+        }
+
+        $parts = parse_url($url);
+        $host = strtolower((string) ($parts['host'] ?? ''));
+        $segments = array_values(array_filter(explode('/', trim((string) ($parts['path'] ?? ''), '/'))));
+        $cloudName = $host === 'res.cloudinary.com' ? strtolower((string) ($segments[0] ?? '')) : '';
+        $allowed = array_map('strtolower', (array) config('media.legacy_cloudinary_cloud_names', []));
+
+        return in_array('*', $allowed, true) || ($cloudName !== '' && in_array($cloudName, $allowed, true));
     }
 
     /** @return list<string> */

@@ -37,7 +37,9 @@ php artisan media:migrate-cloudinary --confirm --include-remote
 ```
 
 Do not use credentials from a different/newer account for this option: that would inventory its
-files, not the legacy account's files.
+files, not the legacy account's files. The regular migration also allow-lists the old cloud name
+through `MEDIA_LEGACY_CLOUDINARY_CLOUD_NAMES` (default: `i08gwudw`), so newer-account URLs stay
+unchanged unless explicitly approved later.
 
 Do not remove old credentials or disable the account until the command exits without errors,
 the site is tested in an uncached browser, and a backup of both the database and

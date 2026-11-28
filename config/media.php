@@ -20,6 +20,15 @@ return [
 
     'remote_download_timeout_seconds' => (int) env('MEDIA_REMOTE_DOWNLOAD_TIMEOUT', 90),
 
+    // Only these legacy Cloudinary cloud names are migrated. This prevents a
+    // newer/current Cloudinary account (or another organisation's URL) from
+    // being altered during old-account recovery. Multiple names are comma
+    // separated when a deliberate multi-account recovery is required.
+    'legacy_cloudinary_cloud_names' => array_values(array_filter(array_map(
+        'strtolower',
+        array_map('trim', explode(',', (string) env('MEDIA_LEGACY_CLOUDINARY_CLOUD_NAMES', 'i08gwudw')))
+    ))),
+
     'max_upload_kilobytes' => (int) env('MEDIA_MAX_UPLOAD_KB', 5120), // 5 MB
 
     'allowed_mime_prefixes' => [

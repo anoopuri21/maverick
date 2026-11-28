@@ -74,7 +74,9 @@ by the database or the configured CSS/default-image sources.
 
 Do not assume the `CLOUDINARY_*` values currently in `.env` belong to the legacy account. Those
 values can belong to a newer account and must not be used to inventory an unrelated account.
-Normal admin uploads do not use Cloudinary credentials at all.
+By default the recovery command migrates only the legacy `i08gwudw` cloud name; URLs from another
+Cloudinary account are intentionally left unchanged. Normal admin uploads do not use Cloudinary
+credentials at all.
 
 If you also need an archive of images that are no longer referenced by any website page, first
 temporarily configure the credentials for the **exact old account**:
@@ -183,7 +185,11 @@ MEDIA_STORAGE_DISK=public
 MEDIA_STORAGE_PREFIX=media
 MEDIA_MAX_UPLOAD_KB=5120
 MEDIA_REMOTE_DOWNLOAD_TIMEOUT=90
+MEDIA_LEGACY_CLOUDINARY_CLOUD_NAMES=i08gwudw
 ```
+
+`MEDIA_LEGACY_CLOUDINARY_CLOUD_NAMES` is a comma-separated allow-list. Keep it set to the exact
+old account(s) being migrated. Do not add a newer account until its own migration is approved.
 
 `MEDIA_STORAGE_DISK` should remain `public` for this shared-hosting setup. If it is changed to a
 non-public disk, the application would need a signed/controller download route instead of the

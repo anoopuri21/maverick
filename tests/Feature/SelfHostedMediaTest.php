@@ -16,6 +16,13 @@ class SelfHostedMediaTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        config()->set('media.legacy_cloudinary_cloud_names', ['demo', 'old-account']);
+    }
+
     public function test_new_library_upload_is_stored_on_the_public_disk(): void
     {
         Storage::fake('public');
@@ -122,6 +129,35 @@ class SelfHostedMediaTest extends TestCase
         $this->assertSame($first->url, $logo->getMediaUrl('logo_url'));
         Storage::disk('public')->assertExists($first->storage_path);
         Http::assertSentCount(2);
+    }
+
+    public function test_cloudinary_migration_leaves_other_cloud_accounts_unchanged(): void
+    {
+        Storage::fake('public');
+        Http::preventStrayRequests();
+
+        $legacyUrl = 'https://res.cloudinary.com/old-account/image/upload/v1/maverick-academy/legacy.png';
+        $otherAccountUrl = 'https://res.cloudinary.com/new-account/image/upload/v1/maverick-academy/current.png';
+        $legacyAsset = $this->legacyAsset($legacyUrl, str_repeat('a', 64), 'maverick-academy/legacy');
+        $otherAccountAsset = $this->legacyAsset($otherAccountUrl, str_repeat('b', 64), 'maverick-academy/current');
+
+        Http::fake([
+            $legacyUrl => Http::response($this->tinyPng(), 200, ['Content-Type' => 'image/png']),
+        ]);
+
+        $this->artisan('media:migrate-cloudinary', [
+            '--confirm' => true,
+            '--skip-remote' => true,
+            '--skip-static' => true,
+        ])->assertSuccessful();
+
+        $legacyAsset->refresh();
+        $otherAccountAsset->refresh();
+
+        $this->assertStringStartsWith('/storage/media/cloudinary/', $legacyAsset->url);
+        $this->assertSame($otherAccountUrl, $otherAccountAsset->url);
+        $this->assertNull($otherAccountAsset->storage_path);
+        Http::assertSentCount(1);
     }
 
     private function legacyAsset(string $url, string $hash, string $publicId): MediaAsset

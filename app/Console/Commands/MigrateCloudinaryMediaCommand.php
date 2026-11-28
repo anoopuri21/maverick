@@ -48,7 +48,7 @@ class MigrateCloudinaryMediaCommand extends Command
 
         $this->newLine();
         $this->line('<fg=cyan>Self-hosted media migration</>');
-        $this->line('  Cloudinary image occurrences : '.$result['sources']);
+        $this->line('  Legacy-account image occurrences : '.$result['sources']);
         $this->line('  Unique source images         : '.$result['unique_sources']);
         $this->line('  Copied to this server        : <fg=green>'.$result['recovered'].'</>');
         $this->line('  Already on this server       : '.$result['already_present']);
