@@ -30,7 +30,20 @@ jobs:
           php artisan key:generate
 
       - name: Run tests
-        run: php artisan test
+        run: |
+          set +e
+          php artisan test 2>&1 | tee /tmp/php-artisan-test.log
+          status=${PIPESTATUS[0]}
+
+          if [ "$status" -ne 0 ]; then
+            # The job log is not always available to API clients. Keep a short
+            # diagnostic in the check annotation as well, without
+            # changing the test command's exit status.
+            summary=$(tail -n 40 /tmp/php-artisan-test.log | tr '\n' ' ' | cut -c1-3500 | sed 's/%/%25/g;s/\r/%0D/g')
+            echo "::error title=PHP test suite failed::$summary"
+          fi
+
+          exit "$status"
 
   javascript:
     name: JavaScript regression tests and Vite build
