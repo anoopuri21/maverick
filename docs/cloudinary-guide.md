@@ -9,7 +9,7 @@ runbook is [`self-hosted-media.md`](self-hosted-media.md).
 
 ## Recovery command
 
-While the old account is still active, leave its credentials in production `.env` and run:
+While the old account is still active and its public delivery URLs work, run:
 
 ```bash
 php artisan media:migrate-cloudinary --dry-run
@@ -18,15 +18,28 @@ php artisan optimize:clear
 php artisan storage:link
 ```
 
+The normal confirmed run downloads public Cloudinary delivery URLs directly; it does **not** need
+Cloudinary credentials to recover images currently referenced by the production database.
+
 The confirmed run:
 
 - downloads every Cloudinary **image** URL stored anywhere in the production database;
 - downloads the two former CSS-only backgrounds;
-- inventories and copies every image in the configured Cloudinary account, including unreferenced
-  assets;
 - rewrites database URLs to the local `/storage/media/...` copies;
 - retains the original address in `media_assets.source_url` for audit/retry; and
 - never deletes a remote Cloudinary asset.
+
+To archive unreferenced images as well, first set `CLOUDINARY_*` to the **same old account** and
+run the explicit optional inventory:
+
+```bash
+php artisan media:migrate-cloudinary --confirm --include-remote
+```
+
+Do not use credentials from a different/newer account for this option: that would inventory its
+files, not the legacy account's files. The regular migration also allow-lists the old cloud name
+through `MEDIA_LEGACY_CLOUDINARY_CLOUD_NAMES` (default: `i08gwudw`), so newer-account URLs stay
+unchanged unless explicitly approved later.
 
 Do not remove old credentials or disable the account until the command exits without errors,
 the site is tested in an uncached browser, and a backup of both the database and
