@@ -11,10 +11,11 @@ class MigrateCloudinaryMediaCommand extends Command
     protected $signature = 'media:migrate-cloudinary
                             {--dry-run : Inventory legacy URLs only; do not download or rewrite anything}
                             {--confirm : Copy images to this server and rewrite database URLs}
-                            {--skip-remote : Do not inventory image assets from the Cloudinary account}
+                            {--include-remote : Also inventory the configured Cloudinary account (only when it is the legacy account)}
+                            {--skip-remote : Deprecated compatibility option; remote inventory is skipped unless --include-remote is supplied}
                             {--skip-static : Do not recover legacy CSS and default-settings images}';
 
-    protected $description = 'Copy Cloudinary images to self-hosted storage and replace all database references';
+    protected $description = 'Copy referenced Cloudinary images to self-hosted storage and replace database references';
 
     public function handle(CloudinaryMediaMigrationService $migrator): int
     {
@@ -26,9 +27,16 @@ class MigrateCloudinaryMediaCommand extends Command
             $this->warn('Migration mode — images are copied to storage/app/public and database URLs are rewritten. Cloudinary files are never deleted.');
         }
 
+        $includeRemote = (bool) $this->option('include-remote')
+            && ! (bool) $this->option('skip-remote');
+
+        if (! $includeRemote) {
+            $this->comment('Remote-account inventory is skipped. Referenced public Cloudinary URLs are still recovered without Cloudinary credentials.');
+        }
+
         $result = $migrator->run(
             write: $write,
-            includeRemote: ! (bool) $this->option('skip-remote'),
+            includeRemote: $includeRemote,
             includeStatic: ! (bool) $this->option('skip-static'),
         );
 
@@ -46,7 +54,7 @@ class MigrateCloudinaryMediaCommand extends Command
         $this->line('  Already on this server       : '.$result['already_present']);
         $this->line('  Database rows rewritten      : <fg=green>'.$result['rows_updated'].'</>');
         $this->line('  Bootstrap images recovered   : '.$result['static_recovered']);
-        $this->line('  Remote-account images checked: '.$result['remote_recovered']);
+        $this->line('  Remote-account images copied  : '.$result['remote_recovered']);
         $this->line('  Errors                       : <fg=red>'.count($result['errors']).'</>');
 
         if ($write) {

@@ -76,18 +76,24 @@ For cPanel/LiteSpeed shared hosting, follow `docs/SHARED_HOSTING.md` and run
 ## Media maintenance and Cloudinary recovery
 
 ```bash
-# One-time production recovery before the legacy account is disabled:
+# One-time production recovery of every image currently referenced by the site:
 php artisan media:migrate-cloudinary --dry-run
 php artisan media:migrate-cloudinary --confirm
+
+# Optional: also archive unreferenced images from the *same legacy* account.
+# Use this only after temporarily configuring that old account’s credentials.
+php artisan media:migrate-cloudinary --confirm --include-remote
 
 # Routine media-library usage checks:
 php artisan media:clean                         # dry run
 php artisan media:clean --confirm               # recycle unused rows
 ```
 
-The migration copies each Cloudinary image into `storage/app/public/media`, rewrites every
-Cloudinary image URL found in the database, and inventories every image in the configured
-legacy account (including unreferenced files). It never deletes the remote copy. See `docs/self-hosted-media.md`.
+The migration copies each Cloudinary image currently referenced by the database into
+`storage/app/public/media` and rewrites those references. It downloads public legacy URLs
+without Cloudinary credentials. An account-wide archive is deliberately opt-in with
+`--include-remote`, and requires credentials for that exact old account; it never deletes a
+remote copy. See `docs/self-hosted-media.md`.
 Destructive clean runs are refused if any reference-table scan fails.
 
 ## Further documentation

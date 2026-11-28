@@ -66,9 +66,18 @@ php artisan optimize:clear
 already runs `storage:link`; check that `public/storage` points to `storage/app/public` after
 deploying.
 
-### 3. Keep old credentials temporarily
+### 3. Credentials are optional for images used by the site
 
-Keep the legacy account values in production `.env` for this migration:
+The normal recovery command downloads each public `res.cloudinary.com/...` URL directly. It
+therefore does **not** need the old Cloudinary account credentials to recover images referenced
+by the database or the configured CSS/default-image sources.
+
+Do not assume the `CLOUDINARY_*` values currently in `.env` belong to the legacy account. Those
+values can belong to a newer account and must not be used to inventory an unrelated account.
+Normal admin uploads do not use Cloudinary credentials at all.
+
+If you also need an archive of images that are no longer referenced by any website page, first
+temporarily configure the credentials for the **exact old account**:
 
 ```env
 CLOUDINARY_CLOUD_NAME=old_cloud_name
@@ -76,18 +85,17 @@ CLOUDINARY_API_KEY=old_account_key
 CLOUDINARY_API_SECRET=old_account_secret
 ```
 
-They let the command inventory **all image assets**, including images no longer referenced in
-the website database. They are not used by normal admin uploads.
+Only then use the optional `--include-remote` command described below.
 
-### 4. Review the inventory first
+### 4. Review the site-reference inventory first
 
 ```bash
 php artisan media:migrate-cloudinary --dry-run
 ```
 
-The dry-run writes nothing. It reports image URL occurrences found in every string/text/JSON
-field in the database, the two old CSS backgrounds, and (when credentials are available) every
-image in the legacy Cloudinary account.
+The dry-run writes nothing. It reports Cloudinary image URL occurrences found in every
+string/text/JSON field in the database and the configured CSS/default-image sources. It does not
+call the configured Cloudinary account unless `--include-remote` is explicitly supplied.
 
 ### 5. Run the copy and URL rewrite
 
@@ -102,12 +110,21 @@ The command is safe to re-run:
 - URLs that were successfully changed no longer match Cloudinary;
 - **no Cloudinary file is deleted**.
 
-For an unusually large account, the full remote inventory can take time. Do not close the SSH
-session while it runs. If you intentionally only want images currently referenced by the site,
-use `--skip-remote`; normally leave it off so orphaned-but-valuable images are backed up too.
+If you have configured credentials for the exact old account and also want to archive its
+unreferenced images, run this separately:
+
+```bash
+php artisan media:migrate-cloudinary --confirm --include-remote
+```
+
+For an unusually large account, that optional inventory can take time. Do not close the SSH
+session while it runs. `--skip-remote` remains as a compatibility option, but remote inventory
+is skipped unless `--include-remote` is supplied.
 
 If a source cannot be downloaded, the command exits non-zero, lists it, and leaves that
-particular database URL unchanged. Fix account/network access and run the command again.
+particular database URL unchanged. Fix the URL/account/network access and run the command again.
+A `404` means Cloudinary no longer has a public file at that address; recover that exact rendition
+from a backup or the old account before disabling it.
 
 ### 6. Clear caches and verify before disabling anything
 

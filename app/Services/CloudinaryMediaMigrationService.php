@@ -242,7 +242,10 @@ class CloudinaryMediaMigrationService
      */
     protected function storeAsset(string $source, array $stored, ?string $publicId = null): MediaAsset
     {
-        $asset = MediaAsset::withoutGlobalScopes([SoftDeletingScope::class])
+        // A row that explicitly belongs to this source URL is the preferred
+        // record to update. It keeps existing media_asset_id relationships
+        // stable when this is the first copy of a legacy image.
+        $sourceAsset = MediaAsset::withoutGlobalScopes([SoftDeletingScope::class])
             ->where('source_url', $source)
             ->orWhere('url', $source)
             ->first();
@@ -250,12 +253,45 @@ class CloudinaryMediaMigrationService
         $fullPath = Storage::disk($stored['disk'])->path($stored['path']);
         $hash = is_readable($fullPath) ? hash_file('sha256', $fullPath) : null;
 
-        if (! $asset && $hash) {
-            $asset = MediaAsset::withoutGlobalScopes([SoftDeletingScope::class])
+        // The table has a unique (hash, disk_env) key. Different Cloudinary
+        // URLs can legitimately return byte-for-byte identical images, so do
+        // not overwrite a second row into the same key. Reuse the canonical
+        // local record instead and repoint its relationships below.
+        $canonicalAsset = $hash
+            ? MediaAsset::withoutGlobalScopes([SoftDeletingScope::class])
                 ->where('hash', $hash)
-                ->first();
+                ->whereNotNull('storage_path')
+                ->orderBy('id')
+                ->first()
+            : null;
+
+        if ($canonicalAsset && (! $sourceAsset || $canonicalAsset->id !== $sourceAsset->id)) {
+            if ($canonicalAsset->trashed()) {
+                $canonicalAsset->restore();
+            }
+
+            if ($sourceAsset) {
+                // Preserve the failed source as audit metadata, but make every
+                // ID-based CMS relationship use the one local asset that owns
+                // the file. URL fields are rewritten by the normal database
+                // scan using the URL returned from this method.
+                $sourceAsset->forceFill(['source_url' => $source])->saveQuietly();
+                $this->repointAssetReferences((int) $sourceAsset->id, (int) $canonicalAsset->id);
+                $sourceAsset->delete();
+            }
+
+            // This URL's deterministic copy is no longer needed: its content
+            // hash proves the canonical local file is exactly identical. Do
+            // not leave an untracked duplicate on disk.
+            if (($stored['disk'] ?? null) === $canonicalAsset->storage_disk
+                && ($stored['path'] ?? null) !== $canonicalAsset->storage_path) {
+                $this->storage->delete($stored['disk'], $stored['path']);
+            }
+
+            return $canonicalAsset;
         }
 
+        $asset = $sourceAsset ?: $canonicalAsset;
         $attributes = [
             'hash' => $hash ?: ('imported:'.substr(hash('sha256', $source), 0, 55)),
             'original_name' => basename(parse_url($source, PHP_URL_PATH) ?: 'legacy-image'),
@@ -286,6 +322,35 @@ class CloudinaryMediaMigrationService
             'used' => false,
             'is_duplicate' => false,
         ]);
+    }
+
+    /**
+     * Point all conventional media foreign-key columns at one canonical asset.
+     *
+     * The database uses both `media_asset_id` and field-specific names such as
+     * `image_url_asset_id`. This keeps admin previews and public relationships
+     * working when two old Cloudinary URLs have the same file hash.
+     */
+    protected function repointAssetReferences(int $fromId, int $toId): void
+    {
+        if ($fromId === $toId) {
+            return;
+        }
+
+        foreach ($this->tables() as $table) {
+            if (in_array($table, config('media.schema_skip_tables', []), true)) {
+                continue;
+            }
+
+            foreach ($this->columns($table) as $column) {
+                $name = $column['name'];
+                if ($name !== 'media_asset_id' && ! str_ends_with($name, '_asset_id')) {
+                    continue;
+                }
+
+                DB::table($table)->where($name, $fromId)->update([$name => $toId]);
+            }
+        }
     }
 
     protected function track(string $url): void

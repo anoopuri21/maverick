@@ -158,8 +158,14 @@
 </IfModule>
 
 # ---------------------------------------------------------------------------
-# Long-lived cache for fingerprinted / static assets only.
-# HTML and PHP stay uncached so CMS content updates immediately.
+# Browser cache for static assets served from this host.
+#
+# `cached_asset()` adds a file-mtime version to CSS/JS/image URLs, while
+# self-hosted media uses UUID/source-hash filenames and is never overwritten.
+# Both are therefore safe to cache for a year. Dynamic Laravel pages are
+# deliberately excluded: they can contain an authenticated admin session,
+# CSRF token, form errors, or freshly edited CMS content. Their database/query
+# caching is handled inside Laravel (and rebuilt by optimize:hosting).
 # ---------------------------------------------------------------------------
 <IfModule mod_expires.c>
     ExpiresActive On
@@ -188,24 +194,42 @@
     ExpiresByType application/vnd.ms-fontobject "access plus 1 year"
 
     ExpiresByType video/mp4 "access plus 1 month"
+    ExpiresByType video/webm "access plus 1 month"
+    ExpiresByType video/ogg "access plus 1 month"
     ExpiresByType audio/mpeg "access plus 1 month"
+    ExpiresByType audio/mp4 "access plus 1 month"
+    ExpiresByType audio/ogg "access plus 1 month"
+    ExpiresByType audio/wav "access plus 1 month"
+    ExpiresByType application/pdf "access plus 1 month"
 
     ExpiresByType text/html "access plus 0 seconds"
     ExpiresByType application/json "access plus 0 seconds"
 </IfModule>
 
 <IfModule mod_headers.c>
+    # CSS/JS/images/fonts, including /storage/media/..., are immutable because
+    # their public URL changes whenever the file changes.
     <FilesMatch "\.(css|js|mjs|jpg|jpeg|png|gif|webp|avif|svg|ico|woff|woff2|ttf|otf|eot)$">
-        Header set Cache-Control "public, max-age=31536000, immutable"
+        Header always set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+
+    # Video/audio are cacheable and support normal HTTP byte-range requests,
+    # but use a shorter TTL because administrators can replace a configured
+    # video at the same URL.
+    <FilesMatch "\.(mp4|webm|ogv|mov|m4v|mp3|m4a|aac|ogg|opus|wav|flac|pdf)$">
+        Header always set Cache-Control "public, max-age=2592000"
     </FilesMatch>
 
     <FilesMatch "^favicon\.ico$">
-        Header set Cache-Control "public, max-age=86400"
+        Header always set Cache-Control "public, max-age=86400"
     </FilesMatch>
 
+    # Rewritten public routes execute index.php, so this protects dynamic HTML
+    # as well as literal PHP/HTML files from being stored by a shared browser
+    # cache. Do not make this long-lived without a cache-aware proxy/CDN.
     <FilesMatch "\.(html|htm|php)$">
-        Header set Cache-Control "no-cache, no-store, must-revalidate"
-        Header set Pragma "no-cache"
+        Header always set Cache-Control "no-cache, no-store, must-revalidate"
+        Header always set Pragma "no-cache"
     </FilesMatch>
 
     # Mild security headers (safe for Filament/Livewire behind HTTPS)
